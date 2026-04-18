@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高校サッカー順位確認システム | U-18リーグ情報</title>
+    <meta name="description" content="高円宮杯U-18サッカーリーグ、全国高校サッカー選手権、インターハイの都道府県別順位・成績を確認できるサイトです。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="site-title">
+                    <i class="fas fa-futbol"></i>
+                    高校サッカー順位確認システム
+                </h1>
+                <nav class="nav">
+                    <a href="#" class="nav-link" id="homeBtn">
+                        <i class="fas fa-home"></i>
+                        ホーム
+                    </a>
+                    <a href="#" class="nav-link" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                        検索
+                    </a>
+                    <a href="admin.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        管理
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 最終更新バナー -->
+            <div id="updateBanner" class="update-banner" style="display:none;">
+                <i class="fas fa-sync-alt"></i>
+                <span id="updateBannerText">データ読み込み中...</span>
+            </div>
+
+            <!-- 情報セクション -->
+            <section class="info-section">
+                <div class="info-card">
+                    <div class="info-icon premier">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>プレミアリーグ</h3>
+                        <p>全国24チーム</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon prince">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>プリンスリーグ</h3>
+                        <p>9地域で実施</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon prefecture">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>都道府県リーグ</h3>
+                        <p>47都道府県</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 検索セクション（初期非表示） -->
+            <section class="search-section" id="searchSection" style="display: none;">
+                <div class="search-box">
+                    <h2><i class="fas fa-search"></i> チーム検索</h2>
+                    <div class="search-input-wrapper">
+                        <input type="text" id="searchInput" placeholder="チーム名または高校名を入力してください..." class="search-input">
+                        <button id="clearSearchBtn" class="clear-btn" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+            </section>
+
+            <!-- 日本地図セクション -->
+            <section class="map-section" id="mapSection">
+                <h2 class="section-title">都道府県を選択してください</h2>
+                
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-color premier-color"></span>
+                        <span>プレミアリーグ所属あり</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color prince-color"></span>
+                        <span>プリンスリーグ所属あり</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color prefecture-color"></span>
+                        <span>都道府県リーグのみ</span>
+                    </div>
+                </div>
+
+                <div id="japanMap" class="japan-map-list">
+                    <!-- 地域別リストはJavaScriptで動的に生成 -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 都道府県詳細モーダル -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- タブナビゲーション -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="league">
+                        <i class="fas fa-list"></i> リーグ戦
+                    </button>
+                    <button class="tab-btn" data-tab="championship">
+                        <i class="fas fa-trophy"></i> 大会成績
+                    </button>
+                </div>
+
+                <!-- リーグ戦タブ -->
+                <div class="tab-content active" id="leagueTab">
+                    <div class="stats-summary">
+                        <div class="stat-item">
+                            <div class="stat-label">登録チーム数</div>
+                            <div class="stat-value" id="teamCount">-</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">最高リーグ</div>
+                            <div class="stat-value" id="topLeague">-</div>
+                        </div>
+                    </div>
+                    <div id="teamsTable"></div>
+                </div>
+
+                <!-- 大会成績タブ -->
+                <div class="tab-content" id="championshipTab">
+                    <div id="championshipsTable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 高校サッカー順位確認システム</p>
+            <p class="footer-note">
+                <i class="fas fa-info-circle"></i>
+                データは手動更新です。最新情報は各公式サイトをご確認ください。
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 古いローカルストレージキーをクリア（一度だけ実行）
+        if (localStorage.getItem('soccerTeamsData')) {
+            console.log('旧データをクリアしています...');
+            localStorage.removeItem('soccerTeamsData');
+        }
+        // カスタムデータもクリア（実在チームのみ表示のため）
+        if (localStorage.getItem('soccerTeamsCustomData')) {
+            console.log('カスタムデータをクリアしています...');
+            localStorage.removeItem('soccerTeamsCustomData');
+        }
+    </script>
+    <script src="js/real-teams-generator.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/map-simple.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 最終更新バナーの表示
+        window.addEventListener('dataManagerReady', () => {
+            const meta = window.dataManager && window.dataManager.getLastUpdated();
+            const banner = document.getElementById('updateBanner');
+            const text   = document.getElementById('updateBannerText');
+            if (meta && banner && text) {
+                text.textContent = `最終自動更新: ${meta.lastUpdated}（${meta.updatedCount ?? '-'}チーム更新）`;
+                banner.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>

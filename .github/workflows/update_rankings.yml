@@ -1,0 +1,68 @@
+name: 高円宮杯 順位自動更新
+
+on:
+  # 毎週月曜日 9:00 JST (= UTC 00:00) に自動実行
+  schedule:
+    - cron: '0 0 * * 1'
+
+  # 手動実行ボタンもGitHub画面から使えるようにする
+  workflow_dispatch:
+    inputs:
+      year:
+        description: '対象年度 (例: 2026)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'テスト実行 (保存しない)'
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # data/teams.json をコミット・プッシュするため
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scraper/requirements.txt
+
+      - name: 依存ライブラリをインストール
+        run: |
+          pip install -r scraper/requirements.txt
+          # Selenium + Chrome もインストール（JS描画対応）
+          pip install selenium webdriver-manager
+          # GitHub Actions の Ubuntu には Chrome が入っている
+          # chrome-driver は selenium が自動管理
+
+      - name: 順位データを更新
+        run: |
+          YEAR="${{ github.event.inputs.year }}"
+          DRY_RUN="${{ github.event.inputs.dry_run }}"
+          ARGS=""
+          if [ -n "$YEAR" ]; then
+            ARGS="$ARGS --year $YEAR"
+          fi
+          if [ "$DRY_RUN" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python scraper/update.py $ARGS
+
+      - name: 変更があればコミット＆プッシュ
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/teams.json
+          # 変更がある場合のみコミット
+          git diff --staged --quiet || \
+            git commit -m "chore: 高円宮杯順位データを自動更新 $(date '+%Y-%m-%d')"
+          git push

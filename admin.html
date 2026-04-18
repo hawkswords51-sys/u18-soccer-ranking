@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理画面 | 高校サッカー順位確認システム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="site-title">
+                    <i class="fas fa-cog"></i>
+                    管理画面
+                </h1>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        ホームに戻る
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 管理メニュー -->
+            <section class="admin-menu">
+                <button class="admin-menu-btn active" data-section="teams">
+                    <i class="fas fa-users"></i>
+                    <span>チーム管理</span>
+                </button>
+                <button class="admin-menu-btn" data-section="championships">
+                    <i class="fas fa-trophy"></i>
+                    <span>大会成績管理</span>
+                </button>
+                <button class="admin-menu-btn" data-section="data">
+                    <i class="fas fa-database"></i>
+                    <span>データ管理</span>
+                </button>
+            </section>
+
+            <!-- チーム管理セクション -->
+            <section class="admin-section active" id="teamsSection">
+                <div class="admin-card">
+                    <h2><i class="fas fa-users"></i> チーム管理</h2>
+                    
+                    <div class="form-group">
+                        <label for="prefectureSelect">都道府県を選択</label>
+                        <select id="prefectureSelect" class="form-control">
+                            <option value="">都道府県を選択してください</option>
+                        </select>
+                    </div>
+
+                    <div id="prefectureInfo" style="display: none;">
+                        <div class="info-bar">
+                            <div class="info-item">
+                                <span class="info-label">都道府県名:</span>
+                                <span id="prefNameDisplay">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">地域:</span>
+                                <span id="prefRegionDisplay">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">登録チーム数:</span>
+                                <span id="prefTeamCount">0</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="addTeamBtn">
+                            <i class="fas fa-plus"></i> 新規チーム追加
+                        </button>
+
+                        <div id="teamsList"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 大会成績管理セクション -->
+            <section class="admin-section" id="championshipsSection">
+                <div class="admin-card">
+                    <h2><i class="fas fa-trophy"></i> 大会成績管理</h2>
+                    
+                    <div class="form-group">
+                        <label for="champPrefectureSelect">都道府県を選択</label>
+                        <select id="champPrefectureSelect" class="form-control">
+                            <option value="">都道府県を選択してください</option>
+                        </select>
+                    </div>
+
+                    <div id="championshipInfo" style="display: none;">
+                        <button class="btn btn-primary" id="addChampionshipBtn">
+                            <i class="fas fa-plus"></i> 新規大会成績追加
+                        </button>
+
+                        <div id="championshipsList"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- データ管理セクション -->
+            <section class="admin-section" id="dataSection">
+                <div class="admin-card">
+                    <h2><i class="fas fa-database"></i> データ管理</h2>
+                    
+                    <div class="data-actions">
+                        <button class="btn btn-success" id="exportDataBtn">
+                            <i class="fas fa-download"></i> データをエクスポート
+                        </button>
+                        <button class="btn btn-warning" id="importDataBtn">
+                            <i class="fas fa-upload"></i> データをインポート
+                        </button>
+                        <button class="btn btn-danger" id="resetDataBtn">
+                            <i class="fas fa-undo"></i> デフォルトに戻す
+                        </button>
+                    </div>
+
+                    <div class="data-info">
+                        <h3>データのバックアップについて</h3>
+                        <p>データはブラウザのローカルストレージに保存されています。定期的にエクスポートしてバックアップを取ることをお勧めします。</p>
+                        
+                        <h3>インポート手順</h3>
+                        <ol>
+                            <li>「データをインポート」ボタンをクリック</li>
+                            <li>バックアップしたJSONファイルを選択</li>
+                            <li>データが自動的に読み込まれます</li>
+                        </ol>
+
+                        <h3>注意事項</h3>
+                        <ul>
+                            <li>インポートすると現在のデータは上書きされます</li>
+                            <li>ブラウザのキャッシュをクリアするとデータが消える可能性があります</li>
+                            <li>重要なデータは定期的にエクスポートしてください</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- チーム編集モーダル -->
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="teamModalTitle">チーム情報</h2>
+                <button class="close-btn" id="closeTeamModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="teamForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamName">チーム名 <span class="required">*</span></label>
+                            <input type="text" id="teamName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamLeague">所属リーグ <span class="required">*</span></label>
+                            <input type="text" id="teamLeague" class="form-control" placeholder="例: プレミアリーグEAST" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamRank">リーグ順位</label>
+                            <input type="number" id="teamRank" class="form-control" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="teamPrefRank">県内順位 <span class="required">*</span></label>
+                            <input type="number" id="teamPrefRank" class="form-control" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamPoints">勝点</label>
+                            <input type="number" id="teamPoints" class="form-control" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="teamPlayed">試合数</label>
+                            <input type="number" id="teamPlayed" class="form-control" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamWon">勝</label>
+                            <input type="number" id="teamWon" class="form-control" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="teamDrawn">分</label>
+                            <input type="number" id="teamDrawn" class="form-control" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="teamLost">負</label>
+                            <input type="number" id="teamLost" class="form-control" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamGoalsFor">得点</label>
+                            <input type="number" id="teamGoalsFor" class="form-control" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="teamGoalsAgainst">失点</label>
+                            <input type="number" id="teamGoalsAgainst" class="form-control" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 保存
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelTeamBtn">
+                            キャンセル
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 大会成績編集モーダル -->
+    <div id="championshipModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>大会成績情報</h2>
+                <button class="close-btn" id="closeChampionshipModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="championshipForm">
+                    <div class="form-group">
+                        <label for="champYear">年度 <span class="required">*</span></label>
+                        <input type="number" id="champYear" class="form-control" min="2000" max="2100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="champTournament">大会名 <span class="required">*</span></label>
+                        <select id="champTournament" class="form-control" required>
+                            <option value="">選択してください</option>
+                            <option value="全国高校サッカー選手権">全国高校サッカー選手権</option>
+                            <option value="インターハイ">インターハイ</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="champTeam">出場チーム <span class="required">*</span></label>
+                        <input type="text" id="champTeam" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="champResult">成績 <span class="required">*</span></label>
+                        <input type="text" id="champResult" class="form-control" placeholder="例: ベスト8" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 保存
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelChampionshipBtn">
+                            キャンセル
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 高校サッカー順位確認システム - 管理画面</p>
+        </div>
+    </footer>
+
+    <script src="js/real-teams-generator.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

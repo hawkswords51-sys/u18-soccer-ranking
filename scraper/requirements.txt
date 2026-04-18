@@ -1,0 +1,8 @@
+# 必須
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# 任意 (JFAサイトがJavaScript描画の場合に必要)
+# selenium>=4.18.0
+# webdriver-manager>=4.0.0
