@@ -8,7 +8,7 @@ class SoccerApp {
 
     async init() {
         console.log('SoccerApp initialization started');
-        
+
         // 地域別リストの初期化
         this.map = new RegionListGenerator('japanMap');
         await this.map.generate();
@@ -67,6 +67,21 @@ class SoccerApp {
                 this.closeModal();
             }
         });
+
+        // 情報カードのクリックでリーグ順位表を表示
+        document.querySelectorAll('.info-card').forEach(card => {
+            const iconDiv = card.querySelector('.info-icon');
+            if (!iconDiv) return;
+            if (iconDiv.classList.contains('premier')) {
+                card.style.cursor = 'pointer';
+                card.setAttribute('title', 'クリックしてプレミアリーグの順位表を表示');
+                card.addEventListener('click', () => this.showLeagueGroup('premier'));
+            } else if (iconDiv.classList.contains('prince')) {
+                card.style.cursor = 'pointer';
+                card.setAttribute('title', 'クリックしてプリンスリーグの順位表を表示');
+                card.addEventListener('click', () => this.showLeagueGroup('prince'));
+            }
+        });
     }
 
     setupSearch() {
@@ -75,7 +90,7 @@ class SoccerApp {
 
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.trim();
-            
+
             if (query) {
                 clearBtn.style.display = 'block';
                 this.performSearch(query);
@@ -175,6 +190,12 @@ class SoccerApp {
             return;
         }
 
+        // 都道府県詳細用のUIを復元（リーグ表示から戻ってきた場合のため）
+        const statsSummary = document.querySelector('.stats-summary');
+        const tabsEl = document.querySelector('.tabs');
+        if (statsSummary) statsSummary.style.display = '';
+        if (tabsEl) tabsEl.style.display = '';
+
         // モーダルタイトル
         document.getElementById('modalTitle').innerHTML = `
             <i class="fas fa-map-marker-alt"></i> ${prefName}
@@ -189,6 +210,9 @@ class SoccerApp {
 
         // 大会成績テーブル
         this.displayChampionshipsTable(pref.championships || []);
+
+        // リーグタブをアクティブに戻す
+        this.switchTab('league');
 
         // モーダルを表示
         this.openModal();
@@ -207,15 +231,14 @@ class SoccerApp {
         if (league.includes('プレミアリーグ')) return 0;
         if (league.includes('プリンスリーグ')) {
             if (league.includes('2部')) return 2;
-            return 1;  // 1部 or undivided (東北, 北海道, etc.)
+            return 1;
         }
-        return 3;  // 都道府県リーグ
+        return 3;
     }
 
     displayTeamsTable(teams) {
         const container = document.getElementById('teamsTable');
 
-        // リーグ階層（プレミア→プリンス→都道府県）でソートし、同一リーグ内はリーグ順位で並べる
         const sortedTeams = [...teams].sort((a, b) => {
             const tierDiff = this.leagueTierPriority(a.league) - this.leagueTierPriority(b.league);
             if (tierDiff !== 0) return tierDiff;
@@ -251,8 +274,6 @@ class SoccerApp {
 
     createTeamRow(team, prefRank) {
         const goalDiff = team.goalsFor - team.goalsAgainst;
-        const goalDiffClass = goalDiff > 0 ? 'positive' : goalDiff < 0 ? 'negative' : 'neutral';
-
         const rankClass = prefRank <= 3 ? `rank-${prefRank}` : 'rank-other';
 
         let leagueBadgeClass = 'prefecture';
@@ -326,17 +347,17 @@ class SoccerApp {
     }
 
     switchTab(tabName) {
-        // タブボタンの切り替え
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        const targetBtn = document.querySelector(`[data-tab="${tabName}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
 
-        // タブコンテンツの切り替え
         document.querySelectorAll('.tab-content').forEach(content => {
             content.classList.remove('active');
         });
-        document.getElementById(`${tabName}Tab`).classList.add('active');
+        const targetContent = document.getElementById(`${tabName}Tab`);
+        if (targetContent) targetContent.classList.add('active');
     }
 
     openModal() {
@@ -349,6 +370,178 @@ class SoccerApp {
         const modal = document.getElementById('detailModal');
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
+    }
+
+    // ============================================================
+    // プレミアリーグ / プリンスリーグ 全体順位表の表示
+    // ============================================================
+
+    async showLeagueGroup(type) {
+        const keyword = type === 'premier' ? 'プレミアリーグ' : 'プリンスリーグ';
+        const title = type === 'premier' ? 'プレミアリーグ' : 'プリンスリーグ';
+        const icon = type === 'premier' ? 'trophy' : 'medal';
+
+        // realTeamsGeneratorが league 情報を上書きするため、
+        // teams.json を直接読み込んで生データから対象リーグを抽出する
+        let rawData = null;
+        try {
+            const response = await fetch('data/teams.json?_=' + Date.now());
+            rawData = await response.json();
+        } catch (e) {
+            console.error('teams.json の読み込みに失敗:', e);
+        }
+
+        const allTeams = [];
+        if (rawData) {
+            Object.entries(rawData).forEach(([prefId, prefData]) => {
+                if (prefId === '_meta') return;
+                if (!prefData || !Array.isArray(prefData.teams)) return;
+                prefData.teams.forEach(team => {
+                    if (team.league && team.league.includes(keyword)) {
+                        allTeams.push({
+                            ...team,
+                            prefectureId: prefId,
+                            prefectureName: prefData.name
+                        });
+                    }
+                });
+            });
+        }
+
+        if (allTeams.length === 0) {
+            alert(`${title}のデータがまだ登録されていません。\n自動更新を実行してからお試しください。`);
+            return;
+        }
+
+        // リーグ名でグルーピング
+        const groups = {};
+        allTeams.forEach(team => {
+            const key = team.league;
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(team);
+        });
+
+        Object.values(groups).forEach(teams => {
+            teams.sort((a, b) => (a.rank || 99) - (b.rank || 99));
+        });
+
+        const sortedKeys = Object.keys(groups).sort((a, b) =>
+            this.leagueGroupSortOrder(type, a) - this.leagueGroupSortOrder(type, b)
+        );
+
+        this.currentPrefecture = null;
+        document.getElementById('modalTitle').innerHTML = `
+            <i class="fas fa-${icon}"></i> ${title} 順位表
+        `;
+
+        const statsSummary = document.querySelector('.stats-summary');
+        const tabsEl = document.querySelector('.tabs');
+        if (statsSummary) statsSummary.style.display = 'none';
+        if (tabsEl) tabsEl.style.display = 'none';
+
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        const leagueTab = document.getElementById('leagueTab');
+        if (leagueTab) leagueTab.classList.add('active');
+
+        const container = document.getElementById('teamsTable');
+        container.innerHTML = sortedKeys.map(key =>
+            this.renderLeagueTable(key, groups[key])
+        ).join('');
+
+        const champContainer = document.getElementById('championshipsTable');
+        if (champContainer) champContainer.innerHTML = '';
+
+        this.openModal();
+    }
+
+    leagueGroupSortOrder(type, leagueName) {
+        if (type === 'premier') {
+            if (leagueName.includes('EAST')) return 1;
+            if (leagueName.includes('WEST')) return 2;
+            return 99;
+        }
+        const regions = ['北海道', '東北', '関東', '北信越', '東海', '関西', '中国', '四国', '九州'];
+        let score = 1000;
+        for (let i = 0; i < regions.length; i++) {
+            if (leagueName.includes(regions[i])) {
+                score = (i + 1) * 10;
+                break;
+            }
+        }
+        if (leagueName.includes('2部')) score += 2;
+        else if (leagueName.includes('1部')) score += 1;
+        return score;
+    }
+
+    renderLeagueTable(leagueName, teams) {
+        const prefectureHeader = teams.some(t => t.prefectureName) ? '<th>所属</th>' : '';
+
+        return `
+            <div class="league-group-block" style="margin-top:24px;">
+                <h3 style="margin:24px 0 12px; padding:8px 12px; background:#f2f5fb; border-left:4px solid #1e3a8a; color:#1e3a8a; font-size:1.1rem;">
+                    <i class="fas fa-flag"></i>
+                    ${this.escapeHtml(leagueName)}
+                    <span style="float:right; color:#666; font-weight:normal; font-size:0.9rem;">${teams.length}チーム</span>
+                </h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th>チーム名</th>
+                            ${prefectureHeader}
+                            <th>勝点</th>
+                            <th>試合</th>
+                            <th>勝</th>
+                            <th>分</th>
+                            <th>負</th>
+                            <th>得点</th>
+                            <th>失点</th>
+                            <th>得失差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${teams.map(t => this.createLeagueTeamRow(t, !!prefectureHeader)).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+
+    createLeagueTeamRow(team, showPrefecture) {
+        const goalsFor = team.goalsFor ?? 0;
+        const goalsAgainst = team.goalsAgainst ?? 0;
+        const goalDiff = goalsFor - goalsAgainst;
+        const rank = team.rank || '-';
+        const rankClass = (typeof rank === 'number' && rank <= 3) ? `rank-${rank}` : 'rank-other';
+
+        return `
+            <tr>
+                <td><span class="rank-badge ${rankClass}">${rank}</span></td>
+                <td><strong>${this.escapeHtml(team.name)}</strong></td>
+                ${showPrefecture ? `<td>${this.escapeHtml(team.prefectureName || '-')}</td>` : ''}
+                <td><strong>${team.points ?? 0}</strong></td>
+                <td>${team.played ?? 0}</td>
+                <td>${team.won ?? 0}</td>
+                <td>${team.drawn ?? 0}</td>
+                <td>${team.lost ?? 0}</td>
+                <td>${goalsFor}</td>
+                <td>${goalsAgainst}</td>
+                <td style="color: ${goalDiff > 0 ? '#28a745' : goalDiff < 0 ? '#dc3545' : '#666'}">
+                    ${goalDiff > 0 ? '+' : ''}${goalDiff}
+                </td>
+            </tr>
+        `;
+    }
+
+    escapeHtml(str) {
+        if (str == null) return '';
+        return String(str).replace(/[&<>"']/g, c => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        }[c]));
     }
 }
 
