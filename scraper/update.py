@@ -158,7 +158,6 @@ def _extract_standing_tables(soup: BeautifulSoup) -> list:
         rows = table.find_all("tr")
         if len(rows) < 2:
             continue
-        # 先頭数行の中でヘッダーヒント一致数がもっとも高いスコアを見る
         best_score = 0
         for i, row in enumerate(rows[:5]):
             cols = [c.get_text(strip=True) for c in row.find_all(["th", "td"])]
@@ -166,7 +165,6 @@ def _extract_standing_tables(soup: BeautifulSoup) -> list:
             if score > best_score:
                 best_score = score
         if best_score < 2:
-            # 順位表ではない（ナビやサマリー表など）
             continue
         mini = BeautifulSoup(f"<html><body>{table}</body></html>", "html.parser")
         out.append(mini)
@@ -217,7 +215,6 @@ def _split_prince_page(page_soup: BeautifulSoup, region_key: str) -> list:
 
     if region_key in REGIONS_WITH_DIVISIONS:
         if len(tables) >= 2:
-            # 先頭を1部、2番目を2部として扱う（ページ上の出現順）
             results.append((tables[0], f"プリンスリーグ{region_name}1部"))
             results.append((tables[1], f"プリンスリーグ{region_name}2部"))
             if len(tables) > 2:
@@ -229,7 +226,6 @@ def _split_prince_page(page_soup: BeautifulSoup, region_key: str) -> list:
             print(f"    [WARN] {region_name}: 順位表を検出できませんでした")
     else:
         if len(tables) >= 1:
-            # 1部/2部の無い地域は先頭テーブルのみ（サフィックスなし）
             results.append((tables[0], f"プリンスリーグ{region_name}"))
             if len(tables) > 1:
                 print(f"    [WARN] {region_name}: 順位表が{len(tables)}個検出されました（先頭のみ使用）")
@@ -246,7 +242,6 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
     ページ内の table を順序どおりに切り出して 1部/2部 に割り当てる。
     league_name は "プリンスリーグ関東1部" / "プリンスリーグ関東2部" など。
     """
-    # まず requests で試みる
     for attempt in range(3):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=15)
@@ -257,7 +252,6 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
                 splits = _split_prince_page(soup, region_key)
                 if splits:
                     return splits
-                # テーブルはあるが順位表として認識できなかった → Seleniumへ
                 print("  順位表として認識できるテーブルがありません。Selenium に切り替えます。")
                 break
             print("  テーブルが見つかりません。JSレンダリングが必要かもしれません。")
@@ -267,7 +261,6 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
             if attempt < 2:
                 time.sleep(2)
 
-    # Selenium フォールバック（JFAページはJS描画）
     if not SELENIUM_AVAILABLE:
         print("  Selenium が利用できません。スキップします。")
         return []
@@ -430,7 +423,9 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
         if offset:
             col_map = {k: v + offset for k, v in col_map.items()}
 
+        position = 0  # テーブル内での行位置（= そのリーグでの順位）
         for row in rows[header_row_idx + 1:]:
+            position += 1
             cols = [td.get_text(strip=True) for td in row.find_all(["td", "th"])]
             if len(cols) < 5:
                 continue
@@ -463,6 +458,10 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
                     "goalsFor":     gcol("goalsFor"),
                     "goalsAgainst": gcol("goalsAgainst"),
                     "points":       gcol("points"),
+                    # テーブル内での順位（= そのリーグでの公式順位）。
+                    # JFA のテーブルは勝点→得失点差→直接対決などの tiebreaker 込みで
+                    # 既に並び替えられているので、行順をそのまま使うのが最も正確。
+                    "leagueRank":   position,
                 }
 
                 results.append(record)
@@ -665,6 +664,9 @@ def _apply_stats(team: dict, stats: dict) -> None:
     # league名が渡された場合は更新（昇格・降格後の表示を自動修正）
     if stats.get("league"):
         team["league"] = stats["league"]
+    # leagueRank（プリンス/プレミア等、リーグ内での順位）が渡されたら上書き
+    if "leagueRank" in stats:
+        team["leagueRank"] = stats["leagueRank"]
 
 
 def recalculate_ranks(data: dict) -> None:
@@ -786,8 +788,9 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
         standings = parse_standing_table(soup)
         print(f"    取得チーム数: {len(standings)}")
         for s in standings:
-            # league フィールドを含めない（既存の県リーグ名を保持）
-            s_no_league = {k: v for k, v in s.items() if k != "league"}
+            # league / leagueRank フィールドを含めない
+            # （県リーグの順位は recalculate_ranks でリーグ全体から計算するため）
+            s_no_league = {k: v for k, v in s.items() if k not in ("league", "leagueRank")}
             if update_team_stats(data, pref_id, s["name"], s_no_league, already_updated):
                 total += 1
         time.sleep(0.8)

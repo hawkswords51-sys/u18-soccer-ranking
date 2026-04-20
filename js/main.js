@@ -422,7 +422,9 @@ class SoccerApp {
         });
 
         Object.values(groups).forEach(teams => {
-            teams.sort((a, b) => (a.rank || 99) - (b.rank || 99));
+            // リーグ表示では leagueRank（プリンス/プレミア等のリーグ内順位）を優先し、
+            // 無い場合は従来の rank（都道府県順位）にフォールバック
+            teams.sort((a, b) => (a.leagueRank || a.rank || 99) - (b.leagueRank || b.rank || 99));
         });
 
         const sortedKeys = Object.keys(groups).sort((a, b) =>
@@ -511,7 +513,9 @@ class SoccerApp {
         const goalsFor = team.goalsFor ?? 0;
         const goalsAgainst = team.goalsAgainst ?? 0;
         const goalDiff = goalsFor - goalsAgainst;
-        const rank = team.rank || '-';
+        // リーグ画面では leagueRank（リーグ内順位）を使用。
+        // leagueRank が無いチームは従来通り都道府県順位（rank）にフォールバック。
+        const rank = team.leagueRank || team.rank || '-';
         const rankClass = (typeof rank === 'number' && rank <= 3) ? `rank-${rank}` : 'rank-other';
 
         return `
