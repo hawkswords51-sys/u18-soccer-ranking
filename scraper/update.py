@@ -68,7 +68,8 @@ PREF_ID_TO_NAME = {
     "ehime": "愛媛", "kochi": "高知", "fukuoka": "福岡",
     "saga": "佐賀", "nagasaki": "長崎", "kumamoto": "熊本",
     "oita": "大分", "miyazaki": "宮崎", "kagoshima": "鹿児島",
-    "okinawa": "沖縄"
+    "okinawa": "沖縄",
+    "gifu": "岐阜",
 }
 
 # プレミアリーグのチーム → 都道府県マッピング（主要チーム）
@@ -133,6 +134,45 @@ JFA_BASE = "https://www.jfa.jp"
 REGIONS_WITH_DIVISIONS = {"kanto", "kansai", "kyushu", "hokushinetsu"}
 
 
+# 順位表テーブルを検出するためのヘッダーヒント（_extract_standing_tables 用）
+_STANDING_TABLE_HINTS = {
+    'チーム名', 'クラブ名', 'チーム', 'クラブ',
+    '勝点', '勝ち点', '試合数', '試合',
+    '勝', '勝利', '引分', '引き分け', '引分数',
+    '負', '敗', '敗戦',
+    '得点', '失点', '得失点差', '得失差', '得失点',
+}
+
+
+def _extract_standing_tables(soup: BeautifulSoup) -> list:
+    """
+    ページ内に複数ある <table> の中から「順位表らしき table」だけを抽出し、
+    それぞれを独立した BeautifulSoup として返す。
+    プリンス関東/関西/九州/北信越のように 1部と2部が同じページに並ぶケースで、
+    どれが1部のテーブルでどれが2部のテーブルかを分けて扱うために使う。
+
+    返り値: 順位表テーブル1つにつき1つの BeautifulSoup（ページ内の出現順）。
+    """
+    out = []
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        if len(rows) < 2:
+            continue
+        # 先頭数行の中でヘッダーヒント一致数がもっとも高いスコアを見る
+        best_score = 0
+        for i, row in enumerate(rows[:5]):
+            cols = [c.get_text(strip=True) for c in row.find_all(["th", "td"])]
+            score = sum(1 for c in cols if c in _STANDING_TABLE_HINTS)
+            if score > best_score:
+                best_score = score
+        if best_score < 2:
+            # 順位表ではない（ナビやサマリー表など）
+            continue
+        mini = BeautifulSoup(f"<html><body>{table}</body></html>", "html.parser")
+        out.append(mini)
+    return out
+
+
 def _fetch_with_selenium(url: str) -> BeautifulSoup | None:
     """Seleniumを使ってJS描画後のページを取得する（シンプル版: 1ページ分のみ）"""
     if not SELENIUM_AVAILABLE:
@@ -165,15 +205,47 @@ def _fetch_with_selenium(url: str) -> BeautifulSoup | None:
             driver.quit()
 
 
+def _split_prince_page(page_soup: BeautifulSoup, region_key: str) -> list:
+    """
+    1ページ分の soup から 1部/2部 を抽出して [(mini_soup, league_name), ...] を返す。
+    JFAのプリンスページは 1ページ内に「1部の順位表」「2部の順位表」が並んで
+    レンダリングされるため、タブクリックではなく複数 table を切り出す。
+    """
+    region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
+    tables = _extract_standing_tables(page_soup)
+    results = []
+
+    if region_key in REGIONS_WITH_DIVISIONS:
+        if len(tables) >= 2:
+            # 先頭を1部、2番目を2部として扱う（ページ上の出現順）
+            results.append((tables[0], f"プリンスリーグ{region_name}1部"))
+            results.append((tables[1], f"プリンスリーグ{region_name}2部"))
+            if len(tables) > 2:
+                print(f"    [WARN] {region_name}: 順位表が{len(tables)}個検出されました（1部/2部のみ使用）")
+        elif len(tables) == 1:
+            print(f"    [WARN] {region_name}: 順位表が1個しか検出されませんでした（1部のみとして扱います）")
+            results.append((tables[0], f"プリンスリーグ{region_name}1部"))
+        else:
+            print(f"    [WARN] {region_name}: 順位表を検出できませんでした")
+    else:
+        if len(tables) >= 1:
+            # 1部/2部の無い地域は先頭テーブルのみ（サフィックスなし）
+            results.append((tables[0], f"プリンスリーグ{region_name}"))
+            if len(tables) > 1:
+                print(f"    [WARN] {region_name}: 順位表が{len(tables)}個検出されました（先頭のみ使用）")
+        else:
+            print(f"    [WARN] {region_name}: 順位表を検出できませんでした")
+
+    return results
+
+
 def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
     """
     プリンスリーグのURLを取得し、[(soup, league_name), ...] を返す。
-    JFAページに「2部」タブがある場合は両方取得する。
+    JFAページは 1部と2部が同じページに並べて描画される（タブではない）ので、
+    ページ内の table を順序どおりに切り出して 1部/2部 に割り当てる。
     league_name は "プリンスリーグ関東1部" / "プリンスリーグ関東2部" など。
     """
-    region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
-    results = []
-
     # まず requests で試みる
     for attempt in range(3):
         try:
@@ -182,10 +254,12 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
             resp.encoding = resp.apparent_encoding
             soup = BeautifulSoup(resp.text, "html.parser")
             if soup.find("table"):
-                # requestsで取得できた → 1ページ分のみ返す（1部/2部あり地域は"1部"を付与）
-                suffix = "1部" if region_key in REGIONS_WITH_DIVISIONS else ""
-                results.append((soup, f"プリンスリーグ{region_name}{suffix}"))
-                return results
+                splits = _split_prince_page(soup, region_key)
+                if splits:
+                    return splits
+                # テーブルはあるが順位表として認識できなかった → Seleniumへ
+                print("  順位表として認識できるテーブルがありません。Selenium に切り替えます。")
+                break
             print("  テーブルが見つかりません。JSレンダリングが必要かもしれません。")
             break
         except requests.RequestException as e:
@@ -193,10 +267,10 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
             if attempt < 2:
                 time.sleep(2)
 
-    # Selenium フォールバック（1部・2部タブ両対応）
+    # Selenium フォールバック（JFAページはJS描画）
     if not SELENIUM_AVAILABLE:
         print("  Selenium が利用できません。スキップします。")
-        return results
+        return []
 
     print("  → Selenium (ヘッドレス Chrome) でプリンスリーグ取得...")
     opts = Options()
@@ -218,43 +292,14 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
             EC.presence_of_element_located((By.CSS_SELECTOR, "table"))
         )
         time.sleep(2)
-
-        soup1 = BeautifulSoup(driver.page_source, "html.parser")
-
-        # 「2部」タブを探す
-        div2_xpaths = [
-            "//button[contains(text(),'2部')]",
-            "//a[contains(text(),'2部')]",
-            "//li/a[contains(text(),'2部')]",
-            "//*[contains(@class,'tab') and contains(text(),'2部')]",
-        ]
-        found_div2 = False
-        for xpath in div2_xpaths:
-            try:
-                tab = driver.find_element(By.XPATH, xpath)
-                driver.execute_script("arguments[0].click();", tab)
-                time.sleep(2)
-                soup2 = BeautifulSoup(driver.page_source, "html.parser")
-                results.append((soup1, f"プリンスリーグ{region_name}1部"))
-                results.append((soup2, f"プリンスリーグ{region_name}2部"))
-                print(f"    → 2部タブを検出しました（プリンスリーグ{region_name}1部 + 2部）")
-                found_div2 = True
-                break
-            except Exception:
-                continue
-
-        if not found_div2:
-            # 2部タブが見つからなかった場合も、1部/2部あり地域は"1部"を付与
-            suffix = "1部" if region_key in REGIONS_WITH_DIVISIONS else ""
-            results.append((soup1, f"プリンスリーグ{region_name}{suffix}"))
-
+        page_soup = BeautifulSoup(driver.page_source, "html.parser")
+        return _split_prince_page(page_soup, region_key)
     except Exception as e:
         print(f"  Selenium 取得失敗: {e}")
+        return []
     finally:
         if driver:
             driver.quit()
-
-    return results
 
 
 def fetch_page(url: str, retries: int = 3) -> BeautifulSoup | None:
