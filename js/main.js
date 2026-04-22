@@ -244,7 +244,6 @@ class SoccerApp {
         const sortedTeams = [...teams].sort((a, b) => {
             const tierDiff = this.leagueTierPriority(a.league) - this.leagueTierPriority(b.league);
             if (tierDiff !== 0) return tierDiff;
-            // 同一リーグ内は leagueRank (=公式順位) を優先、無ければ rank
             const ra = (a.leagueRank != null ? a.leagueRank : a.rank) || 99;
             const rb = (b.leagueRank != null ? b.leagueRank : b.rank) || 99;
             return ra - rb;
@@ -288,8 +287,6 @@ class SoccerApp {
             leagueBadgeClass = 'prince';
         }
 
-        // 「順位」列は所属リーグ内での公式順位 (leagueRank) を表示。
-        // 旧データ互換のため rank にフォールバック。
         const leagueRankDisplay = (team.leagueRank != null ? team.leagueRank : team.rank);
 
         return `
@@ -382,16 +379,50 @@ class SoccerApp {
     }
 
     // ============================================================
-    // プレミアリーグ / プリンスリーグ 全体順位表の表示
+    // プレミアリーグ / プリンスリーグ 全体順位表の表示（階層アコーディオン）
     // ============================================================
 
-    async showLeagueGroup(type) {
-        const keyword = type === 'premier' ? 'プレミアリーグ' : 'プリンスリーグ';
-        const title = type === 'premier' ? 'プレミアリーグ' : 'プリンスリーグ';
-        const icon = type === 'premier' ? 'trophy' : 'medal';
+    // プレミア階層 (単純な EAST/WEST の2項目)
+    getPremierHierarchy() {
+        return [
+            { key: 'east', label: 'EAST', leagueName: 'プレミアリーグEAST' },
+            { key: 'west', label: 'WEST', leagueName: 'プレミアリーグWEST' }
+        ];
+    }
 
-        // realTeamsGeneratorが league 情報を上書きするため、
-        // teams.json を直接読み込んで生データから対象リーグを抽出する
+    // プリンス階層 (9地域、一部は1部/2部のサブ構造を持つ)
+    getPrinceHierarchy() {
+        return [
+            { key: 'hokkaido',     label: '北海道', leagueName: 'プリンスリーグ北海道' },
+            { key: 'tohoku',       label: '東北',   leagueName: 'プリンスリーグ東北' },
+            { key: 'hokushinetsu', label: '北信越', divisions: [
+                { key: 'div1', label: '1部', leagueName: 'プリンスリーグ北信越1部' },
+                { key: 'div2', label: '2部', leagueName: 'プリンスリーグ北信越2部' }
+            ]},
+            { key: 'kanto',        label: '関東', divisions: [
+                { key: 'div1', label: '1部', leagueName: 'プリンスリーグ関東1部' },
+                { key: 'div2', label: '2部', leagueName: 'プリンスリーグ関東2部' }
+            ]},
+            { key: 'tokai',        label: '東海',   leagueName: 'プリンスリーグ東海' },
+            { key: 'kansai',       label: '関西', divisions: [
+                { key: 'div1', label: '1部', leagueName: 'プリンスリーグ関西1部' },
+                { key: 'div2', label: '2部', leagueName: 'プリンスリーグ関西2部' }
+            ]},
+            { key: 'chugoku',      label: '中国',   leagueName: 'プリンスリーグ中国' },
+            { key: 'shikoku',      label: '四国',   leagueName: 'プリンスリーグ四国' },
+            { key: 'kyushu',       label: '九州', divisions: [
+                { key: 'div1', label: '1部', leagueName: 'プリンスリーグ九州1部' },
+                { key: 'div2', label: '2部', leagueName: 'プリンスリーグ九州2部' }
+            ]}
+        ];
+    }
+
+    async showLeagueGroup(type) {
+        const title = type === 'premier' ? 'プレミアリーグ' : 'プリンスリーグ';
+        const icon  = type === 'premier' ? 'trophy'         : 'medal';
+        const keyword = title;
+
+        // teams.json を直接読む (realTeamsGenerator の上書きを避けるため)
         let rawData = null;
         try {
             const response = await fetch('data/teams.json?_=' + Date.now());
@@ -400,6 +431,7 @@ class SoccerApp {
             console.error('teams.json の読み込みに失敗:', e);
         }
 
+        // 該当キーワードを含む全チームを取得
         const allTeams = [];
         if (rawData) {
             Object.entries(rawData).forEach(([prefId, prefData]) => {
@@ -422,22 +454,18 @@ class SoccerApp {
             return;
         }
 
-        // リーグ名でグルーピング
+        // リーグ名でグルーピング + leagueRank昇順で並び替え
         const groups = {};
         allTeams.forEach(team => {
             const key = team.league;
             if (!groups[key]) groups[key] = [];
             groups[key].push(team);
         });
-
-        // リーグ順位表では必ず "leagueRank" (各リーグの公式順位) を優先して並べる。
-        // leagueRank が無い旧データは rank にフォールバック。
         Object.values(groups).forEach(teams => {
             teams.sort((a, b) => {
                 const ra = (a.leagueRank != null ? a.leagueRank : a.rank) || 99;
                 const rb = (b.leagueRank != null ? b.leagueRank : b.rank) || 99;
                 if (ra !== rb) return ra - rb;
-                // 同値の場合は 勝点→得失点差→得点 でタイブレーク
                 const pa = a.points ?? 0, pb = b.points ?? 0;
                 if (pa !== pb) return pb - pa;
                 const gda = (a.goalsFor ?? 0) - (a.goalsAgainst ?? 0);
@@ -446,10 +474,6 @@ class SoccerApp {
                 return (b.goalsFor ?? 0) - (a.goalsFor ?? 0);
             });
         });
-
-        const sortedKeys = Object.keys(groups).sort((a, b) =>
-            this.leagueGroupSortOrder(type, a) - this.leagueGroupSortOrder(type, b)
-        );
 
         this.currentPrefecture = null;
         document.getElementById('modalTitle').innerHTML = `
@@ -465,15 +489,92 @@ class SoccerApp {
         const leagueTab = document.getElementById('leagueTab');
         if (leagueTab) leagueTab.classList.add('active');
 
+        const hierarchy = type === 'premier'
+            ? this.getPremierHierarchy()
+            : this.getPrinceHierarchy();
+
+        // デフォルトで開く項目:
+        //   プリンス → 関東 (1部) / プレミア → EAST
+        const defaultOpen = type === 'premier'
+            ? { region: 'east' }
+            : { region: 'kanto', division: 'div1' };
+
         const container = document.getElementById('teamsTable');
-        container.innerHTML = sortedKeys.map(key =>
-            this.renderLeagueTable(key, groups[key])
-        ).join('');
+        container.innerHTML = `
+            <div class="league-accordion" data-league-type="${type}">
+                ${hierarchy.map(item =>
+                    this.renderAccordionItem(item, groups, defaultOpen)
+                ).join('')}
+            </div>
+        `;
 
         const champContainer = document.getElementById('championshipsTable');
         if (champContainer) champContainer.innerHTML = '';
 
         this.openModal();
+    }
+
+    // アコーディオン1項目を描画する (1部/2部を持つ場合は再帰的にネスト)
+    renderAccordionItem(item, groups, defaultOpen) {
+        const isDefaultRegion = defaultOpen.region === item.key;
+
+        // リーフ (1部/2部を持たない地域) → 順位表を直接展開
+        if (!item.divisions) {
+            const teams = groups[item.leagueName] || [];
+            const isOpen = isDefaultRegion;
+            const openAttr = isOpen ? 'open' : '';
+            return `
+                <details class="league-accordion__region" ${openAttr}>
+                    <summary class="league-accordion__summary league-accordion__summary--region">
+                        <span class="league-accordion__chevron"><i class="fas fa-chevron-right"></i></span>
+                        <span class="league-accordion__label">${this.escapeHtml(item.label)}</span>
+                        <span class="league-accordion__count">${teams.length}チーム</span>
+                    </summary>
+                    <div class="league-accordion__body">
+                        ${teams.length > 0
+                            ? this.renderLeagueTable(item.leagueName, teams)
+                            : '<p class="league-accordion__empty">このリーグのデータがまだありません。</p>'
+                        }
+                    </div>
+                </details>
+            `;
+        }
+
+        // 2部構成のある地域 → 中間のアコーディオン + 1部/2部のネストアコーディオン
+        const regionOpen = isDefaultRegion ? 'open' : '';
+        const subItems = item.divisions.map(div => {
+            const teams = groups[div.leagueName] || [];
+            const isOpenDiv = isDefaultRegion && defaultOpen.division === div.key;
+            const divOpen = isOpenDiv ? 'open' : '';
+            return `
+                <details class="league-accordion__division" ${divOpen}>
+                    <summary class="league-accordion__summary league-accordion__summary--division">
+                        <span class="league-accordion__chevron"><i class="fas fa-chevron-right"></i></span>
+                        <span class="league-accordion__label">${this.escapeHtml(div.label)}</span>
+                        <span class="league-accordion__count">${teams.length}チーム</span>
+                    </summary>
+                    <div class="league-accordion__body">
+                        ${teams.length > 0
+                            ? this.renderLeagueTable(div.leagueName, teams)
+                            : '<p class="league-accordion__empty">このリーグのデータがまだありません。</p>'
+                        }
+                    </div>
+                </details>
+            `;
+        }).join('');
+
+        return `
+            <details class="league-accordion__region" ${regionOpen}>
+                <summary class="league-accordion__summary league-accordion__summary--region">
+                    <span class="league-accordion__chevron"><i class="fas fa-chevron-right"></i></span>
+                    <span class="league-accordion__label">${this.escapeHtml(item.label)}</span>
+                    <span class="league-accordion__count league-accordion__count--region">1部 / 2部</span>
+                </summary>
+                <div class="league-accordion__body league-accordion__body--nested">
+                    ${subItems}
+                </div>
+            </details>
+        `;
     }
 
     leagueGroupSortOrder(type, leagueName) {
@@ -533,7 +634,6 @@ class SoccerApp {
         const goalsFor = team.goalsFor ?? 0;
         const goalsAgainst = team.goalsAgainst ?? 0;
         const goalDiff = goalsFor - goalsAgainst;
-        // リーグ順位表では leagueRank を優先表示 (無ければ rank にフォールバック)
         const rank = (team.leagueRank != null ? team.leagueRank : team.rank) || '-';
         const rankClass = (typeof rank === 'number' && rank <= 3) ? `rank-${rank}` : 'rank-other';
 

@@ -830,3 +830,120 @@ body {
         align-items: flex-start;
     }
 }
+/* ============================================================
+ * プレミア/プリンスリーグ 階層アコーディオン用スタイル
+ * (既存 style.css にマージしてもOK、別ファイルとして読み込んでもOK)
+ * ============================================================ */
+
+.league-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* details のデフォルト三角マークを消す */
+.league-accordion details > summary::-webkit-details-marker {
+    display: none;
+}
+.league-accordion details > summary {
+    list-style: none;
+}
+
+/* 共通: summary (クリック可能な帯) */
+.league-accordion__summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 6px;
+    user-select: none;
+    transition: background 0.15s ease;
+}
+
+/* 地域レベル (1段目) */
+.league-accordion__summary--region {
+    background: #f2f5fb;
+    border-left: 4px solid #1e3a8a;
+    color: #1e3a8a;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+.league-accordion__summary--region:hover {
+    background: #e6edf8;
+}
+
+/* 部レベル (2段目) */
+.league-accordion__summary--division {
+    background: #fafbfc;
+    border-left: 3px solid #60a5fa;
+    color: #1e40af;
+    font-weight: 500;
+    font-size: 0.98rem;
+    margin: 6px 0 0 12px;
+}
+.league-accordion__summary--division:hover {
+    background: #eef4ff;
+}
+
+/* 開閉時の chevron アニメーション */
+.league-accordion__chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    transition: transform 0.2s ease;
+    color: inherit;
+}
+details[open] > summary > .league-accordion__chevron {
+    transform: rotate(90deg);
+}
+
+.league-accordion__label {
+    flex: 1;
+}
+
+.league-accordion__count {
+    color: #6b7280;
+    font-weight: normal;
+    font-size: 0.88rem;
+    white-space: nowrap;
+}
+.league-accordion__count--region {
+    color: #2563eb;
+    font-weight: 500;
+}
+
+/* 開いたときの中身 */
+.league-accordion__body {
+    padding: 8px 0 6px;
+}
+.league-accordion__body--nested {
+    padding-left: 0;  /* 中間アコーディオンは子の div summary 側でインデント */
+}
+.league-accordion__empty {
+    margin: 12px 18px;
+    color: #6b7280;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* 既存 .league-group-block の上下マージンを調整 (アコーディオン配下では詰める) */
+.league-accordion .league-group-block {
+    margin-top: 6px !important;
+}
+.league-accordion .league-group-block > h3 {
+    display: none;   /* summary 側にタイトルがあるので重複を防ぐ */
+}
+
+/* モバイル調整 */
+@media (max-width: 640px) {
+    .league-accordion__summary {
+        padding: 9px 10px;
+        font-size: 0.95rem;
+    }
+    .league-accordion__summary--division {
+        margin-left: 8px;
+    }
+}

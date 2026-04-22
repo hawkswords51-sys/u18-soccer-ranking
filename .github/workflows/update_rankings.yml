@@ -2,8 +2,8 @@ name: 高円宮杯 順位自動更新
 
 on:
   # 毎週月曜日 9:00 JST (= UTC 00:00) に自動実行
-  # schedule:  # 一時停止中（2026-04-19 手動修正のため）
-  #   - cron: '0 0 * * 1'
+  schedule:
+    - cron: '0 0 * * 1'
 
   # 手動実行ボタンもGitHub画面から使えるようにする
   workflow_dispatch:
