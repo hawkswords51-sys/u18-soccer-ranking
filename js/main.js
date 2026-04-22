@@ -126,16 +126,18 @@ class SoccerApp {
             return;
         }
 
-        const html = results.map(team => `
+        const html = results.map(team => {
+            const rankDisp = (team.leagueRank != null ? team.leagueRank : team.rank);
+            return `
             <div class="search-result-item" data-pref-id="${team.prefectureId}">
                 <div class="search-result-team">${team.name}</div>
                 <div class="search-result-info">
                     <span><i class="fas fa-map-marker-alt"></i> ${team.prefectureName}</span>
                     <span><i class="fas fa-trophy"></i> ${team.league}</span>
-                    <span><i class="fas fa-sort-numeric-down"></i> 順位: ${team.rank}位</span>
+                    <span><i class="fas fa-sort-numeric-down"></i> 順位: ${rankDisp ?? '-'}位</span>
                 </div>
             </div>
-        `).join('');
+        `;}).join('');
 
         container.innerHTML = html;
 
@@ -242,7 +244,10 @@ class SoccerApp {
         const sortedTeams = [...teams].sort((a, b) => {
             const tierDiff = this.leagueTierPriority(a.league) - this.leagueTierPriority(b.league);
             if (tierDiff !== 0) return tierDiff;
-            return a.rank - b.rank;
+            // 同一リーグ内は leagueRank (=公式順位) を優先、無ければ rank
+            const ra = (a.leagueRank != null ? a.leagueRank : a.rank) || 99;
+            const rb = (b.leagueRank != null ? b.leagueRank : b.rank) || 99;
+            return ra - rb;
         });
 
         const html = `
@@ -283,6 +288,10 @@ class SoccerApp {
             leagueBadgeClass = 'prince';
         }
 
+        // 「順位」列は所属リーグ内での公式順位 (leagueRank) を表示。
+        // 旧データ互換のため rank にフォールバック。
+        const leagueRankDisplay = (team.leagueRank != null ? team.leagueRank : team.rank);
+
         return `
             <tr>
                 <td>
@@ -292,7 +301,7 @@ class SoccerApp {
                 <td>
                     <span class="league-badge ${leagueBadgeClass}">${team.league}</span>
                 </td>
-                <td>${team.rank}位</td>
+                <td>${leagueRankDisplay ?? '-'}位</td>
                 <td><strong>${team.points}</strong></td>
                 <td>${team.played}</td>
                 <td>${team.won}</td>
@@ -421,10 +430,21 @@ class SoccerApp {
             groups[key].push(team);
         });
 
+        // リーグ順位表では必ず "leagueRank" (各リーグの公式順位) を優先して並べる。
+        // leagueRank が無い旧データは rank にフォールバック。
         Object.values(groups).forEach(teams => {
-            // リーグ表示では leagueRank（プリンス/プレミア等のリーグ内順位）を優先し、
-            // 無い場合は従来の rank（都道府県順位）にフォールバック
-            teams.sort((a, b) => (a.leagueRank || a.rank || 99) - (b.leagueRank || b.rank || 99));
+            teams.sort((a, b) => {
+                const ra = (a.leagueRank != null ? a.leagueRank : a.rank) || 99;
+                const rb = (b.leagueRank != null ? b.leagueRank : b.rank) || 99;
+                if (ra !== rb) return ra - rb;
+                // 同値の場合は 勝点→得失点差→得点 でタイブレーク
+                const pa = a.points ?? 0, pb = b.points ?? 0;
+                if (pa !== pb) return pb - pa;
+                const gda = (a.goalsFor ?? 0) - (a.goalsAgainst ?? 0);
+                const gdb = (b.goalsFor ?? 0) - (b.goalsAgainst ?? 0);
+                if (gda !== gdb) return gdb - gda;
+                return (b.goalsFor ?? 0) - (a.goalsFor ?? 0);
+            });
         });
 
         const sortedKeys = Object.keys(groups).sort((a, b) =>
@@ -513,9 +533,8 @@ class SoccerApp {
         const goalsFor = team.goalsFor ?? 0;
         const goalsAgainst = team.goalsAgainst ?? 0;
         const goalDiff = goalsFor - goalsAgainst;
-        // リーグ画面では leagueRank（リーグ内順位）を使用。
-        // leagueRank が無いチームは従来通り都道府県順位（rank）にフォールバック。
-        const rank = team.leagueRank || team.rank || '-';
+        // リーグ順位表では leagueRank を優先表示 (無ければ rank にフォールバック)
+        const rank = (team.leagueRank != null ? team.leagueRank : team.rank) || '-';
         const rankClass = (typeof rank === 'number' && rank <= 3) ? `rank-${rank}` : 'rank-other';
 
         return `
