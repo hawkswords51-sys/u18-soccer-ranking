@@ -2223,10 +2223,26 @@
         "leagueRank": 3
       },
       {
+        "id": "c005",
+        "name": "流通経済大学付属柏高校B",
+        "league": "プリンスリーグ関東1部",
+        "rank": 5,
+        "points": 7,
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "prefectureRank": 5,
+        "goalDiff": 2,
+        "leagueRank": 2
+      },
+      {
         "id": "c008",
         "name": "中央学院高校",
         "league": "千葉県1部",
-        "rank": 5,
+        "rank": 6,
         "points": 6,
         "played": 4,
         "won": 2,
@@ -2235,29 +2251,13 @@
         "goalsFor": 14,
         "goalsAgainst": 6,
         "goalDiff": 6,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "leagueRank": 4
       },
       {
         "id": "c003",
         "name": "市立船橋高校",
         "league": "プリンスリーグ関東1部",
-        "rank": 6,
-        "points": 6,
-        "played": 3,
-        "won": 2,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 5,
-        "goalsAgainst": 1,
-        "prefectureRank": 6,
-        "goalDiff": 2,
-        "leagueRank": 3
-      },
-      {
-        "id": "c001",
-        "name": "流通経済大学付属柏高校",
-        "league": "プレミアリーグEAST",
         "rank": 7,
         "points": 6,
         "played": 3,
@@ -2265,26 +2265,26 @@
         "drawn": 0,
         "lost": 1,
         "goalsFor": 5,
-        "goalsAgainst": 3,
+        "goalsAgainst": 1,
         "prefectureRank": 7,
-        "goalDiff": 4,
-        "leagueRank": 4
+        "goalDiff": 2,
+        "leagueRank": 3
       },
       {
-        "id": "c005",
-        "name": "流通経済大学付属柏高校B",
-        "league": "プリンスリーグ関東1部",
+        "id": "c001",
+        "name": "流通経済大学付属柏高校",
+        "league": "プレミアリーグEAST",
         "rank": 8,
         "points": 6,
-        "played": 2,
+        "played": 3,
         "won": 2,
         "drawn": 0,
-        "lost": 0,
-        "goalsFor": 2,
-        "goalsAgainst": 0,
+        "lost": 1,
+        "goalsFor": 5,
+        "goalsAgainst": 3,
         "prefectureRank": 8,
-        "goalDiff": 2,
-        "leagueRank": 1
+        "goalDiff": 4,
+        "leagueRank": 4
       },
       {
         "id": "c006",
@@ -10192,8 +10192,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-04-24 15:24",
+    "lastUpdated": "2026-04-24 15:40",
     "year": 2026,
-    "updatedCount": 513
+    "updatedCount": 514
   }
 }
