@@ -947,3 +947,118 @@ details[open] > summary > .league-accordion__chevron {
         margin-left: 8px;
     }
 }
+/* ==========================================================
+   P2: リーグ階層アコーディオン (option A: 排他的に1つだけ展開)
+   ========================================================== */
+
+.league-accordion-root {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* 共通 */
+.league-accordion {
+    border: 1px solid #d9e0ec;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.league-accordion + .league-accordion {
+    margin-top: 0;
+}
+
+.league-accordion__summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    transition: background 0.15s ease;
+}
+.league-accordion__summary::-webkit-details-marker { display: none; }
+
+.league-accordion__summary:hover {
+    background: #f2f5fb;
+}
+
+/* chevron 回転 */
+.league-accordion__chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    color: #1e3a8a;
+    transition: transform 0.2s ease;
+}
+.league-accordion[open] > .league-accordion__summary > .league-accordion__chevron {
+    transform: rotate(90deg);
+}
+
+.league-accordion__label {
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.league-accordion__count {
+    margin-left: auto;
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: normal;
+}
+
+.league-accordion__body {
+    padding: 8px 14px 14px;
+    border-top: 1px solid #eef1f7;
+    background: #fafbfe;
+}
+
+/* 地域レベル (外側) */
+.league-accordion--region {
+    border-left: 4px solid #1e3a8a;
+}
+.league-accordion__summary--region {
+    background: #f2f5fb;
+    font-size: 1rem;
+}
+
+/* ネスト (1部/2部) */
+.league-accordion__body--nested {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.league-accordion--division {
+    border-left: 3px solid #64748b;
+    background: #fff;
+}
+.league-accordion__summary--division {
+    background: #fff;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+}
+.league-accordion__summary--division .league-accordion__label {
+    color: #334155;
+}
+
+/* リーフブロック内テーブル余白 */
+.league-group-block {
+    margin-top: 0;
+}
+.league-group-block .data-table {
+    margin-top: 4px;
+}
+
+/* モバイル調整 */
+@media (max-width: 640px) {
+    .league-accordion__summary         { padding: 9px 10px; }
+    .league-accordion__body            { padding: 6px 8px 10px; }
+    .league-accordion__summary--region { font-size: 0.95rem; }
+    .league-accordion__summary--division { font-size: 0.9rem; }
+}
