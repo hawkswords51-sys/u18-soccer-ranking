@@ -134,6 +134,34 @@ JFA_BASE = "https://www.jfa.jp"
 REGIONS_WITH_DIVISIONS = {"kanto", "kansai", "kyushu", "hokushinetsu"}
 
 
+# [P1-10] JFA側の略称 → teams.json の正式名称
+# JFAの順位表で使われる省略形を、こちらのデータで使う正式名に変換する辞書。
+# スクレイピング直後に _resolve_alias() で名前を書き換え、
+# そのあとの match_team_to_pref で該当の都道府県チームとちゃんと紐付く。
+TEAM_ALIASES: dict[str, str] = {
+    # --- 関西 (大学名略称) ---
+    "関大北陽":                 "関西大学北陽高校",
+    "産大附属":                 "大阪産業大学附属高校",
+    # --- 九州 (大学名略称 / 「学」「付/附属」の揺れ) ---
+    "東海大熊本星翔高校":       "東海大学付属熊本星翔高校",
+    "東海大熊本星翔":           "東海大学付属熊本星翔高校",
+    "九州国際大学付属高校":     "九州国際大付属高校",
+    "九州国際大付":             "九州国際大付属高校",
+    # --- 北信越 (Jクラブ下部 U-18 の「地名U18」略称) ---
+    # JFA北信越1部/2部は J下部 U-18 を「地名U18」と略記するため、正式クラブ名に戻す
+    "新潟U18":                  "アルビレックス新潟U-18",
+    "松本U18":                  "松本山雅FC U-18",
+    "富山U18":                  "カターレ富山U-18",
+    "金沢U18":                  "ツェーゲン金沢U-18",
+    "長野U18":                  "AC長野パルセイロU-18",
+}
+
+
+def _resolve_alias(name: str) -> str:
+    """[P1-10] JFAでの略称を teams.json 用の正式名に変換する。未登録なら素通し。"""
+    return TEAM_ALIASES.get(name, name)
+
+
 # ヘッダー検出に使うキーワードセット（標準化のため外に定義）
 _HEADER_HINTS = {
     'チーム名', 'クラブ名', 'チーム', 'クラブ',
@@ -147,7 +175,7 @@ _HEADER_HINTS = {
 def _is_standings_table(table) -> bool:
     """
     与えられた <table> 要素が「順位表」っぽいか判定する。
-    最初の5行のどれかに「チーム名」「勝点」「試合数」のヘッダーキーワードが含まれるか見る。
+    最初の5行のどれかに「チーム名」「勝点」などのヘッダーキーワードが2つ以上含まれるか見る。
     """
     rows = table.find_all("tr")
     if len(rows) < 2:
@@ -169,7 +197,6 @@ def _find_standings_tables(soup: BeautifulSoup) -> list:
     result = []
     for table in soup.find_all("table"):
         if _is_standings_table(table):
-            # 単一テーブルだけを含む新しい BeautifulSoup を作る
             wrapper = BeautifulSoup(str(table), "html.parser")
             result.append(wrapper)
     return result
@@ -213,13 +240,6 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
     [P1-1/P1-4/P1-5] 1ページ内に複数の順位表 (1部/2部) がある場合は個別に分けて返す。
     - 関東・関西・九州・北信越 (REGIONS_WITH_DIVISIONS): 1部/2部を分離する
     - その他 (東海・中国・四国・北海道・東北): 単一リーグ扱い
-
-    取得ロジック:
-      1. requests で取得 → 順位表テーブルの数をカウント
-         - 複数テーブルあり、かつ REGIONS_WITH_DIVISIONS → 1部/2部に割り当て
-         - テーブル数 1 または REGIONS_WITH_DIVISIONS でない → そのまま返す
-         - テーブルなし → Selenium フォールバック
-      2. Selenium で取得 → 同様にテーブル数で判定、2部タブがあれば追加取得
     """
     region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
     results = []
@@ -231,14 +251,11 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
             return out
         if region_key in REGIONS_WITH_DIVISIONS:
             if len(standings_soups) >= 2:
-                # [P1-5] 先頭=1部 / 2番目=2部 と仮定 (JFAページは上から順に掲載)
                 out.append((standings_soups[0], f"プリンスリーグ{region_name}1部"))
                 out.append((standings_soups[1], f"プリンスリーグ{region_name}2部"))
             else:
-                # 1つしか見つからない → とりあえず 1部 として扱う (2部は別タブ/別URLの可能性)
                 out.append((standings_soups[0], f"プリンスリーグ{region_name}1部"))
         else:
-            # 1部/2部区分なしの地域は単一リーグ名
             out.append((standings_soups[0], f"プリンスリーグ{region_name}"))
         return out
 
@@ -252,17 +269,12 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
             soup = BeautifulSoup(resp.text, "html.parser")
             standings_tables = _find_standings_tables(soup)
             if standings_tables:
-                # [P1-4] 従来の「soup.find('table')」での早期 return をやめ、
-                # 標準化表が 2 つあれば両方 (=1部/2部) を返す
                 labeled = _assign_labels(standings_tables)
-
-                # 分割地域なのに表が1つしか見つからない場合は
-                # Selenium でタブクリックを試みる価値がある → フォールバックに続く
+                # 分割地域なのに表が1つだけなら Selenium でタブクリック試行
                 if region_key in REGIONS_WITH_DIVISIONS and len(standings_tables) < 2:
-                    requests_soup = soup  # 後で Selenium にフォールバック
+                    requests_soup = soup
                     break
                 return labeled
-            # 順位表が見つからない → JSレンダリング必要かも
             print("  順位表テーブルが見つかりません。JSレンダリングが必要かもしれません。")
             break
         except requests.RequestException as e:
@@ -273,7 +285,6 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
     # --- Selenium フォールバック (1部・2部タブ両対応) ---
     if not SELENIUM_AVAILABLE:
         print("  Selenium が利用できません。")
-        # requests で1部だけでも取れていたら、それを返す
         if requests_soup is not None:
             standings_tables = _find_standings_tables(requests_soup)
             return _assign_labels(standings_tables)
@@ -303,14 +314,12 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
         soup1 = BeautifulSoup(driver.page_source, "html.parser")
         tables1 = _find_standings_tables(soup1)
 
-        # [P1-5] 初期表示だけで 1部/2部 両方見えている場合
         if region_key in REGIONS_WITH_DIVISIONS and len(tables1) >= 2:
             results.append((tables1[0], f"プリンスリーグ{region_name}1部"))
             results.append((tables1[1], f"プリンスリーグ{region_name}2部"))
             print(f"    → 同ページ上に1部/2部テーブルを検出 (プリンスリーグ{region_name}1部 + 2部)")
             return results
 
-        # 2部タブが別にある場合はクリックして再取得
         if region_key in REGIONS_WITH_DIVISIONS:
             div2_xpaths = [
                 "//button[contains(text(),'2部')]",
@@ -336,10 +345,8 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
                     continue
 
             if not found_div2 and tables1:
-                # 1部のみ取得できた
                 results.append((tables1[0], f"プリンスリーグ{region_name}1部"))
         else:
-            # 分割なし地域 → 単一リーグ
             if tables1:
                 results.append((tables1[0], f"プリンスリーグ{region_name}"))
 
@@ -360,10 +367,8 @@ def fetch_page(url: str, retries: int = 3) -> BeautifulSoup | None:
             resp.raise_for_status()
             resp.encoding = resp.apparent_encoding
             soup = BeautifulSoup(resp.text, "html.parser")
-            # テーブルが取得できた場合はそのまま返す
             if soup.find("table"):
                 return soup
-            # テーブルなし = JSレンダリングが必要な可能性
             print("  テーブルが見つかりません。JSレンダリングが必要かもしれません。")
             break
         except requests.RequestException as e:
@@ -371,39 +376,32 @@ def fetch_page(url: str, retries: int = 3) -> BeautifulSoup | None:
             if attempt < retries - 1:
                 time.sleep(2)
 
-    # Selenium フォールバック
     return _fetch_with_selenium(url)
 
 
 def _clean_team_name(name: str) -> str:
     """チーム名から末尾の都道府県表記 (例: '(千葉県)') を除去する"""
-    return re.sub(r'\s*（[^）]+）|\s*\([^)]+\)', '', name).strip()
+    return re.sub(r'\s*(?:（[^）]+）|\([^)]+\))', '', name).strip()
 
 
 def _detect_col_indices(header_cols: list[str]) -> dict:
     """
     ヘッダー行からフィールド→列インデックスのマッピングを返す。
-    JFA2026実績テーブル形式:
-      順位 | チーム名 | 勝点平均 | 勝点 | 試合数 | 勝 | 分 | 負 | 得点 | 失点 | 得失点差
     完全一致を優先し、「勝点平均」などの複合語に誤マッチしないようにする。
     """
     mapping = {}
-
-    # (フィールド名, 完全一致キーワード, 部分一致キーワード)
-    # 完全一致リストの語に完全一致した場合のみ優先的に採用する
     field_specs = [
         ("name",         ["チーム名", "クラブ名", "チーム", "クラブ"], ["club", "team"]),
         ("points",       ["勝点", "勝ち点"],                           ["pts", "pt", "points"]),
         ("played",       ["試合数", "試合"],                           ["mp", "games", "played"]),
-        ("won",          ["勝", "勝利", "勝数", "勝利数"],                          ["win", "wins"]),
-        ("drawn",        ["分", "引分", "引き分け", "ドロー", "引分数", "引"],     ["draw", "draws"]),
-        ("lost",         ["負", "敗", "敗戦", "敗北", "敗数", "敗戦数"],           ["loss", "lose"]),
-        ("goalsFor",     ["得点"],                                                  ["gf"]),
-        ("goalsAgainst", ["失点"],                                                  ["ga"]),
-        ("goalDiff",     ["得失点差", "得失差", "得失点"],                          ["得失", "gd"]),
+        ("won",          ["勝", "勝利", "勝数", "勝利数"],             ["win", "wins"]),
+        ("drawn",        ["分", "引分", "引き分け", "ドロー", "引分数", "引"], ["draw", "draws"]),
+        ("lost",         ["負", "敗", "敗戦", "敗北", "敗数", "敗戦数"], ["loss", "lose"]),
+        ("goalsFor",     ["得点"],                                      ["gf"]),
+        ("goalsAgainst", ["失点"],                                      ["ga"]),
+        ("goalDiff",     ["得失点差", "得失差", "得失点"],              ["得失", "gd"]),
     ]
 
-    # パス1: 完全一致（「勝」vs「勝点平均」問題を回避）
     for idx, header in enumerate(header_cols):
         h = header.strip()
         for field, exact_kws, _ in field_specs:
@@ -411,7 +409,6 @@ def _detect_col_indices(header_cols: list[str]) -> dict:
                 mapping[field] = idx
                 break
 
-    # パス2: 部分一致（「平均」「rate」など複合語はスキップ）
     skip_words = ["平均", "rate", "avg", "average"]
     for idx, header in enumerate(header_cols):
         h = header.strip()
@@ -428,14 +425,7 @@ def _detect_col_indices(header_cols: list[str]) -> dict:
 
 
 def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
-    """
-    JFAの順位表テーブルをパースする。
-    ヘッダー行の列名を使って正確に列を特定する。
-    JFA2026形式: 順位|チーム名(都道府県)|勝点平均|勝点|試合数|勝|分|負|得点|失点|得失点差
-    返り値: [{"name": str, "played": int, "won": int, "drawn": int,
-               "lost": int, "goalsFor": int, "goalsAgainst": int, "points": int}, ...]
-    重複チーム名は最初の出現のみ保持する。
-    """
+    """JFAの順位表テーブルをパースする"""
     results = []
     seen_names: set[str] = set()
 
@@ -445,7 +435,6 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
         if len(rows) < 2:
             continue
 
-        # ヘッダー行を自動検出（最初5行の中でヘッダーキーワードが最も多い行）
         best_i, best_score = 0, 0
         for i, row in enumerate(rows[:5]):
             cols = [c.get_text(strip=True) for c in row.find_all(["th", "td"])]
@@ -457,11 +446,9 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
         header_cols = [th.get_text(strip=True) for th in rows[header_row_idx].find_all(["th", "td"])]
         col_map = _detect_col_indices(header_cols)
 
-        # 最低限「勝点」と「試合数」が特定できる表のみ処理
         if "points" not in col_map or "played" not in col_map:
             continue
 
-        # 列オフセット検出（goalnote形式: データ行にヘッダーより1列多い = 先頭に順位列）
         offset = 0
         if len(rows) > header_row_idx + 1:
             first_data = [c.get_text(strip=True) for c in rows[header_row_idx + 1].find_all(["td", "th"])]
@@ -476,7 +463,6 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
             if len(cols) < 5:
                 continue
             try:
-                # チーム名取得（都道府県表記を除去）
                 raw_name = cols[col_map["name"]] if "name" in col_map else None
                 if not raw_name:
                     raw_name = next(
@@ -492,7 +478,7 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
                     idx = col_map.get(field)
                     if idx is None or idx >= len(cols):
                         return default
-                    val = cols[idx].strip().lstrip('+')  # "+4" → "4"
+                    val = cols[idx].strip().lstrip('+')
                     return int(val) if re.match(r"^-?\d+$", val) else default
 
                 record = {
@@ -504,12 +490,8 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
                     "goalsFor":     gcol("goalsFor"),
                     "goalsAgainst": gcol("goalsAgainst"),
                     "points":       gcol("points"),
-                    # leagueRank: 順位表ページ上でのリーグ内順位 (HTML出現順)。
-                    # recalculate_ranks() は rank/prefectureRank しか触らないため、
-                    # leagueRank は都道府県内順位で上書きされない。
                     "leagueRank":   len(results) + 1,
                 }
-
                 results.append(record)
                 seen_names.add(name)
             except (ValueError, IndexError):
@@ -518,29 +500,20 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
 
 
 def find_league_urls(year: int) -> dict[str, list[str]]:
-    """JFAサイトから各リーグのURLを収集する
-
-    JFA公式URLパターン（2026年確認済み）:
-      プレミア: /match/takamado_jfa_u18_premier{year}/{east|west}/standings/
-      プリンス: /match/takamado_jfa_u18_prince{year}/{region}/standings/
-    """
+    """JFAサイトから各リーグのURLを収集する"""
     urls = {"premier_east": [], "premier_west": [], "prince": {}}
 
-    # プレミアリーグ
     for division in ["east", "west"]:
         url = f"{JFA_BASE}/match/takamado_jfa_u18_premier{year}/{division}/standings/"
         urls[f"premier_{division}"].append(url)
 
-    # プリンスリーグ (地域別)
-    # JFA中央管理: 地域トップページに順位表が埋め込まれている
-    # 東北・近畿は地域協会管理のためJFAページが存在しない → 協会URLを使用
     prince_region_urls = {
         "hokkaido":     f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/hokkaido/",
-        "tohoku":       f"https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u18_prince{year}/thfa/ranking.html",  # 東北（JFA iframeソース）
+        "tohoku":       f"https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u18_prince{year}/thfa/ranking.html",
         "kanto":        f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/kanto/",
         "hokushinetsu": f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/hokushinetsu/",
         "tokai":        f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/tokai/",
-        "kansai":       f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/kansai/",      # 関西（JFA管理）
+        "kansai":       f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/kansai/",
         "chugoku":      f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/chugoku/",
         "shikoku":      f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/shikoku/",
         "kyushu":       f"{JFA_BASE}/match/takamado_jfa_u18_prince{year}/kyushu/",
@@ -551,16 +524,13 @@ def find_league_urls(year: int) -> dict[str, list[str]]:
     return urls
 
 
-# [P1-7] 控えチームを示す末尾キーワード
-# ・丸数字 ② ③ ④ ...: 藤枝明誠② などに対応
-# ・全角Ｂ/Ｃ/Ｄ: NFKC正規化で半角に寄せてから判定
+# [P1-7] 控えチームを示す末尾キーワード (丸数字・全角Ｂ対応は _is_reserve_team で NFKC)
 RESERVE_SUFFIXES = (
     "B", "C", "D",
     "Ⅱ", "Ⅲ", "Ⅳ", "II", "III",
     "2nd", "3rd", "4th",
     "セカンド", "サード", "フォース",
     "2", "3",
-    # 丸数字 (チーム名にしばしば使われる ②③④⑤)
     "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩",
 )
 
@@ -570,12 +540,10 @@ def _is_reserve_team(name: str) -> bool:
     チーム名が控えチーム（B・Ⅱ・②・セカンドなど）かどうかを判定する。
     [P1-7] NFKC正規化してから判定するので「藤枝明誠Ｂ」(全角) も「藤枝明誠B」と同じ扱い。
     """
-    # NFKC で全角英数字 → 半角、合成文字の統一
     normalized = unicodedata.normalize('NFKC', name)
     for suffix in RESERVE_SUFFIXES:
         if normalized.endswith(suffix):
             return True
-        # スペース区切り: "青森山田高校 B" のような形式
         if normalized.endswith(" " + suffix) or normalized.endswith("　" + suffix):
             return True
     return False
@@ -583,38 +551,29 @@ def _is_reserve_team(name: str) -> bool:
 
 def _name_similarity(a: str, b: str) -> bool:
     """チーム名の類似判定（短縮名や略称に対応）"""
-    # "U-18", "ユース", "FC" などの接尾語を除去して比較
     suffixes = ["U-18", "U18", "ユース", "Youth", "高校", "高等学校"]
     a_clean = a
     b_clean = b
     for s in suffixes:
         a_clean = a_clean.replace(s, "").strip()
         b_clean = b_clean.replace(s, "").strip()
-    return a_clean and b_clean and (a_clean in b_clean or b_clean in a_clean)
+    return bool(a_clean) and bool(b_clean) and (a_clean in b_clean or b_clean in a_clean)
 
 
-# 旧字体・異体字 → 常用漢字への変換テーブル（チーム名比較用）
 _KANJI_MAP = str.maketrans({
     '國': '国', '學': '学', '體': '体',
     '濱': '浜', '濵': '浜', '澤': '沢',
     '齋': '斉', '齊': '斉', '龍': '竜',
     '廣': '広', '藏': '蔵', '遙': '遥',
-    '塚': '塚',  # 塚(U+585A) / 塚(U+FA10) 統一
+    '塚': '塚',
 })
 
 
 def _normalize_name(name: str) -> str:
-    """
-    チーム名を比較用に正規化する。
-    ・NFKC正規化（全角英数→半角、ローマ数字など）
-    ・旧字体/異体字 → 常用漢字（國→国、學→学 など）
-    ・スペース除去
-    ・中黒の統一（U+00B7 · U+FF65 ･ → U+30FB ・）
-    """
+    """チーム名を比較用に正規化する"""
     name = unicodedata.normalize('NFKC', name)
     name = name.translate(_KANJI_MAP)
     name = name.replace(' ', '').replace('\u3000', '')
-    # 中黒の種類を統一
     name = name.replace('\u00b7', '・').replace('\uff65', '・')
     return name
 
@@ -622,33 +581,20 @@ def _normalize_name(name: str) -> str:
 def _teams_match(scraped: str, existing: str) -> bool:
     """
     スクレイピング名と既存チーム名が同じチームを指すか判定。
-    [P1-6] 1軍↔控えの双方向ブロック:
-           スクレイピング名と既存名で「控えフラグ」が食い違うなら絶対にマッチしない。
-           これにより「藤枝明誠高校」(1軍) が「藤枝明誠高校②」(控え) に誤マッチして
-           league 上書きで重複が起きる問題を防ぐ。
-    スペース有無の表記ゆれ（例: "青森山田高校 セカンド" vs "青森山田高校セカンド"）にも対応。
+    [P1-6] 1軍↔控えの双方向ブロック: 片方だけが控えなら絶対にマッチしない。
     """
-    # 完全一致は常にOK
     if scraped == existing:
         return True
-
-    # スペース正規化後の一致（"青森山田高校 セカンド" == "青森山田高校セカンド"）
     s_norm = _normalize_name(scraped)
     e_norm = _normalize_name(existing)
     if s_norm == e_norm:
         return True
-
-    # [P1-6] 双方向ブロック: 片方だけが控えチームの場合はマッチさせない
     if _is_reserve_team(scraped) != _is_reserve_team(existing):
         return False
-
-    # 部分一致（正規化後）
     if s_norm in e_norm or e_norm in s_norm:
         return True
-    # 元の文字列でも部分一致チェック
     if scraped in existing or existing in scraped:
         return True
-    # 略称・接尾語を除いた類似判定
     return _name_similarity(scraped, existing)
 
 
@@ -657,12 +603,10 @@ def match_team_to_pref(team_name: str, candidate_prefs: list[str], data: dict) -
     チーム名を既存データの都道府県チームとマッチングする。
     完全一致を優先し、控えチームへの誤マッチを防ぐ。
     """
-    # パス1: 完全一致
     for pref_id in candidate_prefs:
         for team in data.get(pref_id, {}).get("teams", []):
             if team.get("name", "") == team_name:
                 return pref_id
-    # パス2: 部分一致（1軍↔控えへのマッチは _teams_match が双方向でブロック）
     for pref_id in candidate_prefs:
         for team in data.get(pref_id, {}).get("teams", []):
             if _teams_match(team_name, team.get("name", "")):
@@ -681,7 +625,6 @@ def update_team_stats(
     pref_data = data.get(pref_id, {})
     teams = pref_data.get("teams", [])
 
-    # パス1: 完全一致を優先
     for team in teams:
         existing = team.get("name", "")
         if existing != team_name:
@@ -694,7 +637,6 @@ def update_team_stats(
         print(f"    ✓ 更新: {existing} ({pref_id})")
         return True
 
-    # パス2: 部分一致（控えチームへの誤マッチを防ぐ）
     for team in teams:
         existing = team.get("name", "")
         if not _teams_match(team_name, existing):
@@ -711,7 +653,7 @@ def update_team_stats(
 
 
 def _apply_stats(team: dict, stats: dict) -> None:
-    """チームエントリに成績データを適用する。league が stats に含まれる場合は更新する。"""
+    """チームエントリに成績データを適用する"""
     team["points"]       = stats["points"]
     team["played"]       = stats["played"]
     team["won"]          = stats["won"]
@@ -719,12 +661,8 @@ def _apply_stats(team: dict, stats: dict) -> None:
     team["lost"]         = stats["lost"]
     team["goalsFor"]     = stats["goalsFor"]
     team["goalsAgainst"] = stats["goalsAgainst"]
-    # league名が渡された場合は更新（昇格・降格後の表示を自動修正）
     if stats.get("league"):
         team["league"] = stats["league"]
-    # リーグ内の公式順位 (leagueRank) も反映する。
-    # recalculate_ranks() は rank/prefectureRank のみ上書きするので
-    # leagueRank は都道府県内ソートの影響を受けない。
     if "leagueRank" in stats and stats["leagueRank"] is not None:
         team["leagueRank"] = stats["leagueRank"]
 
@@ -732,8 +670,9 @@ def _apply_stats(team: dict, stats: dict) -> None:
 def recalculate_ranks(data: dict) -> None:
     """各都道府県内でポイント順に順位を再計算する"""
     for pref_id, pref_data in data.items():
+        if pref_id == "_meta":
+            continue
         teams = pref_data.get("teams", [])
-        # ポイント降順 → 得失点差降順 → 得点降順
         sorted_teams = sorted(
             teams,
             key=lambda t: (
@@ -748,8 +687,6 @@ def recalculate_ranks(data: dict) -> None:
         pref_data["teams"] = sorted_teams
 
 
-# 各都道府県の県リーグURL（HTMLテーブルが確認できたもののみ掲載）
-# juniorsoccer-news.com は画像/テキスト形式でテーブルなし → 除外
 PREF_LEAGUE_URLS: dict[str, list[str]] = {
     "hokkaido":  ["https://junior-soccer.jp/hokkaido/hokkaido/league/order/163368"],
     "aomori":    ["https://junior-soccer.jp/tohoku/aomori/league/order/163886"],
@@ -759,7 +696,6 @@ PREF_LEAGUE_URLS: dict[str, list[str]] = {
     "yamagata":  ["https://junior-soccer.jp/tohoku/yamagata/league/order/163965",
                   "https://www.goalnote.net/detail-standings.php?tid=18649"],
     "fukushima": ["https://junior-soccer.jp/tohoku/fukushima/league/order/163405"],
-    "yamagata":  ["https://www.goalnote.net/detail-standings.php?tid=18649"],
     "ibaraki":   ["https://junior-soccer.jp/kanto/ibaraki/league/order/163357",
                   "https://www.goalnote.net/detail-standings.php?tid=18463"],
     "tochigi":   ["https://junior-soccer.jp/kanto/tochigi/league/order/163569",
@@ -811,11 +747,7 @@ PREF_LEAGUE_URLS: dict[str, list[str]] = {
 
 
 def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
-    """
-    各都道府県の県リーグURLを取得し、teams.json を更新する。
-    league フィールドは上書きしない（既存の県リーグ名を保持）。
-    goalnote / tleague / fa-u18.com など複数フォーマットに対応。
-    """
+    """各都道府県の県リーグURLを取得し、teams.json を更新する (league上書きしない)"""
     total = 0
     for pref_id, urls in PREF_LEAGUE_URLS.items():
         pref_name = PREF_ID_TO_NAME.get(pref_id, pref_id)
@@ -835,10 +767,8 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
             except Exception as e:
                 print(f"    → 取得失敗: {e}")
 
-        if soup is None:
-            # Selenium フォールバック（最初のURLのみ）
-            if urls:
-                soup = _fetch_with_selenium(urls[0])
+        if soup is None and urls:
+            soup = _fetch_with_selenium(urls[0])
 
         if soup is None or not soup.find("table"):
             print(f"    ⚠ {pref_name}: テーブル取得失敗、スキップ")
@@ -848,7 +778,8 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
         standings = parse_standing_table(soup)
         print(f"    取得チーム数: {len(standings)}")
         for s in standings:
-            # league フィールドを含めない（既存の県リーグ名を保持）
+            # 県リーグでもエイリアスを解決 (例: "関大北陽" → "関西大学北陽高校")
+            s["name"] = _resolve_alias(s["name"])
             s_no_league = {k: v for k, v in s.items() if k != "league"}
             if update_team_stats(data, pref_id, s["name"], s_no_league, already_updated):
                 total += 1
@@ -862,12 +793,11 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
     print(f"\n===== 高円宮杯 {year} データ取得開始 =====")
     print(f"データファイル: {DATA_FILE}")
 
-    # 既存データ読み込み
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     total_updated = 0
-    already_updated: set[str] = set()   # 重複更新防止用
+    already_updated: set[str] = set()
     league_urls = find_league_urls(year)
 
     def _process_premier(division_label, urls, league_name):
@@ -881,7 +811,9 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
             standings = parse_standing_table(soup)
             print(f"  取得チーム数: {len(standings)}")
             for s in standings:
-                s["league"] = league_name  # league名も更新
+                # [P1-10] エイリアス解決
+                s["name"] = _resolve_alias(s["name"])
+                s["league"] = league_name
                 pref_id = None
                 for key, pid in PREMIER_TEAM_PREF.items():
                     if key in s["name"]:
@@ -893,15 +825,12 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
                     total_updated += 1
             time.sleep(1)
 
-    # --- プレミアリーグ EAST ---
-    print("\n[1/3] プレミアリーグ EAST を取得中...")
+    print("\n[1/4] プレミアリーグ EAST を取得中...")
     _process_premier("EAST", league_urls["premier_east"], "プレミアリーグEAST")
 
-    # --- プレミアリーグ WEST ---
-    print("\n[2/3] プレミアリーグ WEST を取得中...")
+    print("\n[2/4] プレミアリーグ WEST を取得中...")
     _process_premier("WEST", league_urls["premier_west"], "プレミアリーグWEST")
 
-    # --- プリンスリーグ (各地域・1部/2部を個別に処理) ---
     print("\n[3/4] プリンスリーグ (全9地域) を取得中...")
     for region_key, url in league_urls["prince"].items():
         candidate_prefs = PRINCE_REGION_PREFS.get(region_key, [])
@@ -918,23 +847,22 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
             standings = parse_standing_table(soup)
             print(f"  [{league_name}] 取得チーム数: {len(standings)}")
             for s in standings:
-                s["league"] = league_name  # league名も更新
+                # [P1-10] エイリアス解決 (北信越の "新潟U18" → "アルビレックス新潟U-18" など)
+                s["name"] = _resolve_alias(s["name"])
+                s["league"] = league_name
                 pref_id = match_team_to_pref(s["name"], candidate_prefs, data)
                 if pref_id and update_team_stats(data, pref_id, s["name"], s, already_updated):
                     total_updated += 1
         time.sleep(1)
 
-    # --- 県リーグ (各都道府県・テーブル取得可能な21県) ---
     print("\n[4/4] 県リーグ (各都道府県) を取得中...")
     pref_updated = scrape_pref_leagues(data, already_updated)
     total_updated += pref_updated
     print(f"\n  県リーグ更新チーム数: {pref_updated}")
 
-    # 順位再計算
     print(f"\n順位を再計算中... ({len(data)} 都道府県)")
     recalculate_ranks(data)
 
-    # 更新日時を記録
     data["_meta"] = {
         "lastUpdated": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "year": year,
