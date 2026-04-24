@@ -115,11 +115,12 @@ REGION_DISPLAY_NAMES = {
 }
 
 # プリンスリーグ地域 → 対象都道府県
+# [P1-8] 長野県は北信越プリンスリーグ所属 (関東から移動)
 PRINCE_REGION_PREFS = {
     "hokkaido": ["hokkaido"],
     "tohoku": ["aomori", "iwate", "miyagi", "akita", "yamagata", "fukushima"],
-    "kanto": ["ibaraki", "tochigi", "gunma", "saitama", "chiba", "tokyo", "kanagawa", "yamanashi", "nagano"],
-    "hokushinetsu": ["niigata", "toyama", "ishikawa", "fukui"],
+    "kanto": ["ibaraki", "tochigi", "gunma", "saitama", "chiba", "tokyo", "kanagawa", "yamanashi"],
+    "hokushinetsu": ["niigata", "toyama", "ishikawa", "fukui", "nagano"],
     "tokai": ["shizuoka", "aichi", "mie", "gifu"],
     "kansai": ["shiga", "kyoto", "osaka", "hyogo", "nara", "wakayama"],
     "chugoku": ["tottori", "shimane", "okayama", "hiroshima", "yamaguchi"],
@@ -129,8 +130,49 @@ PRINCE_REGION_PREFS = {
 
 JFA_BASE = "https://www.jfa.jp"
 
-# 1部・2部に分かれている地域リーグ（requestsで1ページしか取れなくてもデフォルト"1部"にする）
+# 1部・2部に分かれている地域リーグ
 REGIONS_WITH_DIVISIONS = {"kanto", "kansai", "kyushu", "hokushinetsu"}
+
+
+# ヘッダー検出に使うキーワードセット（標準化のため外に定義）
+_HEADER_HINTS = {
+    'チーム名', 'クラブ名', 'チーム', 'クラブ',
+    '勝点', '勝ち点', '試合数', '試合',
+    '勝', '勝利', '勝数', '引分', '引き分け', '引分数', '引',
+    '負', '敗', '敗戦', '敗数',
+    '得点', '失点', '得失点差', '得失差', '得失点',
+}
+
+
+def _is_standings_table(table) -> bool:
+    """
+    与えられた <table> 要素が「順位表」っぽいか判定する。
+    最初の5行のどれかに「チーム名」「勝点」「試合数」のヘッダーキーワードが含まれるか見る。
+    """
+    rows = table.find_all("tr")
+    if len(rows) < 2:
+        return False
+    for row in rows[:5]:
+        cols = [c.get_text(strip=True) for c in row.find_all(["th", "td"])]
+        score = sum(1 for c in cols if c.strip() in _HEADER_HINTS)
+        if score >= 2:
+            return True
+    return False
+
+
+def _find_standings_tables(soup: BeautifulSoup) -> list:
+    """
+    ページ内の順位表テーブルを **すべて** 見つけて、各テーブルを個別の BeautifulSoup として返す。
+    [P1-5] 関東・関西・九州・北信越は同じページに 1部と2部が並んで載っていることがあるため、
+           すべての順位表をテーブル単位で分離する。
+    """
+    result = []
+    for table in soup.find_all("table"):
+        if _is_standings_table(table):
+            # 単一テーブルだけを含む新しい BeautifulSoup を作る
+            wrapper = BeautifulSoup(str(table), "html.parser")
+            result.append(wrapper)
+    return result
 
 
 def _fetch_with_selenium(url: str) -> BeautifulSoup | None:
@@ -168,34 +210,73 @@ def _fetch_with_selenium(url: str) -> BeautifulSoup | None:
 def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
     """
     プリンスリーグのURLを取得し、[(soup, league_name), ...] を返す。
-    JFAページに「2部」タブがある場合は両方取得する。
-    league_name は "プリンスリーグ関東1部" / "プリンスリーグ関東2部" など。
+    [P1-1/P1-4/P1-5] 1ページ内に複数の順位表 (1部/2部) がある場合は個別に分けて返す。
+    - 関東・関西・九州・北信越 (REGIONS_WITH_DIVISIONS): 1部/2部を分離する
+    - その他 (東海・中国・四国・北海道・東北): 単一リーグ扱い
+
+    取得ロジック:
+      1. requests で取得 → 順位表テーブルの数をカウント
+         - 複数テーブルあり、かつ REGIONS_WITH_DIVISIONS → 1部/2部に割り当て
+         - テーブル数 1 または REGIONS_WITH_DIVISIONS でない → そのまま返す
+         - テーブルなし → Selenium フォールバック
+      2. Selenium で取得 → 同様にテーブル数で判定、2部タブがあれば追加取得
     """
     region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
     results = []
 
-    # まず requests で試みる
+    def _assign_labels(standings_soups):
+        """順位表 soup のリストから [(soup, league_name), ...] を作る"""
+        out = []
+        if not standings_soups:
+            return out
+        if region_key in REGIONS_WITH_DIVISIONS:
+            if len(standings_soups) >= 2:
+                # [P1-5] 先頭=1部 / 2番目=2部 と仮定 (JFAページは上から順に掲載)
+                out.append((standings_soups[0], f"プリンスリーグ{region_name}1部"))
+                out.append((standings_soups[1], f"プリンスリーグ{region_name}2部"))
+            else:
+                # 1つしか見つからない → とりあえず 1部 として扱う (2部は別タブ/別URLの可能性)
+                out.append((standings_soups[0], f"プリンスリーグ{region_name}1部"))
+        else:
+            # 1部/2部区分なしの地域は単一リーグ名
+            out.append((standings_soups[0], f"プリンスリーグ{region_name}"))
+        return out
+
+    # --- まず requests で試みる ---
+    requests_soup = None
     for attempt in range(3):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=15)
             resp.raise_for_status()
             resp.encoding = resp.apparent_encoding
             soup = BeautifulSoup(resp.text, "html.parser")
-            if soup.find("table"):
-                # requestsで取得できた → 1ページ分のみ返す（1部/2部あり地域は"1部"を付与）
-                suffix = "1部" if region_key in REGIONS_WITH_DIVISIONS else ""
-                results.append((soup, f"プリンスリーグ{region_name}{suffix}"))
-                return results
-            print("  テーブルが見つかりません。JSレンダリングが必要かもしれません。")
+            standings_tables = _find_standings_tables(soup)
+            if standings_tables:
+                # [P1-4] 従来の「soup.find('table')」での早期 return をやめ、
+                # 標準化表が 2 つあれば両方 (=1部/2部) を返す
+                labeled = _assign_labels(standings_tables)
+
+                # 分割地域なのに表が1つしか見つからない場合は
+                # Selenium でタブクリックを試みる価値がある → フォールバックに続く
+                if region_key in REGIONS_WITH_DIVISIONS and len(standings_tables) < 2:
+                    requests_soup = soup  # 後で Selenium にフォールバック
+                    break
+                return labeled
+            # 順位表が見つからない → JSレンダリング必要かも
+            print("  順位表テーブルが見つかりません。JSレンダリングが必要かもしれません。")
             break
         except requests.RequestException as e:
             print(f"  取得失敗 (試行 {attempt+1}/3): {e}")
             if attempt < 2:
                 time.sleep(2)
 
-    # Selenium フォールバック（1部・2部タブ両対応）
+    # --- Selenium フォールバック (1部・2部タブ両対応) ---
     if not SELENIUM_AVAILABLE:
-        print("  Selenium が利用できません。スキップします。")
+        print("  Selenium が利用できません。")
+        # requests で1部だけでも取れていたら、それを返す
+        if requests_soup is not None:
+            standings_tables = _find_standings_tables(requests_soup)
+            return _assign_labels(standings_tables)
         return results
 
     print("  → Selenium (ヘッドレス Chrome) でプリンスリーグ取得...")
@@ -220,33 +301,47 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
         time.sleep(2)
 
         soup1 = BeautifulSoup(driver.page_source, "html.parser")
+        tables1 = _find_standings_tables(soup1)
 
-        # 「2部」タブを探す
-        div2_xpaths = [
-            "//button[contains(text(),'2部')]",
-            "//a[contains(text(),'2部')]",
-            "//li/a[contains(text(),'2部')]",
-            "//*[contains(@class,'tab') and contains(text(),'2部')]",
-        ]
-        found_div2 = False
-        for xpath in div2_xpaths:
-            try:
-                tab = driver.find_element(By.XPATH, xpath)
-                driver.execute_script("arguments[0].click();", tab)
-                time.sleep(2)
-                soup2 = BeautifulSoup(driver.page_source, "html.parser")
-                results.append((soup1, f"プリンスリーグ{region_name}1部"))
-                results.append((soup2, f"プリンスリーグ{region_name}2部"))
-                print(f"    → 2部タブを検出しました（プリンスリーグ{region_name}1部 + 2部）")
-                found_div2 = True
-                break
-            except Exception:
-                continue
+        # [P1-5] 初期表示だけで 1部/2部 両方見えている場合
+        if region_key in REGIONS_WITH_DIVISIONS and len(tables1) >= 2:
+            results.append((tables1[0], f"プリンスリーグ{region_name}1部"))
+            results.append((tables1[1], f"プリンスリーグ{region_name}2部"))
+            print(f"    → 同ページ上に1部/2部テーブルを検出 (プリンスリーグ{region_name}1部 + 2部)")
+            return results
 
-        if not found_div2:
-            # 2部タブが見つからなかった場合も、1部/2部あり地域は"1部"を付与
-            suffix = "1部" if region_key in REGIONS_WITH_DIVISIONS else ""
-            results.append((soup1, f"プリンスリーグ{region_name}{suffix}"))
+        # 2部タブが別にある場合はクリックして再取得
+        if region_key in REGIONS_WITH_DIVISIONS:
+            div2_xpaths = [
+                "//button[contains(text(),'2部')]",
+                "//a[contains(text(),'2部')]",
+                "//li/a[contains(text(),'2部')]",
+                "//*[contains(@class,'tab') and contains(text(),'2部')]",
+            ]
+            found_div2 = False
+            for xpath in div2_xpaths:
+                try:
+                    tab = driver.find_element(By.XPATH, xpath)
+                    driver.execute_script("arguments[0].click();", tab)
+                    time.sleep(2)
+                    soup2 = BeautifulSoup(driver.page_source, "html.parser")
+                    tables2 = _find_standings_tables(soup2)
+                    if tables1 and tables2:
+                        results.append((tables1[0], f"プリンスリーグ{region_name}1部"))
+                        results.append((tables2[0], f"プリンスリーグ{region_name}2部"))
+                        print(f"    → 2部タブを検出しました (プリンスリーグ{region_name}1部 + 2部)")
+                        found_div2 = True
+                    break
+                except Exception:
+                    continue
+
+            if not found_div2 and tables1:
+                # 1部のみ取得できた
+                results.append((tables1[0], f"プリンスリーグ{region_name}1部"))
+        else:
+            # 分割なし地域 → 単一リーグ
+            if tables1:
+                results.append((tables1[0], f"プリンスリーグ{region_name}"))
 
     except Exception as e:
         print(f"  Selenium 取得失敗: {e}")
@@ -343,15 +438,6 @@ def parse_standing_table(soup: BeautifulSoup) -> list[dict]:
     """
     results = []
     seen_names: set[str] = set()
-
-    # ヘッダー検出に使うキーワードセット
-    _HEADER_HINTS = {
-        'チーム名', 'クラブ名', 'チーム', 'クラブ',
-        '勝点', '勝ち点', '試合数', '試合',
-        '勝', '勝利', '勝数', '引分', '引き分け', '引分数', '引',
-        '負', '敗', '敗戦', '敗数',
-        '得点', '失点', '得失点差', '得失差', '得失点',
-    }
 
     tables = soup.find_all("table")
     for table in tables:
@@ -465,23 +551,32 @@ def find_league_urls(year: int) -> dict[str, list[str]]:
     return urls
 
 
-# 控えチームを示す末尾キーワード（1軍チームのスクレイピング時にマッチさせない）
+# [P1-7] 控えチームを示す末尾キーワード
+# ・丸数字 ② ③ ④ ...: 藤枝明誠② などに対応
+# ・全角Ｂ/Ｃ/Ｄ: NFKC正規化で半角に寄せてから判定
 RESERVE_SUFFIXES = (
     "B", "C", "D",
     "Ⅱ", "Ⅲ", "Ⅳ", "II", "III",
     "2nd", "3rd", "4th",
     "セカンド", "サード", "フォース",
     "2", "3",
+    # 丸数字 (チーム名にしばしば使われる ②③④⑤)
+    "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩",
 )
 
 
 def _is_reserve_team(name: str) -> bool:
-    """チーム名が控えチーム（B・Ⅱ・セカンドなど）かどうかを判定する"""
+    """
+    チーム名が控えチーム（B・Ⅱ・②・セカンドなど）かどうかを判定する。
+    [P1-7] NFKC正規化してから判定するので「藤枝明誠Ｂ」(全角) も「藤枝明誠B」と同じ扱い。
+    """
+    # NFKC で全角英数字 → 半角、合成文字の統一
+    normalized = unicodedata.normalize('NFKC', name)
     for suffix in RESERVE_SUFFIXES:
-        if name.endswith(suffix):
+        if normalized.endswith(suffix):
             return True
         # スペース区切り: "青森山田高校 B" のような形式
-        if name.endswith(" " + suffix) or name.endswith("　" + suffix):
+        if normalized.endswith(" " + suffix) or normalized.endswith("　" + suffix):
             return True
     return False
 
@@ -527,7 +622,10 @@ def _normalize_name(name: str) -> str:
 def _teams_match(scraped: str, existing: str) -> bool:
     """
     スクレイピング名と既存チーム名が同じチームを指すか判定。
-    【重要】1軍チーム名（B/Ⅱなし）が控えチーム名（B/Ⅱあり）にマッチするのを防ぐ。
+    [P1-6] 1軍↔控えの双方向ブロック:
+           スクレイピング名と既存名で「控えフラグ」が食い違うなら絶対にマッチしない。
+           これにより「藤枝明誠高校」(1軍) が「藤枝明誠高校②」(控え) に誤マッチして
+           league 上書きで重複が起きる問題を防ぐ。
     スペース有無の表記ゆれ（例: "青森山田高校 セカンド" vs "青森山田高校セカンド"）にも対応。
     """
     # 完全一致は常にOK
@@ -540,8 +638,8 @@ def _teams_match(scraped: str, existing: str) -> bool:
     if s_norm == e_norm:
         return True
 
-    # スクレイピング名が1軍、既存が控え → 絶対にマッチさせない
-    if not _is_reserve_team(scraped) and _is_reserve_team(existing):
+    # [P1-6] 双方向ブロック: 片方だけが控えチームの場合はマッチさせない
+    if _is_reserve_team(scraped) != _is_reserve_team(existing):
         return False
 
     # 部分一致（正規化後）
@@ -564,7 +662,7 @@ def match_team_to_pref(team_name: str, candidate_prefs: list[str], data: dict) -
         for team in data.get(pref_id, {}).get("teams", []):
             if team.get("name", "") == team_name:
                 return pref_id
-    # パス2: 部分一致（1軍→控えへのマッチは除外）
+    # パス2: 部分一致（1軍↔控えへのマッチは _teams_match が双方向でブロック）
     for pref_id in candidate_prefs:
         for team in data.get(pref_id, {}).get("teams", []):
             if _teams_match(team_name, team.get("name", "")):
