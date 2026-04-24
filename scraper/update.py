@@ -152,8 +152,12 @@ TEAM_ALIASES: dict[str, str] = {
     "東海大福岡":               "東海大学付属福岡高校",
     # --- 関東 (JFAは「高校」を落として "B" を直付けするパターンあり) ---
     # JFA関東1部では「流通経済大学付属柏B」(高校なし) と表記される
+    # PREMIER_TEAM_PREF でも「流通経済大付属柏」(学なし) パターンが使われている
+    # 全角Ｂ/半角Bは _resolve_alias 内で NFKC 正規化して吸収するため、キーは半角Bで統一
     "流通経済大学付属柏B":      "流通経済大学付属柏高校B",
+    "流通経済大付属柏B":        "流通経済大学付属柏高校B",
     "流経大柏B":                "流通経済大学付属柏高校B",
+    "流通経済大学付属柏高校B":  "流通経済大学付属柏高校B",  # 完全一致でも素通しさせる (no-op)
     # --- 北信越 (Jクラブ下部 U-18 の「地名U18」略称) ---
     # JFA北信越1部/2部は J下部 U-18 を「地名U18」と略記するため、正式クラブ名に戻す
     "新潟U18":                  "アルビレックス新潟U-18",
@@ -165,8 +169,18 @@ TEAM_ALIASES: dict[str, str] = {
 
 
 def _resolve_alias(name: str) -> str:
-    """[P1-10] JFAでの略称を teams.json 用の正式名に変換する。未登録なら素通し。"""
-    return TEAM_ALIASES.get(name, name)
+    """
+    [P1-10 / P1-11] JFAでの略称を teams.json 用の正式名に変換する。未登録なら素通し。
+    NFKC正規化で全角Ｂ/半角B, 全角数字等の表記ゆれを吸収してから辞書引きする。
+    """
+    normalized = unicodedata.normalize('NFKC', name)
+    # スペース差も吸収
+    normalized_nospace = normalized.replace(' ', '').replace('\u3000', '')
+    if normalized in TEAM_ALIASES:
+        return TEAM_ALIASES[normalized]
+    if normalized_nospace in TEAM_ALIASES:
+        return TEAM_ALIASES[normalized_nospace]
+    return name
 
 
 # ヘッダー検出に使うキーワードセット（標準化のため外に定義）
