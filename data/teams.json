@@ -8478,10 +8478,26 @@
         "leagueRank": 3
       },
       {
+        "id": "fk004",
+        "name": "東海大学付属福岡高校",
+        "league": "プリンスリーグ九州2部",
+        "rank": 4,
+        "points": 7,
+        "played": 3,
+        "won": 2,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 8,
+        "goalsAgainst": 5,
+        "prefectureRank": 4,
+        "goalDiff": 2,
+        "leagueRank": 2
+      },
+      {
         "id": "fk003",
         "name": "飯塚高校",
         "league": "プリンスリーグ九州1部",
-        "rank": 4,
+        "rank": 5,
         "points": 7,
         "played": 3,
         "won": 2,
@@ -8489,24 +8505,8 @@
         "lost": 0,
         "goalsFor": 6,
         "goalsAgainst": 3,
-        "prefectureRank": 4,
-        "goalDiff": 3,
-        "leagueRank": 3
-      },
-      {
-        "id": "fk004",
-        "name": "東海大学付属福岡高校",
-        "league": "プリンスリーグ九州2部",
-        "rank": 5,
-        "points": 4,
-        "played": 2,
-        "won": 1,
-        "drawn": 1,
-        "lost": 0,
-        "goalsFor": 3,
-        "goalsAgainst": 1,
         "prefectureRank": 5,
-        "goalDiff": 2,
+        "goalDiff": 3,
         "leagueRank": 3
       },
       {
@@ -10192,8 +10192,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-04-24 13:50",
+    "lastUpdated": "2026-04-24 14:54",
     "year": 2026,
-    "updatedCount": 512
+    "updatedCount": 513
   }
 }
