@@ -542,8 +542,13 @@ def _is_reserve_team(name: str) -> bool:
     """
     チーム名が控えチーム（B・Ⅱ・②・セカンドなど）かどうかを判定する。
     [P1-7] NFKC正規化してから判定するので「藤枝明誠Ｂ」(全角) も「藤枝明誠B」と同じ扱い。
+    [P1-8] 末尾の括弧 "(2nd)" "（B）" 等にも対応。
+           例: 「旭川実業(2nd)」→ 内側 "2nd" を見て True 判定。
     """
-    normalized = unicodedata.normalize('NFKC', name)
+    normalized = unicodedata.normalize('NFKC', name).strip()
+    # 末尾の括弧を空白に置換 (例: "旭川実業(2nd)" → "旭川実業 2nd")
+    normalized = re.sub(r'[\(]\s*', ' ', normalized)
+    normalized = re.sub(r'[\)]\s*$', '', normalized).strip()
     for suffix in RESERVE_SUFFIXES:
         if normalized.endswith(suffix):
             return True
@@ -553,13 +558,15 @@ def _is_reserve_team(name: str) -> bool:
 
 
 def _name_similarity(a: str, b: str) -> bool:
-    """チーム名の類似判定（短縮名や略称に対応）"""
+    """チーム名の類似判定（短縮名や略称に対応）。
+    [P1-9] 内部で _normalize_name() を通すので、括弧・全角半角・空白・略字差を吸収する。
+    """
     suffixes = ["U-18", "U18", "ユース", "Youth", "高校", "高等学校"]
-    a_clean = a
-    b_clean = b
+    a_clean = _normalize_name(a)
+    b_clean = _normalize_name(b)
     for s in suffixes:
-        a_clean = a_clean.replace(s, "").strip()
-        b_clean = b_clean.replace(s, "").strip()
+        a_clean = a_clean.replace(s, "")
+        b_clean = b_clean.replace(s, "")
     return bool(a_clean) and bool(b_clean) and (a_clean in b_clean or b_clean in a_clean)
 
 
@@ -573,11 +580,15 @@ _KANJI_MAP = str.maketrans({
 
 
 def _normalize_name(name: str) -> str:
-    """チーム名を比較用に正規化する"""
+    """チーム名を比較用に正規化する。
+    NFKC正規化・旧字体置換・空白除去・括弧除去を行う。
+    """
     name = unicodedata.normalize('NFKC', name)
     name = name.translate(_KANJI_MAP)
     name = name.replace(' ', '').replace('\u3000', '')
     name = name.replace('\u00b7', '・').replace('\uff65', '・')
+    # [P1-9] 括弧 "(2nd)" 等を除去 (例: "旭川実業(2nd)" → "旭川実業2nd")
+    name = re.sub(r'[()]', '', name)
     return name
 
 
@@ -641,6 +652,7 @@ def update_team_stats(
             continue
         key = f"{pref_id}::{existing}"
         if key in already_updated:
+            # 同じ pref_id で既に更新済み → 二重更新は不要
             return False
         _apply_stats(team, stats)
         already_updated.add(key)
@@ -653,7 +665,10 @@ def update_team_stats(
             continue
         key = f"{pref_id}::{existing}"
         if key in already_updated:
-            return False
+            # ファジーマッチが他のチームに当たった可能性 → 探索継続
+            # 例: 「旭川実業(2nd)」が先にプリンスの「旭川実業高校」(更新済) と
+            #     誤マッチしても、後ろの「旭川実業高校 2nd」を見つけられるようにする
+            continue
         _apply_stats(team, stats)
         already_updated.add(key)
         print(f"    ✓ 更新: {existing} ({pref_id})")
