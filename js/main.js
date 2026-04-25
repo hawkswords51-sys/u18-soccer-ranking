@@ -476,13 +476,13 @@ class SoccerApp {
         return [
             { key: 'hokkaido',     label: '北海道',   leagueName: 'プリンスリーグ北海道' },
             { key: 'tohoku',       label: '東北',     leagueName: 'プリンスリーグ東北' },
-            { key: 'hokushinetsu', label: '北信越',   divisions: [
-                { key: 'div1', label: '1部', leagueName: 'プリンスリーグ北信越1部' },
-                { key: 'div2', label: '2部', leagueName: 'プリンスリーグ北信越2部' }
-            ]},
             { key: 'kanto',        label: '関東',     divisions: [
                 { key: 'div1', label: '1部', leagueName: 'プリンスリーグ関東1部' },
                 { key: 'div2', label: '2部', leagueName: 'プリンスリーグ関東2部' }
+            ]},
+            { key: 'hokushinetsu', label: '北信越',   divisions: [
+                { key: 'div1', label: '1部', leagueName: 'プリンスリーグ北信越1部' },
+                { key: 'div2', label: '2部', leagueName: 'プリンスリーグ北信越2部' }
             ]},
             { key: 'tokai',        label: '東海',     leagueName: 'プリンスリーグ東海' },
             { key: 'kansai',       label: '関西',     divisions: [
