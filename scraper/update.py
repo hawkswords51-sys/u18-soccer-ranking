@@ -150,14 +150,6 @@ TEAM_ALIASES: dict[str, str] = {
     # JFA九州2部は「東海大福岡高校」と略記される (teams.json は「東海大学付属福岡高校」)
     "東海大福岡高校":           "東海大学付属福岡高校",
     "東海大福岡":               "東海大学付属福岡高校",
-    # --- 関東 (JFAは「高校」を落として "B" を直付けするパターンあり) ---
-    # JFA関東1部では「流通経済大学付属柏B」(高校なし) と表記される
-    # PREMIER_TEAM_PREF でも「流通経済大付属柏」(学なし) パターンが使われている
-    # 全角Ｂ/半角Bは _resolve_alias 内で NFKC 正規化して吸収するため、キーは半角Bで統一
-    "流通経済大学付属柏B":      "流通経済大学付属柏高校B",
-    "流通経済大付属柏B":        "流通経済大学付属柏高校B",
-    "流経大柏B":                "流通経済大学付属柏高校B",
-    "流通経済大学付属柏高校B":  "流通経済大学付属柏高校B",  # 完全一致でも素通しさせる (no-op)
     # --- 北信越 (Jクラブ下部 U-18 の「地名U18」略称) ---
     # JFA北信越1部/2部は J下部 U-18 を「地名U18」と略記するため、正式クラブ名に戻す
     "新潟U18":                  "アルビレックス新潟U-18",
@@ -169,18 +161,8 @@ TEAM_ALIASES: dict[str, str] = {
 
 
 def _resolve_alias(name: str) -> str:
-    """
-    [P1-10 / P1-11] JFAでの略称を teams.json 用の正式名に変換する。未登録なら素通し。
-    NFKC正規化で全角Ｂ/半角B, 全角数字等の表記ゆれを吸収してから辞書引きする。
-    """
-    normalized = unicodedata.normalize('NFKC', name)
-    # スペース差も吸収
-    normalized_nospace = normalized.replace(' ', '').replace('\u3000', '')
-    if normalized in TEAM_ALIASES:
-        return TEAM_ALIASES[normalized]
-    if normalized_nospace in TEAM_ALIASES:
-        return TEAM_ALIASES[normalized_nospace]
-    return name
+    """[P1-10] JFAでの略称を teams.json 用の正式名に変換する。未登録なら素通し。"""
+    return TEAM_ALIASES.get(name, name)
 
 
 # ヘッダー検出に使うキーワードセット（標準化のため外に定義）
@@ -641,8 +623,15 @@ def update_team_stats(
     team_name: str,
     stats: dict,
     already_updated: set[str],
+    auto_create: bool = False,
+    default_league: str = "",
 ) -> bool:
-    """teamsデータの特定チームの成績を更新する。already_updated で重複更新を防ぐ。"""
+    """teamsデータの特定チームの成績を更新する。already_updated で重複更新を防ぐ。
+
+    auto_create=True のとき、teams.json に未登録のチームを発見したら
+    新規エントリを自動追加する（県リーグスクレイピング用）。
+    default_league は新規追加時に "league" フィールドへ入れる既定値。
+    """
     pref_data = data.get(pref_id, {})
     teams = pref_data.get("teams", [])
 
@@ -668,6 +657,36 @@ def update_team_stats(
         _apply_stats(team, stats)
         already_updated.add(key)
         print(f"    ✓ 更新: {existing} ({pref_id})")
+        return True
+
+    # マッチなし：auto_create=True なら新規登録（県リーグ取得時のみ）
+    if auto_create:
+        if pref_id not in data:
+            data[pref_id] = {"teams": []}
+            pref_data = data[pref_id]
+            teams = pref_data["teams"]
+        elif "teams" not in pref_data:
+            pref_data["teams"] = []
+            teams = pref_data["teams"]
+
+        new_team: dict = {
+            "name":         team_name,
+            "league":       default_league or stats.get("league", ""),
+            "points":       0,
+            "played":       0,
+            "won":          0,
+            "drawn":        0,
+            "lost":         0,
+            "goalsFor":     0,
+            "goalsAgainst": 0,
+        }
+        # スクレイプ結果の数値を反映（league だけは default_league を保持）
+        stats_for_apply = {k: v for k, v in stats.items() if k != "league"}
+        _apply_stats(new_team, stats_for_apply)
+        teams.append(new_team)
+        key = f"{pref_id}::{team_name}"
+        already_updated.add(key)
+        print(f"    + 新規登録: {team_name} → {pref_id} [{new_team['league']}]")
         return True
 
     return False
@@ -798,11 +817,25 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
 
         standings = parse_standing_table(soup)
         print(f"    取得チーム数: {len(standings)}")
+        # 既存チームの league 名（あれば）を新規登録のデフォルトに使う
+        # これによりプリンス所属チームの league 名は上書きされず、
+        # 新規追加される県リーグチームには正しい県リーグ名が付与される
+        existing_pref_league = ""
+        for t in data.get(pref_id, {}).get("teams", []):
+            lg = t.get("league", "")
+            if lg and "プリンス" not in lg and "プレミア" not in lg:
+                existing_pref_league = lg
+                break
         for s in standings:
             # 県リーグでもエイリアスを解決 (例: "関大北陽" → "関西大学北陽高校")
             s["name"] = _resolve_alias(s["name"])
             s_no_league = {k: v for k, v in s.items() if k != "league"}
-            if update_team_stats(data, pref_id, s["name"], s_no_league, already_updated):
+            scraped_league = s.get("league", "") or existing_pref_league
+            if update_team_stats(
+                data, pref_id, s["name"], s_no_league, already_updated,
+                auto_create=True,
+                default_league=scraped_league,
+            ):
                 total += 1
         time.sleep(0.8)
 
