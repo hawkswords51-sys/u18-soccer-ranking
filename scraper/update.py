@@ -383,8 +383,16 @@ def fetch_page(url: str, retries: int = 3) -> BeautifulSoup | None:
 
 
 def _clean_team_name(name: str) -> str:
-    """チーム名から末尾の都道府県表記 (例: '(千葉県)') を除去する"""
-    return re.sub(r'\s*(?:（[^）]+）|\([^)]+\))', '', name).strip()
+    """チーム名から末尾の都道府県表記 (例: '(千葉県)') を除去する。
+    [P1-9b] 括弧内に「県/都/府/道」を含む場合のみ除去する。
+            '(2nd)' '(B)' などの控えチームマーカーは保持する。
+    """
+    # 全角括弧と半角括弧の両方に対応。中身に 県/都/府/道 を含むもののみ削除。
+    return re.sub(
+        r'\s*(?:（[^）]*[県都府道][^）]*）|\([^)]*[県都府道][^)]*\))',
+        '',
+        name,
+    ).strip()
 
 
 def _detect_col_indices(header_cols: list[str]) -> dict:
