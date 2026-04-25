@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "lastUpdated": "2026-04-25T13:59:17",
+    "schemaVersion": 1
+  },
+  "tournaments": {
+    "all_japan_highschool": {
+      "displayName": "全国高校サッカー選手権大会",
+      "shortName": "高校選手権",
+      "category": "high_school",
+      "results": {
+        "2025": {
+          "url": "https://www.jfa.jp/match/alljapan_highschool_2025/schedule_result/",
+          "teams": [
+            {
+              "team": "チーム紹介",
+              "result": "優勝",
+              "rank": 1,
+              "pref": null
+            },
+            {
+              "team": "ツイート",
+              "result": "ベスト4",
+              "rank": 4,
+              "pref": null
+            }
+          ]
+        }
+      }
+    },
+    "interhigh": {
+      "displayName": "全国高等学校総合体育大会サッカー競技大会",
+      "shortName": "インターハイ",
+      "category": "high_school",
+      "results": {
+        "2025": {
+          "url": "https://www.jfa.jp/match/koukou_soutai_2025/men/schedule_result/",
+          "teams": [
+            {
+              "team": "TV放送/インターネット配信",
+              "result": "優勝",
+              "rank": 1,
+              "pref": null
+            },
+            {
+              "team": "会場アクセス",
+              "result": "優勝",
+              "rank": 1,
+              "pref": null
+            }
+          ]
+        }
+      }
+    },
+    "club_youth_u18": {
+      "displayName": "日本クラブユース選手権(U-18)大会",
+      "shortName": "クラブユース",
+      "category": "club_youth",
+      "results": {
+        "2025": {
+          "url": "https://www.jfa.jp/match/club_youth_u18_2025/schedule_result/",
+          "teams": [
+            {
+              "team": "チーム紹介",
+              "result": "優勝",
+              "rank": 1,
+              "pref": null
+            }
+          ]
+        }
+      }
+    },
+    "j_youth_cup": {
+      "displayName": "Jユースカップ",
+      "shortName": "Jユース",
+      "category": "j_youth",
+      "results": {
+        "2025": {
+          "url": "https://www.jleague.jp/jyouth/2025/match/quarter_final.html",
+          "teams": []
+        }
+      }
+    }
+  }
+}
