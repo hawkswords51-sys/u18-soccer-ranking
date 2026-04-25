@@ -15,15 +15,11 @@ on:
         type: boolean
         required: false
         default: false
-      scrape_tournaments:
-        description: '大会成績もスクレイプする (時間かかります)'
-        type: boolean
-        required: false
-        default: false
-      tournaments_year:
-        description: '大会成績の対象年 (例: 2025) 空欄なら過去5年分'
-        required: false
-        default: ''
+  # tournaments_data.yml を編集して push したら即時反映
+  push:
+    branches: [main]
+    paths:
+      - 'data/tournaments_data.yml'
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -43,9 +39,13 @@ jobs:
           pip install -r scraper/requirements.txt
           # Selenium + Chrome もインストール（JS描画対応）
           pip install selenium webdriver-manager
+          # YAML 読み込み用
+          pip install pyyaml
           # GitHub Actions の Ubuntu には Chrome が入っている
           # chrome-driver は selenium が自動管理
       - name: 順位データを更新
+        # push トリガー (YAML編集時) では順位スクレイプは省略
+        if: ${{ github.event_name != 'push' }}
         run: |
           YEAR="${{ github.event.inputs.year }}"
           DRY_RUN="${{ github.event.inputs.dry_run }}"
@@ -57,24 +57,24 @@ jobs:
             ARGS="$ARGS --dry-run"
           fi
           python scraper/update.py $ARGS
-      - name: 大会成績をスクレイプ (オプション)
-        # 手動実行で scrape_tournaments=true のときだけ動く
-        if: ${{ github.event.inputs.scrape_tournaments == 'true' }}
-        continue-on-error: true   # 失敗しても次のステップに進む
+      - name: 大会成績 YAML から JSON を生成
+        # 常に実行 (1秒で終わる軽い処理)
+        continue-on-error: true
         run: |
-          T_YEAR="${{ github.event.inputs.tournaments_year }}"
-          T_ARGS=""
-          if [ -n "$T_YEAR" ]; then
-            T_ARGS="--year $T_YEAR"
+          if [ -f data/tournaments_data.yml ]; then
+            python scraper/build_tournaments.py
+          else
+            echo "data/tournaments_data.yml がまだありません。スキップ。"
           fi
-          python scraper/scrape_tournaments.py $T_ARGS --debug
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/teams.json
-          # tournaments.json も追加対象に (存在すれば)
+          # teams.json (順位) と tournaments.json (大会) 両方を対象に
+          if [ -f data/teams.json ]; then
+            git add data/teams.json
+          fi
           if [ -f data/tournaments.json ]; then
             git add data/tournaments.json
           fi
