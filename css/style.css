@@ -1062,3 +1062,161 @@ details[open] > summary > .league-accordion__chevron {
     .league-accordion__summary--region { font-size: 0.95rem; }
     .league-accordion__summary--division { font-size: 0.9rem; }
 }
+
+/* ============================================================
+   都道府県ページ「大会成績」タブ
+   data/tournaments.json から該当県のチームを大会別に表示
+   ============================================================ */
+.tournament-section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 8px 0 4px;
+}
+
+.tournament-section {
+    border: 1px solid #e0e6ed;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.tournament-section-title {
+    margin: 0;
+    padding: 12px 18px;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #4a6fa5 0%, #2c4d7e 100%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tournament-section-title i {
+    color: #ffd86b;
+    font-size: 0.95rem;
+}
+
+.tournament-year-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tournament-year-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 11px 18px;
+    border-top: 1px solid #f0f3f8;
+}
+
+.tournament-year-row:first-child {
+    border-top: none;
+}
+
+.tournament-year {
+    flex: 0 0 64px;
+    font-weight: 600;
+    color: #4a6fa5;
+    font-size: 0.95rem;
+    padding-top: 4px;
+}
+
+.tournament-teams {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.tournament-result-team {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px 5px 12px;
+    background: #f5f7fa;
+    border: 1px solid #e8ecf2;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    color: #2c3e50;
+    line-height: 1.3;
+}
+
+.tournament-result-team-name {
+    font-weight: 500;
+}
+
+.tournament-result-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 11px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+/* 優勝: ゴールド */
+.tournament-result-badge.result-champion {
+    background: linear-gradient(135deg, #ffd700, #f4a712);
+    color: #5a4500;
+    box-shadow: 0 2px 4px rgba(255, 215, 0, 0.35);
+}
+
+/* 準優勝: シルバー */
+.tournament-result-badge.result-runner-up {
+    background: linear-gradient(135deg, #d8d8d8, #a0a0a0);
+    color: #2c2c2c;
+}
+
+/* ベスト4: ブロンズ */
+.tournament-result-badge.result-best4 {
+    background: linear-gradient(135deg, #d39068, #a0633a);
+    color: #fff;
+}
+
+/* ベスト8: 落ち着いた青 */
+.tournament-result-badge.result-best8 {
+    background: linear-gradient(135deg, #7d97b5, #4a6f95);
+    color: #fff;
+}
+
+/* 都道府県代表 (今後の拡張用): グレー */
+.tournament-result-badge.result-representative {
+    background: #95a5a6;
+    color: #fff;
+}
+
+.tournament-result-badge.result-other {
+    background: #b0b8c1;
+    color: #fff;
+}
+
+.tournament-disclaimer {
+    margin: 14px 4px 0;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: #7d8898;
+    background: #f7f9fc;
+    border-radius: 6px;
+    border-left: 3px solid #c0cbdc;
+}
+
+.tournament-disclaimer i {
+    margin-right: 4px;
+    color: #8a99b0;
+}
+
+/* モバイル調整 */
+@media (max-width: 640px) {
+    .tournament-section-title { padding: 10px 14px; font-size: 0.95rem; }
+    .tournament-year-row      { flex-direction: column; gap: 6px; padding: 10px 14px; }
+    .tournament-year          { flex: none; padding-top: 0; }
+    .tournament-result-team   { font-size: 0.88rem; padding: 4px 8px 4px 10px; }
+    .tournament-result-badge  { font-size: 0.68rem; padding: 2px 7px; }
+}
