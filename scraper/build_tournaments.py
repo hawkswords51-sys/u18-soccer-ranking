@@ -167,6 +167,10 @@ def build() -> int:
                     continue
                 if isinstance(value, str):
                     value = [value] if value.strip() else []
+                elif isinstance(value, dict):
+                    # フロー記法 { name: "...", pref: ... } 単独値をリスト化
+                    # (優勝/準優勝 フィールドで使われる)
+                    value = [value]
                 if not isinstance(value, list):
                     continue
                 for entry in value:
