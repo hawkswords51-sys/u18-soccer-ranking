@@ -1317,12 +1317,14 @@ details[open] > summary > .league-accordion__chevron {
     font-weight: 600;
     color: #2c3e50;
     margin-bottom: 8px;
+    text-align: center;
 }
 .badge-legend-items {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 18px;
     align-items: center;
+    justify-content: center;
 }
 .badge-legend-item {
     display: inline-flex;
