@@ -1233,7 +1233,8 @@ details[open] > summary > .league-accordion__chevron {
     margin-left: 6px;
     border-radius: 50%;
     vertical-align: middle;
-    cursor: help;
+    /* カーソルは通常のままにする (?マークにしない) */
+    cursor: default;
     user-select: none;
     /* 視認性を上げるための薄い縁取り */
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -1274,5 +1275,98 @@ details[open] > summary > .league-accordion__chevron {
         width: 9px;
         height: 9px;
         margin-left: 5px;
+    }
+}
+
+/* ============================================================
+   バッジ用カスタムツールチップ (main.js が動的に生成)
+   - position: fixed で表セルの overflow に切られない
+   - white-space: pre-line で \n を改行扱い
+   ============================================================ */
+.tournament-tooltip {
+    position: fixed;
+    display: none;
+    z-index: 10000;
+    background: rgba(33, 33, 33, 0.96);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    white-space: pre-line;
+    pointer-events: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    max-width: 320px;
+    /* 表示は JS が visibility 切り替えで一瞬の位置合わせをするので
+       transition は付けない (タイムラグの原因になる) */
+}
+
+/* ============================================================
+   トップページの大会成績バッジ凡例
+   ============================================================ */
+.badge-legend {
+    margin: 12px auto 0;
+    max-width: 880px;
+    padding: 12px 16px;
+    background: #f7f9fc;
+    border: 1px solid #e3e8ef;
+    border-radius: 8px;
+}
+.badge-legend-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+.badge-legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: center;
+}
+.badge-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #4a5568;
+}
+.badge-legend-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+}
+.badge-legend-dot.result-champion {
+    background: linear-gradient(135deg, #ffd700, #f4a712);
+    box-shadow: 0 0 0 1px rgba(180, 130, 0, 0.5),
+                0 0 4px rgba(255, 215, 0, 0.5);
+}
+.badge-legend-dot.result-runner-up {
+    background: linear-gradient(135deg, #e3e3e3, #9c9c9c);
+}
+.badge-legend-dot.result-best4 {
+    background: linear-gradient(135deg, #d39068, #a0633a);
+}
+.badge-legend-dot.result-best8 {
+    background: linear-gradient(135deg, #7d97b5, #4a6f95);
+}
+.badge-legend-dot.result-representative {
+    background: #95a5a6;
+}
+@media (max-width: 640px) {
+    .badge-legend {
+        padding: 10px 12px;
+    }
+    .badge-legend-title {
+        font-size: 0.8rem;
+    }
+    .badge-legend-items {
+        gap: 6px 14px;
+    }
+    .badge-legend-item {
+        font-size: 0.76rem;
     }
 }
