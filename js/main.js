@@ -39,10 +39,70 @@ class SoccerApp {
         try {
             const response = await fetch('data/tournaments.json?_=' + Date.now());
             this.tournamentData = await response.json();
+            // チーム名 → 直近5年の成績配列 のルックアップを構築
+            this.tournamentLookup = this.buildTournamentLookup();
         } catch (e) {
             console.error('tournaments.json の読み込みに失敗:', e);
             this.tournamentData = null;
+            this.tournamentLookup = {};
         }
+    }
+
+    // チーム名で大会成績を引けるようにフラットなルックアップを構築
+    // (NFKC正規化 + 空白除去でゆるく一致)
+    buildTournamentLookup() {
+        const lookup = {};
+        if (!this.tournamentData || !this.tournamentData.tournaments) return lookup;
+        for (const tdata of Object.values(this.tournamentData.tournaments)) {
+            if (!tdata || !tdata.results) continue;
+            const tournamentLabel = tdata.shortName || tdata.displayName || '';
+            for (const [year, yearData] of Object.entries(tdata.results)) {
+                for (const t of (yearData.teams || [])) {
+                    const key = this.normalizeTeamName(t.team);
+                    if (!key) continue;
+                    if (!lookup[key]) lookup[key] = [];
+                    lookup[key].push({
+                        year:       year,
+                        tournament: tournamentLabel,
+                        result:     t.result,
+                        rank:       t.rank
+                    });
+                }
+            }
+        }
+        return lookup;
+    }
+
+    normalizeTeamName(name) {
+        if (!name) return '';
+        return String(name).normalize('NFKC').replace(/[\s\u3000]/g, '');
+    }
+
+    // チーム名から大会バッジ HTML を生成 (該当なしなら空文字)
+    // 直近5年の中で最も成績が良い1件のバッジを表示し、
+    // ホバーで全成績がツールチップで見える
+    getTournamentBadge(teamName) {
+        if (!this.tournamentLookup) return '';
+        const key = this.normalizeTeamName(teamName);
+        const results = this.tournamentLookup[key];
+        if (!results || results.length === 0) return '';
+
+        // 最高成績 (rank が小さいほど上位)
+        const best = results.reduce((a, b) => {
+            const ra = (a.rank == null ? 99 : a.rank);
+            const rb = (b.rank == null ? 99 : b.rank);
+            return ra <= rb ? a : b;
+        });
+        const badgeClass = this.resultBadgeClass(best.result);
+
+        // ツールチップ: 年度 (新→旧) でソート
+        const sorted = [...results].sort((a, b) => Number(b.year) - Number(a.year));
+        const tooltipText = sorted
+            .map(r => `${r.year} ${r.tournament} ${r.result}`)
+            .join('\n');
+
+        // 文字なしの小さな丸ドット (色だけで区別)
+        return ` <span class="team-tournament-icon ${badgeClass}" title="${this.escapeHtml(tooltipText)}" aria-label="${this.escapeHtml(best.result)}"></span>`;
     }
 
     setupEventListeners() {
@@ -144,7 +204,7 @@ class SoccerApp {
             const rankVal = (team.leagueRank != null ? team.leagueRank : team.rank);
             return `
             <div class="search-result-item" data-pref-id="${team.prefectureId}">
-                <div class="search-result-team">${team.name}</div>
+                <div class="search-result-team">${team.name}${this.getTournamentBadge(team.name)}</div>
                 <div class="search-result-info">
                     <span><i class="fas fa-map-marker-alt"></i> ${team.prefectureName}</span>
                     <span><i class="fas fa-trophy"></i> ${team.league}</span>
@@ -303,7 +363,7 @@ class SoccerApp {
                 <td>
                     <span class="rank-badge ${rankClass}">${prefRank}</span>
                 </td>
-                <td><strong>${team.name}</strong></td>
+                <td><strong>${team.name}</strong>${this.getTournamentBadge(team.name)}</td>
                 <td>
                     <span class="league-badge ${leagueBadgeClass}">${team.league}</span>
                 </td>
@@ -696,7 +756,7 @@ class SoccerApp {
         return `
             <tr>
                 <td><span class="rank-badge ${rankClass}">${rank}</span></td>
-                <td><strong>${this.escapeHtml(team.name)}</strong></td>
+                <td><strong>${this.escapeHtml(team.name)}</strong>${this.getTournamentBadge(team.name)}</td>
                 ${showPrefecture ? `<td>${this.escapeHtml(team.prefectureName || '-')}</td>` : ''}
                 <td><strong>${team.points ?? 0}</strong></td>
                 <td>${team.played ?? 0}</td>
