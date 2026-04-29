@@ -29,6 +29,90 @@ class SoccerApp {
 
         this.setupSearch();
         console.log('Search functionality initialized');
+
+        // バッジ用カスタムツールチップ (HTMLネイティブの title より素早く表示)
+        this.setupTournamentTooltip();
+        console.log('Tournament tooltip handler ready');
+    }
+
+    // ============================================================
+    // バッジ用カスタムツールチップ
+    // - 表示遅延を 120ms に短縮 (ネイティブ title は ~500ms)
+    // - position: fixed で表内 overflow に阻まれない
+    // - data-tooltip 属性の改行 (\n) を保持
+    // ============================================================
+    setupTournamentTooltip() {
+        let tipEl   = null;
+        let timer   = null;
+        let current = null;
+
+        const ensureTip = () => {
+            if (tipEl) return tipEl;
+            tipEl = document.createElement('div');
+            tipEl.className = 'tournament-tooltip';
+            tipEl.setAttribute('role', 'tooltip');
+            document.body.appendChild(tipEl);
+            return tipEl;
+        };
+
+        const showTip = (target) => {
+            const text = target.getAttribute('data-tooltip');
+            if (!text) return;
+            const tip = ensureTip();
+            tip.textContent = text;
+            tip.style.visibility = 'hidden';
+            tip.style.display = 'block';
+            tip.style.left = '0px';
+            tip.style.top  = '0px';
+            // 一度描画させて寸法取得
+            const r  = target.getBoundingClientRect();
+            const tr = tip.getBoundingClientRect();
+            const margin = 8;
+            // 右側に出すのが基本、画面外なら左
+            let left = r.right + margin;
+            if (left + tr.width > window.innerWidth - 4) {
+                left = r.left - tr.width - margin;
+            }
+            if (left < 4) left = 4;
+            // 縦は中央寄せ、画面外調整
+            let top = r.top + (r.height / 2) - (tr.height / 2);
+            if (top < 4) top = 4;
+            if (top + tr.height > window.innerHeight - 4) {
+                top = window.innerHeight - tr.height - 4;
+            }
+            tip.style.left = `${left}px`;
+            tip.style.top  = `${top}px`;
+            tip.style.visibility = 'visible';
+        };
+
+        const hideTip = () => {
+            if (timer) { clearTimeout(timer); timer = null; }
+            if (tipEl) tipEl.style.display = 'none';
+            current = null;
+        };
+
+        // mouseover はバブリングするので document に1個だけ設置
+        document.addEventListener('mouseover', (e) => {
+            const icon = e.target.closest && e.target.closest('.team-tournament-icon');
+            if (!icon || icon === current) return;
+            current = icon;
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => showTip(icon), 120);
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            const icon = e.target.closest && e.target.closest('.team-tournament-icon');
+            if (!icon) return;
+            // 関連先がまだバッジ内なら維持
+            const to = e.relatedTarget;
+            if (to && to.closest && to.closest('.team-tournament-icon') === icon) return;
+            hideTip();
+        });
+
+        // スクロール/クリックで隠す
+        window.addEventListener('scroll', hideTip, true);
+        window.addEventListener('resize', hideTip);
+        document.addEventListener('click', hideTip);
     }
 
     // ============================================================
@@ -102,7 +186,8 @@ class SoccerApp {
             .join('\n');
 
         // 文字なしの小さな丸ドット (色だけで区別)
-        return ` <span class="team-tournament-icon ${badgeClass}" title="${this.escapeHtml(tooltipText)}" aria-label="${this.escapeHtml(best.result)}"></span>`;
+        // ※ title 属性ではなく data-tooltip を使い、カスタムツールチップで表示遅延を短くする
+        return ` <span class="team-tournament-icon ${badgeClass}" data-tooltip="${this.escapeHtml(tooltipText)}" aria-label="${this.escapeHtml(best.result)}"></span>`;
     }
 
     setupEventListeners() {
