@@ -9,6 +9,7 @@ class SoccerApp {
     constructor() {
         this.map = null;
         this.currentPrefecture = null;
+        this.tournamentData = null;   // data/tournaments.json を保持
         this.init();
     }
 
@@ -19,11 +20,29 @@ class SoccerApp {
         await this.map.generate();
         console.log('Region list generated');
 
+        // 大会成績データ (data/tournaments.json) を読み込み
+        await this.loadTournamentData();
+        console.log('Tournament data loaded');
+
         this.setupEventListeners();
         console.log('Event listeners setup completed');
 
         this.setupSearch();
         console.log('Search functionality initialized');
+    }
+
+    // ============================================================
+    // tournaments.json (4大会 × 直近5年の上位8チーム) の読み込み
+    // build_tournaments.py が data/tournaments_data.yml から生成
+    // ============================================================
+    async loadTournamentData() {
+        try {
+            const response = await fetch('data/tournaments.json?_=' + Date.now());
+            this.tournamentData = await response.json();
+        } catch (e) {
+            console.error('tournaments.json の読み込みに失敗:', e);
+            this.tournamentData = null;
+        }
     }
 
     setupEventListeners() {
@@ -197,7 +216,9 @@ class SoccerApp {
         document.getElementById('topLeague').textContent = this.getTopLeagueName(pref.teams);
 
         this.displayTeamsTable(pref.teams);
-        this.displayChampionshipsTable(pref.championships || []);
+        // 旧: pref.championships (teams.json 内の手動データ)
+        // 新: data/tournaments.json から prefId で抽出
+        this.displayChampionshipsTable(prefId);
 
         this.switchTab('league');
         this.openModal();
@@ -301,43 +322,115 @@ class SoccerApp {
         `;
     }
 
-    displayChampionshipsTable(championships) {
+    // ============================================================
+    // 都道府県ページの「大会成績」タブを描画
+    // data/tournaments.json から prefId に該当するチームを抽出し、
+    // 大会ごとにセクション化 (高校選手権 → インターハイ → クラブユース → Jユース)
+    // ============================================================
+    displayChampionshipsTable(prefId) {
         const container = document.getElementById('championshipsTable');
 
-        if (championships.length === 0) {
+        if (!this.tournamentData || !this.tournamentData.tournaments) {
             container.innerHTML = `
                 <div style="text-align: center; padding: 40px; color: #666;">
-                    <i class="fas fa-trophy" style="font-size: 3rem; opacity: 0.3; margin-bottom: 15px;"></i>
-                    <p>大会成績データがありません</p>
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; opacity: 0.5; margin-bottom: 15px;"></i>
+                    <p>大会成績データを読み込めませんでした</p>
                 </div>
             `;
             return;
         }
 
-        const html = `
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>年度</th>
-                        <th>大会名</th>
-                        <th>出場チーム</th>
-                        <th>成績</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${championships.map(c => `
-                        <tr>
-                            <td>${c.year}年</td>
-                            <td>${c.tournament}</td>
-                            <td><strong>${c.team}</strong></td>
-                            <td>${c.result}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        `;
+        const tournaments = this.tournamentData.tournaments;
+        // 表示順: 高校選手権 → インターハイ → クラブユース → Jユース
+        const order = ['all_japan_highschool', 'interhigh', 'club_youth_u18', 'j_youth_cup'];
 
-        container.innerHTML = html;
+        const sections = [];
+        for (const tid of order) {
+            const tdata = tournaments[tid];
+            if (!tdata || !tdata.results) continue;
+
+            // この都道府県のチームが入っている年だけを抽出 (新しい年順)
+            const yearRows = [];
+            const years = Object.keys(tdata.results).sort((a, b) => Number(b) - Number(a));
+            for (const year of years) {
+                const matched = (tdata.results[year].teams || [])
+                    .filter(t => t.pref === prefId);
+                if (matched.length > 0) {
+                    yearRows.push({ year, teams: matched });
+                }
+            }
+
+            if (yearRows.length === 0) continue;
+            sections.push(this.renderTournamentSection(tdata, yearRows));
+        }
+
+        if (sections.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <i class="fas fa-trophy" style="font-size: 3rem; opacity: 0.3; margin-bottom: 15px;"></i>
+                    <p>直近5年間で4大会のベスト8以上に進出した実績はありません</p>
+                    <p style="font-size: 0.85rem; margin-top: 8px;">
+                        （高校選手権 / インターハイ / クラブユース / Jユース）
+                    </p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = `
+            <div class="tournament-section-list">
+                ${sections.join('')}
+            </div>
+            <p class="tournament-disclaimer">
+                <i class="fas fa-info-circle"></i>
+                直近5年（2021〜2025）のベスト8以上の成績を表示しています
+            </p>
+        `;
+    }
+
+    // 大会1つぶんのセクション (タイトル + 年ごとの行)
+    renderTournamentSection(tdata, yearRows) {
+        const rowsHtml = yearRows.map(({ year, teams }) => {
+            const teamCells = teams.map(t => {
+                const badgeClass = this.resultBadgeClass(t.result);
+                return `
+                    <span class="tournament-result-team">
+                        <span class="tournament-result-team-name">${this.escapeHtml(t.team)}</span>
+                        <span class="tournament-result-badge ${badgeClass}">${this.escapeHtml(t.result)}</span>
+                    </span>
+                `;
+            }).join('');
+            return `
+                <li class="tournament-year-row">
+                    <span class="tournament-year">${this.escapeHtml(String(year))}年</span>
+                    <span class="tournament-teams">${teamCells}</span>
+                </li>
+            `;
+        }).join('');
+
+        return `
+            <div class="tournament-section">
+                <h3 class="tournament-section-title">
+                    <i class="fas fa-trophy"></i>
+                    ${this.escapeHtml(tdata.displayName || tdata.shortName || '大会')}
+                </h3>
+                <ul class="tournament-year-list">
+                    ${rowsHtml}
+                </ul>
+            </div>
+        `;
+    }
+
+    // 成績ラベル → CSS クラス名
+    resultBadgeClass(result) {
+        switch (result) {
+            case '優勝':    return 'result-champion';
+            case '準優勝':   return 'result-runner-up';
+            case 'ベスト4': return 'result-best4';
+            case 'ベスト8': return 'result-best8';
+            case '代表':    return 'result-representative';
+            default:        return 'result-other';
+        }
     }
 
     switchTab(tabName) {
