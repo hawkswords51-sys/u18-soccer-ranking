@@ -78,7 +78,15 @@ jobs:
           if [ -f data/tournaments.json ]; then
             git add data/tournaments.json
           fi
-          # 変更がある場合のみコミット
-          git diff --staged --quiet || \
+          # 変更がある場合のみコミット & push
+          if git diff --staged --quiet; then
+            echo "変更なし – push スキップ"
+          else
             git commit -m "chore: 順位/大会データを自動更新 $(date '+%Y-%m-%d')"
-          git push
+            # リモートの最新を取り込んでから push (race condition 対策)
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              echo "push 失敗、リトライ $i/3 ..."
+              sleep 5
+            done
+          fi
