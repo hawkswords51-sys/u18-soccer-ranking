@@ -69,44 +69,65 @@ def normalize_name(name: str) -> str:
     return n
 
 
-def find_pref(team_name: str, teams_data: dict) -> str | None:
-    """teams.json から所属都道府県IDを逆引き"""
+def find_team(team_name: str, teams_data: dict) -> tuple[str | None, str | None]:
+    """teams.json から (正式名, 都道府県ID) を逆引き。
+    name → aliases → 部分一致 の順で探す。
+    見つからなければ (None, None)。"""
     target = normalize_name(team_name)
     if not target:
-        return None
+        return None, None
+    # 1. name 完全一致
     for pref_id, pref_data in teams_data.items():
         if pref_id == "_meta":
             continue
         for t in pref_data.get("teams", []):
-            existing = normalize_name(t.get("name", ""))
-            if existing == target:
-                return pref_id
-    # 部分一致 (例: "前橋育英" → "前橋育英高校")
+            if normalize_name(t.get("name", "")) == target:
+                return t.get("name"), pref_id
+    # 2. aliases 完全一致 (新)
+    for pref_id, pref_data in teams_data.items():
+        if pref_id == "_meta":
+            continue
+        for t in pref_data.get("teams", []):
+            for alias in (t.get("aliases") or []):
+                if normalize_name(alias) == target:
+                    return t.get("name"), pref_id
+    # 3. 部分一致 (例: "前橋育英" → "前橋育英高校")
     for pref_id, pref_data in teams_data.items():
         if pref_id == "_meta":
             continue
         for t in pref_data.get("teams", []):
             existing = normalize_name(t.get("name", ""))
             if existing and (target in existing or existing in target):
-                return pref_id
-    return None
+                return t.get("name"), pref_id
+    return None, None
+
+
+def find_pref(team_name: str, teams_data: dict) -> str | None:
+    """teams.json から所属都道府県IDを逆引き (後方互換用)"""
+    _, pref = find_team(team_name, teams_data)
+    return pref
 
 
 def normalize_team_entry(entry, teams_data: dict) -> dict | None:
-    """YAML の文字列 or {name,pref} 辞書を {name, pref} に統一"""
+    """YAML の文字列 or {name,pref} 辞書を {name, pref} に統一。
+    teams.json で見つかった場合は正式名 + pref に正規化する。"""
     if entry is None:
         return None
     if isinstance(entry, str):
         name = entry.strip()
         if not name:
             return None
-        return {"name": name, "pref": find_pref(name, teams_data)}
+        canonical, pref = find_team(name, teams_data)
+        return {"name": canonical or name, "pref": pref}
     if isinstance(entry, dict):
         name = (entry.get("name") or "").strip()
         if not name:
             return None
-        pref = entry.get("pref") or find_pref(name, teams_data)
-        return {"name": name, "pref": pref}
+        canonical, pref = find_team(name, teams_data)
+        return {
+            "name": canonical or name,
+            "pref": pref or entry.get("pref"),
+        }
     return None
 
 
