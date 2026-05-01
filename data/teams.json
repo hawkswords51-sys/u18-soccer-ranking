@@ -5117,8 +5117,10 @@
         "leagueRank": 8
       },
       {
-        "name": "日福大付",
+        "id": "ai009",
+        "name": "日本福祉大学付属高校",
         "league": "愛知県1部",
+        "rank": 11,
         "points": 4,
         "played": 7,
         "won": 1,
@@ -5126,9 +5128,12 @@
         "lost": 5,
         "goalsFor": 5,
         "goalsAgainst": 15,
+        "prefectureRank": 11,
+        "goalDiff": -9,
         "leagueRank": 9,
-        "rank": 11,
-        "prefectureRank": 11
+        "aliases": [
+          "日福大付"
+        ]
       },
       {
         "id": "ai012",
@@ -5145,22 +5150,6 @@
         "goalsAgainst": 16,
         "goalDiff": -5,
         "leagueRank": 10
-      },
-      {
-        "id": "ai009",
-        "name": "日本福祉大学付属高校",
-        "league": "愛知県1部",
-        "rank": 13,
-        "points": 3,
-        "played": 5,
-        "won": 1,
-        "drawn": 0,
-        "lost": 4,
-        "goalsFor": 2,
-        "goalsAgainst": 11,
-        "prefectureRank": 13,
-        "goalDiff": -9,
-        "leagueRank": 8
       }
     ],
     "championships": [
