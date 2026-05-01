@@ -1868,8 +1868,10 @@
         "leagueRank": 1
       },
       {
-        "name": "健大高崎",
+        "id": "g004",
+        "name": "高崎健康福祉大学高崎高校",
         "league": "群馬U-18リーグ",
+        "rank": 4,
         "points": 21,
         "played": 8,
         "won": 7,
@@ -1877,9 +1879,11 @@
         "lost": 1,
         "goalsFor": 31,
         "goalsAgainst": 6,
+        "prefectureRank": 4,
         "leagueRank": 2,
-        "rank": 4,
-        "prefectureRank": 4
+        "aliases": [
+          "健大高崎"
+        ]
       },
       {
         "id": "g006",
@@ -1897,8 +1901,10 @@
         "leagueRank": 3
       },
       {
-        "name": "高経大附属",
+        "id": "g010",
+        "name": "高崎経済大学附属高校",
         "league": "群馬U-18リーグ",
+        "rank": 6,
         "points": 14,
         "played": 8,
         "won": 4,
@@ -1906,30 +1912,17 @@
         "lost": 2,
         "goalsFor": 9,
         "goalsAgainst": 10,
+        "prefectureRank": 6,
         "leagueRank": 4,
-        "rank": 6,
-        "prefectureRank": 6
-      },
-      {
-        "id": "g004",
-        "name": "高崎健康福祉大学高崎高校",
-        "league": "群馬U-18リーグ",
-        "rank": 7,
-        "points": 12,
-        "played": 5,
-        "won": 4,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 21,
-        "goalsAgainst": 1,
-        "prefectureRank": 7,
-        "leagueRank": 2
+        "aliases": [
+          "高経大附属"
+        ]
       },
       {
         "name": "伊勢崎工業高校",
         "league": "群馬U-18リーグ",
-        "rank": 8,
-        "prefectureRank": 8,
+        "rank": 7,
+        "prefectureRank": 7,
         "points": 11,
         "played": 8,
         "won": 3,
@@ -1943,7 +1936,7 @@
         "id": "g009",
         "name": "前橋商業高校",
         "league": "群馬U-18リーグ",
-        "rank": 9,
+        "rank": 8,
         "points": 10,
         "played": 8,
         "won": 3,
@@ -1951,14 +1944,14 @@
         "lost": 4,
         "goalsFor": 9,
         "goalsAgainst": 12,
-        "prefectureRank": 9,
+        "prefectureRank": 8,
         "leagueRank": 6
       },
       {
         "id": "g008",
         "name": "桐生第一B",
         "league": "群馬U-18リーグ",
-        "rank": 10,
+        "rank": 9,
         "points": 9,
         "played": 8,
         "won": 3,
@@ -1966,14 +1959,14 @@
         "lost": 5,
         "goalsFor": 21,
         "goalsAgainst": 17,
-        "prefectureRank": 10,
+        "prefectureRank": 9,
         "leagueRank": 7
       },
       {
         "id": "g007",
         "name": "共愛学園高校",
         "league": "群馬U-18リーグ",
-        "rank": 11,
+        "rank": 10,
         "points": 8,
         "played": 8,
         "won": 2,
@@ -1981,23 +1974,8 @@
         "lost": 4,
         "goalsFor": 6,
         "goalsAgainst": 19,
-        "prefectureRank": 11,
+        "prefectureRank": 10,
         "leagueRank": 8
-      },
-      {
-        "id": "g010",
-        "name": "高崎経済大学附属高校",
-        "league": "群馬U-18リーグ",
-        "rank": 12,
-        "points": 5,
-        "played": 5,
-        "won": 1,
-        "drawn": 2,
-        "lost": 2,
-        "goalsFor": 3,
-        "goalsAgainst": 8,
-        "prefectureRank": 12,
-        "leagueRank": 7
       },
       {
         "name": "新島学園",
@@ -2010,14 +1988,14 @@
         "goalsFor": 10,
         "goalsAgainst": 21,
         "leagueRank": 9,
-        "rank": 13,
-        "prefectureRank": 13
+        "rank": 11,
+        "prefectureRank": 11
       },
       {
         "name": "高崎商業高校",
         "league": "群馬U-18リーグ",
-        "rank": 14,
-        "prefectureRank": 14,
+        "rank": 12,
+        "prefectureRank": 12,
         "points": 0,
         "played": 8,
         "won": 0,
