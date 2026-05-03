@@ -6446,11 +6446,10 @@
         ]
       },
       {
-        "id": "o011",
-        "name": "大阪学院高校",
+        "id": "o022",
+        "name": "大阪学院大学高校",
         "league": "大阪府1部",
         "rank": 12,
-        "prefectureRank": 12,
         "points": 9,
         "played": 3,
         "won": 3,
@@ -6458,8 +6457,13 @@
         "lost": 0,
         "goalsFor": 11,
         "goalsAgainst": 2,
-        "goalDiff": 6,
-        "leagueRank": 2
+        "prefectureRank": 12,
+        "leagueRank": 2,
+        "aliases": [
+          "大学院大高校",
+          "大阪学院高校"
+        ],
+        "goalDiff": 6
       },
       {
         "id": "o018",
@@ -6596,9 +6600,9 @@
         ]
       },
       {
-        "id": "o022",
-        "name": "大阪学院大学高校",
-        "league": "大阪府1部",
+        "id": "o021",
+        "name": "関西大学第一高校",
+        "league": "大阪府2部B",
         "rank": 21,
         "points": 0,
         "played": 0,
@@ -6608,24 +6612,6 @@
         "goalsFor": 0,
         "goalsAgainst": 0,
         "prefectureRank": 21,
-        "leagueRank": 99,
-        "aliases": [
-          "大学院大高校"
-        ]
-      },
-      {
-        "id": "o021",
-        "name": "関西大学第一高校",
-        "league": "大阪府2部B",
-        "rank": 22,
-        "points": 0,
-        "played": 0,
-        "won": 0,
-        "drawn": 0,
-        "lost": 0,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "prefectureRank": 22,
         "leagueRank": 99
       }
     ],
