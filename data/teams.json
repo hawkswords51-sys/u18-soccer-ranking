@@ -1401,6 +1401,22 @@
         "aliases": [
           "帝京安積高校セカンド"
         ]
+      },
+      {
+        "id": "f011",
+        "name": "JFAアカデミー福島",
+        "league": "JFAアカデミー",
+        "rank": 14,
+        "points": 0,
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "prefectureRank": 14,
+        "leagueRank": 99,
+        "aliases": []
       }
     ],
     "championships": [
@@ -2128,7 +2144,10 @@
         "goalsAgainst": 0,
         "prefectureRank": 2,
         "goalDiff": 1,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "浦和レッドダイヤモンズユース"
+        ]
       },
       {
         "id": "sa003",
@@ -2144,7 +2163,11 @@
         "goalsAgainst": 3,
         "prefectureRank": 3,
         "goalDiff": 0,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "大宮アルディージャU18",
+          "大宮アルディージャユース"
+        ]
       },
       {
         "id": "sa004",
@@ -3127,7 +3150,8 @@
         "prefectureRank": 7,
         "leagueRank": 1,
         "aliases": [
-          "湘南ベルマーレA"
+          "湘南ベルマーレA",
+          "湘南ベルマーレユース"
         ]
       },
       {
@@ -3304,6 +3328,21 @@
         "aliases": [
           "川崎橘A"
         ]
+      },
+      {
+        "id": "k017",
+        "name": "三浦学苑高校",
+        "league": "神奈川県2部",
+        "rank": 17,
+        "points": 0,
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "prefectureRank": 17,
+        "leagueRank": 99
       }
     ],
     "championships": [
@@ -7767,12 +7806,13 @@
         "goalDiff": -3,
         "leagueRank": 11,
         "aliases": [
-          "サンフレッチェ広島F.Cユース"
+          "サンフレッチェ広島F.Cユース",
+          "サンフレッチェ広島ユース"
         ]
       },
       {
         "id": "hr002",
-        "name": "広島県瀬戸内高校",
+        "name": "広島瀬戸内高校",
         "league": "プリンスリーグ中国",
         "rank": 2,
         "points": 15,
@@ -7784,7 +7824,11 @@
         "goalsAgainst": 3,
         "prefectureRank": 2,
         "goalDiff": 5,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "瀬戸内高校",
+          "広島県瀬戸内高校"
+        ]
       },
       {
         "id": "hr003",
@@ -7820,7 +7864,7 @@
       },
       {
         "id": "hr005",
-        "name": "瀬戸内高校2nd",
+        "name": "広島瀬戸内高校2nd",
         "league": "広島県1部",
         "rank": 5,
         "points": 10,
@@ -7834,7 +7878,8 @@
         "goalDiff": 7,
         "leagueRank": 2,
         "aliases": [
-          "瀬戸内高校セカンド"
+          "瀬戸内高校セカンド",
+          "瀬戸内高校2nd"
         ]
       },
       {
