@@ -13,8 +13,74 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高校サッカー順位確認システム | U-18リーグ情報</title>
-    <meta name="description" content="高円宮杯U-18サッカーリーグ、全国高校サッカー選手権、インターハイの都道府県別順位・成績を確認できるサイトです。">
+
+    <!-- ===== 基本SEOメタタグ ===== -->
+    <title>高校サッカー順位確認システム | 全国47都道府県のU-18リーグ・大会成績</title>
+    <meta name="description" content="高円宮杯JFA U-18サッカーリーグ（プレミア・プリンス・都道府県）、全国高校サッカー選手権、インターハイ、クラブユース選手権の最新順位・成績を全国47都道府県・600校以上から検索できる情報サイト。毎日自動更新。">
+    <meta name="keywords" content="高校サッカー,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,都道府県リーグ,全国高校サッカー選手権,インターハイ,クラブユース,順位,成績,日程,結果">
+    <meta name="author" content="U18 Soccer Ranking">
+    <meta name="robots" content="index, follow">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://u18-soccer.com/">
+
+    <!-- ===== OGP (Open Graph Protocol) - Facebook / LINE / Slack 等 ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="高校サッカー順位確認システム">
+    <meta property="og:title" content="高校サッカー順位確認システム | 全国47都道府県のU-18リーグ・大会成績">
+    <meta property="og:description" content="高円宮杯JFA U-18サッカーリーグ、全国高校サッカー選手権、インターハイ、クラブユース選手権の最新順位・成績を全国47都道府県・600校以上から検索できる情報サイト。毎日自動更新。">
+    <meta property="og:url" content="https://u18-soccer.com/">
+    <meta property="og:image" content="https://u18-soccer.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="高校サッカー順位確認システム">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- ===== Twitter Card - X (Twitter) シェア対応 ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="高校サッカー順位確認システム | 全国47都道府県のU-18リーグ・大会成績">
+    <meta name="twitter:description" content="高円宮杯JFA U-18サッカーリーグ、全国高校サッカー選手権、インターハイ、クラブユース選手権の最新順位・成績を全国47都道府県・600校以上から検索できる情報サイト。">
+    <meta name="twitter:image" content="https://u18-soccer.com/og-image.png">
+    <meta name="twitter:image:alt" content="高校サッカー順位確認システム">
+
+    <!-- ===== ファビコン / アプリアイコン ===== -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#1e40af">
+
+    <!-- ===== 構造化データ (Schema.org JSON-LD) - Google検索リッチ表示 ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "高校サッカー順位確認システム",
+      "alternateName": "U18 Soccer Ranking",
+      "url": "https://u18-soccer.com/",
+      "description": "高円宮杯JFA U-18サッカーリーグ、全国高校サッカー選手権、インターハイ、クラブユース選手権の最新順位・成績情報サイト",
+      "inLanguage": "ja-JP",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://u18-soccer.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "高校サッカー順位確認システム",
+      "url": "https://u18-soccer.com/",
+      "logo": "https://u18-soccer.com/og-image.png",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- ===== フォント / アイコン / スタイル ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
