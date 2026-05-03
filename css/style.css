@@ -518,10 +518,9 @@ body {
     background: linear-gradient(135deg, var(--primary-color), #004999);
     color: white;
     border-radius: 15px 15px 0 0;
-    /* スクロール時に上部に固定（モバイルで便利） */
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    /* 注: モーダルヘッダーはsticky にしない。
+       縦スクロール時はテーブルの thead (上端固定) が
+       列名を保持するため、こちらは通常スクロールでOK */
 }
 
 .modal-header h2 {
@@ -775,55 +774,48 @@ body {
 
 /* =========================
    ★ Phase 9-1: モバイル対応強化 (2026-05)
+   ★ 9-1b: 実機フィードバック反映 (2026-05)
    ========================= */
 
-/* ---------- 順位表テーブル: 横スクロール化 ----------
-   12列もある順位表を狭い画面に押し込むと、日本語が1文字ずつ
-   折り返されて「縦書き」風になる。それを防ぐため:
-   1) テーブルの親 (#teamsTable / #championshipsTable) を
-      横スクロール可能にする
-   2) セル内テキストは折り返さない (white-space: nowrap)
-   3) チーム名カラムだけ左端に固定 (sticky) して、横スクロール
-      しても常に見えるようにする
+/* ---------- 順位表テーブル: PC は従来通り、モバイルでは特殊レイアウト ----------
+   設計方針:
+   ・PC (>768px): #teamsTable / #championshipsTable / .league-group-block を
+     横スクロール可能にし、min-width 720px で12列のレイアウトを保つ
+   ・モバイル (<=768px): モーダル本体 (.modal-body) を縦・横の両方スクロール
+     可能にして、ヘッダー行 (thead) を modal-body の上端に固定する。
+     これは「overflow-x:auto を持つ要素内では sticky の縦固定が
+     効かない」というブラウザの仕様回避のため。
 */
+
+/* === PC 用: 各テーブル個別の横スクロール === */
 #teamsTable,
-#championshipsTable {
+#championshipsTable,
+.league-group-block {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    /* 右端にスクロール可能を示すグラデーション (薄影) */
-    background:
-        linear-gradient(to right, white 30%, rgba(255,255,255,0)),
-        linear-gradient(to right, rgba(0,0,0,0.08), rgba(255,255,255,0) 30%) 100% 0,
-        radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)),
-        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)) 100% 0;
-    background-repeat: no-repeat;
-    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-    background-attachment: local, local, scroll, scroll;
 }
 
 .data-table {
-    /* 12列が確実に1列ずつ表示できる最低幅。スマホでは横スクロール */
     min-width: 720px;
 }
 
 .data-table th,
 .data-table td {
-    /* 1文字ずつ折り返されるのを防止 */
     white-space: nowrap;
 }
 
-/* チーム名 (2列目) を左端固定にして、横スクロール時も常に見えるように */
+/* PC でもチーム名列は左端固定 (横スクロール時に常に見える) */
 .data-table th:nth-child(2),
 .data-table td:nth-child(2) {
     position: sticky;
     left: 0;
     background: #fff;
-    z-index: 1;
-    /* 固定列の右側に薄い影で区切りを表示 */
+    z-index: 2;
     box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.15);
 }
 .data-table thead th:nth-child(2) {
     background: var(--primary-color);
+    z-index: 4;
 }
 .data-table tbody tr:hover td:nth-child(2) {
     background: var(--bg-light);
@@ -970,18 +962,24 @@ textarea {
         font-size: 0.82rem;
     }
 
-    /* ---------- モーダル: 全画面に近い表示 ---------- */
+    /* ---------- モーダル: 全画面表示 + flex 縦並び ---------- */
     .modal.active {
         padding: 0;
+        align-items: stretch;
     }
     .modal-content {
         max-height: 100vh;
         height: 100vh;
         border-radius: 0;
+        /* flex 縦並びで modal-body を伸ばす */
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;  /* スクロールは modal-body が担当 */
     }
     .modal-header {
         padding: 14px 16px;
         border-radius: 0;
+        flex: 0 0 auto;  /* ヘッダーは固定高さ */
     }
     .modal-header h2 {
         font-size: 1.15rem;
@@ -992,6 +990,35 @@ textarea {
     }
     .modal-body {
         padding: 16px;
+        /* ★ 縦・横の両軸スクロールをここで担当 ★
+           これにより data-table の thead が
+           modal-body 上端に貼り付けるようになる */
+        flex: 1 1 auto;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ---------- モバイル: テーブル個別のオーバーフローは解除 ----------
+       スクロールは modal-body が担当するので、各テーブルラッパーは
+       overflow を解除して thead の sticky を有効化する */
+    #teamsTable,
+    #championshipsTable,
+    .league-group-block {
+        overflow: visible;
+    }
+
+    /* ---------- モバイル: ヘッダー行を modal-body 上端に固定 ----------
+       sticky cell は親 thead の背景を透過させるので、
+       各 th に明示的に背景色を指定する必要がある */
+    .data-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        background: var(--primary-color);
+        color: #fff;
+    }
+    .data-table thead th:nth-child(2) {
+        z-index: 5;  /* 上端固定 + 左端固定 の交差セル: 最前面 */
     }
 
     /* ---------- タブ ---------- */
@@ -1027,6 +1054,30 @@ textarea {
     .league-badge {
         font-size: 0.78rem;
         padding: 3px 8px;
+    }
+
+    /* ---------- モバイル: チーム名カラムの幅を制限 ----------
+       長いチーム名 (例: 流通経済大学付属柏高校 / サンフレッチェ広島F.C.ユース)
+       が固定列で広がりすぎてデータ表示エリアを潰す問題への対処。
+       max-width で幅を制限し、はみ出た場合は2行に折り返す。
+       1文字ずつ縦には折り返さないよう keep-all を指定。
+    */
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2) {
+        max-width: 130px;
+        min-width: 100px;
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        line-height: 1.35;
+        vertical-align: middle;
+        font-size: 0.85rem;
+    }
+
+    /* ---------- 数値カラム (3列目以降の th/td) を中央揃えで読みやすく ---------- */
+    .data-table th:nth-child(n+3),
+    .data-table td:nth-child(n+3) {
+        text-align: center;
     }
 
     /* ---------- 統計サマリー: 1列 (既存指定を維持) ---------- */
