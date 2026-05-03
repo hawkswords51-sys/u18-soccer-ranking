@@ -43,6 +43,12 @@
     --shadow-lg: 0 4px 16px rgba(0,0,0,0.15);
 }
 
+html {
+    /* iOS Safari の自動拡大を防ぎつつ、ユーザーのフォント設定を尊重 */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
     color: var(--text-dark);
@@ -155,6 +161,7 @@ body {
     justify-content: center;
     font-size: 1.8rem;
     color: white;
+    flex-shrink: 0;
 }
 
 .info-icon.premier {
@@ -511,6 +518,10 @@ body {
     background: linear-gradient(135deg, var(--primary-color), #004999);
     color: white;
     border-radius: 15px 15px 0 0;
+    /* スクロール時に上部に固定（モバイルで便利） */
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .modal-header h2 {
@@ -763,90 +774,329 @@ body {
 }
 
 /* =========================
+   ★ Phase 9-1: モバイル対応強化 (2026-05)
+   ========================= */
+
+/* ---------- 順位表テーブル: 横スクロール化 ----------
+   12列もある順位表を狭い画面に押し込むと、日本語が1文字ずつ
+   折り返されて「縦書き」風になる。それを防ぐため:
+   1) テーブルの親 (#teamsTable / #championshipsTable) を
+      横スクロール可能にする
+   2) セル内テキストは折り返さない (white-space: nowrap)
+   3) チーム名カラムだけ左端に固定 (sticky) して、横スクロール
+      しても常に見えるようにする
+*/
+#teamsTable,
+#championshipsTable {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* 右端にスクロール可能を示すグラデーション (薄影) */
+    background:
+        linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+        linear-gradient(to right, rgba(0,0,0,0.08), rgba(255,255,255,0) 30%) 100% 0,
+        radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)) 100% 0;
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+}
+
+.data-table {
+    /* 12列が確実に1列ずつ表示できる最低幅。スマホでは横スクロール */
+    min-width: 720px;
+}
+
+.data-table th,
+.data-table td {
+    /* 1文字ずつ折り返されるのを防止 */
+    white-space: nowrap;
+}
+
+/* チーム名 (2列目) を左端固定にして、横スクロール時も常に見えるように */
+.data-table th:nth-child(2),
+.data-table td:nth-child(2) {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 1;
+    /* 固定列の右側に薄い影で区切りを表示 */
+    box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.15);
+}
+.data-table thead th:nth-child(2) {
+    background: var(--primary-color);
+}
+.data-table tbody tr:hover td:nth-child(2) {
+    background: var(--bg-light);
+}
+
+/* ---------- タップターゲット最低 44x44px (Apple HIG / Google Material 推奨) ---------- */
+.nav-link,
+.pref-button,
+.tab-btn,
+.close-btn,
+.search-input,
+.clear-btn {
+    min-height: 44px;
+}
+
+/* ---------- iOS入力欄のオートズーム防止: フォーム要素は16px以上 ---------- */
+.search-input,
+input[type="text"],
+input[type="search"],
+input[type="email"],
+textarea {
+    font-size: 16px;
+}
+
+/* =========================
    レスポンシブデザイン
    ========================= */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    /* ---------- ヘッダー: 縦並びにせず、コンパクトに横並び維持 ---------- */
+    .header {
+        padding: 12px 0;
+    }
     .header-content {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 12px;
+        align-items: center;
     }
-
     .site-title {
-        font-size: 1.2rem;
-    }
-
-    .nav {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .nav-link {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-
-    .info-section {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-content {
-        max-height: 95vh;
-    }
-
-    .modal-header {
-        padding: 20px;
-    }
-
-    .modal-header h2 {
-        font-size: 1.3rem;
-    }
-
-    .modal-body {
-        padding: 20px;
-    }
-
-    .tabs {
-        overflow-x: auto;
-    }
-
-    .tab-btn {
-        padding: 10px 15px;
-        font-size: 0.9rem;
+        font-size: 1.05rem;
+        line-height: 1.25;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+        /* タイトルが長くても1行で省略表示 */
+        overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
     }
+    .site-title i {
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+    .nav {
+        gap: 4px;
+        flex-shrink: 0;
+    }
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        gap: 4px;
+        flex-direction: column;
+        text-align: center;
+        min-width: 48px;
+    }
+    .nav-link i {
+        font-size: 1.05rem;
+    }
 
-    .data-table {
+    /* ---------- メインコンテンツ余白を圧縮 ---------- */
+    .main-content {
+        padding: 20px 0;
+    }
+
+    /* ---------- 情報カード: 1列化 (既存の指定を維持) ---------- */
+    .info-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .info-card {
+        padding: 16px;
+        gap: 14px;
+    }
+    .info-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+    }
+    .info-content h3 {
+        font-size: 1.05rem;
+    }
+    .info-content p {
         font-size: 0.85rem;
     }
 
-    .data-table th,
-    .data-table td {
-        padding: 8px;
+    /* ---------- 検索ボックス ---------- */
+    .search-box {
+        padding: 18px 16px;
+    }
+    .search-box h2 {
+        font-size: 1.2rem;
+        margin-bottom: 14px;
+    }
+    .search-input {
+        padding: 14px 44px 14px 14px;
     }
 
+    /* ---------- 地図セクション ---------- */
+    .map-section {
+        padding: 18px 14px;
+    }
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+    }
+
+    /* ---------- 都道府県ボタン: 2-3列、タップしやすい大きさ ---------- */
+    .pref-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    .pref-button {
+        padding: 14px 6px;
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    .region-title {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+
+    /* ---------- 凡例 ---------- */
+    .map-legend {
+        gap: 8px 14px;
+        padding: 12px;
+    }
+    .legend-item {
+        font-size: 0.82rem;
+    }
+
+    /* ---------- モーダル: 全画面に近い表示 ---------- */
+    .modal.active {
+        padding: 0;
+    }
+    .modal-content {
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
+    }
+    .modal-header {
+        padding: 14px 16px;
+        border-radius: 0;
+    }
+    .modal-header h2 {
+        font-size: 1.15rem;
+    }
+    .close-btn {
+        font-size: 1.4rem;
+        padding: 8px 12px;
+    }
+    .modal-body {
+        padding: 16px;
+    }
+
+    /* ---------- タブ ---------- */
+    .tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 4px;
+    }
+    .tab-btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        min-height: 44px;
+    }
+
+    /* ---------- 順位表セル: 余白を圧縮しつつ読める大きさを維持 ---------- */
+    .data-table {
+        font-size: 0.88rem;
+    }
+    .data-table th,
+    .data-table td {
+        padding: 10px 8px;
+    }
+    .data-table th {
+        font-size: 0.78rem;
+        letter-spacing: 0;
+    }
+    .rank-badge {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    .league-badge {
+        font-size: 0.78rem;
+        padding: 3px 8px;
+    }
+
+    /* ---------- 統計サマリー: 1列 (既存指定を維持) ---------- */
     .stats-summary {
         grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .stat-item {
+        padding: 14px;
+    }
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    /* ---------- フッター ---------- */
+    .footer {
+        padding: 24px 0;
+        margin-top: 40px;
+    }
+    .footer-note {
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 15px;
+        padding: 0 12px;
     }
 
-    .main-content {
-        padding: 20px 0;
+    .site-title {
+        font-size: 0.95rem;
+    }
+
+    /* iPhone SE等の極小画面ではナビアイコンのみ */
+    .nav-link span,
+    .nav-link {
+        font-size: 0.75rem;
+    }
+    .nav-link {
+        padding: 6px 8px;
+        min-width: 44px;
+    }
+
+    /* 都道府県ボタン: 2列に */
+    .pref-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .pref-button {
+        padding: 16px 8px;
+        font-size: 1rem;
     }
 
     .section-title {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .map-legend {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
+    }
+
+    /* 順位表のチーム名固定列の幅を確保 */
+    .data-table {
+        min-width: 680px;
     }
 }
+
 /* ============================================================
  * プレミア/プリンスリーグ 階層アコーディオン用スタイル
  * (既存 style.css にマージしてもOK、別ファイルとして読み込んでもOK)
@@ -957,8 +1207,9 @@ details[open] > summary > .league-accordion__chevron {
 /* モバイル調整 */
 @media (max-width: 640px) {
     .league-accordion__summary {
-        padding: 9px 10px;
+        padding: 12px 10px;
         font-size: 0.95rem;
+        min-height: 44px;
     }
     .league-accordion__summary--division {
         margin-left: 8px;
@@ -1074,7 +1325,7 @@ details[open] > summary > .league-accordion__chevron {
 
 /* モバイル調整 */
 @media (max-width: 640px) {
-    .league-accordion__summary         { padding: 9px 10px; }
+    .league-accordion__summary         { padding: 12px 10px; min-height: 44px; }
     .league-accordion__body            { padding: 6px 8px 10px; }
     .league-accordion__summary--region { font-size: 0.95rem; }
     .league-accordion__summary--division { font-size: 0.9rem; }
@@ -1234,8 +1485,8 @@ details[open] > summary > .league-accordion__chevron {
     .tournament-section-title { padding: 10px 14px; font-size: 0.95rem; }
     .tournament-year-row      { flex-direction: column; gap: 6px; padding: 10px 14px; }
     .tournament-year          { flex: none; padding-top: 0; }
-    .tournament-result-team   { font-size: 0.88rem; padding: 4px 8px 4px 10px; }
-    .tournament-result-badge  { font-size: 0.68rem; padding: 2px 7px; }
+    .tournament-result-team   { font-size: 0.9rem; padding: 6px 10px 6px 12px; min-height: 36px; }
+    .tournament-result-badge  { font-size: 0.7rem; padding: 2px 8px; }
 }
 
 /* ============================================================
@@ -1289,8 +1540,8 @@ details[open] > summary > .league-accordion__chevron {
 /* モバイルでも同じ大きさを維持 (10px は十分小さい) */
 @media (max-width: 640px) {
     .team-tournament-icon {
-        width: 9px;
-        height: 9px;
+        width: 10px;
+        height: 10px;
         margin-left: 5px;
     }
 }
@@ -1386,6 +1637,6 @@ details[open] > summary > .league-accordion__chevron {
         gap: 6px 14px;
     }
     .badge-legend-item {
-        font-size: 0.76rem;
+        font-size: 0.78rem;
     }
 }
