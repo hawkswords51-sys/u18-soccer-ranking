@@ -170,7 +170,7 @@
         ]
       },
       {
-        "name": "東海大札幌",
+        "name": "東海大札幌高校",
         "league": "北海道FAリーグU-18",
         "points": 4,
         "played": 3,
@@ -181,7 +181,10 @@
         "goalsAgainst": 5,
         "leagueRank": 4,
         "rank": 12,
-        "prefectureRank": 12
+        "prefectureRank": 12,
+        "aliases": [
+          "東海大札幌"
+        ]
       },
       {
         "name": "札幌大谷高校2nd",
@@ -201,7 +204,7 @@
         ]
       },
       {
-        "name": "札幌第一",
+        "name": "札幌第一高校",
         "league": "北海道FAリーグU-18",
         "points": 4,
         "played": 3,
@@ -212,7 +215,10 @@
         "goalsAgainst": 5,
         "leagueRank": 5,
         "rank": 14,
-        "prefectureRank": 14
+        "prefectureRank": 14,
+        "aliases": [
+          "札幌第一"
+        ]
       },
       {
         "name": "北海道大谷室蘭高校2nd",
@@ -394,7 +400,7 @@
         "leagueRank": 6
       },
       {
-        "name": "東奥義塾",
+        "name": "東奥義塾高校",
         "league": "青森県1部",
         "rank": 9,
         "prefectureRank": 9,
@@ -405,7 +411,10 @@
         "lost": 1,
         "goalsFor": 6,
         "goalsAgainst": 4,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "東奥義塾"
+        ]
       },
       {
         "id": "a009",
@@ -577,7 +586,7 @@
       },
       {
         "id": "i009",
-        "name": "G盛岡ユース",
+        "name": "いわてグルージャ盛岡ユース",
         "league": "岩手U-18iリーグ",
         "rank": 8,
         "points": 3,
@@ -590,7 +599,8 @@
         "prefectureRank": 8,
         "leagueRank": 6,
         "aliases": [
-          "グルージャ盛岡"
+          "グルージャ盛岡",
+          "G盛岡ユース"
         ]
       },
       {
@@ -609,7 +619,7 @@
         "leagueRank": 7
       },
       {
-        "name": "江南義塾",
+        "name": "江南義塾盛岡高校",
         "league": "岩手U-18iリーグ",
         "rank": 10,
         "prefectureRank": 10,
@@ -620,7 +630,10 @@
         "lost": 3,
         "goalsFor": 0,
         "goalsAgainst": 7,
-        "leagueRank": 8
+        "leagueRank": 8,
+        "aliases": [
+          "江南義塾"
+        ]
       }
     ],
     "championships": [
@@ -690,7 +703,7 @@
       },
       {
         "id": "m007",
-        "name": "仙台育英",
+        "name": "仙台育英高校",
         "league": "宮城県1部",
         "rank": 4,
         "points": 6,
@@ -701,11 +714,14 @@
         "goalsFor": 12,
         "goalsAgainst": 0,
         "prefectureRank": 4,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "仙台育英"
+        ]
       },
       {
         "id": "m005",
-        "name": "聖和学園Ⅱ",
+        "name": "聖和学園高校2nd",
         "league": "宮城県1部",
         "rank": 5,
         "points": 6,
@@ -716,7 +732,10 @@
         "goalsFor": 4,
         "goalsAgainst": 1,
         "prefectureRank": 5,
-        "leagueRank": 2
+        "leagueRank": 2,
+        "aliases": [
+          "聖和学園Ⅱ"
+        ]
       },
       {
         "id": "m008",
@@ -765,7 +784,7 @@
       },
       {
         "id": "m004",
-        "name": "ベガルタ仙台Ⅱ",
+        "name": "ベガルタ仙台ユース2nd",
         "league": "宮城県1部",
         "rank": 9,
         "points": 1,
@@ -776,7 +795,10 @@
         "goalsFor": 2,
         "goalsAgainst": 3,
         "prefectureRank": 9,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "ベガルタ仙台Ⅱ"
+        ]
       },
       {
         "name": "東北生活文化大学高校",
@@ -793,7 +815,7 @@
         "leagueRank": 7
       },
       {
-        "name": "東北学院高校Ⅱ",
+        "name": "東北学院高校2nd",
         "league": "宮城県1部",
         "rank": 11,
         "prefectureRank": 11,
@@ -804,7 +826,10 @@
         "lost": 2,
         "goalsFor": 0,
         "goalsAgainst": 10,
-        "leagueRank": 8
+        "leagueRank": 8,
+        "aliases": [
+          "東北学院高校Ⅱ"
+        ]
       }
     ],
     "championships": [
@@ -2136,7 +2161,7 @@
       },
       {
         "id": "sa009",
-        "name": "昌平II",
+        "name": "昌平高校2nd",
         "league": "埼玉Sリーグ",
         "rank": 5,
         "points": 12,
@@ -2147,7 +2172,10 @@
         "goalsFor": 7,
         "goalsAgainst": 1,
         "prefectureRank": 5,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "昌平II"
+        ]
       },
       {
         "name": "正智深谷高校",
@@ -2195,7 +2223,7 @@
       },
       {
         "id": "sa006",
-        "name": "西武台II",
+        "name": "西武台高校2nd",
         "league": "埼玉Sリーグ",
         "rank": 9,
         "points": 6,
@@ -2206,7 +2234,10 @@
         "goalsFor": 4,
         "goalsAgainst": 5,
         "prefectureRank": 9,
-        "leagueRank": 5
+        "leagueRank": 5,
+        "aliases": [
+          "西武台II"
+        ]
       },
       {
         "id": "sa005",
@@ -2518,7 +2549,7 @@
       },
       {
         "id": "c007",
-        "name": "ジェフユナイテッド市原・千葉U-18B",
+        "name": "ジェフユナイテッド市原・千葉U-18 2nd",
         "league": "千葉県1部",
         "rank": 12,
         "points": 7,
@@ -2533,12 +2564,13 @@
         "leagueRank": 7,
         "aliases": [
           "ジェフU-18B",
-          "ジェフu-18B"
+          "ジェフu-18B",
+          "ジェフユナイテッド市原・千葉U-18B"
         ]
       },
       {
         "id": "c014",
-        "name": "柏レイソルU-18B",
+        "name": "柏レイソルU-18 2nd",
         "league": "千葉県1部",
         "rank": 13,
         "points": 7,
@@ -2552,7 +2584,8 @@
         "prefectureRank": 13,
         "leagueRank": 7,
         "aliases": [
-          "レイソルu-18B"
+          "レイソルu-18B",
+          "柏レイソルU-18B"
         ]
       },
       {
@@ -2857,7 +2890,7 @@
       },
       {
         "id": "t010",
-        "name": "FC東京U-18B",
+        "name": "FC東京U-18 2nd",
         "league": "東京T1リーグ",
         "rank": 14,
         "points": 2,
@@ -2869,7 +2902,10 @@
         "goalsAgainst": 12,
         "goalDiff": -1,
         "prefectureRank": 14,
-        "leagueRank": 10
+        "leagueRank": 10,
+        "aliases": [
+          "FC東京U-18B"
+        ]
       }
     ],
     "championships": [
@@ -4280,7 +4316,7 @@
       },
       {
         "id": "ym010",
-        "name": "ヴァンフォーレ甲府U-18B",
+        "name": "ヴァンフォーレ甲府U-18 2nd",
         "league": "山梨県1部",
         "rank": 9,
         "points": 3,
@@ -4294,7 +4330,8 @@
         "prefectureRank": 9,
         "leagueRank": 6,
         "aliases": [
-          "VF甲府B"
+          "VF甲府B",
+          "ヴァンフォーレ甲府U-18B"
         ]
       },
       {
