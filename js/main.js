@@ -901,3 +901,22 @@ let app;
 window.addEventListener('DOMContentLoaded', () => {
     app = new SoccerApp();
 });
+
+// ★ Phase 9-1l (2026-05): iOS Safari の URL バー/タブバーを考慮した
+// 実ビューポート高さを CSS 変数 (--real-vh) として公開する。
+// CSS 側で var(--real-vh) を使ってモーダル高さを設定すれば、
+// dvh 非対応のブラウザでも確実に「見切れない高さ」になる。
+(function setupViewportHeightVar() {
+    function update() {
+        // window.innerHeight は iOS Safari でも実際の可視領域を返す
+        const vh = window.innerHeight;
+        document.documentElement.style.setProperty('--real-vh', vh + 'px');
+    }
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
+    // iOS Safari の UI バー表示/非表示時に visualViewport が変わる
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', update);
+    }
+})();
