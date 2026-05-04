@@ -1959,6 +1959,54 @@ details[open] > summary > .league-accordion__chevron {
     }
 }
 
+/* === リーグアコーディオン (EAST/WEST, 地方別) のラベル文字色 ===
+   元 CSS は `#1e3a8a` (暗い青) や `#6b7280` (薄灰) で、
+   ダーク背景だとほぼ見えないので上書きする */
+[data-theme="dark"] .league-accordion__summary,
+[data-theme="dark"] .league-accordion__summary--region,
+[data-theme="dark"] .league-accordion__summary--division,
+[data-theme="dark"] .league-accordion__label,
+[data-theme="dark"] .league-accordion__chevron {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .league-accordion__count {
+    color: var(--text-light);
+}
+[data-theme="dark"] .league-accordion__count--region {
+    color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .league-accordion__summary,
+    :root:not([data-theme="light"]) .league-accordion__summary--region,
+    :root:not([data-theme="light"]) .league-accordion__summary--division,
+    :root:not([data-theme="light"]) .league-accordion__label,
+    :root:not([data-theme="light"]) .league-accordion__chevron {
+        color: var(--text-dark);
+    }
+    :root:not([data-theme="light"]) .league-accordion__count {
+        color: var(--text-light);
+    }
+    :root:not([data-theme="light"]) .league-accordion__count--region {
+        color: var(--primary-color);
+    }
+}
+
+/* === リーグアコーディオン: hover/open 時のさり気ない強調 === */
+[data-theme="dark"] .league-accordion__summary:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] details.league-accordion[open] > .league-accordion__summary {
+    background: rgba(96, 165, 250, 0.10);  /* 開いている時はうっすら青く */
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .league-accordion__summary:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+    :root:not([data-theme="light"]) details.league-accordion[open] > .league-accordion__summary {
+        background: rgba(96, 165, 250, 0.10);
+    }
+}
+
 /* === 入力欄 === */
 [data-theme="dark"] .search-input,
 [data-theme="dark"] input[type="text"],
