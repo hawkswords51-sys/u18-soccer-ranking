@@ -98,6 +98,8 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     # === 香川県 ===
     ("kagawa", "大手前高松高校2nd"):         ["大手前高松S"],
     ("kagawa", "カマタマーレ讃岐U-18 2nd"):  ["カマタマーレ讃岐S"],
+    # === 愛媛県 (スペースなし表記) ===
+    ("ehime", "愛媛FC U-18 2nd"):            ["愛媛FCU-18S", "愛媛FCU-18 S"],
     # === 高知県 ===
     ("kochi", "高知高校2nd"):                ["高知S"],
     # === 福岡県 ===
