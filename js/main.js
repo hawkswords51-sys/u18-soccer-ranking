@@ -902,6 +902,129 @@ window.addEventListener('DOMContentLoaded', () => {
     app = new SoccerApp();
 });
 
+// ★ Phase 9-2 (2026-05): ダークモード対応
+// - localStorage に保存された設定 (light / dark) があればそれを尊重
+// - 無ければシステム設定 (prefers-color-scheme) に追従 (CSS @media が処理)
+// - ヘッダーに切り替えボタンを差し込み、クリックで明暗を切り替え
+(function setupDarkMode() {
+    const STORAGE_KEY = 'theme';
+
+    function getEffectiveTheme() {
+        const attr = document.documentElement.getAttribute('data-theme');
+        if (attr === 'dark' || attr === 'light') return attr;
+        // 属性が無い場合はシステム設定に従う
+        return window.matchMedia &&
+               window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+    }
+
+    function applyTheme(mode) {
+        // mode: 'light' | 'dark' | 'auto'
+        if (mode === 'auto') {
+            document.documentElement.removeAttribute('data-theme');
+            try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+        } else {
+            document.documentElement.setAttribute('data-theme', mode);
+            try { localStorage.setItem(STORAGE_KEY, mode); } catch (_) {}
+        }
+        updateToggleIcon();
+        updateMetaThemeColor();
+    }
+
+    function toggleTheme() {
+        const current = getEffectiveTheme();
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    function updateToggleIcon() {
+        const btn = document.getElementById('themeToggleBtn');
+        if (!btn) return;
+        const effective = getEffectiveTheme();
+        const icon = btn.querySelector('i');
+        if (icon) {
+            // 現状とは「逆」のアイコン (押すと逆になる) を表示
+            icon.className = effective === 'dark'
+                ? 'fas fa-sun'
+                : 'fas fa-moon';
+        }
+        btn.setAttribute(
+            'aria-label',
+            effective === 'dark'
+                ? 'ライトモードに切り替え'
+                : 'ダークモードに切り替え'
+        );
+    }
+
+    function updateMetaThemeColor() {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) return;
+        const effective = getEffectiveTheme();
+        meta.setAttribute(
+            'content',
+            effective === 'dark' ? '#0f172a' : '#1e40af'
+        );
+    }
+
+    function injectToggleButton() {
+        // すでに HTML 側に置かれている場合はそちらを使う
+        if (document.getElementById('themeToggleBtn')) return;
+        const nav = document.querySelector('.header .nav');
+        if (!nav) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'themeToggleBtn';
+        btn.className = 'theme-toggle';
+        btn.setAttribute('aria-label', 'ダークモードに切り替え');
+        btn.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
+        nav.appendChild(btn);
+    }
+
+    function init() {
+        // ページロード時、localStorage に保存があれば反映
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored === 'light' || stored === 'dark') {
+                document.documentElement.setAttribute('data-theme', stored);
+            }
+        } catch (_) {}
+
+        injectToggleButton();
+        updateToggleIcon();
+        updateMetaThemeColor();
+
+        const btn = document.getElementById('themeToggleBtn');
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleTheme();
+            });
+        }
+
+        // システム設定が変わった時、手動指定が無ければ追従
+        if (window.matchMedia) {
+            const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            const handler = () => {
+                const stored = (() => {
+                    try { return localStorage.getItem(STORAGE_KEY); }
+                    catch (_) { return null; }
+                })();
+                if (!stored) {
+                    updateToggleIcon();
+                    updateMetaThemeColor();
+                }
+            };
+            if (mql.addEventListener) mql.addEventListener('change', handler);
+            else if (mql.addListener) mql.addListener(handler);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+
 // ★ Phase 9-1l (2026-05): iOS Safari の URL バー/タブバーを考慮した
 // 実ビューポート高さを CSS 変数 (--real-vh) として公開する。
 // CSS 側で var(--real-vh) を使ってモーダル高さを設定すれば、
