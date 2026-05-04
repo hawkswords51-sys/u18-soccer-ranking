@@ -34,17 +34,38 @@ DATA_FILE = BASE_DIR / "data" / "teams.json"
 # {(都道府県ID, 旧名): 新名}
 # 用途: スクレイパーが拾ってくる略称ではなく、こちらで使う正式名に統一したい場合
 MANUAL_RENAMES: dict[tuple[str, str], str] = {
+    # 神奈川県: 「日大」→「日本大学」表記に統一
     ("kanagawa", "日大藤沢高校2nd"): "日本大学藤沢高校2nd",
+    # 栃木県: 「U-18B」→「U-18 2nd」表記に統一
+    ("tochigi",  "栃木SC U-18B"):    "栃木SC U-18 2nd",
+    # 静岡県: 「②」→「高校2nd」表記に統一
+    ("shizuoka", "藤枝明誠②"):       "藤枝明誠高校2nd",
 }
 
 # canonical エントリに alias を追加する。
 # {(都道府県ID, canonical名): [追加するalias配列]}
 # 用途: スクレイパーが別表記で拾ってきても重複検出されるよう alias を増やしておく
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
-    # 湘南工科大附Ａ は湘南工科大学附属高校の別表記
-    ("kanagawa", "湘南工科大学附属高校"): ["湘南工科大附Ａ", "湘南工科大附A"],
-    # rename 後の "日本大学藤沢高校2nd" にも旧名を alias として登録
-    ("kanagawa", "日本大学藤沢高校2nd"): ["日大藤沢高校2nd", "日大藤沢B"],
+    # === 神奈川県 ===
+    ("kanagawa", "湘南工科大学附属高校"):    ["湘南工科大附Ａ", "湘南工科大附A"],
+    # rename 後の canonical にも旧名を alias として登録
+    ("kanagawa", "日本大学藤沢高校2nd"):     ["日大藤沢高校2nd", "日大藤沢B"],
+    # === 栃木県 ===
+    # rename 後の canonical 「栃木SC U-18 2nd」に旧名/別名を alias として登録
+    ("tochigi", "栃木SC U-18 2nd"):         ["栃木SC U-18B", "栃木SC B"],
+    # === 静岡県 ===
+    # rename 後の canonical 「藤枝明誠高校2nd」に旧名/別名を alias として登録
+    ("shizuoka", "藤枝明誠高校2nd"):         ["藤枝明誠②", "藤枝明誠2nd"],
+    # === 岡山県 (高校なしのB表記もキャッチ) ===
+    ("okayama", "岡山学芸館高校2nd"):        ["岡山学芸館B"],
+    ("okayama", "玉野光南高校2nd"):          ["玉野光南B"],
+    ("okayama", "就実高校2nd"):              ["就実B"],
+    # === 千葉県 (大文字U の異字体) ===
+    ("chiba", "柏レイソルU-18 2nd"):         ["レイソルU-18B"],
+    # === 京都府 (高校なしのC表記もキャッチ) ===
+    ("kyoto", "京都橘高校3rd"):              ["京都橘C"],
+    # === 徳島県 (高校なしのS表記もキャッチ) ===
+    ("tokushima", "徳島商業高校2nd"):        ["徳島商業S"],
 }
 
 
