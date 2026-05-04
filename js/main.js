@@ -5,11 +5,90 @@
 //        *** option (A): 排他的アコーディオン (一度に1つだけ開く) ***
 //        同じ name を共有する <details> は同時に1つしか開かない
 // ============================================================
+/* ===================================================================
+   ★ Phase 9-4: お気に入り管理クラス (localStorage に保存)
+   =================================================================== */
+class FavoriteManager {
+    constructor() {
+        this.STORAGE_KEY = 'u18_favorites_v1';
+        this.favorites = this._load();
+    }
+
+    _load() {
+        try {
+            const stored = localStorage.getItem(this.STORAGE_KEY);
+            const arr = stored ? JSON.parse(stored) : [];
+            return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+            console.warn('お気に入りの読み込みに失敗:', e);
+            return [];
+        }
+    }
+
+    _save() {
+        try {
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.favorites));
+        } catch (e) {
+            console.warn('お気に入りの保存に失敗:', e);
+        }
+    }
+
+    _key(prefId, name) {
+        return `${prefId || ''}::${name || ''}`;
+    }
+
+    has(prefId, name) {
+        const k = this._key(prefId, name);
+        return this.favorites.some(f => f.key === k);
+    }
+
+    add(team) {
+        if (!team || !team.name || !team.prefectureId) return false;
+        const k = this._key(team.prefectureId, team.name);
+        if (this.favorites.some(f => f.key === k)) return false;
+        this.favorites.push({
+            key: k,
+            name: team.name,
+            prefectureId: team.prefectureId,
+            prefectureName: team.prefectureName || '',
+            league: team.league || '',
+            addedAt: Date.now()
+        });
+        this._save();
+        return true;
+    }
+
+    remove(prefId, name) {
+        const k = this._key(prefId, name);
+        const before = this.favorites.length;
+        this.favorites = this.favorites.filter(f => f.key !== k);
+        if (this.favorites.length !== before) this._save();
+    }
+
+    toggle(team) {
+        if (this.has(team.prefectureId, team.name)) {
+            this.remove(team.prefectureId, team.name);
+            return false;
+        }
+        return this.add(team);
+    }
+
+    getAll() {
+        return [...this.favorites];
+    }
+
+    count() {
+        return this.favorites.length;
+    }
+}
+
 class SoccerApp {
     constructor() {
         this.map = null;
         this.currentPrefecture = null;
-        this.tournamentData = null;   // data/tournaments.json を保持
+        this.currentPrefId = null;     // ★ Phase 9-4: お気に入りボタン用
+        this.tournamentData = null;
+        this.favoriteManager = new FavoriteManager();   // ★ Phase 9-4
         this.init();
     }
 
@@ -33,6 +112,10 @@ class SoccerApp {
         // バッジ用カスタムツールチップ (HTMLネイティブの title より素早く表示)
         this.setupTournamentTooltip();
         console.log('Tournament tooltip handler ready');
+
+        // ★ Phase 9-4: お気に入り UI を注入
+        this.setupFavoritesUI();
+        console.log('Favorites UI ready');
     }
 
     // ============================================================
@@ -372,9 +455,13 @@ class SoccerApp {
             const aliasNote = team.matchedAlias
                 ? `<div class="search-result-alias">別名「${this.escapeHtml(team.matchedAlias)}」で一致</div>`
                 : '';
+            const favBtn = this.renderFavoriteButton(team.prefectureId, team.name, team.league, team.prefectureName);
             return `
             <div class="search-result-item" data-pref-id="${team.prefectureId}">
-                <div class="search-result-team">${team.name}${this.getTournamentBadge(team.name)}</div>
+                <div class="search-result-team">
+                    ${favBtn}
+                    <span class="team-name-text">${team.name}</span>${this.getTournamentBadge(team.name)}
+                </div>
                 <div class="search-result-info">
                     <span><i class="fas fa-map-marker-alt"></i> ${team.prefectureName}</span>
                     <span><i class="fas fa-trophy"></i> ${team.league || '-'}</span>
@@ -403,6 +490,228 @@ class SoccerApp {
         document.getElementById('searchResults').innerHTML = '';
     }
 
+    /* ============================================================
+       ★ Phase 9-4: お気に入り機能
+       ============================================================ */
+
+    /** お気に入りボタン1個分のHTMLを返す */
+    renderFavoriteButton(prefId, name, league, prefName) {
+        if (!prefId || !name) return '';
+        const isStarred = this.favoriteManager.has(prefId, name);
+        const safeName = this.escapeHtml(name);
+        const safeLeague = this.escapeHtml(league || '');
+        const safePrefName = this.escapeHtml(prefName || '');
+        const aria = isStarred ? 'お気に入りから外す' : 'お気に入りに追加';
+        const iconCls = isStarred ? 'fas fa-star' : 'far fa-star';
+        return `<button type="button" class="fav-btn ${isStarred ? 'fav-btn--active' : ''}"
+            data-pref-id="${prefId}"
+            data-name="${safeName}"
+            data-league="${safeLeague}"
+            data-pref-name="${safePrefName}"
+            aria-label="${aria}"
+            title="${aria}">
+            <i class="${iconCls}" aria-hidden="true"></i>
+        </button>`;
+    }
+
+    /** ヘッダーに「お気に入り」ナビと、お気に入り表示用セクションを注入 */
+    setupFavoritesUI() {
+        this.injectFavoritesNavLink();
+        this.injectFavoritesSection();
+        this.bindFavoriteButtonClicks();
+        this.updateFavoritesBadge();
+    }
+
+    /** ナビに「お気に入り」リンクを追加 */
+    injectFavoritesNavLink() {
+        const nav = document.querySelector('.header .nav');
+        if (!nav || document.getElementById('favoritesBtn')) return;
+
+        const link = document.createElement('a');
+        link.href = '#';
+        link.className = 'nav-link';
+        link.id = 'favoritesBtn';
+        link.innerHTML = `
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <span class="nav-link__label">お気に入り</span>
+            <span class="nav-badge" id="favoritesBadge" hidden></span>
+        `;
+
+        // 「管理」リンクの直前に挿入。なければ末尾。
+        const adminLink = nav.querySelector('a[href="admin.html"]');
+        if (adminLink) {
+            nav.insertBefore(link, adminLink);
+        } else {
+            nav.appendChild(link);
+        }
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleFavorites();
+        });
+    }
+
+    /** お気に入り表示セクションを追加 */
+    injectFavoritesSection() {
+        if (document.getElementById('favoritesSection')) return;
+        const main = document.querySelector('.main-content .container');
+        if (!main) return;
+
+        const section = document.createElement('section');
+        section.className = 'favorites-section';
+        section.id = 'favoritesSection';
+        section.style.display = 'none';
+        section.innerHTML = `
+            <h2 class="section-title">
+                <i class="fas fa-star" style="color:#fbbf24"></i> お気に入りチーム
+            </h2>
+            <div id="favoritesList" class="favorites-list"></div>
+        `;
+        main.appendChild(section);
+    }
+
+    /** ☆ボタンのクリック (event delegation) */
+    bindFavoriteButtonClicks() {
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.fav-btn');
+            if (!btn) return;
+            // テーブル行や検索結果のクリック (詳細遷移) を抑止
+            e.stopPropagation();
+            e.preventDefault();
+
+            const prefId = btn.dataset.prefId;
+            const name = btn.dataset.name;
+            if (!prefId || !name) return;
+
+            const team = {
+                prefectureId: prefId,
+                name,
+                league: btn.dataset.league || '',
+                prefectureName: btn.dataset.prefName || ''
+            };
+            const isNowActive = this.favoriteManager.toggle(team);
+
+            // 同じチームの全ボタンの見た目を更新
+            this.refreshFavoriteButtons(prefId, name, isNowActive);
+            this.updateFavoritesBadge();
+
+            // お気に入り画面表示中なら再描画
+            const favSec = document.getElementById('favoritesSection');
+            if (favSec && favSec.style.display !== 'none') {
+                this.renderFavoritesList();
+            }
+        });
+    }
+
+    /** 対象チームの ☆ ボタン全てを最新状態に更新 */
+    refreshFavoriteButtons(prefId, name, isActive) {
+        const safeName = (name || '').replace(/"/g, '\\"');
+        const buttons = document.querySelectorAll(
+            `.fav-btn[data-pref-id="${prefId}"][data-name="${this.escapeHtml(name)}"]`
+        );
+        buttons.forEach(btn => {
+            btn.classList.toggle('fav-btn--active', isActive);
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.className = isActive ? 'fas fa-star' : 'far fa-star';
+            }
+            const aria = isActive ? 'お気に入りから外す' : 'お気に入りに追加';
+            btn.setAttribute('aria-label', aria);
+            btn.setAttribute('title', aria);
+        });
+    }
+
+    /** ナビバッジの件数表示を更新 */
+    updateFavoritesBadge() {
+        const badge = document.getElementById('favoritesBadge');
+        if (!badge) return;
+        const c = this.favoriteManager.count();
+        if (c > 0) {
+            badge.textContent = String(c);
+            badge.hidden = false;
+        } else {
+            badge.hidden = true;
+            badge.textContent = '';
+        }
+    }
+
+    /** お気に入りビューと地図ビューを切り替え */
+    toggleFavorites() {
+        const favSec = document.getElementById('favoritesSection');
+        const mapSection = document.getElementById('mapSection');
+        const searchSection = document.getElementById('searchSection');
+        if (!favSec || !mapSection) return;
+
+        if (favSec.style.display === 'none') {
+            favSec.style.display = 'block';
+            mapSection.style.display = 'none';
+            if (searchSection) searchSection.style.display = 'none';
+            this.renderFavoritesList();
+        } else {
+            favSec.style.display = 'none';
+            mapSection.style.display = 'block';
+        }
+    }
+
+    /** お気に入りリストを描画 */
+    renderFavoritesList() {
+        const list = document.getElementById('favoritesList');
+        if (!list) return;
+
+        const favs = this.favoriteManager.getAll();
+        if (favs.length === 0) {
+            list.innerHTML = `
+                <div class="favorites-empty">
+                    <i class="far fa-star" aria-hidden="true"></i>
+                    <p>お気に入りに登録したチームはまだありません</p>
+                    <p class="favorites-empty__hint">
+                        順位表や検索結果でチーム名の隣にある ☆ ボタンをタップすると、ここに表示されます。
+                    </p>
+                </div>
+            `;
+            return;
+        }
+
+        // 最新順 (addedAt 降順)
+        const sorted = [...favs].sort((a, b) => (b.addedAt || 0) - (a.addedAt || 0));
+
+        const html = sorted.map(fav => {
+            const safeName = this.escapeHtml(fav.name);
+            const safeLeague = this.escapeHtml(fav.league || '-');
+            const safePrefName = this.escapeHtml(fav.prefectureName || '');
+            const favBtn = this.renderFavoriteButton(
+                fav.prefectureId, fav.name, fav.league, fav.prefectureName
+            );
+            return `
+            <div class="favorite-item" data-pref-id="${fav.prefectureId}" data-name="${safeName}">
+                ${favBtn}
+                <div class="favorite-item__body">
+                    <div class="favorite-item__name">${safeName}${this.getTournamentBadge(fav.name)}</div>
+                    <div class="favorite-item__meta">
+                        <span><i class="fas fa-map-marker-alt"></i> ${safePrefName}</span>
+                        <span><i class="fas fa-trophy"></i> ${safeLeague}</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right favorite-item__arrow" aria-hidden="true"></i>
+            </div>
+            `;
+        }).join('');
+
+        list.innerHTML = html;
+
+        // 行クリックで該当の都道府県詳細を開く (☆ ボタンクリックは除外)
+        list.querySelectorAll('.favorite-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.closest('.fav-btn')) return;
+                const prefId = item.dataset.prefId;
+                const pref = dataManager.getPrefecture(prefId);
+                if (pref) {
+                    this.showPrefectureDetail(prefId, pref.name);
+                }
+            });
+        });
+    }
+
     toggleSearch() {
         const searchSection = document.getElementById('searchSection');
         const mapSection = document.getElementById('mapSection');
@@ -423,10 +732,15 @@ class SoccerApp {
         document.getElementById('searchInput').value = '';
         document.getElementById('clearSearchBtn').style.display = 'none';
         this.clearSearchResults();
+        // ★ Phase 9-4: お気に入りセクションも閉じる
+        const favSec = document.getElementById('favoritesSection');
+        if (favSec) favSec.style.display = 'none';
     }
 
     showPrefectureDetail(prefId, prefName) {
         this.currentPrefecture = prefId;
+        this.currentPrefId = prefId;          // ★ Phase 9-4: お気に入りボタン用
+        this.currentPrefName = prefName;      // ★ Phase 9-4
         const pref = dataManager.getPrefecture(prefId);
 
         if (!pref || !pref.teams || pref.teams.length === 0) {
@@ -550,12 +864,20 @@ class SoccerApp {
             .replace(/(U-?\d+|\d+(?:nd|rd|st|th)|高校|ユース)/g,
                     '<wbr><span class="nb">$1</span>');
 
+        // ★ Phase 9-4: お気に入りボタン
+        const favBtn = this.renderFavoriteButton(
+            this.currentPrefId,
+            team.name,
+            team.league,
+            this.currentPrefName
+        );
+
         return `
             <tr>
                 <td>
                     <span class="rank-badge ${rankClass}">${prefRank}</span>
                 </td>
-                <td><strong>${teamNameDisplay}</strong>${this.getTournamentBadge(team.name)}</td>
+                <td>${favBtn}<strong>${teamNameDisplay}</strong>${this.getTournamentBadge(team.name)}</td>
                 <td>
                     <span class="league-badge ${leagueBadgeClass}">${leagueDisplay}</span>
                 </td>
@@ -952,10 +1274,15 @@ class SoccerApp {
             .replace(/(U-?\d+|\d+(?:nd|rd|st|th)|高校|ユース)/g,
                     '<wbr><span class="nb">$1</span>');
 
+        // ★ Phase 9-4: お気に入りボタン (リーグ表示時。team.prefectureId が無ければ表示しない)
+        const favBtn = team.prefectureId
+            ? this.renderFavoriteButton(team.prefectureId, team.name, team.league, team.prefectureName)
+            : '';
+
         return `
             <tr>
                 <td><span class="rank-badge ${rankClass}">${rank}</span></td>
-                <td><strong>${teamNameDisplay}</strong>${this.getTournamentBadge(team.name)}</td>
+                <td>${favBtn}<strong>${teamNameDisplay}</strong>${this.getTournamentBadge(team.name)}</td>
                 ${showPrefecture ? `<td>${this.escapeHtml(team.prefectureName || '-')}</td>` : ''}
                 <td><strong>${team.points ?? 0}</strong></td>
                 <td>${team.played ?? 0}</td>
