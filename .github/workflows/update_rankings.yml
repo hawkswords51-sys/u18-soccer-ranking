@@ -37,28 +37,17 @@ jobs:
       - name: 依存ライブラリをインストール
         run: |
           pip install -r scraper/requirements.txt
-          # Selenium + Chrome もインストール（JS描画対応）
-          pip install selenium webdriver-manager
-          # YAML 読み込み用
-          pip install pyyaml
-          # GitHub Actions の Ubuntu には Chrome が入っている
-          # chrome-driver は selenium が自動管理
+          pip install selenium webdriver-manager pyyaml
       - name: 順位データを更新
-        # push トリガー (YAML編集時) では順位スクレイプは省略
         if: ${{ github.event_name != 'push' }}
         run: |
           YEAR="${{ github.event.inputs.year }}"
           DRY_RUN="${{ github.event.inputs.dry_run }}"
           ARGS=""
-          if [ -n "$YEAR" ]; then
-            ARGS="$ARGS --year $YEAR"
-          fi
-          if [ "$DRY_RUN" = "true" ]; then
-            ARGS="$ARGS --dry-run"
-          fi
+          if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
+          if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python scraper/update.py $ARGS
       - name: 大会成績 YAML から JSON を生成
-        # 常に実行 (1秒で終わる軽い処理)
         continue-on-error: true
         run: |
           if [ -f data/tournaments_data.yml ]; then
@@ -66,7 +55,7 @@ jobs:
           else
             echo "data/tournaments_data.yml がまだありません。スキップ。"
           fi
-      # ★ NEW: スクレイプ後にエイリアス重複と空チームを自動クリーンアップ
+      # ★ エイリアス重複・空チームの自動クリーンアップ
       - name: エイリアス重複・空チームを自動クリーンアップ
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         run: |
@@ -75,24 +64,31 @@ jobs:
           else
             echo "scraper/cleanup_aliases.py がまだありません。スキップ。"
           fi
+      # ★ NEW: SEO 用ランディングページ自動生成
+      - name: 都道府県別 SEO ページと sitemap を再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_prefecture_pages.py ]; then
+            python scraper/generate_prefecture_pages.py
+          else
+            echo "scraper/generate_prefecture_pages.py がまだありません。スキップ。"
+          fi
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # teams.json (順位) と tournaments.json (大会) 両方を対象に
-          if [ -f data/teams.json ]; then
-            git add data/teams.json
-          fi
-          if [ -f data/tournaments.json ]; then
-            git add data/tournaments.json
-          fi
+          # データファイル
+          if [ -f data/teams.json ]; then git add data/teams.json; fi
+          if [ -f data/tournaments.json ]; then git add data/tournaments.json; fi
+          # SEO ランディングページと sitemap
+          if [ -d prefectures ]; then git add prefectures; fi
+          if [ -f sitemap.xml ]; then git add sitemap.xml; fi
           # 変更がある場合のみコミット & push
           if git diff --staged --quiet; then
             echo "変更なし – push スキップ"
           else
-            git commit -m "chore: 順位/大会データを自動更新 $(date '+%Y-%m-%d')"
-            # リモートの最新を取り込んでから push (race condition 対策)
+            git commit -m "chore: 順位/大会データ・SEOページ自動更新 $(date '+%Y-%m-%d')"
             for i in 1 2 3; do
               git pull --rebase origin main && git push && break
               echo "push 失敗、リトライ $i/3 ..."
