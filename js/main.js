@@ -443,6 +443,13 @@ class SoccerApp {
         // P1-3: 表示順位は leagueRank 優先
         const displayRank = (team.leagueRank != null ? team.leagueRank : team.rank);
 
+        // ★ Phase 9-1g (2026-05): モバイルでバッジが折り返される際、
+        // 「プレミアリーグ / EAST」「プリンスリーグ / 東北」「北海道リーグ / 1部」
+        // のような自然な区切りで改行されるよう <wbr> (改行候補) を挿入
+        const leagueDisplay = team.league
+            .replace(/(プレミアリーグ|プリンスリーグ)/, '$1<wbr>')
+            .replace(/(リーグ)(\d)/, '$1<wbr>$2');
+
         return `
             <tr>
                 <td>
@@ -450,7 +457,7 @@ class SoccerApp {
                 </td>
                 <td><strong>${team.name}</strong>${this.getTournamentBadge(team.name)}</td>
                 <td>
-                    <span class="league-badge ${leagueBadgeClass}">${team.league}</span>
+                    <span class="league-badge ${leagueBadgeClass}">${leagueDisplay}</span>
                 </td>
                 <td>${displayRank}位</td>
                 <td><strong>${team.points}</strong></td>
