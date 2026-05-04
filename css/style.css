@@ -462,6 +462,226 @@ body {
     }
 }
 
+/* =========================
+   ★ Phase 9-4: お気に入り機能
+   ========================= */
+
+/* ヘッダーナビ内バッジ */
+.nav-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fbbf24;
+    color: #5a4500;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 999px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    margin-left: 4px;
+    line-height: 1;
+}
+.nav-badge[hidden] {
+    display: none;
+}
+
+/* ☆ お気に入りボタン (順位表・検索結果に埋め込み) */
+.fav-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    margin-right: 4px;
+    color: #cbd5e1;        /* 未登録: 薄いグレーの星 */
+    font-size: 0.95rem;
+    line-height: 1;
+    vertical-align: middle;
+    transition: color 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 4px;
+}
+.fav-btn:hover {
+    color: #fbbf24;        /* 黄色 */
+}
+.fav-btn:active {
+    transform: scale(0.85);
+}
+.fav-btn--active {
+    color: #fbbf24 !important;  /* 登録済み: 金色 */
+}
+.fav-btn--active:hover {
+    color: #f59e0b !important;
+}
+
+/* テーブル内では特に余白を圧縮 */
+.data-table .fav-btn {
+    padding: 2px 4px;
+    margin-right: 2px;
+    font-size: 0.85rem;
+}
+
+/* ─── お気に入りセクション ─── */
+.favorites-section {
+    background: var(--bg-white);
+    border-radius: 10px;
+    padding: 24px 20px;
+    box-shadow: var(--shadow);
+}
+.favorites-section .section-title {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    color: var(--primary-color);
+    text-align: center;
+}
+.favorites-section .section-title i {
+    margin-right: 6px;
+}
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.favorite-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 12px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.favorite-item:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-hover-bg, rgba(0, 102, 204, 0.06));
+}
+.favorite-item:active {
+    transform: scale(0.99);
+}
+.favorite-item .fav-btn {
+    margin-right: 0;
+    padding: 6px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.favorite-item__body {
+    flex: 1;
+    min-width: 0;
+}
+.favorite-item__name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+.favorite-item__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.82rem;
+    color: var(--text-light);
+}
+.favorite-item__meta i {
+    margin-right: 3px;
+    opacity: 0.7;
+}
+.favorite-item__arrow {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+/* 空状態 */
+.favorites-empty {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text-light);
+}
+.favorites-empty i {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.4;
+    color: #fbbf24;
+}
+.favorites-empty p {
+    margin: 4px 0;
+}
+.favorites-empty__hint {
+    font-size: 0.85rem;
+    margin-top: 12px;
+}
+
+/* モバイル調整 */
+@media (max-width: 768px) {
+    .favorites-section {
+        padding: 18px 14px;
+    }
+    .favorite-item {
+        padding: 12px 10px;
+    }
+    .favorite-item__name {
+        font-size: 0.95rem;
+    }
+    .favorite-item__meta {
+        font-size: 0.78rem;
+    }
+}
+
+/* ナビバッジのモバイル微調整 */
+@media (max-width: 768px) {
+    .nav-badge {
+        font-size: 0.65rem;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+    }
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .fav-btn {
+    color: #475569;
+}
+[data-theme="dark"] .fav-btn--active {
+    color: #fbbf24 !important;
+}
+[data-theme="dark"] .favorite-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .favorite-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+}
+[data-theme="dark"] .favorites-section {
+    background: var(--bg-white);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .fav-btn {
+        color: #475569;
+    }
+    :root:not([data-theme="light"]) .fav-btn--active {
+        color: #fbbf24 !important;
+    }
+    :root:not([data-theme="light"]) .favorite-item {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: var(--border-color);
+    }
+    :root:not([data-theme="light"]) .favorite-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--primary-color);
+    }
+    :root:not([data-theme="light"]) .favorites-section {
+        background: var(--bg-white);
+    }
+}
+
 /* ダークモード対応 */
 [data-theme="dark"] .search-result-count {
     background: rgba(255, 255, 255, 0.04);
