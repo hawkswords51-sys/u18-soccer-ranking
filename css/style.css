@@ -989,13 +989,19 @@ textarea {
         padding: 8px 12px;
     }
     .modal-body {
-        padding: 16px;
+        /* padding-top を 0 にして、thead が sticky になった時に
+           modal-header との間に隙間 (コンテンツが一瞬見える領域) を作らない */
+        padding: 0 14px 14px;
         /* ★ 縦・横の両軸スクロールをここで担当 ★
            これにより data-table の thead が
            modal-body 上端に貼り付けるようになる */
         flex: 1 1 auto;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
+    }
+    /* タブには上余白を戻す (modal-body の padding-top を 0 にした分) */
+    .modal-body > .tabs {
+        margin-top: 14px;
     }
 
     /* ---------- モバイル: テーブル個別のオーバーフローは解除 ----------
@@ -1007,18 +1013,54 @@ textarea {
         overflow: visible;
     }
 
+    /* ---------- モバイル: プレミア/プリンスのアコーディオンも横スクロール対応 ----------
+       .league-accordion は border-radius のために overflow:hidden が
+       設定されているが、これだと内部の wide テーブルが見切れる。
+       モバイルでは overflow:visible にして、modal-body 側で横スクロールさせる。
+    */
+    .league-accordion {
+        overflow: visible;
+    }
+
     /* ---------- モバイル: ヘッダー行を modal-body 上端に固定 ----------
        sticky cell は親 thead の背景を透過させるので、
-       各 th に明示的に背景色を指定する必要がある */
+       各 th に明示的に背景色を指定する必要がある.
+       top: -1px で 1px だけ上に食い込ませて、サブピクセル境界の
+       隙間 (薄い線が見えるバグ) を防ぐ */
     .data-table thead th {
         position: sticky;
-        top: 0;
+        top: -1px;
         z-index: 3;
         background: var(--primary-color);
         color: #fff;
     }
+
+    /* ---------- モバイル: 1列目(順位/県内順位) も左端固定 ----------
+       チーム名だけだと、その左を通過するセル(rank-badge等)が
+       一瞬見えてしまう。1列目もstickyにして完全に固定する。
+    */
+    .data-table th:nth-child(1),
+    .data-table td:nth-child(1) {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background: #fff;
+        /* 1列目は固定幅にして、2列目の left オフセット計算を確定させる */
+        min-width: 54px;
+        width: 54px;
+        padding-left: 8px;
+        padding-right: 4px;
+        text-align: center;
+    }
+    /* 2列目(チーム名) は1列目の幅(54px)分右にずらす */
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2) {
+        left: 54px !important;  /* PC用ルール (left:0) を上書き */
+    }
+    /* 上端固定 + 左端固定 の交差セル(1列目・2列目のthead): 最前面 */
+    .data-table thead th:nth-child(1),
     .data-table thead th:nth-child(2) {
-        z-index: 5;  /* 上端固定 + 左端固定 の交差セル: 最前面 */
+        z-index: 5;
     }
 
     /* ---------- タブ ---------- */
