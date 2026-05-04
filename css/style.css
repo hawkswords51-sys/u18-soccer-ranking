@@ -357,6 +357,148 @@ body {
     margin-bottom: 15px;
     opacity: 0.5;
 }
+.search-no-results__hint {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 8px;
+}
+
+/* =========================
+   ★ Phase 9-3: 検索フィルター・件数バッジ・別名一致表示
+   ========================= */
+
+.search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 4px 0;
+}
+.search-filters .filter-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    margin-right: 4px;
+    white-space: nowrap;
+}
+.search-filters .filter-label i {
+    font-size: 0.85rem;
+}
+
+.filter-chip {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1;
+    min-height: 36px;
+    -webkit-tap-highlight-color: transparent;
+}
+.filter-chip:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.filter-chip:active {
+    transform: scale(0.96);
+}
+.filter-chip.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+.filter-chip.active:hover {
+    color: white;
+    opacity: 0.92;
+}
+
+/* 件数バッジ */
+.search-result-count {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--bg-light);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: var(--text-light);
+}
+.search-result-count i {
+    margin-right: 6px;
+    color: var(--primary-color);
+}
+
+/* 別名一致のヒント */
+.search-result-alias {
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    padding-left: 4px;
+    border-left: 2px solid var(--primary-color);
+    line-height: 1.3;
+}
+
+/* モバイル: フィルターチップを少し小さく */
+@media (max-width: 480px) {
+    .search-filters {
+        gap: 6px;
+    }
+    .search-filters .filter-label {
+        font-size: 0.82rem;
+        flex-basis: 100%;
+        margin-bottom: 2px;
+    }
+    .filter-chip {
+        padding: 5px 12px;
+        font-size: 0.82rem;
+        min-height: 34px;
+    }
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .search-result-count {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-dark);
+}
+[data-theme="dark"] .filter-chip {
+    border-color: var(--border-color);
+    color: var(--text-light);
+}
+[data-theme="dark"] .filter-chip:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+[data-theme="dark"] .filter-chip.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .search-result-count {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-dark);
+    }
+    :root:not([data-theme="light"]) .filter-chip {
+        border-color: var(--border-color);
+        color: var(--text-light);
+    }
+    :root:not([data-theme="light"]) .filter-chip:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    :root:not([data-theme="light"]) .filter-chip.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+}
 
 /* =========================
    地図セクション
@@ -1969,11 +2111,14 @@ details[open] > summary > .league-accordion__chevron {
 [data-theme="dark"] .league-accordion__chevron {
     color: var(--text-dark);
 }
+/* 「10チーム」等のカウント文字: !important 付きで確実に上書き
+   (元 CSS の .league-accordion__count { color: #6b7280 } は specificity 同等で
+    上書きされにくいため) */
 [data-theme="dark"] .league-accordion__count {
-    color: var(--text-light);
+    color: #cbd5e1 !important;  /* 明るいグレー */
 }
 [data-theme="dark"] .league-accordion__count--region {
-    color: var(--primary-color);
+    color: #93c5fd !important;  /* 明るい青 (アクセント) */
 }
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .league-accordion__summary,
@@ -1984,10 +2129,10 @@ details[open] > summary > .league-accordion__chevron {
         color: var(--text-dark);
     }
     :root:not([data-theme="light"]) .league-accordion__count {
-        color: var(--text-light);
+        color: #cbd5e1 !important;
     }
     :root:not([data-theme="light"]) .league-accordion__count--region {
-        color: var(--primary-color);
+        color: #93c5fd !important;
     }
 }
 
