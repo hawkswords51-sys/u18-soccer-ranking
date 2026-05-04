@@ -1065,13 +1065,8 @@ textarea {
     .league-accordion__count {
         margin-left: 12px;
     }
-    /* summary の chevron + label を固定で見えるようにするため sticky 化
-       (横スクロール時にラベルが消えないように) */
-    .league-accordion__summary {
-        position: sticky;
-        left: 0;
-        background: inherit;  /* 親の背景を引き継ぐ */
-    }
+    /* 注: summary に sticky を付けるとタッチイベントを奪ってスクロール不能に
+       なる場合があるため static のままにする (v6で削除) */
 
     /* ---------- モバイル: ヘッダー行を modal-body 上端に固定 ----------
        sticky cell は親 thead の背景を透過させるので、
@@ -1122,10 +1117,37 @@ textarea {
     .data-table tbody tr:hover td:nth-child(2) {
         background: var(--bg-light);
     }
-    /* 3列目以降の各列にも最低幅を指定して、データ列が極端に潰れないように */
-    .data-table th:nth-child(n+3),
-    .data-table td:nth-child(n+3) {
+    /* 3列目(リーグ/所属) は他の数値列より広めに (バッジが入るため) */
+    .data-table th:nth-child(3),
+    .data-table td:nth-child(3) {
+        width: 90px;
+        min-width: 90px;
+        /* バッジの「プリンスリーグ北海道」のような長文を折り返せるように */
+        white-space: normal;
+        line-height: 1.25;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    /* 4列目以降(数値) は 50px */
+    .data-table th:nth-child(n+4),
+    .data-table td:nth-child(n+4) {
         min-width: 50px;
+    }
+
+    /* ---------- リーグバッジを折り返し可能に ----------
+       元々は white-space: nowrap (継承) で1行のみだったが、
+       長いリーグ名 (プリンスリーグ北海道など) は90px幅では
+       1行に収まらないので、複数行に折り返せるようにする */
+    .league-badge {
+        white-space: normal;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        line-height: 1.2;
+        font-size: 0.7rem;
+        padding: 3px 7px;
+        display: inline-block;
+        max-width: 100%;
+        text-align: center;
     }
 
     /* ---------- タブ ---------- */
