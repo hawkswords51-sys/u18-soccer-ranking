@@ -27,6 +27,7 @@
 }
 
 :root {
+    color-scheme: light;
     --primary-color: #0066CC;
     --secondary-color: #FFD700;
     --premier-color: #D4AF37;
@@ -41,6 +42,70 @@
     --danger-color: #dc3545;
     --shadow: 0 2px 8px rgba(0,0,0,0.1);
     --shadow-lg: 0 4px 16px rgba(0,0,0,0.15);
+    /* ダークモード用 (Phase 9-2) ※ data-theme="dark" 時に上書きされる */
+    --primary-hover-bg: rgba(0, 102, 204, 0.08);
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    --table-zebra: rgba(0, 0, 0, 0.02);
+    --info-banner-bg: linear-gradient(90deg, #e8f5e9, #f1f8e9);
+    --info-banner-border: #4caf50;
+    --info-banner-text: #2e7d32;
+}
+
+/* =========================
+   Phase 9-2: ダークモード
+   ・data-theme="dark" : ユーザーが手動で「ダーク」を選択した時
+   ・data-theme="light": ユーザーが手動で「ライト」を選択した時
+   ・属性なし          : システム設定 (prefers-color-scheme) に追従
+   ========================= */
+[data-theme="dark"] {
+    color-scheme: dark;
+    --primary-color: #3b82f6;
+    --secondary-color: #fbbf24;
+    --premier-color: #d4af37;
+    --prince-color: #60a5fa;
+    --prefecture-color: #94a3b8;
+    --text-dark: #e5e7eb;
+    --text-light: #94a3b8;
+    --bg-light: #0f172a;
+    --bg-white: #1e293b;
+    --border-color: #334155;
+    --success-color: #4ade80;
+    --danger-color: #f87171;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --primary-hover-bg: rgba(59, 130, 246, 0.15);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+    --table-zebra: rgba(255, 255, 255, 0.02);
+    --info-banner-bg: linear-gradient(90deg, #14532d, #1e3a2e);
+    --info-banner-border: #4ade80;
+    --info-banner-text: #86efac;
+}
+
+/* システムが「ダーク」設定で、かつユーザーが手動選択していない場合 */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+        --primary-color: #3b82f6;
+        --secondary-color: #fbbf24;
+        --premier-color: #d4af37;
+        --prince-color: #60a5fa;
+        --prefecture-color: #94a3b8;
+        --text-dark: #e5e7eb;
+        --text-light: #94a3b8;
+        --bg-light: #0f172a;
+        --bg-white: #1e293b;
+        --border-color: #334155;
+        --success-color: #4ade80;
+        --danger-color: #f87171;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
+        --primary-hover-bg: rgba(59, 130, 246, 0.15);
+        --modal-overlay: rgba(0, 0, 0, 0.7);
+        --table-zebra: rgba(255, 255, 255, 0.02);
+        --info-banner-bg: linear-gradient(90deg, #14532d, #1e3a2e);
+        --info-banner-border: #4ade80;
+        --info-banner-text: #86efac;
+    }
 }
 
 html {
@@ -1825,5 +1890,174 @@ details[open] > summary > .league-accordion__chevron {
     }
     .badge-legend-item {
         font-size: 0.78rem;
+    }
+}
+
+/* =====================================================================
+   ★ Phase 9-2: ダークモード - 個別要素のオーバーライド
+   既存のハードコード色を上書き。手動指定とシステム自動検知の両方に対応。
+   ===================================================================== */
+
+/* === カード・ボックス類の白背景 → ダークカード色に === */
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .search-box,
+[data-theme="dark"] .map-section,
+[data-theme="dark"] .pref-button,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .league-accordion,
+[data-theme="dark"] .tournament-section,
+[data-theme="dark"] .tournament-result-team,
+[data-theme="dark"] .data-table th:nth-child(1),
+[data-theme="dark"] .data-table td:nth-child(1),
+[data-theme="dark"] .data-table th:nth-child(2),
+[data-theme="dark"] .data-table td:nth-child(2) {
+    background: var(--bg-white);
+    color: var(--text-dark);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .info-card,
+    :root:not([data-theme="light"]) .search-box,
+    :root:not([data-theme="light"]) .map-section,
+    :root:not([data-theme="light"]) .pref-button,
+    :root:not([data-theme="light"]) .modal-content,
+    :root:not([data-theme="light"]) .league-accordion,
+    :root:not([data-theme="light"]) .tournament-section,
+    :root:not([data-theme="light"]) .tournament-result-team,
+    :root:not([data-theme="light"]) .data-table th:nth-child(1),
+    :root:not([data-theme="light"]) .data-table td:nth-child(1),
+    :root:not([data-theme="light"]) .data-table th:nth-child(2),
+    :root:not([data-theme="light"]) .data-table td:nth-child(2) {
+        background: var(--bg-white);
+        color: var(--text-dark);
+    }
+}
+
+/* === stat-item / 凡例 / 注意書き等 (薄い背景の要素) === */
+[data-theme="dark"] .stat-item,
+[data-theme="dark"] .map-legend,
+[data-theme="dark"] .badge-legend,
+[data-theme="dark"] .tournament-disclaimer,
+[data-theme="dark"] .league-accordion__summary--region,
+[data-theme="dark"] .league-accordion__summary--division,
+[data-theme="dark"] .league-accordion__body,
+[data-theme="dark"] .league-accordion__body--nested,
+[data-theme="dark"] .rank-other {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-dark);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .stat-item,
+    :root:not([data-theme="light"]) .map-legend,
+    :root:not([data-theme="light"]) .badge-legend,
+    :root:not([data-theme="light"]) .tournament-disclaimer,
+    :root:not([data-theme="light"]) .league-accordion__summary--region,
+    :root:not([data-theme="light"]) .league-accordion__summary--division,
+    :root:not([data-theme="light"]) .league-accordion__body,
+    :root:not([data-theme="light"]) .league-accordion__body--nested,
+    :root:not([data-theme="light"]) .rank-other {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-dark);
+    }
+}
+
+/* === 入力欄 === */
+[data-theme="dark"] .search-input,
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] textarea {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    border-color: var(--border-color);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .search-input,
+    :root:not([data-theme="light"]) input[type="text"],
+    :root:not([data-theme="light"]) input[type="search"],
+    :root:not([data-theme="light"]) textarea {
+        background: var(--bg-light);
+        color: var(--text-dark);
+        border-color: var(--border-color);
+    }
+}
+
+/* === update-banner === */
+[data-theme="dark"] .update-banner {
+    background: var(--info-banner-bg);
+    border-left-color: var(--info-banner-border);
+    color: var(--info-banner-text);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .update-banner {
+        background: var(--info-banner-bg);
+        border-left-color: var(--info-banner-border);
+        color: var(--info-banner-text);
+    }
+}
+
+/* === フッター === */
+[data-theme="dark"] .footer {
+    background: #020617;
+    color: var(--text-light);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .footer {
+        background: #020617;
+        color: var(--text-light);
+    }
+}
+
+/* === モーダルのオーバーレイを濃く === */
+[data-theme="dark"] .modal {
+    background-color: var(--modal-overlay);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .modal {
+        background-color: var(--modal-overlay);
+    }
+}
+
+/* === テーブル hover === */
+[data-theme="dark"] .data-table tbody tr:hover,
+[data-theme="dark"] .data-table tbody tr:hover td:nth-child(1),
+[data-theme="dark"] .data-table tbody tr:hover td:nth-child(2) {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .data-table tbody tr:hover,
+    :root:not([data-theme="light"]) .data-table tbody tr:hover td:nth-child(1),
+    :root:not([data-theme="light"]) .data-table tbody tr:hover td:nth-child(2) {
+        background: rgba(255, 255, 255, 0.06) !important;
+    }
+}
+
+/* === ヘッダー内のダークモード切替ボタン === */
+.theme-toggle {
+    color: white;
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    min-width: 44px;
+    min-height: 44px;
+    font-family: inherit;
+}
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+.theme-toggle:active {
+    transform: scale(0.92);
+}
+@media (max-width: 768px) {
+    .theme-toggle {
+        padding: 8px 10px;
+        font-size: 1rem;
+        min-width: 40px;
+        min-height: 40px;
     }
 }
