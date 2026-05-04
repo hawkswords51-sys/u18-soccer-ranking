@@ -1034,39 +1034,28 @@ textarea {
         z-index: 0;
     }
 
-    /* ---------- 県別タブ・プレミア/プリンス すべて modal-body でスクロール ----------
-       縦・横の両軸スクロールを modal-body に集約することで、
-       上端 (thead) を modal-body の上端に sticky 固定できる */
+    /* ---------- 県別タブ: modal-body でスクロール (sticky thead 縦も効く) ---------- */
     #teamsTable,
-    #championshipsTable,
-    .league-group-block {
+    #championshipsTable {
         overflow: visible;
     }
 
-    /* ---------- プレミア/プリンスの幅を modal-body に伝播させる ----------
-       league-accordion-root は display:flex なので、内部の wide table の
-       幅を上に伝えない。各層に min-width を設定して幅を伝播させる。 */
-    .league-accordion-root {
-        align-items: flex-start;  /* stretch しない */
-        min-width: 720px;
-    }
-    .league-accordion {
-        min-width: 720px;
-        max-width: none;
-    }
-    .league-accordion__body {
-        min-width: 100%;  /* 親(720px) と同じ */
-    }
+    /* ---------- プレミア/プリンス: 各リーグ表が独立して横スクロール (v4 方式に戻す) ----------
+       理由: v5/v6 で試した「modal-body に幅を伝播させる方式」は iOS Safari で
+       安定動作しなかったため。横スクロールと左端固定 (col 1, col 2) は
+       league-group-block 内で確実に動作する。 */
     .league-group-block {
-        min-width: 100%;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
     }
-    /* アコーディオン summary の "12チーム" バッジは margin-left:auto だと
-       720px 横スクロールしないと見えなくなるので、ラベルの右隣に表示する */
+    /* league-accordion 系の min-width 伝播は撤去 (v4 構造に戻す) */
+    .league-accordion-root {
+        /* デフォルト (align-items: stretch) に戻す */
+    }
     .league-accordion__count {
-        margin-left: 12px;
+        /* デフォルトの margin-left: auto に戻す (右側に表示) */
     }
-    /* 注: summary に sticky を付けるとタッチイベントを奪ってスクロール不能に
-       なる場合があるため static のままにする (v6で削除) */
 
     /* ---------- モバイル: ヘッダー行を modal-body 上端に固定 ----------
        sticky cell は親 thead の背景を透過させるので、
@@ -1095,15 +1084,16 @@ textarea {
         padding-right: 4px;
         text-align: center;
     }
-    /* 2列目(チーム名) は1列目の幅(64px)分右にずらして、幅130pxに固定 */
+    /* 2列目(チーム名) は1列目の幅(64px)分右にずらして、幅110pxに固定 (v7で 130→110)
+       より左寄りで収まり、データ列の表示エリアが広がる */
     .data-table th:nth-child(2),
     .data-table td:nth-child(2) {
         left: 64px !important;
         z-index: 10;
         background: #ffffff;
-        width: 130px;
-        min-width: 130px;
-        max-width: 130px;
+        width: 110px;
+        min-width: 110px;
+        max-width: 110px;
         box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.18);
     }
     /* 上端固定 + 左端固定 の交差セル(thead 1列目・2列目): 最前面 */
@@ -1135,12 +1125,13 @@ textarea {
     }
 
     /* ---------- リーグバッジを折り返し可能に ----------
-       元々は white-space: nowrap (継承) で1行のみだったが、
-       長いリーグ名 (プリンスリーグ北海道など) は90px幅では
-       1行に収まらないので、複数行に折り返せるようにする */
+       v7 改善: word-break を keep-all に変更して、JS側で挿入される
+       <wbr> (改行候補) で「プレミアリーグ / EAST」のように
+       自然な位置で折り返されるようにする。
+       overflow-wrap: anywhere は最後の手段として残す。 */
     .league-badge {
         white-space: normal;
-        word-break: break-all;
+        word-break: keep-all;
         overflow-wrap: anywhere;
         line-height: 1.2;
         font-size: 0.7rem;
