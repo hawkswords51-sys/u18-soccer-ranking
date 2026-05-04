@@ -174,28 +174,68 @@ class SoccerApp {
             current = null;
         };
 
-        // mouseover はバブリングするので document に1個だけ設置
+        // ★ Phase 9-4c: data-tooltip 属性を持つ要素全般を発火対象に
+        // バッジ単体だけでなく、ラッパー (.team-name-tooltip-zone) もカバー
+        const SELECTOR = '[data-tooltip]';
+
+        // mouseover はバブリングするので document に1個だけ設置 (PC ホバー用)
         document.addEventListener('mouseover', (e) => {
-            const icon = e.target.closest && e.target.closest('.team-tournament-icon');
-            if (!icon || icon === current) return;
-            current = icon;
+            const target = e.target.closest && e.target.closest(SELECTOR);
+            if (!target || target === current) return;
+            current = target;
             if (timer) clearTimeout(timer);
-            timer = setTimeout(() => showTip(icon), 120);
+            timer = setTimeout(() => showTip(target), 120);
         });
 
         document.addEventListener('mouseout', (e) => {
-            const icon = e.target.closest && e.target.closest('.team-tournament-icon');
-            if (!icon) return;
-            // 関連先がまだバッジ内なら維持
+            const target = e.target.closest && e.target.closest(SELECTOR);
+            if (!target) return;
+            // 関連先がまだ同じターゲット内なら維持
             const to = e.relatedTarget;
-            if (to && to.closest && to.closest('.team-tournament-icon') === icon) return;
+            if (to && to.closest && to.closest(SELECTOR) === target) return;
             hideTip();
         });
 
-        // スクロール/クリックで隠す
-        window.addEventListener('scroll', hideTip, true);
-        window.addEventListener('resize', hideTip);
-        document.addEventListener('click', hideTip);
+        // ★ モバイル/タッチ用: タップで即座に表示。次のタップで非表示。
+        // (既存の click でhide があるので、タッチイベント側で別途制御)
+        let touchTipShownTarget = null;
+        document.addEventListener('touchstart', (e) => {
+            const target = e.target.closest && e.target.closest(SELECTOR);
+            if (target) {
+                // 既に同じ要素のツールチップが表示中なら次のタップで隠す
+                if (touchTipShownTarget === target) {
+                    touchTipShownTarget = null;
+                    hideTip();
+                    return;
+                }
+                if (timer) clearTimeout(timer);
+                showTip(target);
+                touchTipShownTarget = target;
+                current = target;
+            } else {
+                // ツールチップ外をタップ → 隠す
+                touchTipShownTarget = null;
+                hideTip();
+            }
+        }, { passive: true });
+
+        // スクロール/リサイズで隠す
+        window.addEventListener('scroll', () => {
+            touchTipShownTarget = null;
+            hideTip();
+        }, true);
+        window.addEventListener('resize', () => {
+            touchTipShownTarget = null;
+            hideTip();
+        });
+        // PC のクリックは従来通り隠す (タッチデバイスでは touchstart 側で制御)
+        document.addEventListener('click', (e) => {
+            // タッチ由来の click はスキップしたいが、判別が難しいので
+            // 「ツールチップ自身か、data-tooltip 要素ならスキップ」する
+            const t = e.target.closest && e.target.closest(SELECTOR);
+            if (t) return;
+            hideTip();
+        });
     }
 
     // ============================================================
@@ -271,6 +311,26 @@ class SoccerApp {
         // 文字なしの小さな丸ドット (色だけで区別)
         // ※ title 属性ではなく data-tooltip を使い、カスタムツールチップで表示遅延を短くする
         return ` <span class="team-tournament-icon ${badgeClass}" data-tooltip="${this.escapeHtml(tooltipText)}" aria-label="${this.escapeHtml(best.result)}"></span>`;
+    }
+
+    /**
+     * ★ Phase 9-4c: チーム名のテキスト + バッジ全体をタップ可能領域にする。
+     * 大会成績がある場合、ラッパー <span class="team-name-tooltip-zone"> に
+     * data-tooltip を付与してチーム名のどこをタップしてもツールチップ表示。
+     * @param {string} displayName - 改行ヒント等を含む表示用 HTML
+     * @param {string} originalName - 元のチーム名 (バッジ取得用)
+     * @param {boolean} bold - <strong> で囲むかどうか (順位表用)
+     */
+    wrapTeamNameWithBadge(displayName, originalName, bold = true) {
+        const badge = this.getTournamentBadge(originalName);
+        const inner = bold ? `<strong>${displayName}</strong>` : displayName;
+        if (!badge) return inner;
+
+        // バッジから data-tooltip を流用 (同じデータを2箇所に書かない)
+        const m = badge.match(/data-tooltip="([^"]*)"/);
+        if (!m) return inner + badge;
+
+        return `<span class="team-name-tooltip-zone" data-tooltip="${m[1]}">${inner}${badge}</span>`;
     }
 
     setupEventListeners() {
@@ -460,7 +520,7 @@ class SoccerApp {
             <div class="search-result-item" data-pref-id="${team.prefectureId}">
                 <div class="search-result-team">
                     ${favBtn}
-                    <span class="team-name-text">${team.name}</span>${this.getTournamentBadge(team.name)}
+                    ${this.wrapTeamNameWithBadge(`<span class="team-name-text">${team.name}</span>`, team.name, false)}
                 </div>
                 <div class="search-result-info">
                     <span><i class="fas fa-map-marker-alt"></i> ${team.prefectureName}</span>
@@ -686,7 +746,7 @@ class SoccerApp {
             <div class="favorite-item" data-pref-id="${fav.prefectureId}" data-name="${safeName}">
                 ${favBtn}
                 <div class="favorite-item__body">
-                    <div class="favorite-item__name">${safeName}${this.getTournamentBadge(fav.name)}</div>
+                    <div class="favorite-item__name">${this.wrapTeamNameWithBadge(safeName, fav.name, false)}</div>
                     <div class="favorite-item__meta">
                         <span><i class="fas fa-map-marker-alt"></i> ${safePrefName}</span>
                         <span><i class="fas fa-trophy"></i> ${safeLeague}</span>
@@ -877,7 +937,7 @@ class SoccerApp {
                 <td>
                     <span class="rank-badge ${rankClass}">${prefRank}</span>
                 </td>
-                <td>${favBtn}<strong>${teamNameDisplay}</strong>${this.getTournamentBadge(team.name)}</td>
+                <td>${favBtn}${this.wrapTeamNameWithBadge(teamNameDisplay, team.name)}</td>
                 <td>
                     <span class="league-badge ${leagueBadgeClass}">${leagueDisplay}</span>
                 </td>
@@ -1282,7 +1342,7 @@ class SoccerApp {
         return `
             <tr>
                 <td><span class="rank-badge ${rankClass}">${rank}</span></td>
-                <td>${favBtn}<strong>${teamNameDisplay}</strong>${this.getTournamentBadge(team.name)}</td>
+                <td>${favBtn}${this.wrapTeamNameWithBadge(teamNameDisplay, team.name)}</td>
                 ${showPrefecture ? `<td>${this.escapeHtml(team.prefectureName || '-')}</td>` : ''}
                 <td><strong>${team.points ?? 0}</strong></td>
                 <td>${team.played ?? 0}</td>
