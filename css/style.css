@@ -2143,6 +2143,28 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* ============================================================
+   ★ Phase 9-4c: チーム名タップ可能ゾーン
+   バッジだけでなくチーム名全体をタップしてもツールチップが出る
+   ============================================================ */
+.team-name-tooltip-zone {
+    cursor: help;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+@media (max-width: 768px) {
+    .team-name-tooltip-zone {
+        /* タップ時のフィードバックをほのかに */
+        transition: background 0.12s ease;
+    }
+    .team-name-tooltip-zone:active {
+        background: rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="dark"] .team-name-tooltip-zone:active {
+        background: rgba(255, 255, 255, 0.06);
+    }
+}
+
+/* ============================================================
    チームカードに付ける小ドット (順位表/検索結果のチーム名の右隣)
    - 直近5年で最も良かった成績を 色だけ で表示 (文字なし)
    - title 属性で全成績がツールチップ表示される
