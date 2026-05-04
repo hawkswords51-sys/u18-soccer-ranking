@@ -58,6 +58,9 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("shizuoka", "藤枝明誠高校2nd"):         ["藤枝明誠②", "藤枝明誠2nd"],
     # === 福島県 ===
     ("fukushima", "帝京安積高校2nd"):        ["帝京安積セカンド"],
+    ("fukushima", "学法石川高校2nd"):        ["学法石川セカンド"],
+    # === 石川県 ===
+    ("ishikawa", "金沢学院大学附属高校2nd"): ["金沢学院2nd"],
     # === 茨城県 ===
     # rename 後の「鹿島アントラーズユース2nd」に旧表記をalias登録
     ("ibaraki", "鹿島アントラーズユース2nd"): ["鹿島アントラーズユースB"],
@@ -86,6 +89,9 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("chiba", "柏レイソルU-18 2nd"):         ["レイソルU-18B"],
     # === 京都府 (高校なしのC表記もキャッチ) ===
     ("kyoto", "京都橘高校3rd"):              ["京都橘C"],
+    ("kyoto", "東山高校2nd"):                ["東山B"],
+    # === 広島県 ===
+    ("hiroshima", "広島瀬戸内高校2nd"):      ["瀬戸内セカンド"],
     # === 徳島県 ===
     ("tokushima", "徳島商業高校2nd"):        ["徳島商業S"],
     ("tokushima", "徳島ヴォルティスユース2nd"): ["徳島ヴォルティスS"],
