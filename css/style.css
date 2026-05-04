@@ -777,6 +777,15 @@ body {
    ★ 9-1b: 実機フィードバック反映 (2026-05)
    ========================= */
 
+/* ★ Phase 9-1j: 「nobreak」クラス
+   チーム名やリーグ名の中で「U-18」「2nd」「3rd」など、
+   途中で改行されたくないトークンを <span class="nb"> で包んで保護する。
+   white-space: nowrap で span の中身は1行を保ち、
+   span 自体は単位として周囲のテキストと一緒に折り返される。 */
+.nb {
+    white-space: nowrap;
+}
+
 /* ---------- 順位表テーブル: PC は従来通り、モバイルでは特殊レイアウト ----------
    設計方針:
    ・PC (>768px): #teamsTable / #championshipsTable / .league-group-block を
