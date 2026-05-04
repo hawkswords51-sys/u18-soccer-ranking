@@ -66,6 +66,15 @@ jobs:
           else
             echo "data/tournaments_data.yml がまだありません。スキップ。"
           fi
+      # ★ NEW: スクレイプ後にエイリアス重複と空チームを自動クリーンアップ
+      - name: エイリアス重複・空チームを自動クリーンアップ
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        run: |
+          if [ -f scraper/cleanup_aliases.py ]; then
+            python scraper/cleanup_aliases.py --apply --remove-empty
+          else
+            echo "scraper/cleanup_aliases.py がまだありません。スキップ。"
+          fi
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
