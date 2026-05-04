@@ -977,8 +977,12 @@ textarea {
         align-items: stretch;
     }
     .modal-content {
+        /* iOS Safari の下部 URL バー/タブバーで最下行が隠れないよう、
+           dvh (動的ビューポート高さ) を使う。非対応ブラウザは vh にフォールバック */
         max-height: 100vh;
+        max-height: 100dvh;
         height: 100vh;
+        height: 100dvh;
         border-radius: 0;
         /* flex 縦並びで modal-body を伸ばす */
         display: flex;
@@ -998,16 +1002,16 @@ textarea {
         padding: 8px 12px;
     }
     .modal-body {
-        /* ★ padding 完全撤去 ★
-           理由: 左パディングがあると、横スクロール時に sticky col の左に
-           パディング分の隙間ができ、その下を通過するセル(league-badge等)
-           が一瞬見えてしまう。padding 0 にすれば sticky col が完全に
-           viewport 左端に密着するので隙間は発生しない。
-           内部要素(タブ・statsカードなど) には個別に margin で余白を確保。 */
-        padding: 0;
+        /* ★ padding 完全撤去 (左パディング起因のリーク防止) ★
+           ただし下端は iOS Safari の下部バー/ホームインジケーターで
+           最後の行が隠れないよう、safe-area-inset-bottom 分の余白を確保。
+           env() 非対応の古い環境では fallback 値 14px を使う。 */
+        padding: 0 0 env(safe-area-inset-bottom, 14px);
         flex: 1 1 auto;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
+        /* モーダル内のスクロールが body 全体に波及しないよう */
+        overscroll-behavior: contain;
     }
     /* 内部要素に左右余白を個別に */
     .modal-body > .tabs {
