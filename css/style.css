@@ -1084,16 +1084,16 @@ textarea {
         padding-right: 4px;
         text-align: center;
     }
-    /* 2列目(チーム名) は1列目の幅(64px)分右にずらして、幅110pxに固定 (v7で 130→110)
-       より左寄りで収まり、データ列の表示エリアが広がる */
+    /* 2列目(チーム名) は1列目の幅(64px)分右にずらして、幅100pxに固定
+       (v7: 130→110、v8: 110→100) より左寄りでデータ列が広がる */
     .data-table th:nth-child(2),
     .data-table td:nth-child(2) {
         left: 64px !important;
         z-index: 10;
         background: #ffffff;
-        width: 110px;
-        min-width: 110px;
-        max-width: 110px;
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
         box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.18);
     }
     /* 上端固定 + 左端固定 の交差セル(thead 1列目・2列目): 最前面 */
@@ -1177,15 +1177,14 @@ textarea {
     }
 
     /* ---------- モバイル: チーム名カラムの折り返し設定 ----------
-       長いチーム名 (例: 流通経済大学付属柏高校 / サンフレッチェ広島F.C.ユース)
-       を 130px 内に確実に折り返す。
-       word-break: break-all で日本語も強制的に折り返す
-       (1文字ずつ縦書きにはならない=セル幅130pxで複数文字横並び後に改行)
+       v8: word-break を keep-all に変更。これにより JS 側で挿入される
+       <wbr> (U-18 の前など) が改行候補として優先される。
+       overflow-wrap: anywhere は最後の手段 (それでも溢れる場合)。
     */
     .data-table th:nth-child(2),
     .data-table td:nth-child(2) {
         white-space: normal;
-        word-break: break-all;
+        word-break: keep-all;
         overflow-wrap: anywhere;
         line-height: 1.35;
         vertical-align: middle;
