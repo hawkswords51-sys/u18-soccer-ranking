@@ -244,6 +244,12 @@ class SoccerApp {
     }
 
     setupSearch() {
+        // ★ Phase 9-3: 検索フィルター状態 (デフォルトは全リーグ対象)
+        this.searchFilters = ['premier', 'prince', 'prefecture'];
+
+        // フィルターチップを動的に注入
+        this.injectSearchFilters();
+
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearchBtn');
 
@@ -267,12 +273,80 @@ class SoccerApp {
         });
     }
 
-    performSearch(query) {
-        const results = dataManager.searchTeams(query);
-        this.displaySearchResults(results);
+    /**
+     * ★ Phase 9-3: 検索フィルターチップ (リーグ別) を search-box に注入する
+     */
+    injectSearchFilters() {
+        const inputWrapper = document.querySelector('.search-input-wrapper');
+        if (!inputWrapper) return;
+        // 既に挿入済みなら何もしない
+        if (document.getElementById('searchFilters')) return;
+
+        const filtersDiv = document.createElement('div');
+        filtersDiv.className = 'search-filters';
+        filtersDiv.id = 'searchFilters';
+        filtersDiv.innerHTML = `
+            <span class="filter-label"><i class="fas fa-filter"></i> リーグ:</span>
+            <button type="button" class="filter-chip active" data-filter="all">すべて</button>
+            <button type="button" class="filter-chip active" data-filter="premier">プレミア</button>
+            <button type="button" class="filter-chip active" data-filter="prince">プリンス</button>
+            <button type="button" class="filter-chip active" data-filter="prefecture">県リーグ</button>
+        `;
+        // input の直前に挿入
+        inputWrapper.parentNode.insertBefore(filtersDiv, inputWrapper);
+
+        filtersDiv.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => this.handleFilterChipClick(chip));
+        });
     }
 
-    displaySearchResults(results) {
+    handleFilterChipClick(chip) {
+        const filter = chip.dataset.filter;
+        const all = ['premier', 'prince', 'prefecture'];
+
+        if (filter === 'all') {
+            // 「すべて」をクリック: 全フィルターON
+            this.searchFilters = [...all];
+        } else {
+            // 個別チップをトグル
+            const idx = this.searchFilters.indexOf(filter);
+            if (idx >= 0) {
+                this.searchFilters.splice(idx, 1);
+            } else {
+                this.searchFilters.push(filter);
+            }
+            // 全部空になった場合は「すべて」状態に戻す (UX 上、何もヒットしない状態を避ける)
+            if (this.searchFilters.length === 0) {
+                this.searchFilters = [...all];
+            }
+        }
+
+        // チップの active クラスを更新
+        const allActive = all.every(f => this.searchFilters.includes(f));
+        document.querySelectorAll('#searchFilters .filter-chip').forEach(c => {
+            const f = c.dataset.filter;
+            if (f === 'all') {
+                c.classList.toggle('active', allActive);
+            } else {
+                c.classList.toggle('active', this.searchFilters.includes(f));
+            }
+        });
+
+        // 現在の検索クエリで再検索
+        const query = document.getElementById('searchInput').value.trim();
+        if (query) {
+            this.performSearch(query);
+        }
+    }
+
+    performSearch(query) {
+        const results = dataManager.searchTeams(query, {
+            leagues: this.searchFilters
+        });
+        this.displaySearchResults(results, query);
+    }
+
+    displaySearchResults(results, query) {
         const container = document.getElementById('searchResults');
 
         if (results.length === 0) {
@@ -280,26 +354,38 @@ class SoccerApp {
                 <div class="search-no-results">
                     <i class="fas fa-search"></i>
                     <p>該当するチームが見つかりませんでした</p>
+                    <p class="search-no-results__hint">
+                        フィルターを「すべて」に戻すか、別のキーワードをお試しください
+                    </p>
                 </div>
             `;
             return;
         }
 
+        // 件数表示 + リスト
+        const countLabel = `<div class="search-result-count">
+            <i class="fas fa-list"></i> ${results.length}件のチームが見つかりました
+        </div>`;
+
         const html = results.map(team => {
             const rankVal = (team.leagueRank != null ? team.leagueRank : team.rank);
+            const aliasNote = team.matchedAlias
+                ? `<div class="search-result-alias">別名「${this.escapeHtml(team.matchedAlias)}」で一致</div>`
+                : '';
             return `
             <div class="search-result-item" data-pref-id="${team.prefectureId}">
                 <div class="search-result-team">${team.name}${this.getTournamentBadge(team.name)}</div>
                 <div class="search-result-info">
                     <span><i class="fas fa-map-marker-alt"></i> ${team.prefectureName}</span>
-                    <span><i class="fas fa-trophy"></i> ${team.league}</span>
+                    <span><i class="fas fa-trophy"></i> ${team.league || '-'}</span>
                     <span><i class="fas fa-sort-numeric-down"></i> 順位: ${rankVal}位</span>
                 </div>
+                ${aliasNote}
             </div>
         `;
         }).join('');
 
-        container.innerHTML = html;
+        container.innerHTML = countLabel + html;
 
         container.querySelectorAll('.search-result-item').forEach(item => {
             item.addEventListener('click', () => {
