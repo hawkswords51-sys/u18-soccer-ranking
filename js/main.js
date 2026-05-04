@@ -457,9 +457,12 @@ class SoccerApp {
             //     "東京T1リーグ"      → "京" の後に <wbr> を挿入
             .replace(/([぀-ゟ゠-ヿ一-鿿])([A-Z]+-?\d+)/g, '$1<wbr>$2');
 
-        // ★ Phase 9-1h (2026-05): チーム名内の「U-18」「U18」が
-        // 「U-1 / 8」のように途中で割れないよう、Uの前で改行させる
-        const teamNameDisplay = team.name.replace(/(U-?\d+)/g, '<wbr>$1');
+        // ★ Phase 9-1h/j (2026-05): チーム名内の特殊トークンが
+        // 途中で割れないよう <span class="nb"> (white-space: nowrap) で包む
+        // 対象: U-18 / U18 / 2nd / 3rd / 1st / 4th など
+        const teamNameDisplay = team.name
+            .replace(/(U-?\d+)/g, '<wbr><span class="nb">$1</span>')
+            .replace(/(\d+(?:nd|rd|st|th))/g, '<wbr><span class="nb">$1</span>');
 
         return `
             <tr>
@@ -856,8 +859,11 @@ class SoccerApp {
         const rank = rankVal || '-';
         const rankClass = (typeof rank === 'number' && rank <= 3) ? `rank-${rank}` : 'rank-other';
 
-        // ★ Phase 9-1h: チーム名内の "U-18" などが途中で割れないよう <wbr> を挿入
-        const teamNameDisplay = this.escapeHtml(team.name).replace(/(U-?\d+)/g, '<wbr>$1');
+        // ★ Phase 9-1h/j: チーム名内の "U-18" "2nd" "3rd" などが途中で割れないよう
+        // <span class="nb"> (white-space:nowrap) で包んで保護する
+        const teamNameDisplay = this.escapeHtml(team.name)
+            .replace(/(U-?\d+)/g, '<wbr><span class="nb">$1</span>')
+            .replace(/(\d+(?:nd|rd|st|th))/g, '<wbr><span class="nb">$1</span>');
 
         return `
             <tr>
