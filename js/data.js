@@ -98,24 +98,69 @@ class DataManager {
         return pref ? pref.championships || [] : [];
     }
 
-    searchTeams(query) {
+    /**
+     * チーム検索 (Phase 9-3 で拡張)
+     * @param {string} query - 検索クエリ
+     * @param {object} options - 検索オプション
+     * @param {string[]} [options.leagues] - 絞り込むリーグカテゴリ
+     *   ['premier', 'prince', 'prefecture'] のうち含めるものを指定。
+     *   未指定 or 空配列なら全カテゴリを対象にする。
+     * @returns {Array} 検索結果 (prefId/prefName/matchedAlias を付加)
+     */
+    searchTeams(query, options = {}) {
         const results = [];
-        const lowerQuery = query.toLowerCase();
+        const lowerQuery = (query || '').toLowerCase().trim();
+        if (!lowerQuery) return results;
+
+        const allowedLeagues = (options.leagues && options.leagues.length > 0)
+            ? options.leagues
+            : ['premier', 'prince', 'prefecture'];
 
         Object.keys(this.data).forEach(prefId => {
             const pref = this.data[prefId];
+            if (!pref || !Array.isArray(pref.teams)) return;
             pref.teams.forEach(team => {
-                if (team.name.toLowerCase().includes(lowerQuery)) {
-                    results.push({
-                        ...team,
-                        prefectureId: prefId,
-                        prefectureName: pref.name
-                    });
+                // 1) チーム名でマッチするか
+                const nameMatches = team.name &&
+                    team.name.toLowerCase().includes(lowerQuery);
+
+                // 2) alias (別名) でマッチするか
+                let matchedAlias = null;
+                if (Array.isArray(team.aliases)) {
+                    matchedAlias = team.aliases.find(a =>
+                        a && a.toLowerCase().includes(lowerQuery)
+                    ) || null;
                 }
+
+                if (!nameMatches && !matchedAlias) return;
+
+                // 3) リーグカテゴリで絞り込み
+                const category = this.getTeamLeagueCategory(team);
+                if (!allowedLeagues.includes(category)) return;
+
+                results.push({
+                    ...team,
+                    prefectureId: prefId,
+                    prefectureName: pref.name,
+                    // alias でマッチしたが本名ではマッチしない場合のみ alias を保持
+                    matchedAlias: !nameMatches ? matchedAlias : null,
+                    leagueCategory: category
+                });
             });
         });
 
         return results;
+    }
+
+    /**
+     * チームのリーグ所属カテゴリを返す。
+     * @returns {'premier' | 'prince' | 'prefecture'}
+     */
+    getTeamLeagueCategory(team) {
+        const lg = team && team.league || '';
+        if (lg.includes('プレミアリーグ')) return 'premier';
+        if (lg.includes('プリンスリーグ')) return 'prince';
+        return 'prefecture';
     }
 
     getHighestLeagueLevel(prefId) {
