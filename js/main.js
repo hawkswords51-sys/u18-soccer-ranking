@@ -481,7 +481,8 @@ class SoccerApp {
                 <td>${team.lost}</td>
                 <td>${team.goalsFor}</td>
                 <td>${team.goalsAgainst}</td>
-                <td style="color: ${goalDiff > 0 ? '#28a745' : goalDiff < 0 ? '#dc3545' : '#666'}">
+                <td class="${goalDiff > 0 ? 'goal-diff-positive' : goalDiff < 0 ? 'goal-diff-negative' : 'goal-diff-zero'}"
+                    style="color: ${goalDiff > 0 ? '#28a745' : goalDiff < 0 ? '#dc3545' : '#666'}">
                     ${goalDiff > 0 ? '+' : ''}${goalDiff}
                 </td>
             </tr>
@@ -877,7 +878,8 @@ class SoccerApp {
                 <td>${team.lost ?? 0}</td>
                 <td>${goalsFor}</td>
                 <td>${goalsAgainst}</td>
-                <td style="color: ${goalDiff > 0 ? '#28a745' : goalDiff < 0 ? '#dc3545' : '#666'}">
+                <td class="${goalDiff > 0 ? 'goal-diff-positive' : goalDiff < 0 ? 'goal-diff-negative' : 'goal-diff-zero'}"
+                    style="color: ${goalDiff > 0 ? '#28a745' : goalDiff < 0 ? '#dc3545' : '#666'}">
                     ${goalDiff > 0 ? '+' : ''}${goalDiff}
                 </td>
             </tr>
