@@ -40,6 +40,9 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("tochigi",  "栃木SC U-18B"):    "栃木SC U-18 2nd",
     # 静岡県: 「②」→「高校2nd」表記に統一
     ("shizuoka", "藤枝明誠②"):       "藤枝明誠高校2nd",
+    # 茨城県: 鹿島アントラーズユースB は canonical 不在。
+    # トップが「鹿島アントラーズユース」(Premier EAST) なので 2nd 表記に統一
+    ("ibaraki",  "鹿島アントラーズユースB"): "鹿島アントラーズユース2nd",
 }
 
 # canonical エントリに alias を追加する。
@@ -48,14 +51,33 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     # === 神奈川県 ===
     ("kanagawa", "湘南工科大学附属高校"):    ["湘南工科大附Ａ", "湘南工科大附A"],
-    # rename 後の canonical にも旧名を alias として登録
     ("kanagawa", "日本大学藤沢高校2nd"):     ["日大藤沢高校2nd", "日大藤沢B"],
     # === 栃木県 ===
-    # rename 後の canonical 「栃木SC U-18 2nd」に旧名/別名を alias として登録
     ("tochigi", "栃木SC U-18 2nd"):         ["栃木SC U-18B", "栃木SC B"],
     # === 静岡県 ===
-    # rename 後の canonical 「藤枝明誠高校2nd」に旧名/別名を alias として登録
     ("shizuoka", "藤枝明誠高校2nd"):         ["藤枝明誠②", "藤枝明誠2nd"],
+    # === 福島県 ===
+    ("fukushima", "帝京安積高校2nd"):        ["帝京安積セカンド"],
+    # === 茨城県 ===
+    # rename 後の「鹿島アントラーズユース2nd」に旧表記をalias登録
+    ("ibaraki", "鹿島アントラーズユース2nd"): ["鹿島アントラーズユースB"],
+    # 明秀学園日立高校 の表記揺れ
+    ("ibaraki", "明秀学園日立高校"):         ["明秀日立A"],
+    # === 東京都 ===
+    ("tokyo", "帝京高校2nd"):                ["帝京B"],
+    ("tokyo", "FC東京U-18 2nd"):             ["FC東京B"],
+    # === 滋賀県 ===
+    ("shiga", "近江高校3rd"):                ["近江C"],
+    # === 大阪府 ===
+    ("osaka", "履正社高校2nd"):              ["履正社B"],
+    ("osaka", "興國高校2nd"):                ["興國B"],
+    # === 兵庫県 ===
+    ("hyogo", "滝川第二高校2nd"):            ["滝川第二B"],
+    ("hyogo", "三田学園高校2nd"):            ["三田学園B"],
+    # === 鳥取県 ===
+    ("tottori", "米子北高校2nd"):            ["米子北B"],
+    # === 島根県 ===
+    ("shimane", "大社高校2nd"):              ["大社B"],
     # === 岡山県 (高校なしのB表記もキャッチ) ===
     ("okayama", "岡山学芸館高校2nd"):        ["岡山学芸館B"],
     ("okayama", "玉野光南高校2nd"):          ["玉野光南B"],
@@ -64,8 +86,17 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("chiba", "柏レイソルU-18 2nd"):         ["レイソルU-18B"],
     # === 京都府 (高校なしのC表記もキャッチ) ===
     ("kyoto", "京都橘高校3rd"):              ["京都橘C"],
-    # === 徳島県 (高校なしのS表記もキャッチ) ===
+    # === 徳島県 ===
     ("tokushima", "徳島商業高校2nd"):        ["徳島商業S"],
+    ("tokushima", "徳島ヴォルティスユース2nd"): ["徳島ヴォルティスS"],
+    # === 香川県 ===
+    ("kagawa", "大手前高松高校2nd"):         ["大手前高松S"],
+    ("kagawa", "カマタマーレ讃岐U-18 2nd"):  ["カマタマーレ讃岐S"],
+    # === 高知県 ===
+    ("kochi", "高知高校2nd"):                ["高知S"],
+    # === 福岡県 ===
+    ("fukuoka", "東福岡高校2nd"):            ["東福岡B"],
+    ("fukuoka", "アビスパ福岡U-18 2nd"):     ["アビスパ福岡B"],
 }
 
 
