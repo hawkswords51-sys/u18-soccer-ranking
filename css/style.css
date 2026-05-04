@@ -977,12 +977,18 @@ textarea {
         align-items: stretch;
     }
     .modal-content {
-        /* iOS Safari の下部 URL バー/タブバーで最下行が隠れないよう、
-           dvh (動的ビューポート高さ) を使う。非対応ブラウザは vh にフォールバック */
+        /* iOS Safari の URL バー/タブバーで最下行が隠れないよう、
+           3段階のフォールバックで実ビューポート高さを取得:
+           1) 100vh : 古いブラウザ用 (UI バーを含むので大きめ)
+           2) 100dvh : Safari 15.4+ / Chrome 108+ の動的ビューポート
+           3) var(--real-vh) : JS が window.innerHeight から計算して設定
+              (dvh 非対応の環境でも正確に動く・最終フォールバック) */
         max-height: 100vh;
         max-height: 100dvh;
+        max-height: var(--real-vh, 100dvh);
         height: 100vh;
         height: 100dvh;
+        height: var(--real-vh, 100dvh);
         border-radius: 0;
         /* flex 縦並びで modal-body を伸ばす */
         display: flex;
