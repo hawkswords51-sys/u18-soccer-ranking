@@ -989,52 +989,88 @@ textarea {
         padding: 8px 12px;
     }
     .modal-body {
-        /* padding-top を 0 にして、thead が sticky になった時に
-           modal-header との間に隙間 (コンテンツが一瞬見える領域) を作らない */
-        padding: 0 14px 14px;
-        /* ★ 縦・横の両軸スクロールをここで担当 ★
-           これにより data-table の thead が
-           modal-body 上端に貼り付けるようになる */
+        /* ★ padding 完全撤去 ★
+           理由: 左パディングがあると、横スクロール時に sticky col の左に
+           パディング分の隙間ができ、その下を通過するセル(league-badge等)
+           が一瞬見えてしまう。padding 0 にすれば sticky col が完全に
+           viewport 左端に密着するので隙間は発生しない。
+           内部要素(タブ・statsカードなど) には個別に margin で余白を確保。 */
+        padding: 0;
         flex: 1 1 auto;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
     }
-    /* タブには上余白を戻す (modal-body の padding-top を 0 にした分) */
+    /* 内部要素に左右余白を個別に */
     .modal-body > .tabs {
-        margin-top: 14px;
+        margin: 14px 14px 0;
+    }
+    .modal-body > .tab-content {
+        padding: 0;
+    }
+    .tab-content > .stats-summary {
+        margin: 14px 14px 0;
+    }
+    .tab-content > .league-accordion-root {
+        margin-top: 8px;
     }
 
     /* ---------- モバイル: テーブルレイアウトの調整 ----------
        ★ 重要: border-collapse: collapse のままだと、セル(th/td)に
        position: sticky が一部ブラウザ(iOS Safari含む)で効かないバグが
        ある。border-collapse: separate に変更して回避する。
-       borderは tr 単位ではなく cell 単位で持つので見た目は変わらない。 */
+       isolation: isolate でテーブル内に新しい stacking context を作り、
+       sticky セルが他のセルを確実に上書きできるようにする。 */
     .data-table {
         border-collapse: separate;
         border-spacing: 0;
+        isolation: isolate;
+        /* table-layout: fixed で各列の幅を確実に制御 */
+        table-layout: fixed;
+        width: 100%;
+    }
+    /* 非stickyセルは z-index 0 (relativeにして position context を確立) */
+    .data-table tbody td:nth-child(n+3) {
+        position: relative;
+        z-index: 0;
     }
 
-    /* 県別タブのテーブルラッパー: modal-body が縦・横スクロールを担当 */
+    /* ---------- 県別タブ・プレミア/プリンス すべて modal-body でスクロール ----------
+       縦・横の両軸スクロールを modal-body に集約することで、
+       上端 (thead) を modal-body の上端に sticky 固定できる */
     #teamsTable,
-    #championshipsTable {
+    #championshipsTable,
+    .league-group-block {
         overflow: visible;
     }
 
-    /* ---------- モバイル: プレミア/プリンスは個別の横スクロールを持たせる ----------
-       理由: league-accordion-root は display:flex で、内部の wide table を
-       modal-body の overflow:auto で受け取る方法では iOS で動かないケースがある。
-       そこで .league-group-block 自体に overflow-x:auto を持たせて確実に
-       横スクロール可能にする。
-       (.league-accordion の overflow:hidden はそのまま残し、内側の
-        league-group-block 内でスクロールすれば accordion の角丸クリップは保たれる) */
+    /* ---------- プレミア/プリンスの幅を modal-body に伝播させる ----------
+       league-accordion-root は display:flex なので、内部の wide table の
+       幅を上に伝えない。各層に min-width を設定して幅を伝播させる。 */
+    .league-accordion-root {
+        align-items: flex-start;  /* stretch しない */
+        min-width: 720px;
+    }
+    .league-accordion {
+        min-width: 720px;
+        max-width: none;
+    }
+    .league-accordion__body {
+        min-width: 100%;  /* 親(720px) と同じ */
+    }
     .league-group-block {
-        overflow-x: auto;
-        overflow-y: visible;
-        -webkit-overflow-scrolling: touch;
-        /* スクロール可能を視覚的に示すため右端にうっすらシャドウ */
-        background:
-            linear-gradient(to right, transparent calc(100% - 14px), rgba(0,0,0,0.06));
-        background-attachment: local;
+        min-width: 100%;
+    }
+    /* アコーディオン summary の "12チーム" バッジは margin-left:auto だと
+       720px 横スクロールしないと見えなくなるので、ラベルの右隣に表示する */
+    .league-accordion__count {
+        margin-left: 12px;
+    }
+    /* summary の chevron + label を固定で見えるようにするため sticky 化
+       (横スクロール時にラベルが消えないように) */
+    .league-accordion__summary {
+        position: sticky;
+        left: 0;
+        background: inherit;  /* 親の背景を引き継ぐ */
     }
 
     /* ---------- モバイル: ヘッダー行を modal-body 上端に固定 ----------
@@ -1050,42 +1086,46 @@ textarea {
         color: #fff;
     }
 
-    /* ---------- モバイル: 1列目(順位/県内順位) も左端固定 ----------
-       チーム名だけだと、その左を通過するセル(rank-badge/league-badge等)が
-       一瞬見えてしまう。1列目もstickyにして完全に固定する。
-       幅は「県内順位」(4文字) のthead テキストが収まる 64px に。
-    */
+    /* ---------- モバイル: 1列目(順位/県内順位) を左端固定 (幅64px) ---------- */
     .data-table th:nth-child(1),
     .data-table td:nth-child(1) {
         position: sticky;
         left: 0;
-        z-index: 3;
+        z-index: 10;
         background: #ffffff;
-        min-width: 64px;
         width: 64px;
+        min-width: 64px;
+        max-width: 64px;
         padding-left: 6px;
         padding-right: 4px;
         text-align: center;
     }
-    /* 2列目(チーム名) は1列目の幅(64px)分右にずらす */
+    /* 2列目(チーム名) は1列目の幅(64px)分右にずらして、幅130pxに固定 */
     .data-table th:nth-child(2),
     .data-table td:nth-child(2) {
-        left: 64px !important;  /* PC用ルール (left:0) を上書き */
-        z-index: 3;
+        left: 64px !important;
+        z-index: 10;
         background: #ffffff;
-        /* 右端に少し強めの影で「ここまでが固定列」と視覚的に区別 */
+        width: 130px;
+        min-width: 130px;
+        max-width: 130px;
         box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.18);
     }
-    /* 上端固定 + 左端固定 の交差セル(1列目・2列目のthead): 最前面 */
+    /* 上端固定 + 左端固定 の交差セル(thead 1列目・2列目): 最前面 */
     .data-table thead th:nth-child(1),
     .data-table thead th:nth-child(2) {
-        z-index: 6;
+        z-index: 12;
         background: var(--primary-color);
     }
     /* hover時の固定列も背景を変えて違和感をなくす */
     .data-table tbody tr:hover td:nth-child(1),
     .data-table tbody tr:hover td:nth-child(2) {
         background: var(--bg-light);
+    }
+    /* 3列目以降の各列にも最低幅を指定して、データ列が極端に潰れないように */
+    .data-table th:nth-child(n+3),
+    .data-table td:nth-child(n+3) {
+        min-width: 50px;
     }
 
     /* ---------- タブ ---------- */
@@ -1123,18 +1163,16 @@ textarea {
         padding: 3px 8px;
     }
 
-    /* ---------- モバイル: チーム名カラムの幅を制限 ----------
+    /* ---------- モバイル: チーム名カラムの折り返し設定 ----------
        長いチーム名 (例: 流通経済大学付属柏高校 / サンフレッチェ広島F.C.ユース)
-       が固定列で広がりすぎてデータ表示エリアを潰す問題への対処。
-       max-width で幅を制限し、はみ出た場合は2行に折り返す。
-       1文字ずつ縦には折り返さないよう keep-all を指定。
+       を 130px 内に確実に折り返す。
+       word-break: break-all で日本語も強制的に折り返す
+       (1文字ずつ縦書きにはならない=セル幅130pxで複数文字横並び後に改行)
     */
     .data-table th:nth-child(2),
     .data-table td:nth-child(2) {
-        max-width: 130px;
-        min-width: 100px;
         white-space: normal;
-        word-break: keep-all;
+        word-break: break-all;
         overflow-wrap: anywhere;
         line-height: 1.35;
         vertical-align: middle;
