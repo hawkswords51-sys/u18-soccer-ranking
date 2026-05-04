@@ -1,0 +1,481 @@
+#!/usr/bin/env python3
+"""
+SEO 用の都道府県別ランディングページを自動生成するスクリプト。
+
+機能:
+    1. data/teams.json を読み込み、47都道府県それぞれの HTML を生成
+       → prefectures/<id>/index.html (例: /prefectures/tokyo/index.html)
+    2. sitemap.xml を更新して全ページを Google に伝える
+    3. 各ページに OGP / 構造化データ / canonical / 内部リンクを完備
+
+使い方:
+    cd <repo-root>
+    python scraper/generate_prefecture_pages.py
+
+依存ライブラリ: 標準ライブラリのみ (Python 3.8+)
+"""
+import json
+from pathlib import Path
+from datetime import date
+
+# ============================================================
+# 設定
+# ============================================================
+BASE_DIR = Path(__file__).parent.parent
+TEAMS_FILE = BASE_DIR / "data" / "teams.json"
+OUTPUT_ROOT = BASE_DIR / "prefectures"
+SITEMAP_FILE = BASE_DIR / "sitemap.xml"
+DOMAIN = "https://u18-soccer.com"
+GA_ID = "G-KTPR94SPYS"
+ADSENSE_CLIENT = "ca-pub-6953440022497606"
+
+
+# ============================================================
+# ヘルパー
+# ============================================================
+def html_escape(s):
+    if s is None:
+        return ""
+    return (
+        str(s)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+        .replace("'", "&#39;")
+    )
+
+
+def league_category(team_league):
+    lg = team_league or ""
+    if "プレミアリーグ" in lg:
+        return "premier"
+    if "プリンスリーグ" in lg:
+        return "prince"
+    return "prefecture"
+
+
+def get_top_league(teams):
+    if not teams:
+        return "未登録"
+    has_premier = any(league_category(t.get("league")) == "premier" for t in teams)
+    has_prince = any(league_category(t.get("league")) == "prince" for t in teams)
+    if has_premier:
+        return "プレミアリーグ"
+    if has_prince:
+        return "プリンスリーグ"
+    return "都道府県リーグ"
+
+
+def sort_teams(teams):
+    """ティア順 → 県内順位順にソート"""
+    tier_order = {"premier": 0, "prince": 1, "prefecture": 2}
+    return sorted(
+        teams,
+        key=lambda t: (
+            tier_order.get(league_category(t.get("league")), 9),
+            t.get("rank") or 99,
+        ),
+    )
+
+
+def render_team_row(team, pref_rank):
+    league = team.get("league", "—")
+    badge_class = league_category(league)
+    rank_class = f"rank-{pref_rank}" if pref_rank <= 3 else "rank-other"
+    league_rank = team.get("leagueRank") if team.get("leagueRank") is not None else team.get("rank")
+    league_rank_str = f"{league_rank}位" if league_rank not in (None, "") else "—"
+    points = team.get("points", 0) or 0
+    played = team.get("played", 0) or 0
+    won = team.get("won", 0) or 0
+    drawn = team.get("drawn", 0) or 0
+    lost = team.get("lost", 0) or 0
+    goal_diff = (team.get("goalsFor", 0) or 0) - (team.get("goalsAgainst", 0) or 0)
+    diff_str = f"+{goal_diff}" if goal_diff > 0 else str(goal_diff)
+    diff_class = (
+        "goal-diff-positive" if goal_diff > 0
+        else "goal-diff-negative" if goal_diff < 0
+        else "goal-diff-zero"
+    )
+    return f"""        <tr>
+          <td><span class="rank-badge {rank_class}">{pref_rank}</span></td>
+          <td><strong>{html_escape(team.get('name', '—'))}</strong></td>
+          <td><span class="league-badge {badge_class}">{html_escape(league)}</span></td>
+          <td>{league_rank_str}</td>
+          <td><strong>{points}</strong></td>
+          <td>{played}</td>
+          <td>{won}</td>
+          <td>{drawn}</td>
+          <td>{lost}</td>
+          <td class="{diff_class}" style="color:{'#28a745' if goal_diff > 0 else ('#dc3545' if goal_diff < 0 else '#666')}">{diff_str}</td>
+        </tr>"""
+
+
+def render_team_schema(teams, pref_name):
+    """SportsTeam 構造化データ (上位5チーム)"""
+    items = []
+    for i, t in enumerate(sort_teams(teams)[:5]):
+        items.append({
+            "@type": "SportsTeam",
+            "name": t.get("name", ""),
+            "sport": "高校サッカー",
+            "location": pref_name,
+            "memberOf": t.get("league", ""),
+        })
+    return items
+
+
+def render_breadcrumb_schema(pref_name, pref_id):
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "ホーム", "item": f"{DOMAIN}/"},
+            {"@type": "ListItem", "position": 2, "name": pref_name,
+             "item": f"{DOMAIN}/prefectures/{pref_id}/"},
+        ],
+    }
+
+
+# ============================================================
+# HTML テンプレート
+# ============================================================
+PAGE_TEMPLATE = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=__GA_ID__"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '__GA_ID__');
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=__ADSENSE__"
+          crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="__ADSENSE__">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>__TITLE__</title>
+  <meta name="description" content="__DESCRIPTION__">
+  <meta name="keywords" content="__KEYWORDS__">
+  <meta name="robots" content="index, follow">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="__CANONICAL__">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="高校サッカー順位確認システム">
+  <meta property="og:title" content="__TITLE__">
+  <meta property="og:description" content="__DESCRIPTION__">
+  <meta property="og:url" content="__CANONICAL__">
+  <meta property="og:image" content="https://u18-soccer.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="__TITLE__">
+  <meta name="twitter:description" content="__DESCRIPTION__">
+  <meta name="twitter:image" content="https://u18-soccer.com/og-image.png">
+
+  <!-- ファビコン -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#1e40af">
+
+  <!-- 構造化データ -->
+  <script type="application/ld+json">
+__SCHEMA_BREADCRUMB__
+  </script>
+  <script type="application/ld+json">
+__SCHEMA_TEAMS__
+  </script>
+
+  <!-- フォント・アイコン・スタイル -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- ダークモード初期化 (FOUC 防止) -->
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="site-title">
+          <a href="/" style="color:white;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
+            <i class="fas fa-futbol"></i>
+            高校サッカー順位確認システム
+          </a>
+        </h1>
+        <nav class="nav">
+          <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
+          <a href="/#search" class="nav-link"><i class="fas fa-search"></i> 検索</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <!-- パンくずリスト -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="/">ホーム</a>
+        <span class="breadcrumb__sep">›</span>
+        <span aria-current="page">__PREF_NAME__</span>
+      </nav>
+
+      <h1 class="lp-title">__PREF_NAME__ U-18 高校サッカー 順位表</h1>
+
+      <p class="lp-intro">
+        __PREF_NAME__の高校サッカー（U-18年代）所属<strong>__TEAM_COUNT__校</strong>の最新順位・成績情報。
+        高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・__PREF_NAME__リーグの順位表を、
+        毎日最新データに自動更新しています。
+      </p>
+
+      <!-- 統計 -->
+      <div class="stats-summary">
+        <div class="stat-item">
+          <div class="stat-label">登録チーム数</div>
+          <div class="stat-value">__TEAM_COUNT__</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">最高リーグ</div>
+          <div class="stat-value">__TOP_LEAGUE__</div>
+        </div>
+      </div>
+
+      <!-- メイン CTA -->
+      <div class="lp-cta">
+        <a href="/" class="lp-cta__btn">
+          <i class="fas fa-bolt"></i> 全国版・インタラクティブビュー (検索/お気に入り/詳細表示)
+        </a>
+      </div>
+
+      <!-- チーム一覧 -->
+      <h2 class="section-title-lp">__PREF_NAME__ 所属チーム順位表</h2>
+      <div id="teamsTableLP" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>県内順位</th>
+              <th>チーム名</th>
+              <th>リーグ</th>
+              <th>順位</th>
+              <th>勝点</th>
+              <th>試合</th>
+              <th>勝</th>
+              <th>分</th>
+              <th>負</th>
+              <th>得失差</th>
+            </tr>
+          </thead>
+          <tbody>
+__TEAM_ROWS__
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 説明文 (SEO 用) -->
+      <section class="lp-section">
+        <h2>__PREF_NAME__ U-18 高校サッカーについて</h2>
+        <p>
+          __PREF_NAME__からは現在<strong>__TEAM_COUNT__校</strong>のチームが U-18 年代の各種リーグに参加しています。
+          所属する最高位リーグは<strong>__TOP_LEAGUE__</strong>です。
+        </p>
+        <p>
+          高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦で、
+          全国規模の<strong>プレミアリーグ</strong>（東西各12チーム）、9地域それぞれの<strong>プリンスリーグ</strong>、
+          各都道府県の<strong>都道府県リーグ</strong>という階層構造になっています。各リーグの上位・下位チームには
+          毎年昇降格があり、上位リーグ昇格を目指してハイレベルな戦いが繰り広げられています。
+        </p>
+      </section>
+
+      <!-- 近隣の都道府県 -->
+      <section class="lp-section">
+        <h2>近隣の都道府県</h2>
+        <div class="lp-neighbor-grid">
+__NEIGHBOR_LINKS__
+        </div>
+      </section>
+
+      <!-- 関連リンク -->
+      <section class="lp-section">
+        <h2>関連リンク</h2>
+        <ul class="lp-related-links">
+          <li><a href="/">全国の高校サッカー順位表トップ</a></li>
+          <li><a href="/#search">チーム名で検索</a></li>
+          <li><a href="/about.html">運営者情報</a></li>
+          <li><a href="/contact.html">お問い合わせ</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 高校サッカー順位確認システム</p>
+      <nav class="footer-nav" style="margin-top:12px;">
+        <a href="/about.html">運営者情報</a> ・
+        <a href="/privacy.html">プライバシーポリシー</a> ・
+        <a href="/contact.html">お問い合わせ</a>
+      </nav>
+      <p class="footer-note" style="margin-top:12px;">
+        <i class="fas fa-info-circle"></i>
+        データ出典：JFA（日本サッカー協会）、各都道府県サッカー協会、各高校・クラブ公式情報。最新情報は各公式サイトをご確認ください。
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+"""
+
+
+def generate_page(pref, all_prefs):
+    pref_id = pref["id"]
+    pref_name = pref["name"]
+    teams = pref["teams"]
+    team_count = len(teams)
+    top_league = get_top_league(teams)
+    canonical = f"{DOMAIN}/prefectures/{pref_id}/"
+
+    sorted_teams = sort_teams(teams)
+    if sorted_teams:
+        team_rows = "\n".join(
+            render_team_row(t, i + 1) for i, t in enumerate(sorted_teams)
+        )
+    else:
+        team_rows = (
+            '        <tr><td colspan="10" '
+            'style="text-align:center;padding:30px;color:#888;">'
+            f'{html_escape(pref_name)}のデータはまだ登録されていません</td></tr>'
+        )
+
+    region = pref.get("region") or ""
+    neighbors = [p for p in all_prefs if p.get("region") == region and p["id"] != pref_id]
+    if neighbors:
+        neighbor_links = "\n".join(
+            f'          <a href="/prefectures/{n["id"]}/" class="lp-neighbor-link">{html_escape(n["name"])}</a>'
+            for n in neighbors
+        )
+    else:
+        neighbor_links = '          <p style="color:#888;">情報を準備中</p>'
+
+    title = f"{pref_name} 高校サッカー U-18 順位表 | プレミア・プリンス・{pref_name}リーグ"
+    description = (
+        f"{pref_name}の高校サッカー（U-18年代）所属{team_count}校の最新順位・成績。"
+        f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグの順位表を毎日自動更新。"
+    )
+    keywords = (
+        f"{pref_name},高校サッカー,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
+        f"{pref_name}リーグ,順位,成績,日程,結果"
+    )
+
+    breadcrumb = json.dumps(
+        render_breadcrumb_schema(pref_name, pref_id),
+        ensure_ascii=False, indent=2
+    )
+    teams_schema = json.dumps(
+        {"@context": "https://schema.org", "@graph": render_team_schema(teams, pref_name)},
+        ensure_ascii=False, indent=2
+    )
+
+    return (
+        PAGE_TEMPLATE
+        .replace("__GA_ID__", GA_ID)
+        .replace("__ADSENSE__", ADSENSE_CLIENT)
+        .replace("__TITLE__", html_escape(title))
+        .replace("__DESCRIPTION__", html_escape(description))
+        .replace("__KEYWORDS__", html_escape(keywords))
+        .replace("__CANONICAL__", canonical)
+        .replace("__SCHEMA_BREADCRUMB__", breadcrumb)
+        .replace("__SCHEMA_TEAMS__", teams_schema)
+        .replace("__PREF_NAME__", html_escape(pref_name))
+        .replace("__TEAM_COUNT__", str(team_count))
+        .replace("__TOP_LEAGUE__", html_escape(top_league))
+        .replace("__TEAM_ROWS__", team_rows)
+        .replace("__NEIGHBOR_LINKS__", neighbor_links)
+    )
+
+
+def update_sitemap(all_prefs):
+    today = date.today().isoformat()
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+             '  <url>',
+             f'    <loc>{DOMAIN}/</loc>',
+             f'    <lastmod>{today}</lastmod>',
+             '    <changefreq>daily</changefreq>',
+             '    <priority>1.0</priority>',
+             '  </url>']
+    for p in all_prefs:
+        parts.extend([
+            '  <url>',
+            f'    <loc>{DOMAIN}/prefectures/{p["id"]}/</loc>',
+            f'    <lastmod>{today}</lastmod>',
+            '    <changefreq>daily</changefreq>',
+            '    <priority>0.8</priority>',
+            '  </url>',
+        ])
+    # 静的ページも登録
+    for static_url in ("/about.html", "/privacy.html", "/contact.html"):
+        parts.extend([
+            '  <url>',
+            f'    <loc>{DOMAIN}{static_url}</loc>',
+            f'    <lastmod>{today}</lastmod>',
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>0.4</priority>',
+            '  </url>',
+        ])
+    parts.append('</urlset>')
+    SITEMAP_FILE.write_text("\n".join(parts) + "\n", encoding="utf-8")
+    print(f"sitemap.xml 更新: {len(all_prefs) + 1 + 3} URL を登録")
+
+
+def main():
+    if not TEAMS_FILE.exists():
+        print(f"[ERROR] {TEAMS_FILE} が見つかりません。先にスクレイパーを実行してください。")
+        return 1
+
+    teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
+    all_prefs = [
+        {"id": pid, **p}
+        for pid, p in teams_data.items()
+        if isinstance(p, dict) and "teams" in p
+    ]
+
+    OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+
+    for pref in all_prefs:
+        pref_dir = OUTPUT_ROOT / pref["id"]
+        pref_dir.mkdir(parents=True, exist_ok=True)
+        html = generate_page(pref, all_prefs)
+        (pref_dir / "index.html").write_text(html, encoding="utf-8")
+
+    update_sitemap(all_prefs)
+    print(f"完了: {len(all_prefs)} 都道府県の SEO ランディングページを生成しました")
+    print(f"   出力先: {OUTPUT_ROOT}/")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
