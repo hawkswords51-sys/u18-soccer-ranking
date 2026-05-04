@@ -1898,11 +1898,11 @@ details[open] > summary > .league-accordion__chevron {
    既存のハードコード色を上書き。手動指定とシステム自動検知の両方に対応。
    ===================================================================== */
 
-/* === カード・ボックス類の白背景 → ダークカード色に === */
+/* === カード・ボックス類の白背景 → ダークカード色に
+   (.pref-button は別途個別ルールで色味付きにするため除外) === */
 [data-theme="dark"] .info-card,
 [data-theme="dark"] .search-box,
 [data-theme="dark"] .map-section,
-[data-theme="dark"] .pref-button,
 [data-theme="dark"] .modal-content,
 [data-theme="dark"] .league-accordion,
 [data-theme="dark"] .tournament-section,
@@ -1918,7 +1918,6 @@ details[open] > summary > .league-accordion__chevron {
     :root:not([data-theme="light"]) .info-card,
     :root:not([data-theme="light"]) .search-box,
     :root:not([data-theme="light"]) .map-section,
-    :root:not([data-theme="light"]) .pref-button,
     :root:not([data-theme="light"]) .modal-content,
     :root:not([data-theme="light"]) .league-accordion,
     :root:not([data-theme="light"]) .tournament-section,
@@ -2016,17 +2015,107 @@ details[open] > summary > .league-accordion__chevron {
     }
 }
 
-/* === テーブル hover === */
-[data-theme="dark"] .data-table tbody tr:hover,
+/* === テーブル hover (固定セルは「不透明」な色にして透け防止) === */
+[data-theme="dark"] .data-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
 [data-theme="dark"] .data-table tbody tr:hover td:nth-child(1),
 [data-theme="dark"] .data-table tbody tr:hover td:nth-child(2) {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: #243246 !important;  /* 不透明な濃いめのカード色 */
 }
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .data-table tbody tr:hover,
+    :root:not([data-theme="light"]) .data-table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.06);
+    }
     :root:not([data-theme="light"]) .data-table tbody tr:hover td:nth-child(1),
     :root:not([data-theme="light"]) .data-table tbody tr:hover td:nth-child(2) {
-        background: rgba(255, 255, 255, 0.06) !important;
+        background: #243246 !important;
+    }
+}
+
+/* === 得失点差の色 (ダークモード用にコントラスト強化) ===
+   JS の inline style を上書きするため !important が必要 */
+[data-theme="dark"] .goal-diff-positive {
+    color: #4ade80 !important;  /* 明るい緑 */
+}
+[data-theme="dark"] .goal-diff-negative {
+    color: #f87171 !important;  /* 明るい赤 */
+}
+[data-theme="dark"] .goal-diff-zero {
+    color: #cbd5e1 !important;  /* 明るいグレー (元の#666は暗背景で消える) */
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .goal-diff-positive { color: #4ade80 !important; }
+    :root:not([data-theme="light"]) .goal-diff-negative { color: #f87171 !important; }
+    :root:not([data-theme="light"]) .goal-diff-zero     { color: #cbd5e1 !important; }
+}
+
+/* === 大会成績バッジ凡例 (ハードコードされていた灰色背景を上書き) === */
+[data-theme="dark"] .badge-legend {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .badge-legend-title {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .badge-legend-item {
+    color: var(--text-light);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .badge-legend {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: var(--border-color);
+    }
+    :root:not([data-theme="light"]) .badge-legend-title {
+        color: var(--text-dark);
+    }
+    :root:not([data-theme="light"]) .badge-legend-item {
+        color: var(--text-light);
+    }
+}
+
+/* === 都道府県ボタン: ダークモードでも雰囲気を出す (色味付き背景) === */
+[data-theme="dark"] .pref-button {
+    /* ベースは透明に近い背景。色付きボーダーが目立つように */
+    background: rgba(255, 255, 255, 0.03);
+}
+[data-theme="dark"] .pref-button.level-premier {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.20), rgba(184, 148, 30, 0.10));
+    color: #fde68a;
+}
+[data-theme="dark"] .pref-button.level-prince {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(46, 111, 173, 0.10));
+    color: #bfdbfe;
+}
+[data-theme="dark"] .pref-button.level-prefecture {
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.18), rgba(90, 147, 185, 0.08));
+    color: #cbd5e1;
+}
+[data-theme="dark"] .pref-button.level-no-data {
+    background: rgba(255, 255, 255, 0.02);
+    color: #64748b;
+    border-color: #334155;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .pref-button {
+        background: rgba(255, 255, 255, 0.03);
+    }
+    :root:not([data-theme="light"]) .pref-button.level-premier {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.20), rgba(184, 148, 30, 0.10));
+        color: #fde68a;
+    }
+    :root:not([data-theme="light"]) .pref-button.level-prince {
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(46, 111, 173, 0.10));
+        color: #bfdbfe;
+    }
+    :root:not([data-theme="light"]) .pref-button.level-prefecture {
+        background: linear-gradient(135deg, rgba(148, 163, 184, 0.18), rgba(90, 147, 185, 0.08));
+        color: #cbd5e1;
+    }
+    :root:not([data-theme="light"]) .pref-button.level-no-data {
+        background: rgba(255, 255, 255, 0.02);
+        color: #64748b;
+        border-color: #334155;
     }
 }
 
