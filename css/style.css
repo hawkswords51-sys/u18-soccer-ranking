@@ -2624,3 +2624,185 @@ details[open] > summary > .league-accordion__chevron {
         min-height: 40px;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-A: SEO 用ランディングページ専用スタイル
+   /prefectures/<id>/index.html で使用
+   ===================================================================== */
+
+/* パンくずリスト */
+.breadcrumb {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    padding: 12px 0 16px;
+}
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+.breadcrumb__sep {
+    margin: 0 8px;
+    color: var(--text-light);
+    opacity: 0.6;
+}
+
+/* LP タイトル */
+.lp-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 8px 0 16px;
+    line-height: 1.4;
+}
+.lp-intro {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+.lp-intro strong {
+    color: var(--primary-color);
+}
+
+/* メイン CTA: 全国版へ */
+.lp-cta {
+    margin: 24px 0;
+    text-align: center;
+}
+.lp-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--primary-color), #004999);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.lp-cta__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+.lp-cta__btn:active {
+    transform: translateY(0);
+}
+
+.section-title-lp {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 8px;
+    margin: 32px 0 16px;
+}
+
+.lp-section {
+    margin: 32px 0;
+}
+.lp-section h2 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+.lp-section p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+/* 近隣都道府県グリッド */
+.lp-neighbor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+}
+.lp-neighbor-link {
+    display: block;
+    text-align: center;
+    padding: 12px 8px;
+    background: var(--bg-white);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+.lp-neighbor-link:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* 関連リンク */
+.lp-related-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.lp-related-links li {
+    border-bottom: 1px solid var(--border-color);
+}
+.lp-related-links li:last-child {
+    border-bottom: none;
+}
+.lp-related-links a {
+    display: block;
+    padding: 12px 4px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+.lp-related-links a::before {
+    content: "›";
+    margin-right: 8px;
+    color: var(--text-light);
+}
+.lp-related-links a:hover {
+    text-decoration: underline;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    .lp-title {
+        font-size: 1.35rem;
+    }
+    .lp-intro {
+        font-size: 0.88rem;
+    }
+    .lp-cta__btn {
+        padding: 12px 20px;
+        font-size: 0.88rem;
+    }
+    .lp-neighbor-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 6px;
+    }
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .lp-neighbor-link {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .lp-neighbor-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lp-neighbor-link {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: var(--border-color);
+    }
+    :root:not([data-theme="light"]) .lp-neighbor-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
