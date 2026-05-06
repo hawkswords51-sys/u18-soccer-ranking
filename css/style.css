@@ -3918,3 +3918,105 @@ details[open] > summary > .league-accordion__chevron {
         background: rgba(255, 255, 255, 0.04);
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正: モバイルヘッダー & テーブル改行問題
+   - ナビ項目が増えた結果のモバイル表示崩れに対応
+   - チーム名カラムが狭すぎて改行が異常になる問題を修正
+   ===================================================================== */
+
+/* ───────── モバイル: ヘッダーをコンパクト化 ───────── */
+@media (max-width: 768px) {
+    .header .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    .header-content {
+        gap: 4px;
+        flex-wrap: nowrap;
+    }
+    .header .site-title {
+        font-size: 0.85rem;
+        flex-shrink: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .header .site-title i {
+        font-size: 1rem;
+    }
+    .header .nav {
+        gap: 4px;
+        flex-shrink: 0;
+    }
+    .header .nav-link {
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.6rem;
+        padding: 2px 4px;
+        gap: 1px;
+        line-height: 1.2;
+    }
+    .header .nav-link i {
+        font-size: 0.95rem;
+    }
+}
+
+/* ───────── 超小型(iPhone SE/mini等): ナビをアイコンのみに ───────── */
+@media (max-width: 480px) {
+    .header .site-title {
+        font-size: 0.75rem;
+    }
+    .header .nav {
+        gap: 2px;
+    }
+    .header .nav-link {
+        font-size: 0;  /* テキスト隠し */
+        padding: 4px 5px;
+    }
+    .header .nav-link i {
+        font-size: 1.1rem;
+    }
+}
+
+/* タイトルすら入らない極小幅では「高校サッカー」だけ */
+@media (max-width: 380px) {
+    .header .site-title {
+        font-size: 0;  /* 完全に隠す */
+    }
+    .header .site-title i {
+        font-size: 1.4rem;
+    }
+}
+
+/* ───────── モバイル: テーブルのチーム名 改行修正 ───────── */
+@media (max-width: 768px) {
+    /* hanging indent を弱める (padding-left を半分以下に) */
+    .data-table tbody td:nth-child(2) {
+        padding-left: 16px;
+        text-indent: -12px;
+    }
+
+    /* テーブル全体に最低幅を設定し、必要なら横スクロール */
+    .data-table {
+        min-width: 580px;
+    }
+
+    /* 横スクロールコンテナ (既存の overflow-x:auto を確実に効かせる) */
+    #teamsTableLP,
+    .data-table-wrapper,
+    div[style*="overflow-x:auto"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ───────── モバイル: ブログヘッダーの「ブログ」表示も縮小 ───────── */
+@media (max-width: 480px) {
+    /* ブログ・お気に入り・管理など、優先度低めのリンクをさらに小さく */
+    .header .nav-link[href*="admin"] i,
+    .header .nav-link[href*="favorit"] i {
+        opacity: 0.85;
+    }
+}
