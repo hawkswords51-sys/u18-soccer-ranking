@@ -3226,3 +3226,144 @@ details[open] > summary > .league-accordion__chevron {
         background: rgba(255, 255, 255, 0.04);
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-B: リーグ専用ページ用スタイル
+   /leagues/<slug>/ と /leagues/ で使用
+   ===================================================================== */
+
+/* リーグ順位表内: 都道府県名リンク */
+.league-pref-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.league-pref-link:hover {
+    text-decoration: underline;
+}
+
+/* 関連リーグセクション */
+.lp-related-leagues {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.league-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    border: 2px solid transparent;
+}
+
+.league-link--premier {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+.league-link--premier:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.league-link--prince {
+    background: var(--bg-white);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.league-link--prince:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* リーグ一覧ハブページ: カード風レイアウト */
+.lp-league-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.lp-league-card {
+    display: block;
+    padding: 18px 20px;
+    background: var(--bg-white);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    color: var(--text-dark);
+}
+
+.lp-league-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.lp-league-card__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.lp-league-card__count {
+    display: inline-block;
+    font-size: 0.82rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.lp-league-card__desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    .lp-league-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .lp-league-card {
+        padding: 14px 16px;
+    }
+    .lp-league-card__title {
+        font-size: 0.98rem;
+    }
+    .league-link {
+        padding: 7px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ダークモード */
+[data-theme="dark"] .lp-league-card,
+[data-theme="dark"] .league-link--prince {
+    background: rgba(255, 255, 255, 0.04);
+}
+[data-theme="dark"] .lp-league-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lp-league-card,
+    :root:not([data-theme="light"]) .league-link--prince {
+        background: rgba(255, 255, 255, 0.04);
+    }
+    :root:not([data-theme="light"]) .lp-league-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
