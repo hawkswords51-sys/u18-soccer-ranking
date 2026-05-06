@@ -4231,3 +4231,65 @@ details[open] > summary > .league-accordion__chevron {
         text-align: center !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v7: タイトル幅 & モーダル除外
+   - タイトル max-width を撤廃して柔軟な幅に
+   - モーダル(地図から開く都道府県詳細)へのCSS干渉を解除
+   ===================================================================== */
+
+/* ───────── ヘッダータイトル: flex で柔軟に伸縮 ───────── */
+@media (max-width: 768px) {
+    .header .site-title {
+        max-width: none !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .site-title {
+        font-size: 0.82rem !important;
+        max-width: none !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .header .site-title {
+        font-size: 0.74rem !important;
+    }
+}
+
+/* ───────── モーダル内テーブル: width 強制をすべてリセット ───────── */
+@media (max-width: 768px) {
+    /* 既存の都道府県モーダル ( id="detailModal" / class="modal" ) */
+    .modal table,
+    .modal table.data-table,
+    .modal .data-table,
+    .modal td,
+    .modal th,
+    #teamsTable table,
+    #teamsTable td,
+    #teamsTable th,
+    #detailModal table,
+    #detailModal td,
+    #detailModal th {
+        width: auto !important;
+        min-width: auto !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        padding-left: 12px !important;
+        text-indent: 0 !important;
+    }
+
+    /* モーダル内の strong (チーム名) も自動 */
+    .modal .data-table tbody td strong,
+    #detailModal .data-table tbody td strong,
+    #teamsTable .data-table tbody td strong {
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+    }
+}
