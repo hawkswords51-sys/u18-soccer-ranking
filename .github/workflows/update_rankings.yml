@@ -37,7 +37,7 @@ jobs:
       - name: 依存ライブラリをインストール
         run: |
           pip install -r scraper/requirements.txt
-          pip install selenium webdriver-manager pyyaml
+          pip install selenium webdriver-manager pyyaml markdown
       - name: 順位データを更新
         if: ${{ github.event_name != 'push' }}
         run: |
@@ -82,6 +82,15 @@ jobs:
           else
             echo "scraper/generate_league_pages.py がまだありません。スキップ。"
           fi
+      # ★ Phase 9-D: ブログ記事ページを生成 (Markdown -> HTML)
+      - name: ブログ記事ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_blog_pages.py ]; then
+            python scraper/generate_blog_pages.py
+          else
+            echo "scraper/generate_blog_pages.py がまだありません。スキップ。"
+          fi
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
@@ -93,6 +102,8 @@ jobs:
           # SEO ランディングページと sitemap
           if [ -d prefectures ]; then git add prefectures; fi
           if [ -d leagues ]; then git add leagues; fi
+          if [ -d blog ]; then git add blog; fi
+          if [ -d blog-source ]; then git add blog-source; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
           # 変更がある場合のみコミット & push
           if git diff --staged --quiet; then
