@@ -3440,3 +3440,76 @@ details[open] > summary > .league-accordion__chevron {
         grid-template-columns: 1fr;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-C: トップページ ナビゲーションハブ
+   ===================================================================== */
+.home-nav-hub {
+    margin: 32px 0;
+}
+
+.home-nav-hub__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.home-nav-hub__desc {
+    color: var(--text-light);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+.home-nav-hub__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.home-nav-card {
+    display: block;
+    padding: 18px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow);
+}
+
+.home-nav-card--premier {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.home-nav-card--prince {
+    background: linear-gradient(135deg, #1e40af, #1e3a8a);
+    color: white;
+}
+
+.home-nav-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.home-nav-card__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.home-nav-card__desc {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .home-nav-hub__cards {
+        grid-template-columns: 1fr;
+    }
+}
