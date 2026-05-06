@@ -4116,3 +4116,72 @@ details[open] > summary > .league-accordion__chevron {
         display: none !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v3: ヘッダー揃え ＋ テーブル微調整
+   ===================================================================== */
+
+/* ───────── ヘッダー: ナビ項目とテーマ切替の高さを揃える ───────── */
+@media (max-width: 480px) {
+    /* nav-link の縦積みを解除して横並び中央揃えに */
+    .header .nav-link {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 32px;
+        line-height: 1 !important;
+    }
+
+    /* ナビ全体と テーマ切替ボタンを同じ高さに揃える */
+    .header .nav,
+    .header .nav-link,
+    .header .header-content > button,
+    .header [class*="theme"] {
+        align-items: center !important;
+        height: auto;
+    }
+
+    /* テーマ切替ボタン (一般的なクラス名で対応) */
+    .header .theme-toggle,
+    .header [class*="theme-toggle"],
+    .header [id*="theme"],
+    .header button[aria-label*="テーマ"],
+    .header button[aria-label*="theme"] {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 32px;
+        padding: 4px 6px !important;
+    }
+
+    /* アイコンの垂直位置統一 */
+    .header .nav-link i,
+    .header button i {
+        line-height: 1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+}
+
+/* ───────── タイトルをもう少し見せる ───────── */
+@media (max-width: 480px) {
+    .header .site-title {
+        font-size: 0.82rem !important;
+        max-width: 42% !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .header .site-title {
+        font-size: 0.74rem !important;
+        max-width: 32% !important;
+    }
+}
+
+/* ───────── チーム名カラムをもう少し広げる ───────── */
+@media (max-width: 768px) {
+    .data-table tbody td:nth-child(2),
+    .data-table thead th:nth-child(2) {
+        min-width: 175px !important;  /* 150 → 175 */
+    }
+}
