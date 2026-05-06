@@ -4185,3 +4185,48 @@ details[open] > summary > .league-accordion__chevron {
         min-width: 175px !important;  /* 150 → 175 */
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v4: チーム名カラム幅の強制拡大
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* テーブル全体に最低幅を強制 (横スクロール前提) */
+    table.data-table,
+    .data-table {
+        min-width: 720px !important;
+        table-layout: auto !important;
+    }
+
+    /* チーム名カラム: width も併用して強制拡大 */
+    table.data-table tbody td:nth-child(2),
+    table.data-table thead th:nth-child(2) {
+        min-width: 230px !important;
+        width: 230px !important;
+        max-width: none !important;
+    }
+
+    /* モバイルでは hanging indent を弱める or なくして
+       チーム名に全幅を使わせる */
+    .data-table tbody td:nth-child(2) {
+        padding-left: 12px !important;
+        text-indent: 0 !important;
+    }
+
+    /* チーム名 strong に keep-all (英語+日本語混在をきれいに改行) */
+    .data-table tbody td:nth-child(2) strong {
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        line-break: strict !important;
+        white-space: normal !important;
+    }
+}
+
+/* 県内順位列も最低幅を確保 */
+@media (max-width: 768px) {
+    table.data-table tbody td:nth-child(1),
+    table.data-table thead th:nth-child(1) {
+        min-width: 60px !important;
+        width: 60px !important;
+    }
+}
