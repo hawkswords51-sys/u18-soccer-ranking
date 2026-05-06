@@ -4,8 +4,8 @@ slug: welcome-to-u18-blog
 date: 2026-05-06
 category: お知らせ
 tags: [お知らせ, 運営方針, ブログ開設]
-description: 高校サッカー順位確認システム公式ブログを開設しました。シーズン展望・戦術分析・選手紹介・医学コラムなど、kazu soccerの視点で深掘り記事をお届けしていきます。
-author: kazu soccer
+description: 高校サッカー順位確認システム公式ブログを開設しました。シーズン展望・戦術分析・選手紹介・医学コラムなど、Dr.Kazu Soccerの視点で深掘り記事をお届けしていきます。
+author: Dr.Kazu Soccer
 ogImage: https://u18-soccer.com/og-image.png
 ---
 
