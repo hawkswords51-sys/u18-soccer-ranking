@@ -69,7 +69,28 @@ def get_top_league(teams):
         return "プレミアリーグ"
     if has_prince:
         return "プリンスリーグ"
-    return "都道府県リーグ"
+    return "都道府県リーグ1部"
+
+
+def is_club_youth(team_name):
+    """クラブのユース・U-18 チームか判定 (FC東京U-18, ○○ユース, ○○U18 など)"""
+    n = team_name or ""
+    return any(kw in n for kw in ("U-18", "U18", "ユース", "ジュニアユース"))
+
+
+def is_high_school(team_name):
+    """高校サッカー部か判定 (高校 / 高等学校 を含み、かつクラブユースでない)"""
+    n = team_name or ""
+    if is_club_youth(n):
+        return False
+    return ("高校" in n) or ("高等学校" in n)
+
+
+def count_team_types(teams):
+    """高校サッカー部数とクラブユース数をカウント"""
+    hs = sum(1 for t in teams if is_high_school(t.get("name", "")))
+    cy = sum(1 for t in teams if is_club_youth(t.get("name", "")))
+    return hs, cy
 
 
 def sort_teams(teams):
@@ -191,24 +212,41 @@ def build_faqs(pref_name, teams):
     """都道府県ごとの FAQ を生成（5問）"""
     sorted_t = sort_teams(teams)
     team_count = len(teams)
-    top_league = get_top_league(teams)
+    hs_count, cy_count = count_team_types(teams)
 
-    # Q1: 上位チーム（上位3校を文字列化）
+    # Q1: 上位チーム（上位3チーム = 高校・クラブユース両方を含む）
     top3 = sorted_t[:3]
     if top3:
         top3_names = "、".join(html_escape(t.get("name", "")) for t in top3)
         a1 = (
-            f"現在の最新データでは、{html_escape(pref_name)}の上位3校は<strong>{top3_names}</strong>です。"
-            f"順位はリーグカテゴリ（プレミア＞プリンス＞都道府県）と、各リーグ内順位を加味してランキングしています。"
+            f"現在の最新データでは、{html_escape(pref_name)}の上位3チームは<strong>{top3_names}</strong>です。"
+            f"順位はリーグカテゴリ（プレミア＞プリンス＞都道府県1部）と、各リーグ内順位を加味してランキングしています。"
         )
     else:
         a1 = f"{html_escape(pref_name)}のデータはまだ準備中です。"
 
-    # Q2: チーム数
-    a2 = (
-        f"現在、{html_escape(pref_name)}からは<strong>{team_count}校</strong>が U-18 年代の各種リーグ "
-        f"（高円宮杯JFA U-18 サッカープレミアリーグ・プリンスリーグ・都道府県リーグ）に登録されています。"
-    )
+    # Q2: チーム数（高校サッカー部・クラブユースを区別）
+    if hs_count > 0 and cy_count > 0:
+        a2 = (
+            f"{html_escape(pref_name)}には<strong>高校サッカー部 {hs_count}校</strong>と"
+            f"<strong>クラブユース {cy_count}チーム</strong>（J リーグクラブの U-18 / ユースなど）の"
+            f"合計 {team_count} チームが U-18 年代の各種リーグ"
+            f"（高円宮杯JFA U-18 サッカープレミアリーグ・プリンスリーグ・都道府県リーグ1部）に参加しています。"
+            f"なお、本サイトでは都道府県リーグの<strong>1部</strong>に所属するチームのみを掲載しており、2部以下は対象外です。"
+        )
+    elif hs_count > 0:
+        a2 = (
+            f"{html_escape(pref_name)}からは<strong>高校サッカー部 {hs_count}校</strong>が"
+            f" U-18 年代の各種リーグ（高円宮杯JFA U-18 サッカープレミアリーグ・プリンスリーグ・都道府県リーグ1部）に参加しています。"
+            f"なお、本サイトでは都道府県リーグの<strong>1部</strong>に所属するチームのみを掲載しており、2部以下は対象外です。"
+        )
+    elif cy_count > 0:
+        a2 = (
+            f"{html_escape(pref_name)}からは<strong>クラブユース {cy_count}チーム</strong>が"
+            f" U-18 年代の各種リーグ（高円宮杯JFA U-18 サッカープレミアリーグ・プリンスリーグ・都道府県リーグ1部）に参加しています。"
+        )
+    else:
+        a2 = f"{html_escape(pref_name)}のデータはまだ準備中です。"
 
     # Q3: プレミア所属チーム
     premier_teams = [t for t in teams if league_category(t.get("league")) == "premier"]
@@ -226,7 +264,7 @@ def build_faqs(pref_name, teams):
         else:
             a3 = (
                 f"現在、{html_escape(pref_name)}からプレミアリーグ・プリンスリーグへの所属はありません。"
-                f"上位リーグへの昇格を目指す都道府県リーグ所属チームの順位を本サイトで確認できます。"
+                f"上位リーグへの昇格を目指す<strong>都道府県リーグ1部</strong>所属チームの順位を本サイトで確認できます。"
             )
 
     # Q4: 更新頻度
@@ -240,13 +278,14 @@ def build_faqs(pref_name, teams):
     a5 = (
         "高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦です。"
         "<strong>プレミアリーグ</strong>（全国2地域 各12チーム）、<strong>プリンスリーグ</strong>（9地域）、"
-        "<strong>都道府県リーグ</strong> という3層のピラミッド構造になっており、各リーグ間で昇降格があります。"
-        f"{html_escape(pref_name)}のチームは都道府県リーグから上位リーグへの昇格を目指して年間を通じて戦います。"
+        "<strong>都道府県リーグ</strong>（1部・2部・3部など複数のディビジョン）という階層的なピラミッド構造になっており、"
+        "各リーグ間で昇降格があります。"
+        f"なお本サイトでは、{html_escape(pref_name)}を含む各都道府県の<strong>1部</strong>所属チームのみを掲載対象としています。"
     )
 
     return [
-        (f"{html_escape(pref_name)}で最も強い高校サッカー部はどこですか？", a1),
-        (f"{html_escape(pref_name)}の高校サッカーチームは何校ありますか？", a2),
+        (f"{html_escape(pref_name)}で最も強い高校サッカー部・クラブユースはどこですか？", a1),
+        (f"{html_escape(pref_name)}の U-18 年代のチーム構成は？（高校サッカー部・クラブユース）", a2),
         (f"{html_escape(pref_name)}のプレミアリーグ・プリンスリーグ所属チームは？", a3),
         ("順位データはいつ更新されますか？", a4),
         ("高円宮杯 JFA U-18 サッカーリーグとは何ですか？", a5),
@@ -410,9 +449,11 @@ __SCHEMA_FAQ__
       <h1 class="lp-title">__PREF_NAME__ U-18 高校サッカー 順位表</h1>
 
       <p class="lp-intro">
-        __PREF_NAME__の高校サッカー（U-18年代）所属<strong>__TEAM_COUNT__校</strong>の最新順位・成績情報。
-        高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・__PREF_NAME__リーグの順位表を、
-        毎日最新データに自動更新しています。
+        __PREF_NAME__の高校サッカー部・クラブユース（U-18年代）所属
+        <strong>__TEAM_COUNT__チーム</strong>（高校 __HS_COUNT__校＋クラブユース __CY_COUNT__チーム）
+        の最新順位・成績情報。
+        高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・__PREF_NAME__リーグ1部の順位表を、
+        毎日最新データに自動更新しています（都道府県リーグは1部のみ掲載）。
       </p>
 
       <!-- 統計 -->
@@ -462,14 +503,16 @@ __TEAM_ROWS__
       <section class="lp-section">
         <h2>__PREF_NAME__ U-18 高校サッカーについて</h2>
         <p>
-          __PREF_NAME__からは現在<strong>__TEAM_COUNT__校</strong>のチームが U-18 年代の各種リーグに参加しています。
-          所属する最高位リーグは<strong>__TOP_LEAGUE__</strong>です。
+          __PREF_NAME__からは現在<strong>高校サッカー部 __HS_COUNT__校</strong>と
+          <strong>クラブユース __CY_COUNT__チーム</strong>（合計 __TEAM_COUNT__ チーム）が
+          U-18 年代の各種リーグに参加しています。所属する最高位リーグは<strong>__TOP_LEAGUE__</strong>です。
         </p>
         <p>
           高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦で、
           全国規模の<strong>プレミアリーグ</strong>（東西各12チーム）、9地域それぞれの<strong>プリンスリーグ</strong>、
-          各都道府県の<strong>都道府県リーグ</strong>という階層構造になっています。各リーグの上位・下位チームには
-          毎年昇降格があり、上位リーグ昇格を目指してハイレベルな戦いが繰り広げられています。
+          各都道府県の<strong>都道府県リーグ</strong>（1部・2部・3部などの複数ディビジョン）という階層構造になっています。
+          各リーグの上位・下位チームには毎年昇降格があり、上位リーグ昇格を目指してハイレベルな戦いが繰り広げられています。
+          なお、本サイトでは都道府県リーグは<strong>1部</strong>所属チームのみを掲載しています。
         </p>
       </section>
 
@@ -524,6 +567,7 @@ def generate_page(pref, all_prefs):
     pref_name = pref["name"]
     teams = pref["teams"]
     team_count = len(teams)
+    hs_count, cy_count = count_team_types(teams)
     top_league = get_top_league(teams)
     canonical = f"{DOMAIN}/prefectures/{pref_id}/"
 
@@ -549,14 +593,15 @@ def generate_page(pref, all_prefs):
     else:
         neighbor_links = '          <p style="color:#888;">情報を準備中</p>'
 
-    title = f"{pref_name} 高校サッカー U-18 順位表 | プレミア・プリンス・{pref_name}リーグ"
+    title = f"{pref_name} 高校サッカー U-18 順位表 | プレミア・プリンス・{pref_name}リーグ1部"
     description = (
-        f"{pref_name}の高校サッカー（U-18年代）所属{team_count}校の最新順位・成績。"
-        f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグの順位表を毎日自動更新。"
+        f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
+        f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
+        "（都道府県リーグは1部のみ掲載）"
     )
     keywords = (
-        f"{pref_name},高校サッカー,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
-        f"{pref_name}リーグ,順位,成績,日程,結果"
+        f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
+        f"{pref_name}リーグ1部,{pref_name}リーグ,順位,成績,日程,結果"
     )
 
     # 構造化データ
@@ -594,6 +639,8 @@ def generate_page(pref, all_prefs):
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__PREF_NAME__", html_escape(pref_name))
         .replace("__TEAM_COUNT__", str(team_count))
+        .replace("__HS_COUNT__", str(hs_count))
+        .replace("__CY_COUNT__", str(cy_count))
         .replace("__TOP_LEAGUE__", html_escape(top_league))
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__NEIGHBOR_LINKS__", neighbor_links)
