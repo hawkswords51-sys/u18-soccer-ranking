@@ -4386,3 +4386,49 @@ details[open] > summary > .league-accordion__chevron {
         width: auto !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v10: 視覚バグの根絶
+   - スティッキー列の透過による文字漏れを修正
+   - 「1部」「2部」が改行で分離しないように
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* モーダル内テーブルのセルに不透明な背景を確実に当てる */
+    .modal table.data-table tbody td,
+    .modal table.data-table thead th,
+    #detailModal table.data-table tbody td,
+    #detailModal table.data-table thead th,
+    #teamsTable td,
+    #teamsTable th {
+        background-color: var(--bg-card, #0f172a) !important;
+    }
+
+    /* スクロール時の文字透過防止: 透過要素を固体に */
+    .modal table.data-table tbody tr,
+    #detailModal table.data-table tbody tr,
+    #teamsTable tr {
+        background-color: var(--bg-card, #0f172a) !important;
+    }
+
+    /* リーグカラム (3列目) を少し広く */
+    .modal table.data-table tbody td:nth-child(3),
+    .modal table.data-table thead th:nth-child(3),
+    #detailModal table.data-table tbody td:nth-child(3),
+    #detailModal table.data-table thead th:nth-child(3),
+    #teamsTable td:nth-child(3),
+    #teamsTable th:nth-child(3) {
+        min-width: 110px !important;
+    }
+
+    /* リーグバッジ: 日本語禁則処理 (1部・2部を分離させない) */
+    .league-badge,
+    .modal .league-badge,
+    #detailModal .league-badge,
+    #teamsTable .league-badge {
+        line-break: strict !important;
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        white-space: normal !important;
+    }
+}
