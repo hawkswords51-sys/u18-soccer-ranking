@@ -48,7 +48,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#1e40af">
 
-  <!-- 構造化データ -->
+  <!-- 構造化データ: BreadcrumbList -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,6 +69,7 @@
   ]
 }
   </script>
+  <!-- 構造化データ: SportsTeam (上位5チーム) -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -76,37 +77,249 @@
     {
       "@type": "SportsTeam",
       "name": "松本山雅FC U-18",
-      "sport": "高校サッカー",
-      "location": "長野県",
-      "memberOf": "プリンスリーグ北信越1部"
+      "sport": "Football",
+      "url": "https://u18-soccer.com/prefectures/nagano/",
+      "location": {
+        "@type": "Place",
+        "name": "長野県",
+        "addressCountry": "JP"
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "プリンスリーグ北信越1部"
+      }
     },
     {
       "@type": "SportsTeam",
       "name": "松本国際高校",
-      "sport": "高校サッカー",
-      "location": "長野県",
-      "memberOf": "プリンスリーグ北信越1部"
+      "sport": "Football",
+      "url": "https://u18-soccer.com/prefectures/nagano/",
+      "location": {
+        "@type": "Place",
+        "name": "長野県",
+        "addressCountry": "JP"
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "プリンスリーグ北信越1部"
+      }
     },
     {
       "@type": "SportsTeam",
       "name": "AC長野パルセイロU-18",
-      "sport": "高校サッカー",
-      "location": "長野県",
-      "memberOf": "プリンスリーグ北信越2部"
-    },
-    {
-      "@type": "SportsTeam",
-      "name": "松商学園高校",
-      "sport": "高校サッカー",
-      "location": "長野県",
-      "memberOf": "長野県1部"
+      "sport": "Football",
+      "url": "https://u18-soccer.com/prefectures/nagano/",
+      "location": {
+        "@type": "Place",
+        "name": "長野県",
+        "addressCountry": "JP"
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "プリンスリーグ北信越2部"
+      }
     },
     {
       "@type": "SportsTeam",
       "name": "市立長野高校",
-      "sport": "高校サッカー",
-      "location": "長野県",
-      "memberOf": "長野県1部"
+      "sport": "Football",
+      "url": "https://u18-soccer.com/prefectures/nagano/",
+      "location": {
+        "@type": "Place",
+        "name": "長野県",
+        "addressCountry": "JP"
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "長野県1部"
+      }
+    },
+    {
+      "@type": "SportsTeam",
+      "name": "都市大塩尻高校",
+      "sport": "Football",
+      "url": "https://u18-soccer.com/prefectures/nagano/",
+      "location": {
+        "@type": "Place",
+        "name": "長野県",
+        "addressCountry": "JP"
+      },
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "長野県1部"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- 構造化データ: ItemList (順位表) -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "長野県 U-18 高校サッカー 順位表",
+  "description": "長野県の高校サッカーチーム順位リスト",
+  "url": "https://u18-soccer.com/prefectures/nagano/",
+  "numberOfItems": 11,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "松本山雅FC U-18",
+        "sport": "Football",
+        "memberOf": "プリンスリーグ北信越1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "松本国際高校",
+        "sport": "Football",
+        "memberOf": "プリンスリーグ北信越1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "AC長野パルセイロU-18",
+        "sport": "Football",
+        "memberOf": "プリンスリーグ北信越2部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "市立長野高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "都市大塩尻高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "松商学園高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "松本山雅FC U-18 2nd",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "上田西高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "東海大諏訪高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "松本第一高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "松本県ケ丘高校",
+        "sport": "Football",
+        "memberOf": "長野県1部"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- 構造化データ: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "長野県で最も強い高校サッカー部はどこですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現在の最新データでは、長野県の上位3校は松本山雅FC U-18、松本国際高校、AC長野パルセイロU-18です。順位はリーグカテゴリ（プレミア＞プリンス＞都道府県）と、各リーグ内順位を加味してランキングしています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "長野県の高校サッカーチームは何校ありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現在、長野県からは11校が U-18 年代の各種リーグ （高円宮杯JFA U-18 サッカープレミアリーグ・プリンスリーグ・都道府県リーグ）に登録されています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "長野県のプレミアリーグ・プリンスリーグ所属チームは？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現在、長野県からプレミアリーグへの所属はありません。プリンスリーグには松本山雅FC U-18、松本国際高校、AC長野パルセイロU-18が所属しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "順位データはいつ更新されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本サイトの順位データは 毎日 9:00 (JST) 頃に自動更新されています。JFA（日本サッカー協会）公式サイト・各都道府県サッカー協会の最新データを反映しているため、週末の試合結果も最短で翌朝には順位表に反映されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "高円宮杯 JFA U-18 サッカーリーグとは何ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦です。プレミアリーグ（全国2地域 各12チーム）、プリンスリーグ（9地域）、都道府県リーグ という3層のピラミッド構造になっており、各リーグ間で昇降格があります。長野県のチームは都道府県リーグから上位リーグへの昇格を目指して年間を通じて戦います。"
+      }
     }
   ]
 }
@@ -242,39 +455,39 @@
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">4</span></td>
-          <td><strong>松商学園高校</strong></td>
+          <td><strong>市立長野高校</strong></td>
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>1位</td>
-          <td><strong>12</strong></td>
-          <td>4</td>
-          <td>4</td>
+          <td><strong>15</strong></td>
+          <td>5</td>
+          <td>5</td>
           <td>0</td>
           <td>0</td>
-          <td class="goal-diff-positive" style="color:#28a745">+10</td>
+          <td class="goal-diff-positive" style="color:#28a745">+11</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">5</span></td>
-          <td><strong>市立長野高校</strong></td>
+          <td><strong>都市大塩尻高校</strong></td>
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>2位</td>
           <td><strong>12</strong></td>
-          <td>4</td>
+          <td>5</td>
           <td>4</td>
           <td>0</td>
-          <td>0</td>
-          <td class="goal-diff-positive" style="color:#28a745">+9</td>
+          <td>1</td>
+          <td class="goal-diff-positive" style="color:#28a745">+15</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">6</span></td>
-          <td><strong>都市大塩尻高校</strong></td>
+          <td><strong>松商学園高校</strong></td>
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>3位</td>
-          <td><strong>9</strong></td>
+          <td><strong>12</strong></td>
+          <td>5</td>
           <td>4</td>
-          <td>3</td>
           <td>0</td>
           <td>1</td>
-          <td class="goal-diff-positive" style="color:#28a745">+14</td>
+          <td class="goal-diff-positive" style="color:#28a745">+9</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">7</span></td>
@@ -290,39 +503,39 @@
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">8</span></td>
-          <td><strong>東海大諏訪高校</strong></td>
+          <td><strong>上田西高校</strong></td>
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>5位</td>
-          <td><strong>3</strong></td>
-          <td>4</td>
+          <td><strong>4</strong></td>
+          <td>5</td>
           <td>1</td>
-          <td>0</td>
+          <td>1</td>
           <td>3</td>
           <td class="goal-diff-negative" style="color:#dc3545">-3</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">9</span></td>
-          <td><strong>松本第一高校</strong></td>
+          <td><strong>東海大諏訪高校</strong></td>
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>6位</td>
           <td><strong>3</strong></td>
-          <td>4</td>
+          <td>5</td>
           <td>1</td>
           <td>0</td>
-          <td>3</td>
-          <td class="goal-diff-negative" style="color:#dc3545">-11</td>
+          <td>4</td>
+          <td class="goal-diff-negative" style="color:#dc3545">-7</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">10</span></td>
-          <td><strong>上田西高校</strong></td>
+          <td><strong>松本第一高校</strong></td>
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>7位</td>
-          <td><strong>1</strong></td>
-          <td>4</td>
-          <td>0</td>
+          <td><strong>3</strong></td>
+          <td>5</td>
           <td>1</td>
-          <td>3</td>
-          <td class="goal-diff-negative" style="color:#dc3545">-7</td>
+          <td>0</td>
+          <td>4</td>
+          <td class="goal-diff-negative" style="color:#dc3545">-13</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">11</span></td>
@@ -330,11 +543,11 @@
           <td><span class="league-badge prefecture">長野県1部</span></td>
           <td>8位</td>
           <td><strong>1</strong></td>
-          <td>4</td>
+          <td>5</td>
           <td>0</td>
           <td>1</td>
-          <td>3</td>
-          <td class="goal-diff-negative" style="color:#dc3545">-8</td>
+          <td>4</td>
+          <td class="goal-diff-negative" style="color:#dc3545">-9</td>
         </tr>
           </tbody>
         </table>
@@ -353,6 +566,31 @@
           各都道府県の<strong>都道府県リーグ</strong>という階層構造になっています。各リーグの上位・下位チームには
           毎年昇降格があり、上位リーグ昇格を目指してハイレベルな戦いが繰り広げられています。
         </p>
+      </section>
+
+      <!-- ★ FAQ セクション (Phase 9-A ステップ2 で追加) -->
+      <section class="lp-section lp-faq">
+        <h2><i class="fas fa-question-circle"></i> よくある質問</h2>
+        <details class="lp-faq-item">
+          <summary class="lp-faq-q">長野県で最も強い高校サッカー部はどこですか？</summary>
+          <div class="lp-faq-a">現在の最新データでは、長野県の上位3校は<strong>松本山雅FC U-18、松本国際高校、AC長野パルセイロU-18</strong>です。順位はリーグカテゴリ（プレミア＞プリンス＞都道府県）と、各リーグ内順位を加味してランキングしています。</div>
+        </details>
+        <details class="lp-faq-item">
+          <summary class="lp-faq-q">長野県の高校サッカーチームは何校ありますか？</summary>
+          <div class="lp-faq-a">現在、長野県からは<strong>11校</strong>が U-18 年代の各種リーグ （高円宮杯JFA U-18 サッカープレミアリーグ・プリンスリーグ・都道府県リーグ）に登録されています。</div>
+        </details>
+        <details class="lp-faq-item">
+          <summary class="lp-faq-q">長野県のプレミアリーグ・プリンスリーグ所属チームは？</summary>
+          <div class="lp-faq-a">現在、長野県からプレミアリーグへの所属はありません。プリンスリーグには<strong>松本山雅FC U-18、松本国際高校、AC長野パルセイロU-18</strong>が所属しています。</div>
+        </details>
+        <details class="lp-faq-item">
+          <summary class="lp-faq-q">順位データはいつ更新されますか？</summary>
+          <div class="lp-faq-a">本サイトの順位データは <strong>毎日 9:00 (JST)</strong> 頃に自動更新されています。JFA（日本サッカー協会）公式サイト・各都道府県サッカー協会の最新データを反映しているため、週末の試合結果も最短で翌朝には順位表に反映されます。</div>
+        </details>
+        <details class="lp-faq-item">
+          <summary class="lp-faq-q">高円宮杯 JFA U-18 サッカーリーグとは何ですか？</summary>
+          <div class="lp-faq-a">高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦です。<strong>プレミアリーグ</strong>（全国2地域 各12チーム）、<strong>プリンスリーグ</strong>（9地域）、<strong>都道府県リーグ</strong> という3層のピラミッド構造になっており、各リーグ間で昇降格があります。長野県のチームは都道府県リーグから上位リーグへの昇格を目指して年間を通じて戦います。</div>
+        </details>
       </section>
 
       <!-- 近隣の都道府県 -->
