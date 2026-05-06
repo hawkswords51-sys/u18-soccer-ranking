@@ -4020,3 +4020,99 @@ details[open] > summary > .league-accordion__chevron {
         opacity: 0.85;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v2: ヘッダーとテーブル仕上げ
+   - お気に入りのラベルも隠す (より強力なセレクタ)
+   - タイトルをある程度見せる
+   - チーム名カラムの最低幅を確保
+   ===================================================================== */
+
+/* ───────── テーブル: 強制で min-width 適用 ───────── */
+@media (max-width: 768px) {
+    /* テーブル全体に最低幅 (横スクロールで対応) */
+    .data-table,
+    table.data-table {
+        min-width: 620px !important;
+    }
+
+    /* チーム名カラム最低幅 */
+    .data-table tbody td:nth-child(2),
+    .data-table thead th:nth-child(2) {
+        min-width: 150px !important;
+    }
+
+    /* hanging indent をさらに弱める */
+    .data-table tbody td:nth-child(2) {
+        padding-left: 14px;
+        text-indent: -10px;
+    }
+
+    /* 日本語+英数字の word-break 制御 */
+    .data-table tbody td:nth-child(2) strong {
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        line-break: strict;
+    }
+}
+
+/* ───────── タイトルを少し大きめに ───────── */
+@media (max-width: 768px) {
+    .header .site-title {
+        font-size: 0.92rem !important;
+        max-width: 50%;
+    }
+    .header .site-title i {
+        font-size: 1.1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .site-title {
+        font-size: 0.78rem !important;
+        max-width: 38%;
+    }
+}
+
+@media (max-width: 380px) {
+    .header .site-title {
+        max-width: 28%;
+    }
+}
+
+/* ───────── ナビゲーション: ラベル完全に隠す (より強力) ───────── */
+@media (max-width: 480px) {
+    /* nav-link の中の i 以外のすべての要素のテキストを隠す */
+    .header .nav-link,
+    .header .nav-link span,
+    .header .nav-link a,
+    .header nav a,
+    .header nav button {
+        font-size: 0 !important;
+        line-height: 1 !important;
+    }
+
+    /* アイコンだけは表示 */
+    .header .nav-link i,
+    .header nav i,
+    .header nav button i {
+        font-size: 1.1rem !important;
+        line-height: 1 !important;
+    }
+
+    /* ナビ全体の余白を最小化 */
+    .header .nav {
+        gap: 2px !important;
+    }
+    .header .nav-link {
+        padding: 6px 4px !important;
+    }
+}
+
+/* ───────── 超狭幅: 「管理」を隠す ───────── */
+@media (max-width: 380px) {
+    /* 管理ボタンを隠してスペース確保 */
+    .header .nav-link[href*="admin"] {
+        display: none !important;
+    }
+}
