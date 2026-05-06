@@ -92,6 +92,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- ★ Phase 9-A ステップ2: トップページ用 構造化データ -->
+  <!-- WebSite + SearchAction (サイト内検索ボックス候補) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "高校サッカー順位確認システム",
+    "alternateName": "U-18 高校サッカー順位",
+    "url": "https://u18-soccer.com/",
+    "description": "高円宮杯 JFA U-18 サッカーリーグの全国47都道府県の順位を毎日自動更新。プレミアリーグ・プリンスリーグ・都道府県リーグを横断して検索・比較できる無料サービス。",
+    "inLanguage": "ja-JP",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://u18-soccer.com/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- SportsOrganization (サイト識別) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "高校サッカー順位確認システム",
+    "url": "https://u18-soccer.com/",
+    "logo": "https://u18-soccer.com/og-image.png",
+    "sport": "Football",
+    "description": "高円宮杯 JFA U-18 サッカーリーグ（プレミアリーグ・プリンスリーグ・都道府県リーグ）の最新順位を全国47都道府県分集約。毎日自動更新。",
+    "areaServed": {
+      "@type": "Country",
+      "name": "日本"
+    },
+    "foundingDate": "2024",
+    "sameAs": []
+  }
+  </script>
 </head>
 <body>
     <!-- ヘッダー -->
