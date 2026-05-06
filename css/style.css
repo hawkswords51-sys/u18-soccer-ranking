@@ -3513,3 +3513,408 @@ details[open] > summary > .league-accordion__chevron {
         grid-template-columns: 1fr;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D: ブログ記事ページ・一覧ページ
+   /blog/ と /blog/posts/<slug>/
+   ===================================================================== */
+
+/* ───────── ブログ記事ページ ───────── */
+.blog-article {
+    max-width: 760px;
+    margin: 32px auto;
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+}
+
+.blog-article__header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+}
+
+.blog-article__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.blog-article__category {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.blog-article__date {
+    color: var(--text-light);
+    font-size: 0.88rem;
+}
+
+.blog-article__title {
+    font-size: 1.7rem;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin: 8px 0 12px;
+    font-weight: 700;
+}
+
+.blog-article__author {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.blog-article__author i {
+    color: var(--primary-color);
+    margin-right: 6px;
+}
+
+.blog-article__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.blog-tag {
+    background: rgba(30, 64, 175, 0.08);
+    color: var(--primary-color);
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+}
+
+/* 本文 */
+.blog-article__body {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+}
+
+.blog-article__body h2 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 6px;
+    margin: 36px 0 14px;
+}
+
+.blog-article__body h3 {
+    font-size: 1.18rem;
+    color: var(--text-dark);
+    margin: 28px 0 10px;
+    padding-left: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.blog-article__body p {
+    margin: 14px 0;
+}
+
+.blog-article__body ul,
+.blog-article__body ol {
+    margin: 12px 0 16px 24px;
+    padding-left: 8px;
+}
+
+.blog-article__body li {
+    margin: 6px 0;
+}
+
+.blog-article__body a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.blog-article__body a:hover {
+    color: #004999;
+}
+
+.blog-article__body strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.blog-article__body blockquote {
+    border-left: 4px solid var(--primary-color);
+    background: rgba(30, 64, 175, 0.05);
+    padding: 14px 20px;
+    margin: 18px 0;
+    color: var(--text-dark);
+    font-style: italic;
+}
+
+.blog-article__body code {
+    background: rgba(30, 64, 175, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    font-family: 'Courier New', monospace;
+}
+
+.blog-article__body pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 18px 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.blog-article__body pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+.blog-article__body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9rem;
+}
+
+.blog-article__body th,
+.blog-article__body td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+.blog-article__body th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.blog-article__body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+/* 記事フッター */
+.blog-article__footer {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border-color);
+}
+
+.blog-article__share {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.blog-article__share span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-right: 4px;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: opacity 0.15s ease;
+}
+
+.share-btn:hover { opacity: 0.85; }
+.share-btn--twitter  { background: #000; }
+.share-btn--facebook { background: #1877f2; }
+.share-btn--line     { background: #06c755; }
+
+/* 関連記事 */
+.blog-related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-related-list li {
+    border-bottom: 1px solid var(--border-color);
+}
+.blog-related-list li:last-child { border-bottom: none; }
+
+.blog-related-link {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 4px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: padding 0.15s ease;
+}
+
+.blog-related-link:hover {
+    padding-left: 12px;
+    color: var(--primary-color);
+}
+
+.blog-related-link__date {
+    font-size: 0.78rem;
+    color: var(--text-light);
+}
+
+.blog-related-link__title {
+    font-size: 0.98rem;
+    font-weight: 500;
+}
+
+/* ───────── ブログ一覧ページ ───────── */
+.blog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.blog-category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-white);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+
+.blog-category-tag small {
+    color: var(--text-light);
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-list-item {
+    margin-bottom: 16px;
+}
+
+.blog-list-link {
+    display: block;
+    padding: 20px 22px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.2s ease;
+}
+
+.blog-list-link:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-list-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.blog-list-category {
+    background: var(--primary-color);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.blog-list-date {
+    color: var(--text-light);
+    font-size: 0.82rem;
+}
+
+.blog-list-title {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin: 6px 0 8px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.blog-list-link:hover .blog-list-title {
+    color: var(--primary-color);
+}
+
+.blog-list-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    .blog-article {
+        padding: 20px 16px;
+        margin: 16px 8px;
+    }
+    .blog-article__title {
+        font-size: 1.35rem;
+    }
+    .blog-article__body {
+        font-size: 0.94rem;
+        line-height: 1.85;
+    }
+    .blog-article__body h2 {
+        font-size: 1.2rem;
+    }
+    .blog-article__body h3 {
+        font-size: 1.05rem;
+    }
+    .blog-list-link {
+        padding: 16px 14px;
+    }
+    .blog-list-title {
+        font-size: 1.02rem;
+    }
+}
+
+/* ダークモード */
+[data-theme="dark"] .blog-article,
+[data-theme="dark"] .blog-list-link,
+[data-theme="dark"] .blog-category-tag {
+    background: rgba(255, 255, 255, 0.04);
+}
+[data-theme="dark"] .blog-article__body code {
+    background: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .blog-tag {
+    background: rgba(255, 255, 255, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .blog-article,
+    :root:not([data-theme="light"]) .blog-list-link,
+    :root:not([data-theme="light"]) .blog-category-tag {
+        background: rgba(255, 255, 255, 0.04);
+    }
+}
