@@ -4187,8 +4187,7 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* =====================================================================
-   ★ Phase 9-D 後の修正 v5: テーブル列幅バランス調整
-   v4 の幅指定を上書きしつつ、各列に適切な幅を指定
+   ★ Phase 9-D 後の修正 v6: 成績列を広く見せる微調整
    ===================================================================== */
 
 @media (max-width: 768px) {
@@ -4200,42 +4199,35 @@ details[open] > summary > .league-accordion__chevron {
         width: 720px !important;
     }
 
-    /* 1列目: 県内順位 */
+    /* 1列目: 県内順位 (少し縮める) */
     table.data-table tbody td:nth-child(1),
     table.data-table thead th:nth-child(1) {
-        width: 64px !important;
-        min-width: 64px !important;
+        width: 56px !important;
+        min-width: 56px !important;
     }
 
-    /* 2列目: チーム名 (165px = 約11文字、長い名前は2行折り返し) */
+    /* 2列目: チーム名 (少し縮めるが大半1行で収まる) */
     table.data-table tbody td:nth-child(2),
     table.data-table thead th:nth-child(2) {
-        width: 165px !important;
-        min-width: 165px !important;
-        max-width: 165px !important;
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
         padding-left: 10px !important;
         text-indent: 0 !important;
     }
 
-    /* 3列目: リーグバッジ */
+    /* 3列目: リーグバッジ (少し縮める) */
     table.data-table tbody td:nth-child(3),
     table.data-table thead th:nth-child(3) {
-        width: 105px !important;
-        min-width: 105px !important;
+        width: 88px !important;
+        min-width: 88px !important;
     }
 
-    /* 4列目以降: 順位・勝点・試合数・勝・分・負・得失差 (各55px) */
+    /* 4列目以降: 順位・勝点・試合数・勝・分・負・得失差 (各列を広く) */
     table.data-table tbody td:nth-child(n+4),
     table.data-table thead th:nth-child(n+4) {
-        width: 55px !important;
-        min-width: 55px !important;
+        width: 61px !important;
+        min-width: 61px !important;
         text-align: center !important;
-    }
-
-    /* チーム名 strong の word-break */
-    .data-table tbody td:nth-child(2) strong {
-        word-break: keep-all !important;
-        overflow-wrap: break-word !important;
-        white-space: normal !important;
     }
 }
