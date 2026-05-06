@@ -153,6 +153,27 @@
     ]
   }
   </script>
+    <!-- ★ Phase 9-C: トップページ用 SiteNavigationElement -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": [
+      "47都道府県の順位表",
+      "リーグ一覧",
+      "プレミアリーグEAST",
+      "プレミアリーグWEST",
+      "プリンスリーグ"
+    ],
+    "url": [
+      "https://u18-soccer.com/prefectures/",
+      "https://u18-soccer.com/leagues/",
+      "https://u18-soccer.com/leagues/premier-east/",
+      "https://u18-soccer.com/leagues/premier-west/",
+      "https://u18-soccer.com/leagues/"
+    ]
+  }
+  </script>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -253,7 +274,31 @@
       高校サッカー部・クラブユースの両方の順位を、プレミア・プリンス・都道府県リーグ1部 横断で表示。
     </p>
   </section>
-
+<!-- ★ Phase 9-C: リーグ・47都道府県 ナビゲーションハブ -->
+            <section class="home-nav-hub">
+              <h2 class="home-nav-hub__title">
+                <i class="fas fa-trophy"></i> リーグから探す
+              </h2>
+              <div class="home-nav-hub__cards">
+                <a href="/leagues/premier-east/" class="home-nav-card home-nav-card--premier">
+                  <div class="home-nav-card__title">プレミアリーグ EAST</div>
+                  <div class="home-nav-card__desc">全国最上位リーグ・東日本</div>
+                </a>
+                <a href="/leagues/premier-west/" class="home-nav-card home-nav-card--premier">
+                  <div class="home-nav-card__title">プレミアリーグ WEST</div>
+                  <div class="home-nav-card__desc">全国最上位リーグ・西日本</div>
+                </a>
+                <a href="/leagues/" class="home-nav-card home-nav-card--prince">
+                  <div class="home-nav-card__title">プリンスリーグ 9地域</div>
+                  <div class="home-nav-card__desc">全国の地域リーグ一覧へ</div>
+                </a>
+              </div>
+              <p class="home-nav-hub__desc" style="margin-top:24px;">
+                <i class="fas fa-map-marker-alt"></i>
+                <strong>47都道府県から探す</strong>場合は、下の日本地図セクションから選択してください。
+                各都道府県のクラブユース・高校サッカー部の最新順位を確認できます。
+              </p>
+            </section>
             <!-- 検索セクション（初期非表示） -->
             <section class="search-section" id="searchSection" style="display: none;">
                 <div class="search-box">
