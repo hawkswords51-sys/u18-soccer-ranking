@@ -64,14 +64,23 @@ jobs:
           else
             echo "scraper/cleanup_aliases.py がまだありません。スキップ。"
           fi
-      # ★ NEW: SEO 用ランディングページ自動生成
-      - name: 都道府県別 SEO ページと sitemap を再生成
+      # ★ Phase 9-A: 都道府県別 SEO ランディングページ自動生成
+      - name: 都道府県別 SEO ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           if [ -f scraper/generate_prefecture_pages.py ]; then
             python scraper/generate_prefecture_pages.py
           else
             echo "scraper/generate_prefecture_pages.py がまだありません。スキップ。"
+          fi
+      # ★ Phase 9-B: リーグ専用ページと sitemap 完全版を再生成
+      - name: リーグ専用ページと sitemap を再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_league_pages.py ]; then
+            python scraper/generate_league_pages.py
+          else
+            echo "scraper/generate_league_pages.py がまだありません。スキップ。"
           fi
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -83,12 +92,13 @@ jobs:
           if [ -f data/tournaments.json ]; then git add data/tournaments.json; fi
           # SEO ランディングページと sitemap
           if [ -d prefectures ]; then git add prefectures; fi
+          if [ -d leagues ]; then git add leagues; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
           # 変更がある場合のみコミット & push
           if git diff --staged --quiet; then
             echo "変更なし – push スキップ"
           else
-            git commit -m "chore: 順位/大会データ・SEOページ自動更新 $(date '+%Y-%m-%d')"
+            git commit -m "chore: 順位/大会データ・SEO/リーグページ自動更新 $(date '+%Y-%m-%d')"
             for i in 1 2 3; do
               git pull --rebase origin main && git push && break
               echo "push 失敗、リトライ $i/3 ..."
