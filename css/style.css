@@ -2952,8 +2952,8 @@ details[open] > summary > .league-accordion__chevron {
    ☆お気に入りマーク分のスペースを確保し、折り返し時に高校名の下で揃える
    ===================================================================== */
 .data-table tbody td:nth-child(2) {
-    padding-left: 34px;       /* 28 → 34 (+6) */
-    text-indent: -28px;       /* -22 → -28 (-6) */
+    padding-left: 32px;       /* 28 → 32 (+4) */
+    text-indent: -26px;       /* -22 → -26 (-4) */
     word-break: keep-all;
     overflow-wrap: break-word;
 }
