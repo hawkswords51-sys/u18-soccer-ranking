@@ -4356,3 +4356,33 @@ details[open] > summary > .league-accordion__chevron {
         min-width: 130px !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v9: モーダル列幅の正しい指定
+   - v8 で nth-child(3) を 130px と書いたが、実際 3列目はリーグ
+   - チーム名(2列目) を広く、リーグ(3列目) は適切な幅
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* モーダル内 2列目: チーム名 (広く取る) */
+    .modal table.data-table tbody td:nth-child(2),
+    .modal table.data-table thead th:nth-child(2),
+    #detailModal table.data-table tbody td:nth-child(2),
+    #detailModal table.data-table thead th:nth-child(2),
+    #teamsTable td:nth-child(2),
+    #teamsTable th:nth-child(2) {
+        min-width: 145px !important;
+        width: auto !important;
+    }
+
+    /* モーダル内 3列目: リーグバッジ (短縮後でも余裕の幅) */
+    .modal table.data-table tbody td:nth-child(3),
+    .modal table.data-table thead th:nth-child(3),
+    #detailModal table.data-table tbody td:nth-child(3),
+    #detailModal table.data-table thead th:nth-child(3),
+    #teamsTable td:nth-child(3),
+    #teamsTable th:nth-child(3) {
+        min-width: 95px !important;
+        width: auto !important;
+    }
+}
