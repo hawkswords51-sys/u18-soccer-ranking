@@ -179,6 +179,165 @@ def render_breadcrumb_schema(pref_name, pref_id):
     }
 
 
+# ============================================================
+# Phase 9-A ステップ3: 内部リンク用のグローバル集計
+# ============================================================
+def get_global_top_teams(all_prefs, limit=10):
+    """全国から上位 N チームを抽出 (リーグティア + 順位)"""
+    all_teams = []
+    for pref in all_prefs:
+        for t in pref.get("teams", []):
+            all_teams.append({
+                **t,
+                "_pref_name": pref["name"],
+                "_pref_id": pref["id"],
+            })
+    return sorted(
+        all_teams,
+        key=lambda t: (
+            {"premier": 0, "prince": 1, "prefecture": 2}.get(
+                league_category(t.get("league")), 9
+            ),
+            t.get("rank") or 99,
+        ),
+    )[:limit]
+
+
+def get_prefectures_with_league(all_prefs, category):
+    """指定リーグカテゴリ('premier' / 'prince')のチームを持つ都道府県を取得"""
+    result = []
+    for pref in all_prefs:
+        teams_in_league = [
+            t for t in pref.get("teams", [])
+            if league_category(t.get("league")) == category
+        ]
+        if teams_in_league:
+            result.append({
+                "id": pref["id"],
+                "name": pref["name"],
+                "team_count": len(teams_in_league),
+                "team_names": [t.get("name", "") for t in teams_in_league[:3]],
+            })
+    return result
+
+
+# 8地方ブロック分類 (region コードがデータに無い場合のフォールバック用)
+REGION_LABEL = {
+    "hokkaido": "北海道",
+    "tohoku": "東北",
+    "kanto": "関東",
+    "chubu": "中部",
+    "kansai": "関西",
+    "chugoku": "中国",
+    "shikoku": "四国",
+    "kyushu": "九州・沖縄",
+}
+
+
+def group_prefectures_by_region(all_prefs):
+    """都道府県を地方ブロックでグループ化"""
+    groups = {}
+    for pref in all_prefs:
+        region = pref.get("region") or "other"
+        groups.setdefault(region, []).append(pref)
+    # 地方順序を整理
+    ordered = []
+    for r_id, r_label in REGION_LABEL.items():
+        if r_id in groups:
+            ordered.append((r_label, groups[r_id]))
+    if "other" in groups:
+        ordered.append(("その他", groups["other"]))
+    return ordered
+
+
+# ============================================================
+# Phase 9-A ステップ3: 内部リンクセクションの HTML 生成
+# ============================================================
+def render_top10_html(top_teams, current_pref_id):
+    """全国強豪校 TOP10 セクションの HTML"""
+    if not top_teams:
+        return '          <p style="color:#888;">情報を準備中</p>'
+    items = []
+    for i, t in enumerate(top_teams):
+        league = t.get("league", "")
+        league_class = league_category(league)
+        is_current = (t.get("_pref_id") == current_pref_id)
+        rank_class = (
+            f"rank-{i+1}" if i < 3 else "rank-other"
+        )
+        # 自県の場合はリンクではなく強調表示
+        team_block = (
+            f'<strong>{html_escape(t.get("name", ""))}</strong>'
+            f' <span class="lp-top10-pref-current">({html_escape(t["_pref_name"])} ・ このページ)</span>'
+            if is_current else
+            f'<a href="/prefectures/{t["_pref_id"]}/" class="lp-top10-link">'
+            f'<strong>{html_escape(t.get("name", ""))}</strong>'
+            f'<span class="lp-top10-pref">{html_escape(t["_pref_name"])}</span>'
+            f'</a>'
+        )
+        items.append(
+            f'        <li class="lp-top10-item">'
+            f'<span class="lp-top10-rank {rank_class}">{i+1}</span>'
+            f'<div class="lp-top10-body">'
+            f'<span class="league-badge {league_class}">{html_escape(league)}</span>'
+            f'{team_block}'
+            f'</div>'
+            f'</li>'
+        )
+    return "\n".join(items)
+
+
+def render_league_prefs_html(prefs, current_pref_id, league_label):
+    """プレミア/プリンスリーグ所属都道府県のリンク群 HTML"""
+    if not prefs:
+        return f'          <p style="color:#888;">{league_label}所属の都道府県は現在ありません。</p>'
+    items = []
+    for p in prefs:
+        is_current = (p["id"] == current_pref_id)
+        team_examples = "、".join(html_escape(n) for n in p["team_names"])
+        if is_current:
+            items.append(
+                f'          <span class="lp-league-pref lp-league-pref--current" '
+                f'title="{team_examples}">{html_escape(p["name"])}'
+                f'<small>({p["team_count"]}校)</small></span>'
+            )
+        else:
+            items.append(
+                f'          <a href="/prefectures/{p["id"]}/" class="lp-league-pref" '
+                f'title="{team_examples}">{html_escape(p["name"])}'
+                f'<small>({p["team_count"]}校)</small></a>'
+            )
+    return "\n".join(items)
+
+
+def render_all_prefs_html(grouped_prefs, current_pref_id):
+    """47都道府県を地方別にグループ化した全リンク HTML"""
+    blocks = []
+    for region_label, prefs in grouped_prefs:
+        links = []
+        for p in prefs:
+            is_current = (p["id"] == current_pref_id)
+            cls = "lp-allprefs-link" + (" lp-allprefs-link--current" if is_current else "")
+            if is_current:
+                links.append(
+                    f'            <span class="{cls}">{html_escape(p["name"])}</span>'
+                )
+            else:
+                links.append(
+                    f'            <a href="/prefectures/{p["id"]}/" class="{cls}">'
+                    f'{html_escape(p["name"])}</a>'
+                )
+        blocks.append(
+            f'        <div class="lp-allprefs-region">\n'
+            f'          <h3 class="lp-allprefs-region-title">{html_escape(region_label)}</h3>\n'
+            f'          <div class="lp-allprefs-grid">\n'
+            + "\n".join(links) + "\n"
+            f'          </div>\n'
+            f'        </div>'
+        )
+    return "\n".join(blocks)
+
+
 def render_itemlist_schema(teams, pref_name, pref_id):
     """順位表を ItemList として表現"""
     canonical = f"{DOMAIN}/prefectures/{pref_id}/"
@@ -522,12 +681,57 @@ __TEAM_ROWS__
 __FAQ_HTML__
       </section>
 
+      <!-- ★ Phase 9-A ステップ3: 全国強豪校 TOP 10 -->
+      <section class="lp-section lp-top10">
+        <h2><i class="fas fa-trophy"></i> 全国強豪校 TOP 10</h2>
+        <p class="lp-section-desc">
+          全国47都道府県のチームを、所属リーグ階層と順位を加味してランキングしました。
+          各チームをクリックすると所属する都道府県の順位表ページに移動できます。
+        </p>
+        <ol class="lp-top10-list">
+__TOP10_HTML__
+        </ol>
+      </section>
+
+      <!-- ★ Phase 9-A ステップ3: プレミアリーグ所属都道府県 -->
+      <section class="lp-section">
+        <h2><i class="fas fa-star"></i> プレミアリーグ所属の都道府県</h2>
+        <p class="lp-section-desc">
+          高円宮杯JFA U-18 サッカープレミアリーグ（全国2地域・各12チーム）に
+          所属するチームがある都道府県の一覧です。
+        </p>
+        <div class="lp-league-prefs">
+__PREMIER_PREFS_HTML__
+        </div>
+      </section>
+
+      <!-- ★ Phase 9-A ステップ3: プリンスリーグ所属都道府県 -->
+      <section class="lp-section">
+        <h2><i class="fas fa-medal"></i> プリンスリーグ所属の都道府県</h2>
+        <p class="lp-section-desc">
+          高円宮杯JFA U-18 サッカープリンスリーグ（9地域）に所属するチームがある都道府県の一覧です。
+        </p>
+        <div class="lp-league-prefs">
+__PRINCE_PREFS_HTML__
+        </div>
+      </section>
+
       <!-- 近隣の都道府県 -->
       <section class="lp-section">
-        <h2>近隣の都道府県</h2>
+        <h2><i class="fas fa-map-marker-alt"></i> 近隣の都道府県</h2>
         <div class="lp-neighbor-grid">
 __NEIGHBOR_LINKS__
         </div>
+      </section>
+
+      <!-- ★ Phase 9-A ステップ3: 全47都道府県(地方別) -->
+      <section class="lp-section lp-allprefs">
+        <h2><i class="fas fa-globe"></i> 全47都道府県の順位表を見る</h2>
+        <p class="lp-section-desc">
+          地方ブロック別に全国の順位表ページへリンクしています。
+          気になる都道府県をクリックして高校サッカーの最新情報をチェックしてください。
+        </p>
+__ALL_PREFS_HTML__
       </section>
 
       <!-- 関連リンク -->
@@ -625,6 +829,18 @@ def generate_page(pref, all_prefs):
     faq_schema = json.dumps(render_faq_schema(faqs), ensure_ascii=False, indent=2)
     faq_html = render_faq_html(faqs)
 
+    # ★ Phase 9-A ステップ3: 内部リンクセクション
+    top10 = get_global_top_teams(all_prefs, limit=10)
+    top10_html = render_top10_html(top10, pref_id)
+
+    premier_prefs = get_prefectures_with_league(all_prefs, "premier")
+    prince_prefs = get_prefectures_with_league(all_prefs, "prince")
+    premier_prefs_html = render_league_prefs_html(premier_prefs, pref_id, "プレミアリーグ")
+    prince_prefs_html = render_league_prefs_html(prince_prefs, pref_id, "プリンスリーグ")
+
+    grouped_prefs = group_prefectures_by_region(all_prefs)
+    all_prefs_html = render_all_prefs_html(grouped_prefs, pref_id)
+
     return (
         PAGE_TEMPLATE
         .replace("__GA_ID__", GA_ID)
@@ -645,6 +861,10 @@ def generate_page(pref, all_prefs):
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__NEIGHBOR_LINKS__", neighbor_links)
         .replace("__FAQ_HTML__", faq_html)
+        .replace("__TOP10_HTML__", top10_html)
+        .replace("__PREMIER_PREFS_HTML__", premier_prefs_html)
+        .replace("__PRINCE_PREFS_HTML__", prince_prefs_html)
+        .replace("__ALL_PREFS_HTML__", all_prefs_html)
     )
 
 
