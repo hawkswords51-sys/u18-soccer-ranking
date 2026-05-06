@@ -2946,3 +2946,30 @@ details[open] > summary > .league-accordion__chevron {
         background: rgba(255, 255, 255, 0.06);
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-A 追加修正: チーム名セルの改行インデント揃え
+   ☆お気に入りマーク + 長いチーム名 の折り返し位置を修正
+   ===================================================================== */
+
+/* チーム名セル(2列目): flex で子要素を並べる */
+.data-table tbody td:nth-child(2) {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: nowrap;
+}
+
+/* チーム名 (strong) は折り返し時も正しくインデント */
+.data-table tbody td:nth-child(2) > strong {
+    flex: 1 1 auto;
+    min-width: 0;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+/* それ以外の要素 (☆ボタン等) は固定幅で縮まない */
+.data-table tbody td:nth-child(2) > *:not(strong) {
+    flex-shrink: 0;
+    align-self: center;
+}
