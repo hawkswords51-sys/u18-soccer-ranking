@@ -2806,3 +2806,143 @@ details[open] > summary > .league-accordion__chevron {
         background: rgba(255, 255, 255, 0.08);
     }
 }
+
+
+/* =====================================================================
+   ★ Phase 9-A ステップ2: FAQ アコーディオン（よくある質問）
+   /prefectures/<id>/index.html で使用
+   ===================================================================== */
+
+.lp-faq {
+    margin-top: 40px;
+}
+
+.lp-faq h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 8px;
+}
+
+.lp-faq h2 i {
+    font-size: 1.4rem;
+}
+
+.lp-faq-item {
+    background: var(--bg-white);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+}
+
+.lp-faq-item:hover {
+    border-color: var(--primary-color);
+}
+
+.lp-faq-item[open] {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow);
+}
+
+.lp-faq-q {
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.lp-faq-q::-webkit-details-marker {
+    display: none;
+}
+
+.lp-faq-q::before {
+    content: "Q.";
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+.lp-faq-q::after {
+    content: "▼";
+    margin-left: auto;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.lp-faq-item[open] .lp-faq-q::after {
+    transform: rotate(180deg);
+}
+
+.lp-faq-a {
+    padding: 4px 20px 18px 44px;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    border-top: 1px dashed var(--border-color);
+    margin-top: 0;
+    padding-top: 16px;
+    position: relative;
+}
+
+.lp-faq-a::before {
+    content: "A.";
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    color: #28a745;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.lp-faq-a strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    .lp-faq-q {
+        padding: 14px 16px;
+        font-size: 0.92rem;
+    }
+    .lp-faq-a {
+        padding: 14px 16px 16px 36px;
+        font-size: 0.88rem;
+    }
+    .lp-faq-a::before {
+        left: 16px;
+        top: 14px;
+    }
+}
+
+/* ダークモード */
+[data-theme="dark"] .lp-faq-item {
+    background: rgba(255, 255, 255, 0.04);
+}
+[data-theme="dark"] .lp-faq-item[open] {
+    background: rgba(255, 255, 255, 0.06);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lp-faq-item {
+        background: rgba(255, 255, 255, 0.04);
+    }
+    :root:not([data-theme="light"]) .lp-faq-item[open] {
+        background: rgba(255, 255, 255, 0.06);
+    }
+}
