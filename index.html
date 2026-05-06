@@ -380,5 +380,27 @@
             }
         });
     </script>
+    <!-- ★ Phase 9-D 後の修正 v9: リーグバッジから「リーグ」を取り除く -->
+    <script>
+    (function() {
+      function shortenLeagueBadges() {
+        document.querySelectorAll('.league-badge').forEach(function(el) {
+          if (el.dataset.shortened === '1') return;  // 既に短縮済みはスキップ
+          el.dataset.shortened = '1';
+          el.textContent = el.textContent.replace(/リーグ/g, '');
+        });
+      }
+      // ページロード時
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', shortenLeagueBadges);
+      } else {
+        shortenLeagueBadges();
+      }
+      // モーダル開閉などで動的に追加されたバッジも自動対応
+      new MutationObserver(shortenLeagueBadges).observe(
+        document.body, {childList: true, subtree: true}
+      );
+    })();
+    </script>
 </body>
 </html>
