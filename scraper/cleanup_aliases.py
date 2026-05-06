@@ -43,6 +43,8 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     # 茨城県: 鹿島アントラーズユースB は canonical 不在。
     # トップが「鹿島アントラーズユース」(Premier EAST) なので 2nd 表記に統一
     ("ibaraki",  "鹿島アントラーズユースB"): "鹿島アントラーズユース2nd",
+    # 宮崎県: 「テゲバジャーロ」→「テゲバジャーロ宮崎U-18」に正式名称化
+    ("miyazaki", "テゲバジャーロ"): "テゲバジャーロ宮崎U-18",
 }
 
 # canonical エントリに alias を追加する。
