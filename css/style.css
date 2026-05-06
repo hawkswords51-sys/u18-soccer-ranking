@@ -2957,3 +2957,272 @@ details[open] > summary > .league-accordion__chevron {
     word-break: keep-all;
     overflow-wrap: break-word;
 }
+
+/* =====================================================================
+   ★ Phase 9-A ステップ3: 内部リンク強化セクション
+   - 全国強豪校 TOP10
+   - プレミア・プリンス所属都道府県
+   - 全47都道府県(地方別) ナビ
+   ===================================================================== */
+
+/* セクション説明文 */
+.lp-section-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 8px 0 16px;
+    line-height: 1.7;
+}
+
+/* ───────── 全国強豪校 TOP10 ───────── */
+.lp-top10 {
+    margin: 32px 0;
+}
+
+.lp-top10-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: top10;
+}
+
+.lp-top10-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.lp-top10-item:hover {
+    border-color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+/* 順位バッジ */
+.lp-top10-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    color: white;
+    background: #999;
+}
+
+.lp-top10-rank.rank-1 { background: #f59e0b; }
+.lp-top10-rank.rank-2 { background: #6b7280; }
+.lp-top10-rank.rank-3 { background: #b45309; }
+.lp-top10-rank.rank-other { background: #cbd5e1; color: #475569; }
+
+/* チーム名 + リーグの本文 */
+.lp-top10-body {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.lp-top10-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.lp-top10-link strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.lp-top10-link:hover strong {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.lp-top10-pref {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    font-weight: 400;
+}
+
+.lp-top10-pref::before {
+    content: "・";
+    margin-right: 2px;
+    color: var(--border-color);
+}
+
+.lp-top10-pref-current {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    font-style: italic;
+}
+
+/* ───────── プレミア/プリンス所属都道府県 ───────── */
+.lp-league-prefs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.lp-league-pref {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    background: var(--bg-white);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.lp-league-pref:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+}
+
+.lp-league-pref small {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.lp-league-pref:hover small {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.lp-league-pref--current {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    cursor: default;
+}
+
+.lp-league-pref--current small {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ───────── 全47都道府県(地方別) ───────── */
+.lp-allprefs {
+    margin-top: 40px;
+}
+
+.lp-allprefs-region {
+    margin: 20px 0;
+}
+
+.lp-allprefs-region-title {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin: 0 0 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.lp-allprefs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 6px;
+}
+
+.lp-allprefs-link {
+    display: block;
+    padding: 8px 6px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-dark);
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.88rem;
+    transition: all 0.15s ease;
+}
+
+.lp-allprefs-link:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.lp-allprefs-link--current {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+    cursor: default;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    .lp-top10-item {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .lp-top10-rank {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
+    .lp-top10-link {
+        font-size: 0.92rem;
+    }
+
+    .lp-top10-pref,
+    .lp-top10-pref-current {
+        font-size: 0.82rem;
+    }
+
+    .lp-league-pref {
+        padding: 6px 10px;
+        font-size: 0.86rem;
+    }
+
+    .lp-allprefs-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 5px;
+    }
+
+    .lp-allprefs-link {
+        padding: 7px 4px;
+        font-size: 0.82rem;
+    }
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .lp-top10-item,
+[data-theme="dark"] .lp-league-pref,
+[data-theme="dark"] .lp-allprefs-link {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .lp-top10-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lp-top10-item,
+    :root:not([data-theme="light"]) .lp-league-pref,
+    :root:not([data-theme="light"]) .lp-allprefs-link {
+        background: rgba(255, 255, 255, 0.04);
+    }
+}
