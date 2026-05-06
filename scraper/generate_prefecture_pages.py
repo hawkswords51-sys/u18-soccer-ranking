@@ -338,6 +338,67 @@ def render_all_prefs_html(grouped_prefs, current_pref_id):
     return "\n".join(blocks)
 
 
+# Phase 9-C: 都道府県内のチームが所属するリーグ → リーグ詳細ページへのリンク
+LEAGUE_TO_SLUG = {
+    "プレミアリーグEAST": ("premier-east", "プレミアリーグ EAST"),
+    "プレミアリーグWEST": ("premier-west", "プレミアリーグ WEST"),
+    "プリンスリーグ北海道": ("prince-hokkaido", "プリンスリーグ 北海道"),
+    "プリンスリーグ東北": ("prince-tohoku", "プリンスリーグ 東北"),
+    "プリンスリーグ関東1部": ("prince-kanto-1", "プリンスリーグ 関東 1部"),
+    "プリンスリーグ関東2部": ("prince-kanto-2", "プリンスリーグ 関東 2部"),
+    "プリンスリーグ北信越": ("prince-hokushinetsu", "プリンスリーグ 北信越"),
+    "プリンスリーグ東海": ("prince-tokai", "プリンスリーグ 東海"),
+    "プリンスリーグ関西1部": ("prince-kansai-1", "プリンスリーグ 関西 1部"),
+    "プリンスリーグ関西2部": ("prince-kansai-2", "プリンスリーグ 関西 2部"),
+    "プリンスリーグ中国": ("prince-chugoku", "プリンスリーグ 中国"),
+    "プリンスリーグ四国": ("prince-shikoku", "プリンスリーグ 四国"),
+    "プリンスリーグ九州1部": ("prince-kyushu-1", "プリンスリーグ 九州 1部"),
+    "プリンスリーグ九州2部": ("prince-kyushu-2", "プリンスリーグ 九州 2部"),
+}
+
+
+def render_league_links_html(teams):
+    """都道府県内のチームが所属しているリーグへのリンク群"""
+    leagues_in_pref = {}
+    for t in teams:
+        league_name = t.get("league") or ""
+        if league_name in LEAGUE_TO_SLUG:
+            slug, label = LEAGUE_TO_SLUG[league_name]
+            if slug not in leagues_in_pref:
+                leagues_in_pref[slug] = {
+                    "label": label,
+                    "category": league_category(league_name),
+                    "team_count": 0,
+                    "team_names": [],
+                }
+            leagues_in_pref[slug]["team_count"] += 1
+            leagues_in_pref[slug]["team_names"].append(t.get("name", ""))
+
+    if not leagues_in_pref:
+        return (
+            '          <p style="color:#888;">'
+            'この都道府県のチームが所属するプレミア/プリンスリーグはありません'
+            '（都道府県リーグ1部のみ）</p>'
+        )
+
+    items = []
+    # premier を先、prince を後
+    sorted_leagues = sorted(
+        leagues_in_pref.items(),
+        key=lambda kv: (0 if kv[1]["category"] == "premier" else 1, kv[0]),
+    )
+    for slug, info in sorted_leagues:
+        names = "、".join(html_escape(n) for n in info["team_names"])
+        cls = f"league-link league-link--{info['category']}"
+        items.append(
+            f'          <a href="/leagues/{slug}/" class="{cls}" '
+            f'title="所属チーム: {names}">'
+            f'{html_escape(info["label"])}'
+            f'<small>({info["team_count"]}校)</small></a>'
+        )
+    return "\n".join(items)
+
+
 def render_itemlist_schema(teams, pref_name, pref_id):
     """順位表を ItemList として表現"""
     canonical = f"{DOMAIN}/prefectures/{pref_id}/"
@@ -681,6 +742,18 @@ __TEAM_ROWS__
 __FAQ_HTML__
       </section>
 
+      <!-- ★ Phase 9-C: 所属リーグ詳細ページへのリンク -->
+      <section class="lp-section">
+        <h2><i class="fas fa-trophy"></i> __PREF_NAME__のチームが所属するリーグ詳細</h2>
+        <p class="lp-section-desc">
+          __PREF_NAME__のチームが所属するプレミア・プリンスリーグの専用ページです。
+          リーグ全体の順位や他県の所属チーム、リーグの仕組みを詳しく確認できます。
+        </p>
+        <div class="lp-related-leagues">
+__LEAGUE_LINKS_HTML__
+        </div>
+      </section>
+
       <!-- ★ Phase 9-A ステップ3: 全国強豪校 TOP 10 -->
       <section class="lp-section lp-top10">
         <h2><i class="fas fa-trophy"></i> 全国強豪校 TOP 10</h2>
@@ -841,6 +914,9 @@ def generate_page(pref, all_prefs):
     grouped_prefs = group_prefectures_by_region(all_prefs)
     all_prefs_html = render_all_prefs_html(grouped_prefs, pref_id)
 
+    # Phase 9-C: 所属リーグへのリンク
+    league_links_html = render_league_links_html(teams)
+
     return (
         PAGE_TEMPLATE
         .replace("__GA_ID__", GA_ID)
@@ -865,6 +941,7 @@ def generate_page(pref, all_prefs):
         .replace("__PREMIER_PREFS_HTML__", premier_prefs_html)
         .replace("__PRINCE_PREFS_HTML__", prince_prefs_html)
         .replace("__ALL_PREFS_HTML__", all_prefs_html)
+        .replace("__LEAGUE_LINKS_HTML__", league_links_html)
     )
 
 
