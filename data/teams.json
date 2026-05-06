@@ -192,6 +192,21 @@
         ]
       },
       {
+        "id": "h006",
+        "name": "札幌光星高校",
+        "league": "プリンスリーグ北海道",
+        "rank": 13,
+        "points": 3,
+        "played": 5,
+        "won": 1,
+        "drawn": 0,
+        "lost": 4,
+        "goalsFor": 8,
+        "goalsAgainst": 11,
+        "prefectureRank": 13,
+        "leagueRank": 6
+      },
+      {
         "name": "北海道大谷室蘭高校2nd",
         "league": "北海道FAリーグU-18",
         "points": 3,
@@ -202,8 +217,8 @@
         "goalsFor": 5,
         "goalsAgainst": 8,
         "leagueRank": 8,
-        "rank": 13,
-        "prefectureRank": 13,
+        "rank": 14,
+        "prefectureRank": 14,
         "aliases": [
           "大谷室蘭2nd"
         ]
@@ -218,36 +233,21 @@
         "lost": 2,
         "goalsFor": 3,
         "goalsAgainst": 8,
-        "rank": 14,
-        "prefectureRank": 14,
-        "leagueRank": 6
-      },
-      {
-        "name": "帯広北高校",
-        "league": "プリンスリーグ北海道",
-        "points": 1,
-        "played": 4,
-        "won": 0,
-        "drawn": 1,
-        "lost": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 6,
         "rank": 15,
         "prefectureRank": 15,
         "leagueRank": 7
       },
       {
-        "id": "h006",
-        "name": "札幌光星高校",
+        "name": "帯広北高校",
         "league": "プリンスリーグ北海道",
-        "rank": 16,
-        "points": 0,
-        "played": 4,
+        "points": 1,
+        "played": 5,
         "won": 0,
-        "drawn": 0,
+        "drawn": 1,
         "lost": 4,
-        "goalsFor": 3,
+        "goalsFor": 0,
         "goalsAgainst": 11,
+        "rank": 16,
         "prefectureRank": 16,
         "leagueRank": 8
       }
@@ -276,12 +276,12 @@
         "name": "青森山田高校3rd",
         "league": "青森県1部",
         "rank": 1,
-        "points": 12,
-        "played": 4,
-        "won": 4,
+        "points": 15,
+        "played": 5,
+        "won": 5,
         "drawn": 0,
         "lost": 0,
-        "goalsFor": 22,
+        "goalsFor": 32,
         "goalsAgainst": 2,
         "prefectureRank": 1,
         "leagueRank": 1,
@@ -405,12 +405,12 @@
         "rank": 9,
         "prefectureRank": 9,
         "points": 3,
-        "played": 3,
+        "played": 4,
         "won": 1,
         "drawn": 0,
-        "lost": 2,
+        "lost": 3,
         "goalsFor": 8,
-        "goalsAgainst": 7,
+        "goalsAgainst": 17,
         "leagueRank": 7,
         "aliases": [
           "東奥義塾"
@@ -477,13 +477,13 @@
         "name": "盛岡大附高校",
         "league": "岩手U-18iリーグ",
         "rank": 1,
-        "points": 11,
+        "points": 13,
         "played": 5,
-        "won": 3,
-        "drawn": 2,
+        "won": 4,
+        "drawn": 1,
         "lost": 0,
-        "goalsFor": 11,
-        "goalsAgainst": 7,
+        "goalsFor": 16,
+        "goalsAgainst": 9,
         "prefectureRank": 1,
         "leagueRank": 1,
         "aliases": [
@@ -506,10 +506,25 @@
         "leagueRank": 2
       },
       {
+        "id": "i006",
+        "name": "盛岡誠桜高校",
+        "league": "岩手U-18iリーグ",
+        "rank": 3,
+        "points": 8,
+        "played": 5,
+        "won": 2,
+        "drawn": 2,
+        "lost": 1,
+        "goalsFor": 8,
+        "goalsAgainst": 5,
+        "prefectureRank": 3,
+        "leagueRank": 3
+      },
+      {
         "id": "i004",
         "name": "花巻東高校",
         "league": "岩手U-18iリーグ",
-        "rank": 3,
+        "rank": 4,
         "points": 7,
         "played": 4,
         "won": 2,
@@ -517,21 +532,6 @@
         "lost": 1,
         "goalsFor": 9,
         "goalsAgainst": 3,
-        "prefectureRank": 3,
-        "leagueRank": 3
-      },
-      {
-        "id": "i006",
-        "name": "盛岡誠桜高校",
-        "league": "岩手U-18iリーグ",
-        "rank": 4,
-        "points": 5,
-        "played": 4,
-        "won": 1,
-        "drawn": 2,
-        "lost": 1,
-        "goalsFor": 6,
-        "goalsAgainst": 5,
         "prefectureRank": 4,
         "leagueRank": 4
       },
@@ -541,12 +541,12 @@
         "league": "岩手U-18iリーグ",
         "rank": 5,
         "points": 5,
-        "played": 4,
+        "played": 5,
         "won": 1,
         "drawn": 2,
-        "lost": 1,
+        "lost": 2,
         "goalsFor": 5,
-        "goalsAgainst": 6,
+        "goalsAgainst": 8,
         "prefectureRank": 5,
         "leagueRank": 5
       },
@@ -611,13 +611,13 @@
         "league": "岩手U-18iリーグ",
         "rank": 9,
         "prefectureRank": 9,
-        "points": 1,
+        "points": 0,
         "played": 5,
         "won": 0,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 0,
-        "goalsAgainst": 9,
+        "drawn": 0,
+        "lost": 5,
+        "goalsFor": 2,
+        "goalsAgainst": 14,
         "leagueRank": 8,
         "aliases": [
           "江南義塾"
@@ -629,12 +629,12 @@
         "league": "プリンスリーグ東北",
         "rank": 10,
         "points": 0,
-        "played": 5,
+        "played": 6,
         "won": 0,
         "drawn": 0,
-        "lost": 5,
+        "lost": 6,
         "goalsFor": 0,
-        "goalsAgainst": 10,
+        "goalsAgainst": 12,
         "prefectureRank": 10,
         "leagueRank": 10
       }
@@ -671,7 +671,7 @@
         "goalsFor": 8,
         "goalsAgainst": 12,
         "prefectureRank": 1,
-        "leagueRank": 5
+        "leagueRank": 6
       },
       {
         "id": "m002",
@@ -686,7 +686,7 @@
         "goalsFor": 8,
         "goalsAgainst": 7,
         "prefectureRank": 2,
-        "leagueRank": 6
+        "leagueRank": 7
       },
       {
         "id": "m007",
@@ -725,10 +725,26 @@
         ]
       },
       {
+        "id": "m001",
+        "name": "ベガルタ仙台ユース",
+        "league": "プレミアリーグEAST",
+        "rank": 5,
+        "points": 5,
+        "played": 6,
+        "won": 1,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 3,
+        "goalsAgainst": 13,
+        "prefectureRank": 5,
+        "goalDiff": -3,
+        "leagueRank": 10
+      },
+      {
         "id": "m008",
         "name": "利府高校",
         "league": "宮城県1部",
-        "rank": 5,
+        "rank": 6,
         "points": 4,
         "played": 2,
         "won": 1,
@@ -736,24 +752,8 @@
         "lost": 0,
         "goalsFor": 2,
         "goalsAgainst": 0,
-        "prefectureRank": 5,
-        "leagueRank": 3
-      },
-      {
-        "id": "m001",
-        "name": "ベガルタ仙台ユース",
-        "league": "プレミアリーグEAST",
-        "rank": 6,
-        "points": 4,
-        "played": 5,
-        "won": 1,
-        "drawn": 1,
-        "lost": 3,
-        "goalsFor": 2,
-        "goalsAgainst": 12,
         "prefectureRank": 6,
-        "goalDiff": -3,
-        "leagueRank": 12
+        "leagueRank": 3
       },
       {
         "id": "m009",
@@ -1250,10 +1250,25 @@
         "leagueRank": 2
       },
       {
+        "id": "f004",
+        "name": "帝京安積高校",
+        "league": "プリンスリーグ東北",
+        "rank": 4,
+        "points": 10,
+        "played": 6,
+        "won": 3,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 8,
+        "goalsAgainst": 9,
+        "prefectureRank": 4,
+        "leagueRank": 5
+      },
+      {
         "id": "f003",
         "name": "尚志高校2nd",
         "league": "福島F1リーグ",
-        "rank": 4,
+        "rank": 5,
         "points": 9,
         "played": 5,
         "won": 3,
@@ -1261,7 +1276,7 @@
         "lost": 2,
         "goalsFor": 24,
         "goalsAgainst": 5,
-        "prefectureRank": 4,
+        "prefectureRank": 5,
         "leagueRank": 3,
         "aliases": [
           "尚志セカンド"
@@ -1271,7 +1286,7 @@
         "id": "f008",
         "name": "ふたば未来学園高校",
         "league": "福島F1リーグ",
-        "rank": 5,
+        "rank": 6,
         "points": 9,
         "played": 6,
         "won": 2,
@@ -1279,14 +1294,14 @@
         "lost": 1,
         "goalsFor": 14,
         "goalsAgainst": 5,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "leagueRank": 4
       },
       {
         "id": "f010",
         "name": "福島東高校",
         "league": "福島F1リーグ",
-        "rank": 6,
+        "rank": 7,
         "points": 7,
         "played": 6,
         "won": 2,
@@ -1294,23 +1309,8 @@
         "lost": 3,
         "goalsFor": 9,
         "goalsAgainst": 9,
-        "prefectureRank": 6,
-        "leagueRank": 6
-      },
-      {
-        "id": "f004",
-        "name": "帝京安積高校",
-        "league": "プリンスリーグ東北",
-        "rank": 7,
-        "points": 7,
-        "played": 5,
-        "won": 2,
-        "drawn": 1,
-        "lost": 2,
-        "goalsFor": 6,
-        "goalsAgainst": 9,
         "prefectureRank": 7,
-        "leagueRank": 7
+        "leagueRank": 6
       },
       {
         "id": "f005",
@@ -2275,7 +2275,7 @@
         "goalsAgainst": 12,
         "prefectureRank": 10,
         "goalDiff": 2,
-        "leagueRank": 10
+        "leagueRank": 11
       },
       {
         "name": "武蔵越生高校",
@@ -2526,10 +2526,26 @@
         ]
       },
       {
+        "id": "c002",
+        "name": "柏レイソルU-18",
+        "league": "プレミアリーグEAST",
+        "rank": 9,
+        "points": 8,
+        "played": 6,
+        "won": 2,
+        "drawn": 2,
+        "lost": 2,
+        "goalsFor": 6,
+        "goalsAgainst": 5,
+        "prefectureRank": 9,
+        "goalDiff": 2,
+        "leagueRank": 6
+      },
+      {
         "id": "c013",
         "name": "八千代高校",
         "league": "千葉県1部",
-        "rank": 9,
+        "rank": 10,
         "points": 7,
         "played": 6,
         "won": 2,
@@ -2538,14 +2554,14 @@
         "goalsFor": 11,
         "goalsAgainst": 9,
         "goalDiff": 6,
-        "prefectureRank": 9,
+        "prefectureRank": 10,
         "leagueRank": 6
       },
       {
         "id": "c007",
         "name": "ジェフユナイテッド市原・千葉U-18 2nd",
         "league": "千葉県1部",
-        "rank": 10,
+        "rank": 11,
         "points": 7,
         "played": 6,
         "won": 1,
@@ -2554,29 +2570,13 @@
         "goalsFor": 11,
         "goalsAgainst": 9,
         "goalDiff": 1,
-        "prefectureRank": 10,
+        "prefectureRank": 11,
         "leagueRank": 7,
         "aliases": [
           "ジェフU-18B",
           "ジェフu-18B",
           "ジェフユナイテッド市原・千葉U-18B"
         ]
-      },
-      {
-        "id": "c002",
-        "name": "柏レイソルU-18",
-        "league": "プレミアリーグEAST",
-        "rank": 11,
-        "points": 7,
-        "played": 5,
-        "won": 2,
-        "drawn": 1,
-        "lost": 2,
-        "goalsFor": 5,
-        "goalsAgainst": 4,
-        "prefectureRank": 11,
-        "goalDiff": 2,
-        "leagueRank": 7
       },
       {
         "id": "c014",
@@ -3105,7 +3105,7 @@
         "goalsAgainst": 11,
         "prefectureRank": 7,
         "goalDiff": -1,
-        "leagueRank": 6
+        "leagueRank": 7
       },
       {
         "id": "k008",
@@ -3230,7 +3230,7 @@
         "goalsAgainst": 11,
         "prefectureRank": 14,
         "goalDiff": -3,
-        "leagueRank": 11
+        "leagueRank": 12
       },
       {
         "id": "k014",
@@ -9012,10 +9012,24 @@
     "region": "九州",
     "teams": [
       {
+        "name": "福大若葉",
+        "league": "福岡県1部",
+        "points": 18,
+        "played": 6,
+        "won": 6,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 24,
+        "goalsAgainst": 5,
+        "leagueRank": 1,
+        "rank": 1,
+        "prefectureRank": 1
+      },
+      {
         "id": "fk007",
         "name": "ギラヴァンツ北九州U-18",
         "league": "福岡県1部",
-        "rank": 1,
+        "rank": 2,
         "points": 15,
         "played": 5,
         "won": 5,
@@ -9023,23 +9037,9 @@
         "lost": 0,
         "goalsFor": 23,
         "goalsAgainst": 3,
-        "prefectureRank": 1,
+        "prefectureRank": 2,
         "goalDiff": 9,
-        "leagueRank": 1
-      },
-      {
-        "name": "福大若葉",
-        "league": "福岡県1部",
-        "points": 15,
-        "played": 5,
-        "won": 5,
-        "drawn": 0,
-        "lost": 0,
-        "goalsFor": 23,
-        "goalsAgainst": 5,
-        "leagueRank": 2,
-        "rank": 2,
-        "prefectureRank": 2
+        "leagueRank": 2
       },
       {
         "id": "fk006",
@@ -9066,12 +9066,12 @@
         "league": "プリンスリーグ九州2部",
         "rank": 4,
         "points": 11,
-        "played": 5,
+        "played": 6,
         "won": 3,
         "drawn": 2,
-        "lost": 0,
+        "lost": 1,
         "goalsFor": 13,
-        "goalsAgainst": 9,
+        "goalsAgainst": 13,
         "prefectureRank": 4,
         "goalDiff": 2,
         "leagueRank": 3
@@ -9173,31 +9173,31 @@
         "league": "福岡県1部",
         "rank": 10,
         "points": 7,
-        "played": 3,
+        "played": 4,
         "won": 2,
         "drawn": 1,
-        "lost": 0,
+        "lost": 1,
         "goalsFor": 6,
-        "goalsAgainst": 3,
+        "goalsAgainst": 4,
         "prefectureRank": 10,
         "goalDiff": 0,
-        "leagueRank": 5
+        "leagueRank": 6
       },
       {
         "id": "fk005",
         "name": "九州国際大付属高校",
         "league": "プリンスリーグ九州2部",
         "rank": 11,
-        "points": 4,
-        "played": 5,
-        "won": 1,
+        "points": 7,
+        "played": 6,
+        "won": 2,
         "drawn": 1,
         "lost": 3,
-        "goalsFor": 4,
-        "goalsAgainst": 5,
+        "goalsFor": 7,
+        "goalsAgainst": 6,
         "prefectureRank": 11,
         "goalDiff": -1,
-        "leagueRank": 8,
+        "leagueRank": 6,
         "aliases": [
           "九州国際大附属高校"
         ]
@@ -9360,7 +9360,7 @@
         "goalsAgainst": 7,
         "prefectureRank": 3,
         "goalDiff": 6,
-        "leagueRank": 1
+        "leagueRank": 2
       },
       {
         "id": "sg004",
@@ -9462,7 +9462,7 @@
         "goalsAgainst": 8,
         "prefectureRank": 9,
         "goalDiff": -4,
-        "leagueRank": 7
+        "leagueRank": 9
       },
       {
         "id": "sg008",
@@ -9624,10 +9624,26 @@
         "leagueRank": 5
       },
       {
+        "id": "ng003",
+        "name": "長崎総合科学大学附属高校",
+        "league": "プリンスリーグ九州2部",
+        "rank": 7,
+        "points": 5,
+        "played": 6,
+        "won": 1,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 10,
+        "goalsAgainst": 9,
+        "prefectureRank": 7,
+        "goalDiff": -1,
+        "leagueRank": 8
+      },
+      {
         "id": "ng012",
         "name": "海星高校",
         "league": "長崎県1部",
-        "rank": 7,
+        "rank": 8,
         "points": 4,
         "played": 6,
         "won": 1,
@@ -9636,7 +9652,7 @@
         "goalsFor": 9,
         "goalsAgainst": 14,
         "goalDiff": -4,
-        "prefectureRank": 7,
+        "prefectureRank": 8,
         "leagueRank": 8,
         "aliases": [
           "海星"
@@ -9646,7 +9662,7 @@
         "id": "ng001",
         "name": "国見高校",
         "league": "プリンスリーグ九州1部",
-        "rank": 8,
+        "rank": 9,
         "points": 3,
         "played": 6,
         "won": 1,
@@ -9654,25 +9670,9 @@
         "lost": 5,
         "goalsFor": 3,
         "goalsAgainst": 9,
-        "prefectureRank": 8,
+        "prefectureRank": 9,
         "goalDiff": -2,
         "leagueRank": 8
-      },
-      {
-        "id": "ng003",
-        "name": "長崎総合科学大学附属高校",
-        "league": "プリンスリーグ九州2部",
-        "rank": 9,
-        "points": 2,
-        "played": 5,
-        "won": 0,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 6,
-        "goalsAgainst": 9,
-        "prefectureRank": 9,
-        "goalDiff": -1,
-        "leagueRank": 10
       },
       {
         "id": "ng009",
@@ -10001,7 +10001,7 @@
         "goalsAgainst": 20,
         "prefectureRank": 14,
         "goalDiff": -1,
-        "leagueRank": 9
+        "leagueRank": 10
       },
       {
         "id": "km004",
@@ -10169,7 +10169,7 @@
         "goalsAgainst": 9,
         "prefectureRank": 7,
         "goalDiff": -2,
-        "leagueRank": 6
+        "leagueRank": 7
       },
       {
         "id": "oi008",
@@ -10253,10 +10253,26 @@
     "region": "九州",
     "teams": [
       {
+        "id": "mz002",
+        "name": "鵬翔高校",
+        "league": "プリンスリーグ九州2部",
+        "rank": 1,
+        "points": 14,
+        "played": 6,
+        "won": 4,
+        "drawn": 2,
+        "lost": 0,
+        "goalsFor": 11,
+        "goalsAgainst": 4,
+        "prefectureRank": 1,
+        "goalDiff": 2,
+        "leagueRank": 1
+      },
+      {
         "id": "mz003",
         "name": "宮崎日本大学高校",
         "league": "宮崎県JFAリーグ1部",
-        "rank": 1,
+        "rank": 2,
         "points": 12,
         "played": 4,
         "won": 4,
@@ -10264,7 +10280,7 @@
         "lost": 0,
         "goalsFor": 25,
         "goalsAgainst": 5,
-        "prefectureRank": 1,
+        "prefectureRank": 2,
         "goalDiff": 15,
         "leagueRank": 1,
         "aliases": [
@@ -10275,7 +10291,7 @@
         "id": "mz011",
         "name": "日章学園高校3rd",
         "league": "宮崎県JFAリーグ1部",
-        "rank": 2,
+        "rank": 3,
         "points": 12,
         "played": 5,
         "won": 4,
@@ -10284,7 +10300,7 @@
         "goalsFor": 24,
         "goalsAgainst": 9,
         "goalDiff": 14,
-        "prefectureRank": 2,
+        "prefectureRank": 3,
         "leagueRank": 2,
         "aliases": [
           "日章学園3rd"
@@ -10294,7 +10310,7 @@
         "id": "mz005",
         "name": "宮崎工業高校",
         "league": "宮崎県JFAリーグ1部",
-        "rank": 3,
+        "rank": 4,
         "points": 12,
         "played": 5,
         "won": 4,
@@ -10302,7 +10318,7 @@
         "lost": 1,
         "goalsFor": 19,
         "goalsAgainst": 6,
-        "prefectureRank": 3,
+        "prefectureRank": 4,
         "goalDiff": 10,
         "leagueRank": 3
       },
@@ -10310,7 +10326,7 @@
         "id": "mz010",
         "name": "延岡学園高校",
         "league": "宮崎県JFAリーグ1部",
-        "rank": 4,
+        "rank": 5,
         "points": 12,
         "played": 6,
         "won": 4,
@@ -10318,25 +10334,9 @@
         "lost": 2,
         "goalsFor": 18,
         "goalsAgainst": 18,
-        "prefectureRank": 4,
+        "prefectureRank": 5,
         "goalDiff": 7,
         "leagueRank": 4
-      },
-      {
-        "id": "mz002",
-        "name": "鵬翔高校",
-        "league": "プリンスリーグ九州2部",
-        "rank": 5,
-        "points": 11,
-        "played": 5,
-        "won": 3,
-        "drawn": 2,
-        "lost": 0,
-        "goalsFor": 9,
-        "goalsAgainst": 3,
-        "prefectureRank": 5,
-        "goalDiff": 2,
-        "leagueRank": 2
       },
       {
         "id": "mz001",
@@ -10360,19 +10360,19 @@
         "league": "プリンスリーグ九州2部",
         "rank": 7,
         "points": 8,
-        "played": 5,
+        "played": 6,
         "won": 2,
         "drawn": 2,
-        "lost": 1,
-        "goalsFor": 12,
-        "goalsAgainst": 11,
+        "lost": 2,
+        "goalsFor": 13,
+        "goalsAgainst": 14,
         "prefectureRank": 7,
         "goalDiff": 1,
         "leagueRank": 5
       },
       {
         "id": "mz012",
-        "name": "テゲバジャーロ",
+        "name": "テゲバジャーロ宮崎U-18",
         "league": "宮崎県JFAリーグ1部",
         "rank": 8,
         "points": 7,
@@ -10613,12 +10613,12 @@
         "league": "プリンスリーグ九州2部",
         "rank": 8,
         "points": 8,
-        "played": 5,
+        "played": 6,
         "won": 2,
         "drawn": 2,
-        "lost": 1,
-        "goalsFor": 10,
-        "goalsAgainst": 6,
+        "lost": 2,
+        "goalsFor": 11,
+        "goalsAgainst": 8,
         "prefectureRank": 8,
         "goalDiff": -2,
         "leagueRank": 4
@@ -10896,7 +10896,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-06 04:03",
+    "lastUpdated": "2026-05-06 05:02",
     "year": 2026,
     "updatedCount": 569
   }
