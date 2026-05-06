@@ -132,7 +132,11 @@ def render_team_schema(teams, pref_name, pref_id):
             "location": {
                 "@type": "Place",
                 "name": pref_name,
-                "addressCountry": "JP",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "JP",
+                    "addressRegion": pref_name,
+                },
             },
             "memberOf": {
                 "@type": "SportsOrganization",
