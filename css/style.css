@@ -2947,36 +2947,3 @@ details[open] > summary > .league-accordion__chevron {
     }
 }
 
-/* =====================================================================
-   ★ Phase 9-A 追加修正 v2: チーム名セルの改行・折り返し対応
-   - ☆お気に入りマークは左に float
-   - チーム名 (strong) は新しい BFC で ☆ の隣に並びつつ正しく折り返す
-   - 長いチーム名でも次のリーグ列にはみ出さない
-   ===================================================================== */
-
-/* セルを標準の table-cell に戻す (前回の flex を解除) */
-.data-table tbody td:nth-child(2) {
-    display: table-cell;
-}
-
-/* strong 以外の要素 (☆ボタン等) を左に float */
-.data-table tbody td:nth-child(2) > *:not(strong) {
-    float: left;
-    margin-right: 4px;
-}
-
-/* チーム名 (strong) は新しい BFC として ☆ の隣で折り返す */
-.data-table tbody td:nth-child(2) > strong {
-    display: block;
-    overflow: hidden;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    line-height: 1.4;
-}
-
-/* float のクリアフィックス (☆を float した後の後始末) */
-.data-table tbody td:nth-child(2)::after {
-    content: "";
-    display: block;
-    clear: both;
-}
