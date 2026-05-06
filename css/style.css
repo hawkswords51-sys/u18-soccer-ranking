@@ -4187,46 +4187,55 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* =====================================================================
-   ★ Phase 9-D 後の修正 v4: チーム名カラム幅の強制拡大
+   ★ Phase 9-D 後の修正 v5: テーブル列幅バランス調整
+   v4 の幅指定を上書きしつつ、各列に適切な幅を指定
    ===================================================================== */
 
 @media (max-width: 768px) {
-    /* テーブル全体に最低幅を強制 (横スクロール前提) */
+    /* テーブル全体: fixed レイアウトで列幅を厳密に制御 */
     table.data-table,
     .data-table {
         min-width: 720px !important;
-        table-layout: auto !important;
+        table-layout: fixed !important;
+        width: 720px !important;
     }
 
-    /* チーム名カラム: width も併用して強制拡大 */
+    /* 1列目: 県内順位 */
+    table.data-table tbody td:nth-child(1),
+    table.data-table thead th:nth-child(1) {
+        width: 64px !important;
+        min-width: 64px !important;
+    }
+
+    /* 2列目: チーム名 (165px = 約11文字、長い名前は2行折り返し) */
     table.data-table tbody td:nth-child(2),
     table.data-table thead th:nth-child(2) {
-        min-width: 230px !important;
-        width: 230px !important;
-        max-width: none !important;
-    }
-
-    /* モバイルでは hanging indent を弱める or なくして
-       チーム名に全幅を使わせる */
-    .data-table tbody td:nth-child(2) {
-        padding-left: 12px !important;
+        width: 165px !important;
+        min-width: 165px !important;
+        max-width: 165px !important;
+        padding-left: 10px !important;
         text-indent: 0 !important;
     }
 
-    /* チーム名 strong に keep-all (英語+日本語混在をきれいに改行) */
+    /* 3列目: リーグバッジ */
+    table.data-table tbody td:nth-child(3),
+    table.data-table thead th:nth-child(3) {
+        width: 105px !important;
+        min-width: 105px !important;
+    }
+
+    /* 4列目以降: 順位・勝点・試合数・勝・分・負・得失差 (各55px) */
+    table.data-table tbody td:nth-child(n+4),
+    table.data-table thead th:nth-child(n+4) {
+        width: 55px !important;
+        min-width: 55px !important;
+        text-align: center !important;
+    }
+
+    /* チーム名 strong の word-break */
     .data-table tbody td:nth-child(2) strong {
         word-break: keep-all !important;
         overflow-wrap: break-word !important;
-        line-break: strict !important;
         white-space: normal !important;
-    }
-}
-
-/* 県内順位列も最低幅を確保 */
-@media (max-width: 768px) {
-    table.data-table tbody td:nth-child(1),
-    table.data-table thead th:nth-child(1) {
-        min-width: 60px !important;
-        width: 60px !important;
     }
 }
