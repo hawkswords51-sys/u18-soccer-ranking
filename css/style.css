@@ -4293,3 +4293,66 @@ details[open] > summary > .league-accordion__chevron {
         overflow-wrap: normal !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v8: モーダル内テーブルの仕上げ
+   - モーダル内のリーグバッジの縦書き化を防ぐ
+   - モーダル内テーブルに最低幅を確保し、横スクロールで対応
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* モーダル内テーブルに最低幅 (横スクロール前提) */
+    .modal table.data-table,
+    .modal .data-table,
+    #detailModal table.data-table,
+    #detailModal .data-table,
+    #teamsTable table,
+    #teamsTable table.data-table {
+        min-width: 720px !important;
+        width: auto !important;
+        table-layout: auto !important;
+    }
+
+    /* モーダル本体 / テーブルラッパーに overflow-x: auto */
+    .modal .modal-body,
+    .modal-body,
+    #detailModal .modal-body,
+    #teamsTable {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* リーグバッジ全般: 縦書き化を防ぐ */
+    .league-badge,
+    .modal .league-badge,
+    #detailModal .league-badge,
+    #teamsTable .league-badge {
+        white-space: normal !important;
+        word-break: keep-all !important;
+        min-width: 76px;
+        text-align: center;
+        padding: 4px 10px !important;
+        line-height: 1.3 !important;
+        display: inline-block !important;
+    }
+
+    /* モーダル内テーブルセル: 各列に最低幅 */
+    .modal table.data-table tbody td,
+    .modal table.data-table thead th,
+    #detailModal table.data-table tbody td,
+    #detailModal table.data-table thead th,
+    #teamsTable td,
+    #teamsTable th {
+        min-width: 56px !important;
+        white-space: normal;
+    }
+
+    /* モーダル内チーム名カラムは少し広めに */
+    .modal table.data-table tbody td:nth-child(3),
+    .modal table.data-table thead th:nth-child(3),
+    #detailModal table.data-table tbody td:nth-child(3),
+    #teamsTable td:nth-child(3),
+    #teamsTable th:nth-child(3) {
+        min-width: 130px !important;
+    }
+}
