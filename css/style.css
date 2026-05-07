@@ -4486,3 +4486,46 @@ details[open] > summary > .league-accordion__chevron {
         max-width: 115px !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v12: スティッキー復活 + 透け防止維持
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* v11 で全セルに position: static を当てたが、
+       元のスティッキー (左固定・上固定) を復活させる。
+       透け防止は不透明な背景で実現する */
+
+    /* スティッキーを再有効化 */
+    .modal table.data-table thead th,
+    .modal table.data-table tbody td:first-child,
+    #detailModal table.data-table thead th,
+    #detailModal table.data-table tbody td:first-child,
+    #teamsTable thead th,
+    #teamsTable tbody td:first-child {
+        position: sticky !important;
+    }
+
+    /* ヘッダー: 上に固定 */
+    .modal table.data-table thead th,
+    #detailModal table.data-table thead th,
+    #teamsTable thead th {
+        top: 0 !important;
+        z-index: 3 !important;
+    }
+
+    /* 1列目 (県内順位): 左に固定 */
+    .modal table.data-table tbody td:first-child,
+    #detailModal table.data-table tbody td:first-child,
+    #teamsTable tbody td:first-child {
+        left: 0 !important;
+        z-index: 2 !important;
+    }
+
+    /* ヘッダー左上のセル: 最前面 */
+    .modal table.data-table thead th:first-child,
+    #detailModal table.data-table thead th:first-child,
+    #teamsTable thead th:first-child {
+        z-index: 4 !important;
+    }
+}
