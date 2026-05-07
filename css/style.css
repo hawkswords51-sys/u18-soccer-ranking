@@ -4640,3 +4640,65 @@ details[open] > summary > .league-accordion__chevron {
         z-index: 6 !important;  /* チーム名スティッキーより前 */
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v15: 上端ヘッダー固定の確実化
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* ─────────── モーダル親要素のスクロール context を確実に ─────────── */
+    /* sticky の動作には祖先に overflow: auto / scroll が必要。
+       modal-body にスクロール context を確実に与える */
+    .modal .modal-body,
+    #detailModal .modal-body {
+        position: relative !important;
+        overflow-y: auto !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* tab-content や子要素は overflow visible で sticky を壊さない */
+    .modal .tab-content,
+    #detailModal .tab-content,
+    .modal .tab-content > div,
+    #detailModal .tab-content > div {
+        overflow: visible !important;
+    }
+
+    /* ─────────── thead を強力に sticky ─────────── */
+    /* 多くのセレクタを併用して、JSで生成されたテーブルにも適応 */
+    div.modal thead,
+    div.modal thead tr,
+    div.modal thead th,
+    div#detailModal thead,
+    div#detailModal thead tr,
+    div#detailModal thead th,
+    div#teamsTable thead,
+    div#teamsTable thead tr,
+    div#teamsTable thead th,
+    .modal table thead th,
+    #detailModal table thead th,
+    #teamsTable table thead th {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 10 !important;
+        background-color: var(--primary-color, #1e40af) !important;
+    }
+
+    /* ─────────── ヘッダーの左固定列はさらに前面 (z-index 11+) ─────────── */
+    /* 縦＋横の交差点 */
+    div.modal thead th:first-child,
+    div#detailModal thead th:first-child,
+    div#teamsTable thead th:first-child {
+        z-index: 12 !important;
+        left: 0 !important;
+    }
+
+    div.modal thead th:nth-child(2),
+    div#detailModal thead th:nth-child(2),
+    div#teamsTable thead th:nth-child(2) {
+        z-index: 11 !important;
+        left: 64px !important;
+    }
+}
