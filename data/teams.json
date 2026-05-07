@@ -1519,7 +1519,7 @@
         ]
       },
       {
-        "name": "鹿島学園B",
+        "name": "鹿島学園高校2nd",
         "league": "茨城IFAリーグ",
         "points": 18,
         "played": 8,
@@ -2104,7 +2104,7 @@
         ]
       },
       {
-        "name": "昌平II",
+        "name": "昌平高校2nd",
         "league": "埼玉Sリーグ",
         "points": 13,
         "played": 5,
@@ -2214,7 +2214,7 @@
         "leagueRank": 4
       },
       {
-        "name": "西武台II",
+        "name": "西武台高校2nd",
         "league": "埼玉Sリーグ",
         "points": 9,
         "played": 5,
@@ -2544,7 +2544,7 @@
         ]
       },
       {
-        "name": "八千代",
+        "name": "八千代高校",
         "league": "千葉県1部",
         "points": 7,
         "played": 6,
@@ -2845,7 +2845,7 @@
         "leagueRank": 7
       },
       {
-        "name": "FC東京B",
+        "name": "FC東京U-18 2nd",
         "league": "東京T1リーグ",
         "points": 5,
         "played": 6,
@@ -2856,10 +2856,13 @@
         "goalsAgainst": 12,
         "leagueRank": 8,
         "rank": 12,
-        "prefectureRank": 12
+        "prefectureRank": 12,
+        "aliases": [
+          "FC東京B"
+        ]
       },
       {
-        "name": "帝京B",
+        "name": "帝京高校2nd",
         "league": "東京T1リーグ",
         "points": 4,
         "played": 6,
@@ -2870,7 +2873,10 @@
         "goalsAgainst": 14,
         "leagueRank": 9,
         "rank": 13,
-        "prefectureRank": 13
+        "prefectureRank": 13,
+        "aliases": [
+          "帝京B"
+        ]
       },
       {
         "id": "t014",
@@ -4801,16 +4807,16 @@
         "leagueRank": 1
       },
       {
-        "id": "s005",
-        "name": "藤枝東高校",
+        "id": "s002",
+        "name": "清水エスパルスユース",
         "league": "プリンスリーグ東海",
         "rank": 4,
-        "points": 15,
+        "points": 16,
         "played": 6,
         "won": 5,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 14,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 19,
         "goalsAgainst": 4,
         "prefectureRank": 4,
         "goalDiff": 3,
@@ -4833,17 +4839,17 @@
         "leagueRank": 2
       },
       {
-        "id": "s002",
-        "name": "清水エスパルスユース",
+        "id": "s005",
+        "name": "藤枝東高校",
         "league": "プリンスリーグ東海",
         "rank": 6,
-        "points": 13,
-        "played": 5,
-        "won": 4,
-        "drawn": 1,
-        "lost": 0,
-        "goalsFor": 15,
-        "goalsAgainst": 3,
+        "points": 15,
+        "played": 6,
+        "won": 5,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 14,
+        "goalsAgainst": 4,
         "prefectureRank": 6,
         "goalDiff": 3,
         "leagueRank": 3
@@ -4925,12 +4931,12 @@
         "league": "プリンスリーグ東海",
         "rank": 11,
         "points": 5,
-        "played": 5,
+        "played": 6,
         "won": 1,
         "drawn": 2,
-        "lost": 2,
-        "goalsFor": 7,
-        "goalsAgainst": 7,
+        "lost": 3,
+        "goalsFor": 8,
+        "goalsAgainst": 11,
         "prefectureRank": 11,
         "goalDiff": -2,
         "leagueRank": 5
@@ -5576,7 +5582,7 @@
         "leagueRank": 4
       },
       {
-        "name": "近江C",
+        "name": "近江高校3rd",
         "league": "滋賀県1部",
         "points": 13,
         "played": 8,
@@ -5587,7 +5593,10 @@
         "goalsAgainst": 6,
         "leagueRank": 5,
         "rank": 7,
-        "prefectureRank": 7
+        "prefectureRank": 7,
+        "aliases": [
+          "近江C"
+        ]
       },
       {
         "id": "sh005",
@@ -6082,7 +6091,7 @@
         "leagueRank": 2
       },
       {
-        "name": "履正社B",
+        "name": "履正社高校2nd",
         "league": "大阪府1部",
         "points": 13,
         "played": 6,
@@ -6093,7 +6102,10 @@
         "goalsAgainst": 10,
         "leagueRank": 3,
         "rank": 8,
-        "prefectureRank": 8
+        "prefectureRank": 8,
+        "aliases": [
+          "履正社B"
+        ]
       },
       {
         "id": "o009",
@@ -6502,7 +6514,7 @@
         ]
       },
       {
-        "name": "滝川第二B",
+        "name": "滝川第二高校2nd",
         "league": "兵庫県1部",
         "points": 8,
         "played": 6,
@@ -6513,7 +6525,10 @@
         "goalsAgainst": 6,
         "leagueRank": 6,
         "rank": 12,
-        "prefectureRank": 12
+        "prefectureRank": 12,
+        "aliases": [
+          "滝川第二B"
+        ]
       },
       {
         "id": "hy014",
@@ -6552,7 +6567,7 @@
         ]
       },
       {
-        "name": "三田学園B",
+        "name": "三田学園高校2nd",
         "league": "兵庫県1部",
         "points": 4,
         "played": 6,
@@ -6563,7 +6578,10 @@
         "goalsAgainst": 17,
         "leagueRank": 9,
         "rank": 15,
-        "prefectureRank": 15
+        "prefectureRank": 15,
+        "aliases": [
+          "三田学園B"
+        ]
       },
       {
         "id": "hy017",
@@ -9006,7 +9024,7 @@
         ]
       },
       {
-        "name": "東福岡B",
+        "name": "東福岡高校2nd",
         "league": "福岡県1部",
         "points": 10,
         "played": 6,
@@ -9017,10 +9035,13 @@
         "goalsAgainst": 8,
         "leagueRank": 3,
         "rank": 8,
-        "prefectureRank": 8
+        "prefectureRank": 8,
+        "aliases": [
+          "東福岡B"
+        ]
       },
       {
-        "name": "アビスパ福岡B",
+        "name": "アビスパ福岡U-18 2nd",
         "league": "福岡県1部",
         "points": 8,
         "played": 5,
@@ -9031,7 +9052,10 @@
         "goalsAgainst": 7,
         "leagueRank": 4,
         "rank": 9,
-        "prefectureRank": 9
+        "prefectureRank": 9,
+        "aliases": [
+          "アビスパ福岡B"
+        ]
       },
       {
         "id": "fk008",
@@ -10702,7 +10726,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-07 07:35",
+    "lastUpdated": "2026-05-07 08:36",
     "year": 2026,
     "updatedCount": 569
   }
