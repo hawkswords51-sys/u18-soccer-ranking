@@ -47,14 +47,6 @@ jobs:
           if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
           if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python scraper/update.py $ARGS
-      - name: リーグ順位を勝点ベースで再計算
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
-        run: |
-          if [ -f scraper/normalize_league_ranks.py ]; then
-            python scraper/normalize_league_ranks.py
-          else
-            echo "scraper/normalize_league_ranks.py がまだありません。スキップ。"
-          fi
       - name: 大会成績 YAML から JSON を生成
         continue-on-error: true
         run: |
