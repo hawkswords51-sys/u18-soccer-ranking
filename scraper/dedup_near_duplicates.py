@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 """
-近似重複チームの自動検出・除去スクリプト
+近似重複チームの自動検出・除去スクリプト (v5)
 
-各都道府県内のリーグごとに「ベース名+階層」が同じチームを重複として検出し、
-試合数の多いエントリ（=最新データ）を残して他を削除する。
-
-例:
-    尚志セカンド (12pt 6試合) ← 残す
-    尚志高校2nd (9pt 5試合)  ← 削除
+新機能:
+- A/B/C/Ｂ等のアルファベット階層サフィックスを検出
+- 不審なリーグ (11チーム以上) は全チーム名を詳細表示
 """
 import json
 import re
@@ -21,26 +18,37 @@ def get_base_and_tier(name):
     """チーム名から (ベース名, 階層) のキーを取得"""
     if not name:
         return ("", "first")
-    n = name
+    n = name.strip()
 
-    # 階層判定（先に判定して除去）
     tier = "first"
+
+    # セカンド/2nd 系の検出
     if re.search(r'(セカンド|2nd|2軍|II)', n):
         tier = "second"
         n = re.sub(r'(セカンド|2nd|2軍|II)', '', n)
     elif re.search(r'(サード|3rd|3軍|III)', n):
         tier = "third"
         n = re.sub(r'(サード|3rd|3軍|III)', '', n)
+    else:
+        # 末尾の A/B/C (半角・全角) を階層と解釈
+        m = re.search(r'[ABCＡＢＣ]$', n)
+        if m:
+            letter = m.group(0)
+            if letter in ('A', 'Ａ'):
+                tier = "first"
+            elif letter in ('B', 'Ｂ'):
+                tier = "second"
+            elif letter in ('C', 'Ｃ'):
+                tier = "third"
+            n = n[:-1]
 
-    # 一般的なサフィックスを除去
+    # 一般的なサフィックス除去
     for suffix in ["高校", "高等学校", "学校", "FC", "fc",
                    "U-18", "U18", "U-15", "U15",
                    "ユース", "高等部"]:
         n = n.replace(suffix, "")
 
-    # 空白・記号除去
     n = re.sub(r'[\s・\-_()（）]', '', n).strip()
-
     return (n, tier)
 
 
@@ -52,16 +60,16 @@ def main():
     teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
 
     print("=" * 70)
-    print("近似重複チーム検出・除去 開始")
+    print("近似重複チーム検出・除去 開始 (v5)")
     print("=" * 70)
 
     total_removed = 0
+    suspicious_leagues = []
 
     for pref_id, pref in teams_data.items():
         if not isinstance(pref, dict) or "teams" not in pref:
             continue
 
-        # 「リーグ+(ベース名,階層)」でグルーピング
         groups = {}
         for t in pref["teams"]:
             league = t.get("league") or ""
@@ -70,15 +78,12 @@ def main():
             base, tier = get_base_and_tier(t.get("name", ""))
             if not base:
                 continue
-            key = (league, base, tier)
-            groups.setdefault(key, []).append(t)
+            groups.setdefault((league, base, tier), []).append(t)
 
-        # 重複検出
         teams_to_remove = []
         for (league, base, tier), grp in groups.items():
             if len(grp) <= 1:
                 continue
-            # 試合数(played)降順 → 勝点降順 でソート
             grp.sort(key=lambda t: (
                 -(t.get("played", 0) or 0),
                 -(t.get("points", 0) or 0),
@@ -86,17 +91,31 @@ def main():
             kept = grp[0]
             removed = grp[1:]
             print(f"  [DEDUP] {pref_id} / {league}: ベース='{base}' 階層='{tier}'")
-            print(f"    残す  : {kept.get('name')} "
-                  f"({kept.get('played', 0)}試合, {kept.get('points', 0)}pt)")
+            print(f"    残す  : {kept.get('name')} ({kept.get('played', 0)}試合, {kept.get('points', 0)}pt)")
             for t in removed:
-                print(f"    削除 : {t.get('name')} "
-                      f"({t.get('played', 0)}試合, {t.get('points', 0)}pt)")
+                print(f"    削除 : {t.get('name')} ({t.get('played', 0)}試合, {t.get('points', 0)}pt)")
                 teams_to_remove.append(t)
 
-        # 削除実行
         if teams_to_remove:
             pref["teams"] = [t for t in pref["teams"] if t not in teams_to_remove]
             total_removed += len(teams_to_remove)
+
+        # 重複削除後の各リーグ件数を確認
+        league_counts = {}
+        for t in pref["teams"]:
+            lg = t.get("league") or ""
+            if lg:
+                league_counts[lg] = league_counts.get(lg, 0) + 1
+        for lg, cnt in league_counts.items():
+            if cnt >= 11:
+                suspicious_leagues.append((pref_id, lg, cnt))
+                # 不審なリーグの全チームを出力（後続診断用）
+                same_league_teams = [t for t in pref["teams"] if t.get("league") == lg]
+                print(f"  [STILL_SUSPICIOUS] {pref_id} / {lg}: {cnt} チーム")
+                for idx, t in enumerate(same_league_teams, 1):
+                    print(f"    {idx:2d}. {t.get('name', '?')} | "
+                          f"{t.get('points', 0)}pt | {t.get('played', 0)}試合 | "
+                          f"GD={(t.get('goalsFor', 0) or 0) - (t.get('goalsAgainst', 0) or 0)}")
 
     TEAMS_FILE.write_text(
         json.dumps(teams_data, ensure_ascii=False, indent=2),
@@ -104,7 +123,11 @@ def main():
     )
 
     print("=" * 70)
-    print(f"[完了] {total_removed} 件の重複チームを削除しました")
+    print(f"[完了] {total_removed} 件の重複チームを削除")
+    if suspicious_leagues:
+        print(f"[警告] 削除後もまだ 11 チーム以上ある不審なリーグ: {len(suspicious_leagues)} 件")
+        for pref, lg, n in suspicious_leagues:
+            print(f"  - {pref} / {lg}: {n} チーム")
     print("=" * 70)
     return 0
 
