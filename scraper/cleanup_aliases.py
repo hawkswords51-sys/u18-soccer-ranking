@@ -26,6 +26,9 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("miyazaki", "テゲバジャーロ"): "テゲバジャーロ宮崎U-18",
     ("fukushima", "郡山商業高校"): "郡山高校",
     ("fukushima", "郡山高校"): "郡山商業高校",
+    # ★ 福岡: canonical 不在のため rename で正式名にする
+    ("fukuoka", "東福岡B"): "東福岡高校2nd",
+    ("fukuoka", "アビスパ福岡B"): "アビスパ福岡U-18 2nd",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
