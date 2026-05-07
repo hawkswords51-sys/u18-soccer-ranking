@@ -4529,3 +4529,50 @@ details[open] > summary > .league-accordion__chevron {
         z-index: 4 !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v13: チーム名列も左固定 (sticky) で復活
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* 1列目 (県内順位) の幅を明示 → 2列目の sticky 位置を計算可能に */
+    .modal table.data-table tbody td:first-child,
+    .modal table.data-table thead th:first-child,
+    #detailModal table.data-table tbody td:first-child,
+    #detailModal table.data-table thead th:first-child,
+    #teamsTable tbody td:first-child,
+    #teamsTable thead th:first-child {
+        width: 64px !important;
+        min-width: 64px !important;
+        max-width: 64px !important;
+    }
+
+    /* 2列目 (チーム名) も左に固定 (1列目の右隣にスティッキー) */
+    .modal table.data-table tbody td:nth-child(2),
+    .modal table.data-table thead th:nth-child(2),
+    #detailModal table.data-table tbody td:nth-child(2),
+    #detailModal table.data-table thead th:nth-child(2),
+    #teamsTable tbody td:nth-child(2),
+    #teamsTable thead th:nth-child(2) {
+        position: sticky !important;
+        left: 64px !important;
+        z-index: 2 !important;
+        /* 必ず不透明な背景 (後ろの透けを防ぐ) */
+        background-color: #0f172a !important;
+    }
+
+    /* ヘッダーの2列目はさらに前面に (上下スクロール時にも表示) */
+    .modal table.data-table thead th:nth-child(2),
+    #detailModal table.data-table thead th:nth-child(2),
+    #teamsTable thead th:nth-child(2) {
+        z-index: 3 !important;
+        background-color: var(--primary-color, #1e40af) !important;
+    }
+
+    /* ヘッダー左上 (1列目ヘッダー) は最前面 */
+    .modal table.data-table thead th:first-child,
+    #detailModal table.data-table thead th:first-child,
+    #teamsTable thead th:first-child {
+        z-index: 4 !important;
+    }
+}
