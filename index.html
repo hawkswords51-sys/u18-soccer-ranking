@@ -380,38 +380,57 @@
             }
         });
     </script>
-<!-- ★ Phase 9-D 後の修正 v13: プレミアEAST/WEST も塊に -->
+<!-- ★ Phase 9-D 後の修正 v16: 県内順位の改行 + サッカーリーグ除去 -->
     <script>
     (function() {
-      function shortenLeagueBadges() {
+      function updateUI() {
+        // ─────── ヘッダー「県内順位」を「県内」/「順位」で改行 ───────
+        document.querySelectorAll('th').forEach(function(el) {
+          var text = el.textContent.trim();
+          if (text === '県内順位' && el.dataset.kennaiProcessed !== '1') {
+            el.dataset.kennaiProcessed = '1';
+            el.innerHTML =
+              '<span style="white-space:nowrap;">県内</span>'
+              + '<wbr>'
+              + '<span style="white-space:nowrap;">順位</span>';
+          }
+        });
+
+        // ─────── リーグバッジの短縮処理 ───────
         document.querySelectorAll('.league-badge').forEach(function(el) {
           if (el.dataset.shortened === '1') return;
           el.dataset.shortened = '1';
-          // 1) 「リーグ」を取り除く
-          var text = el.textContent.replace(/リーグ/g, '');
-          // 2) プレミア + EAST/WEST を塊に (改行で分離させない)
+          var text = el.textContent;
+          // 1) 「サッカーリーグ」「リーグ」を除去 (前後の空白も含めて)
+          text = text.replace(/\s*サッカーリーグ\s*/g, '');
+          text = text.replace(/\s*リーグ\s*/g, '');
+          // 2) 前後余分な空白を整理
+          text = text.replace(/\s+/g, ' ').trim();
+          // 3) プレミア + EAST/WEST を塊に
           text = text.replace(/(プレミア[A-Z]+)/g,
             '<span style="white-space:nowrap;">$1</span>');
-          // 3) 地域名を分離させない
+          // 4) 地域名を分離させない
           text = text.replace(
             /(北海道|東北|関東|北信越|東海|関西|中国|四国|九州|沖縄)/g,
             '<span style="white-space:nowrap;">$1</span>'
           );
-          // 4) 「X部」を分離させない
+          // 5) 「X部」を分離させない
           text = text.replace(/(\d+部)/g,
             '<span style="white-space:nowrap;">$1</span>');
-          // 5) 「U-18」「U-15」を分離させない
-          text = text.replace(/(U-\d+)/g,
+          // 6) 「U-18」「U18」など U+数字 を分離させない
+          text = text.replace(/(U-?\d+)/g,
             '<span style="white-space:nowrap;">$1</span>');
           el.innerHTML = text;
         });
       }
+
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', shortenLeagueBadges);
+        document.addEventListener('DOMContentLoaded', updateUI);
       } else {
-        shortenLeagueBadges();
+        updateUI();
       }
-      new MutationObserver(shortenLeagueBadges).observe(
+      // モーダルが動的に開いた時も対応
+      new MutationObserver(updateUI).observe(
         document.body, {childList: true, subtree: true}
       );
     })();
