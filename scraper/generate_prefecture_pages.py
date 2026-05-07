@@ -104,7 +104,53 @@ def sort_teams(teams):
         ),
     )
 
+def format_team_name(name):
+    """チーム名: U-18, 2nd, 3rd, ユース, F.C. を <span class="nb"> で改行禁止に"""
+    if not name:
+        return "—"
+    escaped = html_escape(name)
+    # 長いトークンから先に置換 (短いものが先だと誤動作する可能性)
+    tokens = ["U-18", "U-15", "F.C.", "U18", "U15", "2nd", "3rd", "ユース"]
+    for token in sorted(tokens, key=len, reverse=True):
+        escaped_token = html_escape(token)
+        escaped = escaped.replace(
+            escaped_token,
+            f'<span class="nb">{escaped_token}</span>'
+        )
+    return escaped
 
+
+def format_league_badge(league):
+    """リーグバッジ: 「リーグ」を削除し、地域名を改行禁止に
+    例: 'プレミアリーグEAST' → 'プレミア<span class="nb">EAST</span>'
+    例: 'プリンスリーグ東北'  → 'プリンス<span class="nb">東北</span>'
+    """
+    if not league:
+        return "—"
+    # 「リーグ」を削除
+    short = (league
+             .replace("プレミアリーグ", "プレミア")
+             .replace("プリンスリーグ", "プリンス"))
+    escaped = html_escape(short)
+    # 地域名・部別を改行禁止スパンで保護
+    regions = [
+        "EAST", "WEST",
+        "北海道", "東北",
+        "関東1部", "関東2部",
+        "北信越1部", "北信越2部",
+        "東海",
+        "関西1部", "関西2部",
+        "中国", "四国",
+        "九州1部", "九州2部",
+    ]
+    for region in sorted(regions, key=len, reverse=True):
+        escaped_region = html_escape(region)
+        escaped = escaped.replace(
+            escaped_region,
+            f'<span class="nb">{escaped_region}</span>'
+        )
+    return escaped
+    
 def render_team_row(team, pref_rank):
     league = team.get("league", "—")
     badge_class = league_category(league)
@@ -125,8 +171,8 @@ def render_team_row(team, pref_rank):
     )
     return f"""        <tr>
           <td><span class="rank-badge {rank_class}">{pref_rank}</span></td>
-          <td><strong>{html_escape(team.get('name', '—'))}</strong></td>
-          <td><span class="league-badge {badge_class}">{html_escape(league)}</span></td>
+          <td><strong>{format_team_name(team.get('name', '—'))}</strong></td>
+          <td><span class="league-badge {badge_class}">{format_league_badge(league)}</span></td>
           <td>{league_rank_str}</td>
           <td><strong>{points}</strong></td>
           <td>{played}</td>
