@@ -4702,3 +4702,107 @@ details[open] > summary > .league-accordion__chevron {
         left: 64px !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-E: SEO LP ページ (/prefectures/<id>/, /leagues/<slug>/)
+   モバイルでの順位表 sticky 対応
+   - 1列目(順位/県内順位)・2列目(チーム名) を左端固定
+   - thead を上端固定
+   ===================================================================== */
+@media (max-width: 768px) {
+    /* ---- ラッパー: 横スクロール許可 ---- */
+    #teamsTableLP,
+    .lp-table-wrapper,
+    .lp-section .data-table-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        position: relative !important;
+    }
+
+    /* ---- LP テーブル本体: モーダル外の .data-table を対象に ---- */
+    /* 1列目 (順位/県内順位) を左端固定 */
+    #teamsTableLP .data-table thead th:first-child,
+    #teamsTableLP .data-table tbody td:first-child,
+    #teamsTableLP table thead th:first-child,
+    #teamsTableLP table tbody td:first-child,
+    .lp-section .data-table thead th:first-child,
+    .lp-section .data-table tbody td:first-child,
+    .lp-table-wrapper .data-table thead th:first-child,
+    .lp-table-wrapper .data-table tbody td:first-child {
+        position: sticky !important;
+        left: 0 !important;
+        z-index: 5 !important;
+        background-color: var(--bg-white) !important;
+        width: 56px !important;
+        min-width: 56px !important;
+        max-width: 56px !important;
+        box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 2列目 (チーム名) を1列目の右隣に固定 */
+    #teamsTableLP .data-table thead th:nth-child(2),
+    #teamsTableLP .data-table tbody td:nth-child(2),
+    #teamsTableLP table thead th:nth-child(2),
+    #teamsTableLP table tbody td:nth-child(2),
+    .lp-section .data-table thead th:nth-child(2),
+    .lp-section .data-table tbody td:nth-child(2),
+    .lp-table-wrapper .data-table thead th:nth-child(2),
+    .lp-table-wrapper .data-table tbody td:nth-child(2) {
+        position: sticky !important;
+        left: 56px !important;
+        z-index: 5 !important;
+        background-color: var(--bg-white) !important;
+        min-width: 150px !important;
+        box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.18);
+    }
+
+    /* ヘッダー行 (上端固定) */
+    #teamsTableLP .data-table thead th,
+    #teamsTableLP table thead th,
+    .lp-section .data-table thead th,
+    .lp-table-wrapper .data-table thead th {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 6 !important;
+        background-color: var(--primary-color) !important;
+        color: #ffffff !important;
+    }
+
+    /* 左端2列のヘッダーは最前面 (横+縦の交差点) */
+    #teamsTableLP .data-table thead th:first-child,
+    #teamsTableLP .data-table thead th:nth-child(2),
+    #teamsTableLP table thead th:first-child,
+    #teamsTableLP table thead th:nth-child(2),
+    .lp-section .data-table thead th:first-child,
+    .lp-section .data-table thead th:nth-child(2),
+    .lp-table-wrapper .data-table thead th:first-child,
+    .lp-table-wrapper .data-table thead th:nth-child(2) {
+        z-index: 8 !important;
+        background-color: var(--primary-color) !important;
+    }
+
+    /* ダークモード対応 */
+    [data-theme="dark"] #teamsTableLP .data-table tbody td:first-child,
+    [data-theme="dark"] #teamsTableLP .data-table tbody td:nth-child(2),
+    [data-theme="dark"] #teamsTableLP table tbody td:first-child,
+    [data-theme="dark"] #teamsTableLP table tbody td:nth-child(2),
+    [data-theme="dark"] .lp-section .data-table tbody td:first-child,
+    [data-theme="dark"] .lp-section .data-table tbody td:nth-child(2),
+    [data-theme="dark"] .lp-table-wrapper .data-table tbody td:first-child,
+    [data-theme="dark"] .lp-table-wrapper .data-table tbody td:nth-child(2) {
+        background-color: var(--bg-white) !important;
+    }
+}
+
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) #teamsTableLP .data-table tbody td:first-child,
+    :root:not([data-theme="light"]) #teamsTableLP .data-table tbody td:nth-child(2),
+    :root:not([data-theme="light"]) #teamsTableLP table tbody td:first-child,
+    :root:not([data-theme="light"]) #teamsTableLP table tbody td:nth-child(2),
+    :root:not([data-theme="light"]) .lp-section .data-table tbody td:first-child,
+    :root:not([data-theme="light"]) .lp-section .data-table tbody td:nth-child(2),
+    :root:not([data-theme="light"]) .lp-table-wrapper .data-table tbody td:first-child,
+    :root:not([data-theme="light"]) .lp-table-wrapper .data-table tbody td:nth-child(2) {
+        background-color: var(--bg-white) !important;
+    }
+}
