@@ -380,7 +380,7 @@
             }
         });
     </script>
-  <!-- ★ Phase 9-D 後の修正 v11: バッジ短縮 + 1部前で強制改行 -->
+<!-- ★ Phase 9-D 後の修正 v12: バッジ短縮 + 地域名と「X部」を分離させない -->
     <script>
     (function() {
       function shortenLeagueBadges() {
@@ -389,12 +389,15 @@
           el.dataset.shortened = '1';
           // 1) 「リーグ」を取り除く
           var text = el.textContent.replace(/リーグ/g, '');
-          // 2) 「X部」の前で強制改行 (例: プリンス北信越1部 → プリンス北信越<br>1部)
-          text = text.replace(/([^\d<>])(\d+部)/g, '$1<br>$2');
-          // 3) 「X部」自体を改行で分離させない
+          // 2) 地域名を分離させない (北信越・関東・関西・九州・東北 など)
+          text = text.replace(
+            /(北海道|東北|関東|北信越|東海|関西|中国|四国|九州|沖縄)/g,
+            '<span style="white-space:nowrap;">$1</span>'
+          );
+          // 3) 「X部」を分離させない
           text = text.replace(/(\d+部)/g,
             '<span style="white-space:nowrap;">$1</span>');
-          // 4) 「U-18」「U-15」も改行で分離させない
+          // 4) 「U-18」「U-15」を分離させない
           text = text.replace(/(U-\d+)/g,
             '<span style="white-space:nowrap;">$1</span>');
           el.innerHTML = text;
