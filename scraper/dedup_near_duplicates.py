@@ -240,4 +240,46 @@ def main():
             total_removed += len(teams_to_remove)
 
         # === Step 4: 残った 11+ チームのリーグを警告 ===
-        league
+        league_counts: dict = {}
+        for t in pref.get("teams", []):
+            lg = (t.get("league") or "").strip()
+            if not lg:
+                continue
+            league_counts[lg] = league_counts.get(lg, 0) + 1
+
+        for lg, cnt in league_counts.items():
+            # 1部・F1・プレミア・プリンスは10チーム想定
+            # 2部・F2は10〜12チーム、3部以下は12チーム以上もありうる
+            is_top_tier = any(k in lg for k in ["1部", "F1", "プレミア", "プリンス"])
+            threshold = 11 if is_top_tier else 13
+            if cnt >= threshold:
+                suspicious_leagues.append(f"{pref_id} / {lg}: {cnt}チーム")
+
+    # === 結果を保存 ===
+    if total_removed > 0:
+        with TEAMS_PATH.open("w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"\n✅ teams.json を更新しました（{total_removed}チームを削除）")
+    else:
+        print("\nℹ️ 削除対象なし。teams.json は変更されません。")
+
+    # === サマリー出力 ===
+    print("\n" + "=" * 60)
+    print(f"📊 dedup_near_duplicates v8 完了サマリー")
+    print("=" * 60)
+    print(f"  削除チーム数: {total_removed}")
+    print(f"  安全スキップ（名前不一致で保護）: {safety_skipped}")
+    print(f"  まだ要確認のリーグ数: {len(suspicious_leagues)}")
+    if suspicious_leagues:
+        print("\n⚠️ チーム数が想定より多いリーグ（手動確認推奨）:")
+        for s in suspicious_leagues[:50]:
+            print(f"    - {s}")
+        if len(suspicious_leagues) > 50:
+            print(f"    ... 他 {len(suspicious_leagues) - 50} 件")
+    print("=" * 60)
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
