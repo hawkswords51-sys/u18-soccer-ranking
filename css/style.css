@@ -4432,3 +4432,57 @@ details[open] > summary > .league-accordion__chevron {
         white-space: normal !important;
     }
 }
+
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v11: スティッキー無効化 + 文字透け根絶
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* セルの sticky 位置指定を全て解除 (透ける原因を排除) */
+    .modal table.data-table th,
+    .modal table.data-table td,
+    .modal table.data-table thead,
+    .modal table.data-table tbody,
+    #detailModal table.data-table th,
+    #detailModal table.data-table td,
+    #detailModal table.data-table thead,
+    #detailModal table.data-table tbody,
+    #teamsTable th,
+    #teamsTable td,
+    #teamsTable thead,
+    #teamsTable tbody {
+        position: static !important;
+    }
+
+    /* セルに不透明な背景を強制 (高い詳細度で確実に当てる) */
+    div.modal table.data-table tbody td,
+    div.modal table.data-table thead th,
+    div#detailModal table.data-table tbody td,
+    div#detailModal table.data-table thead th,
+    div#teamsTable table tbody td,
+    div#teamsTable table thead th,
+    div#teamsTable tbody td,
+    div#teamsTable thead th {
+        background-color: #0f172a !important;
+        background-image: none !important;
+    }
+
+    /* ヘッダー行は元の青系を維持 */
+    div.modal table.data-table thead th,
+    div#detailModal table.data-table thead th,
+    div#teamsTable thead th,
+    div#teamsTable table thead th {
+        background-color: var(--primary-color, #1e40af) !important;
+    }
+
+    /* リーグカラム (3列目): 適度な幅で 2行折り返しを促す */
+    .modal table.data-table tbody td:nth-child(3),
+    .modal table.data-table thead th:nth-child(3),
+    #detailModal table.data-table tbody td:nth-child(3),
+    #detailModal table.data-table thead th:nth-child(3),
+    #teamsTable td:nth-child(3),
+    #teamsTable th:nth-child(3) {
+        min-width: 100px !important;
+        max-width: 115px !important;
+    }
+}
