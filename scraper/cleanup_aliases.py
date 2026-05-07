@@ -210,33 +210,41 @@ def renumber_pref_ranks(prefectures: dict) -> int:
 
 
 def renumber_league_ranks(prefectures: dict) -> int:
-    """★ NEW: 削除後に各リーグ内の leagueRank を 1..N で振り直す。
+    """削除後にリーグ内順位を 1..N で振り直す。
+    プレミア・プリンスは複数県をまたぐのでグローバル処理。
+    都道府県リーグは県内処理。
     並び順は points → 得失点差 → 得点 の降順。"""
-    leagues_renumbered = 0
+    # ステップ1: 全チームをリーグ単位でグループ化
+    groups: dict[tuple[str, str], list] = {}
     for pref_id, pref in prefectures.items():
         if not isinstance(pref, dict) or "teams" not in pref:
             continue
-        # リーグごとにグループ化
-        groups: dict[str, list] = {}
         for t in pref.get("teams", []):
             lg = (t.get("league") or "").strip()
             if not lg:
                 continue
-            groups.setdefault(lg, []).append(t)
-        # 各リーグで並び替え + 連番
-        for lg, lg_teams in groups.items():
-            lg_teams.sort(
-                key=lambda t: (
-                    -(t.get("points", 0) or 0),
-                    -((t.get("goalsFor", 0) or 0) - (t.get("goalsAgainst", 0) or 0)),
-                    -(t.get("goalsFor", 0) or 0),
-                )
-            )
-            for i, t in enumerate(lg_teams, 1):
-                t["leagueRank"] = i
-            leagues_renumbered += 1
-    return leagues_renumbered
+            # ★ プレミア・プリンスは全国規模なので県をまたいで集計
+            if "プレミア" in lg or "プリンス" in lg:
+                key = ("__global__", lg)
+            else:
+                # 都道府県リーグは県内で集計
+                key = (pref_id, lg)
+            groups.setdefault(key, []).append(t)
 
+    # ステップ2: 各リーグで並び替え + 連番
+    leagues_renumbered = 0
+    for key, lg_teams in groups.items():
+        lg_teams.sort(
+            key=lambda t: (
+                -(t.get("points", 0) or 0),
+                -((t.get("goalsFor", 0) or 0) - (t.get("goalsAgainst", 0) or 0)),
+                -(t.get("goalsFor", 0) or 0),
+            )
+        )
+        for i, t in enumerate(lg_teams, 1):
+            t["leagueRank"] = i
+        leagues_renumbered += 1
+    return leagues_renumbered
 
 def main():
     parser = argparse.ArgumentParser(
