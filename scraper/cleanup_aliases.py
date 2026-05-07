@@ -29,6 +29,17 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     # ★ 福岡: canonical 不在のため rename で正式名にする
     ("fukuoka", "東福岡B"): "東福岡高校2nd",
     ("fukuoka", "アビスパ福岡B"): "アビスパ福岡U-18 2nd",
+    # ★ 「B」「II」「C」表記 → 「高校2nd」「高校3rd」表記に統一
+    ("tokyo", "帝京B"):           "帝京高校2nd",
+    ("tokyo", "FC東京B"):         "FC東京U-18 2nd",
+    ("chiba", "八千代"):           "八千代高校2nd",
+    ("saitama", "昌平II"):         "昌平高校2nd",
+    ("saitama", "西武台II"):       "西武台高校2nd",
+    ("ibaraki", "鹿島学園B"):      "鹿島学園高校2nd",
+    ("shiga", "近江C"):            "近江高校3rd",
+    ("osaka", "履正社B"):          "履正社高校2nd",
+    ("hyogo", "滝川第二B"):        "滝川第二高校2nd",
+    ("hyogo", "三田学園B"):        "三田学園高校2nd",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
