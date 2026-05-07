@@ -380,7 +380,7 @@
             }
         });
     </script>
-   <!-- ★ Phase 9-D 後の修正 v10: リーグバッジ短縮 + 1部の分離防止 -->
+  <!-- ★ Phase 9-D 後の修正 v11: バッジ短縮 + 1部前で強制改行 -->
     <script>
     (function() {
       function shortenLeagueBadges() {
@@ -389,13 +389,14 @@
           el.dataset.shortened = '1';
           // 1) 「リーグ」を取り除く
           var text = el.textContent.replace(/リーグ/g, '');
-          // 2) 「1部」「2部」「3部」が改行で分離されないように <span> で囲む
+          // 2) 「X部」の前で強制改行 (例: プリンス北信越1部 → プリンス北信越<br>1部)
+          text = text.replace(/([^\d<>])(\d+部)/g, '$1<br>$2');
+          // 3) 「X部」自体を改行で分離させない
           text = text.replace(/(\d+部)/g,
             '<span style="white-space:nowrap;">$1</span>');
-          // 3) 「U-18」「U-15」も改行で分離されないように
+          // 4) 「U-18」「U-15」も改行で分離させない
           text = text.replace(/(U-\d+)/g,
             '<span style="white-space:nowrap;">$1</span>');
-          // innerHTML で反映 (HTML を含むため textContent ではダメ)
           el.innerHTML = text;
         });
       }
