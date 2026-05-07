@@ -32,7 +32,7 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     # ★ 「B」「II」「C」表記 → 「高校2nd」「高校3rd」表記に統一
     ("tokyo", "帝京B"):           "帝京高校2nd",
     ("tokyo", "FC東京B"):         "FC東京U-18 2nd",
-    ("chiba", "八千代"):           "八千代高校2nd",
+    ("chiba", "八千代"):           "八千代高校",
     ("saitama", "昌平II"):         "昌平高校2nd",
     ("saitama", "西武台II"):       "西武台高校2nd",
     ("ibaraki", "鹿島学園B"):      "鹿島学園高校2nd",
