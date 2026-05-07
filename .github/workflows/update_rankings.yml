@@ -47,6 +47,14 @@ jobs:
           if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
           if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python scraper/update.py $ARGS
+      - name: 近似重複チームを自動検出・削除
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        run: |
+          if [ -f scraper/dedup_near_duplicates.py ]; then
+            python scraper/dedup_near_duplicates.py
+          else
+            echo "scraper/dedup_near_duplicates.py がまだありません。スキップ。"
+          fi
       - name: リーグ順位を勝点ベースで再計算 (都道府県内のみ)
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         run: |
