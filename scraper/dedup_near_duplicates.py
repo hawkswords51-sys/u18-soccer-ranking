@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-近似重複チームの自動検出・除去スクリプト (v8 修正版)
-新機能 (v7からの追加):
-- 名前類似度判定に LCS (最長共通部分列) を追加
-- 「日本福祉大学付属高校 vs 日福大付」のような略称マッチングにも対応
+近似重複チームの自動検出・除去スクリプト (v9 安全版)
+v8 の Step 3 (fuzzy match) は誤検出が多すぎたため無効化。
+Step 1 (ベース名+階層完全一致) と Step 2 (統計値完全一致+名前類似) のみ実行。
 """
 import json
 import re
@@ -56,45 +55,31 @@ def normalize_name(name):
     return n
 
 
-def lcs_length(s1, s2):
-    """最長共通部分列の長さ (Longest Common Subsequence)"""
-    m, n = len(s1), len(s2)
-    if m == 0 or n == 0:
-        return 0
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if s1[i-1] == s2[j-1]:
-                dp[i][j] = dp[i-1][j-1] + 1
-            else:
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-    return dp[m][n]
-
-
-def names_similar(name1, name2):
-    """2つのチーム名が類似しているか"""
+def names_similar_strict(name1, name2):
+    """v9: 統計値完全一致のときだけ使う厳しめ判定。
+    地域名だけが共通する別チームの誤マージを防ぐ。"""
     n1 = normalize_name(name1)
     n2 = normalize_name(name2)
     if not n1 or not n2:
         return False
     if len(n1) < 2 or len(n2) < 2:
-        return False  # 短すぎる名前は誤判定回避
-    # 部分文字列チェック
-    if len(n1) >= 2 and n1 in n2:
+        return False
+    # 完全一致
+    if n1 == n2:
         return True
-    if len(n2) >= 2 and n2 in n1:
+    # 短い方が長い方に完全に含まれる（略称対応）
+    shorter, longer = (n1, n2) if len(n1) <= len(n2) else (n2, n1)
+    # 短い方が3文字以上で、長い方に部分文字列として含まれていれば類似とみなす
+    if len(shorter) >= 3 and shorter in longer:
         return True
-    # 連続2文字 (bigram) の共通部分
-    bigrams1 = set(n1[i:i+2] for i in range(len(n1)-1))
-    bigrams2 = set(n2[i:i+2] for i in range(len(n2)-1))
-    if len(bigrams1 & bigrams2) >= 1:
-        return True
-    # ★ NEW: LCS ベースの類似度
-    # 短い方の名前の60%以上が共通部分列なら類似と判定
-    shorter = min(len(n1), len(n2))
-    if shorter >= 3:
-        lcs = lcs_length(n1, n2)
-        if lcs / shorter >= 0.6:
+    # 連続する3文字（trigram）が共通する場合
+    if len(shorter) >= 3:
+        trigrams1 = set(n1[i:i+3] for i in range(len(n1)-2))
+        trigrams2 = set(n2[i:i+3] for i in range(len(n2)-2))
+        common = trigrams1 & trigrams2
+        # 短い方の trigram の半分以上が共通していれば類似
+        shorter_trigrams = min(len(trigrams1), len(trigrams2))
+        if shorter_trigrams > 0 and len(common) / shorter_trigrams >= 0.5:
             return True
     return False
 
@@ -119,19 +104,19 @@ def main():
     teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
 
     print("=" * 70)
-    print("近似重複チーム検出・除去 開始 (v8)")
+    print("近似重複チーム検出・除去 開始 (v9 安全版)")
     print("=" * 70)
 
     total_removed = 0
     false_positive_warns = 0
-    suspicious_leagues = []  # ★ 初期化忘れていたのを追加
+    suspicious_leagues = []
 
     for pref_id, pref in teams_data.items():
         if not isinstance(pref, dict) or "teams" not in pref:
             continue
         teams_to_remove = []
 
-        # === Step 1: ベース名+階層マッチ ===
+        # === Step 1: ベース名+階層完全マッチ（同じ学校の重複登録を除去）===
         groups_basetier = {}
         for t in pref["teams"]:
             league = t.get("league") or ""
@@ -158,7 +143,7 @@ def main():
 
         remaining = [t for t in pref["teams"] if t not in teams_to_remove]
 
-        # === Step 2: 同リーグ・同統計値 + 名前類似 マッチ ===
+        # === Step 2: 同リーグ・統計値完全一致 + 名前類似（厳しめ判定）===
         groups_stats = {}
         for t in remaining:
             league = t.get("league") or ""
@@ -176,7 +161,7 @@ def main():
             grp.sort(key=lambda t: -len(t.get("name", "")))
             kept = grp[0]
             for t in grp[1:]:
-                if not names_similar(kept.get("name", ""), t.get("name", "")):
+                if not names_similar_strict(kept.get("name", ""), t.get("name", "")):
                     print(f"  [SKIP-fp] {pref_id}/{league}: 統計一致だが名前異 "
                           f"({kept.get('name')} vs {t.get('name')})")
                     false_positive_warns += 1
@@ -186,55 +171,15 @@ def main():
                 print(f"    削: {t.get('name')} ({t.get('points', 0)}pt)")
                 teams_to_remove.append(t)
 
-        remaining = [t for t in pref["teams"] if t not in teams_to_remove]
-
-        # === Step 3: 同リーグ・名前類似 (統計が違っても合併) ===
-        groups_by_league = {}
-        for t in remaining:
-            league = t.get("league") or ""
-            if not league:
-                continue
-            groups_by_league.setdefault(league, []).append(t)
-
-        for league, league_teams in groups_by_league.items():
-            n_teams = len(league_teams)
-            handled = set()
-            for i in range(n_teams):
-                if i in handled:
-                    continue
-                for j in range(i + 1, n_teams):
-                    if j in handled:
-                        continue
-                    t1 = league_teams[i]
-                    t2 = league_teams[j]
-                    if t1 in teams_to_remove or t2 in teams_to_remove:
-                        continue
-                    # 階層が同じか確認
-                    _, tier1 = get_base_and_tier(t1.get("name", ""))
-                    _, tier2 = get_base_and_tier(t2.get("name", ""))
-                    if tier1 != tier2:
-                        continue
-                    # 名前が類似しているか
-                    if not names_similar(t1.get("name", ""), t2.get("name", "")):
-                        continue
-                    # 試合数が多い方を残す
-                    if (t1.get("played", 0) or 0) >= (t2.get("played", 0) or 0):
-                        kept, removed = t1, t2
-                        idx_handled = j
-                    else:
-                        kept, removed = t2, t1
-                        idx_handled = i
-                    print(f"  [DEDUP-fuzzy] {pref_id}/{league}: 階層一致+名前類似")
-                    print(f"    残: {kept.get('name')} ({kept.get('played',0)}試合, {kept.get('points',0)}pt)")
-                    print(f"    削: {removed.get('name')} ({removed.get('played',0)}試合, {removed.get('points',0)}pt)")
-                    teams_to_remove.append(removed)
-                    handled.add(idx_handled)
+        # === Step 3 (fuzzy match) は v9 で無効化 ===
+        # 地域名の共通だけで別チームを誤マージする問題があったため削除。
+        # 残った重複は cleanup_aliases.py の MANUAL_RENAMES で対応する。
 
         if teams_to_remove:
             pref["teams"] = [t for t in pref["teams"] if t not in teams_to_remove]
             total_removed += len(teams_to_remove)
 
-        # === Step 4: 残った 11+ チームのリーグを警告 ===
+        # === Step 4: 残った 11+ チームのリーグを警告（手動確認用）===
         league_counts = {}
         for t in pref.get("teams", []):
             lg = (t.get("league") or "").strip()
@@ -243,8 +188,6 @@ def main():
             league_counts[lg] = league_counts.get(lg, 0) + 1
 
         for lg, cnt in league_counts.items():
-            # 1部・F1・プレミア・プリンスは10チーム想定
-            # 2部・F2は10〜12チーム、3部以下は12チーム以上もありうる
             is_top_tier = any(k in lg for k in ["1部", "F1", "プレミア", "プリンス"])
             threshold = 11 if is_top_tier else 13
             if cnt >= threshold:
@@ -260,7 +203,7 @@ def main():
 
     # === サマリー出力 ===
     print("\n" + "=" * 60)
-    print(f"📊 dedup_near_duplicates v8 完了サマリー")
+    print(f"📊 dedup_near_duplicates v9 完了サマリー")
     print("=" * 60)
     print(f"  削除チーム数: {total_removed}")
     print(f"  安全スキップ（名前不一致で保護）: {false_positive_warns}")
