@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-近似重複チームの自動検出・除去スクリプト (v8)
-
+近似重複チームの自動検出・除去スクリプト (v8 修正版)
 新機能 (v7からの追加):
 - 名前類似度判定に LCS (最長共通部分列) を追加
 - 「日本福祉大学付属高校 vs 日福大付」のような略称マッチングにも対応
@@ -80,19 +79,16 @@ def names_similar(name1, name2):
         return False
     if len(n1) < 2 or len(n2) < 2:
         return False  # 短すぎる名前は誤判定回避
-
     # 部分文字列チェック
     if len(n1) >= 2 and n1 in n2:
         return True
     if len(n2) >= 2 and n2 in n1:
         return True
-
     # 連続2文字 (bigram) の共通部分
     bigrams1 = set(n1[i:i+2] for i in range(len(n1)-1))
     bigrams2 = set(n2[i:i+2] for i in range(len(n2)-1))
     if len(bigrams1 & bigrams2) >= 1:
         return True
-
     # ★ NEW: LCS ベースの類似度
     # 短い方の名前の60%以上が共通部分列なら類似と判定
     shorter = min(len(n1), len(n2))
@@ -100,7 +96,6 @@ def names_similar(name1, name2):
         lcs = lcs_length(n1, n2)
         if lcs / shorter >= 0.6:
             return True
-
     return False
 
 
@@ -129,11 +124,11 @@ def main():
 
     total_removed = 0
     false_positive_warns = 0
+    suspicious_leagues = []  # ★ 初期化忘れていたのを追加
 
     for pref_id, pref in teams_data.items():
         if not isinstance(pref, dict) or "teams" not in pref:
             continue
-
         teams_to_remove = []
 
         # === Step 1: ベース名+階層マッチ ===
@@ -240,7 +235,7 @@ def main():
             total_removed += len(teams_to_remove)
 
         # === Step 4: 残った 11+ チームのリーグを警告 ===
-        league_counts: dict = {}
+        league_counts = {}
         for t in pref.get("teams", []):
             lg = (t.get("league") or "").strip()
             if not lg:
@@ -257,9 +252,8 @@ def main():
 
     # === 結果を保存 ===
     if total_removed > 0:
-        teams_json_path = Path(__file__).resolve().parent.parent / "data" / "teams.json"
-        with teams_json_path.open("w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        with TEAMS_FILE.open("w", encoding="utf-8") as f:
+            json.dump(teams_data, f, ensure_ascii=False, indent=2)
         print(f"\n✅ teams.json を更新しました（{total_removed}チームを削除）")
     else:
         print("\nℹ️ 削除対象なし。teams.json は変更されません。")
@@ -269,7 +263,7 @@ def main():
     print(f"📊 dedup_near_duplicates v8 完了サマリー")
     print("=" * 60)
     print(f"  削除チーム数: {total_removed}")
-    print(f"  安全スキップ（名前不一致で保護）: {safety_skipped}")
+    print(f"  安全スキップ（名前不一致で保護）: {false_positive_warns}")
     print(f"  まだ要確認のリーグ数: {len(suspicious_leagues)}")
     if suspicious_leagues:
         print("\n⚠️ チーム数が想定より多いリーグ（手動確認推奨）:")
