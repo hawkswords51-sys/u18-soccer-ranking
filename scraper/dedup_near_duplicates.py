@@ -257,7 +257,8 @@ def main():
 
     # === 結果を保存 ===
     if total_removed > 0:
-        with TEAMS_PATH.open("w", encoding="utf-8") as f:
+        teams_json_path = Path(__file__).resolve().parent.parent / "data" / "teams.json"
+        with teams_json_path.open("w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         print(f"\n✅ teams.json を更新しました（{total_removed}チームを削除）")
     else:
