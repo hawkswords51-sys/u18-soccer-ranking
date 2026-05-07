@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-近似重複チームの自動検出・除去スクリプト (v6)
+近似重複チームの自動検出・除去スクリプト (v7)
 
-v5 までの「ベース名+階層」マッチに加えて：
-- 同リーグ・同統計値 (勝点・試合数・勝・分・負・得点・失点 全て一致) のチームを重複と判定
+新機能 (v6からの追加):
+- 統計値マッチでも、名前の類似度をチェック
+- 「ジェフU-18B」と「八千代高校」のような偶然の統計一致を防ぐ
 """
 import json
 import re
@@ -43,8 +44,41 @@ def get_base_and_tier(name):
     return (n, tier)
 
 
+def normalize_name(name):
+    """名前を正規化 (類似度比較用)"""
+    if not name:
+        return ""
+    n = name.strip()
+    # サフィックス類を除去
+    for suffix in ["高校", "高等学校", "学校", "FC", "fc",
+                   "U-18", "U18", "U-15", "U15", "ユース", "高等部",
+                   "セカンド", "2nd", "サード", "3rd", "II", "III"]:
+        n = n.replace(suffix, "")
+    # 末尾のA/B/Cを除去
+    n = re.sub(r'[ABCＡＢＣ]$', '', n)
+    # 空白・記号類を除去
+    n = re.sub(r'[\s・\-_()（）_\.]', '', n)
+    return n
+
+
+def names_similar(name1, name2):
+    """2つのチーム名が類似しているか (連続2文字以上の共通部分)"""
+    n1 = normalize_name(name1)
+    n2 = normalize_name(name2)
+    if not n1 or not n2:
+        return False
+    # 一方がもう一方の部分文字列ならOK
+    if len(n1) >= 2 and n1 in n2:
+        return True
+    if len(n2) >= 2 and n2 in n1:
+        return True
+    # 連続2文字 (bigram) の共通部分があるか
+    bigrams1 = set(n1[i:i+2] for i in range(len(n1)-1))
+    bigrams2 = set(n2[i:i+2] for i in range(len(n2)-1))
+    return len(bigrams1 & bigrams2) >= 1
+
+
 def stats_key(team):
-    """同リーグ・同統計値の重複検出用キー"""
     return (
         team.get("points", 0) or 0,
         team.get("played", 0) or 0,
@@ -64,10 +98,11 @@ def main():
     teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
 
     print("=" * 70)
-    print("近似重複チーム検出・除去 開始 (v6)")
+    print("近似重複チーム検出・除去 開始 (v7)")
     print("=" * 70)
 
     total_removed = 0
+    false_positive_warns = 0
 
     for pref_id, pref in teams_data.items():
         if not isinstance(pref, dict) or "teams" not in pref:
@@ -102,7 +137,7 @@ def main():
 
         remaining = [t for t in pref["teams"] if t not in teams_to_remove]
 
-        # === Step 2: 同リーグ・同統計値マッチ ===
+        # === Step 2: 同リーグ・同統計値 + 名前類似 マッチ ===
         groups_stats = {}
         for t in remaining:
             league = t.get("league") or ""
@@ -110,18 +145,24 @@ def main():
                 continue
             played = t.get("played", 0) or 0
             if played == 0:
-                continue  # 未試合チームは対象外
+                continue
             key = (league, stats_key(t))
             groups_stats.setdefault(key, []).append(t)
 
         for (league, stats), grp in groups_stats.items():
             if len(grp) <= 1:
                 continue
-            # 名前が長い方を残す (フルネームの可能性が高い)
+            # 名前が長い順にソート
             grp.sort(key=lambda t: -len(t.get("name", "")))
             kept = grp[0]
             for t in grp[1:]:
-                print(f"  [DEDUP-stats] {pref_id}/{league}: 統計値完全一致 {stats}")
+                # ★ 安全チェック: 名前が類似しているか確認
+                if not names_similar(kept.get("name", ""), t.get("name", "")):
+                    print(f"  [SKIP-fp] {pref_id}/{league}: 統計一致だが名前が異なるため別チームと判断 "
+                          f"({kept.get('name')} vs {t.get('name')})")
+                    false_positive_warns += 1
+                    continue
+                print(f"  [DEDUP-stats] {pref_id}/{league}: 統計値完全一致 + 名前類似")
                 print(f"    残: {kept.get('name')} ({kept.get('points', 0)}pt)")
                 print(f"    削: {t.get('name')} ({t.get('points', 0)}pt)")
                 teams_to_remove.append(t)
@@ -152,6 +193,8 @@ def main():
 
     print("=" * 70)
     print(f"[完了] {total_removed} 件の重複チームを削除")
+    if false_positive_warns:
+        print(f"[安全弾き] 統計一致だが別チームと判定: {false_positive_warns} 件")
     print("=" * 70)
     return 0
 
