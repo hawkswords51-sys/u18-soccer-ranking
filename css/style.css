@@ -4576,3 +4576,67 @@ details[open] > summary > .league-accordion__chevron {
         z-index: 4 !important;
     }
 }
+/* =====================================================================
+   ★ Phase 9-D 後の修正 v14: z-index 制御 + 上端ヘッダー固定の強化
+   ===================================================================== */
+
+@media (max-width: 768px) {
+    /* ─────────── スティッキー列 (左固定) ─────────── */
+    /* 1列目 (県内順位) */
+    .modal table.data-table tbody td:first-child,
+    #detailModal table.data-table tbody td:first-child,
+    #teamsTable tbody td:first-child {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        left: 0 !important;
+        z-index: 3 !important;
+        background-color: #0f172a !important;
+    }
+
+    /* 2列目 (チーム名) */
+    .modal table.data-table tbody td:nth-child(2),
+    #detailModal table.data-table tbody td:nth-child(2),
+    #teamsTable tbody td:nth-child(2) {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        left: 64px !important;
+        z-index: 3 !important;
+        background-color: #0f172a !important;
+    }
+
+    /* 非スティッキー列 (3列目以降) を確実に下に置く */
+    .modal table.data-table tbody td:nth-child(n+3),
+    #detailModal table.data-table tbody td:nth-child(n+3),
+    #teamsTable tbody td:nth-child(n+3) {
+        position: relative !important;
+        z-index: 1 !important;
+    }
+
+    /* ─────────── 上端ヘッダー固定 (縦スクロール対策) ─────────── */
+    /* ヘッダー全体を上に固定 + 高い z-index */
+    .modal table.data-table thead th,
+    #detailModal table.data-table thead th,
+    #teamsTable thead th {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 5 !important;
+        background-color: var(--primary-color, #1e40af) !important;
+    }
+
+    /* ヘッダー1列目: 左固定 + 上固定 (左上の交差点) */
+    .modal table.data-table thead th:first-child,
+    #detailModal table.data-table thead th:first-child,
+    #teamsTable thead th:first-child {
+        left: 0 !important;
+        z-index: 7 !important;  /* 最前面 */
+    }
+
+    /* ヘッダー2列目: 左固定 + 上固定 */
+    .modal table.data-table thead th:nth-child(2),
+    #detailModal table.data-table thead th:nth-child(2),
+    #teamsTable thead th:nth-child(2) {
+        left: 64px !important;
+        z-index: 6 !important;  /* チーム名スティッキーより前 */
+    }
+}
