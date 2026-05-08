@@ -465,8 +465,15 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:description" content="高校サッカーU-18 のシーズン展望・戦術分析・医学コラムなど">
   <meta property="og:url" content="https://u18-soccer.com/blog/">
   <meta property="og:image" content="https://u18-soccer.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="ja_JP">
-
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DrKazuSoccer">
+  <meta name="twitter:creator" content="@DrKazuSoccer">
+  <meta name="twitter:title" content="ブログ | 高校サッカー U-18 戦術・選手・コラム情報">
+  <meta name="twitter:description" content="高校サッカーU-18 のシーズン展望・戦術分析・医学コラムなど">
+  <meta name="twitter:image" content="https://u18-soccer.com/og-image.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
