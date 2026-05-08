@@ -175,8 +175,10 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:locale" content="ja_JP">
   <meta property="article:published_time" content="__DATE_ISO__">
   <meta property="article:section" content="__CATEGORY__">
-
+  <meta property="article:author" content="Dr.Kazu Soccer">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DrKazuSoccer">
+  <meta name="twitter:creator" content="@DrKazuSoccer">
   <meta name="twitter:title" content="__TITLE__">
   <meta name="twitter:description" content="__DESCRIPTION__">
   <meta name="twitter:image" content="__OG_IMAGE__">
