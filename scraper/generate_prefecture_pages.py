@@ -880,6 +880,7 @@ __ALL_PREFS_HTML__
       </p>
     </div>
   </footer>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>
 """
