@@ -638,6 +638,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:locale" content="ja_JP">
 
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DrKazuSoccer">
+  <meta name="twitter:creator" content="@DrKazuSoccer">
   <meta name="twitter:title" content="__TITLE__">
   <meta name="twitter:description" content="__DESCRIPTION__">
   <meta name="twitter:image" content="https://u18-soccer.com/og-image.png">
