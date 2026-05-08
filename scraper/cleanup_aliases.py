@@ -40,6 +40,7 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("osaka", "履正社B"):          "履正社高校2nd",
     ("hyogo", "滝川第二B"):        "滝川第二高校2nd",
     ("hyogo", "三田学園B"):        "三田学園高校2nd",
+    ("fukuoka", "飯塚B"):        "飯塚高校2nd",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
