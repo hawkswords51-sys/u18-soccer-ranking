@@ -314,6 +314,7 @@ __RELATED_HTML__
       </nav>
     </div>
   </footer>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>
 """
@@ -563,6 +564,7 @@ __ARTICLES_HTML__
       </nav>
     </div>
   </footer>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>
 """
