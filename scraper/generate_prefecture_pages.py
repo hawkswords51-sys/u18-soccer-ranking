@@ -770,7 +770,7 @@ __SCHEMA_FAQ__
           <div class="stat-value">__TOP_LEAGUE__</div>
         </div>
       </div>
-
+__FEATURED_ARTICLES__
       <!-- メイン CTA -->
       <div class="lp-cta">
         <a href="/" class="lp-cta__btn">
