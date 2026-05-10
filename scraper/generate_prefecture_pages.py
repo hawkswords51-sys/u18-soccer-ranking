@@ -24,6 +24,41 @@ from pathlib import Path
 from datetime import date
 
 # ============================================================
+# 都道府県別の特集記事マッピング
+# 今後、他県の特集記事を書いたらここに追加していく
+# ============================================================
+PREFECTURE_FEATURED_ARTICLES = {
+    "miyazaki": [
+        {
+            "title": "「鵬翔から日章学園へ」｜Dr.Kazu Soccerが追いかけた宮崎県の高校サッカー",
+            "url": "/blog/posts/2026-05-11-miyazaki-soccer-feature/",
+            "date": "2026-05-11",
+        },
+    ],
+}
+
+
+def render_featured_articles(pref_id):
+    """都道府県の特集記事HTMLを返す。記事がなければ空文字を返す。"""
+    articles = PREFECTURE_FEATURED_ARTICLES.get(pref_id, [])
+    if not articles:
+        return ""
+    
+    items = "\n".join([
+        f'          <li><a href="{a["url"]}">{a["title"]}</a> '
+        f'<span style="color:#999;font-size:0.9em;">（{a["date"]}）</span></li>'
+        for a in articles
+    ])
+    
+    return f"""      <section class="lp-section">
+        <h2>📖 観戦コラム</h2>
+        <ul class="lp-related-links">
+{items}
+        </ul>
+      </section>
+"""
+
+# ============================================================
 # 設定
 # ============================================================
 BASE_DIR = Path(__file__).parent.parent
