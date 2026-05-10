@@ -1014,6 +1014,7 @@ def generate_page(pref, all_prefs):
         .replace("__SCHEMA_ITEMLIST__", itemlist_json)
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__PREF_NAME__", html_escape(pref_name))
+        .replace("__FEATURED_ARTICLES__", render_featured_articles(pref_id))
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__HS_COUNT__", str(hs_count))
         .replace("__CY_COUNT__", str(cy_count))
