@@ -129,12 +129,27 @@ def count_team_types(teams):
 
 
 def sort_teams(teams):
-    """ティア順 → 県内順位順にソート"""
+    """ティア順 → 部(1部/2部) → 県内順位順にソート"""
     tier_order = {"premier": 0, "prince": 1, "prefecture": 2}
+
+    def get_division(league):
+        """リーグ名から'1部'/'2部'などを抽出して数値で返す。
+        部の表記がなければ0(プレミアEAST/WESTなど)。"""
+        if not league:
+            return 9
+        if "1部" in league:
+            return 1
+        if "2部" in league:
+            return 2
+        if "3部" in league:
+            return 3
+        return 0
+
     return sorted(
         teams,
         key=lambda t: (
             tier_order.get(league_category(t.get("league")), 9),
+            get_division(t.get("league")),
             t.get("rank") or 99,
         ),
     )
