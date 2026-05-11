@@ -54,8 +54,8 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("fukushima", "尚志セカンド"):      "尚志高校2nd",
     ("fukushima", "帝京安積セカンド"):   "帝京安積高校2nd",
     ("fukushima", "学法石川セカンド"):   "学法石川高校2nd",
-    ("ishikawa", ""ツェーゲン金沢U-18 2nd"):   "ツエーゲン金沢U-18 2nd",
-    ("ishikawa", ""ツェーゲン金沢U-18"):   "ツエーゲン金沢U-18",
+    ("ishikawa", "ツェーゲン金沢U-18 2nd"):   "ツエーゲン金沢U-18 2nd",
+    ("ishikawa", "ツェーゲン金沢U-18"):   "ツエーゲン金沢U-18",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
