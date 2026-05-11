@@ -758,6 +758,7 @@ PREF_LEAGUE_URLS: dict[str, list[str]] = {
     "akita":     ["https://junior-soccer.jp/tohoku/akita/league/order/163671"],
     "yamagata":  ["https://junior-soccer.jp/tohoku/yamagata/league/order/163965",
                   "https://www.goalnote.net/detail-standings.php?tid=18649"],
+    "miyagi":    ["https://junior-soccer.jp/tohoku/miyagi/league/order/163782"],
     "fukushima": ["https://junior-soccer.jp/tohoku/fukushima/league/order/163405"],
     "ibaraki":   ["https://junior-soccer.jp/kanto/ibaraki/league/order/163357",
                   "https://www.goalnote.net/detail-standings.php?tid=18463"],
