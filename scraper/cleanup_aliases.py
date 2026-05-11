@@ -41,6 +41,14 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("hyogo", "滝川第二B"):        "滝川第二高校2nd",
     ("hyogo", "三田学園B"):        "三田学園高校2nd",
     ("fukuoka", "飯塚B"):        "飯塚高校2nd",
+    # ★ さらに追加分 (B → 高校2nd 統一)
+    ("tochigi", "矢板中央B"):        "矢板中央高校2nd",
+    ("kanagawa", "桐光学園B"):       "桐光学園高校2nd",
+    ("kanagawa", "桐蔭学園B"):       "桐蔭学園高校2nd",
+    ("osaka", "興國B"):              "興國高校2nd",
+    ("okayama", "岡山学芸館B"):      "岡山学芸館高校2nd",
+    ("okayama", "玉野光南B"):        "玉野光南高校2nd",
+    ("okayama", "就実B"):            "就実高校2nd",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
@@ -106,6 +114,10 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("miyagi", "聖和学園高校2nd"):       ["聖和学園II", "聖和学園Ⅱ"],
     ("miyagi", "ベガルタ仙台ユース2nd"): ["ベガルタII", "ベガルタⅡ"],
     ("miyagi", "東北学院高校2nd"):       ["東北学院II", "東北学院Ⅱ"],
+    # 矢板中央・桐光・桐蔭（B→2nd移行時の旧名保持）
+    ("tochigi", "矢板中央高校2nd"):                   ["矢板中央B"],
+    ("kanagawa", "桐光学園高校2nd"):                  ["桐光学園B"],
+    ("kanagawa", "桐蔭学園高校2nd"):                  ["桐蔭学園B"],
 }
 
 # =====================================================================
