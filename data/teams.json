@@ -711,10 +711,30 @@
         "leagueRank": 10
       },
       {
+        "id": "m005",
+        "name": "聖和学園高校2nd",
+        "league": "宮城県1部",
+        "rank": 4,
+        "points": 16,
+        "played": 7,
+        "won": 5,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 19,
+        "goalsAgainst": 6,
+        "prefectureRank": 4,
+        "leagueRank": 2,
+        "aliases": [
+          "聖和学園Ⅱ",
+          "聖和学園II",
+          "聖和学園セカンド"
+        ]
+      },
+      {
         "id": "m002",
         "name": "聖和学園高校",
         "league": "プリンスリーグ東北",
-        "rank": 4,
+        "rank": 5,
         "points": 7,
         "played": 7,
         "won": 1,
@@ -722,12 +742,14 @@
         "lost": 2,
         "goalsFor": 9,
         "goalsAgainst": 10,
-        "prefectureRank": 4,
+        "prefectureRank": 5,
         "leagueRank": 8
       },
       {
-        "name": "ベガルタⅡ",
+        "id": "m004",
+        "name": "ベガルタ仙台ユース2nd",
         "league": "宮城県1部",
+        "rank": 6,
         "points": 10,
         "played": 7,
         "won": 3,
@@ -735,15 +757,19 @@
         "lost": 3,
         "goalsFor": 14,
         "goalsAgainst": 10,
-        "leagueRank": 2,
-        "rank": 5,
-        "prefectureRank": 5
+        "prefectureRank": 6,
+        "leagueRank": 3,
+        "aliases": [
+          "ベガルタ仙台Ⅱ",
+          "ベガルタII",
+          "ベガルタⅡ"
+        ]
       },
       {
         "name": "東北生活文化大学高校",
         "league": "宮城県1部",
-        "rank": 6,
-        "prefectureRank": 6,
+        "rank": 7,
+        "prefectureRank": 7,
         "points": 9,
         "played": 7,
         "won": 3,
@@ -751,11 +777,13 @@
         "lost": 4,
         "goalsFor": 10,
         "goalsAgainst": 11,
-        "leagueRank": 3
+        "leagueRank": 4
       },
       {
-        "name": "東北学院Ⅱ",
+        "name": "東北学院高校2nd",
         "league": "宮城県1部",
+        "rank": 8,
+        "prefectureRank": 8,
         "points": 9,
         "played": 7,
         "won": 3,
@@ -763,15 +791,19 @@
         "lost": 4,
         "goalsFor": 7,
         "goalsAgainst": 19,
-        "leagueRank": 4,
-        "rank": 7,
-        "prefectureRank": 7
+        "leagueRank": 5,
+        "aliases": [
+          "東北学院高校Ⅱ",
+          "東北学院II",
+          "東北学院セカンド",
+          "東北学院Ⅱ"
+        ]
       },
       {
         "id": "m008",
         "name": "利府高校",
         "league": "宮城県1部",
-        "rank": 8,
+        "rank": 9,
         "points": 7,
         "played": 7,
         "won": 2,
@@ -779,28 +811,8 @@
         "lost": 4,
         "goalsFor": 7,
         "goalsAgainst": 17,
-        "prefectureRank": 8,
-        "leagueRank": 5
-      },
-      {
-        "id": "m005",
-        "name": "聖和学園高校2nd",
-        "league": "宮城県1部",
-        "rank": 9,
-        "points": 6,
-        "played": 2,
-        "won": 2,
-        "drawn": 0,
-        "lost": 0,
-        "goalsFor": 4,
-        "goalsAgainst": 1,
         "prefectureRank": 9,
-        "leagueRank": 6,
-        "aliases": [
-          "聖和学園Ⅱ",
-          "聖和学園II",
-          "聖和学園セカンド"
-        ]
+        "leagueRank": 6
       },
       {
         "id": "m009",
@@ -831,44 +843,6 @@
         "goalsAgainst": 20,
         "prefectureRank": 11,
         "leagueRank": 8
-      },
-      {
-        "id": "m004",
-        "name": "ベガルタ仙台ユース2nd",
-        "league": "宮城県1部",
-        "rank": 12,
-        "points": 1,
-        "played": 2,
-        "won": 0,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 2,
-        "goalsAgainst": 3,
-        "prefectureRank": 12,
-        "leagueRank": 9,
-        "aliases": [
-          "ベガルタ仙台Ⅱ",
-          "ベガルタII"
-        ]
-      },
-      {
-        "name": "東北学院高校2nd",
-        "league": "宮城県1部",
-        "rank": 13,
-        "prefectureRank": 13,
-        "points": 0,
-        "played": 2,
-        "won": 0,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 0,
-        "goalsAgainst": 10,
-        "leagueRank": 10,
-        "aliases": [
-          "東北学院高校Ⅱ",
-          "東北学院II",
-          "東北学院セカンド"
-        ]
       }
     ],
     "championships": [
@@ -10733,7 +10707,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-11 01:54",
+    "lastUpdated": "2026-05-11 02:09",
     "year": 2026,
     "updatedCount": 579
   }
