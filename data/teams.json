@@ -557,8 +557,8 @@
         "leagueRank": 3
       },
       {
-        "id": "i006",
-        "name": "盛岡誠桜高校",
+        "id": "i008",
+        "name": "専修大学北上高校2nd",
         "league": "岩手U-18iリーグ",
         "rank": 6,
         "points": 8,
@@ -566,14 +566,18 @@
         "won": 2,
         "drawn": 2,
         "lost": 2,
-        "goalsFor": 9,
-        "goalsAgainst": 8,
+        "goalsFor": 13,
+        "goalsAgainst": 9,
         "prefectureRank": 6,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "専北2nd",
+          "専修大学北上高校セカンド"
+        ]
       },
       {
-        "id": "i002",
-        "name": "遠野高校",
+        "id": "i006",
+        "name": "盛岡誠桜高校",
         "league": "岩手U-18iリーグ",
         "rank": 7,
         "points": 8,
@@ -581,16 +585,31 @@
         "won": 2,
         "drawn": 2,
         "lost": 2,
-        "goalsFor": 7,
-        "goalsAgainst": 9,
+        "goalsFor": 9,
+        "goalsAgainst": 8,
         "prefectureRank": 7,
         "leagueRank": 5
+      },
+      {
+        "id": "i002",
+        "name": "遠野高校",
+        "league": "岩手U-18iリーグ",
+        "rank": 8,
+        "points": 8,
+        "played": 6,
+        "won": 2,
+        "drawn": 2,
+        "lost": 2,
+        "goalsFor": 7,
+        "goalsAgainst": 9,
+        "prefectureRank": 8,
+        "leagueRank": 6
       },
       {
         "id": "i009",
         "name": "いわてグルージャ盛岡ユース",
         "league": "岩手U-18iリーグ",
-        "rank": 8,
+        "rank": 9,
         "points": 7,
         "played": 6,
         "won": 1,
@@ -598,30 +617,11 @@
         "lost": 1,
         "goalsFor": 4,
         "goalsAgainst": 5,
-        "prefectureRank": 8,
-        "leagueRank": 6,
-        "aliases": [
-          "グルージャ盛岡",
-          "G盛岡ユース"
-        ]
-      },
-      {
-        "id": "i008",
-        "name": "専修大学北上高校2nd",
-        "league": "岩手U-18iリーグ",
-        "rank": 9,
-        "points": 4,
-        "played": 3,
-        "won": 1,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 5,
-        "goalsAgainst": 5,
         "prefectureRank": 9,
         "leagueRank": 7,
         "aliases": [
-          "専北2nd",
-          "専修大学北上高校セカンド"
+          "グルージャ盛岡",
+          "G盛岡ユース"
         ]
       },
       {
@@ -3881,8 +3881,8 @@
         "leagueRank": 2
       },
       {
-        "id": "is010",
-        "name": "金沢高校",
+        "id": "is003",
+        "name": "ツエーゲン金沢U-18",
         "league": "プリンスリーグ北信越2部",
         "rank": 5,
         "points": 10,
@@ -3893,7 +3893,7 @@
         "goalsFor": 10,
         "goalsAgainst": 7,
         "prefectureRank": 5,
-        "goalDiff": -3,
+        "goalDiff": 3,
         "leagueRank": 3
       },
       {
@@ -3932,8 +3932,8 @@
         ]
       },
       {
-        "id": "is003",
-        "name": "ツエーゲン金沢U-18",
+        "id": "is010",
+        "name": "金沢高校",
         "league": "プリンスリーグ北信越2部",
         "rank": 8,
         "points": 5,
@@ -3944,7 +3944,7 @@
         "goalsFor": 5,
         "goalsAgainst": 7,
         "prefectureRank": 8,
-        "goalDiff": 3,
+        "goalDiff": -3,
         "leagueRank": 6
       },
       {
@@ -3969,33 +3969,10 @@
         ]
       },
       {
-        "id": "is006",
-        "name": "ツエーゲン金沢U-18 2nd",
-        "league": "石川県1部",
-        "rank": 10,
-        "points": 8,
-        "played": 4,
-        "won": 2,
-        "drawn": 0,
-        "lost": 0,
-        "goalsFor": 8,
-        "goalsAgainst": 1,
-        "prefectureRank": 10,
-        "goalDiff": 7,
-        "leagueRank": 5,
-        "aliases": [
-          "ツエーゲン金沢2nd",
-          "ツェーゲン金沢2nd",
-          "金沢U18 2nd",
-          "金沢U18B",
-          "ツェーゲンB"
-        ]
-      },
-      {
         "id": "is009",
         "name": "航空石川高校",
         "league": "石川県1部",
-        "rank": 11,
+        "rank": 10,
         "points": 6,
         "played": 6,
         "won": 1,
@@ -4003,15 +3980,15 @@
         "lost": 2,
         "goalsFor": 4,
         "goalsAgainst": 5,
-        "prefectureRank": 11,
+        "prefectureRank": 10,
         "goalDiff": -3,
-        "leagueRank": 6
+        "leagueRank": 5
       },
       {
         "id": "is011",
         "name": "金沢市工高校",
         "league": "石川県1部",
-        "rank": 12,
+        "rank": 11,
         "points": 4,
         "played": 6,
         "won": 1,
@@ -4020,14 +3997,14 @@
         "goalsFor": 4,
         "goalsAgainst": 12,
         "goalDiff": -4,
-        "prefectureRank": 12,
-        "leagueRank": 7
+        "prefectureRank": 11,
+        "leagueRank": 6
       },
       {
         "id": "is012",
         "name": "金沢桜丘高校",
         "league": "石川県1部",
-        "rank": 13,
+        "rank": 12,
         "points": 3,
         "played": 6,
         "won": 1,
@@ -4036,8 +4013,8 @@
         "goalsFor": 3,
         "goalsAgainst": 18,
         "goalDiff": -7,
-        "prefectureRank": 13,
-        "leagueRank": 8
+        "prefectureRank": 12,
+        "leagueRank": 7
       }
     ],
     "championships": [
@@ -9550,10 +9527,29 @@
         "prefectureRank": 9
       },
       {
+        "id": "ng011",
+        "name": "長崎総合科学大学附属高校2nd",
+        "league": "長崎県1部",
+        "rank": 10,
+        "points": 8,
+        "played": 7,
+        "won": 2,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 12,
+        "goalsAgainst": 13,
+        "goalDiff": -2,
+        "prefectureRank": 10,
+        "leagueRank": 7,
+        "aliases": [
+          "長崎総附2nd"
+        ]
+      },
+      {
         "id": "ng012",
         "name": "海星高校",
         "league": "長崎県1部",
-        "rank": 10,
+        "rank": 11,
         "points": 4,
         "played": 7,
         "won": 1,
@@ -9562,29 +9558,10 @@
         "goalsFor": 9,
         "goalsAgainst": 18,
         "goalDiff": -4,
-        "prefectureRank": 10,
-        "leagueRank": 7,
-        "aliases": [
-          "海星"
-        ]
-      },
-      {
-        "id": "ng011",
-        "name": "長崎総合科学大学附属高校2nd",
-        "league": "長崎県1部",
-        "rank": 11,
-        "points": 2,
-        "played": 4,
-        "won": 0,
-        "drawn": 2,
-        "lost": 2,
-        "goalsFor": 2,
-        "goalsAgainst": 7,
-        "goalDiff": -2,
         "prefectureRank": 11,
         "leagueRank": 8,
         "aliases": [
-          "長崎総附2nd"
+          "海星"
         ]
       },
       {
@@ -10758,7 +10735,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-11 13:49",
+    "lastUpdated": "2026-05-11 14:17",
     "year": 2026,
     "updatedCount": 584
   }
