@@ -54,6 +54,8 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("fukushima", "尚志セカンド"):      "尚志高校2nd",
     ("fukushima", "帝京安積セカンド"):   "帝京安積高校2nd",
     ("fukushima", "学法石川セカンド"):   "学法石川高校2nd",
+    ("ishikawa", ""ツェーゲン金沢U-18 2nd"):   "ツエーゲン金沢U-18 2nd",
+    ("ishikawa", ""ツェーゲン金沢U-18"):   "ツエーゲン金沢U-18",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
@@ -127,7 +129,7 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("shiga", "近江高校2nd"):                  ["近江B"],
     ("kyoto", "京都橘高校2nd"):                ["京都橘B"],
     ("hyogo", "ヴィッセル神戸U-18 2nd"):       ["ヴィッセル神戸B", "神戸U-18 2nd"],
-    ("ishikawa", "ツェーゲン金沢U-18 2nd"):    ["金沢U18 2nd", "金沢U18B", "ツェーゲンB"],
+    ("ishikawa", "ツエーゲン金沢U-18 2nd"):    ["金沢U18 2nd", "金沢U18B", "ツェーゲンB"],
     ("hiroshima", "サンフレッチェ広島F.C.ユース 2nd"): ["広島FCユース2nd", "サンフレッチェB","サンフレセカンド"],
     ("yamaguchi", "高川学園高校2nd"):          ["高川学園B"],
     ("nagasaki", "長崎総合科学大学附属高校2nd"):        ["長崎総附2nd"],
