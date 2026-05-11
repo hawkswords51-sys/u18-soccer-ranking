@@ -2116,7 +2116,7 @@
         "goalsAgainst": 3,
         "prefectureRank": 2,
         "goalDiff": 1,
-        "leagueRank": 1,
+        "leagueRank": 2,
         "aliases": [
           "浦和レッドダイヤモンズユース"
         ]
@@ -2167,7 +2167,7 @@
         "goalsAgainst": 5,
         "prefectureRank": 5,
         "goalDiff": 0,
-        "leagueRank": 3,
+        "leagueRank": 4,
         "aliases": [
           "大宮アルディージャU18",
           "大宮アルディージャユース"
@@ -2389,20 +2389,25 @@
         ]
       },
       {
-        "id": "c003",
-        "name": "市立船橋高校",
+        "id": "c005",
+        "name": "流通経済大学付属柏高校2nd",
         "league": "プリンスリーグ関東1部",
         "rank": 3,
-        "points": 13,
+        "points": 14,
         "played": 6,
         "won": 4,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 9,
+        "drawn": 2,
+        "lost": 0,
+        "goalsFor": 6,
         "goalsAgainst": 2,
         "prefectureRank": 3,
         "goalDiff": 2,
-        "leagueRank": 2
+        "leagueRank": 1,
+        "aliases": [
+          "流通経済大学付属柏高校B",
+          "流経大柏B",
+          "流経大柏2nd"
+        ]
       },
       {
         "id": "c006",
@@ -2444,10 +2449,26 @@
         ]
       },
       {
+        "id": "c003",
+        "name": "市立船橋高校",
+        "league": "プリンスリーグ関東1部",
+        "rank": 6,
+        "points": 13,
+        "played": 6,
+        "won": 4,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 9,
+        "goalsAgainst": 2,
+        "prefectureRank": 6,
+        "goalDiff": 2,
+        "leagueRank": 3
+      },
+      {
         "id": "c002",
         "name": "柏レイソルU-18",
         "league": "プレミアリーグEAST",
-        "rank": 6,
+        "rank": 7,
         "points": 11,
         "played": 7,
         "won": 3,
@@ -2455,30 +2476,9 @@
         "lost": 2,
         "goalsFor": 9,
         "goalsAgainst": 5,
-        "prefectureRank": 6,
-        "goalDiff": 2,
-        "leagueRank": 5
-      },
-      {
-        "id": "c005",
-        "name": "流通経済大学付属柏高校2nd",
-        "league": "プリンスリーグ関東1部",
-        "rank": 7,
-        "points": 10,
-        "played": 4,
-        "won": 3,
-        "drawn": 1,
-        "lost": 0,
-        "goalsFor": 3,
-        "goalsAgainst": 0,
         "prefectureRank": 7,
         "goalDiff": 2,
-        "leagueRank": 4,
-        "aliases": [
-          "流通経済大学付属柏高校B",
-          "流経大柏B",
-          "流経大柏2nd"
-        ]
+        "leagueRank": 5
       },
       {
         "id": "c004",
@@ -10725,8 +10725,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-11 09:41",
+    "lastUpdated": "2026-05-11 09:52",
     "year": 2026,
-    "updatedCount": 582
+    "updatedCount": 583
   }
 }
