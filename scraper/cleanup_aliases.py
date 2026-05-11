@@ -57,6 +57,7 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("ishikawa", "ツェーゲン金沢U-18 2nd"):   "ツエーゲン金沢U-18 2nd",
     ("ishikawa", "ツェーゲン金沢U-18"):   "ツエーゲン金沢U-18",
     ("ishikawa", "金沢"):      "金沢高校",
+    ("ishikawa", "金沢市工"):     "金沢市立工業高校",
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
@@ -136,7 +137,8 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("nagasaki", "長崎総合科学大学附属高校2nd"):        ["長崎総附2nd"],
     ("chiba", "流通経済大学付属柏高校2nd"):        ["流通経済大学付属柏Ｂ"],
     ("mie", "四日市中央工業高校"):        ["四中工"],
-    ("ishikawa", "金沢高校"):        ["金沢"],
+    ("ishikawa", "金沢高校"):        　["金沢"],
+    ("ishikawa", "金沢市立工業高校"):       ["金沢市工"],
 }
 
 # =====================================================================
