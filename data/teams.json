@@ -1275,7 +1275,7 @@
         "leagueRank": 3
       },
       {
-        "name": "尚志セカンド",
+        "name": "尚志高校2nd",
         "league": "福島F1リーグ",
         "points": 12,
         "played": 6,
@@ -1286,7 +1286,10 @@
         "goalsAgainst": 7,
         "leagueRank": 3,
         "rank": 5,
-        "prefectureRank": 5
+        "prefectureRank": 5,
+        "aliases": [
+          "尚志セカンド"
+        ]
       },
       {
         "id": "f002",
@@ -1362,7 +1365,7 @@
         "leagueRank": 7
       },
       {
-        "name": "学法石川セカンド",
+        "name": "学法石川高校2nd",
         "league": "福島F1リーグ",
         "points": 5,
         "played": 6,
@@ -1373,10 +1376,13 @@
         "goalsAgainst": 16,
         "leagueRank": 8,
         "rank": 11,
-        "prefectureRank": 11
+        "prefectureRank": 11,
+        "aliases": [
+          "学法石川セカンド"
+        ]
       },
       {
-        "name": "帝京安積セカンド",
+        "name": "帝京安積高校2nd",
         "league": "福島F1リーグ",
         "points": 4,
         "played": 6,
@@ -1387,7 +1393,10 @@
         "goalsAgainst": 10,
         "leagueRank": 9,
         "rank": 12,
-        "prefectureRank": 12
+        "prefectureRank": 12,
+        "aliases": [
+          "帝京安積セカンド"
+        ]
       },
       {
         "id": "f007",
@@ -1777,7 +1786,7 @@
         "leagueRank": 5
       },
       {
-        "name": "栃木SC B",
+        "name": "栃木SC U-18 2nd",
         "league": "栃木U-18ユースリーグ",
         "points": 7,
         "played": 7,
@@ -1788,7 +1797,11 @@
         "goalsAgainst": 16,
         "leagueRank": 6,
         "rank": 8,
-        "prefectureRank": 8
+        "prefectureRank": 8,
+        "aliases": [
+          "栃木SC U-18B",
+          "栃木SC B"
+        ]
       },
       {
         "name": "栃木シティFC",
@@ -4117,26 +4130,42 @@
         "leagueRank": 5
       },
       {
+        "id": "fu012",
+        "name": "武生高校",
+        "league": "福井県F1",
+        "rank": 7,
+        "points": 4,
+        "played": 6,
+        "won": 1,
+        "drawn": 1,
+        "lost": 4,
+        "goalsFor": 2,
+        "goalsAgainst": 11,
+        "goalDiff": -6,
+        "prefectureRank": 7,
+        "leagueRank": 6
+      },
+      {
         "id": "fu007",
         "name": "敦賀気比高校",
         "league": "福井県F1",
-        "rank": 7,
+        "rank": 8,
         "points": 3,
-        "played": 5,
+        "played": 6,
         "won": 1,
         "drawn": 0,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 5,
-        "goalsAgainst": 14,
-        "prefectureRank": 7,
+        "goalsAgainst": 15,
+        "prefectureRank": 8,
         "goalDiff": -4,
-        "leagueRank": 6
+        "leagueRank": 7
       },
       {
         "id": "fu011",
         "name": "坂井高校",
         "league": "福井県F1",
-        "rank": 8,
+        "rank": 9,
         "points": 3,
         "played": 5,
         "won": 1,
@@ -4145,22 +4174,6 @@
         "goalsFor": 5,
         "goalsAgainst": 17,
         "goalDiff": -2,
-        "prefectureRank": 8,
-        "leagueRank": 7
-      },
-      {
-        "id": "fu012",
-        "name": "武生高校",
-        "league": "福井県F1",
-        "rank": 9,
-        "points": 1,
-        "played": 5,
-        "won": 0,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 1,
-        "goalsAgainst": 11,
-        "goalDiff": -6,
         "prefectureRank": 9,
         "leagueRank": 8
       }
@@ -10725,7 +10738,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-11 11:51",
+    "lastUpdated": "2026-05-11 13:02",
     "year": 2026,
     "updatedCount": 583
   }
