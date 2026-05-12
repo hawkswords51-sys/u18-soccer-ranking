@@ -999,7 +999,6 @@ def generate_page(pref, all_prefs):
     hs_count, cy_count = count_team_types(teams)
     top_league = get_top_league(teams)
     canonical = f"{DOMAIN}/prefectures/{pref_id}/"
-
     sorted_teams = sort_teams(teams)
     if sorted_teams:
         team_rows = "\n".join(
@@ -1011,7 +1010,6 @@ def generate_page(pref, all_prefs):
             'style="text-align:center;padding:30px;color:#888;">'
             f'{html_escape(pref_name)}のデータはまだ登録されていません</td></tr>'
         )
-
     region = pref.get("region") or ""
     neighbors = [p for p in all_prefs if p.get("region") == region and p["id"] != pref_id]
     if neighbors:
@@ -1022,33 +1020,33 @@ def generate_page(pref, all_prefs):
     else:
         neighbor_links = '          <p style="color:#888;">情報を準備中</p>'
 
+    # ★ 強豪校名をタイトル・description に組み込む
     notable_teams = get_notable_teams_for_title(teams)
-year_label = date.today().year
-if notable_teams:
-    notable_str = "・".join(notable_teams)
-    title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | {notable_str}の最新成績"
-else:
-    title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | プレミア・プリンス・{pref_name}リーグ1部"
+    year_label = date.today().year
+    if notable_teams:
+        notable_str = "・".join(notable_teams)
+        title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | {notable_str}の最新成績"
+    else:
+        title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | プレミア・プリンス・{pref_name}リーグ1部"
 
-if notable_teams_desc:
-    notable_str_desc = "・".join(notable_teams_desc)
-    description = (
-        f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
-        f"{notable_str_desc}など強豪校の対戦結果、"
-        f"高円宮杯JFA U-18プレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
-    )
-else:
-    description = (
-        f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
-        f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
-        "（都道府県リーグは1部のみ掲載）"
-    )
-    
+    if notable_teams:
+        notable_str_desc = "・".join(notable_teams)
+        description = (
+            f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
+            f"{notable_str_desc}など強豪校の対戦結果、"
+            f"高円宮杯JFA U-18プレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
+        )
+    else:
+        description = (
+            f"{pref_name}の高校サッカー部・クラブユース（U-18年代)){team_count}チームの最新順位・成績。"
+            f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
+            "（都道府県リーグは1部のみ掲載）"
+        )
+
     keywords = (
         f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
         f"{pref_name}リーグ1部,{pref_name}リーグ,順位,成績,日程,結果"
     )
-
     # 構造化データ
     breadcrumb = json.dumps(
         render_breadcrumb_schema(pref_name, pref_id),
@@ -1064,27 +1062,21 @@ else:
     else:
         # データなし都道府県は空の ItemList を出さない
         itemlist_json = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "name": f"{pref_name} 順位表 (準備中)", "itemListElement": []}, ensure_ascii=False, indent=2)
-
     # FAQ
     faqs = build_faqs(pref_name, teams)
     faq_schema = json.dumps(render_faq_schema(faqs), ensure_ascii=False, indent=2)
     faq_html = render_faq_html(faqs)
-
     # ★ Phase 9-A ステップ3: 内部リンクセクション
     top10 = get_global_top_teams(all_prefs, limit=10)
     top10_html = render_top10_html(top10, pref_id)
-
     premier_prefs = get_prefectures_with_league(all_prefs, "premier")
     prince_prefs = get_prefectures_with_league(all_prefs, "prince")
     premier_prefs_html = render_league_prefs_html(premier_prefs, pref_id, "プレミアリーグ")
     prince_prefs_html = render_league_prefs_html(prince_prefs, pref_id, "プリンスリーグ")
-
     grouped_prefs = group_prefectures_by_region(all_prefs)
     all_prefs_html = render_all_prefs_html(grouped_prefs, pref_id)
-
     # Phase 9-C: 所属リーグへのリンク
     league_links_html = render_league_links_html(teams)
-
     return (
         PAGE_TEMPLATE
         .replace("__GA_ID__", GA_ID)
@@ -1112,7 +1104,6 @@ else:
         .replace("__ALL_PREFS_HTML__", all_prefs_html)
         .replace("__LEAGUE_LINKS_HTML__", league_links_html)
     )
-
 
 def update_sitemap(all_prefs):
     today = date.today().isoformat()
