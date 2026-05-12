@@ -121,6 +121,10 @@ def get_notable_teams_for_title(teams):
         return (name
                 .replace("高等学校", "")
                 .replace("高校", "")
+                .replace("日本大学", "日大")
+                .replace("関西大学", "関大")     # 関西大学北陽 → 関大北陽
+                .replace("専修大学", "専大")     # 専修大学北上 → 専大北上
+                .replace("帝京大学", "帝京大")   # 帝京大学可児 → 帝京大可児
                 .strip())
 
     sorted_teams = sorted(
