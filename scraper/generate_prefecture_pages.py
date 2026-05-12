@@ -1029,7 +1029,7 @@ if notable_teams:
     title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | {notable_str}の最新成績"
 else:
     title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | プレミア・プリンス・{pref_name}リーグ1部"
-   notable_teams_desc = get_notable_teams_for_title(teams)
+
 if notable_teams_desc:
     notable_str_desc = "・".join(notable_teams_desc)
     description = (
