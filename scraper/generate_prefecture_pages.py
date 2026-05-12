@@ -70,6 +70,59 @@ GA_ID = "G-KTPR94SPYS"
 ADSENSE_CLIENT = "ca-pub-6953440022497606"
 
 
+def get_notable_teams_for_title(teams):
+    """都道府県の上位チーム（タイトル用）を最大3校返す。
+    優先：プレミア > プリンス1部 > プリンス2部 > 県1部
+    控えチーム（2nd, 3rd, セカンド等）と長すぎる名前は除外。
+    """
+    tier_order = {"premier": 0, "prince": 1, "prefecture": 2}
+
+    def get_division(league):
+        if not league:
+            return 9
+        if "1部" in league:
+            return 1
+        if "2部" in league:
+            return 2
+        return 0
+
+    def is_main_team(name):
+        """1軍チーム判定（控えチームを除外）"""
+        suffixes = ["2nd", "3rd", "4th", "セカンド", "サード",
+                    "Ⅱ", "Ⅲ", "②", "③", "B", "C"]
+        return not any(name.endswith(s) for s in suffixes)
+
+    def short_name(name):
+        """タイトル用の短縮名（「高校」「高等学校」を除去）"""
+        return (name
+                .replace("高等学校", "")
+                .replace("高校", "")
+                .strip())
+
+    sorted_teams = sorted(
+        teams,
+        key=lambda t: (
+            tier_order.get(league_category(t.get("league")), 9),
+            get_division(t.get("league")),
+            t.get("rank", 99),
+        )
+    )
+
+    notable = []
+    for t in sorted_teams:
+        name = t.get("name", "")
+        if not is_main_team(name):
+            continue
+        display = short_name(name)
+        if not display or len(display) > 12:  # 長すぎる名前は除外
+            continue
+        if display in notable:
+            continue
+        notable.append(display)
+        if len(notable) >= 3:
+            break
+    return notable
+
 # ============================================================
 # ヘルパー
 # ============================================================
@@ -969,11 +1022,27 @@ def generate_page(pref, all_prefs):
     else:
         neighbor_links = '          <p style="color:#888;">情報を準備中</p>'
 
-    title = f"{pref_name} 高校サッカー U-18 順位表 | プレミア・プリンス・{pref_name}リーグ1部"
+    notable_teams = get_notable_teams_for_title(teams)
+year_label = date.today().year
+if notable_teams:
+    notable_str = "・".join(notable_teams)
+    title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | {notable_str}の最新成績"
+else:
+    title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | プレミア・プリンス・{pref_name}リーグ1部"
+   notable_teams_desc = get_notable_teams_for_title(teams)
+if notable_teams_desc:
+    notable_str_desc = "・".join(notable_teams_desc)
+    description = (
+        f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
+        f"{notable_str_desc}など強豪校の対戦結果、"
+        f"高円宮杯JFA U-18プレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
+    )
+else:
     description = (
         f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
         f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
         "（都道府県リーグは1部のみ掲載）"
+    )
     )
     keywords = (
         f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
