@@ -1038,7 +1038,7 @@ def generate_page(pref, all_prefs):
         )
     else:
         description = (
-            f"{pref_name}の高校サッカー部・クラブユース（U-18年代)){team_count}チームの最新順位・成績。"
+            f"{pref_name}の高校サッカー部・クラブユース（U-18年代){team_count}チームの最新順位・成績。"
             f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
             "（都道府県リーグは1部のみ掲載）"
         )
