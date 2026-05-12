@@ -70,6 +70,30 @@ GA_ID = "G-KTPR94SPYS"
 ADSENSE_CLIENT = "ca-pub-6953440022497606"
 
 
+# ============================================================
+# ヘルパー
+# ============================================================
+def html_escape(s):
+    if s is None:
+        return ""
+    return (
+        str(s)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+        .replace("'", "&#39;")
+    )
+
+
+def league_category(team_league):
+    lg = team_league or ""
+    if "プレミアリーグ" in lg:
+        return "premier"
+    if "プリンスリーグ" in lg:
+        return "prince"
+    return "prefecture"
+
 def get_notable_teams_for_title(teams):
     """都道府県の上位チーム（タイトル用）を最大3校返す。
     優先：プレミア > プリンス1部 > プリンス2部 > 県1部
@@ -122,30 +146,6 @@ def get_notable_teams_for_title(teams):
         if len(notable) >= 3:
             break
     return notable
-
-# ============================================================
-# ヘルパー
-# ============================================================
-def html_escape(s):
-    if s is None:
-        return ""
-    return (
-        str(s)
-        .replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace('"', "&quot;")
-        .replace("'", "&#39;")
-    )
-
-
-def league_category(team_league):
-    lg = team_league or ""
-    if "プレミアリーグ" in lg:
-        return "premier"
-    if "プリンスリーグ" in lg:
-        return "prince"
-    return "prefecture"
 
 
 def get_top_league(teams):
