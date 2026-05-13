@@ -954,6 +954,7 @@ __SCHEMA_FAQ__
         </div>
       </div>
 __FEATURED_ARTICLES__
+__TOURNAMENT_HTML__
       <!-- メイン CTA -->
       <div class="lp-cta">
         <a href="/" class="lp-cta__btn">
