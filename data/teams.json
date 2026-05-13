@@ -779,7 +779,10 @@
         "lost": 4,
         "goalsFor": 10,
         "goalsAgainst": 11,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "東北生文大高"
+        ]
       },
       {
         "name": "東北学院高校2nd",
@@ -5498,25 +5501,11 @@
         ]
       },
       {
-        "name": "近畿大学工業高等専門学校",
-        "league": "三重県1部",
-        "points": 1,
-        "played": 4,
-        "won": 0,
-        "drawn": 1,
-        "lost": 3,
-        "goalsFor": 1,
-        "goalsAgainst": 15,
-        "leagueRank": 7,
-        "rank": 8,
-        "prefectureRank": 8
-      },
-      {
         "id": "mi011",
         "name": "三重高校2nd",
         "league": "三重県1部",
-        "rank": 9,
-        "prefectureRank": 9,
+        "rank": 8,
+        "prefectureRank": 8,
         "points": 0,
         "played": 4,
         "won": 0,
@@ -5525,7 +5514,7 @@
         "goalsFor": 4,
         "goalsAgainst": 18,
         "goalDiff": -3,
-        "leagueRank": 8,
+        "leagueRank": 7,
         "aliases": [
           "三重高校②"
         ]
@@ -5534,8 +5523,8 @@
         "id": "mi012",
         "name": "伊賀白鳳高校",
         "league": "三重県1部",
-        "rank": 10,
-        "prefectureRank": 10,
+        "rank": 9,
+        "prefectureRank": 9,
         "points": 0,
         "played": 4,
         "won": 0,
@@ -5544,7 +5533,7 @@
         "goalsFor": 2,
         "goalsAgainst": 18,
         "goalDiff": -8,
-        "leagueRank": 9
+        "leagueRank": 8
       }
     ],
     "championships": [
@@ -10838,7 +10827,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-13 11:15",
+    "lastUpdated": "2026-05-13 11:23",
     "year": 2026,
     "updatedCount": 584
   }
