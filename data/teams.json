@@ -475,10 +475,8 @@
     "region": "東北",
     "teams": [
       {
-        "id": "i007",
-        "name": "盛岡大附高校",
+        "name": "盛岡大学附属高校",
         "league": "岩手U-18iリーグ",
-        "rank": 1,
         "points": 13,
         "played": 6,
         "won": 4,
@@ -486,10 +484,11 @@
         "lost": 1,
         "goalsFor": 17,
         "goalsAgainst": 11,
-        "prefectureRank": 1,
         "leagueRank": 1,
+        "rank": 1,
+        "prefectureRank": 1,
         "aliases": [
-          "盛大附"
+          "盛岡大附"
         ]
       },
       {
@@ -539,7 +538,10 @@
         "goalsFor": 0,
         "goalsAgainst": 14,
         "prefectureRank": 4,
-        "leagueRank": 10
+        "leagueRank": 10,
+        "aliases": [
+          "盛岡商"
+        ]
       },
       {
         "id": "i004",
@@ -1548,7 +1550,8 @@
         "rank": 7,
         "prefectureRank": 7,
         "aliases": [
-          "明秀日立A"
+          "明秀日立A",
+          "明秀日立"
         ]
       },
       {
@@ -2543,7 +2546,11 @@
         "goalsAgainst": 5,
         "goalDiff": 7,
         "prefectureRank": 10,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "専修大松戸",
+          "専大松戸"
+        ]
       },
       {
         "id": "c007",
@@ -2648,6 +2655,23 @@
         "goalDiff": -13,
         "prefectureRank": 16,
         "leagueRank": 10
+      },
+      {
+        "name": "拓殖大学紅陵高校",
+        "league": "千葉県1部",
+        "points": 1,
+        "played": 6,
+        "won": 0,
+        "drawn": 1,
+        "lost": 5,
+        "goalsFor": 4,
+        "goalsAgainst": 26,
+        "leagueRank": 11,
+        "rank": 17,
+        "prefectureRank": 17,
+        "aliases": [
+          "拓大紅陵"
+        ]
       }
     ],
     "championships": [
@@ -4612,7 +4636,10 @@
         "goalsAgainst": 11,
         "prefectureRank": 2,
         "goalDiff": -1,
-        "leagueRank": 5
+        "leagueRank": 5,
+        "aliases": [
+          "帝京大可児"
+        ]
       },
       {
         "id": "gi004",
@@ -4681,7 +4708,10 @@
         "goalsAgainst": 12,
         "prefectureRank": 6,
         "goalDiff": -1,
-        "leagueRank": 5
+        "leagueRank": 5,
+        "aliases": [
+          "岐阜工"
+        ]
       },
       {
         "id": "gi008",
@@ -5350,7 +5380,10 @@
         "goalsAgainst": 1,
         "prefectureRank": 1,
         "goalDiff": 4,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "宇治山田商"
+        ]
       },
       {
         "id": "mi001",
@@ -5382,7 +5415,10 @@
         "goalsAgainst": 2,
         "prefectureRank": 3,
         "goalDiff": 3,
-        "leagueRank": 2
+        "leagueRank": 2,
+        "aliases": [
+          "三重海星"
+        ]
       },
       {
         "id": "mi002",
@@ -5418,7 +5454,10 @@
         "goalsAgainst": 1,
         "prefectureRank": 5,
         "goalDiff": 6,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "津工"
+        ]
       },
       {
         "id": "mi006",
@@ -5434,11 +5473,14 @@
         "goalsAgainst": 9,
         "prefectureRank": 6,
         "goalDiff": -2,
-        "leagueRank": 5
+        "leagueRank": 5,
+        "aliases": [
+          "四日市工"
+        ]
       },
       {
         "id": "mi008",
-        "name": "近大高専",
+        "name": "近畿大学工業高等専門学校",
         "league": "三重県1部",
         "rank": 7,
         "points": 1,
@@ -5450,30 +5492,28 @@
         "goalsAgainst": 15,
         "prefectureRank": 7,
         "goalDiff": -6,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "近大高専"
+        ]
+      },
+      {
+        "name": "近畿大学工業高等専門学校",
+        "league": "三重県1部",
+        "points": 1,
+        "played": 4,
+        "won": 0,
+        "drawn": 1,
+        "lost": 3,
+        "goalsFor": 1,
+        "goalsAgainst": 15,
+        "leagueRank": 7,
+        "rank": 8,
+        "prefectureRank": 8
       },
       {
         "id": "mi011",
         "name": "三重高校2nd",
-        "league": "三重県1部",
-        "rank": 8,
-        "prefectureRank": 8,
-        "points": 0,
-        "played": 4,
-        "won": 0,
-        "drawn": 0,
-        "lost": 4,
-        "goalsFor": 4,
-        "goalsAgainst": 18,
-        "goalDiff": -3,
-        "leagueRank": 7,
-        "aliases": [
-          "三重高校②"
-        ]
-      },
-      {
-        "id": "mi012",
-        "name": "伊賀白鳳高校",
         "league": "三重県1部",
         "rank": 9,
         "prefectureRank": 9,
@@ -5482,10 +5522,29 @@
         "won": 0,
         "drawn": 0,
         "lost": 4,
+        "goalsFor": 4,
+        "goalsAgainst": 18,
+        "goalDiff": -3,
+        "leagueRank": 8,
+        "aliases": [
+          "三重高校②"
+        ]
+      },
+      {
+        "id": "mi012",
+        "name": "伊賀白鳳高校",
+        "league": "三重県1部",
+        "rank": 10,
+        "prefectureRank": 10,
+        "points": 0,
+        "played": 4,
+        "won": 0,
+        "drawn": 0,
+        "lost": 4,
         "goalsFor": 2,
         "goalsAgainst": 18,
         "goalDiff": -8,
-        "leagueRank": 8
+        "leagueRank": 9
       }
     ],
     "championships": [
@@ -6418,7 +6477,10 @@
         "goalsAgainst": 14,
         "prefectureRank": 4,
         "goalDiff": -3,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "神戸弘陵"
+        ]
       },
       {
         "id": "hy011",
@@ -7144,7 +7206,10 @@
         "goalsAgainst": 7,
         "prefectureRank": 8,
         "goalDiff": 0,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "境"
+        ]
       },
       {
         "id": "tt008",
@@ -7216,7 +7281,10 @@
         "goalsAgainst": 8,
         "prefectureRank": 2,
         "goalDiff": 3,
-        "leagueRank": 3
+        "leagueRank": 3,
+        "aliases": [
+          "立正大淞南"
+        ]
       },
       {
         "id": "sm004",
@@ -7312,7 +7380,10 @@
         "goalsFor": 5,
         "goalsAgainst": 14,
         "goalDiff": -7,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "出雲工"
+        ]
       },
       {
         "id": "sm010",
@@ -7348,7 +7419,10 @@
         "goalsAgainst": 26,
         "prefectureRank": 10,
         "goalDiff": -8,
-        "leagueRank": 8
+        "leagueRank": 8,
+        "aliases": [
+          "松江商"
+        ]
       }
     ],
     "championships": [
@@ -9642,7 +9716,10 @@
         "goalsAgainst": 2,
         "prefectureRank": 1,
         "goalDiff": 3,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "熊本商"
+        ]
       },
       {
         "id": "km001",
@@ -9758,7 +9835,8 @@
         "aliases": [
           "東海大星翔高校",
           "東海星翔高校",
-          "東海大星翔"
+          "東海大星翔",
+          "東海大熊本星翔"
         ]
       },
       {
@@ -9775,7 +9853,8 @@
         "rank": 9,
         "prefectureRank": 9,
         "aliases": [
-          "学園大付"
+          "学園大付",
+          "熊本学園大付"
         ]
       },
       {
@@ -10033,7 +10112,10 @@
         "goalsAgainst": 16,
         "prefectureRank": 7,
         "goalDiff": 3,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "大分工"
+        ]
       },
       {
         "id": "oi006",
@@ -10081,7 +10163,10 @@
         "goalsAgainst": 17,
         "prefectureRank": 10,
         "goalDiff": 2,
-        "leagueRank": 9
+        "leagueRank": 9,
+        "aliases": [
+          "鶴崎工"
+        ]
       },
       {
         "id": "oi011",
@@ -10394,7 +10479,10 @@
         "goalsAgainst": 10,
         "prefectureRank": 3,
         "goalDiff": 1,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "神村学園"
+        ]
       },
       {
         "id": "ks003",
@@ -10750,7 +10838,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-13 07:53",
+    "lastUpdated": "2026-05-13 11:15",
     "year": 2026,
     "updatedCount": 584
   }
