@@ -83,22 +83,52 @@ def render_tournament_html(pref_id, teams):
                 team_lookup[alias] = info
 
     def enrich_match(match_str):
-        """試合文字列にチームの県内順位バッジを付加"""
-        known_names = sorted(team_lookup.keys(), key=len, reverse=True)
+        """試合文字列にチームの県内順位バッジを付加（最長一致・1チーム1回）"""
+        # team_lookup に「高校」省略形も加えて拡張
+        expanded_lookup = {}
+        for nm, inf in team_lookup.items():
+            expanded_lookup[nm] = inf
+            short = nm.replace("高等学校", "").replace("高校", "").strip()
+            if short and len(short) >= 2 and short != nm and short not in expanded_lookup:
+                expanded_lookup[short] = inf
+
+        known_names = sorted(expanded_lookup.keys(), key=len, reverse=True)
+
+        # マッチした (start, end) を記録して重複を防ぐ
+        matches = []
+        matched_canonicals = set()
+        used_ranges = []
+
+        def _overlaps(s, e):
+            for us, ue in used_ranges:
+                if not (e <= us or s >= ue):
+                    return True
+            return False
+
+        for nm in known_names:
+            inf = expanded_lookup[nm]
+            canonical = inf["canonical"]
+            if canonical in matched_canonicals:
+                continue
+            rank = inf["rank"]
+            if not rank or rank >= 99:
+                continue
+            idx = match_str.find(nm)
+            if idx < 0:
+                continue
+            end = idx + len(nm)
+            if _overlaps(idx, end):
+                continue
+            used_ranges.append((idx, end))
+            matched_canonicals.add(canonical)
+            badge = f' <span class="tm-rank">(県内{rank}位)</span>'
+            matches.append((end, badge))
+
+        # 後ろから挿入してインデックスがずれないように
+        matches.sort(key=lambda x: x[0], reverse=True)
         result = match_str
-        matched = set()
-        for name in known_names:
-            if name not in result:
-                continue
-            info = team_lookup[name]
-            canonical = info["canonical"]
-            if canonical in matched:
-                continue
-            rank = info["rank"]
-            if rank and rank < 99:
-                badge = f' <span class="tm-rank">(県内{rank}位)</span>'
-                result = result.replace(name, f'{name}{badge}', 1)
-                matched.add(canonical)
+        for pos, badge in matches:
+            result = result[:pos] + badge + result[pos:]
         return result
 
     html_parts = []
