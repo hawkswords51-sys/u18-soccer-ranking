@@ -83,7 +83,8 @@ def render_tournament_html(pref_id, teams):
                 team_lookup[alias] = info
 
     def enrich_match(match_str):
-        """試合文字列にチームの県内順位バッジを付加（最長一致・1チーム1回）"""
+        """試合文字列にチームの県内順位バッジを付加
+        （最長一致・1チーム1回・単語境界判定で誤マッチ防止）"""
         # team_lookup に「高校」省略形も加えて拡張
         expanded_lookup = {}
         for nm, inf in team_lookup.items():
@@ -94,7 +95,34 @@ def render_tournament_html(pref_id, teams):
 
         known_names = sorted(expanded_lookup.keys(), key=len, reverse=True)
 
-        # マッチした (start, end) を記録して重複を防ぐ
+        def _is_jp_continuation(c):
+            """日本語単語の続き文字か（区切り文字でない）"""
+            if not c:
+                return False
+            code = ord(c)
+            # 漢字
+            if 0x4e00 <= code <= 0x9fff:
+                return True
+            # ひらがな
+            if 0x3041 <= code <= 0x309f:
+                return True
+            # カタカナ（中点 0x30fb は除外）
+            if 0x30a1 <= code <= 0x30fa:
+                return True
+            if 0x30fc <= code <= 0x30ff:
+                return True
+            return False
+
+        def _has_clean_boundary(s, name, idx):
+            """name が s の idx 位置で日本語の単語境界マッチしているか"""
+            before_idx = idx - 1
+            if before_idx >= 0 and _is_jp_continuation(s[before_idx]):
+                return False
+            after_idx = idx + len(name)
+            if after_idx < len(s) and _is_jp_continuation(s[after_idx]):
+                return False
+            return True
+
         matches = []
         matched_canonicals = set()
         used_ranges = []
@@ -113,13 +141,26 @@ def render_tournament_html(pref_id, teams):
             rank = inf["rank"]
             if not rank or rank >= 99:
                 continue
-            idx = match_str.find(nm)
-            if idx < 0:
+
+            # 単語境界マッチを探す（複数候補がある場合も対応）
+            search_start = 0
+            found_idx = -1
+            while True:
+                idx = match_str.find(nm, search_start)
+                if idx < 0:
+                    break
+                if _has_clean_boundary(match_str, nm, idx):
+                    found_idx = idx
+                    break
+                search_start = idx + 1
+
+            if found_idx < 0:
                 continue
-            end = idx + len(nm)
-            if _overlaps(idx, end):
+
+            end = found_idx + len(nm)
+            if _overlaps(found_idx, end):
                 continue
-            used_ranges.append((idx, end))
+            used_ranges.append((found_idx, end))
             matched_canonicals.add(canonical)
             badge = f' <span class="tm-rank">(県内{rank}位)</span>'
             matches.append((end, badge))
