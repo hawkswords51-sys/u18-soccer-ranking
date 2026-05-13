@@ -255,6 +255,106 @@ def render_tournament_html(pref_id, teams):
 
     return "\n".join(html_parts)
 
+
+def render_tournament_results(pref_id):
+    """都道府県の過去の全国大会成績HTMLを返す。
+    全国高校選手権・インターハイのみ表示。直近5年。"""
+    tournaments_file = BASE_DIR / "data" / "tournaments.json"
+    if not tournaments_file.exists():
+        return ""
+
+    try:
+        data = json.loads(tournaments_file.read_text(encoding='utf-8'))
+    except Exception:
+        return ""
+
+    tournaments = data.get("tournaments", {})
+
+    # 高校選手権・インターハイのみ
+    target_tournaments = ["all_japan_highschool", "interhigh"]
+
+    # この県の結果を集める {tournament_id: {year: [teams]}}
+    pref_results = {}
+    for t_id in target_tournaments:
+        if t_id not in tournaments:
+            continue
+        t = tournaments[t_id]
+        results = t.get("results", {})
+        for year, year_data in results.items():
+            teams = year_data.get("teams", [])
+            for team in teams:
+                if team.get("pref") == pref_id:
+                    pref_results.setdefault(t_id, {}).setdefault(year, []).append(team)
+
+    if not pref_results:
+        return ""
+
+    # 結果の表示順（rankが小さい=好成績を先に）
+    def _result_key(team):
+        r = team.get("rank")
+        if r is None:
+            return 999
+        return r
+
+    # 結果に応じたCSSクラス
+    def _result_class(result):
+        if result == "優勝":
+            return "result-champion"
+        if result == "準優勝":
+            return "result-runner-up"
+        if result == "ベスト4":
+            return "result-best4"
+        if result == "ベスト8":
+            return "result-best8"
+        if result == "ベスト16":
+            return "result-best16"
+        if result == "代表":
+            return "result-representative"
+        return ""
+
+    def _result_display(result):
+        if result == "代表":
+            return "都道府県代表"
+        return result
+
+    html_parts = [
+        '      <section class="lp-section tournament-results">',
+        '        <h2>📜 過去の全国大会成績</h2>',
+        '        <p class="tournament-results-intro" style="color:var(--text-light);font-size:0.9em;margin-bottom:12px;">直近5年の全国大会出場・成績</p>',
+    ]
+
+    for t_id in target_tournaments:
+        if t_id not in pref_results:
+            continue
+        t = tournaments[t_id]
+        t_name = t.get("shortName", t.get("displayName", t_id))
+
+        html_parts.append(f'        <div class="tournament-result-block">')
+        html_parts.append(f'          <h3>{html_escape(t_name)}</h3>')
+        html_parts.append(f'          <ul class="tournament-result-list">')
+
+        # 年度降順、最新5年
+        years = sorted(pref_results[t_id].keys(), reverse=True)[:5]
+        for year in years:
+            teams = sorted(pref_results[t_id][year], key=_result_key)
+            for team in teams:
+                team_name = html_escape(team.get("team", ""))
+                result = team.get("result", "")
+                result_disp = _result_display(result)
+                result_cls = _result_class(result)
+                html_parts.append(
+                    f'            <li>'
+                    f'<span class="result-year">{year}年</span> '
+                    f'<span class="result-team">{team_name}</span> '
+                    f'<span class="result-place {result_cls}">{result_disp}</span>'
+                    f'</li>'
+                )
+
+        html_parts.append(f'          </ul>')
+        html_parts.append(f'        </div>')
+
+    html_parts.append('      </section>')
+    return '\n'.join(html_parts)
 # ============================================================
 # 設定
 # ============================================================
@@ -1040,6 +1140,7 @@ __SCHEMA_FAQ__
         </div>
       </div>
 __FEATURED_ARTICLES__
+__TOURNAMENT_RESULTS__
 __TOURNAMENT_HTML__
       <!-- メイン CTA -->
       <div class="lp-cta">
@@ -1293,6 +1394,7 @@ def generate_page(pref, all_prefs):
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__PREF_NAME__", html_escape(pref_name))
         .replace("__FEATURED_ARTICLES__", render_featured_articles(pref_id))
+        .replace("__TOURNAMENT_RESULTS__", render_tournament_results(pref_id))
         .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams))
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__HS_COUNT__", str(hs_count))
