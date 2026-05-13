@@ -170,7 +170,7 @@ def render_tournament_html(pref_id, teams):
                 continue
             used_ranges.append((found_idx, end))
             matched_canonicals.add(canonical)
-            badge = f' <span class="tm-rank" style="font-weight:bold;color:#1e40af;">(県内{rank}位)</span>'
+            badge = f' <span class="tm-rank">(県内{rank}位)</span>'
             matches.append((end, badge))
 
         # 後ろから挿入してインデックスがずれないように
