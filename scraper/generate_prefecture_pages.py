@@ -58,6 +58,117 @@ def render_featured_articles(pref_id):
       </section>
 """
 
+
+def render_tournament_html(pref_id, teams):
+    """都道府県のトーナメント情報を data/tournaments/*.md から読み取り、
+    試合文字列のチーム名に県内順位バッジを自動付与してHTMLで返す。
+    記事がなければ空文字を返す。
+    """
+    tournament_dir = BASE_DIR / "data" / "tournaments"
+    if not tournament_dir.exists():
+        return ""
+
+    # チーム名 → 県内順位＋リーグのマッピング（aliasも含む）
+    team_lookup = {}
+    for t in teams:
+        name = t.get("name", "")
+        info = {
+            "rank": t.get("prefectureRank"),
+            "league": t.get("league", ""),
+            "canonical": name,
+        }
+        if name:
+            team_lookup[name] = info
+            for alias in (t.get("aliases") or []):
+                team_lookup[alias] = info
+
+    def enrich_match(match_str):
+        """試合文字列にチームの県内順位バッジを付加"""
+        known_names = sorted(team_lookup.keys(), key=len, reverse=True)
+        result = match_str
+        matched = set()
+        for name in known_names:
+            if name not in result:
+                continue
+            info = team_lookup[name]
+            canonical = info["canonical"]
+            if canonical in matched:
+                continue
+            rank = info["rank"]
+            if rank and rank < 99:
+                badge = f' <span class="tm-rank">(県内{rank}位)</span>'
+                result = result.replace(name, f'{name}{badge}', 1)
+                matched.add(canonical)
+        return result
+
+    html_parts = []
+    for filepath in sorted(tournament_dir.glob("*.md")):
+        content = filepath.read_text(encoding='utf-8')
+        if not content.startswith('---'):
+            continue
+        parts = content.split('---', 2)
+        if len(parts) < 3:
+            continue
+        _, frontmatter_str, body = parts
+
+        metadata = {}
+        for line in frontmatter_str.strip().split('\n'):
+            if ':' in line:
+                key, value = line.split(':', 1)
+                metadata[key.strip()] = value.strip()
+
+        if metadata.get("prefecture") != pref_id:
+            continue
+
+        title = metadata.get("title", "大会")
+        subtitle = metadata.get("subtitle", "")
+        status = metadata.get("status", "")
+
+        # 本文をパース
+        rounds = []
+        current_round = None
+        for line in body.strip().split('\n'):
+            line = line.strip()
+            if line.startswith('## '):
+                current_round = {"name": line[3:].strip(), "matches": []}
+                rounds.append(current_round)
+            elif line.startswith('- ') and current_round is not None:
+                current_round["matches"].append(line[2:].strip())
+
+        # HTML生成
+        rounds_html_list = []
+        for r in rounds:
+            if not r["matches"]:
+                matches_html = '            <li style="color:#888;">（試合確定後に追記）</li>'
+            else:
+                matches_html = "\n".join(
+                    f'            <li>{enrich_match(m)}</li>'
+                    for m in r["matches"]
+                )
+            rounds_html_list.append(
+                f'        <div class="tournament-round">\n'
+                f'          <h3>{r["name"]}</h3>\n'
+                f'          <ul class="tournament-matches">\n'
+                f'{matches_html}\n'
+                f'          </ul>\n'
+                f'        </div>'
+            )
+
+        status_html = f' <span class="tournament-status">[{status}]</span>' if status else ''
+        subtitle_html = f'\n        <p class="tournament-subtitle" style="color:#666;font-size:0.9em;margin-top:-8px;">{subtitle}</p>' if subtitle else ''
+        rounds_html_str = "\n".join(rounds_html_list)
+
+        html_parts.append(
+            f'      <section class="lp-section tournament-section">\n'
+            f'        <h2>📋 {title}{status_html}</h2>{subtitle_html}\n'
+            f'        <div class="tournament-rounds">\n'
+            f'{rounds_html_str}\n'
+            f'        </div>\n'
+            f'      </section>'
+        )
+
+    return "\n".join(html_parts)
+
 # ============================================================
 # 設定
 # ============================================================
