@@ -4943,3 +4943,72 @@ details[open] > summary > .league-accordion__chevron {
 [data-theme="dark"] .tm-rank {
     color: #60a5fa; /* ダークモード：明るい青 */
 }
+
+/* ============================================================
+   都道府県別ページ一覧（ホーム用）
+   ============================================================ */
+.prefecture-index {
+    margin: 30px 0;
+    padding: 20px 25px;
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+.prefecture-index h2 {
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+.prefecture-index__intro {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+.prefecture-index .region-group {
+    margin: 16px 0;
+}
+.prefecture-index .region-group h3 {
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-weight: 700;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 8px;
+}
+.prefecture-index .pref-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+}
+.prefecture-index .pref-links a {
+    display: block;
+    padding: 8px 12px;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+.prefecture-index .pref-links a:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+@media (max-width: 768px) {
+    .prefecture-index {
+        padding: 16px;
+    }
+    .prefecture-index .pref-links {
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 6px;
+    }
+    .prefecture-index .pref-links a {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+}
