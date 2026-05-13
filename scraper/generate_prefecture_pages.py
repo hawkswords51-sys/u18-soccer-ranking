@@ -122,13 +122,20 @@ def render_tournament_html(pref_id, teams):
             return False
 
         def _has_clean_boundary(s, name, idx):
-            """name が s の idx 位置で日本語の単語境界マッチしているか"""
+            """name が s の idx 位置で日本語の単語境界マッチしているか。
+            「勝者」「ブロック」など、特定の文脈マーカーが続く場合は境界扱いにする。"""
             before_idx = idx - 1
             if before_idx >= 0 and _is_jp_continuation(s[before_idx]):
                 return False
             after_idx = idx + len(name)
-            if after_idx < len(s) and _is_jp_continuation(s[after_idx]):
-                return False
+            if after_idx < len(s):
+                # 既知の「次に続いても境界とみなせる」マーカー
+                winner_markers = ("勝者", "ブロック", "側勝者", "系勝者", "シード")
+                for marker in winner_markers:
+                    if s[after_idx:after_idx + len(marker)] == marker:
+                        return True
+                if _is_jp_continuation(s[after_idx]):
+                    return False
             return True
 
         matches = []
