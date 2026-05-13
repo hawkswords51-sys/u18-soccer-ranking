@@ -4930,3 +4930,13 @@ details[open] > summary > .league-accordion__chevron {
         background-color: var(--bg-white) !important;
     }
 }
+
+/* トーナメント表の県内順位バッジ */
+.tm-rank {
+    font-weight: bold;
+    color: #1e40af; /* ライトモード：濃い青 */
+}
+
+[data-theme="dark"] .tm-rank {
+    color: #60a5fa; /* ダークモード：明るい青 */
+}
