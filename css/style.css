@@ -37,6 +37,7 @@
     --text-light: #666;
     --bg-light: #f8f9fa;
     --bg-white: #ffffff;
+    --bg-card: #ffffff;
     --border-color: #e0e0e0;
     --success-color: #28a745;
     --danger-color: #dc3545;
@@ -68,6 +69,7 @@
     --text-light: #94a3b8;
     --bg-light: #0f172a;
     --bg-white: #1e293b;
+    --bg-card: #0f172a;        ← ★ 追加
     --border-color: #334155;
     --success-color: #4ade80;
     --danger-color: #f87171;
@@ -94,6 +96,7 @@
         --text-light: #94a3b8;
         --bg-light: #0f172a;
         --bg-white: #1e293b;
+        --bg-card: #0f172a;        ← ★ 追加
         --border-color: #334155;
         --success-color: #4ade80;
         --danger-color: #f87171;
@@ -4463,7 +4466,7 @@ details[open] > summary > .league-accordion__chevron {
     div#teamsTable table thead th,
     div#teamsTable tbody td,
     div#teamsTable thead th {
-        background-color: #0f172a !important;
+        background-color: var(--bg-card) !important;
         background-image: none !important;
     }
 
@@ -4558,7 +4561,7 @@ details[open] > summary > .league-accordion__chevron {
         left: 64px !important;
         z-index: 2 !important;
         /* 必ず不透明な背景 (後ろの透けを防ぐ) */
-        background-color: #0f172a !important;
+        background-color: var(--bg-card) !important;
     }
 
     /* ヘッダーの2列目はさらに前面に (上下スクロール時にも表示) */
@@ -4590,7 +4593,7 @@ details[open] > summary > .league-accordion__chevron {
         position: sticky !important;
         left: 0 !important;
         z-index: 3 !important;
-        background-color: #0f172a !important;
+        background-color: var(--bg-card) !important;
     }
 
     /* 2列目 (チーム名) */
@@ -4601,7 +4604,7 @@ details[open] > summary > .league-accordion__chevron {
         position: sticky !important;
         left: 64px !important;
         z-index: 3 !important;
-        background-color: #0f172a !important;
+        background-color: var(--bg-card) !important;
     }
 
     /* 非スティッキー列 (3列目以降) を確実に下に置く */
