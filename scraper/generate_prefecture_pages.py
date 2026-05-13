@@ -68,12 +68,20 @@ def render_tournament_html(pref_id, teams):
     if not tournament_dir.exists():
         return ""
 
+    # 表示用の県内順位をティア順ソートで計算（prefecture pageと同じ並び順）
+    sorted_for_rank = sort_teams(teams)
+    rank_map = {}
+    for i, t in enumerate(sorted_for_rank, 1):
+        nm = t.get("name", "")
+        if nm:
+            rank_map[nm] = i
+
     # チーム名 → 県内順位＋リーグのマッピング（aliasも含む）
     team_lookup = {}
     for t in teams:
         name = t.get("name", "")
         info = {
-            "rank": t.get("prefectureRank"),
+            "rank": rank_map.get(name, t.get("prefectureRank")),
             "league": t.get("league", ""),
             "canonical": name,
         }
