@@ -110,7 +110,9 @@ def find_pref(team_name: str, teams_data: dict) -> str | None:
 
 def normalize_team_entry(entry, teams_data: dict) -> dict | None:
     """YAML の文字列 or {name,pref} 辞書を {name, pref} に統一。
-    teams.json で見つかった場合は正式名 + pref に正規化する。"""
+    teams.json で見つかった場合は正式名 + pref に正規化する。
+    ★ 明示的に pref が指定されている場合は teams.json の lookup を skip する
+       (find_team の部分一致による誤マッチを防ぐ)"""
     if entry is None:
         return None
     if isinstance(entry, str):
@@ -123,10 +125,14 @@ def normalize_team_entry(entry, teams_data: dict) -> dict | None:
         name = (entry.get("name") or "").strip()
         if not name:
             return None
+        explicit_pref = entry.get("pref")
+        # 明示的に pref が指定されている場合はそれを尊重し、teams.json の lookup を skip
+        if explicit_pref:
+            return {"name": name, "pref": explicit_pref}
         canonical, pref = find_team(name, teams_data)
         return {
             "name": canonical or name,
-            "pref": pref or entry.get("pref"),
+            "pref": pref,
         }
     return None
 
