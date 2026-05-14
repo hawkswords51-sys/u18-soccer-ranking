@@ -369,7 +369,10 @@
         "goalsFor": 18,
         "goalsAgainst": 2,
         "prefectureRank": 6,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "野辺地西"
+        ]
       },
       {
         "id": "a008",
@@ -1324,7 +1327,10 @@
         "goalsFor": 14,
         "goalsAgainst": 5,
         "prefectureRank": 7,
-        "leagueRank": 4
+        "leagueRank": 4,
+        "aliases": [
+          "ふたば未来"
+        ]
       },
       {
         "name": "福島ユナイテッド",
@@ -3490,18 +3496,23 @@
         "leagueRank": 6
       },
       {
-        "name": "開志学園JSC 2nd",
+        "id": "ni016",
+        "name": "上越高校2nd",
         "league": "新潟県1部",
-        "points": 9,
-        "played": 5,
-        "won": 3,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 10,
-        "goalsAgainst": 11,
-        "leagueRank": 4,
         "rank": 11,
-        "prefectureRank": 11
+        "points": 9,
+        "played": 6,
+        "won": 2,
+        "drawn": 3,
+        "lost": 1,
+        "goalsFor": 12,
+        "goalsAgainst": 6,
+        "goalDiff": -1,
+        "prefectureRank": 11,
+        "leagueRank": 4,
+        "aliases": [
+          "上越2nd"
+        ]
       },
       {
         "id": "ni004",
@@ -3523,6 +3534,20 @@
         ]
       },
       {
+        "name": "開志学園JSC 2nd",
+        "league": "新潟県1部",
+        "points": 9,
+        "played": 6,
+        "won": 3,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 10,
+        "goalsAgainst": 13,
+        "leagueRank": 5,
+        "rank": 13,
+        "prefectureRank": 13
+      },
+      {
         "id": "ni012",
         "name": "日本文理高校3rd",
         "league": "新潟県1部",
@@ -3536,35 +3561,16 @@
         "goalsAgainst": 10,
         "goalDiff": 4,
         "prefectureRank": 14,
-        "leagueRank": 5,
-        "aliases": [
-          "日本文理3rd"
-        ]
-      },
-      {
-        "id": "ni016",
-        "name": "上越高校2nd",
-        "league": "新潟県1部",
-        "rank": 15,
-        "points": 6,
-        "played": 5,
-        "won": 1,
-        "drawn": 3,
-        "lost": 1,
-        "goalsFor": 10,
-        "goalsAgainst": 6,
-        "goalDiff": -1,
-        "prefectureRank": 15,
         "leagueRank": 6,
         "aliases": [
-          "上越2nd"
+          "日本文理3rd"
         ]
       },
       {
         "id": "ni011",
         "name": "北越高校2nd",
         "league": "新潟県1部",
-        "rank": 16,
+        "rank": 15,
         "points": 4,
         "played": 5,
         "won": 1,
@@ -3573,7 +3579,7 @@
         "goalsFor": 9,
         "goalsAgainst": 15,
         "goalDiff": 3,
-        "prefectureRank": 16,
+        "prefectureRank": 15,
         "leagueRank": 7,
         "aliases": [
           "北越2nd"
@@ -3583,7 +3589,7 @@
         "id": "ni017",
         "name": "新潟工業高校",
         "league": "新潟県1部",
-        "rank": 17,
+        "rank": 16,
         "points": 1,
         "played": 6,
         "won": 0,
@@ -3592,8 +3598,11 @@
         "goalsFor": 6,
         "goalsAgainst": 21,
         "goalDiff": -8,
-        "prefectureRank": 17,
-        "leagueRank": 8
+        "prefectureRank": 16,
+        "leagueRank": 8,
+        "aliases": [
+          "新潟工"
+        ]
       }
     ],
     "championships": [
@@ -3756,7 +3765,10 @@
         "goalsAgainst": 25,
         "prefectureRank": 8,
         "goalDiff": -1,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "不二越工"
+        ]
       },
       {
         "id": "ty012",
@@ -3772,7 +3784,10 @@
         "goalsAgainst": 25,
         "goalDiff": -9,
         "prefectureRank": 9,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "富山工"
+        ]
       },
       {
         "id": "ty011",
@@ -4046,7 +4061,10 @@
         "goalsAgainst": 4,
         "prefectureRank": 1,
         "goalDiff": 8,
-        "leagueRank": 1
+        "leagueRank": 1,
+        "aliases": [
+          "福井商"
+        ]
       },
       {
         "id": "fu001",
@@ -4111,6 +4129,23 @@
         "goalDiff": 0,
         "prefectureRank": 5,
         "leagueRank": 4
+      },
+      {
+        "name": "福井工大福井高校",
+        "league": "福井県F1",
+        "points": 8,
+        "played": 5,
+        "won": 2,
+        "drawn": 2,
+        "lost": 1,
+        "goalsFor": 7,
+        "goalsAgainst": 7,
+        "leagueRank": 5,
+        "rank": 6,
+        "prefectureRank": 6,
+        "aliases": [
+          "福井工大福井"
+        ]
       },
       {
         "id": "fu012",
@@ -4413,7 +4448,7 @@
         "goalsAgainst": 13,
         "prefectureRank": 3,
         "goalDiff": -2,
-        "leagueRank": 8
+        "leagueRank": 7
       },
       {
         "id": "na004",
@@ -5227,7 +5262,8 @@
         "rank": 8,
         "prefectureRank": 8,
         "aliases": [
-          "日福大付"
+          "日福大付",
+          "日本福祉大付"
         ]
       },
       {
@@ -5836,7 +5872,10 @@
         "goalsAgainst": 15,
         "prefectureRank": 7,
         "goalDiff": -5,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "京都共栄"
+        ]
       },
       {
         "id": "ky010",
@@ -6014,7 +6053,8 @@
         "leagueRank": 1,
         "aliases": [
           "大学院大高校",
-          "大阪学院高校"
+          "大阪学院高校",
+          "大阪学院大高"
         ],
         "goalDiff": 6
       },
@@ -6147,7 +6187,8 @@
         "goalDiff": 1,
         "leagueRank": 3,
         "aliases": [
-          "近大附属"
+          "近大附属",
+          "近大附"
         ]
       },
       {
@@ -6164,7 +6205,10 @@
         "goalsAgainst": 20,
         "prefectureRank": 10,
         "goalDiff": 0,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "阪南大高"
+        ]
       },
       {
         "id": "o020",
@@ -6182,7 +6226,8 @@
         "goalDiff": 1,
         "leagueRank": 5,
         "aliases": [
-          "関大一"
+          "関大一",
+          "関大北陽"
         ]
       },
       {
@@ -6249,7 +6294,8 @@
         "goalDiff": -3,
         "leagueRank": 9,
         "aliases": [
-          "大阪産業大附属高校"
+          "大阪産業大附属高校",
+          "大阪産大附"
         ]
       },
       {
@@ -6331,7 +6377,10 @@
         "goalsFor": 12,
         "goalsAgainst": 20,
         "goalDiff": -1,
-        "leagueRank": 10
+        "leagueRank": 10,
+        "aliases": [
+          "アサンプション"
+        ]
       }
     ],
     "championships": [
@@ -7568,7 +7617,10 @@
         "goalsFor": 6,
         "goalsAgainst": 11,
         "goalDiff": -1,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "山陽学園"
+        ]
       },
       {
         "name": "玉野光南高校2nd",
@@ -7797,6 +7849,24 @@
         "prefectureRank": 8,
         "goalDiff": -4,
         "leagueRank": 5
+      },
+      {
+        "name": "広島工業大学高校",
+        "league": "広島県1部",
+        "points": 7,
+        "played": 5,
+        "won": 2,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 7,
+        "goalsAgainst": 6,
+        "leagueRank": 6,
+        "rank": 9,
+        "prefectureRank": 9,
+        "aliases": [
+          "広工大高",
+          "広島工大高"
+        ]
       },
       {
         "id": "hr012",
@@ -8160,7 +8230,10 @@
         "goalsAgainst": 19,
         "prefectureRank": 6,
         "goalDiff": -1,
-        "leagueRank": 8
+        "leagueRank": 8,
+        "aliases": [
+          "徳島商"
+        ]
       },
       {
         "id": "tk005",
@@ -8599,7 +8672,10 @@
         "goalsAgainst": 16,
         "prefectureRank": 6,
         "goalDiff": 1,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "今治東中等教育学校"
+        ]
       },
       {
         "name": "愛媛FC U-18 2nd",
@@ -8666,7 +8742,10 @@
         "goalsFor": 8,
         "goalsAgainst": 10,
         "goalDiff": 1,
-        "leagueRank": 6
+        "leagueRank": 6,
+        "aliases": [
+          "松山工"
+        ]
       },
       {
         "id": "eh010",
@@ -8698,7 +8777,10 @@
         "goalsAgainst": 14,
         "prefectureRank": 12,
         "goalDiff": -2,
-        "leagueRank": 8
+        "leagueRank": 8,
+        "aliases": [
+          "松山商"
+        ]
       },
       {
         "id": "eh014",
@@ -8876,7 +8958,10 @@
         "goalsFor": 6,
         "goalsAgainst": 21,
         "goalDiff": -8,
-        "leagueRank": 7
+        "leagueRank": 7,
+        "aliases": [
+          "宿毛工"
+        ]
       },
       {
         "id": "kc005",
@@ -9447,16 +9532,16 @@
         "leagueRank": 9
       },
       {
-        "id": "ng004",
-        "name": "創成館高校",
+        "id": "ng008",
+        "name": "九州文化学園高校",
         "league": "長崎県1部",
         "rank": 4,
-        "points": 14,
+        "points": 16,
         "played": 7,
-        "won": 4,
-        "drawn": 2,
+        "won": 5,
+        "drawn": 1,
         "lost": 1,
-        "goalsFor": 15,
+        "goalsFor": 20,
         "goalsAgainst": 12,
         "prefectureRank": 4,
         "goalDiff": 2,
@@ -9479,35 +9564,35 @@
         "leagueRank": 8
       },
       {
-        "id": "ng005",
-        "name": "国見高校2nd",
+        "id": "ng004",
+        "name": "創成館高校",
         "league": "長崎県1部",
         "rank": 6,
-        "points": 13,
-        "played": 6,
+        "points": 14,
+        "played": 7,
         "won": 4,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 1,
-        "goalsFor": 16,
-        "goalsAgainst": 7,
+        "goalsFor": 15,
+        "goalsAgainst": 12,
         "prefectureRank": 6,
-        "goalDiff": 5,
+        "goalDiff": 2,
         "leagueRank": 3
       },
       {
-        "id": "ng008",
-        "name": "九州文化学園高校",
+        "id": "ng005",
+        "name": "国見高校2nd",
         "league": "長崎県1部",
         "rank": 7,
         "points": 13,
-        "played": 6,
+        "played": 7,
         "won": 4,
         "drawn": 1,
-        "lost": 1,
-        "goalsFor": 16,
-        "goalsAgainst": 10,
+        "lost": 2,
+        "goalsFor": 18,
+        "goalsAgainst": 11,
         "prefectureRank": 7,
-        "goalDiff": 2,
+        "goalDiff": 5,
         "leagueRank": 4
       },
       {
@@ -10780,8 +10865,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-14 12:51",
+    "lastUpdated": "2026-05-14 14:42",
     "year": 2026,
-    "updatedCount": 584
+    "updatedCount": 583
   }
 }
