@@ -1,0 +1,126 @@
+# data/league_history.yml
+# 各リーグの過去5年（2021-2025）の優勝校
+# 注意：必ず公式記録（高円宮杯JFA公式・Wikipedia）で確認してから本番反映すること
+
+premier-east:
+  champions:
+    - { year: 2025, team: "鹿島アントラーズユース", pref: ibaraki, note: "要確認" }
+    - { year: 2024, team: "横浜FCユース", pref: kanagawa, note: "要確認" }
+    - { year: 2023, team: "青森山田高校", pref: aomori, note: "要確認" }
+    - { year: 2022, team: "川崎フロンターレU-18", pref: kanagawa, note: "要確認" }
+    - { year: 2021, team: "青森山田高校", pref: aomori, note: "要確認" }
+
+premier-west:
+  champions:
+    - { year: 2025, team: "ヴィッセル神戸U-18", pref: hyogo, note: "要確認" }
+    - { year: 2024, team: "大津高校", pref: kumamoto, note: "要確認" }
+    - { year: 2023, team: "サンフレッチェ広島F.C.ユース", pref: hiroshima, note: "要確認" }
+    - { year: 2022, team: "サガン鳥栖U-18", pref: saga, note: "要確認" }
+    - { year: 2021, team: "サンフレッチェ広島F.C.ユース", pref: hiroshima, note: "要確認" }
+
+prince-hokkaido:
+  champions:
+    - { year: 2025, team: "札幌大谷高校", pref: hokkaido, note: "要確認" }
+    - { year: 2024, team: "北海道コンサドーレ札幌U-18", pref: hokkaido, note: "要確認" }
+    - { year: 2023, team: "北海高校", pref: hokkaido, note: "要確認" }
+    - { year: 2022, team: "旭川実業高等学校", pref: hokkaido, note: "要確認" }
+    - { year: 2021, team: "北海道コンサドーレ札幌U-18", pref: hokkaido, note: "要確認" }
+    
+prince-tohoku:
+  champions:
+    - { year: 2025, team: "尚志高校", pref: fukushima, note: "要確認" }
+    - { year: 2024, team: "青森山田高校2nd", pref: aomori, note: "要確認" }
+    - { year: 2023, team: "青森山田高校2nd", pref: aomori, note: "要確認" }
+    - { year: 2022, team: "青森山田高校2nd", pref: aomori, note: "要確認" }
+    - { year: 2021, team: "尚志高校", pref: fukushima, note: "要確認" }
+
+prince-kanto-1:
+  champions:
+    - { year: 2025, team: "帝京高校", pref: tokyo, note: "要確認" }
+    - { year: 2024, team: "東京ヴェルディユース", pref: tokyo, note: "要確認" }
+    - { year: 2023, team: "鹿島アントラーズユース", pref: ibaraki, note: "要確認" }
+    - { year: 2022, team: "昌平高校", pref: saitama, note: "要確認" }
+    - { year: 2021, team: "川崎フロンターレU-18", pref: kanagawa, note: "要確認" }
+
+prince-kanto-2:
+note: "2部リーグは2022年から発足"
+  champions:
+    - { year: 2025, team: "ヴァンフォーレ甲府U-18", pref: yamanashi, note: "要確認" }
+    - { year: 2024, team: "ジェフユナイテッド市原・千葉U-18", pref: chiba, note: "要確認" }
+    - { year: 2023, team: "栃木SC U-18", pref: tochigi, note: "要確認" }
+    - { year: 2022, team: "ヴァンフォーレ甲府U-18", pref: yamanashi, note: "要確認" }
+   
+
+prince-hokushinetsu-1:
+  champions:
+    - { year: 2025, team: "アルビレックス新潟U-18", pref: niigata, note: "要確認" }
+    - { year: 2024, team: "カターレ富山U-18", pref: toyama, note: "要確認" }
+    - { year: 2023, team: "帝京長岡高校", pref: niigata, note: "要確認" }
+    - { year: 2022, team: "帝京長岡高校", pref: niigata, note: "要確認" }
+    - { year: 2021, team: "帝京長岡高校", pref: niigata, note: "要確認" }
+
+prince-hokushinetsu-2:
+note: "2部リーグは2023年から発足"
+  champions:
+    - { year: 2025, team: "富山第一高校", pref: toyama, note: "要確認" }
+    - { year: 2024, team: "松本山雅FC U-18", pref: nagano, note: "要確認" }
+    - { year: 2023, team: "新潟明訓高校", pref: niigata, note: "要確認" }
+    
+
+prince-tokai:
+  champions:
+    - { year: 2025, team: "清水エスパルスユース", pref: shizuoka, note: "要確認" }
+    - { year: 2024, team: "清水エスパルスユース", pref: shizuoka, note: "要確認" }
+    - { year: 2023, team: "JFAアカデミー福島", pref: shizuoka, note: "要確認" }
+    - { year: 2022, team: "浜松開誠館高校", pref: shizuoka, note: "要確認" }
+    - { year: 2021, team: "静岡学園高校", pref: shizuoka, note: "要確認" }
+
+prince-kansai-1:
+  champions:
+    - { year: 2025, team: "阪南大高校", pref: osaka, note: "要確認" }
+    - { year: 2024, team: "ガンバ大阪ユース", pref: osaka, note: "要確認" }
+    - { year: 2023, team: "京都サンガF.C. U-18", pref: kyoto, note: "要確認" }
+    - { year: 2022, team: "興國高校", pref: osaka, note: "要確認" }
+    - { year: 2021, team: "履正社高校", pref: osaka, note: "要確認" }
+
+
+prince-kansai-2:
+note: "2部リーグは2022年から発足"
+  champions:
+    - { year: 2025, team: "大阪産業大学附属高校", pref: osaka, note: "要確認" }
+    - { year: 2024, team: "東山高校", pref: osaka, note: "要確認" }
+    - { year: 2023, team: "神戸弘陵高校", pref: hyogo, note: "要確認" }
+    - { year: 2022, team: "近畿大学附属高校", pref: osaka, note: "要確認" }
+    
+
+prince-chugoku:
+  champions:
+    - { year: 2025, team: "米子北高校", pref: tottori, note: "要確認" }
+    - { year: 2024, team: "岡山学芸館高校", pref: okayama, note: "要確認" }
+    - { year: 2023, team: "ファジアーノ岡山U-18", pref: okayama, note: "要確認" }
+    - { year: 2022, team: "米子北高校", pref: tottori, note: "要確認" }
+    - { year: 2021, team: "米子北高校", pref: tottori, note: "要確認" }
+
+prince-shikoku:
+  champions:
+    - { year: 2025, team: "愛媛FC U-18", pref: ehime, note: "要確認" }
+    - { year: 2024, team: "愛媛FC U-18", pref: ehime, note: "要確認" }
+    - { year: 2023, team: "徳島ヴォルティスユース", pref: tokushima, note: "要確認" }
+    - { year: 2022, team: "愛媛FC U-18", pref: ehime, note: "要確認" }
+    - { year: 2021, team: "カマタマーレ讃岐 U-18", pref: kagawa, note: "要確認" }
+
+prince-kyushu-1:
+  champions:
+    - { year: 2025, team: "日章学園高校", pref: miyazaki, note: "要確認" }
+    - { year: 2024, team: "アビスパ福岡U-18", pref: fukuoka, note: "要確認" }
+    - { year: 2023, team: "鹿児島城西高校", pref: kagoshima, note: "要確認" }
+    - { year: 2022, team: "神村学園高等部", pref: kagoshima, note: "要確認" }
+    - { year: 2021, team: "V・ファーレン長崎U-18", pref: nagasaki, note: "要確認" }
+
+prince-kyushu-2:
+note: "2部リーグは2023年から発足"
+  champions:
+    - { year: 2025, team: "東海大学付属熊本星翔高校", pref: kumamoto, note: "要確認" }
+    - { year: 2024, team: "国見高校", pref: nagasaki, note: "要確認" }
+    - { year: 2023, team: "ロアッソ熊本U-18", pref: kumamoto, note: "要確認" }
+    
