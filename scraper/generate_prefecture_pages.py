@@ -1323,27 +1323,47 @@ def generate_page(pref, all_prefs):
     else:
         neighbor_links = '          <p style="color:#888;">情報を準備中</p>'
 
-    # ★ 強豪校名をタイトル・description に組み込む
+   # ★ 強豪校名をタイトル・description に組み込む（GSC実データに基づく全県SEO最適化版）
     notable_teams = get_notable_teams_for_title(teams)
     year_label = date.today().year
-    if notable_teams:
-        notable_str = "・".join(notable_teams)
-        title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | {notable_str}の最新成績"
-    else:
-        title = f"{pref_name} 高校サッカー U-18 順位表 {year_label} | プレミア・プリンス・{pref_name}リーグ1部"
+
+    # === 地域 → プリンスリーグ名 のマッピング ===
+    REGION_TO_PRINCE_LEAGUE = {
+        "北海道":  "プリンスリーグ北海道",
+        "東北":    "プリンスリーグ東北",
+        "関東":    "プリンスリーグ関東",
+        "北信越":  "プリンスリーグ北信越",
+        "東海":    "プリンスリーグ東海",
+        "関西":    "プリンスリーグ関西",
+        "中国":    "プリンスリーグ中国",
+        "四国":    "プリンスリーグ四国",
+        "九州":    "プリンスリーグ九州",
+    }
+    prince_league = REGION_TO_PRINCE_LEAGUE.get(region, "プリンスリーグ")
+
+    # タイトル用は強豪校を最大2チームまで（文字数オーバー防止）
+    notable_short = "・".join(notable_teams[:2]) if notable_teams else ""
+    # description用は全強豪校
+    notable_full = "・".join(notable_teams) if notable_teams else ""
 
     if notable_teams:
-        notable_str_desc = "・".join(notable_teams)
+        title = (
+            f"【{year_label}最新】{pref_name}高校サッカーリーグ U-18 1部順位表"
+            f" | {notable_short}"
+        )
         description = (
-            f"{pref_name}の高校サッカー部・クラブユース（U-18年代）{team_count}チームの最新順位・成績。"
-            f"{notable_str_desc}など強豪校の対戦結果、"
-            f"高円宮杯JFA U-18プレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
+            f"{pref_name}高校サッカーリーグ1部（U-18年代）の最新順位・試合結果を毎日自動更新。"
+            f"{notable_full}など県内{team_count}チームの成績、"
+            f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況も掲載。"
         )
     else:
+        title = (
+            f"【{year_label}最新】{pref_name}高校サッカーリーグ U-18 1部順位表"
+            f" | プレミア・プリンス対応"
+        )
         description = (
-            f"{pref_name}の高校サッカー部・クラブユース（U-18年代){team_count}チームの最新順位・成績。"
-            f"高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・{pref_name}リーグ1部の順位表を毎日自動更新。"
-            "（都道府県リーグは1部のみ掲載）"
+            f"{pref_name}高校サッカーリーグ1部（U-18年代）{team_count}チームの最新順位・試合結果を毎日自動更新。"
+            f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況もわかりやすく掲載。"
         )
 
     keywords = (
