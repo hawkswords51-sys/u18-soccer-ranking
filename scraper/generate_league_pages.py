@@ -639,15 +639,51 @@ def generate_league_page(league_name, slug, label, category, description, teams)
             'このリーグのデータはまだ登録されていません</td></tr>'
         )
 
-    title = f"{label} 順位表 | U-18 高校サッカー（高円宮杯JFA）"
+    # === SEO最適化：GSC実検索キーワードに対応 ===
+    year_label = date.today().year
+
+    # 上位2チームをタイトル用の強豪校として抽出（「高校」「高等学校」は省略）
+    top_team_names = []
+    for t in sorted_teams[:2]:
+        nm = (t.get("name") or "").strip()
+        if not nm:
+            continue
+        nm_short = nm.replace("高等学校", "").replace("高校", "")
+        top_team_names.append(nm_short)
+    top_teams_str = "・".join(top_team_names)
+
+    # カテゴリ別のSEOプレフィックス
+    if category == "premier":
+        seo_prefix = "高円宮杯U-18"
+        league_role = "U-18高校サッカー全国最高峰リーグ"
+    else:
+        seo_prefix = "高円宮杯U-18"
+        league_role = "プレミアリーグ参入を懸けた地域最上位リーグ"
+
+    # title 生成（GSC検索クエリ「{リーグ名}順位」に空白なし完全一致）
+    if top_teams_str and team_count > 0:
+        title = (
+            f"【{year_label}最新】{seo_prefix}{label} 順位表"
+            f" | {top_teams_str}など全{team_count}チーム"
+        )
+    else:
+        title = f"【{year_label}最新】{seo_prefix}{label} 順位表 | U-18高校サッカー"
+
+    # description_short（meta description）
+    notable_phrase = f"{top_teams_str}など" if top_teams_str else ""
     description_short = (
-        f"{label}の最新順位・成績を毎日自動更新。"
-        f"全国{team_count}チームの U-18 高校サッカー試合結果・勝点・得失点差を一覧表示。"
+        f"{label}の最新順位・試合結果を毎日自動更新。"
+        f"{notable_phrase}全{team_count}チームのU-18高校サッカー勝点・得失点差・日程を一覧表示。"
+        f"{league_role}の最新動向を網羅。"
     )
+
     description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属し、年間を通じて熾烈な順位争いが繰り広げられます。"
+
     keywords = (
-        f"{label},高円宮杯,U-18,高校サッカー,順位,成績,試合結果,日程,"
-        f"プレミアリーグ,プリンスリーグ"
+        f"{label},{label}順位,{label}順位表,{label}{year_label},"
+        f"高円宮杯,高円宮杯JFA,U-18,U18,高校サッカー,クラブユース,"
+        f"順位,成績,試合結果,日程,得点ランキング,"
+        f"プレミアリーグ,プリンスリーグ,プレミアリーグ高校,プリンスリーグ高校"
     )
 
     breadcrumb = json.dumps(render_breadcrumb_schema(label, slug), ensure_ascii=False, indent=2)
