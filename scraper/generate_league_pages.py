@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 高円宮杯 U-18 各リーグ専用ページを自動生成 (Phase 9-B)
-
 機能:
     1. data/teams.json を読み込み、ユニークなリーグごとにページ生成
        → leagues/<slug>/index.html (例: /leagues/premier-east/index.html)
@@ -9,21 +8,37 @@
        → leagues/index.html
     3. sitemap.xml を完全版で更新（トップ + 47都道府県 + 静的 + 全リーグ）
     4. 各ページに OGP / 構造化データ / canonical / 内部リンクを完備
-
+    5. data/league_history.yml から過去5年優勝校履歴を表示
 使い方:
     cd <repo-root>
     python scraper/generate_league_pages.py
-
-依存ライブラリ: 標準ライブラリのみ (Python 3.8+)
-
+依存ライブラリ: 標準ライブラリ + PyYAML (pip install pyyaml)
 注意:
     このスクリプトは generate_prefecture_pages.py の **後** に実行してください。
     sitemap.xml をこのスクリプトが最終的に書き換えます。
 """
 import json
 import re
+import yaml
 from pathlib import Path
 from datetime import date
+
+# === リーグ履歴データの読み込み ===
+LEAGUE_HISTORY_PATH = Path(__file__).parent.parent / "data" / "league_history.yml"
+
+def load_league_history():
+    """過去優勝校データを読み込み"""
+    if not LEAGUE_HISTORY_PATH.exists():
+        print(f"⚠️ {LEAGUE_HISTORY_PATH} が存在しません")
+        return {}
+    try:
+        with open(LEAGUE_HISTORY_PATH, encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    except Exception as e:
+        print(f"⚠️ league_history.yml 読み込みエラー: {e}")
+        return {}
+
+LEAGUE_HISTORY = load_league_history()
 
 # ============================================================
 # 設定
@@ -369,6 +384,52 @@ def render_faq_html(faqs):
     return "\n".join(items)
 
 
+def render_past_champions_html(slug):
+    """過去5年の優勝校履歴セクションのHTMLを生成"""
+    league_data = LEAGUE_HISTORY.get(slug, {})
+    champions = league_data.get("champions", [])
+    if not champions:
+        return ""
+
+    # 年降順でソートし、最新5年分
+    sorted_champs = sorted(
+        champions, key=lambda x: -int(x.get("year", 0))
+    )[:5]
+
+    rows_html = ""
+    for i, c in enumerate(sorted_champs):
+        year = c.get("year", "")
+        team = c.get("team", "")
+        pref = c.get("pref", "")
+        # 最新年度のみ🏆、それ以外は🥇
+        medal = "🏆" if i == 0 else "🥇"
+        if pref:
+            team_html = (
+                f'<a href="/prefectures/{pref}/" '
+                f'style="color:var(--accent-color, #2563eb); '
+                f'text-decoration:none; font-weight:600;">'
+                f'{html_escape(team)}</a>'
+            )
+        else:
+            team_html = html_escape(team)
+        rows_html += f"""
+        <li style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid var(--border-color, #e5e7eb);">
+          <span style="display:inline-block; width:70px; font-weight:600; color:var(--text-secondary, #6b7280);">{year}年</span>
+          <span style="margin-right:8px; font-size:1.2em;">{medal}</span>
+          <span style="flex:1;">{team_html}</span>
+        </li>"""
+
+    return f"""
+      <ul style="list-style:none; padding:0; margin:0;">
+        {rows_html}
+      </ul>
+      <p style="font-size:0.85em; color:var(--text-secondary, #6b7280); margin:16px 0 0 0;">
+        ※ 高円宮杯JFA U-18 サッカープレミアリーグ／プリンスリーグ 公式記録に基づく
+      </p>
+    </section>
+    """
+
+
 def render_pref_distribution_html(teams, current_slug):
     """所属都道府県の分布を地方別グリッドで表示"""
     pref_counts = {}
@@ -575,7 +636,12 @@ __TEAM_ROWS__
 __PREF_DISTRIBUTION__
         </div>
       </section>
-
+      
+      <section class="lp-section lp-past-champions">
+        <h2><i class="fas fa-trophy"></i> 過去5年の優勝校</h2>
+__PAST_CHAMPIONS__
+      </section>
+      
       <section class="lp-section lp-faq">
         <h2><i class="fas fa-question-circle"></i> よくある質問</h2>
 __FAQ_HTML__
@@ -703,7 +769,7 @@ def generate_league_page(league_name, slug, label, category, description, teams)
 
     pref_distribution = render_pref_distribution_html(sorted_teams, slug)
     related_leagues = render_related_leagues_html(slug, category)
-
+    past_champions_html = render_past_champions_html(slug)  # ← この行を追加
     return (
         LEAGUE_PAGE_TEMPLATE
         .replace("__GA_ID__", GA_ID)
@@ -724,6 +790,7 @@ def generate_league_page(league_name, slug, label, category, description, teams)
         .replace("__PREF_DISTRIBUTION__", pref_distribution)
         .replace("__FAQ_HTML__", faq_html)
         .replace("__RELATED_LEAGUES__", related_leagues)
+        .replace("__PAST_CHAMPIONS__", past_champions_html)  # ← この行を追加
     )
 
 
