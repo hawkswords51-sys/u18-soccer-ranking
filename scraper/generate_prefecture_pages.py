@@ -20,6 +20,7 @@ Phase 9-A ステップ2 で追加された構造化データ:
 依存ライブラリ: 標準ライブラリのみ (Python 3.8+)
 """
 import json
+import re
 from pathlib import Path
 from datetime import date
 
@@ -57,7 +58,53 @@ def render_featured_articles(pref_id):
         </ul>
       </section>
 """
-
+def _detect_winner_and_wrap(s):
+    """マッチ文字列の勝者を判定してmatch-winnerクラスでラップ
+    対応形式:
+      - "team1 7-0 team2"     → team1 を勝者強調
+      - "team1 0-1 team2"     → team2 を勝者強調
+      - "team1 2-2(PK4-2) team2" → PK勝者を強調
+      - "team1 vs team2"      → 試合前なのでハイライトなし
+    """
+    # PK付きスコア（より具体的なパターン）を先に検出
+    pk_match = re.search(r'(\d+)\s*-\s*(\d+)\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\)', s)
+    if pk_match:
+        score_start = pk_match.start()
+        score_end = pk_match.end()
+        pkl = int(pk_match.group(3))
+        pkr = int(pk_match.group(4))
+        if pkl > pkr:
+            winner_side = "left"
+        elif pkr > pkl:
+            winner_side = "right"
+        else:
+            return s
+    else:
+        # 通常スコア
+        score_match = re.search(r'(\d+)\s*-\s*(\d+)', s)
+        if not score_match:
+            return s
+        score_start = score_match.start()
+        score_end = score_match.end()
+        l_score = int(score_match.group(1))
+        r_score = int(score_match.group(2))
+        if l_score > r_score:
+            winner_side = "left"
+        elif r_score > l_score:
+            winner_side = "right"
+        else:
+            return s
+    left = s[:score_start]
+    center = s[score_start:score_end]
+    right = s[score_end:]
+    if winner_side == "left":
+        stripped = left.rstrip()
+        trailing_ws = left[len(stripped):]
+        return f'<span class="match-winner">{stripped}</span>{trailing_ws}{center}{right}'
+    else:
+        stripped = right.lstrip()
+        leading_ws = right[:len(right) - len(stripped)]
+        return f'{left}{center}{leading_ws}<span class="match-winner">{stripped}</span>'
 
 def render_tournament_html(pref_id, teams):
     """都道府県のトーナメント情報を data/tournaments/*.md から読み取り、
@@ -985,7 +1032,6 @@ def render_faq_schema(faqs):
 
 def strip_tags(s):
     """構造化データ用に簡易的にタグを除去"""
-    import re
     return re.sub(r"<[^>]+>", "", s)
 
 
