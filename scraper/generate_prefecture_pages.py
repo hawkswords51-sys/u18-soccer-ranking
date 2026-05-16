@@ -185,6 +185,8 @@ def render_tournament_html(pref_id, teams):
         result = match_str
         for pos, badge in matches:
             result = result[:pos] + badge + result[pos:]
+        # 勝者ハイライト追加
+        result = _detect_winner_and_wrap(result)
         return result
 
     html_parts = []
