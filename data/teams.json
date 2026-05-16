@@ -10458,23 +10458,20 @@
     "region": "九州",
     "teams": [
       {
-        "id": "ks004",
-        "name": "鹿児島ユナイテッドFC U-18",
+        "id": "ks005",
+        "name": "鹿児島実業高校",
         "league": "鹿児島県トップリーグ1部",
         "rank": 1,
-        "points": 21,
-        "played": 8,
+        "points": 22,
+        "played": 9,
         "won": 7,
-        "drawn": 0,
+        "drawn": 1,
         "lost": 1,
-        "goalsFor": 39,
-        "goalsAgainst": 3,
+        "goalsFor": 20,
+        "goalsAgainst": 6,
         "prefectureRank": 1,
-        "goalDiff": 11,
-        "leagueRank": 1,
-        "aliases": [
-          "鹿児島ユナイテッド"
-        ]
+        "goalDiff": 4,
+        "leagueRank": 1
       },
       {
         "id": "ks002",
@@ -10528,10 +10525,29 @@
         "leagueRank": 6
       },
       {
+        "id": "ks004",
+        "name": "鹿児島ユナイテッドFC U-18",
+        "league": "鹿児島県トップリーグ1部",
+        "rank": 5,
+        "points": 21,
+        "played": 9,
+        "won": 7,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 39,
+        "goalsAgainst": 4,
+        "prefectureRank": 5,
+        "goalDiff": 11,
+        "leagueRank": 2,
+        "aliases": [
+          "鹿児島ユナイテッド"
+        ]
+      },
+      {
         "id": "ks007",
         "name": "鹿児島城西EAGLE",
         "league": "鹿児島県トップリーグ1部",
-        "rank": 5,
+        "rank": 6,
         "points": 21,
         "played": 8,
         "won": 7,
@@ -10539,28 +10555,12 @@
         "lost": 1,
         "goalsFor": 18,
         "goalsAgainst": 4,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "goalDiff": 9,
-        "leagueRank": 2,
+        "leagueRank": 3,
         "aliases": [
           "城西EAGLE"
         ]
-      },
-      {
-        "id": "ks005",
-        "name": "鹿児島実業高校",
-        "league": "鹿児島県トップリーグ1部",
-        "rank": 6,
-        "points": 19,
-        "played": 8,
-        "won": 6,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 19,
-        "goalsAgainst": 6,
-        "prefectureRank": 6,
-        "goalDiff": 4,
-        "leagueRank": 3
       },
       {
         "name": "神村学園2nd",
@@ -10865,7 +10865,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-16 03:04",
+    "lastUpdated": "2026-05-16 03:13",
     "year": 2026,
     "updatedCount": 583
   }
