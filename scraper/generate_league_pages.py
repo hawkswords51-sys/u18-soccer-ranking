@@ -762,7 +762,13 @@ def generate_league_page(league_name, slug, label, category, description, teams)
     )
 
     description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属し、年間を通じて熾烈な順位争いが繰り広げられます。"
-
+    # プレミアEAST/WESTの場合はファイナルページへの導線を追加
+    if slug in ("premier-east", "premier-west"):
+        description_long += (
+            ' <a href="/leagues/premier-final/" '
+            'style="color:var(--accent-color,#2563eb); font-weight:600; text-decoration:underline;">'
+            '🏆 歴代ファイナル結果はこちら</a>'
+        )
     keywords = (
         f"{label},{label}順位,{label}順位表,{label}{year_label},"
         f"高円宮杯,高円宮杯JFA,U-18,U18,高校サッカー,クラブユース,"
