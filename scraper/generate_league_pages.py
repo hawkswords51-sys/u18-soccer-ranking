@@ -40,6 +40,24 @@ def load_league_history():
 
 LEAGUE_HISTORY = load_league_history()
 
+# === プレミアファイナル歴代データの読み込み ===
+PREMIER_FINAL_HISTORY_PATH = Path(__file__).parent.parent / "data" / "premier_final_history.yml"
+
+def load_premier_final_history():
+    """プレミアファイナル歴代データを読み込み"""
+    if not PREMIER_FINAL_HISTORY_PATH.exists():
+        print(f"⚠️ {PREMIER_FINAL_HISTORY_PATH} が存在しません")
+        return {}
+    try:
+        with open(PREMIER_FINAL_HISTORY_PATH, encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    except Exception as e:
+        print(f"⚠️ premier_final_history.yml 読み込みエラー: {e}")
+        return {}
+
+PREMIER_FINAL_HISTORY = load_premier_final_history()
+
+
 # ============================================================
 # 設定
 # ============================================================
@@ -793,6 +811,249 @@ def generate_league_page(league_name, slug, label, category, description, teams)
         .replace("__PAST_CHAMPIONS__", past_champions_html)  # ← この行を追加
     )
 
+def render_premier_final_card(final):
+    """1年分のファイナル結果カードHTMLを生成"""
+    year = final.get("year", "")
+    date_str = final.get("date", "")
+    venue = final.get("venue", "")
+    east = final.get("east_winner", {})
+    west = final.get("west_winner", {})
+    score = final.get("score", "")
+    pk = final.get("pk", "")
+    champion = final.get("champion", {})
+    note = final.get("note", "")
+    cancelled = final.get("cancelled", False)
+
+    def team_link(t):
+        if t.get("pref"):
+            return f'<a href="/prefectures/{t["pref"]}/" style="color:var(--accent-color, #2563eb); text-decoration:none; font-weight:600;">{html_escape(t.get("team", ""))}</a>'
+        return html_escape(t.get("team", ""))
+
+    east_html = team_link(east)
+    west_html = team_link(west)
+
+    if cancelled:
+        match_section = f"""
+        <div style="text-align:center; padding:24px 0;">
+          <div style="font-size:1.2em;">{east_html} <span style="color:#888; margin:0 12px;">vs</span> {west_html}</div>
+          <div style="margin-top:16px; padding:8px 16px; background:#fee2e2; color:#991b1b; display:inline-block; border-radius:6px; font-weight:600;">⚠️ ファイナル中止</div>
+        </div>
+        """
+        champion_html = ""
+    else:
+        pk_html = f' <span style="font-size:0.65em; color:#666;">(PK {pk})</span>' if pk else ""
+        match_section = f"""
+        <div style="display:flex; align-items:center; justify-content:center; gap:16px; padding:24px 0; flex-wrap:wrap;">
+          <div style="flex:1; text-align:right; min-width:140px; font-size:1.1em;">{east_html}</div>
+          <div style="font-size:1.8em; font-weight:700; color:var(--accent-color, #2563eb); padding:0 12px;">{score}{pk_html}</div>
+          <div style="flex:1; text-align:left; min-width:140px; font-size:1.1em;">{west_html}</div>
+        </div>
+        """
+        champ_team = champion.get("team", "")
+        champ_pref = champion.get("pref", "")
+        if champ_team and champ_pref:
+            champion_html = f"""
+            <div style="text-align:center; padding:14px; background:linear-gradient(135deg, #fde68a, #fbbf24); border-radius:8px; font-weight:700; color:#7c2d12;">
+              🏆 全国優勝：<a href="/prefectures/{champ_pref}/" style="color:#7c2d12; text-decoration:none; border-bottom:1px dotted #7c2d12;">{html_escape(champ_team)}</a>
+            </div>
+            """
+        else:
+            champion_html = ""
+
+    note_html = f'<p style="margin-top:12px; font-size:0.95em; color:var(--text-secondary, #6b7280);">{html_escape(note)}</p>' if note else ""
+
+    return f"""
+    <article class="premier-final-card" style="background:var(--bg-card, #ffffff); border-radius:12px; padding:24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+      <header style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px; border-bottom:2px solid var(--accent-color, #2563eb); padding-bottom:12px;">
+        <h2 style="margin:0; font-size:1.5em; color:var(--accent-color, #2563eb);">{year}年大会</h2>
+        <span style="font-size:0.9em; color:var(--text-secondary, #6b7280);">📅 {html_escape(date_str)}　📍 {html_escape(venue)}</span>
+      </header>
+      {match_section}
+      {champion_html}
+      {note_html}
+    </article>
+    """
+
+
+def generate_premier_final_page():
+    """プレミアファイナル歴代結果ページを生成"""
+    data = PREMIER_FINAL_HISTORY
+    finals = sorted(data.get("finals", []), key=lambda x: -int(x.get("year", 0)))
+    if not finals:
+        print("⚠️ プレミアファイナルデータが空。ページ生成スキップ")
+        return
+
+    year_label = date.today().year
+    title = f"【{year_label}最新】高円宮杯U-18プレミアリーグ ファイナル 歴代結果 | 全国優勝校"
+    description = (
+        "高円宮杯JFA U-18 サッカープレミアリーグ ファイナル（決勝戦）の歴代結果を網羅。"
+        "EAST/WEST 各リーグ1位の対戦記録、全国優勝校、試合スコアを過去5年分掲載。"
+    )
+    canonical = f"{DOMAIN}/leagues/premier-final/"
+    keywords = (
+        f"プレミアリーグファイナル,プレミアリーグ決勝,高円宮杯ファイナル,"
+        f"U-18,U18,高校サッカー,全国優勝,歴代優勝校,プレミア東西決勝,{year_label}"
+    )
+
+    # カード群を構築
+    cards_html = "\n".join(render_premier_final_card(f) for f in finals)
+
+    # 最多優勝校カウント
+    champion_counter = {}
+    for f in finals:
+        if f.get("cancelled"):
+            continue
+        c = f.get("champion", {})
+        team_name = c.get("team", "")
+        if team_name:
+            champion_counter[team_name] = champion_counter.get(team_name, 0) + 1
+
+    if champion_counter:
+        top_champions = sorted(champion_counter.items(), key=lambda x: -x[1])
+        ranking_items = "\n".join(
+            f'<li style="padding:8px 0; border-bottom:1px solid var(--border-color, #e5e7eb);"><strong>{html_escape(t)}</strong>：{n}回優勝</li>'
+            for t, n in top_champions
+        )
+        ranking_html = f"""
+        <section class="lp-section">
+          <h2><i class="fas fa-medal"></i> 過去5年 最多優勝校</h2>
+          <ul style="list-style:none; padding:0;">{ranking_items}</ul>
+        </section>
+        """
+    else:
+        ranking_html = ""
+
+    page_html = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', '{GA_ID}');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="{ADSENSE_CLIENT}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{html_escape(title)}</title>
+  <meta name="description" content="{html_escape(description)}">
+  <meta name="keywords" content="{html_escape(keywords)}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{canonical}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="高校サッカー順位確認システム">
+  <meta property="og:title" content="{html_escape(title)}">
+  <meta property="og:description" content="{html_escape(description)}">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:image" content="https://u18-soccer.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DrKazuSoccer">
+  <meta name="twitter:creator" content="@DrKazuSoccer">
+  <meta name="twitter:title" content="{html_escape(title)}">
+  <meta name="twitter:description" content="{html_escape(description)}">
+  <meta name="twitter:image" content="https://u18-soccer.com/og-image.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#1e40af">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function() {{
+      try {{
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') {{
+          document.documentElement.setAttribute('data-theme', t);
+        }}
+      }} catch (e) {{}}
+    }})();
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="site-title">
+          <a href="/" style="color:white;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
+            <i class="fas fa-futbol"></i>
+            高校サッカー順位確認システム
+          </a>
+        </h1>
+        <nav class="nav">
+          <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
+          <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ一覧</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="main-content">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="/">ホーム</a>
+        <span class="breadcrumb__sep">›</span>
+        <a href="/leagues/">リーグ一覧</a>
+        <span class="breadcrumb__sep">›</span>
+        <span aria-current="page">プレミアファイナル</span>
+      </nav>
+      <h1 class="lp-title">高円宮杯U-18 プレミアリーグ ファイナル 歴代結果</h1>
+      <p class="lp-intro">
+        高円宮杯JFA U-18 サッカープレミアリーグの**ファイナル（決勝戦）**の歴代結果をまとめています。
+        EAST/WEST 各リーグ1位の対戦記録、全国優勝校、試合スコア、PK決着まで過去5年分を網羅。
+        日本の高校サッカー最高峰の頂上決戦の歴史をご覧ください。
+      </p>
+      <div class="premier-finals-list" style="margin:32px 0;">
+        {cards_html}
+      </div>
+      {ranking_html}
+      <section class="lp-section">
+        <h2><i class="fas fa-trophy"></i> 関連リーグ</h2>
+        <p class="lp-section-desc">プレミアリーグEAST/WESTの現在の順位はこちら：</p>
+        <div class="lp-related-leagues">
+          <a href="/leagues/premier-east/" class="lp-related-league-btn">プレミアリーグ EAST</a>
+          <a href="/leagues/premier-west/" class="lp-related-league-btn">プレミアリーグ WEST</a>
+        </div>
+      </section>
+      <section class="lp-section">
+        <h2>関連リンク</h2>
+        <ul class="lp-related-links">
+          <li><a href="/">全国の高校サッカー順位表トップ</a></li>
+          <li><a href="/leagues/">リーグ一覧トップ</a></li>
+          <li><a href="/about.html">運営者情報</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 高校サッカー順位確認システム</p>
+      <nav class="footer-nav" style="margin-top:12px;">
+        <a href="/about.html">運営者情報</a> ・
+        <a href="/privacy.html">プライバシーポリシー</a> ・
+        <a href="/contact.html">お問い合わせ</a>
+      </nav>
+      <p class="footer-note" style="margin-top:12px;">
+        <i class="fas fa-info-circle"></i>
+        データ出典：JFA（日本サッカー協会）公式記録、Wikipedia等。最新情報は公式サイトをご確認ください。
+      </p>
+    </div>
+  </footer>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>"""
+
+    # ファイル書き出し
+    output_path = Path(__file__).parent.parent / "leagues" / "premier-final" / "index.html"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(page_html, encoding="utf-8")
+    print(f"✅ プレミアファイナルページ生成: {output_path}")
 
 # ============================================================
 # リーグ一覧ハブページ
@@ -1077,7 +1338,11 @@ def main():
     index_html = generate_index_page(teams_by_league)
     (OUTPUT_ROOT / "index.html").write_text(index_html, encoding="utf-8")
     print(f"[OK] リーグ一覧 -> /leagues/")
-
+    
+    # プレミアファイナル専用ページ生成 ← 追加
+    generate_premier_final_page()
+    generated_slugs.append("premier-final")
+    
     # sitemap 完全版で更新
     update_sitemap_complete(teams_data, generated_slugs)
 
