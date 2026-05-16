@@ -5108,3 +5108,22 @@ details[open] > summary > .league-accordion__chevron {
     background: rgba(110, 231, 183, 0.2);
     color: #6EE7B7;
 }
+
+/* ============================================
+   トーナメント結果：勝者ハイライト
+   ============================================ */
+
+/* 勝者（ライトモード） */
+.match-winner {
+  background: rgba(251, 146, 60, 0.15);
+  color: #c2410c;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* 勝者（ダークモード） */
+[data-theme="dark"] .match-winner {
+  background: rgba(251, 146, 60, 0.22);
+  color: #fdba74;
+}
