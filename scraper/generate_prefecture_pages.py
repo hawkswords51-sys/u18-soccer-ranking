@@ -31,6 +31,11 @@ from datetime import date
 PREFECTURE_FEATURED_ARTICLES = {
     "miyazaki": [
         {
+            "title": "【2026最新】宮崎県高校サッカー3強の力関係｜日章学園・宮崎日大・鵬翔を救急医が分析",
+            "url": "/blog/posts/2026-05-17-miyazaki-3-powerhouse/",
+            "date": "2026-05-17",
+        },
+        {
             "title": "「鵬翔から日章学園へ」｜Dr.Kazu Soccerが追いかけた宮崎県の高校サッカー",
             "url": "/blog/posts/2026-05-11-miyazaki-soccer-feature/",
             "date": "2026-05-11",
