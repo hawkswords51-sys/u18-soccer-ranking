@@ -3108,20 +3108,22 @@
         "leagueRank": 12
       },
       {
-        "name": "桐蔭学園高校2nd",
+        "id": "k008",
+        "name": "法政二高校",
         "league": "神奈川県K1",
-        "points": 13,
-        "played": 8,
-        "won": 3,
-        "drawn": 4,
-        "lost": 1,
-        "goalsFor": 6,
-        "goalsAgainst": 6,
-        "leagueRank": 3,
         "rank": 8,
+        "points": 14,
+        "played": 9,
+        "won": 4,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 11,
+        "goalsAgainst": 8,
+        "goalDiff": -3,
         "prefectureRank": 8,
+        "leagueRank": 3,
         "aliases": [
-          "桐蔭学園B"
+          "法政二A"
         ]
       },
       {
@@ -3144,10 +3146,27 @@
         ]
       },
       {
+        "name": "桐蔭学園高校2nd",
+        "league": "神奈川県K1",
+        "points": 13,
+        "played": 8,
+        "won": 3,
+        "drawn": 4,
+        "lost": 1,
+        "goalsFor": 6,
+        "goalsAgainst": 6,
+        "leagueRank": 4,
+        "rank": 10,
+        "prefectureRank": 10,
+        "aliases": [
+          "桐蔭学園B"
+        ]
+      },
+      {
         "id": "k010",
         "name": "横浜創英高校",
         "league": "神奈川県K1",
-        "rank": 10,
+        "rank": 11,
         "points": 11,
         "played": 8,
         "won": 3,
@@ -3156,8 +3175,8 @@
         "goalsFor": 9,
         "goalsAgainst": 10,
         "goalDiff": -1,
-        "prefectureRank": 10,
-        "leagueRank": 4,
+        "prefectureRank": 11,
+        "leagueRank": 5,
         "aliases": [
           "横浜創英A"
         ]
@@ -3172,9 +3191,9 @@
         "lost": 3,
         "goalsFor": 8,
         "goalsAgainst": 9,
-        "leagueRank": 5,
-        "rank": 11,
-        "prefectureRank": 11,
+        "leagueRank": 6,
+        "rank": 12,
+        "prefectureRank": 12,
         "aliases": [
           "桐光学園B"
         ]
@@ -3183,7 +3202,7 @@
         "id": "k011",
         "name": "湘南工科大学附属高校",
         "league": "神奈川県K1",
-        "rank": 12,
+        "rank": 13,
         "points": 10,
         "played": 8,
         "won": 3,
@@ -3192,8 +3211,8 @@
         "goalsFor": 15,
         "goalsAgainst": 17,
         "goalDiff": 6,
-        "prefectureRank": 12,
-        "leagueRank": 6,
+        "prefectureRank": 13,
+        "leagueRank": 7,
         "aliases": [
           "湘南工科大附A",
           "湘南工科大附高校",
@@ -3204,7 +3223,7 @@
         "id": "k015",
         "name": "川崎橘高校",
         "league": "神奈川県K1",
-        "rank": 13,
+        "rank": 14,
         "points": 9,
         "played": 8,
         "won": 2,
@@ -3213,29 +3232,10 @@
         "goalsFor": 5,
         "goalsAgainst": 8,
         "goalDiff": -5,
-        "prefectureRank": 13,
-        "leagueRank": 7,
-        "aliases": [
-          "川崎橘A"
-        ]
-      },
-      {
-        "id": "k008",
-        "name": "法政二高校",
-        "league": "神奈川県K1",
-        "rank": 14,
-        "points": 8,
-        "played": 7,
-        "won": 2,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 7,
-        "goalsAgainst": 8,
-        "goalDiff": -3,
         "prefectureRank": 14,
         "leagueRank": 8,
         "aliases": [
-          "法政二A"
+          "川崎橘A"
         ]
       },
       {
@@ -3244,12 +3244,12 @@
         "league": "神奈川県K1",
         "rank": 15,
         "points": 6,
-        "played": 7,
+        "played": 9,
         "won": 2,
         "drawn": 0,
-        "lost": 5,
+        "lost": 7,
         "goalsFor": 7,
-        "goalsAgainst": 15,
+        "goalsAgainst": 19,
         "goalDiff": -4,
         "prefectureRank": 15,
         "leagueRank": 9,
@@ -10879,8 +10879,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-17 11:47",
+    "lastUpdated": "2026-05-17 12:04",
     "year": 2026,
-    "updatedCount": 573
+    "updatedCount": 582
   }
 }
