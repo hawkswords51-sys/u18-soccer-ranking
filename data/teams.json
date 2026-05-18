@@ -4097,27 +4097,10 @@
         "leagueRank": 3
       },
       {
-        "name": "福井工大福井高校",
-        "league": "福井県F1",
-        "points": 14,
-        "played": 7,
-        "won": 4,
-        "drawn": 2,
-        "lost": 1,
-        "goalsFor": 25,
-        "goalsAgainst": 7,
-        "leagueRank": 2,
-        "rank": 3,
-        "prefectureRank": 3,
-        "aliases": [
-          "福井工大福井"
-        ]
-      },
-      {
         "id": "fu005",
         "name": "北陸高校",
         "league": "福井県F1",
-        "rank": 4,
+        "rank": 3,
         "points": 13,
         "played": 6,
         "won": 4,
@@ -4125,9 +4108,26 @@
         "lost": 1,
         "goalsFor": 16,
         "goalsAgainst": 7,
-        "prefectureRank": 4,
+        "prefectureRank": 3,
         "goalDiff": 2,
-        "leagueRank": 3
+        "leagueRank": 2
+      },
+      {
+        "name": "福井工大福井高校",
+        "league": "福井県F1",
+        "points": 11,
+        "played": 6,
+        "won": 3,
+        "drawn": 2,
+        "lost": 1,
+        "goalsFor": 16,
+        "goalsAgainst": 7,
+        "leagueRank": 3,
+        "rank": 4,
+        "prefectureRank": 4,
+        "aliases": [
+          "福井工大福井"
+        ]
       },
       {
         "id": "fu004",
@@ -4199,12 +4199,12 @@
         "league": "福井県F1",
         "rank": 9,
         "points": 3,
-        "played": 7,
+        "played": 6,
         "won": 1,
         "drawn": 0,
-        "lost": 6,
+        "lost": 5,
         "goalsFor": 5,
-        "goalsAgainst": 35,
+        "goalsAgainst": 26,
         "goalDiff": -2,
         "prefectureRank": 9,
         "leagueRank": 8
@@ -9519,12 +9519,12 @@
         "name": "長崎日大",
         "league": "長崎県1部",
         "points": 18,
-        "played": 7,
+        "played": 8,
         "won": 6,
         "drawn": 0,
-        "lost": 1,
+        "lost": 2,
         "goalsFor": 22,
-        "goalsAgainst": 5,
+        "goalsAgainst": 6,
         "leagueRank": 1,
         "rank": 2,
         "prefectureRank": 2
@@ -9546,16 +9546,16 @@
         "leagueRank": 7
       },
       {
-        "id": "ng008",
-        "name": "九州文化学園高校",
+        "id": "ng004",
+        "name": "創成館高校",
         "league": "長崎県1部",
         "rank": 4,
-        "points": 16,
-        "played": 7,
+        "points": 17,
+        "played": 8,
         "won": 5,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 1,
-        "goalsFor": 20,
+        "goalsFor": 16,
         "goalsAgainst": 12,
         "prefectureRank": 4,
         "goalDiff": 2,
@@ -9578,6 +9578,22 @@
         "leagueRank": 7
       },
       {
+        "id": "ng008",
+        "name": "九州文化学園高校",
+        "league": "長崎県1部",
+        "rank": 6,
+        "points": 16,
+        "played": 7,
+        "won": 5,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 20,
+        "goalsAgainst": 12,
+        "prefectureRank": 6,
+        "goalDiff": 2,
+        "leagueRank": 3
+      },
+      {
         "name": "Vファーレン長崎2nd",
         "league": "長崎県1部",
         "points": 14,
@@ -9587,25 +9603,9 @@
         "lost": 2,
         "goalsFor": 23,
         "goalsAgainst": 13,
-        "leagueRank": 3,
-        "rank": 6,
-        "prefectureRank": 6
-      },
-      {
-        "id": "ng004",
-        "name": "創成館高校",
-        "league": "長崎県1部",
+        "leagueRank": 4,
         "rank": 7,
-        "points": 14,
-        "played": 7,
-        "won": 4,
-        "drawn": 2,
-        "lost": 1,
-        "goalsFor": 15,
-        "goalsAgainst": 12,
-        "prefectureRank": 7,
-        "goalDiff": 2,
-        "leagueRank": 4
+        "prefectureRank": 7
       },
       {
         "id": "ng005",
@@ -9826,22 +9826,20 @@
         "leagueRank": 6
       },
       {
-        "name": "熊本学園大学付属高校",
+        "id": "km005",
+        "name": "熊本国府高校",
         "league": "熊本県1部",
+        "rank": 7,
         "points": 15,
         "played": 8,
-        "won": 5,
-        "drawn": 0,
-        "lost": 3,
-        "goalsFor": 18,
-        "goalsAgainst": 14,
-        "leagueRank": 3,
-        "rank": 7,
+        "won": 4,
+        "drawn": 3,
+        "lost": 1,
+        "goalsFor": 16,
+        "goalsAgainst": 9,
         "prefectureRank": 7,
-        "aliases": [
-          "学園大付",
-          "熊本学園大付"
-        ]
+        "goalDiff": 0,
+        "leagueRank": 3
       },
       {
         "id": "km004",
@@ -9866,20 +9864,22 @@
         ]
       },
       {
-        "id": "km005",
-        "name": "熊本国府高校",
+        "name": "熊本学園大学付属高校",
         "league": "熊本県1部",
+        "points": 15,
+        "played": 8,
+        "won": 5,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 18,
+        "goalsAgainst": 14,
+        "leagueRank": 4,
         "rank": 9,
-        "points": 12,
-        "played": 7,
-        "won": 3,
-        "drawn": 3,
-        "lost": 1,
-        "goalsFor": 15,
-        "goalsAgainst": 9,
         "prefectureRank": 9,
-        "goalDiff": 0,
-        "leagueRank": 4
+        "aliases": [
+          "学園大付",
+          "熊本学園大付"
+        ]
       },
       {
         "id": "km011",
@@ -9923,12 +9923,12 @@
         "league": "熊本県1部",
         "rank": 12,
         "points": 7,
-        "played": 7,
+        "played": 8,
         "won": 2,
         "drawn": 1,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 7,
-        "goalsAgainst": 9,
+        "goalsAgainst": 10,
         "prefectureRank": 12,
         "goalDiff": -1,
         "leagueRank": 7
@@ -10879,7 +10879,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-18 02:52",
+    "lastUpdated": "2026-05-18 18:58",
     "year": 2026,
     "updatedCount": 583
   }
