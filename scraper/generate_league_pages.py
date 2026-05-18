@@ -575,12 +575,12 @@ __SCHEMA_FAQ__
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <h1 class="site-title">
+        <div class="site-title">
           <a href="/" style="color:white;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
             <i class="fas fa-futbol"></i>
             高校サッカー順位確認システム
           </a>
-        </h1>
+        </div>
         <nav class="nav">
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
           <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ一覧</a>
@@ -987,12 +987,12 @@ def generate_premier_final_page():
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <h1 class="site-title">
+        <div class="site-title">
           <a href="/" style="color:white;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
             <i class="fas fa-futbol"></i>
             高校サッカー順位確認システム
           </a>
-        </h1>
+        </div>
         <nav class="nav">
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
           <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ一覧</a>
@@ -1125,12 +1125,12 @@ __SCHEMA_BREADCRUMB__
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <h1 class="site-title">
+        <div class="site-title">
           <a href="/" style="color:white;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
             <i class="fas fa-futbol"></i>
             高校サッカー順位確認システム
           </a>
-        </h1>
+        </div>
         <nav class="nav">
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
         </nav>
