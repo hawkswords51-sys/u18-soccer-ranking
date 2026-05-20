@@ -1,8 +1,10 @@
 name: 高円宮杯 順位自動更新
+
 on:
-  # 毎週月曜日 9:00 JST (= UTC 00:00) に自動実行
+  # 毎日 7:00 JST (= UTC 22:00) に自動実行
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 22 * * *'
+
   # 手動実行ボタンもGitHub画面から使えるようにする
   workflow_dispatch:
     inputs:
@@ -15,29 +17,35 @@ on:
         type: boolean
         required: false
         default: false
+
   # tournaments_data.yml を編集して push したら即時反映
   push:
     branches: [main]
     paths:
       - 'data/tournaments_data.yml'
+
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
       contents: write   # data/teams.json をコミット・プッシュするため
+
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
+
       - name: Python 3.11 をセットアップ
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
           cache-dependency-path: scraper/requirements.txt
+
       - name: 依存ライブラリをインストール
         run: |
           pip install -r scraper/requirements.txt
           pip install selenium webdriver-manager pyyaml markdown
+
       - name: 順位データを更新
         if: ${{ github.event_name != 'push' }}
         run: |
@@ -47,6 +55,7 @@ jobs:
           if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
           if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python scraper/update.py $ARGS
+
       - name: 近似重複チームを自動検出・削除
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         run: |
@@ -55,6 +64,7 @@ jobs:
           else
             echo "scraper/dedup_near_duplicates.py がまだありません。スキップ。"
           fi
+
       - name: リーグ順位を勝点ベースで再計算 (都道府県内のみ)
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         run: |
@@ -63,6 +73,7 @@ jobs:
           else
             echo "scraper/normalize_league_ranks.py がまだありません。スキップ。"
           fi
+
       - name: 大会成績 YAML から JSON を生成
         continue-on-error: true
         run: |
@@ -71,6 +82,7 @@ jobs:
           else
             echo "data/tournaments_data.yml がまだありません。スキップ。"
           fi
+
       # ★ エイリアス重複・空チームの自動クリーンアップ
       - name: エイリアス重複・空チームを自動クリーンアップ
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
@@ -80,6 +92,7 @@ jobs:
           else
             echo "scraper/cleanup_aliases.py がまだありません。スキップ。"
           fi
+
       # ★ Phase 9-A: 都道府県別 SEO ランディングページ自動生成
       - name: 都道府県別 SEO ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -89,6 +102,7 @@ jobs:
           else
             echo "scraper/generate_prefecture_pages.py がまだありません。スキップ。"
           fi
+
       # ★ Phase 9-B: リーグ専用ページと sitemap 完全版を再生成
       - name: リーグ専用ページと sitemap を再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -98,6 +112,7 @@ jobs:
           else
             echo "scraper/generate_league_pages.py がまだありません。スキップ。"
           fi
+
       # ★ Phase 9-D: ブログ記事ページを生成 (Markdown -> HTML)
       - name: ブログ記事ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -107,20 +122,24 @@ jobs:
           else
             echo "scraper/generate_blog_pages.py がまだありません。スキップ。"
           fi
+
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           # データファイル
           if [ -f data/teams.json ]; then git add data/teams.json; fi
           if [ -f data/tournaments.json ]; then git add data/tournaments.json; fi
+
           # SEO ランディングページと sitemap
           if [ -d prefectures ]; then git add prefectures; fi
           if [ -d leagues ]; then git add leagues; fi
           if [ -d blog ]; then git add blog; fi
           if [ -d blog-source ]; then git add blog-source; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
+
           # 変更がある場合のみコミット & push
           if git diff --staged --quiet; then
             echo "変更なし – push スキップ"
@@ -131,4 +150,15 @@ jobs:
               echo "push 失敗、リトライ $i/3 ..."
               sleep 5
             done
+          fi
+
+      # ★ Phase 9-E: IndexNow に更新を通知（Bing 等への即時インデックス通知）
+      - name: IndexNow に更新を通知
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
+        run: |
+          if [ -f notify_indexnow.py ] && [ -f sitemap.xml ]; then
+            python notify_indexnow.py
+          else
+            echo "notify_indexnow.py または sitemap.xml がありません。スキップ。"
           fi
