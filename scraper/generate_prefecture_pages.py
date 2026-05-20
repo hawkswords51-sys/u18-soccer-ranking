@@ -1227,21 +1227,21 @@ __TEAM_ROWS__
       </div>
 
       <!-- 説明文 (SEO 用) -->
-      <section class="lp-section">
-        <h2>__PREF_NAME__ U-18 高校サッカーについて</h2>
-        <p>
-          __PREF_NAME__からは現在<strong>高校サッカー部 __HS_COUNT__校</strong>と
-          <strong>クラブユース __CY_COUNT__チーム</strong>（合計 __TEAM_COUNT__ チーム）が
-          U-18 年代の各種リーグに参加しています。所属する最高位リーグは<strong>__TOP_LEAGUE__</strong>です。
-        </p>
-        <p>
-          高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦で、
-          全国規模の<strong>プレミアリーグ</strong>（東西各12チーム）、9地域それぞれの<strong>プリンスリーグ</strong>、
-          各都道府県の<strong>都道府県リーグ</strong>（1部・2部・3部などの複数ディビジョン）という階層構造になっています。
-          各リーグの上位・下位チームには毎年昇降格があり、上位リーグ昇格を目指してハイレベルな戦いが繰り広げられています。
-          なお、本サイトでは都道府県リーグは<strong>1部</strong>所属チームのみを掲載しています。
-        </p>
-      </section>
+<section class="lp-section">
+  <h2>__PREF_NAME__ U-18 高校サッカーについて</h2>
+  <p>
+    __PREF_NAME__からは現在<strong>高校サッカー部 __HS_COUNT__校</strong>と
+    <strong>クラブユース __CY_COUNT__チーム</strong>（合計 __TEAM_COUNT__ チーム）が
+    U-18 年代の各種リーグに参加しています。
+    所属する最高位リーグは<strong>__TOP_LEAGUE__</strong>です。
+    __NOTABLE_SENTENCE__
+    最新の順位・試合結果は毎日自動更新中。
+  </p>
+  <p>
+    高円宮杯 JFA U-18 サッカーリーグは、日本サッカー協会主催の U-18（高校生年代）向けリーグ戦で、
+    （以下省略・変更なし）
+  </p>
+</section>
 
       <!-- ★ FAQ セクション (Phase 9-A ステップ2 で追加) -->
       <section class="lp-section lp-faq">
@@ -1451,6 +1451,16 @@ def generate_page(pref, all_prefs):
     prince_prefs_html = render_league_prefs_html(prince_prefs, pref_id, "プリンスリーグ")
     grouped_prefs = group_prefectures_by_region(all_prefs)
     all_prefs_html = render_all_prefs_html(grouped_prefs, pref_id)
+
+    # 注目チーム文（チームが見つからない県では空文字に）
+    notable_sentence = (
+        f"注目チームは<strong>{html_escape(notable_full)}</strong>など。"
+        if notable_full
+        else ""
+    )
+    
+    # Phase 9-C: 所属リーグへのリンク
+    league_links_html = render_league_links_html(teams)
     # Phase 9-C: 所属リーグへのリンク
     league_links_html = render_league_links_html(teams)
     return (
@@ -1473,6 +1483,7 @@ def generate_page(pref, all_prefs):
         .replace("__HS_COUNT__", str(hs_count))
         .replace("__CY_COUNT__", str(cy_count))
         .replace("__TOP_LEAGUE__", html_escape(top_league))
+        .replace("__NOTABLE_SENTENCE__", notable_sentence)
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__NEIGHBOR_LINKS__", neighbor_links)
         .replace("__FAQ_HTML__", faq_html)
