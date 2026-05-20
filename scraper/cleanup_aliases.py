@@ -72,7 +72,7 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
 }
 
 MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
-    ("kanagawa", "湘南工科大学附属高校"):    ["湘南工科大附Ａ", "湘南工科大附A"],
+    ("kanagawa", "湘南工科大学附属高校"):    ["湘南工科大附Ａ", "湘南工科大附A", "湘南工大附"],
     ("kanagawa", "日本大学藤沢高校2nd"):     ["日大藤沢高校2nd", "日大藤沢B"],
     ("tochigi", "栃木SC U-18 2nd"):          ["栃木SC U-18B", "栃木SC B"],
     ("tochigi", "文星芸術大学附属高校"):      ["文星芸大附"],
