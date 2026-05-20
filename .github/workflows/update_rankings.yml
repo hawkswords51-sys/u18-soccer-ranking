@@ -157,8 +157,8 @@ jobs:
         if: ${{ github.event.inputs.dry_run != 'true' }}
         continue-on-error: true
         run: |
-          if [ -f notify_indexnow.py ] && [ -f sitemap.xml ]; then
-            python notify_indexnow.py
+          if [ -f scraper/notify_indexnow.py ] && [ -f sitemap.xml ]; then
+            python scraper/notify_indexnow.py
           else
-            echo "notify_indexnow.py または sitemap.xml がありません。スキップ。"
+            echo "scraper/notify_indexnow.py または sitemap.xml がありません。スキップ。"
           fi
