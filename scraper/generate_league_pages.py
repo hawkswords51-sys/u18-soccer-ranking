@@ -795,7 +795,7 @@ def generate_league_page(league_name, slug, label, category, description, teams)
 
     pref_distribution = render_pref_distribution_html(sorted_teams, slug)
     related_leagues = render_related_leagues_html(slug, category)
-   past_champions_html = render_past_champions_html(slug)
+    past_champions_html = render_past_champions_html(slug)
     
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":
