@@ -9516,18 +9516,20 @@
         "leagueRank": 2
       },
       {
-        "name": "長崎日大",
+        "id": "ng008",
+        "name": "九州文化学園高校",
         "league": "長崎県1部",
-        "points": 18,
+        "rank": 2,
+        "points": 19,
         "played": 8,
         "won": 6,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 22,
-        "goalsAgainst": 6,
-        "leagueRank": 1,
-        "rank": 2,
-        "prefectureRank": 2
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 24,
+        "goalsAgainst": 14,
+        "prefectureRank": 2,
+        "goalDiff": 2,
+        "leagueRank": 1
       },
       {
         "id": "ng003",
@@ -9546,20 +9548,18 @@
         "leagueRank": 7
       },
       {
-        "id": "ng004",
-        "name": "創成館高校",
+        "name": "長崎日大",
         "league": "長崎県1部",
-        "rank": 4,
-        "points": 17,
+        "points": 18,
         "played": 8,
-        "won": 5,
-        "drawn": 2,
-        "lost": 1,
-        "goalsFor": 16,
-        "goalsAgainst": 12,
-        "prefectureRank": 4,
-        "goalDiff": 2,
-        "leagueRank": 2
+        "won": 6,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 22,
+        "goalsAgainst": 6,
+        "leagueRank": 2,
+        "rank": 4,
+        "prefectureRank": 4
       },
       {
         "id": "ng001",
@@ -9578,16 +9578,16 @@
         "leagueRank": 7
       },
       {
-        "id": "ng008",
-        "name": "九州文化学園高校",
+        "id": "ng004",
+        "name": "創成館高校",
         "league": "長崎県1部",
         "rank": 6,
-        "points": 16,
-        "played": 7,
+        "points": 17,
+        "played": 8,
         "won": 5,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 1,
-        "goalsFor": 20,
+        "goalsFor": 16,
         "goalsAgainst": 12,
         "prefectureRank": 6,
         "goalDiff": 2,
@@ -9629,12 +9629,12 @@
         "league": "長崎県1部",
         "rank": 9,
         "points": 13,
-        "played": 7,
+        "played": 8,
         "won": 3,
         "drawn": 4,
-        "lost": 0,
-        "goalsFor": 11,
-        "goalsAgainst": 7,
+        "lost": 1,
+        "goalsFor": 13,
+        "goalsAgainst": 11,
         "prefectureRank": 9,
         "goalDiff": 2,
         "leagueRank": 6
@@ -10879,7 +10879,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-18 18:58",
+    "lastUpdated": "2026-05-20 00:37",
     "year": 2026,
     "updatedCount": 583
   }
