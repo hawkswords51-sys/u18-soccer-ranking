@@ -488,7 +488,7 @@ def render_pref_distribution_html(teams, current_slug):
 def render_related_leagues_html(current_slug, current_category):
     """関連リーグへのリンク (現在のリーグ以外を全部)"""
     items = []
-    for league_name, (slug, label, category, _desc) in LEAGUE_DEFS.items():
+    for league_name, (slug, label, category, _desc, _overview) in LEAGUE_DEFS.items():
         if slug == current_slug:
             continue
         cls = f"league-link league-link--{category}"
