@@ -182,7 +182,7 @@ def render_tournament_html(pref_id, teams):
             after_idx = idx + len(name)
             if after_idx < len(s):
                 # 既知の「次に続いても境界とみなせる」マーカー
-                winner_markers = ("勝者", "ブロック", "側勝者", "系勝者", "シード")
+                winner_markers = ("勝者", "の勝者", "ブロック", "側勝者", "系勝者", "シード")
                 for marker in winner_markers:
                     if s[after_idx:after_idx + len(marker)] == marker:
                         return True
