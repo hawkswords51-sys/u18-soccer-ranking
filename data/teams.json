@@ -1734,21 +1734,19 @@
         "leagueRank": 5
       },
       {
-        "name": "矢板中央高校2nd",
+        "id": "to009",
+        "name": "國學院栃木高校",
         "league": "栃木U-18ユースリーグ",
-        "points": 16,
-        "played": 7,
-        "won": 5,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 25,
-        "goalsAgainst": 9,
-        "leagueRank": 2,
         "rank": 3,
+        "points": 19,
+        "played": 7,
+        "won": 6,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 22,
+        "goalsAgainst": 5,
         "prefectureRank": 3,
-        "aliases": [
-          "矢板中央B"
-        ]
+        "leagueRank": 2
       },
       {
         "id": "to002",
@@ -1767,19 +1765,21 @@
         "leagueRank": 9
       },
       {
-        "id": "to009",
-        "name": "國學院栃木高校",
+        "name": "矢板中央高校2nd",
         "league": "栃木U-18ユースリーグ",
-        "rank": 5,
         "points": 16,
-        "played": 6,
+        "played": 7,
         "won": 5,
         "drawn": 1,
-        "lost": 0,
-        "goalsFor": 17,
-        "goalsAgainst": 4,
+        "lost": 1,
+        "goalsFor": 25,
+        "goalsAgainst": 9,
+        "leagueRank": 3,
+        "rank": 5,
         "prefectureRank": 5,
-        "leagueRank": 3
+        "aliases": [
+          "矢板中央B"
+        ]
       },
       {
         "id": "to006",
@@ -1815,12 +1815,12 @@
         "name": "栃木SC U-18 2nd",
         "league": "栃木U-18ユースリーグ",
         "points": 7,
-        "played": 7,
+        "played": 8,
         "won": 2,
         "drawn": 1,
-        "lost": 4,
-        "goalsFor": 12,
-        "goalsAgainst": 16,
+        "lost": 5,
+        "goalsFor": 13,
+        "goalsAgainst": 21,
         "leagueRank": 6,
         "rank": 8,
         "prefectureRank": 8,
@@ -7444,20 +7444,23 @@
     "region": "中国",
     "teams": [
       {
-        "name": "岡山学芸館高校2nd",
+        "id": "ok009",
+        "name": "作陽学園高校2nd",
         "league": "岡山県1部",
-        "points": 19,
-        "played": 7,
-        "won": 6,
-        "drawn": 1,
-        "lost": 0,
-        "goalsFor": 19,
-        "goalsAgainst": 4,
-        "leagueRank": 1,
         "rank": 1,
+        "points": 25,
+        "played": 10,
+        "won": 8,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 28,
+        "goalsAgainst": 7,
         "prefectureRank": 1,
+        "goalDiff": 3,
+        "leagueRank": 1,
         "aliases": [
-          "岡山学芸館B"
+          "作陽B",
+          "作陽学園高校B"
         ]
       },
       {
@@ -7496,23 +7499,20 @@
         "leagueRank": 12
       },
       {
-        "id": "ok009",
-        "name": "作陽学園高校2nd",
+        "name": "岡山学芸館高校2nd",
         "league": "岡山県1部",
-        "rank": 4,
         "points": 19,
-        "played": 7,
+        "played": 9,
         "won": 6,
         "drawn": 1,
-        "lost": 0,
-        "goalsFor": 13,
-        "goalsAgainst": 3,
-        "prefectureRank": 4,
-        "goalDiff": 3,
+        "lost": 2,
+        "goalsFor": 19,
+        "goalsAgainst": 13,
         "leagueRank": 2,
+        "rank": 4,
+        "prefectureRank": 4,
         "aliases": [
-          "作陽B",
-          "作陽学園高校B"
+          "岡山学芸館B"
         ]
       },
       {
@@ -7535,8 +7535,8 @@
         ]
       },
       {
-        "id": "ok008",
-        "name": "ファジアーノ岡山U-18 2nd",
+        "id": "ok005",
+        "name": "創志学園高校",
         "league": "岡山県1部",
         "rank": 6,
         "points": 16,
@@ -7544,15 +7544,11 @@
         "won": 5,
         "drawn": 1,
         "lost": 1,
-        "goalsFor": 19,
-        "goalsAgainst": 8,
+        "goalsFor": 15,
+        "goalsAgainst": 7,
         "prefectureRank": 6,
-        "goalDiff": 6,
-        "leagueRank": 3,
-        "aliases": [
-          "ファジ岡山U-18B",
-          "ファジアーノ岡山U-18B"
-        ]
+        "goalDiff": 3,
+        "leagueRank": 3
       },
       {
         "id": "ok006",
@@ -7571,20 +7567,24 @@
         "leagueRank": 9
       },
       {
-        "id": "ok005",
-        "name": "創志学園高校",
+        "id": "ok008",
+        "name": "ファジアーノ岡山U-18 2nd",
         "league": "岡山県1部",
         "rank": 8,
         "points": 16,
-        "played": 7,
+        "played": 8,
         "won": 5,
         "drawn": 1,
-        "lost": 1,
-        "goalsFor": 15,
-        "goalsAgainst": 7,
+        "lost": 2,
+        "goalsFor": 19,
+        "goalsAgainst": 18,
         "prefectureRank": 8,
-        "goalDiff": 3,
-        "leagueRank": 4
+        "goalDiff": 6,
+        "leagueRank": 4,
+        "aliases": [
+          "ファジ岡山U-18B",
+          "ファジアーノ岡山U-18B"
+        ]
       },
       {
         "id": "ok004",
@@ -7603,6 +7603,22 @@
         "leagueRank": 10
       },
       {
+        "id": "ok010",
+        "name": "倉敷高校",
+        "league": "岡山県1部",
+        "rank": 10,
+        "points": 10,
+        "played": 10,
+        "won": 3,
+        "drawn": 1,
+        "lost": 6,
+        "goalsFor": 21,
+        "goalsAgainst": 13,
+        "prefectureRank": 10,
+        "goalDiff": -2,
+        "leagueRank": 5
+      },
+      {
         "name": "玉野光南高校2nd",
         "league": "岡山県1部",
         "points": 9,
@@ -7612,18 +7628,19 @@
         "lost": 4,
         "goalsFor": 13,
         "goalsAgainst": 18,
-        "leagueRank": 5,
-        "rank": 10,
-        "prefectureRank": 10,
+        "leagueRank": 6,
+        "rank": 11,
+        "prefectureRank": 11,
         "aliases": [
           "玉野光南B"
         ]
       },
       {
-        "id": "ok010",
-        "name": "倉敷高校",
+        "id": "ok014",
+        "name": "倉敷古城池高校",
         "league": "岡山県1部",
-        "rank": 11,
+        "rank": 12,
+        "prefectureRank": 12,
         "points": 7,
         "played": 7,
         "won": 1,
@@ -7631,16 +7648,15 @@
         "lost": 2,
         "goalsFor": 10,
         "goalsAgainst": 11,
-        "prefectureRank": 11,
-        "goalDiff": -2,
-        "leagueRank": 6
+        "goalDiff": -4,
+        "leagueRank": 7
       },
       {
         "id": "ok012",
         "name": "山陽高校",
         "league": "岡山県1部",
-        "rank": 12,
-        "prefectureRank": 12,
+        "rank": 13,
+        "prefectureRank": 13,
         "points": 6,
         "played": 7,
         "won": 2,
@@ -7649,7 +7665,7 @@
         "goalsFor": 6,
         "goalsAgainst": 12,
         "goalDiff": -1,
-        "leagueRank": 7,
+        "leagueRank": 8,
         "aliases": [
           "山陽学園"
         ]
@@ -7664,9 +7680,9 @@
         "lost": 5,
         "goalsFor": 5,
         "goalsAgainst": 14,
-        "leagueRank": 8,
-        "rank": 13,
-        "prefectureRank": 13,
+        "leagueRank": 9,
+        "rank": 14,
+        "prefectureRank": 14,
         "aliases": [
           "就実B"
         ]
@@ -7675,31 +7691,15 @@
         "id": "ok013",
         "name": "朝日塾高校",
         "league": "岡山県1部",
-        "rank": 14,
-        "prefectureRank": 14,
-        "points": 3,
-        "played": 7,
-        "won": 1,
-        "drawn": 0,
-        "lost": 6,
-        "goalsFor": 4,
-        "goalsAgainst": 17,
-        "goalDiff": -4,
-        "leagueRank": 9
-      },
-      {
-        "id": "ok014",
-        "name": "倉敷古城池高校",
-        "league": "岡山県1部",
         "rank": 15,
         "prefectureRank": 15,
-        "points": 1,
-        "played": 7,
-        "won": 0,
-        "drawn": 1,
-        "lost": 6,
-        "goalsFor": 3,
-        "goalsAgainst": 13,
+        "points": 3,
+        "played": 8,
+        "won": 1,
+        "drawn": 0,
+        "lost": 7,
+        "goalsFor": 4,
+        "goalsAgainst": 27,
         "goalDiff": -4,
         "leagueRank": 10
       }
@@ -10880,7 +10880,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-20 08:16",
+    "lastUpdated": "2026-05-20 14:04",
     "year": 2026,
     "updatedCount": 583
   }
