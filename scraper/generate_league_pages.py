@@ -654,7 +654,9 @@ __TEAM_ROWS__
 __PREF_DISTRIBUTION__
         </div>
       </section>
-      
+
+__FINAL_PATH_SECTION__
+
       <section class="lp-section lp-past-champions">
         <h2><i class="fas fa-trophy"></i> 過去5年の優勝校</h2>
 __PAST_CHAMPIONS__
@@ -793,7 +795,52 @@ def generate_league_page(league_name, slug, label, category, description, teams)
 
     pref_distribution = render_pref_distribution_html(sorted_teams, slug)
     related_leagues = render_related_leagues_html(slug, category)
-    past_champions_html = render_past_champions_html(slug)  # ← この行を追加
+   past_champions_html = render_past_champions_html(slug)
+    
+    # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
+    if slug == "premier-east":
+        final_path_section = """
+      <section class="lp-section lp-final-path" style="background:linear-gradient(135deg, #fef3c7, #fbbf24); border-radius:12px; padding:24px; margin:24px 0; border:2px solid #f59e0b;">
+        <h2 style="color:#92400e; margin-top:0;"><i class="fas fa-trophy"></i> プレミアファイナルへの道</h2>
+        <p style="color:#78350f; line-height:1.8;">
+          プレミアリーグEASTの1位は、毎年12月開催の<strong>プレミアファイナル</strong>で
+          プレミアリーグWEST 1位と対戦し、<strong>全国王者</strong>を決定します。
+        </p>
+        <p style="color:#78350f; line-height:1.8;">
+          直近のEAST代表：<br>
+          <strong>2025: 鹿島アントラーズユース</strong>（→PK勝ちで全国優勝🏆）<br>
+          2024: 横浜FCユース / 2023: 青森山田 / 2022: 川崎フロンターレU-18 / 2021: 青森山田
+        </p>
+        <p style="margin-top:16px; text-align:center;">
+          <a href="/leagues/premier-final/" style="background:#92400e; color:white; padding:12px 28px; border-radius:8px; text-decoration:none; font-weight:600; display:inline-block;">
+            🏆 歴代ファイナル結果を見る
+          </a>
+        </p>
+      </section>
+"""
+    elif slug == "premier-west":
+        final_path_section = """
+      <section class="lp-section lp-final-path" style="background:linear-gradient(135deg, #fef3c7, #fbbf24); border-radius:12px; padding:24px; margin:24px 0; border:2px solid #f59e0b;">
+        <h2 style="color:#92400e; margin-top:0;"><i class="fas fa-trophy"></i> プレミアファイナルへの道</h2>
+        <p style="color:#78350f; line-height:1.8;">
+          プレミアリーグWESTの1位は、毎年12月開催の<strong>プレミアファイナル</strong>で
+          プレミアリーグEAST 1位と対戦し、<strong>全国王者</strong>を決定します。
+        </p>
+        <p style="color:#78350f; line-height:1.8;">
+          直近のWEST代表：<br>
+          <strong>2025: ヴィッセル神戸U-18</strong><br>
+          2024: 大津高校（→全国優勝🏆）/ 2023: サンフレッチェ広島F.C.ユース / 2022: サガン鳥栖U-18 / 2021: サンフレッチェ広島F.C.ユース
+        </p>
+        <p style="margin-top:16px; text-align:center;">
+          <a href="/leagues/premier-final/" style="background:#92400e; color:white; padding:12px 28px; border-radius:8px; text-decoration:none; font-weight:600; display:inline-block;">
+            🏆 歴代ファイナル結果を見る
+          </a>
+        </p>
+      </section>
+"""
+    else:
+        final_path_section = ""
+    
     return (
         LEAGUE_PAGE_TEMPLATE
         .replace("__GA_ID__", GA_ID)
@@ -814,7 +861,8 @@ def generate_league_page(league_name, slug, label, category, description, teams)
         .replace("__PREF_DISTRIBUTION__", pref_distribution)
         .replace("__FAQ_HTML__", faq_html)
         .replace("__RELATED_LEAGUES__", related_leagues)
-        .replace("__PAST_CHAMPIONS__", past_champions_html)  # ← この行を追加
+        .replace("__PAST_CHAMPIONS__", past_champions_html)
+        .replace("__FINAL_PATH_SECTION__", final_path_section)
     )
 
 def render_premier_final_card(final):
