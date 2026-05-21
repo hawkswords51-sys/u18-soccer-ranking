@@ -205,6 +205,8 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("ehime", "松山工業高校"):         ["松山工"],
     ("ehime", "松山商業高校"):         ["松山商"],
     ("kanagawa", "川崎市立橘高校"):    ["川崎橘A", "市立橘", "川崎橘高校"],
+    ("nagasaki", "長崎総合科学大学附属高校"):        ["長崎総科大附"],
+    ("nagasaki", "佐世保実業高校"):        ["佐世保実"],
 }
 
 # =====================================================================
@@ -244,6 +246,86 @@ def apply_manual_alias_additions(prefectures: dict) -> int:
                     count += len(added)
                     print(f"  add aliases: [{pref_id}] '{canonical}' ← {added}")
                 break
+    return count
+
+# ============================================================
+# 自動エイリアス生成（商業/農業/工業 系の略称）
+# ============================================================
+
+# 自動展開する業種パターン（必要なら拡張可能）
+INDUSTRIAL_SCHOOL_SUFFIXES = ("商業", "農業", "工業")
+
+
+def generate_industrial_school_aliases(team_name: str) -> list[str]:
+    """
+    商業/農業/工業 系の高校名から略称を自動生成。
+
+    例:
+        "佐賀商業高校"   → ["佐賀商", "佐賀商業", "佐賀商業高等学校", "佐賀商高", "佐賀商高校"]
+        "岐阜工業高校"   → ["岐阜工", "岐阜工業", "岐阜工業高等学校", "岐阜工高", "岐阜工高校"]
+        "鳥栖商業"       → ["鳥栖商", "鳥栖商業高校", "鳥栖商業高等学校", "鳥栖商高", "鳥栖商高校"]
+    
+    元のチーム名と一致するものは結果から除外して返します。
+    """
+    aliases: set[str] = set()
+    
+    # 「高等学校」「高校」を一度取り除いて、業種部分を判定
+    base = team_name
+    if base.endswith("高等学校"):
+        base = base[:-4]
+    elif base.endswith("高校"):
+        base = base[:-2]
+    
+    # base の末尾が 商業 / 農業 / 工業 のいずれかか
+    for industry in INDUSTRIAL_SCHOOL_SUFFIXES:
+        if not base.endswith(industry):
+            continue
+        
+        stem = base[:-2]                # "佐賀商業" → "佐賀"
+        short_kanji = industry[0]        # "商" / "農" / "工"
+        
+        # 各種略称を生成
+        aliases.add(f"{stem}{short_kanji}")              # 佐賀商
+        aliases.add(f"{stem}{short_kanji}高校")          # 佐賀商高校
+        aliases.add(f"{stem}{short_kanji}高")            # 佐賀商高
+        aliases.add(f"{stem}{industry}")                 # 佐賀商業
+        aliases.add(f"{stem}{industry}高校")             # 佐賀商業高校
+        aliases.add(f"{stem}{industry}高等学校")         # 佐賀商業高等学校
+        break  # 1パターンマッチしたら終了
+    
+    # 元の名前を除外
+    aliases.discard(team_name)
+    return sorted(aliases)
+
+
+def apply_auto_industrial_aliases(prefectures: dict) -> int:
+    """
+    全47都道府県のチームを走査して、商業/農業/工業 系の高校に
+    自動生成エイリアスを追加する。
+    """
+    count = 0
+    for pref_id, pref in prefectures.items():
+        if not isinstance(pref, dict):
+            continue
+        for t in pref.get("teams", []):
+            if not isinstance(t, dict):
+                continue
+            canonical = t.get("name", "")
+            if not canonical:
+                continue
+            auto_aliases = generate_industrial_school_aliases(canonical)
+            if not auto_aliases:
+                continue
+            existing = t.get("aliases", []) or []
+            added = []
+            for a in auto_aliases:
+                if a not in existing:
+                    existing.append(a)
+                    added.append(a)
+            if added:
+                t["aliases"] = existing
+                count += len(added)
+                print(f"  auto-add: [{pref_id}] '{canonical}' ← {added}")
     return count
 
 
@@ -370,6 +452,12 @@ def main():
     print("\n=== 手動補正 (alias 追加) ===")
     aliased = apply_manual_alias_additions(data)
     print(f"→ {aliased} 件 alias 追加")
+
+     # ↓↓↓ ここから追加 ↓↓↓
+    print("\n=== 自動補正 (商業/農業/工業 略称) ===")
+    auto_aliased = apply_auto_industrial_aliases(data)
+    print(f"→ {auto_aliased} 件 自動 alias 追加")
+    # ↑↑↑ ここまで追加 ↑↑↑
 
     print("\n=== エイリアス重複検出 ===")
     dups = find_alias_duplicates(data)
