@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """
-チーム個別プロフィールページ生成スクリプト
+チーム個別プロフィールページ生成スクリプト v2
 ==============================================
+v2 の変更点:
+  - 既存サイトの css/style.css を共有してヘッダーを完全統一
+  - Font Awesome + Noto Sans JP を使用
+  - ダークモード切替ボタン（.theme-toggle）追加
+  - localStorage ベースの dark/light/auto 切り替え
+  - 既存 CSS 変数（--bg-white, --primary-color 等）を活用
+
 data/team-profiles/*.md を読み込んで teams/{id}/index.html を生成。
 sitemap.xml にも /teams/{id}/ の URL を追加する。
 
-使い方:
-    python scraper/generate_team_pages.py
-
 依存:
-    - pyyaml
-    - markdown
-    （workflow.yml で既に pip install 済み）
+  - pyyaml
+  - markdown
 """
 
 import json
@@ -37,12 +40,11 @@ GA_ID = "G-KTPR94SPYS"
 ADSENSE_CLIENT = "ca-pub-6953440022497606"
 DOMAIN = "https://u18-soccer.com"
 
-# JST 現在時刻
 JST = timezone(timedelta(hours=9))
 
 
 # =========================================================================
-# HTML テンプレート
+# HTML テンプレート（既存サイトの style.css を活用）
 # =========================================================================
 
 TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
@@ -108,210 +110,259 @@ __SCHEMA_TEAM__
 __SCHEMA_BREADCRUMB__
   </script>
 
+  <!-- ===== フォント / アイコン / スタイル ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- ダークモード初期化 (FOUC 防止) -->
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- チームページ固有スタイル（既存 CSS 変数を活用） -->
   <style>
-    :root {
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-card: rgba(30, 41, 59, 0.5);
-      --accent-blue: #60a5fa;
-      --accent-blue-dark: #1e40af;
-      --accent-gold: #fbbf24;
-      --text-primary: #e2e8f0;
-      --text-secondary: #94a3b8;
-      --border: rgba(96, 165, 250, 0.2);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
-                   'Yu Gothic UI', 'Meiryo', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-    }
-    a { color: var(--accent-blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .site-header {
-      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-      padding: 1rem 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .site-header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .site-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: white;
-    }
-    .site-header nav {
-      display: flex;
-      gap: 1rem;
-    }
-    .site-header nav a {
-      color: rgba(255, 255, 255, 0.95);
-    }
-    main.container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem 3rem;
-    }
-    .breadcrumb {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin: 1rem 0;
-    }
-    .breadcrumb a { color: var(--accent-blue); }
-    .breadcrumb span { margin: 0 0.4rem; opacity: 0.6; }
+    /* ===== チームページ ヒーロー ===== */
     .team-hero {
-      background: linear-gradient(135deg, var(--accent-blue-dark) 0%, #2563eb 100%);
+      background: linear-gradient(135deg, var(--primary-color), #004999);
       color: white;
-      padding: 2rem 1.5rem;
-      border-radius: 1rem;
-      margin: 1.5rem 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      padding: 28px 24px;
+      border-radius: 12px;
+      margin: 16px 0 24px;
+      box-shadow: var(--shadow);
     }
     .team-hero h1 {
-      font-size: 1.8rem;
-      margin: 0 0 0.75rem 0;
-      line-height: 1.3;
+      font-size: 1.6rem;
+      color: white;
+      margin: 0 0 10px;
+      line-height: 1.4;
+      font-weight: 700;
     }
-    .team-hero .lead {
-      opacity: 0.95;
-      font-size: 0.95rem;
+    .team-hero p.team-lead {
       margin: 0;
+      opacity: 0.95;
+      line-height: 1.7;
+      font-size: 0.95rem;
     }
+
+    /* ===== チーム統計カード ===== */
     .team-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
+      gap: 12px;
+      margin: 16px 0 28px;
     }
     .team-stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      padding: 1rem;
+      background: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px 14px;
       text-align: center;
+      box-shadow: var(--shadow);
     }
     .team-stat-label {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
+      color: var(--text-light);
+      font-size: 0.82rem;
+      margin-bottom: 6px;
     }
     .team-stat-value {
-      color: var(--accent-blue);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-top: 0.3rem;
+      color: var(--primary-color);
+      font-size: 1.05rem;
+      font-weight: 700;
       word-break: break-word;
     }
+
+    /* ===== チーム本文 ===== */
     .team-content {
+      background: var(--bg-white);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: var(--shadow);
       font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-dark);
     }
     .team-content h2 {
-      color: var(--accent-blue);
-      margin-top: 2.5rem;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
-      font-size: 1.35rem;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 8px;
+      margin: 32px 0 14px;
+    }
+    .team-content h2:first-child {
+      margin-top: 0;
     }
     .team-content h3 {
-      color: #93c5fd;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
       font-size: 1.1rem;
+      color: var(--text-dark);
+      border-left: 4px solid var(--primary-color);
+      padding-left: 10px;
+      margin: 24px 0 10px;
     }
-    .team-content p { margin: 0.75rem 0; }
-    .team-content ul { padding-left: 1.5rem; }
-    .team-content li { margin: 0.3rem 0; }
-    .team-content strong { color: #fde68a; font-weight: 600; }
+    .team-content p {
+      margin: 12px 0;
+    }
     .team-content table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1rem 0;
-      background: rgba(15, 23, 42, 0.6);
-      border-radius: 0.5rem;
-      overflow: hidden;
-      font-size: 0.9rem;
+      margin: 14px 0 20px;
+      font-size: 0.88rem;
+      overflow-x: auto;
+      display: block;
+    }
+    .team-content table thead,
+    .team-content table tbody,
+    .team-content table tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
     }
     .team-content th, .team-content td {
-      padding: 0.6rem 0.8rem;
-      border-bottom: 1px solid var(--border);
+      border: 1px solid var(--border-color);
+      padding: 8px 10px;
       text-align: left;
       vertical-align: top;
+      word-break: break-word;
     }
     .team-content th {
-      background: rgba(30, 64, 175, 0.3);
-      color: #cbd5e1;
+      background: var(--primary-color);
+      color: white;
       font-weight: 600;
     }
+    .team-content strong {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
     .team-content blockquote {
-      border-left: 4px solid var(--accent-gold);
-      padding: 0.5rem 1rem;
-      margin: 1rem 0;
-      background: rgba(251, 191, 36, 0.08);
+      border-left: 4px solid var(--secondary-color);
+      background: rgba(255, 215, 0, 0.08);
+      padding: 12px 18px;
+      margin: 16px 0;
       font-style: italic;
-      color: #fef3c7;
+      border-radius: 0 8px 8px 0;
     }
-    .related-links {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 2px solid var(--border);
+    .team-content ul, .team-content ol {
+      padding-left: 24px;
+      margin: 10px 0;
     }
-    .related-links h2 {
-      color: var(--accent-blue);
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+    .team-content li {
+      margin: 5px 0;
     }
-    .site-footer {
-      max-width: 960px;
-      margin: 3rem auto 1rem;
-      padding: 1.5rem;
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
+    .team-content a {
+      color: var(--primary-color);
+      text-decoration: underline;
     }
-    @media (max-width: 640px) {
-      .team-hero h1 { font-size: 1.4rem; }
-      .team-hero { padding: 1.5rem 1rem; }
-      .team-content h2 { font-size: 1.2rem; }
+    .team-content a:hover {
+      color: #004999;
+    }
+
+    /* ダークモード対応 (blockquote の背景色) */
+    [data-theme="dark"] .team-content blockquote {
+      background: rgba(251, 191, 36, 0.10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .team-content blockquote {
+        background: rgba(251, 191, 36, 0.10);
+      }
+    }
+
+    /* モバイル調整 */
+    @media (max-width: 768px) {
+      .team-hero {
+        padding: 20px 16px;
+        margin: 12px 0 18px;
+      }
+      .team-hero h1 {
+        font-size: 1.3rem;
+      }
+      .team-hero p.team-lead {
+        font-size: 0.9rem;
+      }
+      .team-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .team-stat-card {
+        padding: 12px 8px;
+      }
+      .team-stat-label {
+        font-size: 0.75rem;
+      }
+      .team-stat-value {
+        font-size: 0.92rem;
+      }
+      .team-content {
+        padding: 18px 16px;
+        font-size: 0.9rem;
+      }
+      .team-content h2 {
+        font-size: 1.15rem;
+      }
+      .team-content h3 {
+        font-size: 1rem;
+      }
+      .team-content table {
+        font-size: 0.82rem;
+      }
+      .team-content th, .team-content td {
+        padding: 6px 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <div class="site-title">⚽ 高校サッカー順位確認システム</div>
-      <nav>
-        <a href="/">🏠 ホーム</a>
-        <a href="/leagues/">🏆 リーグ一覧</a>
-      </nav>
+  <!-- ===== ヘッダー (既存サイトと統一) ===== -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="site-title">
+          <i class="fas fa-futbol"></i>
+          高校サッカー順位確認システム
+        </h1>
+        <nav class="nav">
+          <a href="/" class="nav-link">
+            <i class="fas fa-home"></i>
+            ホーム
+          </a>
+          <a href="/leagues/" class="nav-link">
+            <i class="fas fa-trophy"></i>
+            リーグ
+          </a>
+          <a href="/blog/" class="nav-link">
+            <i class="fas fa-newspaper"></i>
+            ブログ
+          </a>
+          <button class="theme-toggle" id="themeToggleBtn"
+                  aria-label="ダークモード切替"
+                  title="ダークモード切替">
+            <i class="fas fa-moon" id="themeToggleIcon"></i>
+          </button>
+        </nav>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <nav class="breadcrumb">
       <a href="/">ホーム</a>
-      <span>›</span>
+      <span class="breadcrumb__sep">›</span>
       <a href="/prefectures/__PREFECTURE_ID__/">__PREFECTURE_NAME__</a>
-      <span>›</span>
+      <span class="breadcrumb__sep">›</span>
       <span>__TEAM_NAME__</span>
     </nav>
 
     <section class="team-hero">
       <h1>__TEAM_NAME__ U-18 高校サッカー</h1>
-      <p class="lead">__LEAD__</p>
+      <p class="team-lead">__LEAD__</p>
     </section>
 
     <section class="team-stats">
@@ -338,9 +389,55 @@ __BODY_HTML__
     </article>
   </main>
 
-  <footer class="site-footer">
-    <p>© 高校サッカー順位確認システム / Dr.Kazu Soccer (<a href="https://x.com/DrKazuSoccer">@DrKazuSoccer</a>)</p>
+  <footer class="footer">
+    <div class="container">
+      <p>© 高校サッカー順位確認システム / Dr.Kazu Soccer (<a href="https://x.com/DrKazuSoccer" style="color: #93c5fd;">@DrKazuSoccer</a>)</p>
+      <p class="footer-note"><i class="fas fa-database"></i> 順位データは毎日自動更新</p>
+    </div>
   </footer>
+
+  <!-- ダークモード切替ロジック -->
+  <script>
+    (function() {
+      var btn = document.getElementById('themeToggleBtn');
+      var icon = document.getElementById('themeToggleIcon');
+      if (!btn || !icon) return;
+
+      function getCurrentTheme() {
+        var attr = document.documentElement.getAttribute('data-theme');
+        if (attr === 'dark' || attr === 'light') return attr;
+        // 属性なし: システム設定に従う
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+
+      function updateIcon() {
+        var t = getCurrentTheme();
+        icon.className = (t === 'dark') ? 'fas fa-sun' : 'fas fa-moon';
+      }
+
+      btn.addEventListener('click', function() {
+        var current = getCurrentTheme();
+        var next = (current === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateIcon();
+      });
+
+      // システム設定変更を検知してアイコン更新（手動設定がない場合のみ）
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+          if (!document.documentElement.getAttribute('data-theme')) {
+            updateIcon();
+          }
+        });
+      }
+
+      updateIcon();
+    })();
+  </script>
 </body>
 </html>
 """
@@ -381,9 +478,9 @@ def build_lead(meta: dict) -> str:
     parts_text = []
     if pref:
         parts_text.append(pref)
-    parts_text.append(f"{name}サッカー部")
+    parts_text.append(f"{name}サッカー部は")
     if league:
-        parts_text.append(f"は {league} 所属")
+        parts_text.append(f"{league} 所属")
     if founded:
         parts_text.append(f"（{founded}年創部）")
     return "".join(parts_text) + "。最新の順位・歴代タイトル・OB選手・育成哲学などを徹底まとめ。"
@@ -463,7 +560,6 @@ def build_keywords(meta: dict) -> str:
         "高円宮杯", "プレミアリーグ", "プリンスリーグ",
         league, pref, "順位", "成績", "OB", "プロ選手",
     ]
-    # 空白除去 & 重複除外
     seen = set()
     out = []
     for p in parts:
@@ -479,7 +575,6 @@ def render_team_page(profile: dict) -> str:
     meta = profile["meta"]
     body_md = profile["body_md"]
 
-    # markdown → HTML（テーブル拡張あり）
     md = markdown.Markdown(extensions=["tables", "fenced_code", "nl2br", "sane_lists"])
     body_html = md.convert(body_md)
 
@@ -522,14 +617,12 @@ def update_sitemap(profiles: list[dict]) -> None:
 
     content = SITEMAP_FILE.read_text(encoding="utf-8")
 
-    # 既存の /teams/ URL エントリを削除
     pattern = re.compile(
         r'\s*<url>\s*<loc>[^<]*?/teams/[^<]*?</loc>.*?</url>',
         re.DOTALL
     )
     content_cleaned = pattern.sub('', content)
 
-    # 新しい /teams/ URL エントリを生成
     today = datetime.now(JST).strftime("%Y-%m-%d")
     new_entries = []
     for profile in profiles:
@@ -559,7 +652,7 @@ def update_sitemap(profiles: list[dict]) -> None:
 def main() -> int:
     if not PROFILES_DIR.exists():
         print(f"[ERROR] {PROFILES_DIR} が見つかりません。スキップします。")
-        return 0  # エラーで止めない
+        return 0
 
     md_files = sorted(PROFILES_DIR.glob("*.md"))
     print(f"[Teams] team-profiles ディレクトリ: {len(md_files)} ファイル")
@@ -590,7 +683,6 @@ def main() -> int:
         (out_dir / "index.html").write_text(html, encoding="utf-8")
         print(f"  [OK] {profile['meta'].get('name')} → /teams/{team_id}/")
 
-    # sitemap.xml 更新
     update_sitemap(profiles)
 
     print(f"[Teams] 完了")
