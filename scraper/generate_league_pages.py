@@ -176,7 +176,65 @@ LEAGUE_DEFS = {
     ),
 }
 
+# =========================================================================
+# Phase D: チーム個別ページへのリンク用 (data/team-profiles/*.md からマップ構築)
+# =========================================================================
 
+_TEAM_PROFILE_MAP_CACHE = None
+
+
+def _load_team_profile_map() -> dict:
+    """data/team-profiles/*.md から {チーム名: id} のマップを構築。"""
+    import yaml
+    profiles_dir = BASE_DIR / "data" / "team-profiles"
+    team_map = {}
+    if not profiles_dir.exists():
+        return team_map
+    for md_file in profiles_dir.glob("*.md"):
+        try:
+            content = md_file.read_text(encoding="utf-8")
+            if not content.startswith("---"):
+                continue
+            parts = content.split("---", 2)
+            if len(parts) < 3:
+                continue
+            meta = yaml.safe_load(parts[1])
+            if not meta:
+                continue
+            team_id = meta.get("id")
+            team_name = meta.get("name")
+            if team_id and team_name:
+                team_map[team_name] = team_id
+                short_name = meta.get("short_name")
+                if short_name and short_name != team_name:
+                    team_map[short_name] = team_id
+        except Exception as e:
+            print(f"  [WARN] team-profile {md_file.name} の読み込みエラー: {e}")
+    return team_map
+
+
+def get_team_profile_map() -> dict:
+    """初回呼び出し時にマップを構築（遅延読み込み）"""
+    global _TEAM_PROFILE_MAP_CACHE
+    if _TEAM_PROFILE_MAP_CACHE is None:
+        _TEAM_PROFILE_MAP_CACHE = _load_team_profile_map()
+        if _TEAM_PROFILE_MAP_CACHE:
+            print(f"[Phase D・リーグ] チームプロフィール: {len(_TEAM_PROFILE_MAP_CACHE)} 件のリンクマップを構築")
+    return _TEAM_PROFILE_MAP_CACHE
+
+
+def render_team_name_with_link(team_name: str) -> str:
+    """プロフィールページがあるチームは <a> でラップ、なければ format のみ"""
+    formatted = format_team_name(team_name)
+    team_map = get_team_profile_map()
+    team_id = team_map.get(team_name)
+    if team_id:
+        return (
+            f'<a href="/teams/{team_id}/" class="team-profile-link">'
+            f'{formatted}</a>'
+        )
+    return formatted
+    
 # ============================================================
 # ヘルパー
 # ============================================================
