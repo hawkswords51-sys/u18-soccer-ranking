@@ -305,7 +305,7 @@ def render_team_row_for_league(team, rank):
     rank_class = f"rank-{rank}" if rank <= 3 else "rank-other"
     return f"""        <tr>
           <td><span class="rank-badge {rank_class}">{rank}</span></td>
-          <td><strong>{format_team_name(team.get("name", "—"))}</strong></td>
+          <td><strong>{render_team_name_with_link(team.get("name", "—"))}</strong></td>
           <td><a href="/prefectures/{pref_id}/" class="league-pref-link">{html_escape(pref_name)}</a></td>
           <td><strong>{points}</strong></td>
           <td>{played}</td>
