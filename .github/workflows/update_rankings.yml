@@ -146,7 +146,7 @@ jobs:
           # SEO ランディングページと sitemap
           if [ -d prefectures ]; then git add prefectures; fi
           if [ -d leagues ]; then git add leagues; fi
-          if [ -d teams ]; then git add teams; fi          ← 追加
+          if [ -d teams ]; then git add teams; fi
           if [ -d blog ]; then git add blog; fi
           if [ -d blog-source ]; then git add blog-source; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
