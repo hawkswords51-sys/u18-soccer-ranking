@@ -5127,3 +5127,20 @@ details[open] > summary > .league-accordion__chevron {
   background: rgba(251, 146, 60, 0.22);
   color: #fdba74;
 }
+
+/* =====================================================================
+   ★ Phase D: チーム個別ページへのリンク (順位表内)
+   - 通常時は目立たない（点線下線のみ）
+   - ホバーで青色＋実線下線
+   ===================================================================== */
+.team-profile-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--primary-color);
+    transition: color 0.15s ease, border-bottom-style 0.15s ease;
+    padding-bottom: 1px;
+}
+.team-profile-link:hover {
+    color: var(--primary-color);
+    border-bottom-style: solid;
+}
