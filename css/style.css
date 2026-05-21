@@ -5129,18 +5129,69 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* =====================================================================
-   ★ Phase D: チーム個別ページへのリンク (順位表内)
-   - 通常時は目立たない（点線下線のみ）
-   - ホバーで青色＋実線下線
+   ★ Phase D: チーム個別ページへのリンク (順位表内・改良版)
+   - チーム名の右に「詳細」バッジを表示
+   - リンクと分かりやすくしつつ、表のレイアウトを崩さない
    ===================================================================== */
 .team-profile-link {
-    color: inherit;
+    color: var(--primary-color);
     text-decoration: none;
-    border-bottom: 1px dotted var(--primary-color);
-    transition: color 0.15s ease, border-bottom-style 0.15s ease;
+    font-weight: 600;
+    border-bottom: 1px solid var(--primary-color);
     padding-bottom: 1px;
+    transition: color 0.15s ease, border-bottom-color 0.15s ease;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+}
+.team-profile-link::after {
+    content: "詳細";
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    border: none;
+    transition: background 0.15s ease;
+    flex-shrink: 0;
+    transform: translateY(-1px);
 }
 .team-profile-link:hover {
-    color: var(--primary-color);
-    border-bottom-style: solid;
+    color: #004999;
+    border-bottom-color: #004999;
+}
+.team-profile-link:hover::after {
+    background: #004999;
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .team-profile-link {
+    color: #60a5fa;
+    border-bottom-color: #60a5fa;
+}
+[data-theme="dark"] .team-profile-link::after {
+    background: #60a5fa;
+    color: #0f172a;
+}
+[data-theme="dark"] .team-profile-link:hover {
+    color: #93c5fd;
+    border-bottom-color: #93c5fd;
+}
+[data-theme="dark"] .team-profile-link:hover::after {
+    background: #93c5fd;
+}
+
+/* モバイル: バッジを少し小さく */
+@media (max-width: 768px) {
+    .team-profile-link {
+        gap: 4px;
+    }
+    .team-profile-link::after {
+        font-size: 0.55rem;
+        padding: 1px 4px;
+    }
 }
