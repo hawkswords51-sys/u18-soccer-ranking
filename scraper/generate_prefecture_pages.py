@@ -1174,12 +1174,11 @@ __SCHEMA_FAQ__
       <h1 class="lp-title">__PREF_NAME__ U-18 高校サッカー 順位表</h1>
 
       <p class="lp-intro">
-        __PREF_NAME__の高校サッカー部・クラブユース（U-18年代）所属
-        <strong>__TEAM_COUNT__チーム</strong>（高校 __HS_COUNT__校＋クラブユース __CY_COUNT__チーム）
-        の最新順位・成績情報。
-        高円宮杯JFA U-18サッカープレミアリーグ・プリンスリーグ・__PREF_NAME__リーグ1部の順位表を、
-        毎日最新データに自動更新しています（都道府県リーグは1部のみ掲載）。
-      </p>
+        __PREF_NAME__ U-18 年代の高校サッカー部 __HS_COUNT__校・クラブユース __CY_COUNT__チーム
+        （合計 <strong>__TEAM_COUNT__ チーム</strong>）の最新順位・試合結果を毎日自動更新中。
+        所属する最高位リーグは<strong>__TOP_LEAGUE__</strong>。
+        __NOTABLE_SENTENCE__
+     </p>
 
       <!-- 統計 -->
       <div class="stats-summary">
