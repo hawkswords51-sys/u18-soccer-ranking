@@ -695,6 +695,7 @@ __SCHEMA_FAQ__
       </div>
 
       <h2 class="section-title-lp">__LEAGUE_LABEL__ 順位表</h2>
+      __PROFILE_NOTICE__
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
         <table class="data-table">
           <thead>
@@ -917,6 +918,19 @@ def generate_league_page(league_name, slug, label, category, description, season
 """
     else:
         final_path_section = ""
+
+    # ★ Phase D-3: プレミアリーグの場合のみチームリンク案内を表示
+    if category == "premier":
+        profile_notice = (
+            '<div class="profile-notice">\n'
+            '  <i class="fas fa-info-circle"></i>\n'
+            '  <span>青色のチーム名（例：<strong>青森山田高校 ›</strong>）は'
+            '<strong>クリックでチーム詳細ページ</strong>に移動できます。'
+            '歴史・OB選手・育成哲学などをまとめています。</span>\n'
+            '</div>'
+        )
+    else:
+        profile_notice = ""
     
     return (
         LEAGUE_PAGE_TEMPLATE
@@ -941,6 +955,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__PAST_CHAMPIONS__", past_champions_html)
         .replace("__FINAL_PATH_SECTION__", final_path_section)
         .replace("__SEASON_OVERVIEW__", html_escape(season_overview))
+        .replace("__PROFILE_NOTICE__", profile_notice)
     )
 
 def render_premier_final_card(final):
