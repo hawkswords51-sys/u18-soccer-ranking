@@ -112,7 +112,17 @@ jobs:
           else
             echo "scraper/generate_league_pages.py がまだありません。スキップ。"
           fi
-
+          
+      # ★ Phase C: チーム個別ページを再生成
+      - name: チーム個別ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_team_pages.py ]; then
+            python scraper/generate_team_pages.py
+          else
+            echo "scraper/generate_team_pages.py がまだありません。スキップ。"
+          fi
+          
       # ★ Phase 9-D: ブログ記事ページを生成 (Markdown -> HTML)
       - name: ブログ記事ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -136,6 +146,7 @@ jobs:
           # SEO ランディングページと sitemap
           if [ -d prefectures ]; then git add prefectures; fi
           if [ -d leagues ]; then git add leagues; fi
+          if [ -d teams ]; then git add teams; fi          ← 追加
           if [ -d blog ]; then git add blog; fi
           if [ -d blog-source ]; then git add blog-source; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
