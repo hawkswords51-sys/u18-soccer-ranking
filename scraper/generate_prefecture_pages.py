@@ -24,28 +24,12 @@ import re
 from pathlib import Path
 from datetime import date
 
-# ============================================================
-# 都道府県別の特集記事マッピング
-# 今後、他県の特集記事を書いたらここに追加していく
-# ============================================================
-PREFECTURE_FEATURED_ARTICLES = {
-    "miyazaki": [
-        {
-            "title": "【2026最新版】宮崎県高校サッカー3強の力関係｜日章学園・宮崎日大・鵬翔の戦術と育成をDr.Kazu Soccerが読み解く",
-            "url": "/blog/posts/2026-05-17-miyazaki-3-powerhouse/",
-            "date": "2026-05-17",
-        },
-        {
-            "title": "「鵬翔から日章学園へ」｜Dr.Kazu Soccerが追いかけた宮崎県の高校サッカー",
-            "url": "/blog/posts/2026-05-11-miyazaki-soccer-feature/",
-            "date": "2026-05-11",
-        },
-    ],
-}
-
 # =========================================================================
 # Phase D: チーム個別ページへのリンク用 (data/team-profiles/*.md からマップ構築)
 # =========================================================================
+
+_TEAM_PROFILE_MAP_CACHE = None
+
 
 def _load_team_profile_map() -> dict:
     """data/team-profiles/*.md から {チーム名: id} のマップを構築。
@@ -70,7 +54,6 @@ def _load_team_profile_map() -> dict:
             team_name = meta.get("name")
             if team_id and team_name:
                 team_map[team_name] = team_id
-                # short_name もあれば追加マッピング（表記揺れ吸収）
                 short_name = meta.get("short_name")
                 if short_name and short_name != team_name:
                     team_map[short_name] = team_id
@@ -79,22 +62,50 @@ def _load_team_profile_map() -> dict:
     return team_map
 
 
-# モジュール読み込み時に一度だけ実行
-TEAM_PROFILE_MAP = _load_team_profile_map()
-if TEAM_PROFILE_MAP:
-    print(f"[Phase D] チームプロフィール: {len(TEAM_PROFILE_MAP)} 件のリンクマップを構築")
+def get_team_profile_map() -> dict:
+    """初回呼び出し時にマップを構築（遅延読み込み）"""
+    global _TEAM_PROFILE_MAP_CACHE
+    if _TEAM_PROFILE_MAP_CACHE is None:
+        _TEAM_PROFILE_MAP_CACHE = _load_team_profile_map()
+        if _TEAM_PROFILE_MAP_CACHE:
+            print(f"[Phase D] チームプロフィール: {len(_TEAM_PROFILE_MAP_CACHE)} 件のリンクマップを構築")
+    return _TEAM_PROFILE_MAP_CACHE
 
 
 def render_team_name_with_link(team_name: str) -> str:
     """プロフィールページがあるチームは <a> でラップ、なければ format のみ"""
     formatted = format_team_name(team_name)
-    team_id = TEAM_PROFILE_MAP.get(team_name)
+    team_map = get_team_profile_map()
+    team_id = team_map.get(team_name)
     if team_id:
         return (
             f'<a href="/teams/{team_id}/" class="team-profile-link">'
             f'{formatted}</a>'
         )
     return formatted
+
+# ============================================================
+# 都道府県別の特集記事マッピング
+# 今後、他県の特集記事を書いたらここに追加していく
+# ============================================================
+PREFECTURE_FEATURED_ARTICLES = {
+    "miyazaki": [
+        {
+            "title": "【2026最新版】宮崎県高校サッカー3強の力関係｜日章学園・宮崎日大・鵬翔の戦術と育成をDr.Kazu Soccerが読み解く",
+            "url": "/blog/posts/2026-05-17-miyazaki-3-powerhouse/",
+            "date": "2026-05-17",
+        },
+        {
+            "title": "「鵬翔から日章学園へ」｜Dr.Kazu Soccerが追いかけた宮崎県の高校サッカー",
+            "url": "/blog/posts/2026-05-11-miyazaki-soccer-feature/",
+            "date": "2026-05-11",
+        },
+    ],
+}
+
+# =========================================================================
+# Phase D: チーム個別ページへのリンク用 (data/team-profiles/*.md からマップ構築)
+# =========================================================================
 
 def render_featured_articles(pref_id):
     """都道府県の特集記事HTMLを返す。記事がなければ空文字を返す。"""
