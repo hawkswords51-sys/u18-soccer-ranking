@@ -5129,43 +5129,29 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* =====================================================================
-   ★ Phase D: チーム個別ページへのリンク (順位表内・改良版)
-   - チーム名の右に「詳細」バッジを表示
-   - リンクと分かりやすくしつつ、表のレイアウトを崩さない
+   ★ Phase D: チーム個別ページへのリンク (順位表内・v2 シンプル版)
+   - flex を使わずに描画安定性を確保
+   - チーム名の後に「›」マークだけのシンプル表示
    ===================================================================== */
 .team-profile-link {
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid var(--primary-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 1px;
     transition: color 0.15s ease, border-bottom-color 0.15s ease;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
 }
 .team-profile-link::after {
-    content: "詳細";
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: 700;
-    background: var(--primary-color);
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    line-height: 1.3;
-    letter-spacing: 0.5px;
-    border: none;
-    transition: background 0.15s ease;
-    flex-shrink: 0;
-    transform: translateY(-1px);
+    content: " ›";
+    font-weight: 900;
+    font-size: 1.05em;
+    margin-left: 1px;
+    display: inline;
+    color: inherit;
 }
 .team-profile-link:hover {
     color: #004999;
     border-bottom-color: #004999;
-}
-.team-profile-link:hover::after {
-    background: #004999;
 }
 
 /* ダークモード対応 */
@@ -5173,25 +5159,17 @@ details[open] > summary > .league-accordion__chevron {
     color: #60a5fa;
     border-bottom-color: #60a5fa;
 }
-[data-theme="dark"] .team-profile-link::after {
-    background: #60a5fa;
-    color: #0f172a;
-}
 [data-theme="dark"] .team-profile-link:hover {
     color: #93c5fd;
     border-bottom-color: #93c5fd;
 }
-[data-theme="dark"] .team-profile-link:hover::after {
-    background: #93c5fd;
-}
-
-/* モバイル: バッジを少し小さく */
-@media (max-width: 768px) {
-    .team-profile-link {
-        gap: 4px;
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .team-profile-link {
+        color: #60a5fa;
+        border-bottom-color: #60a5fa;
     }
-    .team-profile-link::after {
-        font-size: 0.55rem;
-        padding: 1px 4px;
+    :root:not([data-theme="light"]) .team-profile-link:hover {
+        color: #93c5fd;
+        border-bottom-color: #93c5fd;
     }
 }
