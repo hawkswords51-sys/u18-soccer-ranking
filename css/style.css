@@ -5173,3 +5173,51 @@ details[open] > summary > .league-accordion__chevron {
         border-bottom-color: #93c5fd;
     }
 }
+
+/* =====================================================================
+   ★ Phase D-3: チームリンク案内バナー (プレミアページ専用)
+   ===================================================================== */
+.profile-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    margin: 8px 0 18px;
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0.10), rgba(59, 130, 246, 0.05));
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+.profile-notice i {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.profile-notice strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ダークモード対応 */
+[data-theme="dark"] .profile-notice {
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0.15), rgba(59, 130, 246, 0.08));
+    color: var(--text-dark);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .profile-notice {
+        background: linear-gradient(90deg, rgba(96, 165, 250, 0.15), rgba(59, 130, 246, 0.08));
+        color: var(--text-dark);
+    }
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    .profile-notice {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+}
