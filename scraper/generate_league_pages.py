@@ -23,7 +23,7 @@ import yaml
 from pathlib import Path
 from datetime import date
 
-from scraper.league_contents import (
+from league_contents import (
     TACTICAL_PREMIER_EAST, WATCHING_PREMIER_EAST,
     TACTICAL_PREMIER_WEST, WATCHING_PREMIER_WEST,
     TACTICAL_PRINCE_HOKKAIDO, WATCHING_PRINCE_HOKKAIDO,
