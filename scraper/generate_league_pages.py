@@ -28,14 +28,16 @@ from scraper.league_contents import (
     TACTICAL_PREMIER_WEST, WATCHING_PREMIER_WEST,
     TACTICAL_PRINCE_HOKKAIDO, WATCHING_PRINCE_HOKKAIDO,
     TACTICAL_PRINCE_TOHOKU, WATCHING_PRINCE_TOHOKU,
-    TACTICAL_PRINCE_KANTO1, WATCHING_PRINCE_KANTO1,
-    TACTICAL_PRINCE_KANTO2, WATCHING_PRINCE_KANTO2,
+    TACTICAL_PRINCE_KANTO_1, WATCHING_PRINCE_KANTO_1,
+    TACTICAL_PRINCE_KANTO_2, WATCHING_PRINCE_KANTO_2,
     TACTICAL_PRINCE_HOKUSHINETSU, WATCHING_PRINCE_HOKUSHINETSU,
     TACTICAL_PRINCE_TOKAI, WATCHING_PRINCE_TOKAI,
-    TACTICAL_PRINCE_KANSAI, WATCHING_PRINCE_KANSAI,
+    TACTICAL_PRINCE_KANSAI_1, WATCHING_PRINCE_KANSAI_1,
+    TACTICAL_PRINCE_KANSAI_2, WATCHING_PRINCE_KANSAI_2,
     TACTICAL_PRINCE_CHUGOKU, WATCHING_PRINCE_CHUGOKU,
     TACTICAL_PRINCE_SHIKOKU, WATCHING_PRINCE_SHIKOKU,
-    TACTICAL_PRINCE_KYUSHU, WATCHING_PRINCE_KYUSHU,
+    TACTICAL_PRINCE_KYUSHU_1, WATCHING_PRINCE_KYUSHU_1,
+    TACTICAL_PRINCE_KYUSHU_2, WATCHING_PRINCE_KYUSHU_2,
 )
 # === リーグ履歴データの読み込み ===
 LEAGUE_HISTORY_PATH = Path(__file__).parent.parent / "data" / "league_history.yml"
@@ -96,6 +98,8 @@ LEAGUE_DEFS = {
         "premier",
         "高円宮杯 JFA U-18 サッカープレミアリーグ EAST。全国2地域に分かれる最上位リーグの東日本側で、東日本の強豪12チームが参加。",
         "2026年のプレミアリーグEASTは、青森山田・流通経済大柏（暫定1位）・鹿島アントラーズユースといった全国レベルの強豪が集結する東日本最高峰のリーグ。2025年は鹿島アントラーズユースが優勝し、プレミアファイナルでも全国王者に。各チームは熾烈な順位争いを繰り広げます。",
+        TACTICAL_PREMIER_EAST,
+        WATCHING_PREMIER_EAST,
     ),
     "プレミアリーグWEST": (
         "premier-west",
@@ -103,6 +107,8 @@ LEAGUE_DEFS = {
         "premier",
         "高円宮杯 JFA U-18 サッカープレミアリーグ WEST。全国2地域に分かれる最上位リーグの西日本側で、西日本の強豪12チームが参加。",
         "2026年のプレミアリーグWESTは、昨年WEST優勝のヴィッセル神戸U-18をはじめ、サンフレッチェ広島F.Cユース・ガンバ大阪ユース・神村学園高等部・大津高校・アビスパ福岡U-18など全国レベルの強豪が集う西日本最高峰のリーグ。2024年は大津高校が全国制覇を達成しました。",
+        TACTICAL_PREMIER_WEST,
+        WATCHING_PREMIER_WEST,
     ),
     "プリンスリーグ北海道": (
         "prince-hokkaido",
@@ -110,6 +116,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 北海道。北海道の強豪チームが集結する2部相当のリーグ。",
         "2026年のプリンスリーグ北海道は、北海道コンサドーレ札幌U-18・札幌大谷高校・北海高校などの強豪が参加。プレミアリーグへの参入を懸けて、雪解け後の限られたシーズンで濃密な戦いが繰り広げられます。",
+        TACTICAL_PRINCE_HOKKAIDO,
+        WATCHING_PRINCE_HOKKAIDO,
     ),
     "プリンスリーグ東北": (
         "prince-tohoku",
@@ -117,6 +125,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 東北。青森・岩手・宮城・秋田・山形・福島の強豪チームが参加。",
         "2026年のプリンスリーグ東北は、尚志高校（福島）・青森山田高校2nd（青森）など東北6県の強豪が集結。プレミアリーグへの昇格を目指す上位校と、降格回避を狙う中位校との戦いが見どころです。",
+        TACTICAL_PRINCE_TOHOKU,
+        WATCHING_PRINCE_TOHOKU,
     ),
     "プリンスリーグ関東1部": (
         "prince-kanto-1",
@@ -124,6 +134,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 関東 1部。関東地方（茨城・栃木・群馬・埼玉・千葉・東京・神奈川・山梨）の上位チームが参加。",
         "2026年のプリンスリーグ関東1部は、市立船橋・浦和レッズユース・RB大宮アルディージャU18など関東1都7県の最上位校が集結する激戦区。プレミアリーグ参入プレーオフを目指す上位2チームと、関東2部降格を懸けた下位の戦いが熾烈です。",
+        TACTICAL_PRINCE_KANTO_1,
+        WATCHING_PRINCE_KANTO_1,
     ),
     "プリンスリーグ関東2部": (
         "prince-kanto-2",
@@ -131,6 +143,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 関東 2部。関東地方の準上位チームが参加。",
         "2026年のプリンスリーグ関東2部は、横浜F・マリノスユース（マリノス最年少プロ契約となった三井寺眞選手が加入し勢いに乗る）・桐光学園・西武台など関東1部昇格を狙う精鋭が集結。プリンス関東1部・2部間の昇降格争いは、毎年シーズン終盤までもつれ込む激戦です。",
+        TACTICAL_PRINCE_KANTO_2,
+        WATCHING_PRINCE_KANTO_2,
     ),
     "プリンスリーグ北信越": (
         "prince-hokushinetsu",
@@ -138,6 +152,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 北信越。新潟・長野・富山・石川・福井の強豪チームが参加。",
         "2026年のプリンスリーグ北信越は、富山第一・日本文理・アルビレックス新潟U-18・カターレ富山U-18など北信越5県の強豪が参加。プレミアリーグ参入を懸けた戦いが続きます。",
+        TACTICAL_PRINCE_HOKUSHINETSU,
+        WATCHING_PRINCE_HOKUSHINETSU,
     ),
     "プリンスリーグ東海": (
         "prince-tokai",
@@ -145,6 +161,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 東海。静岡・愛知・岐阜・三重の強豪チームが参加。",
         "2026年のプリンスリーグ東海は、静岡学園・清水エスパルスユース・藤枝東・浜松開誠館など東海4県の強豪が集結。サッカー王国・静岡を中心に、Jクラブユースと伝統校の融合が見どころです。",
+        TACTICAL_PRINCE_TOKAI,
+        WATCHING_PRINCE_TOKAI,
     ),
     "プリンスリーグ関西1部": (
         "prince-kansai-1",
@@ -152,6 +170,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 関西 1部。関西地方（滋賀・京都・大阪・兵庫・奈良・和歌山）の上位チームが参加。",
         "2026年のプリンスリーグ関西1部は、京都サンガF.C.U-18・京都橘・履正社高校・興國高校など関西2府4県の強豪が参加。プレミアリーグ昇格を目指す激戦区です。",
+        TACTICAL_PRINCE_KANSAI_1,
+        WATCHING_PRINCE_KANSAI_1,
     ),
     "プリンスリーグ関西2部": (
         "prince-kansai-2",
@@ -159,6 +179,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 関西 2部。関西地方の準上位チームが参加。",
         "2026年のプリンスリーグ関西2部は、滝川第二・大阪桐蔭・東海大仰星など関西1部昇格を目指す名門校が集結。伝統校とJクラブユースが混在する独特の構成で、シーズンの行方が注目されます。",
+        TACTICAL_PRINCE_KANSAI_2,
+        WATCHING_PRINCE_KANSAI_2,
     ),
     "プリンスリーグ中国": (
         "prince-chugoku",
@@ -166,6 +188,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 中国。鳥取・島根・岡山・広島・山口の強豪チームが参加。",
         "2026年のプリンスリーグ中国は、瀬戸内・岡山学芸館・作陽学園・ファジアーノ岡山U-18など中国5県の強豪が参加。プレミアリーグへの昇格を懸けた戦いが続きます。",
+        TACTICAL_PRINCE_CHUGOKU,
+        WATCHING_PRINCE_CHUGOKU,
     ),
     "プリンスリーグ四国": (
         "prince-shikoku",
@@ -173,6 +197,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 四国。徳島・香川・愛媛・高知の強豪チームが参加。",
         "2026年のプリンスリーグ四国は、愛媛FC U-18・徳島ヴォルティスユース・高知高校など四国4県の強豪が参加。Jクラブユースと伝統校が切磋琢磨し、プロを目指す選手たちの登竜門となっています。",
+        TACTICAL_PRINCE_SHIKOKU,
+        WATCHING_PRINCE_SHIKOKU,
     ),
     "プリンスリーグ九州1部": (
         "prince-kyushu-1",
@@ -180,6 +206,8 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 九州 1部。九州・沖縄地方の上位チームが参加。",
         "2026年のプリンスリーグ九州1部は、鹿児島城西高校・V・ファーレン長崎U-18・東福岡など九州各県の強豪が集結。プレミアリーグへの昇格を目指す激戦区で、全国レベルの選手を多数輩出してきた地区です。",
+        TACTICAL_PRINCE_KYUSHU_1,
+        WATCHING_PRINCE_KYUSHU_1,
     ),
     "プリンスリーグ九州2部": (
         "prince-kyushu-2",
@@ -187,9 +215,10 @@ LEAGUE_DEFS = {
         "prince",
         "高円宮杯 JFA U-18 サッカープリンスリーグ 九州 2部。九州・沖縄地方の準上位チームが参加。",
         "2026年のプリンスリーグ九州2部は、佐賀東高校・鵬翔高校（2013年全国制覇）・長崎総合科学大学附属高校など九州1部昇格を目指す中堅校が集結。九州地区はサッカー強豪県が多く、2部リーグでも全国レベルの選手が多数所属しています。",
+        TACTICAL_PRINCE_KYUSHU_2,
+        WATCHING_PRINCE_KYUSHU_2,
     ),
 }
-
 # =========================================================================
 # Phase D: チーム個別ページへのリンク用 (data/team-profiles/*.md からマップ構築)
 # =========================================================================
@@ -560,7 +589,7 @@ def render_pref_distribution_html(teams, current_slug):
 def render_related_leagues_html(current_slug, current_category):
     """関連リーグへのリンク (現在のリーグ以外を全部)"""
     items = []
-    for league_name, (slug, label, category, _desc, _overview) in LEAGUE_DEFS.items():
+    for league_name, (slug, label, category, _desc, _overview, _tactical, _watching) in LEAGUE_DEFS.items():
         if slug == current_slug:
             continue
         cls = f"league-link league-link--{category}"
@@ -747,6 +776,18 @@ __PREF_DISTRIBUTION__
         <p style="line-height:1.8;">__SEASON_OVERVIEW__</p>
       </section>
 
+      <!-- ★ 新規追加：戦術的な見どころ -->
+      <section class="lp-section lp-tactical">
+        <h2><i class="fas fa-chess"></i> 戦術的な見どころ</h2>
+__TACTICAL_POINTS__
+      </section>
+
+      <!-- ★ 新規追加：観戦のポイント -->
+      <section class="lp-section lp-watching">
+        <h2><i class="fas fa-binoculars"></i> 観戦のポイント</h2>
+__WATCHING_POINTS__
+      </section>
+
 __FINAL_PATH_SECTION__
 
       <section class="lp-section lp-past-champions">
@@ -802,7 +843,7 @@ __RELATED_LEAGUES__
 """
 
 
-def generate_league_page(league_name, slug, label, category, description, season_overview, teams):
+def generate_league_page(league_name, slug, label, category, description, season_overview, teams, tactical_points, watching_points):
     """個別リーグページの HTML を生成"""
     canonical = f"{DOMAIN}/leagues/{slug}/"
     sorted_teams = sorted(teams, key=lambda t: t.get("leagueRank") or t.get("rank") or 99)
@@ -970,6 +1011,8 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__FINAL_PATH_SECTION__", final_path_section)
         .replace("__SEASON_OVERVIEW__", html_escape(season_overview))
         .replace("__PROFILE_NOTICE__", profile_notice)
+        .replace("__TACTICAL_POINTS__", tactical_points) 
+        .replace("__WATCHING_POINTS__", watching_points)
     )
 
 def render_premier_final_card(final):
@@ -1371,7 +1414,7 @@ def generate_index_page(teams_by_league):
     """リーグ一覧ハブページ"""
     premier_cards = []
     prince_cards = []
-    for league_name, (slug, label, category, description, season_overview) in LEAGUE_DEFS.items():
+    for league_name, (slug, label, category, description, season_overview, tactical_points, watching_points) in LEAGUE_DEFS.items():
         teams = teams_by_league.get(league_name, [])
         card = render_league_card(slug, label, len(teams), description)
         if category == "premier":
@@ -1481,7 +1524,7 @@ def main():
 
     # 各リーグページ生成
     generated_slugs = []
-    for league_name, (slug, label, category, description, season_overview) in LEAGUE_DEFS.items():
+    for league_name, (slug, label, category, description, season_overview, tactical_points, watching_points) in LEAGUE_DEFS.items():
         teams = teams_by_league.get(league_name, [])
         # 0チームのリーグはスキップ（データが無いリーグ）
         if not teams:
@@ -1490,7 +1533,7 @@ def main():
 
         league_dir = OUTPUT_ROOT / slug
         league_dir.mkdir(parents=True, exist_ok=True)
-        html = generate_league_page(league_name, slug, label, category, description, season_overview, teams)
+        html = generate_league_page(league_name, slug, label, category, description, season_overview, teams, tactical_points, watching_points)
         (league_dir / "index.html").write_text(html, encoding="utf-8")
         print(f"[OK] {league_name} -> /leagues/{slug}/ ({len(teams)} チーム)")
         generated_slugs.append(slug)
