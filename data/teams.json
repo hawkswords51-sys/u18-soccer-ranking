@@ -3550,12 +3550,12 @@
         "league": "プリンスリーグ北信越2部",
         "rank": 10,
         "points": 5,
-        "played": 6,
+        "played": 7,
         "won": 1,
         "drawn": 2,
-        "lost": 3,
-        "goalsFor": 9,
-        "goalsAgainst": 9,
+        "lost": 4,
+        "goalsFor": 10,
+        "goalsAgainst": 11,
         "prefectureRank": 10,
         "goalDiff": -2,
         "leagueRank": 6
@@ -3903,10 +3903,30 @@
     "region": "北信越",
     "teams": [
       {
+        "id": "is004",
+        "name": "金沢学院大学附属高校",
+        "league": "プリンスリーグ北信越2部",
+        "rank": 1,
+        "points": 18,
+        "played": 8,
+        "won": 6,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 14,
+        "goalsAgainst": 8,
+        "prefectureRank": 1,
+        "goalDiff": 3,
+        "leagueRank": 2,
+        "aliases": [
+          "金沢学院高校",
+          "金沢学院大附"
+        ]
+      },
+      {
         "id": "is005",
         "name": "星稜高校2nd",
         "league": "石川県1部",
-        "rank": 1,
+        "rank": 2,
         "points": 17,
         "played": 7,
         "won": 5,
@@ -3914,29 +3934,9 @@
         "lost": 0,
         "goalsFor": 9,
         "goalsAgainst": 1,
-        "prefectureRank": 1,
+        "prefectureRank": 2,
         "goalDiff": 4,
         "leagueRank": 1
-      },
-      {
-        "id": "is004",
-        "name": "金沢学院大学附属高校",
-        "league": "プリンスリーグ北信越2部",
-        "rank": 2,
-        "points": 15,
-        "played": 7,
-        "won": 5,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 12,
-        "goalsAgainst": 7,
-        "prefectureRank": 2,
-        "goalDiff": 3,
-        "leagueRank": 2,
-        "aliases": [
-          "金沢学院高校",
-          "金沢学院大附"
-        ]
       },
       {
         "id": "is001",
@@ -11068,7 +11068,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-23 22:52",
+    "lastUpdated": "2026-05-24 03:49",
     "year": 2026,
     "updatedCount": 583
   }
