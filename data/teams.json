@@ -7745,6 +7745,25 @@
         "leagueRank": 6
       },
       {
+        "id": "ok012",
+        "name": "山陽高校",
+        "league": "岡山県1部",
+        "rank": 12,
+        "prefectureRank": 12,
+        "points": 9,
+        "played": 8,
+        "won": 3,
+        "drawn": 0,
+        "lost": 5,
+        "goalsFor": 9,
+        "goalsAgainst": 14,
+        "goalDiff": -1,
+        "leagueRank": 7,
+        "aliases": [
+          "山陽学園"
+        ]
+      },
+      {
         "name": "玉野光南高校2nd",
         "league": "岡山県1部",
         "points": 9,
@@ -7754,9 +7773,9 @@
         "lost": 5,
         "goalsFor": 13,
         "goalsAgainst": 19,
-        "leagueRank": 7,
-        "rank": 12,
-        "prefectureRank": 12,
+        "leagueRank": 8,
+        "rank": 13,
+        "prefectureRank": 13,
         "aliases": [
           "玉野光南B"
         ]
@@ -7771,30 +7790,11 @@
         "lost": 5,
         "goalsFor": 6,
         "goalsAgainst": 14,
-        "leagueRank": 8,
-        "rank": 13,
-        "prefectureRank": 13,
-        "aliases": [
-          "就実B"
-        ]
-      },
-      {
-        "id": "ok012",
-        "name": "山陽高校",
-        "league": "岡山県1部",
+        "leagueRank": 9,
         "rank": 14,
         "prefectureRank": 14,
-        "points": 6,
-        "played": 7,
-        "won": 2,
-        "drawn": 0,
-        "lost": 5,
-        "goalsFor": 6,
-        "goalsAgainst": 12,
-        "goalDiff": -1,
-        "leagueRank": 9,
         "aliases": [
-          "山陽学園"
+          "就実B"
         ]
       },
       {
@@ -7804,12 +7804,12 @@
         "rank": 15,
         "prefectureRank": 15,
         "points": 3,
-        "played": 8,
+        "played": 9,
         "won": 1,
         "drawn": 0,
-        "lost": 7,
-        "goalsFor": 4,
-        "goalsAgainst": 27,
+        "lost": 8,
+        "goalsFor": 6,
+        "goalsAgainst": 30,
         "goalDiff": -4,
         "leagueRank": 10
       }
@@ -11068,7 +11068,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-24 16:48",
+    "lastUpdated": "2026-05-24 22:58",
     "year": 2026,
     "updatedCount": 583
   }
