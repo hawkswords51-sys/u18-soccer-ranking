@@ -1,4 +1,4 @@
-ふ---
+---
 prefecture: kagoshima
 title: 令和8年度 鹿児島県高等学校総合体育大会サッカー競技
 subtitle: インターハイ予選
