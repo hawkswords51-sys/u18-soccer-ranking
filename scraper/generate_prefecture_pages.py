@@ -925,7 +925,7 @@ LEAGUE_TO_SLUG = {
 
 
 def render_league_links_html(teams):
-    """都道府県内のチームが所属しているリーグへのリンク群"""
+    """都道府県内のチームが所属しているリーグへのリンク群（SEO強化版：アンカーテキストにキーワードを盛り込み）"""
     leagues_in_pref = {}
     for t in teams:
         league_name = t.get("league") or ""
@@ -954,14 +954,20 @@ def render_league_links_html(teams):
         leagues_in_pref.items(),
         key=lambda kv: (0 if kv[1]["category"] == "premier" else 1, kv[0]),
     )
+    year_label = date.today().year
     for slug, info in sorted_leagues:
         names = "、".join(html_escape(n) for n in info["team_names"])
+        # SEO強化：チーム名を冒頭に短く出して関連性を高める（最大2チームまで）
+        team_names_short = "・".join(
+            html_escape(n.replace("高等学校", "").replace("高校", ""))
+            for n in info["team_names"][:2]
+        )
         cls = f"league-link league-link--{info['category']}"
         items.append(
             f'          <a href="/leagues/{slug}/" class="{cls}" '
-            f'title="所属チーム: {names}">'
-            f'{html_escape(info["label"])}'
-            f'<small>({info["team_count"]}校)</small></a>'
+            f'title="{html_escape(info["label"])} {year_label} 最新順位 - 所属チーム: {names}">'
+            f'{html_escape(info["label"])} {year_label} 最新順位'
+            f'<small>（{team_names_short}など{info["team_count"]}校所属）</small></a>'
         )
     return "\n".join(items)
 
@@ -1456,28 +1462,36 @@ def generate_page(pref, all_prefs):
     }
     prince_league = REGION_TO_PRINCE_LEAGUE.get(region, "プリンスリーグ")
 
-    # タイトル用は強豪校を最大2チームまで（文字数オーバー防止）
-    notable_short = "・".join(notable_teams[:2]) if notable_teams else ""
-    # description用は全強豪校
+    # タイトル用は強豪校2チーム + ほかN校（網羅感アピール）
+    if notable_teams and len(notable_teams) >= 2:
+        notable_short = f"{notable_teams[0]}・{notable_teams[1]}ほか{team_count}校"
+    elif notable_teams:
+        notable_short = f"{notable_teams[0]}ほか{team_count}校"
+    else:
+        notable_short = f"全{team_count}校"
+    # description用は全強豪校（・で連結）
     notable_full = "・".join(notable_teams) if notable_teams else ""
 
     if notable_teams:
+        # クエリ完全一致を冒頭に、年表記は末尾近くに（Googleの太字表示効果を最大化）
         title = (
-            f"【{year_label}最新】{pref_name}高校サッカーリーグ U-18 1部順位表"
-            f" | {notable_short}"
+            f"{pref_name}高校サッカーリーグ U-18 1部 最新順位【{year_label}】"
+            f"｜{notable_short}"
         )
+        # description 冒頭60文字に「年・チーム数・数値情報」を集約
         description = (
-            f"{pref_name}高校サッカーリーグ1部（U-18年代）の最新順位・試合結果を毎日自動更新。"
-            f"{notable_full}など県内{team_count}チームの成績、"
-            f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況も掲載。"
+            f"{pref_name}高校サッカーリーグ1部（U-18）{year_label}年の最新順位を毎日更新。"
+            f"県内{team_count}チームの勝点・得失点差・全試合結果を網羅。"
+            f"{notable_full}など強豪校の動向、高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動も掲載。"
         )
     else:
         title = (
-            f"【{year_label}最新】{pref_name}高校サッカーリーグ U-18 1部順位表"
-            f" | プレミア・プリンス対応"
+            f"{pref_name}高校サッカーリーグ U-18 1部 最新順位【{year_label}】"
+            f"｜プレミア・プリンス連動"
         )
         description = (
-            f"{pref_name}高校サッカーリーグ1部（U-18年代）{team_count}チームの最新順位・試合結果を毎日自動更新。"
+            f"{pref_name}高校サッカーリーグ1部（U-18）{year_label}年の最新順位を毎日更新。"
+            f"県内{team_count}チームの勝点・得失点差・全試合結果を網羅。"
             f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況もわかりやすく掲載。"
         )
 
@@ -1521,8 +1535,6 @@ def generate_page(pref, all_prefs):
         else ""
     )
     
-    # Phase 9-C: 所属リーグへのリンク
-    league_links_html = render_league_links_html(teams)
     # Phase 9-C: 所属リーグへのリンク
     league_links_html = render_league_links_html(teams)
     return (
