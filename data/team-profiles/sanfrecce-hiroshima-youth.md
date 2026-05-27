@@ -1,6 +1,6 @@
 ---
 id: sanfrecce-hiroshima-youth
-name: サンフレッチェ広島F.Cユース
+name: サンフレッチェ広島F.C.ユース
 short_name: サンフレッチェ広島ユース
 league: プレミアリーグWEST
 prefecture: hiroshima
