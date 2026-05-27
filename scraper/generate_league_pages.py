@@ -574,24 +574,34 @@ def render_past_champions_html(slug):
 
 
 def render_pref_distribution_html(teams, current_slug):
-    """所属都道府県の分布を地方別グリッドで表示"""
+    """所属都道府県の分布を地方別グリッドで表示（SEO強化版：アンカーテキストにチーム名・キーワードを盛り込み）"""
     pref_counts = {}
     for t in teams:
         pid = t.get("_pref_id", "")
         pname = t.get("_pref_name", pid)
         if pid not in pref_counts:
-            pref_counts[pid] = {"name": pname, "count": 0}
+            pref_counts[pid] = {"name": pname, "count": 0, "team_names": []}
         pref_counts[pid]["count"] += 1
+        pref_counts[pid]["team_names"].append(t.get("name", ""))
 
     if not pref_counts:
         return '          <p style="color:#888;">所属チームの都道府県情報がありません</p>'
 
     items = []
+    year_label = date.today().year
     for pid in sorted(pref_counts.keys()):
         p = pref_counts[pid]
+        # SEO強化：アンカーテキストにチーム名（最大2校）を含めて関連性を高める
+        team_names_short = "・".join(
+            html_escape(n.replace("高等学校", "").replace("高校", ""))
+            for n in p["team_names"][:2]
+        )
+        title_attr = f'{html_escape(p["name"])} 高校サッカー {year_label} 最新順位 - {team_names_short}など{p["count"]}校が所属'
         items.append(
-            f'          <a href="/prefectures/{pid}/" class="lp-league-pref">'
-            f'{html_escape(p["name"])}<small>({p["count"]}校)</small></a>'
+            f'          <a href="/prefectures/{pid}/" class="lp-league-pref" '
+            f'title="{title_attr}">'
+            f'{html_escape(p["name"])} 最新順位'
+            f'<small>（{team_names_short}など{p["count"]}校）</small></a>'
         )
     return "\n".join(items)
 
@@ -889,21 +899,21 @@ def generate_league_page(league_name, slug, label, category, description, season
         seo_prefix = "高円宮杯U-18"
         league_role = "プレミアリーグ参入を懸けた地域最上位リーグ"
 
-    # title 生成（GSC検索クエリ「{リーグ名}順位」に空白なし完全一致）
+    # title 生成（クエリ完全一致を冒頭に・年号は末尾近くに：Google太字表示効果を最大化）
     if top_teams_str and team_count > 0:
         title = (
-            f"【{year_label}最新】{seo_prefix}{label} 順位表"
-            f" | {top_teams_str}など全{team_count}チーム"
+            f"{label} 順位表 最新【{year_label}】"
+            f"｜{top_teams_str}など全{team_count}チーム"
         )
     else:
-        title = f"【{year_label}最新】{seo_prefix}{label} 順位表 | U-18高校サッカー"
+        title = f"{label} 順位表 最新【{year_label}】｜U-18高校サッカー"
 
-    # description_short（meta description）
+    # description_short（meta description）冒頭60文字に「年・チーム数・数値情報」を集約
     notable_phrase = f"{top_teams_str}など" if top_teams_str else ""
     description_short = (
-        f"{label}の最新順位・試合結果を毎日自動更新。"
-        f"{notable_phrase}全{team_count}チームのU-18高校サッカー勝点・得失点差・日程を一覧表示。"
-        f"{league_role}の最新動向を網羅。"
+        f"{label}{year_label}年の最新順位・全試合結果を毎日自動更新。"
+        f"全{team_count}チームの勝点・得失点差・直近5試合を網羅。"
+        f"{notable_phrase}{seo_prefix}高校サッカーU-18の{league_role}の最新動向を一覧表示。"
     )
 
     description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属し、年間を通じて熾烈な順位争いが繰り広げられます。"
