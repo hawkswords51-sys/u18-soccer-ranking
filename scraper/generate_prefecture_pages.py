@@ -1456,30 +1456,35 @@ def generate_page(pref, all_prefs):
     }
     prince_league = REGION_TO_PRINCE_LEAGUE.get(region, "プリンスリーグ")
 
-    # タイトル用は強豪校を最大2チームまで（文字数オーバー防止）
-    notable_short = "・".join(notable_teams[:2]) if notable_teams else ""
-    # description用は全強豪校
-    notable_full = "・".join(notable_teams) if notable_teams else ""
-
-    if notable_teams:
-        title = (
-            f"【{year_label}最新】{pref_name}高校サッカーリーグ U-18 1部順位表"
-            f" | {notable_short}"
-        )
-        description = (
-            f"{pref_name}高校サッカーリーグ1部（U-18年代）の最新順位・試合結果を毎日自動更新。"
-            f"{notable_full}など県内{team_count}チームの成績、"
-            f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況も掲載。"
-        )
-    else:
-        title = (
-            f"【{year_label}最新】{pref_name}高校サッカーリーグ U-18 1部順位表"
-            f" | プレミア・プリンス対応"
-        )
-        description = (
-            f"{pref_name}高校サッカーリーグ1部（U-18年代）{team_count}チームの最新順位・試合結果を毎日自動更新。"
-            f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況もわかりやすく掲載。"
-        )
+   # タイトル用は強豪校2チーム + ほかN校（網羅感アピール）
+if notable_teams and len(notable_teams) >= 2:
+    notable_short = f"{notable_teams[0]}・{notable_teams[1]}ほか{team_count}校"
+elif notable_teams:
+    notable_short = f"{notable_teams[0]}ほか{team_count}校"
+else:
+    notable_short = f"全{team_count}校"
+# description用は全強豪校
+notable_full = "・".join(notable_teams) if notable_teams else ""
+if notable_teams:
+    title = (
+        f"{pref_name}高校サッカーリーグ U-18 1部 最新順位【{year_label}】"
+        f"｜{notable_short}"
+    )
+    description = (
+        f"{pref_name}高校サッカーリーグ1部（U-18）{year_label}年の最新順位を毎日更新。"
+        f"県内{team_count}チームの勝点・得失点差・全試合結果を網羅。"
+        f"{notable_full}など強豪校の動向、高円宮杯JFA U-18プレミア・{prince_league}との連動も掲載。"
+    )
+else:
+    title = (
+        f"{pref_name}高校サッカーリーグ U-18 1部 最新順位【{year_label}】"
+        f"｜プレミア・プリンス連動"
+    )
+    description = (
+        f"{pref_name}高校サッカーリーグ1部（U-18）{year_label}年の最新順位を毎日更新。"
+        f"県内{team_count}チームの勝点・得失点差・全試合結果を網羅。"
+        f"高円宮杯JFA U-18プレミア・{prince_league}との連動状況もわかりやすく掲載。"
+    )
 
     keywords = (
         f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
