@@ -104,7 +104,7 @@ PREFECTURE_FEATURED_ARTICLES = {
     "aichi": [
         {
             "title": "【愛知インハイ2026 ベスト4】豊川高校はなぜ強くなったのか｜名将・長谷川大と逸材・大下蒼生の出会い",
-            "url": "/blog/toyokawa-rise-2026/",
+            "url": "/blog/posts/toyokawa-rise-2026/",
             "date": "2026-05-27",
         },
     ],
