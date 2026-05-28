@@ -1480,26 +1480,26 @@ def generate_page(pref, all_prefs):
     notable_full = "・".join(notable_teams) if notable_teams else ""
 
     if notable_teams:
-        # クエリ完全一致を冒頭に、年表記は末尾近くに（Googleの太字表示効果を最大化）
+        # 「○○県高校サッカー 1部リーグ 順位」を冒頭に連続配置
+        # → 高CTRクエリ（愛知13.6% / 三重21.4% / 鹿児島16.7%）パターンと完全一致
         title = (
-            f"{pref_name}高校サッカーリーグ U-18 1部 最新順位【{year_label}】"
-            f"｜{notable_short}"
+            f"{pref_name}高校サッカー 1部リーグ 順位【{year_label}最新】"
+            f"｜{notable_short}ほか{team_count}校（U-18）"
         )
-        # description 冒頭60文字に「年・チーム数・数値情報」を集約
         description = (
-            f"{pref_name}高校サッカーリーグ1部（U-18）{year_label}年の最新順位を毎日更新。"
-            f"県内{team_count}チームの勝点・得失点差・全試合結果を網羅。"
-            f"{notable_full}など強豪校の動向、高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動も掲載。"
+            f"{pref_name}高校サッカー 1部リーグ（U-18年代）の最新順位を毎日自動更新中。"
+            f"{notable_full}など{team_count}校の試合結果・得失点差・"
+            f"高円宮杯JFA U-18プレミアリーグ／{prince_league}との連動状況をワンクリックで確認。"
         )
     else:
         title = (
-            f"{pref_name}高校サッカーリーグ U-18 1部 最新順位【{year_label}】"
-            f"｜プレミア・プリンス連動"
+            f"{pref_name}高校サッカー 1部リーグ 順位【{year_label}最新】"
+            f"｜全{team_count}校（U-18）プレミア・プリンス対応"
         )
         description = (
-            f"{pref_name}高校サッカーリーグ1部（U-18）{year_label}年の最新順位を毎日更新。"
-            f"県内{team_count}チームの勝点・得失点差・全試合結果を網羅。"
-            f"高円宮杯JFA U-18プレミアリーグ・{prince_league}との連動状況もわかりやすく掲載。"
+            f"{pref_name}高校サッカー 1部リーグ（U-18年代）{team_count}校の最新順位を毎日自動更新中。"
+            f"試合結果・得失点差・高円宮杯JFA U-18プレミアリーグ／"
+            f"{prince_league}との連動状況をワンクリックで確認。"
         )
 
     keywords = (
