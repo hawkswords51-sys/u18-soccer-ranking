@@ -1480,11 +1480,11 @@ def generate_page(pref, all_prefs):
     notable_full = "・".join(notable_teams) if notable_teams else ""
 
     if notable_teams:
-        # 「○○県高校サッカー 1部リーグ 順位」を冒頭に連続配置
-        # → 高CTRクエリ（愛知13.6% / 三重21.4% / 鹿児島16.7%）パターンと完全一致
+        # notable_short は「○○・○○ほか12校」形式（get_notable_teams_for_title内で生成済）
+        # → タイトルでは「ほか○校」を追加しない（重複防止）
         title = (
             f"{pref_name}高校サッカー 1部リーグ 順位【{year_label}最新】"
-            f"｜{notable_short}ほか{team_count}校（U-18）"
+            f"｜{notable_short}（U-18）"
         )
         description = (
             f"{pref_name}高校サッカー 1部リーグ（U-18年代）の最新順位を毎日自動更新中。"
