@@ -899,22 +899,46 @@ def generate_league_page(league_name, slug, label, category, description, season
         seo_prefix = "高円宮杯U-18"
         league_role = "プレミアリーグ参入を懸けた地域最上位リーグ"
 
-    # title 生成（クエリ完全一致を冒頭に・年号は末尾近くに：Google太字表示効果を最大化）
-    if top_teams_str and team_count > 0:
-        title = (
-            f"{label} 順位表 最新【{year_label}】"
-            f"｜{top_teams_str}など全{team_count}チーム"
+    # title 生成
+    # ★ プレミアはGSC高頻度クエリ「プレミアリーグwest 順位」(スペースなし)と完全一致させる
+    if category == "premier":
+        # label「プレミアリーグ WEST/EAST」の空白を除去
+        label_compact = label.replace(" ", "")
+        if top_teams_str and team_count > 0:
+            title = (
+                f"{label_compact} 順位表【{year_label}最新】"
+                f"｜{top_teams_str}ほか全{team_count}チーム（高円宮杯JFA U-18）"
+            )
+        else:
+            title = (
+                f"{label_compact} 順位表【{year_label}最新】"
+                f"｜高円宮杯JFA U-18 高校サッカー"
+            )
+    else:
+        # プリンスはこれまで通り（label にスペースを含むが、地域名なので問題なし）
+        if top_teams_str and team_count > 0:
+            title = (
+                f"【{year_label}最新】{seo_prefix}{label} 順位表"
+                f" | {top_teams_str}など全{team_count}チーム"
+            )
+        else:
+            title = f"【{year_label}最新】{seo_prefix}{label} 順位表 | U-18高校サッカー"
+
+    # description_short（meta description）
+    notable_phrase = f"{top_teams_str}など" if top_teams_str else ""
+    if category == "premier":
+        label_compact = label.replace(" ", "")
+        description_short = (
+            f"{label_compact}（U-18 高校サッカー全国最高峰）{year_label}年の最新順位を毎日自動更新中。"
+            f"{notable_phrase}全{team_count}チームの勝点・得失点差・全試合結果と、"
+            f"プレミアファイナル進出争いをワンクリックで確認。"
         )
     else:
-        title = f"{label} 順位表 最新【{year_label}】｜U-18高校サッカー"
-
-    # description_short（meta description）冒頭60文字に「年・チーム数・数値情報」を集約
-    notable_phrase = f"{top_teams_str}など" if top_teams_str else ""
-    description_short = (
-        f"{label}{year_label}年の最新順位・全試合結果を毎日自動更新。"
-        f"全{team_count}チームの勝点・得失点差・直近5試合を網羅。"
-        f"{notable_phrase}{seo_prefix}高校サッカーU-18の{league_role}の最新動向を一覧表示。"
-    )
+        description_short = (
+            f"{label}の最新順位・試合結果を毎日自動更新。"
+            f"{notable_phrase}全{team_count}チームのU-18高校サッカー勝点・得失点差・日程を一覧表示。"
+            f"{league_role}の最新動向を網羅。"
+        )
 
     description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属し、年間を通じて熾烈な順位争いが繰り広げられます。"
     # プレミアEAST/WESTの場合はファイナルページへの導線を追加
