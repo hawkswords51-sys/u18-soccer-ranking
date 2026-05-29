@@ -331,6 +331,43 @@ def render_featured_teams_html(sorted_teams, label):
         </div>
       </section>
 """
+
+def render_league_stats_html(sorted_teams, label):
+    """順位表データから算出できるリーグ統計サマリー（試合データ不要）"""
+    teams_with_data = [t for t in sorted_teams if (t.get("played", 0) or 0) > 0]
+    if not teams_with_data:
+        return ""
+    total_goals = sum((t.get("goalsFor", 0) or 0) for t in teams_with_data)
+    top_scorer = max(teams_with_data, key=lambda t: t.get("goalsFor", 0) or 0)
+    best_defense = min(teams_with_data, key=lambda t: t.get("goalsAgainst", 0) or 0)
+    most_wins = max(teams_with_data, key=lambda t: t.get("won", 0) or 0)
+
+    def stat_card(icon, title, team_name, value_label):
+        return (
+            f'<div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;'
+            f'padding:18px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06);">'
+            f'<div style="font-size:1.6em;">{icon}</div>'
+            f'<div style="font-size:.85em;color:#64748b;margin:6px 0;">{title}</div>'
+            f'<div style="font-weight:700;font-size:1.05em;color:#1e293b;">{format_team_name(team_name)}</div>'
+            f'<div style="font-size:.9em;color:#2563eb;font-weight:600;margin-top:4px;">{value_label}</div>'
+            f'</div>'
+        )
+
+    cards = "\n".join([
+        stat_card("⚽", "最多得点（攻撃力No.1）", top_scorer.get("name", ""), f'{top_scorer.get("goalsFor", 0) or 0}得点'),
+        stat_card("🛡️", "最少失点（守備力No.1）", best_defense.get("name", ""), f'{best_defense.get("goalsAgainst", 0) or 0}失点'),
+        stat_card("🔥", "最多勝利", most_wins.get("name", ""), f'{most_wins.get("won", 0) or 0}勝'),
+    ])
+    return f"""      <section class="lp-section">
+        <h2><i class="fas fa-chart-bar"></i> {label} 数字で見るリーグの特徴</h2>
+        <p class="lp-section-desc">
+          現在の順位表データから算出した{label}の注目スタッツです。リーグ全体の総得点数は<strong>{total_goals}得点</strong>に達しています。
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px;">
+{cards}
+        </div>
+      </section>
+"""
 # ============================================================
 # ヘルパー
 # ============================================================
@@ -822,6 +859,7 @@ __TEAM_ROWS__
           </tbody>
         </table>
       </div>
+      __LEAGUE_STATS__
       __FEATURED_TEAMS__
       <section class="lp-section">
         <h2><i class="fas fa-map-marker-alt"></i> 所属チームの都道府県分布</h2>
@@ -1017,6 +1055,7 @@ def generate_league_page(league_name, slug, label, category, description, season
     related_leagues = render_related_leagues_html(slug, category)
     past_champions_html = render_past_champions_html(slug)
     featured_teams_html = render_featured_teams_html(sorted_teams, label)
+    league_stats_html = render_league_stats_html(sorted_teams, label)
     
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":
@@ -1093,6 +1132,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__FEATURED_TEAMS__", featured_teams_html)
+        .replace("__LEAGUE_STATS__", league_stats_html)
         .replace("__PREF_DISTRIBUTION__", pref_distribution)
         .replace("__FAQ_HTML__", faq_html)
         .replace("__RELATED_LEAGUES__", related_leagues)
