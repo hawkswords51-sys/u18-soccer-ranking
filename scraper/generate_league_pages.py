@@ -287,7 +287,50 @@ def render_team_name_with_link(team_name: str) -> str:
             f'{formatted}</a>'
         )
     return formatted
-    
+
+def render_featured_teams_html(sorted_teams, label):
+    """詳細ページがあるチームを「深掘りカード」として表示（SEO内部リンク強化）"""
+    team_map = get_team_profile_map()
+    cards = []
+    for i, team in enumerate(sorted_teams):
+        name = team.get("name", "")
+        team_id = team_map.get(name)
+        if not team_id:
+            continue  # 詳細ページがないチームはスキップ
+        rank = i + 1
+        pref = team.get("_pref_name", "")
+        if rank == 1:
+            badge = "🥇"
+        elif rank == 2:
+            badge = "🥈"
+        elif rank == 3:
+            badge = "🥉"
+        else:
+            badge = f"{rank}位"
+        cards.append(
+            f'<a href="/teams/{team_id}/" '
+            f'style="display:flex;align-items:center;gap:10px;padding:14px 16px;'
+            f'background:#fff;border:1px solid #e2e8f0;border-radius:10px;'
+            f'text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);">'
+            f'<span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">{badge}</span>'
+            f'<span style="font-weight:600;flex:1;">{format_team_name(name)}</span>'
+            f'<span style="font-size:.85em;color:#64748b;">{html_escape(pref)} ›</span>'
+            f'</a>'
+        )
+    if not cards:
+        return ""
+    cards_html = "\n".join(cards)
+    return f"""      <section class="lp-section">
+        <h2><i class="fas fa-star"></i> {label} 注目チームを深掘り</h2>
+        <p class="lp-section-desc">
+          各チームの<strong>歴史・育成哲学・輩出したプロ選手（OB）・2026年の注目選手</strong>を詳しく紹介しています。
+          気になるチーム名をクリックして、深掘りページをご覧ください。
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:16px;">
+{cards_html}
+        </div>
+      </section>
+"""
 # ============================================================
 # ヘルパー
 # ============================================================
@@ -779,7 +822,7 @@ __TEAM_ROWS__
           </tbody>
         </table>
       </div>
-
+      __FEATURED_TEAMS__
       <section class="lp-section">
         <h2><i class="fas fa-map-marker-alt"></i> 所属チームの都道府県分布</h2>
         <p class="lp-section-desc">
@@ -973,6 +1016,7 @@ def generate_league_page(league_name, slug, label, category, description, season
     pref_distribution = render_pref_distribution_html(sorted_teams, slug)
     related_leagues = render_related_leagues_html(slug, category)
     past_champions_html = render_past_champions_html(slug)
+    featured_teams_html = render_featured_teams_html(sorted_teams, label)
     
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":
@@ -1048,6 +1092,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
         .replace("__TEAM_ROWS__", team_rows)
+        .replace("__FEATURED_TEAMS__", featured_teams_html)
         .replace("__PREF_DISTRIBUTION__", pref_distribution)
         .replace("__FAQ_HTML__", faq_html)
         .replace("__RELATED_LEAGUES__", related_leagues)
