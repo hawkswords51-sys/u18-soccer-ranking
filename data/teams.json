@@ -40,13 +40,13 @@
         "name": "北海道コンサドーレ札幌U-18",
         "league": "プリンスリーグ北海道",
         "rank": 3,
-        "points": 13,
-        "played": 5,
+        "points": 14,
+        "played": 6,
         "won": 4,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 0,
-        "goalsFor": 17,
-        "goalsAgainst": 1,
+        "goalsFor": 20,
+        "goalsAgainst": 4,
         "prefectureRank": 3,
         "leagueRank": 2
       },
@@ -72,13 +72,13 @@
         "name": "旭川実業高校",
         "league": "プリンスリーグ北海道",
         "rank": 5,
-        "points": 10,
-        "played": 5,
+        "points": 11,
+        "played": 6,
         "won": 3,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 1,
-        "goalsFor": 6,
-        "goalsAgainst": 2,
+        "goalsFor": 9,
+        "goalsAgainst": 5,
         "prefectureRank": 5,
         "leagueRank": 3
       },
@@ -161,6 +161,21 @@
         ]
       },
       {
+        "id": "h006",
+        "name": "札幌光星高校",
+        "league": "プリンスリーグ北海道",
+        "rank": 11,
+        "points": 6,
+        "played": 6,
+        "won": 2,
+        "drawn": 0,
+        "lost": 4,
+        "goalsFor": 10,
+        "goalsAgainst": 11,
+        "prefectureRank": 11,
+        "leagueRank": 6
+      },
+      {
         "name": "札幌大谷高校2nd",
         "league": "北海道FAリーグU-18",
         "points": 5,
@@ -171,26 +186,11 @@
         "goalsFor": 4,
         "goalsAgainst": 16,
         "leagueRank": 6,
-        "rank": 11,
-        "prefectureRank": 11,
+        "rank": 12,
+        "prefectureRank": 12,
         "aliases": [
           "札幌大谷2nd"
         ]
-      },
-      {
-        "id": "h006",
-        "name": "札幌光星高校",
-        "league": "プリンスリーグ北海道",
-        "rank": 12,
-        "points": 3,
-        "played": 5,
-        "won": 1,
-        "drawn": 0,
-        "lost": 4,
-        "goalsFor": 8,
-        "goalsAgainst": 11,
-        "prefectureRank": 12,
-        "leagueRank": 6
       },
       {
         "name": "旭実FC VITA",
@@ -210,12 +210,12 @@
         "name": "北照高校",
         "league": "プリンスリーグ北海道",
         "points": 3,
-        "played": 5,
+        "played": 6,
         "won": 0,
         "drawn": 3,
-        "lost": 2,
+        "lost": 3,
         "goalsFor": 3,
-        "goalsAgainst": 8,
+        "goalsAgainst": 10,
         "rank": 14,
         "prefectureRank": 14,
         "leagueRank": 7
@@ -11952,7 +11952,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-30 03:29",
+    "lastUpdated": "2026-05-30 04:53",
     "year": 2026,
     "updatedCount": 584
   }
