@@ -19,20 +19,20 @@
         "leagueRank": 1
       },
       {
-        "name": "札幌創成高校",
+        "name": "東海大札幌高校",
         "league": "北海道FAリーグU-18",
-        "points": 12,
-        "played": 5,
+        "points": 13,
+        "played": 6,
         "won": 4,
-        "drawn": 0,
+        "drawn": 1,
         "lost": 1,
-        "goalsFor": 13,
+        "goalsFor": 20,
         "goalsAgainst": 6,
         "leagueRank": 1,
         "rank": 2,
         "prefectureRank": 2,
         "aliases": [
-          "札幌創成"
+          "東海大札幌"
         ]
       },
       {
@@ -51,10 +51,27 @@
         "leagueRank": 2
       },
       {
-        "name": "旭川実業高校2nd",
+        "name": "札幌創成高校",
         "league": "北海道FAリーグU-18",
+        "points": 12,
+        "played": 5,
+        "won": 4,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 13,
+        "goalsAgainst": 6,
+        "leagueRank": 2,
         "rank": 4,
         "prefectureRank": 4,
+        "aliases": [
+          "札幌創成"
+        ]
+      },
+      {
+        "name": "旭川実業高校2nd",
+        "league": "北海道FAリーグU-18",
+        "rank": 5,
+        "prefectureRank": 5,
         "points": 12,
         "played": 6,
         "won": 4,
@@ -62,7 +79,7 @@
         "lost": 2,
         "goalsFor": 11,
         "goalsAgainst": 10,
-        "leagueRank": 2,
+        "leagueRank": 3,
         "aliases": [
           "旭川実業高校 2nd"
         ]
@@ -71,7 +88,7 @@
         "id": "h004",
         "name": "旭川実業高校",
         "league": "プリンスリーグ北海道",
-        "rank": 5,
+        "rank": 6,
         "points": 11,
         "played": 6,
         "won": 3,
@@ -79,31 +96,28 @@
         "lost": 1,
         "goalsFor": 9,
         "goalsAgainst": 5,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "leagueRank": 3
       },
       {
-        "name": "東海大札幌高校",
+        "name": "とわの森三愛高校",
         "league": "北海道FAリーグU-18",
+        "rank": 7,
+        "prefectureRank": 7,
         "points": 10,
-        "played": 5,
+        "played": 6,
         "won": 3,
         "drawn": 1,
-        "lost": 1,
-        "goalsFor": 18,
-        "goalsAgainst": 5,
-        "leagueRank": 3,
-        "rank": 6,
-        "prefectureRank": 6,
-        "aliases": [
-          "東海大札幌"
-        ]
+        "lost": 2,
+        "goalsFor": 14,
+        "goalsAgainst": 9,
+        "leagueRank": 4
       },
       {
         "id": "h005",
         "name": "北海道大谷室蘭高校",
         "league": "プリンスリーグ北海道",
-        "rank": 7,
+        "rank": 8,
         "points": 10,
         "played": 6,
         "won": 3,
@@ -111,21 +125,7 @@
         "lost": 2,
         "goalsFor": 7,
         "goalsAgainst": 10,
-        "prefectureRank": 7,
-        "leagueRank": 4
-      },
-      {
-        "name": "とわの森三愛高校",
-        "league": "北海道FAリーグU-18",
-        "rank": 8,
         "prefectureRank": 8,
-        "points": 9,
-        "played": 5,
-        "won": 3,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 12,
-        "goalsAgainst": 7,
         "leagueRank": 4
       },
       {
@@ -176,6 +176,20 @@
         "leagueRank": 6
       },
       {
+        "name": "旭実FC VITA",
+        "league": "北海道FAリーグU-18",
+        "points": 5,
+        "played": 6,
+        "won": 1,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 6,
+        "goalsAgainst": 11,
+        "leagueRank": 6,
+        "rank": 12,
+        "prefectureRank": 12
+      },
+      {
         "name": "札幌大谷高校2nd",
         "league": "北海道FAリーグU-18",
         "points": 5,
@@ -185,26 +199,12 @@
         "lost": 2,
         "goalsFor": 4,
         "goalsAgainst": 16,
-        "leagueRank": 6,
-        "rank": 12,
-        "prefectureRank": 12,
+        "leagueRank": 7,
+        "rank": 13,
+        "prefectureRank": 13,
         "aliases": [
           "札幌大谷2nd"
         ]
-      },
-      {
-        "name": "旭実FC VITA",
-        "league": "北海道FAリーグU-18",
-        "points": 4,
-        "played": 5,
-        "won": 1,
-        "drawn": 1,
-        "lost": 3,
-        "goalsFor": 4,
-        "goalsAgainst": 9,
-        "leagueRank": 7,
-        "rank": 13,
-        "prefectureRank": 13
       },
       {
         "name": "北照高校",
@@ -224,12 +224,12 @@
         "name": "北海道大谷室蘭高校2nd",
         "league": "北海道FAリーグU-18",
         "points": 3,
-        "played": 5,
+        "played": 6,
         "won": 1,
         "drawn": 0,
-        "lost": 4,
-        "goalsFor": 7,
-        "goalsAgainst": 12,
+        "lost": 5,
+        "goalsFor": 8,
+        "goalsAgainst": 14,
         "leagueRank": 8,
         "rank": 15,
         "prefectureRank": 15,
@@ -11952,7 +11952,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-30 10:43",
+    "lastUpdated": "2026-05-30 12:55",
     "year": 2026,
     "updatedCount": 584
   }
