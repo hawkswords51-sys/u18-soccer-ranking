@@ -51,20 +51,20 @@
         "leagueRank": 2
       },
       {
-        "name": "東海大札幌高校",
+        "name": "旭川実業高校2nd",
         "league": "北海道FAリーグU-18",
-        "points": 10,
-        "played": 5,
-        "won": 3,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 18,
-        "goalsAgainst": 5,
-        "leagueRank": 2,
         "rank": 4,
         "prefectureRank": 4,
+        "points": 12,
+        "played": 6,
+        "won": 4,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 11,
+        "goalsAgainst": 10,
+        "leagueRank": 2,
         "aliases": [
-          "東海大札幌"
+          "旭川実業高校 2nd"
         ]
       },
       {
@@ -83,18 +83,21 @@
         "leagueRank": 3
       },
       {
-        "name": "とわの森三愛高校",
+        "name": "東海大札幌高校",
         "league": "北海道FAリーグU-18",
-        "rank": 6,
-        "prefectureRank": 6,
-        "points": 9,
+        "points": 10,
         "played": 5,
         "won": 3,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 12,
-        "goalsAgainst": 7,
-        "leagueRank": 3
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 18,
+        "goalsAgainst": 5,
+        "leagueRank": 3,
+        "rank": 6,
+        "prefectureRank": 6,
+        "aliases": [
+          "東海大札幌"
+        ]
       },
       {
         "id": "h005",
@@ -112,7 +115,7 @@
         "leagueRank": 4
       },
       {
-        "name": "旭川実業高校2nd",
+        "name": "とわの森三愛高校",
         "league": "北海道FAリーグU-18",
         "rank": 8,
         "prefectureRank": 8,
@@ -121,12 +124,9 @@
         "won": 3,
         "drawn": 0,
         "lost": 2,
-        "goalsFor": 9,
-        "goalsAgainst": 9,
-        "leagueRank": 4,
-        "aliases": [
-          "旭川実業高校 2nd"
-        ]
+        "goalsFor": 12,
+        "goalsAgainst": 7,
+        "leagueRank": 4
       },
       {
         "id": "h003",
@@ -147,12 +147,12 @@
         "name": "札幌第一高校",
         "league": "北海道FAリーグU-18",
         "points": 5,
-        "played": 5,
+        "played": 6,
         "won": 1,
         "drawn": 2,
-        "lost": 2,
-        "goalsFor": 4,
-        "goalsAgainst": 7,
+        "lost": 3,
+        "goalsFor": 5,
+        "goalsAgainst": 9,
         "leagueRank": 5,
         "rank": 10,
         "prefectureRank": 10,
@@ -11952,7 +11952,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-30 08:17",
+    "lastUpdated": "2026-05-30 10:12",
     "year": 2026,
     "updatedCount": 584
   }
