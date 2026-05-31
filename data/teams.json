@@ -1943,6 +1943,24 @@
     "region": "関東",
     "teams": [
       {
+        "id": "g003",
+        "name": "前橋育英高校2nd",
+        "league": "群馬U-18リーグ",
+        "rank": 1,
+        "points": 24,
+        "played": 8,
+        "won": 8,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 27,
+        "goalsAgainst": 3,
+        "prefectureRank": 1,
+        "leagueRank": 1,
+        "aliases": [
+          "前橋育英B"
+        ]
+      },
+      {
         "id": "g001",
         "name": "前橋育英高校",
         "league": "プレミアリーグEAST",
@@ -1975,28 +1993,10 @@
         "leagueRank": 9
       },
       {
-        "id": "g003",
-        "name": "前橋育英高校2nd",
-        "league": "群馬U-18リーグ",
-        "rank": 4,
-        "points": 24,
-        "played": 8,
-        "won": 8,
-        "drawn": 0,
-        "lost": 0,
-        "goalsFor": 27,
-        "goalsAgainst": 3,
-        "prefectureRank": 4,
-        "leagueRank": 1,
-        "aliases": [
-          "前橋育英B"
-        ]
-      },
-      {
         "id": "g004",
         "name": "高崎健康福祉大学高崎高校",
         "league": "群馬U-18リーグ",
-        "rank": 5,
+        "rank": 4,
         "points": 21,
         "played": 8,
         "won": 7,
@@ -2004,7 +2004,7 @@
         "lost": 1,
         "goalsFor": 31,
         "goalsAgainst": 6,
-        "prefectureRank": 5,
+        "prefectureRank": 4,
         "leagueRank": 2,
         "aliases": [
           "健大高崎"
@@ -2014,7 +2014,7 @@
         "id": "g006",
         "name": "常磐高校",
         "league": "群馬U-18リーグ",
-        "rank": 16,
+        "rank": 5,
         "points": 14,
         "played": 8,
         "won": 4,
@@ -2022,14 +2022,14 @@
         "lost": 2,
         "goalsFor": 14,
         "goalsAgainst": 11,
-        "prefectureRank": 16,
+        "prefectureRank": 5,
         "leagueRank": 3
       },
       {
         "id": "g010",
         "name": "高崎経済大学附属高校",
         "league": "群馬U-18リーグ",
-        "rank": 17,
+        "rank": 6,
         "points": 14,
         "played": 8,
         "won": 4,
@@ -2037,7 +2037,7 @@
         "lost": 2,
         "goalsFor": 9,
         "goalsAgainst": 10,
-        "prefectureRank": 17,
+        "prefectureRank": 6,
         "leagueRank": 4,
         "aliases": [
           "高経大附属"
@@ -2046,8 +2046,8 @@
       {
         "name": "伊勢崎工業高校",
         "league": "群馬U-18リーグ",
-        "rank": 25,
-        "prefectureRank": 25,
+        "rank": 7,
+        "prefectureRank": 7,
         "points": 11,
         "played": 8,
         "won": 3,
@@ -2068,7 +2068,7 @@
         "id": "g009",
         "name": "前橋商業高校",
         "league": "群馬U-18リーグ",
-        "rank": 30,
+        "rank": 8,
         "points": 10,
         "played": 8,
         "won": 3,
@@ -2076,7 +2076,7 @@
         "lost": 4,
         "goalsFor": 9,
         "goalsAgainst": 12,
-        "prefectureRank": 30,
+        "prefectureRank": 8,
         "leagueRank": 6,
         "aliases": [
           "前橋商",
@@ -2090,7 +2090,7 @@
         "id": "g008",
         "name": "桐生第一高校2nd",
         "league": "群馬U-18リーグ",
-        "rank": 36,
+        "rank": 9,
         "points": 9,
         "played": 8,
         "won": 3,
@@ -2098,7 +2098,7 @@
         "lost": 5,
         "goalsFor": 21,
         "goalsAgainst": 17,
-        "prefectureRank": 36,
+        "prefectureRank": 9,
         "leagueRank": 7,
         "aliases": [
           "桐生第一B"
@@ -2108,7 +2108,7 @@
         "id": "g007",
         "name": "共愛学園高校",
         "league": "群馬U-18リーグ",
-        "rank": 39,
+        "rank": 10,
         "points": 8,
         "played": 8,
         "won": 2,
@@ -2116,7 +2116,7 @@
         "lost": 4,
         "goalsFor": 6,
         "goalsAgainst": 19,
-        "prefectureRank": 39,
+        "prefectureRank": 10,
         "leagueRank": 8
       },
       {
@@ -2130,14 +2130,14 @@
         "goalsFor": 10,
         "goalsAgainst": 21,
         "leagueRank": 9,
-        "rank": 53,
-        "prefectureRank": 53
+        "rank": 11,
+        "prefectureRank": 11
       },
       {
         "name": "高崎商業高校",
         "league": "群馬U-18リーグ",
-        "rank": 66,
-        "prefectureRank": 66,
+        "rank": 12,
+        "prefectureRank": 12,
         "points": 0,
         "played": 8,
         "won": 0,
@@ -11094,7 +11094,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-05-31 10:51",
+    "lastUpdated": "2026-05-31 11:58",
     "year": 2026,
     "updatedCount": 584
   }
