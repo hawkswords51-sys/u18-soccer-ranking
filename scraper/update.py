@@ -1043,7 +1043,15 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
             time.sleep(0.5)
             continue
 
-        standings = parse_standing_table(soup)
+        # junior-soccer.jp などは同一URLの下部に「関連するリーグ戦（グループリーグ）」
+        # として 2部・3部の順位表も載せるようになった。ページ全体を渡すと
+        # 県リーグ1部以外のチームまで取り込み、順位が膨張する（例: 群馬が1〜70位）。
+        # 県リーグは先頭の順位表（＝1部 全順位）のみを対象にする。
+        standings_tables = _find_standings_tables(soup)
+        if standings_tables:
+            standings = parse_standing_table(standings_tables[0])
+        else:
+            standings = parse_standing_table(soup)
         print(f"    取得チーム数: {len(standings)}")
         # 既存チームの league 名（あれば）を新規登録のデフォルトに使う
         # これによりプリンス所属チームの league 名は上書きされず、
