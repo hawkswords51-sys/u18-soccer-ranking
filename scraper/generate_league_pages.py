@@ -1016,9 +1016,9 @@ def generate_league_page(league_name, slug, label, category, description, season
         )
     else:
         description_short = (
-            f"{label}の最新順位・試合結果を毎日自動更新。"
-            f"{notable_phrase}全{team_count}チームのU-18高校サッカー勝点・得失点差・日程を一覧表示。"
-            f"{league_role}の最新動向を網羅。"
+            f"{label}の最新順位・試合結果を毎日自動更新しています。"
+            f"{notable_phrase}全{team_count}チームのU-18高校サッカーの勝点・得失点差・全日程を一覧で確認。"
+            f"{league_role}の昇格・降格争いの最新動向まで、ワンクリックでチェックできます。"
         )
 
     description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属し、年間を通じて熾烈な順位争いが繰り広げられます。"
