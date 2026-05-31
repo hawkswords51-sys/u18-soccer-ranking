@@ -1409,7 +1409,7 @@ LEAGUE_INDEX_TEMPLATE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>リーグ一覧 | 高円宮杯 JFA U-18 サッカープレミア・プリンスリーグ全国順位表</title>
-  <meta name="description" content="高円宮杯 JFA U-18 サッカーリーグ全カテゴリの順位表を一括確認。プレミアリーグEAST/WESTとプリンスリーグ9地域の所属チーム・最新順位を毎日自動更新。">
+  <meta name="description" content="高円宮杯 JFA U-18 サッカーリーグ全カテゴリの順位表を一括確認できます。全国最高峰のプレミアリーグEAST/WEST、地域のプリンスリーグ9地域、各都道府県の1部リーグまで、所属チーム・勝点・得失点差・最新順位を毎日自動更新。気になるチームの全国でのレベルを横断的にチェックできます。">
   <meta name="keywords" content="高円宮杯,U-18,プレミアリーグ,プリンスリーグ,高校サッカー,順位,リーグ一覧">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://u18-soccer.com/leagues/">
