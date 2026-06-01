@@ -49,11 +49,11 @@ finals:
     cancelled: true
     note: "ファイナルはコロナ禍にて開催中止、代替試合は引き分けで終了"
 
-    - year: 2020
+  - year: 2020
     date: "2020-12-13"
     venue: "埼玉スタジアム２００２"
-    east_winner: { team: "", pref:  }
-    west_winner: { team: "", pref:  }
+    east_winner: { team: "", pref: "" }
+    west_winner: { team: "", pref: "" }
     score: ""
     cancelled: true
     note: "ファイナルはコロナ禍にて開催中止"
@@ -76,7 +76,7 @@ finals:
     champion: { team: "サンフレッチェ広島F.C.ユース", pref: hiroshima }
     note: "広島が2-1で鹿島を破り3度目の日本一に輝く"
 
- - year: 2017
+  - year: 2017
     date: "2017-12-17"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "FC東京U-18", pref: tokyo }
@@ -85,7 +85,7 @@ finals:
     champion: { team: "FC東京U-18", pref: tokyo }
     note: "FC東京が2点差を逆転して初優勝"
 
-- year: 2016
+  - year: 2016
     date: "2016-12-17"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "青森山田高校", pref: aomori }
@@ -94,7 +94,7 @@ finals:
     champion: { team: "青森山田高校", pref: aomori }
     note: "青森山田がPK戦の末に初優勝"
 
-- year: 2015
+  - year: 2015
     date: "2015-12-12"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "鹿島アントラーズユース", pref: ibaraki }
@@ -103,7 +103,7 @@ finals:
     champion: { team: "鹿島アントラーズユース", pref: ibaraki }
     note: "闘う集団・鹿島が初優勝"
 
-- year: 2014
+  - year: 2014
     date: "2014-12-14"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "柏レイソルU-18", pref: chiba }
@@ -112,7 +112,7 @@ finals:
     champion: { team: "セレッソ大阪U-18", pref: osaka }
     note: "セレッソ大阪U-18が日本一に輝く"
 
-- year: 2013
+  - year: 2013
     date: "2013-12-15"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "流通経済大学付属柏高校", pref: chiba }
@@ -121,7 +121,7 @@ finals:
     champion: { team: "流通経済大学付属柏高校", pref: chiba }
     note: "流通経済大柏が高校年代日本一に"
 
-- year: 2012
+  - year: 2012
     date: "2012-12-16"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "東京ヴェルディユース", pref: tokyo }
@@ -130,7 +130,7 @@ finals:
     champion: { team: "サンフレッチェ広島F.C.ユース", pref: hiroshima }
     note: "東京Vユースに4発快勝!広島ユースが3年連続高円宮杯制覇"
 
-- year: 2011
+  - year: 2011
     date: "2011-12-17"
     venue: "埼玉スタジアム２００２"
     east_winner: { team: "コンサドーレ札幌U-18", pref: hokkaido }
