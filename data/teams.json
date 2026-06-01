@@ -53,13 +53,13 @@
       {
         "name": "札幌創成高校",
         "league": "北海道FAリーグU-18",
-        "points": 12,
-        "played": 5,
+        "points": 13,
+        "played": 6,
         "won": 4,
-        "drawn": 0,
+        "drawn": 1,
         "lost": 1,
-        "goalsFor": 13,
-        "goalsAgainst": 6,
+        "goalsFor": 15,
+        "goalsAgainst": 8,
         "leagueRank": 2,
         "rank": 4,
         "prefectureRank": 4,
@@ -147,20 +147,20 @@
         "leagueRank": 5
       },
       {
-        "name": "札幌第一高校",
+        "name": "札幌大谷高校2nd",
         "league": "北海道FAリーグU-18",
-        "points": 5,
+        "points": 6,
         "played": 6,
         "won": 1,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 5,
-        "goalsAgainst": 9,
+        "drawn": 3,
+        "lost": 2,
+        "goalsFor": 6,
+        "goalsAgainst": 18,
         "leagueRank": 5,
         "rank": 10,
         "prefectureRank": 10,
         "aliases": [
-          "札幌第一"
+          "札幌大谷2nd"
         ]
       },
       {
@@ -179,6 +179,23 @@
         "leagueRank": 6
       },
       {
+        "name": "札幌第一高校",
+        "league": "北海道FAリーグU-18",
+        "points": 5,
+        "played": 6,
+        "won": 1,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 5,
+        "goalsAgainst": 9,
+        "leagueRank": 6,
+        "rank": 12,
+        "prefectureRank": 12,
+        "aliases": [
+          "札幌第一"
+        ]
+      },
+      {
         "name": "旭実FC VITA",
         "league": "北海道FAリーグU-18",
         "points": 5,
@@ -188,26 +205,9 @@
         "lost": 3,
         "goalsFor": 6,
         "goalsAgainst": 11,
-        "leagueRank": 6,
-        "rank": 12,
-        "prefectureRank": 12
-      },
-      {
-        "name": "札幌大谷高校2nd",
-        "league": "北海道FAリーグU-18",
-        "points": 5,
-        "played": 5,
-        "won": 1,
-        "drawn": 2,
-        "lost": 2,
-        "goalsFor": 4,
-        "goalsAgainst": 16,
         "leagueRank": 7,
         "rank": 13,
-        "prefectureRank": 13,
-        "aliases": [
-          "札幌大谷2nd"
-        ]
+        "prefectureRank": 13
       },
       {
         "name": "北照高校",
@@ -11094,7 +11094,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-01 13:22",
+    "lastUpdated": "2026-06-01 14:03",
     "year": 2026,
     "updatedCount": 584
   }
