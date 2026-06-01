@@ -1250,7 +1250,7 @@ def generate_premier_final_page():
         )
         ranking_html = f"""
         <section class="lp-section">
-          <h2><i class="fas fa-medal"></i> 過去5年 最多優勝校</h2>
+          <h2><i class="fas fa-medal"></i> 過去15年 最多優勝校</h2>
           <ul style="list-style:none; padding:0;">{ranking_items}</ul>
         </section>
         """
