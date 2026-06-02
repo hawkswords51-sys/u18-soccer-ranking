@@ -147,18 +147,40 @@ def parse_source():
 
 def render_reps(lines):
     items = []
+    school_count = 0
     for ln in lines:
         m = re.match(r'^\s*-\s*([^:：]+)[:：]\s*(.+)$', ln)
-        if m:
-            pref, school = m.group(1).strip(), m.group(2).strip()
-            items.append(f'<li style="padding:8px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-                         f'<span style="display:inline-block;min-width:5.5em;color:var(--text-secondary,#6b7280);font-size:0.9em;">{html_escape(pref)}</span> '
-                         f'{team_link(school)}</li>')
+        if not m:
+            continue
+        pref = m.group(1).strip()
+        schools_raw = m.group(2).strip()
+        rendered = []
+        for token in re.split(r'[、,]', schools_raw):
+            token = token.strip()
+            if not token:
+                continue
+            # 末尾の（記録）または(記録)を分離
+            rm = re.search(r'[（(]([^）)]*)[）)]\s*$', token)
+            if rm:
+                name = token[:rm.start()].strip()
+                record = rm.group(1).strip()
+            else:
+                name, record = token, ""
+            if not name:
+                continue
+            badge = (f' <span style="font-size:0.8em;color:var(--text-secondary,#6b7280);">（{html_escape(record)}）</span>' if record else "")
+            rendered.append(team_link(name) + badge)
+            school_count += 1
+        if not rendered:
+            continue
+        items.append(f'<li style="padding:8px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
+                     f'<span style="display:inline-block;min-width:5.5em;color:var(--text-secondary,#6b7280);font-size:0.9em;">{html_escape(pref)}</span> '
+                     f'{"、".join(rendered)}</li>')
     if not items:
         return '<p style="color:var(--text-secondary,#6b7280);">各県予選の終了後、代表校を順次掲載します。</p>'
     return ('<ul style="list-style:none;padding:0;columns:2;column-gap:32px;">'
             + "\n".join(items) + '</ul>'
-            + f'<p style="margin-top:8px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {len(items)} 校</p>')
+            + f'<p style="margin-top:8px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
 
 def render_rounds(sections):
     blocks = []
