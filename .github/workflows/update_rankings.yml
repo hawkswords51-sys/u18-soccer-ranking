@@ -133,6 +133,16 @@ jobs:
             echo "scraper/generate_blog_pages.py がまだありません。スキップ。"
           fi
 
+      # ★ インターハイ本選（全国大会）ページを生成
+      - name: インターハイ本選ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_interhigh_page.py ]; then
+            python scraper/generate_interhigh_page.py
+          else
+            echo "scraper/generate_interhigh_page.py がまだありません。スキップ。"
+          fi
+
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
