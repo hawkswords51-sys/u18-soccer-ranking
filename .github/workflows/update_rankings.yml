@@ -159,6 +159,8 @@ jobs:
           if [ -d teams ]; then git add teams; fi
           if [ -d blog ]; then git add blog; fi
           if [ -d blog-source ]; then git add blog-source; fi
+          if [ -d tournaments ]; then git add tournaments; fi
+          if [ -d data/tournaments ]; then git add data/tournaments; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
 
           # 変更がある場合のみコミット & push
