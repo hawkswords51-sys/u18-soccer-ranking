@@ -187,6 +187,16 @@ def main():
     period = meta.get("period", "")
     status = meta.get("status", "")
     champion = meta.get("champion") or ""
+    slots = meta.get("slots", "")
+    fmt = meta.get("format", "")
+    schedule = meta.get("schedule") or []
+    slots_li = f'<li><strong>出場枠</strong>：{html_escape(slots)}</li>' if slots else ""
+    format_li = f'<li><strong>大会方式</strong>：{html_escape(fmt)}</li>' if fmt else ""
+    if schedule:
+        _items = "\n".join(f'<li style="padding:6px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">{html_escape(x)}</li>' for x in schedule)
+        schedule_html = f'<h3 style="margin-top:16px;">📅 日程</h3><ul style="list-style:none;padding:0;">{_items}</ul>'
+    else:
+        schedule_html = ""
 
     seo_title = f"インターハイ サッカー {year} 結果・組み合わせ｜全国高校総体（男子）トーナメント速報"
     description = (f"高校総体（インターハイ）サッカー競技 男子 {year} の全国大会（本選）の組み合わせ・試合結果・"
@@ -306,7 +316,10 @@ def main():
           <li><strong>大会名</strong>：{html_escape(title_main)}</li>
           <li><strong>会期</strong>：{html_escape(period) or '日程確定後に掲載'}</li>
           <li><strong>開催地</strong>：{html_escape(venue) or '確定後に掲載'}{(' / ' + html_escape(host)) if host else ''}</li>
+          {slots_li}
+          {format_li}
         </ul>
+        {schedule_html}
         {champion_html}
       </section>
 
