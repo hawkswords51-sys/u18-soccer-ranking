@@ -377,6 +377,15 @@ def render_tournament_html(pref_id, teams):
             f'      </section>'
         )
 
+    if html_parts:
+        html_parts.append(
+            '      <section class="lp-section">\n'
+            '        <p style="margin:0;"><a href="/tournaments/interhigh-2026/" '
+            'style="display:inline-block;padding:10px 18px;background:var(--accent-color,#2563eb);'
+            'color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">'
+            '🏆 インターハイ全国大会（本選）の組み合わせ・結果はこちら →</a></p>\n'
+            '      </section>'
+        )
     return "\n".join(html_parts)
 
 
