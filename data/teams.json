@@ -10101,12 +10101,12 @@
         "name": "ロアッソ熊本U-18_2nd",
         "league": "熊本県1部",
         "points": 10,
-        "played": 8,
+        "played": 9,
         "won": 3,
         "drawn": 1,
-        "lost": 4,
-        "goalsFor": 11,
-        "goalsAgainst": 13,
+        "lost": 5,
+        "goalsFor": 12,
+        "goalsAgainst": 18,
         "leagueRank": 6,
         "rank": 11,
         "prefectureRank": 11,
@@ -10115,10 +10115,27 @@
         ]
       },
       {
+        "name": "東海大学付属熊本星翔高校2nd",
+        "league": "熊本県1部",
+        "points": 9,
+        "played": 7,
+        "won": 3,
+        "drawn": 0,
+        "lost": 4,
+        "goalsFor": 18,
+        "goalsAgainst": 17,
+        "leagueRank": 7,
+        "rank": 12,
+        "prefectureRank": 12,
+        "aliases": [
+          "東海星翔2nd"
+        ]
+      },
+      {
         "id": "km008",
         "name": "ルーテル学院高校",
         "league": "熊本県1部",
-        "rank": 12,
+        "rank": 13,
         "points": 7,
         "played": 8,
         "won": 2,
@@ -10126,15 +10143,15 @@
         "lost": 5,
         "goalsFor": 7,
         "goalsAgainst": 10,
-        "prefectureRank": 12,
+        "prefectureRank": 13,
         "goalDiff": -1,
-        "leagueRank": 7
+        "leagueRank": 8
       },
       {
         "id": "km015",
         "name": "東海星翔高校2nd",
         "league": "熊本県1部",
-        "rank": 13,
+        "rank": 14,
         "points": 6,
         "played": 5,
         "won": 2,
@@ -10143,25 +10160,8 @@
         "goalsFor": 10,
         "goalsAgainst": 11,
         "goalDiff": -3,
-        "prefectureRank": 13,
-        "leagueRank": 8,
-        "aliases": [
-          "東海星翔2nd"
-        ]
-      },
-      {
-        "name": "東海大学付属熊本星翔高校2nd",
-        "league": "熊本県1部",
-        "points": 6,
-        "played": 6,
-        "won": 2,
-        "drawn": 0,
-        "lost": 4,
-        "goalsFor": 13,
-        "goalsAgainst": 16,
-        "leagueRank": 9,
-        "rank": 14,
         "prefectureRank": 14,
+        "leagueRank": 9,
         "aliases": [
           "東海星翔2nd"
         ]
@@ -11094,8 +11094,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-05 08:18",
+    "lastUpdated": "2026-06-05 18:32",
     "year": 2026,
-    "updatedCount": 584
+    "updatedCount": 576
   }
 }
