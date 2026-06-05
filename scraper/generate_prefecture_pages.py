@@ -110,8 +110,8 @@ PREFECTURE_FEATURED_ARTICLES = {
     ],
     "hyogo": [
         {
-            "title": "【特集チーム】AIE国際高校 — インハイ予選決勝進出！「日本で最もブンデスリーガに近い組織」の挑戦",
-            "url": "/teams/aie-kokusai/",
+            "title": "【兵庫インハイ2026決勝】AIE国際はなぜ滝川第二と3度戦うのか｜上船利徳と「日本で最もブンデスリーガに近い組織」の挑戦",
+            "url": "/blog/posts/aie-kokusai-rise-2026/",
             "date": "2026-06-05",
         },
     ],
