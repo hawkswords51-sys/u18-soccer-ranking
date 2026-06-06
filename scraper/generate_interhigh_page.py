@@ -168,19 +168,24 @@ def render_reps(lines):
                 name, record = token, ""
             if not name:
                 continue
-            badge = (f' <span style="font-size:0.8em;color:var(--text-secondary,#6b7280);">（{html_escape(record)}）</span>' if record else "")
-            rendered.append(team_link(name) + badge)
+            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);">（{html_escape(record)}）</span>' if record else "")
+            # 学校名は途中で折り返さない（nowrap）。記録バッジは別要素で必要時のみ改行。
+            rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{badge}')
             school_count += 1
         if not rendered:
             continue
-        items.append(f'<li style="padding:8px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-                     f'<span style="display:inline-block;min-width:5.5em;color:var(--text-secondary,#6b7280);font-size:0.9em;">{html_escape(pref)}</span> '
-                     f'{"、".join(rendered)}</li>')
+        items.append(
+            '<div style="padding:10px 4px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
+            f'<div style="color:var(--text-secondary,#6b7280);font-size:0.82em;margin-bottom:2px;">{html_escape(pref)}</div>'
+            f'<div style="line-height:1.6;">{"、".join(rendered)}</div>'
+            '</div>'
+        )
     if not items:
         return '<p style="color:var(--text-secondary,#6b7280);">各県予選の終了後、代表校を順次掲載します。</p>'
-    return ('<ul style="list-style:none;padding:0;columns:2;column-gap:32px;">'
-            + "\n".join(items) + '</ul>'
-            + f'<p style="margin-top:8px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
+    # 画面幅に応じて自動で1〜2カラム（モバイル=1列、PC=2列）。multi-columnの途中改行を回避。
+    return ('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 28px;">'
+            + "\n".join(items) + '</div>'
+            + f'<p style="margin-top:10px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
 
 def render_rounds(sections):
     blocks = []
