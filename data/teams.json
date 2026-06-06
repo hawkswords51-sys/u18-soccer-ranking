@@ -1292,19 +1292,21 @@
         "leagueRank": 1
       },
       {
-        "id": "f009",
-        "name": "いわきFC",
+        "name": "尚志高校2nd",
         "league": "福島F1リーグ",
+        "points": 15,
+        "played": 7,
+        "won": 5,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 32,
+        "goalsAgainst": 7,
+        "leagueRank": 2,
         "rank": 3,
-        "points": 14,
-        "played": 6,
-        "won": 4,
-        "drawn": 2,
-        "lost": 0,
-        "goalsFor": 10,
-        "goalsAgainst": 3,
         "prefectureRank": 3,
-        "leagueRank": 2
+        "aliases": [
+          "尚志セカンド"
+        ]
       },
       {
         "id": "f004",
@@ -1322,21 +1324,19 @@
         "leagueRank": 4
       },
       {
-        "name": "尚志高校2nd",
+        "id": "f009",
+        "name": "いわきFC",
         "league": "福島F1リーグ",
-        "points": 12,
+        "rank": 5,
+        "points": 14,
         "played": 6,
         "won": 4,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 27,
-        "goalsAgainst": 7,
-        "leagueRank": 3,
-        "rank": 5,
+        "drawn": 2,
+        "lost": 0,
+        "goalsFor": 10,
+        "goalsAgainst": 3,
         "prefectureRank": 5,
-        "aliases": [
-          "尚志セカンド"
-        ]
+        "leagueRank": 3
       },
       {
         "id": "f002",
@@ -1372,6 +1372,23 @@
         ]
       },
       {
+        "name": "学法石川高校2nd",
+        "league": "福島F1リーグ",
+        "points": 8,
+        "played": 7,
+        "won": 2,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 16,
+        "goalsAgainst": 16,
+        "leagueRank": 5,
+        "rank": 8,
+        "prefectureRank": 8,
+        "aliases": [
+          "学法石川セカンド"
+        ]
+      },
+      {
         "name": "福島ユナイテッド",
         "league": "福島F1リーグ",
         "points": 8,
@@ -1381,38 +1398,55 @@
         "lost": 2,
         "goalsFor": 7,
         "goalsAgainst": 10,
-        "leagueRank": 5,
-        "rank": 8,
-        "prefectureRank": 8
+        "leagueRank": 6,
+        "rank": 9,
+        "prefectureRank": 9
+      },
+      {
+        "name": "帝京安積高校2nd",
+        "league": "福島F1リーグ",
+        "points": 7,
+        "played": 7,
+        "won": 2,
+        "drawn": 1,
+        "lost": 4,
+        "goalsFor": 16,
+        "goalsAgainst": 10,
+        "leagueRank": 7,
+        "rank": 10,
+        "prefectureRank": 10,
+        "aliases": [
+          "帝京安積セカンド"
+        ]
       },
       {
         "id": "f010",
         "name": "福島東高校",
         "league": "福島F1リーグ",
-        "rank": 9,
+        "rank": 11,
         "points": 7,
-        "played": 6,
+        "played": 7,
         "won": 2,
         "drawn": 1,
-        "lost": 3,
+        "lost": 4,
         "goalsFor": 9,
-        "goalsAgainst": 9,
-        "prefectureRank": 9,
-        "leagueRank": 6
+        "goalsAgainst": 13,
+        "prefectureRank": 11,
+        "leagueRank": 8
       },
       {
         "name": "郡山商業高校",
         "league": "福島F1リーグ",
-        "rank": 10,
-        "prefectureRank": 10,
+        "rank": 12,
+        "prefectureRank": 12,
         "points": 5,
-        "played": 6,
+        "played": 7,
         "won": 1,
         "drawn": 2,
-        "lost": 3,
+        "lost": 4,
         "goalsFor": 6,
-        "goalsAgainst": 11,
-        "leagueRank": 7,
+        "goalsAgainst": 16,
+        "leagueRank": 9,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1422,51 +1456,17 @@
         ]
       },
       {
-        "name": "学法石川高校2nd",
-        "league": "福島F1リーグ",
-        "points": 5,
-        "played": 6,
-        "won": 1,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 9,
-        "goalsAgainst": 16,
-        "leagueRank": 8,
-        "rank": 11,
-        "prefectureRank": 11,
-        "aliases": [
-          "学法石川セカンド"
-        ]
-      },
-      {
-        "name": "帝京安積高校2nd",
-        "league": "福島F1リーグ",
-        "points": 4,
-        "played": 6,
-        "won": 1,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 12,
-        "goalsAgainst": 10,
-        "leagueRank": 9,
-        "rank": 12,
-        "prefectureRank": 12,
-        "aliases": [
-          "帝京安積セカンド"
-        ]
-      },
-      {
         "id": "f007",
         "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
         "points": 3,
-        "played": 6,
+        "played": 7,
         "won": 1,
         "drawn": 0,
-        "lost": 5,
+        "lost": 6,
         "goalsFor": 2,
-        "goalsAgainst": 45,
+        "goalsAgainst": 52,
         "prefectureRank": 13,
         "leagueRank": 10
       }
@@ -10684,22 +10684,22 @@
     "region": "九州",
     "teams": [
       {
-        "id": "ks005",
-        "name": "鹿児島実業高校",
+        "id": "ks004",
+        "name": "鹿児島ユナイテッドFC U-18",
         "league": "鹿児島県トップリーグ1部",
         "rank": 1,
-        "points": 22,
-        "played": 9,
-        "won": 7,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 20,
-        "goalsAgainst": 6,
+        "points": 24,
+        "played": 10,
+        "won": 8,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 43,
+        "goalsAgainst": 4,
         "prefectureRank": 1,
-        "goalDiff": 4,
+        "goalDiff": 11,
         "leagueRank": 1,
         "aliases": [
-          "鹿児島実"
+          "鹿児島ユナイテッド"
         ]
       },
       {
@@ -10754,8 +10754,8 @@
         "leagueRank": 9
       },
       {
-        "id": "ks007",
-        "name": "鹿児島城西EAGLE",
+        "id": "ks005",
+        "name": "鹿児島実業高校",
         "league": "鹿児島県トップリーグ1部",
         "rank": 5,
         "points": 22,
@@ -10766,29 +10766,29 @@
         "goalsFor": 20,
         "goalsAgainst": 6,
         "prefectureRank": 5,
-        "goalDiff": 9,
+        "goalDiff": 4,
         "leagueRank": 2,
         "aliases": [
-          "城西EAGLE"
+          "鹿児島実"
         ]
       },
       {
-        "id": "ks004",
-        "name": "鹿児島ユナイテッドFC U-18",
+        "id": "ks007",
+        "name": "鹿児島城西EAGLE",
         "league": "鹿児島県トップリーグ1部",
         "rank": 6,
-        "points": 21,
+        "points": 22,
         "played": 9,
         "won": 7,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 39,
-        "goalsAgainst": 4,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 20,
+        "goalsAgainst": 6,
         "prefectureRank": 6,
-        "goalDiff": 11,
+        "goalDiff": 9,
         "leagueRank": 3,
         "aliases": [
-          "鹿児島ユナイテッド"
+          "城西EAGLE"
         ]
       },
       {
@@ -10830,12 +10830,12 @@
         "league": "鹿児島県トップリーグ1部",
         "rank": 9,
         "points": 12,
-        "played": 9,
+        "played": 10,
         "won": 4,
         "drawn": 0,
-        "lost": 5,
+        "lost": 6,
         "goalsFor": 9,
-        "goalsAgainst": 21,
+        "goalsAgainst": 25,
         "prefectureRank": 9,
         "goalDiff": -11,
         "leagueRank": 6
@@ -11094,7 +11094,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-06 07:27",
+    "lastUpdated": "2026-06-06 10:56",
     "year": 2026,
     "updatedCount": 584
   }
