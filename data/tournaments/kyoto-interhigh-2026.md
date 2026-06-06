@@ -4,7 +4,7 @@ title: 令和8年度 京都府高等学校総合体育大会サッカー競技
 subtitle: インターハイ予選
 year: 2026
 category: インターハイ予選
-status: 進行中
+status: 終了
 ---
 
 ## 1回戦（5/2）
