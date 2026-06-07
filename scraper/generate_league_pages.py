@@ -815,7 +815,7 @@ __SCHEMA_FAQ__
       </nav>
 
       <h1 class="lp-title">__LEAGUE_LABEL__ 順位表 | U-18 高校サッカー</h1>
-
+__AI_SUMMARY__
       <p class="lp-intro">
         __DESCRIPTION_LONG__
       </p>
@@ -944,6 +944,34 @@ __RELATED_LEAGUES__
 </html>
 """
 
+def build_league_ai_summary(label, sorted_teams):
+    """リーグページH1直下のAI引用向け一文要約。毎日の順位データから自動生成。"""
+    played_teams = [t for t in sorted_teams if (t.get("played", 0) or 0) > 0]
+    if not played_teams:
+        return ""
+
+    d = date.today()
+    date_str = f"{d.year}年{d.month}月{d.day}日"
+
+    leaders = played_teams[:3]
+    medals = ["首位", "2位", "3位"]
+    parts = []
+    for i, t in enumerate(leaders):
+        name = html_escape(t.get("name", ""))
+        pts = t.get("points", 0) or 0
+        parts.append(f"{medals[i]}「{name}」（勝点{pts}）")
+    body = (
+        f"【{date_str}時点】{html_escape(label)}（U-18 高校サッカー）の順位は、"
+        + "、".join(parts)
+        + f"。全{len(sorted_teams)}チーム、順位は毎日自動更新。"
+    )
+
+    style = (
+        "margin:0 0 18px;padding:12px 16px;background:var(--bg-light,#f1f5fb);"
+        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "font-size:0.95rem;line-height:1.8;"
+    )
+    return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
 
 def generate_league_page(league_name, slug, label, category, description, season_overview, teams, tactical_points, watching_points):
     """個別リーグページの HTML を生成"""
@@ -1128,6 +1156,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__SCHEMA_ITEMLIST__", itemlist_json)
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__LEAGUE_LABEL__", html_escape(label))
+        .replace("__AI_SUMMARY__", build_league_ai_summary(label, sorted_teams))
         .replace("__DESCRIPTION_LONG__", description_long)
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
