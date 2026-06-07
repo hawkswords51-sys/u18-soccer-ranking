@@ -9187,12 +9187,12 @@
         "name": "ギラヴァンツ北九州U-18",
         "league": "福岡県1部",
         "rank": 1,
-        "points": 21,
-        "played": 7,
-        "won": 7,
+        "points": 24,
+        "played": 8,
+        "won": 8,
         "drawn": 0,
         "lost": 0,
-        "goalsFor": 30,
+        "goalsFor": 34,
         "goalsAgainst": 3,
         "prefectureRank": 1,
         "goalDiff": 9,
@@ -9320,22 +9320,6 @@
         "prefectureRank": 8
       },
       {
-        "id": "fk008",
-        "name": "筑陽学園高校",
-        "league": "福岡県1部",
-        "rank": 9,
-        "points": 10,
-        "played": 5,
-        "won": 3,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 8,
-        "goalsAgainst": 5,
-        "prefectureRank": 9,
-        "goalDiff": 0,
-        "leagueRank": 4
-      },
-      {
         "name": "東福岡高校2nd",
         "league": "福岡県1部",
         "points": 10,
@@ -9345,11 +9329,44 @@
         "lost": 3,
         "goalsFor": 11,
         "goalsAgainst": 11,
-        "leagueRank": 5,
-        "rank": 10,
-        "prefectureRank": 10,
+        "leagueRank": 4,
+        "rank": 9,
+        "prefectureRank": 9,
         "aliases": [
           "東福岡B"
+        ]
+      },
+      {
+        "id": "fk008",
+        "name": "筑陽学園高校",
+        "league": "福岡県1部",
+        "rank": 10,
+        "points": 10,
+        "played": 6,
+        "won": 3,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 8,
+        "goalsAgainst": 9,
+        "prefectureRank": 10,
+        "goalDiff": 0,
+        "leagueRank": 5
+      },
+      {
+        "name": "東海大学付属福岡高校2nd",
+        "league": "福岡県1部",
+        "points": 10,
+        "played": 8,
+        "won": 3,
+        "drawn": 1,
+        "lost": 4,
+        "goalsFor": 17,
+        "goalsAgainst": 25,
+        "leagueRank": 6,
+        "rank": 11,
+        "prefectureRank": 11,
+        "aliases": [
+          "東海大福岡B"
         ]
       },
       {
@@ -9362,40 +9379,23 @@
         "lost": 1,
         "goalsFor": 12,
         "goalsAgainst": 7,
-        "leagueRank": 6,
-        "rank": 11,
-        "prefectureRank": 11,
-        "aliases": [
-          "アビスパ福岡B"
-        ]
-      },
-      {
-        "name": "東海大学付属福岡高校2nd",
-        "league": "福岡県1部",
-        "points": 7,
-        "played": 7,
-        "won": 2,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 14,
-        "goalsAgainst": 25,
         "leagueRank": 7,
         "rank": 12,
         "prefectureRank": 12,
         "aliases": [
-          "東海大福岡B"
+          "アビスパ福岡B"
         ]
       },
       {
         "name": "福岡大学附属大濠高校",
         "league": "福岡県1部",
         "points": 1,
-        "played": 5,
+        "played": 6,
         "won": 0,
         "drawn": 1,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 2,
-        "goalsAgainst": 11,
+        "goalsAgainst": 14,
         "leagueRank": 8,
         "rank": 13,
         "prefectureRank": 13,
@@ -11094,7 +11094,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-07 04:11",
+    "lastUpdated": "2026-06-07 06:05",
     "year": 2026,
     "updatedCount": 584
   }
