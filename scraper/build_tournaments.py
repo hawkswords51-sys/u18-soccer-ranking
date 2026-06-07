@@ -9,6 +9,7 @@ GitHub Actions で毎回走らせても 1秒で終わる軽い処理。
 """
 
 import json
+import re
 import sys
 import unicodedata
 from datetime import datetime
@@ -92,13 +93,30 @@ def find_team(team_name: str, teams_data: dict) -> tuple[str | None, str | None]
                 if normalize_name(alias) == target:
                     return t.get("name"), pref_id
     # 3. 部分一致 (例: "前橋育英" → "前橋育英高校")
+    #    ただし "○○高校2nd" のような控えチームへの誤マッチを避ける
+    #    （例: "徳島商業高校" が "徳島商業高校2nd" に化けるのを防止）
+    reserve_re = re.compile(r"^(2nd|3rd|ii|iii|b|c|セカンド|サード)$", re.I)
+    pref_only = None
     for pref_id, pref_data in teams_data.items():
         if pref_id == "_meta":
             continue
         for t in pref_data.get("teams", []):
             existing = normalize_name(t.get("name", ""))
-            if existing and (target in existing or existing in target):
+            if not existing:
+                continue
+            if target in existing:
+                extra = existing.replace(target, "", 1)
+                if extra and reserve_re.match(extra):
+                    # 控えチーム(2nd等)。名前は採用せず、pref手がかりだけ残して継続
+                    if pref_only is None:
+                        pref_only = pref_id
+                    continue
                 return t.get("name"), pref_id
+            if existing in target:
+                return t.get("name"), pref_id
+    # 正規チームが見つからず控えチームのみ一致した場合：名前は入力のまま、prefだけ採用
+    if pref_only:
+        return None, pref_only
     return None, None
 
 
