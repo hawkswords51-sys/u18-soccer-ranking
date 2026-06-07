@@ -1270,7 +1270,7 @@ __SCHEMA_FAQ__
       </nav>
 
       <h1 class="lp-title">__PREF_NAME__ U-18 高校サッカー 順位表</h1>
-
+__AI_SUMMARY__
       <p class="lp-intro">
         __PREF_NAME__ U-18 年代の高校サッカー部 __HS_COUNT__校・クラブユース __CY_COUNT__チーム
         （合計 <strong>__TEAM_COUNT__ チーム</strong>）の最新順位・試合結果を毎日自動更新中。
@@ -1629,6 +1629,7 @@ def generate_page(pref, all_prefs):
         .replace("__CY_COUNT__", str(cy_count))
         .replace("__TOP_LEAGUE__", html_escape(top_league))
         .replace("__NOTABLE_SENTENCE__", notable_sentence)
+        .replace("__AI_SUMMARY__", build_ai_summary(pref_name, teams))
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__NEIGHBOR_LINKS__", neighbor_links)
         .replace("__FAQ_HTML__", faq_html)
