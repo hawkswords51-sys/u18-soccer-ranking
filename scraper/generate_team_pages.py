@@ -32,6 +32,24 @@ import markdown
 # =========================================================================
 
 BASE_DIR = Path(__file__).parent.parent
+
+def _fix_prince_league_links(html: str) -> str:
+    """本文中の /leagues/prince-◯/ リンクを自動補正する。
+    関東・関西・九州・北信越は 1部/2部 に分かれており bare(無印) ページが無いため、
+    「無印が存在せず -1 が存在する」場合のみ /leagues/prince-◯-1/ に書き換える。
+    （例: /leagues/prince-kanto/ → /leagues/prince-kanto-1/）
+    これにより、どのチーム詳細mdに無印リンクが書かれても二度とリンク切れにならない。"""
+    def repl(m):
+        slug = m.group(1)  # 例: prince-kanto
+        bare = BASE_DIR / "leagues" / slug / "index.html"
+        one = BASE_DIR / "leagues" / f"{slug}-1" / "index.html"
+        if (not bare.exists()) and one.exists():
+            return f'href="/leagues/{slug}-1/"'
+        return m.group(0)
+    return re.sub(r'href="/leagues/(prince-[a-z]+)/"', repl, html)
+
+
+
 PROFILES_DIR = BASE_DIR / "data" / "team-profiles"
 OUTPUT_ROOT = BASE_DIR / "teams"
 SITEMAP_FILE = BASE_DIR / "sitemap.xml"
@@ -577,6 +595,7 @@ def render_team_page(profile: dict) -> str:
 
     md = markdown.Markdown(extensions=["tables", "fenced_code", "nl2br", "sane_lists"])
     body_html = md.convert(body_md)
+    body_html = _fix_prince_league_links(body_html)
 
     title = f"{meta.get('name', '')} | 高校サッカー部 順位・OB・育成"
     description = meta.get("description") or build_lead(meta)
