@@ -1443,6 +1443,48 @@ __ALL_PREFS_HTML__
 </html>
 """
 
+def build_ai_summary(pref_name, teams):
+    """H1直下のAI引用向け一文要約。毎日の順位データから自動生成。"""
+    sorted_t = sort_teams(teams)
+    if not sorted_t:
+        return ""
+
+    d = date.today()
+    date_str = f"{d.year}年{d.month}月{d.day}日"
+
+    medals = ["1位", "2位", "3位"]
+    parts = []
+    for i, t in enumerate(sorted_t[:3]):
+        name = html_escape(t.get("name", ""))
+        league = html_escape(t.get("league", ""))
+        parts.append(f"{medals[i]}「{name}」（{league}）")
+    top_sentence = (
+        f"【{date_str}時点】{html_escape(pref_name)}のU-18高校サッカー 県内総合順位は、"
+        + "、".join(parts)
+        + "。"
+    )
+
+    # 県1部リーグ単体の首位（総合トップが県1部勢でない場合のみ併記＝重複回避）
+    second = ""
+    if league_category(sorted_t[0].get("league")) != "prefecture":
+        pref_teams = [t for t in teams if league_category(t.get("league")) == "prefecture"]
+        if pref_teams:
+            def _rk(t):
+                r = t.get("leagueRank")
+                if r is None:
+                    r = t.get("rank")
+                return r if r is not None else 99
+            leader = min(pref_teams, key=_rk)
+            lname = html_escape(leader.get("name", ""))
+            lpts = leader.get("points", 0) or 0
+            second = f"{html_escape(pref_name)}1部リーグの首位は「{lname}」（勝点{lpts}）。"
+
+    style = (
+        "margin:0 0 18px;padding:12px 16px;background:var(--bg-light,#f1f5fb);"
+        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "font-size:0.95rem;line-height:1.8;"
+    )
+    return f'      <p class="lp-lead-summary" style="{style}">{top_sentence}{second}順位は毎日自動更新。</p>\n'
 
 def generate_page(pref, all_prefs):
     pref_id = pref["id"]
