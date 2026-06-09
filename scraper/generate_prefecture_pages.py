@@ -1502,7 +1502,7 @@ def build_ai_summary(pref_name, teams):
 PREF_DIVISION_EXPANDED = {"osaka"}
 PREF_LOWER_DIVISION_LINKS = {
     "osaka": [
-        ("大阪府サッカー協会 第2種（2部〜4部の最新結果）", "https://osaka-fa.or.jp/2shu/game_information/"),
+        ("大阪府サッカー協会 第2種（2部〜4部の最新結果）", "https://osaka-fa.or.jp/2shu/game_information/高円宮杯jfa-u-18サッカーリーグ-2021-osaka-2-2-2-2-2/"),
         ("Green Card：大阪 1部・2部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900098"),
         ("Green Card：大阪 3部・4部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900099"),
     ],
