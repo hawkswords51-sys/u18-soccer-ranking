@@ -1014,6 +1014,77 @@ PREF_LEAGUE_URLS: dict[str, list[str]] = {
 }
 
 
+# ============================================================
+# 県リーグ「2部」も県内順位として取り込む県（東京のみ）
+# 東京はT2のチームがプリンス関東勢を破ることもある実力差の小さい混戦のため、
+# 2部(T2)も独立した順位表として掲載する。3部以下はグループ分割が多く対象外。
+# ============================================================
+PREF_SECOND_DIVISION: dict[str, dict] = {
+    "tokyo": {
+        "url": "https://junior-soccer.jp/kanto/tokyo/league/order/163370",
+        "label": "東京T2リーグ（2部）",
+    },
+}
+
+
+def scrape_pref_second_divisions(data: dict) -> int:
+    """対象県の県リーグ2部を取得し、teams.json の division2 リストへ格納する。
+    1部の順位表（.teams）とは混ぜず、別テーブルとして保持する（順位の混在を防ぐ）。"""
+    total = 0
+    for pref_id, conf in PREF_SECOND_DIVISION.items():
+        url = conf["url"]
+        pref_name = PREF_ID_TO_NAME.get(pref_id, pref_id)
+        print(f"\n  [{pref_name}] 県リーグ2部 取得中... {url}")
+        soup = None
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=12)
+            resp.raise_for_status()
+            resp.encoding = resp.apparent_encoding
+            candidate = BeautifulSoup(resp.text, "html.parser")
+            if candidate.find("table"):
+                soup = candidate
+        except Exception as e:
+            print(f"    → 取得失敗: {e}")
+        if soup is None:
+            soup = _fetch_with_selenium(url)
+        if soup is None or not soup.find("table"):
+            print(f"    ⚠ {pref_name}2部: テーブル取得失敗、スキップ（既存データは維持）")
+            continue
+
+        # ページ下部のグループ表で膨張しないよう、先頭の順位表のみを対象にする
+        tables = _find_standings_tables(soup)
+        standings = parse_standing_table(tables[0]) if tables else parse_standing_table(soup)
+        if not standings:
+            print(f"    ⚠ {pref_name}2部: 解析結果0件、スキップ（既存データは維持）")
+            continue
+
+        div2 = []
+        for s_row in standings:
+            name = _resolve_alias(s_row["name"])
+            gf = s_row.get("goalsFor", 0) or 0
+            ga = s_row.get("goalsAgainst", 0) or 0
+            div2.append({
+                "name":         name,
+                "points":       s_row.get("points", 0),
+                "played":       s_row.get("played", 0),
+                "won":          s_row.get("won", 0),
+                "drawn":        s_row.get("drawn", 0),
+                "lost":         s_row.get("lost", 0),
+                "goalsFor":     gf,
+                "goalsAgainst": ga,
+                "goalDiff":     gf - ga,
+                "divRank":      s_row.get("leagueRank"),
+            })
+        if pref_id not in data:
+            data[pref_id] = {"teams": []}
+        data[pref_id]["division2"] = div2
+        data[pref_id]["division2_label"] = conf["label"]
+        print(f"    取得チーム数(2部): {len(div2)}")
+        total += len(div2)
+        time.sleep(0.8)
+    return total
+
+
 def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
     """各都道府県の県リーグURLを取得し、teams.json を更新する (league上書きしない)"""
     total = 0
@@ -1149,6 +1220,10 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
     pref_updated = scrape_pref_leagues(data, already_updated)
     total_updated += pref_updated
     print(f"\n  県リーグ更新チーム数: {pref_updated}")
+
+    print("\n[4.5/4] 県リーグ2部 (対象県のみ) を取得中...")
+    div2_count = scrape_pref_second_divisions(data)
+    print(f"  県リーグ2部 取得チーム数: {div2_count}")
 
     print(f"\n順位を再計算中... ({len(data)} 都道府県)")
     recalculate_ranks(data)
