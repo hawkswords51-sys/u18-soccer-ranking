@@ -201,7 +201,20 @@ def _detect_winner_and_wrap(s):
         leading_ws = right[:len(right) - len(stripped)]
         return f'{left}{center}{leading_ws}<span class="match-winner">{stripped}</span>'
 
-def render_tournament_html(pref_id, teams):
+# トーナメント表（手入力）でのT2チーム表記ゆれ → 正式名 の補助マッピング（県ごと）
+# 自動で拾えない略称だけをここに足す。例: 「関東一」→「関東第一高校」
+DIVISION2_TOURNAMENT_ALIASES = {
+    "tokyo": {
+        "関東第一高校":            ["関東一", "関東第一"],
+        "駒澤大学高校":            ["駒澤大高", "駒澤大学高等学校", "駒大"],
+        "東海大学付属高輪台高校":  ["東海大高輪台", "東海大高輪"],
+        "日本大学第三高校":        ["日大三"],
+        "三菱養和SCユース2nd":     ["養和SC・B", "養和SC", "三菱養和B"],
+    },
+}
+
+
+def render_tournament_html(pref_id, teams, division2=None):
     """都道府県のトーナメント情報を data/tournaments/*.md から読み取り、
     試合文字列のチーム名に県内順位バッジを自動付与してHTMLで返す。
     記事がなければ空文字を返す。
@@ -226,10 +239,33 @@ def render_tournament_html(pref_id, teams):
             "rank": rank_map.get(name, t.get("prefectureRank")),
             "league": t.get("league", ""),
             "canonical": name,
+            "label": "県内",
         }
         if name:
             team_lookup[name] = info
             for alias in (t.get("aliases") or []):
+                team_lookup[alias] = info
+
+    # 県リーグ2部(T2)のチームも登録（バッジは「(T2◯位)」）。
+    # 1部と名前が衝突する場合は1部を優先（上で登録済みのキーは上書きしない）。
+    for t in (division2 or []):
+        name = t.get("name", "")
+        if not name:
+            continue
+        info = {
+            "rank": t.get("divRank"),
+            "league": t.get("league", ""),
+            "canonical": name,
+            "label": "T2",
+        }
+        if name not in team_lookup:
+            team_lookup[name] = info
+        for alias in (t.get("aliases") or []):
+            if alias not in team_lookup:
+                team_lookup[alias] = info
+        # トーナメント表の手入力表記ゆれを吸収する補助別名（県ごと）
+        for alias in DIVISION2_TOURNAMENT_ALIASES.get(pref_id, {}).get(name, []):
+            if alias not in team_lookup:
                 team_lookup[alias] = info
 
     def enrich_match(match_str):
@@ -319,7 +355,11 @@ def render_tournament_html(pref_id, teams):
                 continue
             used_ranges.append((found_idx, end))
             matched_canonicals.add(canonical)
-            badge = f' <span class="tm-rank">(県内{rank}位)</span>'
+            label = inf.get("label", "県内")
+            # T2は「2部◯位」と表示（「T23位」のような数字の誤読を防ぐ）
+            disp = "2部" if label == "T2" else label
+            cls = "tm-rank tm-rank-t2" if label == "T2" else "tm-rank"
+            badge = f' <span class="{cls}">({disp}{rank}位)</span>' 
             matches.append((end, badge))
 
         # 後ろから挿入してインデックスがずれないように
@@ -1762,7 +1802,7 @@ def generate_page(pref, all_prefs):
         .replace("__PREF_NAME__", html_escape(pref_name))
         .replace("__FEATURED_ARTICLES__", render_featured_articles(pref_id))
         .replace("__TOURNAMENT_RESULTS__", render_tournament_results(pref_id))
-        .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams))
+        .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams, pref.get("division2")))
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__HS_COUNT__", str(hs_count))
         .replace("__CY_COUNT__", str(cy_count))
