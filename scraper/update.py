@@ -375,7 +375,6 @@ TEAM_ALIASES: dict[str, str] = {
     "山口鴻城":          "山口県鴻城高校",
     "鹿児島実":          "鹿児島実業高校",
     "大谷室蘭":          "北海道大谷室蘭高校",
-    "東京都市大塩尻":     "都市大塩尻高校",
 }
 
 
@@ -1075,10 +1074,11 @@ def scrape_pref_second_divisions(data: dict) -> int:
 
         div2 = []
         for s_row in standings:
-            name = _resolve_alias(s_row["name"])
+            orig = s_row["name"]
+            name = _resolve_alias(orig)
             gf = s_row.get("goalsFor", 0) or 0
             ga = s_row.get("goalsAgainst", 0) or 0
-            div2.append({
+            entry = {
                 "name":         name,
                 "points":       s_row.get("points", 0),
                 "played":       s_row.get("played", 0),
@@ -1089,7 +1089,12 @@ def scrape_pref_second_divisions(data: dict) -> int:
                 "goalsAgainst": ga,
                 "goalDiff":     gf - ga,
                 "divRank":      s_row.get("leagueRank"),
-            })
+            }
+            # 取得元の略称（例: 東海大高輪台）を別名として残す。
+            # トーナメント表の表記ゆれに対する順位バッジのマッチ精度が上がる。
+            if orig and orig != name:
+                entry["aliases"] = [orig]
+            div2.append(entry)
         if pref_id not in data:
             data[pref_id] = {"teams": []}
         data[pref_id]["division2"] = div2
