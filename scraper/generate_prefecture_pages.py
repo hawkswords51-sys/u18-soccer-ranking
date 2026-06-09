@@ -1499,26 +1499,109 @@ def build_ai_summary(pref_name, teams):
 # === 下位ディビジョンの表示方針（大規模県）===
 # 大阪のように2部以下が多数のグループに細分化（2部A〜C・3部A〜F・4部）する県は、
 # 1部の順位表のみ掲載し、2部以下はタイトルで検索を拾いつつ公式リンクへ誘導する。
-PREF_DIVISION_EXPANDED = {"osaka"}
-PREF_LOWER_DIVISION_LINKS = {
-    "osaka": [
-        ("大阪府サッカー協会 第2種（2部〜4部の最新結果）", "https://osaka-fa.or.jp/2shu/game_information/高円宮杯jfa-u-18サッカーリーグ-2021-osaka-2-2-2-2-2/"),
-        ("Green Card：大阪 1部・2部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900098"),
-        ("Green Card：大阪 3部・4部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900099"),
-    ],
+# 下位ディビジョン対応県
+#  - osaka: 1部のみ表示、2部〜4部は公式リンク誘導（2部がA〜Cに分割のため）
+#  - tokyo: 1部(T1)＋2部(T2)を順位表で表示、3部(T3)・4部(T4)は公式リンク誘導
+PREF_DIVISION_EXPANDED = {"osaka", "tokyo"}
+
+# タイトルに使う「掲載ディビジョン」表記
+PREF_DIVISION_TITLE_LABEL = {
+    "osaka": "1部〜4部",
+    "tokyo": "1部・2部",
 }
 
-def render_lower_divisions_html(pref_id):
-    """2部以下の公式リンク誘導セクション（対象県のみ）。順位表は載せない方針。"""
-    links = PREF_LOWER_DIVISION_LINKS.get(pref_id, [])
-    if not links:
+# 下位ディビジョンの公式リンク誘導セクション（県ごとに見出し・説明・リンクを設定）
+PREF_LOWER_DIVISION_SECTION = {
+    "osaka": {
+        "heading": "2部・3部・4部の順位・結果",
+        "desc": ("本ページでは1部の順位表を掲載しています。2部以下は多数のグループ"
+                 "（2部A〜C・3部A〜F・4部）に分かれるため、各グループの最新順位・結果は"
+                 "公式ページでご確認ください。"),
+        "links": [
+            ("大阪府サッカー協会 第2種（2部〜4部の最新結果）", "https://osaka-fa.or.jp/2shu/game_information/高円宮杯jfa-u-18サッカーリーグ-2021-osaka-2-2-2-2-2/"),
+            ("Green Card：大阪 1部・2部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900098"),
+            ("Green Card：大阪 3部・4部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900099"),
+        ],
+    },
+    "tokyo": {
+        "heading": "3部・4部（T3・T4）の順位・結果",
+        "desc": ("本ページでは1部（T1）と2部（T2）の順位表を掲載しています。"
+                 "3部（T3）・4部（T4）はそれぞれA・Bブロックなどに分かれるため、"
+                 "各ブロックの最新順位・結果は公式ページでご確認ください。"),
+        "links": [
+            ("東京都U-18リーグ 公式（全カテゴリの順位・日程）", "https://www.tleague-u18.com/"),
+            ("公式 順位表：東京 T3リーグ", "https://www.tleague-u18.com/rank.php?dy=2026&dt=3"),
+            ("公式 順位表：東京 T4リーグ", "https://www.tleague-u18.com/rank.php?dy=2026&dt=4"),
+        ],
+    },
+}
+
+
+def render_division2_table(pref):
+    """県リーグ2部(T2)の独立した順位表（division2 を持つ県のみ）。"""
+    div2 = pref.get("division2") or []
+    if not div2:
         return ""
-    li = "\n".join(f'          <li><a href="{u}" target="_blank" rel="noopener">{html_escape(l)}</a></li>' for l, u in links)
+    label = pref.get("division2_label", "2部")
+    rows = []
+    for i, t in enumerate(div2, 1):
+        rank = t.get("divRank") or i
+        rank_class = f"rank-{rank}" if isinstance(rank, int) and rank <= 3 else "rank-other"
+        points = t.get("points", 0) or 0
+        played = t.get("played", 0) or 0
+        won = t.get("won", 0) or 0
+        drawn = t.get("drawn", 0) or 0
+        lost = t.get("lost", 0) or 0
+        gd = t.get("goalDiff")
+        if gd is None:
+            gd = (t.get("goalsFor", 0) or 0) - (t.get("goalsAgainst", 0) or 0)
+        diff_str = f"+{gd}" if gd > 0 else str(gd)
+        diff_color = "#28a745" if gd > 0 else ("#dc3545" if gd < 0 else "#666")
+        rows.append(f"""        <tr>
+          <td><span class="rank-badge {rank_class}">{rank}</span></td>
+          <td><strong>{render_team_name_with_link(t.get('name', '—'))}</strong></td>
+          <td><strong>{points}</strong></td>
+          <td>{played}</td>
+          <td>{won}</td>
+          <td>{drawn}</td>
+          <td>{lost}</td>
+          <td style="color:{diff_color}">{diff_str}</td>
+        </tr>""")
+    rows_html = "\n".join(rows)
     return (
         '      <section class="lp-section">\n'
-        '        <h2 class="section-title-lp">2部・3部・4部の順位・結果</h2>\n'
-        '        <p class="lp-section-desc">本ページでは1部の順位表を掲載しています。'
-        '2部以下は多数のグループ（2部A〜C・3部A〜F・4部）に分かれるため、各グループの最新順位・結果は公式ページでご確認ください。</p>\n'
+        f'        <h2 class="section-title-lp">{html_escape(label)} 順位表</h2>\n'
+        '        <p class="lp-section-desc">2部（T2）はプレミア・プリンス所属の有力校と入れ替わることもある実力上位リーグです。最新の順位を毎日自動更新しています。</p>\n'
+        '        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">\n'
+        '          <table class="data-table">\n'
+        '            <thead>\n'
+        '              <tr>\n'
+        '                <th>順位</th><th>チーム名</th><th>勝点</th><th>試合</th>'
+        '<th>勝</th><th>分</th><th>負</th><th>得失差</th>\n'
+        '              </tr>\n'
+        '            </thead>\n'
+        '            <tbody>\n'
+        f'{rows_html}\n'
+        '            </tbody>\n'
+        '          </table>\n'
+        '        </div>\n'
+        '      </section>'
+    )
+
+
+def render_lower_divisions_html(pref_id):
+    """下位ディビジョンの公式リンク誘導セクション（対象県のみ）。"""
+    conf = PREF_LOWER_DIVISION_SECTION.get(pref_id)
+    if not conf or not conf.get("links"):
+        return ""
+    li = "\n".join(
+        f'          <li><a href="{u}" target="_blank" rel="noopener">{html_escape(l)}</a></li>'
+        for l, u in conf["links"]
+    )
+    return (
+        '      <section class="lp-section">\n'
+        f'        <h2 class="section-title-lp">{html_escape(conf["heading"])}</h2>\n'
+        f'        <p class="lp-section-desc">{html_escape(conf["desc"])}</p>\n'
         '        <ul class="lp-related-links">\n' + li + '\n        </ul>\n'
         '      </section>'
     )
@@ -1527,7 +1610,7 @@ def generate_page(pref, all_prefs):
     pref_id = pref["id"]
     pref_name = pref["name"]
     teams = pref["teams"]
-    lower_divisions_html = render_lower_divisions_html(pref_id)
+    lower_divisions_html = render_division2_table(pref) + "\n" + render_lower_divisions_html(pref_id)
     team_count = len(teams)
     hs_count, cy_count = count_team_types(teams)
     top_league = get_top_league(teams)
@@ -1605,14 +1688,22 @@ def generate_page(pref, all_prefs):
         )
 
     if pref_id in PREF_DIVISION_EXPANDED:
+        div_label = PREF_DIVISION_TITLE_LABEL.get(pref_id, "1部〜4部")
         title = (
             f"{pref_name}高校サッカーリーグ 順位表【{year_label}最新】"
-            f"｜1部〜4部 {notable_short}（U-18）"
+            f"｜{div_label} {notable_short}（U-18）"
         )
-        description = (
-            f"{pref_name}高校サッカーリーグ（U-18年代）の最新順位。1部の順位表を毎日自動更新、"
-            f"2部（A〜C）・3部（A〜F）・4部の結果は公式リンクから確認できます。{notable_full}など。"
-        )
+        if pref_id == "tokyo":
+            description = (
+                f"{pref_name}高校サッカーリーグ（U-18年代）の最新順位。1部（T1）・2部（T2）の"
+                f"順位表を毎日自動更新、3部（T3）・4部（T4）の結果は公式リンクから確認できます。"
+                f"{notable_full}など。"
+            )
+        else:
+            description = (
+                f"{pref_name}高校サッカーリーグ（U-18年代）の最新順位。1部の順位表を毎日自動更新、"
+                f"2部（A〜C）・3部（A〜F）・4部の結果は公式リンクから確認できます。{notable_full}など。"
+            )
 
     keywords = (
         f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
