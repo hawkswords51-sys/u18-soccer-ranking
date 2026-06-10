@@ -384,7 +384,12 @@ def main():
         組み合わせ・試合結果・各県代表校をまとめています。各県予選の結果は
         <a href="/">都道府県別ページ</a>からご確認いただけます。
       </p>
-
+      
+      <p style="margin:4px 0 16px;display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="/tournaments/interhigh-history/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:var(--primary-color,#1e40af);color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🏆 歴代優勝校一覧（2008-2025）</a>
+        <a href="/blog/posts/interhigh-2026-heat-safety/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#dc2626;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🌡️ 救急医の暑熱対策ガイド</a>
+      </p>
+      
       <section class="lp-section">
         <h2><i class="fas fa-circle-info"></i> 大会概要 {status_badge}</h2>
         <ul style="list-style:none;padding:0;line-height:2;">
