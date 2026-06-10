@@ -459,6 +459,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
   <meta name="keywords" content="高校サッカー,U-18,ブログ,シーズン展望,戦術分析,医学コラム,選手紹介">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://u18-soccer.com/blog/">
+  <link rel="alternate" type="application/rss+xml" title="高校サッカー順位確認システム ブログ" href="https://u18-soccer.com/blog/feed.xml">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="高校サッカー順位確認システム">
@@ -673,6 +674,53 @@ def render_index_page(articles):
 # ============================================================
 # Sitemap 更新 (既存に append)
 # ============================================================
+def generate_rss(articles):
+    """ブログのRSSフィード (blog/feed.xml) を生成"""
+    from datetime import timezone, timedelta
+    from email.utils import format_datetime
+
+    def _to_dt(d):
+        if isinstance(d, datetime):
+            return d
+        if isinstance(d, date):
+            return datetime(d.year, d.month, d.day, 9, 0, 0)
+        try:
+            return datetime.strptime(str(d), "%Y-%m-%d")
+        except ValueError:
+            return datetime.now()
+
+    jst = timezone(timedelta(hours=9))
+    sorted_articles = sorted(articles, key=lambda a: str(a["date"]), reverse=True)[:20]
+    items = []
+    for a in sorted_articles:
+        link = f"{DOMAIN}/blog/posts/{a['slug']}/"
+        dt = _to_dt(a["date"]).replace(tzinfo=jst)
+        items.append(
+            "  <item>\n"
+            f"    <title>{html_escape(a['title'])}</title>\n"
+            f"    <link>{link}</link>\n"
+            f'    <guid isPermaLink="true">{link}</guid>\n'
+            f"    <pubDate>{format_datetime(dt)}</pubDate>\n"
+            f"    <category>{html_escape(a.get('category', ''))}</category>\n"
+            f"    <description>{html_escape(a.get('description', ''))}</description>\n"
+            "  </item>"
+        )
+    rss = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+        "<channel>\n"
+        "  <title>高校サッカー順位確認システム ブログ</title>\n"
+        f"  <link>{DOMAIN}/blog/</link>\n"
+        "  <description>高校サッカーU-18のシーズン展望・戦術分析・選手紹介と、救急科専門医による医学コラム</description>\n"
+        "  <language>ja</language>\n"
+        f'  <atom:link href="{DOMAIN}/blog/feed.xml" rel="self" type="application/rss+xml"/>\n'
+        + "\n".join(items) + "\n"
+        "</channel>\n"
+        "</rss>\n"
+    )
+    (BLOG_OUTPUT_DIR / "feed.xml").write_text(rss, encoding="utf-8")
+    print(f"[OK] RSSフィード -> /blog/feed.xml ({len(sorted_articles)}件)")
+
 def append_sitemap(slugs):
     """既存 sitemap.xml にブログ URL を追加"""
     if not SITEMAP_FILE.exists():
@@ -754,6 +802,7 @@ def main():
     index_html = render_index_page(articles)
     (BLOG_OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
     print(f"[OK] ブログ一覧 -> /blog/")
+    generate_rss(articles)
 
     # sitemap 更新
     append_sitemap([a["slug"] for a in articles])
