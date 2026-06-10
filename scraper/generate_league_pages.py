@@ -1396,7 +1396,7 @@ def generate_premier_final_page():
   </main>
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 高校サッカー順位確認システム</p>
+      <p>&copy; 2025-2026 高校サッカー順位確認システム</p>
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
@@ -1544,7 +1544,7 @@ __PRINCE_CARDS__
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 高校サッカー順位確認システム</p>
+      <p>&copy; 2025-2026 高校サッカー順位確認システム</p>
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
