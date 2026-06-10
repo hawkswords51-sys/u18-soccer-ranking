@@ -1853,6 +1853,85 @@ def update_sitemap(all_prefs):
     SITEMAP_FILE.write_text("\n".join(parts) + "\n", encoding="utf-8")
     print(f"sitemap.xml 更新: {len(all_prefs) + 1 + 3} URL を登録")
 
+def build_home_summary_html(all_prefs):
+    """トップページ「今日のハイライト」HTMLを順位データから生成"""
+    d = date.today()
+    date_str = f"{d.year}年{d.month}月{d.day}日"
+
+    def _league_rank(t):
+        r = t.get("leagueRank")
+        if r is None:
+            r = t.get("rank")
+        return r if r is not None else 99
+
+    def _premier_leader(keyword):
+        cand = []
+        for pref in all_prefs:
+            for t in pref.get("teams", []):
+                lg = t.get("league") or ""
+                if league_category(lg) == "premier" and keyword in lg:
+                    cand.append((t, pref["name"]))
+        if not cand:
+            return ""
+        t, pref_name = min(cand, key=lambda x: _league_rank(x[0]))
+        name = html_escape(t.get("name", ""))
+        pts = t.get("points", 0) or 0
+        return f"{name}（{html_escape(pref_name)}・勝点{pts}）"
+
+    lines = []
+    east = _premier_leader("EAST")
+    west = _premier_leader("WEST")
+    if east:
+        lines.append(f"プレミアリーグEAST 首位：<strong>{east}</strong>")
+    if west:
+        lines.append(f"プレミアリーグWEST 首位：<strong>{west}</strong>")
+
+    top3 = get_global_top_teams(all_prefs, limit=3)
+    if top3:
+        ranked = "、".join(
+            f"{i + 1}位 {html_escape(t.get('name', ''))}（{html_escape(t.get('_pref_name', ''))}）"
+            for i, t in enumerate(top3)
+        )
+        lines.append(f"全国強豪ランキング：{ranked}")
+
+    items = "".join(f"<li>{s}</li>" for s in lines)
+    return (
+        '<section class="home-summary" style="margin:16px 0;padding:16px 20px;'
+        "background:var(--bg-light,#f1f5fb);border-left:4px solid var(--primary-color,#1e40af);"
+        'border-radius:0 8px 8px 0;">\n'
+        f'  <h2 style="font-size:1.05rem;margin:0 0 8px;">⚽ 今日のハイライト（{date_str}時点）</h2>\n'
+        f'  <ul style="margin:0 0 10px;padding-left:1.2em;line-height:1.9;">{items}</ul>\n'
+        '  <p style="margin:0;font-size:0.92rem;line-height:1.8;">本サイトは、高円宮杯 JFA U-18サッカーリーグ'
+        "（プレミアリーグ・プリンスリーグ・47都道府県リーグ）の順位表を毎日自動更新でお届けする無料の総合情報サイトです。"
+        "インターハイ・選手権などの大会結果、全国600チーム以上のデータ、チーム詳細ページに加え、"
+        "救急科専門医による医学コラム（熱中症・貧血・睡眠など）も掲載しています。</p>\n"
+        "</section>"
+    )
+
+
+def update_home_summary(all_prefs):
+    """index.html のマーカー間を最新ハイライトに書き換える"""
+    index_file = BASE_DIR / "index.html"
+    if not index_file.exists():
+        print("[WARN] index.html が見つからないためハイライト更新をスキップ")
+        return
+    html = index_file.read_text(encoding="utf-8")
+    start_mark = "<!-- HOME_SUMMARY_START -->"
+    end_mark = "<!-- HOME_SUMMARY_END -->"
+    s = html.find(start_mark)
+    e = html.find(end_mark)
+    if s == -1 or e == -1 or e < s:
+        print("[WARN] index.html にマーカーが無いためハイライト更新をスキップ")
+        return
+    new_html = (
+        html[: s + len(start_mark)]
+        + "\n"
+        + build_home_summary_html(all_prefs)
+        + "\n"
+        + html[e:]
+    )
+    index_file.write_text(new_html, encoding="utf-8")
+    print("トップページ「今日のハイライト」を更新しました")
 
 def main():
     if not TEAMS_FILE.exists():
@@ -1875,6 +1954,7 @@ def main():
         (pref_dir / "index.html").write_text(html, encoding="utf-8")
 
     update_sitemap(all_prefs)
+    update_home_summary(all_prefs)
     print(f"完了: {len(all_prefs)} 都道府県の SEO ランディングページを生成しました")
     print(f"   出力先: {OUTPUT_ROOT}/")
     return 0
