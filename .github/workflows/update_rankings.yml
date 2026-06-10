@@ -162,6 +162,7 @@ jobs:
           if [ -d tournaments ]; then git add tournaments; fi
           if [ -d data/tournaments ]; then git add data/tournaments; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
+          if [ -f index.html ]; then git add index.html; fi
 
           # 変更がある場合のみコミット & push
           if git diff --staged --quiet; then
