@@ -62,6 +62,7 @@ CATEGORIES = [
     "シーズン展望",
     "注目チーム解説",
     "戦術分析",
+    "リーグ解説",
     "選手紹介",
     "医学コラム",
     "コラム・取材",
@@ -595,6 +596,13 @@ def render_index_page(articles):
             f'          <span class="blog-category-tag">'
             f'{html_escape(cat)} <small>({count})</small></span>'
         )
+    for cat, count in sorted(cat_counts.items()):
+        if cat not in CATEGORIES:
+            cat_buttons.append(
+                f'          <span class="blog-category-tag">'
+                f'{html_escape(cat)} <small>({count})</small></span>'
+            )
+            
     cat_buttons_html = "\n".join(cat_buttons) if cat_buttons else (
         '          <span style="color:#888;">記事はまだありません</span>'
     )
