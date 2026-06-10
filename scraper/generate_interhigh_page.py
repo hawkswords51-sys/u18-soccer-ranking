@@ -256,7 +256,53 @@ def main():
         '{"@type":"ListItem","position":1,"name":"ホーム","item":"' + DOMAIN + '/"},'
         '{"@type":"ListItem","position":2,"name":"インターハイ' + str(year) + '","item":"' + CANONICAL + '"}]}'
     )
-
+    
+    # --- FAQ と大会構造化データ（SportsEvent / FAQPage） ---
+    import json as _json
+    faq_items = [
+        (f"インターハイ{year}のサッカー競技はいつ開催されますか？",
+         f"{period} に開催されます。" if period else "日程は確定後に掲載します。"),
+        ("開催地・会場はどこですか？",
+         (f"{venue}（{host}）で開催されます。" if host else f"{venue}で開催されます。") if venue else "確定後に掲載します。"),
+        ("出場枠・出場校数は？", slots or "各都道府県の予選を勝ち抜いた代表校が出場します。"),
+        ("試合方式・試合時間は？", fmt or "ノックアウト方式で行われます。"),
+        ("試合結果・組み合わせはどこで確認できますか？",
+         "このページで組み合わせ・試合結果を随時更新しています。各都道府県予選の結果は当サイトの都道府県別ページで確認できます。"),
+    ]
+    faq_schema = _json.dumps({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in faq_items
+        ],
+    }, ensure_ascii=False)
+    _event = {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": title_main,
+        "description": description,
+        "url": CANONICAL,
+        "sport": "サッカー",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "organizer": {"@type": "Organization", "name": "公益財団法人全国高等学校体育連盟"},
+    }
+    if meta.get("start_date"):
+        _event["startDate"] = str(meta["start_date"])
+    if meta.get("end_date"):
+        _event["endDate"] = str(meta["end_date"])
+    if venue:
+        _event["location"] = {"@type": "Place", "name": venue, "address": host or venue}
+    event_schema = _json.dumps(_event, ensure_ascii=False)
+    faq_html = "".join(
+        '<details style="margin:8px 0;padding:10px 14px;background:var(--bg-white,#fff);'
+        'border:1px solid var(--border-color,#e5e7eb);border-radius:8px;">'
+        f'<summary style="font-weight:600;cursor:pointer;">{html_escape(q)}</summary>'
+        f'<p style="margin:10px 0 4px;line-height:1.8;">{html_escape(a)}</p></details>'
+        for q, a in faq_items
+    )
+    
     page = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -298,6 +344,8 @@ def main():
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script type="application/ld+json">{breadcrumb_schema}</script>
+  <script type="application/ld+json">{event_schema}</script>
+  <script type="application/ld+json">{faq_schema}</script>
   <script>
     (function() {{
       try {{
@@ -359,13 +407,20 @@ def main():
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>
         {rounds_html}
       </section>
-
+      
+      <section class="lp-section">
+        <h2><i class="fas fa-circle-question"></i> よくある質問</h2>
+        {faq_html}
+      </section>
+      
       <section class="lp-section">
         <h2>関連リンク</h2>
         <ul class="lp-related-links">
           <li><a href="/">全国47都道府県の高校サッカー順位・予選結果</a></li>
           <li><a href="/leagues/">リーグ一覧（プレミア・プリンス）</a></li>
           <li><a href="/blog/">ブログ・医学コラム</a></li>
+          <li><a href="/blog/posts/interhigh-2026-heat-safety/">【医学コラム】真夏のインターハイ暑熱対策ガイド（選手・保護者・指導者向け）</a></li>
+          <li><a href="/tournaments/interhigh-history/">インターハイ サッカー男子 歴代優勝校一覧</a></li>
         </ul>
       </section>
     </div>
@@ -399,6 +454,15 @@ def main():
             print("✅ sitemap.xml に登録")
         else:
             print("ℹ️ sitemap.xml は登録済み")
+
+            # --- 歴代優勝校ページも sitemap に登録（idempotent） ---
+        history_url = f"{DOMAIN}/tournaments/interhigh-history/"
+        s = sm.read_text(encoding="utf-8")
+        if history_url not in s:
+            entry = f"  <url>\n    <loc>{history_url}</loc>\n    <lastmod>{date.today().isoformat()}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n"
+            s = s.replace("</urlset>", entry + "</urlset>")
+            sm.write_text(s, encoding="utf-8")
+            print("✅ sitemap.xml に歴代優勝校ページを登録")
 
 if __name__ == "__main__":
     main()
