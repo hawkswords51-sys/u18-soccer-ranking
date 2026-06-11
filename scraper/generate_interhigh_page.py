@@ -286,7 +286,8 @@ def main():
         "url": CANONICAL,
         "sport": "サッカー",
         "eventStatus": "https://schema.org/EventScheduled",
-        "organizer": {"@type": "Organization", "name": "公益財団法人全国高等学校体育連盟"},
+        "organizer": {"@type": "Organization", "name": "公益財団法人全国高等学校体育連盟", "url": "https://www.zen-koutairen.com/"},
+        "image": [f"{DOMAIN}/og-image.png"],
     }
     if meta.get("start_date"):
         _event["startDate"] = str(meta["start_date"])
