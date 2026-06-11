@@ -16,7 +16,7 @@ import sys
 import time
 import argparse
 import unicodedata
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 try:
@@ -1250,7 +1250,7 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
     recalculate_ranks(data)
 
     data["_meta"] = {
-        "lastUpdated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "lastUpdated": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M"),
         "year": year,
         "updatedCount": total_updated,
     }
