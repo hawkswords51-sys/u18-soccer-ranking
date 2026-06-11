@@ -5128,6 +5128,11 @@ details[open] > summary > .league-accordion__chevron {
   color: #fdba74;
 }
 
+/* 勝者ハイライト内のチームリンクも橙色を継承（下線でリンクと分かる） */
+.match-winner a,
+.match-winner .team-profile-link {
+  color: inherit;
+}
 /* =====================================================================
    ★ Phase D: チーム個別ページへのリンク (順位表内・v2 シンプル版)
    - flex を使わずに描画安定性を確保
