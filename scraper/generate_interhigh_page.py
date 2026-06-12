@@ -771,7 +771,16 @@ def main():
         {schedule_html}
         {champion_html}
       </section>
-
+      <section class="lp-section">
+        <h2>🩺 大会前に読みたい医学コラム（救急医が執筆）</h2>
+        <p style="margin:0 0 10px;">真夏の連戦を安全に走り切るために。現役救急医が医学的根拠とともに解説しています。</p>
+        <ul style="list-style:none;padding:0;line-height:2;">
+          <li>🌡️ <a href="/blog/posts/interhigh-2026-heat-safety/">インターハイ2026の熱中症・暑熱対策完全ガイド</a>（暑熱順化・連戦の脱水チェック・観戦者の対策）</li>
+          <li>🩸 <a href="/blog/posts/2026-06-08-iron-deficiency-anemia/">サッカー選手の貧血対策｜鉄分の摂り方と隠れ鉄欠乏のサイン</a></li>
+          <li>😴 <a href="/blog/posts/2026-05-22-pre-match-sleep-strategy/">試合前日に眠れない時の対処法｜睡眠戦略</a></li>
+          <li>☀️ <a href="/blog/posts/2026-05-08-may-heatstroke-prevention/">サッカーの熱中症対策｜危険なサインと応急処置</a></li>
+        </ul>
+      </section>
       <section class="lp-section">
         <h2><i class="fas fa-flag"></i> 各県代表</h2>
         {reps_html}
