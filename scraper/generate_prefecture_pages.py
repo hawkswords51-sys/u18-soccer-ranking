@@ -22,7 +22,15 @@ Phase 9-A ステップ2 で追加された構造化データ:
 import json
 import re
 from pathlib import Path
-from datetime import date
+from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+
+class _JSTDate:
+    """GitHubのサーバーは世界標準時のため、日本時間の「今日」を返す"""
+    @staticmethod
+    def today():
+        return _dt.now(_tz(_td(hours=9))).date()
+
+date = _JSTDate
 
 # =========================================================================
 # Phase D: チーム個別ページへのリンク用 (data/team-profiles/*.md からマップ構築)
