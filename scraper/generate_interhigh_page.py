@@ -6,15 +6,28 @@ data/tournaments/interhigh-final-2026.md を読み込み、
 独立ページ /tournaments/interhigh-2026/ を生成する。
 
 - 「各県代表」セクション：県名: 学校名 を一覧化（学校はチーム詳細へ自動リンク）
+- 「トーナメント表（組み合わせ）」セクション：紙の組み合わせ表風のSVGトーナメント表を自動描画
+  （スコアは各ラウンドの結果行から自動照合し、勝ち上がり線を赤で描く）
 - 「トーナメント」セクション：予選と同じ書式の試合行を描画し、スコアから勝者を自動ハイライト
 - まだ組み合わせ未定でも「準備中」表示で正しく出力される
 
 依存：標準ライブラリ + PyYAML
 """
 import re
+import unicodedata
 import yaml
 from pathlib import Path
-from datetime import date
+from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+
+
+class _JSTDate:
+    """GitHubのサーバーは世界標準時のため、日本時間の「今日」を返す"""
+    @staticmethod
+    def today():
+        return _dt.now(_tz(_td(hours=9))).date()
+
+
+date = _JSTDate
 
 BASE_DIR = Path(__file__).parent.parent
 DOMAIN = "https://u18-soccer.com"
@@ -205,6 +218,349 @@ def render_rounds(sections):
         return '<p style="color:var(--text-secondary,#6b7280);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します（決勝まで随時更新）。</p>'
     return "\n".join(blocks)
 
+
+# =========================================================================
+# トーナメント表（組み合わせ表風SVG）自動描画
+# data md の「## トーナメント表（組み合わせ）」セクションを読み、
+# 紙の組み合わせ表のようなSVGを生成する。
+# スコアは各ラウンドの結果行（- A 2-1 B）からチーム名で自動照合し、
+# 勝者を次のラウンドへ自動で進め、勝ち上がり線を赤で描く。
+# =========================================================================
+
+def _norm_team(n):
+    """チーム名照合用の正規化（全角半角ゆれ・空白を吸収）"""
+    n = unicodedata.normalize("NFKC", n or "")
+    return n.replace(" ", "").replace("　", "")
+
+
+def _short_label(name):
+    """表示用の短縮名（紙の組み合わせ表と同じく「高校」等を省く）"""
+    n = re.sub(r'(高等学校|高等部|高校)$', '', name or "")
+    return n or (name or "")
+
+
+def parse_bracket_pairs(lines):
+    """セクションの行を [(校名A, 校名B or None), ...] に変換。
+       「- A vs B」= 1回戦の対戦カード ／ 「- A」= シード（2回戦から登場）"""
+    pairs = []
+    for ln in lines:
+        m = re.match(r'^\s*-\s+(.*)$', ln)
+        if not m:
+            continue
+        content = m.group(1).strip()
+        if not content:
+            continue
+        content = re.sub(r'[（(]\s*(シード|２回戦から|2回戦から)\s*[）)]\s*$', '', content).strip()
+        sides = re.split(r'\s+vs\s+', content)
+        if len(sides) == 2:
+            pairs.append((sides[0].strip(), sides[1].strip()))
+        else:
+            pairs.append((content, None))
+    return pairs
+
+
+def collect_results(sections):
+    """各ラウンドのセクションからスコア行を集める。
+       戻り値: {frozenset(正規化名2つ): (名A, 点A, 点B, (PK_A,PK_B) or None, 名B)}"""
+    res = {}
+    for name, lines in sections.items():
+        if name.startswith("各県代表") or name.startswith("トーナメント"):
+            continue
+        for ln in lines:
+            m = re.match(r'^\s*-\s+(.*)$', ln)
+            if not m:
+                continue
+            s = m.group(1).strip()
+            mm = re.match(
+                r'^(.*?)\s+(\d+)\s*-\s*(\d+)'
+                r'(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s)
+            if not mm:
+                continue
+            a = mm.group(1).strip()
+            b = mm.group(6).strip()
+            ga, gb = int(mm.group(2)), int(mm.group(3))
+            pk = (int(mm.group(4)), int(mm.group(5))) if mm.group(4) else None
+            key = frozenset((_norm_team(a), _norm_team(b)))
+            if len(key) == 2:
+                res[key] = (a, ga, gb, pk, b)
+    return res
+
+
+def parse_pref_map(reps_lines):
+    """各県代表セクションから {正規化校名: 県名} を作る（表示用）"""
+    pref_map = {}
+    for ln in reps_lines:
+        m = re.match(r'^\s*-\s*([^:：]+)[:：]\s*(.+)$', ln)
+        if not m:
+            continue
+        pref = m.group(1).strip()
+        for token in re.split(r'[、,]', m.group(2).strip()):
+            token = token.strip()
+            if not token:
+                continue
+            rm = re.search(r'[（(]([^）)]*)[）)]\s*$', token)
+            name = token[:rm.start()].strip() if rm else token
+            if name:
+                pref_map[_norm_team(name)] = pref
+    return pref_map
+
+
+def build_bracket_tree(pairs, results):
+    """シード込みのトーナメント木を組み、結果を当てはめて勝者を伝播させる。"""
+    n = 1
+    while n < len(pairs):
+        n *= 2
+    if n != len(pairs):
+        print(f"⚠ トーナメント表の行数が {len(pairs)} です（16/32などが正常）。空き枠で埋めて描画します。")
+        pairs = pairs + [("", None)] * (n - len(pairs))
+
+    base = []
+    for a, b in pairs:
+        node = {"a": a, "b": b, "bye": b is None, "winner": None, "score": None}
+        if b is None and a:
+            node["winner"] = a
+        base.append(node)
+
+    levels = [base]
+    cur = base
+    while len(cur) > 1:
+        nxt = [{"a": None, "b": None, "bye": False, "winner": None, "score": None}
+               for _ in range(len(cur) // 2)]
+        levels.append(nxt)
+        cur = nxt
+
+    used_keys = set()
+
+    def lookup(a, b):
+        if not a or not b:
+            return None
+        key = frozenset((_norm_team(a), _norm_team(b)))
+        r = results.get(key)
+        if r is None:
+            return None
+        used_keys.add(key)
+        ra, ga, gb, pk, rb = r
+        if _norm_team(ra) == _norm_team(a):
+            return ga, gb, pk
+        return gb, ga, ((pk[1], pk[0]) if pk else None)
+
+    for li, lvl in enumerate(levels):
+        for ni, node in enumerate(lvl):
+            if li > 0:
+                node["a"] = levels[li - 1][2 * ni].get("winner")
+                node["b"] = levels[li - 1][2 * ni + 1].get("winner")
+            if node["bye"]:
+                continue
+            sc = lookup(node["a"], node["b"])
+            if sc:
+                ga, gb, pk = sc
+                node["score"] = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
+                if ga > gb:
+                    node["winner"] = node["a"]
+                elif gb > ga:
+                    node["winner"] = node["b"]
+                elif pk:
+                    node["winner"] = node["a"] if pk[0] > pk[1] else node["b"]
+
+    for key, r in results.items():
+        if key not in used_keys:
+            print(f"⚠ 結果行がトーナメント表のどの対戦とも一致しません: {r[0]} vs {r[4]}"
+                  f"（校名の表記ゆれ、または前のラウンドの結果が未入力の可能性）")
+
+    return levels
+
+
+def _round_names(num_levels):
+    """レベル数からラウンド名を決める（後ろから 決勝・準決勝・準々決勝）"""
+    tail = ["準々決勝", "準決勝", "決勝"]
+    if num_levels <= 3:
+        return tail[-num_levels:]
+    head = [f"{i+1}回戦" for i in range(num_levels - 3)]
+    return head + tail
+
+
+def render_bracket_svg(sections, reps_lines):
+    """「## トーナメント表（組み合わせ）」があればSVGトーナメント表のHTMLを返す。無ければ空文字。"""
+    lines = None
+    for name, ls in sections.items():
+        if name.startswith("トーナメント表"):
+            lines = ls
+            break
+    if lines is None:
+        return ""
+    pairs = parse_bracket_pairs(lines)
+    if len(pairs) < 2:
+        return ""
+
+    results = collect_results(sections)
+    levels = build_bracket_tree(pairs, results)
+    pref_map = parse_pref_map(reps_lines)
+    num_levels = len(levels)
+    wing_levels = num_levels - 1
+    names = _round_names(num_levels)
+
+    # ---- レイアウト定数 ----
+    LABEL_W = 168
+    LVL_W = 58
+    ROW_H = 21
+    TOP = 56
+    CENTER_GAP = 150
+    width = 2 * (LABEL_W + wing_levels * LVL_W) + CENTER_GAP
+    cx = width / 2
+
+    base = levels[0]
+    half = len(base) // 2
+    wings = {"L": base[:half], "R": base[half:]}
+
+    def assign_base_y(nodes):
+        y = TOP
+        for nd in nodes:
+            if nd["bye"]:
+                nd["ya"] = y + ROW_H / 2
+                nd["yj"] = nd["ya"]
+                y += ROW_H
+            else:
+                nd["ya"] = y + ROW_H / 2
+                nd["yb"] = y + ROW_H * 1.5
+                nd["yj"] = (nd["ya"] + nd["yb"]) / 2
+                y += 2 * ROW_H
+        return y
+
+    bottom = max(assign_base_y(wings["L"]), assign_base_y(wings["R"]))
+    height = bottom + 28
+
+    for li in range(1, num_levels):
+        for ni, nd in enumerate(levels[li]):
+            c1, c2 = levels[li - 1][2 * ni], levels[li - 1][2 * ni + 1]
+            nd["yj"] = (c1["yj"] + c2["yj"]) / 2
+
+    xsL = [LABEL_W + (k + 1) * LVL_W for k in range(wing_levels)]
+    xsR = [width - x for x in xsL]
+
+    GRAY = "var(--border-color,#9ca3af)"
+    RED = "#dc2626"
+    TXT = "var(--text-primary,#1f2937)"
+    SUB = "var(--text-secondary,#6b7280)"
+    ACC = "var(--accent-color,#2563eb)"
+
+    S = []
+
+    def line(x1, y1, x2, y2, color, w=1.6):
+        S.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
+                 f'stroke="{color}" stroke-width="{w}" stroke-linecap="round"/>')
+
+    def text(x, y, s, anchor, size=10.5, color=TXT, weight=""):
+        w = f' font-weight="{weight}"' if weight else ""
+        S.append(f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" '
+                 f'font-size="{size}" fill="{color}"{w}>{html_escape(s)}</text>')
+
+    def team_text(x, y, name, anchor, won=False):
+        if not name:
+            return
+        label = _short_label(name)
+        pref = pref_map.get(_norm_team(name), "")
+        tid = TEAM_MAP.get(name)
+        color = RED if won else (ACC if tid else TXT)
+        weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
+        body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="10.5" '
+                f'fill="{color}"{weight}>{html_escape(label)}'
+                + (f'<tspan font-size="8.5" fill="{SUB}" font-weight="400">［{html_escape(pref)}］</tspan>' if pref else "")
+                + '</text>')
+        if tid:
+            body = f'<a href="/teams/{tid}/">{body}</a>'
+        S.append(body)
+
+    # ---- ラウンド見出し ----
+    for k in range(wing_levels):
+        x_prev = LABEL_W if k == 0 else xsL[k - 1]
+        text((x_prev + xsL[k]) / 2 + LVL_W / 2 - 8, 34, names[k], "middle", 10, SUB, "600")
+        x_prevR = width - LABEL_W if k == 0 else xsR[k - 1]
+        text((x_prevR + xsR[k]) / 2 - LVL_W / 2 + 8, 34, names[k], "middle", 10, SUB, "600")
+    text(cx, 34, names[-1], "middle", 11, SUB, "700")
+
+    # ---- 翼の描画 ----
+    def draw_wing(side):
+        sign = 1 if side == "L" else -1
+        x_edge = LABEL_W if side == "L" else width - LABEL_W
+        xs = xsL if side == "L" else xsR
+        anchor = "end" if side == "L" else "start"
+        tx = x_edge - 5 * sign
+        score_anchor = "start" if side == "L" else "end"
+
+        nodes = wings[side]
+        for nd in nodes:
+            won_a = bool(nd["score"]) and nd.get("winner") == nd["a"]
+            won_b = bool(nd["score"]) and nd.get("winner") == nd["b"]
+            if nd["bye"]:
+                team_text(tx, nd["ya"] + 3.5, nd["a"], anchor)
+                line(x_edge, nd["ya"], xs[0], nd["ya"], GRAY)
+            else:
+                team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=won_a)
+                team_text(tx, nd["yb"] + 3.5, nd["b"], anchor, won=won_b)
+                line(x_edge, nd["ya"], xs[0], nd["ya"], RED if won_a else GRAY, 2.2 if won_a else 1.6)
+                line(x_edge, nd["yb"], xs[0], nd["yb"], RED if won_b else GRAY, 2.2 if won_b else 1.6)
+                line(xs[0], nd["ya"], xs[0], nd["yb"], GRAY)
+                if nd["score"]:
+                    text(xs[0] + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
+
+        # 前進線（各レベルのノードの yj に沿って次の列へ）＋ 上位レベルのスコア
+        for li in range(0, wing_levels):
+            lvl_nodes = levels[li]
+            cnt = len(lvl_nodes) // 2
+            wing_nodes = lvl_nodes[:cnt] if side == "L" else lvl_nodes[cnt:]
+            for nd in wing_nodes:
+                x_from = xs[li]
+                x_to = xs[li + 1] if li + 1 < wing_levels else cx - sign * 10
+                played_win = bool(nd["score"]) and nd.get("winner")
+                line(x_from, nd["yj"], x_to, nd["yj"],
+                     RED if played_win else GRAY, 2.2 if played_win else 1.6)
+                if li >= 1 and nd["score"]:
+                    text(x_from + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
+
+        # 縦の接続線（レベル1以上：子2つの yj を結ぶ）
+        for li in range(1, wing_levels):
+            lvl_nodes = levels[li]
+            cnt = len(lvl_nodes) // 2
+            wing_nodes = lvl_nodes[:cnt] if side == "L" else lvl_nodes[cnt:]
+            child_lvl = levels[li - 1]
+            ccnt = len(child_lvl) // 2
+            child_wing = child_lvl[:ccnt] if side == "L" else child_lvl[ccnt:]
+            for ni, nd in enumerate(wing_nodes):
+                c1, c2 = child_wing[2 * ni], child_wing[2 * ni + 1]
+                line(xs[li], c1["yj"], xs[li], c2["yj"], GRAY)
+
+    draw_wing("L")
+    draw_wing("R")
+
+    # ---- 決勝（中央） ----
+    final = levels[-1][0]
+    semiL = levels[-2][0]
+    semiR = levels[-2][1]
+    ymid = (semiL["yj"] + semiR["yj"]) / 2
+    line(cx - 10, semiL["yj"], cx - 10, ymid, GRAY)
+    line(cx + 10, semiR["yj"], cx + 10, ymid, GRAY)
+    line(cx - 10, ymid, cx + 10, ymid, GRAY)
+    if final["score"]:
+        text(cx, ymid + 16, final["score"], "middle", 11, ACC, "700")
+    if final.get("winner"):
+        text(cx, ymid + 32, f"🏆 {_short_label(final['winner'])}", "middle", 13, RED, "700")
+
+    svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" width="{width:.0f}" height="{height:.0f}" '
+           f'xmlns="http://www.w3.org/2000/svg" role="img" '
+           f'aria-label="トーナメント表" style="display:block;font-family:inherit;">'
+           + "".join(S) + '</svg>')
+
+    return (
+        '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
+        '📱 スマホでは表を左右にスクロールできます ／ '
+        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
+        '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
+        'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
+        'background:var(--bg-white,#fff);padding:8px 4px;">'
+        + svg + '</div>'
+    )
+
+
 def main():
     meta, sections = parse_source()
     title_main = meta.get("title", "全国高校総体 サッカー競技")
@@ -237,6 +593,18 @@ def main():
     reps_html = render_reps(reps_lines)
     rounds_html = render_rounds(sections)
 
+    # トーナメント表（組み合わせ表風SVG）。「## トーナメント表（組み合わせ）」が無ければ空。
+    bracket_html = render_bracket_svg(sections, reps_lines)
+    if bracket_html:
+        bracket_section = f'''
+      <section class="lp-section">
+        <h2><i class="fas fa-network-wired"></i> 組み合わせトーナメント表</h2>
+        {bracket_html}
+      </section>
+'''
+    else:
+        bracket_section = ""
+
     champion_html = ""
     if champion and isinstance(champion, dict) and champion.get("team"):
         champion_html = (f'<div style="text-align:center;padding:16px;margin:16px 0;'
@@ -256,7 +624,7 @@ def main():
         '{"@type":"ListItem","position":1,"name":"ホーム","item":"' + DOMAIN + '/"},'
         '{"@type":"ListItem","position":2,"name":"インターハイ' + str(year) + '","item":"' + CANONICAL + '"}]}'
     )
-    
+
     # --- FAQ と大会構造化データ（SportsEvent / FAQPage） ---
     import json as _json
     faq_items = [
@@ -303,7 +671,7 @@ def main():
         f'<p style="margin:10px 0 4px;line-height:1.8;">{html_escape(a)}</p></details>'
         for q, a in faq_items
     )
-    
+
     page = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -385,12 +753,12 @@ def main():
         組み合わせ・試合結果・各県代表校をまとめています。各県予選の結果は
         <a href="/">都道府県別ページ</a>からご確認いただけます。
       </p>
-      
+
       <p style="margin:4px 0 16px;display:flex;flex-wrap:wrap;gap:10px;">
         <a href="/tournaments/interhigh-history/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:var(--primary-color,#1e40af);color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🏆 歴代優勝校一覧（2008-2025）</a>
         <a href="/blog/posts/interhigh-2026-heat-safety/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#dc2626;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🌡️ 救急医の暑熱対策ガイド</a>
       </p>
-      
+
       <section class="lp-section">
         <h2><i class="fas fa-circle-info"></i> 大会概要 {status_badge}</h2>
         <ul style="list-style:none;padding:0;line-height:2;">
@@ -408,17 +776,17 @@ def main():
         <h2><i class="fas fa-flag"></i> 各県代表</h2>
         {reps_html}
       </section>
-
+{bracket_section}
       <section class="lp-section">
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>
         {rounds_html}
       </section>
-      
+
       <section class="lp-section">
         <h2><i class="fas fa-circle-question"></i> よくある質問</h2>
         {faq_html}
       </section>
-      
+
       <section class="lp-section">
         <h2>関連リンク</h2>
         <ul class="lp-related-links">
