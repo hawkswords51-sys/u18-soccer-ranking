@@ -719,6 +719,72 @@ def render_stats(sections):
     return stat_cards + highlight
 
 
+# =========================================================================
+# AI引用向け一文要約（H1直下）。毎日の勝ち上がり状況から自動生成。
+#   - プレミア/県別ページの「lp-lead-summary」と同じ見た目。
+#   - 優勝決定後／開催中／情報待ち の3パターンを自動で切替。
+# =========================================================================
+def _summary_p(body):
+    style = (
+        "margin:0 0 18px;padding:12px 16px;background:var(--bg-light,#f1f5fb);"
+        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "font-size:0.95rem;line-height:1.8;"
+    )
+    return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
+
+
+def build_ai_summary(meta, sections):
+    title_main = meta.get("title", "Jユースカップ")
+    d = date.today()
+    date_str = f"{d.year}年{d.month}月{d.day}日"
+
+    # 前回王者（「## 歴代優勝」の最初の "YYYY年: チーム名（…）" 行）
+    defending = ""
+    for name, lines in sections.items():
+        if name.startswith("歴代優勝"):
+            for ln in lines:
+                m = re.match(r'^\s*-\s*(\d{4})年[:：]\s*([^（(]+)', ln)
+                if m:
+                    defending = f"前回（{m.group(1)}年）王者は{m.group(2).strip()}。"
+                    break
+            break
+
+    # 優勝が確定していれば優勝者を主役に
+    champion = meta.get("champion") or ""
+    champ_name = champion.get("team", "") if isinstance(champion, dict) else (champion.strip() if isinstance(champion, str) else "")
+    if champ_name:
+        body = (f"【{date_str}時点】{html_escape(title_main)}は{html_escape(champ_name)}が優勝。"
+                f"{html_escape(defending)}組み合わせ・トーナメント表・全試合結果をまとめています。")
+        return _summary_p(body)
+
+    # 開催中：まだ vs（未実施）が残る最初のラウンド＝勝ち上がった顔ぶれ
+    next_name, next_teams = None, []
+    for name, lines in sections.items():
+        if not _is_result_round(name):
+            continue
+        teams = []
+        for ln in lines:
+            mm = re.match(r'^\s*-\s+(.*?)\s+vs\s+(.*)$', ln.strip())
+            if mm:
+                teams += [mm.group(1).strip(), mm.group(2).strip()]
+        if teams:
+            next_name, next_teams = name, teams
+            break
+
+    if next_name:
+        round_word = re.split(r'[（(]', next_name)[0].strip()
+        n = len(next_teams)
+        stage = {16: "ベスト16", 8: "ベスト8", 4: "ベスト4", 2: "決勝進出"}.get(n, f"{n}チーム")
+        teams_str = "・".join(html_escape(t) for t in next_teams)
+        body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}（{stage}）の組み合わせが決定。"
+                f"勝ち上がった{n}チームは{teams_str}。"
+                f"{html_escape(defending)}"
+                f"Jクラブのユース（U-18）が日本一を争うノックアウト方式の組み合わせ・トーナメント表・結果を毎日更新。")
+        return _summary_p(body)
+
+    return ""
+
+
 def main():
     meta, sections = parse_source()
     title_main = meta.get("title", "Jユースカップ Jリーグユース選手権大会")
@@ -739,11 +805,13 @@ def main():
     else:
         schedule_html = ""
 
-    seo_title = f"Jユースカップ {year} 結果・組み合わせ｜Jリーグユース選手権 トーナメント速報"
-    description = (f"Jユースカップ（Jリーグユース選手権大会）{year} の組み合わせ・試合結果を速報でまとめています。"
-                  f"{html_escape(period)}開催。Jクラブユース日本一を懸けたトーナメントを決勝まで随時更新。")
-    keywords = (f"Jユースカップ {year},Jユースカップ 結果,Jリーグユース選手権,Jユースカップ 組み合わせ,"
-                f"Jユースカップ 速報,Jユースカップ トーナメント表,クラブユース,U-18,高校サッカー,{year}")
+    seo_title = f"Jユースカップ{year} 結果・組み合わせ・トーナメント表【最新】｜Jリーグユース選手権 速報"
+    description = (f"Jユースカップ（Jリーグユース選手権大会）{year}の組み合わせ・試合結果・トーナメント表を毎日自動更新。"
+                  f"Jクラブのユース（U-18）64チームが日本一を懸けて争うノックアウト方式。"
+                  f"ラウンド16〜準々決勝・準決勝・決勝の勝ち上がりを一目で確認できます。{html_escape(period)}開催。")
+    keywords = (f"Jユースカップ{year},Jユースカップ 結果,Jユースカップ トーナメント表,Jユースカップ 組み合わせ,"
+                f"Jリーグユース選手権,Jユースカップ 速報,Jユースカップ 準々決勝,Jユースカップ 日程,"
+                f"クラブユース,U-18,高校サッカー,{year}")
 
     # ① SVGトーナメント表（「## トーナメント表（組み合わせ）」が無ければ空）
     bracket_html = render_bracket_svg(sections)
@@ -755,6 +823,9 @@ def main():
         )
     else:
         bracket_section = ""
+
+    # AI引用向け一文要約（H1直下・毎日自動更新）
+    ai_summary_html = build_ai_summary(meta, sections)
 
     # ② 次の試合ボックス
     next_match_html = render_next_match(sections)
@@ -921,7 +992,7 @@ def main():
         <span aria-current="page">Jユースカップ{year}</span>
       </nav>
       <h1 class="lp-title">{html_escape(title_main)}</h1>
-      {updated_html}
+{ai_summary_html}      {updated_html}
       <p class="lp-intro">
         <strong>Jユースカップ（Jリーグユース選手権大会）</strong>{year} の組み合わせ・試合結果をまとめています。
         Jクラブのユースチームが日本一を懸けて戦うノックアウトトーナメント。各チームの普段のリーグ戦成績は
