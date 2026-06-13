@@ -6355,10 +6355,26 @@
         "goalDiff": 6
       },
       {
+        "id": "o008",
+        "name": "大阪桐蔭高校",
+        "league": "プリンスリーグ関西2部",
+        "rank": 2,
+        "points": 17,
+        "played": 8,
+        "won": 5,
+        "drawn": 2,
+        "lost": 1,
+        "goalsFor": 15,
+        "goalsAgainst": 5,
+        "prefectureRank": 2,
+        "goalDiff": 3,
+        "leagueRank": 2
+      },
+      {
         "id": "o005",
         "name": "セレッソ大阪U-18",
         "league": "プリンスリーグ関西1部",
-        "rank": 2,
+        "rank": 3,
         "points": 16,
         "played": 7,
         "won": 5,
@@ -6366,24 +6382,8 @@
         "lost": 1,
         "goalsFor": 21,
         "goalsAgainst": 11,
-        "prefectureRank": 2,
-        "goalDiff": 4,
-        "leagueRank": 2
-      },
-      {
-        "id": "o008",
-        "name": "大阪桐蔭高校",
-        "league": "プリンスリーグ関西2部",
-        "rank": 3,
-        "points": 16,
-        "played": 7,
-        "won": 5,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 14,
-        "goalsAgainst": 4,
         "prefectureRank": 3,
-        "goalDiff": 3,
+        "goalDiff": 4,
         "leagueRank": 2
       },
       {
@@ -6699,10 +6699,26 @@
     "region": "関西",
     "teams": [
       {
+        "id": "hy003",
+        "name": "滝川第二高校",
+        "league": "プリンスリーグ関西2部",
+        "rank": 1,
+        "points": 19,
+        "played": 8,
+        "won": 6,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 22,
+        "goalsAgainst": 11,
+        "prefectureRank": 1,
+        "goalDiff": -1,
+        "leagueRank": 1
+      },
+      {
         "id": "hy001",
         "name": "ヴィッセル神戸U-18",
         "league": "プレミアリーグWEST",
-        "rank": 1,
+        "rank": 2,
         "points": 19,
         "played": 9,
         "won": 6,
@@ -6710,24 +6726,8 @@
         "lost": 2,
         "goalsFor": 24,
         "goalsAgainst": 14,
-        "prefectureRank": 1,
-        "goalDiff": 8,
-        "leagueRank": 1
-      },
-      {
-        "id": "hy003",
-        "name": "滝川第二高校",
-        "league": "プリンスリーグ関西2部",
-        "rank": 2,
-        "points": 18,
-        "played": 7,
-        "won": 6,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 21,
-        "goalsAgainst": 10,
         "prefectureRank": 2,
-        "goalDiff": -1,
+        "goalDiff": 8,
         "leagueRank": 1
       },
       {
@@ -11250,7 +11250,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-13 11:52",
+    "lastUpdated": "2026-06-13 12:01",
     "year": 2026,
     "updatedCount": 584
   }
