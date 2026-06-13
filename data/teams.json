@@ -6338,13 +6338,13 @@
         "name": "大阪学院大学高校",
         "league": "大阪府1部",
         "rank": 1,
-        "points": 18,
-        "played": 6,
-        "won": 6,
+        "points": 21,
+        "played": 7,
+        "won": 7,
         "drawn": 0,
         "lost": 0,
-        "goalsFor": 21,
-        "goalsAgainst": 4,
+        "goalsFor": 26,
+        "goalsAgainst": 5,
         "prefectureRank": 1,
         "leagueRank": 1,
         "aliases": [
@@ -6403,10 +6403,27 @@
         "leagueRank": 9
       },
       {
+        "name": "履正社高校2nd",
+        "league": "大阪府1部",
+        "points": 16,
+        "played": 7,
+        "won": 5,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 15,
+        "goalsAgainst": 11,
+        "leagueRank": 2,
+        "rank": 5,
+        "prefectureRank": 5,
+        "aliases": [
+          "履正社B"
+        ]
+      },
+      {
         "id": "o006",
         "name": "東海大仰星高校",
         "league": "プリンスリーグ関西2部",
-        "rank": 5,
+        "rank": 6,
         "points": 15,
         "played": 7,
         "won": 4,
@@ -6414,7 +6431,7 @@
         "lost": 0,
         "goalsFor": 19,
         "goalsAgainst": 5,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "goalDiff": 2,
         "leagueRank": 3
       },
@@ -6422,7 +6439,7 @@
         "id": "o003",
         "name": "履正社高校",
         "league": "プリンスリーグ関西1部",
-        "rank": 6,
+        "rank": 7,
         "points": 14,
         "played": 8,
         "won": 4,
@@ -6430,26 +6447,9 @@
         "lost": 2,
         "goalsFor": 13,
         "goalsAgainst": 12,
-        "prefectureRank": 6,
+        "prefectureRank": 7,
         "goalDiff": -1,
         "leagueRank": 4
-      },
-      {
-        "name": "履正社高校2nd",
-        "league": "大阪府1部",
-        "points": 13,
-        "played": 6,
-        "won": 4,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 13,
-        "goalsAgainst": 10,
-        "leagueRank": 2,
-        "rank": 7,
-        "prefectureRank": 7,
-        "aliases": [
-          "履正社B"
-        ]
       },
       {
         "id": "o020",
@@ -6527,19 +6527,19 @@
         "leagueRank": 5
       },
       {
-        "id": "o018",
-        "name": "摂津高校",
+        "id": "o017",
+        "name": "清風高校",
         "league": "大阪府1部",
         "rank": 12,
         "prefectureRank": 12,
         "points": 10,
-        "played": 6,
+        "played": 7,
         "won": 3,
         "drawn": 1,
-        "lost": 2,
-        "goalsFor": 10,
-        "goalsAgainst": 12,
-        "goalDiff": -5,
+        "lost": 3,
+        "goalsFor": 6,
+        "goalsAgainst": 8,
+        "goalDiff": -1,
         "leagueRank": 4
       },
       {
@@ -6563,19 +6563,19 @@
         ]
       },
       {
-        "id": "o014",
-        "name": "桃山学院高校",
+        "id": "o018",
+        "name": "摂津高校",
         "league": "大阪府1部",
         "rank": 14,
         "prefectureRank": 14,
-        "points": 9,
-        "played": 6,
+        "points": 10,
+        "played": 7,
         "won": 3,
-        "drawn": 0,
+        "drawn": 1,
         "lost": 3,
         "goalsFor": 11,
-        "goalsAgainst": 12,
-        "goalDiff": 1,
+        "goalsAgainst": 14,
+        "goalDiff": -5,
         "leagueRank": 5
       },
       {
@@ -6595,11 +6595,27 @@
         "leagueRank": 10
       },
       {
-        "id": "o016",
-        "name": "常翔学園高校",
+        "id": "o014",
+        "name": "桃山学院高校",
         "league": "大阪府1部",
         "rank": 16,
         "prefectureRank": 16,
+        "points": 9,
+        "played": 7,
+        "won": 3,
+        "drawn": 0,
+        "lost": 4,
+        "goalsFor": 14,
+        "goalsAgainst": 16,
+        "goalDiff": 1,
+        "leagueRank": 6
+      },
+      {
+        "id": "o016",
+        "name": "常翔学園高校",
+        "league": "大阪府1部",
+        "rank": 17,
+        "prefectureRank": 17,
         "points": 8,
         "played": 6,
         "won": 2,
@@ -6607,22 +6623,6 @@
         "lost": 2,
         "goalsFor": 8,
         "goalsAgainst": 9,
-        "goalDiff": -1,
-        "leagueRank": 6
-      },
-      {
-        "id": "o017",
-        "name": "清風高校",
-        "league": "大阪府1部",
-        "rank": 17,
-        "prefectureRank": 17,
-        "points": 7,
-        "played": 6,
-        "won": 2,
-        "drawn": 1,
-        "lost": 3,
-        "goalsFor": 2,
-        "goalsAgainst": 5,
         "goalDiff": -1,
         "leagueRank": 7
       },
@@ -6666,12 +6666,12 @@
         "rank": 20,
         "prefectureRank": 20,
         "points": 3,
-        "played": 6,
+        "played": 7,
         "won": 1,
         "drawn": 0,
-        "lost": 5,
-        "goalsFor": 12,
-        "goalsAgainst": 20,
+        "lost": 6,
+        "goalsFor": 13,
+        "goalsAgainst": 25,
         "goalDiff": -1,
         "leagueRank": 10,
         "aliases": [
@@ -11250,7 +11250,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-14 00:08",
+    "lastUpdated": "2026-06-14 00:15",
     "year": 2026,
     "updatedCount": 584
   }
