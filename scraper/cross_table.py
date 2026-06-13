@@ -167,32 +167,32 @@ def render_cross_table_html(slug: str) -> str:
     return f"""
       <section class="xt-section" id="cross-table">
         <style>
-        .xt-section{{margin:34px 0 10px;}}
-        .xt-section h2{{font-size:1.25rem;margin:0 0 4px;border-left:5px solid #1565c0;padding-left:10px;}}
-        .xt-meta{{font-size:.8rem;color:#666;margin:0 0 10px;}}
-        .xt-note{{font-size:.78rem;color:#666;margin:4px 2px 10px;line-height:1.5;}}
+        .xt-section{{margin:40px 0 12px;}}
+        .xt-section h2{{font-size:1.5rem;margin:0 0 6px;border-left:6px solid #1565c0;padding-left:12px;}}
+        .xt-meta{{font-size:.95rem;color:#666;margin:0 0 12px;}}
+        .xt-note{{font-size:.9rem;color:#666;margin:4px 2px 12px;line-height:1.6;}}
         .xt-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}}
-        .xt-cross{{border-collapse:collapse;font-size:12px;white-space:nowrap;background:#fff;}}
-        .xt-cross th,.xt-cross td{{border:1px solid #dfe3e8;text-align:center;padding:4px 5px;}}
+        .xt-cross{{border-collapse:collapse;font-size:15px;white-space:nowrap;background:#fff;}}
+        .xt-cross th,.xt-cross td{{border:1px solid #dfe3e8;text-align:center;padding:8px 11px;}}
         .xt-cross thead th{{background:#1565c0;color:#fff;font-weight:600;}}
         .xt-cross th.xt-corner{{background:#0d47a1;}}
-        .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:46px;font-size:11px;}}
-        .xt-cross th.xt-rk{{background:#eef2f7;width:24px;color:#333;}}
-        .xt-cross th.xt-tn{{background:#eef2f7;color:#333;font-size:11px;min-width:64px;text-align:left;position:sticky;left:0;z-index:1;}}
+        .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:62px;font-size:14px;}}
+        .xt-cross th.xt-rk{{background:#eef2f7;width:32px;color:#333;}}
+        .xt-cross th.xt-tn{{background:#eef2f7;color:#333;font-size:14px;min-width:84px;text-align:left;position:sticky;left:0;z-index:1;}}
         .xt-cross td.xt-diag{{background:#cfd8dc;}}
         .xt-cross td.xt-win{{background:#e8f5e9;color:#2e7d32;font-weight:600;}}
         .xt-cross td.xt-lose{{background:#ffebee;color:#c62828;}}
         .xt-cross td.xt-draw{{background:#fff8e1;color:#f9a825;}}
         .xt-cross td.xt-np{{color:#bbb;}}
-        .xt-cross .xt-ha{{font-size:9px;color:#888;margin-right:2px;}}
-        .xt-legend{{font-size:12px;color:#555;margin:8px 2px 0;}}
-        .xt-legend span{{display:inline-block;padding:1px 8px;border-radius:10px;margin-right:6px;}}
-        .xt-formtable{{width:100%;border-collapse:collapse;margin-top:6px;}}
-        .xt-formtable th,.xt-formtable td{{border-bottom:1px solid #eee;padding:6px 6px;text-align:left;font-size:13px;}}
-        .xt-formtable .xt-rk{{width:26px;color:#888;text-align:center;}}
-        .xt-formtable .xt-tn2{{min-width:120px;font-weight:600;}}
-        .xt-formtable .xt-rec{{width:92px;color:#333;}}
-        .xt-chip{{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;font-size:12px;margin:1px;}}
+        .xt-cross .xt-ha{{font-size:11px;color:#888;margin-right:3px;}}
+        .xt-legend{{font-size:14px;color:#555;margin:10px 2px 0;}}
+        .xt-legend span{{display:inline-block;padding:2px 12px;border-radius:10px;margin-right:8px;}}
+        .xt-formtable{{width:100%;border-collapse:collapse;margin-top:8px;}}
+        .xt-formtable th,.xt-formtable td{{border-bottom:1px solid #eee;padding:10px 8px;text-align:left;font-size:15px;}}
+        .xt-formtable .xt-rk{{width:30px;color:#888;text-align:center;}}
+        .xt-formtable .xt-tn2{{min-width:140px;font-weight:600;}}
+        .xt-formtable .xt-rec{{width:108px;color:#333;}}
+        .xt-chip{{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;border-radius:50%;font-size:15px;margin:2px;}}
         .xt-chip.xt-win{{background:#e8f5e9;color:#2e7d32;}}
         .xt-chip.xt-lose{{background:#ffebee;color:#c62828;}}
         .xt-chip.xt-draw{{background:#fff8e1;color:#f9a825;}}
