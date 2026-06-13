@@ -167,32 +167,62 @@ def render_cross_table_html(slug: str) -> str:
     return f"""
       <section class="xt-section" id="cross-table">
         <style>
+        /* ===== 共通 ===== */
         .xt-section{{margin:44px 0 14px;}}
         .xt-section h2{{font-size:1.7rem;margin:0 0 6px;border-left:6px solid #1565c0;padding-left:12px;}}
         .xt-meta{{font-size:1rem;color:#666;margin:0 0 12px;}}
         .xt-note{{font-size:.95rem;color:#666;margin:4px 2px 12px;line-height:1.6;}}
         .xt-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}}
-        .xt-cross{{border-collapse:collapse;font-size:17px;white-space:nowrap;background:#fff;}}
-        .xt-cross th,.xt-cross td{{border:1px solid #dfe3e8;text-align:center;padding:11px 15px;}}
-        .xt-cross thead th{{background:#1565c0;color:#fff;font-weight:600;}}
-        .xt-cross th.xt-corner{{background:#0d47a1;}}
-        .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:78px;font-size:16px;}}
-        .xt-cross th.xt-rk{{background:#eef2f7;width:40px;color:#333;}}
-        .xt-cross th.xt-tn{{background:#eef2f7;color:#333;font-size:16px;min-width:98px;text-align:left;position:sticky;left:0;z-index:1;}}
+        .xt-cross{{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;}}
+        .xt-cross th,.xt-cross td{{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}}
+        .xt-cross thead th{{background:#1565c0;color:#fff;font-weight:600;position:sticky;top:0;z-index:3;}}
         .xt-cross td.xt-diag{{background:#cfd8dc;}}
         .xt-cross td.xt-win{{background:#e8f5e9;color:#2e7d32;font-weight:600;}}
         .xt-cross td.xt-lose{{background:#ffebee;color:#c62828;}}
         .xt-cross td.xt-draw{{background:#fff8e1;color:#f9a825;}}
         .xt-cross td.xt-np{{color:#bbb;}}
-        .xt-cross .xt-ha{{font-size:12px;color:#888;margin-right:3px;}}
+        .xt-cross .xt-ha{{color:#888;margin-right:3px;}}
+        /* 左2列(順位・チーム)を横スクロール時に固定 */
+        .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{position:sticky;left:0;z-index:4;background:#eef2f7;color:#333;}}
+        .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{position:sticky;z-index:4;background:#eef2f7;color:#333;text-align:left;}}
+        .xt-cross th.xt-corner-rk,.xt-cross th.xt-corner-tn{{background:#0d47a1;color:#fff;z-index:5;}}
         .xt-legend{{font-size:16px;color:#555;margin:12px 2px 0;}}
         .xt-legend span{{display:inline-block;padding:2px 14px;border-radius:10px;margin-right:8px;}}
-        .xt-formtable{{width:100%;border-collapse:collapse;margin-top:10px;}}
-        .xt-formtable th,.xt-formtable td{{border-bottom:1px solid #eee;padding:12px 10px;text-align:left;font-size:17px;}}
-        .xt-formtable .xt-rk{{width:34px;color:#888;text-align:center;}}
-        .xt-formtable .xt-tn2{{min-width:150px;font-weight:600;}}
-        .xt-formtable .xt-rec{{width:120px;color:#333;}}
-        .xt-chip{{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;font-size:17px;margin:2px;}}
+        .xt-formwrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;}}
+        .xt-formtable{{border-collapse:collapse;margin-top:10px;}}
+        .xt-formtable th,.xt-formtable td{{border-bottom:1px solid #eee;text-align:left;}}
+        .xt-formtable .xt-rk{{color:#888;text-align:center;}}
+        .xt-formtable .xt-tn2{{font-weight:600;}}
+        .xt-formtable .xt-rec{{color:#333;}}
+        .xt-formtable .xt-form{{white-space:nowrap;}}
+        .xt-chip{{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;}}
+        /* ===== デスクトップ(既定) ===== */
+        .xt-cross th,.xt-cross td{{padding:11px 15px;font-size:17px;}}
+        .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:78px;font-size:16px;}}
+        .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{width:40px;min-width:40px;}}
+        .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{left:40px;font-size:16px;min-width:98px;}}
+        .xt-cross .xt-ha{{font-size:12px;}}
+        .xt-formtable th,.xt-formtable td{{padding:12px 10px;font-size:17px;}}
+        .xt-formtable .xt-rk{{width:34px;}}
+        .xt-formtable .xt-tn2{{min-width:150px;}}
+        .xt-formtable .xt-rec{{min-width:120px;}}
+        .xt-chip{{width:30px;height:30px;font-size:17px;margin:2px;}}
+        /* ===== スマホ(横幅600px以下)だけ小さく ===== */
+        @media (max-width:600px){{
+          .xt-section h2{{font-size:1.3rem;}}
+          .xt-meta{{font-size:.85rem;}}
+          .xt-note{{font-size:.82rem;}}
+          .xt-cross th,.xt-cross td{{padding:6px 7px;font-size:13px;}}
+          .xt-cross th.xt-vc span{{min-height:52px;font-size:12px;}}
+          .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{width:28px;min-width:28px;}}
+          .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{left:28px;font-size:12px;min-width:64px;}}
+          .xt-cross .xt-ha{{font-size:9px;}}
+          .xt-legend{{font-size:13px;}}
+          .xt-formtable th,.xt-formtable td{{padding:8px 6px;font-size:13px;}}
+          .xt-formtable .xt-tn2{{min-width:108px;}}
+          .xt-formtable .xt-rec{{min-width:78px;}}
+          .xt-chip{{width:22px;height:22px;font-size:13px;margin:1px;}}
+        }}
         .xt-chip.xt-win{{background:#e8f5e9;color:#2e7d32;}}
         .xt-chip.xt-lose{{background:#ffebee;color:#c62828;}}
         .xt-chip.xt-draw{{background:#fff8e1;color:#f9a825;}}
@@ -204,7 +234,7 @@ def render_cross_table_html(slug: str) -> str:
         往復2試合とも終わったマスは通算成績で色分けしています。「―」はまだ対戦していないカードです。</p>
         <div class="xt-scroll">
           <table class="xt-cross">
-            <thead><tr><th class="xt-corner">順</th><th class="xt-corner">チーム＼相手</th>{head_cols}</tr></thead>
+            <thead><tr><th class="xt-corner-rk">順</th><th class="xt-corner-tn">チーム＼相手</th>{head_cols}</tr></thead>
             <tbody>
 {nl.join(body_rows)}
             </tbody>
@@ -218,12 +248,12 @@ def render_cross_table_html(slug: str) -> str:
 
         <h2 style="margin-top:26px;">各チームの戦績</h2>
         <p class="xt-note">○＝勝、△＝分、●＝敗。チップにマウスを乗せる（スマホは長押し）と相手とスコアが出ます。</p>
-        <table class="xt-formtable">
+        <div class="xt-formwrap"><table class="xt-formtable">
           <thead><tr><th class="xt-rk">順</th><th class="xt-tn2">チーム</th><th class="xt-rec">通算</th><th>節順 →</th></tr></thead>
           <tbody>
 {nl.join(form_rows)}
           </tbody>
-        </table>
+        </table></div>
       </section>
 """
 
