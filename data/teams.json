@@ -2888,10 +2888,26 @@
         ]
       },
       {
+        "id": "t008",
+        "name": "大成高校",
+        "league": "東京T1リーグ",
+        "rank": 8,
+        "points": 11,
+        "played": 8,
+        "won": 3,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 9,
+        "goalsAgainst": 10,
+        "goalDiff": -2,
+        "prefectureRank": 8,
+        "leagueRank": 4
+      },
+      {
         "id": "t009",
         "name": "堀越高校",
         "league": "東京T1リーグ",
-        "rank": 8,
+        "rank": 9,
         "points": 10,
         "played": 7,
         "won": 2,
@@ -2900,14 +2916,14 @@
         "goalsFor": 9,
         "goalsAgainst": 9,
         "goalDiff": 0,
-        "prefectureRank": 8,
-        "leagueRank": 4
+        "prefectureRank": 9,
+        "leagueRank": 5
       },
       {
         "id": "t011",
         "name": "国士舘高校",
         "league": "東京T1リーグ",
-        "rank": 9,
+        "rank": 10,
         "points": 10,
         "played": 7,
         "won": 3,
@@ -2916,14 +2932,14 @@
         "goalsFor": 7,
         "goalsAgainst": 7,
         "goalDiff": -1,
-        "prefectureRank": 9,
-        "leagueRank": 5
+        "prefectureRank": 10,
+        "leagueRank": 6
       },
       {
         "id": "t007",
         "name": "多摩大目黒高校",
         "league": "東京T1リーグ",
-        "rank": 10,
+        "rank": 11,
         "points": 9,
         "played": 7,
         "won": 2,
@@ -2932,22 +2948,6 @@
         "goalsFor": 4,
         "goalsAgainst": 5,
         "goalDiff": 1,
-        "prefectureRank": 10,
-        "leagueRank": 6
-      },
-      {
-        "id": "t008",
-        "name": "大成高校",
-        "league": "東京T1リーグ",
-        "rank": 11,
-        "points": 8,
-        "played": 7,
-        "won": 2,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 8,
-        "goalsAgainst": 10,
-        "goalDiff": -2,
         "prefectureRank": 11,
         "leagueRank": 7
       },
@@ -2957,12 +2957,12 @@
         "league": "東京T1リーグ",
         "rank": 12,
         "points": 6,
-        "played": 7,
+        "played": 8,
         "won": 2,
         "drawn": 0,
-        "lost": 5,
+        "lost": 6,
         "goalsFor": 7,
-        "goalsAgainst": 14,
+        "goalsAgainst": 15,
         "goalDiff": -3,
         "prefectureRank": 12,
         "leagueRank": 8
@@ -11250,8 +11250,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-13 22:11",
+    "lastUpdated": "2026-06-13 22:28",
     "year": 2026,
-    "updatedCount": 584
+    "updatedCount": 576
   }
 }
