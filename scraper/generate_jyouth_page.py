@@ -397,12 +397,12 @@ def render_bracket_svg(sections):
     wing_levels = num_levels - 1
     names = _round_names(num_levels)
 
-    # ---- レイアウト定数 ----
-    LABEL_W = 168
-    LVL_W = 58
-    ROW_H = 21
-    TOP = 56
-    CENTER_GAP = 150
+    # ---- レイアウト定数（大きめ・読みやすさ優先） ----
+    LABEL_W = 190
+    LVL_W = 72
+    ROW_H = 28
+    TOP = 60
+    CENTER_GAP = 168
     width = 2 * (LABEL_W + wing_levels * LVL_W) + CENTER_GAP
     cx = width / 2
 
@@ -459,7 +459,7 @@ def render_bracket_svg(sections):
         tid = TEAM_MAP.get(name)
         color = RED if won else (ACC if tid else TXT)
         weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
-        body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="10.5" '
+        body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="12.5" '
                 f'fill="{color}"{weight}>{html_escape(label)}</text>')
         if tid:
             body = f'<a href="/teams/{tid}/">{body}</a>'
@@ -468,10 +468,10 @@ def render_bracket_svg(sections):
     # ---- ラウンド見出し ----
     for k in range(wing_levels):
         x_prev = LABEL_W if k == 0 else xsL[k - 1]
-        text((x_prev + xsL[k]) / 2 + LVL_W / 2 - 8, 34, names[k], "middle", 10, SUB, "600")
+        text((x_prev + xsL[k]) / 2 + LVL_W / 2 - 8, 36, names[k], "middle", 12, SUB, "600")
         x_prevR = width - LABEL_W if k == 0 else xsR[k - 1]
-        text((x_prevR + xsR[k]) / 2 - LVL_W / 2 + 8, 34, names[k], "middle", 10, SUB, "600")
-    text(cx, 34, names[-1], "middle", 11, SUB, "700")
+        text((x_prevR + xsR[k]) / 2 - LVL_W / 2 + 8, 36, names[k], "middle", 12, SUB, "600")
+    text(cx, 36, names[-1], "middle", 13, SUB, "700")
 
     # ---- 翼の描画 ----
     def draw_wing(side):
@@ -492,11 +492,15 @@ def render_bracket_svg(sections):
             else:
                 team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=won_a)
                 team_text(tx, nd["yb"] + 3.5, nd["b"], anchor, won=won_b)
-                line(x_edge, nd["ya"], xs[0], nd["ya"], RED if won_a else GRAY, 2.2 if won_a else 1.6)
-                line(x_edge, nd["yb"], xs[0], nd["yb"], RED if won_b else GRAY, 2.2 if won_b else 1.6)
+                line(x_edge, nd["ya"], xs[0], nd["ya"], RED if won_a else GRAY, 2.4 if won_a else 1.6)
+                line(x_edge, nd["yb"], xs[0], nd["yb"], RED if won_b else GRAY, 2.4 if won_b else 1.6)
+                # 縦の連結線（兄弟をつなぐ）。勝者側だけ赤で上書きして勝ち上がりを連続表示
                 line(xs[0], nd["ya"], xs[0], nd["yb"], GRAY)
+                if nd["score"] and nd.get("winner"):
+                    wy = nd["ya"] if won_a else nd["yb"]
+                    line(xs[0], wy, xs[0], nd["yj"], RED, 2.4)
                 if nd["score"]:
-                    text(xs[0] + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
+                    text(xs[0] + 3 * sign, nd["yj"] - 4, nd["score"], score_anchor, 10.5, ACC, "700")
 
         for li in range(0, wing_levels):
             lvl_nodes = levels[li]
@@ -507,9 +511,9 @@ def render_bracket_svg(sections):
                 x_to = xs[li + 1] if li + 1 < wing_levels else cx - sign * 10
                 played_win = bool(nd["score"]) and nd.get("winner")
                 line(x_from, nd["yj"], x_to, nd["yj"],
-                     RED if played_win else GRAY, 2.2 if played_win else 1.6)
+                     RED if played_win else GRAY, 2.4 if played_win else 1.6)
                 if li >= 1 and nd["score"]:
-                    text(x_from + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
+                    text(x_from + 3 * sign, nd["yj"] - 4, nd["score"], score_anchor, 10.5, ACC, "700")
 
         for li in range(1, wing_levels):
             lvl_nodes = levels[li]
@@ -521,6 +525,10 @@ def render_bracket_svg(sections):
             for ni, nd in enumerate(wing_nodes):
                 c1, c2 = child_wing[2 * ni], child_wing[2 * ni + 1]
                 line(xs[li], c1["yj"], xs[li], c2["yj"], GRAY)
+                # 勝者が出た上位ノードは、勝った子の縦線を赤で上書き
+                if nd["score"] and nd.get("winner"):
+                    win_child = c1 if nd["winner"] == nd["a"] else c2
+                    line(xs[li], win_child["yj"], xs[li], nd["yj"], RED, 2.4)
 
     draw_wing("L")
     draw_wing("R")
@@ -533,14 +541,25 @@ def render_bracket_svg(sections):
     line(cx - 10, semiL["yj"], cx - 10, ymid, GRAY)
     line(cx + 10, semiR["yj"], cx + 10, ymid, GRAY)
     line(cx - 10, ymid, cx + 10, ymid, GRAY)
-    if final["score"]:
-        text(cx, ymid + 16, final["score"], "middle", 11, ACC, "700")
+    # 決勝に勝者が出たら、優勝チームが上がってきた側の中央縦線を赤に
     if final.get("winner"):
-        text(cx, ymid + 32, f"🏆 {_short_label(final['winner'])}", "middle", 13, RED, "700")
+        if final["winner"] == final.get("a"):
+            line(cx - 10, semiL["yj"], cx - 10, ymid, RED, 2.4)
+            line(cx - 10, ymid, cx + 10, ymid, RED, 2.4)
+        elif final["winner"] == final.get("b"):
+            line(cx + 10, semiR["yj"], cx + 10, ymid, RED, 2.4)
+            line(cx - 10, ymid, cx + 10, ymid, RED, 2.4)
+    if final["score"]:
+        text(cx, ymid + 17, final["score"], "middle", 13, ACC, "700")
+    if final.get("winner"):
+        text(cx, ymid + 35, f"🏆 {_short_label(final['winner'])}", "middle", 15, RED, "700")
 
-    svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" width="{width:.0f}" height="{height:.0f}" '
+    # PCでは横幅いっぱいまで拡大し、スマホでは min-width で横スクロール
+    svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" '
            f'xmlns="http://www.w3.org/2000/svg" role="img" '
-           f'aria-label="Jユースカップ トーナメント表" style="display:block;font-family:inherit;">'
+           f'aria-label="Jユースカップ トーナメント表" '
+           f'preserveAspectRatio="xMidYMid meet" '
+           f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
 
     return (
