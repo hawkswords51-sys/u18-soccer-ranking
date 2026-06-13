@@ -22,7 +22,7 @@ import re
 import yaml
 from pathlib import Path
 from datetime import date
-
+from cross_table import render_cross_table_html
 from league_contents import (
     TACTICAL_PREMIER_EAST, WATCHING_PREMIER_EAST,
     TACTICAL_PREMIER_WEST, WATCHING_PREMIER_WEST,
@@ -859,6 +859,7 @@ __TEAM_ROWS__
           </tbody>
         </table>
       </div>
+      __CROSS_TABLE__
       __LEAGUE_STATS__
       __FEATURED_TEAMS__
       <section class="lp-section">
@@ -1085,6 +1086,7 @@ def generate_league_page(league_name, slug, label, category, description, season
     past_champions_html = render_past_champions_html(slug)
     featured_teams_html = render_featured_teams_html(sorted_teams, label)
     league_stats_html = render_league_stats_html(sorted_teams, label)
+    cross_table_html = render_cross_table_html(slug)
     
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":
@@ -1161,6 +1163,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
         .replace("__TEAM_ROWS__", team_rows)
+        .replace("__CROSS_TABLE__", cross_table_html)
         .replace("__FEATURED_TEAMS__", featured_teams_html)
         .replace("__LEAGUE_STATS__", league_stats_html)
         .replace("__PREF_DISTRIBUTION__", pref_distribution)
