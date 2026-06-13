@@ -146,7 +146,7 @@ def render_cross_table_html(slug: str) -> str:
     for i, t in enumerate(order, 1):
         s = st[t]
         chips = "".join(
-            f'<span class="xt-chip {r}" title="{_html_escape(tip)}">{mk}</span>'
+            f'<span class="xt-chip {r}" data-tip="{_html_escape(tip)}">{mk}</span>'
             for mk, r, tip in team_form(t)
         )
         form_rows.append(
@@ -170,8 +170,8 @@ def render_cross_table_html(slug: str) -> str:
         /* ===== 共通 ===== */
         .xt-section{{margin:44px 0 14px;}}
         .xt-section h2{{font-size:1.7rem;margin:0 0 6px;border-left:6px solid #1565c0;padding-left:12px;}}
-        .xt-meta{{font-size:1rem;color:#666;margin:0 0 12px;}}
-        .xt-note{{font-size:.95rem;color:#666;margin:4px 2px 12px;line-height:1.6;}}
+        .xt-meta{{font-size:1rem;color:inherit;opacity:.75;margin:0 0 12px;}}
+        .xt-note{{font-size:.95rem;color:inherit;opacity:.75;margin:4px 2px 12px;line-height:1.6;}}
         .xt-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}}
         .xt-cross{{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;}}
         .xt-cross th,.xt-cross td{{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}}
@@ -186,16 +186,16 @@ def render_cross_table_html(slug: str) -> str:
         .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{position:sticky;left:0;z-index:4;background:#eef2f7;color:#333;}}
         .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{position:sticky;z-index:4;background:#eef2f7;color:#333;text-align:left;}}
         .xt-cross th.xt-corner-rk,.xt-cross th.xt-corner-tn{{background:#0d47a1;color:#fff;z-index:5;}}
-        .xt-legend{{font-size:16px;color:#555;margin:12px 2px 0;}}
+        .xt-legend{{font-size:16px;color:inherit;opacity:.8;margin:12px 2px 0;}}
         .xt-legend span{{display:inline-block;padding:2px 14px;border-radius:10px;margin-right:8px;}}
         .xt-formwrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;}}
         .xt-formtable{{border-collapse:collapse;margin-top:10px;}}
-        .xt-formtable th,.xt-formtable td{{border-bottom:1px solid #eee;text-align:left;}}
-        .xt-formtable .xt-rk{{color:#888;text-align:center;}}
+        .xt-formtable th,.xt-formtable td{{border-bottom:1px solid rgba(128,128,128,.25);text-align:left;}}
+        .xt-formtable .xt-rk{{color:inherit;opacity:.6;text-align:center;}}
         .xt-formtable .xt-tn2{{font-weight:600;}}
-        .xt-formtable .xt-rec{{color:#333;}}
+        .xt-formtable .xt-rec{{color:inherit;opacity:.85;}}
         .xt-formtable .xt-form{{white-space:nowrap;}}
-        .xt-chip{{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;}}
+        .xt-chip{{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;}}
         /* ===== デスクトップ(既定) ===== */
         .xt-cross th,.xt-cross td{{padding:11px 15px;font-size:17px;}}
         .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:78px;font-size:16px;}}
@@ -254,6 +254,38 @@ def render_cross_table_html(slug: str) -> str:
 {nl.join(form_rows)}
           </tbody>
         </table></div>
+        <script>
+        (function(){{
+          if(window.__xtTipInit) return; window.__xtTipInit=true;
+          var tip=document.createElement('div');
+          tip.style.cssText='position:fixed;z-index:99999;background:#1f2937;color:#fff;'
+            +'padding:7px 11px;border-radius:7px;font-size:14px;line-height:1.3;white-space:nowrap;'
+            +'pointer-events:none;display:none;box-shadow:0 3px 10px rgba(0,0,0,.35);max-width:90vw;';
+          document.body.appendChild(tip);
+          function show(el){{
+            var t=el.getAttribute('data-tip'); if(!t) return;
+            tip.textContent=t; tip.style.display='block';
+            var r=el.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+            var x=r.left+r.width/2-tw/2;
+            x=Math.max(6,Math.min(x,window.innerWidth-tw-6));
+            var y=r.top-th-8; if(y<6) y=r.bottom+8;
+            tip.style.left=x+'px'; tip.style.top=y+'px';
+          }}
+          function hide(){{ tip.style.display='none'; }}
+          document.addEventListener('pointerover',function(e){{
+            var c=e.target.closest && e.target.closest('.xt-chip'); if(c) show(c);
+          }});
+          document.addEventListener('pointerout',function(e){{
+            var c=e.target.closest && e.target.closest('.xt-chip'); if(c) hide();
+          }});
+          document.addEventListener('click',function(e){{
+            var c=e.target.closest && e.target.closest('.xt-chip');
+            if(c){{ show(c); e.stopPropagation(); }} else {{ hide(); }}
+          }});
+          window.addEventListener('scroll',hide,true);
+          window.addEventListener('resize',hide);
+        }})();
+        </script>
       </section>
 """
 
