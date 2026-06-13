@@ -99,6 +99,20 @@ def detect_winner_and_wrap(s):
         st = right.lstrip(); lw = right[:len(right)-len(st)]
         return f'{left}{center}{lw}<span class="match-winner">{st}</span>'
 
+def mark_winner(html):
+    """勝者を <span class="match-winner">（オレンジ）でラップ。
+       詳細ページリンク（team-profile-link＝青）を含む場合は、リンク自身に
+       color:inherit !important を付け、親spanのオレンジを継承させる。
+       こうすると通常モード/ダークモードの両方で
+       「詳細ページありの青」より「勝者オレンジ」が必ず優先される。"""
+    if 'class="team-profile-link"' in html:
+        html = html.replace(
+            'class="team-profile-link"',
+            'class="team-profile-link" style="color:inherit !important;"',
+            1,
+        )
+    return f'<span class="match-winner">{html}</span>'
+
 def linkify_match(match_str):
     """試合行のチーム名をリンク化しつつ勝者強調。
        'A 3-1 B' 形式を分解してチーム名だけリンク化する。"""
@@ -121,9 +135,9 @@ def linkify_match(match_str):
         lwin = int(sm.group(1)) > int(sm.group(2))
         rwin = int(sm.group(2)) > int(sm.group(1))
     if lwin:
-        a_html = f'<span class="match-winner">{a_html}</span>'
+        a_html = mark_winner(a_html)
     elif rwin:
-        b_html = f'<span class="match-winner">{b_html}</span>'
+        b_html = mark_winner(b_html)
     return f'{a_html} <strong style="color:var(--accent-color,#2563eb);">{html_escape(score)}</strong> {b_html}'
 
 def parse_source():
