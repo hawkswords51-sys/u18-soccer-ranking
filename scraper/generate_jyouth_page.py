@@ -89,13 +89,15 @@ def format_team_name(name):
     return esc
 
 def team_link(name):
-    """チーム詳細ページがあればリンク。無ければ整形のみ。"""
+    """チーム詳細ページがあればリンク。無ければ整形のみ。
+       チーム名は途中で改行されないよう white-space:nowrap を付与（改行は vs やチーム間でのみ）。"""
     name = name.strip()
     tid = TEAM_MAP.get(name)
     formatted = format_team_name(name)
     if tid:
-        return f'<a href="/teams/{tid}/" class="team-profile-link">{formatted}</a>'
-    return formatted
+        return (f'<a href="/teams/{tid}/" class="team-profile-link" '
+                f'style="white-space:nowrap;display:inline-block;">{formatted}</a>')
+    return f'<span style="white-space:nowrap;display:inline-block;">{formatted}</span>'
 
 def detect_winner_and_wrap(s):
     """ "A 3-1 B" / "A 0-1 B" / "A 2-2(PK4-2) B" の勝者を <span class="match-winner"> で強調。
@@ -435,8 +437,10 @@ def render_bracket_svg(sections):
     xsL = [LABEL_W + (k + 1) * LVL_W for k in range(wing_levels)]
     xsR = [width - x for x in xsL]
 
-    GRAY = "var(--border-color,#9ca3af)"
+    # 線は両テーマで視認できる固定スレートグレー（テーマ変数だとダークで暗すぎる）
+    GRAY = "#94a3b8"
     RED = "#dc2626"
+    # 文字はテーマ変数で自動追従（ライト=濃色／ダーク=淡色）
     TXT = "var(--text-primary,#1f2937)"
     SUB = "var(--text-secondary,#6b7280)"
     ACC = "var(--accent-color,#2563eb)"
