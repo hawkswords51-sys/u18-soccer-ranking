@@ -461,10 +461,11 @@ def render_bracket_svg(sections):
             return
         label = _short_label(name)
         tid = TEAM_MAP.get(name)
-        color = RED if won else (ACC if tid else TXT)
+        # 色はclassで指定（SVGのfill属性ではCSS変数が効かないため、data-themeで切替）
+        cls = "bk-won" if won else ("bk-acc" if tid else "bk-team")
         weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
         body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="12.5" '
-                f'fill="{color}"{weight}>{html_escape(label)}</text>')
+                f'class="{cls}"{weight}>{html_escape(label)}</text>')
         if tid:
             body = f'<a href="/teams/{tid}/">{body}</a>'
         S.append(body)
@@ -566,11 +567,27 @@ def render_bracket_svg(sections):
            f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
 
+    # SVGのfill属性ではCSS変数が効かないため、チーム名の色はclass＋data-themeで切替。
+    # ライト/ダークどちらでも読める色を明示指定する。
+    bracket_style = (
+        '<style>'
+        '.jy-bracket text.bk-team{fill:#1f2937}'
+        '.jy-bracket text.bk-acc{fill:#2563eb}'
+        '.jy-bracket text.bk-won{fill:#dc2626}'
+        '[data-theme="dark"] .jy-bracket text.bk-team{fill:#e5e7eb}'
+        '[data-theme="dark"] .jy-bracket text.bk-acc{fill:#7cb0ff}'
+        '@media (prefers-color-scheme:dark){'
+        ':root:not([data-theme="light"]) .jy-bracket text.bk-team{fill:#e5e7eb}'
+        ':root:not([data-theme="light"]) .jy-bracket text.bk-acc{fill:#7cb0ff}'
+        '}'
+        '</style>'
+    )
     return (
+        bracket_style +
         '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
         '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
-        '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
+        '<div class="jy-bracket" style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
         'background:var(--bg-white,#fff);padding:8px 4px;">'
         + svg + '</div>'
