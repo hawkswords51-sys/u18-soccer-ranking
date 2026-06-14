@@ -733,8 +733,29 @@ def _summary_p(body):
     return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
 
 
+def _round_winners(lines):
+    """ラウンドのスコア行から勝者名のリストを返す（PK含む）。"""
+    winners = []
+    for ln in lines:
+        mm = re.match(r'^\s*-\s+(.*?)\s+(\d+)\s*-\s*(\d+)'
+                      r'(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', ln.strip())
+        if not mm:
+            continue
+        a, ga, gb, b = mm.group(1).strip(), int(mm.group(2)), int(mm.group(3)), mm.group(6).strip()
+        if ga > gb:
+            winners.append(a)
+        elif gb > ga:
+            winners.append(b)
+        elif mm.group(4):
+            winners.append(a if int(mm.group(4)) > int(mm.group(5)) else b)
+    return winners
+
+
 def build_ai_summary(meta, sections):
+    """H1直下のAI引用向け一文要約。大会の局面に応じて自動で切替。必ず1文を返す。"""
     title_main = meta.get("title", "Jユースカップ")
+    period = meta.get("period", "")
+    slots = meta.get("slots", "")
     d = date.today()
     date_str = f"{d.year}年{d.month}月{d.day}日"
 
@@ -748,8 +769,9 @@ def build_ai_summary(meta, sections):
                     defending = f"前回（{m.group(1)}年）王者は{m.group(2).strip()}。"
                     break
             break
+    tail = f"{html_escape(defending)}組み合わせ・トーナメント表・結果を毎日更新。"
 
-    # 優勝が確定していれば優勝者を主役に
+    # ① 優勝が確定していれば優勝者を主役に
     champion = meta.get("champion") or ""
     champ_name = champion.get("team", "") if isinstance(champion, dict) else (champion.strip() if isinstance(champion, str) else "")
     if champ_name:
@@ -757,7 +779,7 @@ def build_ai_summary(meta, sections):
                 f"{html_escape(defending)}組み合わせ・トーナメント表・全試合結果をまとめています。")
         return _summary_p(body)
 
-    # 開催中：まだ vs（未実施）が残る最初のラウンド＝勝ち上がった顔ぶれ
+    # ② 開催中（次節あり）：まだ vs（未実施）が残る最初のラウンド＝次に戦う顔ぶれ
     next_name, next_teams = None, []
     for name, lines in sections.items():
         if not _is_result_round(name):
@@ -770,19 +792,44 @@ def build_ai_summary(meta, sections):
         if teams:
             next_name, next_teams = name, teams
             break
-
     if next_name:
         round_word = re.split(r'[（(]', next_name)[0].strip()
         n = len(next_teams)
         stage = {16: "ベスト16", 8: "ベスト8", 4: "ベスト4", 2: "決勝進出"}.get(n, f"{n}チーム")
         teams_str = "・".join(html_escape(t) for t in next_teams)
         body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}（{stage}）の組み合わせが決定。"
-                f"勝ち上がった{n}チームは{teams_str}。"
-                f"{html_escape(defending)}"
-                f"Jクラブのユース（U-18）が日本一を争うノックアウト方式の組み合わせ・トーナメント表・結果を毎日更新。")
+                f"勝ち上がった{n}チームは{teams_str}。{tail}")
         return _summary_p(body)
 
-    return ""
+    # ③ ラウンド間（直近ラウンドは終了・次節未掲載）：直近ラウンドの勝ち残りを要約
+    latest_name, latest_lines = None, None
+    for name, lines in sections.items():
+        if not _is_result_round(name):
+            continue
+        if any(re.search(r'\d+\s*-\s*\d+', l) for l in lines):
+            latest_name, latest_lines = name, lines
+    if latest_name:
+        winners = _round_winners(latest_lines)
+        n = len(winners)
+        round_word = re.split(r'[（(]', latest_name)[0].strip()
+        stage = {8: "ベスト8", 4: "ベスト4", 2: "決勝進出の2チーム", 1: "優勝"}.get(n, f"{n}チーム")
+        if winners and n <= 8:
+            teams_str = "・".join(html_escape(t) for t in winners)
+            body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}が終了し、{stage}が決定。"
+                    f"勝ち残りは{teams_str}。{tail}")
+        else:
+            body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}まで終了。{tail}")
+        return _summary_p(body)
+
+    # ④ 開催前／結果未掲載：会期・出場枠から汎用の要約
+    body = f"【{date_str}時点】{html_escape(title_main)}は"
+    if period:
+        body += f"{html_escape(period)}に"
+    body += "開催。"
+    if slots:
+        body += f"{html_escape(slots)}。"
+    body += f"Jクラブのユース（U-18）が日本一を争うノックアウト方式。{tail}"
+    return _summary_p(body)
 
 
 def main():
