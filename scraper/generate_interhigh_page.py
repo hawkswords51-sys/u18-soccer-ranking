@@ -579,6 +579,24 @@ def _is_result_round(name):
     return not (name.startswith("各県代表") or name.startswith("トーナメント") or name.startswith("歴代優勝"))
 
 
+def _round_winners(lines):
+    """ラウンドのスコア行から勝者名のリストを返す（PK含む）。"""
+    winners = []
+    for ln in lines:
+        mm = re.match(r'^\s*-\s+(.*?)\s+(\d+)\s*-\s*(\d+)'
+                      r'(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', ln.strip())
+        if not mm:
+            continue
+        a, ga, gb, b = mm.group(1).strip(), int(mm.group(2)), int(mm.group(3)), mm.group(6).strip()
+        if ga > gb:
+            winners.append(a)
+        elif gb > ga:
+            winners.append(b)
+        elif mm.group(4):
+            winners.append(a if int(mm.group(4)) > int(mm.group(5)) else b)
+    return winners
+
+
 def build_ai_summary(meta, sections):
     title_main = meta.get("title", "全国高校総体 サッカー競技大会（男子）")
     period = meta.get("period", "")
@@ -621,6 +639,27 @@ def build_ai_summary(meta, sections):
         body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}（{stage}）の組み合わせが決定。{mid}"
                 f"各都道府県の予選を勝ち抜いた代表校が日本一を争うノックアウト方式の"
                 f"組み合わせ・トーナメント表・結果を毎日更新。")
+        return _summary_p(body)
+
+    # ②' ラウンド間（直近ラウンドは終了・次節未掲載）：直近ラウンドの勝ち残りを要約
+    latest_name, latest_lines = None, None
+    for name, lines in sections.items():
+        if not _is_result_round(name):
+            continue
+        if any(re.search(r'\d+\s*-\s*\d+', l) for l in lines):
+            latest_name, latest_lines = name, lines
+    if latest_name:
+        winners = _round_winners(latest_lines)
+        n = len(winners)
+        round_word = re.split(r'[（(]', latest_name)[0].strip()
+        stage = {8: "ベスト8", 4: "ベスト4", 2: "決勝進出の2校", 1: "優勝"}.get(n, f"{n}校")
+        if winners and n <= 8:
+            teams_str = "・".join(html_escape(t) for t in winners)
+            body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}が終了し、{stage}が決定。"
+                    f"勝ち残りは{teams_str}。組み合わせ・トーナメント表・結果を毎日更新。")
+        else:
+            body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}まで終了。"
+                    f"組み合わせ・トーナメント表・結果を毎日更新。")
         return _summary_p(body)
 
     # ③ 開催前：判明している各県代表・会期・会場・出場枠から要約
