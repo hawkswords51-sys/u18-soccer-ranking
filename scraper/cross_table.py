@@ -172,7 +172,7 @@ def render_cross_table_html(slug: str) -> str:
         .xt-meta{{font-size:1rem;color:inherit;opacity:.75;margin:0 0 12px;}}
         .xt-note{{font-size:.95rem;color:inherit;opacity:.75;margin:4px 2px 12px;line-height:1.6;}}
         .xt-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}}
-        .xt-cross{{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;}}
+        .xt-cross{{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;width:100%;}}
         .xt-cross th,.xt-cross td{{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}}
         .xt-cross thead th{{background:#1565c0;color:#fff;font-weight:600;position:sticky;top:0;z-index:3;}}
         .xt-cross td.xt-diag{{background:#cfd8dc;}}
