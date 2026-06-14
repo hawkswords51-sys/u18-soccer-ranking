@@ -3736,10 +3736,30 @@
         "leagueRank": 4
       },
       {
+        "id": "ni010",
+        "name": "開志学園JSC高等部",
+        "league": "プリンスリーグ北信越2部",
+        "rank": 12,
+        "points": 6,
+        "played": 9,
+        "won": 1,
+        "drawn": 3,
+        "lost": 5,
+        "goalsFor": 8,
+        "goalsAgainst": 13,
+        "prefectureRank": 12,
+        "goalDiff": -5,
+        "leagueRank": 7,
+        "aliases": [
+          "開志学園JSC",
+          "開志JSC高等部"
+        ]
+      },
+      {
         "id": "ni004",
         "name": "帝京長岡高校2nd",
         "league": "プリンスリーグ北信越1部",
-        "rank": 12,
+        "rank": 13,
         "points": 6,
         "played": 9,
         "won": 1,
@@ -3747,31 +3767,11 @@
         "lost": 5,
         "goalsFor": 17,
         "goalsAgainst": 26,
-        "prefectureRank": 12,
+        "prefectureRank": 13,
         "goalDiff": -2,
         "leagueRank": 9,
         "aliases": [
           "帝京長岡2nd"
-        ]
-      },
-      {
-        "id": "ni010",
-        "name": "開志学園JSC高等部",
-        "league": "プリンスリーグ北信越2部",
-        "rank": 13,
-        "points": 5,
-        "played": 8,
-        "won": 1,
-        "drawn": 2,
-        "lost": 5,
-        "goalsFor": 7,
-        "goalsAgainst": 12,
-        "prefectureRank": 13,
-        "goalDiff": -5,
-        "leagueRank": 7,
-        "aliases": [
-          "開志学園JSC",
-          "開志JSC高等部"
         ]
       },
       {
@@ -4079,10 +4079,30 @@
     "region": "北信越",
     "teams": [
       {
+        "id": "is004",
+        "name": "金沢学院大学附属高校",
+        "league": "プリンスリーグ北信越2部",
+        "rank": 1,
+        "points": 21,
+        "played": 9,
+        "won": 7,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 18,
+        "goalsAgainst": 8,
+        "prefectureRank": 1,
+        "goalDiff": 3,
+        "leagueRank": 2,
+        "aliases": [
+          "金沢学院高校",
+          "金沢学院大附"
+        ]
+      },
+      {
         "id": "is005",
         "name": "星稜高校2nd",
         "league": "石川県1部",
-        "rank": 1,
+        "rank": 2,
         "points": 20,
         "played": 8,
         "won": 6,
@@ -4090,29 +4110,9 @@
         "lost": 0,
         "goalsFor": 11,
         "goalsAgainst": 2,
-        "prefectureRank": 1,
+        "prefectureRank": 2,
         "goalDiff": 4,
         "leagueRank": 1
-      },
-      {
-        "id": "is004",
-        "name": "金沢学院大学附属高校",
-        "league": "プリンスリーグ北信越2部",
-        "rank": 2,
-        "points": 18,
-        "played": 8,
-        "won": 6,
-        "drawn": 0,
-        "lost": 2,
-        "goalsFor": 14,
-        "goalsAgainst": 8,
-        "prefectureRank": 2,
-        "goalDiff": 3,
-        "leagueRank": 2,
-        "aliases": [
-          "金沢学院高校",
-          "金沢学院大附"
-        ]
       },
       {
         "id": "is001",
@@ -4334,12 +4334,12 @@
         "league": "プリンスリーグ北信越2部",
         "rank": 2,
         "points": 15,
-        "played": 8,
+        "played": 9,
         "won": 5,
         "drawn": 0,
-        "lost": 3,
+        "lost": 4,
         "goalsFor": 12,
-        "goalsAgainst": 14,
+        "goalsAgainst": 18,
         "prefectureRank": 2,
         "goalDiff": -1,
         "leagueRank": 4
@@ -4701,13 +4701,13 @@
         "name": "AC長野パルセイロU-18",
         "league": "プリンスリーグ北信越2部",
         "rank": 3,
-        "points": 1,
-        "played": 7,
+        "points": 2,
+        "played": 8,
         "won": 0,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 6,
-        "goalsFor": 4,
-        "goalsAgainst": 19,
+        "goalsFor": 5,
+        "goalsAgainst": 20,
         "prefectureRank": 3,
         "goalDiff": -2,
         "leagueRank": 8
@@ -6250,13 +6250,13 @@
         "name": "京都精華高校",
         "league": "京都府TOPリーグ",
         "rank": 12,
-        "points": 7,
-        "played": 7,
+        "points": 8,
+        "played": 8,
         "won": 2,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 4,
-        "goalsFor": 14,
-        "goalsAgainst": 12,
+        "goalsFor": 15,
+        "goalsAgainst": 13,
         "prefectureRank": 12,
         "goalDiff": 1,
         "leagueRank": 7
@@ -6282,11 +6282,27 @@
         ]
       },
       {
+        "id": "ky005",
+        "name": "福知山成美高校",
+        "league": "京都府TOPリーグ",
+        "rank": 14,
+        "points": 3,
+        "played": 8,
+        "won": 0,
+        "drawn": 3,
+        "lost": 5,
+        "goalsFor": 4,
+        "goalsAgainst": 17,
+        "prefectureRank": 14,
+        "goalDiff": -9,
+        "leagueRank": 9
+      },
+      {
         "id": "ky015",
         "name": "城陽高校",
         "league": "京都府TOPリーグ",
-        "rank": 14,
-        "prefectureRank": 14,
+        "rank": 15,
+        "prefectureRank": 15,
         "points": 2,
         "played": 8,
         "won": 0,
@@ -6295,22 +6311,6 @@
         "goalsFor": 6,
         "goalsAgainst": 13,
         "goalDiff": -3,
-        "leagueRank": 9
-      },
-      {
-        "id": "ky005",
-        "name": "福知山成美高校",
-        "league": "京都府TOPリーグ",
-        "rank": 15,
-        "points": 2,
-        "played": 7,
-        "won": 0,
-        "drawn": 2,
-        "lost": 5,
-        "goalsFor": 3,
-        "goalsAgainst": 16,
-        "prefectureRank": 15,
-        "goalDiff": -9,
         "leagueRank": 10
       }
     ],
@@ -11250,7 +11250,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-14 13:44",
+    "lastUpdated": "2026-06-14 14:25",
     "year": 2026,
     "updatedCount": 584
   }
