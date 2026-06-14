@@ -1,0 +1,41 @@
+name: 戦績表 自動更新
+
+# 毎週月曜 朝6時(日本時間)に自動実行 ＋ 手動実行ボタン
+on:
+  schedule:
+    - cron: "0 21 * * 0"   # 日曜21:00 UTC = 月曜06:00 JST
+  workflow_dispatch:        # 手動でも実行できる
+
+permissions:
+  contents: write           # 変更をコミット＆プッシュするため
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      - name: Python を準備
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 必要ライブラリを導入
+        run: pip install pandas lxml
+
+      - name: 戦績表データを更新
+        run: python scraper/update_cross_tables.py
+
+      - name: 変更があればコミット＆プッシュ
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/league_matches)" ]; then
+            git add data/league_matches
+            git commit -m "戦績表データ自動更新 ($(date +%F))"
+            git push
+            echo "更新をプッシュしました（サイトが自動で再ビルドされます）"
+          else
+            echo "更新はありませんでした"
+          fi
