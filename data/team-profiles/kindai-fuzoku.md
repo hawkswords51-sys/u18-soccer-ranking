@@ -1,6 +1,6 @@
 ---
 id: kindai-fuzoku
-name: 近大附属高校
+name: 近畿大学附属高校
 short_name: 近大附属
 league: OSAKA 1部（大阪府1部）
 prefecture: osaka
