@@ -203,7 +203,7 @@ def render_cross_table_html(slug: str) -> str:
         .xt-chip{{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;}}
         /* ===== デスクトップ(既定) ===== */
         .xt-cross th,.xt-cross td{{padding:11px 15px;font-size:17px;}}
-        .xt-cross td.xt-cell{{padding:0;}} .xt-leg{{padding:11px 15px;}}
+        .xt-cross td.xt-cell{{padding:0;}} .xt-cross td.xt-one{{padding:6px 15px;}} .xt-leg{{padding:4px 15px;}}
         .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:78px;font-size:16px;}}
         .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{width:40px;min-width:40px;}}
         .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{left:40px;font-size:16px;min-width:98px;}}
@@ -219,7 +219,7 @@ def render_cross_table_html(slug: str) -> str:
           .xt-meta{{font-size:.85rem;}}
           .xt-note{{font-size:.82rem;}}
           .xt-cross th,.xt-cross td{{padding:6px 7px;font-size:13px;}}
-          .xt-cross td.xt-cell{{padding:0;}} .xt-leg{{padding:6px 7px;}}
+          .xt-cross td.xt-cell{{padding:0;}} .xt-cross td.xt-one{{padding:4px 7px;}} .xt-leg{{padding:3px 7px;}}
           .xt-cross th.xt-vc span{{min-height:52px;font-size:12px;}}
           .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{width:28px;min-width:28px;}}
           .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{left:28px;font-size:12px;min-width:64px;}}
