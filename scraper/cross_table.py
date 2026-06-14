@@ -105,11 +105,15 @@ def render_cross_table_html(slug: str) -> str:
             items.append((as_, hs, "A"))          # row 視点へ変換
         if not items:
             return '<td class="xt-np">―</td>'
-        # 各段(ホーム戦/アウェイ戦)を独立して色分け
-        legs = []
-        for gf, ga, ha in items:
-            r = "xt-win" if gf > ga else ("xt-draw" if gf == ga else "xt-lose")
-            legs.append(f'<span class="xt-leg {r}"><span class="xt-ha">{ha}</span>{gf}-{ga}</span>')
+        def rcls(gf, ga):
+            return "xt-win" if gf > ga else ("xt-draw" if gf == ga else "xt-lose")
+        # 1試合のみ：セル全面を着色（高さ差による余白を防ぐ）
+        if len(items) == 1:
+            gf, ga, ha = items[0]
+            return f'<td class="xt-one {rcls(gf,ga)}"><span class="xt-ha">{ha}</span>{gf}-{ga}</td>'
+        # 2試合：各段(ホーム戦/アウェイ戦)を独立して色分け（上下で半分ずつ）
+        legs = [f'<span class="xt-leg {rcls(gf,ga)}"><span class="xt-ha">{ha}</span>{gf}-{ga}</span>'
+                for gf, ga, ha in items]
         return '<td class="xt-cell"><div class="xt-cw">' + "".join(legs) + "</div></td>"
 
     head_cols = "".join(f'<th class="xt-vc"><span>{_html_escape(short[t])}</span></th>' for t in order)
@@ -175,9 +179,10 @@ def render_cross_table_html(slug: str) -> str:
         .xt-cross td.xt-cell{{padding:0;height:100%;}}
         .xt-cw{{display:flex;flex-direction:column;height:100%;min-height:100%;}}
         .xt-leg{{flex:1 0 auto;display:flex;align-items:center;justify-content:center;}}
-        .xt-leg.xt-win{{background:#e8f5e9;color:#2e7d32;font-weight:600;}}
-        .xt-leg.xt-lose{{background:#ffebee;color:#c62828;}}
-        .xt-leg.xt-draw{{background:#fff8e1;color:#f9a825;}}
+        .xt-win{{background:#e8f5e9;color:#2e7d32;}}
+        .xt-draw{{background:#fff8e1;color:#f9a825;}}
+        .xt-lose{{background:#ffebee;color:#c62828;}}
+        .xt-cross td.xt-one.xt-win,.xt-leg.xt-win{{font-weight:600;}}
         .xt-leg + .xt-leg{{border-top:1px solid #fff;}}
         .xt-cross td.xt-np{{color:#bbb;}}
         .xt-cross .xt-ha{{color:#888;margin-right:3px;font-weight:400;}}
