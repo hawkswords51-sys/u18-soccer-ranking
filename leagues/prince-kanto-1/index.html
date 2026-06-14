@@ -549,6 +549,147 @@
         </table>
       </div>
       
+      <section class="xt-section" id="cross-table">
+        <style>
+        /* ===== 共通 ===== */
+        .xt-section{margin:44px 0 14px;}
+        .xt-section h2{font-size:1.7rem;margin:0 0 6px;border-left:6px solid #1565c0;padding-left:12px;}
+        .xt-meta{font-size:1rem;color:inherit;opacity:.75;margin:0 0 12px;}
+        .xt-note{font-size:.95rem;color:inherit;opacity:.75;margin:4px 2px 12px;line-height:1.6;}
+        .xt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}
+        .xt-cross{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;}
+        .xt-cross th,.xt-cross td{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}
+        .xt-cross thead th{background:#1565c0;color:#fff;font-weight:600;position:sticky;top:0;z-index:3;}
+        .xt-cross td.xt-diag{background:#cfd8dc;}
+        .xt-cross td.xt-win{background:#e8f5e9;color:#2e7d32;font-weight:600;}
+        .xt-cross td.xt-lose{background:#ffebee;color:#c62828;}
+        .xt-cross td.xt-draw{background:#fff8e1;color:#f9a825;}
+        .xt-cross td.xt-np{color:#bbb;}
+        .xt-cross .xt-ha{color:#888;margin-right:3px;}
+        /* 左2列(順位・チーム)を横スクロール時に固定 */
+        .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{position:sticky;left:0;z-index:4;background:#eef2f7;color:#333;}
+        .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{position:sticky;z-index:4;background:#eef2f7;color:#333;text-align:left;}
+        .xt-cross th.xt-corner-rk,.xt-cross th.xt-corner-tn{background:#0d47a1;color:#fff;z-index:5;}
+        .xt-legend{font-size:16px;color:inherit;opacity:.8;margin:12px 2px 0;}
+        .xt-legend span{display:inline-block;padding:2px 14px;border-radius:10px;margin-right:8px;}
+        .xt-formwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+        .xt-formtable{border-collapse:collapse;margin-top:10px;}
+        .xt-formtable th,.xt-formtable td{border-bottom:1px solid rgba(128,128,128,.25);text-align:left;}
+        .xt-formtable .xt-rk{color:inherit;opacity:.6;text-align:center;}
+        .xt-formtable .xt-tn2{font-weight:600;}
+        .xt-formtable .xt-rec{color:inherit;opacity:.85;}
+        .xt-formtable .xt-form{white-space:nowrap;}
+        .xt-chip{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;}
+        /* ===== デスクトップ(既定) ===== */
+        .xt-cross th,.xt-cross td{padding:11px 15px;font-size:17px;}
+        .xt-cross th.xt-vc span{writing-mode:vertical-rl;display:inline-block;min-height:78px;font-size:16px;}
+        .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{width:40px;min-width:40px;}
+        .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{left:40px;font-size:16px;min-width:98px;}
+        .xt-cross .xt-ha{font-size:12px;}
+        .xt-formtable th,.xt-formtable td{padding:12px 10px;font-size:17px;}
+        .xt-formtable .xt-rk{width:34px;}
+        .xt-formtable .xt-tn2{min-width:150px;}
+        .xt-formtable .xt-rec{min-width:120px;}
+        .xt-chip{width:30px;height:30px;font-size:17px;margin:2px;}
+        /* ===== スマホ(横幅600px以下)だけ小さく ===== */
+        @media (max-width:600px){
+          .xt-section h2{font-size:1.3rem;}
+          .xt-meta{font-size:.85rem;}
+          .xt-note{font-size:.82rem;}
+          .xt-cross th,.xt-cross td{padding:6px 7px;font-size:13px;}
+          .xt-cross th.xt-vc span{min-height:52px;font-size:12px;}
+          .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{width:28px;min-width:28px;}
+          .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{left:28px;font-size:12px;min-width:64px;}
+          .xt-cross .xt-ha{font-size:9px;}
+          .xt-legend{font-size:13px;}
+          .xt-formtable th,.xt-formtable td{padding:8px 6px;font-size:13px;}
+          .xt-formtable .xt-tn2{min-width:108px;}
+          .xt-formtable .xt-rec{min-width:78px;}
+          .xt-chip{width:22px;height:22px;font-size:13px;margin:1px;}
+        }
+        .xt-chip.xt-win{background:#e8f5e9;color:#2e7d32;}
+        .xt-chip.xt-lose{background:#ffebee;color:#c62828;}
+        .xt-chip.xt-draw{background:#fff8e1;color:#f9a825;}
+        </style>
+        <h2>⚽ 戦績表（星取り表）</h2>
+        <p class="xt-meta">消化 35 / 全 90 試合　最終更新 2026-06-13　出典: <a href="https://koko-soccer.com/score/4347" rel="nofollow" target="_blank">高校サッカードットコム</a></p>
+        <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(黄)／敗(赤)。
+        <span class="xt-ha">H</span>＝ホーム戦、<span class="xt-ha">A</span>＝アウェイ戦。
+        往復2試合とも終わったマスは通算成績で色分けしています。「―」はまだ対戦していないカードです。</p>
+        <div class="xt-scroll">
+          <table class="xt-cross">
+            <thead><tr><th class="xt-corner-rk">順</th><th class="xt-corner-tn">チーム＼相手</th><th class="xt-vc"><span>流経柏B</span></th><th class="xt-vc"><span>市船</span></th><th class="xt-vc"><span>浦和</span></th><th class="xt-vc"><span>大宮</span></th><th class="xt-vc"><span>山梨学院</span></th><th class="xt-vc"><span>千葉</span></th><th class="xt-vc"><span>桐蔭</span></th><th class="xt-vc"><span>帝京</span></th><th class="xt-vc"><span>桐生一</span></th><th class="xt-vc"><span>甲府</span></th></tr></thead>
+            <tbody>
+<tr><th class="xt-rk">1</th><th class="xt-tn">流経柏B</th><td class="xt-diag"></td><td class="xt-win"><span class="xt-ha">A</span>1-0</td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">H</span>1-0</td><td class="xt-draw"><span class="xt-ha">H</span>1-1</td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">A</span>2-1</td><td class="xt-win"><span class="xt-ha">A</span>2-1</td><td class="xt-win"><span class="xt-ha">H</span>1-0</td><td class="xt-draw"><span class="xt-ha">A</span>0-0</td></tr>
+<tr><th class="xt-rk">2</th><th class="xt-tn">市船</th><td class="xt-lose"><span class="xt-ha">H</span>0-1</td><td class="xt-diag"></td><td class="xt-np">―</td><td class="xt-draw"><span class="xt-ha">A</span>1-1</td><td class="xt-win"><span class="xt-ha">H</span>2-0</td><td class="xt-win"><span class="xt-ha">H</span>2-0</td><td class="xt-win"><span class="xt-ha">A</span>1-0</td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">H</span>3-2</td><td class="xt-win"><span class="xt-ha">A</span>3-0</td></tr>
+<tr><th class="xt-rk">3</th><th class="xt-tn">浦和</th><td class="xt-np">―</td><td class="xt-np">―</td><td class="xt-diag"></td><td class="xt-lose"><span class="xt-ha">H</span>1-2</td><td class="xt-win"><span class="xt-ha">A</span>1-0</td><td class="xt-win"><span class="xt-ha">A</span>2-0</td><td class="xt-win"><span class="xt-ha">H</span>3-0</td><td class="xt-win"><span class="xt-ha">A</span>1-0</td><td class="xt-win"><span class="xt-ha">A</span>3-1</td><td class="xt-draw"><span class="xt-ha">H</span>0-0</td></tr>
+<tr><th class="xt-rk">4</th><th class="xt-tn">大宮</th><td class="xt-lose"><span class="xt-ha">A</span>0-1</td><td class="xt-draw"><span class="xt-ha">H</span>1-1</td><td class="xt-win"><span class="xt-ha">A</span>2-1</td><td class="xt-diag"></td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">H</span>2-1</td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">H</span>3-1</td><td class="xt-win"><span class="xt-ha">A</span>1-0</td><td class="xt-draw"><span class="xt-ha">A</span>0-0</td></tr>
+<tr><th class="xt-rk">5</th><th class="xt-tn">山梨学院</th><td class="xt-draw"><span class="xt-ha">A</span>1-1</td><td class="xt-lose"><span class="xt-ha">A</span>0-2</td><td class="xt-lose"><span class="xt-ha">H</span>0-1</td><td class="xt-np">―</td><td class="xt-diag"></td><td class="xt-draw"><span class="xt-ha">H</span>2-2</td><td class="xt-win"><span class="xt-ha">H</span>2-1</td><td class="xt-lose"><span class="xt-ha">A</span>2-4</td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">H</span>1-0</td></tr>
+<tr><th class="xt-rk">6</th><th class="xt-tn">千葉</th><td class="xt-np">―</td><td class="xt-lose"><span class="xt-ha">A</span>0-2</td><td class="xt-lose"><span class="xt-ha">H</span>0-2</td><td class="xt-lose"><span class="xt-ha">A</span>1-2</td><td class="xt-draw"><span class="xt-ha">A</span>2-2</td><td class="xt-diag"></td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">A</span>3-1</td><td class="xt-lose"><span class="xt-ha">H</span>1-3</td><td class="xt-win"><span class="xt-ha">H</span>8-0</td></tr>
+<tr><th class="xt-rk">7</th><th class="xt-tn">桐蔭</th><td class="xt-lose"><span class="xt-ha">H</span>1-2</td><td class="xt-lose"><span class="xt-ha">H</span>0-1</td><td class="xt-lose"><span class="xt-ha">A</span>0-3</td><td class="xt-np">―</td><td class="xt-lose"><span class="xt-ha">A</span>1-2</td><td class="xt-np">―</td><td class="xt-diag"></td><td class="xt-win"><span class="xt-ha">H</span>1-0</td><td class="xt-draw"><span class="xt-ha">A</span>2-2</td><td class="xt-win"><span class="xt-ha">A</span>2-0</td></tr>
+<tr><th class="xt-rk">8</th><th class="xt-tn">帝京</th><td class="xt-lose"><span class="xt-ha">H</span>1-2</td><td class="xt-np">―</td><td class="xt-lose"><span class="xt-ha">H</span>0-1</td><td class="xt-lose"><span class="xt-ha">A</span>1-3</td><td class="xt-win"><span class="xt-ha">H</span>4-2</td><td class="xt-lose"><span class="xt-ha">H</span>1-3</td><td class="xt-lose"><span class="xt-ha">A</span>0-1</td><td class="xt-diag"></td><td class="xt-win"><span class="xt-ha">A</span>3-0</td><td class="xt-np">―</td></tr>
+<tr><th class="xt-rk">9</th><th class="xt-tn">桐生一</th><td class="xt-lose"><span class="xt-ha">A</span>0-1</td><td class="xt-lose"><span class="xt-ha">A</span>2-3</td><td class="xt-lose"><span class="xt-ha">H</span>1-3</td><td class="xt-lose"><span class="xt-ha">H</span>0-1</td><td class="xt-np">―</td><td class="xt-win"><span class="xt-ha">A</span>3-1</td><td class="xt-draw"><span class="xt-ha">H</span>2-2</td><td class="xt-lose"><span class="xt-ha">H</span>0-3</td><td class="xt-diag"></td><td class="xt-np">―</td></tr>
+<tr><th class="xt-rk">10</th><th class="xt-tn">甲府</th><td class="xt-draw"><span class="xt-ha">H</span>0-0</td><td class="xt-lose"><span class="xt-ha">H</span>0-3</td><td class="xt-draw"><span class="xt-ha">A</span>0-0</td><td class="xt-draw"><span class="xt-ha">H</span>0-0</td><td class="xt-lose"><span class="xt-ha">A</span>0-1</td><td class="xt-lose"><span class="xt-ha">A</span>0-8</td><td class="xt-lose"><span class="xt-ha">H</span>0-2</td><td class="xt-np">―</td><td class="xt-np">―</td><td class="xt-diag"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="xt-legend">
+          <span class="xt-win" style="color:#2e7d32">勝</span>
+          <span class="xt-draw" style="color:#f9a825">分</span>
+          <span class="xt-lose" style="color:#c62828">敗</span>
+        </div>
+
+        <h2 style="margin-top:26px;">各チームの戦績</h2>
+        <p class="xt-note">○＝勝、△＝分、●＝敗。チップにマウスを乗せる（スマホは長押し）と相手とスコアが出ます。</p>
+        <div class="xt-formwrap"><table class="xt-formtable">
+          <thead><tr><th class="xt-rk">順</th><th class="xt-tn2">チーム</th><th class="xt-rec">通算</th><th>節順 →</th></tr></thead>
+          <tbody>
+<tr><th class="xt-rk">1</th><th class="xt-tn2">流通経済大柏(B)</th><td class="xt-rec">5勝2分0敗</td><td class="xt-form"><span class="xt-chip xt-win" data-tip="第1節 A 市船 1-0">○</span><span class="xt-chip xt-win" data-tip="第2節 H 大宮 1-0">○</span><span class="xt-chip xt-draw" data-tip="第3節 A 甲府 0-0">△</span><span class="xt-chip xt-win" data-tip="第4節 H 桐生一 1-0">○</span><span class="xt-chip xt-win" data-tip="第5節 A 帝京 2-1">○</span><span class="xt-chip xt-draw" data-tip="第6節 H 山梨学院 1-1">△</span><span class="xt-chip xt-win" data-tip="第7節 A 桐蔭 2-1">○</span></td></tr>
+<tr><th class="xt-rk">2</th><th class="xt-tn2">市立船橋</th><td class="xt-rec">5勝1分1敗</td><td class="xt-form"><span class="xt-chip xt-lose" data-tip="第1節 H 流経柏B 0-1">●</span><span class="xt-chip xt-win" data-tip="第2節 A 甲府 3-0">○</span><span class="xt-chip xt-win" data-tip="第3節 H 山梨学院 2-0">○</span><span class="xt-chip xt-win" data-tip="第4節 A 桐蔭 1-0">○</span><span class="xt-chip xt-draw" data-tip="第5節 A 大宮 1-1">△</span><span class="xt-chip xt-win" data-tip="第6節 H 千葉 2-0">○</span><span class="xt-chip xt-win" data-tip="第7節 H 桐生一 3-2">○</span></td></tr>
+<tr><th class="xt-rk">3</th><th class="xt-tn2">浦和レッズユース</th><td class="xt-rec">5勝1分1敗</td><td class="xt-form"><span class="xt-chip xt-draw" data-tip="第1節 H 甲府 0-0">△</span><span class="xt-chip xt-win" data-tip="第2節 A 山梨学院 1-0">○</span><span class="xt-chip xt-win" data-tip="第3節 H 桐蔭 3-0">○</span><span class="xt-chip xt-win" data-tip="第4節 A 千葉 2-0">○</span><span class="xt-chip xt-win" data-tip="第5節 A 桐生一 3-1">○</span><span class="xt-chip xt-lose" data-tip="第6節 H 大宮 1-2">●</span><span class="xt-chip xt-win" data-tip="第7節 A 帝京 1-0">○</span></td></tr>
+<tr><th class="xt-rk">4</th><th class="xt-tn2">RB大宮アルディージャU18</th><td class="xt-rec">4勝2分1敗</td><td class="xt-form"><span class="xt-chip xt-win" data-tip="第1節 H 千葉 2-1">○</span><span class="xt-chip xt-lose" data-tip="第2節 A 流経柏B 0-1">●</span><span class="xt-chip xt-win" data-tip="第3節 A 桐生一 1-0">○</span><span class="xt-chip xt-win" data-tip="第4節 H 帝京 3-1">○</span><span class="xt-chip xt-draw" data-tip="第5節 H 市船 1-1">△</span><span class="xt-chip xt-win" data-tip="第6節 A 浦和 2-1">○</span><span class="xt-chip xt-draw" data-tip="第7節 A 甲府 0-0">△</span></td></tr>
+<tr><th class="xt-rk">5</th><th class="xt-tn2">山梨学院高等学校</th><td class="xt-rec">2勝2分3敗</td><td class="xt-form"><span class="xt-chip xt-lose" data-tip="第1節 A 帝京 2-4">●</span><span class="xt-chip xt-lose" data-tip="第2節 H 浦和 0-1">●</span><span class="xt-chip xt-lose" data-tip="第3節 A 市船 0-2">●</span><span class="xt-chip xt-win" data-tip="第4節 H 甲府 1-0">○</span><span class="xt-chip xt-win" data-tip="第5節 H 桐蔭 2-1">○</span><span class="xt-chip xt-draw" data-tip="第6節 A 流経柏B 1-1">△</span><span class="xt-chip xt-draw" data-tip="第7節 H 千葉 2-2">△</span></td></tr>
+<tr><th class="xt-rk">6</th><th class="xt-tn2">ジェフユナイテッド千葉U-18</th><td class="xt-rec">2勝1分4敗</td><td class="xt-form"><span class="xt-chip xt-lose" data-tip="第1節 A 大宮 1-2">●</span><span class="xt-chip xt-lose" data-tip="第2節 H 桐生一 1-3">●</span><span class="xt-chip xt-win" data-tip="第3節 A 帝京 3-1">○</span><span class="xt-chip xt-lose" data-tip="第4節 H 浦和 0-2">●</span><span class="xt-chip xt-win" data-tip="第5節 H 甲府 8-0">○</span><span class="xt-chip xt-lose" data-tip="第6節 A 市船 0-2">●</span><span class="xt-chip xt-draw" data-tip="第7節 A 山梨学院 2-2">△</span></td></tr>
+<tr><th class="xt-rk">7</th><th class="xt-tn2">桐蔭学園</th><td class="xt-rec">2勝1分4敗</td><td class="xt-form"><span class="xt-chip xt-draw" data-tip="第1節 A 桐生一 2-2">△</span><span class="xt-chip xt-win" data-tip="第2節 H 帝京 1-0">○</span><span class="xt-chip xt-lose" data-tip="第3節 A 浦和 0-3">●</span><span class="xt-chip xt-lose" data-tip="第4節 H 市船 0-1">●</span><span class="xt-chip xt-lose" data-tip="第5節 A 山梨学院 1-2">●</span><span class="xt-chip xt-win" data-tip="第6節 A 甲府 2-0">○</span><span class="xt-chip xt-lose" data-tip="第7節 H 流経柏B 1-2">●</span></td></tr>
+<tr><th class="xt-rk">8</th><th class="xt-tn2">帝京</th><td class="xt-rec">2勝0分5敗</td><td class="xt-form"><span class="xt-chip xt-win" data-tip="第1節 H 山梨学院 4-2">○</span><span class="xt-chip xt-lose" data-tip="第2節 A 桐蔭 0-1">●</span><span class="xt-chip xt-lose" data-tip="第3節 H 千葉 1-3">●</span><span class="xt-chip xt-lose" data-tip="第4節 A 大宮 1-3">●</span><span class="xt-chip xt-lose" data-tip="第5節 H 流経柏B 1-2">●</span><span class="xt-chip xt-win" data-tip="第6節 A 桐生一 3-0">○</span><span class="xt-chip xt-lose" data-tip="第7節 H 浦和 0-1">●</span></td></tr>
+<tr><th class="xt-rk">9</th><th class="xt-tn2">桐生第一</th><td class="xt-rec">1勝1分5敗</td><td class="xt-form"><span class="xt-chip xt-draw" data-tip="第1節 H 桐蔭 2-2">△</span><span class="xt-chip xt-win" data-tip="第2節 A 千葉 3-1">○</span><span class="xt-chip xt-lose" data-tip="第3節 H 大宮 0-1">●</span><span class="xt-chip xt-lose" data-tip="第4節 A 流経柏B 0-1">●</span><span class="xt-chip xt-lose" data-tip="第5節 H 浦和 1-3">●</span><span class="xt-chip xt-lose" data-tip="第6節 H 帝京 0-3">●</span><span class="xt-chip xt-lose" data-tip="第7節 A 市船 2-3">●</span></td></tr>
+<tr><th class="xt-rk">10</th><th class="xt-tn2">ヴァンフォーレ甲府U-18</th><td class="xt-rec">0勝3分4敗</td><td class="xt-form"><span class="xt-chip xt-draw" data-tip="第1節 A 浦和 0-0">△</span><span class="xt-chip xt-lose" data-tip="第2節 H 市船 0-3">●</span><span class="xt-chip xt-draw" data-tip="第3節 H 流経柏B 0-0">△</span><span class="xt-chip xt-lose" data-tip="第4節 A 山梨学院 0-1">●</span><span class="xt-chip xt-lose" data-tip="第5節 A 千葉 0-8">●</span><span class="xt-chip xt-lose" data-tip="第6節 H 桐蔭 0-2">●</span><span class="xt-chip xt-draw" data-tip="第7節 H 大宮 0-0">△</span></td></tr>
+          </tbody>
+        </table></div>
+        <script>
+        (function(){
+          if(window.__xtTipInit) return; window.__xtTipInit=true;
+          var tip=document.createElement('div');
+          tip.style.cssText='position:fixed;z-index:99999;background:#1f2937;color:#fff;'
+            +'padding:7px 11px;border-radius:7px;font-size:14px;line-height:1.3;white-space:nowrap;'
+            +'pointer-events:none;display:none;box-shadow:0 3px 10px rgba(0,0,0,.35);max-width:90vw;';
+          document.body.appendChild(tip);
+          function show(el){
+            var t=el.getAttribute('data-tip'); if(!t) return;
+            tip.textContent=t; tip.style.display='block';
+            var r=el.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+            var x=r.left+r.width/2-tw/2;
+            x=Math.max(6,Math.min(x,window.innerWidth-tw-6));
+            var y=r.top-th-8; if(y<6) y=r.bottom+8;
+            tip.style.left=x+'px'; tip.style.top=y+'px';
+          }
+          function hide(){ tip.style.display='none'; }
+          document.addEventListener('pointerover',function(e){
+            var c=e.target.closest && e.target.closest('.xt-chip'); if(c) show(c);
+          });
+          document.addEventListener('pointerout',function(e){
+            var c=e.target.closest && e.target.closest('.xt-chip'); if(c) hide();
+          });
+          document.addEventListener('click',function(e){
+            var c=e.target.closest && e.target.closest('.xt-chip');
+            if(c){ show(c); e.stopPropagation(); } else { hide(); }
+          });
+          window.addEventListener('scroll',hide,true);
+          window.addEventListener('resize',hide);
+        })();
+        </script>
+      </section>
+
             <section class="lp-section">
         <h2><i class="fas fa-chart-bar"></i> プリンスリーグ 関東 1部 数字で見るリーグの特徴</h2>
         <p class="lp-section-desc">
