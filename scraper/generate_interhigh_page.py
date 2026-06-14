@@ -561,6 +561,113 @@ def render_bracket_svg(sections, reps_lines):
     )
 
 
+# =========================================================================
+# AI引用向け一文要約（H1直下）。毎日の大会状況から自動生成。
+#   - プレミア/県別/Jユースページの「lp-lead-summary」と同じ見た目。
+#   - 優勝決定後／開催中（勝ち上がり）／開催前（代表校・会期） を自動で切替。
+# =========================================================================
+def _summary_p(body):
+    style = (
+        "margin:0 0 18px;padding:12px 16px;background:var(--bg-light,#f1f5fb);"
+        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "font-size:0.95rem;line-height:1.8;"
+    )
+    return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
+
+
+def _is_result_round(name):
+    return not (name.startswith("各県代表") or name.startswith("トーナメント") or name.startswith("歴代優勝"))
+
+
+def build_ai_summary(meta, sections):
+    title_main = meta.get("title", "全国高校総体 サッカー競技大会（男子）")
+    period = meta.get("period", "")
+    venue = meta.get("venue", "")
+    host = meta.get("host", "")
+    slots = meta.get("slots", "")
+    d = date.today()
+    date_str = f"{d.year}年{d.month}月{d.day}日"
+
+    # ① 優勝が確定していれば優勝校を主役に
+    champion = meta.get("champion") or ""
+    champ_name = champion.get("team", "") if isinstance(champion, dict) else (champion.strip() if isinstance(champion, str) else "")
+    if champ_name:
+        body = (f"【{date_str}時点】{html_escape(title_main)}は{html_escape(champ_name)}が優勝。"
+                f"組み合わせ・トーナメント表・全試合結果をまとめています。")
+        return _summary_p(body)
+
+    # ② 開催中：まだ vs（未実施）が残る最初のラウンド＝勝ち上がった顔ぶれ
+    next_name, next_teams = None, []
+    for name, lines in sections.items():
+        if not _is_result_round(name):
+            continue
+        teams = []
+        for ln in lines:
+            mm = re.match(r'^\s*-\s+(.*?)\s+vs\s+(.*)$', ln.strip())
+            if mm:
+                teams += [mm.group(1).strip(), mm.group(2).strip()]
+        if teams:
+            next_name, next_teams = name, teams
+            break
+    if next_name:
+        round_word = re.split(r'[（(]', next_name)[0].strip()
+        n = len(next_teams)
+        stage = {16: "ベスト16", 8: "ベスト8", 4: "ベスト4", 2: "決勝"}.get(n, f"{n}校")
+        if n <= 12:
+            teams_str = "・".join(html_escape(t) for t in next_teams)
+            mid = f"勝ち上がった{n}校は{teams_str}。"
+        else:
+            mid = f"{n}校が勝ち上がっています。"
+        body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}（{stage}）の組み合わせが決定。{mid}"
+                f"各都道府県の予選を勝ち抜いた代表校が日本一を争うノックアウト方式の"
+                f"組み合わせ・トーナメント表・結果を毎日更新。")
+        return _summary_p(body)
+
+    # ③ 開催前：判明している各県代表・会期・会場・出場枠から要約
+    reps_lines = sections.get("各県代表", [])
+    rep_names = []
+    for ln in reps_lines:
+        m = re.match(r'^\s*-\s*([^:：]+)[:：]\s*(.+)$', ln)
+        if not m:
+            continue
+        for token in re.split(r'[、,]', m.group(2).strip()):
+            token = token.strip()
+            if not token:
+                continue
+            rm = re.search(r'[（(][^）)]*[）)]\s*$', token)
+            nm = token[:rm.start()].strip() if rm else token
+            if nm:
+                rep_names.append(nm)
+
+    loc = re.sub(r'[（(].*$', '', host).strip() if host else re.split(r'[／/（(]', venue)[0].strip()
+    if venue and "Jヴィレッジ" in venue and loc and "Jヴィレッジ" not in loc:
+        loc = f"{loc}・Jヴィレッジ"
+    # 「（計52チーム）」を優先。無ければ「○チーム」表記の最大値を採用（"1チーム"等の誤取得を防ぐ）
+    cnt_m = re.search(r'計\s*(\d+)', slots)
+    if cnt_m:
+        teams_count = cnt_m.group(1)
+    else:
+        nums = re.findall(r'(\d+)\s*チーム', slots)
+        teams_count = max(nums, key=int) if nums else ""
+
+    parts = [f"【{date_str}時点】{html_escape(title_main)}は"]
+    if period:
+        parts.append(f"{html_escape(period)}に")
+    if loc:
+        parts.append(f"{html_escape(loc)}で開催。")
+    else:
+        parts.append("開催予定。")
+    if teams_count:
+        parts.append(f"各都道府県代表の計{teams_count}チームがノックアウト方式で全国一を争います。")
+    else:
+        parts.append("各都道府県の代表校がノックアウト方式で全国一を争います。")
+    if rep_names:
+        sample = "・".join(html_escape(x) for x in rep_names[:6])
+        parts.append(f"現在までに{sample}など{len(rep_names)}校の出場が決定。")
+    parts.append("組み合わせ・トーナメント表・結果を毎日更新。")
+    return _summary_p("".join(parts))
+
+
 def main():
     meta, sections = parse_source()
     title_main = meta.get("title", "全国高校総体 サッカー競技")
@@ -581,11 +688,16 @@ def main():
     else:
         schedule_html = ""
 
-    seo_title = f"インターハイ サッカー {year} 結果・組み合わせ｜全国高校総体（男子）トーナメント速報"
-    description = (f"高校総体（インターハイ）サッカー競技 男子 {year} の全国大会（本選）の組み合わせ・試合結果・"
-                  f"各県代表校を速報でまとめています。{html_escape(period)}開催。決勝まで随時更新。")
-    keywords = (f"インターハイ サッカー {year},全国高校総体 サッカー,高校総体 サッカー 結果,"
-                f"インターハイ サッカー 組み合わせ,インターハイ サッカー 速報,高校サッカー,U-18,{year}")
+    seo_title = f"インターハイ サッカー{year} 結果・組み合わせ・トーナメント表【最新】｜全国高校総体（男子）速報"
+    description = (f"高校総体（インターハイ）サッカー競技 男子{year} 全国大会（本選）の組み合わせ・試合結果・"
+                  f"トーナメント表・各県代表校を毎日自動更新。各都道府県代表の計52校が福島・Jヴィレッジで"
+                  f"全国一を争うノックアウト方式。{html_escape(period)}開催。決勝まで随時更新。")
+    keywords = (f"インターハイ サッカー{year},全国高校総体 サッカー,高校総体 サッカー 結果,"
+                f"インターハイ サッカー トーナメント表,インターハイ サッカー 組み合わせ,"
+                f"インターハイ サッカー 速報,インターハイ サッカー 代表校,高校サッカー,U-18,{year}")
+
+    # AI引用向け一文要約（H1直下・毎日自動更新）
+    ai_summary_html = build_ai_summary(meta, sections)
 
     # 代表校・ラウンド
     reps_lines = sections.get("各県代表", [])
@@ -748,7 +860,7 @@ def main():
         <span aria-current="page">インターハイ{year}</span>
       </nav>
       <h1 class="lp-title">{html_escape(title_main)}</h1>
-      <p class="lp-intro">
+{ai_summary_html}      <p class="lp-intro">
         高校総体（<strong>インターハイ</strong>）サッカー競技 男子 {year} の<strong>全国大会（本選）</strong>の
         組み合わせ・試合結果・各県代表校をまとめています。各県予選の結果は
         <a href="/">都道府県別ページ</a>からご確認いただけます。
@@ -771,16 +883,7 @@ def main():
         {schedule_html}
         {champion_html}
       </section>
-      <section class="lp-section">
-        <h2>🩺 大会前に読みたい医学コラム（救急医が執筆）</h2>
-        <p style="margin:0 0 10px;">真夏の連戦を安全に走り切るために。現役救急医が医学的根拠とともに解説しています。</p>
-        <ul style="list-style:none;padding:0;line-height:2;">
-          <li>🌡️ <a href="/blog/posts/interhigh-2026-heat-safety/">インターハイ2026の熱中症・暑熱対策完全ガイド</a>（暑熱順化・連戦の脱水チェック・観戦者の対策）</li>
-          <li>🩸 <a href="/blog/posts/2026-06-08-iron-deficiency-anemia/">サッカー選手の貧血対策｜鉄分の摂り方と隠れ鉄欠乏のサイン</a></li>
-          <li>😴 <a href="/blog/posts/2026-05-22-pre-match-sleep-strategy/">試合前日に眠れない時の対処法｜睡眠戦略</a></li>
-          <li>☀️ <a href="/blog/posts/2026-05-08-may-heatstroke-prevention/">サッカーの熱中症対策｜危険なサインと応急処置</a></li>
-        </ul>
-      </section>
+
       <section class="lp-section">
         <h2><i class="fas fa-flag"></i> 各県代表</h2>
         {reps_html}
