@@ -9465,15 +9465,32 @@
         "name": "飯塚高校2nd",
         "league": "福岡県1部",
         "points": 13,
-        "played": 7,
+        "played": 8,
         "won": 4,
         "drawn": 1,
-        "lost": 2,
-        "goalsFor": 15,
-        "goalsAgainst": 9,
+        "lost": 3,
+        "goalsFor": 16,
+        "goalsAgainst": 13,
         "leagueRank": 3,
         "rank": 8,
         "prefectureRank": 8
+      },
+      {
+        "name": "東海大学付属福岡高校2nd",
+        "league": "福岡県1部",
+        "points": 13,
+        "played": 9,
+        "won": 4,
+        "drawn": 1,
+        "lost": 4,
+        "goalsFor": 21,
+        "goalsAgainst": 26,
+        "leagueRank": 4,
+        "rank": 9,
+        "prefectureRank": 9,
+        "aliases": [
+          "東海大福岡B"
+        ]
       },
       {
         "name": "東福岡高校2nd",
@@ -9485,9 +9502,9 @@
         "lost": 3,
         "goalsFor": 11,
         "goalsAgainst": 11,
-        "leagueRank": 4,
-        "rank": 9,
-        "prefectureRank": 9,
+        "leagueRank": 5,
+        "rank": 10,
+        "prefectureRank": 10,
         "aliases": [
           "東福岡B"
         ]
@@ -9496,7 +9513,7 @@
         "id": "fk008",
         "name": "筑陽学園高校",
         "league": "福岡県1部",
-        "rank": 10,
+        "rank": 11,
         "points": 10,
         "played": 6,
         "won": 3,
@@ -9504,26 +9521,9 @@
         "lost": 2,
         "goalsFor": 8,
         "goalsAgainst": 9,
-        "prefectureRank": 10,
-        "goalDiff": 0,
-        "leagueRank": 5
-      },
-      {
-        "name": "東海大学付属福岡高校2nd",
-        "league": "福岡県1部",
-        "points": 10,
-        "played": 8,
-        "won": 3,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 17,
-        "goalsAgainst": 25,
-        "leagueRank": 6,
-        "rank": 11,
         "prefectureRank": 11,
-        "aliases": [
-          "東海大福岡B"
-        ]
+        "goalDiff": 0,
+        "leagueRank": 6
       },
       {
         "name": "アビスパ福岡U-18 2nd",
@@ -11250,8 +11250,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-14 12:46",
+    "lastUpdated": "2026-06-14 12:54",
     "year": 2026,
-    "updatedCount": 576
+    "updatedCount": 584
   }
 }
