@@ -5240,24 +5240,20 @@
         "leagueRank": 6
       },
       {
-        "id": "s007",
-        "name": "静岡学園高校2nd",
+        "id": "s014",
+        "name": "磐田東高校",
         "league": "静岡県Aリーグ",
         "rank": 11,
-        "points": 7,
-        "played": 4,
+        "points": 8,
+        "played": 5,
         "won": 2,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 1,
-        "goalsFor": 15,
-        "goalsAgainst": 3,
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "goalDiff": -1,
         "prefectureRank": 11,
-        "goalDiff": 13,
-        "leagueRank": 5,
-        "aliases": [
-          "静岡学園高校II",
-          "静岡学園②"
-        ]
+        "leagueRank": 5
       },
       {
         "id": "s006",
@@ -5276,20 +5272,24 @@
         "leagueRank": 7
       },
       {
-        "id": "s014",
-        "name": "磐田東高校",
+        "id": "s007",
+        "name": "静岡学園高校2nd",
         "league": "静岡県Aリーグ",
         "rank": 13,
-        "points": 5,
+        "points": 7,
         "played": 4,
-        "won": 1,
-        "drawn": 2,
+        "won": 2,
+        "drawn": 1,
         "lost": 1,
-        "goalsFor": 4,
-        "goalsAgainst": 4,
-        "goalDiff": -1,
+        "goalsFor": 15,
+        "goalsAgainst": 3,
         "prefectureRank": 13,
-        "leagueRank": 6
+        "goalDiff": 13,
+        "leagueRank": 6,
+        "aliases": [
+          "静岡学園高校II",
+          "静岡学園②"
+        ]
       },
       {
         "id": "s016",
@@ -5361,12 +5361,12 @@
         "league": "静岡県Aリーグ",
         "rank": 18,
         "points": 0,
-        "played": 4,
+        "played": 5,
         "won": 0,
         "drawn": 0,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 3,
-        "goalsAgainst": 21,
+        "goalsAgainst": 23,
         "goalDiff": -13,
         "prefectureRank": 18,
         "leagueRank": 10
@@ -5540,10 +5540,27 @@
         ]
       },
       {
+        "name": "名古屋グランパスU-18 2nd",
+        "league": "愛知県1部",
+        "points": 10,
+        "played": 9,
+        "won": 2,
+        "drawn": 4,
+        "lost": 3,
+        "goalsFor": 14,
+        "goalsAgainst": 17,
+        "leagueRank": 7,
+        "rank": 9,
+        "prefectureRank": 9,
+        "aliases": [
+          "グランパスB"
+        ]
+      },
+      {
         "id": "ai005",
         "name": "東海学園高校",
         "league": "愛知県1部",
-        "rank": 9,
+        "rank": 10,
         "points": 10,
         "played": 10,
         "won": 2,
@@ -5551,15 +5568,15 @@
         "lost": 4,
         "goalsFor": 8,
         "goalsAgainst": 11,
-        "prefectureRank": 9,
+        "prefectureRank": 10,
         "goalDiff": -5,
-        "leagueRank": 7
+        "leagueRank": 8
       },
       {
         "id": "ai010",
         "name": "刈谷高校",
         "league": "愛知県1部",
-        "rank": 10,
+        "rank": 11,
         "points": 8,
         "played": 9,
         "won": 2,
@@ -5567,26 +5584,9 @@
         "lost": 5,
         "goalsFor": 9,
         "goalsAgainst": 16,
-        "prefectureRank": 10,
-        "goalDiff": -5,
-        "leagueRank": 8
-      },
-      {
-        "name": "名古屋グランパスU-18 2nd",
-        "league": "愛知県1部",
-        "points": 7,
-        "played": 8,
-        "won": 1,
-        "drawn": 4,
-        "lost": 3,
-        "goalsFor": 11,
-        "goalsAgainst": 15,
-        "leagueRank": 9,
-        "rank": 11,
         "prefectureRank": 11,
-        "aliases": [
-          "グランパスB"
-        ]
+        "goalDiff": -5,
+        "leagueRank": 9
       },
       {
         "id": "ai012",
@@ -5595,12 +5595,12 @@
         "rank": 12,
         "prefectureRank": 12,
         "points": 4,
-        "played": 9,
+        "played": 10,
         "won": 0,
         "drawn": 4,
-        "lost": 5,
-        "goalsFor": 9,
-        "goalsAgainst": 19,
+        "lost": 6,
+        "goalsFor": 11,
+        "goalsAgainst": 22,
         "goalDiff": -5,
         "leagueRank": 10
       }
@@ -11250,7 +11250,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-14 14:25",
+    "lastUpdated": "2026-06-14 15:26",
     "year": 2026,
     "updatedCount": 584
   }
