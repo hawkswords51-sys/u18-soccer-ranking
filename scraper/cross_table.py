@@ -110,7 +110,7 @@ def render_cross_table_html(slug: str) -> str:
         for gf, ga, ha in items:
             r = "xt-win" if gf > ga else ("xt-draw" if gf == ga else "xt-lose")
             legs.append(f'<span class="xt-leg {r}"><span class="xt-ha">{ha}</span>{gf}-{ga}</span>')
-        return '<td class="xt-cell">' + "".join(legs) + "</td>"
+        return '<td class="xt-cell"><div class="xt-cw">' + "".join(legs) + "</div></td>"
 
     head_cols = "".join(f'<th class="xt-vc"><span>{_html_escape(short[t])}</span></th>' for t in order)
     body_rows = []
@@ -172,8 +172,9 @@ def render_cross_table_html(slug: str) -> str:
         .xt-cross th,.xt-cross td{{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}}
         .xt-cross thead th{{background:#1565c0;color:#fff;font-weight:600;position:sticky;top:0;z-index:3;}}
         .xt-cross td.xt-diag{{background:#cfd8dc;}}
-        .xt-cross td.xt-cell{{padding:0;}}
-        .xt-leg{{display:block;}}
+        .xt-cross td.xt-cell{{padding:0;height:100%;}}
+        .xt-cw{{display:flex;flex-direction:column;height:100%;min-height:100%;}}
+        .xt-leg{{flex:1 0 auto;display:flex;align-items:center;justify-content:center;}}
         .xt-leg.xt-win{{background:#e8f5e9;color:#2e7d32;font-weight:600;}}
         .xt-leg.xt-lose{{background:#ffebee;color:#c62828;}}
         .xt-leg.xt-draw{{background:#fff8e1;color:#f9a825;}}
