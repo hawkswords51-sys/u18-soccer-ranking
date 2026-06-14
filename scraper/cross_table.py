@@ -105,17 +105,12 @@ def render_cross_table_html(slug: str) -> str:
             items.append((as_, hs, "A"))          # row 視点へ変換
         if not items:
             return '<td class="xt-np">―</td>'
-        parts, cls = [], "xt-draw"
+        # 各段(ホーム戦/アウェイ戦)を独立して色分け
+        legs = []
         for gf, ga, ha in items:
             r = "xt-win" if gf > ga else ("xt-draw" if gf == ga else "xt-lose")
-            if len(items) == 1:
-                cls = r
-            parts.append(f'<span class="xt-ha">{ha}</span>{gf}-{ga}')
-        if len(items) == 2:                       # 往復2試合済みは通算で色分け
-            tw = sum(1 for gf, ga, _ in items if gf > ga)
-            tl = sum(1 for gf, ga, _ in items if gf < ga)
-            cls = "xt-win" if tw > tl else ("xt-lose" if tl > tw else "xt-draw")
-        return f'<td class="{cls}">' + "<br>".join(parts) + "</td>"
+            legs.append(f'<span class="xt-leg {r}"><span class="xt-ha">{ha}</span>{gf}-{ga}</span>')
+        return '<td class="xt-cell">' + "".join(legs) + "</td>"
 
     head_cols = "".join(f'<th class="xt-vc"><span>{_html_escape(short[t])}</span></th>' for t in order)
     body_rows = []
@@ -177,11 +172,15 @@ def render_cross_table_html(slug: str) -> str:
         .xt-cross th,.xt-cross td{{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}}
         .xt-cross thead th{{background:#1565c0;color:#fff;font-weight:600;position:sticky;top:0;z-index:3;}}
         .xt-cross td.xt-diag{{background:#cfd8dc;}}
-        .xt-cross td.xt-win{{background:#e8f5e9;color:#2e7d32;font-weight:600;}}
-        .xt-cross td.xt-lose{{background:#ffebee;color:#c62828;}}
-        .xt-cross td.xt-draw{{background:#fff8e1;color:#f9a825;}}
+        .xt-cross td.xt-cell{{padding:0;}}
+        .xt-leg{{display:block;}}
+        .xt-leg.xt-win{{background:#e8f5e9;color:#2e7d32;font-weight:600;}}
+        .xt-leg.xt-lose{{background:#ffebee;color:#c62828;}}
+        .xt-leg.xt-draw{{background:#fff8e1;color:#f9a825;}}
+        .xt-leg + .xt-leg{{border-top:1px solid #fff;}}
         .xt-cross td.xt-np{{color:#bbb;}}
-        .xt-cross .xt-ha{{color:#888;margin-right:3px;}}
+        .xt-cross .xt-ha{{color:#888;margin-right:3px;font-weight:400;}}
+        .xt-legend .xt-win{{background:#e8f5e9;}} .xt-legend .xt-draw{{background:#fff8e1;}} .xt-legend .xt-lose{{background:#ffebee;}}
         /* 左2列(順位・チーム)を横スクロール時に固定 */
         .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{position:sticky;left:0;z-index:4;background:#eef2f7;color:#333;}}
         .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{position:sticky;z-index:4;background:#eef2f7;color:#333;text-align:left;}}
@@ -198,6 +197,7 @@ def render_cross_table_html(slug: str) -> str:
         .xt-chip{{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;}}
         /* ===== デスクトップ(既定) ===== */
         .xt-cross th,.xt-cross td{{padding:11px 15px;font-size:17px;}}
+        .xt-cross td.xt-cell{{padding:0;}} .xt-leg{{padding:11px 15px;}}
         .xt-cross th.xt-vc span{{writing-mode:vertical-rl;display:inline-block;min-height:78px;font-size:16px;}}
         .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{width:40px;min-width:40px;}}
         .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{left:40px;font-size:16px;min-width:98px;}}
@@ -213,6 +213,7 @@ def render_cross_table_html(slug: str) -> str:
           .xt-meta{{font-size:.85rem;}}
           .xt-note{{font-size:.82rem;}}
           .xt-cross th,.xt-cross td{{padding:6px 7px;font-size:13px;}}
+          .xt-cross td.xt-cell{{padding:0;}} .xt-leg{{padding:6px 7px;}}
           .xt-cross th.xt-vc span{{min-height:52px;font-size:12px;}}
           .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{{width:28px;min-width:28px;}}
           .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{{left:28px;font-size:12px;min-width:64px;}}
