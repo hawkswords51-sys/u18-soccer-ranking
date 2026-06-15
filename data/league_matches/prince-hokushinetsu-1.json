@@ -2,138 +2,981 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 北信越1部",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4345",
-  "lastUpdated": "2026-06-13",
+  "lastUpdated": "2026-06-15",
   "teams": [
-    { "name": "アルビレックス新潟U-18", "short": "新潟U18" },
-    { "name": "松本国際", "short": "松本国際" },
-    { "name": "富山第一", "short": "富山一" },
-    { "name": "日本文理", "short": "文理" },
-    { "name": "松本山雅FC U-18", "short": "山雅U18" },
-    { "name": "星稜", "short": "星稜" },
-    { "name": "上越", "short": "上越" },
-    { "name": "鵬学園", "short": "鵬学園" },
-    { "name": "帝京長岡2nd", "short": "帝長2nd" },
-    { "name": "カターレ富山U-18", "short": "カタ富U18" }
+    {
+      "name": "アルビレックス新潟U-18",
+      "short": "新潟U18"
+    },
+    {
+      "name": "松本国際",
+      "short": "松本国際"
+    },
+    {
+      "name": "富山第一",
+      "short": "富山一"
+    },
+    {
+      "name": "日本文理",
+      "short": "文理"
+    },
+    {
+      "name": "松本山雅FC U-18",
+      "short": "山雅U18"
+    },
+    {
+      "name": "星稜",
+      "short": "星稜"
+    },
+    {
+      "name": "上越",
+      "short": "上越"
+    },
+    {
+      "name": "鵬学園",
+      "short": "鵬学園"
+    },
+    {
+      "name": "帝京長岡2nd",
+      "short": "帝長2nd"
+    },
+    {
+      "name": "カターレ富山U-18",
+      "short": "カタ富U18"
+    }
   ],
   "official_standings": [
-    { "rank": 1, "team": "アルビレックス新潟U-18", "pts": 18, "played": 9, "won": 5, "drawn": 3, "lost": 1, "gf": 17, "ga": 4, "gd": 13 },
-    { "rank": 2, "team": "松本国際", "pts": 16, "played": 9, "won": 4, "drawn": 4, "lost": 1, "gf": 9, "ga": 7, "gd": 2 },
-    { "rank": 3, "team": "富山第一", "pts": 15, "played": 9, "won": 4, "drawn": 3, "lost": 2, "gf": 20, "ga": 10, "gd": 10 },
-    { "rank": 4, "team": "日本文理", "pts": 15, "played": 9, "won": 5, "drawn": 0, "lost": 4, "gf": 19, "ga": 10, "gd": 9 },
-    { "rank": 5, "team": "松本山雅FC U-18", "pts": 13, "played": 9, "won": 3, "drawn": 4, "lost": 2, "gf": 18, "ga": 16, "gd": 2 },
-    { "rank": 6, "team": "星稜", "pts": 11, "played": 9, "won": 2, "drawn": 5, "lost": 2, "gf": 12, "ga": 15, "gd": -3 },
-    { "rank": 7, "team": "上越", "pts": 10, "played": 9, "won": 2, "drawn": 4, "lost": 3, "gf": 10, "ga": 15, "gd": -5 },
-    { "rank": 8, "team": "鵬学園", "pts": 9, "played": 9, "won": 2, "drawn": 3, "lost": 4, "gf": 7, "ga": 11, "gd": -4 },
-    { "rank": 9, "team": "帝京長岡2nd", "pts": 6, "played": 9, "won": 1, "drawn": 3, "lost": 5, "gf": 17, "ga": 26, "gd": -9 },
-    { "rank": 10, "team": "カターレ富山U-18", "pts": 6, "played": 9, "won": 1, "drawn": 3, "lost": 5, "gf": 3, "ga": 18, "gd": -15 }
+    {
+      "rank": 1,
+      "team": "アルビレックス新潟U-18",
+      "pts": 18,
+      "played": 9,
+      "won": 5,
+      "drawn": 3,
+      "lost": 1,
+      "gf": 17,
+      "ga": 4,
+      "gd": 13
+    },
+    {
+      "rank": 2,
+      "team": "松本国際",
+      "pts": 16,
+      "played": 9,
+      "won": 4,
+      "drawn": 4,
+      "lost": 1,
+      "gf": 9,
+      "ga": 7,
+      "gd": 2
+    },
+    {
+      "rank": 3,
+      "team": "富山第一",
+      "pts": 15,
+      "played": 9,
+      "won": 4,
+      "drawn": 3,
+      "lost": 2,
+      "gf": 20,
+      "ga": 10,
+      "gd": 10
+    },
+    {
+      "rank": 4,
+      "team": "日本文理",
+      "pts": 15,
+      "played": 9,
+      "won": 5,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 19,
+      "ga": 10,
+      "gd": 9
+    },
+    {
+      "rank": 5,
+      "team": "松本山雅FC U-18",
+      "pts": 13,
+      "played": 9,
+      "won": 3,
+      "drawn": 4,
+      "lost": 2,
+      "gf": 18,
+      "ga": 16,
+      "gd": 2
+    },
+    {
+      "rank": 6,
+      "team": "星稜",
+      "pts": 11,
+      "played": 9,
+      "won": 2,
+      "drawn": 5,
+      "lost": 2,
+      "gf": 12,
+      "ga": 15,
+      "gd": -3
+    },
+    {
+      "rank": 7,
+      "team": "上越",
+      "pts": 10,
+      "played": 9,
+      "won": 2,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 10,
+      "ga": 15,
+      "gd": -5
+    },
+    {
+      "rank": 8,
+      "team": "鵬学園",
+      "pts": 9,
+      "played": 9,
+      "won": 2,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 7,
+      "ga": 11,
+      "gd": -4
+    },
+    {
+      "rank": 9,
+      "team": "帝京長岡2nd",
+      "pts": 6,
+      "played": 9,
+      "won": 1,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 17,
+      "ga": 26,
+      "gd": -9
+    },
+    {
+      "rank": 10,
+      "team": "カターレ富山U-18",
+      "pts": 6,
+      "played": 9,
+      "won": 1,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 3,
+      "ga": 18,
+      "gd": -15
+    }
   ],
   "matches": [
-    { "md": 1, "date": "2026-04-04", "home": "アルビレックス新潟U-18", "hs": 1, "as": 1, "away": "上越", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "星稜", "hs": 3, "as": 3, "away": "松本山雅FC U-18", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "鵬学園", "hs": 2, "as": 1, "away": "帝京長岡2nd", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "カターレ富山U-18", "hs": 0, "as": 4, "away": "日本文理", "status": "played" },
-    { "md": 1, "date": "2026-04-05", "home": "松本国際", "hs": 0, "as": 0, "away": "富山第一", "status": "played" },
-
-    { "md": 2, "date": "2026-04-11", "home": "日本文理", "hs": 2, "as": 3, "away": "星稜", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "松本国際", "hs": 2, "as": 1, "away": "帝京長岡2nd", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "松本山雅FC U-18", "hs": 1, "as": 1, "away": "上越", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "カターレ富山U-18", "hs": 0, "as": 0, "away": "鵬学園", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "富山第一", "hs": 0, "as": 0, "away": "アルビレックス新潟U-18", "status": "played" },
-
-    { "md": 3, "date": "2026-04-18", "home": "アルビレックス新潟U-18", "hs": 1, "as": 1, "away": "松本山雅FC U-18", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "上越", "hs": 0, "as": 2, "away": "日本文理", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "松本国際", "hs": 1, "as": 0, "away": "カターレ富山U-18", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "鵬学園", "hs": 0, "as": 0, "away": "星稜", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "富山第一", "hs": 2, "as": 4, "away": "帝京長岡2nd", "status": "played" },
-
-    { "md": 4, "date": "2026-04-25", "home": "日本文理", "hs": 1, "as": 2, "away": "松本山雅FC U-18", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "星稜", "hs": 1, "as": 1, "away": "松本国際", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "鵬学園", "hs": 1, "as": 2, "away": "上越", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "カターレ富山U-18", "hs": 0, "as": 7, "away": "富山第一", "status": "played" },
-    { "md": 4, "date": "2026-04-26", "home": "帝京長岡2nd", "hs": 0, "as": 4, "away": "アルビレックス新潟U-18", "status": "played" },
-
-    { "md": 5, "date": "2026-05-02", "home": "帝京長岡2nd", "hs": 1, "as": 1, "away": "カターレ富山U-18", "status": "played" },
-    { "md": 5, "date": "2026-05-03", "home": "アルビレックス新潟U-18", "hs": 2, "as": 0, "away": "日本文理", "status": "played" },
-    { "md": 5, "date": "2026-05-03", "home": "松本山雅FC U-18", "hs": 3, "as": 0, "away": "鵬学園", "status": "played" },
-    { "md": 5, "date": "2026-05-03", "home": "富山第一", "hs": 1, "as": 1, "away": "星稜", "status": "played" },
-    { "md": 5, "date": "2026-05-03", "home": "松本国際", "hs": 1, "as": 1, "away": "上越", "status": "played" },
-
-    { "md": 6, "date": "2026-05-09", "home": "松本国際", "hs": 1, "as": 0, "away": "松本山雅FC U-18", "status": "played" },
-    { "md": 6, "date": "2026-05-09", "home": "星稜", "hs": 2, "as": 2, "away": "帝京長岡2nd", "status": "played" },
-    { "md": 6, "date": "2026-05-09", "home": "鵬学園", "hs": 1, "as": 3, "away": "日本文理", "status": "played" },
-    { "md": 6, "date": "2026-05-10", "home": "上越", "hs": 0, "as": 4, "away": "富山第一", "status": "played" },
-    { "md": 6, "date": "2026-05-10", "home": "カターレ富山U-18", "hs": 0, "as": 2, "away": "アルビレックス新潟U-18", "status": "played" },
-
-    { "md": 7, "date": "2026-05-16", "home": "アルビレックス新潟U-18", "hs": 1, "as": 0, "away": "鵬学園", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "日本文理", "hs": 2, "as": 0, "away": "松本国際", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "松本山雅FC U-18", "hs": 2, "as": 4, "away": "富山第一", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "カターレ富山U-18", "hs": 0, "as": 2, "away": "星稜", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "帝京長岡2nd", "hs": 4, "as": 4, "away": "上越", "status": "played" },
-
-    { "md": 8, "date": "2026-05-23", "home": "アルビレックス新潟U-18", "hs": 5, "as": 0, "away": "星稜", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "上越", "hs": 0, "as": 1, "away": "カターレ富山U-18", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "松本国際", "hs": 1, "as": 1, "away": "鵬学園", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "松本山雅FC U-18", "hs": 5, "as": 4, "away": "帝京長岡2nd", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "富山第一", "hs": 2, "as": 1, "away": "日本文理", "status": "played" },
-
-    { "md": 9, "date": "2026-06-13", "home": "アルビレックス新潟U-18", "hs": 1, "as": 2, "away": "松本国際", "status": "played" },
-    { "md": 9, "date": "2026-06-13", "home": "上越", "hs": 1, "as": 0, "away": "星稜", "status": "played" },
-    { "md": 9, "date": "2026-06-13", "home": "鵬学園", "hs": 2, "as": 0, "away": "富山第一", "status": "played" },
-    { "md": 9, "date": "2026-06-13", "home": "カターレ富山U-18", "hs": 1, "as": 1, "away": "松本山雅FC U-18", "status": "played" },
-    { "md": 9, "date": "2026-06-13", "home": "帝京長岡2nd", "hs": 0, "as": 4, "away": "日本文理", "status": "played" },
-
-    { "md": 10, "date": "2026-06-27", "home": "上越", "hs": null, "as": null, "away": "アルビレックス新潟U-18", "status": "scheduled" },
-    { "md": 10, "date": "2026-06-27", "home": "松本山雅FC U-18", "hs": null, "as": null, "away": "星稜", "status": "scheduled" },
-    { "md": 10, "date": "2026-06-27", "home": "帝京長岡2nd", "hs": null, "as": null, "away": "鵬学園", "status": "scheduled" },
-    { "md": 10, "date": "2026-06-28", "home": "日本文理", "hs": null, "as": null, "away": "カターレ富山U-18", "status": "scheduled" },
-    { "md": 10, "date": "2026-06-28", "home": "富山第一", "hs": null, "as": null, "away": "松本国際", "status": "scheduled" },
-
-    { "md": 11, "date": "2026-07-04", "home": "アルビレックス新潟U-18", "hs": null, "as": null, "away": "富山第一", "status": "scheduled" },
-    { "md": 11, "date": "2026-07-04", "home": "帝京長岡2nd", "hs": null, "as": null, "away": "松本国際", "status": "scheduled" },
-    { "md": 11, "date": "2026-07-04", "home": "上越", "hs": null, "as": null, "away": "松本山雅FC U-18", "status": "scheduled" },
-    { "md": 11, "date": "2026-07-04", "home": "星稜", "hs": null, "as": null, "away": "日本文理", "status": "scheduled" },
-    { "md": 11, "date": "2026-07-04", "home": "鵬学園", "hs": null, "as": null, "away": "カターレ富山U-18", "status": "scheduled" },
-
-    { "md": 12, "date": "2026-07-11", "home": "帝京長岡2nd", "hs": null, "as": null, "away": "富山第一", "status": "scheduled" },
-    { "md": 12, "date": "2026-07-11", "home": "上越", "hs": null, "as": null, "away": "日本文理", "status": "scheduled" },
-    { "md": 12, "date": "2026-07-11", "home": "松本山雅FC U-18", "hs": null, "as": null, "away": "アルビレックス新潟U-18", "status": "scheduled" },
-    { "md": 12, "date": "2026-07-11", "home": "星稜", "hs": null, "as": null, "away": "鵬学園", "status": "scheduled" },
-    { "md": 12, "date": "2026-07-11", "home": "カターレ富山U-18", "hs": null, "as": null, "away": "松本国際", "status": "scheduled" },
-
-    { "md": 13, "date": "2026-09-05", "home": "アルビレックス新潟U-18", "hs": null, "as": null, "away": "帝京長岡2nd", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-05", "home": "上越", "hs": null, "as": null, "away": "鵬学園", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-05", "home": "松本国際", "hs": null, "as": null, "away": "星稜", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-05", "home": "松本山雅FC U-18", "hs": null, "as": null, "away": "日本文理", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-05", "home": "富山第一", "hs": null, "as": null, "away": "カターレ富山U-18", "status": "scheduled" },
-
-    { "md": 14, "date": "2026-09-12", "home": "日本文理", "hs": null, "as": null, "away": "アルビレックス新潟U-18", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-12", "home": "上越", "hs": null, "as": null, "away": "松本国際", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-12", "home": "星稜", "hs": null, "as": null, "away": "富山第一", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-12", "home": "鵬学園", "hs": null, "as": null, "away": "松本山雅FC U-18", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-12", "home": "カターレ富山U-18", "hs": null, "as": null, "away": "帝京長岡2nd", "status": "scheduled" },
-
-    { "md": 15, "date": "2026-09-26", "home": "アルビレックス新潟U-18", "hs": null, "as": null, "away": "カターレ富山U-18", "status": "scheduled" },
-    { "md": 15, "date": "2026-09-26", "home": "日本文理", "hs": null, "as": null, "away": "鵬学園", "status": "scheduled" },
-    { "md": 15, "date": "2026-09-26", "home": "富山第一", "hs": null, "as": null, "away": "上越", "status": "scheduled" },
-    { "md": 15, "date": "2026-09-26", "home": "松本山雅FC U-18", "hs": null, "as": null, "away": "松本国際", "status": "scheduled" },
-    { "md": 15, "date": "2026-09-26", "home": "帝京長岡2nd", "hs": null, "as": null, "away": "星稜", "status": "scheduled" },
-
-    { "md": 16, "date": "2026-10-03", "home": "上越", "hs": null, "as": null, "away": "帝京長岡2nd", "status": "scheduled" },
-    { "md": 16, "date": "2026-10-03", "home": "松本国際", "hs": null, "as": null, "away": "日本文理", "status": "scheduled" },
-    { "md": 16, "date": "2026-10-03", "home": "星稜", "hs": null, "as": null, "away": "カターレ富山U-18", "status": "scheduled" },
-    { "md": 16, "date": "2026-10-03", "home": "鵬学園", "hs": null, "as": null, "away": "アルビレックス新潟U-18", "status": "scheduled" },
-    { "md": 16, "date": "2026-10-03", "home": "富山第一", "hs": null, "as": null, "away": "松本山雅FC U-18", "status": "scheduled" },
-
-    { "md": 17, "date": "2026-11-14", "home": "日本文理", "hs": null, "as": null, "away": "富山第一", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-14", "home": "星稜", "hs": null, "as": null, "away": "アルビレックス新潟U-18", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-14", "home": "鵬学園", "hs": null, "as": null, "away": "松本国際", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-14", "home": "カターレ富山U-18", "hs": null, "as": null, "away": "上越", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-14", "home": "帝京長岡2nd", "hs": null, "as": null, "away": "松本山雅FC U-18", "status": "scheduled" },
-
-    { "md": 18, "date": "2026-11-21", "home": "日本文理", "hs": null, "as": null, "away": "帝京長岡2nd", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-21", "home": "松本国際", "hs": null, "as": null, "away": "アルビレックス新潟U-18", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-21", "home": "松本山雅FC U-18", "hs": null, "as": null, "away": "カターレ富山U-18", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-21", "home": "星稜", "hs": null, "as": null, "away": "上越", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-21", "home": "富山第一", "hs": null, "as": null, "away": "鵬学園", "status": "scheduled" }
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "アルビレックス新潟U-18",
+      "hs": 1,
+      "as": 1,
+      "away": "上越",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "星稜",
+      "hs": 3,
+      "as": 3,
+      "away": "松本山雅FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "鵬学園",
+      "hs": 2,
+      "as": 1,
+      "away": "帝京長岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "カターレ富山U-18",
+      "hs": 0,
+      "as": 4,
+      "away": "日本文理",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-05",
+      "home": "松本国際",
+      "hs": 0,
+      "as": 0,
+      "away": "富山第一",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "日本文理",
+      "hs": 2,
+      "as": 3,
+      "away": "星稜",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "松本国際",
+      "hs": 2,
+      "as": 1,
+      "away": "帝京長岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "松本山雅FC U-18",
+      "hs": 1,
+      "as": 1,
+      "away": "上越",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "カターレ富山U-18",
+      "hs": 0,
+      "as": 0,
+      "away": "鵬学園",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "富山第一",
+      "hs": 0,
+      "as": 0,
+      "away": "アルビレックス新潟U-18",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "アルビレックス新潟U-18",
+      "hs": 1,
+      "as": 1,
+      "away": "松本山雅FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "上越",
+      "hs": 0,
+      "as": 2,
+      "away": "日本文理",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "松本国際",
+      "hs": 1,
+      "as": 0,
+      "away": "カターレ富山U-18",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "鵬学園",
+      "hs": 0,
+      "as": 0,
+      "away": "星稜",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "富山第一",
+      "hs": 2,
+      "as": 4,
+      "away": "帝京長岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "日本文理",
+      "hs": 1,
+      "as": 2,
+      "away": "松本山雅FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "星稜",
+      "hs": 1,
+      "as": 1,
+      "away": "松本国際",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "鵬学園",
+      "hs": 1,
+      "as": 2,
+      "away": "上越",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "カターレ富山U-18",
+      "hs": 0,
+      "as": 7,
+      "away": "富山第一",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-26",
+      "home": "帝京長岡2nd",
+      "hs": 0,
+      "as": 4,
+      "away": "アルビレックス新潟U-18",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "帝京長岡2nd",
+      "hs": 1,
+      "as": 1,
+      "away": "カターレ富山U-18",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-03",
+      "home": "アルビレックス新潟U-18",
+      "hs": 2,
+      "as": 0,
+      "away": "日本文理",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-03",
+      "home": "松本山雅FC U-18",
+      "hs": 3,
+      "as": 0,
+      "away": "鵬学園",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-03",
+      "home": "富山第一",
+      "hs": 1,
+      "as": 1,
+      "away": "星稜",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-03",
+      "home": "松本国際",
+      "hs": 1,
+      "as": 1,
+      "away": "上越",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "松本国際",
+      "hs": 1,
+      "as": 0,
+      "away": "松本山雅FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "星稜",
+      "hs": 2,
+      "as": 2,
+      "away": "帝京長岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "鵬学園",
+      "hs": 1,
+      "as": 3,
+      "away": "日本文理",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-10",
+      "home": "上越",
+      "hs": 0,
+      "as": 4,
+      "away": "富山第一",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-10",
+      "home": "カターレ富山U-18",
+      "hs": 0,
+      "as": 2,
+      "away": "アルビレックス新潟U-18",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "アルビレックス新潟U-18",
+      "hs": 1,
+      "as": 0,
+      "away": "鵬学園",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "日本文理",
+      "hs": 2,
+      "as": 0,
+      "away": "松本国際",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "松本山雅FC U-18",
+      "hs": 2,
+      "as": 4,
+      "away": "富山第一",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "カターレ富山U-18",
+      "hs": 0,
+      "as": 2,
+      "away": "星稜",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "帝京長岡2nd",
+      "hs": 4,
+      "as": 4,
+      "away": "上越",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "アルビレックス新潟U-18",
+      "hs": 5,
+      "as": 0,
+      "away": "星稜",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "上越",
+      "hs": 0,
+      "as": 1,
+      "away": "カターレ富山U-18",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "松本国際",
+      "hs": 1,
+      "as": 1,
+      "away": "鵬学園",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "松本山雅FC U-18",
+      "hs": 5,
+      "as": 4,
+      "away": "帝京長岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "富山第一",
+      "hs": 2,
+      "as": 1,
+      "away": "日本文理",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-13",
+      "home": "アルビレックス新潟U-18",
+      "hs": 1,
+      "as": 2,
+      "away": "松本国際",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-13",
+      "home": "上越",
+      "hs": 1,
+      "as": 0,
+      "away": "星稜",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-13",
+      "home": "鵬学園",
+      "hs": 2,
+      "as": 0,
+      "away": "富山第一",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-13",
+      "home": "カターレ富山U-18",
+      "hs": 1,
+      "as": 1,
+      "away": "松本山雅FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-13",
+      "home": "帝京長岡2nd",
+      "hs": 0,
+      "as": 4,
+      "away": "日本文理",
+      "status": "played"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-27",
+      "home": "上越",
+      "hs": null,
+      "as": null,
+      "away": "アルビレックス新潟U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-27",
+      "home": "松本山雅FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "星稜",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-27",
+      "home": "帝京長岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "鵬学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-28",
+      "home": "日本文理",
+      "hs": null,
+      "as": null,
+      "away": "カターレ富山U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-28",
+      "home": "富山第一",
+      "hs": null,
+      "as": null,
+      "away": "松本国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-07-04",
+      "home": "アルビレックス新潟U-18",
+      "hs": null,
+      "as": null,
+      "away": "富山第一",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-07-04",
+      "home": "帝京長岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "松本国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-07-04",
+      "home": "上越",
+      "hs": null,
+      "as": null,
+      "away": "松本山雅FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-07-04",
+      "home": "星稜",
+      "hs": null,
+      "as": null,
+      "away": "日本文理",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-07-04",
+      "home": "鵬学園",
+      "hs": null,
+      "as": null,
+      "away": "カターレ富山U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-07-11",
+      "home": "帝京長岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "富山第一",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-07-11",
+      "home": "上越",
+      "hs": null,
+      "as": null,
+      "away": "日本文理",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-07-11",
+      "home": "松本山雅FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "アルビレックス新潟U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-07-11",
+      "home": "星稜",
+      "hs": null,
+      "as": null,
+      "away": "鵬学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-07-11",
+      "home": "カターレ富山U-18",
+      "hs": null,
+      "as": null,
+      "away": "松本国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-05",
+      "home": "アルビレックス新潟U-18",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-05",
+      "home": "上越",
+      "hs": null,
+      "as": null,
+      "away": "鵬学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-05",
+      "home": "松本国際",
+      "hs": null,
+      "as": null,
+      "away": "星稜",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-05",
+      "home": "松本山雅FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "日本文理",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-05",
+      "home": "富山第一",
+      "hs": null,
+      "as": null,
+      "away": "カターレ富山U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-12",
+      "home": "日本文理",
+      "hs": null,
+      "as": null,
+      "away": "アルビレックス新潟U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-12",
+      "home": "上越",
+      "hs": null,
+      "as": null,
+      "away": "松本国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-12",
+      "home": "星稜",
+      "hs": null,
+      "as": null,
+      "away": "富山第一",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-12",
+      "home": "鵬学園",
+      "hs": null,
+      "as": null,
+      "away": "松本山雅FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-12",
+      "home": "カターレ富山U-18",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "アルビレックス新潟U-18",
+      "hs": null,
+      "as": null,
+      "away": "カターレ富山U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "日本文理",
+      "hs": null,
+      "as": null,
+      "away": "鵬学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "富山第一",
+      "hs": null,
+      "as": null,
+      "away": "上越",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "松本山雅FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "松本国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "帝京長岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "星稜",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "上越",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "松本国際",
+      "hs": null,
+      "as": null,
+      "away": "日本文理",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "星稜",
+      "hs": null,
+      "as": null,
+      "away": "カターレ富山U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "鵬学園",
+      "hs": null,
+      "as": null,
+      "away": "アルビレックス新潟U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "富山第一",
+      "hs": null,
+      "as": null,
+      "away": "松本山雅FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-14",
+      "home": "日本文理",
+      "hs": null,
+      "as": null,
+      "away": "富山第一",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-14",
+      "home": "星稜",
+      "hs": null,
+      "as": null,
+      "away": "アルビレックス新潟U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-14",
+      "home": "鵬学園",
+      "hs": null,
+      "as": null,
+      "away": "松本国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-14",
+      "home": "カターレ富山U-18",
+      "hs": null,
+      "as": null,
+      "away": "上越",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-14",
+      "home": "帝京長岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "松本山雅FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-21",
+      "home": "日本文理",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-21",
+      "home": "松本国際",
+      "hs": null,
+      "as": null,
+      "away": "アルビレックス新潟U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-21",
+      "home": "松本山雅FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "カターレ富山U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-21",
+      "home": "星稜",
+      "hs": null,
+      "as": null,
+      "away": "上越",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-21",
+      "home": "富山第一",
+      "hs": null,
+      "as": null,
+      "away": "鵬学園",
+      "status": "scheduled"
+    }
   ]
 }

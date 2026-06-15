@@ -2,138 +2,981 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 四国",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4339",
-  "lastUpdated": "2026-06-13",
+  "lastUpdated": "2026-06-15",
   "teams": [
-    {"name": "愛媛FC U-18", "short": "愛媛FC"},
-    {"name": "徳島ヴォルティスユース", "short": "徳島V"},
-    {"name": "高知", "short": "高知"},
-    {"name": "徳島市立", "short": "徳島市立"},
-    {"name": "大手前高松", "short": "大手前"},
-    {"name": "FC今治U-18", "short": "今治FC"},
-    {"name": "今治東中等教育学校", "short": "今治東"},
-    {"name": "徳島商", "short": "徳島商"},
-    {"name": "新田", "short": "新田"},
-    {"name": "カマタマーレ讃岐U-18", "short": "讃岐"}
+    {
+      "name": "愛媛FC U-18",
+      "short": "愛媛FC"
+    },
+    {
+      "name": "徳島ヴォルティスユース",
+      "short": "徳島V"
+    },
+    {
+      "name": "高知",
+      "short": "高知"
+    },
+    {
+      "name": "徳島市立",
+      "short": "徳島市立"
+    },
+    {
+      "name": "大手前高松",
+      "short": "大手前"
+    },
+    {
+      "name": "FC今治U-18",
+      "short": "今治FC"
+    },
+    {
+      "name": "今治東中等教育学校",
+      "short": "今治東"
+    },
+    {
+      "name": "徳島商",
+      "short": "徳島商"
+    },
+    {
+      "name": "新田",
+      "short": "新田"
+    },
+    {
+      "name": "カマタマーレ讃岐U-18",
+      "short": "讃岐"
+    }
   ],
   "official_standings": [
-    {"rank": 1, "team": "愛媛FC U-18", "pts": 21, "played": 7, "won": 7, "drawn": 0, "lost": 0, "gf": 25, "ga": 7, "gd": 18},
-    {"rank": 2, "team": "徳島ヴォルティスユース", "pts": 18, "played": 7, "won": 6, "drawn": 0, "lost": 1, "gf": 17, "ga": 5, "gd": 12},
-    {"rank": 3, "team": "高知", "pts": 12, "played": 7, "won": 4, "drawn": 0, "lost": 3, "gf": 20, "ga": 11, "gd": 9},
-    {"rank": 4, "team": "徳島市立", "pts": 12, "played": 7, "won": 3, "drawn": 3, "lost": 1, "gf": 18, "ga": 10, "gd": 8},
-    {"rank": 5, "team": "大手前高松", "pts": 11, "played": 7, "won": 2, "drawn": 5, "lost": 0, "gf": 11, "ga": 9, "gd": 2},
-    {"rank": 6, "team": "FC今治U-18", "pts": 10, "played": 7, "won": 3, "drawn": 1, "lost": 3, "gf": 11, "ga": 8, "gd": 3},
-    {"rank": 7, "team": "今治東中等教育学校", "pts": 6, "played": 7, "won": 1, "drawn": 3, "lost": 3, "gf": 9, "ga": 18, "gd": -9},
-    {"rank": 8, "team": "徳島商", "pts": 2, "played": 7, "won": 0, "drawn": 2, "lost": 5, "gf": 9, "ga": 21, "gd": -12},
-    {"rank": 9, "team": "新田", "pts": 2, "played": 7, "won": 0, "drawn": 2, "lost": 5, "gf": 6, "ga": 20, "gd": -14},
-    {"rank": 10, "team": "カマタマーレ讃岐U-18", "pts": 2, "played": 7, "won": 0, "drawn": 2, "lost": 5, "gf": 5, "ga": 22, "gd": -17}
+    {
+      "rank": 1,
+      "team": "愛媛FC U-18",
+      "pts": 21,
+      "played": 7,
+      "won": 7,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 25,
+      "ga": 7,
+      "gd": 18
+    },
+    {
+      "rank": 2,
+      "team": "徳島ヴォルティスユース",
+      "pts": 18,
+      "played": 7,
+      "won": 6,
+      "drawn": 0,
+      "lost": 1,
+      "gf": 17,
+      "ga": 5,
+      "gd": 12
+    },
+    {
+      "rank": 3,
+      "team": "高知",
+      "pts": 12,
+      "played": 7,
+      "won": 4,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 20,
+      "ga": 11,
+      "gd": 9
+    },
+    {
+      "rank": 4,
+      "team": "徳島市立",
+      "pts": 12,
+      "played": 7,
+      "won": 3,
+      "drawn": 3,
+      "lost": 1,
+      "gf": 18,
+      "ga": 10,
+      "gd": 8
+    },
+    {
+      "rank": 5,
+      "team": "大手前高松",
+      "pts": 11,
+      "played": 7,
+      "won": 2,
+      "drawn": 5,
+      "lost": 0,
+      "gf": 11,
+      "ga": 9,
+      "gd": 2
+    },
+    {
+      "rank": 6,
+      "team": "FC今治U-18",
+      "pts": 10,
+      "played": 7,
+      "won": 3,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 11,
+      "ga": 8,
+      "gd": 3
+    },
+    {
+      "rank": 7,
+      "team": "今治東中等教育学校",
+      "pts": 6,
+      "played": 7,
+      "won": 1,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 9,
+      "ga": 18,
+      "gd": -9
+    },
+    {
+      "rank": 8,
+      "team": "徳島商",
+      "pts": 2,
+      "played": 7,
+      "won": 0,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 9,
+      "ga": 21,
+      "gd": -12
+    },
+    {
+      "rank": 9,
+      "team": "新田",
+      "pts": 2,
+      "played": 7,
+      "won": 0,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 6,
+      "ga": 20,
+      "gd": -14
+    },
+    {
+      "rank": 10,
+      "team": "カマタマーレ讃岐U-18",
+      "pts": 2,
+      "played": 7,
+      "won": 0,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 5,
+      "ga": 22,
+      "gd": -17
+    }
   ],
   "matches": [
-    {"md": 1, "date": "2026-04-04", "home": "愛媛FC U-18", "hs": 7, "as": 0, "away": "新田", "status": "played"},
-    {"md": 1, "date": "2026-04-04", "home": "FC今治U-18", "hs": 1, "as": 0, "away": "今治東中等教育学校", "status": "played"},
-    {"md": 1, "date": "2026-04-04", "home": "徳島商", "hs": 1, "as": 1, "away": "カマタマーレ讃岐U-18", "status": "played"},
-    {"md": 1, "date": "2026-04-04", "home": "徳島ヴォルティスユース", "hs": 0, "as": 1, "away": "大手前高松", "status": "played"},
-    {"md": 1, "date": "2026-06-13", "home": "高知", "hs": 0, "as": 1, "away": "徳島市立", "status": "played"},
-
-    {"md": 2, "date": "2026-04-11", "home": "大手前高松", "hs": 1, "as": 1, "away": "FC今治U-18", "status": "played"},
-    {"md": 2, "date": "2026-04-11", "home": "新田", "hs": 0, "as": 2, "away": "今治東中等教育学校", "status": "played"},
-    {"md": 2, "date": "2026-04-11", "home": "徳島商", "hs": 2, "as": 3, "away": "愛媛FC U-18", "status": "played"},
-    {"md": 2, "date": "2026-04-11", "home": "高知", "hs": 2, "as": 3, "away": "徳島ヴォルティスユース", "status": "played"},
-    {"md": 2, "date": "2026-04-11", "home": "カマタマーレ讃岐U-18", "hs": 0, "as": 7, "away": "徳島市立", "status": "played"},
-
-    {"md": 3, "date": "2026-04-18", "home": "愛媛FC U-18", "hs": 1, "as": 0, "away": "カマタマーレ讃岐U-18", "status": "played"},
-    {"md": 3, "date": "2026-04-18", "home": "FC今治U-18", "hs": 4, "as": 1, "away": "新田", "status": "played"},
-    {"md": 3, "date": "2026-04-18", "home": "大手前高松", "hs": 1, "as": 1, "away": "徳島市立", "status": "played"},
-    {"md": 3, "date": "2026-04-18", "home": "徳島商", "hs": 2, "as": 7, "away": "高知", "status": "played"},
-    {"md": 3, "date": "2026-04-18", "home": "今治東中等教育学校", "hs": 0, "as": 6, "away": "徳島ヴォルティスユース", "status": "played"},
-
-    {"md": 4, "date": "2026-04-25", "home": "愛媛FC U-18", "hs": 5, "as": 1, "away": "今治東中等教育学校", "status": "played"},
-    {"md": 4, "date": "2026-04-25", "home": "新田", "hs": 2, "as": 2, "away": "大手前高松", "status": "played"},
-    {"md": 4, "date": "2026-04-25", "home": "カマタマーレ讃岐U-18", "hs": 2, "as": 4, "away": "徳島ヴォルティスユース", "status": "played"},
-    {"md": 4, "date": "2026-04-25", "home": "高知", "hs": 3, "as": 1, "away": "FC今治U-18", "status": "played"},
-    {"md": 4, "date": "2026-04-25", "home": "徳島市立", "hs": 4, "as": 1, "away": "徳島商", "status": "played"},
-
-    {"md": 5, "date": "2026-05-02", "home": "徳島商", "hs": 1, "as": 2, "away": "大手前高松", "status": "played"},
-    {"md": 5, "date": "2026-05-02", "home": "FC今治U-18", "hs": 1, "as": 2, "away": "愛媛FC U-18", "status": "played"},
-    {"md": 5, "date": "2026-05-02", "home": "徳島ヴォルティスユース", "hs": 1, "as": 0, "away": "新田", "status": "played"},
-    {"md": 5, "date": "2026-05-02", "home": "高知", "hs": 5, "as": 1, "away": "カマタマーレ讃岐U-18", "status": "played"},
-    {"md": 5, "date": "2026-05-02", "home": "徳島市立", "hs": 1, "as": 1, "away": "今治東中等教育学校", "status": "played"},
-
-    {"md": 6, "date": "2026-05-09", "home": "徳島商", "hs": 0, "as": 2, "away": "徳島ヴォルティスユース", "status": "played"},
-    {"md": 6, "date": "2026-05-09", "home": "大手前高松", "hs": 3, "as": 3, "away": "今治東中等教育学校", "status": "played"},
-    {"md": 6, "date": "2026-05-09", "home": "徳島市立", "hs": 1, "as": 4, "away": "愛媛FC U-18", "status": "played"},
-    {"md": 6, "date": "2026-05-09", "home": "高知", "hs": 1, "as": 0, "away": "新田", "status": "played"},
-    {"md": 6, "date": "2026-05-09", "home": "カマタマーレ讃岐U-18", "hs": 0, "as": 3, "away": "FC今治U-18", "status": "played"},
-
-    {"md": 7, "date": "2026-05-16", "home": "カマタマーレ讃岐U-18", "hs": 1, "as": 1, "away": "大手前高松", "status": "played"},
-    {"md": 7, "date": "2026-05-16", "home": "愛媛FC U-18", "hs": 3, "as": 2, "away": "高知", "status": "played"},
-    {"md": 7, "date": "2026-05-16", "home": "徳島ヴォルティスユース", "hs": 1, "as": 0, "away": "FC今治U-18", "status": "played"},
-    {"md": 7, "date": "2026-05-16", "home": "今治東中等教育学校", "hs": 2, "as": 2, "away": "徳島商", "status": "played"},
-    {"md": 7, "date": "2026-05-16", "home": "徳島市立", "hs": 3, "as": 3, "away": "新田", "status": "played"},
-
-    {"md": 8, "date": "2026-06-27", "home": "愛媛FC U-18", "hs": null, "as": null, "away": "大手前高松", "status": "scheduled"},
-    {"md": 8, "date": "2026-06-27", "home": "徳島ヴォルティスユース", "hs": null, "as": null, "away": "徳島市立", "status": "scheduled"},
-    {"md": 8, "date": "2026-06-27", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-    {"md": 8, "date": "2026-06-27", "home": "新田", "hs": null, "as": null, "away": "カマタマーレ讃岐U-18", "status": "scheduled"},
-    {"md": 8, "date": "2026-06-27", "home": "FC今治U-18", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-
-    {"md": 9, "date": "2026-07-04", "home": "徳島ヴォルティスユース", "hs": null, "as": null, "away": "愛媛FC U-18", "status": "scheduled"},
-    {"md": 9, "date": "2026-07-04", "home": "大手前高松", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-    {"md": 9, "date": "2026-07-04", "home": "徳島市立", "hs": null, "as": null, "away": "FC今治U-18", "status": "scheduled"},
-    {"md": 9, "date": "2026-07-04", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "カマタマーレ讃岐U-18", "status": "scheduled"},
-    {"md": 9, "date": "2026-07-04", "home": "新田", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-
-    {"md": 10, "date": "2026-09-05", "home": "新田", "hs": null, "as": null, "away": "愛媛FC U-18", "status": "scheduled"},
-    {"md": 10, "date": "2026-09-05", "home": "大手前高松", "hs": null, "as": null, "away": "徳島ヴォルティスユース", "status": "scheduled"},
-    {"md": 10, "date": "2026-09-05", "home": "徳島市立", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-    {"md": 10, "date": "2026-09-05", "home": "カマタマーレ讃岐U-18", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-    {"md": 10, "date": "2026-09-05", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "FC今治U-18", "status": "scheduled"},
-
-    {"md": 11, "date": "2026-09-12", "home": "愛媛FC U-18", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-    {"md": 11, "date": "2026-09-12", "home": "徳島ヴォルティスユース", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-    {"md": 11, "date": "2026-09-12", "home": "FC今治U-18", "hs": null, "as": null, "away": "大手前高松", "status": "scheduled"},
-    {"md": 11, "date": "2026-09-12", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "新田", "status": "scheduled"},
-    {"md": 11, "date": "2026-09-12", "home": "徳島市立", "hs": null, "as": null, "away": "カマタマーレ讃岐U-18", "status": "scheduled"},
-
-    {"md": 12, "date": "2026-09-19", "home": "徳島市立", "hs": null, "as": null, "away": "大手前高松", "status": "scheduled"},
-    {"md": 12, "date": "2026-09-19", "home": "カマタマーレ讃岐U-18", "hs": null, "as": null, "away": "愛媛FC U-18", "status": "scheduled"},
-    {"md": 12, "date": "2026-09-19", "home": "徳島ヴォルティスユース", "hs": null, "as": null, "away": "今治東中等教育学校", "status": "scheduled"},
-    {"md": 12, "date": "2026-09-19", "home": "高知", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-    {"md": 12, "date": "2026-09-19", "home": "新田", "hs": null, "as": null, "away": "FC今治U-18", "status": "scheduled"},
-
-    {"md": 13, "date": "2026-09-26", "home": "徳島ヴォルティスユース", "hs": null, "as": null, "away": "カマタマーレ讃岐U-18", "status": "scheduled"},
-    {"md": 13, "date": "2026-09-26", "home": "大手前高松", "hs": null, "as": null, "away": "新田", "status": "scheduled"},
-    {"md": 13, "date": "2026-09-26", "home": "FC今治U-18", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-    {"md": 13, "date": "2026-09-26", "home": "徳島商", "hs": null, "as": null, "away": "徳島市立", "status": "scheduled"},
-    {"md": 13, "date": "2026-09-26", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "愛媛FC U-18", "status": "scheduled"},
-
-    {"md": 14, "date": "2026-10-04", "home": "愛媛FC U-18", "hs": null, "as": null, "away": "FC今治U-18", "status": "scheduled"},
-    {"md": 14, "date": "2026-10-04", "home": "新田", "hs": null, "as": null, "away": "徳島ヴォルティスユース", "status": "scheduled"},
-    {"md": 14, "date": "2026-10-04", "home": "大手前高松", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-    {"md": 14, "date": "2026-10-04", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "徳島市立", "status": "scheduled"},
-    {"md": 14, "date": "2026-10-04", "home": "カマタマーレ讃岐U-18", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-
-    {"md": 15, "date": "2026-10-10", "home": "愛媛FC U-18", "hs": null, "as": null, "away": "徳島市立", "status": "scheduled"},
-    {"md": 15, "date": "2026-10-10", "home": "徳島ヴォルティスユース", "hs": null, "as": null, "away": "徳島商", "status": "scheduled"},
-    {"md": 15, "date": "2026-10-10", "home": "FC今治U-18", "hs": null, "as": null, "away": "カマタマーレ讃岐U-18", "status": "scheduled"},
-    {"md": 15, "date": "2026-10-10", "home": "今治東中等教育学校", "hs": null, "as": null, "away": "大手前高松", "status": "scheduled"},
-    {"md": 15, "date": "2026-10-10", "home": "新田", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-
-    {"md": 16, "date": "2026-10-17", "home": "愛媛FC U-18", "hs": null, "as": null, "away": "高知", "status": "scheduled"},
-    {"md": 16, "date": "2026-10-17", "home": "新田", "hs": null, "as": null, "away": "徳島市立", "status": "scheduled"},
-    {"md": 16, "date": "2026-10-17", "home": "大手前高松", "hs": null, "as": null, "away": "カマタマーレ讃岐U-18", "status": "scheduled"},
-    {"md": 16, "date": "2026-10-17", "home": "FC今治U-18", "hs": null, "as": null, "away": "徳島ヴォルティスユース", "status": "scheduled"},
-    {"md": 16, "date": "2026-10-17", "home": "徳島商", "hs": null, "as": null, "away": "今治東中等教育学校", "status": "scheduled"},
-
-    {"md": 17, "date": "2026-11-23", "home": "徳島市立", "hs": null, "as": null, "away": "愛媛FC U-18", "status": "scheduled"},
-    {"md": 17, "date": "2026-11-23", "home": "大手前高松", "hs": null, "as": null, "away": "徳島ヴォルティスユース", "status": "scheduled"},
-    {"md": 17, "date": "2026-11-23", "home": "高知", "hs": null, "as": null, "away": "今治東中等教育学校", "status": "scheduled"},
-    {"md": 17, "date": "2026-11-23", "home": "徳島商", "hs": null, "as": null, "away": "FC今治U-18", "status": "scheduled"},
-    {"md": 17, "date": "2026-11-23", "home": "カマタマーレ讃岐U-18", "hs": null, "as": null, "away": "新田", "status": "scheduled"},
-
-    {"md": 18, "date": "2026-11-28", "home": "愛媛FC U-18", "hs": null, "as": null, "away": "徳島ヴォルティスユース", "status": "scheduled"},
-    {"md": 18, "date": "2026-11-28", "home": "高知", "hs": null, "as": null, "away": "大手前高松", "status": "scheduled"},
-    {"md": 18, "date": "2026-11-28", "home": "FC今治U-18", "hs": null, "as": null, "away": "徳島市立", "status": "scheduled"},
-    {"md": 18, "date": "2026-11-28", "home": "カマタマーレ讃岐U-18", "hs": null, "as": null, "away": "今治東中等教育学校", "status": "scheduled"},
-    {"md": 18, "date": "2026-11-28", "home": "徳島商", "hs": null, "as": null, "away": "新田", "status": "scheduled"}
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "愛媛FC U-18",
+      "hs": 7,
+      "as": 0,
+      "away": "新田",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "FC今治U-18",
+      "hs": 1,
+      "as": 0,
+      "away": "今治東中等教育学校",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "徳島商",
+      "hs": 1,
+      "as": 1,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "徳島ヴォルティスユース",
+      "hs": 0,
+      "as": 1,
+      "away": "大手前高松",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-06-13",
+      "home": "高知",
+      "hs": 0,
+      "as": 1,
+      "away": "徳島市立",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "大手前高松",
+      "hs": 1,
+      "as": 1,
+      "away": "FC今治U-18",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "新田",
+      "hs": 0,
+      "as": 2,
+      "away": "今治東中等教育学校",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "徳島商",
+      "hs": 2,
+      "as": 3,
+      "away": "愛媛FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "高知",
+      "hs": 2,
+      "as": 3,
+      "away": "徳島ヴォルティスユース",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": 0,
+      "as": 7,
+      "away": "徳島市立",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "愛媛FC U-18",
+      "hs": 1,
+      "as": 0,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "FC今治U-18",
+      "hs": 4,
+      "as": 1,
+      "away": "新田",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "大手前高松",
+      "hs": 1,
+      "as": 1,
+      "away": "徳島市立",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "徳島商",
+      "hs": 2,
+      "as": 7,
+      "away": "高知",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "今治東中等教育学校",
+      "hs": 0,
+      "as": 6,
+      "away": "徳島ヴォルティスユース",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "愛媛FC U-18",
+      "hs": 5,
+      "as": 1,
+      "away": "今治東中等教育学校",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "新田",
+      "hs": 2,
+      "as": 2,
+      "away": "大手前高松",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": 2,
+      "as": 4,
+      "away": "徳島ヴォルティスユース",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "高知",
+      "hs": 3,
+      "as": 1,
+      "away": "FC今治U-18",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "徳島市立",
+      "hs": 4,
+      "as": 1,
+      "away": "徳島商",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "徳島商",
+      "hs": 1,
+      "as": 2,
+      "away": "大手前高松",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "FC今治U-18",
+      "hs": 1,
+      "as": 2,
+      "away": "愛媛FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "徳島ヴォルティスユース",
+      "hs": 1,
+      "as": 0,
+      "away": "新田",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "高知",
+      "hs": 5,
+      "as": 1,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "徳島市立",
+      "hs": 1,
+      "as": 1,
+      "away": "今治東中等教育学校",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "徳島商",
+      "hs": 0,
+      "as": 2,
+      "away": "徳島ヴォルティスユース",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "大手前高松",
+      "hs": 3,
+      "as": 3,
+      "away": "今治東中等教育学校",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "徳島市立",
+      "hs": 1,
+      "as": 4,
+      "away": "愛媛FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "高知",
+      "hs": 1,
+      "as": 0,
+      "away": "新田",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": 0,
+      "as": 3,
+      "away": "FC今治U-18",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": 1,
+      "as": 1,
+      "away": "大手前高松",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "愛媛FC U-18",
+      "hs": 3,
+      "as": 2,
+      "away": "高知",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "徳島ヴォルティスユース",
+      "hs": 1,
+      "as": 0,
+      "away": "FC今治U-18",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "今治東中等教育学校",
+      "hs": 2,
+      "as": 2,
+      "away": "徳島商",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "徳島市立",
+      "hs": 3,
+      "as": 3,
+      "away": "新田",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "大手前高松",
+      "status": "scheduled"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "FC今治U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "徳島市立",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "徳島市立",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "FC今治U-18",
+      "hs": null,
+      "as": null,
+      "away": "大手前高松",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "新田",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "徳島市立",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "徳島市立",
+      "hs": null,
+      "as": null,
+      "away": "大手前高松",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "今治東中等教育学校",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "高知",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "新田",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "FC今治U-18",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "徳島商",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-04",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-04",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-04",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-04",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-04",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "FC今治U-18",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "今治東中等教育学校",
+      "hs": null,
+      "as": null,
+      "away": "大手前高松",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "FC今治U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "徳島商",
+      "hs": null,
+      "as": null,
+      "away": "今治東中等教育学校",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "徳島市立",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "高知",
+      "hs": null,
+      "as": null,
+      "away": "今治東中等教育学校",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "徳島商",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "新田",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "高知",
+      "hs": null,
+      "as": null,
+      "away": "大手前高松",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "FC今治U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "今治東中等教育学校",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "徳島商",
+      "hs": null,
+      "as": null,
+      "away": "新田",
+      "status": "scheduled"
+    }
   ]
 }

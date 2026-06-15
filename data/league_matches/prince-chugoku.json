@@ -2,138 +2,981 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 中国",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4340",
-  "lastUpdated": "2026-06-13",
+  "lastUpdated": "2026-06-15",
   "teams": [
-    { "name": "岡山学芸館", "short": "学芸館" },
-    { "name": "瀬戸内", "short": "瀬戸内" },
-    { "name": "立正大淞南", "short": "淞南" },
-    { "name": "作陽学園", "short": "作陽" },
-    { "name": "レノファ山口FC U-18", "short": "山口" },
-    { "name": "広島皆実", "short": "皆実" },
-    { "name": "大社", "short": "大社" },
-    { "name": "高川学園", "short": "高川" },
-    { "name": "就実", "short": "就実" },
-    { "name": "玉野光南", "short": "玉野" }
+    {
+      "name": "岡山学芸館",
+      "short": "学芸館"
+    },
+    {
+      "name": "瀬戸内",
+      "short": "瀬戸内"
+    },
+    {
+      "name": "立正大淞南",
+      "short": "淞南"
+    },
+    {
+      "name": "作陽学園",
+      "short": "作陽"
+    },
+    {
+      "name": "レノファ山口FC U-18",
+      "short": "山口"
+    },
+    {
+      "name": "広島皆実",
+      "short": "皆実"
+    },
+    {
+      "name": "大社",
+      "short": "大社"
+    },
+    {
+      "name": "高川学園",
+      "short": "高川"
+    },
+    {
+      "name": "就実",
+      "short": "就実"
+    },
+    {
+      "name": "玉野光南",
+      "short": "玉野"
+    }
   ],
   "official_standings": [
-    { "rank": 1, "team": "岡山学芸館", "pts": 19, "played": 8, "won": 6, "drawn": 1, "lost": 1, "gf": 20, "ga": 6, "gd": 14 },
-    { "rank": 1, "team": "瀬戸内", "pts": 19, "played": 8, "won": 6, "drawn": 1, "lost": 1, "gf": 20, "ga": 6, "gd": 14 },
-    { "rank": 3, "team": "立正大淞南", "pts": 16, "played": 8, "won": 5, "drawn": 1, "lost": 2, "gf": 16, "ga": 10, "gd": 6 },
-    { "rank": 4, "team": "作陽学園", "pts": 12, "played": 8, "won": 3, "drawn": 3, "lost": 2, "gf": 8, "ga": 8, "gd": 0 },
-    { "rank": 5, "team": "レノファ山口FC U-18", "pts": 9, "played": 8, "won": 2, "drawn": 3, "lost": 3, "gf": 6, "ga": 8, "gd": -2 },
-    { "rank": 6, "team": "広島皆実", "pts": 9, "played": 8, "won": 2, "drawn": 3, "lost": 3, "gf": 5, "ga": 7, "gd": -2 },
-    { "rank": 7, "team": "大社", "pts": 8, "played": 8, "won": 2, "drawn": 2, "lost": 4, "gf": 5, "ga": 15, "gd": -10 },
-    { "rank": 8, "team": "高川学園", "pts": 7, "played": 8, "won": 1, "drawn": 4, "lost": 3, "gf": 6, "ga": 10, "gd": -4 },
-    { "rank": 9, "team": "就実", "pts": 6, "played": 8, "won": 2, "drawn": 0, "lost": 6, "gf": 7, "ga": 14, "gd": -7 },
-    { "rank": 10, "team": "玉野光南", "pts": 6, "played": 8, "won": 2, "drawn": 0, "lost": 6, "gf": 10, "ga": 19, "gd": -9 }
+    {
+      "rank": 1,
+      "team": "岡山学芸館",
+      "pts": 19,
+      "played": 8,
+      "won": 6,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 20,
+      "ga": 6,
+      "gd": 14
+    },
+    {
+      "rank": 2,
+      "team": "瀬戸内",
+      "pts": 19,
+      "played": 8,
+      "won": 6,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 20,
+      "ga": 6,
+      "gd": 14
+    },
+    {
+      "rank": 3,
+      "team": "立正大淞南",
+      "pts": 16,
+      "played": 8,
+      "won": 5,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 16,
+      "ga": 10,
+      "gd": 6
+    },
+    {
+      "rank": 4,
+      "team": "作陽学園",
+      "pts": 12,
+      "played": 8,
+      "won": 3,
+      "drawn": 3,
+      "lost": 2,
+      "gf": 8,
+      "ga": 8,
+      "gd": 0
+    },
+    {
+      "rank": 5,
+      "team": "レノファ山口FC U-18",
+      "pts": 9,
+      "played": 8,
+      "won": 2,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 6,
+      "ga": 8,
+      "gd": -2
+    },
+    {
+      "rank": 6,
+      "team": "広島皆実",
+      "pts": 9,
+      "played": 8,
+      "won": 2,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 5,
+      "ga": 7,
+      "gd": -2
+    },
+    {
+      "rank": 7,
+      "team": "大社",
+      "pts": 8,
+      "played": 8,
+      "won": 2,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 5,
+      "ga": 15,
+      "gd": -10
+    },
+    {
+      "rank": 8,
+      "team": "高川学園",
+      "pts": 7,
+      "played": 8,
+      "won": 1,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 6,
+      "ga": 10,
+      "gd": -4
+    },
+    {
+      "rank": 9,
+      "team": "就実",
+      "pts": 6,
+      "played": 8,
+      "won": 2,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 7,
+      "ga": 14,
+      "gd": -7
+    },
+    {
+      "rank": 10,
+      "team": "玉野光南",
+      "pts": 6,
+      "played": 8,
+      "won": 2,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 10,
+      "ga": 19,
+      "gd": -9
+    }
   ],
   "matches": [
-    { "md": 1, "date": "2026-04-04", "home": "岡山学芸館", "hs": 5, "as": 0, "away": "大社", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "作陽学園", "hs": 1, "as": 0, "away": "就実", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "高川学園", "hs": 0, "as": 1, "away": "レノファ山口FC U-18", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "瀬戸内", "hs": 2, "as": 1, "away": "広島皆実", "status": "played" },
-    { "md": 1, "date": "2026-04-04", "home": "立正大淞南", "hs": 2, "as": 1, "away": "玉野光南", "status": "played" },
-
-    { "md": 2, "date": "2026-04-11", "home": "就実", "hs": 0, "as": 2, "away": "岡山学芸館", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "広島皆実", "hs": 0, "as": 0, "away": "高川学園", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "大社", "hs": 0, "as": 2, "away": "立正大淞南", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "レノファ山口FC U-18", "hs": 0, "as": 1, "away": "作陽学園", "status": "played" },
-    { "md": 2, "date": "2026-04-11", "home": "玉野光南", "hs": 0, "as": 4, "away": "瀬戸内", "status": "played" },
-
-    { "md": 3, "date": "2026-04-18", "home": "岡山学芸館", "hs": 1, "as": 1, "away": "レノファ山口FC U-18", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "作陽学園", "hs": 1, "as": 1, "away": "広島皆実", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "高川学園", "hs": 1, "as": 1, "away": "大社", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "瀬戸内", "hs": 3, "as": 1, "away": "立正大淞南", "status": "played" },
-    { "md": 3, "date": "2026-04-18", "home": "玉野光南", "hs": 0, "as": 2, "away": "就実", "status": "played" },
-
-    { "md": 4, "date": "2026-04-25", "home": "就実", "hs": 1, "as": 3, "away": "瀬戸内", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "広島皆実", "hs": 1, "as": 0, "away": "岡山学芸館", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "大社", "hs": 2, "as": 0, "away": "作陽学園", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "玉野光南", "hs": 4, "as": 1, "away": "高川学園", "status": "played" },
-    { "md": 4, "date": "2026-04-25", "home": "レノファ山口FC U-18", "hs": 1, "as": 3, "away": "立正大淞南", "status": "played" },
-
-    { "md": 5, "date": "2026-04-29", "home": "岡山学芸館", "hs": 5, "as": 2, "away": "玉野光南", "status": "played" },
-    { "md": 5, "date": "2026-04-29", "home": "広島皆実", "hs": 1, "as": 1, "away": "レノファ山口FC U-18", "status": "played" },
-    { "md": 5, "date": "2026-04-29", "home": "作陽学園", "hs": 0, "as": 2, "away": "立正大淞南", "status": "played" },
-    { "md": 5, "date": "2026-04-29", "home": "就実", "hs": 0, "as": 1, "away": "高川学園", "status": "played" },
-    { "md": 5, "date": "2026-04-29", "home": "瀬戸内", "hs": 5, "as": 0, "away": "大社", "status": "played" },
-
-    { "md": 6, "date": "2026-05-09", "home": "レノファ山口FC U-18", "hs": 0, "as": 1, "away": "瀬戸内", "status": "played" },
-    { "md": 6, "date": "2026-05-09", "home": "立正大淞南", "hs": 0, "as": 3, "away": "岡山学芸館", "status": "played" },
-    { "md": 6, "date": "2026-05-09", "home": "高川学園", "hs": 1, "as": 1, "away": "作陽学園", "status": "played" },
-    { "md": 6, "date": "2026-05-09", "home": "大社", "hs": 2, "as": 1, "away": "玉野光南", "status": "played" },
-    { "md": 6, "date": "2026-05-09", "home": "就実", "hs": 2, "as": 0, "away": "広島皆実", "status": "played" },
-
-    { "md": 7, "date": "2026-05-16", "home": "作陽学園", "hs": 3, "as": 1, "away": "玉野光南", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "岡山学芸館", "hs": 2, "as": 1, "away": "瀬戸内", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "高川学園", "hs": 1, "as": 1, "away": "立正大淞南", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "広島皆実", "hs": 1, "as": 0, "away": "大社", "status": "played" },
-    { "md": 7, "date": "2026-05-16", "home": "レノファ山口FC U-18", "hs": 2, "as": 1, "away": "就実", "status": "played" },
-
-    { "md": 8, "date": "2026-05-23", "home": "高川学園", "hs": 1, "as": 2, "away": "岡山学芸館", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "広島皆実", "hs": 0, "as": 1, "away": "玉野光南", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "大社", "hs": 0, "as": 0, "away": "レノファ山口FC U-18", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "瀬戸内", "hs": 1, "as": 1, "away": "作陽学園", "status": "played" },
-    { "md": 8, "date": "2026-05-23", "home": "就実", "hs": 1, "as": 5, "away": "立正大淞南", "status": "played" },
-
-    { "md": 9, "date": "2026-06-27", "home": "岡山学芸館", "hs": null, "as": null, "away": "作陽学園", "status": "scheduled" },
-    { "md": 9, "date": "2026-06-27", "home": "高川学園", "hs": null, "as": null, "away": "瀬戸内", "status": "scheduled" },
-    { "md": 9, "date": "2026-06-27", "home": "玉野光南", "hs": null, "as": null, "away": "レノファ山口FC U-18", "status": "scheduled" },
-    { "md": 9, "date": "2026-06-27", "home": "立正大淞南", "hs": null, "as": null, "away": "広島皆実", "status": "scheduled" },
-    { "md": 9, "date": "2026-06-27", "home": "就実", "hs": null, "as": null, "away": "大社", "status": "scheduled" },
-
-    { "md": 10, "date": "2026-09-05", "home": "大社", "hs": null, "as": null, "away": "岡山学芸館", "status": "scheduled" },
-    { "md": 10, "date": "2026-09-05", "home": "就実", "hs": null, "as": null, "away": "作陽学園", "status": "scheduled" },
-    { "md": 10, "date": "2026-09-05", "home": "レノファ山口FC U-18", "hs": null, "as": null, "away": "高川学園", "status": "scheduled" },
-    { "md": 10, "date": "2026-09-05", "home": "玉野光南", "hs": null, "as": null, "away": "立正大淞南", "status": "scheduled" },
-    { "md": 10, "date": "2026-09-06", "home": "広島皆実", "hs": null, "as": null, "away": "瀬戸内", "status": "scheduled" },
-
-    { "md": 11, "date": "2026-09-12", "home": "岡山学芸館", "hs": null, "as": null, "away": "就実", "status": "scheduled" },
-    { "md": 11, "date": "2026-09-12", "home": "作陽学園", "hs": null, "as": null, "away": "レノファ山口FC U-18", "status": "scheduled" },
-    { "md": 11, "date": "2026-09-12", "home": "立正大淞南", "hs": null, "as": null, "away": "大社", "status": "scheduled" },
-    { "md": 11, "date": "2026-09-12", "home": "高川学園", "hs": null, "as": null, "away": "広島皆実", "status": "scheduled" },
-    { "md": 11, "date": "2026-09-12", "home": "瀬戸内", "hs": null, "as": null, "away": "玉野光南", "status": "scheduled" },
-
-    { "md": 12, "date": "2026-09-19", "home": "レノファ山口FC U-18", "hs": null, "as": null, "away": "岡山学芸館", "status": "scheduled" },
-    { "md": 12, "date": "2026-09-19", "home": "広島皆実", "hs": null, "as": null, "away": "作陽学園", "status": "scheduled" },
-    { "md": 12, "date": "2026-09-19", "home": "就実", "hs": null, "as": null, "away": "玉野光南", "status": "scheduled" },
-    { "md": 12, "date": "2026-09-19", "home": "大社", "hs": null, "as": null, "away": "高川学園", "status": "scheduled" },
-    { "md": 12, "date": "2026-09-19", "home": "立正大淞南", "hs": null, "as": null, "away": "瀬戸内", "status": "scheduled" },
-
-    { "md": 13, "date": "2026-09-23", "home": "瀬戸内", "hs": null, "as": null, "away": "就実", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-23", "home": "立正大淞南", "hs": null, "as": null, "away": "レノファ山口FC U-18", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-23", "home": "岡山学芸館", "hs": null, "as": null, "away": "広島皆実", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-23", "home": "作陽学園", "hs": null, "as": null, "away": "大社", "status": "scheduled" },
-    { "md": 13, "date": "2026-09-23", "home": "高川学園", "hs": null, "as": null, "away": "玉野光南", "status": "scheduled" },
-
-    { "md": 14, "date": "2026-09-26", "home": "玉野光南", "hs": null, "as": null, "away": "岡山学芸館", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-26", "home": "立正大淞南", "hs": null, "as": null, "away": "作陽学園", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-26", "home": "レノファ山口FC U-18", "hs": null, "as": null, "away": "広島皆実", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-26", "home": "高川学園", "hs": null, "as": null, "away": "就実", "status": "scheduled" },
-    { "md": 14, "date": "2026-09-26", "home": "大社", "hs": null, "as": null, "away": "瀬戸内", "status": "scheduled" },
-
-    { "md": 15, "date": "2026-10-03", "home": "広島皆実", "hs": null, "as": null, "away": "就実", "status": "scheduled" },
-    { "md": 15, "date": "2026-10-03", "home": "岡山学芸館", "hs": null, "as": null, "away": "立正大淞南", "status": "scheduled" },
-    { "md": 15, "date": "2026-10-03", "home": "作陽学園", "hs": null, "as": null, "away": "高川学園", "status": "scheduled" },
-    { "md": 15, "date": "2026-10-03", "home": "玉野光南", "hs": null, "as": null, "away": "大社", "status": "scheduled" },
-    { "md": 15, "date": "2026-10-03", "home": "瀬戸内", "hs": null, "as": null, "away": "レノファ山口FC U-18", "status": "scheduled" },
-
-    { "md": 16, "date": "2026-10-10", "home": "就実", "hs": null, "as": null, "away": "レノファ山口FC U-18", "status": "scheduled" },
-    { "md": 16, "date": "2026-10-10", "home": "瀬戸内", "hs": null, "as": null, "away": "岡山学芸館", "status": "scheduled" },
-    { "md": 16, "date": "2026-10-10", "home": "大社", "hs": null, "as": null, "away": "広島皆実", "status": "scheduled" },
-    { "md": 16, "date": null, "home": "立正大淞南", "hs": null, "as": null, "away": "高川学園", "status": "scheduled" },
-    { "md": 16, "date": "2026-11-14", "home": "玉野光南", "hs": null, "as": null, "away": "作陽学園", "status": "scheduled" },
-
-    { "md": 17, "date": "2026-11-21", "home": "作陽学園", "hs": null, "as": null, "away": "瀬戸内", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-21", "home": "岡山学芸館", "hs": null, "as": null, "away": "高川学園", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-21", "home": "立正大淞南", "hs": null, "as": null, "away": "就実", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-21", "home": "玉野光南", "hs": null, "as": null, "away": "広島皆実", "status": "scheduled" },
-    { "md": 17, "date": "2026-11-21", "home": "レノファ山口FC U-18", "hs": null, "as": null, "away": "大社", "status": "scheduled" },
-
-    { "md": 18, "date": "2026-11-28", "home": "作陽学園", "hs": null, "as": null, "away": "岡山学芸館", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-28", "home": "瀬戸内", "hs": null, "as": null, "away": "高川学園", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-28", "home": "広島皆実", "hs": null, "as": null, "away": "立正大淞南", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-28", "home": "レノファ山口FC U-18", "hs": null, "as": null, "away": "玉野光南", "status": "scheduled" },
-    { "md": 18, "date": "2026-11-28", "home": "大社", "hs": null, "as": null, "away": "就実", "status": "scheduled" }
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "岡山学芸館",
+      "hs": 5,
+      "as": 0,
+      "away": "大社",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "作陽学園",
+      "hs": 1,
+      "as": 0,
+      "away": "就実",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "高川学園",
+      "hs": 0,
+      "as": 1,
+      "away": "レノファ山口FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "瀬戸内",
+      "hs": 2,
+      "as": 1,
+      "away": "広島皆実",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "立正大淞南",
+      "hs": 2,
+      "as": 1,
+      "away": "玉野光南",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "就実",
+      "hs": 0,
+      "as": 2,
+      "away": "岡山学芸館",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "広島皆実",
+      "hs": 0,
+      "as": 0,
+      "away": "高川学園",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "大社",
+      "hs": 0,
+      "as": 2,
+      "away": "立正大淞南",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "レノファ山口FC U-18",
+      "hs": 0,
+      "as": 1,
+      "away": "作陽学園",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "玉野光南",
+      "hs": 0,
+      "as": 4,
+      "away": "瀬戸内",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "岡山学芸館",
+      "hs": 1,
+      "as": 1,
+      "away": "レノファ山口FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "作陽学園",
+      "hs": 1,
+      "as": 1,
+      "away": "広島皆実",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "高川学園",
+      "hs": 1,
+      "as": 1,
+      "away": "大社",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "瀬戸内",
+      "hs": 3,
+      "as": 1,
+      "away": "立正大淞南",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "玉野光南",
+      "hs": 0,
+      "as": 2,
+      "away": "就実",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "就実",
+      "hs": 1,
+      "as": 3,
+      "away": "瀬戸内",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "広島皆実",
+      "hs": 1,
+      "as": 0,
+      "away": "岡山学芸館",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "大社",
+      "hs": 2,
+      "as": 0,
+      "away": "作陽学園",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "玉野光南",
+      "hs": 4,
+      "as": 1,
+      "away": "高川学園",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "レノファ山口FC U-18",
+      "hs": 1,
+      "as": 3,
+      "away": "立正大淞南",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "岡山学芸館",
+      "hs": 5,
+      "as": 2,
+      "away": "玉野光南",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "広島皆実",
+      "hs": 1,
+      "as": 1,
+      "away": "レノファ山口FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "作陽学園",
+      "hs": 0,
+      "as": 2,
+      "away": "立正大淞南",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "就実",
+      "hs": 0,
+      "as": 1,
+      "away": "高川学園",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "瀬戸内",
+      "hs": 5,
+      "as": 0,
+      "away": "大社",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "レノファ山口FC U-18",
+      "hs": 0,
+      "as": 1,
+      "away": "瀬戸内",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "立正大淞南",
+      "hs": 0,
+      "as": 3,
+      "away": "岡山学芸館",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "高川学園",
+      "hs": 1,
+      "as": 1,
+      "away": "作陽学園",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "大社",
+      "hs": 2,
+      "as": 1,
+      "away": "玉野光南",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "就実",
+      "hs": 2,
+      "as": 0,
+      "away": "広島皆実",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "作陽学園",
+      "hs": 3,
+      "as": 1,
+      "away": "玉野光南",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "岡山学芸館",
+      "hs": 2,
+      "as": 1,
+      "away": "瀬戸内",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "高川学園",
+      "hs": 1,
+      "as": 1,
+      "away": "立正大淞南",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "広島皆実",
+      "hs": 1,
+      "as": 0,
+      "away": "大社",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "レノファ山口FC U-18",
+      "hs": 2,
+      "as": 1,
+      "away": "就実",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "高川学園",
+      "hs": 1,
+      "as": 2,
+      "away": "岡山学芸館",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "広島皆実",
+      "hs": 0,
+      "as": 1,
+      "away": "玉野光南",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "大社",
+      "hs": 0,
+      "as": 0,
+      "away": "レノファ山口FC U-18",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "瀬戸内",
+      "hs": 1,
+      "as": 1,
+      "away": "作陽学園",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-23",
+      "home": "就実",
+      "hs": 1,
+      "as": 5,
+      "away": "立正大淞南",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-27",
+      "home": "岡山学芸館",
+      "hs": null,
+      "as": null,
+      "away": "作陽学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-27",
+      "home": "高川学園",
+      "hs": null,
+      "as": null,
+      "away": "瀬戸内",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-27",
+      "home": "玉野光南",
+      "hs": null,
+      "as": null,
+      "away": "レノファ山口FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-27",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "広島皆実",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-27",
+      "home": "就実",
+      "hs": null,
+      "as": null,
+      "away": "大社",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "大社",
+      "hs": null,
+      "as": null,
+      "away": "岡山学芸館",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "就実",
+      "hs": null,
+      "as": null,
+      "away": "作陽学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "レノファ山口FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "高川学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "玉野光南",
+      "hs": null,
+      "as": null,
+      "away": "立正大淞南",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-06",
+      "home": "広島皆実",
+      "hs": null,
+      "as": null,
+      "away": "瀬戸内",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "岡山学芸館",
+      "hs": null,
+      "as": null,
+      "away": "就実",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "作陽学園",
+      "hs": null,
+      "as": null,
+      "away": "レノファ山口FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "大社",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "高川学園",
+      "hs": null,
+      "as": null,
+      "away": "広島皆実",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "瀬戸内",
+      "hs": null,
+      "as": null,
+      "away": "玉野光南",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "レノファ山口FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "岡山学芸館",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "広島皆実",
+      "hs": null,
+      "as": null,
+      "away": "作陽学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "就実",
+      "hs": null,
+      "as": null,
+      "away": "玉野光南",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "大社",
+      "hs": null,
+      "as": null,
+      "away": "高川学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "瀬戸内",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "瀬戸内",
+      "hs": null,
+      "as": null,
+      "away": "就実",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "レノファ山口FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "岡山学芸館",
+      "hs": null,
+      "as": null,
+      "away": "広島皆実",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "作陽学園",
+      "hs": null,
+      "as": null,
+      "away": "大社",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "高川学園",
+      "hs": null,
+      "as": null,
+      "away": "玉野光南",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "玉野光南",
+      "hs": null,
+      "as": null,
+      "away": "岡山学芸館",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "作陽学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "レノファ山口FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "広島皆実",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "高川学園",
+      "hs": null,
+      "as": null,
+      "away": "就実",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "大社",
+      "hs": null,
+      "as": null,
+      "away": "瀬戸内",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "広島皆実",
+      "hs": null,
+      "as": null,
+      "away": "就実",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "岡山学芸館",
+      "hs": null,
+      "as": null,
+      "away": "立正大淞南",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "作陽学園",
+      "hs": null,
+      "as": null,
+      "away": "高川学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "玉野光南",
+      "hs": null,
+      "as": null,
+      "away": "大社",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "瀬戸内",
+      "hs": null,
+      "as": null,
+      "away": "レノファ山口FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-10",
+      "home": "就実",
+      "hs": null,
+      "as": null,
+      "away": "レノファ山口FC U-18",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-10",
+      "home": "瀬戸内",
+      "hs": null,
+      "as": null,
+      "away": "岡山学芸館",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-10",
+      "home": "大社",
+      "hs": null,
+      "as": null,
+      "away": "広島皆実",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "高川学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "2026-11-14",
+      "home": "玉野光南",
+      "hs": null,
+      "as": null,
+      "away": "作陽学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "作陽学園",
+      "hs": null,
+      "as": null,
+      "away": "瀬戸内",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "岡山学芸館",
+      "hs": null,
+      "as": null,
+      "away": "高川学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "立正大淞南",
+      "hs": null,
+      "as": null,
+      "away": "就実",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "玉野光南",
+      "hs": null,
+      "as": null,
+      "away": "広島皆実",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "レノファ山口FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "大社",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "作陽学園",
+      "hs": null,
+      "as": null,
+      "away": "岡山学芸館",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "瀬戸内",
+      "hs": null,
+      "as": null,
+      "away": "高川学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "広島皆実",
+      "hs": null,
+      "as": null,
+      "away": "立正大淞南",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "レノファ山口FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "玉野光南",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "大社",
+      "hs": null,
+      "as": null,
+      "away": "就実",
+      "status": "scheduled"
+    }
   ]
 }
