@@ -137,7 +137,10 @@ def render_cross_table_html(slug: str) -> str:
                 continue
             r = "xt-win" if gf > ga else ("xt-draw" if gf == ga else "xt-lose")
             mark = "○" if r == "xt-win" else ("△" if r == "xt-draw" else "●")
-            tip = f'第{m.get("md","")}節 {ha} {short.get(opp, opp)} {gf}-{ga}'
+            md = m.get("md") or 0
+            mdate = m.get("date") or ""
+            prefix = f'第{md}節 ' if md else (f'{mdate} ' if mdate else '')
+            tip = f'{prefix}{ha} {short.get(opp, opp)} {gf}-{ga}'
             seq.append((mark, r, tip))
         return seq
 
