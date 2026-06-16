@@ -1,6 +1,6 @@
 ---
 id: naruto
-name: 徳島県立鳴門高等学校
+name: 鳴門高校
 short_name: 鳴門
 league: 徳島県Tリーグ
 prefecture: tokushima
