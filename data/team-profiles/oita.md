@@ -1,6 +1,6 @@
 ---
 id: oita
-name: 大分高等学校
+name: 大分高校
 short_name: 大分
 league: OFAリーグ大分1部
 prefecture: oita
