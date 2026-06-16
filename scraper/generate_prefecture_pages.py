@@ -23,6 +23,7 @@ import json
 import re
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+from cross_table import render_cross_table_html
 
 class _JSTDate:
     """GitHubのサーバーは世界標準時のため、日本時間の「今日」を返す"""
