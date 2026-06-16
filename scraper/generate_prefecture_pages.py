@@ -1826,6 +1826,7 @@ def generate_page(pref, all_prefs):
         .replace("__NOTABLE_SENTENCE__", notable_sentence)
         .replace("__AI_SUMMARY__", build_ai_summary(pref_name, teams))
         .replace("__TEAM_ROWS__", team_rows)
+        .replace("__PREF_CROSS_TABLE__", render_cross_table_html(f"pref-{pref_id}-1"))
         .replace("__LOWER_DIVISIONS__", lower_divisions_html)
         .replace("__NEIGHBOR_LINKS__", neighbor_links)
         .replace("__FAQ_HTML__", faq_html)
