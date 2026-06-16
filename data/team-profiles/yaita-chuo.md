@@ -1,6 +1,6 @@
 ---
 id: yaita-chuo
-name: 矢板中央高等学校
+name: 矢板中央高校
 short_name: 矢板中央
 league: プリンスリーグ関東2部
 prefecture: tochigi
