@@ -1385,7 +1385,7 @@ __TEAM_ROWS__
           </tbody>
         </table>
       </div>
-
+__PREF_CROSS_TABLE__
 __LOWER_DIVISIONS__
 
       <!-- 説明文 (SEO 用) -->
