@@ -92,7 +92,18 @@ def render_team_name_with_link(team_name: str) -> str:
             f'{formatted}</a>'
         )
     return formatted
-
+    
+# ============================================================
+# 全都道府県共通の特集記事（インハイ総括など、全国共通の話題）
+# 各県ページの「観戦コラム」セクションの先頭に表示される
+# ============================================================
+COMMON_FEATURED_ARTICLES = [
+    {
+        "title": '【2026インハイ予選総括】47都道府県代表校完全リスト｜W杯OB母校7校・伝統校復活・新興校台頭の全体像',
+        "url": "/blog/posts/interhigh-2026-summary/",
+        "date": "2026-06-17",
+    },
+]
 # ============================================================
 # 都道府県別の特集記事マッピング
 # 今後、他県の特集記事を書いたらここに追加していく
@@ -152,7 +163,7 @@ PREFECTURE_FEATURED_ARTICLES = {
 
 def render_featured_articles(pref_id):
     """都道府県の特集記事HTMLを返す。記事がなければ空文字を返す。"""
-    articles = PREFECTURE_FEATURED_ARTICLES.get(pref_id, [])
+    articles = list(COMMON_FEATURED_ARTICLES) + PREFECTURE_FEATURED_ARTICLES.get(pref_id, [])
     if not articles:
         return ""
     
