@@ -53,8 +53,31 @@ def render_cross_table_html(slug: str) -> str:
     if not teams or not matches:
         return ""
 
+    # 県ページの戦績表(slugが "pref-" 始まり)だけ、チーム名のA/B表記を
+    # サイト順位表に合わせる（A＝1軍→無印、B＝2軍→2nd）。
+    # 通常リーグ(15リーグ)には一切影響しない。
+    is_pref = slug.startswith("pref-")
+
+    def _align_name(s):
+        s = str(s)
+        for suf in ("・A", "・Ａ"):
+            if s.endswith(suf):
+                return s[: -len(suf)]
+        for suf in ("・B", "・Ｂ"):
+            if s.endswith(suf):
+                return s[: -len(suf)] + "2nd"
+        if s.endswith("A") or s.endswith("Ａ"):
+            return s[:-1]
+        if s.endswith("B") or s.endswith("Ｂ"):
+            return s[:-1] + "2nd"
+        return s
+
     names = [t["name"] for t in teams]
     short = {t["name"]: t.get("short", t["name"]) for t in teams}
+    disp = {t["name"]: t["name"] for t in teams}   # 各チーム戦績の表示用フルネーム
+    if is_pref:
+        short = {n: _align_name(v) for n, v in short.items()}
+        disp = {n: _align_name(v) for n, v in disp.items()}
     played = [m for m in matches
               if m.get("status") == "played" and m.get("hs") is not None and m.get("as") is not None]
     if not played:
@@ -153,7 +176,7 @@ def render_cross_table_html(slug: str) -> str:
         )
         form_rows.append(
             f'<tr><th class="xt-rk">{i}</th>'
-            f'<th class="xt-tn2">{_html_escape(t)}</th>'
+            f'<th class="xt-tn2">{_html_escape(disp[t])}</th>'
             f'<td class="xt-rec">{s["w"]}勝{s["d"]}分{s["l"]}敗</td>'
             f'<td class="xt-form">{chips}</td></tr>'
         )
@@ -165,6 +188,17 @@ def render_cross_table_html(slug: str) -> str:
     source_html = (f'　出典: <a href="{_html_escape(source)}" rel="nofollow" target="_blank">'
                    f'高校サッカードットコム</a>') if source else ""
 
+    # 県ページのとき、この戦績表が「県1部リーグのもの」だと分かる説明を出す
+    # （上の順位表はプレミア・プリンス所属チームも含む県内全体のため）。
+    league_name = _html_escape(data.get("league", ""))
+    pref_scope = ""
+    if is_pref and league_name:
+        pref_scope = (
+            f'<p class="xt-scope">この戦績表は <strong>{league_name}</strong> の対戦結果です。'
+            f'ページ上部の順位表は、プレミア・プリンスなど上位カテゴリ所属チームも含めた'
+            f'県内全体の順位を表示しているため、この表（県1部リーグ）とは対象チームが異なります。</p>'
+        )
+
     nl = "\n"
     return f"""
       <section class="xt-section" id="cross-table">
@@ -173,6 +207,9 @@ def render_cross_table_html(slug: str) -> str:
         .xt-section{{margin:44px 0 14px;}}
         .xt-section h2{{font-size:1.7rem;margin:0 0 6px;border-left:6px solid #1565c0;padding-left:12px;}}
         .xt-meta{{font-size:1rem;color:inherit;opacity:.75;margin:0 0 12px;}}
+        .xt-scope{{font-size:.98rem;color:inherit;line-height:1.65;margin:0 0 14px;padding:11px 15px;
+          border-left:4px solid #1565c0;background:rgba(21,101,192,.10);border-radius:0 7px 7px 0;}}
+        .xt-scope strong{{color:inherit;}}
         .xt-note{{font-size:.95rem;color:inherit;opacity:.75;margin:4px 2px 12px;line-height:1.6;}}
         .xt-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}}
         .xt-cross{{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;width:100%;}}
@@ -239,6 +276,7 @@ def render_cross_table_html(slug: str) -> str:
         </style>
         <h2>⚽ 戦績表（星取り表）</h2>
         <p class="xt-meta">消化 {n_played} / 全 {n_total} 試合　最終更新 {last_updated}{source_html}</p>
+        {pref_scope}
         <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(黄)／敗(赤)。
         <span class="xt-ha">H</span>＝ホーム戦、<span class="xt-ha">A</span>＝アウェイ戦。
         往復2試合とも終わったマスは通算成績で色分けしています。「―」はまだ対戦していないカードです。</p>
