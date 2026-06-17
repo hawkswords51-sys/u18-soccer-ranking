@@ -1,6 +1,6 @@
 ---
 id: asahikawa-jitsugyo
-name: 旭川実業高等学校
+name: 旭川実業高校
 short_name: 旭川実業
 league: プリンスリーグ北海道
 prefecture: hokkaido
