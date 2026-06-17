@@ -185,8 +185,9 @@ def render_cross_table_html(slug: str) -> str:
     n_total = len([m for m in matches])
     last_updated = _html_escape(data.get("lastUpdated", ""))
     source = data.get("source", "")
+    source_name = _html_escape(data.get("sourceName", "高校サッカードットコム"))
     source_html = (f'　出典: <a href="{_html_escape(source)}" rel="nofollow" target="_blank">'
-                   f'高校サッカードットコム</a>') if source else ""
+                   f'{source_name}</a>') if source else ""
 
     # 県ページのとき、この戦績表が「県1部リーグのもの」だと分かる説明を出す
     # （上の順位表はプレミア・プリンス所属チームも含む県内全体のため）。
