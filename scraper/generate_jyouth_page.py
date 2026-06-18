@@ -547,17 +547,22 @@ def render_bracket_svg(sections):
     line(cx + 10, semiR["yj"], cx + 10, ymid, GRAY)
     line(cx - 10, ymid, cx + 10, ymid, GRAY)
     # 決勝に勝者が出たら、優勝チームが上がってきた側の中央縦線を赤に
-    if final.get("winner"):
-        if final["winner"] == final.get("a"):
+    champ = final.get("winner")
+    if champ:
+        if champ == final.get("a"):
             line(cx - 10, semiL["yj"], cx - 10, ymid, RED, 2.4)
             line(cx - 10, ymid, cx + 10, ymid, RED, 2.4)
-        elif final["winner"] == final.get("b"):
+        elif champ == final.get("b"):
             line(cx + 10, semiR["yj"], cx + 10, ymid, RED, 2.4)
             line(cx - 10, ymid, cx + 10, ymid, RED, 2.4)
+    # スコアは連結点のすぐ下に
     if final["score"]:
-        text(cx, ymid + 17, final["score"], "middle", 13, ACC, "700")
-    if final.get("winner"):
-        text(cx, ymid + 35, f"🏆 {_short_label(final['winner'])}", "middle", 15, RED, "700")
+        text(cx, ymid + 16, final["score"], "middle", 13, ACC, "700")
+    # 優勝校は中央の連結点から上へ1本線を伸ばし、その先に表示
+    if champ:
+        stem_top = ymid - 30
+        line(cx, ymid, cx, stem_top, RED, 2.4)
+        text(cx, stem_top - 8, f"🏆 {_short_label(champ)}", "middle", 15, RED, "700")
 
     # PCでは横幅いっぱいまで拡大し、スマホでは min-width で横スクロール
     svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" '
