@@ -296,6 +296,14 @@ def render_tournament_bracket_svg(rounds):
                     return m
             return None
 
+        def _in_round(round_matches, team):
+            for m in round_matches:
+                if m["a"] == team or m["b"] == team:
+                    return True
+            return False
+
+        inconsistent = [False]
+
         def _expand(match, lvl):
             if lvl == 0:
                 return [match]
@@ -305,11 +313,15 @@ def render_tournament_bracket_svg(rounds):
                 if child:
                     out.extend(_expand(child, lvl - 1))
                 else:
+                    # 前ラウンドに出ているのに勝者でない＝結果の矛盾（敗者が次の回戦に居る等）。
+                    # 本来のシード（前ラウンドに不在）は許容。矛盾なら表を作らず一覧へ退避。
+                    if _in_round(levels[lvl - 1], team):
+                        inconsistent[0] = True
                     out.append({"a": team, "b": None})
             return out
 
         base = _expand(levels[-1][0], need - 1)
-        if len(base) != base_n:
+        if inconsistent[0] or len(base) != base_n:
             continue
 
         pair_lines = [f"- {m['a']} vs {m['b']}" if m.get("b") else f"- {m['a']}" for m in base]
