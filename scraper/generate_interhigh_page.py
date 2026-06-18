@@ -590,12 +590,13 @@ def render_bracket_svg(sections, reps_lines):
     line(cx - 10, ymid, cx + 10, ymid, GRAY)
     champ = final.get("winner")
     if champ:
+        # 優勝チームの線だけを赤で「優勝」まで連続させる（負けた決勝相手は中央で止める）
         if champ == final.get("a"):
             line(cx - 10, semiL["yj"], cx - 10, ymid, RED, 2.4)
-            line(cx - 10, ymid, cx + 10, ymid, RED, 2.4)
+            line(cx - 10, ymid, cx, ymid, RED, 2.4)
         elif champ == final.get("b"):
             line(cx + 10, semiR["yj"], cx + 10, ymid, RED, 2.4)
-            line(cx - 10, ymid, cx + 10, ymid, RED, 2.4)
+            line(cx, ymid, cx + 10, ymid, RED, 2.4)
     if final["score"]:
         text(cx, ymid + 16, final["score"], "middle", 11, ACC, "700")
     # 優勝校は中央の連結点から上へ1本線を伸ばし、その先に表示
