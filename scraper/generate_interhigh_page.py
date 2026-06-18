@@ -44,9 +44,14 @@ CANONICAL = f"{DOMAIN}/tournaments/interhigh-2026/"
 # ============================================================
 INTERHIGH_FEATURED_ARTICLES = [
     {
+        "title": '【2026インターハイ優勝候補・注目校】プレミア7校が本命｜リーグ階層で読む全国大会の構図',
+        "url": "/blog/posts/interhigh-2026-preview/",
+        "date": "2026-06-18",
+    },
+    {
         "title": '【2026インハイ予選総括】47都道府県代表校完全リスト｜W杯OB母校7校・伝統校復活・新興校台頭の全体像',
         "url": "/blog/posts/interhigh-2026-summary/",
-        "date": "2026-06-17",
+        "date": "2026-06-19",
     },
     {
         "title": '【2026W杯開幕】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース完全ガイド',

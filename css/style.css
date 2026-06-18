@@ -4945,6 +4945,77 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* ============================================================
+   いま注目バンド（ホーム用・旬の話題／季節で中身を入れ替え）
+   ============================================================ */
+.spotlight-band {
+    margin: 30px 0;
+    padding: 20px 25px;
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+.spotlight-band__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.spotlight-band__head h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+.spotlight-band__icon {
+    color: #e25822;
+    font-size: 1.1rem;
+}
+.spotlight-band__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+}
+.spotlight-card {
+    display: block;
+    padding: 14px 16px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.spotlight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+.spotlight-card__title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--text-dark);
+}
+.spotlight-card__title i {
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+.spotlight-card__desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+@media (max-width: 768px) {
+    .spotlight-band {
+        padding: 16px;
+    }
+    .spotlight-band__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+}
+
+/* ============================================================
    都道府県別ページ一覧（ホーム用）
    ============================================================ */
 .prefecture-index {
