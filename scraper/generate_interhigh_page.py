@@ -215,8 +215,8 @@ def render_reps(lines):
             token = token.strip()
             if not token:
                 continue
-            # 末尾の(記録)または(記録)を分離
-            rm = re.search(r'[((]([^))]*)[))]\s*$', token)
+            # 末尾の（記録）または(記録)を分離
+            rm = re.search(r'[（(]([^）)]*)[）)]\s*$', token)
             if rm:
                 name = token[:rm.start()].strip()
                 record = rm.group(1).strip()
@@ -293,7 +293,7 @@ def parse_bracket_pairs(lines):
         content = m.group(1).strip()
         if not content:
             continue
-        content = re.sub(r'[((]\s*(シード|２回戦から|2回戦から)\s*[))]\s*$', '', content).strip()
+        content = re.sub(r'[（(]\s*(シード|２回戦から|2回戦から)\s*[）)]\s*$', '', content).strip()
         sides = re.split(r'\s+vs\s+', content)
         if len(sides) == 2:
             pairs.append((sides[0].strip(), sides[1].strip()))
@@ -341,7 +341,7 @@ def parse_pref_map(reps_lines):
             token = token.strip()
             if not token:
                 continue
-            rm = re.search(r'[((]([^))]*)[))]\s*$', token)
+            rm = re.search(r'[（(]([^）)]*)[）)]\s*$', token)
             name = token[:rm.start()].strip() if rm else token
             if name:
                 pref_map[_norm_team(name)] = pref
@@ -671,7 +671,7 @@ def build_ai_summary(meta, sections):
             next_name, next_teams = name, teams
             break
     if next_name:
-        round_word = re.split(r'[((]', next_name)[0].strip()
+        round_word = re.split(r'[（(]', next_name)[0].strip()
         n = len(next_teams)
         stage = {16: "ベスト16", 8: "ベスト8", 4: "ベスト4", 2: "決勝"}.get(n, f"{n}校")
         if n <= 12:
@@ -694,7 +694,7 @@ def build_ai_summary(meta, sections):
     if latest_name:
         winners = _round_winners(latest_lines)
         n = len(winners)
-        round_word = re.split(r'[((]', latest_name)[0].strip()
+        round_word = re.split(r'[（(]', latest_name)[0].strip()
         stage = {8: "ベスト8", 4: "ベスト4", 2: "決勝進出の2校", 1: "優勝"}.get(n, f"{n}校")
         if winners and n <= 8:
             teams_str = "・".join(html_escape(t) for t in winners)
@@ -716,12 +716,12 @@ def build_ai_summary(meta, sections):
             token = token.strip()
             if not token:
                 continue
-            rm = re.search(r'[((][^))]*[))]\s*$', token)
+            rm = re.search(r'[（(][^）)]*[）)]\s*$', token)
             nm = token[:rm.start()].strip() if rm else token
             if nm:
                 rep_names.append(nm)
 
-    loc = re.sub(r'[((].*$', '', host).strip() if host else re.split(r'[／/((]', venue)[0].strip()
+    loc = re.sub(r'[（(].*$', '', host).strip() if host else re.split(r'[／/（(]', venue)[0].strip()
     if venue and "Jヴィレッジ" in venue and loc and "Jヴィレッジ" not in loc:
         loc = f"{loc}・Jヴィレッジ"
     # 「(計52チーム)」を優先。無ければ「○チーム」表記の最大値を採用("1チーム"等の誤取得を防ぐ)
