@@ -2,7 +2,7 @@
 layout: blog
 title: 【2026インハイ予選総括】47都道府県代表校完全リスト｜W杯OB母校7校・伝統校復活・新興校台頭の全体像
 slug: interhigh-2026-summary
-date: 2026-06-19
+date: 2026-06-17
 category: コラム・取材
 tags:
   - インターハイ2026
