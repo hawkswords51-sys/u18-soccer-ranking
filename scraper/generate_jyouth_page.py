@@ -516,17 +516,13 @@ def render_bracket_svg(sections):
                 x_from = xs[li]
                 if li + 1 < wing_levels:
                     x_to = xs[li + 1]
+                    seg_red = bool(nd["score"]) and nd.get("winner")
                 else:
-                    # 準決勝→決勝：優勝校(または決勝未確定)は中央まで、
-                    # 決勝で負けた側は中央手前(約半分)で止めて優勝に繋がって見えないように
-                    full_to = cx - sign * 10
-                    if (not champ_name) or nd.get("winner") == champ_name:
-                        x_to = full_to
-                    else:
-                        x_to = (x_from + full_to) / 2
-                played_win = bool(nd["score"]) and nd.get("winner")
+                    # 準決勝→決勝：両者とも中央まで引く。赤は優勝校だけ（敗者は灰で連結）
+                    x_to = cx - sign * 10
+                    seg_red = bool(champ_name) and nd.get("winner") == champ_name
                 line(x_from, nd["yj"], x_to, nd["yj"],
-                     RED if played_win else GRAY, 2.4 if played_win else 1.6)
+                     RED if seg_red else GRAY, 2.4 if seg_red else 1.6)
                 if li >= 1 and nd["score"]:
                     text(x_from + 3 * sign, nd["yj"] - 4, nd["score"], score_anchor, 10.5, ACC, "700")
 
@@ -554,18 +550,13 @@ def render_bracket_svg(sections):
     semiR = levels[-2][1]
     ymid = (semiL["yj"] + semiR["yj"]) / 2
     champ = final.get("winner")
-    # 優勝チーム側だけ中央へ連結（決勝で負けた相手は draw_wing 側で中央手前まで）
-    if champ == final.get("a"):
-        line(cx - 10, semiL["yj"], cx - 10, ymid, RED, 2.4)
-        line(cx - 10, ymid, cx, ymid, RED, 2.4)
-    elif champ == final.get("b"):
-        line(cx + 10, semiR["yj"], cx + 10, ymid, RED, 2.4)
-        line(cx, ymid, cx + 10, ymid, RED, 2.4)
-    else:
-        # 決勝未確定：両者を中央で連結（灰）
-        line(cx - 10, semiL["yj"], cx - 10, ymid, GRAY)
-        line(cx + 10, semiR["yj"], cx + 10, ymid, GRAY)
-        line(cx - 10, ymid, cx + 10, ymid, GRAY)
+    # 両決勝進出チームを中央へ連結。優勝校側は赤、敗者側は灰。
+    left_red = bool(champ) and champ == final.get("a")
+    right_red = bool(champ) and champ == final.get("b")
+    line(cx - 10, semiL["yj"], cx - 10, ymid, RED if left_red else GRAY, 2.4 if left_red else 1.6)
+    line(cx - 10, ymid, cx, ymid, RED if left_red else GRAY, 2.4 if left_red else 1.6)
+    line(cx + 10, semiR["yj"], cx + 10, ymid, RED if right_red else GRAY, 2.4 if right_red else 1.6)
+    line(cx, ymid, cx + 10, ymid, RED if right_red else GRAY, 2.4 if right_red else 1.6)
     # スコアは連結点のすぐ下に
     if final["score"]:
         text(cx, ymid + 16, final["score"], "middle", 13, ACC, "700")
