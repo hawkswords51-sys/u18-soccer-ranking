@@ -117,15 +117,15 @@ W杯OB母校という新しい切り口だけでなく、**高校サッカー史
 
 | 県 | 代表校 |
 |---|---|
-| 茨城 | [鹿島学園高校](https://u18-soccer.com/teams/kashima-gakuen/) |
-| 栃木 | [矢板中央高校](https://u18-soccer.com/teams/yaita-chuo/) |
+| 茨城 | [鹿島学園高校](https://u18-soccer.com/teams/kashima-gakuen/) （3大会連続12回目）|
+| 栃木 | [矢板中央高校](https://u18-soccer.com/teams/yaita-chuo/) （2大会ぶり14度目）|
 | 群馬 | [前橋育英高校](https://u18-soccer.com/teams/maebashi-ikuei/)（2大会連続21回目） |
-| 埼玉 | [昌平高校](https://u18-soccer.com/teams/shohei/) |
-| 千葉 | [市立船橋高校](https://u18-soccer.com/teams/ichiritsu-funabashi/) |
-| 東京A | [成立学園高校](https://u18-soccer.com/teams/seiritsu-gakuen/) |
-| 東京B | [国士舘高校](https://u18-soccer.com/teams/kokushikan/) |
-| 神奈川A | [桐光学園高校](https://u18-soccer.com/teams/toko-gakuen/) |
-| 神奈川B | [桐蔭学園高校](https://u18-soccer.com/teams/toin-gakuen/) |
+| 埼玉 | [昌平高校](https://u18-soccer.com/teams/shohei/) （3大会連続7度目）|
+| 千葉 | [市立船橋高校](https://u18-soccer.com/teams/ichiritsu-funabashi/) （2大会ぶり32回目）|
+| 東京A | [成立学園高校](https://u18-soccer.com/teams/seiritsu-gakuen/) （3大会ぶり5回目）|
+| 東京B | [国士舘高校](https://u18-soccer.com/teams/kokushikan/) （17大会ぶり6度目）|
+| 神奈川A | [桐光学園高校](https://u18-soccer.com/teams/toko-gakuen/) （4大会連続18回目）|
+| 神奈川B | [桐蔭学園高校](https://u18-soccer.com/teams/toin-gakuen/)（2大会連続12度目） |
 
 ### 北信越
 
@@ -135,7 +135,7 @@ W杯OB母校という新しい切り口だけでなく、**高校サッカー史
 | 富山 | [富山第一高校](https://u18-soccer.com/teams/toyama-daiichi/)（4大会連続32度目） |
 | 石川 | [鵬学園高校](https://u18-soccer.com/teams/ohtori-gakuen/)（2大会ぶり2度目） |
 | 福井 | [丸岡高校](https://u18-soccer.com/teams/maruoka/)（7大会連続37回目） |
-| 山梨 | [山梨学院高校](https://u18-soccer.com/teams/yamanashi-gakuin/) |
+| 山梨 | [山梨学院高校](https://u18-soccer.com/teams/yamanashi-gakuin/)（5大会連続10回目） |
 | 長野 | [松本国際高校](https://u18-soccer.com/teams/matsumoto-kokusai/)（6大会ぶり4度目） |
 
 ### 東海
@@ -163,19 +163,19 @@ W杯OB母校という新しい切り口だけでなく、**高校サッカー史
 
 | 県 | 代表校 |
 |---|---|
-| 鳥取 | [米子北高校](https://u18-soccer.com/teams/yonago-kita/) |
+| 鳥取 | [米子北高校](https://u18-soccer.com/teams/yonago-kita/) （18大会連続21回目）|
 | 島根 | [立正大淞南高校](https://u18-soccer.com/teams/rissho-shonan/)（6大会連続19回目） |
-| 岡山 | [岡山学芸館高校](https://u18-soccer.com/teams/okayama-gakugeikan/) |
-| 広島 | [瀬戸内高校](https://u18-soccer.com/teams/setouchi/) |
-| 山口 | [西京高校](https://u18-soccer.com/teams/saikyo/) |
+| 岡山 | [岡山学芸館高校](https://u18-soccer.com/teams/okayama-gakugeikan/) （2大会連続9度目）|
+| 広島 | [瀬戸内高校](https://u18-soccer.com/teams/setouchi/) （3大会連続11度目）|
+| 山口 | [西京高校](https://u18-soccer.com/teams/saikyo/) （6大会ぶり6回目）|
 
 ### 四国
 
 | 県 | 代表校 |
 |---|---|
 | 徳島 | [鳴門高校](https://u18-soccer.com/teams/naruto/)（11大会ぶり4度目） |
-| 香川 | [四国学院大学香川西高校](https://u18-soccer.com/teams/kagawa-nishi/) |
-| 愛媛 | [今治東中等教育学校](https://u18-soccer.com/teams/imabari-higashi/) |
+| 香川 | [四国学院大学香川西高校](https://u18-soccer.com/teams/kagawa-nishi/)（6大会ぶり12回目） |
+| 愛媛 | [今治東中等教育学校](https://u18-soccer.com/teams/imabari-higashi/) （4大会ぶり5回目）|
 | 高知 | [高知中央高校](https://u18-soccer.com/teams/kochi-chuo/)（2大会連続5回目） |
 
 ### 九州・沖縄
