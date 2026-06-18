@@ -2006,6 +2006,34 @@ details[open] > summary > .league-accordion__chevron {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
+/* トーナメント表(SVG)＋全試合の折りたたみ */
+.tournament-bracket-wrap {
+    margin: 4px 0 8px;
+    overflow-x: auto;
+}
+.tournament-fulllist {
+    margin-top: 10px;
+    border-top: 1px solid var(--border-color, #e0e0e0);
+    padding-top: 8px;
+}
+.tournament-fulllist > summary {
+    cursor: pointer;
+    list-style: none;
+    color: var(--primary-color, #0066cc);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 6px 2px;
+    user-select: none;
+}
+.tournament-fulllist > summary::-webkit-details-marker { display: none; }
+.tournament-fulllist > summary::before {
+    content: "▶ ";
+    font-size: 0.8em;
+}
+.tournament-fulllist[open] > summary::before {
+    content: "▼ ";
+}
+
 .tournament-section-title {
     margin: 0;
     padding: 12px 18px;

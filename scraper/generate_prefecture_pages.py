@@ -21,9 +21,13 @@ Phase 9-A ステップ2 で追加された構造化データ:
 """
 import json
 import re
+import io as _io
+import contextlib as _contextlib
+import unicodedata as _ud
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
 from cross_table import render_cross_table_html
+import generate_jyouth_page as _bracket  # トーナメント表(SVG)描画を再利用
 
 class _JSTDate:
     """GitHubのサーバーは世界標準時のため、日本時間の「今日」を返す"""
@@ -241,6 +245,96 @@ DIVISION2_TOURNAMENT_ALIASES = {
 }
 
 
+def _bracket_canon(n):
+    """回戦間の校名表記ゆれを吸収するための正規化（末尾の高校/高等学校等を除去）"""
+    n = _ud.normalize("NFKC", n or "").strip().replace("　", "").replace(" ", "")
+    for suf in ("高等学校", "高校", "中等教育学校", "高"):
+        if n.endswith(suf) and len(n) > len(suf):
+            return n[:-len(suf)]
+    return n
+
+
+def _bracket_parse_match(s):
+    """「A 2-1 B」「A 0-0(PK4-2) B」形式を {a,b,sc,winner} に。スコアなしは None。"""
+    m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s.strip())
+    if not m:
+        return None
+    a, b = _bracket_canon(m.group(1)), _bracket_canon(m.group(6))
+    ga, gb = int(m.group(2)), int(m.group(3))
+    pk = (int(m.group(4)), int(m.group(5))) if m.group(4) else None
+    if ga > gb:
+        w = a
+    elif gb > ga:
+        w = b
+    else:
+        w = a if (pk and pk[0] > pk[1]) else b
+    sc = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
+    return {"a": a, "b": b, "sc": sc, "winner": w}
+
+
+def render_tournament_bracket_svg(rounds):
+    """各回戦の結果(rounds=[{'name','matches':[raw,...]}])から、終盤の山順を自動再構成して
+    トーナメント表(SVG)を返す。ベスト16(末尾[8,4,2,1])優先、無理ならベスト8([4,2,1])。
+    きれいに組めた時(警告なし・優勝確定・行数=2のべき乗)だけ返し、それ以外は '' （＝一覧表示へ）。"""
+    parsed = []
+    for r in rounds:
+        ms = [_bracket_parse_match(x) for x in r.get("matches", [])]
+        ms = [m for m in ms if m]
+        if ms:
+            parsed.append(ms)
+
+    for need, base_n, shape in ((4, 8, [8, 4, 2, 1]), (3, 4, [4, 2, 1])):
+        if len(parsed) < need:
+            continue
+        levels = parsed[-need:]
+        if [len(x) for x in levels] != shape:
+            continue
+
+        def _won(round_matches, team):
+            for m in round_matches:
+                if m["winner"] == team:
+                    return m
+            return None
+
+        def _expand(match, lvl):
+            if lvl == 0:
+                return [match]
+            out = []
+            for team in (match["a"], match["b"]):
+                child = _won(levels[lvl - 1], team)
+                if child:
+                    out.extend(_expand(child, lvl - 1))
+                else:
+                    out.append({"a": team, "b": None})
+            return out
+
+        base = _expand(levels[-1][0], need - 1)
+        if len(base) != base_n:
+            continue
+
+        pair_lines = [f"- {m['a']} vs {m['b']}" if m.get("b") else f"- {m['a']}" for m in base]
+        res_lines = [f"- {m['a']} {m['sc']} {m['b']}" for lv in levels for m in lv if m.get("b")]
+        sections = {"トーナメント表（組み合わせ）": pair_lines, "_結果": res_lines}
+
+        # 整合チェック（警告が出る＝表記ゆれ等で正しく組めていない → 採用しない）
+        buf = _io.StringIO()
+        with _contextlib.redirect_stdout(buf):
+            pairs = _bracket.parse_bracket_pairs(pair_lines)
+            results = _bracket.collect_results(sections)
+            tree = _bracket.build_bracket_tree(pairs, results)
+        warn = buf.getvalue()
+        champ = tree[-1][0].get("winner") if tree and tree[-1] else None
+        if warn.strip() or not champ or len(pairs) != base_n:
+            continue
+
+        buf2 = _io.StringIO()
+        with _contextlib.redirect_stdout(buf2):
+            svg = _bracket.render_bracket_svg(sections)
+        if svg and "<svg" in svg:
+            return svg
+    return ""
+
+
 def render_tournament_html(pref_id, teams, division2=None):
     """都道府県のトーナメント情報を data/tournaments/*.md から読み取り、
     試合文字列のチーム名に県内順位バッジを自動付与してHTMLで返す。
@@ -455,12 +549,27 @@ def render_tournament_html(pref_id, teams, division2=None):
         subtitle_html = f'\n        <p class="tournament-subtitle" style="color:#666;font-size:0.9em;margin-top:-8px;">{subtitle}</p>' if subtitle else ''
         rounds_html_str = "\n".join(rounds_html_list)
 
+        # 終盤(ベスト16/8)をトーナメント表で表示できるなら、表＋全試合は折りたたみに
+        bracket_svg = render_tournament_bracket_svg(rounds)
+        if bracket_svg:
+            body_html = (
+                f'        <div class="tournament-bracket-wrap">\n{bracket_svg}\n        </div>\n'
+                f'        <details class="tournament-fulllist">\n'
+                f'          <summary>全試合結果を見る（1回戦〜）</summary>\n'
+                f'          <div class="tournament-rounds">\n{rounds_html_str}\n          </div>\n'
+                f'        </details>'
+            )
+        else:
+            body_html = (
+                f'        <div class="tournament-rounds">\n'
+                f'{rounds_html_str}\n'
+                f'        </div>'
+            )
+
         html_parts.append(
             f'      <section class="lp-section tournament-section">\n'
             f'        <h2>📋 {title}{status_html}</h2>{subtitle_html}\n'
-            f'        <div class="tournament-rounds">\n'
-            f'{rounds_html_str}\n'
-            f'        </div>\n'
+            f'{body_html}\n'
             f'      </section>'
         )
 
