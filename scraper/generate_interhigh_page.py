@@ -5,9 +5,9 @@
 data/tournaments/interhigh-final-2026.md を読み込み、
 独立ページ /tournaments/interhigh-2026/ を生成する。
 
-- 「各県代表」セクション：県名: 学校名 を一覧化（学校はチーム詳細へ自動リンク）
-- 「トーナメント表（組み合わせ）」セクション：紙の組み合わせ表風のSVGトーナメント表を自動描画
-  （スコアは各ラウンドの結果行から自動照合し、勝ち上がり線を赤で描く）
+- 「各県代表」セクション：県名: 学校名 を一覧化(学校はチーム詳細へ自動リンク)
+- 「トーナメント表(組み合わせ)」セクション：紙の組み合わせ表風のSVGトーナメント表を自動描画
+  (スコアは各ラウンドの結果行から自動照合し、勝ち上がり線を赤で描く)
 - 「トーナメント」セクション：予選と同じ書式の試合行を描画し、スコアから勝者を自動ハイライト
 - まだ組み合わせ未定でも「準備中」表示で正しく出力される
 
@@ -37,6 +37,49 @@ ADSENSE_CLIENT = "ca-pub-6953440022497606"
 SOURCE = BASE_DIR / "data" / "tournaments" / "interhigh-final-2026.md"
 OUT_DIR = BASE_DIR / "tournaments" / "interhigh-2026"
 CANONICAL = f"{DOMAIN}/tournaments/interhigh-2026/"
+
+# ============================================================
+# インターハイページの観戦コラム(複数記事を一括表示)
+# 上から順に表示される。新しい記事は配列の先頭に追加してください。
+# ============================================================
+INTERHIGH_FEATURED_ARTICLES = [
+    {
+        "title": '【2026インハイ予選総括】47都道府県代表校完全リスト｜W杯OB母校7校・伝統校復活・新興校台頭の全体像',
+        "url": "/blog/posts/interhigh-2026-summary/",
+        "date": "2026-06-17",
+    },
+    {
+        "title": '【2026W杯開幕】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース完全ガイド',
+        "url": "/blog/posts/worldcup-2026-japan-roots/",
+        "date": "2026-06-10",
+    },
+    {
+        "title": "【医学コラム】真夏のインターハイ暑熱対策ガイド｜選手・保護者・指導者向け",
+        "url": "/blog/posts/interhigh-2026-heat-safety/",
+        "date": "2026-05-15",
+    },
+]
+
+
+def render_featured_articles_section():
+    """インターハイページの観戦コラムセクションHTMLを返す。記事がなければ空文字を返す。"""
+    if not INTERHIGH_FEATURED_ARTICLES:
+        return ""
+    items = "\n".join([
+        f'          <li><a href="{a["url"]}">{a["title"]}</a> '
+        f'<span style="color:#999;font-size:0.9em;">（{a["date"]}）</span></li>'
+        for a in INTERHIGH_FEATURED_ARTICLES
+    ])
+    return f"""
+      <section class="lp-section">
+        <h2><i class="fas fa-book-open"></i> 観戦コラム</h2>
+        <p style="color:var(--text-secondary,#6b7280);margin-bottom:12px;">本大会をより楽しむための特集記事をまとめています。</p>
+        <ul class="lp-related-links">
+{items}
+        </ul>
+      </section>
+"""
+
 
 # ---- チーム詳細リンク用マップ ----
 def load_team_profile_map() -> dict:
@@ -91,7 +134,7 @@ def team_link(name):
 
 def detect_winner_and_wrap(s):
     """ "A 3-1 B" / "A 0-1 B" / "A 2-2(PK4-2) B" の勝者を <span class="match-winner"> で強調。
-        "A vs B"（試合前）はそのまま。"""
+        "A vs B"(試合前)はそのまま。"""
     pk = re.search(r'(\d+)\s*-\s*(\d+)\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\)', s)
     if pk:
         ss, se = pk.start(), pk.end()
@@ -146,7 +189,7 @@ def parse_source():
     body = parts[2]
     # コメント除去
     body_nocomment = re.sub(r'<!--.*?-->', '', body, flags=re.S)
-    # セクション分割（## 見出し）
+    # セクション分割(## 見出し)
     sections = {}
     cur = None
     for line in body_nocomment.splitlines():
@@ -172,8 +215,8 @@ def render_reps(lines):
             token = token.strip()
             if not token:
                 continue
-            # 末尾の（記録）または(記録)を分離
-            rm = re.search(r'[（(]([^）)]*)[）)]\s*$', token)
+            # 末尾の(記録)または(記録)を分離
+            rm = re.search(r'[((]([^))]*)[))]\s*$', token)
             if rm:
                 name = token[:rm.start()].strip()
                 record = rm.group(1).strip()
@@ -181,8 +224,8 @@ def render_reps(lines):
                 name, record = token, ""
             if not name:
                 continue
-            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);">（{html_escape(record)}）</span>' if record else "")
-            # 学校名は途中で折り返さない（nowrap）。記録バッジは別要素で必要時のみ改行。
+            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);">({html_escape(record)})</span>' if record else "")
+            # 学校名は途中で折り返さない(nowrap)。記録バッジは別要素で必要時のみ改行。
             rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{badge}')
             school_count += 1
         if not rendered:
@@ -195,7 +238,7 @@ def render_reps(lines):
         )
     if not items:
         return '<p style="color:var(--text-secondary,#6b7280);">各県予選の終了後、代表校を順次掲載します。</p>'
-    # 画面幅に応じて自動で1〜2カラム（モバイル=1列、PC=2列）。multi-columnの途中改行を回避。
+    # 画面幅に応じて自動で1〜2カラム(モバイル=1列、PC=2列)。multi-columnの途中改行を回避。
     return ('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 28px;">'
             + "\n".join(items) + '</div>'
             + f'<p style="margin-top:10px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
@@ -205,7 +248,7 @@ def render_rounds(sections):
     for name, lines in sections.items():
         if name.startswith("各県代表") or name.startswith("トーナメント"):
             continue
-        # ラウンド見出し（## 1回戦（8/1） 等）のみ対象
+        # ラウンド見出し(## 1回戦(8/1) 等)のみ対象
         matches = [ln for ln in lines if re.match(r'^\s*-\s+', ln)]
         rows = []
         for ln in matches:
@@ -215,33 +258,33 @@ def render_rounds(sections):
             blocks.append(f'<h3 style="margin-top:24px;color:var(--accent-color,#2563eb);">{html_escape(name)}</h3>'
                           f'<ul style="list-style:none;padding:0;">' + "\n".join(rows) + '</ul>')
     if not blocks:
-        return '<p style="color:var(--text-secondary,#6b7280);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します（決勝まで随時更新）。</p>'
+        return '<p style="color:var(--text-secondary,#6b7280);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します(決勝まで随時更新)。</p>'
     return "\n".join(blocks)
 
 
 # =========================================================================
-# トーナメント表（組み合わせ表風SVG）自動描画
-# data md の「## トーナメント表（組み合わせ）」セクションを読み、
+# トーナメント表(組み合わせ表風SVG)自動描画
+# data md の「## トーナメント表(組み合わせ)」セクションを読み、
 # 紙の組み合わせ表のようなSVGを生成する。
-# スコアは各ラウンドの結果行（- A 2-1 B）からチーム名で自動照合し、
+# スコアは各ラウンドの結果行(- A 2-1 B)からチーム名で自動照合し、
 # 勝者を次のラウンドへ自動で進め、勝ち上がり線を赤で描く。
 # =========================================================================
 
 def _norm_team(n):
-    """チーム名照合用の正規化（全角半角ゆれ・空白を吸収）"""
+    """チーム名照合用の正規化(全角半角ゆれ・空白を吸収)"""
     n = unicodedata.normalize("NFKC", n or "")
     return n.replace(" ", "").replace("　", "")
 
 
 def _short_label(name):
-    """表示用の短縮名（紙の組み合わせ表と同じく「高校」等を省く）"""
+    """表示用の短縮名(紙の組み合わせ表と同じく「高校」等を省く)"""
     n = re.sub(r'(高等学校|高等部|高校)$', '', name or "")
     return n or (name or "")
 
 
 def parse_bracket_pairs(lines):
     """セクションの行を [(校名A, 校名B or None), ...] に変換。
-       「- A vs B」= 1回戦の対戦カード ／ 「- A」= シード（2回戦から登場）"""
+       「- A vs B」= 1回戦の対戦カード ／ 「- A」= シード(2回戦から登場)"""
     pairs = []
     for ln in lines:
         m = re.match(r'^\s*-\s+(.*)$', ln)
@@ -250,7 +293,7 @@ def parse_bracket_pairs(lines):
         content = m.group(1).strip()
         if not content:
             continue
-        content = re.sub(r'[（(]\s*(シード|２回戦から|2回戦から)\s*[）)]\s*$', '', content).strip()
+        content = re.sub(r'[((]\s*(シード|２回戦から|2回戦から)\s*[))]\s*$', '', content).strip()
         sides = re.split(r'\s+vs\s+', content)
         if len(sides) == 2:
             pairs.append((sides[0].strip(), sides[1].strip()))
@@ -287,7 +330,7 @@ def collect_results(sections):
 
 
 def parse_pref_map(reps_lines):
-    """各県代表セクションから {正規化校名: 県名} を作る（表示用）"""
+    """各県代表セクションから {正規化校名: 県名} を作る(表示用)"""
     pref_map = {}
     for ln in reps_lines:
         m = re.match(r'^\s*-\s*([^:：]+)[:：]\s*(.+)$', ln)
@@ -298,7 +341,7 @@ def parse_pref_map(reps_lines):
             token = token.strip()
             if not token:
                 continue
-            rm = re.search(r'[（(]([^）)]*)[）)]\s*$', token)
+            rm = re.search(r'[((]([^))]*)[))]\s*$', token)
             name = token[:rm.start()].strip() if rm else token
             if name:
                 pref_map[_norm_team(name)] = pref
@@ -311,7 +354,7 @@ def build_bracket_tree(pairs, results):
     while n < len(pairs):
         n *= 2
     if n != len(pairs):
-        print(f"⚠ トーナメント表の行数が {len(pairs)} です（16/32などが正常）。空き枠で埋めて描画します。")
+        print(f"⚠ トーナメント表の行数が {len(pairs)} です(16/32などが正常)。空き枠で埋めて描画します。")
         pairs = pairs + [("", None)] * (n - len(pairs))
 
     base = []
@@ -365,13 +408,13 @@ def build_bracket_tree(pairs, results):
     for key, r in results.items():
         if key not in used_keys:
             print(f"⚠ 結果行がトーナメント表のどの対戦とも一致しません: {r[0]} vs {r[4]}"
-                  f"（校名の表記ゆれ、または前のラウンドの結果が未入力の可能性）")
+                  f"(校名の表記ゆれ、または前のラウンドの結果が未入力の可能性)")
 
     return levels
 
 
 def _round_names(num_levels):
-    """レベル数からラウンド名を決める（後ろから 決勝・準決勝・準々決勝）"""
+    """レベル数からラウンド名を決める(後ろから 決勝・準決勝・準々決勝)"""
     tail = ["準々決勝", "準決勝", "決勝"]
     if num_levels <= 3:
         return tail[-num_levels:]
@@ -380,7 +423,7 @@ def _round_names(num_levels):
 
 
 def render_bracket_svg(sections, reps_lines):
-    """「## トーナメント表（組み合わせ）」があればSVGトーナメント表のHTMLを返す。無ければ空文字。"""
+    """「## トーナメント表(組み合わせ)」があればSVGトーナメント表のHTMLを返す。無ければ空文字。"""
     lines = None
     for name, ls in sections.items():
         if name.startswith("トーナメント表"):
@@ -503,7 +546,7 @@ def render_bracket_svg(sections, reps_lines):
                 if nd["score"]:
                     text(xs[0] + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
 
-        # 前進線（各レベルのノードの yj に沿って次の列へ）＋ 上位レベルのスコア
+        # 前進線(各レベルのノードの yj に沿って次の列へ)＋ 上位レベルのスコア
         for li in range(0, wing_levels):
             lvl_nodes = levels[li]
             cnt = len(lvl_nodes) // 2
@@ -517,7 +560,7 @@ def render_bracket_svg(sections, reps_lines):
                 if li >= 1 and nd["score"]:
                     text(x_from + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
 
-        # 縦の接続線（レベル1以上：子2つの yj を結ぶ）
+        # 縦の接続線(レベル1以上：子2つの yj を結ぶ)
         for li in range(1, wing_levels):
             lvl_nodes = levels[li]
             cnt = len(lvl_nodes) // 2
@@ -532,7 +575,7 @@ def render_bracket_svg(sections, reps_lines):
     draw_wing("L")
     draw_wing("R")
 
-    # ---- 決勝（中央） ----
+    # ---- 決勝(中央) ----
     final = levels[-1][0]
     semiL = levels[-2][0]
     semiR = levels[-2][1]
@@ -553,7 +596,7 @@ def render_bracket_svg(sections, reps_lines):
     return (
         '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
-        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
+        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり(結果の入力に合わせて自動で伸びます)</p>'
         '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
         'background:var(--bg-white,#fff);padding:8px 4px;">'
@@ -562,9 +605,9 @@ def render_bracket_svg(sections, reps_lines):
 
 
 # =========================================================================
-# AI引用向け一文要約（H1直下）。毎日の大会状況から自動生成。
+# AI引用向け一文要約(H1直下)。毎日の大会状況から自動生成。
 #   - プレミア/県別/Jユースページの「lp-lead-summary」と同じ見た目。
-#   - 優勝決定後／開催中（勝ち上がり）／開催前（代表校・会期） を自動で切替。
+#   - 優勝決定後／開催中(勝ち上がり)／開催前(代表校・会期) を自動で切替。
 # =========================================================================
 def _summary_p(body):
     style = (
@@ -580,7 +623,7 @@ def _is_result_round(name):
 
 
 def _round_winners(lines):
-    """ラウンドのスコア行から勝者名のリストを返す（PK含む）。"""
+    """ラウンドのスコア行から勝者名のリストを返す(PK含む)。"""
     winners = []
     for ln in lines:
         mm = re.match(r'^\s*-\s+(.*?)\s+(\d+)\s*-\s*(\d+)'
@@ -598,7 +641,7 @@ def _round_winners(lines):
 
 
 def build_ai_summary(meta, sections):
-    title_main = meta.get("title", "全国高校総体 サッカー競技大会（男子）")
+    title_main = meta.get("title", "全国高校総体 サッカー競技大会(男子)")
     period = meta.get("period", "")
     venue = meta.get("venue", "")
     host = meta.get("host", "")
@@ -614,7 +657,7 @@ def build_ai_summary(meta, sections):
                 f"組み合わせ・トーナメント表・全試合結果をまとめています。")
         return _summary_p(body)
 
-    # ② 開催中：まだ vs（未実施）が残る最初のラウンド＝勝ち上がった顔ぶれ
+    # ② 開催中：まだ vs(未実施)が残る最初のラウンド＝勝ち上がった顔ぶれ
     next_name, next_teams = None, []
     for name, lines in sections.items():
         if not _is_result_round(name):
@@ -628,7 +671,7 @@ def build_ai_summary(meta, sections):
             next_name, next_teams = name, teams
             break
     if next_name:
-        round_word = re.split(r'[（(]', next_name)[0].strip()
+        round_word = re.split(r'[((]', next_name)[0].strip()
         n = len(next_teams)
         stage = {16: "ベスト16", 8: "ベスト8", 4: "ベスト4", 2: "決勝"}.get(n, f"{n}校")
         if n <= 12:
@@ -636,12 +679,12 @@ def build_ai_summary(meta, sections):
             mid = f"勝ち上がった{n}校は{teams_str}。"
         else:
             mid = f"{n}校が勝ち上がっています。"
-        body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}（{stage}）の組み合わせが決定。{mid}"
+        body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}({stage})の組み合わせが決定。{mid}"
                 f"各都道府県の予選を勝ち抜いた代表校が日本一を争うノックアウト方式の"
                 f"組み合わせ・トーナメント表・結果を毎日更新。")
         return _summary_p(body)
 
-    # ②' ラウンド間（直近ラウンドは終了・次節未掲載）：直近ラウンドの勝ち残りを要約
+    # ②' ラウンド間(直近ラウンドは終了・次節未掲載)：直近ラウンドの勝ち残りを要約
     latest_name, latest_lines = None, None
     for name, lines in sections.items():
         if not _is_result_round(name):
@@ -651,7 +694,7 @@ def build_ai_summary(meta, sections):
     if latest_name:
         winners = _round_winners(latest_lines)
         n = len(winners)
-        round_word = re.split(r'[（(]', latest_name)[0].strip()
+        round_word = re.split(r'[((]', latest_name)[0].strip()
         stage = {8: "ベスト8", 4: "ベスト4", 2: "決勝進出の2校", 1: "優勝"}.get(n, f"{n}校")
         if winners and n <= 8:
             teams_str = "・".join(html_escape(t) for t in winners)
@@ -673,15 +716,15 @@ def build_ai_summary(meta, sections):
             token = token.strip()
             if not token:
                 continue
-            rm = re.search(r'[（(][^）)]*[）)]\s*$', token)
+            rm = re.search(r'[((][^))]*[))]\s*$', token)
             nm = token[:rm.start()].strip() if rm else token
             if nm:
                 rep_names.append(nm)
 
-    loc = re.sub(r'[（(].*$', '', host).strip() if host else re.split(r'[／/（(]', venue)[0].strip()
+    loc = re.sub(r'[((].*$', '', host).strip() if host else re.split(r'[／/((]', venue)[0].strip()
     if venue and "Jヴィレッジ" in venue and loc and "Jヴィレッジ" not in loc:
         loc = f"{loc}・Jヴィレッジ"
-    # 「（計52チーム）」を優先。無ければ「○チーム」表記の最大値を採用（"1チーム"等の誤取得を防ぐ）
+    # 「(計52チーム)」を優先。無ければ「○チーム」表記の最大値を採用("1チーム"等の誤取得を防ぐ)
     cnt_m = re.search(r'計\s*(\d+)', slots)
     if cnt_m:
         teams_count = cnt_m.group(1)
@@ -719,24 +762,27 @@ def main():
     slots = meta.get("slots", "")
     fmt = meta.get("format", "")
     schedule = meta.get("schedule") or []
-    slots_li = f'<li><strong>出場枠</strong>：{html_escape(slots)}</li>' if slots else ""
-    format_li = f'<li><strong>大会方式</strong>：{html_escape(fmt)}</li>' if fmt else ""
+    slots_li = f'<li><strong>出場枠</strong>:{html_escape(slots)}</li>' if slots else ""
+    format_li = f'<li><strong>大会方式</strong>:{html_escape(fmt)}</li>' if fmt else ""
     if schedule:
         _items = "\n".join(f'<li style="padding:6px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">{html_escape(x)}</li>' for x in schedule)
         schedule_html = f'<h3 style="margin-top:16px;">📅 日程</h3><ul style="list-style:none;padding:0;">{_items}</ul>'
     else:
         schedule_html = ""
 
-    seo_title = f"インターハイ サッカー{year} 結果・組み合わせ・トーナメント表【最新】｜全国高校総体（男子）速報"
-    description = (f"高校総体（インターハイ）サッカー競技 男子{year} 全国大会（本選）の組み合わせ・試合結果・"
+    seo_title = f"インターハイ サッカー{year} 結果・組み合わせ・トーナメント表【最新】｜全国高校総体(男子)速報"
+    description = (f"高校総体(インターハイ)サッカー競技 男子{year} 全国大会(本選)の組み合わせ・試合結果・"
                   f"トーナメント表・各県代表校を毎日自動更新。各都道府県代表の計52校が福島・Jヴィレッジで"
                   f"全国一を争うノックアウト方式。{html_escape(period)}開催。決勝まで随時更新。")
     keywords = (f"インターハイ サッカー{year},全国高校総体 サッカー,高校総体 サッカー 結果,"
                 f"インターハイ サッカー トーナメント表,インターハイ サッカー 組み合わせ,"
                 f"インターハイ サッカー 速報,インターハイ サッカー 代表校,高校サッカー,U-18,{year}")
 
-    # AI引用向け一文要約（H1直下・毎日自動更新）
+    # AI引用向け一文要約(H1直下・毎日自動更新)
     ai_summary_html = build_ai_summary(meta, sections)
+
+    # 観戦コラムセクション(大会概要の直後に表示)
+    featured_articles_section = render_featured_articles_section()
 
     # 代表校・ラウンド
     reps_lines = sections.get("各県代表", [])
@@ -744,7 +790,7 @@ def main():
     reps_html = render_reps(reps_lines)
     rounds_html = render_rounds(sections)
 
-    # トーナメント表（組み合わせ表風SVG）。「## トーナメント表（組み合わせ）」が無ければ空。
+    # トーナメント表(組み合わせ表風SVG)。「## トーナメント表(組み合わせ)」が無ければ空。
     bracket_html = render_bracket_svg(sections, reps_lines)
     if bracket_html:
         bracket_section = f'''
@@ -760,11 +806,11 @@ def main():
     if champion and isinstance(champion, dict) and champion.get("team"):
         champion_html = (f'<div style="text-align:center;padding:16px;margin:16px 0;'
                          f'background:linear-gradient(135deg,#fde68a,#fbbf24);border-radius:10px;'
-                         f'font-weight:700;color:#7c2d12;font-size:1.2em;">🏆 全国優勝：{team_link(champion["team"])}</div>')
+                         f'font-weight:700;color:#7c2d12;font-size:1.2em;">🏆 全国優勝:{team_link(champion["team"])}</div>')
     elif isinstance(champion, str) and champion.strip():
         champion_html = (f'<div style="text-align:center;padding:16px;margin:16px 0;'
                          f'background:linear-gradient(135deg,#fde68a,#fbbf24);border-radius:10px;'
-                         f'font-weight:700;color:#7c2d12;font-size:1.2em;">🏆 全国優勝：{team_link(champion.strip())}</div>')
+                         f'font-weight:700;color:#7c2d12;font-size:1.2em;">🏆 全国優勝:{team_link(champion.strip())}</div>')
 
     status_badge = (f'<span style="display:inline-block;padding:4px 14px;border-radius:999px;'
                     f'background:#dbeafe;color:#1e40af;font-weight:600;font-size:0.9em;">{html_escape(status)}</span>'
@@ -776,13 +822,13 @@ def main():
         '{"@type":"ListItem","position":2,"name":"インターハイ' + str(year) + '","item":"' + CANONICAL + '"}]}'
     )
 
-    # --- FAQ と大会構造化データ（SportsEvent / FAQPage） ---
+    # --- FAQ と大会構造化データ(SportsEvent / FAQPage) ---
     import json as _json
     faq_items = [
         (f"インターハイ{year}のサッカー競技はいつ開催されますか？",
          f"{period} に開催されます。" if period else "日程は確定後に掲載します。"),
         ("開催地・会場はどこですか？",
-         (f"{venue}（{host}）で開催されます。" if host else f"{venue}で開催されます。") if venue else "確定後に掲載します。"),
+         (f"{venue}({host})で開催されます。" if host else f"{venue}で開催されます。") if venue else "確定後に掲載します。"),
         ("出場枠・出場校数は？", slots or "各都道府県の予選を勝ち抜いた代表校が出場します。"),
         ("試合方式・試合時間は？", fmt or "ノックアウト方式で行われます。"),
         ("試合結果・組み合わせはどこで確認できますか？",
@@ -900,29 +946,29 @@ def main():
       </nav>
       <h1 class="lp-title">{html_escape(title_main)}</h1>
 {ai_summary_html}      <p class="lp-intro">
-        高校総体（<strong>インターハイ</strong>）サッカー競技 男子 {year} の<strong>全国大会（本選）</strong>の
+        高校総体(<strong>インターハイ</strong>)サッカー競技 男子 {year} の<strong>全国大会(本選)</strong>の
         組み合わせ・試合結果・各県代表校をまとめています。各県予選の結果は
         <a href="/">都道府県別ページ</a>からご確認いただけます。
       </p>
 
       <p style="margin:4px 0 16px;display:flex;flex-wrap:wrap;gap:10px;">
-        <a href="/tournaments/interhigh-history/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:var(--primary-color,#1e40af);color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🏆 歴代優勝校一覧（2008-2025）</a>
+        <a href="/tournaments/interhigh-history/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:var(--primary-color,#1e40af);color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🏆 歴代優勝校一覧(2008-2025)</a>
         <a href="/blog/posts/interhigh-2026-heat-safety/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#dc2626;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🌡️ 救急医の暑熱対策ガイド</a>
       </p>
 
       <section class="lp-section">
         <h2><i class="fas fa-circle-info"></i> 大会概要 {status_badge}</h2>
         <ul style="list-style:none;padding:0;line-height:2;">
-          <li><strong>大会名</strong>：{html_escape(title_main)}</li>
-          <li><strong>会期</strong>：{html_escape(period) or '日程確定後に掲載'}</li>
-          <li><strong>開催地</strong>：{html_escape(venue) or '確定後に掲載'}{(' / ' + html_escape(host)) if host else ''}</li>
+          <li><strong>大会名</strong>:{html_escape(title_main)}</li>
+          <li><strong>会期</strong>:{html_escape(period) or '日程確定後に掲載'}</li>
+          <li><strong>開催地</strong>:{html_escape(venue) or '確定後に掲載'}{(' / ' + html_escape(host)) if host else ''}</li>
           {slots_li}
           {format_li}
         </ul>
         {schedule_html}
         {champion_html}
       </section>
-
+{featured_articles_section}
       <section class="lp-section">
         <h2><i class="fas fa-flag"></i> 各県代表</h2>
         {reps_html}
@@ -942,9 +988,9 @@ def main():
         <h2>関連リンク</h2>
         <ul class="lp-related-links">
           <li><a href="/">全国47都道府県の高校サッカー順位・予選結果</a></li>
-          <li><a href="/leagues/">リーグ一覧（プレミア・プリンス）</a></li>
+          <li><a href="/leagues/">リーグ一覧(プレミア・プリンス)</a></li>
           <li><a href="/blog/">ブログ・医学コラム</a></li>
-          <li><a href="/blog/posts/interhigh-2026-heat-safety/">【医学コラム】真夏のインターハイ暑熱対策ガイド（選手・保護者・指導者向け）</a></li>
+          <li><a href="/blog/posts/interhigh-2026-heat-safety/">【医学コラム】真夏のインターハイ暑熱対策ガイド(選手・保護者・指導者向け)</a></li>
           <li><a href="/tournaments/interhigh-history/">インターハイ サッカー男子 歴代優勝校一覧</a></li>
         </ul>
       </section>
@@ -968,7 +1014,7 @@ def main():
     (OUT_DIR / "index.html").write_text(page, encoding="utf-8")
     print(f"✅ 生成: {OUT_DIR / 'index.html'}")
 
-    # --- sitemap に登録（idempotent） ---
+    # --- sitemap に登録(idempotent) ---
     sm = BASE_DIR / "sitemap.xml"
     if sm.exists():
         s = sm.read_text(encoding="utf-8")
@@ -980,7 +1026,7 @@ def main():
         else:
             print("ℹ️ sitemap.xml は登録済み")
 
-            # --- 歴代優勝校ページも sitemap に登録（idempotent） ---
+            # --- 歴代優勝校ページも sitemap に登録(idempotent) ---
         history_url = f"{DOMAIN}/tournaments/interhigh-history/"
         s = sm.read_text(encoding="utf-8")
         if history_url not in s:
