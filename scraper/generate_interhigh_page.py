@@ -724,7 +724,7 @@ def build_ai_summary(meta, sections):
     loc = re.sub(r'[（(].*$', '', host).strip() if host else re.split(r'[／/（(]', venue)[0].strip()
     if venue and "Jヴィレッジ" in venue and loc and "Jヴィレッジ" not in loc:
         loc = f"{loc}・Jヴィレッジ"
-    # 「(計52チーム)」を優先。無ければ「○チーム」表記の最大値を採用("1チーム"等の誤取得を防ぐ)
+    # 「(計51チーム)」を優先。無ければ「○チーム」表記の最大値を採用("1チーム"等の誤取得を防ぐ)
     cnt_m = re.search(r'計\s*(\d+)', slots)
     if cnt_m:
         teams_count = cnt_m.group(1)
@@ -772,7 +772,7 @@ def main():
 
     seo_title = f"インターハイ サッカー{year} 結果・組み合わせ・トーナメント表【最新】｜全国高校総体(男子)速報"
     description = (f"高校総体(インターハイ)サッカー競技 男子{year} 全国大会(本選)の組み合わせ・試合結果・"
-                  f"トーナメント表・各県代表校を毎日自動更新。各都道府県代表の計52校が福島・Jヴィレッジで"
+                  f"トーナメント表・各県代表校を毎日自動更新。各都道府県代表の計51校が福島・Jヴィレッジで"
                   f"全国一を争うノックアウト方式。{html_escape(period)}開催。決勝まで随時更新。")
     keywords = (f"インターハイ サッカー{year},全国高校総体 サッカー,高校総体 サッカー 結果,"
                 f"インターハイ サッカー トーナメント表,インターハイ サッカー 組み合わせ,"
