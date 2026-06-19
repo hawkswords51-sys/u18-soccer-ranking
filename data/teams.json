@@ -7108,26 +7108,42 @@
         "leagueRank": 6
       },
       {
+        "id": "nr005",
+        "name": "一条高校",
+        "league": "奈良県NFAサッカーリーグ",
+        "rank": 7,
+        "points": 5,
+        "played": 8,
+        "won": 1,
+        "drawn": 2,
+        "lost": 5,
+        "goalsFor": 7,
+        "goalsAgainst": 20,
+        "prefectureRank": 7,
+        "goalDiff": -6,
+        "leagueRank": 7
+      },
+      {
         "id": "nr011",
         "name": "五條高校",
         "league": "奈良県NFAサッカーリーグ",
-        "rank": 7,
-        "prefectureRank": 7,
+        "rank": 8,
+        "prefectureRank": 8,
         "points": 5,
-        "played": 7,
+        "played": 8,
         "won": 1,
         "drawn": 2,
-        "lost": 4,
-        "goalsFor": 12,
-        "goalsAgainst": 25,
+        "lost": 5,
+        "goalsFor": 14,
+        "goalsAgainst": 28,
         "goalDiff": -12,
-        "leagueRank": 7
+        "leagueRank": 8
       },
       {
         "id": "nr002",
         "name": "山辺高校",
         "league": "奈良県NFAサッカーリーグ",
-        "rank": 8,
+        "rank": 9,
         "points": 4,
         "played": 7,
         "won": 1,
@@ -7135,15 +7151,15 @@
         "lost": 5,
         "goalsFor": 5,
         "goalsAgainst": 15,
-        "prefectureRank": 8,
+        "prefectureRank": 9,
         "goalDiff": 0,
-        "leagueRank": 8
+        "leagueRank": 9
       },
       {
         "id": "nr009",
         "name": "橿原高校",
         "league": "奈良県NFAサッカーリーグ",
-        "rank": 9,
+        "rank": 10,
         "points": 3,
         "played": 7,
         "won": 0,
@@ -7151,24 +7167,8 @@
         "lost": 4,
         "goalsFor": 4,
         "goalsAgainst": 16,
-        "prefectureRank": 9,
-        "goalDiff": -5,
-        "leagueRank": 9
-      },
-      {
-        "id": "nr005",
-        "name": "一条高校",
-        "league": "奈良県NFAサッカーリーグ",
-        "rank": 10,
-        "points": 2,
-        "played": 7,
-        "won": 0,
-        "drawn": 2,
-        "lost": 5,
-        "goalsFor": 4,
-        "goalsAgainst": 18,
         "prefectureRank": 10,
-        "goalDiff": -6,
+        "goalDiff": -5,
         "leagueRank": 10
       }
     ],
@@ -11250,7 +11250,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-19 08:44",
+    "lastUpdated": "2026-06-20 07:54",
     "year": 2026,
     "updatedCount": 585
   }
