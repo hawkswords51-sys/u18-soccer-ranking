@@ -640,6 +640,73 @@ body {
     opacity: 0.5;
 }
 
+/* ★ ダッシュボード：見出しサブテキスト */
+.favorites-dashboard__sub {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: -8px 0 16px;
+}
+
+/* ★ ダッシュボード：チームごとの最新スタッツ行 */
+.favorite-item__stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin-top: 8px;
+}
+.fav-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 3px;
+    font-size: 0.82rem;
+    color: var(--text-dark);
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 3px 8px;
+    white-space: nowrap;
+}
+.fav-stat__label {
+    font-size: 0.72rem;
+    color: var(--text-light);
+}
+.fav-stat__num {
+    font-weight: 700;
+}
+.fav-stat--rank {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+.fav-stat--rank .fav-stat__num {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+.fav-stat--gd {
+    color: var(--text-light);
+}
+.favorite-item__stats--empty {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+[data-theme="dark"] .fav-stat {
+    background: rgba(255, 255, 255, 0.05);
+}
+[data-theme="dark"] .fav-stat--rank {
+    background: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .fav-stat {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    :root:not([data-theme="light"]) .fav-stat--rank {
+        background: var(--primary-color);
+    }
+}
+
 /* 空状態 */
 .favorites-empty {
     text-align: center;
