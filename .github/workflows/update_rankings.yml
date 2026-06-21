@@ -152,7 +152,16 @@ jobs:
           else
             echo "scraper/generate_jyouth_page.py がまだありません。スキップ。"
           fi
-          
+
+      - name: 地域大会まとめページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_regional_page.py ]; then
+            python scraper/generate_regional_page.py
+          else
+            echo "scraper/generate_regional_page.py がまだありません。スキップ。"
+          fi
+
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |

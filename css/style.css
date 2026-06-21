@@ -5040,6 +5040,33 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* ============================================================
+   地域大会まとめ：地域ジャンプナビ
+   ============================================================ */
+.region-jump-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
+}
+.region-jump {
+    display: block;
+    padding: 12px 10px;
+    text-align: center;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: all 0.2s;
+}
+.region-jump:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* ============================================================
    いま注目バンド（ホーム用・旬の話題／季節で中身を入れ替え）
    ============================================================ */
 .spotlight-band {
