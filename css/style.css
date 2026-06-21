@@ -5040,6 +5040,38 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* ============================================================
+   U-18年間スケジュール：表
+   ============================================================ */
+.u18cal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    background: var(--bg-white);
+}
+.u18cal-table th,
+.u18cal-table td {
+    border: 1px solid var(--border-color);
+    padding: 9px 11px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
+}
+.u18cal-table thead th {
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.u18cal-table tbody th {
+    background: var(--bg-light);
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.u18cal-table tbody tr:nth-child(even) td {
+    background: var(--table-zebra, rgba(0,0,0,0.02));
+}
+
+/* ============================================================
    地域大会まとめ：地域ジャンプナビ
    ============================================================ */
 .region-jump-grid {

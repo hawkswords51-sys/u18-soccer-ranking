@@ -162,6 +162,15 @@ jobs:
             echo "scraper/generate_regional_page.py がまだありません。スキップ。"
           fi
 
+      - name: U-18年間スケジュールページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_u18_calendar.py ]; then
+            python scraper/generate_u18_calendar.py
+          else
+            echo "scraper/generate_u18_calendar.py がまだありません。スキップ。"
+          fi
+
       - name: 変更があればコミット＆プッシュ
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
