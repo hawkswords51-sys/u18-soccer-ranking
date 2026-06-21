@@ -66,17 +66,19 @@ RULES = [
 ]
 
 
-# 年間ガントチャート（横軸=4月〜翌3月の12列）。bars=(開始列, 終了列(排他), 表示文字, 種別)
-# 列: 4月=1, 5月=2, ... 12月=9, 1月=10, 2月=11, 3月=12
+# 年間ガントチャート（横軸=4月〜翌3月の12列）。bars=(開始列, 終了列(排他), 表示文字, クラス)
+# 列: 4月=1, 5月=2, 6月=3, 7月=4, 8月=5, 9月=6, 10月=7, 11月=8, 12月=9, 1月=10, 2月=11, 3月=12
+# 色分け：青=高円宮杯リーグ／オレンジ=インターハイ／赤=選手権／紫=クラブユース／灰=その他
+# 「本戦」は濃色＋大きめ（bar-honsen）。選手権本戦は最重要なので金枠（bar-champ）で最も目立たせる。
 TIMELINE = [
-    ("高円宮杯リーグ（プレミア/プリンス/県）", [(1, 4, "第1クール", "league"), (6, 10, "第2クール", "league")]),
-    ("Jユースカップ", [(2, 5, "1回戦〜決勝", "club")]),
-    ("日本クラブユース選手権", [(9, 10, "本戦", "club")]),
-    ("地域大会（関東・東海 ほか）", [(2, 4, "予選〜本戦", "kt")]),
-    ("インターハイ（高校総体）", [(2, 5, "予選→本戦", "kt")]),
-    ("全国高校選手権", [(6, 11, "予選→本戦", "kt")]),
-    ("新人戦", [(10, 13, "地区〜都道府県", "kt")]),
-    ("プレミア ファイナル・参入戦", [(9, 10, "12月", "league")]),
+    ("高円宮杯リーグ（プレミア/プリンス/県）", [(1, 4, "第1クール", "bar-league"), (6, 10, "第2クール", "bar-league")]),
+    ("インターハイ（高校総体）", [(2, 4, "予選", "bar-ih-yosen"), (4, 5, "本戦", "bar-ih-honsen bar-honsen")]),
+    ("全国高校選手権", [(5, 9, "予選", "bar-sk-yosen"), (9, 11, "🏆 本戦", "bar-sk-honsen bar-honsen bar-champ")]),
+    ("地域大会（関東・東海 ほか）", [(2, 4, "予選〜本戦", "bar-region")]),
+    ("Jユースカップ", [(2, 5, "1回戦〜決勝", "bar-club")]),
+    ("日本クラブユース選手権", [(9, 10, "本戦", "bar-club")]),
+    ("新人戦", [(10, 13, "地区〜都道府県", "bar-region")]),
+    ("プレミア ファイナル・参入戦", [(9, 10, "12月", "bar-league")]),
 ]
 
 
@@ -89,20 +91,27 @@ def render_timeline():
     rows = []
     for label, bars in TIMELINE:
         bar_html = "".join(
-            f'<div class="bar bar-{cat}" style="grid-column:{s}/{e};">{html_escape(t)}</div>'
-            for s, e, t, cat in bars
+            f'<div class="bar {cls}" style="grid-column:{s}/{e};">{html_escape(t)}</div>'
+            for s, e, t, cls in bars
         )
         rows.append('<div class="u18-gantt__row">'
                     f'<div class="u18-gantt__label">{html_escape(label)}</div>'
                     f'<div class="u18-gantt__track">{bar_html}</div></div>')
     legend = ('<div class="u18-gantt__legend">'
               '<span><i class="dot bar-league"></i>高円宮杯リーグ</span>'
-              '<span><i class="dot bar-kt"></i>高体連（インターハイ・選手権 ほか）</span>'
-              '<span><i class="dot bar-club"></i>クラブユース（Jユース・クラブユース選手権）</span>'
+              '<span><i class="dot bar-ih-honsen"></i>インターハイ（濃色＝本戦）</span>'
+              '<span><i class="dot bar-sk-honsen"></i>選手権（🏆＝本戦・最重要）</span>'
+              '<span><i class="dot bar-club"></i>クラブユース</span>'
+              '<span><i class="dot bar-region"></i>地域大会・新人戦</span>'
               '</div>')
     return ('<div class="u18-gantt-wrap"><div class="u18-gantt">'
             f'{head}{"".join(rows)}</div></div>{legend}'
-            '<p style="color:var(--text-secondary,#6b7280);font-size:0.85em;margin-top:6px;">'
+            '<div style="margin-top:12px;padding:12px 16px;background:var(--bg-light);border-left:4px solid #dc2626;border-radius:0 8px 8px 0;">'
+            '<strong style="color:#dc2626;">💡 このサイトの使い方</strong>'
+            '<p style="margin:6px 0 0;line-height:1.8;">最大の山場は <strong>12月〜1月の選手権本戦（🏆）</strong>。'
+            '各チームの今の実力は<a href="/">順位表</a>やチーム詳細ページで確認できます。'
+            'リーグ戦の順位・予選の勝ち上がりを見ながら、<strong>本戦を制するチームを予想</strong>するのにご活用ください。</p></div>'
+            '<p style="color:var(--text-secondary,#6b7280);font-size:0.85em;margin-top:8px;">'
             '※ 横軸は4月〜翌3月。バーは大まかな開催時期の目安です（7〜8月のリーグ中断＝サマーブレイク）。</p>')
 
 

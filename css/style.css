@@ -5082,8 +5082,27 @@ details[open] > summary > .league-accordion__chevron {
     padding: 0 4px;
 }
 .bar-league { background: #2563eb; }
-.bar-kt { background: #d97706; }
 .bar-club { background: #7c3aed; }
+.bar-region { background: #64748b; }
+.bar-ih-yosen { background: #fb923c; }   /* インターハイ予選（薄オレンジ） */
+.bar-ih-honsen { background: #ea580c; }  /* インターハイ本戦（濃オレンジ） */
+.bar-sk-yosen { background: #f87171; }   /* 選手権予選（薄赤） */
+.bar-sk-honsen { background: #dc2626; }  /* 選手権本戦（濃赤） */
+/* 「本戦」を大きく目立たせる */
+.u18-gantt__track .bar.bar-honsen {
+    height: 30px;
+    font-weight: 800;
+    font-size: 0.78rem;
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: -2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+/* 選手権本戦＝最重要。金枠でいちばん目立たせる */
+.u18-gantt__track .bar.bar-champ {
+    outline: 2px solid #fde047;
+    box-shadow: 0 0 0 1px #dc2626, 0 3px 10px rgba(220, 38, 38, 0.5);
+}
 .u18-gantt__legend {
     display: flex;
     flex-wrap: wrap;
