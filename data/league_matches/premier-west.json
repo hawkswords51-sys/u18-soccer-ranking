@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プレミアリーグ 2026 WEST",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4360",
-  "lastUpdated": "2026-06-16",
+  "lastUpdated": "2026-06-21",
   "teams": [
     {
       "name": "ヴィッセル神戸U-18",
@@ -57,17 +57,29 @@
     {
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
-      "pts": 19,
-      "played": 9,
-      "won": 6,
+      "pts": 22,
+      "played": 10,
+      "won": 7,
       "drawn": 1,
       "lost": 2,
-      "gf": 24,
+      "gf": 26,
       "ga": 14,
-      "gd": 10
+      "gd": 12
     },
     {
       "rank": 2,
+      "team": "名古屋グランパスU-18",
+      "pts": 18,
+      "played": 10,
+      "won": 5,
+      "drawn": 3,
+      "lost": 2,
+      "gf": 24,
+      "ga": 16,
+      "gd": 8
+    },
+    {
+      "rank": 3,
       "team": "大津",
       "pts": 18,
       "played": 9,
@@ -79,19 +91,31 @@
       "gd": 5
     },
     {
-      "rank": 3,
-      "team": "名古屋グランパスU-18",
+      "rank": 4,
+      "team": "サガン鳥栖U-18",
       "pts": 15,
-      "played": 9,
+      "played": 10,
       "won": 4,
       "drawn": 3,
-      "lost": 2,
-      "gf": 20,
-      "ga": 15,
-      "gd": 5
+      "lost": 3,
+      "gf": 15,
+      "ga": 11,
+      "gd": 4
     },
     {
-      "rank": 4,
+      "rank": 5,
+      "team": "サンフレッチェ広島F.Cユース",
+      "pts": 15,
+      "played": 10,
+      "won": 4,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 16,
+      "ga": 14,
+      "gd": 2
+    },
+    {
+      "rank": 6,
       "team": "神村学園",
       "pts": 15,
       "played": 9,
@@ -103,7 +127,7 @@
       "gd": 1
     },
     {
-      "rank": 5,
+      "rank": 7,
       "team": "アビスパ福岡 U-18",
       "pts": 13,
       "played": 9,
@@ -113,30 +137,6 @@
       "gf": 8,
       "ga": 13,
       "gd": -5
-    },
-    {
-      "rank": 6,
-      "team": "サガン鳥栖U-18",
-      "pts": 12,
-      "played": 9,
-      "won": 3,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 13,
-      "ga": 10,
-      "gd": 3
-    },
-    {
-      "rank": 7,
-      "team": "サンフレッチェ広島F.Cユース",
-      "pts": 12,
-      "played": 9,
-      "won": 3,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 13,
-      "ga": 12,
-      "gd": 1
     },
     {
       "rank": 8,
@@ -152,51 +152,51 @@
     },
     {
       "rank": 9,
-      "team": "ガンバ大阪ユース",
+      "team": "東山",
       "pts": 11,
-      "played": 7,
+      "played": 9,
       "won": 3,
       "drawn": 2,
-      "lost": 2,
-      "gf": 13,
-      "ga": 12,
-      "gd": 1
+      "lost": 4,
+      "gf": 9,
+      "ga": 10,
+      "gd": -1
     },
     {
       "rank": 10,
-      "team": "東山",
+      "team": "ガンバ大阪ユース",
       "pts": 11,
       "played": 8,
       "won": 3,
       "drawn": 2,
       "lost": 3,
-      "gf": 9,
-      "ga": 8,
-      "gd": 1
+      "gf": 14,
+      "ga": 16,
+      "gd": -2
     },
     {
       "rank": 11,
       "team": "ジュビロ磐田U-18",
       "pts": 5,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 2,
-      "lost": 6,
-      "gf": 20,
-      "ga": 27,
-      "gd": -7
+      "lost": 7,
+      "gf": 21,
+      "ga": 29,
+      "gd": -8
     },
     {
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 2,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 2,
-      "lost": 6,
-      "gf": 5,
-      "ga": 23,
-      "gd": -18
+      "lost": 7,
+      "gf": 7,
+      "ga": 26,
+      "gd": -19
     }
   ],
   "matches": [
@@ -690,37 +690,37 @@
       "md": 10,
       "date": "2026-06-20",
       "home": "サガン鳥栖U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "ジュビロ磐田U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-06-20",
       "home": "ファジアーノ岡山U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "サンフレッチェ広島F.Cユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-06-20",
       "home": "東山",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "ヴィッセル神戸U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-06-20",
       "home": "名古屋グランパスU-18",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "ガンバ大阪ユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
