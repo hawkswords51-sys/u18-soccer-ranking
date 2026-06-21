@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関東2部",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4346",
-  "lastUpdated": "2026-06-16",
+  "lastUpdated": "2026-06-21",
   "teams": [
     {
       "name": "横浜F・マリノスユース",
@@ -49,17 +49,29 @@
     {
       "rank": 1,
       "team": "横浜F・マリノスユース",
-      "pts": 17,
-      "played": 7,
+      "pts": 18,
+      "played": 8,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 0,
-      "gf": 13,
-      "ga": 2,
+      "gf": 14,
+      "ga": 3,
       "gd": 11
     },
     {
       "rank": 2,
+      "team": "西武台",
+      "pts": 14,
+      "played": 8,
+      "won": 4,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 12,
+      "ga": 11,
+      "gd": 1
+    },
+    {
+      "rank": 3,
       "team": "桐光学園",
       "pts": 12,
       "played": 7,
@@ -71,7 +83,7 @@
       "gd": 3
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "日体大柏",
       "pts": 12,
       "played": 7,
@@ -83,31 +95,31 @@
       "gd": 1
     },
     {
-      "rank": 4,
-      "team": "西武台",
+      "rank": 5,
+      "team": "日大藤沢",
       "pts": 11,
-      "played": 7,
+      "played": 8,
       "won": 3,
       "drawn": 2,
-      "lost": 2,
-      "gf": 10,
-      "ga": 11,
-      "gd": -1
-    },
-    {
-      "rank": 5,
-      "team": "矢板中央",
-      "pts": 10,
-      "played": 7,
-      "won": 3,
-      "drawn": 1,
       "lost": 3,
-      "gf": 12,
-      "ga": 11,
-      "gd": 1
+      "gf": 9,
+      "ga": 7,
+      "gd": 2
     },
     {
       "rank": 6,
+      "team": "矢板中央",
+      "pts": 11,
+      "played": 8,
+      "won": 3,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 13,
+      "ga": 12,
+      "gd": 1
+    },
+    {
+      "rank": 7,
       "team": "FC町田ゼルビアユース",
       "pts": 9,
       "played": 7,
@@ -119,40 +131,28 @@
       "gd": -4
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "鹿島アントラーズユースB",
       "pts": 8,
-      "played": 7,
+      "played": 8,
       "won": 2,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 8,
-      "ga": 8,
-      "gd": 0
-    },
-    {
-      "rank": 8,
-      "team": "日大藤沢",
-      "pts": 8,
-      "played": 7,
-      "won": 2,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 6,
-      "ga": 7,
-      "gd": -1
+      "ga": 10,
+      "gd": -2
     },
     {
       "rank": 9,
       "team": "栃木SC U-18",
       "pts": 7,
-      "played": 7,
+      "played": 8,
       "won": 2,
       "drawn": 1,
-      "lost": 4,
+      "lost": 5,
       "gf": 7,
-      "ga": 9,
-      "gd": -2
+      "ga": 12,
+      "gd": -5
     },
     {
       "rank": 10,
@@ -487,28 +487,28 @@
       "md": 8,
       "date": "2026-06-20",
       "home": "矢板中央",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "横浜F・マリノスユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
       "date": "2026-06-21",
       "home": "鹿島アントラーズユースB",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "西武台",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
       "date": "2026-06-21",
       "home": "栃木SC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "日大藤沢",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
