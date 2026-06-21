@@ -66,6 +66,46 @@ RULES = [
 ]
 
 
+# 年間ガントチャート（横軸=4月〜翌3月の12列）。bars=(開始列, 終了列(排他), 表示文字, 種別)
+# 列: 4月=1, 5月=2, ... 12月=9, 1月=10, 2月=11, 3月=12
+TIMELINE = [
+    ("高円宮杯リーグ（プレミア/プリンス/県）", [(1, 4, "第1クール", "league"), (6, 10, "第2クール", "league")]),
+    ("Jユースカップ", [(2, 5, "1回戦〜決勝", "club")]),
+    ("日本クラブユース選手権", [(9, 10, "本戦", "club")]),
+    ("地域大会（関東・東海 ほか）", [(2, 4, "予選〜本戦", "kt")]),
+    ("インターハイ（高校総体）", [(2, 5, "予選→本戦", "kt")]),
+    ("全国高校選手権", [(6, 11, "予選→本戦", "kt")]),
+    ("新人戦", [(10, 13, "地区〜都道府県", "kt")]),
+    ("プレミア ファイナル・参入戦", [(9, 10, "12月", "league")]),
+]
+
+
+def render_timeline():
+    months = ["4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2", "3"]
+    head_cells = "".join(f"<span>{m}</span>" for m in months)
+    head = ('<div class="u18-gantt__row u18-gantt__head">'
+            '<div class="u18-gantt__label">月 →</div>'
+            f'<div class="u18-gantt__track">{head_cells}</div></div>')
+    rows = []
+    for label, bars in TIMELINE:
+        bar_html = "".join(
+            f'<div class="bar bar-{cat}" style="grid-column:{s}/{e};">{html_escape(t)}</div>'
+            for s, e, t, cat in bars
+        )
+        rows.append('<div class="u18-gantt__row">'
+                    f'<div class="u18-gantt__label">{html_escape(label)}</div>'
+                    f'<div class="u18-gantt__track">{bar_html}</div></div>')
+    legend = ('<div class="u18-gantt__legend">'
+              '<span><i class="dot bar-league"></i>高円宮杯リーグ</span>'
+              '<span><i class="dot bar-kt"></i>高体連（インターハイ・選手権 ほか）</span>'
+              '<span><i class="dot bar-club"></i>クラブユース（Jユース・クラブユース選手権）</span>'
+              '</div>')
+    return ('<div class="u18-gantt-wrap"><div class="u18-gantt">'
+            f'{head}{"".join(rows)}</div></div>{legend}'
+            '<p style="color:var(--text-secondary,#6b7280);font-size:0.85em;margin-top:6px;">'
+            '※ 横軸は4月〜翌3月。バーは大まかな開催時期の目安です（7〜8月のリーグ中断＝サマーブレイク）。</p>')
+
+
 def render_month_table():
     rows = []
     for m, kt, cy, lg in MONTHS:
@@ -221,6 +261,14 @@ def main():
         このページは、その1年間の流れを月別カレンダーと主要大会の日程で“地図”のようにまとめたものです。
         各大会の最新の結果・順位は当サイトの<a href="/">都道府県別ページ</a>・<a href="/leagues/">リーグ一覧</a>からご覧いただけます。
       </p>
+
+      <section class="lp-section">
+        <h2><i class="fas fa-stream"></i> 年間スケジュール早見表</h2>
+        <p style="color:var(--text-secondary,#6b7280);margin:-4px 0 12px;font-size:0.95rem;">
+          高円宮杯リーグ（プレミア等）が年間を通して横に広がり、その合間にインターハイ・選手権・Jユースなどのトーナメントが入る——という全体像を一目で。
+        </p>
+        {render_timeline()}
+      </section>
 
       <section class="lp-section">
         <h2><i class="fas fa-calendar-days"></i> 月別カレンダー（年間の流れ）</h2>

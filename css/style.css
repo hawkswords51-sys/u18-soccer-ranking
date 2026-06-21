@@ -5040,6 +5040,68 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 /* ============================================================
+   U-18年間スケジュール：ガントチャート
+   ============================================================ */
+.u18-gantt-wrap { overflow-x: auto; padding-bottom: 4px; }
+.u18-gantt { min-width: 720px; }
+.u18-gantt__row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+.u18-gantt__label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: right;
+    line-height: 1.25;
+}
+.u18-gantt__head .u18-gantt__label { color: var(--text-light); font-weight: 400; }
+.u18-gantt__track { display: grid; grid-template-columns: repeat(12, 1fr); }
+.u18-gantt__head .u18-gantt__track > span {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    padding: 3px 0;
+    border-left: 1px solid var(--border-color);
+}
+.u18-gantt__track .bar {
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 2px 1px;
+    padding: 0 4px;
+}
+.bar-league { background: #2563eb; }
+.bar-kt { background: #d97706; }
+.bar-club { background: #7c3aed; }
+.u18-gantt__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 10px 0 0;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+}
+.u18-gantt__legend .dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    margin-right: 5px;
+    vertical-align: -2px;
+}
+
+/* ============================================================
    U-18年間スケジュール：表
    ============================================================ */
 .u18cal-table {
