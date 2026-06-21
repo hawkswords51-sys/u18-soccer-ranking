@@ -60,6 +60,18 @@
     },
     {
       "rank": 2,
+      "team": "桐光学園",
+      "pts": 15,
+      "played": 8,
+      "won": 4,
+      "drawn": 3,
+      "lost": 1,
+      "gf": 11,
+      "ga": 7,
+      "gd": 4
+    },
+    {
+      "rank": 3,
       "team": "西武台",
       "pts": 14,
       "played": 8,
@@ -71,28 +83,16 @@
       "gd": 1
     },
     {
-      "rank": 3,
-      "team": "桐光学園",
-      "pts": 12,
-      "played": 7,
-      "won": 3,
-      "drawn": 3,
-      "lost": 1,
-      "gf": 10,
-      "ga": 7,
-      "gd": 3
-    },
-    {
       "rank": 4,
       "team": "日体大柏",
       "pts": 12,
-      "played": 7,
+      "played": 8,
       "won": 4,
       "drawn": 0,
-      "lost": 3,
+      "lost": 4,
       "gf": 9,
-      "ga": 8,
-      "gd": 1
+      "ga": 9,
+      "gd": 0
     },
     {
       "rank": 5,
@@ -122,13 +122,13 @@
       "rank": 7,
       "team": "FC町田ゼルビアユース",
       "pts": 9,
-      "played": 7,
+      "played": 8,
       "won": 3,
       "drawn": 0,
-      "lost": 4,
+      "lost": 5,
       "gf": 10,
-      "ga": 14,
-      "gd": -4
+      "ga": 17,
+      "gd": -7
     },
     {
       "rank": 8,
@@ -157,14 +157,14 @@
     {
       "rank": 10,
       "team": "鹿島学園",
-      "pts": 3,
-      "played": 7,
-      "won": 0,
+      "pts": 6,
+      "played": 8,
+      "won": 1,
       "drawn": 3,
       "lost": 4,
-      "gf": 8,
+      "gf": 11,
       "ga": 16,
-      "gd": -8
+      "gd": -5
     }
   ],
   "matches": [
@@ -514,19 +514,19 @@
       "md": 8,
       "date": "2026-06-21",
       "home": "鹿島学園",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
       "date": "2026-06-21",
       "home": "日体大柏",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "桐光学園",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,
