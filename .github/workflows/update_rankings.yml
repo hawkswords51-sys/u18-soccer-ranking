@@ -96,7 +96,7 @@ jobs:
 
       # ★ 戦績表データ(data/league_matches)を更新（順位表と同じ実行で一緒に更新）
       #   ページ生成より前に実行し、最新の戦績表がリーグ／県ページに反映されるようにする
-      - name: 戦績表データを更新
+      - name: 戦績表データを更新（プレミア・プリンス）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         continue-on-error: true
         run: |
@@ -104,6 +104,16 @@ jobs:
             python scraper/update_cross_tables.py
           else
             echo "scraper/update_cross_tables.py がまだありません。スキップ。"
+          fi
+
+      - name: 戦績表データを更新（県1部・junior-soccer出典）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/update_pref_cross_tables.py ]; then
+            python scraper/update_pref_cross_tables.py
+          else
+            echo "scraper/update_pref_cross_tables.py がまだありません。スキップ。"
           fi
 
       # ★ Phase 9-A: 都道府県別 SEO ランディングページ自動生成
