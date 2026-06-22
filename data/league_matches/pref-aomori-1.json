@@ -3,23 +3,23 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/tohoku/aomori/league/table/163886",
   "sourceName": "青森少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-05-24",
+  "lastUpdated": "2026-06-22",
   "teams": [
+    {
+      "name": "八戸学院野辺地西",
+      "short": "八戸学院野辺地"
+    },
     {
       "name": "青森山田3rd",
       "short": "青森山田3rd"
     },
     {
-      "name": "八戸学院野辺地西",
-      "short": "野辺地西"
-    },
-    {
       "name": "八戸学院光星",
-      "short": "光星"
+      "short": "八戸学院光星"
     },
     {
       "name": "ヴァンラーレ八戸U18",
-      "short": "ヴァンラーレ八戸"
+      "short": "ヴァンラーレ八"
     },
     {
       "name": "弘前実業",
@@ -35,7 +35,7 @@
     },
     {
       "name": "三本木農業恵拓",
-      "short": "三本木農恵"
+      "short": "三本木農業恵拓"
     },
     {
       "name": "東奥義塾",
@@ -155,11 +155,47 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-11",
+      "date": "2026-05-09",
       "home": "青森山田3rd",
-      "hs": 10,
+      "hs": 0,
       "as": 2,
+      "away": "八戸学院野辺地西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "八戸学院野辺地西",
+      "hs": 2,
+      "as": 1,
+      "away": "八戸学院光星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "八戸学院野辺地西",
+      "hs": 2,
+      "as": 0,
+      "away": "ヴァンラーレ八戸U18",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "八戸学院野辺地西",
+      "hs": 5,
+      "as": 1,
       "away": "弘前実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "八戸学院野辺地西",
+      "hs": 1,
+      "as": 1,
+      "away": "八戸西",
       "status": "played"
     },
     {
@@ -173,6 +209,105 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "八戸学院野辺地西",
+      "hs": null,
+      "as": null,
+      "away": "三本木農業恵拓",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "八戸学院野辺地西",
+      "hs": 10,
+      "as": 0,
+      "away": "東奥義塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "青森山田3rd",
+      "hs": 5,
+      "as": 0,
+      "away": "八戸学院光星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "青森山田3rd",
+      "hs": 4,
+      "as": 1,
+      "away": "ヴァンラーレ八戸U18",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "青森山田3rd",
+      "hs": 10,
+      "as": 2,
+      "away": "弘前実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "青森山田3rd",
+      "hs": null,
+      "as": null,
+      "away": "八戸西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "青森山田3rd",
+      "hs": 4,
+      "as": 0,
+      "away": "八戸工大一",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "青森山田3rd",
+      "hs": 3,
+      "as": 0,
+      "away": "三本木農業恵拓",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "青森山田3rd",
+      "hs": 10,
+      "as": 0,
+      "away": "東奥義塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "八戸学院光星",
+      "hs": null,
+      "as": null,
+      "away": "ヴァンラーレ八戸U18",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "八戸学院光星",
+      "hs": 2,
+      "as": 0,
+      "away": "弘前実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-11",
       "home": "八戸学院光星",
       "hs": 6,
@@ -182,20 +317,47 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "ヴァンラーレ八戸U18",
-      "hs": 3,
+      "date": "2026-05-05",
+      "home": "八戸学院光星",
+      "hs": 4,
+      "as": 0,
+      "away": "八戸工大一",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "八戸学院光星",
+      "hs": 4,
       "as": 0,
       "away": "三本木農業恵拓",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-18",
+      "date": "2026-05-09",
+      "home": "八戸学院光星",
+      "hs": 6,
+      "as": 0,
+      "away": "東奥義塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "ヴァンラーレ八戸U18",
+      "hs": 2,
+      "as": 1,
+      "away": "弘前実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
       "home": "八戸西",
-      "hs": 3,
-      "as": 2,
-      "away": "三本木農業恵拓",
+      "hs": 0,
+      "as": 1,
+      "away": "ヴァンラーレ八戸U18",
       "status": "played"
     },
     {
@@ -209,10 +371,37 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "八戸学院光星",
-      "hs": 2,
+      "date": "2026-04-11",
+      "home": "ヴァンラーレ八戸U18",
+      "hs": 3,
       "as": 0,
+      "away": "三本木農業恵拓",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "ヴァンラーレ八戸U18",
+      "hs": 2,
+      "as": 1,
+      "away": "東奥義塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "八戸西",
+      "hs": 0,
+      "as": 4,
+      "away": "弘前実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "八戸工大一",
+      "hs": 1,
+      "as": 1,
       "away": "弘前実業",
       "status": "played"
     },
@@ -227,19 +416,10 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "青森山田3rd",
-      "hs": 5,
-      "as": 0,
-      "away": "八戸学院光星",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "ヴァンラーレ八戸U18",
-      "hs": 2,
-      "as": 1,
+      "date": "2026-05-02",
+      "home": "弘前実業",
+      "hs": 3,
+      "as": 2,
       "away": "東奥義塾",
       "status": "played"
     },
@@ -254,19 +434,10 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "八戸学院野辺地西",
-      "hs": 2,
-      "as": 0,
-      "away": "ヴァンラーレ八戸U18",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "青森山田3rd",
+      "date": "2026-04-18",
+      "home": "八戸西",
       "hs": 3,
-      "as": 0,
+      "as": 2,
       "away": "三本木農業恵拓",
       "status": "played"
     },
@@ -281,114 +452,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "八戸工大一",
-      "hs": 1,
-      "as": 1,
-      "away": "弘前実業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "弘前実業",
-      "hs": 3,
-      "as": 2,
-      "away": "東奥義塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "八戸学院光星",
-      "hs": 4,
-      "as": 0,
-      "away": "三本木農業恵拓",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "八戸学院野辺地西",
-      "hs": 1,
-      "as": 1,
-      "away": "八戸西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "青森山田3rd",
-      "hs": 4,
-      "as": 0,
-      "away": "八戸工大一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "八戸西",
-      "hs": 0,
-      "as": 1,
-      "away": "ヴァンラーレ八戸U18",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "青森山田3rd",
-      "hs": 10,
-      "as": 0,
-      "away": "東奥義塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "八戸学院光星",
-      "hs": 4,
-      "as": 0,
-      "away": "八戸工大一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "八戸学院野辺地西",
-      "hs": 5,
-      "as": 1,
-      "away": "弘前実業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "八戸学院光星",
-      "hs": 6,
-      "as": 0,
-      "away": "東奥義塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "青森山田3rd",
-      "hs": 0,
-      "as": 2,
-      "away": "八戸学院野辺地西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "ヴァンラーレ八戸U18",
-      "hs": 2,
-      "as": 1,
-      "away": "弘前実業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-09",
       "home": "三本木農業恵拓",
       "hs": 0,
@@ -398,30 +461,12 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "八戸学院野辺地西",
-      "hs": 2,
-      "as": 1,
-      "away": "八戸学院光星",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "八戸西",
-      "hs": 0,
-      "as": 4,
-      "away": "弘前実業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "青森山田3rd",
-      "hs": 4,
-      "as": 1,
-      "away": "ヴァンラーレ八戸U18",
-      "status": "played"
+      "date": "",
+      "home": "八戸工大一",
+      "hs": null,
+      "as": null,
+      "away": "東奥義塾",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -431,51 +476,6 @@
       "as": 0,
       "away": "東奥義塾",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "八戸学院野辺地西",
-      "hs": 10,
-      "as": 0,
-      "away": "東奥義塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "青森山田3rd",
-      "hs": null,
-      "as": null,
-      "away": "八戸西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "八戸学院野辺地西",
-      "hs": null,
-      "as": null,
-      "away": "三本木農業恵拓",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "八戸学院光星",
-      "hs": null,
-      "as": null,
-      "away": "ヴァンラーレ八戸U18",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "八戸工大一",
-      "hs": null,
-      "as": null,
-      "away": "東奥義塾",
-      "status": "scheduled"
     }
   ]
 }

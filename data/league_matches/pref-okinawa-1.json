@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kyushu/okinawa/league/table/164083",
   "sourceName": "沖縄少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-06-13",
+  "lastUpdated": "2026-06-22",
   "teams": [
     {
       "name": "那覇",
@@ -31,11 +31,11 @@
     },
     {
       "name": "FC琉球OKINAWA 2nd",
-      "short": "琉球2nd"
+      "short": "FC琉球OKI"
     },
     {
       "name": "FC琉球鹿島朝日",
-      "short": "鹿島朝日"
+      "short": "FC琉球鹿島朝"
     }
   ],
   "official_standings": [
@@ -139,11 +139,56 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-11",
+      "date": "2026-06-13",
+      "home": "那覇",
+      "hs": 0,
+      "as": 2,
+      "away": "興南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "那覇西",
+      "hs": 1,
+      "as": 2,
+      "away": "那覇",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "名護",
+      "hs": 0,
+      "as": 2,
+      "away": "那覇",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "那覇",
+      "hs": null,
+      "as": null,
+      "away": "沖縄SV",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "那覇",
+      "hs": 3,
+      "as": 0,
+      "away": "西原",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
       "home": "FC琉球OKINAWA 2nd",
       "hs": 1,
-      "as": 4,
-      "away": "那覇西",
+      "as": 2,
+      "away": "那覇",
       "status": "played"
     },
     {
@@ -157,56 +202,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "西原",
-      "hs": 0,
-      "as": 4,
-      "away": "興南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "名護",
-      "hs": 2,
-      "as": 6,
-      "away": "沖縄SV",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "沖縄SV",
-      "hs": 3,
-      "as": 1,
-      "away": "興南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "FC琉球OKINAWA 2nd",
-      "hs": 1,
-      "as": 2,
-      "away": "那覇",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "名護",
+      "date": "2026-06-06",
+      "home": "興南",
       "hs": 1,
       "as": 1,
       "away": "那覇西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "西原",
-      "hs": 2,
-      "as": 1,
-      "away": "FC琉球鹿島朝日",
       "status": "played"
     },
     {
@@ -220,11 +220,137 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "那覇西",
+      "date": "2026-04-18",
+      "home": "沖縄SV",
+      "hs": 3,
+      "as": 1,
+      "away": "興南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "西原",
+      "hs": 0,
+      "as": 4,
+      "away": "興南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "興南",
+      "hs": 2,
+      "as": 1,
+      "away": "FC琉球OKINAWA 2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "興南",
+      "hs": 3,
+      "as": 1,
+      "away": "FC琉球鹿島朝日",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "名護",
       "hs": 1,
+      "as": 1,
+      "away": "那覇西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "那覇西",
+      "hs": 2,
+      "as": 0,
+      "away": "沖縄SV",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "那覇西",
+      "hs": 0,
       "as": 2,
-      "away": "那覇",
+      "away": "西原",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "FC琉球OKINAWA 2nd",
+      "hs": 1,
+      "as": 4,
+      "away": "那覇西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "FC琉球鹿島朝日",
+      "hs": 0,
+      "as": 6,
+      "away": "那覇西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "名護",
+      "hs": 2,
+      "as": 6,
+      "away": "沖縄SV",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-06",
+      "home": "名護",
+      "hs": 6,
+      "as": 2,
+      "away": "西原",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "名護",
+      "hs": 5,
+      "as": 1,
+      "away": "FC琉球OKINAWA 2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "名護",
+      "hs": 1,
+      "as": 1,
+      "away": "FC琉球鹿島朝日",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "西原",
+      "hs": 0,
+      "as": 3,
+      "away": "沖縄SV",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "沖縄SV",
+      "hs": 1,
+      "as": 3,
+      "away": "FC琉球OKINAWA 2nd",
       "status": "played"
     },
     {
@@ -247,92 +373,11 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "沖縄SV",
-      "hs": 1,
-      "as": 3,
-      "away": "FC琉球OKINAWA 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "那覇西",
-      "hs": 0,
-      "as": 2,
-      "away": "西原",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "興南",
-      "hs": 3,
-      "as": 1,
-      "away": "FC琉球鹿島朝日",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "名護",
-      "hs": 0,
-      "as": 2,
-      "away": "那覇",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "名護",
-      "hs": 1,
-      "as": 1,
-      "away": "FC琉球鹿島朝日",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "那覇",
-      "hs": 3,
-      "as": 0,
-      "away": "西原",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "興南",
+      "date": "2026-04-18",
+      "home": "西原",
       "hs": 2,
       "as": 1,
-      "away": "FC琉球OKINAWA 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "那覇西",
-      "hs": 2,
-      "as": 0,
-      "away": "沖縄SV",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-06",
-      "home": "興南",
-      "hs": 1,
-      "as": 1,
-      "away": "那覇西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-06",
-      "home": "名護",
-      "hs": 6,
-      "as": 2,
-      "away": "西原",
+      "away": "FC琉球鹿島朝日",
       "status": "played"
     },
     {
@@ -343,51 +388,6 @@
       "as": 7,
       "away": "FC琉球OKINAWA 2nd",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "西原",
-      "hs": 0,
-      "as": 3,
-      "away": "沖縄SV",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "FC琉球鹿島朝日",
-      "hs": 0,
-      "as": 6,
-      "away": "那覇西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "那覇",
-      "hs": 0,
-      "as": 2,
-      "away": "興南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "名護",
-      "hs": 5,
-      "as": 1,
-      "away": "FC琉球OKINAWA 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "那覇",
-      "hs": null,
-      "as": null,
-      "away": "沖縄SV",
-      "status": "scheduled"
     }
   ]
 }

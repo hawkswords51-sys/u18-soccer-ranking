@@ -3,23 +3,23 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/chugoku/okayama/league/table/163763",
   "sourceName": "岡山少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-05-26",
+  "lastUpdated": "2026-06-22",
   "teams": [
     {
-      "name": "岡山学芸館2nd",
-      "short": "岡山学芸館2nd"
+      "name": "岡山学芸館B",
+      "short": "岡山学芸館B"
     },
     {
-      "name": "作陽2nd",
-      "short": "作陽2nd"
+      "name": "作陽B",
+      "short": "作陽B"
     },
     {
       "name": "創志学園",
       "short": "創志学園"
     },
     {
-      "name": "ファジ岡山U-18 2nd",
-      "short": "ファジ岡山2nd"
+      "name": "ファジ岡山U-18B",
+      "short": "ファジ岡山U-"
     },
     {
       "name": "倉敷",
@@ -30,12 +30,12 @@
       "short": "山陽"
     },
     {
-      "name": "玉野光南2nd",
-      "short": "玉野光南2nd"
+      "name": "玉野光南B",
+      "short": "玉野光南B"
     },
     {
-      "name": "就実2nd",
-      "short": "就実2nd"
+      "name": "就実B",
+      "short": "就実B"
     },
     {
       "name": "朝日塾",
@@ -49,7 +49,7 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "岡山学芸館2nd",
+      "team": "岡山学芸館B",
       "points": 20,
       "played": 8,
       "won": 6,
@@ -61,7 +61,7 @@
     },
     {
       "rank": 2,
-      "team": "作陽2nd",
+      "team": "作陽B",
       "points": 20,
       "played": 8,
       "won": 6,
@@ -74,10 +74,10 @@
     {
       "rank": 3,
       "team": "創志学園",
-      "points": 19,
-      "played": 8,
+      "points": 20,
+      "played": 9,
       "won": 6,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 1,
       "gf": 17,
       "ga": 8,
@@ -85,7 +85,7 @@
     },
     {
       "rank": 4,
-      "team": "ファジ岡山U-18 2nd",
+      "team": "ファジ岡山U-18B",
       "points": 16,
       "played": 8,
       "won": 5,
@@ -121,7 +121,7 @@
     },
     {
       "rank": 7,
-      "team": "玉野光南2nd",
+      "team": "玉野光南B",
       "points": 9,
       "played": 8,
       "won": 3,
@@ -133,7 +133,7 @@
     },
     {
       "rank": 8,
-      "team": "就実2nd",
+      "team": "就実B",
       "points": 7,
       "played": 8,
       "won": 2,
@@ -158,10 +158,10 @@
     {
       "rank": 10,
       "team": "倉敷古城池",
-      "points": 1,
-      "played": 8,
+      "points": 2,
+      "played": 9,
       "won": 0,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 7,
       "gf": 3,
       "ga": 21,
@@ -171,11 +171,182 @@
   "matches": [
     {
       "md": 0,
+      "date": "2026-05-23",
+      "home": "作陽B",
+      "hs": 1,
+      "as": 1,
+      "away": "岡山学芸館B",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
-      "home": "岡山学芸館2nd",
+      "home": "岡山学芸館B",
+      "hs": null,
+      "as": null,
+      "away": "創志学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "ファジ岡山U-18B",
+      "hs": 1,
+      "as": 2,
+      "away": "岡山学芸館B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "岡山学芸館B",
+      "hs": 1,
+      "as": 1,
+      "away": "倉敷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "岡山学芸館B",
       "hs": 1,
       "as": 0,
       "away": "山陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "岡山学芸館B",
+      "hs": 3,
+      "as": 1,
+      "away": "玉野光南B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "就実B",
+      "hs": 0,
+      "as": 3,
+      "away": "岡山学芸館B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "朝日塾",
+      "hs": 1,
+      "as": 6,
+      "away": "岡山学芸館B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "岡山学芸館B",
+      "hs": 3,
+      "as": 0,
+      "away": "倉敷古城池",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "作陽B",
+      "hs": 3,
+      "as": 1,
+      "away": "創志学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "作陽B",
+      "hs": null,
+      "as": null,
+      "away": "ファジ岡山U-18B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "作陽B",
+      "hs": 2,
+      "as": 2,
+      "away": "倉敷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "作陽B",
+      "hs": 2,
+      "as": 0,
+      "away": "山陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "作陽B",
+      "hs": 1,
+      "as": 0,
+      "away": "玉野光南B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "作陽B",
+      "hs": 2,
+      "as": 0,
+      "away": "就実B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "作陽B",
+      "hs": 1,
+      "as": 0,
+      "away": "朝日塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "作陽B",
+      "hs": 2,
+      "as": 0,
+      "away": "倉敷古城池",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "創志学園",
+      "hs": 2,
+      "as": 1,
+      "away": "ファジ岡山U-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "創志学園",
+      "hs": 0,
+      "as": 0,
+      "away": "倉敷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "山陽",
+      "hs": 0,
+      "as": 3,
+      "away": "創志学園",
       "status": "played"
     },
     {
@@ -184,34 +355,88 @@
       "home": "創志学園",
       "hs": 4,
       "as": 2,
-      "away": "玉野光南2nd",
+      "away": "玉野光南B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "ファジ岡山U-18 2nd",
+      "date": "2026-04-18",
+      "home": "創志学園",
       "hs": 3,
-      "as": 0,
-      "away": "就実2nd",
+      "as": 1,
+      "away": "就実B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "作陽2nd",
-      "hs": 1,
-      "as": 0,
+      "date": "2026-04-25",
+      "home": "創志学園",
+      "hs": 3,
+      "as": 1,
       "away": "朝日塾",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "岡山学芸館2nd",
-      "hs": 3,
+      "date": "2026-04-12",
+      "home": "創志学園",
+      "hs": 1,
       "as": 0,
       "away": "倉敷古城池",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "倉敷",
+      "hs": 1,
+      "as": 1,
+      "away": "ファジ岡山U-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "ファジ岡山U-18B",
+      "hs": 2,
+      "as": 0,
+      "away": "山陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "ファジ岡山U-18B",
+      "hs": 5,
+      "as": 2,
+      "away": "玉野光南B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "ファジ岡山U-18B",
+      "hs": 3,
+      "as": 0,
+      "away": "就実B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "ファジ岡山U-18B",
+      "hs": 4,
+      "as": 1,
+      "away": "朝日塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "倉敷古城池",
+      "hs": 2,
+      "as": 3,
+      "away": "ファジ岡山U-18B",
       "status": "played"
     },
     {
@@ -226,127 +451,10 @@
     {
       "md": 0,
       "date": "2026-04-11",
-      "home": "就実2nd",
-      "hs": 0,
-      "as": 3,
-      "away": "岡山学芸館2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "玉野光南2nd",
+      "home": "玉野光南B",
       "hs": 4,
       "as": 3,
       "away": "倉敷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "ファジ岡山U-18 2nd",
-      "hs": 4,
-      "as": 1,
-      "away": "朝日塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "作陽2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "山陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "創志学園",
-      "hs": 1,
-      "as": 0,
-      "away": "倉敷古城池",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "山陽",
-      "hs": 3,
-      "as": 1,
-      "away": "倉敷古城池",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "朝日塾",
-      "hs": 1,
-      "as": 6,
-      "away": "岡山学芸館2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "作陽2nd",
-      "hs": 2,
-      "as": 2,
-      "away": "倉敷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "ファジ岡山U-18 2nd",
-      "hs": 5,
-      "as": 2,
-      "away": "玉野光南2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "創志学園",
-      "hs": 3,
-      "as": 1,
-      "away": "就実2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "岡山学芸館2nd",
-      "hs": 3,
-      "as": 1,
-      "away": "玉野光南2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "作陽2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "倉敷古城池",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "ファジ岡山U-18 2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "山陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "創志学園",
-      "hs": 3,
-      "as": 1,
-      "away": "朝日塾",
       "status": "played"
     },
     {
@@ -355,152 +463,17 @@
       "home": "倉敷",
       "hs": 3,
       "as": 2,
-      "away": "就実2nd",
+      "away": "就実B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "就実2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "朝日塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "岡山学芸館2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "倉敷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "作陽2nd",
-      "hs": 1,
-      "as": 0,
-      "away": "玉野光南2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "山陽",
-      "hs": 0,
-      "as": 3,
-      "away": "創志学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "倉敷古城池",
-      "hs": 2,
-      "as": 3,
-      "away": "ファジ岡山U-18 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "ファジ岡山U-18 2nd",
-      "hs": 1,
-      "as": 2,
-      "away": "岡山学芸館2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "作陽2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "就実2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "玉野光南2nd",
-      "hs": 3,
-      "as": 2,
-      "away": "山陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "創志学園",
-      "hs": 0,
-      "as": 0,
-      "away": "倉敷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "朝日塾",
-      "hs": 1,
-      "as": 0,
-      "away": "倉敷古城池",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "玉野光南2nd",
-      "hs": 1,
-      "as": 0,
-      "away": "朝日塾",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
+      "date": "",
       "home": "倉敷",
-      "hs": 1,
-      "as": 1,
-      "away": "ファジ岡山U-18 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "就実2nd",
-      "hs": 0,
-      "as": 0,
-      "away": "倉敷古城池",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "作陽2nd",
-      "hs": 3,
-      "as": 1,
-      "away": "創志学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "玉野光南2nd",
-      "hs": 0,
-      "as": 1,
-      "away": "就実2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "作陽2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "岡山学芸館2nd",
-      "status": "played"
+      "hs": null,
+      "as": null,
+      "away": "朝日塾",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -513,6 +486,24 @@
     },
     {
       "md": 0,
+      "date": "2026-05-09",
+      "home": "玉野光南B",
+      "hs": 3,
+      "as": 2,
+      "away": "山陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "山陽",
+      "hs": null,
+      "as": null,
+      "away": "就実B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-05-23",
       "home": "山陽",
       "hs": 3,
@@ -522,57 +513,66 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "創志学園",
-      "hs": 2,
+      "date": "2026-04-18",
+      "home": "山陽",
+      "hs": 3,
       "as": 1,
-      "away": "ファジ岡山U-18 2nd",
+      "away": "倉敷古城池",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "玉野光南B",
+      "hs": 0,
+      "as": 1,
+      "away": "就実B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "玉野光南B",
+      "hs": 1,
+      "as": 0,
+      "away": "朝日塾",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "岡山学芸館2nd",
-      "hs": null,
-      "as": null,
-      "away": "創志学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "作陽2nd",
-      "hs": null,
-      "as": null,
-      "away": "ファジ岡山U-18 2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "倉敷",
-      "hs": null,
-      "as": null,
-      "away": "朝日塾",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山陽",
-      "hs": null,
-      "as": null,
-      "away": "就実2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "玉野光南2nd",
+      "home": "玉野光南B",
       "hs": null,
       "as": null,
       "away": "倉敷古城池",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "就実B",
+      "hs": 2,
+      "as": 0,
+      "away": "朝日塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "就実B",
+      "hs": 0,
+      "as": 0,
+      "away": "倉敷古城池",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "朝日塾",
+      "hs": 1,
+      "as": 0,
+      "away": "倉敷古城池",
+      "status": "played"
     }
   ]
 }

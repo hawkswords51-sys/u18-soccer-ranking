@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/tokai/mie/league/table/163696",
   "sourceName": "三重少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-06-14",
+  "lastUpdated": "2026-06-22",
   "teams": [
     {
       "name": "海星",
@@ -26,8 +26,8 @@
       "short": "四日市工"
     },
     {
-      "name": "三重2nd",
-      "short": "三重2nd"
+      "name": "三重②",
+      "short": "三重②"
     },
     {
       "name": "近大高専",
@@ -101,7 +101,7 @@
     },
     {
       "rank": 6,
-      "team": "三重2nd",
+      "team": "三重②",
       "points": 3,
       "played": 6,
       "won": 1,
@@ -139,11 +139,38 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "四中工",
-      "hs": 10,
+      "date": "2026-06-13",
+      "home": "宇治山田商",
+      "hs": 1,
       "as": 2,
-      "away": "伊賀白鳳",
+      "away": "海星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "海星",
+      "hs": null,
+      "as": null,
+      "away": "四中工",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-06",
+      "home": "津工業",
+      "hs": 0,
+      "as": 1,
+      "away": "海星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "海星",
+      "hs": 3,
+      "as": 1,
+      "away": "四日市工",
       "status": "played"
     },
     {
@@ -152,52 +179,16 @@
       "home": "海星",
       "hs": 4,
       "as": 1,
-      "away": "三重2nd",
+      "away": "三重②",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "宇治山田商",
-      "hs": 2,
-      "as": 0,
-      "away": "四日市工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "津工業",
-      "hs": 6,
-      "as": 0,
-      "away": "近大高専",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "三重2nd",
-      "hs": 2,
-      "as": 6,
-      "away": "四中工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "宇治山田商",
+      "date": "2026-04-29",
+      "home": "海星",
       "hs": 4,
       "as": 0,
       "away": "近大高専",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "四日市工",
-      "hs": 1,
-      "as": 0,
-      "away": "津工業",
       "status": "played"
     },
     {
@@ -207,78 +198,6 @@
       "hs": 0,
       "as": 2,
       "away": "海星",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "四中工",
-      "hs": 1,
-      "as": 1,
-      "away": "近大高専",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "海星",
-      "hs": 3,
-      "as": 1,
-      "away": "四日市工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "宇治山田商",
-      "hs": 6,
-      "as": 1,
-      "away": "三重2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "津工業",
-      "hs": 3,
-      "as": 0,
-      "away": "伊賀白鳳",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "四中工",
-      "hs": 4,
-      "as": 0,
-      "away": "四日市工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "宇治山田商",
-      "hs": 3,
-      "as": 0,
-      "away": "伊賀白鳳",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "海星",
-      "hs": 4,
-      "as": 0,
-      "away": "近大高専",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "津工業",
-      "hs": 2,
-      "as": 0,
-      "away": "三重2nd",
       "status": "played"
     },
     {
@@ -292,56 +211,47 @@
     },
     {
       "md": 0,
-      "date": "2026-06-06",
-      "home": "近大高専",
+      "date": "",
+      "home": "宇治山田商",
+      "hs": null,
+      "as": null,
+      "away": "津工業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "宇治山田商",
       "hs": 2,
-      "as": 4,
-      "away": "三重2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-06",
-      "home": "四日市工",
-      "hs": 1,
       "as": 0,
-      "away": "伊賀白鳳",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-06",
-      "home": "津工業",
-      "hs": 0,
-      "as": 1,
-      "away": "海星",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "三重2nd",
-      "hs": 1,
-      "as": 2,
       "away": "四日市工",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-13",
+      "date": "2026-04-25",
       "home": "宇治山田商",
-      "hs": 1,
-      "as": 2,
-      "away": "海星",
+      "hs": 6,
+      "as": 1,
+      "away": "三重②",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "伊賀白鳳",
-      "hs": 1,
-      "as": 1,
+      "date": "2026-04-18",
+      "home": "宇治山田商",
+      "hs": 4,
+      "as": 0,
       "away": "近大高専",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "宇治山田商",
+      "hs": 3,
+      "as": 0,
+      "away": "伊賀白鳳",
       "status": "played"
     },
     {
@@ -355,21 +265,84 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "海星",
-      "hs": null,
-      "as": null,
-      "away": "四中工",
-      "status": "scheduled"
+      "date": "2026-04-29",
+      "home": "四中工",
+      "hs": 4,
+      "as": 0,
+      "away": "四日市工",
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "宇治山田商",
-      "hs": null,
-      "as": null,
+      "date": "2026-04-18",
+      "home": "三重②",
+      "hs": 2,
+      "as": 6,
+      "away": "四中工",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "四中工",
+      "hs": 1,
+      "as": 1,
+      "away": "近大高専",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "四中工",
+      "hs": 10,
+      "as": 2,
+      "away": "伊賀白鳳",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "四日市工",
+      "hs": 1,
+      "as": 0,
       "away": "津工業",
-      "status": "scheduled"
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "津工業",
+      "hs": 2,
+      "as": 0,
+      "away": "三重②",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "津工業",
+      "hs": 6,
+      "as": 0,
+      "away": "近大高専",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "津工業",
+      "hs": 3,
+      "as": 0,
+      "away": "伊賀白鳳",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "三重②",
+      "hs": 1,
+      "as": 2,
+      "away": "四日市工",
+      "status": "played"
     },
     {
       "md": 0,
@@ -382,12 +355,39 @@
     },
     {
       "md": 0,
+      "date": "2026-06-06",
+      "home": "四日市工",
+      "hs": 1,
+      "as": 0,
+      "away": "伊賀白鳳",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-06",
+      "home": "近大高専",
+      "hs": 2,
+      "as": 4,
+      "away": "三重②",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
-      "home": "三重2nd",
+      "home": "三重②",
       "hs": null,
       "as": null,
       "away": "伊賀白鳳",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "伊賀白鳳",
+      "hs": 1,
+      "as": 1,
+      "away": "近大高専",
+      "status": "played"
     }
   ]
 }

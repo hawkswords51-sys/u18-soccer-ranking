@@ -3,27 +3,27 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/tohoku/miyagi/league/table/163782",
   "sourceName": "宮城少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-05-09",
+  "lastUpdated": "2026-06-22",
   "teams": [
     {
       "name": "仙台育英",
       "short": "仙台育英"
     },
     {
-      "name": "聖和学園2nd",
-      "short": "聖和学園2nd"
+      "name": "聖和学園Ⅱ",
+      "short": "聖和学園Ⅱ"
     },
     {
-      "name": "ベガルタ仙台2nd",
-      "short": "ベガルタ2nd"
+      "name": "ベガルタⅡ",
+      "short": "ベガルタⅡ"
     },
     {
       "name": "東北生文大",
       "short": "東北生文大"
     },
     {
-      "name": "東北学院2nd",
-      "short": "東北学院2nd"
+      "name": "東北学院Ⅱ",
+      "short": "東北学院Ⅱ"
     },
     {
       "name": "利府",
@@ -53,7 +53,7 @@
     },
     {
       "rank": 2,
-      "team": "聖和学園2nd",
+      "team": "聖和学園Ⅱ",
       "points": 16,
       "played": 7,
       "won": 5,
@@ -65,7 +65,7 @@
     },
     {
       "rank": 3,
-      "team": "ベガルタ仙台2nd",
+      "team": "ベガルタⅡ",
       "points": 10,
       "played": 7,
       "won": 3,
@@ -89,7 +89,7 @@
     },
     {
       "rank": 5,
-      "team": "東北学院2nd",
+      "team": "東北学院Ⅱ",
       "points": 9,
       "played": 7,
       "won": 3,
@@ -139,65 +139,20 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "聖和学園2nd",
-      "hs": 2,
-      "as": 1,
-      "away": "東北生文大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "ベガルタ仙台2nd",
+      "date": "2026-05-09",
+      "home": "仙台育英",
       "hs": 2,
       "as": 2,
-      "away": "東北",
+      "away": "聖和学園Ⅱ",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "利府",
-      "hs": 2,
-      "as": 0,
-      "away": "仙台大明成",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
+      "date": "2026-05-05",
       "home": "仙台育英",
-      "hs": 8,
-      "as": 0,
-      "away": "東北学院2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "ベガルタ仙台2nd",
-      "hs": 0,
-      "as": 1,
-      "away": "仙台大明成",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "聖和学園2nd",
       "hs": 2,
-      "as": 0,
-      "away": "東北学院2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "利府",
-      "hs": 0,
-      "as": 0,
-      "away": "東北",
+      "as": 1,
+      "away": "ベガルタⅡ",
       "status": "played"
     },
     {
@@ -211,9 +166,27 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "聖和学園2nd",
-      "hs": 3,
+      "date": "2026-04-04",
+      "home": "仙台育英",
+      "hs": 8,
+      "as": 0,
+      "away": "東北学院Ⅱ",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "仙台育英",
+      "hs": 5,
+      "as": 0,
+      "away": "利府",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "仙台育英",
+      "hs": 4,
       "as": 0,
       "away": "仙台大明成",
       "status": "played"
@@ -229,11 +202,110 @@
     },
     {
       "md": 0,
+      "date": "2026-05-03",
+      "home": "聖和学園Ⅱ",
+      "hs": 4,
+      "as": 0,
+      "away": "ベガルタⅡ",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "聖和学園Ⅱ",
+      "hs": 2,
+      "as": 1,
+      "away": "東北生文大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "聖和学園Ⅱ",
+      "hs": 2,
+      "as": 0,
+      "away": "東北学院Ⅱ",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "聖和学園Ⅱ",
+      "hs": 0,
+      "as": 3,
+      "away": "利府",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
-      "home": "ベガルタ仙台2nd",
+      "home": "聖和学園Ⅱ",
+      "hs": 3,
+      "as": 0,
+      "away": "仙台大明成",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "聖和学園Ⅱ",
+      "hs": 6,
+      "as": 0,
+      "away": "東北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "ベガルタⅡ",
+      "hs": 2,
+      "as": 1,
+      "away": "東北生文大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "ベガルタⅡ",
       "hs": 5,
       "as": 0,
-      "away": "東北学院2nd",
+      "away": "東北学院Ⅱ",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "ベガルタⅡ",
+      "hs": 4,
+      "as": 0,
+      "away": "利府",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "ベガルタⅡ",
+      "hs": 0,
+      "as": 1,
+      "away": "仙台大明成",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "ベガルタⅡ",
+      "hs": 2,
+      "as": 2,
+      "away": "東北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "東北学院Ⅱ",
+      "hs": 1,
+      "as": 0,
+      "away": "東北生文大",
       "status": "played"
     },
     {
@@ -247,11 +319,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-26",
-      "home": "聖和学園2nd",
-      "hs": 6,
-      "as": 0,
-      "away": "東北",
+      "date": "2026-05-05",
+      "home": "仙台大明成",
+      "hs": 1,
+      "as": 2,
+      "away": "東北生文大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "東北",
+      "hs": 0,
+      "as": 1,
+      "away": "東北生文大",
       "status": "played"
     },
     {
@@ -260,43 +341,7 @@
       "home": "利府",
       "hs": 1,
       "as": 3,
-      "away": "東北学院2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "ベガルタ仙台2nd",
-      "hs": 2,
-      "as": 1,
-      "away": "東北生文大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "仙台育英",
-      "hs": 4,
-      "as": 0,
-      "away": "仙台大明成",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "仙台育英",
-      "hs": 5,
-      "as": 0,
-      "away": "利府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "東北",
-      "hs": 0,
-      "as": 1,
-      "away": "東北生文大",
+      "away": "東北学院Ⅱ",
       "status": "played"
     },
     {
@@ -305,43 +350,7 @@
       "home": "仙台大明成",
       "hs": 3,
       "as": 2,
-      "away": "東北学院2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "聖和学園2nd",
-      "hs": 4,
-      "as": 0,
-      "away": "ベガルタ仙台2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "仙台大明成",
-      "hs": 1,
-      "as": 2,
-      "away": "東北生文大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "仙台育英",
-      "hs": 2,
-      "as": 1,
-      "away": "ベガルタ仙台2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "聖和学園2nd",
-      "hs": 0,
-      "as": 3,
-      "away": "利府",
+      "away": "東北学院Ⅱ",
       "status": "played"
     },
     {
@@ -350,34 +359,25 @@
       "home": "東北",
       "hs": 0,
       "as": 1,
-      "away": "東北学院2nd",
+      "away": "東北学院Ⅱ",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-09",
-      "home": "東北学院2nd",
-      "hs": 1,
-      "as": 0,
-      "away": "東北生文大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "仙台育英",
+      "date": "2026-04-04",
+      "home": "利府",
       "hs": 2,
-      "as": 2,
-      "away": "聖和学園2nd",
+      "as": 0,
+      "away": "仙台大明成",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-09",
-      "home": "ベガルタ仙台2nd",
-      "hs": 4,
+      "date": "2026-04-12",
+      "home": "利府",
+      "hs": 0,
       "as": 0,
-      "away": "利府",
+      "away": "東北",
       "status": "played"
     },
     {

@@ -3,11 +3,11 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/chugoku/shimane/league/table/163918",
   "sourceName": "島根少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-06-15",
+  "lastUpdated": "2026-06-22",
   "teams": [
     {
-      "name": "立正大淞南2nd",
-      "short": "立正大淞南2nd"
+      "name": "立正大淞南B",
+      "short": "立正大淞南B"
     },
     {
       "name": "益田東",
@@ -26,8 +26,8 @@
       "short": "出雲"
     },
     {
-      "name": "大社2nd",
-      "short": "大社2nd"
+      "name": "大社B",
+      "short": "大社B"
     },
     {
       "name": "出雲工業",
@@ -41,7 +41,7 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "立正大淞南2nd",
+      "team": "立正大淞南B",
       "points": 19,
       "played": 7,
       "won": 6,
@@ -101,7 +101,7 @@
     },
     {
       "rank": 6,
-      "team": "大社2nd",
+      "team": "大社B",
       "points": 6,
       "played": 7,
       "won": 2,
@@ -139,137 +139,83 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "明誠",
-      "hs": 5,
-      "as": 2,
-      "away": "出雲",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "益田東",
-      "hs": 5,
-      "as": 3,
-      "away": "大社2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "開星",
-      "hs": 1,
-      "as": 0,
-      "away": "松江商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "立正大淞南2nd",
-      "hs": 6,
-      "as": 0,
-      "away": "出雲工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "開星",
-      "hs": 2,
-      "as": 2,
-      "away": "出雲",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "立正大淞南2nd",
+      "date": "2026-06-13",
+      "home": "立正大淞南B",
       "hs": 7,
-      "as": 0,
-      "away": "大社2nd",
+      "as": 2,
+      "away": "益田東",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "益田東",
-      "hs": 1,
-      "as": 0,
-      "away": "出雲工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "明誠",
-      "hs": 7,
-      "as": 0,
-      "away": "松江商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "立正大淞南2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "出雲",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "開星",
+      "date": "2026-05-23",
+      "home": "立正大淞南B",
       "hs": 6,
-      "as": 0,
-      "away": "大社2nd",
+      "as": 2,
+      "away": "明誠",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "益田東",
-      "hs": 10,
-      "as": 0,
-      "away": "松江商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "明誠",
-      "hs": 4,
+      "date": "2026-05-16",
+      "home": "立正大淞南B",
+      "hs": 1,
       "as": 1,
+      "away": "開星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "立正大淞南B",
+      "hs": 2,
+      "as": 0,
+      "away": "出雲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "立正大淞南B",
+      "hs": 7,
+      "as": 0,
+      "away": "大社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "立正大淞南B",
+      "hs": 6,
+      "as": 0,
       "away": "出雲工業",
       "status": "played"
     },
     {
       "md": 0,
       "date": "2026-04-25",
+      "home": "立正大淞南B",
+      "hs": 4,
+      "as": 0,
+      "away": "松江商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
       "home": "明誠",
+      "hs": 1,
+      "as": 4,
+      "away": "益田東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "開星",
       "hs": 3,
       "as": 1,
-      "away": "大社2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "立正大淞南2nd",
-      "hs": 4,
-      "as": 0,
-      "away": "松江商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "開星",
-      "hs": 2,
-      "as": 0,
-      "away": "出雲工業",
+      "away": "益田東",
       "status": "played"
     },
     {
@@ -283,92 +229,128 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "出雲",
-      "hs": 2,
-      "as": 0,
-      "away": "大社2nd",
+      "date": "2026-04-04",
+      "home": "益田東",
+      "hs": 5,
+      "as": 3,
+      "away": "大社B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "松江商業",
+      "date": "2026-04-11",
+      "home": "益田東",
       "hs": 1,
-      "as": 4,
-      "away": "出雲工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "明誠",
-      "hs": 1,
-      "as": 4,
-      "away": "益田東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "立正大淞南2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "開星",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "出雲",
-      "hs": 2,
       "as": 0,
       "away": "出雲工業",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "立正大淞南2nd",
-      "hs": 6,
-      "as": 2,
-      "away": "明誠",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "開星",
-      "hs": 3,
-      "as": 1,
-      "away": "益田東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "大社2nd",
-      "hs": 6,
+      "date": "2026-04-18",
+      "home": "益田東",
+      "hs": 10,
       "as": 0,
       "away": "松江商業",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "大社2nd",
+      "date": "2026-06-14",
+      "home": "明誠",
       "hs": 4,
+      "as": 3,
+      "away": "開星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "明誠",
+      "hs": 5,
       "as": 2,
+      "away": "出雲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "明誠",
+      "hs": 3,
+      "as": 1,
+      "away": "大社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "明誠",
+      "hs": 4,
+      "as": 1,
       "away": "出雲工業",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "立正大淞南2nd",
+      "date": "2026-04-11",
+      "home": "明誠",
       "hs": 7,
+      "as": 0,
+      "away": "松江商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "開星",
+      "hs": 2,
       "as": 2,
-      "away": "益田東",
+      "away": "出雲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "開星",
+      "hs": 6,
+      "as": 0,
+      "away": "大社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "開星",
+      "hs": 2,
+      "as": 0,
+      "away": "出雲工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "開星",
+      "hs": 1,
+      "as": 0,
+      "away": "松江商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "出雲",
+      "hs": 2,
+      "as": 0,
+      "away": "大社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "出雲",
+      "hs": 2,
+      "as": 0,
+      "away": "出雲工業",
       "status": "played"
     },
     {
@@ -382,11 +364,29 @@
     },
     {
       "md": 0,
-      "date": "2026-06-14",
-      "home": "明誠",
+      "date": "2026-06-13",
+      "home": "大社B",
       "hs": 4,
-      "as": 3,
-      "away": "開星",
+      "as": 2,
+      "away": "出雲工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "大社B",
+      "hs": 6,
+      "as": 0,
+      "away": "松江商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "松江商業",
+      "hs": 1,
+      "as": 4,
+      "away": "出雲工業",
       "status": "played"
     }
   ]

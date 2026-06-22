@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/hokushinetsu/niigata/league/table/163784",
   "sourceName": "新潟少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-06-15",
+  "lastUpdated": "2026-06-22",
   "teams": [
     {
       "name": "新潟明訓2nd",
@@ -19,7 +19,7 @@
     },
     {
       "name": "東京学館新潟",
-      "short": "学館新潟"
+      "short": "東京学館新潟"
     },
     {
       "name": "帝京長岡3rd",
@@ -27,7 +27,7 @@
     },
     {
       "name": "開志学園JSC 2nd",
-      "short": "開志JSC2nd"
+      "short": "開志学園JSC"
     },
     {
       "name": "北越2nd",
@@ -139,6 +139,87 @@
   "matches": [
     {
       "md": 0,
+      "date": "2026-04-19",
+      "home": "新潟明訓2nd",
+      "hs": 1,
+      "as": 1,
+      "away": "上越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "新潟明訓2nd",
+      "hs": null,
+      "as": null,
+      "away": "日本文理3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "新潟明訓2nd",
+      "hs": 2,
+      "as": 1,
+      "away": "東京学館新潟",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "新潟明訓2nd",
+      "hs": 0,
+      "as": 3,
+      "away": "帝京長岡3rd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "新潟明訓2nd",
+      "hs": null,
+      "as": null,
+      "away": "開志学園JSC 2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "新潟明訓2nd",
+      "hs": null,
+      "as": null,
+      "away": "北越2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-24",
+      "home": "新潟明訓2nd",
+      "hs": 5,
+      "as": 0,
+      "away": "新潟工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "上越2nd",
+      "hs": 2,
+      "as": 0,
+      "away": "新潟明訓2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "上越2nd",
+      "hs": null,
+      "as": null,
+      "away": "日本文理3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-04",
       "home": "上越2nd",
       "hs": 0,
@@ -148,10 +229,343 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "上越2nd",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "上越2nd",
+      "hs": 2,
+      "as": 0,
+      "away": "開志学園JSC 2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "上越2nd",
+      "hs": null,
+      "as": null,
+      "away": "北越2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "上越2nd",
+      "hs": null,
+      "as": null,
+      "away": "新潟工業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "日本文理3rd",
+      "hs": 2,
+      "as": 3,
+      "away": "新潟明訓2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "日本文理3rd",
+      "hs": 2,
+      "as": 2,
+      "away": "上越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日本文理3rd",
+      "hs": null,
+      "as": null,
+      "away": "東京学館新潟",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "日本文理3rd",
+      "hs": 3,
+      "as": 1,
+      "away": "帝京長岡3rd",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-04",
       "home": "日本文理3rd",
       "hs": 0,
       "as": 1,
+      "away": "開志学園JSC 2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-24",
+      "home": "日本文理3rd",
+      "hs": 2,
+      "as": 1,
+      "away": "北越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日本文理3rd",
+      "hs": null,
+      "as": null,
+      "away": "新潟工業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東京学館新潟",
+      "hs": null,
+      "as": null,
+      "away": "新潟明訓2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東京学館新潟",
+      "hs": null,
+      "as": null,
+      "away": "上越2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "東京学館新潟",
+      "hs": 1,
+      "as": 0,
+      "away": "日本文理3rd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東京学館新潟",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-24",
+      "home": "東京学館新潟",
+      "hs": 2,
+      "as": 2,
+      "away": "開志学園JSC 2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東京学館新潟",
+      "hs": null,
+      "as": null,
+      "away": "北越2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "東京学館新潟",
+      "hs": 1,
+      "as": 1,
+      "away": "新潟工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "帝京長岡3rd",
+      "hs": null,
+      "as": null,
+      "away": "新潟明訓2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-24",
+      "home": "帝京長岡3rd",
+      "hs": 2,
+      "as": 5,
+      "away": "上越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "帝京長岡3rd",
+      "hs": null,
+      "as": null,
+      "away": "日本文理3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "帝京長岡3rd",
+      "hs": 3,
+      "as": 3,
+      "away": "東京学館新潟",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "帝京長岡3rd",
+      "hs": null,
+      "as": null,
+      "away": "開志学園JSC 2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "帝京長岡3rd",
+      "hs": 5,
+      "as": 1,
+      "away": "北越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "帝京長岡3rd",
+      "hs": 1,
+      "as": 1,
+      "away": "新潟工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "開志学園JSC 2nd",
+      "hs": 1,
+      "as": 3,
+      "away": "新潟明訓2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "開志学園JSC 2nd",
+      "hs": null,
+      "as": null,
+      "away": "上越2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "開志学園JSC 2nd",
+      "hs": null,
+      "as": null,
+      "away": "日本文理3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "開志学園JSC 2nd",
+      "hs": null,
+      "as": null,
+      "away": "東京学館新潟",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "開志学園JSC 2nd",
+      "hs": 2,
+      "as": 5,
+      "away": "帝京長岡3rd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "開志学園JSC 2nd",
+      "hs": 1,
+      "as": 2,
+      "away": "北越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "開志学園JSC 2nd",
+      "hs": 3,
+      "as": 2,
+      "away": "新潟工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "北越2nd",
+      "hs": 0,
+      "as": 3,
+      "away": "新潟明訓2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "北越2nd",
+      "hs": 2,
+      "as": 2,
+      "away": "上越2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "北越2nd",
+      "hs": null,
+      "as": null,
+      "away": "日本文理3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "北越2nd",
+      "hs": null,
+      "as": null,
+      "away": "東京学館新潟",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "北越2nd",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡3rd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "北越2nd",
+      "hs": 1,
+      "as": 3,
       "away": "開志学園JSC 2nd",
       "status": "played"
     },
@@ -166,11 +580,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-05",
-      "home": "新潟明訓2nd",
+      "date": "",
+      "home": "新潟工業",
+      "hs": null,
+      "as": null,
+      "away": "新潟明訓2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "新潟工業",
       "hs": 0,
-      "as": 3,
-      "away": "帝京長岡3rd",
+      "as": 5,
+      "away": "上越2nd",
       "status": "played"
     },
     {
@@ -184,435 +607,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "開志学園JSC 2nd",
-      "hs": 2,
-      "as": 5,
-      "away": "帝京長岡3rd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "新潟明訓2nd",
-      "hs": 2,
-      "as": 1,
-      "away": "東京学館新潟",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "北越2nd",
-      "hs": 2,
-      "as": 2,
-      "away": "上越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "日本文理3rd",
-      "hs": 3,
-      "as": 2,
-      "away": "帝京長岡3rd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "北越2nd",
-      "hs": 1,
-      "as": 3,
-      "away": "開志学園JSC 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-19",
       "home": "新潟工業",
       "hs": 0,
       "as": 1,
       "away": "東京学館新潟",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "新潟明訓2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "上越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "開志学園JSC 2nd",
-      "hs": 1,
-      "as": 3,
-      "away": "新潟明訓2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "帝京長岡3rd",
-      "hs": 5,
-      "as": 1,
-      "away": "北越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "東京学館新潟",
-      "hs": 1,
-      "as": 0,
-      "away": "日本文理3rd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "新潟工業",
-      "hs": 0,
-      "as": 5,
-      "away": "上越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "北越2nd",
-      "hs": 0,
-      "as": 3,
-      "away": "新潟明訓2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "帝京長岡3rd",
-      "hs": 3,
-      "as": 3,
-      "away": "東京学館新潟",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "開志学園JSC 2nd",
-      "hs": 3,
-      "as": 2,
-      "away": "新潟工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "日本文理3rd",
-      "hs": 2,
-      "as": 2,
-      "away": "上越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "日本文理3rd",
-      "hs": 2,
-      "as": 3,
-      "away": "新潟明訓2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "帝京長岡3rd",
-      "hs": 1,
-      "as": 1,
-      "away": "新潟工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "上越2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "開志学園JSC 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-24",
-      "home": "日本文理3rd",
-      "hs": 2,
-      "as": 1,
-      "away": "北越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-24",
-      "home": "東京学館新潟",
-      "hs": 2,
-      "as": 2,
-      "away": "開志学園JSC 2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-24",
-      "home": "新潟明訓2nd",
-      "hs": 5,
-      "as": 0,
-      "away": "新潟工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-24",
-      "home": "帝京長岡3rd",
-      "hs": 2,
-      "as": 5,
-      "away": "上越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "開志学園JSC 2nd",
-      "hs": 1,
-      "as": 2,
-      "away": "北越2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "帝京長岡3rd",
-      "hs": 1,
-      "as": 3,
-      "away": "日本文理3rd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "東京学館新潟",
-      "hs": 1,
-      "as": 1,
-      "away": "新潟工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "上越2nd",
-      "hs": 2,
-      "as": 0,
-      "away": "新潟明訓2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "新潟明訓2nd",
-      "hs": null,
-      "as": null,
-      "away": "日本文理3rd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東京学館新潟",
-      "hs": null,
-      "as": null,
-      "away": "新潟明訓2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京長岡3rd",
-      "hs": null,
-      "as": null,
-      "away": "新潟明訓2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "新潟明訓2nd",
-      "hs": null,
-      "as": null,
-      "away": "開志学園JSC 2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "新潟明訓2nd",
-      "hs": null,
-      "as": null,
-      "away": "北越2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "新潟工業",
-      "hs": null,
-      "as": null,
-      "away": "新潟明訓2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "上越2nd",
-      "hs": null,
-      "as": null,
-      "away": "日本文理3rd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東京学館新潟",
-      "hs": null,
-      "as": null,
-      "away": "上越2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "上越2nd",
-      "hs": null,
-      "as": null,
-      "away": "帝京長岡3rd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "開志学園JSC 2nd",
-      "hs": null,
-      "as": null,
-      "away": "上越2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "上越2nd",
-      "hs": null,
-      "as": null,
-      "away": "北越2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "上越2nd",
-      "hs": null,
-      "as": null,
-      "away": "新潟工業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日本文理3rd",
-      "hs": null,
-      "as": null,
-      "away": "東京学館新潟",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "開志学園JSC 2nd",
-      "hs": null,
-      "as": null,
-      "away": "日本文理3rd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "北越2nd",
-      "hs": null,
-      "as": null,
-      "away": "日本文理3rd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日本文理3rd",
-      "hs": null,
-      "as": null,
-      "away": "新潟工業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東京学館新潟",
-      "hs": null,
-      "as": null,
-      "away": "帝京長岡3rd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "開志学園JSC 2nd",
-      "hs": null,
-      "as": null,
-      "away": "東京学館新潟",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東京学館新潟",
-      "hs": null,
-      "as": null,
-      "away": "北越2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "北越2nd",
-      "hs": null,
-      "as": null,
-      "away": "東京学館新潟",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京長岡3rd",
-      "hs": null,
-      "as": null,
-      "away": "開志学園JSC 2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "北越2nd",
-      "hs": null,
-      "as": null,
-      "away": "帝京長岡3rd",
-      "status": "scheduled"
     },
     {
       "md": 0,
