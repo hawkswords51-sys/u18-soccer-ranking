@@ -27,6 +27,7 @@ import unicodedata as _ud
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
 from cross_table import render_cross_table_html
+from prefecture_intro import render_prefecture_intro_html
 import generate_jyouth_page as _bracket  # トーナメント表(SVG)描画を再利用
 
 class _JSTDate:
@@ -1519,6 +1520,7 @@ __TEAM_ROWS__
       </div>
 __PREF_CROSS_TABLE__
 __LOWER_DIVISIONS__
+__PREFECTURE_INTRO__
 
       <!-- 説明文 (SEO 用) -->
 <section class="lp-section">
@@ -1960,6 +1962,7 @@ def generate_page(pref, all_prefs):
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__PREF_CROSS_TABLE__", render_cross_table_html(f"pref-{pref_id}-1"))
         .replace("__LOWER_DIVISIONS__", lower_divisions_html)
+        .replace("__PREFECTURE_INTRO__", render_prefecture_intro_html(pref_id, pref_name))
         .replace("__NEIGHBOR_LINKS__", neighbor_links)
         .replace("__FAQ_HTML__", faq_html)
         .replace("__TOP10_HTML__", top10_html)
