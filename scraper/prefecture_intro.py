@@ -253,22 +253,55 @@ PREFECTURE_INTRO = {
 }
 
 
+def render_ranking_method_html(pref_name=""):
+    """
+    『カテゴリを越えた県内総合ランキング』という本サイト独自の見せ方を、
+    Googleが評価できる"文章"として説明するブロック。
+    （概念だけでは独自性が評価されにくいので、テキスト化して可視化する目的）
+    pref_name を文中に織り込み、47県でまったく同じ文章にならないようにしている。
+    """
+    pn = pref_name if pref_name else "この県"
+    heading = f"{pn}の順位表の見方 — カテゴリを越えた「県内総合ランキング」とは"
+    body = (
+        f"このページの順位表の最大の特徴は、{pn}のチームを所属カテゴリで分けず、"
+        f"<strong>{pn}独自の「県内総合ランキング」</strong>として1つの表にまとめている点です。"
+        "高校年代のリーグは高円宮杯JFA U-18の<strong>プレミアリーグ・プリンスリーグ・県1部リーグ</strong>など"
+        "複数のカテゴリに分かれており、公式サイトやリーグ協会のページでは"
+        "<strong>それぞれ別々の順位表でしか確認できません</strong>。"
+        f"本サイトでは、リーグの格（プレミア＞プリンス＞県1部）と各リーグ内の順位を独自の基準で加味し、"
+        f"カテゴリの垣根を越えて<strong>「{pn}でいま最も強いチームはどこか」</strong>を"
+        "一目で比較できるようにしています。"
+        "カテゴリをまたいで県内のチームを横断ランキングできるのは、他にはない本サイトならではの見せ方です。"
+    )
+    return (
+        '\n      <!-- ★ 県内総合ランキングの見方 (prefecture_intro.py) -->\n'
+        '      <section class="lp-section lp-ranking-method">\n'
+        f'        <h2>{heading}</h2>\n'
+        f'        <p style="line-height:1.9;">{body}</p>\n'
+        '      </section>\n'
+    )
+
+
 def render_prefecture_intro_html(pref_id, pref_name=""):
     """
     その県だけのオリジナル解説セクションのHTMLを返す。
-    辞書に未登録の県は "" を返す（＝ページに何も足さない＝安全）。
+    1) 県内総合ランキングの見方（独自性の説明）
+    2) その県だけの特徴・名門校
+    の2ブロックを返す。辞書に未登録の県は "" を返す（＝ページに何も足さない＝安全）。
     """
     text = PREFECTURE_INTRO.get(pref_id)
     if not text:
         return ""
     heading = f"{pref_name}の高校サッカー — 特徴と名門校" if pref_name else "この県の高校サッカー — 特徴と名門校"
-    return (
+    intro = (
         '\n      <!-- ★ 県別オリジナル解説 (prefecture_intro.py) -->\n'
         '      <section class="lp-section lp-pref-intro">\n'
         f'        <h2>{heading}</h2>\n'
         f'        <p style="line-height:1.9;">{text}</p>\n'
         '      </section>\n'
     )
+    # 順位表の見方（独自ランキングの説明）→ 県の特徴 の順で返す
+    return render_ranking_method_html(pref_name) + intro
 
 
 # 単体テスト用（python prefecture_intro.py で件数と一例を確認）
