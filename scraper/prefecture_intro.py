@@ -284,24 +284,21 @@ def render_ranking_method_html(pref_name=""):
 
 def render_prefecture_intro_html(pref_id, pref_name=""):
     """
-    その県だけのオリジナル解説セクションのHTMLを返す。
-    1) 県内総合ランキングの見方（独自性の説明）
-    2) その県だけの特徴・名門校
-    の2ブロックを返す。辞書に未登録の県は "" を返す（＝ページに何も足さない＝安全）。
+    その県だけの特徴・名門校の解説セクションのHTMLを返す。
+    （順位表の見方は render_ranking_method_html で別の差込口に出すため、ここには含めない）
+    辞書に未登録の県は "" を返す（＝ページに何も足さない＝安全）。
     """
     text = PREFECTURE_INTRO.get(pref_id)
     if not text:
         return ""
     heading = f"{pref_name}の高校サッカー — 特徴と名門校" if pref_name else "この県の高校サッカー — 特徴と名門校"
-    intro = (
+    return (
         '\n      <!-- ★ 県別オリジナル解説 (prefecture_intro.py) -->\n'
         '      <section class="lp-section lp-pref-intro">\n'
         f'        <h2>{heading}</h2>\n'
         f'        <p style="line-height:1.9;">{text}</p>\n'
         '      </section>\n'
     )
-    # 順位表の見方（独自ランキングの説明）→ 県の特徴 の順で返す
-    return render_ranking_method_html(pref_name) + intro
 
 
 # 単体テスト用（python prefecture_intro.py で件数と一例を確認）
