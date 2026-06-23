@@ -206,6 +206,42 @@ def parse_source():
             sections[cur].append(line)
     return meta, sections
 
+PREF_SLUG = {
+    "北海道": "hokkaido", "青森": "aomori", "岩手": "iwate", "宮城": "miyagi",
+    "秋田": "akita", "山形": "yamagata", "福島": "fukushima", "茨城": "ibaraki",
+    "栃木": "tochigi", "群馬": "gunma", "埼玉": "saitama", "千葉": "chiba",
+    "東京": "tokyo", "神奈川": "kanagawa", "新潟": "niigata", "富山": "toyama",
+    "石川": "ishikawa", "福井": "fukui", "山梨": "yamanashi", "長野": "nagano",
+    "岐阜": "gifu", "静岡": "shizuoka", "愛知": "aichi", "三重": "mie",
+    "滋賀": "shiga", "京都": "kyoto", "大阪": "osaka", "兵庫": "hyogo",
+    "奈良": "nara", "和歌山": "wakayama", "鳥取": "tottori", "島根": "shimane",
+    "岡山": "okayama", "広島": "hiroshima", "山口": "yamaguchi", "徳島": "tokushima",
+    "香川": "kagawa", "愛媛": "ehime", "高知": "kochi", "福岡": "fukuoka",
+    "佐賀": "saga", "長崎": "nagasaki", "熊本": "kumamoto", "大分": "oita",
+    "宮崎": "miyazaki", "鹿児島": "kagoshima", "沖縄": "okinawa",
+}
+
+
+def pref_slug(pref_name):
+    """県名（「岩手」「東京都」等）から都道府県ページのスラッグを返す。不明ならNone。"""
+    key = (pref_name or "").strip()
+    if key in PREF_SLUG:
+        return PREF_SLUG[key]
+    if key and key[-1] in "都府県" and key[:-1] in PREF_SLUG:
+        return PREF_SLUG[key[:-1]]
+    return None
+
+
+def pref_heading(pref):
+    """各県代表セクションの県名見出し。県ページが分かればリンクにする（内部リンク分配）。"""
+    disp = html_escape(pref)
+    slug = pref_slug(pref)
+    if slug:
+        return (f'<a href="/prefectures/{slug}/" '
+                f'style="color:var(--accent-color,#2563eb);text-decoration:none;font-weight:600;">'
+                f'{disp}の予選結果・順位 ›</a>')
+    return disp
+
 def render_reps(lines):
     items = []
     school_count = 0
@@ -237,7 +273,7 @@ def render_reps(lines):
             continue
         items.append(
             '<div style="padding:10px 4px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-            f'<div style="color:var(--text-secondary,#6b7280);font-size:0.82em;margin-bottom:2px;">{html_escape(pref)}</div>'
+            f'<div style="color:var(--text-secondary,#6b7280);font-size:0.82em;margin-bottom:2px;">{pref_heading(pref)}</div>'
             f'<div style="line-height:1.6;">{"、".join(rendered)}</div>'
             '</div>'
         )
@@ -1010,6 +1046,10 @@ def main():
           <li><a href="/leagues/">リーグ一覧(プレミア・プリンス)</a></li>
           <li><a href="/blog/">ブログ・医学コラム</a></li>
           <li><a href="/blog/posts/interhigh-2026-heat-safety/">【医学コラム】真夏のインターハイ暑熱対策ガイド(選手・保護者・指導者向け)</a></li>
+          <li><a href="/blog/posts/2026-05-08-may-heatstroke-prevention/">【医学コラム】熱中症の危険サインと応急処置・予防法（救急医が解説）</a></li>
+          <li><a href="/blog/posts/concussion-return-to-play-2026/">【医学コラム】脳震盪の見極め方と競技復帰プロトコル（頭を打ったら）</a></li>
+          <li><a href="/blog/posts/2026-05-22-pre-match-sleep-strategy/">【医学コラム】試合前日に眠れない時の対処法・睡眠戦略</a></li>
+          <li><a href="/blog/posts/2026-06-08-iron-deficiency-anemia/">【医学コラム】スポーツ貧血（鉄欠乏性貧血）の見抜き方と対策</a></li>
           <li><a href="/tournaments/interhigh-history/">インターハイ サッカー男子 歴代優勝校一覧</a></li>
         </ul>
       </section>
