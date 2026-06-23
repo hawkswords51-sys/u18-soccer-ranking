@@ -259,6 +259,7 @@ __TAGS_HTML__
         </header>
 
         <div class="blog-article__body">
+__AI_SUMMARY__
 __ARTICLE_BODY__
         </div>
 
@@ -360,6 +361,17 @@ def render_related_html(current_slug, current_category, all_articles):
         )
     return "\n".join(items)
 
+def build_article_ai_summary(article):
+    """記事本文の冒頭に置くAI引用向け要約。frontmatterのdescriptionを可視化する。"""
+    desc = (article.get("description") or "").strip()
+    if not desc:
+        return ""
+    style = (
+        "margin:0 0 24px;padding:14px 18px;background:var(--bg-light,#f1f5fb);"
+        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "font-size:0.97rem;line-height:1.85;"
+    )
+    return f'          <p class="blog-article__summary" style="{style}">{html_escape(desc)}</p>\n'
 
 def generate_article_page(article, all_articles):
     """個別記事ページ HTML を生成"""
@@ -428,6 +440,7 @@ def generate_article_page(article, all_articles):
         .replace("__SCHEMA_BREADCRUMB__", breadcrumb)
         .replace("__SCHEMA_ARTICLE__", article_schema)
         .replace("__ARTICLE_BODY__", body_html)
+        .replace("__AI_SUMMARY__", build_article_ai_summary(article))
         .replace("__TAGS_HTML__", tags_html)
         .replace("__RELATED_HTML__", related_html)
         .replace("__CANONICAL_URL_ENC__", url_encode(canonical))
