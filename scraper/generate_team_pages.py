@@ -624,7 +624,7 @@ def build_team_ai_summary(meta: dict) -> str:
         body += "、".join(extra) + "。"
     body += "最新の順位・歴代タイトル・OB選手情報をまとめています。"
 
-   style = (
+    style = (
         "margin:0 0 14px;padding:12px 16px;background:rgba(255,255,255,0.95);"
         "color:#16264a;border-left:4px solid #1e40af;border-radius:0 8px 8px 0;"
         "font-size:0.95rem;line-height:1.8;"
