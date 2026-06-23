@@ -382,6 +382,7 @@ __SCHEMA_BREADCRUMB__
 
     <section class="team-hero">
       <h1>__TEAM_NAME__ U-18 高校サッカー</h1>
+__AI_SUMMARY__
       <p class="team-lead">__LEAD__</p>
     </section>
 
@@ -594,6 +595,41 @@ def build_keywords(meta: dict) -> str:
             out.append(p)
     return ",".join(out)
 
+def build_team_ai_summary(meta: dict) -> str:
+    """チームページH1直下のAI引用向け一文要約。frontmatterから自動生成。"""
+    name = meta.get("name", "")
+    if not name:
+        return ""
+
+    place = meta.get("location") or meta.get("prefecture_name") or ""
+    league = meta.get("league", "")
+    founded = meta.get("founded", "")
+    coach = str(meta.get("head_coach", "") or "").split("（")[0].strip()
+
+    parts = [f"「{html_escape(name)}」サッカー部は"]
+    if place:
+        parts.append(f"{html_escape(place)}を拠点とする")
+    if league:
+        parts.append(f"高円宮杯 U-18 {html_escape(league)}所属の高校サッカー部")
+    else:
+        parts.append("U-18 年代の高校サッカー部")
+    body = "".join(parts) + "。"
+
+    extra = []
+    if founded:
+        extra.append(f"{html_escape(str(founded))}年創部")
+    if coach and coach not in ("", "—"):
+        extra.append(f"監督は{html_escape(coach)}")
+    if extra:
+        body += "、".join(extra) + "。"
+    body += "最新の順位・歴代タイトル・OB選手情報をまとめています。"
+
+    style = (
+        "margin:0 0 18px;padding:12px 16px;background:var(--bg-light,#f1f5fb);"
+        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "font-size:0.95rem;line-height:1.8;"
+    )
+    return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
 
 def render_team_page(profile: dict) -> str:
     """1チームのプロフィールから HTML を生成"""
@@ -626,6 +662,7 @@ def render_team_page(profile: dict) -> str:
         .replace("__PREFECTURE_ID__", html_escape(meta.get("prefecture", "")))
         .replace("__PREFECTURE_NAME__", html_escape(meta.get("prefecture_name", "")))
         .replace("__TEAM_NAME__", html_escape(meta.get("name", "")))
+        .replace("__AI_SUMMARY__", build_team_ai_summary(meta))
         .replace("__LEAD__", html_escape(lead))
         .replace("__LEAGUE__", html_escape(meta.get("league", "—")))
         .replace("__FOUNDED__", html_escape(f"{meta.get('founded', '—')}年" if meta.get("founded") else "—"))
