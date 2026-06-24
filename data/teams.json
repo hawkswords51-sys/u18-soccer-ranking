@@ -2823,18 +2823,18 @@
         "leagueRank": 8
       },
       {
-        "id": "t012",
-        "name": "実践学園高校",
+        "id": "t009",
+        "name": "堀越高校",
         "league": "東京T1リーグ",
         "rank": 5,
-        "points": 15,
-        "played": 8,
-        "won": 5,
-        "drawn": 0,
-        "lost": 3,
-        "goalsFor": 12,
-        "goalsAgainst": 4,
-        "goalDiff": 1,
+        "points": 16,
+        "played": 9,
+        "won": 4,
+        "drawn": 4,
+        "lost": 1,
+        "goalsFor": 15,
+        "goalsAgainst": 11,
+        "goalDiff": 0,
         "prefectureRank": 5,
         "leagueRank": 2
       },
@@ -2855,10 +2855,26 @@
         "leagueRank": 8
       },
       {
+        "id": "t012",
+        "name": "実践学園高校",
+        "league": "東京T1リーグ",
+        "rank": 7,
+        "points": 15,
+        "played": 8,
+        "won": 5,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 12,
+        "goalsAgainst": 4,
+        "goalDiff": 1,
+        "prefectureRank": 7,
+        "leagueRank": 3
+      },
+      {
         "id": "t005",
         "name": "國學院大學久我山高校",
         "league": "東京T1リーグ",
-        "rank": 7,
+        "rank": 8,
         "points": 14,
         "played": 9,
         "won": 4,
@@ -2866,29 +2882,13 @@
         "lost": 3,
         "goalsFor": 9,
         "goalsAgainst": 10,
-        "prefectureRank": 7,
+        "prefectureRank": 8,
         "goalDiff": 1,
-        "leagueRank": 3,
+        "leagueRank": 4,
         "aliases": [
           "國學院久我山高校",
           "國學院久我山"
         ]
-      },
-      {
-        "id": "t009",
-        "name": "堀越高校",
-        "league": "東京T1リーグ",
-        "rank": 8,
-        "points": 13,
-        "played": 8,
-        "won": 3,
-        "drawn": 4,
-        "lost": 1,
-        "goalsFor": 11,
-        "goalsAgainst": 10,
-        "goalDiff": 0,
-        "prefectureRank": 8,
-        "leagueRank": 4
       },
       {
         "id": "t007",
@@ -2942,12 +2942,12 @@
         "name": "FC東京U-18 2nd",
         "league": "東京T1リーグ",
         "points": 8,
-        "played": 8,
+        "played": 9,
         "won": 2,
         "drawn": 2,
-        "lost": 4,
-        "goalsFor": 12,
-        "goalsAgainst": 15,
+        "lost": 5,
+        "goalsFor": 13,
+        "goalsAgainst": 19,
         "leagueRank": 8,
         "rank": 12,
         "prefectureRank": 12,
@@ -3038,6 +3038,21 @@
         ]
       },
       {
+        "name": "東海大学付属高輪台高校",
+        "points": 17,
+        "played": 9,
+        "won": 5,
+        "drawn": 2,
+        "lost": 2,
+        "goalsFor": 16,
+        "goalsAgainst": 10,
+        "goalDiff": 6,
+        "divRank": 2,
+        "aliases": [
+          "東海大高輪台"
+        ]
+      },
+      {
         "name": "東京実業高校",
         "points": 15,
         "played": 8,
@@ -3047,24 +3062,9 @@
         "goalsFor": 10,
         "goalsAgainst": 3,
         "goalDiff": 7,
-        "divRank": 2,
-        "aliases": [
-          "東京実業"
-        ]
-      },
-      {
-        "name": "日本大学第三高校",
-        "points": 14,
-        "played": 9,
-        "won": 4,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 14,
-        "goalsAgainst": 10,
-        "goalDiff": 4,
         "divRank": 3,
         "aliases": [
-          "日大三"
+          "東京実業"
         ]
       },
       {
@@ -3083,18 +3083,18 @@
         ]
       },
       {
-        "name": "東海大学付属高輪台高校",
+        "name": "日本大学第三高校",
         "points": 14,
-        "played": 8,
+        "played": 10,
         "won": 4,
         "drawn": 2,
-        "lost": 2,
-        "goalsFor": 12,
-        "goalsAgainst": 10,
-        "goalDiff": 2,
+        "lost": 4,
+        "goalsFor": 14,
+        "goalsAgainst": 14,
+        "goalDiff": 0,
         "divRank": 5,
         "aliases": [
-          "東海大高輪台"
+          "日大三"
         ]
       },
       {
@@ -6997,12 +6997,12 @@
         "name": "奈良クラブユース",
         "league": "奈良県NFAサッカーリーグ",
         "rank": 1,
-        "points": 21,
-        "played": 7,
-        "won": 7,
+        "points": 24,
+        "played": 8,
+        "won": 8,
         "drawn": 0,
         "lost": 0,
-        "goalsFor": 31,
+        "goalsFor": 35,
         "goalsAgainst": 2,
         "prefectureRank": 1,
         "goalDiff": 14,
@@ -7129,12 +7129,12 @@
         "league": "奈良県NFAサッカーリーグ",
         "rank": 9,
         "points": 4,
-        "played": 7,
+        "played": 8,
         "won": 1,
         "drawn": 1,
-        "lost": 5,
+        "lost": 6,
         "goalsFor": 5,
-        "goalsAgainst": 15,
+        "goalsAgainst": 19,
         "prefectureRank": 9,
         "goalDiff": 0,
         "leagueRank": 9
@@ -11234,7 +11234,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-24 08:08",
+    "lastUpdated": "2026-06-25 06:28",
     "year": 2026,
     "updatedCount": 585
   }
