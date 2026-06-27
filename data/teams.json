@@ -7892,22 +7892,20 @@
         "leagueRank": 5
       },
       {
-        "id": "ok012",
-        "name": "山陽高校",
+        "name": "就実高校2nd",
         "league": "岡山県1部",
+        "points": 10,
+        "played": 9,
+        "won": 3,
+        "drawn": 1,
+        "lost": 5,
+        "goalsFor": 7,
+        "goalsAgainst": 14,
+        "leagueRank": 6,
         "rank": 11,
         "prefectureRank": 11,
-        "points": 9,
-        "played": 8,
-        "won": 3,
-        "drawn": 0,
-        "lost": 5,
-        "goalsFor": 9,
-        "goalsAgainst": 14,
-        "goalDiff": -1,
-        "leagueRank": 6,
         "aliases": [
-          "山陽学園"
+          "就実B"
         ]
       },
       {
@@ -7928,20 +7926,22 @@
         ]
       },
       {
-        "name": "就実高校2nd",
+        "id": "ok012",
+        "name": "山陽高校",
         "league": "岡山県1部",
-        "points": 7,
-        "played": 8,
-        "won": 2,
-        "drawn": 1,
-        "lost": 5,
-        "goalsFor": 6,
-        "goalsAgainst": 14,
-        "leagueRank": 8,
         "rank": 13,
         "prefectureRank": 13,
+        "points": 9,
+        "played": 9,
+        "won": 3,
+        "drawn": 0,
+        "lost": 6,
+        "goalsFor": 9,
+        "goalsAgainst": 15,
+        "goalDiff": -1,
+        "leagueRank": 8,
         "aliases": [
-          "就実B"
+          "山陽学園"
         ]
       },
       {
@@ -11216,7 +11216,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-27 17:21",
+    "lastUpdated": "2026-06-27 17:37",
     "year": 2026,
     "updatedCount": 585
   }
