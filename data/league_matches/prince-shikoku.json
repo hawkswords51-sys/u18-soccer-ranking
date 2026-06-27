@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 四国",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4339",
-  "lastUpdated": "2026-06-26",
+  "lastUpdated": "2026-06-27",
   "teams": [
     {
       "name": "愛媛FC U-18",
@@ -49,26 +49,26 @@
     {
       "rank": 1,
       "team": "愛媛FC U-18",
-      "pts": 21,
-      "played": 7,
-      "won": 7,
+      "pts": 24,
+      "played": 8,
+      "won": 8,
       "drawn": 0,
       "lost": 0,
-      "gf": 25,
-      "ga": 7,
-      "gd": 18
+      "gf": 27,
+      "ga": 8,
+      "gd": 19
     },
     {
       "rank": 2,
       "team": "徳島ヴォルティスユース",
-      "pts": 18,
-      "played": 7,
-      "won": 6,
+      "pts": 21,
+      "played": 8,
+      "won": 7,
       "drawn": 0,
       "lost": 1,
-      "gf": 17,
+      "gf": 19,
       "ga": 5,
-      "gd": 12
+      "gd": 14
     },
     {
       "rank": 3,
@@ -86,25 +86,25 @@
       "rank": 4,
       "team": "徳島市立",
       "pts": 12,
-      "played": 7,
+      "played": 8,
       "won": 3,
       "drawn": 3,
-      "lost": 1,
+      "lost": 2,
       "gf": 18,
-      "ga": 10,
-      "gd": 8
+      "ga": 12,
+      "gd": 6
     },
     {
       "rank": 5,
       "team": "大手前高松",
       "pts": 11,
-      "played": 7,
+      "played": 8,
       "won": 2,
       "drawn": 5,
-      "lost": 0,
-      "gf": 11,
-      "ga": 9,
-      "gd": 2
+      "lost": 1,
+      "gf": 12,
+      "ga": 11,
+      "gd": 1
     },
     {
       "rank": 6,
@@ -132,6 +132,30 @@
     },
     {
       "rank": 8,
+      "team": "新田",
+      "pts": 3,
+      "played": 8,
+      "won": 0,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 8,
+      "ga": 22,
+      "gd": -14
+    },
+    {
+      "rank": 9,
+      "team": "カマタマーレ讃岐U-18",
+      "pts": 3,
+      "played": 8,
+      "won": 0,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 7,
+      "ga": 24,
+      "gd": -17
+    },
+    {
+      "rank": 10,
       "team": "徳島商",
       "pts": 2,
       "played": 7,
@@ -141,30 +165,6 @@
       "gf": 9,
       "ga": 21,
       "gd": -12
-    },
-    {
-      "rank": 9,
-      "team": "新田",
-      "pts": 2,
-      "played": 7,
-      "won": 0,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 6,
-      "ga": 20,
-      "gd": -14
-    },
-    {
-      "rank": 10,
-      "team": "カマタマーレ讃岐U-18",
-      "pts": 2,
-      "played": 7,
-      "won": 0,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 5,
-      "ga": 22,
-      "gd": -17
     }
   ],
   "matches": [
@@ -487,19 +487,19 @@
       "md": 8,
       "date": "2026-06-27",
       "home": "愛媛FC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "大手前高松",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
       "date": "2026-06-27",
       "home": "徳島ヴォルティスユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "徳島市立",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
@@ -514,10 +514,10 @@
       "md": 8,
       "date": "2026-06-27",
       "home": "新田",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "カマタマーレ讃岐U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
