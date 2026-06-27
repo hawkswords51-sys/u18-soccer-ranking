@@ -268,7 +268,7 @@ def render_reps(lines):
                 name, record = token, ""
             if not name:
                 continue
-            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);">({html_escape(record)})</span>' if record else "")
+            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);white-space:nowrap;">({html_escape(record)})</span>' if record else "")
             # 学校名は途中で折り返さない(nowrap)。記録バッジは別要素で必要時のみ改行。
             # 校名の直後に所属リーグ（県・リーグ短縮）を表示。pref は見出しの県名を優先。
             rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{league_suffix(name, pref)}{badge}')
