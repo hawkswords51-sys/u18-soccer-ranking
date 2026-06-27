@@ -510,28 +510,29 @@ def render_bracket_svg(sections, reps_lines):
                 y += 2 * ROW_H
         return y
 
-    endL = assign_base_y(wings["L"])
-    endR = assign_base_y(wings["R"])
-    # 左右の翼で校数が違うと（例: 51校=左25・右26）高さが1行分ずれ、
-    # 決勝中央の接続線が歪む。短い側を縦に中央寄せして左右対称にする。
-    def _shift_wing(nodes, dy):
-        for nd in nodes:
-            nd["ya"] += dy
-            if "yb" in nd:
-                nd["yb"] += dy
-            nd["yj"] += dy
-    spanL, spanR = endL - TOP, endR - TOP
-    if spanL < spanR:
-        _shift_wing(wings["L"], (spanR - spanL) / 2)
-    elif spanR < spanL:
-        _shift_wing(wings["R"], (spanL - spanR) / 2)
-    bottom = max(endL, endR)
+    bottom = max(assign_base_y(wings["L"]), assign_base_y(wings["R"]))
     height = bottom + 28
 
     for li in range(1, num_levels):
         for ni, nd in enumerate(levels[li]):
             c1, c2 = levels[li - 1][2 * ni], levels[li - 1][2 * ni + 1]
             nd["yj"] = (c1["yj"] + c2["yj"]) / 2
+
+    # 左右の翼で校数が違うと2つの準決勝ノードの高さがずれ、決勝中央の
+    # 接続線が歪む。左右の翼を反対方向へ半分ずつ寄せ、準決勝の高さを揃える。
+    if num_levels >= 2:
+        _dy = (levels[-2][1]["yj"] - levels[-2][0]["yj"]) / 2
+        if abs(_dy) > 0.01:
+            for _li in range(num_levels - 1):
+                _lvl = levels[_li]
+                _cnt = len(_lvl) // 2
+                for _i, _nd in enumerate(_lvl):
+                    _s = _dy if _i < _cnt else -_dy
+                    if "ya" in _nd:
+                        _nd["ya"] += _s
+                    if "yb" in _nd:
+                        _nd["yb"] += _s
+                    _nd["yj"] += _s
 
     xsL = [LABEL_W + (k + 1) * LVL_W for k in range(wing_levels)]
     xsR = [width - x for x in xsL]
