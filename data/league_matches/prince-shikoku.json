@@ -74,13 +74,13 @@
       "rank": 3,
       "team": "高知",
       "pts": 12,
-      "played": 7,
+      "played": 8,
       "won": 4,
       "drawn": 0,
-      "lost": 3,
-      "gf": 20,
-      "ga": 11,
-      "gd": 9
+      "lost": 4,
+      "gf": 21,
+      "ga": 13,
+      "gd": 8
     },
     {
       "rank": 4,
@@ -110,28 +110,40 @@
       "rank": 6,
       "team": "FC今治U-18",
       "pts": 10,
-      "played": 7,
+      "played": 8,
       "won": 3,
       "drawn": 1,
-      "lost": 3,
-      "gf": 11,
-      "ga": 8,
-      "gd": 3
+      "lost": 4,
+      "gf": 12,
+      "ga": 10,
+      "gd": 2
     },
     {
       "rank": 7,
       "team": "今治東中等教育学校",
-      "pts": 6,
-      "played": 7,
-      "won": 1,
+      "pts": 9,
+      "played": 8,
+      "won": 2,
       "drawn": 3,
       "lost": 3,
-      "gf": 9,
-      "ga": 18,
-      "gd": -9
+      "gf": 11,
+      "ga": 19,
+      "gd": -8
     },
     {
       "rank": 8,
+      "team": "徳島商",
+      "pts": 5,
+      "played": 8,
+      "won": 1,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 11,
+      "ga": 22,
+      "gd": -11
+    },
+    {
+      "rank": 9,
       "team": "新田",
       "pts": 3,
       "played": 8,
@@ -143,7 +155,7 @@
       "gd": -14
     },
     {
-      "rank": 9,
+      "rank": 10,
       "team": "カマタマーレ讃岐U-18",
       "pts": 3,
       "played": 8,
@@ -153,18 +165,6 @@
       "gf": 7,
       "ga": 24,
       "gd": -17
-    },
-    {
-      "rank": 10,
-      "team": "徳島商",
-      "pts": 2,
-      "played": 7,
-      "won": 0,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 9,
-      "ga": 21,
-      "gd": -12
     }
   ],
   "matches": [
@@ -505,10 +505,10 @@
       "md": 8,
       "date": "2026-06-27",
       "home": "今治東中等教育学校",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "高知",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
@@ -523,10 +523,10 @@
       "md": 8,
       "date": "2026-06-27",
       "home": "FC今治U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "徳島商",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,

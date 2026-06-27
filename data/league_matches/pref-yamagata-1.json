@@ -10,36 +10,36 @@
       "short": "山形明正"
     },
     {
-      "name": "山形中央",
-      "short": "山形中央"
-    },
-    {
-      "name": "鶴岡東",
-      "short": "鶴岡東"
-    },
-    {
       "name": "羽黒",
       "short": "羽黒"
+    },
+    {
+      "name": "山形中央",
+      "short": "山形中央"
     },
     {
       "name": "日大山形",
       "short": "日大山形"
     },
     {
-      "name": "山形城北",
-      "short": "山形城北"
+      "name": "鶴岡東",
+      "short": "鶴岡東"
     },
     {
       "name": "東海大山形",
       "short": "東海大山形"
     },
     {
-      "name": "米沢中央",
-      "short": "米沢中央"
-    },
-    {
       "name": "山形南",
       "short": "山形南"
+    },
+    {
+      "name": "山形城北",
+      "short": "山形城北"
+    },
+    {
+      "name": "米沢中央",
+      "short": "米沢中央"
     },
     {
       "name": "長井",
@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "羽黒",
+      "points": 20,
+      "played": 9,
+      "won": 6,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 13,
+      "ga": 2,
+      "gd": 11
+    },
+    {
+      "rank": 3,
       "team": "山形中央",
       "points": 19,
       "played": 9,
@@ -72,103 +84,100 @@
       "gd": 18
     },
     {
-      "rank": 3,
-      "team": "鶴岡東",
-      "points": 18,
-      "played": 8,
-      "won": 6,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 24,
-      "ga": 6,
-      "gd": 18
-    },
-    {
       "rank": 4,
-      "team": "羽黒",
-      "points": 17,
-      "played": 8,
-      "won": 5,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 12,
-      "ga": 2,
-      "gd": 10
+      "team": "日大山形",
+      "points": 19,
+      "played": 9,
+      "won": 6,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 16,
+      "ga": 8,
+      "gd": 8
     },
     {
       "rank": 5,
-      "team": "日大山形",
-      "points": 16,
-      "played": 8,
-      "won": 5,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 13,
-      "ga": 7,
-      "gd": 6
+      "team": "鶴岡東",
+      "points": 18,
+      "played": 9,
+      "won": 6,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 25,
+      "ga": 9,
+      "gd": 16
     },
     {
       "rank": 6,
-      "team": "山形城北",
-      "points": 6,
-      "played": 8,
-      "won": 1,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 7,
-      "ga": 25,
-      "gd": -18
+      "team": "東海大山形",
+      "points": 8,
+      "played": 9,
+      "won": 2,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 21,
+      "ga": 15,
+      "gd": 6
     },
     {
       "rank": 7,
-      "team": "東海大山形",
-      "points": 5,
-      "played": 8,
-      "won": 1,
+      "team": "山形南",
+      "points": 8,
+      "played": 9,
+      "won": 2,
       "drawn": 2,
       "lost": 5,
-      "gf": 14,
-      "ga": 15,
-      "gd": -1
+      "gf": 10,
+      "ga": 23,
+      "gd": -13
     },
     {
       "rank": 8,
-      "team": "米沢中央",
-      "points": 5,
-      "played": 8,
+      "team": "山形城北",
+      "points": 6,
+      "played": 9,
       "won": 1,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 12,
-      "ga": 21,
-      "gd": -9
+      "gf": 7,
+      "ga": 32,
+      "gd": -25
     },
     {
       "rank": 9,
-      "team": "山形南",
+      "team": "米沢中央",
       "points": 5,
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 2,
-      "lost": 5,
-      "gf": 9,
-      "ga": 23,
-      "gd": -14
+      "lost": 6,
+      "gf": 12,
+      "ga": 22,
+      "gd": -10
     },
     {
       "rank": 10,
       "team": "長井",
       "points": 0,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 0,
-      "lost": 8,
+      "lost": 9,
       "gf": 0,
-      "ga": 57,
-      "gd": -57
+      "ga": 58,
+      "gd": -58
     }
   ],
   "matches": [
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "山形明正",
+      "hs": 0,
+      "as": 0,
+      "away": "羽黒",
+      "status": "played"
+    },
     {
       "md": 0,
       "date": "2026-06-27",
@@ -176,6 +185,15 @@
       "hs": 5,
       "as": 3,
       "away": "山形中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "山形明正",
+      "hs": 4,
+      "as": 2,
+      "away": "日大山形",
       "status": "played"
     },
     {
@@ -189,20 +207,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
+      "date": "2026-04-29",
       "home": "山形明正",
-      "hs": 0,
+      "hs": 2,
       "as": 0,
-      "away": "羽黒",
+      "away": "東海大山形",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-02",
+      "date": "2026-04-18",
       "home": "山形明正",
-      "hs": 4,
-      "as": 2,
-      "away": "日大山形",
+      "hs": 8,
+      "as": 1,
+      "away": "山形南",
       "status": "played"
     },
     {
@@ -216,29 +234,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "山形明正",
-      "hs": 2,
-      "as": 0,
-      "away": "東海大山形",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-16",
       "home": "山形明正",
       "hs": 8,
       "as": 2,
       "away": "米沢中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "山形明正",
-      "hs": 8,
-      "as": 1,
-      "away": "山形南",
       "status": "played"
     },
     {
@@ -252,20 +252,74 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "山形中央",
-      "hs": 2,
-      "as": 4,
-      "away": "鶴岡東",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-16",
       "home": "山形中央",
       "hs": 2,
       "as": 0,
       "away": "羽黒",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "羽黒",
+      "hs": 0,
+      "as": 0,
+      "away": "日大山形",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "羽黒",
+      "hs": 1,
+      "as": 0,
+      "away": "鶴岡東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "羽黒",
+      "hs": 3,
+      "as": 0,
+      "away": "東海大山形",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "羽黒",
+      "hs": 2,
+      "as": 0,
+      "away": "山形南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "羽黒",
+      "hs": 4,
+      "as": 0,
+      "away": "山形城北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "米沢中央",
+      "hs": 0,
+      "as": 1,
+      "away": "羽黒",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "羽黒",
+      "hs": 2,
+      "as": 0,
+      "away": "長井",
       "status": "played"
     },
     {
@@ -279,11 +333,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
+      "date": "2026-05-02",
       "home": "山形中央",
-      "hs": 1,
-      "as": 1,
-      "away": "山形城北",
+      "hs": 2,
+      "as": 4,
+      "away": "鶴岡東",
       "status": "played"
     },
     {
@@ -297,20 +351,29 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "山形中央",
-      "hs": 4,
-      "as": 1,
-      "away": "米沢中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-11",
       "home": "山形中央",
       "hs": 3,
       "as": 1,
       "away": "山形南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "山形中央",
+      "hs": 1,
+      "as": 1,
+      "away": "山形城北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "山形中央",
+      "hs": 4,
+      "as": 1,
+      "away": "米沢中央",
       "status": "played"
     },
     {
@@ -324,29 +387,56 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "羽黒",
-      "hs": 1,
-      "as": 0,
+      "date": "2026-06-27",
+      "home": "日大山形",
+      "hs": 3,
+      "as": 1,
       "away": "鶴岡東",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "鶴岡東",
-      "hs": null,
-      "as": null,
+      "date": "2026-04-18",
+      "home": "日大山形",
+      "hs": 2,
+      "as": 1,
+      "away": "東海大山形",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "日大山形",
+      "hs": 1,
+      "as": 0,
+      "away": "山形南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "日大山形",
+      "hs": 3,
+      "as": 0,
+      "away": "山形城北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "米沢中央",
+      "hs": 0,
+      "as": 1,
       "away": "日大山形",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
       "date": "2026-05-23",
-      "home": "鶴岡東",
-      "hs": 3,
+      "home": "日大山形",
+      "hs": 4,
       "as": 0,
-      "away": "山形城北",
+      "away": "長井",
       "status": "played"
     },
     {
@@ -356,15 +446,6 @@
       "hs": 2,
       "as": 1,
       "away": "東海大山形",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "米沢中央",
-      "hs": 0,
-      "as": 1,
-      "away": "鶴岡東",
       "status": "played"
     },
     {
@@ -378,6 +459,24 @@
     },
     {
       "md": 0,
+      "date": "2026-05-23",
+      "home": "鶴岡東",
+      "hs": 3,
+      "as": 0,
+      "away": "山形城北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "米沢中央",
+      "hs": 0,
+      "as": 1,
+      "away": "鶴岡東",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-29",
       "home": "鶴岡東",
       "hs": 9,
@@ -387,125 +486,8 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "羽黒",
-      "hs": 0,
-      "as": 0,
-      "away": "日大山形",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "羽黒",
-      "hs": 4,
-      "as": 0,
-      "away": "山形城北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "羽黒",
-      "hs": 3,
-      "as": 0,
-      "away": "東海大山形",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "羽黒",
-      "hs": null,
-      "as": null,
-      "away": "米沢中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "羽黒",
-      "hs": 2,
-      "as": 0,
-      "away": "山形南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "羽黒",
-      "hs": 2,
-      "as": 0,
-      "away": "長井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "日大山形",
-      "hs": 3,
-      "as": 0,
-      "away": "山形城北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "日大山形",
-      "hs": 2,
-      "as": 1,
-      "away": "東海大山形",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "米沢中央",
-      "hs": 0,
-      "as": 1,
-      "away": "日大山形",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "日大山形",
-      "hs": 1,
-      "as": 0,
-      "away": "山形南",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-23",
-      "home": "日大山形",
-      "hs": 4,
-      "as": 0,
-      "away": "長井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山形城北",
-      "hs": null,
-      "as": null,
-      "away": "東海大山形",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "米沢中央",
-      "hs": 2,
-      "as": 2,
-      "away": "山形城北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "山形城北",
+      "home": "東海大山形",
       "hs": 2,
       "as": 2,
       "away": "山形南",
@@ -513,11 +495,11 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
+      "date": "2026-06-27",
       "home": "山形城北",
-      "hs": 2,
-      "as": 0,
-      "away": "長井",
+      "hs": 0,
+      "as": 7,
+      "away": "東海大山形",
       "status": "played"
     },
     {
@@ -531,20 +513,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "東海大山形",
-      "hs": 2,
-      "as": 2,
-      "away": "山形南",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-06",
       "home": "東海大山形",
       "hs": 7,
       "as": 0,
       "away": "長井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "山形城北",
+      "hs": 2,
+      "as": 2,
+      "away": "山形南",
       "status": "played"
     },
     {
@@ -558,21 +540,39 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
+      "date": "2026-06-27",
+      "home": "長井",
+      "hs": 0,
+      "as": 1,
+      "away": "山形南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
       "home": "米沢中央",
-      "hs": 4,
+      "hs": 2,
+      "as": 2,
+      "away": "山形城北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "山形城北",
+      "hs": 2,
       "as": 0,
       "away": "長井",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "山形南",
-      "hs": null,
-      "as": null,
+      "date": "2026-05-02",
+      "home": "米沢中央",
+      "hs": 4,
+      "as": 0,
       "away": "長井",
-      "status": "scheduled"
+      "status": "played"
     }
   ]
 }

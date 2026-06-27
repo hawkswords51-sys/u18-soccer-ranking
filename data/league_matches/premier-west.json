@@ -93,17 +93,29 @@
     {
       "rank": 4,
       "team": "サガン鳥栖U-18",
-      "pts": 15,
-      "played": 10,
-      "won": 4,
+      "pts": 18,
+      "played": 11,
+      "won": 5,
       "drawn": 3,
       "lost": 3,
-      "gf": 15,
-      "ga": 11,
-      "gd": 4
+      "gf": 17,
+      "ga": 12,
+      "gd": 5
     },
     {
       "rank": 5,
+      "team": "アビスパ福岡 U-18",
+      "pts": 16,
+      "played": 10,
+      "won": 5,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 11,
+      "ga": 13,
+      "gd": -2
+    },
+    {
+      "rank": 6,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 15,
       "played": 10,
@@ -115,7 +127,7 @@
       "gd": 2
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "神村学園",
       "pts": 15,
       "played": 9,
@@ -125,18 +137,6 @@
       "gf": 16,
       "ga": 15,
       "gd": 1
-    },
-    {
-      "rank": 7,
-      "team": "アビスパ福岡 U-18",
-      "pts": 13,
-      "played": 9,
-      "won": 4,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 8,
-      "ga": 13,
-      "gd": -5
     },
     {
       "rank": 8,
@@ -152,27 +152,27 @@
     },
     {
       "rank": 9,
-      "team": "東山",
+      "team": "ガンバ大阪ユース",
       "pts": 11,
       "played": 9,
       "won": 3,
       "drawn": 2,
       "lost": 4,
-      "gf": 9,
-      "ga": 10,
-      "gd": -1
+      "gf": 15,
+      "ga": 18,
+      "gd": -3
     },
     {
       "rank": 10,
-      "team": "ガンバ大阪ユース",
+      "team": "東山",
       "pts": 11,
-      "played": 8,
+      "played": 10,
       "won": 3,
       "drawn": 2,
-      "lost": 3,
-      "gf": 14,
-      "ga": 16,
-      "gd": -2
+      "lost": 5,
+      "gf": 9,
+      "ga": 13,
+      "gd": -4
     },
     {
       "rank": 11,
@@ -744,19 +744,19 @@
       "md": 11,
       "date": "2026-06-27",
       "home": "ガンバ大阪ユース",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "サガン鳥栖U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
       "date": "2026-06-27",
       "home": "アビスパ福岡 U-18",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "東山",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
