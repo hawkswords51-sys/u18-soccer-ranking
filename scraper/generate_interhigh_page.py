@@ -510,7 +510,22 @@ def render_bracket_svg(sections, reps_lines):
                 y += 2 * ROW_H
         return y
 
-    bottom = max(assign_base_y(wings["L"]), assign_base_y(wings["R"]))
+    endL = assign_base_y(wings["L"])
+    endR = assign_base_y(wings["R"])
+    # 左右の翼で校数が違うと（例: 51校=左25・右26）高さが1行分ずれ、
+    # 決勝中央の接続線が歪む。短い側を縦に中央寄せして左右対称にする。
+    def _shift_wing(nodes, dy):
+        for nd in nodes:
+            nd["ya"] += dy
+            if "yb" in nd:
+                nd["yb"] += dy
+            nd["yj"] += dy
+    spanL, spanR = endL - TOP, endR - TOP
+    if spanL < spanR:
+        _shift_wing(wings["L"], (spanR - spanL) / 2)
+    elif spanR < spanL:
+        _shift_wing(wings["R"], (spanL - spanR) / 2)
+    bottom = max(endL, endR)
     height = bottom + 28
 
     for li in range(1, num_levels):
