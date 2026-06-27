@@ -14,6 +14,7 @@ data/tournaments/interhigh-final-2026.md を読み込み、
 依存：標準ライブラリ + PyYAML
 """
 import re
+import json
 import unicodedata
 import yaml
 from pathlib import Path
@@ -168,8 +169,10 @@ def linkify_match(match_str):
         return html_escape(match_str)
     a, mid, b = m.group(1).strip(), m.group(2), m.group(3).strip()
     a_html, b_html = team_link(a), team_link(b)
+    # 校名の直後に付ける所属リーグ（県・リーグ短縮）。勝者強調の枠の外側に置く。
+    sa, sb = league_suffix(a), league_suffix(b)
     if "vs" in mid:
-        return f'{a_html} <span style="color:#888;">vs</span> {b_html}'
+        return f'{a_html}{sa} <span style="color:#888;">vs</span> {b_html}{sb}'
     score = mid.strip()
     rebuilt = f'{a_html} <strong style="color:var(--accent-color,#2563eb);">{html_escape(score)}</strong> {b_html}'
     # 勝者強調：プレーンテキストで勝敗判定し、勝った側のhtmlをラップ
@@ -185,7 +188,7 @@ def linkify_match(match_str):
         a_html = f'<span class="match-winner">{a_html}</span>'
     elif rwin:
         b_html = f'<span class="match-winner">{b_html}</span>'
-    return f'{a_html} <strong style="color:var(--accent-color,#2563eb);">{html_escape(score)}</strong> {b_html}'
+    return f'{a_html}{sa} <strong style="color:var(--accent-color,#2563eb);">{html_escape(score)}</strong> {b_html}{sb}'
 
 def parse_source():
     text = SOURCE.read_text(encoding="utf-8")
@@ -267,7 +270,8 @@ def render_reps(lines):
                 continue
             badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);">({html_escape(record)})</span>' if record else "")
             # 学校名は途中で折り返さない(nowrap)。記録バッジは別要素で必要時のみ改行。
-            rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{badge}')
+            # 校名の直後に所属リーグ（県・リーグ短縮）を表示。pref は見出しの県名を優先。
+            rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{league_suffix(name, pref)}{badge}')
             school_count += 1
         if not rendered:
             continue
@@ -321,6 +325,81 @@ def _short_label(name):
     """表示用の短縮名(紙の組み合わせ表と同じく「高校」等を省く)"""
     n = re.sub(r'(高等学校|高等部|高校)$', '', name or "")
     return n or (name or "")
+
+
+# =========================================================================
+# 所属リーグ表示(データ：data/teams.json の各チーム "league")
+#  ・各県代表リスト／試合結果欄に「（県・リーグ短縮）」を付ける。
+#  ・短縮ルール：
+#     プレミアリーグWEST       → プレミアWEST     (「リーグ」を省く)
+#     プリンスリーグ九州2部     → プリンス九州2部   (「リーグ」を省く)
+#     山口県1部 / 沖縄県波布リーグ2部 / T2リーグ(東京都2部)
+#                              → 県1部 / 県2部 …  (末尾の「N部」の数字を拾う)
+# =========================================================================
+
+# スラッグ(英字)→ 県名(日本語・短縮形)の逆引き表
+SLUG_TO_PREF = {v: k for k, v in PREF_SLUG.items()}
+
+
+def _short_league(league):
+    """正式リーグ名を表示用の短い名前に変換する。"""
+    if not league:
+        return ""
+    s = unicodedata.normalize("NFKC", str(league)).strip()
+    if "プレミア" in s:
+        # 「プレミア」以降だけを残し、「リーグ」の語を省く
+        return s[s.index("プレミア"):].replace("リーグ", "")
+    if "プリンス" in s:
+        return s[s.index("プリンス"):].replace("リーグ", "")
+    # 県リーグ系：末尾付近の「N部」の数字を拾って「県N部」に
+    m = re.search(r'(\d+)\s*部', s)
+    if m:
+        return f"県{m.group(1)}部"
+    return "県1部"
+
+
+def load_school_league_map() -> dict:
+    """data/teams.json から {正規化校名: (県名, 短縮リーグ名)} を作る。
+       name と aliases の両方を見出しに登録する。"""
+    p = BASE_DIR / "data" / "teams.json"
+    school_map = {}
+    if not p.exists():
+        return school_map
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return school_map
+    for slug, pref in (data or {}).items():
+        if not isinstance(pref, dict):
+            continue
+        pref_jp = SLUG_TO_PREF.get(slug, "")
+        for t in (pref.get("teams") or []):
+            short_lg = _short_league(t.get("league"))
+            if not short_lg:
+                continue
+            names = [t.get("name")] + list(t.get("aliases") or [])
+            for nm in names:
+                if nm:
+                    school_map.setdefault(_norm_team(nm), (pref_jp, short_lg))
+    return school_map
+
+
+SCHOOL_LEAGUE_MAP = load_school_league_map()
+
+
+def league_suffix(name, pref=None):
+    """校名の後ろに付ける「（県・リーグ短縮）」のHTMLを返す。
+       teams.json に見つからない校は空文字(従来表示のまま)。"""
+    meta = SCHOOL_LEAGUE_MAP.get(_norm_team(name or ""))
+    if not meta:
+        return ""
+    map_pref, short_lg = meta
+    p = (pref or map_pref or "").strip()
+    if p and p[-1] in "都府県" and p[:-1] in PREF_SLUG:
+        p = p[:-1]  # 「東京都」→「東京」等
+    inner = f"{p}・{short_lg}" if p else short_lg
+    return (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);'
+            f'white-space:nowrap;">（{html_escape(inner)}）</span>')
 
 
 def parse_bracket_pairs(lines):
