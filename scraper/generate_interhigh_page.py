@@ -359,28 +359,59 @@ def _short_league(league):
 
 
 def load_school_league_map() -> dict:
-    """data/teams.json から {正規化校名: (県名, 短縮リーグ名)} を作る。
-       name と aliases の両方を見出しに登録する。"""
-    p = BASE_DIR / "data" / "teams.json"
+    """{正規化校名: (県名, 短縮リーグ名)} を作る。
+       ① teams.json の teams[] と division2[](東京T2等の2部)を補完として読む。
+       ② team-profiles/*.md の frontmatter(league/prefecture)を最優先で上書きする。
+          チーム詳細ページがある校(=ページ上で名前がリンクになる校)は必ず正しく出る。"""
     school_map = {}
-    if not p.exists():
-        return school_map
-    try:
-        data = json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
-        return school_map
-    for slug, pref in (data or {}).items():
-        if not isinstance(pref, dict):
-            continue
-        pref_jp = SLUG_TO_PREF.get(slug, "")
-        for t in (pref.get("teams") or []):
-            short_lg = _short_league(t.get("league"))
+
+    # ① teams.json（補完）: 通常の teams[] と東京T2等の division2[] の両方
+    p = BASE_DIR / "data" / "teams.json"
+    if p.exists():
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            data = {}
+        for slug, pref in (data or {}).items():
+            if not isinstance(pref, dict):
+                continue
+            pref_jp = SLUG_TO_PREF.get(slug, "")
+            for key in ("teams", "division2"):
+                for t in (pref.get(key) or []):
+                    if not isinstance(t, dict):
+                        continue
+                    short_lg = _short_league(t.get("league"))
+                    if not short_lg:
+                        continue
+                    for nm in [t.get("name")] + list(t.get("aliases") or []):
+                        if nm:
+                            school_map.setdefault(_norm_team(nm), (pref_jp, short_lg))
+
+    # ② team-profiles（最優先・上書き）: frontmatter に league/prefecture を持つ
+    profiles_dir = BASE_DIR / "data" / "team-profiles"
+    if profiles_dir.exists():
+        for md in profiles_dir.glob("*.md"):
+            try:
+                c = md.read_text(encoding="utf-8")
+                if not c.startswith("---"):
+                    continue
+                parts = c.split("---", 2)
+                if len(parts) < 3:
+                    continue
+                meta = yaml.safe_load(parts[1]) or {}
+            except Exception:
+                continue
+            short_lg = _short_league(meta.get("league"))
             if not short_lg:
                 continue
-            names = [t.get("name")] + list(t.get("aliases") or [])
-            for nm in names:
+            pref_jp = SLUG_TO_PREF.get(meta.get("prefecture"), "")
+            if not pref_jp:
+                pn = str(meta.get("prefecture_name") or "").strip()
+                pref_jp = pn[:-1] if (pn[-1:] in "都府県" and pn[:-1] in PREF_SLUG) else pn
+            for nm in [meta.get("name"), meta.get("short_name")]:
                 if nm:
-                    school_map.setdefault(_norm_team(nm), (pref_jp, short_lg))
+                    school_map[_norm_team(nm)] = (pref_jp, short_lg)  # 上書き優先
+
     return school_map
 
 
