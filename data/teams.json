@@ -7880,13 +7880,13 @@
         "name": "倉敷高校",
         "league": "岡山県1部",
         "rank": 10,
-        "points": 10,
-        "played": 8,
+        "points": 11,
+        "played": 9,
         "won": 2,
-        "drawn": 4,
+        "drawn": 5,
         "lost": 2,
-        "goalsFor": 18,
-        "goalsAgainst": 11,
+        "goalsFor": 20,
+        "goalsAgainst": 13,
         "prefectureRank": 10,
         "goalDiff": -2,
         "leagueRank": 5
@@ -7909,28 +7909,11 @@
         ]
       },
       {
-        "name": "玉野光南高校2nd",
-        "league": "岡山県1部",
-        "points": 9,
-        "played": 8,
-        "won": 3,
-        "drawn": 0,
-        "lost": 5,
-        "goalsFor": 13,
-        "goalsAgainst": 19,
-        "leagueRank": 7,
-        "rank": 12,
-        "prefectureRank": 12,
-        "aliases": [
-          "玉野光南B"
-        ]
-      },
-      {
         "id": "ok012",
         "name": "山陽高校",
         "league": "岡山県1部",
-        "rank": 13,
-        "prefectureRank": 13,
+        "rank": 12,
+        "prefectureRank": 12,
         "points": 9,
         "played": 9,
         "won": 3,
@@ -7939,40 +7922,57 @@
         "goalsFor": 9,
         "goalsAgainst": 15,
         "goalDiff": -1,
-        "leagueRank": 8,
+        "leagueRank": 7,
         "aliases": [
           "山陽学園"
         ]
       },
       {
-        "id": "ok013",
-        "name": "朝日塾高校",
+        "name": "玉野光南高校2nd",
         "league": "岡山県1部",
-        "rank": 14,
-        "prefectureRank": 14,
-        "points": 3,
-        "played": 8,
-        "won": 1,
+        "points": 9,
+        "played": 9,
+        "won": 3,
         "drawn": 0,
-        "lost": 7,
-        "goalsFor": 6,
+        "lost": 6,
+        "goalsFor": 13,
         "goalsAgainst": 20,
-        "goalDiff": -4,
-        "leagueRank": 9
+        "leagueRank": 8,
+        "rank": 13,
+        "prefectureRank": 13,
+        "aliases": [
+          "玉野光南B"
+        ]
       },
       {
         "id": "ok014",
         "name": "倉敷古城池高校",
         "league": "岡山県1部",
-        "rank": 15,
-        "prefectureRank": 15,
-        "points": 2,
-        "played": 9,
-        "won": 0,
+        "rank": 14,
+        "prefectureRank": 14,
+        "points": 5,
+        "played": 10,
+        "won": 1,
         "drawn": 2,
         "lost": 7,
-        "goalsFor": 3,
+        "goalsFor": 4,
         "goalsAgainst": 21,
+        "goalDiff": -4,
+        "leagueRank": 9
+      },
+      {
+        "id": "ok013",
+        "name": "朝日塾高校",
+        "league": "岡山県1部",
+        "rank": 15,
+        "prefectureRank": 15,
+        "points": 4,
+        "played": 9,
+        "won": 1,
+        "drawn": 1,
+        "lost": 7,
+        "goalsFor": 8,
+        "goalsAgainst": 22,
         "goalDiff": -4,
         "leagueRank": 10
       }
@@ -8011,20 +8011,27 @@
         ]
       },
       {
-        "id": "hr007",
-        "name": "如水館高校",
+        "id": "hr004",
+        "name": "サンフレッチェ広島F.C.ユース 2nd",
         "league": "広島県1部",
         "rank": 2,
-        "points": 18,
+        "points": 19,
         "played": 7,
         "won": 6,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 21,
-        "goalsAgainst": 8,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 27,
+        "goalsAgainst": 10,
         "prefectureRank": 2,
-        "goalDiff": 5,
-        "leagueRank": 1
+        "goalDiff": 1,
+        "leagueRank": 1,
+        "aliases": [
+          "サンフレッチェ広島F.C.ユースセカンド",
+          "サンフレセカンド",
+          "サンフレッチェ広島F.Cユース 2nd",
+          "広島FCユース2nd",
+          "サンフレッチェB"
+        ]
       },
       {
         "id": "hr001",
@@ -8047,25 +8054,20 @@
         ]
       },
       {
-        "id": "hr005",
-        "name": "広島瀬戸内高校2nd",
+        "id": "hr007",
+        "name": "如水館高校",
         "league": "広島県1部",
         "rank": 4,
-        "points": 17,
+        "points": 18,
         "played": 7,
-        "won": 5,
-        "drawn": 2,
-        "lost": 0,
-        "goalsFor": 14,
-        "goalsAgainst": 1,
+        "won": 6,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 21,
+        "goalsAgainst": 8,
         "prefectureRank": 4,
-        "goalDiff": 7,
-        "leagueRank": 2,
-        "aliases": [
-          "瀬戸内高校セカンド",
-          "瀬戸内高校2nd",
-          "瀬戸内セカンド"
-        ]
+        "goalDiff": 5,
+        "leagueRank": 2
       },
       {
         "id": "hr003",
@@ -8084,26 +8086,24 @@
         "leagueRank": 7
       },
       {
-        "id": "hr004",
-        "name": "サンフレッチェ広島F.C.ユース 2nd",
+        "id": "hr005",
+        "name": "広島瀬戸内高校2nd",
         "league": "広島県1部",
         "rank": 6,
-        "points": 16,
-        "played": 6,
+        "points": 17,
+        "played": 7,
         "won": 5,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 0,
-        "goalsFor": 18,
-        "goalsAgainst": 9,
+        "goalsFor": 14,
+        "goalsAgainst": 1,
         "prefectureRank": 6,
-        "goalDiff": 1,
+        "goalDiff": 7,
         "leagueRank": 3,
         "aliases": [
-          "サンフレッチェ広島F.C.ユースセカンド",
-          "サンフレセカンド",
-          "サンフレッチェ広島F.Cユース 2nd",
-          "広島FCユース2nd",
-          "サンフレッチェB"
+          "瀬戸内高校セカンド",
+          "瀬戸内高校2nd",
+          "瀬戸内セカンド"
         ]
       },
       {
@@ -8146,12 +8146,12 @@
         "league": "広島県1部",
         "rank": 9,
         "points": 9,
-        "played": 7,
+        "played": 8,
         "won": 3,
         "drawn": 0,
-        "lost": 4,
-        "goalsFor": 8,
-        "goalsAgainst": 10,
+        "lost": 5,
+        "goalsFor": 9,
+        "goalsAgainst": 19,
         "prefectureRank": 9,
         "goalDiff": -4,
         "leagueRank": 6
@@ -11216,7 +11216,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-27 22:21",
+    "lastUpdated": "2026-06-27 23:39",
     "year": 2026,
     "updatedCount": 585
   }
