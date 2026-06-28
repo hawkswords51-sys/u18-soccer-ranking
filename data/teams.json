@@ -4070,12 +4070,12 @@
         "name": "星稜高校2nd",
         "league": "石川県1部",
         "rank": 1,
-        "points": 23,
-        "played": 9,
-        "won": 7,
+        "points": 26,
+        "played": 10,
+        "won": 8,
         "drawn": 2,
         "lost": 0,
-        "goalsFor": 12,
+        "goalsFor": 13,
         "goalsAgainst": 2,
         "prefectureRank": 1,
         "goalDiff": 4,
@@ -4187,25 +4187,6 @@
         ]
       },
       {
-        "id": "is011",
-        "name": "金沢高校",
-        "league": "石川県1部",
-        "rank": 8,
-        "points": 14,
-        "played": 9,
-        "won": 4,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 13,
-        "goalsAgainst": 8,
-        "goalDiff": -4,
-        "prefectureRank": 8,
-        "leagueRank": 4,
-        "aliases": [
-          "金沢市工高校"
-        ]
-      },
-      {
         "name": "ツエーゲン金沢U-18 2nd",
         "league": "石川県1部",
         "points": 14,
@@ -4215,13 +4196,32 @@
         "lost": 3,
         "goalsFor": 11,
         "goalsAgainst": 6,
-        "leagueRank": 5,
-        "rank": 9,
-        "prefectureRank": 9,
+        "leagueRank": 4,
+        "rank": 8,
+        "prefectureRank": 8,
         "aliases": [
           "金沢U18 2nd",
           "金沢U18B",
           "ツエーゲン金沢2nd"
+        ]
+      },
+      {
+        "id": "is011",
+        "name": "金沢高校",
+        "league": "石川県1部",
+        "rank": 9,
+        "points": 14,
+        "played": 10,
+        "won": 4,
+        "drawn": 2,
+        "lost": 4,
+        "goalsFor": 13,
+        "goalsAgainst": 9,
+        "goalDiff": -4,
+        "prefectureRank": 9,
+        "leagueRank": 5,
+        "aliases": [
+          "金沢市工高校"
         ]
       },
       {
@@ -11216,8 +11216,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-28 08:06",
+    "lastUpdated": "2026-06-28 11:30",
     "year": 2026,
-    "updatedCount": 577
+    "updatedCount": 585
   }
 }
