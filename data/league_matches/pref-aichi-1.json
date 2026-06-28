@@ -22,6 +22,10 @@
       "short": "東邦"
     },
     {
+      "name": "東海学園",
+      "short": "東海学園"
+    },
+    {
       "name": "名経大高蔵",
       "short": "名経大高蔵"
     },
@@ -32,10 +36,6 @@
     {
       "name": "グランパスB",
       "short": "グランパスB"
-    },
-    {
-      "name": "東海学園",
-      "short": "東海学園"
     },
     {
       "name": "刈谷",
@@ -51,13 +51,13 @@
       "rank": 1,
       "team": "岡崎城西",
       "points": 23,
-      "played": 10,
+      "played": 11,
       "won": 7,
       "drawn": 2,
-      "lost": 1,
+      "lost": 2,
       "gf": 19,
-      "ga": 6,
-      "gd": 13
+      "ga": 7,
+      "gd": 12
     },
     {
       "rank": 2,
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "東海学園",
+      "points": 13,
+      "played": 11,
+      "won": 3,
+      "drawn": 4,
+      "lost": 4,
+      "gf": 9,
+      "ga": 11,
+      "gd": -2
+    },
+    {
+      "rank": 6,
       "team": "名経大高蔵",
       "points": 12,
       "played": 10,
@@ -108,7 +120,7 @@
       "gd": -4
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "日福大付",
       "points": 11,
       "played": 10,
@@ -120,7 +132,7 @@
       "gd": -8
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "グランパスB",
       "points": 10,
       "played": 9,
@@ -129,18 +141,6 @@
       "lost": 3,
       "gf": 14,
       "ga": 17,
-      "gd": -3
-    },
-    {
-      "rank": 8,
-      "team": "東海学園",
-      "points": 10,
-      "played": 10,
-      "won": 2,
-      "drawn": 4,
-      "lost": 4,
-      "gf": 8,
-      "ga": 11,
       "gd": -3
     },
     {
@@ -198,6 +198,15 @@
     },
     {
       "md": 0,
+      "date": "2026-03-07",
+      "home": "岡崎城西",
+      "hs": 2,
+      "as": 1,
+      "away": "東海学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-04",
       "home": "岡崎城西",
       "hs": 3,
@@ -221,15 +230,6 @@
       "hs": 3,
       "as": 0,
       "away": "グランパスB",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-07",
-      "home": "岡崎城西",
-      "hs": 2,
-      "as": 1,
-      "away": "東海学園",
       "status": "played"
     },
     {
@@ -279,6 +279,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-05",
+      "home": "名古屋",
+      "hs": 2,
+      "as": 0,
+      "away": "東海学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-19",
       "home": "名古屋",
       "hs": 3,
@@ -303,15 +312,6 @@
       "as": null,
       "away": "グランパスB",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "名古屋",
-      "hs": 2,
-      "as": 0,
-      "away": "東海学園",
-      "status": "played"
     },
     {
       "md": 0,
@@ -360,6 +360,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "豊川",
+      "hs": null,
+      "as": null,
+      "away": "東海学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-25",
       "home": "豊川",
       "hs": 5,
@@ -383,15 +392,6 @@
       "hs": null,
       "as": null,
       "away": "グランパスB",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "豊川",
-      "hs": null,
-      "as": null,
-      "away": "東海学園",
       "status": "scheduled"
     },
     {
@@ -445,6 +445,15 @@
       "home": "東邦",
       "hs": null,
       "as": null,
+      "away": "東海学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東邦",
+      "hs": null,
+      "as": null,
       "away": "名経大高蔵",
       "status": "scheduled"
     },
@@ -468,15 +477,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "東邦",
-      "hs": null,
-      "as": null,
-      "away": "東海学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-02-28",
       "home": "東邦",
       "hs": 3,
@@ -495,255 +495,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
-      "away": "岡崎城西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
-      "away": "名古屋",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
-      "away": "豊川",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "名経大高蔵",
-      "hs": 1,
-      "as": 1,
-      "away": "東邦",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
-      "away": "日福大付",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
-      "away": "グランパスB",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "名経大高蔵",
-      "hs": 1,
-      "as": 1,
-      "away": "東海学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "名経大高蔵",
-      "hs": 4,
-      "as": 0,
-      "away": "刈谷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-07",
-      "home": "名経大高蔵",
-      "hs": 2,
-      "as": 2,
-      "away": "至学館",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-02-28",
-      "home": "日福大付",
-      "hs": 1,
-      "as": 0,
-      "away": "岡崎城西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日福大付",
-      "hs": null,
-      "as": null,
-      "away": "名古屋",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日福大付",
-      "hs": null,
-      "as": null,
-      "away": "豊川",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日福大付",
-      "hs": null,
-      "as": null,
-      "away": "東邦",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "日福大付",
-      "hs": 1,
-      "as": 0,
-      "away": "名経大高蔵",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "日福大付",
-      "hs": 3,
-      "as": 3,
-      "away": "グランパスB",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日福大付",
-      "hs": null,
-      "as": null,
-      "away": "東海学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日福大付",
-      "hs": null,
-      "as": null,
-      "away": "刈谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日福大付",
-      "hs": null,
-      "as": null,
-      "away": "至学館",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "グランパスB",
-      "hs": null,
-      "as": null,
-      "away": "岡崎城西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "グランパスB",
-      "hs": 2,
-      "as": 2,
-      "away": "名古屋",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-07",
-      "home": "グランパスB",
-      "hs": 3,
-      "as": 3,
-      "away": "豊川",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "グランパスB",
-      "hs": 2,
-      "as": 1,
-      "away": "東邦",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "グランパスB",
-      "hs": 0,
-      "as": 1,
-      "away": "名経大高蔵",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "グランパスB",
-      "hs": null,
-      "as": null,
-      "away": "日福大付",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "グランパスB",
-      "hs": 0,
-      "as": 1,
-      "away": "東海学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "グランパスB",
-      "hs": null,
-      "as": null,
-      "away": "刈谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-02-28",
-      "home": "グランパスB",
-      "hs": 1,
-      "as": 1,
-      "away": "至学館",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
+      "date": "2026-06-28",
       "home": "東海学園",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "岡崎城西",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -820,6 +577,249 @@
     {
       "md": 0,
       "date": "",
+      "home": "名経大高蔵",
+      "hs": null,
+      "as": null,
+      "away": "岡崎城西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "名経大高蔵",
+      "hs": null,
+      "as": null,
+      "away": "名古屋",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "名経大高蔵",
+      "hs": null,
+      "as": null,
+      "away": "豊川",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "名経大高蔵",
+      "hs": 1,
+      "as": 1,
+      "away": "東邦",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "名経大高蔵",
+      "hs": 1,
+      "as": 1,
+      "away": "東海学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "名経大高蔵",
+      "hs": null,
+      "as": null,
+      "away": "日福大付",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "名経大高蔵",
+      "hs": null,
+      "as": null,
+      "away": "グランパスB",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "名経大高蔵",
+      "hs": 4,
+      "as": 0,
+      "away": "刈谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-07",
+      "home": "名経大高蔵",
+      "hs": 2,
+      "as": 2,
+      "away": "至学館",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-02-28",
+      "home": "日福大付",
+      "hs": 1,
+      "as": 0,
+      "away": "岡崎城西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日福大付",
+      "hs": null,
+      "as": null,
+      "away": "名古屋",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日福大付",
+      "hs": null,
+      "as": null,
+      "away": "豊川",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日福大付",
+      "hs": null,
+      "as": null,
+      "away": "東邦",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日福大付",
+      "hs": null,
+      "as": null,
+      "away": "東海学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "日福大付",
+      "hs": 1,
+      "as": 0,
+      "away": "名経大高蔵",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "日福大付",
+      "hs": 3,
+      "as": 3,
+      "away": "グランパスB",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日福大付",
+      "hs": null,
+      "as": null,
+      "away": "刈谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日福大付",
+      "hs": null,
+      "as": null,
+      "away": "至学館",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "グランパスB",
+      "hs": null,
+      "as": null,
+      "away": "岡崎城西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "グランパスB",
+      "hs": 2,
+      "as": 2,
+      "away": "名古屋",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-07",
+      "home": "グランパスB",
+      "hs": 3,
+      "as": 3,
+      "away": "豊川",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "グランパスB",
+      "hs": 2,
+      "as": 1,
+      "away": "東邦",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "グランパスB",
+      "hs": 0,
+      "as": 1,
+      "away": "東海学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "グランパスB",
+      "hs": 0,
+      "as": 1,
+      "away": "名経大高蔵",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "グランパスB",
+      "hs": null,
+      "as": null,
+      "away": "日福大付",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "グランパスB",
+      "hs": null,
+      "as": null,
+      "away": "刈谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-02-28",
+      "home": "グランパスB",
+      "hs": 1,
+      "as": 1,
+      "away": "至学館",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
       "home": "刈谷",
       "hs": null,
       "as": null,
@@ -859,6 +859,15 @@
       "home": "刈谷",
       "hs": null,
       "as": null,
+      "away": "東海学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "刈谷",
+      "hs": null,
+      "as": null,
       "away": "名経大高蔵",
       "status": "scheduled"
     },
@@ -878,15 +887,6 @@
       "hs": null,
       "as": null,
       "away": "グランパスB",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "刈谷",
-      "hs": null,
-      "as": null,
-      "away": "東海学園",
       "status": "scheduled"
     },
     {
@@ -940,6 +940,15 @@
       "home": "至学館",
       "hs": null,
       "as": null,
+      "away": "東海学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "至学館",
+      "hs": null,
+      "as": null,
       "away": "名経大高蔵",
       "status": "scheduled"
     },
@@ -960,15 +969,6 @@
       "as": 3,
       "away": "グランパスB",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "至学館",
-      "hs": null,
-      "as": null,
-      "away": "東海学園",
-      "status": "scheduled"
     },
     {
       "md": 0,

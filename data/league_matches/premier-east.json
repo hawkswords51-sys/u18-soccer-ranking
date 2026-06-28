@@ -56,6 +56,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "鹿島アントラーズユース",
+      "pts": 24,
+      "played": 11,
+      "won": 8,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 34,
+      "ga": 16,
+      "gd": 18
+    },
+    {
+      "rank": 2,
       "team": "流通経済大柏",
       "pts": 24,
       "played": 10,
@@ -67,31 +79,31 @@
       "gd": 11
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "FC東京U-18",
       "pts": 22,
-      "played": 10,
+      "played": 11,
       "won": 7,
       "drawn": 1,
-      "lost": 2,
-      "gf": 28,
-      "ga": 11,
-      "gd": 17
-    },
-    {
-      "rank": 3,
-      "team": "鹿島アントラーズユース",
-      "pts": 21,
-      "played": 10,
-      "won": 7,
-      "drawn": 0,
       "lost": 3,
-      "gf": 30,
-      "ga": 16,
-      "gd": 14
+      "gf": 28,
+      "ga": 15,
+      "gd": 13
     },
     {
       "rank": 4,
+      "team": "柏レイソルU-18",
+      "pts": 20,
+      "played": 11,
+      "won": 6,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 14,
+      "ga": 8,
+      "gd": 6
+    },
+    {
+      "rank": 5,
       "team": "青森山田",
       "pts": 19,
       "played": 11,
@@ -103,40 +115,28 @@
       "gd": 0
     },
     {
-      "rank": 5,
-      "team": "柏レイソルU-18",
-      "pts": 17,
-      "played": 10,
-      "won": 5,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 12,
-      "ga": 7,
-      "gd": 5
-    },
-    {
       "rank": 6,
-      "team": "前橋育英",
-      "pts": 16,
-      "played": 10,
-      "won": 4,
-      "drawn": 4,
-      "lost": 2,
-      "gf": 16,
-      "ga": 12,
-      "gd": 4
+      "team": "帝京長岡",
+      "pts": 18,
+      "played": 11,
+      "won": 6,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 29,
+      "ga": 21,
+      "gd": 8
     },
     {
       "rank": 7,
-      "team": "帝京長岡",
-      "pts": 15,
-      "played": 10,
-      "won": 5,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 27,
-      "ga": 21,
-      "gd": 6
+      "team": "前橋育英",
+      "pts": 16,
+      "played": 11,
+      "won": 4,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 16,
+      "ga": 14,
+      "gd": 2
     },
     {
       "rank": 8,
@@ -190,13 +190,13 @@
       "rank": 12,
       "team": "横浜FCユース",
       "pts": 5,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 2,
-      "lost": 7,
-      "gf": 9,
-      "ga": 20,
-      "gd": -11
+      "lost": 8,
+      "gf": 10,
+      "ga": 22,
+      "gd": -12
     }
   ],
   "matches": [
@@ -771,28 +771,28 @@
       "md": 11,
       "date": "2026-06-28",
       "home": "柏レイソルU-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "横浜FCユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
       "date": "2026-06-28",
       "home": "帝京長岡",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "前橋育英",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
       "date": "2026-06-28",
       "home": "FC東京U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "鹿島アントラーズユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,

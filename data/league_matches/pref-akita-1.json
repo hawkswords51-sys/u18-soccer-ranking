@@ -18,16 +18,16 @@
       "short": "BB2nd"
     },
     {
+      "name": "新屋",
+      "short": "新屋"
+    },
+    {
       "name": "秋田工",
       "short": "秋田工"
     },
     {
       "name": "西目",
       "short": "西目"
-    },
-    {
-      "name": "新屋",
-      "short": "新屋"
     },
     {
       "name": "大曲工",
@@ -66,10 +66,10 @@
     {
       "rank": 3,
       "team": "BB2nd",
-      "points": 12,
-      "played": 7,
+      "points": 13,
+      "played": 8,
       "won": 4,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 3,
       "gf": 14,
       "ga": 9,
@@ -77,6 +77,18 @@
     },
     {
       "rank": 4,
+      "team": "新屋",
+      "points": 10,
+      "played": 8,
+      "won": 3,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 11,
+      "ga": 22,
+      "gd": -11
+    },
+    {
+      "rank": 5,
       "team": "秋田工",
       "points": 8,
       "played": 8,
@@ -88,28 +100,16 @@
       "gd": -9
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "西目",
       "points": 7,
-      "played": 7,
+      "played": 8,
       "won": 2,
       "drawn": 1,
-      "lost": 4,
-      "gf": 8,
-      "ga": 14,
-      "gd": -6
-    },
-    {
-      "rank": 6,
-      "team": "新屋",
-      "points": 7,
-      "played": 7,
-      "won": 2,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 8,
-      "ga": 20,
-      "gd": -12
+      "lost": 5,
+      "gf": 10,
+      "ga": 17,
+      "gd": -7
     },
     {
       "rank": 7,
@@ -126,10 +126,10 @@
     {
       "rank": 8,
       "team": "秋田南",
-      "points": 4,
-      "played": 7,
+      "points": 5,
+      "played": 8,
       "won": 0,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 3,
       "gf": 7,
       "ga": 25,
@@ -157,6 +157,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-25",
+      "home": "明桜",
+      "hs": 10,
+      "as": 1,
+      "away": "新屋",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "明桜",
       "hs": 5,
@@ -171,15 +180,6 @@
       "hs": 4,
       "as": 0,
       "away": "西目",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "明桜",
-      "hs": 10,
-      "as": 1,
-      "away": "新屋",
       "status": "played"
     },
     {
@@ -211,6 +211,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-29",
+      "home": "秋田商",
+      "hs": 5,
+      "as": 0,
+      "away": "新屋",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-06-27",
       "home": "秋田商",
       "hs": 2,
@@ -229,15 +238,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "秋田商",
-      "hs": 5,
-      "as": 0,
-      "away": "新屋",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "秋田商",
       "hs": 1,
@@ -252,6 +252,15 @@
       "hs": 5,
       "as": 1,
       "away": "秋田南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "BB2nd",
+      "hs": 1,
+      "as": 0,
+      "away": "新屋",
       "status": "played"
     },
     {
@@ -274,15 +283,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "BB2nd",
-      "hs": 1,
-      "as": 0,
-      "away": "新屋",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "BB2nd",
       "hs": 3,
@@ -292,20 +292,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-12",
+      "date": "2026-06-28",
       "home": "BB2nd",
-      "hs": 3,
-      "as": 1,
-      "away": "秋田南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "西目",
       "hs": 0,
-      "as": 2,
-      "away": "秋田工",
+      "as": 0,
+      "away": "秋田南",
       "status": "played"
     },
     {
@@ -313,6 +304,42 @@
       "date": "2026-05-03",
       "home": "新屋",
       "hs": 4,
+      "as": 2,
+      "away": "秋田工",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "西目",
+      "hs": 2,
+      "as": 3,
+      "away": "新屋",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "新屋",
+      "hs": 3,
+      "as": 1,
+      "away": "大曲工",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "秋田南",
+      "hs": 0,
+      "as": 0,
+      "away": "新屋",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "西目",
+      "hs": 0,
       "as": 2,
       "away": "秋田工",
       "status": "played"
@@ -337,15 +364,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "西目",
-      "hs": 1,
-      "as": 0,
-      "away": "新屋",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-25",
       "home": "西目",
       "hs": 3,
@@ -360,24 +378,6 @@
       "hs": 2,
       "as": 2,
       "away": "秋田南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "新屋",
-      "hs": 3,
-      "as": 1,
-      "away": "大曲工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "秋田南",
-      "hs": 0,
-      "as": 0,
-      "away": "新屋",
       "status": "played"
     },
     {

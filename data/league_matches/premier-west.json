@@ -58,25 +58,25 @@
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
       "pts": 22,
-      "played": 10,
+      "played": 11,
       "won": 7,
       "drawn": 1,
-      "lost": 2,
-      "gf": 26,
-      "ga": 14,
-      "gd": 12
+      "lost": 3,
+      "gf": 27,
+      "ga": 17,
+      "gd": 10
     },
     {
       "rank": 2,
       "team": "名古屋グランパスU-18",
-      "pts": 18,
-      "played": 10,
-      "won": 5,
+      "pts": 21,
+      "played": 11,
+      "won": 6,
       "drawn": 3,
       "lost": 2,
-      "gf": 24,
-      "ga": 16,
-      "gd": 8
+      "gf": 27,
+      "ga": 17,
+      "gd": 10
     },
     {
       "rank": 3,
@@ -116,6 +116,18 @@
     },
     {
       "rank": 6,
+      "team": "神村学園",
+      "pts": 16,
+      "played": 10,
+      "won": 4,
+      "drawn": 4,
+      "lost": 2,
+      "gf": 18,
+      "ga": 17,
+      "gd": 1
+    },
+    {
+      "rank": 7,
       "team": "アビスパ福岡 U-18",
       "pts": 16,
       "played": 10,
@@ -127,27 +139,15 @@
       "gd": -2
     },
     {
-      "rank": 7,
-      "team": "神村学園",
-      "pts": 15,
-      "played": 9,
-      "won": 4,
-      "drawn": 3,
-      "lost": 2,
-      "gf": 16,
-      "ga": 15,
-      "gd": 1
-    },
-    {
       "rank": 8,
       "team": "米子北",
-      "pts": 11,
-      "played": 9,
+      "pts": 12,
+      "played": 10,
       "won": 3,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 4,
-      "gf": 16,
-      "ga": 13,
+      "gf": 18,
+      "ga": 15,
       "gd": 3
     },
     {
@@ -178,25 +178,25 @@
       "rank": 11,
       "team": "ジュビロ磐田U-18",
       "pts": 5,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 2,
-      "lost": 7,
-      "gf": 21,
-      "ga": 29,
-      "gd": -8
+      "lost": 8,
+      "gf": 22,
+      "ga": 32,
+      "gd": -10
     },
     {
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
-      "pts": 2,
-      "played": 9,
-      "won": 0,
+      "pts": 5,
+      "played": 10,
+      "won": 1,
       "drawn": 2,
       "lost": 7,
-      "gf": 7,
-      "ga": 26,
-      "gd": -19
+      "gf": 10,
+      "ga": 27,
+      "gd": -17
     }
   ],
   "matches": [
@@ -771,28 +771,28 @@
       "md": 11,
       "date": "2026-06-28",
       "home": "米子北",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "神村学園",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
       "date": "2026-06-28",
       "home": "ジュビロ磐田U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "ファジアーノ岡山U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
       "date": "2026-06-28",
       "home": "ヴィッセル神戸U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "名古屋グランパスU-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,
