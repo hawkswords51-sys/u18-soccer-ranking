@@ -1110,6 +1110,19 @@ def main():
         for q, a in faq_items
     )
 
+    # 脳震盪コラムはコンテンツカレンダー上「2026-07-25 公開予定」。
+    # 記事フォルダ(blog/posts/concussion-return-to-play-2026)ができたら
+    # 自動で通常リンクに戻る（手動で戻す必要なし）。未公開の間は404を避け「公開予定」表示にする。
+    _concussion_slug = "concussion-return-to-play-2026"
+    _concussion_title = "【医学コラム】脳震盪の見極め方と競技復帰プロトコル（頭を打ったら）"
+    if (BASE_DIR / "blog" / "posts" / _concussion_slug).exists():
+        concussion_li = f'<li><a href="/blog/posts/{_concussion_slug}/">{_concussion_title}</a></li>'
+    else:
+        concussion_li = (
+            f'<li style="color:var(--text-secondary,#6b7280);">{_concussion_title}'
+            f'<span style="margin-left:6px;font-size:0.85em;">（2026-07-25 公開予定）</span></li>'
+        )
+
     page = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -1233,7 +1246,7 @@ def main():
           <li><a href="/blog/">ブログ・医学コラム</a></li>
           <li><a href="/blog/posts/interhigh-2026-heat-safety/">【医学コラム】真夏のインターハイ暑熱対策ガイド(選手・保護者・指導者向け)</a></li>
           <li><a href="/blog/posts/2026-05-08-may-heatstroke-prevention/">【医学コラム】熱中症の危険サインと応急処置・予防法（救急医が解説）</a></li>
-          <li><a href="/blog/posts/concussion-return-to-play-2026/">【医学コラム】脳震盪の見極め方と競技復帰プロトコル（頭を打ったら）</a></li>
+          {concussion_li}
           <li><a href="/blog/posts/2026-05-22-pre-match-sleep-strategy/">【医学コラム】試合前日に眠れない時の対処法・睡眠戦略</a></li>
           <li><a href="/blog/posts/2026-06-08-iron-deficiency-anemia/">【医学コラム】スポーツ貧血（鉄欠乏性貧血）の見抜き方と対策</a></li>
           <li><a href="/tournaments/interhigh-history/">インターハイ サッカー男子 歴代優勝校一覧</a></li>
