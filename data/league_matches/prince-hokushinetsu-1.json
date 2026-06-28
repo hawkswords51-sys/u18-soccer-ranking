@@ -60,6 +60,30 @@
     },
     {
       "rank": 2,
+      "team": "富山第一",
+      "pts": 18,
+      "played": 10,
+      "won": 5,
+      "drawn": 3,
+      "lost": 2,
+      "gf": 21,
+      "ga": 10,
+      "gd": 11
+    },
+    {
+      "rank": 3,
+      "team": "日本文理",
+      "pts": 18,
+      "played": 10,
+      "won": 6,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 21,
+      "ga": 10,
+      "gd": 11
+    },
+    {
+      "rank": 4,
       "team": "松本山雅FC U-18",
       "pts": 16,
       "played": 10,
@@ -71,40 +95,16 @@
       "gd": 3
     },
     {
-      "rank": 3,
+      "rank": 5,
       "team": "松本国際",
       "pts": 16,
-      "played": 9,
+      "played": 10,
       "won": 4,
       "drawn": 4,
-      "lost": 1,
-      "gf": 9,
-      "ga": 7,
-      "gd": 2
-    },
-    {
-      "rank": 4,
-      "team": "富山第一",
-      "pts": 15,
-      "played": 9,
-      "won": 4,
-      "drawn": 3,
       "lost": 2,
-      "gf": 20,
-      "ga": 10,
-      "gd": 10
-    },
-    {
-      "rank": 5,
-      "team": "日本文理",
-      "pts": 15,
-      "played": 9,
-      "won": 5,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 19,
-      "ga": 10,
-      "gd": 9
+      "gf": 9,
+      "ga": 8,
+      "gd": 1
     },
     {
       "rank": 6,
@@ -158,13 +158,13 @@
       "rank": 10,
       "team": "カターレ富山U-18",
       "pts": 6,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 3,
-      "lost": 5,
+      "lost": 6,
       "gf": 3,
-      "ga": 18,
-      "gd": -15
+      "ga": 20,
+      "gd": -17
     }
   ],
   "matches": [
@@ -604,19 +604,19 @@
       "md": 10,
       "date": "2026-06-28",
       "home": "日本文理",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "カターレ富山U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-06-28",
       "home": "富山第一",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "松本国際",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,

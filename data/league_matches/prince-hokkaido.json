@@ -78,16 +78,28 @@
       "rank": 4,
       "team": "北海道大谷室蘭",
       "pts": 10,
-      "played": 6,
+      "played": 7,
       "won": 3,
       "drawn": 1,
-      "lost": 2,
-      "gf": 7,
-      "ga": 10,
-      "gd": -3
+      "lost": 3,
+      "gf": 8,
+      "ga": 13,
+      "gd": -5
     },
     {
       "rank": 5,
+      "team": "札幌光星",
+      "pts": 9,
+      "played": 7,
+      "won": 3,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 13,
+      "ga": 12,
+      "gd": 1
+    },
+    {
+      "rank": 6,
       "team": "北海",
       "pts": 7,
       "played": 7,
@@ -97,18 +109,6 @@
       "gf": 5,
       "ga": 7,
       "gd": -2
-    },
-    {
-      "rank": 6,
-      "team": "札幌光星",
-      "pts": 6,
-      "played": 6,
-      "won": 2,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 10,
-      "ga": 11,
-      "gd": -1
     },
     {
       "rank": 7,
@@ -383,10 +383,10 @@
       "md": 7,
       "date": "2026-06-28",
       "home": "札幌光星",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "北海道大谷室蘭",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,

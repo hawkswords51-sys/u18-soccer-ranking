@@ -80,18 +80,6 @@
     },
     {
       "rank": 3,
-      "team": "大津",
-      "pts": 18,
-      "played": 9,
-      "won": 6,
-      "drawn": 0,
-      "lost": 3,
-      "gf": 18,
-      "ga": 13,
-      "gd": 5
-    },
-    {
-      "rank": 4,
       "team": "サガン鳥栖U-18",
       "pts": 18,
       "played": 11,
@@ -103,7 +91,31 @@
       "gd": 5
     },
     {
+      "rank": 4,
+      "team": "大津",
+      "pts": 18,
+      "played": 10,
+      "won": 6,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 18,
+      "ga": 14,
+      "gd": 4
+    },
+    {
       "rank": 5,
+      "team": "サンフレッチェ広島F.Cユース",
+      "pts": 18,
+      "played": 11,
+      "won": 5,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 17,
+      "ga": 14,
+      "gd": 3
+    },
+    {
+      "rank": 6,
       "team": "アビスパ福岡 U-18",
       "pts": 16,
       "played": 10,
@@ -113,18 +125,6 @@
       "gf": 11,
       "ga": 13,
       "gd": -2
-    },
-    {
-      "rank": 6,
-      "team": "サンフレッチェ広島F.Cユース",
-      "pts": 15,
-      "played": 10,
-      "won": 4,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 16,
-      "ga": 14,
-      "gd": 2
     },
     {
       "rank": 7,
@@ -762,10 +762,10 @@
       "md": 11,
       "date": "2026-06-28",
       "home": "サンフレッチェ広島F.Cユース",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "大津",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,

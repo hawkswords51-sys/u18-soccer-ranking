@@ -92,6 +92,18 @@
     },
     {
       "rank": 4,
+      "team": "青森山田",
+      "pts": 19,
+      "played": 11,
+      "won": 6,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 19,
+      "ga": 19,
+      "gd": 0
+    },
+    {
+      "rank": 5,
       "team": "柏レイソルU-18",
       "pts": 17,
       "played": 10,
@@ -103,7 +115,7 @@
       "gd": 5
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "前橋育英",
       "pts": 16,
       "played": 10,
@@ -113,18 +125,6 @@
       "gf": 16,
       "ga": 12,
       "gd": 4
-    },
-    {
-      "rank": 6,
-      "team": "青森山田",
-      "pts": 16,
-      "played": 10,
-      "won": 5,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 16,
-      "ga": 17,
-      "gd": -1
     },
     {
       "rank": 7,
@@ -142,13 +142,13 @@
       "rank": 8,
       "team": "東京ヴェルディユース",
       "pts": 14,
-      "played": 10,
+      "played": 11,
       "won": 4,
       "drawn": 2,
-      "lost": 4,
-      "gf": 18,
-      "ga": 19,
-      "gd": -1
+      "lost": 5,
+      "gf": 20,
+      "ga": 22,
+      "gd": -2
     },
     {
       "rank": 9,
@@ -762,10 +762,10 @@
       "md": 11,
       "date": "2026-06-28",
       "home": "青森山田",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "東京ヴェルディユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
