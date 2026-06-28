@@ -769,9 +769,13 @@ def render_bracket_svg(sections, reps_lines):
         line(cx, ymid, cx, stem_top, RED, 2.4)
         text(cx, stem_top - 7, f"🏆 {_short_label(champ)}", "middle", 13, RED, "700")
 
-    svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" width="{width:.0f}" height="{height:.0f}" '
+    # 表示倍率：viewBox(内部座標)はそのままに、表示サイズだけ拡大する。
+    # ベクターなので文字・線も含めて一律にきれいに大きくなる（中央線などのレイアウトは不変）。
+    # 大きすぎる/小さいと感じたら下の数字(1.3)を変えるだけでOK。
+    bscale = 1.3
+    svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" width="{width*bscale:.0f}" height="{height*bscale:.0f}" '
            f'xmlns="http://www.w3.org/2000/svg" role="img" '
-           f'aria-label="トーナメント表" style="display:block;font-family:inherit;">'
+           f'aria-label="トーナメント表" style="display:block;font-family:inherit;max-width:none;">'
            + "".join(S) + '</svg>')
 
     return (
