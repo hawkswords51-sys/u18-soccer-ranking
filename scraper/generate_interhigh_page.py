@@ -358,6 +358,49 @@ def _short_league(league):
     return "県1部"
 
 
+# プリンスリーグの地域 → ページのスラッグ。値は (スラッグ, 1部2部が別ページか)。
+# 例: /leagues/prince-kanto-1/ ・ /leagues/prince-tohoku/（東北は1ページ）
+PRINCE_REGIONS = {
+    "北海道": ("hokkaido", False),
+    "東北": ("tohoku", False),
+    "関東": ("kanto", True),
+    "北信越": ("hokushinetsu", True),
+    "東海": ("tokai", False),
+    "関西": ("kansai", True),
+    "中国": ("chugoku", False),
+    "四国": ("shikoku", False),
+    "九州": ("kyushu", True),
+}
+
+
+def league_url(raw_league, pref_jp=None):
+    """正式リーグ名から、対応するリーグページのURLを返す。
+       ・プレミア/プリンス → /leagues/... のリーグページ
+       ・県リーグ（県N部）→ 対応ページが無いので、その県の順位ページ /prefectures/{slug}/
+       ・不明なら空文字（リンクなし）。"""
+    if not raw_league:
+        return ""
+    s = unicodedata.normalize("NFKC", str(raw_league))
+    su = s.upper()
+    if "プレミア" in s:
+        if "EAST" in su:
+            return "/leagues/premier-east/"
+        if "WEST" in su:
+            return "/leagues/premier-west/"
+        return "/leagues/"
+    if "プリンス" in s:
+        for region, (slug, has_div) in PRINCE_REGIONS.items():
+            if region in s:
+                if has_div:
+                    div = "2" if "2部" in s else "1"
+                    return f"/leagues/prince-{slug}-{div}/"
+                return f"/leagues/prince-{slug}/"
+        return "/leagues/"
+    # 県リーグ → その県の順位ページ
+    slug = pref_slug(pref_jp) if pref_jp else None
+    return f"/prefectures/{slug}/" if slug else ""
+
+
 def load_school_league_map() -> dict:
     """{正規化校名: (県名, 短縮リーグ名)} を作る。
        ① teams.json の teams[] と division2[](東京T2等の2部)を補完として読む。
@@ -380,12 +423,14 @@ def load_school_league_map() -> dict:
                 for t in (pref.get(key) or []):
                     if not isinstance(t, dict):
                         continue
-                    short_lg = _short_league(t.get("league"))
+                    raw_lg = t.get("league")
+                    short_lg = _short_league(raw_lg)
                     if not short_lg:
                         continue
+                    url = league_url(raw_lg, pref_jp)
                     for nm in [t.get("name")] + list(t.get("aliases") or []):
                         if nm:
-                            school_map.setdefault(_norm_team(nm), (pref_jp, short_lg))
+                            school_map.setdefault(_norm_team(nm), (pref_jp, short_lg, url))
 
     # ② team-profiles（最優先・上書き）: frontmatter に league/prefecture を持つ
     profiles_dir = BASE_DIR / "data" / "team-profiles"
@@ -401,16 +446,18 @@ def load_school_league_map() -> dict:
                 meta = yaml.safe_load(parts[1]) or {}
             except Exception:
                 continue
-            short_lg = _short_league(meta.get("league"))
+            raw_lg = meta.get("league")
+            short_lg = _short_league(raw_lg)
             if not short_lg:
                 continue
             pref_jp = SLUG_TO_PREF.get(meta.get("prefecture"), "")
             if not pref_jp:
                 pn = str(meta.get("prefecture_name") or "").strip()
                 pref_jp = pn[:-1] if (pn[-1:] in "都府県" and pn[:-1] in PREF_SLUG) else pn
+            url = league_url(raw_lg, pref_jp)
             for nm in [meta.get("name"), meta.get("short_name")]:
                 if nm:
-                    school_map[_norm_team(nm)] = (pref_jp, short_lg)  # 上書き優先
+                    school_map[_norm_team(nm)] = (pref_jp, short_lg, url)  # 上書き優先
 
     return school_map
 
@@ -420,17 +467,26 @@ SCHOOL_LEAGUE_MAP = load_school_league_map()
 
 def league_suffix(name, pref=None):
     """校名の後ろに付ける「（県・リーグ短縮）」のHTMLを返す。
-       teams.json に見つからない校は空文字(従来表示のまま)。"""
+       リーグ短縮名はクリックで対応リーグページ（県リーグは県ページ）へ飛べるリンクにする。
+       見つからない校は空文字(従来表示のまま)。"""
     meta = SCHOOL_LEAGUE_MAP.get(_norm_team(name or ""))
     if not meta:
         return ""
-    map_pref, short_lg = meta
+    map_pref, short_lg = meta[0], meta[1]
+    url = meta[2] if len(meta) > 2 else ""
     p = (pref or map_pref or "").strip()
     if p and p[-1] in "都府県" and p[:-1] in PREF_SLUG:
         p = p[:-1]  # 「東京都」→「東京」等
-    inner = f"{p}・{short_lg}" if p else short_lg
+    # リーグ短縮名をリンク化（プレミア/プリンス→リーグページ、県N部→県の順位ページ）
+    if url:
+        lg_html = (f'<a href="{html_escape(url)}" '
+                   f'style="color:var(--accent-color,#2563eb);text-decoration:none;">'
+                   f'{html_escape(short_lg)}</a>')
+    else:
+        lg_html = html_escape(short_lg)
+    inner = f'{html_escape(p)}・{lg_html}' if p else lg_html
     return (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);'
-            f'white-space:nowrap;">（{html_escape(inner)}）</span>')
+            f'white-space:nowrap;">（{inner}）</span>')
 
 
 def parse_bracket_pairs(lines):
