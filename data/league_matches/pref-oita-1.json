@@ -26,12 +26,12 @@
       "short": "中津東"
     },
     {
-      "name": "大分工業",
-      "short": "大分工業"
-    },
-    {
       "name": "鶴崎工業",
       "short": "鶴崎工業"
+    },
+    {
+      "name": "大分工業",
+      "short": "大分工業"
     },
     {
       "name": "大分上野丘",
@@ -109,6 +109,18 @@
     },
     {
       "rank": 6,
+      "team": "鶴崎工業",
+      "points": 10,
+      "played": 8,
+      "won": 3,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 14,
+      "ga": 20,
+      "gd": -6
+    },
+    {
+      "rank": 7,
       "team": "大分工業",
       "points": 9,
       "played": 8,
@@ -118,18 +130,6 @@
       "gf": 22,
       "ga": 22,
       "gd": 0
-    },
-    {
-      "rank": 7,
-      "team": "鶴崎工業",
-      "points": 9,
-      "played": 7,
-      "won": 3,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 12,
-      "ga": 18,
-      "gd": -6
     },
     {
       "rank": 8,
@@ -158,13 +158,13 @@
     {
       "rank": 10,
       "team": "ヴェルスパ大分",
-      "points": 3,
-      "played": 7,
+      "points": 4,
+      "played": 8,
       "won": 1,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 6,
-      "gf": 8,
-      "ga": 21,
+      "gf": 10,
+      "ga": 23,
       "gd": -13
     }
   ],
@@ -207,20 +207,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "大分鶴崎",
-      "hs": 1,
-      "as": 4,
-      "away": "大分工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-09",
       "home": "大分鶴崎",
       "hs": 7,
       "as": 0,
       "away": "鶴崎工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "大分鶴崎",
+      "hs": 1,
+      "as": 4,
+      "away": "大分工業",
       "status": "played"
     },
     {
@@ -279,20 +279,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "大分",
-      "hs": 3,
-      "as": 3,
-      "away": "大分工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-02",
       "home": "大分",
       "hs": 2,
       "as": 1,
       "away": "鶴崎工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "大分",
+      "hs": 3,
+      "as": 3,
+      "away": "大分工業",
       "status": "played"
     },
     {
@@ -342,18 +342,18 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "大分工業",
-      "hs": 3,
+      "date": "2026-04-18",
+      "home": "鶴崎工業",
+      "hs": 1,
       "as": 3,
       "away": "トリニータ2nd",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "鶴崎工業",
-      "hs": 1,
+      "date": "2026-06-13",
+      "home": "大分工業",
+      "hs": 3,
       "as": 3,
       "away": "トリニータ2nd",
       "status": "played"
@@ -396,20 +396,20 @@
     },
     {
       "md": 0,
-      "date": "2026-06-06",
-      "home": "柳ヶ浦",
-      "hs": 3,
-      "as": 3,
-      "away": "大分工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-11",
       "home": "柳ヶ浦",
       "hs": 0,
       "as": 1,
       "away": "鶴崎工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-06",
+      "home": "柳ヶ浦",
+      "hs": 3,
+      "as": 3,
+      "away": "大分工業",
       "status": "played"
     },
     {
@@ -441,21 +441,21 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "中津東",
-      "hs": 3,
-      "as": 1,
-      "away": "大分工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "中津東",
       "hs": null,
       "as": null,
       "away": "鶴崎工業",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "中津東",
+      "hs": 3,
+      "as": 1,
+      "away": "大分工業",
+      "status": "played"
     },
     {
       "md": 0,
@@ -495,6 +495,33 @@
     },
     {
       "md": 0,
+      "date": "2026-06-06",
+      "home": "鶴崎工業",
+      "hs": 4,
+      "as": 1,
+      "away": "大分上野丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "大分西",
+      "hs": 3,
+      "as": 4,
+      "away": "鶴崎工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "鶴崎工業",
+      "hs": 2,
+      "as": 2,
+      "away": "ヴェルスパ大分",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "大分工業",
       "hs": 3,
@@ -515,33 +542,6 @@
       "md": 0,
       "date": "",
       "home": "大分工業",
-      "hs": null,
-      "as": null,
-      "away": "ヴェルスパ大分",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-06",
-      "home": "鶴崎工業",
-      "hs": 4,
-      "as": 1,
-      "away": "大分上野丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "大分西",
-      "hs": 3,
-      "as": 4,
-      "away": "鶴崎工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鶴崎工業",
       "hs": null,
       "as": null,
       "away": "ヴェルスパ大分",
