@@ -2,56 +2,148 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448183-448183-fl",
-  "lastUpdated": "2026-06-16",
-  "note": "2得点以上の選手を掲載。得点者は出典(ゲキサカ)掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。",
+  "lastUpdated": "2026-06-30",
+  "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
-    {"rank": 1, "name": "金屋拓海", "team": "鵬翔", "goals": 7},
-    {"rank": 2, "name": "稗田幹太", "team": "佐賀東", "goals": 6},
-    {"rank": 3, "name": "大平陽稀", "team": "日章2nd", "goals": 5},
-    {"rank": 4, "name": "小野禅竜", "team": "鳥栖2nd", "goals": 4},
-    {"rank": 4, "name": "高橋怜央", "team": "東海大福岡", "goals": 4},
-    {"rank": 6, "name": "大隈士桜", "team": "大津3rd", "goals": 3},
-    {"rank": 6, "name": "川口大和", "team": "鹿児島", "goals": 3},
-    {"rank": 6, "name": "有吉渉", "team": "鳥栖2nd", "goals": 3},
-    {"rank": 6, "name": "村井力磨", "team": "日章2nd", "goals": 3},
-    {"rank": 6, "name": "渡辺遼", "team": "大津3rd", "goals": 3},
-    {"rank": 6, "name": "澤山恵弥", "team": "大津3rd", "goals": 3},
-    {"rank": 6, "name": "竹嶋優", "team": "長崎総附", "goals": 3},
-    {"rank": 6, "name": "能武麟太朗", "team": "東海大福岡", "goals": 3},
-    {"rank": 6, "name": "重松虎之介", "team": "日章2nd", "goals": 3},
-    {"rank": 15, "name": "一宮優聖", "team": "長崎総附", "goals": 2},
-    {"rank": 15, "name": "上高原陽心", "team": "鹿児島", "goals": 2},
-    {"rank": 15, "name": "中本善", "team": "東海大福岡", "goals": 2},
-    {"rank": 15, "name": "吉田早翼", "team": "東海大福岡", "goals": 2},
-    {"rank": 15, "name": "土橋翔来", "team": "鵬翔", "goals": 2},
-    {"rank": 15, "name": "増永大生獅", "team": "大分U18", "goals": 2},
-    {"rank": 15, "name": "小幡春道", "team": "鳥栖2nd", "goals": 2},
-    {"rank": 15, "name": "小野祥吾", "team": "東海大福岡", "goals": 2},
-    {"rank": 15, "name": "山本優空", "team": "長崎総附", "goals": 2},
-    {"rank": 15, "name": "岩下蒼甫", "team": "佐賀東", "goals": 2},
-    {"rank": 15, "name": "崎濱睦晃", "team": "大分U18", "goals": 2},
-    {"rank": 15, "name": "梶原宏聖", "team": "佐賀東", "goals": 2},
-    {"rank": 15, "name": "森山大斗", "team": "鹿児島", "goals": 2},
-    {"rank": 15, "name": "池田千桜", "team": "九国大付", "goals": 2},
-    {"rank": 15, "name": "渡辺奏太", "team": "大津3rd", "goals": 2},
-    {"rank": 15, "name": "熊本陸斗", "team": "大分U18", "goals": 2},
-    {"rank": 15, "name": "熊本隆斗", "team": "大分U18", "goals": 2},
-    {"rank": 15, "name": "甲斐蒼斗", "team": "長崎総附", "goals": 2},
-    {"rank": 15, "name": "矢野瑛太", "team": "日章2nd", "goals": 2},
-    {"rank": 15, "name": "脇大翔", "team": "日章2nd", "goals": 2},
-    {"rank": 15, "name": "藤原佑月", "team": "九国大付", "goals": 2},
-    {"rank": 15, "name": "野村由翔", "team": "鳥栖2nd", "goals": 2}
+    {
+      "rank": 1,
+      "name": "稗田幹太",
+      "team": "佐賀東",
+      "goals": 7
+    },
+    {
+      "rank": 1,
+      "name": "金屋拓海",
+      "team": "鵬翔",
+      "goals": 7
+    },
+    {
+      "rank": 3,
+      "name": "熊本陸斗",
+      "team": "大分U18",
+      "goals": 5
+    },
+    {
+      "rank": 3,
+      "name": "大平陽稀",
+      "team": "日章2nd",
+      "goals": 5
+    },
+    {
+      "rank": 5,
+      "name": "高橋怜央",
+      "team": "東海大福岡",
+      "goals": 4
+    },
+    {
+      "rank": 5,
+      "name": "小幡春道",
+      "team": "鳥栖2nd",
+      "goals": 4
+    },
+    {
+      "rank": 5,
+      "name": "小野禅竜",
+      "team": "鳥栖2nd",
+      "goals": 4
+    },
+    {
+      "rank": 8,
+      "name": "増永大生獅",
+      "team": "大分U18",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "大隈士桜",
+      "team": "大津3rd",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "澤山恵弥",
+      "team": "大津3rd",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "渡辺遼",
+      "team": "大津3rd",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "重松虎之介",
+      "team": "日章2nd",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "村井力磨",
+      "team": "日章2nd",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "能武麟太朗",
+      "team": "東海大福岡",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "竹嶋優",
+      "team": "長崎総附",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "有吉渉",
+      "team": "鳥栖2nd",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "川口大和",
+      "team": "鹿児島",
+      "goals": 3
+    },
+    {
+      "rank": 18,
+      "name": "池田千桜",
+      "team": "九国大付",
+      "goals": 2
+    },
+    {
+      "rank": 18,
+      "name": "藤原佑月",
+      "team": "九国大付",
+      "goals": 2
+    },
+    {
+      "rank": 18,
+      "name": "梶原宏聖",
+      "team": "佐賀東",
+      "goals": 2
+    }
   ],
   "coverage": [
-    {"team": "佐賀東", "attributed": 13, "gf": 13, "missing": 0},
-    {"team": "鵬翔", "attributed": 12, "gf": 12, "missing": 0},
-    {"team": "鳥栖2nd", "attributed": 16, "gf": 19, "missing": 3},
-    {"team": "日章2nd", "attributed": 20, "gf": 20, "missing": 0},
-    {"team": "東海大福岡", "attributed": 16, "gf": 17, "missing": 1},
-    {"team": "大分U18", "attributed": 11, "gf": 14, "missing": 3},
-    {"team": "長崎総附", "attributed": 11, "gf": 11, "missing": 0},
-    {"team": "鹿児島", "attributed": 14, "gf": 14, "missing": 0},
-    {"team": "九国大付", "attributed": 8, "gf": 8, "missing": 0},
-    {"team": "大津3rd", "attributed": 15, "gf": 15, "missing": 0}
+    {
+      "team": "鳥栖2nd",
+      "attributed": 19,
+      "gf": 22,
+      "missing": 3
+    },
+    {
+      "team": "大分U18",
+      "attributed": 16,
+      "gf": 19,
+      "missing": 3
+    },
+    {
+      "team": "九国大付",
+      "attributed": 8,
+      "gf": 11,
+      "missing": 3
+    }
   ]
 }

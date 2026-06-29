@@ -2,49 +2,129 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 四国 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448181-448181-fl",
-  "lastUpdated": "2026-06-16",
-  "note": "2得点以上の選手を掲載。得点者は出典(ゲキサカ)掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。",
+  "lastUpdated": "2026-06-30",
+  "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
-    {"rank": 1, "name": "朝日奈英心", "team": "徳島V", "goals": 8},
-    {"rank": 2, "name": "江原悠夢", "team": "今治FC", "goals": 7},
-    {"rank": 3, "name": "山岡遥斗", "team": "愛媛FC", "goals": 5},
-    {"rank": 3, "name": "菅範十", "team": "愛媛FC", "goals": 5},
-    {"rank": 5, "name": "藤岡亮哉", "team": "徳島市立", "goals": 4},
-    {"rank": 5, "name": "大久保颯眞", "team": "高知", "goals": 4},
-    {"rank": 5, "name": "野林和馬", "team": "大手前", "goals": 4},
-    {"rank": 5, "name": "森本大夢", "team": "高知", "goals": 4},
-    {"rank": 9, "name": "石原拍", "team": "愛媛FC", "goals": 3},
-    {"rank": 9, "name": "吉岡空叶", "team": "愛媛FC", "goals": 3},
-    {"rank": 9, "name": "山下蒼士", "team": "徳島市立", "goals": 3},
-    {"rank": 9, "name": "近藤鉄将", "team": "徳島商", "goals": 3},
-    {"rank": 9, "name": "佐野颯心", "team": "高知", "goals": 3},
-    {"rank": 9, "name": "山崎智太", "team": "高知", "goals": 3},
-    {"rank": 9, "name": "吉川悠真", "team": "徳島V", "goals": 3},
-    {"rank": 9, "name": "石橋潤人", "team": "愛媛FC", "goals": 3},
-    {"rank": 9, "name": "森咲人", "team": "今治東", "goals": 3},
-    {"rank": 9, "name": "赤沼想斗", "team": "徳島V", "goals": 3},
-    {"rank": 19, "name": "宮城虎太", "team": "愛媛FC", "goals": 2},
-    {"rank": 19, "name": "吉田大輝", "team": "今治東", "goals": 2},
-    {"rank": 19, "name": "水原陽", "team": "徳島商", "goals": 2},
-    {"rank": 19, "name": "大長優希", "team": "高知", "goals": 2},
-    {"rank": 19, "name": "高橋周大", "team": "今治FC", "goals": 2},
-    {"rank": 19, "name": "加藤遼馬", "team": "徳島市立", "goals": 2},
-    {"rank": 19, "name": "芳田翠", "team": "徳島市立", "goals": 2},
-    {"rank": 19, "name": "森悠稀", "team": "大手前", "goals": 2},
-    {"rank": 19, "name": "鈴木然", "team": "徳島V", "goals": 2},
-    {"rank": 19, "name": "山崎陽太", "team": "新田", "goals": 2},
-    {"rank": 19, "name": "東海林蓮", "team": "徳島市立", "goals": 2}
+    {
+      "rank": 1,
+      "name": "朝日奈英心",
+      "team": "徳島V",
+      "goals": 8
+    },
+    {
+      "rank": 2,
+      "name": "江原悠夢",
+      "team": "今治FC",
+      "goals": 7
+    },
+    {
+      "rank": 3,
+      "name": "山岡遥斗",
+      "team": "愛媛FC",
+      "goals": 6
+    },
+    {
+      "rank": 4,
+      "name": "菅範十",
+      "team": "愛媛FC",
+      "goals": 5
+    },
+    {
+      "rank": 5,
+      "name": "野林和馬",
+      "team": "大手前",
+      "goals": 4
+    },
+    {
+      "rank": 5,
+      "name": "藤岡亮哉",
+      "team": "徳島市立",
+      "goals": 4
+    },
+    {
+      "rank": 5,
+      "name": "大久保颯眞",
+      "team": "高知",
+      "goals": 4
+    },
+    {
+      "rank": 5,
+      "name": "森本大夢",
+      "team": "高知",
+      "goals": 4
+    },
+    {
+      "rank": 9,
+      "name": "森咲人",
+      "team": "今治東",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "吉川悠真",
+      "team": "徳島V",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "赤沼想斗",
+      "team": "徳島V",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "近藤鉄将",
+      "team": "徳島商",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "藤澤珀人",
+      "team": "徳島商",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "山下蒼士",
+      "team": "徳島市立",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "石原拍",
+      "team": "愛媛FC",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "吉岡空叶",
+      "team": "愛媛FC",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "石橋潤人",
+      "team": "愛媛FC",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "佐野颯心",
+      "team": "高知",
+      "goals": 3
+    },
+    {
+      "rank": 9,
+      "name": "山崎智太",
+      "team": "高知",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "高橋周大",
+      "team": "今治FC",
+      "goals": 2
+    }
   ],
-  "coverage": [
-    {"team": "愛媛FC", "attributed": 25, "gf": 25, "missing": 0},
-    {"team": "徳島V", "attributed": 16, "gf": 17, "missing": 1},
-    {"team": "高知", "attributed": 20, "gf": 20, "missing": 0},
-    {"team": "徳島市立", "attributed": 18, "gf": 18, "missing": 0},
-    {"team": "大手前", "attributed": 11, "gf": 11, "missing": 0},
-    {"team": "今治FC", "attributed": 11, "gf": 11, "missing": 0},
-    {"team": "今治東", "attributed": 9, "gf": 9, "missing": 0},
-    {"team": "徳島商", "attributed": 9, "gf": 9, "missing": 0},
-    {"team": "新田", "attributed": 6, "gf": 6, "missing": 0},
-    {"team": "讃岐", "attributed": 5, "gf": 5, "missing": 0}
-  ]
+  "coverage": []
 }

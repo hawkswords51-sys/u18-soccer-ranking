@@ -2,8 +2,8 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州1部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448182-448182-fl",
-  "lastUpdated": "2026-06-16",
-  "note": "2得点以上の選手を掲載。得点者は出典(ゲキサカ)掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。",
+  "lastUpdated": "2026-06-30",
+  "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
@@ -24,81 +24,57 @@
       "goals": 5
     },
     {
-      "rank": 4,
+      "rank": 3,
+      "name": "増村凌久",
+      "team": "ロアッソ熊本U-18",
+      "goals": 5
+    },
+    {
+      "rank": 5,
       "name": "入田陽輝",
       "team": "国見",
       "goals": 4
     },
     {
-      "rank": 4,
+      "rank": 5,
+      "name": "平井一輝",
+      "team": "ロアッソ熊本U-18",
+      "goals": 4
+    },
+    {
+      "rank": 5,
       "name": "玉置大翔",
       "team": "飯塚",
       "goals": 4
     },
     {
-      "rank": 6,
+      "rank": 8,
       "name": "吉崎太珠",
       "team": "日章学園",
       "goals": 3
     },
     {
-      "rank": 6,
-      "name": "増村凌久",
-      "team": "ロアッソ熊本U-18",
-      "goals": 3
-    },
-    {
-      "rank": 6,
-      "name": "平井一輝",
-      "team": "ロアッソ熊本U-18",
-      "goals": 3
-    },
-    {
-      "rank": 6,
+      "rank": 8,
       "name": "石黒聡",
       "team": "飯塚",
       "goals": 3
     },
     {
       "rank": 10,
-      "name": "出原昊茂",
-      "team": "鹿児島城西",
+      "name": "金澤桜雅",
+      "team": "国見",
       "goals": 2
     },
     {
       "rank": 10,
-      "name": "大嶋央貴",
-      "team": "東福岡",
+      "name": "江上虎伯",
+      "team": "大津2nd",
       "goals": 2
     },
     {
       "rank": 10,
-      "name": "大田和",
-      "team": "V・ファーレン長崎U-18",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "小屋敷龍星",
-      "team": "鹿児島城西",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "岩永大翔",
-      "team": "V・ファーレン長崎U-18",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "島村陽斗",
+      "name": "谷恭輔",
       "team": "日章学園",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "末吉海翔",
-      "team": "鹿児島城西",
       "goals": 2
     },
     {
@@ -109,8 +85,20 @@
     },
     {
       "rank": 10,
-      "name": "村田壮優",
-      "team": "V・ファーレン長崎U-18",
+      "name": "島村陽斗",
+      "team": "日章学園",
+      "goals": 2
+    },
+    {
+      "rank": 10,
+      "name": "大嶋央貴",
+      "team": "東福岡",
+      "goals": 2
+    },
+    {
+      "rank": 10,
+      "name": "福田虎之介",
+      "team": "ロアッソ熊本U-18",
       "goals": 2
     },
     {
@@ -127,8 +115,8 @@
     },
     {
       "rank": 10,
-      "name": "江上虎伯",
-      "team": "大津2nd",
+      "name": "村田壮優",
+      "team": "V・ファーレン長崎U-18",
       "goals": 2
     },
     {
@@ -136,92 +124,14 @@
       "name": "清水法生",
       "team": "V・ファーレン長崎U-18",
       "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "谷恭輔",
-      "team": "日章学園",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "金澤桜雅",
-      "team": "国見",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "長渕禅",
-      "team": "鹿児島城西",
-      "goals": 2
-    },
-    {
-      "rank": 10,
-      "name": "鳥越朔太郎",
-      "team": "V・ファーレン長崎U-18",
-      "goals": 2
     }
   ],
   "coverage": [
-    {
-      "team": "鹿児島城西",
-      "attributed": 17,
-      "gf": 17,
-      "missing": 0
-    },
-    {
-      "team": "V・ファーレン長崎U-18",
-      "attributed": 22,
-      "gf": 22,
-      "missing": 0
-    },
-    {
-      "team": "ロアッソ熊本U-18",
-      "attributed": 9,
-      "gf": 9,
-      "missing": 0
-    },
-    {
-      "team": "日章学園",
-      "attributed": 18,
-      "gf": 20,
-      "missing": 2
-    },
-    {
-      "team": "東福岡",
-      "attributed": 10,
-      "gf": 10,
-      "missing": 0
-    },
-    {
-      "team": "大津2nd",
-      "attributed": 7,
-      "gf": 7,
-      "missing": 0
-    },
-    {
-      "team": "国見",
-      "attributed": 11,
-      "gf": 11,
-      "missing": 0
-    },
-    {
-      "team": "飯塚",
-      "attributed": 9,
-      "gf": 9,
-      "missing": 0
-    },
     {
       "team": "FC琉球U-18",
       "attributed": 6,
       "gf": 7,
       "missing": 1
-    },
-    {
-      "team": "東海大熊本星翔",
-      "attributed": 3,
-      "gf": 3,
-      "missing": 0
     }
   ]
 }

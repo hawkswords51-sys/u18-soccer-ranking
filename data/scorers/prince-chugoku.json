@@ -2,43 +2,142 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 中国 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448179-448179-fl",
-  "lastUpdated": "2026-06-16",
-  "note": "2得点以上の選手を掲載。得点者は出典(ゲキサカ)掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。",
+  "lastUpdated": "2026-06-30",
+  "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
-    { "rank": 1, "name": "村崎斗士輝", "team": "淞南", "goals": 8 },
-    { "rank": 2, "name": "辻琥白", "team": "学芸館", "goals": 4 },
-    { "rank": 2, "name": "本村悠斗", "team": "学芸館", "goals": 4 },
-    { "rank": 2, "name": "野田歩", "team": "淞南", "goals": 4 },
-    { "rank": 2, "name": "児玉蓮次", "team": "大社", "goals": 4 },
-    { "rank": 6, "name": "大西崇翔", "team": "瀬戸内", "goals": 3 },
-    { "rank": 6, "name": "中根槙助", "team": "山口", "goals": 3 },
-    { "rank": 6, "name": "工藤優吾", "team": "就実", "goals": 3 },
-    { "rank": 6, "name": "田辺恵太", "team": "玉野", "goals": 3 },
-    { "rank": 10, "name": "岡部朔成", "team": "作", "goals": 2 },
-    { "rank": 10, "name": "松下湊", "team": "瀬戸内", "goals": 2 },
-    { "rank": 10, "name": "佐伯竜征", "team": "玉野", "goals": 2 },
-    { "rank": 10, "name": "穴澤慈円", "team": "山口", "goals": 2 },
-    { "rank": 10, "name": "徳村保成", "team": "学芸館", "goals": 2 },
-    { "rank": 10, "name": "森奎道", "team": "瀬戸内", "goals": 2 },
-    { "rank": 10, "name": "南田康介", "team": "作", "goals": 2 },
-    { "rank": 10, "name": "竹内智哉", "team": "瀬戸内", "goals": 2 },
-    { "rank": 10, "name": "相宗龍基", "team": "淞南", "goals": 2 },
-    { "rank": 10, "name": "平岡俊輔", "team": "瀬戸内", "goals": 2 },
-    { "rank": 10, "name": "矢島琉衣", "team": "玉野", "goals": 2 },
-    { "rank": 10, "name": "吉田龍紋", "team": "学芸館", "goals": 2 },
-    { "rank": 10, "name": "保手濱慶次", "team": "瀬戸内", "goals": 2 },
-    { "rank": 10, "name": "田川英知", "team": "瀬戸内", "goals": 2 }
+    {
+      "rank": 1,
+      "name": "村崎斗士輝",
+      "team": "淞南",
+      "goals": 10
+    },
+    {
+      "rank": 2,
+      "name": "本村悠斗",
+      "team": "学芸館",
+      "goals": 5
+    },
+    {
+      "rank": 2,
+      "name": "大西崇翔",
+      "team": "瀬戸内",
+      "goals": 5
+    },
+    {
+      "rank": 4,
+      "name": "児玉蓮次",
+      "team": "大社",
+      "goals": 4
+    },
+    {
+      "rank": 4,
+      "name": "辻琥白",
+      "team": "学芸館",
+      "goals": 4
+    },
+    {
+      "rank": 4,
+      "name": "野田歩",
+      "team": "淞南",
+      "goals": 4
+    },
+    {
+      "rank": 7,
+      "name": "工藤優吾",
+      "team": "就実",
+      "goals": 3
+    },
+    {
+      "rank": 7,
+      "name": "中根槙助",
+      "team": "山口",
+      "goals": 3
+    },
+    {
+      "rank": 7,
+      "name": "竹内智哉",
+      "team": "瀬戸内",
+      "goals": 3
+    },
+    {
+      "rank": 7,
+      "name": "田辺恵太",
+      "team": "玉野",
+      "goals": 3
+    },
+    {
+      "rank": 11,
+      "name": "岡部朔成",
+      "team": "作",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "南田康介",
+      "team": "作",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "穴澤慈円",
+      "team": "山口",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "徳村保成",
+      "team": "学芸館",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "吉田龍紋",
+      "team": "学芸館",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "酒井万璃",
+      "team": "学芸館",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "松下湊",
+      "team": "瀬戸内",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "森奎道",
+      "team": "瀬戸内",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "平岡俊輔",
+      "team": "瀬戸内",
+      "goals": 2
+    },
+    {
+      "rank": 11,
+      "name": "保手濱慶次",
+      "team": "瀬戸内",
+      "goals": 2
+    }
   ],
   "coverage": [
-    { "team": "学芸館", "attributed": 20, "gf": 20, "missing": 0 },
-    { "team": "瀬戸内", "attributed": 20, "gf": 20, "missing": 0 },
-    { "team": "淞南", "attributed": 16, "gf": 16, "missing": 0 },
-    { "team": "作", "attributed": 8, "gf": 8, "missing": 0 },
-    { "team": "山口", "attributed": 6, "gf": 6, "missing": 0 },
-    { "team": "皆実", "attributed": 4, "gf": 5, "missing": 1 },
-    { "team": "大社", "attributed": 5, "gf": 5, "missing": 0 },
-    { "team": "高川", "attributed": 6, "gf": 6, "missing": 0 },
-    { "team": "就実", "attributed": 5, "gf": 7, "missing": 2 },
-    { "team": "玉野", "attributed": 10, "gf": 10, "missing": 0 }
+    {
+      "team": "就実",
+      "attributed": 9,
+      "gf": 11,
+      "missing": 2
+    },
+    {
+      "team": "皆実",
+      "attributed": 4,
+      "gf": 5,
+      "missing": 1
+    }
   ]
 }
