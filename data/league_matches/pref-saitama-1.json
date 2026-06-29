@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kanto/saitama/league/table/163779",
   "sourceName": "埼玉県サッカー協会",
-  "lastUpdated": "2026-06-28",
+  "lastUpdated": "2026-06-29",
   "teams": [
     {
       "name": "武南",
@@ -22,16 +22,16 @@
       "short": "正智深谷"
     },
     {
+      "name": "成徳深谷",
+      "short": "成徳深谷"
+    },
+    {
       "name": "武蔵越生",
       "short": "武蔵越生"
     },
     {
       "name": "西武台II",
       "short": "西武台II"
-    },
-    {
-      "name": "成徳深谷",
-      "short": "成徳深谷"
     },
     {
       "name": "浦和学院",
@@ -63,13 +63,13 @@
       "rank": 2,
       "team": "聖望学園",
       "points": 16,
-      "played": 8,
+      "played": 9,
       "won": 5,
       "drawn": 1,
-      "lost": 2,
-      "gf": 14,
-      "ga": 8,
-      "gd": 6
+      "lost": 3,
+      "gf": 15,
+      "ga": 10,
+      "gd": 5
     },
     {
       "rank": 3,
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "成徳深谷",
+      "points": 14,
+      "played": 9,
+      "won": 3,
+      "drawn": 5,
+      "lost": 1,
+      "gf": 7,
+      "ga": 3,
+      "gd": 4
+    },
+    {
+      "rank": 6,
       "team": "武蔵越生",
       "points": 12,
       "played": 9,
@@ -108,64 +120,52 @@
       "gd": 1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "西武台II",
       "points": 12,
-      "played": 8,
+      "played": 9,
       "won": 4,
       "drawn": 0,
-      "lost": 4,
+      "lost": 5,
       "gf": 9,
-      "ga": 15,
-      "gd": -6
-    },
-    {
-      "rank": 7,
-      "team": "成徳深谷",
-      "points": 11,
-      "played": 8,
-      "won": 2,
-      "drawn": 5,
-      "lost": 1,
-      "gf": 4,
-      "ga": 3,
-      "gd": 1
+      "ga": 18,
+      "gd": -9
     },
     {
       "rank": 8,
       "team": "浦和学院",
-      "points": 6,
-      "played": 8,
-      "won": 1,
+      "points": 9,
+      "played": 9,
+      "won": 2,
       "drawn": 3,
       "lost": 4,
-      "gf": 7,
-      "ga": 13,
-      "gd": -6
+      "gf": 9,
+      "ga": 14,
+      "gd": -5
     },
     {
       "rank": 9,
       "team": "狭山ヶ丘",
-      "points": 5,
-      "played": 8,
-      "won": 1,
+      "points": 8,
+      "played": 9,
+      "won": 2,
       "drawn": 2,
       "lost": 5,
-      "gf": 4,
-      "ga": 16,
-      "gd": -12
+      "gf": 7,
+      "ga": 18,
+      "gd": -11
     },
     {
       "rank": 10,
       "team": "埼玉栄",
       "points": 4,
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 1,
-      "lost": 6,
-      "gf": 3,
-      "ga": 15,
-      "gd": -12
+      "lost": 7,
+      "gf": 5,
+      "ga": 18,
+      "gd": -13
     }
   ],
   "matches": [
@@ -198,6 +198,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "武南",
+      "hs": null,
+      "as": null,
+      "away": "成徳深谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-19",
       "home": "武南",
       "hs": 1,
@@ -213,15 +222,6 @@
       "as": 1,
       "away": "西武台II",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武南",
-      "hs": null,
-      "as": null,
-      "away": "成徳深谷",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -279,6 +279,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-18",
+      "home": "聖望学園",
+      "hs": 1,
+      "as": 0,
+      "away": "成徳深谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-05",
       "home": "聖望学園",
       "hs": 4,
@@ -297,21 +306,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
+      "date": "2026-06-28",
       "home": "聖望学園",
       "hs": 1,
-      "as": 0,
-      "away": "成徳深谷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "聖望学園",
-      "hs": null,
-      "as": null,
+      "as": 2,
       "away": "浦和学院",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -360,7 +360,16 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-05-09",
+      "home": "昌平II",
+      "hs": 0,
+      "as": 0,
+      "away": "成徳深谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
       "home": "昌平II",
       "hs": 2,
       "as": 3,
@@ -374,15 +383,6 @@
       "hs": 1,
       "as": 0,
       "away": "西武台II",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "昌平II",
-      "hs": 0,
-      "as": 0,
-      "away": "成徳深谷",
       "status": "played"
     },
     {
@@ -441,6 +441,15 @@
     },
     {
       "md": 0,
+      "date": "2026-05-16",
+      "home": "正智深谷",
+      "hs": 0,
+      "as": 0,
+      "away": "成徳深谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-25",
       "home": "正智深谷",
       "hs": 2,
@@ -456,15 +465,6 @@
       "as": null,
       "away": "西武台II",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "正智深谷",
-      "hs": 0,
-      "as": 0,
-      "away": "成徳深谷",
-      "status": "played"
     },
     {
       "md": 0,
@@ -492,168 +492,6 @@
       "as": null,
       "away": "埼玉栄",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "武南",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "聖望学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "昌平II",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "正智深谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "武蔵越生",
-      "hs": 4,
-      "as": 0,
-      "away": "西武台II",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "成徳深谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "浦和学院",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "狭山ヶ丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "武蔵越生",
-      "hs": 2,
-      "as": 0,
-      "away": "埼玉栄",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "西武台II",
-      "hs": null,
-      "as": null,
-      "away": "武南",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "西武台II",
-      "hs": null,
-      "as": null,
-      "away": "聖望学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "西武台II",
-      "hs": null,
-      "as": null,
-      "away": "昌平II",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "西武台II",
-      "hs": 2,
-      "as": 1,
-      "away": "正智深谷",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "西武台II",
-      "hs": null,
-      "as": null,
-      "away": "武蔵越生",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "西武台II",
-      "hs": null,
-      "as": null,
-      "away": "成徳深谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "西武台II",
-      "hs": 2,
-      "as": 1,
-      "away": "浦和学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "西武台II",
-      "hs": null,
-      "as": null,
-      "away": "狭山ヶ丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "西武台II",
-      "hs": 2,
-      "as": 1,
-      "away": "埼玉栄",
-      "status": "played"
     },
     {
       "md": 0,
@@ -738,6 +576,168 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "武南",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "聖望学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "昌平II",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "正智深谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "成徳深谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "武蔵越生",
+      "hs": 4,
+      "as": 0,
+      "away": "西武台II",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "浦和学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武蔵越生",
+      "hs": null,
+      "as": null,
+      "away": "狭山ヶ丘",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "武蔵越生",
+      "hs": 2,
+      "as": 0,
+      "away": "埼玉栄",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "西武台II",
+      "hs": null,
+      "as": null,
+      "away": "武南",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "西武台II",
+      "hs": null,
+      "as": null,
+      "away": "聖望学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "西武台II",
+      "hs": null,
+      "as": null,
+      "away": "昌平II",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "西武台II",
+      "hs": 2,
+      "as": 1,
+      "away": "正智深谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "西武台II",
+      "hs": 0,
+      "as": 3,
+      "away": "成徳深谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "西武台II",
+      "hs": null,
+      "as": null,
+      "away": "武蔵越生",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "西武台II",
+      "hs": 2,
+      "as": 1,
+      "away": "浦和学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "西武台II",
+      "hs": null,
+      "as": null,
+      "away": "狭山ヶ丘",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "西武台II",
+      "hs": 2,
+      "as": 1,
+      "away": "埼玉栄",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-05",
       "home": "浦和学院",
       "hs": 1,
@@ -774,6 +774,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "浦和学院",
+      "hs": null,
+      "as": null,
+      "away": "成徳深谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-12",
       "home": "浦和学院",
       "hs": 1,
@@ -792,15 +801,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "浦和学院",
-      "hs": null,
-      "as": null,
-      "away": "成徳深谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-05-09",
       "home": "浦和学院",
       "hs": 0,
@@ -810,7 +810,7 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-05-16",
       "home": "浦和学院",
       "hs": 3,
       "as": 0,
@@ -855,6 +855,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "狭山ヶ丘",
+      "hs": null,
+      "as": null,
+      "away": "成徳深谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-05-16",
       "home": "狭山ヶ丘",
       "hs": 0,
@@ -870,15 +879,6 @@
       "as": 1,
       "away": "西武台II",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "狭山ヶ丘",
-      "hs": null,
-      "as": null,
-      "away": "成徳深谷",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -936,6 +936,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-04",
+      "home": "埼玉栄",
+      "hs": 1,
+      "as": 1,
+      "away": "成徳深谷",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "埼玉栄",
       "hs": null,
@@ -954,15 +963,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "埼玉栄",
-      "hs": 1,
-      "as": 1,
-      "away": "成徳深谷",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "埼玉栄",
       "hs": null,
@@ -972,12 +972,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-06-28",
       "home": "埼玉栄",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "狭山ヶ丘",
-      "status": "scheduled"
+      "status": "played"
     }
   ]
 }
