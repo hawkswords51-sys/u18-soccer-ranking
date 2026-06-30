@@ -242,6 +242,77 @@ def build_tokyo_from_input(today: str) -> str:
     return f"  pref-tokyo-1: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']}) 時点={asof}"
 
 
+# ── 沖縄 波布リーグ（試合ごと得点者を自動集計）──────────────────
+# 対戦表ページの「得点者」セルに「N分 選手名（チーム）」形式で全得点が載る。
+# 「警告・退場」セルは別セルなので除外。OGは個人ランキングから除外。
+OKINAWA_URL = "http://www.okinawa-soccer-habu.com/scores/table/161"
+OKINAWA_OUT = DIR / "pref-okinawa-1.json"
+_OK_TEAM_ALIAS = {
+    "沖縄SV": "沖縄SV", "沖縄SVU-18": "沖縄SV",
+    "琉球2nd": "FC琉球2nd", "琉球": "FC琉球2nd", "FC琉球": "FC琉球2nd",
+    "FC琉球2nd": "FC琉球2nd", "FC琉球OKINAWAU-182nd": "FC琉球2nd",
+    "鹿島朝日": "FC琉球鹿島朝日", "FC琉球鹿島朝日": "FC琉球鹿島朝日",
+}
+_OK_GOAL_RE = re.compile(r"(\d+)分\s*([^()（）0-9]+?)\s*[(（]([^()（）]+)[)）]")
+_OK_OG = {"オウンゴール", "OG", "ＯＧ"}
+
+
+def _ok_name(n):
+    return n.replace("德", "徳").strip()  # 異体字統一
+
+
+def _ok_team(t):
+    return _OK_TEAM_ALIAS.get(unicodedata.normalize("NFKC", t).replace(" ", ""), t.strip())
+
+
+def parse_okinawa_html(html):
+    soup = BeautifulSoup(html, "lxml")
+    cnt = {}
+    for td in soup.find_all("td"):
+        txt = td.get_text("\n", strip=True)
+        if "警告" in txt or "退場" in txt or "分" not in txt:
+            continue
+        for m in _OK_GOAL_RE.finditer(txt):
+            name = _ok_name(m.group(2))
+            if not name or name in _OK_OG:
+                continue
+            team = _ok_team(m.group(3))
+            cnt[(name, team)] = cnt.get((name, team), 0) + 1
+    return cnt
+
+
+def fetch_okinawa(today):
+    try:
+        r = requests.get(OKINAWA_URL, headers=HEAD, timeout=TIMEOUT)
+        r.raise_for_status()
+        r.encoding = r.apparent_encoding or r.encoding
+        cnt = parse_okinawa_html(r.text)
+    except Exception as e:
+        return f"  pref-okinawa-1: 取得失敗のためスキップ（既存維持）: {e}"
+    if not cnt:
+        return "  pref-okinawa-1: 0件のためスキップ（既存維持）"
+    rows = sorted(cnt.items(), key=lambda kv: (-kv[1], kv[0][0]))
+    scorers, rank, prev = [], 0, None
+    for i, ((name, team), g) in enumerate(rows, start=1):
+        if g != prev:
+            rank, prev = i, g
+        scorers.append({"rank": rank, "name": name, "team": team, "goals": g})
+    obj = {
+        "league": "高円宮杯 JFA U-18 サッカーリーグ2026 沖縄（波布リーグ）1部 得点ランキング",
+        "season": "2026",
+        "source": OKINAWA_URL,
+        "sourceLabel": "沖縄県高校サッカー 波布リーグ 公式",
+        "lastUpdated": today,
+        "note": "波布リーグの各試合の得点者記録を自動集計したものです（オウンゴールは個人得点に計上していません）。",
+        "scorers": scorers[:MAX_ROWS],
+    }
+    new = json.dumps(obj, ensure_ascii=False, indent=2)
+    if OKINAWA_OUT.exists() and OKINAWA_OUT.read_text(encoding="utf-8") == new:
+        return f"  pref-okinawa-1: 変更なし（{len(scorers)}名）"
+    OKINAWA_OUT.write_text(new, encoding="utf-8")
+    return f"  pref-okinawa-1: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']})"
+
+
 def main():
     import datetime
     today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d")
@@ -253,6 +324,8 @@ def main():
         print(update_one(slug, cfg, today))
     # 東京（手入力）
     print(build_tokyo_from_input(today))
+    # 沖縄（波布リーグ・自動集計）
+    print(fetch_okinawa(today))
 
 
 if __name__ == "__main__":
