@@ -7799,10 +7799,10 @@
         "name": "創志学園高校",
         "league": "岡山県1部",
         "rank": 6,
-        "points": 20,
-        "played": 10,
+        "points": 19,
+        "played": 9,
         "won": 6,
-        "drawn": 2,
+        "drawn": 1,
         "lost": 2,
         "goalsFor": 17,
         "goalsAgainst": 11,
@@ -7831,10 +7831,10 @@
         "name": "ファジアーノ岡山U-18 2nd",
         "league": "岡山県1部",
         "rank": 8,
-        "points": 17,
-        "played": 10,
+        "points": 16,
+        "played": 9,
         "won": 5,
-        "drawn": 2,
+        "drawn": 1,
         "lost": 3,
         "goalsFor": 20,
         "goalsAgainst": 11,
@@ -7932,24 +7932,24 @@
         ]
       },
       {
-        "id": "ok014",
-        "name": "倉敷古城池高校",
+        "id": "ok013",
+        "name": "朝日塾高校",
         "league": "岡山県1部",
         "rank": 14,
         "prefectureRank": 14,
-        "points": 6,
-        "played": 11,
+        "points": 4,
+        "played": 9,
         "won": 1,
-        "drawn": 3,
+        "drawn": 1,
         "lost": 7,
-        "goalsFor": 4,
-        "goalsAgainst": 21,
+        "goalsFor": 8,
+        "goalsAgainst": 22,
         "goalDiff": -4,
         "leagueRank": 9
       },
       {
-        "id": "ok013",
-        "name": "朝日塾高校",
+        "id": "ok014",
+        "name": "倉敷古城池高校",
         "league": "岡山県1部",
         "rank": 15,
         "prefectureRank": 15,
@@ -7958,8 +7958,8 @@
         "won": 1,
         "drawn": 1,
         "lost": 7,
-        "goalsFor": 8,
-        "goalsAgainst": 22,
+        "goalsFor": 4,
+        "goalsAgainst": 21,
         "goalDiff": -4,
         "leagueRank": 10
       }
@@ -10196,15 +10196,33 @@
         "league": "熊本県1部",
         "rank": 9,
         "points": 18,
-        "played": 9,
+        "played": 10,
         "won": 6,
         "drawn": 0,
-        "lost": 3,
-        "goalsFor": 28,
-        "goalsAgainst": 19,
+        "lost": 4,
+        "goalsFor": 29,
+        "goalsAgainst": 21,
         "prefectureRank": 9,
         "goalDiff": 4,
         "leagueRank": 4
+      },
+      {
+        "id": "km015",
+        "name": "東海大学付属熊本星翔高校2nd",
+        "league": "熊本県1部",
+        "points": 15,
+        "played": 9,
+        "won": 5,
+        "drawn": 0,
+        "lost": 4,
+        "goalsFor": 23,
+        "goalsAgainst": 19,
+        "leagueRank": 5,
+        "rank": 10,
+        "prefectureRank": 10,
+        "aliases": [
+          "東海星翔2nd"
+        ]
       },
       {
         "name": "熊本学園大学付属高校",
@@ -10216,9 +10234,9 @@
         "lost": 4,
         "goalsFor": 19,
         "goalsAgainst": 16,
-        "leagueRank": 5,
-        "rank": 10,
-        "prefectureRank": 10,
+        "leagueRank": 6,
+        "rank": 11,
+        "prefectureRank": 11,
         "aliases": [
           "学園大付",
           "熊本学園大付"
@@ -10228,7 +10246,7 @@
         "id": "km008",
         "name": "ルーテル学院高校",
         "league": "熊本県1部",
-        "rank": 11,
+        "rank": 12,
         "points": 13,
         "played": 10,
         "won": 4,
@@ -10236,27 +10254,9 @@
         "lost": 5,
         "goalsFor": 24,
         "goalsAgainst": 10,
-        "prefectureRank": 11,
-        "goalDiff": -1,
-        "leagueRank": 6
-      },
-      {
-        "id": "km015",
-        "name": "東海大学付属熊本星翔高校2nd",
-        "league": "熊本県1部",
-        "points": 12,
-        "played": 8,
-        "won": 4,
-        "drawn": 0,
-        "lost": 4,
-        "goalsFor": 21,
-        "goalsAgainst": 18,
-        "leagueRank": 7,
-        "rank": 12,
         "prefectureRank": 12,
-        "aliases": [
-          "東海星翔2nd"
-        ]
+        "goalDiff": -1,
+        "leagueRank": 7
       },
       {
         "name": "ロアッソ熊本U-18_2nd",
@@ -11203,8 +11203,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-06-30 07:55",
+    "lastUpdated": "2026-06-30 16:51",
     "year": 2026,
-    "updatedCount": 585
+    "updatedCount": 577
   }
 }
