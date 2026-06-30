@@ -162,6 +162,78 @@ def update_one(slug: str, cfg: dict, today: str) -> str:
     return f"  {slug}: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']}) 更新日={last_updated}"
 
 
+# ── 東京T1（手入力）─────────────────────────────────────────────
+# 東京は各試合の「公式記録PDF」が画像で自動取得できないため、Keiが
+# data/scorers/pref-tokyo-1.input.tsv に手入力する。1行=1選手で
+#   選手名<TAB>チーム名<TAB>合計得点
+# （タブが崩れたらカンマ , でも可）。順位は得点数から自動付与（同点は同順位）。
+TOKYO_INPUT = DIR / "pref-tokyo-1.input.tsv"
+TOKYO_OUT = DIR / "pref-tokyo-1.json"
+
+
+def build_tokyo_from_input(today: str) -> str:
+    if not TOKYO_INPUT.exists():
+        return "  pref-tokyo-1: 入力ファイル無し（スキップ）"
+    asof = today
+    rows = []
+    gf = {}  # 公式得点(GF) チーム名 -> 数（検算・coverage用、任意）
+    for line in TOKYO_INPUT.read_text(encoding="utf-8").splitlines():
+        s = line.strip()
+        if not s:
+            continue
+        if s.startswith("#"):
+            continue
+        m = re.match(r"asof\s*[:：]\s*(\S.*)", s)
+        if m:
+            asof = m.group(1).strip()
+            continue
+        mg = re.match(r"gf\s*[:：]\s*(.+?)[\t,，\s]+(\d+)\s*$", s)
+        if mg:
+            gf[_norm(mg.group(1))] = int(mg.group(2))
+            continue
+        parts = [p.strip() for p in re.split(r"[\t,，]", s) if p.strip()]
+        if len(parts) < 3:
+            continue
+        g = re.search(r"\d+", parts[2])
+        if not g:
+            continue
+        rows.append((_clean_name(parts[0]), _norm(parts[1]), int(g.group())))
+    if not rows:
+        return "  pref-tokyo-1: 有効データ0件（既存維持）"
+    rows.sort(key=lambda r: -r[2])
+    scorers, rank, prev = [], 0, None
+    for i, (n, t, g) in enumerate(rows, start=1):
+        if g != prev:
+            rank, prev = i, g
+        scorers.append({"rank": rank, "name": n, "team": t, "goals": g})
+    # 検算＆coverage（gf行があるチームのみ）: 公式得点 > 集計得点 の差を注記
+    attributed = {}
+    for sc in scorers:
+        attributed[sc["team"]] = attributed.get(sc["team"], 0) + sc["goals"]
+    coverage = []
+    for team, official in gf.items():
+        miss = official - attributed.get(team, 0)
+        if miss > 0:
+            coverage.append({"team": team, "attributed": attributed.get(team, 0),
+                             "gf": official, "missing": miss})
+    obj = {
+        "league": "高円宮杯 JFA U-18 サッカーリーグ2026 東京 T1リーグ 得点ランキング",
+        "season": "2026",
+        "source": "https://www.tleague-u18.com/schedule.php?dy=2026",
+        "sourceLabel": "東京都サッカー協会（Tリーグ公式記録・手集計）",
+        "lastUpdated": asof,
+        "note": "東京T1各試合の公式記録（得点者）を手作業で集計したものです。",
+        "scorers": scorers,
+    }
+    if coverage:
+        obj["coverage"] = coverage
+    new = json.dumps(obj, ensure_ascii=False, indent=2)
+    if TOKYO_OUT.exists() and TOKYO_OUT.read_text(encoding="utf-8") == new:
+        return f"  pref-tokyo-1: 変更なし（{len(scorers)}名）"
+    TOKYO_OUT.write_text(new, encoding="utf-8")
+    return f"  pref-tokyo-1: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']}) 時点={asof}"
+
+
 def main():
     import datetime
     today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d")
@@ -171,6 +243,8 @@ def main():
         if only and slug not in only:
             continue
         print(update_one(slug, cfg, today))
+    # 東京（手入力）
+    print(build_tokyo_from_input(today))
 
 
 if __name__ == "__main__":
