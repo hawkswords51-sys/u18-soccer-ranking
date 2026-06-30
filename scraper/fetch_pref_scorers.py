@@ -177,6 +177,7 @@ def build_tokyo_from_input(today: str) -> str:
     asof = today
     rows = []
     gf = {}  # 公式得点(GF) チーム名 -> 数（検算・coverage用、任意）
+    og = {}  # オウンゴール チーム名 -> 数（GFとの差のうちOGぶん。任意）
     for line in TOKYO_INPUT.read_text(encoding="utf-8").splitlines():
         s = line.strip()
         if not s:
@@ -186,6 +187,10 @@ def build_tokyo_from_input(today: str) -> str:
         m = re.match(r"asof\s*[:：]\s*(\S.*)", s)
         if m:
             asof = m.group(1).strip()
+            continue
+        mo = re.match(r"og\s*[:：]\s*(.+?)[\t,，\s]+(\d+)\s*$", s)
+        if mo:
+            og[_norm(mo.group(1))] = int(mo.group(2))
             continue
         mg = re.match(r"gf\s*[:：]\s*(.+?)[\t,，\s]+(\d+)\s*$", s)
         if mg:
@@ -212,17 +217,20 @@ def build_tokyo_from_input(today: str) -> str:
         attributed[sc["team"]] = attributed.get(sc["team"], 0) + sc["goals"]
     coverage = []
     for team, official in gf.items():
-        miss = official - attributed.get(team, 0)
-        if miss > 0:
+        miss = official - attributed.get(team, 0) - og.get(team, 0)
+        if miss > 0:  # OGでも説明できない真の不足のみ注記
             coverage.append({"team": team, "attributed": attributed.get(team, 0),
                              "gf": official, "missing": miss})
+    note = "東京T1各試合の公式記録（得点者）を手作業で集計したものです。"
+    if sum(og.values()) > 0:
+        note += "（チーム総得点にはオウンゴールを含みますが、個人得点には計上していません）"
     obj = {
         "league": "高円宮杯 JFA U-18 サッカーリーグ2026 東京 T1リーグ 得点ランキング",
         "season": "2026",
         "source": "https://www.tleague-u18.com/schedule.php?dy=2026",
         "sourceLabel": "東京都サッカー協会（Tリーグ公式記録・手集計）",
         "lastUpdated": asof,
-        "note": "東京T1各試合の公式記録（得点者）を手作業で集計したものです。",
+        "note": note,
         "scorers": scorers,
     }
     if coverage:

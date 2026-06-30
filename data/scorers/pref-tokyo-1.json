@@ -4,7 +4,7 @@
   "source": "https://www.tleague-u18.com/schedule.php?dy=2026",
   "sourceLabel": "東京都サッカー協会（Tリーグ公式記録・手集計）",
   "lastUpdated": "2026-06-30",
-  "note": "東京T1各試合の公式記録（得点者）を手作業で集計したものです。",
+  "note": "東京T1各試合の公式記録（得点者）を手作業で集計したものです。（チーム総得点にはオウンゴールを含みますが、個人得点には計上していません）",
   "scorers": [
     {
       "rank": 1,
@@ -431,26 +431,6 @@
       "name": "澤田悠",
       "team": "多摩大目黒",
       "goals": 1
-    }
-  ],
-  "coverage": [
-    {
-      "team": "三菱養和",
-      "attributed": 20,
-      "gf": 21,
-      "missing": 1
-    },
-    {
-      "team": "多摩大目黒",
-      "attributed": 6,
-      "gf": 7,
-      "missing": 1
-    },
-    {
-      "team": "早稲田実業",
-      "attributed": 6,
-      "gf": 7,
-      "missing": 1
     }
   ]
 }
