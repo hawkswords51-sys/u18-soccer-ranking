@@ -133,7 +133,7 @@ SOURCES = {
         note="香川県1部リーグ公式（GoalNote）掲載の得点ランキングです。"),
 }
 
-MAX_ROWS = 50
+MAX_ROWS = 200  # 表示は20件だが、データは全件保持しておく
 
 
 def update_one(slug: str, cfg: dict, today: str) -> str:
@@ -167,22 +167,33 @@ def update_one(slug: str, cfg: dict, today: str) -> str:
 # data/scorers/pref-tokyo-1.input.tsv に手入力する。1行=1選手で
 #   選手名<TAB>チーム名<TAB>合計得点
 # （タブが崩れたらカンマ , でも可）。順位は得点数から自動付与（同点は同順位）。
-TOKYO_INPUT = DIR / "pref-tokyo-1.input.tsv"
-TOKYO_OUT = DIR / "pref-tokyo-1.json"
+# 手入力方式（自動取得できない県）。data/scorers/<slug>.input.tsv を読みJSON化。
+# 1行=1選手「選手名<TAB>チーム<TAB>得点」。# はコメント。
+# ディレクティブ: asof: 日付 / gf: チーム 数 / og: チーム 数（gf・ogは任意・検算用）。
+MANUAL_SOURCES = {
+    "pref-tokyo-1": dict(
+        league="高円宮杯 JFA U-18 サッカーリーグ2026 東京 T1リーグ 得点ランキング",
+        source="https://www.tleague-u18.com/schedule.php?dy=2026",
+        sourceLabel="東京都サッカー協会（Tリーグ公式記録・手集計）",
+        note="東京T1各試合の公式記録（得点者）を手作業で集計したものです。"),
+    "pref-fukushima-1": dict(
+        league="高円宮杯 JFA U-18 サッカーリーグ2026 福島 F1（1部）得点ランキング",
+        source="https://fukushima-fa.com/match/2026/%E9%AB%98%E5%86%86%E5%AE%AE%E6%9D%AFjfau-18%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC%E3%83%AA%E3%83%BC%E3%82%B02026-%E7%A6%8F%E5%B3%B6%EF%BC%88f1%E3%80%81f2%EF%BC%89/",
+        sourceLabel="福島県サッカー協会 公式（PDF）",
+        note="福島県サッカー協会公式のF1リーグ得点ランキング（PDF）を書き写したものです。"),
+}
 
 
-def build_tokyo_from_input(today: str) -> str:
-    if not TOKYO_INPUT.exists():
-        return "  pref-tokyo-1: 入力ファイル無し（スキップ）"
+def build_from_input(slug: str, meta: dict, today: str) -> str:
+    inp = DIR / f"{slug}.input.tsv"
+    out = DIR / f"{slug}.json"
+    if not inp.exists():
+        return f"  {slug}: 入力ファイル無し（スキップ）"
     asof = today
-    rows = []
-    gf = {}  # 公式得点(GF) チーム名 -> 数（検算・coverage用、任意）
-    og = {}  # オウンゴール チーム名 -> 数（GFとの差のうちOGぶん。任意）
-    for line in TOKYO_INPUT.read_text(encoding="utf-8").splitlines():
+    rows, gf, og = [], {}, {}
+    for line in inp.read_text(encoding="utf-8").splitlines():
         s = line.strip()
-        if not s:
-            continue
-        if s.startswith("#"):
+        if not s or s.startswith("#"):
             continue
         m = re.match(r"asof\s*[:：]\s*(\S.*)", s)
         if m:
@@ -204,42 +215,37 @@ def build_tokyo_from_input(today: str) -> str:
             continue
         rows.append((_clean_name(parts[0]), _norm(parts[1]), int(g.group())))
     if not rows:
-        return "  pref-tokyo-1: 有効データ0件（既存維持）"
+        return f"  {slug}: 有効データ0件（既存維持）"
     rows.sort(key=lambda r: -r[2])
     scorers, rank, prev = [], 0, None
     for i, (n, t, g) in enumerate(rows, start=1):
         if g != prev:
             rank, prev = i, g
         scorers.append({"rank": rank, "name": n, "team": t, "goals": g})
-    # 検算＆coverage（gf行があるチームのみ）: 公式得点 > 集計得点 の差を注記
     attributed = {}
     for sc in scorers:
         attributed[sc["team"]] = attributed.get(sc["team"], 0) + sc["goals"]
     coverage = []
     for team, official in gf.items():
         miss = official - attributed.get(team, 0) - og.get(team, 0)
-        if miss > 0:  # OGでも説明できない真の不足のみ注記
+        if miss > 0:
             coverage.append({"team": team, "attributed": attributed.get(team, 0),
                              "gf": official, "missing": miss})
-    note = "東京T1各試合の公式記録（得点者）を手作業で集計したものです。"
+    note = meta["note"]
     if sum(og.values()) > 0:
         note += "（チーム総得点にはオウンゴールを含みますが、個人得点には計上していません）"
     obj = {
-        "league": "高円宮杯 JFA U-18 サッカーリーグ2026 東京 T1リーグ 得点ランキング",
-        "season": "2026",
-        "source": "https://www.tleague-u18.com/schedule.php?dy=2026",
-        "sourceLabel": "東京都サッカー協会（Tリーグ公式記録・手集計）",
-        "lastUpdated": asof,
-        "note": note,
-        "scorers": scorers,
+        "league": meta["league"], "season": "2026",
+        "source": meta["source"], "sourceLabel": meta["sourceLabel"],
+        "lastUpdated": asof, "note": note, "scorers": scorers[:MAX_ROWS],
     }
     if coverage:
         obj["coverage"] = coverage
     new = json.dumps(obj, ensure_ascii=False, indent=2)
-    if TOKYO_OUT.exists() and TOKYO_OUT.read_text(encoding="utf-8") == new:
-        return f"  pref-tokyo-1: 変更なし（{len(scorers)}名）"
-    TOKYO_OUT.write_text(new, encoding="utf-8")
-    return f"  pref-tokyo-1: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']}) 時点={asof}"
+    if out.exists() and out.read_text(encoding="utf-8") == new:
+        return f"  {slug}: 変更なし（{len(scorers)}名）"
+    out.write_text(new, encoding="utf-8")
+    return f"  {slug}: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']}) 時点={asof}"
 
 
 # ── 沖縄 波布リーグ（試合ごと得点者を自動集計）──────────────────
@@ -322,8 +328,9 @@ def main():
         if only and slug not in only:
             continue
         print(update_one(slug, cfg, today))
-    # 東京（手入力）
-    print(build_tokyo_from_input(today))
+    # 手入力方式（東京・福島など）
+    for mslug, mmeta in MANUAL_SOURCES.items():
+        print(build_from_input(mslug, mmeta, today))
     # 沖縄（波布リーグ・自動集計）
     print(fetch_okinawa(today))
 
