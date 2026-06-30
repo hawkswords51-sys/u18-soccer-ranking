@@ -75,9 +75,12 @@ def render_cross_table_html(slug: str) -> str:
     names = [t["name"] for t in teams]
     short = {t["name"]: t.get("short", t["name"]) for t in teams}
     disp = {t["name"]: t["name"] for t in teams}   # 各チーム戦績の表示用フルネーム
+    # B→2nd 変換後の表示名を、正式表記へ上書き（必要に応じて追記）。
+    # データ側(自動更新)が戻っても表示側で吸収するので安全。
+    _NAME_OVERRIDE = {"FC東京2nd": "FC東京U-18 2nd"}
     if is_pref:
-        short = {n: _align_name(v) for n, v in short.items()}
-        disp = {n: _align_name(v) for n, v in disp.items()}
+        short = {n: _NAME_OVERRIDE.get(_align_name(v), _align_name(v)) for n, v in short.items()}
+        disp = {n: _NAME_OVERRIDE.get(_align_name(v), _align_name(v)) for n, v in disp.items()}
     played = [m for m in matches
               if m.get("status") == "played" and m.get("hs") is not None and m.get("as") is not None]
     if not played:
