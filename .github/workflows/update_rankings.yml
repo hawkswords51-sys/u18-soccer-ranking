@@ -116,6 +116,16 @@ jobs:
             echo "scraper/update_pref_cross_tables.py がまだありません。スキップ。"
           fi
 
+      - name: 県別得点ランキングを更新（県協会公式 / GoalNote）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_pref_scorers.py ]; then
+            python scraper/fetch_pref_scorers.py
+          else
+            echo "scraper/fetch_pref_scorers.py がまだありません。スキップ。"
+          fi
+
       # ★ Phase 9-A: 都道府県別 SEO ランディングページ自動生成
       - name: 都道府県別 SEO ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}

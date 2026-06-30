@@ -47,8 +47,9 @@ def render_scorer_ranking_html(slug: str, limit: int = 20) -> str:
         cov = (f'<p class="xs-cov">※次のチームは出典に得点者が未掲載の試合があり、'
                f'実際の得点より少なく集計されている可能性があります：{ts}</p>')
     src = d.get("source", "")
+    src_label = d.get("sourceLabel") or "高校サッカー専門メディア"
     src_html = (f'　出典: <a href="{_esc(src)}" rel="nofollow" target="_blank">'
-                f'高校サッカー専門メディア</a>') if src else ""
+                f'{_esc(src_label)}</a>') if src else ""
 
     return f"""
       <section class="xs-section" id="scorer-ranking">
