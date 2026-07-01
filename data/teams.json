@@ -1753,21 +1753,19 @@
         "leagueRank": 7
       },
       {
-        "name": "矢板中央高校2nd",
+        "id": "to009",
+        "name": "國學院栃木高校",
         "league": "栃木U-18ユースリーグ",
+        "rank": 3,
         "points": 22,
         "played": 9,
         "won": 7,
         "drawn": 1,
         "lost": 1,
-        "goalsFor": 30,
-        "goalsAgainst": 12,
-        "leagueRank": 2,
-        "rank": 3,
+        "goalsFor": 27,
+        "goalsAgainst": 6,
         "prefectureRank": 3,
-        "aliases": [
-          "矢板中央B"
-        ]
+        "leagueRank": 2
       },
       {
         "id": "to002",
@@ -1786,19 +1784,21 @@
         "leagueRank": 9
       },
       {
-        "id": "to009",
-        "name": "國學院栃木高校",
+        "name": "矢板中央高校2nd",
         "league": "栃木U-18ユースリーグ",
-        "rank": 5,
-        "points": 19,
-        "played": 8,
-        "won": 6,
+        "points": 22,
+        "played": 9,
+        "won": 7,
         "drawn": 1,
         "lost": 1,
-        "goalsFor": 22,
-        "goalsAgainst": 6,
+        "goalsFor": 30,
+        "goalsAgainst": 12,
+        "leagueRank": 3,
+        "rank": 5,
         "prefectureRank": 5,
-        "leagueRank": 3
+        "aliases": [
+          "矢板中央B"
+        ]
       },
       {
         "id": "to006",
@@ -1901,12 +1901,12 @@
         "rank": 12,
         "prefectureRank": 12,
         "points": 1,
-        "played": 8,
+        "played": 9,
         "won": 0,
         "drawn": 1,
-        "lost": 7,
+        "lost": 8,
         "goalsFor": 8,
-        "goalsAgainst": 23,
+        "goalsAgainst": 28,
         "leagueRank": 10
       }
     ],
@@ -11203,7 +11203,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-07-01 08:09",
+    "lastUpdated": "2026-07-02 08:12",
     "year": 2026,
     "updatedCount": 585
   }
