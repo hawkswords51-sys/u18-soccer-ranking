@@ -196,7 +196,7 @@ __SCHEMA_BREADCRUMB__
   <script type="application/ld+json">
 __SCHEMA_ARTICLE__
   </script>
-
+__SCHEMA_EXTRA__
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -261,8 +261,10 @@ __TAGS_HTML__
         <div class="blog-article__body">
 __AI_SUMMARY__
 __ARTICLE_BODY__
+__FAQ_HTML__
         </div>
 
+__AUTHOR_BOX__
         <footer class="blog-article__footer">
           <div class="blog-article__share">
             <span>シェア:</span>
@@ -361,6 +363,145 @@ def render_related_html(current_slug, current_category, all_articles):
         )
     return "\n".join(items)
 
+# ============================================================
+# E-E-A-T 強化 (2026-07-02): 著者情報・医療系構造化データ・FAQ
+# ============================================================
+MEDICAL_CATEGORY = "医学コラム"
+AUTHOR_X_URL = "https://x.com/DrKazuSoccer"
+AUTHOR_BIO = (
+    "救命救急センターに勤務する救急科専門医。日本の育成年代サッカーへの関心から"
+    "当サイトを運営し、熱中症・脳震盪・栄養・睡眠・怪我予防など選手の安全に関する"
+    "医学コラムを、公的ガイドライン・医学的根拠に基づいて執筆しています。"
+)
+
+
+def build_author_person(article):
+    """構造化データ用の著者 Person オブジェクト (E-E-A-T 対応)"""
+    person = {
+        "@type": "Person",
+        "name": article.get("author", "Dr.Kazu Soccer"),
+        "jobTitle": "救急科専門医",
+        "description": AUTHOR_BIO,
+        "url": f"{DOMAIN}/about.html",
+        "sameAs": [AUTHOR_X_URL],
+        "knowsAbout": [
+            "救急医学", "スポーツ医学", "熱中症", "脳震盪",
+            "コンディショニング", "高校サッカー",
+        ],
+    }
+    return person
+
+
+def build_schema_extra(article, canonical):
+    """医学コラム向けの追加 JSON-LD (MedicalWebPage / FAQPage)。
+    医学コラム以外のカテゴリでは空文字を返す (既存記事に影響なし)。"""
+    scripts = []
+    if article.get("category") == MEDICAL_CATEGORY:
+        person = build_author_person(article)
+        last_reviewed = str(article.get("updated") or article["date"])
+        medical = {
+            "@context": "https://schema.org",
+            "@type": "MedicalWebPage",
+            "name": article["title"],
+            "url": canonical,
+            "description": article.get("description", "")[:160],
+            "inLanguage": "ja-JP",
+            "lastReviewed": last_reviewed,
+            "reviewedBy": person,
+            "author": person,
+            "audience": {
+                "@type": "PeopleAudience",
+                "audienceType": "サッカー選手・保護者・指導者",
+            },
+        }
+        topic = article.get("medicalTopic")
+        if topic:
+            medical["about"] = {"@type": "MedicalCondition", "name": topic}
+        scripts.append(medical)
+
+        faq = article.get("faq") or []
+        faq_items = [
+            f for f in faq
+            if isinstance(f, dict) and f.get("q") and f.get("a")
+        ]
+        if faq_items:
+            scripts.append({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": f["q"],
+                        "acceptedAnswer": {"@type": "Answer", "text": f["a"]},
+                    }
+                    for f in faq_items
+                ],
+            })
+    if not scripts:
+        return ""
+    blocks = []
+    for s in scripts:
+        blocks.append(
+            '  <script type="application/ld+json">\n'
+            + json.dumps(s, ensure_ascii=False, indent=2)
+            + "\n  </script>"
+        )
+    return "\n".join(blocks) + "\n"
+
+
+def build_faq_html(article):
+    """frontmatter の faq: [{q:, a:}, ...] を「よくある質問」セクションとして描画"""
+    faq = article.get("faq") or []
+    faq_items = [
+        f for f in faq
+        if isinstance(f, dict) and f.get("q") and f.get("a")
+    ]
+    if not faq_items:
+        return ""
+    parts = [
+        '<section class="blog-article__faq" id="faq">',
+        '<h2><i class="fas fa-circle-question"></i> よくある質問</h2>',
+    ]
+    for f in faq_items:
+        parts.append(
+            '<div style="margin:0 0 18px;">'
+            f'<h3 style="margin:0 0 6px;font-size:1.05rem;">Q. {html_escape(f["q"])}</h3>'
+            f'<p style="margin:0;">A. {html_escape(f["a"])}</p>'
+            "</div>"
+        )
+    parts.append("</section>")
+    return "\n".join(parts)
+
+
+def build_author_box(article):
+    """医学コラム記事の末尾に置く著者プロフィール (E-E-A-T 対応)。
+    医学コラム以外では表示しない。"""
+    if article.get("category") != MEDICAL_CATEGORY:
+        return ""
+    author = html_escape(article.get("author", "Dr.Kazu Soccer"))
+    box_style = (
+        "margin:8px 0 24px;padding:18px 20px;"
+        "background:var(--bg-light,#f8fafc);"
+        "border:1px solid var(--border-color,#e2e8f0);border-radius:12px;"
+        "font-size:0.95rem;line-height:1.85;"
+    )
+    label_style = (
+        "font-size:0.8rem;font-weight:600;letter-spacing:0.06em;"
+        "color:var(--primary-color,#1e40af);margin:0 0 6px;"
+    )
+    return (
+        f'        <aside class="blog-article__authorbox" style="{box_style}">\n'
+        f'          <p style="{label_style}"><i class="fas fa-user-md"></i> この記事の執筆者</p>\n'
+        f'          <p style="margin:0 0 8px;"><strong>{author}</strong>（救急科専門医）</p>\n'
+        f'          <p style="margin:0 0 10px;">{html_escape(AUTHOR_BIO)}</p>\n'
+        f'          <p style="margin:0;">\n'
+        f'            <a href="/about.html">運営者情報を見る ›</a>　\n'
+        f'            <a href="{AUTHOR_X_URL}" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>\n'
+        f'          </p>\n'
+        f'        </aside>\n'
+    )
+
+
 def build_article_ai_summary(article):
     """記事本文の冒頭に置くAI引用向け要約。frontmatterのdescriptionを可視化する。"""
     desc = (article.get("description") or "").strip()
@@ -397,14 +538,15 @@ def generate_article_page(article, all_articles):
         ],
     }, ensure_ascii=False, indent=2)
 
+    date_modified = str(article.get("updated") or article["date"])
     article_schema = json.dumps({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": title,
         "description": description,
-        "author": {"@type": "Person", "name": author},
+        "author": build_author_person(article),
         "datePublished": date_iso,
-        "dateModified": date_iso,
+        "dateModified": date_modified,
         "mainEntityOfPage": canonical,
         "publisher": {
             "@type": "Organization",
@@ -439,7 +581,10 @@ def generate_article_page(article, all_articles):
         .replace("__CATEGORY__", html_escape(category))
         .replace("__SCHEMA_BREADCRUMB__", breadcrumb)
         .replace("__SCHEMA_ARTICLE__", article_schema)
+        .replace("__SCHEMA_EXTRA__", build_schema_extra(article, canonical))
         .replace("__ARTICLE_BODY__", body_html)
+        .replace("__FAQ_HTML__", build_faq_html(article))
+        .replace("__AUTHOR_BOX__", build_author_box(article))
         .replace("__AI_SUMMARY__", build_article_ai_summary(article))
         .replace("__TAGS_HTML__", tags_html)
         .replace("__RELATED_HTML__", related_html)
