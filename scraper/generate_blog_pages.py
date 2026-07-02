@@ -369,8 +369,9 @@ def render_related_html(current_slug, current_category, all_articles):
 MEDICAL_CATEGORY = "医学コラム"
 AUTHOR_X_URL = "https://x.com/DrKazuSoccer"
 AUTHOR_BIO = (
-    "救命救急センターに勤務する救急科専門医。日本の育成年代サッカーへの関心から"
-    "当サイトを運営し、熱中症・脳震盪・栄養・睡眠・怪我予防など選手の安全に関する"
+    "救命救急センターに勤務する救急科専門医（日本救急医学会認定）。"
+    "日本の育成年代サッカーへの関心から当サイトを運営し、"
+    "熱中症・脳震盪・栄養・睡眠・怪我予防など選手の安全に関する"
     "医学コラムを、公的ガイドライン・医学的根拠に基づいて執筆しています。"
 )
 
@@ -382,6 +383,15 @@ def build_author_person(article):
         "name": article.get("author", "Dr.Kazu Soccer"),
         "jobTitle": "救急科専門医",
         "description": AUTHOR_BIO,
+        "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "専門医資格",
+            "name": "救急科専門医",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "日本救急医学会",
+            },
+        },
         "url": f"{DOMAIN}/about.html",
         "sameAs": [AUTHOR_X_URL],
         "knowsAbout": [
@@ -492,7 +502,7 @@ def build_author_box(article):
     return (
         f'        <aside class="blog-article__authorbox" style="{box_style}">\n'
         f'          <p style="{label_style}"><i class="fas fa-user-md"></i> この記事の執筆者</p>\n'
-        f'          <p style="margin:0 0 8px;"><strong>{author}</strong>（救急科専門医）</p>\n'
+        f'          <p style="margin:0 0 8px;"><strong>{author}</strong>（日本救急医学会認定 救急科専門医）</p>\n'
         f'          <p style="margin:0 0 10px;">{html_escape(AUTHOR_BIO)}</p>\n'
         f'          <p style="margin:0;">\n'
         f'            <a href="/about.html">運営者情報を見る ›</a>　\n'
