@@ -1898,10 +1898,33 @@ def generate_page(pref, all_prefs):
                 f"2部（A〜C）・3部（A〜F）・4部の結果は公式リンクから確認できます。{notable_full}など。"
             )
 
+    # ------------------------------------------------------------
+    # 県別 title/meta チューニング（GSC実クエリ対応・2026-07-02 パイロット：大分・富山）
+    # 大分: 県リーグの通称「OFAリーグ」がクエリに頻出（例:「大分県OFAリーグu18」）
+    #       だが title/description に無かった → 追加
+    # 富山: 最大クエリが「富山県 高校サッカーリーグ2026 結果」(192表示/月)、
+    #       県1部の通称「T1」も頻出 → 「結果」「T1」を追加
+    # 効果測定は週次レポート（2県のCTR・掲載順位）。横展開は結果を見てから。
+    # ------------------------------------------------------------
+    if pref_id == "oita":
+        title = title.replace("1部リーグ 順位", "OFAリーグ1部 順位・結果")
+        description = description.replace(
+            "1部リーグ（U-18年代）", "1部リーグ（OFAリーグ・U-18年代）"
+        )
+    elif pref_id == "toyama":
+        title = title.replace("1部リーグ 順位", "1部リーグ（T1） 順位・結果")
+        description = description.replace(
+            "1部リーグ（U-18年代）", "1部リーグ（T1・U-18年代）"
+        )
+
     keywords = (
         f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
         f"{pref_name}リーグ1部,{pref_name}リーグ,順位,成績,日程,結果"
     )
+    if pref_id == "oita":
+        keywords += ",OFAリーグ,OFAリーグ1部"
+    elif pref_id == "toyama":
+        keywords += ",T1,富山T1リーグ"
     # 構造化データ
     breadcrumb = json.dumps(
         render_breadcrumb_schema(pref_name, pref_id),
