@@ -1123,6 +1123,36 @@ def main():
             f'<span style="margin-left:6px;font-size:0.85em;">（2026-07-25 公開予定）</span></li>'
         )
 
+    # 大会安全ボックス（2026-07-02 追加）：試合結果セクション直前に表示する
+    # 暑熱・脳震盪の要点＋医学コラム導線。脳震盪リンクは上と同じ自動切替。
+    if (BASE_DIR / "blog" / "posts" / _concussion_slug).exists():
+        _safety_concussion = (
+            f'<a href="/blog/posts/{_concussion_slug}/" '
+            f'style="font-weight:600;">🧠 頭を打った時の対応（脳震盪）›</a>'
+        )
+    else:
+        _safety_concussion = (
+            '<span style="color:var(--text-secondary,#6b7280);">'
+            '🧠 脳震盪コラム（7/25公開予定）</span>'
+        )
+    safety_box = f"""
+      <section class="lp-section" id="heat-safety" style="border-left:5px solid #dc2626;">
+        <h2><i class="fas fa-triangle-exclamation" style="color:#dc2626;"></i> 真夏の連戦——観戦・出場前に3つだけ</h2>
+        <p style="margin:0 0 10px;line-height:1.9;">
+          本大会は救急搬送が1年で最も多い時期の8日間連戦です。救急科専門医として、最低限これだけお願いします。
+        </p>
+        <ul style="line-height:2;margin:0 0 12px;">
+          <li><strong>選手</strong>：毎朝の体重と尿の色で脱水チェック。前日比2%以上の体重減・濃い尿は必ず申告</li>
+          <li><strong>観戦する方</strong>：帽子・水分＋塩分・日陰。スタンドからの熱中症搬送は毎年起きています</li>
+          <li><strong>全員</strong>：「意識がおかしい」選手を見たら迷わず119番＋その場で全身冷却（Cool First）</li>
+        </ul>
+        <p style="margin:0;display:flex;flex-wrap:wrap;gap:8px 18px;">
+          <a href="/blog/posts/interhigh-2026-heat-safety/" style="font-weight:600;">🌡️ 本大会仕様の暑熱対策ガイド（救急医が解説）›</a>
+          {_safety_concussion}
+        </p>
+      </section>
+"""
+
     page = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -1228,6 +1258,7 @@ def main():
         {reps_html}
       </section>
 {bracket_section}
+{safety_box}
       <section class="lp-section">
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>
         {rounds_html}
