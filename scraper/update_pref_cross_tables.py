@@ -92,6 +92,18 @@ HEADERS = {
                    "Chrome/124.0.0.0 Safari/537.36")
 }
 
+# ----------------------------------------------------------------------------
+# 県1部以外の追加リーグ（2026-07-02 大阪2部A〜C 新設）
+# slug -> (junior-soccer の地域パス, リーグID)
+# 処理・検算ロジックは県1部と完全に同じ。JSONが data/league_matches/<slug>.json に
+# 存在するリーグだけ更新される（無ければ [skip]）。
+# ----------------------------------------------------------------------------
+EXTRA_LEAGUES: dict[str, tuple[str, str]] = {
+    "pref-osaka-2a": ("kansai/osaka", "163329"),
+    "pref-osaka-2b": ("kansai/osaka", "163330"),
+    "pref-osaka-2c": ("kansai/osaka", "163331"),
+}
+
 
 # ----------------------------------------------------------------------------
 # 名前正規化：junior-soccer 表記と既存JSON表記を突き合わせるためのキーを作る
@@ -333,9 +345,7 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
     return team_objs, fixtures, {"official": official, "played": len(js_matches)}
 
 
-def process(pref: str) -> str:
-    region, lid = JS_LEAGUE[pref]
-    slug = f"pref-{pref}-1"
+def process(slug: str, region: str, lid: str) -> str:
     path = DIR / f"{slug}.json"
     if not path.exists():
         return f"[skip] {slug}: JSONなし"
@@ -378,13 +388,15 @@ def process(pref: str) -> str:
 
 
 def main():
-    print("=== 県1部 戦績表 自動更新（junior-soccer出典） ===")
+    print("=== 県1部＋追加リーグ 戦績表 自動更新（junior-soccer出典） ===")
     updated = held = warn = 0
-    for pref in JS_LEAGUE:
+    targets = [(f"pref-{p}-1", r, l) for p, (r, l) in JS_LEAGUE.items()]
+    targets += [(s, r, l) for s, (r, l) in EXTRA_LEAGUES.items()]
+    for slug, region, lid in targets:
         try:
-            msg = process(pref)
+            msg = process(slug, region, lid)
         except Exception as e:  # 想定外でも全体は止めない
-            msg = f"[要確認] pref-{pref}-1: 例外 {e}"
+            msg = f"[要確認] {slug}: 例外 {e}"
         print(" ", msg)
         if msg.startswith("[更新]"):
             updated += 1

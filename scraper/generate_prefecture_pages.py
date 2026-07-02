@@ -1706,10 +1706,10 @@ PREF_DIVISION_TITLE_LABEL = {
 # 下位ディビジョンの公式リンク誘導セクション（県ごとに見出し・説明・リンクを設定）
 PREF_LOWER_DIVISION_SECTION = {
     "osaka": {
-        "heading": "2部・3部・4部の順位・結果",
-        "desc": ("本ページでは1部の順位表を掲載しています。2部以下は多数のグループ"
-                 "（2部A〜C・3部A〜F・4部）に分かれるため、各グループの最新順位・結果は"
-                 "公式ページでご確認ください。"),
+        "heading": "3部・4部の順位・結果",
+        "desc": ("本ページでは1部の順位表と2部（A〜C）の順位・戦績表を掲載しています。"
+                 "3部（A〜F）・4部はさらに多数のグループに分かれるため、"
+                 "各グループの最新順位・結果は公式ページでご確認ください。"),
         "links": [
             ("大阪府サッカー協会 第2種（2部〜4部の最新結果）", "https://osaka-fa.or.jp/2shu/game_information/高円宮杯jfa-u-18サッカーリーグ-2021-osaka-2-2-2-2-2/"),
             ("Green Card：大阪 1部・2部 組合せ・結果", "https://www.juniorsoccer-news.com/post-1900098"),
@@ -1782,6 +1782,34 @@ def render_division2_table(pref):
     )
 
 
+def render_osaka_division2_cross_tables(pref_id):
+    """大阪のみ：2部A〜Cの戦績表（自動更新・検算つき）を表示（2026-07-02新設）。
+    データJSONは data/league_matches/pref-osaka-2a/2b/2c.json。
+    自動更新は update_pref_cross_tables.py の EXTRA_LEAGUES が担当。
+    JSONが無い/空のグループは自動で非表示（安全側）。"""
+    if pref_id != "osaka":
+        return ""
+    blocks = []
+    for key, label in (("2a", "2部A"), ("2b", "2部B"), ("2c", "2部C")):
+        h = render_cross_table_html(
+            f"pref-osaka-{key}",
+            heading=f"⚽ 大阪 {label} 順位・戦績表（星取り表）",
+            form_heading=f"{label} 各チームの戦績",
+        )
+        if h:
+            blocks.append(f'        <div id="osaka-{key}">\n{h}\n        </div>')
+    if not blocks:
+        return ""
+    return (
+        '      <section class="lp-section">\n'
+        '        <h2 class="section-title-lp">大阪 2部リーグ（A〜C）の順位・結果</h2>\n'
+        '        <p class="lp-section-desc">高円宮杯 JFA U-18 サッカーリーグ 2026 OSAKA 2部は'
+        'A〜Cの3グループ制です。各グループの順位・戦績表（星取り表）を自動更新で掲載しています。'
+        '個別試合から再計算した順位が出典の掲載順位と一致した場合のみ反映する検算方式です。</p>\n'
+        + "\n".join(blocks) + "\n      </section>"
+    )
+
+
 def render_lower_divisions_html(pref_id):
     """下位ディビジョンの公式リンク誘導セクション（対象県のみ）。"""
     conf = PREF_LOWER_DIVISION_SECTION.get(pref_id)
@@ -1803,7 +1831,11 @@ def generate_page(pref, all_prefs):
     pref_id = pref["id"]
     pref_name = pref["name"]
     teams = pref["teams"]
-    lower_divisions_html = render_division2_table(pref) + "\n" + render_lower_divisions_html(pref_id)
+    lower_divisions_html = (
+        render_division2_table(pref) + "\n"
+        + render_osaka_division2_cross_tables(pref_id) + "\n"
+        + render_lower_divisions_html(pref_id)
+    )
     team_count = len(teams)
     hs_count, cy_count = count_team_types(teams)
     top_league = get_top_league(teams)
@@ -1894,8 +1926,9 @@ def generate_page(pref, all_prefs):
             )
         else:
             description = (
-                f"{pref_name}高校サッカーリーグ（U-18年代）の最新順位。1部の順位表を毎日自動更新、"
-                f"2部（A〜C）・3部（A〜F）・4部の結果は公式リンクから確認できます。{notable_full}など。"
+                f"{pref_name}高校サッカーリーグ（U-18年代）の最新順位。1部の順位表と"
+                f"2部（A〜C）の順位・戦績表を自動更新で掲載、3部（A〜F）・4部の結果は"
+                f"公式リンクから確認できます。{notable_full}など。"
             )
 
     # ------------------------------------------------------------

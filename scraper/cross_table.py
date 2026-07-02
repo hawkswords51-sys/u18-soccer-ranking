@@ -38,8 +38,10 @@ def _html_escape(s: str) -> str:
     return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
 
-def render_cross_table_html(slug: str) -> str:
-    """リーグ slug の戦績表セクションHTMLを返す。データが無ければ ''（空）。"""
+def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り表）",
+                            form_heading: str = "各チームの戦績") -> str:
+    """リーグ slug の戦績表セクションHTMLを返す。データが無ければ ''（空）。
+    heading/form_heading で見出しを差し替え可能（大阪2部A〜C等、同一ページに複数表を置く場合用）。"""
     path = _MATCH_DIR / f"{slug}.json"
     if not path.exists():
         return ""
@@ -57,6 +59,9 @@ def render_cross_table_html(slug: str) -> str:
     # サイト順位表に合わせる（A＝1軍→無印、B＝2軍→2nd）。
     # 通常リーグ(15リーグ)には一切影響しない。
     is_pref = slug.startswith("pref-")
+    # A/B→2nd の表記変換と「県1部」説明文は県1部（slugが -1 終わり）だけに適用。
+    # 大阪2部（pref-osaka-2a 等）はB/Cチームが主役のリーグなので出典表記のまま出す。
+    is_pref1 = is_pref and slug.endswith("-1")
 
     def _align_name(s):
         s = str(s)
@@ -78,7 +83,7 @@ def render_cross_table_html(slug: str) -> str:
     # B→2nd 変換後の表示名を、正式表記へ上書き（必要に応じて追記）。
     # データ側(自動更新)が戻っても表示側で吸収するので安全。
     _NAME_OVERRIDE = {"FC東京2nd": "FC東京U-18 2nd"}
-    if is_pref:
+    if is_pref1:
         short = {n: _NAME_OVERRIDE.get(_align_name(v), _align_name(v)) for n, v in short.items()}
         disp = {n: _NAME_OVERRIDE.get(_align_name(v), _align_name(v)) for n, v in disp.items()}
     played = [m for m in matches
@@ -196,11 +201,16 @@ def render_cross_table_html(slug: str) -> str:
     # （上の順位表はプレミア・プリンス所属チームも含む県内全体のため）。
     league_name = _html_escape(data.get("league", ""))
     pref_scope = ""
-    if is_pref and league_name:
+    if is_pref1 and league_name:
         pref_scope = (
             f'<p class="xt-scope">この戦績表は <strong>{league_name}</strong> の対戦結果です。'
             f'ページ上部の順位表は、プレミア・プリンスなど上位カテゴリ所属チームも含めた'
             f'県内全体の順位を表示しているため、この表（県1部リーグ）とは対象チームが異なります。</p>'
+        )
+    elif is_pref and league_name:
+        pref_scope = (
+            f'<p class="xt-scope">この戦績表は <strong>{league_name}</strong> の対戦結果です。'
+            f'チーム名は出典の表記（B・C＝セカンド・サードチーム）のまま掲載しています。</p>'
         )
 
     nl = "\n"
@@ -278,7 +288,7 @@ def render_cross_table_html(slug: str) -> str:
         .xt-chip.xt-lose{{background:#ffebee;color:#c62828;}}
         .xt-chip.xt-draw{{background:#fff8e1;color:#f9a825;}}
         </style>
-        <h2>⚽ 戦績表（星取り表）</h2>
+        <h2>{heading}</h2>
         <p class="xt-meta">消化 {n_played} / 全 {n_total} 試合　最終更新 {last_updated}{source_html}</p>
         {pref_scope}
         <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(黄)／敗(赤)。
@@ -298,7 +308,7 @@ def render_cross_table_html(slug: str) -> str:
           <span class="xt-lose" style="color:#c62828">敗</span>
         </div>
 
-        <h2 style="margin-top:26px;">各チームの戦績</h2>
+        <h2 style="margin-top:26px;">{form_heading}</h2>
         <p class="xt-note">○＝勝、△＝分、●＝敗。チップにマウスを乗せる（スマホは長押し）と相手とスコアが出ます。</p>
         <div class="xt-formwrap"><table class="xt-formtable">
           <thead><tr><th class="xt-rk">順</th><th class="xt-tn2">チーム</th><th class="xt-rec">通算</th><th>節順 →</th></tr></thead>
