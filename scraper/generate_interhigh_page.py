@@ -1326,6 +1326,9 @@ def main():
             (f"{DOMAIN}/tournaments/senshuken-history/", "monthly", "0.6"),
             # 日本クラブユース選手権（2026-07-02 先行公開。12月本戦）
             (f"{DOMAIN}/tournaments/club-youth-2026/", "weekly", "0.6"),
+            # プレミアファイナル・参入戦（2026-07-02 先行公開。12月開催）
+            (f"{DOMAIN}/tournaments/premier-final-2026/", "weekly", "0.6"),
+            (f"{DOMAIN}/tournaments/promotion-playoff-2026/", "weekly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
