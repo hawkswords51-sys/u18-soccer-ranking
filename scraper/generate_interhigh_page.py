@@ -1329,6 +1329,8 @@ def main():
             # プレミアファイナル・参入戦（2026-07-02 先行公開。12月開催）
             (f"{DOMAIN}/tournaments/premier-final-2026/", "weekly", "0.6"),
             (f"{DOMAIN}/tournaments/promotion-playoff-2026/", "weekly", "0.6"),
+            # 新人戦まとめ（2026-07-02 先行公開。1〜3月開催）
+            (f"{DOMAIN}/tournaments/shinjinsen-2026-27/", "weekly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
