@@ -1238,6 +1238,7 @@ def main():
       <p style="margin:4px 0 16px;display:flex;flex-wrap:wrap;gap:10px;">
         <a href="/tournaments/interhigh-history/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:var(--primary-color,#1e40af);color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🏆 歴代優勝校一覧(2008-2025)</a>
         <a href="/blog/posts/interhigh-2026-heat-safety/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#dc2626;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🌡️ 救急医の暑熱対策ガイド</a>
+        <a href="/tournaments/senshuken-2026/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#0e7490;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">❄️ 冬の選手権2026 特設ページ</a>
       </p>
 
       <section class="lp-section">
@@ -1281,6 +1282,8 @@ def main():
           <li><a href="/blog/posts/2026-05-22-pre-match-sleep-strategy/">【医学コラム】試合前日に眠れない時の対処法・睡眠戦略</a></li>
           <li><a href="/blog/posts/2026-06-08-iron-deficiency-anemia/">【医学コラム】スポーツ貧血（鉄欠乏性貧血）の見抜き方と対策</a></li>
           <li><a href="/tournaments/interhigh-history/">インターハイ サッカー男子 歴代優勝校一覧</a></li>
+          <li><a href="/tournaments/senshuken-2026/">全国高校サッカー選手権2026（第105回）特設ページ</a></li>
+          <li><a href="/tournaments/senshuken-history/">選手権 歴代優勝校一覧（第87回〜第104回）</a></li>
         </ul>
       </section>
     </div>
@@ -1315,14 +1318,23 @@ def main():
         else:
             print("ℹ️ sitemap.xml は登録済み")
 
-            # --- 歴代優勝校ページも sitemap に登録(idempotent) ---
-        history_url = f"{DOMAIN}/tournaments/interhigh-history/"
+            # --- 静的ページ（歴代優勝校・選手権）も sitemap に登録(idempotent) ---
+        static_pages = [
+            (f"{DOMAIN}/tournaments/interhigh-history/", "monthly", "0.6"),
+            # 選手権（2026-07-02 先行公開。冬に向けた早期インデックス狙い）
+            (f"{DOMAIN}/tournaments/senshuken-2026/", "weekly", "0.7"),
+            (f"{DOMAIN}/tournaments/senshuken-history/", "monthly", "0.6"),
+        ]
         s = sm.read_text(encoding="utf-8")
-        if history_url not in s:
-            entry = f"  <url>\n    <loc>{history_url}</loc>\n    <lastmod>{date.today().isoformat()}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n"
-            s = s.replace("</urlset>", entry + "</urlset>")
+        changed = False
+        for url, freq, prio in static_pages:
+            if url not in s:
+                entry = f"  <url>\n    <loc>{url}</loc>\n    <lastmod>{date.today().isoformat()}</lastmod>\n    <changefreq>{freq}</changefreq>\n    <priority>{prio}</priority>\n  </url>\n"
+                s = s.replace("</urlset>", entry + "</urlset>")
+                changed = True
+                print(f"✅ sitemap.xml に登録: {url}")
+        if changed:
             sm.write_text(s, encoding="utf-8")
-            print("✅ sitemap.xml に歴代優勝校ページを登録")
 
 if __name__ == "__main__":
     main()
