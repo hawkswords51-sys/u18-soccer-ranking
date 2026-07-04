@@ -6,12 +6,16 @@
   "lastUpdated": "2026-07-04",
   "teams": [
     {
+      "name": "盛岡中央",
+      "short": "盛岡中央"
+    },
+    {
       "name": "盛岡大附",
       "short": "盛岡大附"
     },
     {
-      "name": "盛岡中央",
-      "short": "盛岡中央"
+      "name": "グルージャ",
+      "short": "グルージャ"
     },
     {
       "name": "遠野",
@@ -20,10 +24,6 @@
     {
       "name": "花巻東",
       "short": "花巻東"
-    },
-    {
-      "name": "グルージャ",
-      "short": "グルージャ"
     },
     {
       "name": "専北2nd",
@@ -41,6 +41,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "盛岡中央",
+      "points": 18,
+      "played": 8,
+      "won": 6,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 15,
+      "ga": 7,
+      "gd": 8
+    },
+    {
+      "rank": 2,
       "team": "盛岡大附",
       "points": 17,
       "played": 8,
@@ -52,19 +64,19 @@
       "gd": 8
     },
     {
-      "rank": 2,
-      "team": "盛岡中央",
-      "points": 15,
-      "played": 7,
-      "won": 5,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 12,
+      "rank": 3,
+      "team": "グルージャ",
+      "points": 13,
+      "played": 8,
+      "won": 3,
+      "drawn": 4,
+      "lost": 1,
+      "gf": 11,
       "ga": 6,
-      "gd": 6
+      "gd": 5
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "遠野",
       "points": 12,
       "played": 8,
@@ -76,40 +88,28 @@
       "gd": 1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "花巻東",
       "points": 11,
-      "played": 7,
+      "played": 8,
       "won": 3,
       "drawn": 2,
-      "lost": 2,
-      "gf": 12,
-      "ga": 6,
-      "gd": 6
-    },
-    {
-      "rank": 5,
-      "team": "グルージャ",
-      "points": 10,
-      "played": 7,
-      "won": 2,
-      "drawn": 4,
-      "lost": 1,
-      "gf": 9,
-      "ga": 5,
-      "gd": 4
+      "lost": 3,
+      "gf": 13,
+      "ga": 8,
+      "gd": 5
     },
     {
       "rank": 6,
       "team": "専北2nd",
       "points": 9,
-      "played": 7,
+      "played": 8,
       "won": 2,
       "drawn": 3,
-      "lost": 2,
-      "gf": 14,
-      "ga": 10,
-      "gd": 4
+      "lost": 3,
+      "gf": 15,
+      "ga": 13,
+      "gd": 2
     },
     {
       "rank": 7,
@@ -149,6 +149,69 @@
     {
       "md": 0,
       "date": "2026-05-02",
+      "home": "グルージャ",
+      "hs": 0,
+      "as": 2,
+      "away": "盛岡中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "遠野",
+      "hs": 2,
+      "as": 1,
+      "away": "盛岡中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "花巻東",
+      "hs": 0,
+      "as": 2,
+      "away": "盛岡中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "専北2nd",
+      "hs": 1,
+      "as": 3,
+      "away": "盛岡中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "盛岡中央",
+      "hs": 2,
+      "as": 1,
+      "away": "盛岡誠桜",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "盛岡中央",
+      "hs": 2,
+      "as": 0,
+      "away": "江南義塾",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "盛岡大附",
+      "hs": 1,
+      "as": 2,
+      "away": "グルージャ",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
       "home": "盛岡大附",
       "hs": 3,
       "as": 1,
@@ -162,15 +225,6 @@
       "hs": 2,
       "as": 3,
       "away": "盛岡大附",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "盛岡大附",
-      "hs": 1,
-      "as": 2,
-      "away": "グルージャ",
       "status": "played"
     },
     {
@@ -202,54 +256,45 @@
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "遠野",
+      "date": "2026-04-18",
+      "home": "グルージャ",
+      "hs": 1,
+      "as": 1,
+      "away": "遠野",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "グルージャ",
       "hs": 2,
       "as": 1,
-      "away": "盛岡中央",
+      "away": "花巻東",
       "status": "played"
     },
     {
       "md": 0,
       "date": "2026-05-06",
-      "home": "花巻東",
-      "hs": 0,
-      "as": 2,
-      "away": "盛岡中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "グルージャ",
-      "hs": 0,
-      "as": 2,
-      "away": "盛岡中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "盛岡中央",
-      "hs": 2,
+      "home": "専北2nd",
+      "hs": 1,
       "as": 1,
-      "away": "専北2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "盛岡中央",
-      "hs": 2,
-      "as": 1,
-      "away": "盛岡誠桜",
+      "away": "グルージャ",
       "status": "played"
     },
     {
       "md": 0,
       "date": "2026-04-25",
-      "home": "盛岡中央",
-      "hs": 2,
+      "home": "グルージャ",
+      "hs": 0,
+      "as": 0,
+      "away": "盛岡誠桜",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "グルージャ",
+      "hs": 5,
       "as": 0,
       "away": "江南義塾",
       "status": "played"
@@ -261,15 +306,6 @@
       "hs": 0,
       "as": 0,
       "away": "花巻東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "グルージャ",
-      "hs": 1,
-      "as": 1,
-      "away": "遠野",
       "status": "played"
     },
     {
@@ -297,15 +333,6 @@
       "hs": 1,
       "as": 4,
       "away": "遠野",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "花巻東",
-      "hs": 0,
-      "as": 0,
-      "away": "グルージャ",
       "status": "played"
     },
     {
@@ -333,33 +360,6 @@
       "hs": 0,
       "as": 4,
       "away": "花巻東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "専北2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "グルージャ",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "グルージャ",
-      "hs": 0,
-      "as": 0,
-      "away": "盛岡誠桜",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "グルージャ",
-      "hs": 5,
-      "as": 0,
-      "away": "江南義塾",
       "status": "played"
     },
     {
