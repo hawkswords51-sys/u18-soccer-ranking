@@ -10,12 +10,12 @@
       "short": "東山B"
     },
     {
-      "name": "京都共栄B",
-      "short": "京都共栄B"
-    },
-    {
       "name": "立命館宇治A",
       "short": "立命館宇治A"
+    },
+    {
+      "name": "京都共栄B",
+      "short": "京都共栄B"
     },
     {
       "name": "洛北A",
@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "立命館宇治A",
+      "points": 21,
+      "played": 10,
+      "won": 7,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 21,
+      "ga": 15,
+      "gd": 6
+    },
+    {
+      "rank": 3,
       "team": "京都共栄B",
       "points": 20,
       "played": 10,
@@ -70,18 +82,6 @@
       "gf": 15,
       "ga": 10,
       "gd": 5
-    },
-    {
-      "rank": 3,
-      "team": "立命館宇治A",
-      "points": 18,
-      "played": 9,
-      "won": 6,
-      "drawn": 0,
-      "lost": 3,
-      "gf": 16,
-      "ga": 12,
-      "gd": 4
     },
     {
       "rank": 4,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "京都サンガU-18B",
       "points": 10,
-      "played": 8,
+      "played": 9,
       "won": 3,
       "drawn": 1,
-      "lost": 4,
-      "gf": 15,
-      "ga": 14,
-      "gd": 1
+      "lost": 5,
+      "gf": 18,
+      "ga": 19,
+      "gd": -1
     },
     {
       "rank": 8,
@@ -171,20 +171,20 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "京都共栄B",
-      "hs": 0,
-      "as": 3,
-      "away": "東山B",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-27",
       "home": "東山B",
       "hs": 2,
       "as": 1,
       "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "京都共栄B",
+      "hs": 0,
+      "as": 3,
+      "away": "東山B",
       "status": "played"
     },
     {
@@ -261,6 +261,69 @@
     },
     {
       "md": 0,
+      "date": "2026-04-04",
+      "home": "洛北A",
+      "hs": 2,
+      "as": 0,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "大谷A",
+      "hs": 1,
+      "as": 2,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "立命館宇治A",
+      "hs": 1,
+      "as": 0,
+      "away": "京都精華A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "立命館宇治A",
+      "hs": 5,
+      "as": 3,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "立命館宇治A",
+      "hs": 1,
+      "as": 0,
+      "away": "京都橘C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-20",
+      "home": "福知山成美A",
+      "hs": 2,
+      "as": 5,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "城陽A",
+      "hs": 1,
+      "as": 2,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-06-20",
       "home": "洛北A",
       "hs": 1,
@@ -320,69 +383,6 @@
       "hs": 2,
       "as": 1,
       "away": "城陽A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "洛北A",
-      "hs": 2,
-      "as": 0,
-      "away": "立命館宇治A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "大谷A",
-      "hs": 1,
-      "as": 2,
-      "away": "立命館宇治A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "立命館宇治A",
-      "hs": 1,
-      "as": 0,
-      "away": "京都精華A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "立命館宇治A",
-      "hs": null,
-      "as": null,
-      "away": "京都サンガU-18B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "立命館宇治A",
-      "hs": 1,
-      "as": 0,
-      "away": "京都橘C",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "福知山成美A",
-      "hs": 2,
-      "as": 5,
-      "away": "立命館宇治A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "城陽A",
-      "hs": 1,
-      "as": 2,
-      "away": "立命館宇治A",
       "status": "played"
     },
     {

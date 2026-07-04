@@ -14,12 +14,12 @@
       "short": "高岡第一"
     },
     {
-      "name": "富山東",
-      "short": "富山東"
-    },
-    {
       "name": "富山北部",
       "short": "富山北部"
+    },
+    {
+      "name": "富山東",
+      "short": "富山東"
     },
     {
       "name": "龍谷富山",
@@ -65,51 +65,51 @@
     },
     {
       "rank": 3,
-      "team": "富山東",
-      "points": 15,
-      "played": 7,
+      "team": "富山北部",
+      "points": 16,
+      "played": 8,
       "won": 5,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 2,
-      "gf": 28,
-      "ga": 12,
-      "gd": 16
+      "gf": 23,
+      "ga": 5,
+      "gd": 18
     },
     {
       "rank": 4,
-      "team": "富山北部",
-      "points": 13,
-      "played": 7,
-      "won": 4,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 21,
-      "ga": 5,
-      "gd": 16
+      "team": "富山東",
+      "points": 15,
+      "played": 8,
+      "won": 5,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 32,
+      "ga": 17,
+      "gd": 15
     },
     {
       "rank": 5,
       "team": "龍谷富山",
       "points": 12,
-      "played": 7,
+      "played": 8,
       "won": 4,
       "drawn": 0,
-      "lost": 3,
+      "lost": 4,
       "gf": 12,
-      "ga": 12,
-      "gd": 0
+      "ga": 14,
+      "gd": -2
     },
     {
       "rank": 6,
       "team": "不二越工業",
-      "points": 6,
-      "played": 7,
-      "won": 2,
+      "points": 9,
+      "played": 8,
+      "won": 3,
       "drawn": 0,
       "lost": 5,
-      "gf": 9,
-      "ga": 29,
-      "gd": -20
+      "gf": 14,
+      "ga": 33,
+      "gd": -19
     },
     {
       "rank": 7,
@@ -148,20 +148,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "富山第一2nd",
-      "hs": 5,
-      "as": 0,
-      "away": "富山東",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "富山北部",
       "hs": 4,
       "as": 0,
       "away": "富山第一2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "富山第一2nd",
+      "hs": 5,
+      "as": 0,
+      "away": "富山東",
       "status": "played"
     },
     {
@@ -202,20 +202,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "高岡第一",
-      "hs": 4,
-      "as": 0,
-      "away": "富山東",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-02",
       "home": "高岡第一",
       "hs": 1,
       "as": 1,
       "away": "富山北部",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "高岡第一",
+      "hs": 4,
+      "as": 0,
+      "away": "富山東",
       "status": "played"
     },
     {
@@ -265,46 +265,10 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "富山東",
-      "hs": 3,
-      "as": 1,
-      "away": "龍谷富山",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "富山東",
-      "hs": 4,
-      "as": 0,
-      "away": "不二越工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "富山東",
-      "hs": 9,
-      "as": 0,
-      "away": "富山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "高岡向陵",
-      "hs": 0,
-      "as": 9,
-      "away": "富山東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
+      "date": "2026-07-04",
       "home": "富山北部",
-      "hs": 0,
-      "as": 1,
+      "hs": 2,
+      "as": 0,
       "away": "龍谷富山",
       "status": "played"
     },
@@ -333,6 +297,42 @@
       "hs": 2,
       "as": 0,
       "away": "高岡向陵",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "富山東",
+      "hs": 3,
+      "as": 1,
+      "away": "龍谷富山",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "富山東",
+      "hs": 4,
+      "as": 5,
+      "away": "不二越工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "富山東",
+      "hs": 9,
+      "as": 0,
+      "away": "富山工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "高岡向陵",
+      "hs": 0,
+      "as": 9,
+      "away": "富山東",
       "status": "played"
     },
     {
