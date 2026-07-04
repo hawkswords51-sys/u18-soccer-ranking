@@ -265,6 +265,7 @@ MATCH_LINE_RE = re.compile(
     r"^- (.+?)\s+(\d+\s*-\s*\d+(?:\s*\(\s*(?:PK)?\s*\d+\s*-\s*\d+\s*\))?)\s+(.+)$"
 )
 VS_LINE_RE = re.compile(r"^- (.+?)\s+vs\s+(.+)$", re.IGNORECASE)
+IGNORE_RE = re.compile(r"<!--\s*無視\s*[:：]\s*(.+?)\s+(?:vs|VS)\s+(.+?)\s*-->")
 
 
 def parse_md_line(line: str):
@@ -367,6 +368,14 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
         """新規行に書く表記: md内の既存表記 > ランキング表記 > koko表記"""
         return usage.get(match_key(name)) or mapped(name)
 
+    # 手動修正を守るための「無視指定」: md内に <!-- 無視: A vs B --> と書くと、
+    # 出典のそのカードを取り込まない（出典側の校名誤り等をKeiが手で直したときに使う）
+    ignore_pairs = []
+    for line in body_lines:
+        m = IGNORE_RE.search(line)
+        if m:
+            ignore_pairs.append({match_key(m.group(1)), match_key(m.group(2))})
+
     filled = 0
     added = 0
     modified = False
@@ -461,6 +470,8 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
         #    ノックアウトでは同一カードは1大会1回しか無いので横断照合は安全）
         for km in kr["matches"]:
             pair = {match_key(km["home"]), match_key(km["away"])}
+            if pair in ignore_pairs:
+                continue  # 無視指定されたカードは取り込まない
             hit = None
             search_spaces = []
             if target:
