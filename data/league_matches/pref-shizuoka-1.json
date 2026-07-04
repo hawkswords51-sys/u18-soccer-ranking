@@ -6,6 +6,10 @@
   "lastUpdated": "2026-07-04",
   "teams": [
     {
+      "name": "藤枝明誠②",
+      "short": "藤枝明誠②"
+    },
+    {
       "name": "飛龍",
       "short": "飛龍"
     },
@@ -14,16 +18,12 @@
       "short": "浜松開誠館②"
     },
     {
-      "name": "藤枝明誠②",
-      "short": "藤枝明誠②"
+      "name": "常葉大橘",
+      "short": "常葉大橘"
     },
     {
       "name": "清水桜が丘",
       "short": "清水桜が丘"
-    },
-    {
-      "name": "常葉大橘",
-      "short": "常葉大橘"
     },
     {
       "name": "磐田東",
@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "藤枝明誠②",
+      "points": 14,
+      "played": 7,
+      "won": 4,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 9,
+      "ga": 6,
+      "gd": 3
+    },
+    {
+      "rank": 2,
       "team": "飛龍",
       "points": 13,
       "played": 6,
@@ -60,7 +72,7 @@
       "gd": 10
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "浜松開誠館②",
       "points": 13,
       "played": 7,
@@ -72,19 +84,19 @@
       "gd": 5
     },
     {
-      "rank": 3,
-      "team": "藤枝明誠②",
-      "points": 13,
-      "played": 6,
-      "won": 4,
-      "drawn": 1,
+      "rank": 4,
+      "team": "常葉大橘",
+      "points": 12,
+      "played": 7,
+      "won": 3,
+      "drawn": 3,
       "lost": 1,
-      "gf": 9,
-      "ga": 6,
-      "gd": 3
+      "gf": 12,
+      "ga": 5,
+      "gd": 7
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "清水桜が丘",
       "points": 12,
       "played": 7,
@@ -94,18 +106,6 @@
       "gf": 14,
       "ga": 11,
       "gd": 3
-    },
-    {
-      "rank": 5,
-      "team": "常葉大橘",
-      "points": 11,
-      "played": 6,
-      "won": 3,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 12,
-      "ga": 5,
-      "gd": 7
     },
     {
       "rank": 6,
@@ -171,84 +171,12 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "飛龍",
-      "hs": 1,
-      "as": 0,
-      "away": "浜松開誠館②",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
-      "home": "飛龍",
+      "home": "藤枝明誠②",
       "hs": null,
       "as": null,
-      "away": "藤枝明誠②",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "飛龍",
-      "hs": 3,
-      "as": 0,
-      "away": "清水桜が丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "常葉大橘",
-      "hs": 1,
-      "as": 0,
       "away": "飛龍",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "磐田東",
-      "hs": 1,
-      "as": 1,
-      "away": "飛龍",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "飛龍",
-      "hs": 3,
-      "as": 0,
-      "away": "清水東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "飛龍",
-      "hs": null,
-      "as": null,
-      "away": "静岡学園②",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "飛龍",
-      "hs": null,
-      "as": null,
-      "away": "科学技術",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "飛龍",
-      "hs": 5,
-      "as": 1,
-      "away": "日大三島",
-      "status": "played"
     },
     {
       "md": 0,
@@ -262,65 +190,11 @@
     {
       "md": 0,
       "date": "2026-07-04",
-      "home": "清水桜が丘",
-      "hs": 1,
-      "as": 1,
-      "away": "浜松開誠館②",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "浜松開誠館②",
-      "hs": null,
-      "as": null,
-      "away": "常葉大橘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "磐田東",
-      "hs": 2,
-      "as": 1,
-      "away": "浜松開誠館②",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "浜松開誠館②",
-      "hs": 3,
+      "home": "常葉大橘",
+      "hs": 0,
       "as": 0,
-      "away": "清水東",
+      "away": "藤枝明誠②",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "浜松開誠館②",
-      "hs": 2,
-      "as": 0,
-      "away": "静岡学園②",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "浜松開誠館②",
-      "hs": 1,
-      "as": 0,
-      "away": "科学技術",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "浜松開誠館②",
-      "hs": null,
-      "as": null,
-      "away": "日大三島",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -330,15 +204,6 @@
       "as": 2,
       "away": "藤枝明誠②",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "藤枝明誠②",
-      "hs": null,
-      "as": null,
-      "away": "常葉大橘",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -387,11 +252,191 @@
     },
     {
       "md": 0,
+      "date": "2026-04-11",
+      "home": "飛龍",
+      "hs": 1,
+      "as": 0,
+      "away": "浜松開誠館②",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "常葉大橘",
+      "hs": 1,
+      "as": 0,
+      "away": "飛龍",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "飛龍",
+      "hs": 3,
+      "as": 0,
+      "away": "清水桜が丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "磐田東",
+      "hs": 1,
+      "as": 1,
+      "away": "飛龍",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "飛龍",
+      "hs": 3,
+      "as": 0,
+      "away": "清水東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "飛龍",
+      "hs": null,
+      "as": null,
+      "away": "静岡学園②",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "飛龍",
+      "hs": null,
+      "as": null,
+      "away": "科学技術",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "飛龍",
+      "hs": 5,
+      "as": 1,
+      "away": "日大三島",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "浜松開誠館②",
+      "hs": null,
+      "as": null,
+      "away": "常葉大橘",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "清水桜が丘",
+      "hs": 1,
+      "as": 1,
+      "away": "浜松開誠館②",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "磐田東",
+      "hs": 2,
+      "as": 1,
+      "away": "浜松開誠館②",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "浜松開誠館②",
+      "hs": 3,
+      "as": 0,
+      "away": "清水東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "浜松開誠館②",
+      "hs": 2,
+      "as": 0,
+      "away": "静岡学園②",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "浜松開誠館②",
+      "hs": 1,
+      "as": 0,
+      "away": "科学技術",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "浜松開誠館②",
+      "hs": null,
+      "as": null,
+      "away": "日大三島",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-06-21",
       "home": "常葉大橘",
       "hs": 2,
       "as": 3,
       "away": "清水桜が丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "磐田東",
+      "hs": 1,
+      "as": 1,
+      "away": "常葉大橘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "常葉大橘",
+      "hs": 1,
+      "as": 1,
+      "away": "清水東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "常葉大橘",
+      "hs": null,
+      "as": null,
+      "away": "静岡学園②",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "常葉大橘",
+      "hs": 4,
+      "as": 0,
+      "away": "科学技術",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "常葉大橘",
+      "hs": 3,
+      "as": 0,
+      "away": "日大三島",
       "status": "played"
     },
     {
@@ -438,51 +483,6 @@
       "as": null,
       "away": "日大三島",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "磐田東",
-      "hs": 1,
-      "as": 1,
-      "away": "常葉大橘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "常葉大橘",
-      "hs": 1,
-      "as": 1,
-      "away": "清水東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "常葉大橘",
-      "hs": null,
-      "as": null,
-      "away": "静岡学園②",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "常葉大橘",
-      "hs": 4,
-      "as": 0,
-      "away": "科学技術",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "常葉大橘",
-      "hs": 3,
-      "as": 0,
-      "away": "日大三島",
-      "status": "played"
     },
     {
       "md": 0,

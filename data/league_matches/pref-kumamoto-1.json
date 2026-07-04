@@ -6,12 +6,12 @@
   "lastUpdated": "2026-07-04",
   "teams": [
     {
-      "name": "熊本国府",
-      "short": "熊本国府"
-    },
-    {
       "name": "熊本商業",
       "short": "熊本商業"
+    },
+    {
+      "name": "熊本国府",
+      "short": "熊本国府"
     },
     {
       "name": "秀岳館",
@@ -22,12 +22,12 @@
       "short": "慶誠"
     },
     {
-      "name": "東海星翔2nd",
-      "short": "東海星翔2nd"
-    },
-    {
       "name": "学園大付",
       "short": "学園大付"
+    },
+    {
+      "name": "東海星翔2nd",
+      "short": "東海星翔2nd"
     },
     {
       "name": "ルーテル",
@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "熊本商業",
+      "points": 24,
+      "played": 8,
+      "won": 8,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 23,
+      "ga": 3,
+      "gd": 20
+    },
+    {
+      "rank": 2,
       "team": "熊本国府",
       "points": 21,
       "played": 10,
@@ -58,18 +70,6 @@
       "gf": 30,
       "ga": 11,
       "gd": 19
-    },
-    {
-      "rank": 2,
-      "team": "熊本商業",
-      "points": 21,
-      "played": 7,
-      "won": 7,
-      "drawn": 0,
-      "lost": 0,
-      "gf": 19,
-      "ga": 2,
-      "gd": 17
     },
     {
       "rank": 3,
@@ -97,18 +97,6 @@
     },
     {
       "rank": 5,
-      "team": "東海星翔2nd",
-      "points": 15,
-      "played": 9,
-      "won": 5,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 23,
-      "ga": 19,
-      "gd": 4
-    },
-    {
-      "rank": 6,
       "team": "学園大付",
       "points": 15,
       "played": 9,
@@ -118,6 +106,18 @@
       "gf": 19,
       "ga": 16,
       "gd": 3
+    },
+    {
+      "rank": 6,
+      "team": "東海星翔2nd",
+      "points": 15,
+      "played": 10,
+      "won": 5,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 24,
+      "ga": 23,
+      "gd": 1
     },
     {
       "rank": 7,
@@ -180,78 +180,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-26",
-      "home": "秀岳館",
-      "hs": 2,
-      "as": 2,
-      "away": "熊本国府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "熊本国府",
-      "hs": 3,
-      "as": 0,
-      "away": "慶誠",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "東海星翔2nd",
-      "hs": 2,
-      "as": 3,
-      "away": "熊本国府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "熊本国府",
-      "hs": 4,
-      "as": 0,
-      "away": "学園大付",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "ルーテル",
-      "hs": 0,
-      "as": 1,
-      "away": "熊本国府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "熊本国府",
-      "hs": 1,
-      "as": 1,
-      "away": "ロアッソ2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "熊本国府",
-      "hs": 4,
-      "as": 1,
-      "away": "城北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "文徳",
-      "hs": 2,
-      "as": 11,
-      "away": "熊本国府",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "秀岳館",
       "hs": 1,
@@ -270,20 +198,20 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "熊本商業",
-      "hs": null,
-      "as": null,
-      "away": "東海星翔2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-04",
       "home": "熊本商業",
       "hs": 1,
       "as": 0,
       "away": "学園大付",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "熊本商業",
+      "hs": 4,
+      "as": 1,
+      "away": "東海星翔2nd",
       "status": "played"
     },
     {
@@ -324,6 +252,78 @@
     },
     {
       "md": 0,
+      "date": "2026-04-26",
+      "home": "秀岳館",
+      "hs": 2,
+      "as": 2,
+      "away": "熊本国府",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "熊本国府",
+      "hs": 3,
+      "as": 0,
+      "away": "慶誠",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "熊本国府",
+      "hs": 4,
+      "as": 0,
+      "away": "学園大付",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "東海星翔2nd",
+      "hs": 2,
+      "as": 3,
+      "away": "熊本国府",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "ルーテル",
+      "hs": 0,
+      "as": 1,
+      "away": "熊本国府",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "熊本国府",
+      "hs": 1,
+      "as": 1,
+      "away": "ロアッソ2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "熊本国府",
+      "hs": 4,
+      "as": 1,
+      "away": "城北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "文徳",
+      "hs": 2,
+      "as": 11,
+      "away": "熊本国府",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-12",
       "home": "秀岳館",
       "hs": 1,
@@ -333,19 +333,19 @@
     },
     {
       "md": 0,
-      "date": "2026-04-19",
-      "home": "東海星翔2nd",
-      "hs": 0,
-      "as": 3,
+      "date": "2026-06-13",
+      "home": "学園大付",
+      "hs": 1,
+      "as": 2,
       "away": "秀岳館",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "学園大付",
-      "hs": 1,
-      "as": 2,
+      "date": "2026-04-19",
+      "home": "東海星翔2nd",
+      "hs": 0,
+      "as": 3,
       "away": "秀岳館",
       "status": "played"
     },
@@ -387,19 +387,19 @@
     },
     {
       "md": 0,
-      "date": "2026-06-21",
-      "home": "東海星翔2nd",
+      "date": "2026-05-10",
+      "home": "学園大付",
       "hs": 2,
-      "as": 1,
+      "as": 3,
       "away": "慶誠",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "学園大付",
+      "date": "2026-06-21",
+      "home": "東海星翔2nd",
       "hs": 2,
-      "as": 3,
+      "as": 1,
       "away": "慶誠",
       "status": "played"
     },
@@ -450,42 +450,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "東海星翔2nd",
-      "hs": 2,
-      "as": 1,
-      "away": "ルーテル",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-24",
-      "home": "東海星翔2nd",
-      "hs": 5,
-      "as": 1,
-      "away": "ロアッソ2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "城北",
-      "hs": 1,
-      "as": 3,
-      "away": "東海星翔2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "東海星翔2nd",
-      "hs": 5,
-      "as": 0,
-      "away": "文徳",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-12",
       "home": "学園大付",
       "hs": 2,
@@ -518,6 +482,42 @@
       "hs": 1,
       "as": 3,
       "away": "学園大付",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "東海星翔2nd",
+      "hs": 2,
+      "as": 1,
+      "away": "ルーテル",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-24",
+      "home": "東海星翔2nd",
+      "hs": 5,
+      "as": 1,
+      "away": "ロアッソ2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "城北",
+      "hs": 1,
+      "as": 3,
+      "away": "東海星翔2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "東海星翔2nd",
+      "hs": 5,
+      "as": 0,
+      "away": "文徳",
       "status": "played"
     },
     {
