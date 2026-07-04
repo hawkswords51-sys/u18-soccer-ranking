@@ -507,7 +507,25 @@ def render_tournament_html(pref_id, teams, division2=None):
         return result
 
     html_parts = []
-    for filepath in sorted(tournament_dir.glob("*.md")):
+
+    def _tournament_sort_key(fp):
+        """開催中（status≠終了）の大会を上に、終了済みを下に。同グループ内はファイル名順。
+        選手権シーズン中は選手権が最上部に来て、終わればインターハイと同様に下へ回る。"""
+        try:
+            c = fp.read_text(encoding='utf-8')
+            finished = 1
+            if c.startswith('---'):
+                p = c.split('---', 2)
+                if len(p) >= 3:
+                    for ln in p[1].strip().split('\n'):
+                        if ln.strip().startswith('status:'):
+                            finished = 1 if '終了' in ln else 0
+                            break
+        except Exception:
+            finished = 1
+        return (finished, fp.name)
+
+    for filepath in sorted(tournament_dir.glob("*.md"), key=_tournament_sort_key):
         content = filepath.read_text(encoding='utf-8')
         if not content.startswith('---'):
             continue
