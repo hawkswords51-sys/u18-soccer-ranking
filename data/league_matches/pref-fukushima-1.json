@@ -3,23 +3,23 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/tohoku/fukushima/league/table/163405",
   "sourceName": "福島少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-03",
+  "lastUpdated": "2026-07-04",
   "teams": [
-    {
-      "name": "いわきFC",
-      "short": "いわきFC"
-    },
     {
       "name": "聖光学院",
       "short": "聖光学院"
     },
     {
-      "name": "尚志セカンド",
-      "short": "尚志セカンド"
+      "name": "いわきFC",
+      "short": "いわきFC"
     },
     {
       "name": "ふたば未来学園",
       "short": "ふたば未来学園"
+    },
+    {
+      "name": "尚志セカンド",
+      "short": "尚志セカンド"
     },
     {
       "name": "福島ユナイテッド",
@@ -49,30 +49,42 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "いわきFC",
-      "points": 22,
+      "team": "聖光学院",
+      "points": 23,
       "played": 10,
-      "won": 6,
-      "drawn": 4,
-      "lost": 0,
-      "gf": 15,
+      "won": 7,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 25,
       "ga": 5,
-      "gd": 10
+      "gd": 20
     },
     {
       "rank": 2,
-      "team": "聖光学院",
-      "points": 20,
-      "played": 9,
+      "team": "いわきFC",
+      "points": 22,
+      "played": 11,
       "won": 6,
-      "drawn": 2,
+      "drawn": 4,
       "lost": 1,
-      "gf": 24,
-      "ga": 5,
-      "gd": 19
+      "gf": 15,
+      "ga": 6,
+      "gd": 9
     },
     {
       "rank": 3,
+      "team": "ふたば未来学園",
+      "points": 20,
+      "played": 11,
+      "won": 5,
+      "drawn": 5,
+      "lost": 1,
+      "gf": 25,
+      "ga": 8,
+      "gd": 17
+    },
+    {
+      "rank": 4,
       "team": "尚志セカンド",
       "points": 19,
       "played": 9,
@@ -82,18 +94,6 @@
       "gf": 37,
       "ga": 10,
       "gd": 27
-    },
-    {
-      "rank": 4,
-      "team": "ふたば未来学園",
-      "points": 17,
-      "played": 10,
-      "won": 4,
-      "drawn": 5,
-      "lost": 1,
-      "gf": 22,
-      "ga": 7,
-      "gd": 15
     },
     {
       "rank": 5,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "郡山",
       "points": 8,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 2,
-      "lost": 6,
-      "gf": 12,
-      "ga": 20,
-      "gd": -8
+      "lost": 7,
+      "gf": 13,
+      "ga": 23,
+      "gd": -10
     },
     {
       "rank": 10,
@@ -171,92 +171,11 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-11",
+      "date": "2026-07-04",
       "home": "聖光学院",
-      "hs": 0,
-      "as": 0,
-      "away": "いわきFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "いわきFC",
       "hs": 1,
       "as": 0,
-      "away": "尚志セカンド",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "ふたば未来学園",
-      "hs": 1,
-      "as": 1,
       "away": "いわきFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "いわきFC",
-      "hs": 1,
-      "as": 1,
-      "away": "福島ユナイテッド",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "学法石川セカンド",
-      "hs": 2,
-      "as": 3,
-      "away": "いわきFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "いわきFC",
-      "hs": 2,
-      "as": 0,
-      "away": "福島東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "帝京安積セカンド",
-      "hs": 1,
-      "as": 2,
-      "away": "いわきFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "郡山",
-      "hs": 0,
-      "as": 4,
-      "away": "いわきFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "いわきFC",
-      "hs": 1,
-      "as": 0,
-      "away": "郡山商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "尚志セカンド",
-      "hs": 1,
-      "as": 1,
-      "away": "聖光学院",
       "status": "played"
     },
     {
@@ -265,6 +184,15 @@
       "home": "ふたば未来学園",
       "hs": 2,
       "as": 0,
+      "away": "聖光学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "尚志セカンド",
+      "hs": 1,
+      "as": 1,
       "away": "聖光学院",
       "status": "played"
     },
@@ -324,10 +252,136 @@
     },
     {
       "md": 0,
+      "date": "2026-06-27",
+      "home": "ふたば未来学園",
+      "hs": 1,
+      "as": 1,
+      "away": "いわきFC",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "いわきFC",
+      "hs": 1,
+      "as": 0,
+      "away": "尚志セカンド",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "いわきFC",
+      "hs": 1,
+      "as": 1,
+      "away": "福島ユナイテッド",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "学法石川セカンド",
+      "hs": 2,
+      "as": 3,
+      "away": "いわきFC",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "いわきFC",
+      "hs": 2,
+      "as": 0,
+      "away": "福島東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "帝京安積セカンド",
+      "hs": 1,
+      "as": 2,
+      "away": "いわきFC",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "郡山",
+      "hs": 0,
+      "as": 4,
+      "away": "いわきFC",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "いわきFC",
+      "hs": 1,
+      "as": 0,
+      "away": "郡山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-05-02",
       "home": "尚志セカンド",
       "hs": 3,
       "as": 2,
+      "away": "ふたば未来学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "福島ユナイテッド",
+      "hs": 1,
+      "as": 1,
+      "away": "ふたば未来学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "ふたば未来学園",
+      "hs": 4,
+      "as": 0,
+      "away": "学法石川セカンド",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "福島東",
+      "hs": 0,
+      "as": 4,
+      "away": "ふたば未来学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "ふたば未来学園",
+      "hs": 1,
+      "as": 1,
+      "away": "帝京安積セカンド",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "郡山",
+      "hs": 1,
+      "as": 3,
+      "away": "ふたば未来学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "郡山商業",
+      "hs": 0,
+      "as": 6,
       "away": "ふたば未来学園",
       "status": "played"
     },
@@ -383,60 +437,6 @@
       "hs": 15,
       "as": 0,
       "away": "郡山商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "福島ユナイテッド",
-      "hs": 1,
-      "as": 1,
-      "away": "ふたば未来学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "ふたば未来学園",
-      "hs": 4,
-      "as": 0,
-      "away": "学法石川セカンド",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "福島東",
-      "hs": 0,
-      "as": 4,
-      "away": "ふたば未来学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "ふたば未来学園",
-      "hs": 1,
-      "as": 1,
-      "away": "帝京安積セカンド",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "郡山",
-      "hs": 1,
-      "as": 1,
-      "away": "ふたば未来学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "郡山商業",
-      "hs": 0,
-      "as": 6,
-      "away": "ふたば未来学園",
       "status": "played"
     },
     {
