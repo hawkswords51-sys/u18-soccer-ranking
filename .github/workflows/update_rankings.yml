@@ -126,6 +126,19 @@ jobs:
             echo "scraper/fetch_pref_scorers.py がまだありません。スキップ。"
           fi
 
+      # ★ 県予選トーナメント（選手権・インターハイ等）の組み合わせ・結果を自動更新
+      #   対象: data/tournaments/*.md のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
+      #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）
+      - name: 県予選トーナメント結果を更新（koko-soccer出典）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/update_tournament_results.py ]; then
+            python scraper/update_tournament_results.py
+          else
+            echo "scraper/update_tournament_results.py がまだありません。スキップ。"
+          fi
+
       # ★ Phase 9-A: 都道府県別 SEO ランディングページ自動生成
       - name: 都道府県別 SEO ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
