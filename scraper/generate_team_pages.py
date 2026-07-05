@@ -639,6 +639,8 @@ def render_team_page(profile: dict) -> str:
     md = markdown.Markdown(extensions=["tables", "fenced_code", "nl2br", "sane_lists"])
     body_html = md.convert(body_md)
     body_html = _fix_prince_league_links(body_html)
+    # h1はページに1つだけ（hero内のチーム名）。md本文の「# 見出し」がh1になっても自動でh2へ降格する
+    body_html = re.sub(r"<h1(\s[^>]*)?>", "<h2>", body_html).replace("</h1>", "</h2>")
 
     title = f"{meta.get('name', '')} | 高校サッカー部 順位・OB・育成"
     description = meta.get("description") or build_lead(meta)
