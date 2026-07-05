@@ -1265,6 +1265,30 @@ def generate_premier_final_page():
         f"U-18,U18,高校サッカー,全国優勝,歴代優勝校,プレミア東西決勝,{year_label}"
     )
 
+    # 構造化データ（BreadcrumbList + WebPage）※他リーグページと同様にJSON-LDを完備
+    schema_breadcrumb = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "ホーム", "item": f"{DOMAIN}/"},
+            {"@type": "ListItem", "position": 2, "name": "リーグ一覧", "item": f"{DOMAIN}/leagues/"},
+            {"@type": "ListItem", "position": 3, "name": "プレミアリーグ ファイナル", "item": canonical},
+        ],
+    }, ensure_ascii=False, indent=2)
+    schema_webpage = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": title,
+        "description": description,
+        "url": canonical,
+        "inLanguage": "ja",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "高校サッカー順位確認システム",
+            "url": f"{DOMAIN}/",
+        },
+    }, ensure_ascii=False, indent=2)
+
     # カード群を構築
     cards_html = "\n".join(render_premier_final_card(f) for f in finals)
 
@@ -1331,6 +1355,12 @@ def generate_premier_final_page():
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#1e40af">
+  <script type="application/ld+json">
+{schema_breadcrumb}
+  </script>
+  <script type="application/ld+json">
+{schema_webpage}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
