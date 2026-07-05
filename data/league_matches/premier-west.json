@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プレミアリーグ 2026 WEST",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4360",
-  "lastUpdated": "2026-07-04",
+  "lastUpdated": "2026-07-05",
   "teams": [
     {
       "name": "ヴィッセル神戸U-18",
@@ -140,6 +140,18 @@
     },
     {
       "rank": 8,
+      "team": "東山",
+      "pts": 14,
+      "played": 11,
+      "won": 4,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 10,
+      "ga": 13,
+      "gd": -3
+    },
+    {
+      "rank": 9,
       "team": "米子北",
       "pts": 12,
       "played": 10,
@@ -151,27 +163,15 @@
       "gd": 3
     },
     {
-      "rank": 9,
-      "team": "ガンバ大阪ユース",
-      "pts": 11,
-      "played": 9,
-      "won": 3,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 15,
-      "ga": 18,
-      "gd": -3
-    },
-    {
       "rank": 10,
-      "team": "東山",
+      "team": "ガンバ大阪ユース",
       "pts": 11,
       "played": 10,
       "won": 3,
       "drawn": 2,
       "lost": 5,
-      "gf": 9,
-      "ga": 13,
+      "gf": 15,
+      "ga": 19,
       "gd": -4
     },
     {
@@ -681,10 +681,10 @@
       "md": 9,
       "date": "2026-07-04",
       "home": "ガンバ大阪ユース",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "東山",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
@@ -724,7 +724,7 @@
     },
     {
       "md": 10,
-      "date": "2026-07-05",
+      "date": "",
       "home": "大津",
       "hs": null,
       "as": null,

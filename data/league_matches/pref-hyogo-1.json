@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kansai/hyogo/league/table/163634",
   "sourceName": "兵庫少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-04",
+  "lastUpdated": "2026-07-05",
   "teams": [
     {
       "name": "三田松聖A",
@@ -14,16 +14,20 @@
       "short": "報徳学園A"
     },
     {
-      "name": "神戸星城A",
-      "short": "神戸星城A"
-    },
-    {
       "name": "滝川第二B",
       "short": "滝川第二B"
     },
     {
+      "name": "神戸星城A",
+      "short": "神戸星城A"
+    },
+    {
       "name": "芦屋学園A",
       "short": "芦屋学園A"
+    },
+    {
+      "name": "三田学園B",
+      "short": "三田学園B"
     },
     {
       "name": "神戸国際附A",
@@ -36,10 +40,6 @@
     {
       "name": "神戸弘陵B",
       "short": "神戸弘陵B"
-    },
-    {
-      "name": "三田学園B",
-      "short": "三田学園B"
     },
     {
       "name": "蒼開A",
@@ -73,18 +73,6 @@
     },
     {
       "rank": 3,
-      "team": "神戸星城A",
-      "points": 15,
-      "played": 8,
-      "won": 4,
-      "drawn": 3,
-      "lost": 1,
-      "gf": 14,
-      "ga": 8,
-      "gd": 6
-    },
-    {
-      "rank": 4,
       "team": "滝川第二B",
       "points": 15,
       "played": 9,
@@ -96,19 +84,43 @@
       "gd": 3
     },
     {
+      "rank": 4,
+      "team": "神戸星城A",
+      "points": 15,
+      "played": 10,
+      "won": 4,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 14,
+      "ga": 12,
+      "gd": 2
+    },
+    {
       "rank": 5,
       "team": "芦屋学園A",
-      "points": 13,
-      "played": 8,
+      "points": 14,
+      "played": 9,
       "won": 4,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 3,
-      "gf": 15,
-      "ga": 12,
+      "gf": 18,
+      "ga": 15,
       "gd": 3
     },
     {
       "rank": 6,
+      "team": "三田学園B",
+      "points": 14,
+      "played": 10,
+      "won": 4,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 16,
+      "ga": 18,
+      "gd": -2
+    },
+    {
+      "rank": 7,
       "team": "神戸国際附A",
       "points": 12,
       "played": 9,
@@ -120,19 +132,19 @@
       "gd": -4
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "神戸科技A",
-      "points": 10,
-      "played": 8,
+      "points": 11,
+      "played": 9,
       "won": 3,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 4,
-      "gf": 14,
-      "ga": 15,
+      "gf": 17,
+      "ga": 18,
       "gd": -1
     },
     {
-      "rank": 8,
+      "rank": 9,
       "team": "神戸弘陵B",
       "points": 10,
       "played": 9,
@@ -142,18 +154,6 @@
       "gf": 10,
       "ga": 12,
       "gd": -2
-    },
-    {
-      "rank": 9,
-      "team": "三田学園B",
-      "points": 8,
-      "played": 8,
-      "won": 2,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 12,
-      "ga": 18,
-      "gd": -6
     },
     {
       "rank": 10,
@@ -180,15 +180,6 @@
     },
     {
       "md": 0,
-      "date": "2026-05-05",
-      "home": "神戸星城A",
-      "hs": 2,
-      "as": 2,
-      "away": "三田松聖A",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "滝川第二B",
       "hs": 1,
@@ -198,10 +189,28 @@
     },
     {
       "md": 0,
+      "date": "2026-05-05",
+      "home": "神戸星城A",
+      "hs": 2,
+      "as": 2,
+      "away": "三田松聖A",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-06-14",
       "home": "芦屋学園A",
       "hs": 1,
       "as": 3,
+      "away": "三田松聖A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "三田学園B",
+      "hs": 1,
+      "as": 1,
       "away": "三田松聖A",
       "status": "played"
     },
@@ -234,29 +243,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "三田学園B",
-      "hs": 1,
-      "as": 1,
-      "away": "三田松聖A",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-25",
       "home": "蒼開A",
       "hs": 0,
       "as": 5,
       "away": "三田松聖A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "神戸星城A",
-      "hs": 2,
-      "as": 1,
-      "away": "報徳学園A",
       "status": "played"
     },
     {
@@ -270,8 +261,26 @@
     },
     {
       "md": 0,
+      "date": "2026-04-11",
+      "home": "神戸星城A",
+      "hs": 2,
+      "as": 1,
+      "away": "報徳学園A",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-06-27",
       "home": "芦屋学園A",
+      "hs": 0,
+      "as": 2,
+      "away": "報徳学園A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "三田学園B",
       "hs": 0,
       "as": 2,
       "away": "報徳学園A",
@@ -306,15 +315,6 @@
     },
     {
       "md": 0,
-      "date": "2026-05-05",
-      "home": "三田学園B",
-      "hs": 0,
-      "as": 2,
-      "away": "報徳学園A",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-07-04",
       "home": "報徳学園A",
       "hs": 2,
@@ -333,11 +333,74 @@
     },
     {
       "md": 0,
+      "date": "2026-04-19",
+      "home": "芦屋学園A",
+      "hs": 2,
+      "as": 0,
+      "away": "滝川第二B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "滝川第二B",
+      "hs": 1,
+      "as": 1,
+      "away": "三田学園B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "滝川第二B",
+      "hs": 1,
+      "as": 0,
+      "away": "神戸国際附A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "神戸科技A",
+      "hs": 2,
+      "as": 1,
+      "away": "滝川第二B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "神戸弘陵B",
+      "hs": 1,
+      "as": 2,
+      "away": "滝川第二B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "滝川第二B",
+      "hs": 3,
+      "as": 0,
+      "away": "蒼開A",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-29",
       "home": "芦屋学園A",
       "hs": 0,
       "as": 2,
       "away": "神戸星城A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-05",
+      "home": "神戸星城A",
+      "hs": 0,
+      "as": 2,
+      "away": "三田学園B",
       "status": "played"
     },
     {
@@ -369,101 +432,11 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "神戸星城A",
-      "hs": null,
-      "as": null,
-      "away": "三田学園B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "神戸星城A",
       "hs": 3,
       "as": 1,
       "away": "蒼開A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "芦屋学園A",
-      "hs": 2,
-      "as": 0,
-      "away": "滝川第二B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "滝川第二B",
-      "hs": 1,
-      "as": 0,
-      "away": "神戸国際附A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "神戸科技A",
-      "hs": 2,
-      "as": 1,
-      "away": "滝川第二B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-04",
-      "home": "神戸弘陵B",
-      "hs": 1,
-      "as": 2,
-      "away": "滝川第二B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "滝川第二B",
-      "hs": 1,
-      "as": 1,
-      "away": "三田学園B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "滝川第二B",
-      "hs": 3,
-      "as": 0,
-      "away": "蒼開A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "芦屋学園A",
-      "hs": 4,
-      "as": 0,
-      "away": "神戸国際附A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "芦屋学園A",
-      "hs": null,
-      "as": null,
-      "away": "神戸科技A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "芦屋学園A",
-      "hs": 2,
-      "as": 1,
-      "away": "神戸弘陵B",
       "status": "played"
     },
     {
@@ -477,10 +450,73 @@
     },
     {
       "md": 0,
+      "date": "2026-04-11",
+      "home": "芦屋学園A",
+      "hs": 4,
+      "as": 0,
+      "away": "神戸国際附A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-05",
+      "home": "芦屋学園A",
+      "hs": 3,
+      "as": 3,
+      "away": "神戸科技A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "芦屋学園A",
+      "hs": 2,
+      "as": 1,
+      "away": "神戸弘陵B",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-04",
       "home": "芦屋学園A",
       "hs": 2,
       "as": 2,
+      "away": "蒼開A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "神戸国際附A",
+      "hs": 3,
+      "as": 1,
+      "away": "三田学園B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "神戸科技A",
+      "hs": 5,
+      "as": 1,
+      "away": "三田学園B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "三田学園B",
+      "hs": 4,
+      "as": 2,
+      "away": "神戸弘陵B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "三田学園B",
+      "hs": 2,
+      "as": 0,
       "away": "蒼開A",
       "status": "played"
     },
@@ -504,15 +540,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-19",
-      "home": "神戸国際附A",
-      "hs": 3,
-      "as": 1,
-      "away": "三田学園B",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-06",
       "home": "神戸国際附A",
       "hs": 5,
@@ -531,29 +558,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-12",
-      "home": "神戸科技A",
-      "hs": 5,
-      "as": 1,
-      "away": "三田学園B",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "神戸科技A",
       "hs": 5,
       "as": 0,
       "away": "蒼開A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "三田学園B",
-      "hs": 4,
-      "as": 2,
-      "away": "神戸弘陵B",
       "status": "played"
     },
     {
@@ -561,15 +570,6 @@
       "date": "2026-06-28",
       "home": "神戸弘陵B",
       "hs": 1,
-      "as": 0,
-      "away": "蒼開A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "三田学園B",
-      "hs": 2,
       "as": 0,
       "away": "蒼開A",
       "status": "played"
