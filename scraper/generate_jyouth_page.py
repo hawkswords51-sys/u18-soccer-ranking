@@ -896,9 +896,9 @@ def main():
     else:
         stats_section = ""
 
-    # ③-2 得点ランキング（Jリーグ公式・2得点以上を表示。data/scorers/j-youth-cup-2026.json）
+    # ③-2 得点ランキング（Jリーグ公式・3得点以上を表示。data/scorers/j-youth-cup-2026.json）
     try:
-        scorer_html = render_scorer_ranking_html("j-youth-cup-2026", limit=300, min_goals=2)
+        scorer_html = render_scorer_ranking_html("j-youth-cup-2026", limit=300, min_goals=3)
     except Exception:
         scorer_html = ""
 

@@ -397,7 +397,7 @@ def fetch_jyouth(today: str) -> str:
         "source": JYOUTH_URL,
         "sourceLabel": "Jリーグ公式（データ提供：データスタジアム）",
         "lastUpdated": _jyouth_last_updated(r.text, today),
-        "note": "Jリーグ公式サイトの得点ランキングをそのまま掲載しています（当ページでは2得点以上の選手を表示）。",
+        "note": "Jリーグ公式サイトの得点ランキングをそのまま掲載しています（当ページでは3得点以上の選手を表示）。",
         "scorers": scorers[:MAX_ROWS],
     }
     new = json.dumps(obj, ensure_ascii=False, indent=2)
