@@ -14,7 +14,7 @@ def _esc(s):
     return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def render_scorer_ranking_html(slug: str, limit: int = 20) -> str:
+def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None) -> str:
     path = _DIR / f"{slug}.json"
     if not path.exists():
         return ""
@@ -23,6 +23,10 @@ def render_scorer_ranking_html(slug: str, limit: int = 20) -> str:
     except Exception:
         return ""
     scorers = d.get("scorers", [])
+    # min_goals を指定すると、その得点数以上の選手だけを表示（Jユース等で
+    # 1得点の選手が大量にいる大会向け。未指定なら従来どおり全件・limit まで）。
+    if min_goals is not None:
+        scorers = [s for s in scorers if s.get("goals", 0) >= min_goals]
     if not scorers:
         return ""
 

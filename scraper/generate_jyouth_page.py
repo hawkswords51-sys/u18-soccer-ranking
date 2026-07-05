@@ -25,6 +25,7 @@ import unicodedata
 import yaml
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+from scorer_table import render_scorer_ranking_html
 
 
 class _JSTDate:
@@ -895,6 +896,12 @@ def main():
     else:
         stats_section = ""
 
+    # ③-2 得点ランキング（Jリーグ公式・2得点以上を表示。data/scorers/j-youth-cup-2026.json）
+    try:
+        scorer_html = render_scorer_ranking_html("j-youth-cup-2026", limit=300, min_goals=2)
+    except Exception:
+        scorer_html = ""
+
     # ラウンド描画（## 1回戦 等の見出しをすべて拾う）
     rounds_html = render_rounds(sections)
 
@@ -1071,6 +1078,8 @@ def main():
       {bracket_section}
 
       {stats_section}
+
+      {scorer_html}
 
       <section class="lp-section">
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>

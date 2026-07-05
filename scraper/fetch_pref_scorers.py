@@ -319,6 +319,94 @@ def fetch_okinawa(today):
     return f"  pref-okinawa-1: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']})"
 
 
+# ── Jユースカップ（Jリーグ公式・得点ランキング）─────────────────
+# https://www.jleague.jp/jyouth/2026/goalranking.html/ に「順位｜選手｜チーム｜得点」の
+# サーバーレンダリング表が載る。チーム名セルはPC/スマホ表記が二重に入ることがあるため
+# 重複を畳み、順位は得点数から標準競争順位（同点同順位）で振り直す（出典の順位表記は不安定なため）。
+JYOUTH_URL = "https://www.jleague.jp/jyouth/2026/goalranking.html/"
+JYOUTH_OUT = DIR / "j-youth-cup-2026.json"
+
+
+def _dedupe_team(s: str) -> str:
+    """全角正規化し、二重連結されたチーム名（例 "A U-18A U-18"）を1つに畳む。"""
+    s = _norm(s)
+    n = len(s)
+    if n >= 2 and n % 2 == 0 and s[: n // 2] == s[n // 2:]:
+        s = s[: n // 2]
+    parts = s.split(" ")
+    if len(parts) >= 2 and len(parts) % 2 == 0 and parts[: len(parts) // 2] == parts[len(parts) // 2:]:
+        s = " ".join(parts[: len(parts) // 2])
+    return s.strip()
+
+
+def parse_jyouth_html(html: str):
+    """得点ランキング表から (name, team, goals) を抽出（順位は後で再計算）。"""
+    soup = BeautifulSoup(html, "lxml")
+    # 「最終セルが整数の行」が最も多い表を得点ランキング表とみなす
+    best, bestn = None, 0
+    for t in soup.find_all("table"):
+        n = 0
+        for tr in t.find_all("tr"):
+            tds = tr.find_all("td")
+            if len(tds) >= 3 and re.fullmatch(r"\d+", tds[-1].get_text(strip=True)):
+                n += 1
+        if n > bestn:
+            best, bestn = t, n
+    if best is None or bestn < 3:
+        return []
+    out = []
+    for tr in best.find_all("tr"):
+        tds = [td.get_text(" ", strip=True) for td in tr.find_all("td")]
+        if len(tds) < 3 or not re.fullmatch(r"\d+", tds[-1].strip()):
+            continue
+        goals = int(tds[-1])
+        name = _clean_name(tds[-3])
+        team = _dedupe_team(tds[-2])
+        if not name or not team:
+            continue
+        if name.upper().replace(".", "").replace(" ", "") in ("OG", "オウンゴール", "ＯＧ"):
+            continue
+        out.append((name, team, goals))
+    return out
+
+
+def _jyouth_last_updated(html: str, default: str) -> str:
+    m = re.search(r"更新日[:：]?\s*(\d{4}年\d{1,2}月\d{1,2}日)", html)
+    return m.group(1) if m else default
+
+
+def fetch_jyouth(today: str) -> str:
+    try:
+        r = requests.get(JYOUTH_URL, headers=HEAD, timeout=TIMEOUT)
+        r.raise_for_status()
+        r.encoding = r.apparent_encoding or r.encoding
+        rows = parse_jyouth_html(r.text)
+    except Exception as e:
+        return f"  j-youth-cup-2026: 取得失敗のためスキップ（既存維持）: {e}"
+    if not rows:
+        return "  j-youth-cup-2026: 得点者0件のためスキップ（既存維持）"
+    rows.sort(key=lambda x: (-x[2], x[0]))
+    scorers, rank, prev = [], 0, None
+    for i, (name, team, g) in enumerate(rows, start=1):
+        if g != prev:
+            rank, prev = i, g
+        scorers.append({"rank": rank, "name": name, "team": team, "goals": g})
+    obj = {
+        "league": "2026 Jユースカップ（Jリーグユース選手権大会）得点ランキング",
+        "season": "2026",
+        "source": JYOUTH_URL,
+        "sourceLabel": "Jリーグ公式（データ提供：データスタジアム）",
+        "lastUpdated": _jyouth_last_updated(r.text, today),
+        "note": "Jリーグ公式サイトの得点ランキングをそのまま掲載しています（当ページでは2得点以上の選手を表示）。",
+        "scorers": scorers[:MAX_ROWS],
+    }
+    new = json.dumps(obj, ensure_ascii=False, indent=2)
+    if JYOUTH_OUT.exists() and JYOUTH_OUT.read_text(encoding="utf-8") == new:
+        return f"  j-youth-cup-2026: 変更なし（{len(scorers)}名）"
+    JYOUTH_OUT.write_text(new, encoding="utf-8")
+    return f"  j-youth-cup-2026: 更新 {len(scorers)}名 1位={scorers[0]['name']}({scorers[0]['goals']})"
+
+
 def main():
     import datetime
     today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d")
@@ -333,6 +421,8 @@ def main():
         print(build_from_input(mslug, mmeta, today))
     # 沖縄（波布リーグ・自動集計）
     print(fetch_okinawa(today))
+    # Jユースカップ（Jリーグ公式・自動集計）
+    print(fetch_jyouth(today))
 
 
 if __name__ == "__main__":
