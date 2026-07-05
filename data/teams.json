@@ -5046,13 +5046,13 @@
         "name": "静岡学園高校",
         "league": "プリンスリーグ東海",
         "rank": 1,
-        "points": 22,
-        "played": 8,
-        "won": 7,
+        "points": 25,
+        "played": 9,
+        "won": 8,
         "drawn": 1,
         "lost": 0,
-        "goalsFor": 26,
-        "goalsAgainst": 7,
+        "goalsFor": 28,
+        "goalsAgainst": 8,
         "prefectureRank": 1,
         "goalDiff": 6,
         "leagueRank": 1
@@ -5095,12 +5095,12 @@
         "league": "プリンスリーグ東海",
         "rank": 4,
         "points": 20,
-        "played": 8,
+        "played": 9,
         "won": 6,
         "drawn": 2,
-        "lost": 0,
-        "goalsFor": 21,
-        "goalsAgainst": 5,
+        "lost": 1,
+        "goalsFor": 22,
+        "goalsAgainst": 7,
         "prefectureRank": 4,
         "goalDiff": 3,
         "leagueRank": 2
@@ -5223,7 +5223,7 @@
         "goalsAgainst": 28,
         "prefectureRank": 11,
         "goalDiff": -7,
-        "leagueRank": 6
+        "leagueRank": 7
       },
       {
         "id": "s014",
@@ -5255,7 +5255,7 @@
         "goalsAgainst": 15,
         "prefectureRank": 13,
         "goalDiff": 4,
-        "leagueRank": 7
+        "leagueRank": 8
       },
       {
         "id": "s007",
@@ -5417,12 +5417,12 @@
         "league": "プリンスリーグ東海",
         "rank": 3,
         "points": 0,
-        "played": 8,
+        "played": 9,
         "won": 0,
         "drawn": 0,
-        "lost": 8,
+        "lost": 9,
         "goalsFor": 8,
-        "goalsAgainst": 33,
+        "goalsAgainst": 34,
         "prefectureRank": 3,
         "goalDiff": -6,
         "leagueRank": 10
@@ -5624,16 +5624,16 @@
         "name": "三重高校",
         "league": "プリンスリーグ東海",
         "rank": 2,
-        "points": 7,
-        "played": 8,
-        "won": 2,
+        "points": 10,
+        "played": 9,
+        "won": 3,
         "drawn": 1,
         "lost": 5,
-        "goalsFor": 12,
+        "goalsFor": 13,
         "goalsAgainst": 19,
         "prefectureRank": 2,
         "goalDiff": -3,
-        "leagueRank": 8
+        "leagueRank": 6
       },
       {
         "id": "mi003",
@@ -6795,20 +6795,22 @@
         ]
       },
       {
-        "name": "滝川第二高校2nd",
+        "id": "hy011",
+        "name": "神戸星城高校",
         "league": "兵庫県1部",
+        "rank": 8,
+        "prefectureRank": 8,
         "points": 15,
         "played": 9,
         "won": 4,
         "drawn": 3,
         "lost": 2,
-        "goalsFor": 11,
-        "goalsAgainst": 8,
+        "goalsFor": 14,
+        "goalsAgainst": 10,
+        "goalDiff": 1,
         "leagueRank": 3,
-        "rank": 8,
-        "prefectureRank": 8,
         "aliases": [
-          "滝川第二B"
+          "神戸星城高校A"
         ]
       },
       {
@@ -6828,22 +6830,20 @@
         "leagueRank": 10
       },
       {
-        "id": "hy011",
-        "name": "神戸星城高校",
+        "name": "滝川第二高校2nd",
         "league": "兵庫県1部",
-        "rank": 10,
-        "prefectureRank": 10,
         "points": 15,
-        "played": 10,
+        "played": 9,
         "won": 4,
         "drawn": 3,
-        "lost": 3,
-        "goalsFor": 14,
-        "goalsAgainst": 12,
-        "goalDiff": 1,
+        "lost": 2,
+        "goalsFor": 11,
+        "goalsAgainst": 8,
         "leagueRank": 4,
+        "rank": 10,
+        "prefectureRank": 10,
         "aliases": [
-          "神戸星城高校A"
+          "滝川第二B"
         ]
       },
       {
@@ -6866,23 +6866,6 @@
         ]
       },
       {
-        "name": "三田学園高校2nd",
-        "league": "兵庫県1部",
-        "points": 14,
-        "played": 10,
-        "won": 4,
-        "drawn": 2,
-        "lost": 4,
-        "goalsFor": 16,
-        "goalsAgainst": 18,
-        "leagueRank": 6,
-        "rank": 12,
-        "prefectureRank": 12,
-        "aliases": [
-          "三田学園B"
-        ]
-      },
-      {
         "name": "神戸国際附属高校",
         "league": "兵庫県1部",
         "points": 12,
@@ -6892,9 +6875,9 @@
         "lost": 5,
         "goalsFor": 13,
         "goalsAgainst": 17,
-        "leagueRank": 7,
-        "rank": 13,
-        "prefectureRank": 13,
+        "leagueRank": 6,
+        "rank": 12,
+        "prefectureRank": 12,
         "aliases": [
           "神戸国際附A"
         ]
@@ -6909,11 +6892,28 @@
         "lost": 4,
         "goalsFor": 17,
         "goalsAgainst": 18,
+        "leagueRank": 7,
+        "rank": 13,
+        "prefectureRank": 13,
+        "aliases": [
+          "神戸科技A"
+        ]
+      },
+      {
+        "name": "三田学園高校2nd",
+        "league": "兵庫県1部",
+        "points": 11,
+        "played": 9,
+        "won": 3,
+        "drawn": 2,
+        "lost": 4,
+        "goalsFor": 14,
+        "goalsAgainst": 18,
         "leagueRank": 8,
         "rank": 14,
         "prefectureRank": 14,
         "aliases": [
-          "神戸科技A"
+          "三田学園B"
         ]
       },
       {
@@ -7212,12 +7212,12 @@
         "league": "和歌山県JFA U-18サッカーリーグ",
         "rank": 4,
         "prefectureRank": 4,
-        "points": 18,
-        "played": 10,
-        "won": 6,
+        "points": 21,
+        "played": 11,
+        "won": 7,
         "drawn": 0,
         "lost": 4,
-        "goalsFor": 42,
+        "goalsFor": 48,
         "goalsAgainst": 12,
         "goalDiff": 22,
         "leagueRank": 4
@@ -7228,12 +7228,12 @@
         "league": "和歌山県JFA U-18サッカーリーグ",
         "rank": 5,
         "points": 16,
-        "played": 10,
+        "played": 11,
         "won": 5,
         "drawn": 1,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 26,
-        "goalsAgainst": 24,
+        "goalsAgainst": 30,
         "prefectureRank": 5,
         "goalDiff": -1,
         "leagueRank": 5
@@ -7275,13 +7275,13 @@
         "name": "星林高校",
         "league": "和歌山県JFA U-18サッカーリーグ",
         "rank": 8,
-        "points": 7,
-        "played": 10,
+        "points": 8,
+        "played": 11,
         "won": 2,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 7,
-        "goalsFor": 5,
-        "goalsAgainst": 28,
+        "goalsFor": 8,
+        "goalsAgainst": 31,
         "prefectureRank": 8,
         "goalDiff": -13,
         "leagueRank": 8
@@ -7308,13 +7308,13 @@
         "league": "和歌山県JFA U-18サッカーリーグ",
         "rank": 10,
         "prefectureRank": 10,
-        "points": 1,
-        "played": 10,
+        "points": 2,
+        "played": 11,
         "won": 0,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 9,
-        "goalsFor": 3,
-        "goalsAgainst": 73,
+        "goalsFor": 6,
+        "goalsAgainst": 76,
         "goalDiff": -43,
         "leagueRank": 10
       }
@@ -11202,7 +11202,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-07-05 17:01",
+    "lastUpdated": "2026-07-05 19:52",
     "year": 2026,
     "updatedCount": 585
   }
