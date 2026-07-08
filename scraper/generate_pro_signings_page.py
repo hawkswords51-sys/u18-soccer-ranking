@@ -53,6 +53,7 @@ def _player_rows(players: list, show_dest: bool) -> str:
     for p in ordered:
         pos = html_escape(p.get("pos", ""))
         name = html_escape(p.get("name", ""))
+        chip = ' <span class="ps-2nd">2種登録</span>' if p.get("type2") else ""
         note = f'<span class="ps-note-inline">※{html_escape(p["note"])}</span>' if p.get("note") else ""
         if show_dest:
             dest = html_escape(p.get("dest", ""))
@@ -63,7 +64,7 @@ def _player_rows(players: list, show_dest: bool) -> str:
         rows.append(
             "<tr>"
             f'<td class="ps-pos ps-pos-{pos}">{pos}</td>'
-            f'<td class="ps-name">{name}</td>'
+            f'<td class="ps-name">{name}{chip}</td>'
             f"{dest_cell}"
             "</tr>"
         )
@@ -105,7 +106,7 @@ def build_ai_summary(data: dict) -> str:
         f"このページは、高校・Jクラブユース（U-18年代）から{season}シーズンのJリーグ加入が内定した"
         f"選手計{total}名（高体連{hs}名・Jクラブユース{yth}名）を、現所属チーム別に一覧できるまとめです。"
         f"現所属チームに当サイトの詳細ページがある選手は、そのチームページ（順位・OB情報）へ直接移動できます。"
-        f"あわせて、ユース所属のままトップチームに登録される「2種登録選手」も掲載します。"
+        f"ユース所属のままトップチームの公式戦に出られる「2種登録選手」には氏名の横に「2種登録」タグを表示します。"
     )
     style = (
         "margin:0 0 14px;padding:12px 16px;background:rgba(255,255,255,0.95);"
@@ -191,6 +192,7 @@ __SCHEMA__
     .ps-arrow{color:var(--text-light);margin-right:4px;}
     .ps-club{font-weight:700;color:#15803d;}
     .ps-note-inline{display:inline-block;font-size:.78rem;color:var(--text-light);margin-left:6px;}
+    .ps-2nd{display:inline-block;font-size:.7rem;font-weight:700;color:#fff;background:#16a34a;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle;}
     .ps-empty{margin:0;padding:16px;background:var(--bg-light);border-radius:8px;color:var(--text-light);font-size:.9rem;line-height:1.8;}
     .ps-source{margin:6px 0 0;font-size:.8rem;color:var(--text-light);}
     .ps-source a{color:var(--text-light);}
@@ -208,13 +210,12 @@ __SCHEMA__
     </nav>
   </div></div></header>
   <main class="container">
-    <nav class="breadcrumb"><a href="/">ホーム</a><span class="breadcrumb__sep">›</span><span>プロ内定・2種登録選手</span></nav>
+    <nav class="breadcrumb"><a href="/">ホーム</a><span class="breadcrumb__sep">›</span><span>プロ内定選手</span></nav>
     <section class="team-hero">
-      <h1>__SEASON__年 プロ内定・2種登録選手一覧（高校・ユース）</h1>
+      <h1>__SEASON__年 Jリーグ プロ内定選手一覧（高校・ユース）</h1>
       __AI_SUMMARY__
-      <p class="team-lead">高校・Jクラブユースから来季Jリーグ加入が内定した選手と、ユース所属のままトップチームに登録された2種登録選手を、現所属チーム別に掲載。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。</p>
+      <p class="team-lead">高校・Jクラブユースから来季Jリーグ加入が内定した選手を、現所属チーム別に掲載。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。ユース所属のままトップの公式戦に出られる「2種登録」の選手には氏名の横にタグを表示します。</p>
     </section>
-    <div class="ps-jump">__JUMP__</div>
     __SECTIONS__
     <p class="ps-source">
       出典：<a href="__SOURCE_HUB__" rel="nofollow noopener" target="_blank">高校サッカードットコム「__SEASON__年 高校年代・Jリーグ内定者一覧」</a>ほか各クラブ公式発表（__SOURCE_ASOF__時点の発表分を反映）。
@@ -255,32 +256,21 @@ def update_sitemap():
 
 def main() -> int:
     data = ps.load_signings(BASE_DIR)
-    if not (data.get("signings") or data.get("second_category")):
+    if not data.get("signings"):
         print("[pro-signings] データが無いのでスキップ")
         return 0
 
     season = str(data.get("season", ""))
-    title = f"{season}年 Jリーグ プロ内定・2種登録選手一覧【高校・ユース】｜所属チーム別"
-    desc = (f"高校・Jクラブユースから{season}シーズンのJリーグ加入が内定した選手と2種登録選手を、"
-            f"現所属チーム別に一覧。所属チームの詳細ページ（順位・OB）へも移動できます。クラブ公式発表に準拠。")
+    title = f"{season}年 Jリーグ プロ内定選手一覧【高校・ユース】｜所属チーム別・2種登録"
+    desc = (f"高校・Jクラブユースから{season}シーズンのJリーグ加入が内定した選手を現所属チーム別に一覧。"
+            f"2種登録の選手にはタグを表示。所属チームの詳細ページ（順位・OB）へも移動できます。クラブ公式発表に準拠。")
 
-    sec_sign = _section(
-        "① プロ内定選手", f"{season}シーズンのJリーグ加入が内定した高校・ユース年代の選手（現所属チーム別）。",
+    # 内定選手（現所属チーム別）。2種登録は各選手の type2 タグで表示（専用セクションは設けない）。
+    sections = _section(
+        "プロ内定選手", f"{season}シーズンのJリーグ加入が内定した高校・ユース年代の選手（現所属チーム別）。"
+        "ユース所属のままトップに出られる「2種登録」の選手には氏名の横にタグを表示します。",
         data.get("signings") or [], show_dest=True,
         empty_msg="現在、掲載できる内定選手はありません。")
-    sec_2nd = _section(
-        "② 2種登録選手", "ユース所属のまま、トップチームの公式戦に出場可能な「2種登録」として登録された選手（現所属チーム別）。",
-        data.get("second_category") or [], show_dest=False,
-        empty_msg="各Jクラブが公式発表する「2種登録完了のお知らせ」を確認でき次第、順次掲載します。")
-
-    jump = ('<a href="#sign">プロ内定選手</a>'
-            '<a href="#second">2種登録選手</a>')
-    sections = sec_sign + sec_2nd
-    # セクションIDを付与（ジャンプ用）
-    sections = sections.replace('<section class="ps-cat-sec">\n      <h2>① プロ内定選手',
-                                '<section class="ps-cat-sec" id="sign">\n      <h2>① プロ内定選手')
-    sections = sections.replace('<section class="ps-cat-sec">\n      <h2>② 2種登録選手',
-                                '<section class="ps-cat-sec" id="second">\n      <h2>② 2種登録選手')
 
     html = (TEMPLATE
             .replace("__GA__", GA_ID).replace("__AD__", ADSENSE_CLIENT).replace("__DOMAIN__", DOMAIN)
@@ -288,7 +278,6 @@ def main() -> int:
             .replace("__CANON__", f"{DOMAIN}/pro-signings/")
             .replace("__SCHEMA__", build_schema(data))
             .replace("__AI_SUMMARY__", build_ai_summary(data))
-            .replace("__JUMP__", jump)
             .replace("__SECTIONS__", sections)
             .replace("__SEASON__", html_escape(season))
             .replace("__SOURCE_HUB__", html_escape(str(data.get("source_hub", ""))))
