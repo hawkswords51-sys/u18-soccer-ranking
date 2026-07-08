@@ -26,6 +26,7 @@ from pathlib import Path
 import yaml
 import markdown
 import national_team as nt  # 日本代表選出バッジ用（同 scraper/ に national_team.py）
+import pro_signings as ps  # プロ内定・2種登録バッジ用（同 scraper/ に pro_signings.py）
 
 
 # =========================================================================
@@ -385,6 +386,7 @@ __SCHEMA_BREADCRUMB__
       <h1>__TEAM_NAME__ U-18 高校サッカー</h1>
 __AI_SUMMARY__
 __NT_BADGE__
+__PS_BADGE__
       <p class="team-lead">__LEAD__</p>
     </section>
 
@@ -633,12 +635,15 @@ def build_team_ai_summary(meta: dict) -> str:
     )
     return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
 
-def render_team_page(profile: dict, badge_map: dict | None = None) -> str:
+def render_team_page(profile: dict, badge_map: dict | None = None,
+                     ps_badge_map: dict | None = None) -> str:
     """1チームのプロフィールから HTML を生成"""
     meta = profile["meta"]
     body_md = profile["body_md"]
     if badge_map is None:
         badge_map = nt.badges_by_team_id(BASE_DIR)
+    if ps_badge_map is None:
+        ps_badge_map = ps.badges_by_team_id(BASE_DIR)
 
     md = markdown.Markdown(extensions=["tables", "fenced_code", "nl2br", "sane_lists"])
     body_html = md.convert(body_md)
@@ -670,6 +675,7 @@ def render_team_page(profile: dict, badge_map: dict | None = None) -> str:
         .replace("__TEAM_NAME__", html_escape(meta.get("name", "")))
         .replace("__AI_SUMMARY__", build_team_ai_summary(meta))
         .replace("__NT_BADGE__", nt.render_team_badge_html(meta.get("id", ""), badge_map))
+        .replace("__PS_BADGE__", ps.render_team_badge_html(meta.get("id", ""), ps_badge_map))
         .replace("__LEAD__", html_escape(lead))
         .replace("__LEAGUE__", html_escape(meta.get("league", "—")))
         .replace("__FOUNDED__", html_escape(f"{meta.get('founded', '—')}年" if meta.get("founded") else "—"))
@@ -746,10 +752,11 @@ def main() -> int:
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
 
     badge_map = nt.badges_by_team_id(BASE_DIR)  # 日本代表選出バッジ表（全チーム分を1回だけ計算）
+    ps_badge_map = ps.badges_by_team_id(BASE_DIR)  # プロ内定・2種登録バッジ表（全チーム分を1回だけ計算）
 
     for profile in profiles:
         team_id = profile["meta"]["id"]
-        html = render_team_page(profile, badge_map)
+        html = render_team_page(profile, badge_map, ps_badge_map)
         out_dir = OUTPUT_ROOT / team_id
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(html, encoding="utf-8")

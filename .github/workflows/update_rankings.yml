@@ -179,6 +179,16 @@ jobs:
             echo "scraper/generate_national_team_page.py がまだありません。スキップ。"
           fi
 
+      # ★ Phase C-3: プロ内定・2種登録選手ページを再生成
+      - name: プロ内定・2種登録選手ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_pro_signings_page.py ]; then
+            python scraper/generate_pro_signings_page.py
+          else
+            echo "scraper/generate_pro_signings_page.py がまだありません。スキップ。"
+          fi
+
       # ★ Phase 9-D: ブログ記事ページを生成 (Markdown -> HTML)
       - name: ブログ記事ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
