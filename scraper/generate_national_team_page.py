@@ -33,15 +33,28 @@ POS_LABEL = {"GK": "GK", "DF": "DF", "MF": "MF", "FW": "FW"}
 
 
 def _club_cell(player: dict) -> str:
-    """所属セル: tierに応じてリンク or テキスト"""
+    """所属セルの表示:
+       - origin（出身U-18年代チーム）があれば「現所属 ← 出身チーム(リンク)」
+         例）増田大空: ジュビロ磐田 ← 流通経済大学付属柏高校（流経大柏にリンク）
+       - それ以外で詳細ページにヒットすればそのチームの正式名（＝U-18表記）でリンク
+         （2種登録の選手もU-18側の所属名で表示・リンクされる。例 北原槙→FC東京U-18）
+       - 県ページのみヒット＝JFA表記＋県ページ誘導 ／ どれも無ければテキストのみ"""
     r = player.get("_resolved") or {}
     club = html_escape(player.get("club", ""))
-    if r.get("tier") == "team":
-        return f'<a href="{r["url"]}">{club} <i class="fas fa-arrow-right" style="font-size:.7em"></i></a>'
-    if r.get("tier") == "pref":
-        pref = html_escape(r.get("label", "県ページ"))
-        return f'{club} <a href="{r["url"]}" style="font-size:.85em">（{pref}の順位 ›）</a>'
-    return club
+    origin = player.get("origin")
+
+    def _linkify(res: dict, fallback_text: str) -> str:
+        if res.get("tier") == "team":
+            label = html_escape(res.get("label") or fallback_text)
+            return f'<a href="{res["url"]}">{label} <i class="fas fa-arrow-right" style="font-size:.7em"></i></a>'
+        if res.get("tier") == "pref":
+            pref = html_escape(res.get("label", "県ページ"))
+            return f'{html_escape(fallback_text)} <a href="{res["url"]}" style="font-size:.85em">（{pref}の順位 ›）</a>'
+        return html_escape(fallback_text)
+
+    if origin:
+        return f'{club} <span style="color:var(--text-light)">&larr;</span> {_linkify(r, origin)}'
+    return _linkify(r, player.get("club", ""))
 
 
 def _category_section(cat: dict) -> str:

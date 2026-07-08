@@ -183,7 +183,10 @@ def load_categories(base_dir: Path = BASE_DIR) -> dict:
     tidx = build_teams_index(base_dir)
     for cat in data.get("categories", []):
         for p in cat.get("players", []):
-            p["_resolved"] = resolve_club(p.get("club", ""), pidx, tidx)
+            # origin（出身U-18チーム）があればそれをリンク先にする。
+            # これによりバッジも出身チーム側に付く（例: 増田大空→流経大柏、ジュビロ磐田U-18には付かない）
+            link_name = p.get("origin") or p.get("club", "")
+            p["_resolved"] = resolve_club(link_name, pidx, tidx)
     return data
 
 
