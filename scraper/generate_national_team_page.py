@@ -54,7 +54,9 @@ def _club_cell(player: dict) -> str:
 
     if origin:
         return f'{club} <span style="color:var(--text-light)">&larr;</span> {_linkify(r, origin)}'
-    return _linkify(r, player.get("club", ""))
+    # origin の無い選手＝ユース年代所属。JFAがトップ名で登録していても表示はU-18名にそろえる
+    # （例: RB大宮アルディージャ → RB大宮アルディージャU18。県ページ扱いでもU-18表記で出す）
+    return _linkify(r, nt.canonical_club(player.get("club", "")))
 
 
 def _category_section(cat: dict) -> str:
