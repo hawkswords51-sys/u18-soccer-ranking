@@ -1,0 +1,106 @@
+# =====================================================================
+# 日本代表（U-16/U-17/U-18）選出選手データ
+# ---------------------------------------------------------------------
+# 出典: JFA公式「招集メンバー」ページ（各カテゴリの最新招集）
+# 更新方法: 新しい招集が発表されるたびに、該当カテゴリの
+#           event / period / source / players を差し替える（手順書5-x参照）
+# 注意:
+#   - name は JFA原文の表記（姓と名の間は半角スペース1つ）。
+#   - club は JFA原文の所属表記。トップ↔ユースの名寄せは生成スクリプト側で行う。
+#   - grade（学年）はJFA非公表。分かる場合のみ記入、無ければ空でよい。
+# =====================================================================
+updated: 2026-07-08
+
+categories:
+  # -------------------------------------------------------------------
+  - code: u18
+    label: U-18日本代表
+    age_note: 主に高校3年生相当（2008年生まれ世代）
+    event: 第8回 J-VILLAGE CUP U-18
+    period: 2026年3月11〜16日／福島・Jヴィレッジ
+    source: https://www.jfa.jp/national_team/u18_2026/news/00036094/
+    note: 招集発表時（2026/3/9）のメンバー。大会中に木寺優直→原湊士（サンフレッチェ広島F.Cユース）、中村龍→藤田明日翔（川崎フロンターレU-18）の入れ替えあり。
+    players:
+      - {no: 1,  pos: GK, name: エジケ 唯吹ヴィンセントジュニア, club: サガン鳥栖U-18}
+      - {no: 12, pos: GK, name: 渡邊 麻舟,   club: FC東京U-18}
+      - {no: 3,  pos: DF, name: メンディー サイモン友, club: 流通経済大学付属柏高}
+      - {no: 4,  pos: DF, name: ゼイダム小田 孟武, club: 桐生第一高}
+      - {no: 5,  pos: DF, name: 藤井 翔大,   club: 横浜F・マリノスユース}
+      - {no: 13, pos: DF, name: 藤川 虎三,   club: アビスパ福岡U-18}
+      - {no: 2,  pos: MF, name: 木寺 優直,   club: RB大宮アルディージャ}
+      - {no: 6,  pos: MF, name: 小川 尋斗,   club: 川崎フロンターレU-18}
+      - {no: 7,  pos: MF, name: 中村 龍,     club: 湘南ベルマーレU-18}
+      - {no: 8,  pos: MF, name: 瀬口 大翔,   club: ヴィッセル神戸}
+      - {no: 10, pos: MF, name: 小林 志紋,   club: サンフレッチェ広島}
+      - {no: 15, pos: MF, name: エドワード 真秀, club: RB大宮アルディージャ}
+      - {no: 16, pos: MF, name: 増田 大空,   club: ジュビロ磐田}
+      - {no: 18, pos: MF, name: 大貫 琉偉,   club: 鹿島アントラーズユース}
+      - {no: 19, pos: MF, name: 平野 遼,     club: 横浜F・マリノスユース}
+      - {no: 9,  pos: FW, name: マギー ジェラニー蓮, club: RB大宮アルディージャ}
+      - {no: 11, pos: FW, name: 前田 陽輝,   club: アビスパ福岡}
+      - {no: 14, pos: FW, name: 平岡 貴敬,   club: 阪南大学高}
+      - {no: 17, pos: FW, name: 加藤 海輝,   club: 横浜F・マリノスユース}
+      - {no: 20, pos: FW, name: 葛西 夢吹,   club: 湘南ベルマーレU-18}
+
+  # -------------------------------------------------------------------
+  - code: u17
+    label: U-17日本代表
+    age_note: 主に高校2年生相当（2009年生まれ世代）
+    event: AFC U17アジアカップ サウジアラビア2026
+    period: 2026年4〜5月／サウジアラビア・ジェッダ
+    source: https://www.jfa.jp/national_team/u17_2026/afc_u17_asiancup_2026/member.html
+    note: AFC U17アジアカップ本大会の招集メンバー。背番号2 岩下雄飛は4/23追加招集。
+    players:
+      - {no: 1,  pos: GK, name: 大下 幸誠,   club: 鹿島アントラーズユース}
+      - {no: 12, pos: GK, name: 木田 蓮人,   club: 帝京長岡高}
+      - {no: 23, pos: GK, name: 高橋 恒輝,   club: 大成高}
+      - {no: 2,  pos: DF, name: 岩下 雄飛,   club: 東海大学付属静岡翔洋高}
+      - {no: 3,  pos: DF, name: 元砂 晏翔仁ウデンバ, club: 鹿島アントラーズ}
+      - {no: 4,  pos: DF, name: 竹内 悠三,   club: 名古屋グランパスU-18}
+      - {no: 13, pos: DF, name: エゼモクェ チメヅェ海, club: セレッソ大阪U-18}
+      - {no: 20, pos: DF, name: 熊田 佳斗,   club: RB大宮アルディージャ}
+      - {no: 22, pos: DF, name: 倉橋 幸暉,   club: 鹿島アントラーズユース}
+      - {no: 5,  pos: MF, name: 星 宗介,     club: 尚志高}
+      - {no: 6,  pos: MF, name: 岩土 そら,   club: 鹿島アントラーズユース}
+      - {no: 7,  pos: MF, name: 長南 開史,   club: 柏レイソル}
+      - {no: 8,  pos: MF, name: 和田 武士,   club: 浦和レッドダイヤモンズ}
+      - {no: 10, pos: MF, name: 北原 槙,     club: FC東京}
+      - {no: 14, pos: MF, name: 里見 汰福,   club: ヴィッセル神戸U-18}
+      - {no: 15, pos: MF, name: 恒吉 良真,   club: 名古屋グランパスU-18}
+      - {no: 16, pos: MF, name: 木村 風斗,   club: 川崎フロンターレU-18}
+      - {no: 17, pos: MF, name: 藤本 祥輝,   club: ガンバ大阪ユース}
+      - {no: 18, pos: MF, name: 白男川 羚斗, club: 名古屋グランパスU-18}
+      - {no: 19, pos: MF, name: 舘美 駿,     club: 修徳高}
+      - {no: 21, pos: MF, name: 岡本 新大,   club: ガンバ大阪ユース}
+      - {no: 9,  pos: FW, name: 髙木 瑛人,   club: 鹿島アントラーズユース}
+      - {no: 11, pos: FW, name: 齋藤 翔,     club: 横浜FCユース}
+
+  # -------------------------------------------------------------------
+  - code: u16
+    label: U-16日本代表
+    age_note: 主に高校1年生相当（2010年生まれ世代）
+    event: U-16インターナショナルドリームカップ2026 JAPAN
+    period: 2026年5月31日〜6月7日／福島・Jヴィレッジ
+    source: https://www.jfa.jp/national_team/u16_2026/news/00036373/
+    note: 招集発表時のメンバー。5/28にGK #12 新村和史（負傷辞退）→小畑颯亮（ガンバ大阪ユース）へ変更。
+    players:
+      - {no: 1,  pos: GK, name: シュルツ 建斗, club: 鹿島アントラーズユース}
+      - {no: 12, pos: GK, name: 新村 和史,   club: RB大宮アルディージャU18}
+      - {no: 2,  pos: DF, name: 對馬 羽琉,   club: 川崎フロンターレU-18}
+      - {no: 3,  pos: DF, name: 大垣 徹平,   club: 清水エスパルスユース}
+      - {no: 4,  pos: DF, name: 藤田 勇雅,   club: ジェフユナイテッド市原・千葉U-18}
+      - {no: 5,  pos: DF, name: 上野 煌士郎, club: 川崎フロンターレU-15生田}
+      - {no: 15, pos: DF, name: 中山 柊斗,   club: 横浜F・マリノスユース}
+      - {no: 18, pos: DF, name: 渡部 直宏,   club: 東京ヴェルディユース}
+      - {no: 6,  pos: MF, name: 花元 誉絆,   club: ヴィッセル神戸U-18}
+      - {no: 7,  pos: MF, name: 深谷 朔共,   club: 名古屋グランパスU-18}
+      - {no: 10, pos: MF, name: 梶山 蓮翔,   club: FC東京U-18}
+      - {no: 13, pos: MF, name: 進藤 新大,   club: 柏レイソルU-18}
+      - {no: 14, pos: MF, name: 瀬賀 結臣,   club: FC東京U-18}
+      - {no: 16, pos: MF, name: 鮫島 充輝,   club: 名古屋グランパスU-18}
+      - {no: 17, pos: MF, name: 伊藤 航,     club: FC東京U-18}
+      - {no: 8,  pos: FW, name: 三井寺 眞,   club: 横浜F・マリノス}
+      - {no: 9,  pos: FW, name: 高田 憲慎,   club: 帝京大学可児高}
+      - {no: 11, pos: FW, name: 八色 隼人,   club: 名古屋グランパスU-18}
+      - {no: 19, pos: FW, name: 迫田 凌和,   club: RB大宮アルディージャU18}
+      - {no: 20, pos: FW, name: オツコロ 海桜, club: 昌平高}

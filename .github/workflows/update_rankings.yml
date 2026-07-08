@@ -168,7 +168,17 @@ jobs:
           else
             echo "scraper/generate_team_pages.py がまだありません。スキップ。"
           fi
-          
+
+      # ★ Phase C-2: 日本代表（U-16/17/18）選出選手ページを再生成
+      - name: 日本代表選出選手ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_national_team_page.py ]; then
+            python scraper/generate_national_team_page.py
+          else
+            echo "scraper/generate_national_team_page.py がまだありません。スキップ。"
+          fi
+
       # ★ Phase 9-D: ブログ記事ページを生成 (Markdown -> HTML)
       - name: ブログ記事ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
