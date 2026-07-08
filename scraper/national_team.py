@@ -55,7 +55,8 @@ def _norm(s: str) -> str:
     if not s:
         return ""
     s = unicodedata.normalize("NFKC", str(s))
-    s = s.replace(" ", "").replace("　", "").replace("・", "・")
+    # 空白・ピリオド（F.C. / F.C / FC の揺れ）を除去して比較する
+    s = s.replace(" ", "").replace("　", "").replace(".", "").replace("．", "").replace("。", "")
     return s.strip()
 
 
