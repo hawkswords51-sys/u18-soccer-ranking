@@ -513,8 +513,10 @@ def build_author_box(article):
 
 
 def build_article_ai_summary(article):
-    """記事本文の冒頭に置くAI引用向け要約。frontmatterのdescriptionを可視化する。"""
-    desc = (article.get("description") or "").strip()
+    """記事本文の冒頭に置くAI引用向け要約。
+    frontmatterに aiSummary があればそれを優先（meta descriptionだけ変えたい時に
+    AI要約を固定できる）。なければ従来どおり description を可視化する。"""
+    desc = (article.get("aiSummary") or article.get("description") or "").strip()
     if not desc:
         return ""
     style = (
