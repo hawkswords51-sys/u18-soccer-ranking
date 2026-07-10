@@ -18,11 +18,21 @@ on:
         required: false
         default: false
 
-  # tournaments_data.yml を編集して push したら即時反映
+  # データ・記事ファイルを編集して push したら即時反映（手動 Run workflow 不要）
+  # ※push起動時はスクレイピング(順位取得等)をスキップし、ページ再生成＋コミットだけ走る
+  # ※botの自動コミット(GITHUB_TOKEN)はワークフローを再起動しないGitHub仕様のため無限ループしない
   push:
     branches: [main]
     paths:
       - 'data/tournaments_data.yml'
+      - 'data/team-profiles/**'
+      - 'data/tournaments/**'
+      - 'data/scorers/**'
+      - 'data/league_matches/**'
+      - 'data/national-team-players.yml'
+      - 'data/pro-signings.yml'
+      - 'data/premier_final_history.yml'
+      - 'blog-source/**'
 
 jobs:
   update:
@@ -266,11 +276,21 @@ jobs:
             echo "変更なし – push スキップ"
           else
             git commit -m "chore: 順位/大会データ・SEO/リーグページ自動更新 $(date '+%Y-%m-%d')"
+            # ★修正(2026-07-11): push が3回とも失敗したらジョブを赤(失敗)にする
+            #   以前は失敗しても緑のまま終わり「Actionsは緑なのにサイトが変わらない」罠の原因だった
+            PUSHED=0
             for i in 1 2 3; do
-              git pull --rebase --autostash origin main && git push && break
+              if git pull --rebase --autostash origin main && git push; then
+                PUSHED=1
+                break
+              fi
               echo "push 失敗、リトライ $i/3 ..."
               sleep 5
             done
+            if [ "$PUSHED" != "1" ]; then
+              echo "::error::push が3回失敗しました。サイトに反映されていません。このステップのログを確認してください。"
+              exit 1
+            fi
           fi
 
       # ★ Phase 9-E: IndexNow に更新を通知（Bing 等への即時インデックス通知）
