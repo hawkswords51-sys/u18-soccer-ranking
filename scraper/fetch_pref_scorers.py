@@ -10,7 +10,8 @@ data/scorers/pref-<id>-1.json を更新する。生成された JSON は scorer_
 設計方針:
 - これらの出典は「公式集計」なので検算（選手合計==GF）は不要。掲載順をそのまま反映。
 - 取得失敗・0件のときは既存 JSON を上書きしない（事故防止）。
-- PDF 出典（茨城/福井/三重/愛媛/福島）は本スクリプトの対象外（別途・手動更新）。
+- PDF 出典（茨城/福井/三重/愛媛）は fetch_pdf_scorers.py が自動更新（2026-07-11〜）。
+  福島（画像PDF）のみ手入力方式（MANUAL_SOURCES）のまま。
 
 ローカルでは外部取得が制限されるため、Actions（オープンネットワーク）で実行する。
 """
@@ -423,6 +424,13 @@ def main():
     print(fetch_okinawa(today))
     # Jユースカップ（Jリーグ公式・自動集計）
     print(fetch_jyouth(today))
+    # PDF出典の県（茨城・福井・三重・愛媛）→ fetch_pdf_scorers.py に分離
+    try:
+        import fetch_pdf_scorers
+        for m in fetch_pdf_scorers.run(today):
+            print(m)
+    except Exception as e:
+        print(f"  PDF県: モジュール実行失敗のためスキップ（既存維持）: {e}")
 
 
 if __name__ == "__main__":

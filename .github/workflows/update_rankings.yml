@@ -56,6 +56,7 @@ jobs:
           pip install -r scraper/requirements.txt
           pip install selenium webdriver-manager pyyaml markdown
           pip install pandas lxml
+          pip install pdfplumber
 
       - name: 順位データを更新
         if: ${{ github.event_name != 'push' }}
