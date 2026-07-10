@@ -7014,10 +7014,26 @@
         "leagueRank": 2
       },
       {
+        "id": "nr004",
+        "name": "生駒高校",
+        "league": "奈良県NFAサッカーリーグ",
+        "rank": 3,
+        "points": 18,
+        "played": 9,
+        "won": 6,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 22,
+        "goalsAgainst": 11,
+        "prefectureRank": 3,
+        "goalDiff": 7,
+        "leagueRank": 3
+      },
+      {
         "id": "nr006",
         "name": "畝傍高校",
         "league": "奈良県NFAサッカーリーグ",
-        "rank": 3,
+        "rank": 4,
         "points": 18,
         "played": 8,
         "won": 6,
@@ -7025,24 +7041,8 @@
         "lost": 2,
         "goalsFor": 16,
         "goalsAgainst": 7,
-        "prefectureRank": 3,
-        "goalDiff": -3,
-        "leagueRank": 3
-      },
-      {
-        "id": "nr004",
-        "name": "生駒高校",
-        "league": "奈良県NFAサッカーリーグ",
-        "rank": 4,
-        "points": 15,
-        "played": 8,
-        "won": 5,
-        "drawn": 0,
-        "lost": 3,
-        "goalsFor": 20,
-        "goalsAgainst": 10,
         "prefectureRank": 4,
-        "goalDiff": 7,
+        "goalDiff": -3,
         "leagueRank": 4
       },
       {
@@ -7131,12 +7131,12 @@
         "league": "奈良県NFAサッカーリーグ",
         "rank": 10,
         "points": 3,
-        "played": 8,
+        "played": 9,
         "won": 0,
         "drawn": 3,
-        "lost": 5,
-        "goalsFor": 4,
-        "goalsAgainst": 20,
+        "lost": 6,
+        "goalsFor": 5,
+        "goalsAgainst": 22,
         "prefectureRank": 10,
         "goalDiff": -5,
         "leagueRank": 10
@@ -11202,8 +11202,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-07-10 08:16",
+    "lastUpdated": "2026-07-10 19:09",
     "year": 2026,
-    "updatedCount": 577
+    "updatedCount": 585
   }
 }
