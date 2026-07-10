@@ -22,20 +22,20 @@
       "short": "畝傍"
     },
     {
-      "name": "法隆寺国際",
-      "short": "法隆寺国際"
-    },
-    {
       "name": "香芝",
       "short": "香芝"
     },
     {
-      "name": "一条",
-      "short": "一条"
+      "name": "法隆寺国際",
+      "short": "法隆寺国際"
     },
     {
       "name": "五條",
       "short": "五條"
+    },
+    {
+      "name": "一条",
+      "short": "一条"
     },
     {
       "name": "山辺",
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "香芝",
+      "points": 13,
+      "played": 8,
+      "won": 4,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 10,
+      "ga": 14,
+      "gd": -4
+    },
+    {
+      "rank": 6,
       "team": "法隆寺国際",
       "points": 10,
       "played": 7,
@@ -108,31 +120,7 @@
       "gd": -4
     },
     {
-      "rank": 6,
-      "team": "香芝",
-      "points": 10,
-      "played": 7,
-      "won": 3,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 8,
-      "ga": 13,
-      "gd": -5
-    },
-    {
       "rank": 7,
-      "team": "一条",
-      "points": 5,
-      "played": 8,
-      "won": 1,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 7,
-      "ga": 20,
-      "gd": -13
-    },
-    {
-      "rank": 8,
       "team": "五條",
       "points": 5,
       "played": 8,
@@ -141,6 +129,18 @@
       "lost": 5,
       "gf": 14,
       "ga": 28,
+      "gd": -14
+    },
+    {
+      "rank": 8,
+      "team": "一条",
+      "points": 5,
+      "played": 9,
+      "won": 1,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 8,
+      "ga": 22,
       "gd": -14
     },
     {
@@ -198,15 +198,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "奈良クラブユース",
-      "hs": 3,
-      "as": 1,
-      "away": "法隆寺国際",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "奈良クラブユース",
       "hs": 5,
@@ -216,11 +207,11 @@
     },
     {
       "md": 0,
-      "date": "2026-05-03",
+      "date": "2026-04-25",
       "home": "奈良クラブユース",
-      "hs": 5,
+      "hs": 3,
       "as": 1,
-      "away": "一条",
+      "away": "法隆寺国際",
       "status": "played"
     },
     {
@@ -230,6 +221,15 @@
       "hs": 11,
       "as": 0,
       "away": "五條",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "奈良クラブユース",
+      "hs": 5,
+      "as": 1,
+      "away": "一条",
       "status": "played"
     },
     {
@@ -270,15 +270,6 @@
     },
     {
       "md": 0,
-      "date": "2026-05-03",
-      "home": "奈良育英",
-      "hs": 5,
-      "as": 0,
-      "away": "法隆寺国際",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-04",
       "home": "香芝",
       "hs": 3,
@@ -288,11 +279,11 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
+      "date": "2026-05-03",
       "home": "奈良育英",
-      "hs": 4,
-      "as": 1,
-      "away": "一条",
+      "hs": 5,
+      "as": 0,
+      "away": "法隆寺国際",
       "status": "played"
     },
     {
@@ -303,6 +294,15 @@
       "as": null,
       "away": "五條",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "奈良育英",
+      "hs": 4,
+      "as": 1,
+      "away": "一条",
+      "status": "played"
     },
     {
       "md": 0,
@@ -333,15 +333,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "生駒",
-      "hs": 3,
-      "as": 1,
-      "away": "法隆寺国際",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "生駒",
       "hs": 3,
@@ -351,11 +342,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "一条",
-      "hs": 0,
-      "as": 5,
-      "away": "生駒",
+      "date": "2026-04-04",
+      "home": "生駒",
+      "hs": 3,
+      "as": 1,
+      "away": "法隆寺国際",
       "status": "played"
     },
     {
@@ -365,6 +356,15 @@
       "hs": 4,
       "as": 2,
       "away": "五條",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "一条",
+      "hs": 0,
+      "as": 5,
+      "away": "生駒",
       "status": "played"
     },
     {
@@ -387,15 +387,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "畝傍",
-      "hs": null,
-      "as": null,
-      "away": "法隆寺国際",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-25",
       "home": "畝傍",
       "hs": 1,
@@ -405,12 +396,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "一条",
-      "hs": 0,
-      "as": 1,
-      "away": "畝傍",
-      "status": "played"
+      "date": "",
+      "home": "畝傍",
+      "hs": null,
+      "as": null,
+      "away": "法隆寺国際",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -419,6 +410,15 @@
       "hs": 4,
       "as": 0,
       "away": "五條",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "一条",
+      "hs": 0,
+      "as": 1,
+      "away": "畝傍",
       "status": "played"
     },
     {
@@ -442,55 +442,10 @@
     {
       "md": 0,
       "date": "",
-      "home": "法隆寺国際",
-      "hs": null,
-      "as": null,
-      "away": "香芝",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "法隆寺国際",
-      "hs": 1,
-      "as": 0,
-      "away": "一条",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "法隆寺国際",
-      "hs": 2,
-      "as": 2,
-      "away": "五條",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "山辺",
-      "hs": 0,
-      "as": 2,
-      "away": "法隆寺国際",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "法隆寺国際",
-      "hs": 2,
-      "as": 0,
-      "away": "橿原",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
       "home": "香芝",
       "hs": null,
       "as": null,
-      "away": "一条",
+      "away": "法隆寺国際",
       "status": "scheduled"
     },
     {
@@ -500,6 +455,15 @@
       "hs": 2,
       "as": 1,
       "away": "五條",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-10",
+      "home": "一条",
+      "hs": 1,
+      "as": 2,
+      "away": "香芝",
       "status": "played"
     },
     {
@@ -522,9 +486,63 @@
     },
     {
       "md": 0,
+      "date": "2026-06-13",
+      "home": "法隆寺国際",
+      "hs": 2,
+      "as": 2,
+      "away": "五條",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "法隆寺国際",
+      "hs": 1,
+      "as": 0,
+      "away": "一条",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "山辺",
+      "hs": 0,
+      "as": 2,
+      "away": "法隆寺国際",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "法隆寺国際",
+      "hs": 2,
+      "as": 0,
+      "away": "橿原",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-06-19",
       "home": "一条",
       "hs": 3,
+      "as": 2,
+      "away": "五條",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "五條",
+      "hs": 5,
+      "as": 0,
+      "away": "山辺",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "橿原",
+      "hs": 2,
       "as": 2,
       "away": "五條",
       "status": "played"
@@ -545,24 +563,6 @@
       "hs": 1,
       "as": 1,
       "away": "橿原",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "五條",
-      "hs": 5,
-      "as": 0,
-      "away": "山辺",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "橿原",
-      "hs": 2,
-      "as": 2,
-      "away": "五條",
       "status": "played"
     },
     {
