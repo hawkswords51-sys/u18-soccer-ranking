@@ -9815,10 +9815,26 @@
     "region": "九州",
     "teams": [
       {
+        "id": "ng002",
+        "name": "V・ファーレン長崎U-18",
+        "league": "プリンスリーグ九州1部",
+        "rank": 1,
+        "points": 24,
+        "played": 9,
+        "won": 8,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 25,
+        "goalsAgainst": 11,
+        "prefectureRank": 1,
+        "goalDiff": 6,
+        "leagueRank": 1
+      },
+      {
         "id": "ng008",
         "name": "九州文化学園高校",
         "league": "長崎県1部",
-        "rank": 1,
+        "rank": 2,
         "points": 22,
         "played": 9,
         "won": 7,
@@ -9826,25 +9842,9 @@
         "lost": 1,
         "goalsFor": 26,
         "goalsAgainst": 15,
-        "prefectureRank": 1,
+        "prefectureRank": 2,
         "goalDiff": 2,
         "leagueRank": 1
-      },
-      {
-        "id": "ng002",
-        "name": "V・ファーレン長崎U-18",
-        "league": "プリンスリーグ九州1部",
-        "rank": 2,
-        "points": 21,
-        "played": 8,
-        "won": 7,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 22,
-        "goalsAgainst": 9,
-        "prefectureRank": 2,
-        "goalDiff": 6,
-        "leagueRank": 2
       },
       {
         "id": "ng003",
@@ -10816,15 +10816,15 @@
         "league": "プリンスリーグ九州1部",
         "rank": 2,
         "points": 22,
-        "played": 8,
+        "played": 9,
         "won": 7,
         "drawn": 1,
-        "lost": 0,
-        "goalsFor": 17,
-        "goalsAgainst": 4,
+        "lost": 1,
+        "goalsFor": 19,
+        "goalsAgainst": 7,
         "prefectureRank": 2,
         "goalDiff": 5,
-        "leagueRank": 1
+        "leagueRank": 2
       },
       {
         "id": "ks001",
@@ -11202,7 +11202,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-07-11 12:14",
+    "lastUpdated": "2026-07-11 12:31",
     "year": 2026,
     "updatedCount": 585
   }
