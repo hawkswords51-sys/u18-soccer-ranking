@@ -50,13 +50,25 @@ KOKO_URL = {
 UA = {"User-Agent": "Mozilla/5.0 (u18-soccer cross-table updater)"}
 
 
+# koko-soccer の表記 -> このリポジトリの teams[].name（JSON側の正式名）
+# 表記ゆれで「未知のチーム名」となり自動更新が据え置かれるのを防ぐ。
+# 増やすときはここに1行足すだけでよい（2026-07-12 新設）。
+# 発端: 関西1部と東海がこの2件のズレだけで6/13から更新停止していた。
+ALIASES = {
+    "京都サンガF.C. U-18": "京都サンガF.C.",   # 関西1部（koko側にU-18が付く）
+    "大阪産大附": "産大附属",                  # 関西1部（koko側が別略称）
+    "帝京大可児": "帝京大学可児",              # 東海（koko側が略称）
+}
+
+
 def norm(name: str) -> str:
-    """チーム名から末尾の（県名）を除いて正規化（内部の空白は保持）"""
+    """チーム名から末尾の（県名）を除いて正規化し、表記ゆれをJSONの正式名へ寄せる"""
     if name is None:
         return ""
     s = str(name)
     s = re.sub(r"[（(][^）)]*[）)]\s*$", "", s)  # 末尾の (県) を除去
-    return s.strip()
+    s = s.strip()
+    return ALIASES.get(s, s)
 
 
 def parse_score(cell: str):
