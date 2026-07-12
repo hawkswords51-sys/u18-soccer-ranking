@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東海 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448176-448176-fl",
-  "lastUpdated": "2026-07-06",
+  "lastUpdated": "2026-07-13",
   "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
@@ -33,10 +33,10 @@
       "rank": 5,
       "name": "高田憲慎",
       "team": "帝京可児",
-      "goals": 5
+      "goals": 6
     },
     {
-      "rank": 5,
+      "rank": 6,
       "name": "杉山琥二郎",
       "team": "清水",
       "goals": 5
@@ -103,6 +103,12 @@
     },
     {
       "rank": 9,
+      "name": "山崎瑛晴",
+      "team": "清水",
+      "goals": 3
+    },
+    {
+      "rank": 9,
       "name": "福地諒大",
       "team": "藤枝東",
       "goals": 3
@@ -118,26 +124,7 @@
       "name": "沢井翼",
       "team": "静学",
       "goals": 3
-    },
-    {
-      "rank": 20,
-      "name": "山本倫也",
-      "team": "三重",
-      "goals": 2
     }
   ],
-  "coverage": [
-    {
-      "team": "清水",
-      "attributed": 18,
-      "gf": 22,
-      "missing": 4
-    },
-    {
-      "team": "藤枝明誠",
-      "attributed": 7,
-      "gf": 8,
-      "missing": 1
-    }
-  ]
+  "coverage": []
 }

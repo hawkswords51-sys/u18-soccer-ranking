@@ -2,31 +2,31 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448178-448178-fl",
-  "lastUpdated": "2026-07-06",
+  "lastUpdated": "2026-07-13",
   "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
-      "name": "柿ヶ原淳太",
-      "team": "桐蔭",
-      "goals": 7
-    },
-    {
-      "rank": 1,
-      "name": "小堀厳咲",
-      "team": "仰星",
-      "goals": 7
-    },
-    {
-      "rank": 1,
       "name": "本城圭太",
       "team": "滝二",
-      "goals": 7
+      "goals": 8
     },
     {
       "rank": 1,
       "name": "波多野蒼大",
       "team": "滝二",
+      "goals": 8
+    },
+    {
+      "rank": 3,
+      "name": "柿ヶ原淳太",
+      "team": "桐蔭",
+      "goals": 7
+    },
+    {
+      "rank": 3,
+      "name": "小堀厳咲",
+      "team": "仰星",
       "goals": 7
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "rank": 9,
-      "name": "尾崎世空",
+      "name": "尾﨑世空",
       "team": "神戸B",
       "goals": 4
     },
@@ -126,12 +126,5 @@
       "goals": 2
     }
   ],
-  "coverage": [
-    {
-      "team": "滝二",
-      "attributed": 21,
-      "gf": 23,
-      "missing": 2
-    }
-  ]
+  "coverage": []
 }
