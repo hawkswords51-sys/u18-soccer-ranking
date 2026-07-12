@@ -53,7 +53,19 @@ def _club_cell(player: dict) -> str:
         return html_escape(fallback_text)
 
     if origin:
-        return f'{club} <span style="color:var(--text-light)">&larr;</span> {_linkify(r, origin)}'
+        # 「現所属」と「出身U-18チーム」を1セル内で2段に分けて表示（矢印の二重表示を避ける）
+        # 例）ジュビロ磐田 / 出身: 流通経済大学付属柏高校 ›
+        if r.get("tier") == "team":
+            link = f'<a href="{r["url"]}">{html_escape(r.get("label") or origin)} ›</a>'
+        elif r.get("tier") == "pref":
+            link = f'<a href="{r["url"]}">{html_escape(origin)} ›</a>'
+        else:
+            link = html_escape(origin)
+        return (
+            f'{club}'
+            f'<span style="display:block;font-size:.85em;color:var(--text-light);margin-top:2px">'
+            f'出身: {link}</span>'
+        )
     # origin の無い選手＝ユース年代所属。JFAがトップ名で登録していても表示はU-18名にそろえる
     # （例: RB大宮アルディージャ → RB大宮アルディージャU18。県ページ扱いでもU-18表記で出す）
     return _linkify(r, nt.canonical_club(player.get("club", "")))
