@@ -1124,6 +1124,15 @@ def main():
             f'<span style="margin-left:6px;font-size:0.85em;">（2026-07-25 公開予定）</span></li>'
         )
 
+    # 心臓振盪コラム（2026-07-12 追加）：脳震盪と同じ自動切替方式。
+    # 記事フォルダ(blog/posts/commotio-cordis-aed-2026)ができたら自動でリンク表示。
+    _commotio_slug = "commotio-cordis-aed-2026"
+    _commotio_title = "【医学コラム】胸にボールが当たって倒れたら｜心臓振盪とAED（救急医が解説）"
+    if (BASE_DIR / "blog" / "posts" / _commotio_slug).exists():
+        commotio_li = f'<li><a href="/blog/posts/{_commotio_slug}/">{_commotio_title}</a></li>'
+    else:
+        commotio_li = ""
+
     # 大会安全ボックス（2026-07-02 追加）：試合結果セクション直前に表示する
     # 暑熱・脳震盪の要点＋医学コラム導線。脳震盪リンクは上と同じ自動切替。
     if (BASE_DIR / "blog" / "posts" / _concussion_slug).exists():
@@ -1280,6 +1289,7 @@ def main():
           <li><a href="/blog/posts/interhigh-2026-heat-safety/">【医学コラム】真夏のインターハイ暑熱対策ガイド(選手・保護者・指導者向け)</a></li>
           <li><a href="/blog/posts/2026-05-08-may-heatstroke-prevention/">【医学コラム】熱中症の危険サインと応急処置・予防法（救急医が解説）</a></li>
           {concussion_li}
+          {commotio_li}
           <li><a href="/blog/posts/2026-05-22-pre-match-sleep-strategy/">【医学コラム】試合前日に眠れない時の対処法・睡眠戦略</a></li>
           <li><a href="/blog/posts/2026-06-08-iron-deficiency-anemia/">【医学コラム】スポーツ貧血（鉄欠乏性貧血）の見抜き方と対策</a></li>
           <li><a href="/tournaments/interhigh-history/">インターハイ サッカー男子 歴代優勝校一覧</a></li>
