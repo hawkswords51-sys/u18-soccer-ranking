@@ -56,6 +56,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "流通経済大柏",
+      "pts": 27,
+      "played": 11,
+      "won": 9,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 24,
+      "ga": 9,
+      "gd": 15
+    },
+    {
+      "rank": 2,
       "team": "鹿島アントラーズユース",
       "pts": 24,
       "played": 11,
@@ -65,18 +77,6 @@
       "gf": 34,
       "ga": 16,
       "gd": 18
-    },
-    {
-      "rank": 2,
-      "team": "流通経済大柏",
-      "pts": 24,
-      "played": 10,
-      "won": 8,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 18,
-      "ga": 7,
-      "gd": 11
     },
     {
       "rank": 3,
@@ -166,13 +166,13 @@
       "rank": 10,
       "team": "川崎フロンターレU-18",
       "pts": 8,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 2,
-      "lost": 6,
-      "gf": 16,
-      "ga": 25,
-      "gd": -9
+      "lost": 7,
+      "gf": 18,
+      "ga": 31,
+      "gd": -13
     },
     {
       "rank": 11,
@@ -789,10 +789,10 @@
       "md": 11,
       "date": "2026-07-11",
       "home": "川崎フロンターレU-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 6,
       "away": "流通経済大柏",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,

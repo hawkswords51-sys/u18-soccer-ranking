@@ -80,6 +80,18 @@
     },
     {
       "rank": 3,
+      "team": "アビスパ福岡 U-18",
+      "pts": 19,
+      "played": 11,
+      "won": 6,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 14,
+      "ga": 14,
+      "gd": 0
+    },
+    {
+      "rank": 4,
       "team": "サガン鳥栖U-18",
       "pts": 18,
       "played": 11,
@@ -91,7 +103,7 @@
       "gd": 5
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "大津",
       "pts": 18,
       "played": 10,
@@ -103,7 +115,7 @@
       "gd": 4
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 18,
       "played": 11,
@@ -115,31 +127,31 @@
       "gd": 3
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "神村学園",
       "pts": 16,
-      "played": 10,
+      "played": 11,
       "won": 4,
       "drawn": 4,
-      "lost": 2,
-      "gf": 18,
-      "ga": 17,
-      "gd": 1
-    },
-    {
-      "rank": 7,
-      "team": "アビスパ福岡 U-18",
-      "pts": 16,
-      "played": 10,
-      "won": 5,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 11,
-      "ga": 13,
-      "gd": -2
+      "lost": 3,
+      "gf": 19,
+      "ga": 20,
+      "gd": -1
     },
     {
       "rank": 8,
+      "team": "ガンバ大阪ユース",
+      "pts": 14,
+      "played": 11,
+      "won": 4,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 16,
+      "ga": 19,
+      "gd": -3
+    },
+    {
+      "rank": 9,
       "team": "東山",
       "pts": 14,
       "played": 11,
@@ -151,7 +163,7 @@
       "gd": -3
     },
     {
-      "rank": 9,
+      "rank": 10,
       "team": "米子北",
       "pts": 12,
       "played": 10,
@@ -161,18 +173,6 @@
       "gf": 18,
       "ga": 15,
       "gd": 3
-    },
-    {
-      "rank": 10,
-      "team": "ガンバ大阪ユース",
-      "pts": 11,
-      "played": 10,
-      "won": 3,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 15,
-      "ga": 19,
-      "gd": -4
     },
     {
       "rank": 11,
@@ -190,13 +190,13 @@
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 5,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 2,
-      "lost": 7,
+      "lost": 8,
       "gf": 10,
-      "ga": 27,
-      "gd": -17
+      "ga": 28,
+      "gd": -18
     }
   ],
   "matches": [
@@ -249,10 +249,10 @@
       "md": 1,
       "date": "2026-07-11",
       "home": "ファジアーノ岡山U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "ガンバ大阪ユース",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 2,
@@ -735,10 +735,10 @@
       "md": 10,
       "date": "2026-07-11",
       "home": "神村学園",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "アビスパ福岡 U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
