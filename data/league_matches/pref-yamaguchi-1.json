@@ -3,31 +3,31 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/chugoku/yamaguchi/league/table/163777",
   "sourceName": "山口少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-11",
+  "lastUpdated": "2026-07-12",
   "teams": [
     {
       "name": "高川B",
       "short": "高川B"
     },
     {
-      "name": "西京",
-      "short": "西京"
-    },
-    {
       "name": "宇部鴻城",
       "short": "宇部鴻城"
+    },
+    {
+      "name": "西京",
+      "short": "西京"
     },
     {
       "name": "聖光",
       "short": "聖光"
     },
     {
-      "name": "山口県鴻城",
-      "short": "山口県鴻城"
-    },
-    {
       "name": "小野田工業",
       "short": "小野田工業"
+    },
+    {
+      "name": "山口県鴻城",
+      "short": "山口県鴻城"
     },
     {
       "name": "宇部工業",
@@ -53,6 +53,18 @@
     },
     {
       "rank": 2,
+      "team": "宇部鴻城",
+      "points": 19,
+      "played": 9,
+      "won": 6,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 35,
+      "ga": 14,
+      "gd": 21
+    },
+    {
+      "rank": 3,
       "team": "西京",
       "points": 18,
       "played": 8,
@@ -62,18 +74,6 @@
       "gf": 58,
       "ga": 9,
       "gd": 49
-    },
-    {
-      "rank": 3,
-      "team": "宇部鴻城",
-      "points": 16,
-      "played": 8,
-      "won": 5,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 31,
-      "ga": 11,
-      "gd": 20
     },
     {
       "rank": 4,
@@ -89,63 +89,54 @@
     },
     {
       "rank": 5,
-      "team": "山口県鴻城",
-      "points": 9,
+      "team": "小野田工業",
+      "points": 7,
       "played": 9,
-      "won": 3,
-      "drawn": 0,
+      "won": 2,
+      "drawn": 1,
       "lost": 6,
-      "gf": 12,
-      "ga": 45,
-      "gd": -33
+      "gf": 9,
+      "ga": 55,
+      "gd": -46
     },
     {
       "rank": 6,
-      "team": "小野田工業",
+      "team": "山口県鴻城",
       "points": 6,
       "played": 8,
       "won": 2,
       "drawn": 0,
       "lost": 6,
-      "gf": 4,
-      "ga": 50,
-      "gd": -46
+      "gf": 7,
+      "ga": 44,
+      "gd": -37
     },
     {
       "rank": 7,
       "team": "宇部工業",
-      "points": 3,
+      "points": 4,
       "played": 8,
       "won": 1,
-      "drawn": 0,
-      "lost": 7,
-      "gf": 11,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 15,
       "ga": 38,
-      "gd": -27
+      "gd": -23
     },
     {
       "rank": 8,
       "team": "宇部",
       "points": 3,
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 0,
-      "lost": 7,
-      "gf": 5,
-      "ga": 37,
-      "gd": -32
+      "lost": 8,
+      "gf": 8,
+      "ga": 41,
+      "gd": -33
     }
   ],
   "matches": [
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "西京",
-      "hs": 1,
-      "as": 4,
-      "away": "高川B",
-      "status": "played"
-    },
     {
       "md": 0,
       "date": "",
@@ -153,6 +144,15 @@
       "hs": 5,
       "as": 2,
       "away": "宇部鴻城",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "西京",
+      "hs": 1,
+      "as": 4,
+      "away": "高川B",
       "status": "played"
     },
     {
@@ -166,20 +166,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "高川B",
-      "hs": 5,
-      "as": 0,
-      "away": "山口県鴻城",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-20",
       "home": "高川B",
       "hs": 9,
       "as": 0,
       "away": "小野田工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "高川B",
+      "hs": 5,
+      "as": 0,
+      "away": "山口県鴻城",
       "status": "played"
     },
     {
@@ -211,19 +211,55 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "聖光",
-      "hs": 4,
+      "date": "2026-04-25",
+      "home": "宇部鴻城",
+      "hs": 2,
       "as": 2,
-      "away": "西京",
+      "away": "聖光",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "山口県鴻城",
-      "hs": 0,
-      "as": 14,
+      "date": "2026-05-02",
+      "home": "宇部鴻城",
+      "hs": 7,
+      "as": 0,
+      "away": "小野田工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "宇部鴻城",
+      "hs": 6,
+      "as": 0,
+      "away": "山口県鴻城",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "宇部鴻城",
+      "hs": 5,
+      "as": 1,
+      "away": "宇部工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-11",
+      "home": "宇部鴻城",
+      "hs": 4,
+      "as": 3,
+      "away": "宇部",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "聖光",
+      "hs": 4,
+      "as": 2,
       "away": "西京",
       "status": "played"
     },
@@ -238,6 +274,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-29",
+      "home": "山口県鴻城",
+      "hs": 0,
+      "as": 14,
+      "away": "西京",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-25",
       "home": "西京",
       "hs": 10,
@@ -252,60 +297,6 @@
       "hs": 10,
       "as": 0,
       "away": "宇部",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "宇部鴻城",
-      "hs": 2,
-      "as": 2,
-      "away": "聖光",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "宇部鴻城",
-      "hs": 6,
-      "as": 0,
-      "away": "山口県鴻城",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "宇部鴻城",
-      "hs": 7,
-      "as": 0,
-      "away": "小野田工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "宇部鴻城",
-      "hs": 5,
-      "as": 1,
-      "away": "宇部工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "宇部鴻城",
-      "hs": 5,
-      "as": 1,
-      "away": "宇部",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "聖光",
-      "hs": 11,
-      "as": 0,
-      "away": "山口県鴻城",
       "status": "played"
     },
     {
@@ -315,6 +306,15 @@
       "hs": 1,
       "as": 0,
       "away": "小野田工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "聖光",
+      "hs": 11,
+      "as": 0,
+      "away": "山口県鴻城",
       "status": "played"
     },
     {
@@ -342,6 +342,24 @@
       "hs": 0,
       "as": 2,
       "away": "小野田工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "小野田工業",
+      "hs": 5,
+      "as": 5,
+      "away": "宇部工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "小野田工業",
+      "hs": 1,
+      "as": 0,
+      "away": "宇部",
       "status": "played"
     },
     {
@@ -359,24 +377,6 @@
       "home": "山口県鴻城",
       "hs": 2,
       "as": 1,
-      "away": "宇部",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "小野田工業",
-      "hs": null,
-      "as": null,
-      "away": "宇部工業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "小野田工業",
-      "hs": 1,
-      "as": 0,
       "away": "宇部",
       "status": "played"
     },
