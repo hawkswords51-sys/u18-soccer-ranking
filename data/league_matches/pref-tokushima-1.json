@@ -18,12 +18,12 @@
       "short": "鳴門"
     },
     {
-      "name": "川島",
-      "short": "川島"
-    },
-    {
       "name": "徳島北",
       "short": "徳島北"
+    },
+    {
+      "name": "川島",
+      "short": "川島"
     },
     {
       "name": "徳島科学技術",
@@ -85,27 +85,27 @@
     },
     {
       "rank": 4,
-      "team": "川島",
-      "points": 16,
-      "played": 8,
+      "team": "徳島北",
+      "points": 17,
+      "played": 9,
       "won": 5,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 2,
-      "gf": 28,
+      "gf": 31,
       "ga": 13,
-      "gd": 15
+      "gd": 18
     },
     {
       "rank": 5,
-      "team": "徳島北",
-      "points": 14,
-      "played": 8,
-      "won": 4,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 29,
-      "ga": 13,
-      "gd": 16
+      "team": "川島",
+      "points": 16,
+      "played": 9,
+      "won": 5,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 28,
+      "ga": 15,
+      "gd": 13
     },
     {
       "rank": 6,
@@ -122,14 +122,14 @@
     {
       "rank": 7,
       "team": "徳島商業S",
-      "points": 7,
-      "played": 8,
-      "won": 2,
+      "points": 10,
+      "played": 9,
+      "won": 3,
       "drawn": 1,
       "lost": 5,
-      "gf": 16,
-      "ga": 25,
-      "gd": -9
+      "gf": 20,
+      "ga": 26,
+      "gd": -6
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "城南",
       "points": 1,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 1,
-      "lost": 7,
-      "gf": 7,
-      "ga": 31,
-      "gd": -24
+      "lost": 8,
+      "gf": 8,
+      "ga": 35,
+      "gd": -27
     }
   ],
   "matches": [
@@ -189,20 +189,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "徳島市立S",
-      "hs": 6,
-      "as": 5,
-      "away": "川島",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "徳島市立S",
       "hs": 3,
       "as": 3,
       "away": "徳島北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "徳島市立S",
+      "hs": 6,
+      "as": 5,
+      "away": "川島",
       "status": "played"
     },
     {
@@ -261,20 +261,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "徳島ヴォルティスS",
-      "hs": 2,
-      "as": 4,
-      "away": "川島",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-12",
       "home": "徳島ヴォルティスS",
       "hs": 2,
       "as": 1,
       "away": "徳島北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "徳島ヴォルティスS",
+      "hs": 2,
+      "as": 4,
+      "away": "川島",
       "status": "played"
     },
     {
@@ -324,20 +324,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-19",
-      "home": "鳴門",
-      "hs": 1,
-      "as": 4,
-      "away": "川島",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-04",
       "home": "鳴門",
       "hs": 2,
       "as": 1,
       "away": "徳島北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "鳴門",
+      "hs": 1,
+      "as": 4,
+      "away": "川島",
       "status": "played"
     },
     {
@@ -387,56 +387,11 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "川島",
-      "hs": null,
-      "as": null,
-      "away": "徳島北",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "徳島科学技術",
-      "hs": 1,
-      "as": 5,
-      "away": "川島",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "川島",
-      "hs": 2,
-      "as": 3,
-      "away": "徳島商業S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
+      "date": "2026-07-11",
       "home": "川島",
       "hs": 0,
-      "as": 0,
-      "away": "鳴門渦潮",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "川島",
-      "hs": 6,
-      "as": 0,
-      "away": "生光学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "川島",
-      "hs": 2,
-      "as": 0,
-      "away": "城南",
+      "as": 2,
+      "away": "徳島北",
       "status": "played"
     },
     {
@@ -481,6 +436,51 @@
       "home": "徳島北",
       "hs": 4,
       "as": 1,
+      "away": "城南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "徳島科学技術",
+      "hs": 1,
+      "as": 5,
+      "away": "川島",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "川島",
+      "hs": 2,
+      "as": 3,
+      "away": "徳島商業S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "川島",
+      "hs": 0,
+      "as": 0,
+      "away": "鳴門渦潮",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "川島",
+      "hs": 6,
+      "as": 0,
+      "away": "生光学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "川島",
+      "hs": 2,
+      "as": 0,
       "away": "城南",
       "status": "played"
     },
@@ -540,12 +540,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-07-11",
       "home": "徳島商業S",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "城南",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,

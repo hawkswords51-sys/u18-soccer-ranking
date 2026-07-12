@@ -22,12 +22,12 @@
       "short": "桐蔭"
     },
     {
-      "name": "田辺",
-      "short": "田辺"
-    },
-    {
       "name": "近大新宮",
       "short": "近大新宮"
+    },
+    {
+      "name": "田辺",
+      "short": "田辺"
     },
     {
       "name": "海南",
@@ -75,13 +75,13 @@
       "rank": 3,
       "team": "初芝橋本",
       "points": 25,
-      "played": 10,
+      "played": 11,
       "won": 8,
       "drawn": 1,
-      "lost": 1,
+      "lost": 2,
       "gf": 39,
-      "ga": 5,
-      "gd": 34
+      "ga": 6,
+      "gd": 33
     },
     {
       "rank": 4,
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "近大新宮",
+      "points": 18,
+      "played": 11,
+      "won": 6,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 15,
+      "ga": 26,
+      "gd": -11
+    },
+    {
+      "rank": 6,
       "team": "田辺",
       "points": 16,
       "played": 11,
@@ -106,18 +118,6 @@
       "gf": 26,
       "ga": 30,
       "gd": -4
-    },
-    {
-      "rank": 6,
-      "team": "近大新宮",
-      "points": 15,
-      "played": 10,
-      "won": 5,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 14,
-      "ga": 26,
-      "gd": -12
     },
     {
       "rank": 7,
@@ -198,20 +198,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "和歌山北",
-      "hs": 6,
-      "as": 1,
-      "away": "田辺",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-03-22",
       "home": "近大新宮",
       "hs": 0,
       "as": 3,
       "away": "和歌山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "和歌山北",
+      "hs": 6,
+      "as": 1,
+      "away": "田辺",
       "status": "played"
     },
     {
@@ -270,20 +270,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-05",
-      "home": "近大和歌山",
-      "hs": 7,
-      "as": 0,
-      "away": "田辺",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-26",
       "home": "近大和歌山",
       "hs": 5,
       "as": 0,
       "away": "近大新宮",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "近大和歌山",
+      "hs": 7,
+      "as": 0,
+      "away": "田辺",
       "status": "played"
     },
     {
@@ -333,20 +333,20 @@
     },
     {
       "md": 0,
+      "date": "2026-07-12",
+      "home": "近大新宮",
+      "hs": 1,
+      "as": 0,
+      "away": "初芝橋本",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "初芝橋本",
       "hs": 2,
       "as": 2,
       "away": "田辺",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "初芝橋本",
-      "hs": 7,
-      "as": 0,
-      "away": "近大新宮",
       "status": "played"
     },
     {
@@ -387,20 +387,20 @@
     },
     {
       "md": 0,
-      "date": "2026-07-05",
-      "home": "田辺",
-      "hs": 0,
-      "as": 6,
-      "away": "桐蔭",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-13",
       "home": "桐蔭",
       "hs": 4,
       "as": 2,
       "away": "近大新宮",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-05",
+      "home": "田辺",
+      "hs": 0,
+      "as": 6,
+      "away": "桐蔭",
       "status": "played"
     },
     {
@@ -450,42 +450,6 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "田辺",
-      "hs": 1,
-      "as": 2,
-      "away": "海南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "星林",
-      "hs": 0,
-      "as": 3,
-      "away": "田辺",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "田辺",
-      "hs": 6,
-      "as": 2,
-      "away": "那賀",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "田辺",
-      "hs": 7,
-      "as": 2,
-      "away": "新宮",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-19",
       "home": "近大新宮",
       "hs": 2,
@@ -517,6 +481,42 @@
       "home": "近大新宮",
       "hs": 3,
       "as": 1,
+      "away": "新宮",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "田辺",
+      "hs": 1,
+      "as": 2,
+      "away": "海南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "星林",
+      "hs": 0,
+      "as": 3,
+      "away": "田辺",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-20",
+      "home": "田辺",
+      "hs": 6,
+      "as": 2,
+      "away": "那賀",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "田辺",
+      "hs": 7,
+      "as": 2,
       "away": "新宮",
       "status": "played"
     },

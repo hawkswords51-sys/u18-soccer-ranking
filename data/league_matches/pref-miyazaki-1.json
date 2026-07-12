@@ -14,12 +14,12 @@
       "short": "日章学園3rd"
     },
     {
-      "name": "宮崎工業",
-      "short": "宮崎工業"
-    },
-    {
       "name": "延岡学園",
       "short": "延岡学園"
+    },
+    {
+      "name": "宮崎工業",
+      "short": "宮崎工業"
     },
     {
       "name": "宮崎第一",
@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "延岡学園",
+      "points": 19,
+      "played": 11,
+      "won": 6,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 27,
+      "ga": 29,
+      "gd": -2
+    },
+    {
+      "rank": 4,
       "team": "宮崎工業",
       "points": 18,
       "played": 11,
@@ -82,18 +94,6 @@
       "gf": 33,
       "ga": 25,
       "gd": 8
-    },
-    {
-      "rank": 4,
-      "team": "延岡学園",
-      "points": 18,
-      "played": 10,
-      "won": 6,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 25,
-      "ga": 27,
-      "gd": -2
     },
     {
       "rank": 5,
@@ -122,13 +122,13 @@
     {
       "rank": 7,
       "team": "鵬翔 2nd",
-      "points": 13,
-      "played": 11,
+      "points": 14,
+      "played": 12,
       "won": 4,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 6,
-      "gf": 16,
-      "ga": 24,
+      "gf": 18,
+      "ga": 26,
       "gd": -8
     },
     {
@@ -180,20 +180,20 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "宮崎日大",
-      "hs": 6,
-      "as": 1,
-      "away": "宮崎工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-05",
       "home": "宮崎日大",
       "hs": 6,
       "as": 0,
       "away": "延岡学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "宮崎日大",
+      "hs": 6,
+      "as": 1,
+      "away": "宮崎工業",
       "status": "played"
     },
     {
@@ -252,20 +252,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-06",
-      "home": "日章学園3rd",
-      "hs": 4,
-      "as": 1,
-      "away": "宮崎工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-13",
       "home": "延岡学園",
       "hs": 3,
       "as": 6,
       "away": "日章学園3rd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "日章学園3rd",
+      "hs": 4,
+      "as": 1,
+      "away": "宮崎工業",
       "status": "played"
     },
     {
@@ -333,6 +333,60 @@
     },
     {
       "md": 0,
+      "date": "2026-06-20",
+      "home": "宮崎第一",
+      "hs": 0,
+      "as": 1,
+      "away": "延岡学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "宮崎西",
+      "hs": 2,
+      "as": 0,
+      "away": "延岡学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-12",
+      "home": "延岡学園",
+      "hs": 2,
+      "as": 2,
+      "away": "鵬翔 2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "延岡学園",
+      "hs": 4,
+      "as": 2,
+      "away": "テゲバジャーロ",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "日南学園",
+      "hs": 1,
+      "as": 3,
+      "away": "延岡学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "ヴェロスクロノス",
+      "hs": 2,
+      "as": 3,
+      "away": "延岡学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-05-10",
       "home": "宮崎工業",
       "hs": 2,
@@ -383,60 +437,6 @@
       "hs": 0,
       "as": 4,
       "away": "宮崎工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "宮崎第一",
-      "hs": 0,
-      "as": 1,
-      "away": "延岡学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "宮崎西",
-      "hs": 2,
-      "as": 0,
-      "away": "延岡学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "鵬翔 2nd",
-      "hs": 2,
-      "as": 5,
-      "away": "延岡学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "延岡学園",
-      "hs": 4,
-      "as": 2,
-      "away": "テゲバジャーロ",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "日南学園",
-      "hs": 1,
-      "as": 3,
-      "away": "延岡学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "ヴェロスクロノス",
-      "hs": 2,
-      "as": 3,
-      "away": "延岡学園",
       "status": "played"
     },
     {
