@@ -994,7 +994,17 @@ def render_breadcrumb_schema(pref_name, pref_id):
 # Phase 9-A ステップ3: 内部リンク用のグローバル集計
 # ============================================================
 def get_global_top_teams(all_prefs, limit=10):
-    """全国から上位 N チームを抽出 (リーグティア + 順位)"""
+    """全国から上位 N チームを抽出
+
+    並べ替えの基準（2026-07-13 修正）:
+      1. リーグの格 (premier > prince > 県リーグ)
+      2. そのリーグ内での順位 leagueRank（EAST/WESTなど別グループでも1位同士は同格）
+      3. 勝点の多い順 → 得失点差 → 総得点
+
+    ※ 以前は t["rank"]（＝県内順位）で並べていたため、プレミア勢の大半が
+       「県内1位＝rank 1」で横並びになり、都道府県コード順（茨城→千葉…）で
+       事実上の順位が決まってしまっていた。
+    """
     all_teams = []
     for pref in all_prefs:
         for t in pref.get("teams", []):
@@ -1003,15 +1013,22 @@ def get_global_top_teams(all_prefs, limit=10):
                 "_pref_name": pref["name"],
                 "_pref_id": pref["id"],
             })
-    return sorted(
-        all_teams,
-        key=lambda t: (
-            {"premier": 0, "prince": 1, "prefecture": 2}.get(
-                league_category(t.get("league")), 9
-            ),
-            t.get("rank") or 99,
-        ),
-    )[:limit]
+
+    def _sort_key(t):
+        tier = {"premier": 0, "prince": 1, "prefecture": 2}.get(
+            league_category(t.get("league")), 9
+        )
+        league_rank = t.get("leagueRank")
+        if league_rank is None:
+            league_rank = t.get("rank")
+        if league_rank is None:
+            league_rank = 99
+        points = t.get("points", 0) or 0
+        gf = t.get("goalsFor", 0) or 0
+        ga = t.get("goalsAgainst", 0) or 0
+        return (tier, league_rank, -points, -(gf - ga), -gf)
+
+    return sorted(all_teams, key=_sort_key)[:limit]
 
 
 def get_prefectures_with_league(all_prefs, category):
