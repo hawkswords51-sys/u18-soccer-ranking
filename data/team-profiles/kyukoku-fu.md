@@ -2,6 +2,10 @@
 id: kyukoku-fu
 name: 九州国際大学付属高等学校
 short_name: 九国大付
+aliases:
+  - 九州国際大付属高校
+  - 九州国際大附属高校
+  - 九州国際大付
 league: プリンスリーグ九州2部
 prefecture: fukuoka
 prefecture_name: 福岡県

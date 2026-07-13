@@ -262,6 +262,10 @@ def _load_team_profile_map() -> dict:
                 short_name = meta.get("short_name")
                 if short_name and short_name != team_name:
                     team_map[short_name] = team_id
+                # 表記ゆれ吸収: frontmatter の aliases（teams.json 側の表記など）
+                for alias in (meta.get("aliases") or []):
+                    if isinstance(alias, str) and alias:
+                        team_map[alias] = team_id
         except Exception as e:
             print(f"  [WARN] team-profile {md_file.name} の読み込みエラー: {e}")
     return team_map

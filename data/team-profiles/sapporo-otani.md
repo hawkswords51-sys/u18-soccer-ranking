@@ -2,6 +2,8 @@
 id: sapporo-otani
 name: 札幌大谷高等学校
 short_name: 札幌大谷
+aliases:
+  - 札幌大谷高校
 league: プリンスリーグ北海道
 prefecture: hokkaido
 prefecture_name: 北海道
