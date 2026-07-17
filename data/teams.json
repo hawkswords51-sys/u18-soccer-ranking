@@ -2572,8 +2572,8 @@
         "won": 5,
         "drawn": 2,
         "lost": 2,
-        "goalsFor": 21,
-        "goalsAgainst": 7,
+        "goalsFor": 19,
+        "goalsAgainst": 9,
         "goalDiff": 7,
         "prefectureRank": 9,
         "leagueRank": 3,
@@ -2603,24 +2603,10 @@
         ]
       },
       {
-        "name": "八千代高校",
-        "league": "千葉県1部",
-        "points": 14,
-        "played": 9,
-        "won": 4,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 20,
-        "goalsAgainst": 13,
-        "leagueRank": 5,
-        "rank": 11,
-        "prefectureRank": 11
-      },
-      {
         "id": "c015",
         "name": "習志野高校",
         "league": "千葉県1部",
-        "rank": 12,
+        "rank": 11,
         "points": 14,
         "played": 9,
         "won": 4,
@@ -2629,8 +2615,22 @@
         "goalsFor": 16,
         "goalsAgainst": 10,
         "goalDiff": -2,
-        "prefectureRank": 12,
-        "leagueRank": 6
+        "prefectureRank": 11,
+        "leagueRank": 5
+      },
+      {
+        "name": "八千代高校",
+        "league": "千葉県1部",
+        "points": 14,
+        "played": 9,
+        "won": 4,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 18,
+        "goalsAgainst": 13,
+        "leagueRank": 6,
+        "rank": 12,
+        "prefectureRank": 12
       },
       {
         "id": "c007",
@@ -2699,7 +2699,7 @@
         "drawn": 1,
         "lost": 8,
         "goalsFor": 5,
-        "goalsAgainst": 35,
+        "goalsAgainst": 33,
         "leagueRank": 10,
         "rank": 16,
         "prefectureRank": 16,
@@ -7050,13 +7050,13 @@
         "name": "香芝高校",
         "league": "奈良県NFAサッカーリーグ",
         "rank": 5,
-        "points": 13,
-        "played": 8,
+        "points": 14,
+        "played": 9,
         "won": 4,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 3,
-        "goalsFor": 10,
-        "goalsAgainst": 14,
+        "goalsFor": 11,
+        "goalsAgainst": 15,
         "prefectureRank": 5,
         "goalDiff": 2,
         "leagueRank": 5
@@ -7066,13 +7066,13 @@
         "name": "法隆寺国際高校",
         "league": "奈良県NFAサッカーリーグ",
         "rank": 6,
-        "points": 10,
-        "played": 7,
+        "points": 11,
+        "played": 8,
         "won": 3,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 3,
-        "goalsFor": 9,
-        "goalsAgainst": 13,
+        "goalsFor": 10,
+        "goalsAgainst": 14,
         "prefectureRank": 6,
         "goalDiff": 0,
         "leagueRank": 6
@@ -11204,8 +11204,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-07-17 07:56",
+    "lastUpdated": "2026-07-18 07:49",
     "year": 2026,
-    "updatedCount": 585
+    "updatedCount": 543
   }
 }
