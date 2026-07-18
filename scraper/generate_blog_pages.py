@@ -933,6 +933,78 @@ def append_sitemap(slugs):
 
 
 # ============================================================
+# トップページ「新着コラム」欄の更新 (2026-07-18 追加)
+#
+# 狙い: ブログ記事(とくに医学コラム)は従来 /blog/ 一覧の奥にしか
+# リンクがなく、GSCで「参照元=sitemap.xmlのみ」→インデックス未登録が
+# 多発していた。サイト内で最も評価の高いトップページから最新記事へ
+# 常設リンクを張り、Googleのクロール優先度を引き上げる。
+#
+# index.html の LATEST_BLOG_START/END マーカー間を毎回書き換える方式
+# (HOME_SUMMARY と同じ)。マーカーを消すと更新が止まるので手で編集しない。
+# ============================================================
+HOME_FILE = BASE_DIR / "index.html"
+HOME_LATEST_START = "<!-- LATEST_BLOG_START -->"
+HOME_LATEST_END = "<!-- LATEST_BLOG_END -->"
+HOME_LATEST_COUNT = 6
+
+# カテゴリバッジの色 (それ以外は青)
+HOME_LATEST_CATEGORY_COLORS = {
+    "医学コラム": "#0f766e",
+    "リーグ解説": "#7c2d12",
+    "育成コラム": "#6d28d9",
+}
+
+
+def update_home_latest_blog(articles):
+    """トップページ index.html のマーカー間に新着記事リスト(最新5本)を書き込む"""
+    if not HOME_FILE.exists():
+        print(f"[INFO] {HOME_FILE} が見つかりません。新着コラム欄はスキップ。")
+        return
+    content = HOME_FILE.read_text(encoding="utf-8")
+    if HOME_LATEST_START not in content or HOME_LATEST_END not in content:
+        print("[INFO] index.html に LATEST_BLOG マーカーがありません。新着コラム欄はスキップ。")
+        return
+
+    latest = sorted(articles, key=lambda a: str(a["date"]), reverse=True)[:HOME_LATEST_COUNT]
+    items = []
+    for a in latest:
+        cat = a.get("category", "コラム")
+        color = HOME_LATEST_CATEGORY_COLORS.get(cat, "#1e40af")
+        items.append(
+            f'    <li style="margin:0;">\n'
+            f'      <a href="/blog/posts/{a["slug"]}/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);">\n'
+            f'        <span style="flex-shrink:0;font-size:0.72em;font-weight:700;color:#fff;background:{color};padding:3px 9px;border-radius:999px;white-space:nowrap;">{html_escape(cat)}</span>\n'
+            f'        <span style="font-size:0.92em;line-height:1.5;">{html_escape(a["title"])}</span>\n'
+            f'        <time style="margin-left:auto;flex-shrink:0;font-size:0.78em;color:var(--text-light,#666);" datetime="{a["date"]}">{format_date(a["date"])}</time>\n'
+            f'      </a>\n'
+            f'    </li>'
+        )
+
+    section = (
+        HOME_LATEST_START + "\n"
+        '<section class="home-latest-blog" aria-label="新着ブログ記事" style="margin:24px 0;">\n'
+        '  <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;">\n'
+        '    <h2 style="font-size:1.15rem;margin:0;">📝 新着コラム — 医学・戦術・特集</h2>\n'
+        '    <a href="/blog/" style="margin-left:auto;font-size:0.88em;color:#2563eb;text-decoration:none;font-weight:600;">記事一覧へ →</a>\n'
+        '  </div>\n'
+        '  <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">\n'
+        + "\n".join(items) + "\n"
+        '  </ul>\n'
+        '</section>\n'
+        + HOME_LATEST_END
+    )
+
+    pattern = re.compile(
+        re.escape(HOME_LATEST_START) + r".*?" + re.escape(HOME_LATEST_END),
+        re.DOTALL,
+    )
+    new_content = pattern.sub(lambda m: section, content, count=1)
+    HOME_FILE.write_text(new_content, encoding="utf-8")
+    print(f"[OK] トップページの新着コラム欄を更新: {len(latest)} 記事")
+
+
+# ============================================================
 # Main
 # ============================================================
 def main():
@@ -973,6 +1045,9 @@ def main():
     (BLOG_OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
     print(f"[OK] ブログ一覧 -> /blog/")
     generate_rss(articles)
+
+    # トップページの新着コラム欄を更新
+    update_home_latest_blog(articles)
 
     # sitemap 更新
     append_sitemap([a["slug"] for a in articles])
