@@ -1151,7 +1151,7 @@ def main():
         <p style="margin:0 0 10px;line-height:1.9;">
           本大会は救急搬送が1年で最も多い時期の8日間連戦です。救急科専門医として、最低限これだけお願いします。
         </p>
-        <ul style="line-height:2;margin:0 0 12px;">
+        <ul style="line-height:2;margin:0 0 12px;padding-left:1.5em;">
           <li><strong>選手</strong>：毎朝の体重と尿の色で脱水チェック。前日比2%以上の体重減・濃い尿は必ず申告</li>
           <li><strong>観戦する方</strong>：帽子・水分＋塩分・日陰。スタンドからの熱中症搬送は毎年起きています</li>
           <li><strong>全員</strong>：「意識がおかしい」選手を見たら迷わず119番＋その場で全身冷却（Cool First）</li>
