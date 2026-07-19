@@ -369,8 +369,11 @@ def render_related_html(current_slug, current_category, all_articles):
 # ============================================================
 MEDICAL_CATEGORY = "医学コラム"
 AUTHOR_X_URL = "https://x.com/DrKazuSoccer"
+AUTHOR_NOTE_URL = "https://note.com/drkazusoccer"
 AUTHOR_BIO = (
     "救命救急センターに勤務する救急科専門医（日本救急医学会認定）。"
+    "脳神経外科専門医・脳卒中専門医でもあり、医師17年目・救急医療12年。"
+    "熱中症・頭部外傷・外傷全般・心肺停止などの救急診療と病院前救急に従事。"
     "日本の育成年代サッカーへの関心から当サイトを運営し、"
     "熱中症・脳震盪・栄養・睡眠・怪我予防など選手の安全に関する"
     "医学コラムを、公的ガイドライン・医学的根拠に基づいて執筆しています。"
@@ -384,17 +387,39 @@ def build_author_person(article):
         "name": article.get("author", "Dr.Kazu Soccer"),
         "jobTitle": "救急科専門医",
         "description": AUTHOR_BIO,
-        "hasCredential": {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "専門医資格",
-            "name": "救急科専門医",
-            "recognizedBy": {
-                "@type": "Organization",
-                "name": "日本救急医学会",
+        "hasCredential": [
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "専門医資格",
+                "name": "救急科専門医",
+                "recognizedBy": {"@type": "Organization", "name": "日本救急医学会"},
             },
-        },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "専門医資格",
+                "name": "脳神経外科専門医",
+                "recognizedBy": {"@type": "Organization", "name": "日本脳神経外科学会"},
+            },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "専門医資格",
+                "name": "脳卒中専門医",
+                "recognizedBy": {"@type": "Organization", "name": "日本脳卒中学会"},
+            },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "専門医資格",
+                "name": "脳血管内治療専門医",
+                "recognizedBy": {"@type": "Organization", "name": "日本脳神経血管内治療学会"},
+            },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "学位",
+                "name": "医学博士",
+            },
+        ],
         "url": f"{DOMAIN}/about.html",
-        "sameAs": [AUTHOR_X_URL],
+        "sameAs": [AUTHOR_X_URL, AUTHOR_NOTE_URL],
         "knowsAbout": [
             "救急医学", "スポーツ医学", "熱中症", "脳震盪",
             "コンディショニング", "高校サッカー",
@@ -503,11 +528,12 @@ def build_author_box(article):
     return (
         f'        <aside class="blog-article__authorbox" style="{box_style}">\n'
         f'          <p style="{label_style}"><i class="fas fa-user-md"></i> この記事の執筆者</p>\n'
-        f'          <p style="margin:0 0 8px;"><strong>{author}</strong>（日本救急医学会認定 救急科専門医）</p>\n'
+        f'          <p style="margin:0 0 8px;"><strong>{author}</strong>（日本救急医学会認定 救急科専門医・脳神経外科専門医・医学博士）</p>\n'
         f'          <p style="margin:0 0 10px;">{html_escape(AUTHOR_BIO)}</p>\n'
         f'          <p style="margin:0;">\n'
         f'            <a href="/about.html">運営者情報を見る ›</a>　\n'
-        f'            <a href="{AUTHOR_X_URL}" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>\n'
+        f'            <a href="{AUTHOR_X_URL}" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>　\n'
+        f'            <a href="{AUTHOR_NOTE_URL}" target="_blank" rel="noopener">note ›</a>\n'
         f'          </p>\n'
         f'        </aside>\n'
     )
