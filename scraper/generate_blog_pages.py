@@ -260,6 +260,7 @@ __TAGS_HTML__
 
         <div class="blog-article__body">
 __AI_SUMMARY__
+__TOC_HTML__
 __ARTICLE_BODY__
 __FAQ_HTML__
         </div>
@@ -526,6 +527,44 @@ def build_article_ai_summary(article):
     )
     return f'          <p class="blog-article__summary" style="{style}">{html_escape(desc)}</p>\n'
 
+TOC_MIN_ENTRIES = 3          # 見出しがこれ未満の短い記事には目次を付けない
+TOC_EXCLUDE_TITLES = {"関連ページ"}  # 目次に載せない定型見出し
+
+def build_toc_html(body_html):
+    """記事本文HTMLから目次（もくじ）ボックスを生成する（AdSense改善A-2・2026-07-19）。
+
+    md_to_html は toc 拡張（baselevel=2）で変換するため、mdの「## 見出し」は
+    id付きの <h3> になっている。そのidへのページ内リンク一覧を作る。
+    - 対象は id 付き h3 のみ（FAQのh3はid無しなので混入しない）
+    - 冒頭のh2はタイトルの繰り返しなので対象外
+    - 見出しが TOC_MIN_ENTRIES 本未満の記事はスキップ（短い記事に目次は過剰）
+    """
+    entries = []
+    for m in re.finditer(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', body_html, re.S):
+        anchor, inner = m.group(1), m.group(2)
+        text = re.sub(r"<[^>]+>", "", inner).strip()
+        if not text or text in TOC_EXCLUDE_TITLES:
+            continue
+        entries.append((anchor, text))
+    if len(entries) < TOC_MIN_ENTRIES:
+        return ""
+    items = "\n".join(
+        f'              <li style="margin:0;"><a href="#{html_escape(a)}" '
+        f'style="color:var(--primary-color,#1e40af);text-decoration:none;">{html_escape(t)}</a></li>'
+        for a, t in entries
+    )
+    return (
+        '          <nav class="blog-toc" aria-label="目次" '
+        'style="margin:0 0 24px;padding:14px 18px;background:var(--bg-light,#f8f9fa);'
+        'border:1px solid var(--border-color,#e0e0e0);border-radius:10px;font-size:0.95rem;">\n'
+        '            <div style="font-weight:700;margin-bottom:8px;">'
+        '<i class="fas fa-list-ul" aria-hidden="true"></i> 目次</div>\n'
+        '            <ol style="margin:0;padding-left:1.5em;line-height:2.0;">\n'
+        f"{items}\n"
+        "            </ol>\n"
+        "          </nav>\n"
+    )
+
 def generate_article_page(article, all_articles):
     """個別記事ページ HTML を生成"""
     slug = article["slug"]
@@ -594,6 +633,7 @@ def generate_article_page(article, all_articles):
         .replace("__SCHEMA_BREADCRUMB__", breadcrumb)
         .replace("__SCHEMA_ARTICLE__", article_schema)
         .replace("__SCHEMA_EXTRA__", build_schema_extra(article, canonical))
+        .replace("__TOC_HTML__", build_toc_html(body_html))
         .replace("__ARTICLE_BODY__", body_html)
         .replace("__FAQ_HTML__", build_faq_html(article))
         .replace("__AUTHOR_BOX__", build_author_box(article))

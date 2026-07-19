@@ -5520,3 +5520,22 @@ details[open] > summary > .league-accordion__chevron {
         line-height: 1.55;
     }
 }
+
+/* =========================
+   記事目次（blog-toc）関連 — 2026-07-19 AdSense改善A-2
+   目次のアンカージャンプ時に、sticky header の下に
+   見出しが隠れないよう余白を確保する
+   ========================= */
+.blog-article__body h2[id],
+.blog-article__body h3[id],
+.blog-article__body h4[id] {
+    scroll-margin-top: 110px;
+}
+html {
+    scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
