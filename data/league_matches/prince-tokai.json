@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東海",
   "season": "2026",
   "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/tokai/",
-  "lastUpdated": "2026-07-18",
+  "lastUpdated": "2026-07-19",
   "teams": [
     {
       "name": "静岡学園",
@@ -108,6 +108,18 @@
     },
     {
       "rank": 6,
+      "team": "東海大翔洋",
+      "pts": 11,
+      "played": 9,
+      "won": 3,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 14,
+      "ga": 15,
+      "gd": -1
+    },
+    {
+      "rank": 7,
       "team": "三重",
       "pts": 10,
       "played": 9,
@@ -119,7 +131,7 @@
       "gd": -6
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "富士市立",
       "pts": 9,
       "played": 9,
@@ -131,28 +143,16 @@
       "gd": -16
     },
     {
-      "rank": 8,
-      "team": "東海大翔洋",
-      "pts": 8,
-      "played": 8,
-      "won": 2,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 13,
-      "ga": 15,
-      "gd": -2
-    },
-    {
       "rank": 9,
       "team": "藤枝明誠",
       "pts": 5,
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 8,
-      "ga": 16,
-      "gd": -8
+      "ga": 17,
+      "gd": -9
     },
     {
       "rank": 10,
@@ -568,10 +568,10 @@
       "md": 9,
       "date": "2026-07-18",
       "home": "藤枝明誠",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "東海大翔洋",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
