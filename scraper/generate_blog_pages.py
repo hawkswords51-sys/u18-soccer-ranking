@@ -1309,6 +1309,16 @@ __SCHEMA_COLLECTION__
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <header class="header">
@@ -1356,7 +1366,7 @@ __SCHEMA_COLLECTION__
         </p>
       </aside>
 
-      <section class="lp-section" style="background:linear-gradient(90deg,#eff6ff,#f0fdfa);border-left:4px solid var(--primary-color,#1e40af);border-radius:0 10px 10px 0;padding:16px 20px;">
+      <section class="lp-section" style="background:var(--bg-light,#eff6ff);border-left:4px solid var(--primary-color,#1e40af);border-radius:0 10px 10px 0;padding:16px 20px;">
         <h2 style="margin-top:0;">📖 読む順ガイド</h2>
         <ul style="margin:0;padding-left:1.5em;line-height:2.0;">
           <li><strong>いま（夏の大会期）なら</strong>：熱中症対策 → 水分補給 → 大会当日の暑さ対策 の順で。チーム全員に関わる内容です。</li>
@@ -1397,6 +1407,7 @@ __THEME_SECTIONS__
       </nav>
     </div>
   </footer>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>
 """
