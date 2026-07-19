@@ -9,6 +9,13 @@ on:
 permissions:
   contents: write           # 変更をコミット＆プッシュするため
 
+# 同時に2本走らせない設定（2026-07-19追加）
+# Push起動・定期実行・手動Runが重なると、後発が「変更があればコミット＆プッシュ」で
+# 衝突して赤になるため、同時実行は順番待ちにする（cancel-in-progress: falseで取り消さず待機）
+concurrency:
+  group: site-update
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
