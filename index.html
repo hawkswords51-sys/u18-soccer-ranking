@@ -171,11 +171,13 @@
     <!-- メインコンテンツ -->
     <main class="main-content">
         <div class="container">
-            <!-- 最終更新バナー -->
-            <div id="updateBanner" class="update-banner" style="display:none;">
+            <!-- 最終更新バナー（毎朝自動更新。マーカー間は generate_prefecture_pages.py が書き換えるので手で編集しない） -->
+            <!-- UPDATE_BANNER_START -->
+            <div id="updateBanner" class="update-banner">
                 <i class="fas fa-sync-alt"></i>
-                <span id="updateBannerText">データ読み込み中...</span>
+                <span id="updateBannerText">最終自動更新: 2026-07-19 07:49（543チーム更新）</span>
             </div>
+            <!-- UPDATE_BANNER_END -->
             <!-- ★ 季節限定：インターハイ本選バナー -->
             <a href="/tournaments/interhigh-2026/" style="display:flex;align-items:center;gap:14px;margin:16px 0;padding:16px 20px;border-radius:12px;background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
               <span style="font-size:1.8em;">🏆</span>
@@ -323,7 +325,17 @@
                 </div>
 
                 <div id="japanMap" class="japan-map-list">
-                    <!-- 地域別リストはJavaScriptで動的に生成 -->
+                    <!-- 静的フォールバック：JS読み込み後は map-simple.js が対話版（モーダル起動ボタン）に置き換える。
+                         JS無効環境・クローラーにはこのリンク版が見える（リンク先は県ページ） -->
+                    <div class="region-group"><h3 class="region-title">北海道</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/hokkaido/" style="text-decoration:none;color:inherit;">北海道</a></div></div>
+                    <div class="region-group"><h3 class="region-title">東北</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/aomori/" style="text-decoration:none;color:inherit;">青森県</a><a class="pref-button" href="/prefectures/iwate/" style="text-decoration:none;color:inherit;">岩手県</a><a class="pref-button" href="/prefectures/miyagi/" style="text-decoration:none;color:inherit;">宮城県</a><a class="pref-button" href="/prefectures/akita/" style="text-decoration:none;color:inherit;">秋田県</a><a class="pref-button" href="/prefectures/yamagata/" style="text-decoration:none;color:inherit;">山形県</a><a class="pref-button" href="/prefectures/fukushima/" style="text-decoration:none;color:inherit;">福島県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">関東</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/ibaraki/" style="text-decoration:none;color:inherit;">茨城県</a><a class="pref-button" href="/prefectures/tochigi/" style="text-decoration:none;color:inherit;">栃木県</a><a class="pref-button" href="/prefectures/gunma/" style="text-decoration:none;color:inherit;">群馬県</a><a class="pref-button" href="/prefectures/saitama/" style="text-decoration:none;color:inherit;">埼玉県</a><a class="pref-button" href="/prefectures/chiba/" style="text-decoration:none;color:inherit;">千葉県</a><a class="pref-button" href="/prefectures/tokyo/" style="text-decoration:none;color:inherit;">東京都</a><a class="pref-button" href="/prefectures/kanagawa/" style="text-decoration:none;color:inherit;">神奈川県</a><a class="pref-button" href="/prefectures/yamanashi/" style="text-decoration:none;color:inherit;">山梨県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">北信越</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/niigata/" style="text-decoration:none;color:inherit;">新潟県</a><a class="pref-button" href="/prefectures/toyama/" style="text-decoration:none;color:inherit;">富山県</a><a class="pref-button" href="/prefectures/ishikawa/" style="text-decoration:none;color:inherit;">石川県</a><a class="pref-button" href="/prefectures/fukui/" style="text-decoration:none;color:inherit;">福井県</a><a class="pref-button" href="/prefectures/nagano/" style="text-decoration:none;color:inherit;">長野県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">東海</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/gifu/" style="text-decoration:none;color:inherit;">岐阜県</a><a class="pref-button" href="/prefectures/shizuoka/" style="text-decoration:none;color:inherit;">静岡県</a><a class="pref-button" href="/prefectures/aichi/" style="text-decoration:none;color:inherit;">愛知県</a><a class="pref-button" href="/prefectures/mie/" style="text-decoration:none;color:inherit;">三重県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">関西</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/shiga/" style="text-decoration:none;color:inherit;">滋賀県</a><a class="pref-button" href="/prefectures/kyoto/" style="text-decoration:none;color:inherit;">京都府</a><a class="pref-button" href="/prefectures/osaka/" style="text-decoration:none;color:inherit;">大阪府</a><a class="pref-button" href="/prefectures/hyogo/" style="text-decoration:none;color:inherit;">兵庫県</a><a class="pref-button" href="/prefectures/nara/" style="text-decoration:none;color:inherit;">奈良県</a><a class="pref-button" href="/prefectures/wakayama/" style="text-decoration:none;color:inherit;">和歌山県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">中国</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/tottori/" style="text-decoration:none;color:inherit;">鳥取県</a><a class="pref-button" href="/prefectures/shimane/" style="text-decoration:none;color:inherit;">島根県</a><a class="pref-button" href="/prefectures/okayama/" style="text-decoration:none;color:inherit;">岡山県</a><a class="pref-button" href="/prefectures/hiroshima/" style="text-decoration:none;color:inherit;">広島県</a><a class="pref-button" href="/prefectures/yamaguchi/" style="text-decoration:none;color:inherit;">山口県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">四国</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/tokushima/" style="text-decoration:none;color:inherit;">徳島県</a><a class="pref-button" href="/prefectures/kagawa/" style="text-decoration:none;color:inherit;">香川県</a><a class="pref-button" href="/prefectures/ehime/" style="text-decoration:none;color:inherit;">愛媛県</a><a class="pref-button" href="/prefectures/kochi/" style="text-decoration:none;color:inherit;">高知県</a></div></div>
+                    <div class="region-group"><h3 class="region-title">九州・沖縄</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/fukuoka/" style="text-decoration:none;color:inherit;">福岡県</a><a class="pref-button" href="/prefectures/saga/" style="text-decoration:none;color:inherit;">佐賀県</a><a class="pref-button" href="/prefectures/nagasaki/" style="text-decoration:none;color:inherit;">長崎県</a><a class="pref-button" href="/prefectures/kumamoto/" style="text-decoration:none;color:inherit;">熊本県</a><a class="pref-button" href="/prefectures/oita/" style="text-decoration:none;color:inherit;">大分県</a><a class="pref-button" href="/prefectures/miyazaki/" style="text-decoration:none;color:inherit;">宮崎県</a><a class="pref-button" href="/prefectures/kagoshima/" style="text-decoration:none;color:inherit;">鹿児島県</a><a class="pref-button" href="/prefectures/okinawa/" style="text-decoration:none;color:inherit;">沖縄県</a></div></div>
                 </div>
             </section>
 
@@ -549,11 +561,11 @@
                     <div class="stats-summary">
                         <div class="stat-item">
                             <div class="stat-label">登録チーム数</div>
-                            <div class="stat-value" id="teamCount">-</div>
+                            <div class="stat-value" id="teamCount"></div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">最高リーグ</div>
-                            <div class="stat-value" id="topLeague">-</div>
+                            <div class="stat-value" id="topLeague"></div>
                         </div>
                     </div>
                     <div id="teamsTable"></div>

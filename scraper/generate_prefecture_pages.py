@@ -2185,6 +2185,49 @@ def update_home_summary(all_prefs):
     index_file.write_text(new_html, encoding="utf-8")
     print("トップページ「今日のハイライト」を更新しました")
 
+def update_home_update_banner(meta):
+    """index.html の最終更新バナー（UPDATE_BANNER マーカー間）を静的に書き換える。
+
+    以前はJSが表示するまで「データ読み込み中...」がHTMLに残っており、
+    JSを実行しないクローラー（AdSense審査・検索エンジン）には未完成に見えた。
+    毎朝この関数が teams.json の _meta（lastUpdated / updatedCount）を
+    直接HTMLへ書き込むことで、JS無しでも実際の更新日時が見える。
+    JSは読み込み後に同内容で上書きするだけ（見た目は変わらない）。
+    """
+    index_file = BASE_DIR / "index.html"
+    if not index_file.exists():
+        print("[WARN] index.html が見つからないためバナー更新をスキップ")
+        return
+    html = index_file.read_text(encoding="utf-8")
+    start_mark = "<!-- UPDATE_BANNER_START -->"
+    end_mark = "<!-- UPDATE_BANNER_END -->"
+    s = html.find(start_mark)
+    e = html.find(end_mark)
+    if s == -1 or e == -1 or e < s:
+        print("[WARN] index.html にUPDATE_BANNERマーカーが無いためバナー更新をスキップ")
+        return
+    meta = meta or {}
+    last = str(meta.get("lastUpdated") or "").strip()
+    count = meta.get("updatedCount")
+    if last:
+        label = f"最終自動更新: {last}"
+        if count:
+            label += f"（{count}チーム更新）"
+    else:
+        # メタ情報が無い場合でも「読み込み中」には戻さない
+        label = f"順位表は毎朝自動更新（{date.today().strftime('%Y-%m-%d')}時点）"
+    block = (
+        "\n"
+        '            <div id="updateBanner" class="update-banner">\n'
+        '                <i class="fas fa-sync-alt"></i>\n'
+        f'                <span id="updateBannerText">{label}</span>\n'
+        "            </div>\n"
+        "            "
+    )
+    new_html = html[: s + len(start_mark)] + block + html[e:]
+    index_file.write_text(new_html, encoding="utf-8")
+    print(f"トップページ最終更新バナーを更新しました（{label}）")
+
 def main():
     if not TEAMS_FILE.exists():
         print(f"[ERROR] {TEAMS_FILE} が見つかりません。先にスクレイパーを実行してください。")
@@ -2207,6 +2250,7 @@ def main():
 
     update_sitemap(all_prefs)
     update_home_summary(all_prefs)
+    update_home_update_banner(teams_data.get("_meta"))
     print(f"完了: {len(all_prefs)} 都道府県の SEO ランディングページを生成しました")
     print(f"   出力先: {OUTPUT_ROOT}/")
     return 0
