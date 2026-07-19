@@ -248,6 +248,7 @@ __SCHEMA_EXTRA__
           <div class="blog-article__meta">
             <span class="blog-article__category">__CATEGORY__</span>
             <time class="blog-article__date" datetime="__DATE_ISO__">__DATE_DISPLAY__</time>
+__UPDATED_HTML__
           </div>
           <h1 class="blog-article__title">__TITLE__</h1>
           <div class="blog-article__author">
@@ -531,6 +532,7 @@ def build_author_box(article):
         f'          <p style="margin:0 0 8px;"><strong>{author}</strong>（日本救急医学会認定 救急科専門医・脳神経外科専門医・医学博士）</p>\n'
         f'          <p style="margin:0 0 10px;">{html_escape(AUTHOR_BIO)}</p>\n'
         f'          <p style="margin:0;">\n'
+        f'            <a href="/blog/medical/">医学コラム一覧 ›</a>　\n'
         f'            <a href="/about.html">運営者情報を見る ›</a>　\n'
         f'            <a href="{AUTHOR_X_URL}" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>　\n'
         f'            <a href="{AUTHOR_NOTE_URL}" target="_blank" rel="noopener">note ›</a>\n'
@@ -589,6 +591,19 @@ def build_toc_html(body_html):
         f"{items}\n"
         "            </ol>\n"
         "          </nav>\n"
+    )
+
+def build_updated_html(article):
+    """frontmatter に updated がある記事に「最終更新日」を可視表示する
+    （AdSense改善B-4・2026-07-19）。構造化データのdateModifiedとは別に、
+    読者と審査員の目に見える形で鮮度を示す。updated が公開日と同じ場合は出さない。"""
+    updated = article.get("updated")
+    if not updated or str(updated) == str(article.get("date")):
+        return ""
+    return (
+        f'            <time class="blog-article__updated" datetime="{str(updated)}" '
+        f'style="font-size:0.85em;color:var(--text-light,#666);">'
+        f'<i class="fas fa-rotate" aria-hidden="true"></i> 最終更新：{format_date(updated)}</time>'
     )
 
 def generate_article_page(article, all_articles):
@@ -655,6 +670,7 @@ def generate_article_page(article, all_articles):
         .replace("__OG_IMAGE__", og_image)
         .replace("__DATE_ISO__", date_iso)
         .replace("__DATE_DISPLAY__", date_display)
+        .replace("__UPDATED_HTML__", build_updated_html(article))
         .replace("__CATEGORY__", html_escape(category))
         .replace("__SCHEMA_BREADCRUMB__", breadcrumb)
         .replace("__SCHEMA_ARTICLE__", article_schema)
@@ -772,6 +788,15 @@ __SCHEMA_BLOG__
         高校サッカー U-18 のシーズン展望・注目チーム解説・戦術分析・選手紹介・医学コラムを
         医師ブロガーがお届けします。最新の試合結果や順位の動向もブログで深く解説していきます。
       </p>
+
+      <!-- 医学コラム特設ページへの導線 -->
+      <a href="/blog/medical/" style="display:flex;align-items:center;gap:14px;margin:16px 0 24px;padding:16px 20px;border-radius:12px;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+        <span style="font-size:1.8em;" aria-hidden="true">🩺</span>
+        <span>
+          <span style="display:block;font-weight:700;font-size:1.05em;">救急医の医学コラム 特設ページ</span>
+          <span style="display:block;font-size:0.88em;opacity:0.92;">熱中症・脳震盪・栄養・睡眠——テーマ別の一覧と「読む順ガイド」はこちら →</span>
+        </span>
+      </a>
 
       <!-- カテゴリフィルタ -->
       <section class="lp-section">
@@ -981,6 +1006,15 @@ def append_sitemap(slugs):
         f'    <priority>0.7</priority>\n'
         f'  </url>'
     )
+    # 医学コラムハブ（B-3。/blog/配下は上の正規表現で毎回消えるのでここで再追加）
+    new_urls.append(
+        f'  <url>\n'
+        f'    <loc>{DOMAIN}/blog/{MEDICAL_HUB_DIR_NAME}/</loc>\n'
+        f'    <lastmod>{today}</lastmod>\n'
+        f'    <changefreq>weekly</changefreq>\n'
+        f'    <priority>0.7</priority>\n'
+        f'  </url>'
+    )
     # 各記事
     for slug in slugs:
         new_urls.append(
@@ -1073,6 +1107,300 @@ def update_home_latest_blog(articles):
 # ============================================================
 # Main
 # ============================================================
+# ============================================================
+# 医学コラム ハブページ /blog/medical/ (2026-07-19 新設・AdSense改善B-3)
+#
+# 狙い: 医学コラム9本の入口がブログ一覧のカテゴリラベルしかなかったため、
+# 著者紹介＋テーマ別整理＋読む順ガイドを備えた「専門コーナー」の常設ページを作る。
+# YMYLコンテンツの束ね・内部リンク強化・AdSense審査への見せ場を兼ねる。
+# テーマ分けは MEDICAL_HUB_THEMES（slug指定）。未登録の医学コラムは
+# 自動で「新着コラム」グループに入るので、新記事を書いてもページから漏れない。
+# 恒久的にテーマへ入れたい記事は MEDICAL_HUB_THEMES に slug を足す。
+# ============================================================
+MEDICAL_HUB_THEMES = [
+    (
+        "☀️ 暑さ対策・熱中症",
+        "夏の練習・大会で命に関わるリスクを予防する",
+        [
+            "2026-05-08-may-heatstroke-prevention",
+            "2026-07-10-summer-hydration-strategy",
+            "interhigh-2026-heat-safety",
+        ],
+    ),
+    (
+        "🚑 外傷・緊急対応",
+        "頭を打った・胸に当たった・足をひねった——その場での正しい判断",
+        [
+            "concussion-return-to-play-2026",
+            "commotio-cordis-aed-2026",
+            "2026-06-25-ankle-sprain-treatment",
+        ],
+    ),
+    (
+        "🔋 コンディショニング・栄養",
+        "「走れない」「疲れが抜けない」の医学的な背景と対策",
+        [
+            "2026-07-19-overtraining-syndrome",
+            "2026-06-08-iron-deficiency-anemia",
+            "2026-05-22-pre-match-sleep-strategy",
+        ],
+    ),
+]
+
+MEDICAL_HUB_DIR_NAME = "medical"
+
+def _medical_card(a):
+    """ハブページ用の記事カード1枚"""
+    updated = a.get("updated")
+    date_line = f'公開 {format_date(a["date"])}'
+    if updated and str(updated) != str(a.get("date")):
+        date_line += f'　最終更新 {format_date(updated)}'
+    desc = html_escape((a.get("description") or "")[:110])
+    return (
+        f'          <li style="margin:0 0 10px;list-style:none;">\n'
+        f'            <a href="/blog/posts/{a["slug"]}/" style="display:block;padding:14px 18px;'
+        f'background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);'
+        f'border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);">\n'
+        f'              <span style="display:block;font-weight:600;line-height:1.6;">{html_escape(a["title"])}</span>\n'
+        f'              <span style="display:block;font-size:0.85em;color:var(--text-light,#666);margin-top:4px;">{date_line}</span>\n'
+        f'              <span style="display:block;font-size:0.88em;color:var(--text-light,#555);margin-top:6px;line-height:1.7;">{desc}…</span>\n'
+        f'            </a>\n'
+        f'          </li>'
+    )
+
+def generate_medical_hub(articles):
+    """医学コラムのハブページ /blog/medical/index.html を生成"""
+    medical = [a for a in articles if a.get("category") == MEDICAL_CATEGORY]
+    if not medical:
+        print("[INFO] 医学コラムが無いためハブページをスキップ")
+        return None
+    by_slug = {a["slug"]: a for a in medical}
+    used = set()
+    theme_sections = []
+    for theme_title, theme_desc, slugs in MEDICAL_HUB_THEMES:
+        cards = []
+        for s in slugs:
+            if s in by_slug:
+                cards.append(_medical_card(by_slug[s]))
+                used.add(s)
+            else:
+                print(f"[WARN] 医学ハブ: slug {s} が見つかりません（テーマ: {theme_title}）")
+        if cards:
+            theme_sections.append(
+                f'      <section class="lp-section">\n'
+                f'        <h2>{theme_title}</h2>\n'
+                f'        <p style="margin:0 0 14px;color:var(--text-light,#555);">{theme_desc}</p>\n'
+                f'        <ul style="margin:0;padding:0;">\n' + "\n".join(cards) + '\n        </ul>\n'
+                f'      </section>'
+            )
+    # テーマ未登録の医学コラムは「新着コラム」として自動掲載（漏れ防止）
+    rest = [a for a in sorted(medical, key=lambda x: str(x["date"]), reverse=True) if a["slug"] not in used]
+    if rest:
+        cards = "\n".join(_medical_card(a) for a in rest)
+        theme_sections.append(
+            '      <section class="lp-section">\n'
+            '        <h2>🆕 新着コラム</h2>\n'
+            '        <ul style="margin:0;padding:0;">\n' + cards + '\n        </ul>\n'
+            '      </section>'
+        )
+
+    canonical = f"{DOMAIN}/blog/{MEDICAL_HUB_DIR_NAME}/"
+    title = "救急医の医学コラム｜熱中症・脳震盪・栄養・睡眠 — 高校サッカー選手を守る医学の話"
+    description = (
+        "救急科専門医（脳神経外科専門医・医学博士）が、高校サッカー選手・保護者・指導者向けに"
+        "熱中症・脳震盪・心臓振盪・捻挫・貧血・睡眠・オーバートレーニングを医学的根拠と共に解説。"
+        "テーマ別一覧と読む順ガイド。"
+    )
+    breadcrumb = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "ホーム", "item": f"{DOMAIN}/"},
+            {"@type": "ListItem", "position": 2, "name": "ブログ", "item": f"{DOMAIN}/blog/"},
+            {"@type": "ListItem", "position": 3, "name": "医学コラム", "item": canonical},
+        ],
+    }, ensure_ascii=False)
+    collection = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": title,
+        "description": description,
+        "url": canonical,
+        "inLanguage": "ja",
+        "about": {"@type": "Thing", "name": "スポーツ医学・選手の安全"},
+        "author": build_author_person({}),
+        "hasPart": [
+            {"@type": "BlogPosting", "headline": a["title"], "url": f"{DOMAIN}/blog/posts/{a['slug']}/"}
+            for a in medical
+        ],
+    }, ensure_ascii=False)
+
+    html = MEDICAL_HUB_TEMPLATE
+    html = (
+        html
+        .replace("__GA_ID__", GA_ID)
+        .replace("__ADSENSE__", ADSENSE_CLIENT)
+        .replace("__TITLE__", html_escape(title))
+        .replace("__DESCRIPTION__", html_escape(description))
+        .replace("__CANONICAL__", canonical)
+        .replace("__SCHEMA_BREADCRUMB__", breadcrumb)
+        .replace("__SCHEMA_COLLECTION__", collection)
+        .replace("__AUTHOR_BIO__", html_escape(AUTHOR_BIO))
+        .replace("__AUTHOR_X_URL__", AUTHOR_X_URL)
+        .replace("__AUTHOR_NOTE_URL__", AUTHOR_NOTE_URL)
+        .replace("__THEME_SECTIONS__", "\n\n".join(theme_sections))
+        .replace("__ARTICLE_COUNT__", str(len(medical)))
+    )
+    out_dir = BLOG_OUTPUT_DIR / MEDICAL_HUB_DIR_NAME
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "index.html").write_text(html, encoding="utf-8")
+    print(f"[OK] 医学コラムハブ -> /blog/{MEDICAL_HUB_DIR_NAME}/ （{len(medical)}記事）")
+    return canonical
+
+
+MEDICAL_HUB_TEMPLATE = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=__GA_ID__"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '__GA_ID__');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=__ADSENSE__"
+          crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="__ADSENSE__">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>__TITLE__</title>
+  <meta name="description" content="__DESCRIPTION__">
+  <meta name="keywords" content="高校サッカー,医学コラム,熱中症,脳震盪,救急医,スポーツ医学,コンディショニング">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="__CANONICAL__">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="高校サッカー順位確認システム">
+  <meta property="og:title" content="__TITLE__">
+  <meta property="og:description" content="__DESCRIPTION__">
+  <meta property="og:url" content="__CANONICAL__">
+  <meta property="og:image" content="https://u18-soccer.com/og-image.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DrKazuSoccer">
+  <meta name="twitter:title" content="__TITLE__">
+  <meta name="twitter:description" content="__DESCRIPTION__">
+  <meta name="twitter:image" content="https://u18-soccer.com/og-image.png">
+
+  <script type="application/ld+json">
+__SCHEMA_BREADCRUMB__
+  </script>
+  <script type="application/ld+json">
+__SCHEMA_COLLECTION__
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#1e40af">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="site-title">
+          <a href="/" style="color:inherit;text-decoration:none;">
+            <i class="fas fa-futbol"></i>
+            高校サッカー順位確認システム
+          </a>
+        </div>
+        <nav class="nav">
+          <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
+          <a href="/blog/" class="nav-link"><i class="fas fa-newspaper"></i> ブログ</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container" style="max-width:900px;">
+      <nav class="breadcrumb" aria-label="パンくずリスト" style="margin:16px 0;font-size:0.88em;">
+        <a href="/">ホーム</a>
+        <span class="breadcrumb__sep">›</span>
+        <a href="/blog/">ブログ</a>
+        <span class="breadcrumb__sep">›</span>
+        <span aria-current="page">医学コラム</span>
+      </nav>
+
+      <h1 style="margin:8px 0 12px;"><i class="fas fa-user-md" aria-hidden="true"></i> 救急医の医学コラム</h1>
+      <p style="line-height:1.9;margin:0 0 18px;">
+        救命救急センターに勤務する救急科専門医が、高校サッカーの選手・保護者・指導者の皆さまに向けて、
+        「倒れてから病院で会うのではなく、倒れる前に届く情報を」という思いで書いている連載です（現在 __ARTICLE_COUNT__ 本）。
+        すべての記事は公的ガイドライン・医学的根拠に基づき、要点まとめ・目次・FAQ付きで読めます。
+      </p>
+
+      <aside style="margin:0 0 24px;padding:18px 20px;background:var(--bg-light,#f8fafc);border:1px solid var(--border-color,#e2e8f0);border-radius:12px;font-size:0.95rem;line-height:1.85;">
+        <p style="font-size:0.8rem;font-weight:600;letter-spacing:0.06em;color:var(--primary-color,#1e40af);margin:0 0 6px;"><i class="fas fa-user-md"></i> 執筆者</p>
+        <p style="margin:0 0 8px;"><strong>Dr.Kazu Soccer</strong>（日本救急医学会認定 救急科専門医・脳神経外科専門医・医学博士）</p>
+        <p style="margin:0 0 10px;">__AUTHOR_BIO__</p>
+        <p style="margin:0;">
+          <a href="/about.html">運営者情報を見る ›</a>
+          <a href="__AUTHOR_X_URL__" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>
+          <a href="__AUTHOR_NOTE_URL__" target="_blank" rel="noopener">note ›</a>
+        </p>
+      </aside>
+
+      <section class="lp-section" style="background:linear-gradient(90deg,#eff6ff,#f0fdfa);border-left:4px solid var(--primary-color,#1e40af);border-radius:0 10px 10px 0;padding:16px 20px;">
+        <h2 style="margin-top:0;">📖 読む順ガイド</h2>
+        <ul style="margin:0;padding-left:1.5em;line-height:2.0;">
+          <li><strong>いま（夏の大会期）なら</strong>：熱中症対策 → 水分補給 → 大会当日の暑さ対策 の順で。チーム全員に関わる内容です。</li>
+          <li><strong>試合・練習の「もしも」に備えるなら</strong>：脳震盪と心臓振盪は<strong>起きる前に</strong>読んでおくことに意味があります。ベンチに入る大人は必読です。</li>
+          <li><strong>「最近走れない・疲れが抜けない」なら</strong>：オーバートレーニング → 貧血 → 睡眠。原因は1つとは限りません。</li>
+        </ul>
+      </section>
+
+__THEME_SECTIONS__
+
+      <section class="lp-section">
+        <h2>ご利用にあたって（免責）</h2>
+        <p style="line-height:1.9;">
+          本連載は救急科専門医の知識と経験に基づく<strong>一般的な情報提供</strong>であり、個別の診断・治療を目的とするものではありません。
+          選手の体調不良やケガは必ず医療機関を受診し、緊急時は迷わず119番へ。当サイトの情報を理由に受診を遅らせないでください。
+          詳細は<a href="/about.html">運営者情報</a>の免責事項をご覧ください。
+        </p>
+      </section>
+
+      <section class="lp-section">
+        <h2>関連リンク</h2>
+        <ul>
+          <li><a href="/blog/">ブログ記事一覧（大会分析・チーム特集も）</a></li>
+          <li><a href="/tournaments/interhigh-2026/">インターハイ2026 速報・結果</a></li>
+          <li><a href="/about.html">運営者情報・サイトについて</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025-2026 高校サッカー順位確認システム</p>
+      <nav class="footer-nav" style="margin-top:12px;">
+        <a href="/about.html">運営者情報</a> ・
+        <a href="/privacy.html">プライバシーポリシー</a> ・
+        <a href="/contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
+"""
+
 def main():
     if not BLOG_SOURCE_DIR.exists():
         print(f"[INFO] {BLOG_SOURCE_DIR} が存在しません。スキップ。")
@@ -1111,6 +1439,9 @@ def main():
     (BLOG_OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
     print(f"[OK] ブログ一覧 -> /blog/")
     generate_rss(articles)
+
+    # 医学コラムハブページ（B-3）
+    generate_medical_hub(articles)
 
     # トップページの新着コラム欄を更新
     update_home_latest_blog(articles)
