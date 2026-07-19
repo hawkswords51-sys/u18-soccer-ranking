@@ -1332,6 +1332,7 @@ __SCHEMA_COLLECTION__
         </div>
         <nav class="nav">
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
+          <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ</a>
           <a href="/blog/" class="nav-link"><i class="fas fa-newspaper"></i> ブログ</a>
         </nav>
       </div>
@@ -1390,6 +1391,8 @@ __THEME_SECTIONS__
         <h2>関連リンク</h2>
         <ul>
           <li><a href="/blog/">ブログ記事一覧（大会分析・チーム特集も）</a></li>
+          <li><a href="/leagues/">リーグ順位表一覧（プレミア・プリンス9地域）</a></li>
+          <li><a href="/leagues/premier-east/">プレミアリーグEAST 順位表</a>／<a href="/leagues/premier-west/">プレミアリーグWEST 順位表</a></li>
           <li><a href="/tournaments/interhigh-2026/">インターハイ2026 速報・結果</a></li>
           <li><a href="/about.html">運営者情報・サイトについて</a></li>
         </ul>
