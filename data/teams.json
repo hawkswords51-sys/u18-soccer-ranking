@@ -4372,38 +4372,22 @@
         "name": "啓新高校",
         "league": "福井県F1",
         "rank": 6,
-        "points": 15,
+        "points": 18,
         "played": 10,
-        "won": 5,
+        "won": 6,
         "drawn": 0,
-        "lost": 5,
-        "goalsFor": 12,
+        "lost": 4,
+        "goalsFor": 15,
         "goalsAgainst": 10,
         "goalDiff": 0,
         "prefectureRank": 6,
         "leagueRank": 5
       },
       {
-        "id": "fu007",
-        "name": "敦賀気比高校",
-        "league": "福井県F1",
-        "rank": 7,
-        "points": 6,
-        "played": 10,
-        "won": 2,
-        "drawn": 0,
-        "lost": 8,
-        "goalsFor": 8,
-        "goalsAgainst": 31,
-        "prefectureRank": 7,
-        "goalDiff": -4,
-        "leagueRank": 6
-      },
-      {
         "id": "fu012",
         "name": "武生高校",
         "league": "福井県F1",
-        "rank": 8,
+        "rank": 7,
         "points": 5,
         "played": 10,
         "won": 1,
@@ -4412,14 +4396,14 @@
         "goalsFor": 3,
         "goalsAgainst": 29,
         "goalDiff": -6,
-        "prefectureRank": 8,
-        "leagueRank": 7
+        "prefectureRank": 7,
+        "leagueRank": 6
       },
       {
         "id": "fu011",
         "name": "坂井高校",
         "league": "福井県F1",
-        "rank": 9,
+        "rank": 8,
         "points": 4,
         "played": 10,
         "won": 1,
@@ -4428,7 +4412,23 @@
         "goalsFor": 6,
         "goalsAgainst": 44,
         "goalDiff": -2,
+        "prefectureRank": 8,
+        "leagueRank": 7
+      },
+      {
+        "id": "fu007",
+        "name": "敦賀気比高校",
+        "league": "福井県F1",
+        "rank": 9,
+        "points": 3,
+        "played": 10,
+        "won": 1,
+        "drawn": 0,
+        "lost": 9,
+        "goalsFor": 8,
+        "goalsAgainst": 34,
         "prefectureRank": 9,
+        "goalDiff": -4,
         "leagueRank": 8
       }
     ],
@@ -11204,7 +11204,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-07-22 07:57",
+    "lastUpdated": "2026-07-23 08:03",
     "year": 2026,
     "updatedCount": 543
   }
