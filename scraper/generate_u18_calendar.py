@@ -251,6 +251,7 @@ def main():
         <nav class="nav">
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
           <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ一覧</a>
+          <a href="/blog/" class="nav-link"><i class="fas fa-newspaper"></i> ブログ</a>
         </nav>
       </div>
     </div>
