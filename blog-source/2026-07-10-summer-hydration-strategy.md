@@ -125,7 +125,7 @@ faq:
 「暑さで食欲が落ち、朝ごはんも水分も足りないまま練習に入った」「試合に集中していて、給水を1回飛ばした」「熱中症が心配で水ばかり大量に飲んでいた」——どれも、**ほんの少しの知識と習慣で防げた**ものばかりです。
 
 <figure style="margin:24px 0;text-align:center;">
-  <img src="/img/blog/breakfast-heatstroke.png" alt="朝食抜きは熱中症の入り口。朝練で一番危ないのが朝食抜きで、低血糖と脱水が重なる。対策は一口でも糖質と水分を入れてから動くこと。起き抜けは軽くてよく、パン一口と水でも違う" width="1200" height="630" loading="lazy" style="max-width:100%;height:auto;border-radius:10px;">
+  <img src="/img/blog/breakfast-heatstroke.png" alt="朝食抜きは熱中症の入り口。朝練で一番危ないのが朝食抜きで、低血糖と脱水が重なる。対策は一口でも糖質と水分を入れてから動くこと。起き抜けは軽くてよく、パン一口と水でも違う" width="1200" height="630" loading="lazy" style="width:100%;max-width:680px;height:auto;border-radius:10px;">
   <figcaption style="font-size:0.85rem;color:var(--text-light,#666);margin-top:6px;">朝練前の「朝食抜き」は低血糖＋脱水の二重リスク</figcaption>
 </figure>
 

@@ -85,7 +85,7 @@ faq:
 朝9時キックオフのような早い試合では、3〜4時間前の食事は現実的でないこともあります。その場合は**前日の夕食でしっかり貯金を作り、当日朝は起床後に消化のよい朝食を軽くとる**、という2段構えで構いません。そして、絶対に避けてほしいのが「朝食抜き」です。
 
 <figure style="margin:24px 0;text-align:center;">
-  <img src="/img/blog/breakfast-heatstroke.png" alt="朝食抜きは熱中症の入り口。朝練で一番危ないのが朝食抜きで、低血糖と脱水が重なる。対策は一口でも糖質と水分を入れてから動くこと。起き抜けは軽くてよく、パン一口と水でも違う" width="1200" height="630" loading="lazy" style="max-width:100%;height:auto;border-radius:10px;">
+  <img src="/img/blog/breakfast-heatstroke.png" alt="朝食抜きは熱中症の入り口。朝練で一番危ないのが朝食抜きで、低血糖と脱水が重なる。対策は一口でも糖質と水分を入れてから動くこと。起き抜けは軽くてよく、パン一口と水でも違う" width="1200" height="630" loading="lazy" style="width:100%;max-width:680px;height:auto;border-radius:10px;">
   <figcaption style="font-size:0.85rem;color:var(--text-light,#666);margin-top:6px;">朝食抜きは低血糖＋脱水の二重リスク——夏の朝はとくに危険</figcaption>
 </figure>
 

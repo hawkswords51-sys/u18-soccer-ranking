@@ -77,7 +77,7 @@ faq:
 中高生アスリートを対象にしたアメリカの研究では、**睡眠時間が8時間未満の選手はケガのリスクが約1.7倍**だったという報告もあります。
 
 <figure style="margin:24px 0;text-align:center;">
-  <img src="/img/blog/sleep-injury-risk.png" alt="寝不足はケガを招く。中高生アスリートで睡眠が8時間未満だとケガのリスクは約1.7倍。夏の疲労回復もまずは睡眠から" width="1200" height="630" loading="lazy" style="max-width:100%;height:auto;border-radius:10px;">
+  <img src="/img/blog/sleep-injury-risk.png" alt="寝不足はケガを招く。中高生アスリートで睡眠が8時間未満だとケガのリスクは約1.7倍。夏の疲労回復もまずは睡眠から" width="1200" height="630" loading="lazy" style="width:100%;max-width:680px;height:auto;border-radius:10px;">
   <figcaption style="font-size:0.85rem;color:var(--text-light,#666);margin-top:6px;">睡眠不足はケガのリスクを高める（中高生アスリートの研究より）</figcaption>
 </figure>
 
