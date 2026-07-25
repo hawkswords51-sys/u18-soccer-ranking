@@ -765,7 +765,11 @@ def render_bracket_svg(sections, reps_lines):
                 team_text(tx, nd["yb"] + 3.5, nd["b"], anchor, won=won_b)
                 line(x_edge, nd["ya"], xs[0], nd["ya"], RED if won_a else GRAY, 2.2 if won_a else 1.6)
                 line(x_edge, nd["yb"], xs[0], nd["yb"], RED if won_b else GRAY, 2.2 if won_b else 1.6)
+                # 縦の連結線（兄弟をつなぐ）。勝者側だけ赤で上書きして勝ち上がりを連続表示
                 line(xs[0], nd["ya"], xs[0], nd["yb"], GRAY)
+                if nd["score"] and nd.get("winner"):
+                    wy = nd["ya"] if won_a else nd["yb"]
+                    line(xs[0], wy, xs[0], nd["yj"], RED, 2.2)
                 if nd["score"]:
                     text(xs[0] + 3 * sign, nd["yj"] - 3.5, nd["score"], score_anchor, 8.5, ACC, "700")
 
@@ -800,6 +804,10 @@ def render_bracket_svg(sections, reps_lines):
             for ni, nd in enumerate(wing_nodes):
                 c1, c2 = child_wing[2 * ni], child_wing[2 * ni + 1]
                 line(xs[li], c1["yj"], xs[li], c2["yj"], GRAY)
+                # 勝者が出た上位ノードは、勝った子の縦線を赤で上書き
+                if nd["score"] and nd.get("winner"):
+                    win_child = c1 if nd["winner"] == nd["a"] else c2
+                    line(xs[li], win_child["yj"], xs[li], nd["yj"], RED, 2.2)
 
     draw_wing("L")
     draw_wing("R")
