@@ -60,14 +60,57 @@ ALIASES = {
     "帝京大可児": "帝京大学可児",              # 東海（koko側が略称）
 }
 
+# リーグ別の名寄せ（2026-07-25 新設）
+# ALIASES はリポジトリ全体に効くので、同じ表記が別リーグでは別チームを指す場合に使えない。
+# 例: 「ヴィッセル神戸U-18」はプレミアWESTでは1stチームの正式名だが、
+#     関西2部のkokoページでは一部の節だけセカンドチームの「(B)」が抜けて書かれている。
+# そういう「そのリーグの中だけの読み替え」はここに書く（ALIASESより優先）。
+LEAGUE_ALIASES = {
+    "prince-kansai-2": {
+        # koko第12節・第15節だけ「(B)」が抜けている（他の節は(B)付き）
+        "ヴィッセル神戸U-18": "ヴィッセル神戸U-18(B)",
+    },
+}
+
+# 末尾の括弧を「中身が都道府県名のときだけ」外すための一覧（2026-07-25 新設）
+# 旧実装は末尾の括弧を無条件で外していたため、セカンドチームの「(B)」まで
+# 消えてしまい、順位表（括弧なし＝(B)が残る）と試合表（（県）付き＝(B)が消える）で
+# 正規化結果が食い違い、関東1部・関西2部が「未知のチーム名」で更新停止していた。
+PREFECTURES = {
+    "北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島",
+    "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川",
+    "新潟", "富山", "石川", "福井", "山梨", "長野", "岐阜", "静岡", "愛知",
+    "三重", "滋賀", "京都", "大阪", "兵庫", "奈良", "和歌山",
+    "鳥取", "島根", "岡山", "広島", "山口",
+    "徳島", "香川", "愛媛", "高知",
+    "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄",
+}
+
+# 処理中のリーグslug（LEAGUE_ALIASES を引くために process() が設定する）
+_CURRENT_SLUG = None
+
+
+def _is_prefecture(text: str) -> bool:
+    """括弧の中身が都道府県名か（「東京都」「大阪府」「千葉県」表記も許容）"""
+    raw = str(text).strip()
+    return raw in PREFECTURES or re.sub(r"(都|道|府|県)$", "", raw) in PREFECTURES
+
 
 def norm(name: str) -> str:
-    """チーム名から末尾の（県名）を除いて正規化し、表記ゆれをJSONの正式名へ寄せる"""
+    """チーム名から末尾の（県名）を除いて正規化し、表記ゆれをJSONの正式名へ寄せる
+
+    末尾の括弧は「中身が都道府県名のときだけ」外す。
+    → セカンドチームの「(B)」は残るので、順位表と試合表で表記が揃う。
+    """
     if name is None:
         return ""
-    s = str(name)
-    s = re.sub(r"[（(][^）)]*[）)]\s*$", "", s)  # 末尾の (県) を除去
-    s = s.strip()
+    s = str(name).strip()
+    m = re.search(r"[（(]([^（()）]*)[）)]\s*$", s)
+    if m and _is_prefecture(m.group(1)):
+        s = s[:m.start()].strip()
+    league = LEAGUE_ALIASES.get(_CURRENT_SLUG or "", {})
+    if s in league:
+        return league[s]
     return ALIASES.get(s, s)
 
 
@@ -158,6 +201,8 @@ def recompute(matches, teams_norm):
 
 
 def process(slug):
+    global _CURRENT_SLUG
+    _CURRENT_SLUG = slug  # LEAGUE_ALIASES をこのリーグの分だけ有効にする
     path = DIR / f"{slug}.json"
     if not path.exists():
         return f"[skip] {slug}: JSONが存在しない"
