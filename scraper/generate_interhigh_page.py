@@ -19,6 +19,7 @@ import unicodedata
 import yaml
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+from scorer_table import render_scorer_ranking_html
 
 
 class _JSTDate:
@@ -1040,6 +1041,12 @@ def main():
     reps_html = render_reps(reps_lines)
     rounds_html = render_rounds(sections)
 
+    # 得点ランキング（2得点以上を表示。data/scorers/interhigh-2026.json が無ければ非表示）
+    try:
+        scorer_html = render_scorer_ranking_html("interhigh-2026", limit=300, min_goals=2)
+    except Exception:
+        scorer_html = ""
+
     # トーナメント表(組み合わせ表風SVG)。「## トーナメント表(組み合わせ)」が無ければ空。
     bracket_html = render_bracket_svg(sections, reps_lines)
     if bracket_html:
@@ -1279,6 +1286,7 @@ def main():
       </section>
 {bracket_section}
 {safety_box}
+{scorer_html}
       <section class="lp-section">
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>
         {rounds_html}
