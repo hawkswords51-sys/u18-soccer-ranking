@@ -1286,12 +1286,11 @@ def main():
       </section>
 {bracket_section}
 {safety_box}
-{scorer_html}
       <section class="lp-section">
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>
         {rounds_html}
       </section>
-
+{scorer_html}
       <section class="lp-section">
         <h2><i class="fas fa-circle-question"></i> よくある質問</h2>
         {faq_html}
