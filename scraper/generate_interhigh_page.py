@@ -647,6 +647,18 @@ def render_bracket_svg(sections, reps_lines):
     levels = build_bracket_tree(pairs, results)
     pref_map = parse_pref_map(reps_lines)
     num_levels = len(levels)
+
+    # シード校(不戦=bye)は自分のスコアを持たないため、そのままだと初戦に勝っても
+    # 「校名→1列目」の横線と「1列目→2列目」の前進線が灰色のまま残り、
+    # 勝ち上がりの赤線が途中から浮いて見える(横線が繋がらない)。
+    # 親ノード(シード校の初戦)の勝者がそのシード校なら seed_won を立て、赤で描く。
+    for _li in range(1, num_levels):
+        for _ni, _nd in enumerate(levels[_li]):
+            if not (_nd.get("score") and _nd.get("winner")):
+                continue
+            for _c in (levels[_li - 1][2 * _ni], levels[_li - 1][2 * _ni + 1]):
+                if _c.get("bye") and _c.get("winner") == _nd["winner"]:
+                    _c["seed_won"] = True
     wing_levels = num_levels - 1
     names = _round_names(num_levels)
 
@@ -759,8 +771,10 @@ def render_bracket_svg(sections, reps_lines):
             won_a = bool(nd["score"]) and nd.get("winner") == nd["a"]
             won_b = bool(nd["score"]) and nd.get("winner") == nd["b"]
             if nd["bye"]:
-                team_text(tx, nd["ya"] + 3.5, nd["a"], anchor)
-                line(x_edge, nd["ya"], xs[0], nd["ya"], GRAY)
+                seed_won = bool(nd.get("seed_won"))
+                team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=seed_won)
+                line(x_edge, nd["ya"], xs[0], nd["ya"],
+                     RED if seed_won else GRAY, 2.2 if seed_won else 1.6)
             else:
                 team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=won_a)
                 team_text(tx, nd["yb"] + 3.5, nd["b"], anchor, won=won_b)
@@ -784,7 +798,9 @@ def render_bracket_svg(sections, reps_lines):
                 x_from = xs[li]
                 if li + 1 < wing_levels:
                     x_to = xs[li + 1]
-                    seg_red = bool(nd["score"]) and nd.get("winner")
+                    # シード校は score が無いので seed_won も赤の条件に含める
+                    seg_red = bool(nd.get("winner")) and (
+                        bool(nd["score"]) or bool(nd.get("seed_won")))
                 else:
                     # 準決勝→決勝：両者とも中央まで引く。赤は優勝校だけ（敗者は灰で連結）
                     x_to = cx - sign * 10
