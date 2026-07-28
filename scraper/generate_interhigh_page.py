@@ -659,6 +659,27 @@ def render_bracket_svg(sections, reps_lines):
             for _c in (levels[_li - 1][2 * _ni], levels[_li - 1][2 * _ni + 1]):
                 if _c.get("bye") and _c.get("winner") == _nd["winner"]:
                     _c["seed_won"] = True
+
+    # ---- 勝ち残っているチーム(JFA公式表と同じく校名を枠で囲む) ----
+    # 「まだ1度も負けていない」＝勝ち残り。結果の入った全ノードから敗者を集め、
+    # 1回戦の出場校のうち敗者に含まれないものを alive_teams とする。
+    # 1試合も結果が無い開催前は全校が枠だらけになるので描かない。
+    _eliminated = set()
+    _decided = 0
+    for _lvl in levels:
+        for _nd in _lvl:
+            if _nd.get("score") and _nd.get("winner"):
+                _decided += 1
+                _loser = _nd["b"] if _nd["winner"] == _nd["a"] else _nd["a"]
+                if _loser:
+                    _eliminated.add(_norm_team(_loser))
+    alive_teams = set()
+    if _decided:
+        for _nd in levels[0]:
+            for _t in (_nd.get("a"), _nd.get("b")):
+                if _t and _norm_team(_t) not in _eliminated:
+                    alive_teams.add(_norm_team(_t))
+
     wing_levels = num_levels - 1
     names = _round_names(num_levels)
 
@@ -749,6 +770,15 @@ def render_bracket_svg(sections, reps_lines):
             body = f'<a href="/teams/{tid}/">{body}</a>'
         S.append(body)
 
+    def alive_box(side, y, name):
+        """勝ち残っているチームの校名を赤い枠で囲む(校名テキストより先に描く)"""
+        if not name or _norm_team(name) not in alive_teams:
+            return
+        bx = 2.0 if side == "L" else width - LABEL_W + 4.0
+        S.append(f'<rect x="{bx:.1f}" y="{y - ROW_H / 2 + 2.5:.1f}" '
+                 f'width="{LABEL_W - 6:.1f}" height="{ROW_H - 5:.1f}" rx="3" '
+                 f'fill="none" stroke="{RED}" stroke-width="1.3"/>')
+
     # ---- ラウンド見出し ----
     for k in range(wing_levels):
         x_prev = LABEL_W if k == 0 else xsL[k - 1]
@@ -772,10 +802,13 @@ def render_bracket_svg(sections, reps_lines):
             won_b = bool(nd["score"]) and nd.get("winner") == nd["b"]
             if nd["bye"]:
                 seed_won = bool(nd.get("seed_won"))
+                alive_box(side, nd["ya"], nd["a"])
                 team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=seed_won)
                 line(x_edge, nd["ya"], xs[0], nd["ya"],
                      RED if seed_won else GRAY, 2.2 if seed_won else 1.6)
             else:
+                alive_box(side, nd["ya"], nd["a"])
+                alive_box(side, nd["yb"], nd["b"])
                 team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=won_a)
                 team_text(tx, nd["yb"] + 3.5, nd["b"], anchor, won=won_b)
                 line(x_edge, nd["ya"], xs[0], nd["ya"], RED if won_a else GRAY, 2.2 if won_a else 1.6)
@@ -862,7 +895,8 @@ def render_bracket_svg(sections, reps_lines):
     return (
         '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
-        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり(結果の入力に合わせて自動で伸びます)</p>'
+        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり ／ '
+        '<span style="border:1.5px solid #dc2626;border-radius:3px;padding:0 5px;">赤枠</span>＝勝ち残り(結果の入力に合わせて自動で更新されます)</p>'
         '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
         'background:var(--bg-white,#fff);padding:8px 4px;">'
