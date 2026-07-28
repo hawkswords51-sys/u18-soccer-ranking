@@ -770,13 +770,28 @@ def render_bracket_svg(sections, reps_lines):
             body = f'<a href="/teams/{tid}/">{body}</a>'
         S.append(body)
 
+    def _text_w(s_, size):
+        """文字列のおよその表示幅(全角=フォントサイズ、半角=その55%)"""
+        return sum(size if ord(c) >= 0x1100 else size * 0.55 for c in s_)
+
     def alive_box(side, y, name):
-        """勝ち残っているチームの校名を赤い枠で囲む(校名テキストより先に描く)"""
+        """勝ち残っているチームの校名を赤い枠で囲む(校名テキストより先に描く)。
+        枠幅は校名＋［県名］の実際の長さに合わせ、余白が空きすぎないようにする。"""
         if not name or _norm_team(name) not in alive_teams:
             return
-        bx = 2.0 if side == "L" else width - LABEL_W + 4.0
+        label = _short_label(name)
+        pref = pref_map.get(_norm_team(name), "")
+        tw = _text_w(label, 10.5) + (_text_w(f"［{pref}］", 8.5) if pref else 0.0)
+        PAD = 4.0
+        bw = min(tw + PAD * 2, LABEL_W - 6.0)
+        if side == "L":
+            bx = LABEL_W - 5.0 + PAD - bw          # 右端(校名の終わり)に合わせる
+            bx = max(bx, 2.0)
+        else:
+            bx = width - LABEL_W + 5.0 - PAD       # 左端(校名の始まり)に合わせる
+            bx = min(bx, width - 2.0 - bw)
         S.append(f'<rect x="{bx:.1f}" y="{y - ROW_H / 2 + 2.5:.1f}" '
-                 f'width="{LABEL_W - 6:.1f}" height="{ROW_H - 5:.1f}" rx="3" '
+                 f'width="{bw:.1f}" height="{ROW_H - 5:.1f}" rx="3" '
                  f'fill="none" stroke="{RED}" stroke-width="1.3"/>')
 
     # ---- ラウンド見出し ----
