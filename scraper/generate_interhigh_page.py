@@ -289,10 +289,60 @@ def render_reps(lines):
             + "\n".join(items) + '</div>'
             + f'<p style="margin-top:10px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
 
+# 「## ○回戦」として扱わないセクション名（散文セクションはここに足す）
+NON_ROUND_SECTIONS = ("各県代表", "トーナメント", "いまの見どころ")
+
+
+def linkify_prose(text):
+    """散文中の校名をチーム詳細ページへリンクする（長い名前から順に1回だけ置換）。"""
+    esc = html_escape(text)
+    slots, linked_ids = [], set()
+    for name in sorted(TEAM_MAP, key=len, reverse=True):
+        tid = TEAM_MAP[name]
+        if tid in linked_ids:      # 同じ学校は1行につき1回だけリンク（正式名と略称の二重リンクを防ぐ）
+            continue
+        en = html_escape(name)
+        if en and en in esc:
+            ph = f"\x00{len(slots)}\x00"
+            esc = esc.replace(en, ph, 1)
+            slots.append(f'<a href="/teams/{tid}/" class="team-profile-link">{format_team_name(name)}</a>')
+            linked_ids.add(tid)
+    for i, html in enumerate(slots):
+        esc = esc.replace(f"\x00{i}\x00", html)
+    # **強調** を太字に
+    return re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', esc)
+
+
+def render_highlights(sections):
+    """data md の「## いまの見どころ」を大会概要の直後に出す。
+       箇条書き(- )は ul、それ以外の行は段落。空なら何も出さない（=セクションごと消える）。"""
+    lines = [ln.rstrip() for ln in sections.get("いまの見どころ", [])]
+    paras, bullets = [], []
+    for ln in lines:
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith("- "):
+            bullets.append(f'<li>{linkify_prose(s[2:].strip())}</li>')
+        else:
+            paras.append(f'<p style="margin:0 0 10px;line-height:1.9;">{linkify_prose(s)}</p>')
+    if not paras and not bullets:
+        return ""
+    # 色枠ボックス内のインラインulは padding-left を明示しないと「•」が枠外に出る
+    ul = (f'<ul style="line-height:2;margin:0;padding-left:1.5em;">{"".join(bullets)}</ul>'
+          if bullets else "")
+    return f"""
+      <section class="lp-section" id="highlights" style="border-left:5px solid var(--accent-color,#2563eb);">
+        <h2><i class="fas fa-fire" style="color:var(--accent-color,#2563eb);"></i> いまの見どころ</h2>
+        {"".join(paras)}{ul}
+      </section>
+"""
+
+
 def render_rounds(sections):
     blocks = []
     for name, lines in sections.items():
-        if name.startswith("各県代表") or name.startswith("トーナメント"):
+        if name.startswith(NON_ROUND_SECTIONS):
             continue
         # ラウンド見出し(## 1回戦(8/1) 等)のみ対象
         matches = [ln for ln in lines if re.match(r'^\s*-\s+', ln)]
@@ -515,7 +565,7 @@ def collect_results(sections):
        戻り値: {frozenset(正規化名2つ): (名A, 点A, 点B, (PK_A,PK_B) or None, 名B)}"""
     res = {}
     for name, lines in sections.items():
-        if name.startswith("各県代表") or name.startswith("トーナメント"):
+        if name.startswith(NON_ROUND_SECTIONS):
             continue
         for ln in lines:
             m = re.match(r'^\s*-\s+(.*)$', ln)
@@ -934,7 +984,7 @@ def _summary_p(body):
 
 
 def _is_result_round(name):
-    return not (name.startswith("各県代表") or name.startswith("トーナメント") or name.startswith("歴代優勝"))
+    return not (name.startswith(NON_ROUND_SECTIONS) or name.startswith("歴代優勝"))
 
 
 def _round_winners(lines):
@@ -1099,6 +1149,7 @@ def main():
 
     # 観戦コラムセクション(大会概要の直後に表示)
     featured_articles_section = render_featured_articles_section()
+    highlights_section = render_highlights(sections)
 
     # 代表校・ラウンド
     reps_lines = sections.get("各県代表", [])
@@ -1344,7 +1395,7 @@ def main():
         {schedule_html}
         {champion_html}
       </section>
-{featured_articles_section}
+{highlights_section}{featured_articles_section}
       <section class="lp-section">
         <h2><i class="fas fa-flag"></i> 各県代表</h2>
         {reps_html}
