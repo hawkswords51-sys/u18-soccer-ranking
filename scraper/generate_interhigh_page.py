@@ -290,7 +290,9 @@ def render_reps(lines):
             + f'<p style="margin-top:10px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
 
 # 「## ○回戦」として扱わないセクション名（散文セクションはここに足す）
-NON_ROUND_SECTIONS = ("各県代表", "トーナメント", "いまの見どころ")
+# ★ここに足し忘れると、その見出しが「○回戦」扱いされて試合結果として描画されます。
+#   参照箇所: render_rounds() / collect_results() / _is_result_round()（いずれも startswith 判定）
+NON_ROUND_SECTIONS = ("各県代表", "トーナメント", "いまの見どころ", "出場選手の出身チーム")
 
 
 def linkify_prose(text):
@@ -313,28 +315,88 @@ def linkify_prose(text):
     return re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', esc)
 
 
-def render_highlights(sections):
-    """data md の「## いまの見どころ」を大会概要の直後に出す。
-       箇条書き(- )は ul、それ以外の行は段落。空なら何も出さない（=セクションごと消える）。"""
-    lines = [ln.rstrip() for ln in sections.get("いまの見どころ", [])]
+def render_prose_body(lines, keep_order=False):
+    """md駆動の散文セクションの本文HTMLを組み立てる（見どころ・出身チームデータで共用）。
+       ふつうの行 → <p> ／ 「- 」行 → <li>。
+       中身が空なら空文字を返す＝呼び出し側でセクションごと消せる。
+
+       keep_order=False（既定・「いまの見どころ」の従来動作）:
+           段落を先にまとめて出し、箇条書きは全部まとめて末尾に1つの<ul>で出す。
+       keep_order=True:
+           mdに書いた順のまま出す（連続する「- 」行ごとに<ul>を閉じる）。
+           段落→箇条書き→段落 のように書ける。"""
+    # 色枠ボックス内のインラインulは padding-left を明示しないと「•」が枠外に出る
+    UL_STYLE = 'line-height:2;margin:0 0 10px;padding-left:1.5em;'
+    P_STYLE = 'margin:0 0 10px;line-height:1.9;'
+
+    if keep_order:
+        out, bullets = [], []
+
+        def flush():
+            if bullets:
+                out.append(f'<ul style="{UL_STYLE}">{"".join(bullets)}</ul>')
+                bullets.clear()
+
+        for ln in (lines or []):
+            s = ln.strip()
+            if not s:
+                continue
+            if s.startswith("- "):
+                bullets.append(f'<li>{linkify_prose(s[2:].strip())}</li>')
+            else:
+                flush()
+                out.append(f'<p style="{P_STYLE}">{linkify_prose(s)}</p>')
+        flush()
+        return "".join(out)
+
     paras, bullets = [], []
-    for ln in lines:
+    for ln in (lines or []):
         s = ln.strip()
         if not s:
             continue
         if s.startswith("- "):
             bullets.append(f'<li>{linkify_prose(s[2:].strip())}</li>')
         else:
-            paras.append(f'<p style="margin:0 0 10px;line-height:1.9;">{linkify_prose(s)}</p>')
+            paras.append(f'<p style="{P_STYLE}">{linkify_prose(s)}</p>')
     if not paras and not bullets:
         return ""
-    # 色枠ボックス内のインラインulは padding-left を明示しないと「•」が枠外に出る
     ul = (f'<ul style="line-height:2;margin:0;padding-left:1.5em;">{"".join(bullets)}</ul>'
           if bullets else "")
+    return f'{"".join(paras)}{ul}'
+
+
+def render_highlights(sections):
+    """data md の「## いまの見どころ」を大会概要の直後に出す。
+       箇条書き(- )は ul、それ以外の行は段落。空なら何も出さない（=セクションごと消える）。
+       準決勝プレビューのように段落と箇条書きが交互に並ぶ構成があるため、
+       md記述順を維持する keep_order=True で描画する。"""
+    body = render_prose_body(sections.get("いまの見どころ", []), keep_order=True)
+    if not body:
+        return ""
     return f"""
       <section class="lp-section" id="highlights" style="border-left:5px solid var(--accent-color,#2563eb);">
         <h2><i class="fas fa-fire" style="color:var(--accent-color,#2563eb);"></i> いまの見どころ</h2>
-        {"".join(paras)}{ul}
+        {body}
+      </section>
+"""
+
+
+def render_player_origins(sections):
+    """data md の「## 出場選手の出身チームデータ」を得点ランキングとFAQの間に出す。
+       見どころと同じmd駆動の散文セクション。空なら何も出さない（=セクションごと消える）。
+       ※見出し名は NON_ROUND_SECTIONS の「出場選手の出身チーム」で前方一致させている。"""
+    lines = None
+    for name, ls in sections.items():
+        if name.startswith("出場選手の出身チーム"):
+            lines = ls
+            break
+    body = render_prose_body(lines, keep_order=True)   # 段落→箇条書き→まとめ の順で読ませる
+    if not body:
+        return ""
+    return f"""
+      <section class="lp-section" id="player-origins" style="border-left:5px solid #0e7490;">
+        <h2><i class="fas fa-people-arrows" style="color:#0e7490;"></i> 出場選手の出身チーム（前所属）データ</h2>
+        {body}
       </section>
 """
 
@@ -1005,6 +1067,79 @@ def _round_winners(lines):
     return winners
 
 
+def champion_name(meta):
+    """meta の champion(文字列 or dict)から優勝校名を返す。未記入なら空文字。"""
+    champion = meta.get("champion") or ""
+    if isinstance(champion, dict):
+        return (champion.get("team") or "").strip()
+    if isinstance(champion, str):
+        return champion.strip()
+    return ""
+
+
+def parse_final_score(sections):
+    """「## 決勝(8/1)」セクションのスコア行を読む。
+       戻り値: (名A, 点A, 点B, (PK_A,PK_B) or None, 名B, 日付表記) / スコア行が無ければ None。
+       ※「準決勝」は startswith("決勝") に一致しないので誤検出しない。"""
+    for name, lines in sections.items():
+        if not name.startswith("決勝"):
+            continue
+        dm = re.search(r'(\d{1,2})\s*/\s*(\d{1,2})', name)   # 見出しの「(8/1)」→「8月1日」
+        day = f"{int(dm.group(1))}月{int(dm.group(2))}日" if dm else ""
+        for ln in lines:
+            mm = re.match(r'^\s*-\s+(.*?)\s+(\d+)\s*-\s*(\d+)'
+                          r'(?:\s*[（(]\s*PK\s*(\d+)\s*-\s*(\d+)\s*[）)])?\s+(.*)$', ln.strip())
+            if not mm:
+                continue
+            pk = (int(mm.group(4)), int(mm.group(5))) if mm.group(4) else None
+            return (mm.group(1).strip(), int(mm.group(2)), int(mm.group(3)),
+                    pk, mm.group(6).strip(), day)
+    return None
+
+
+def champion_final_result(champ_name, sections):
+    """優勝校の視点に揃えた決勝結果を返す: (相手校, "2-1", PK("4-2" or ""), 日付表記)。
+       決勝スコアが無い / 優勝校名が決勝の2校と照合できない場合は None。"""
+    fs = parse_final_score(sections)
+    if not fs or not champ_name:
+        return None
+    a, ga, gb, pk, b, day = fs
+    nc = _norm_team(champ_name)
+    if nc == _norm_team(a):
+        opp, gc, go = b, ga, gb
+        pk_txt = f"{pk[0]}-{pk[1]}" if pk else ""
+    elif nc == _norm_team(b):
+        opp, gc, go = a, gb, ga
+        pk_txt = f"{pk[1]}-{pk[0]}" if pk else ""
+    else:
+        return None
+    return opp, f"{gc}-{go}", pk_txt, day
+
+
+def champion_faq_answer(champ_name, sections):
+    """FAQ「優勝校は？」の回答文(プレーンテキスト)。決勝スコアが取れなければ校名のみで成立する文。"""
+    r = champion_final_result(champ_name, sections)
+    if not r:
+        return f"{champ_name}です。決勝の結果はこのページの試合結果セクションに掲載しています。"
+    opp, score, pk_txt, day = r
+    label = f"{day}の決勝" if day else "決勝"
+    if pk_txt:
+        return (f"{champ_name}です。{label}は{opp}と{score}で引き分け、"
+                f"PK戦{pk_txt}で制して優勝しました。")
+    return f"{champ_name}です。{label}で{opp}を{score}で破り、優勝しました。"
+
+
+def champion_seo_phrase(champ_name, sections):
+    """title/meta description 用の短い優勝フレーズ。例「大津高校が静岡学園高校を2-1で破り優勝」"""
+    r = champion_final_result(champ_name, sections)
+    if not r:
+        return f"{champ_name}が優勝"
+    opp, score, pk_txt, _day = r
+    if pk_txt:
+        return f"{champ_name}が{opp}をPK戦{pk_txt}で破り優勝"
+    return f"{champ_name}が{opp}を{score}で破り優勝"
+
+
 def build_ai_summary(meta, sections):
     title_main = meta.get("title", "全国高校総体 サッカー競技大会(男子)")
     period = meta.get("period", "")
@@ -1015,8 +1150,7 @@ def build_ai_summary(meta, sections):
     date_str = f"{d.year}年{d.month}月{d.day}日"
 
     # ① 優勝が確定していれば優勝校を主役に
-    champion = meta.get("champion") or ""
-    champ_name = champion.get("team", "") if isinstance(champion, dict) else (champion.strip() if isinstance(champion, str) else "")
+    champ_name = champion_name(meta)
     if champ_name:
         body = (f"【{date_str}時点】{html_escape(title_main)}は{html_escape(champ_name)}が優勝。"
                 f"組み合わせ・トーナメント表・全試合結果をまとめています。")
@@ -1124,6 +1258,7 @@ def main():
     period = meta.get("period", "")
     status = meta.get("status", "")
     champion = meta.get("champion") or ""
+    champ_name = champion_name(meta)
     slots = meta.get("slots", "")
     fmt = meta.get("format", "")
     schedule = meta.get("schedule") or []
@@ -1135,10 +1270,18 @@ def main():
     else:
         schedule_html = ""
 
-    seo_title = f"インターハイ サッカー{year} 結果・組み合わせ・トーナメント表【最新】｜全国高校総体(男子)速報"
-    description = (f"令和{year - 2018}年度 全国高等学校総合体育大会(高校総体・インターハイ){year} サッカー競技 男子。"
-                  f"全国大会(本選)の組み合わせ・試合結果・トーナメント表・各県代表校を毎日自動更新。"
-                  f"各都道府県代表の計51校が福島・Jヴィレッジで全国一を争う。{html_escape(period)}開催。決勝まで速報。")
+    # 優勝校が記入されたら title / description を「優勝校が決まった大会」の文面に自動切替
+    if champ_name:
+        champ_phrase = champion_seo_phrase(champ_name, sections)
+        seo_title = f"インターハイ サッカー{year} {champ_name}が優勝｜結果・トーナメント表・全試合結果｜全国高校総体(男子)"
+        description = (f"令和{year - 2018}年度 全国高等学校総合体育大会(高校総体・インターハイ){year} サッカー競技 男子は{champ_phrase}。"
+                      f"全国大会(本選)の決勝スコア・全試合結果・トーナメント表・各県代表校をまとめて掲載。"
+                      f"各都道府県代表の計51校が福島・Jヴィレッジで全国一を争った{html_escape(period)}の大会記録。")
+    else:
+        seo_title = f"インターハイ サッカー{year} 結果・組み合わせ・トーナメント表【最新】｜全国高校総体(男子)速報"
+        description = (f"令和{year - 2018}年度 全国高等学校総合体育大会(高校総体・インターハイ){year} サッカー競技 男子。"
+                      f"全国大会(本選)の組み合わせ・試合結果・トーナメント表・各県代表校を毎日自動更新。"
+                      f"各都道府県代表の計51校が福島・Jヴィレッジで全国一を争う。{html_escape(period)}開催。決勝まで速報。")
     keywords = (f"インターハイ サッカー{year},インターハイ {year},高校総体{year},全国高校総体 サッカー,"
                 f"全国高等学校総合体育大会 サッカー,高校総体 サッカー 結果,"
                 f"インターハイ サッカー トーナメント表,インターハイ サッカー 組み合わせ,"
@@ -1150,6 +1293,8 @@ def main():
     # 観戦コラムセクション(大会概要の直後に表示)
     featured_articles_section = render_featured_articles_section()
     highlights_section = render_highlights(sections)
+    # 出場選手の出身チーム（前所属）データ。得点ランキングとFAQの間に独立セクションで出す。
+    player_origins_section = render_player_origins(sections)
 
     # 代表校・ラウンド
     reps_lines = sections.get("各県代表", [])
@@ -1197,7 +1342,12 @@ def main():
 
     # --- FAQ と大会構造化データ(SportsEvent / FAQPage) ---
     import json as _json
-    faq_items = [
+    faq_items = []
+    # champion 記入時のみ先頭に「優勝校は？」を追加(faq_schema / faq_html は faq_items から自動生成)
+    if champ_name:
+        faq_items.append((f"インターハイ{year}サッカーの優勝校は？",
+                          champion_faq_answer(champ_name, sections)))
+    faq_items += [
         (f"インターハイ{year}のサッカー競技はいつ開催されますか？",
          f"{period} に開催されます。" if period else "日程は確定後に掲載します。"),
         ("開催地・会場はどこですか？",
@@ -1406,7 +1556,7 @@ def main():
         <h2><i class="fas fa-sitemap"></i> トーナメント・試合結果</h2>
         {rounds_html}
       </section>
-{scorer_html}
+{scorer_html}{player_origins_section}
       <section class="lp-section">
         <h2><i class="fas fa-circle-question"></i> よくある質問</h2>
         {faq_html}
