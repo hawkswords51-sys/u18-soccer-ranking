@@ -3,30 +3,135 @@
   "season": "2026",
   "source": "https://www.jfa.jp/match/koukou_soutai_2026/men/schedule_result/",
   "sourceLabel": "JFA公式（試合記録）",
-  "lastUpdated": "2026-07-29（準々決勝終了時点）",
+  "lastUpdated": "2026-07-31（準決勝第1試合終了時点）",
   "note": "2得点以上の選手を掲載。得点はJFA公式の試合記録の集計です（オウンゴール・PK戦のキックは含みません）。",
   "scorers": [
-    { "rank": 1, "name": "坂本健悟", "team": "静岡学園高校", "goals": 4 },
-    { "rank": 2, "name": "オニブチジデオフォー太郎", "team": "旭川実業高校", "goals": 3 },
-    { "rank": 2, "name": "山本将吾", "team": "山形明正高校", "goals": 3 },
-    { "rank": 2, "name": "増田琉輝", "team": "山形明正高校", "goals": 3 },
-    { "rank": 2, "name": "武本陽向", "team": "桐蔭学園高校", "goals": 3 },
-    { "rank": 2, "name": "ワーズィージェイヴェン勝", "team": "鹿島学園高校", "goals": 3 },
-    { "rank": 2, "name": "久下彬", "team": "近畿大学附属高校", "goals": 3 },
-    { "rank": 8, "name": "安永龍生", "team": "静岡学園高校", "goals": 2 },
-    { "rank": 8, "name": "稗田幹太", "team": "佐賀東高校", "goals": 2 },
-    { "rank": 8, "name": "岩淵波輝", "team": "専大北上高校", "goals": 2 },
-    { "rank": 8, "name": "稲橋咲生", "team": "松本国際高校", "goals": 2 },
-    { "rank": 8, "name": "浅倉大雅", "team": "聖和学園高校", "goals": 2 },
-    { "rank": 8, "name": "立石陽向", "team": "前橋育英高校", "goals": 2 },
-    { "rank": 8, "name": "内海心太郎", "team": "鹿島学園高校", "goals": 2 },
-    { "rank": 8, "name": "松下逸輝", "team": "丸岡高校", "goals": 2 },
-    { "rank": 8, "name": "奥村翼", "team": "滝川第二高校", "goals": 2 },
-    { "rank": 8, "name": "西城大翔", "team": "桐光学園高校", "goals": 2 },
-    { "rank": 8, "name": "中田陸", "team": "桐蔭学園高校", "goals": 2 },
-    { "rank": 8, "name": "小山涼太", "team": "旭川実業高校", "goals": 2 },
-    { "rank": 8, "name": "川口湘大", "team": "旭川実業高校", "goals": 2 },
-    { "rank": 8, "name": "吉崎太珠", "team": "日章学園高校", "goals": 2 }
+    {
+      "rank": 1,
+      "name": "坂本健悟",
+      "team": "静岡学園高校",
+      "goals": 5
+    },
+    {
+      "rank": 2,
+      "name": "オニブチジデオフォー太郎",
+      "team": "旭川実業高校",
+      "goals": 3
+    },
+    {
+      "rank": 2,
+      "name": "山本将吾",
+      "team": "山形明正高校",
+      "goals": 3
+    },
+    {
+      "rank": 2,
+      "name": "増田琉輝",
+      "team": "山形明正高校",
+      "goals": 3
+    },
+    {
+      "rank": 2,
+      "name": "武本陽向",
+      "team": "桐蔭学園高校",
+      "goals": 3
+    },
+    {
+      "rank": 2,
+      "name": "ワーズィージェイヴェン勝",
+      "team": "鹿島学園高校",
+      "goals": 3
+    },
+    {
+      "rank": 2,
+      "name": "久下彬",
+      "team": "近畿大学附属高校",
+      "goals": 3
+    },
+    {
+      "rank": 8,
+      "name": "安永龍生",
+      "team": "静岡学園高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "稗田幹太",
+      "team": "佐賀東高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "岩淵波輝",
+      "team": "専大北上高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "稲橋咲生",
+      "team": "松本国際高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "浅倉大雅",
+      "team": "聖和学園高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "立石陽向",
+      "team": "前橋育英高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "内海心太郎",
+      "team": "鹿島学園高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "松下逸輝",
+      "team": "丸岡高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "奥村翼",
+      "team": "滝川第二高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "西城大翔",
+      "team": "桐光学園高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "中田陸",
+      "team": "桐蔭学園高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "小山涼太",
+      "team": "旭川実業高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "川口湘大",
+      "team": "旭川実業高校",
+      "goals": 2
+    },
+    {
+      "rank": 8,
+      "name": "吉崎太珠",
+      "team": "日章学園高校",
+      "goals": 2
+    }
   ],
   "coverage": []
 }
