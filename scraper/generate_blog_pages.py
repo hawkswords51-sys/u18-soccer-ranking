@@ -1134,6 +1134,7 @@ MEDICAL_HUB_THEMES = [
             "concussion-return-to-play-2026",
             "commotio-cordis-aed-2026",
             "2026-06-25-ankle-sprain-treatment",
+            "lumbar-spondylolysis-2026",
         ],
     ),
     (
