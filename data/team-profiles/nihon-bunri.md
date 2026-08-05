@@ -7,6 +7,7 @@ aliases:
 league: プリンスリーグ北信越1部
 prefecture: niigata
 prefecture_name: 新潟県
+founded: 1984
 location: 新潟県新潟市
 website: https://www.nihonbunri-footballclub.com/
 nickname: 日本文理

@@ -8,6 +8,7 @@ aliases:
 league: プリンスリーグ中国
 prefecture: shimane
 prefecture_name: 島根県
+founded: 1935
 location: 島根県出雲市
 website: https://www.taisha.ed.jp/
 official_x:

@@ -10,6 +10,7 @@ aliases:
 league: プリンスリーグ九州1部
 prefecture: okinawa
 prefecture_name: 沖縄県
+founded: 2016
 location: 沖縄県沖縄市
 website: https://fcryukyu.com/academy/
 official_x:

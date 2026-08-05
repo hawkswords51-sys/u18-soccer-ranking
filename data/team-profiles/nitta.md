@@ -8,6 +8,7 @@ aliases:
 league: プリンスリーグ四国
 prefecture: ehime
 prefecture_name: 愛媛県
+founded: 1959
 location: 愛媛県松山市
 website: https://www.nitta.ac.jp/club/football/
 nickname: 新田

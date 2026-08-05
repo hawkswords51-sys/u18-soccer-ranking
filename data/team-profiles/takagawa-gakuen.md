@@ -9,6 +9,7 @@ aliases:
 league: プリンスリーグ中国
 prefecture: yamaguchi
 prefecture_name: 山口県
+founded: 1946
 location: 山口県防府市
 website: https://tgfc.jp/
 official_x:

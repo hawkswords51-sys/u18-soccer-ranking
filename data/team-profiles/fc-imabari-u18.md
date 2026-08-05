@@ -8,6 +8,7 @@ aliases:
 league: プリンスリーグ四国
 prefecture: ehime
 prefecture_name: 愛媛県
+founded: 2019
 location: 愛媛県今治市（NPフィールド波止浜）
 website: https://www.fcimabari.com/player/u18
 nickname: FC今治

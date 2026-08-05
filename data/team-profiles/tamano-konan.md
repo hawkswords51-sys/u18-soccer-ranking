@@ -8,6 +8,7 @@ aliases:
 league: プリンスリーグ中国
 prefecture: okayama
 prefecture_name: 岡山県
+founded: 1984
 location: 岡山県玉野市
 website: https://www.konan.okayama-c.ed.jp/
 official_x:

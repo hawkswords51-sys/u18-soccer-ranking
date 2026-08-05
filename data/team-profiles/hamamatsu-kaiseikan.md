@@ -8,6 +8,7 @@ aliases:
 league: プリンスリーグ東海
 prefecture: shizuoka
 prefecture_name: 静岡県
+founded: 2005
 location: 静岡県浜松市
 website: https://kaiseikanfc.jp/
 nickname: 浜松開誠館
