@@ -60,6 +60,8 @@
     .wk-fixtures li { display: flex; gap: 8px; padding: 3px 0; border-top: 1px dotted var(--border-color, #e2e8f0); }
     .wk-fixtures .wk-when { flex: 0 0 88px; opacity: 0.75; font-variant-numeric: tabular-nums; }
     .wk-note { font-size: 0.85rem; opacity: 0.8; margin: 6px 0 0; }
+    .wk-meta { display: block; font-size: 0.76rem; opacity: 0.75; margin-top: 2px; font-weight: 400; }
+    .wk-meta a { text-decoration: none; }
     .ih-history-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
     .ih-history-table th, .ih-history-table td { border: 1px solid var(--border-color, #e5e7eb); padding: 9px 12px; text-align: left; }
     .ih-history-table th { background: var(--primary-color, #1e40af); color: #fff; font-weight: 600; }
@@ -151,13 +153,22 @@
           能登半島地震のあと会場を金沢へ移して続いてきた大会だけに、地元勢の戦いぶりは例年以上に注目されます。
           <a href="/prefectures/ishikawa/">石川県の最新順位はこちら</a>。
         </p>
+        <p style="line-height:1.9;">
+          <strong>④リーグの格付けで見ると「プレミア勢11チーム」。</strong>
+          出場48チームを2026年の高円宮杯U-18リーグの所属で分けると、
+          <a href="/leagues/premier-east/">プレミアEAST</a>5チーム・<a href="/leagues/premier-west/">プレミアWEST</a>6チームの<strong>計11チーム</strong>、
+          プリンスリーグ（各地域）26チーム、都道府県リーグ11チームという構成です。
+          <strong>全国に24チームしかないプレミアリーグ勢のうち11チーム</strong>が同じ大会に集まる計算で、招待大会としては破格の顔ぶれです。
+          下の組み合わせ表では各チーム名の下に所属リーグを併記しました（リーグ名をクリックすると、そのリーグの最新順位ページへ移動します）。
+        </p>
       </section>
 
       <section class="lp-section" id="groups">
         <h2><i class="fas fa-list-ol"></i> 組み合わせ・予選リーグ順位・全72試合の結果</h2>
         <p class="wk-note">
           ※順位は「勝点 → 得失点差 → 総得点 → 当該試合の勝者 → 抽選」の順で決定（大会規定）。スコアは公式発表を確認しながら随時更新します。<br>
-          ※チーム名のリンクから各チームの詳細ページ（最新のリーグ順位・チームの歩み）へ移動できます。詳細ページがないチームは所属県の順位ページへリンクしています。
+          ※チーム名のリンクから各チームの詳細ページ（最新のリーグ順位・チームの歩み）へ移動できます。詳細ページがないチームは所属県の順位ページへリンクしています。<br>
+          ※チーム名の下は<strong>2026年の高円宮杯U-18リーグでの所属カテゴリー</strong>（県名・リーグ名）です。リーグ名をクリックするとそのリーグの最新順位が見られます。浦和南・浦和東は当サイトが順位を扱う県1部・2部に該当がないため県名のみ表示しています。
         </p>
 
         <div class="wk-groups">
@@ -167,10 +178,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/kawasaki-frontale-u18/">川崎フロンターレU-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/chiba/">日体大柏</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/kochi/">高知</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/yokkaichi-chuo-kogyo/">四日市中央工業</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/kawasaki-frontale-u18/">川崎フロンターレU-18</a><span class="wk-meta">神奈川・<a href="/leagues/premier-east/">プレミアEAST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/chiba/">日体大柏</a><span class="wk-meta">千葉・<a href="/leagues/prince-kanto-2/">プリンス関東2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/kochi/">高知</a><span class="wk-meta">高知・<a href="/leagues/prince-shikoku/">プリンス四国</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/yokkaichi-chuo-kogyo/">四日市中央工業</a><span class="wk-meta">三重・<a href="/prefectures/mie/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -188,10 +199,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/yaita-chuo/">矢板中央</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/yonago-kita/">米子北</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/shizuoka/">磐田東</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/kokushikan/">国士舘</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/yaita-chuo/">矢板中央</a><span class="wk-meta">栃木・<a href="/leagues/prince-kanto-2/">プリンス関東2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/yonago-kita/">米子北</a><span class="wk-meta">鳥取・<a href="/leagues/premier-west/">プレミアWEST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/shizuoka/">磐田東</a><span class="wk-meta">静岡・<a href="/prefectures/shizuoka/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/kokushikan/">国士舘</a><span class="wk-meta">東京・<a href="/prefectures/tokyo/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -209,10 +220,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/prefectures/tokyo/">FC町田ゼルビアユース</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/yamanashi-gakuin/">山梨学院</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/teikyo-nagaoka/">帝京長岡</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/fukuoka/">東海大福岡</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/tokyo/">FC町田ゼルビアユース</a><span class="wk-meta">東京・<a href="/leagues/prince-kanto-2/">プリンス関東2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/yamanashi-gakuin/">山梨学院</a><span class="wk-meta">山梨・<a href="/leagues/prince-kanto-1/">プリンス関東1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/teikyo-nagaoka/">帝京長岡</a><span class="wk-meta">新潟・<a href="/leagues/premier-east/">プレミアEAST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/fukuoka/">東海大福岡</a><span class="wk-meta">福岡・<a href="/leagues/prince-kyushu-2/">プリンス九州2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -230,10 +241,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/kiryu-daiichi/">桐生第一</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/vissel-kobe-u18/">ヴィッセル神戸U-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/saitama/">武南</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/seiryo/">星稜</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/kiryu-daiichi/">桐生第一</a><span class="wk-meta">群馬・<a href="/leagues/prince-kanto-1/">プリンス関東1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/vissel-kobe-u18/">ヴィッセル神戸U-18</a><span class="wk-meta">兵庫・<a href="/leagues/premier-west/">プレミアWEST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/saitama/">武南</a><span class="wk-meta">埼玉・<a href="/prefectures/saitama/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/seiryo/">星稜</a><span class="wk-meta">石川・<a href="/leagues/prince-hokushinetsu-1/">プリンス北信越1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -251,10 +262,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/aomori-yamada/">青森山田</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/shonan-bellmare-u18/">湘南ベルマーレU-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/sakuyo-gakuen/">作陽学園</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/ohtori-gakuen/">鵬学園</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/aomori-yamada/">青森山田</a><span class="wk-meta">青森・<a href="/leagues/premier-east/">プレミアEAST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/shonan-bellmare-u18/">湘南ベルマーレU-18</a><span class="wk-meta">神奈川・<a href="/prefectures/kanagawa/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/sakuyo-gakuen/">作陽学園</a><span class="wk-meta">岡山・<a href="/leagues/prince-chugoku/">プリンス中国</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/ohtori-gakuen/">鵬学園</a><span class="wk-meta">石川・<a href="/leagues/prince-hokushinetsu-1/">プリンス北信越1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -272,10 +283,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/prefectures/saitama/">西武台</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/riseisha/">履正社</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/teikyo-kani/">帝京大学可児</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/hiroshima-minami/">広島皆実</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/saitama/">西武台</a><span class="wk-meta">埼玉・<a href="/leagues/prince-kanto-2/">プリンス関東2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/riseisha/">履正社</a><span class="wk-meta">大阪・<a href="/leagues/prince-kansai-1/">プリンス関西1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/teikyo-kani/">帝京大学可児</a><span class="wk-meta">岐阜・<a href="/leagues/prince-tokai/">プリンス東海</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/hiroshima-minami/">広島皆実</a><span class="wk-meta">広島・<a href="/leagues/prince-chugoku/">プリンス中国</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -293,10 +304,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/asahikawa-jitsugyo/">旭川実業</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/gamba-osaka-youth/">ガンバ大阪ユース</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/chiba/">中央学院</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/saitama/">浦和南</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/asahikawa-jitsugyo/">旭川実業</a><span class="wk-meta">北海道・<a href="/leagues/prince-hokkaido/">プリンス北海道</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/gamba-osaka-youth/">ガンバ大阪ユース</a><span class="wk-meta">大阪・<a href="/leagues/premier-west/">プレミアWEST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/chiba/">中央学院</a><span class="wk-meta">千葉・<a href="/prefectures/chiba/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/saitama/">浦和南</a><span class="wk-meta">埼玉</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -314,10 +325,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/maebashi-ikuei/">前橋育英</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/kokoku/">興國</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/hamamatsu-kaiseikan/">浜松開誠館</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/tokyo/">駒澤大高</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/maebashi-ikuei/">前橋育英</a><span class="wk-meta">群馬・<a href="/leagues/premier-east/">プレミアEAST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/kokoku/">興國</a><span class="wk-meta">大阪・<a href="/leagues/prince-kansai-1/">プリンス関西1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/hamamatsu-kaiseikan/">浜松開誠館</a><span class="wk-meta">静岡・<a href="/leagues/prince-tokai/">プリンス東海</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/tokyo/">駒澤大高</a><span class="wk-meta">東京・<a href="/prefectures/tokyo/">県2部（T2）</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -335,10 +346,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/jef-united-chiba-u18/">ジェフユナイテッド市原・千葉U-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/ohtsu/">大津</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/saitama/">浦和東</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/ishikawa/">金沢学院大附</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/jef-united-chiba-u18/">ジェフユナイテッド市原・千葉U-18</a><span class="wk-meta">千葉・<a href="/leagues/prince-kanto-1/">プリンス関東1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/ohtsu/">大津</a><span class="wk-meta">熊本・<a href="/leagues/premier-west/">プレミアWEST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/saitama/">浦和東</a><span class="wk-meta">埼玉</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/ishikawa/">金沢学院大附</a><span class="wk-meta">石川・<a href="/leagues/prince-hokushinetsu-2/">プリンス北信越2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -356,10 +367,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/toin-gakuen/">桐蔭学園</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/higashiyama/">東山</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/nagoya-grampus-u18/">名古屋グランパスU-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/matsumoto-yamaga-u18/">松本山雅FC U-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/toin-gakuen/">桐蔭学園</a><span class="wk-meta">神奈川・<a href="/leagues/prince-kanto-1/">プリンス関東1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/higashiyama/">東山</a><span class="wk-meta">京都・<a href="/leagues/premier-west/">プレミアWEST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/nagoya-grampus-u18/">名古屋グランパスU-18</a><span class="wk-meta">愛知・<a href="/leagues/premier-west/">プレミアWEST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/matsumoto-yamaga-u18/">松本山雅FC U-18</a><span class="wk-meta">長野・<a href="/leagues/prince-hokushinetsu-1/">プリンス北信越1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -377,10 +388,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/ichiritsu-funabashi/">市立船橋</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/kanagawa/">日大藤沢</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/ishikawa/">ツエーゲン金沢U-18</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/kagoshima/">鹿児島実業</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/ichiritsu-funabashi/">市立船橋</a><span class="wk-meta">千葉・<a href="/leagues/prince-kanto-1/">プリンス関東1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/kanagawa/">日大藤沢</a><span class="wk-meta">神奈川・<a href="/leagues/prince-kanto-2/">プリンス関東2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/ishikawa/">ツエーゲン金沢U-18</a><span class="wk-meta">石川・<a href="/leagues/prince-hokushinetsu-2/">プリンス北信越2部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/kagoshima/">鹿児島実業</a><span class="wk-meta">鹿児島・<a href="/prefectures/kagoshima/">県1部</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
@@ -398,10 +409,10 @@
             <table class="wk-table">
               <thead><tr><th>チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
               <tbody>
-                <tr><td><a href="/teams/kashima-youth/">鹿島アントラーズユース</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/fujieda-higashi/">藤枝東</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/teams/okayama-gakugeikan/">岡山学芸館</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td><a href="/prefectures/tokyo/">関東第一</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/kashima-youth/">鹿島アントラーズユース</a><span class="wk-meta">茨城・<a href="/leagues/premier-east/">プレミアEAST</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/fujieda-higashi/">藤枝東</a><span class="wk-meta">静岡・<a href="/leagues/prince-tokai/">プリンス東海</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/teams/okayama-gakugeikan/">岡山学芸館</a><span class="wk-meta">岡山・<a href="/leagues/prince-chugoku/">プリンス中国</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td><a href="/prefectures/tokyo/">関東第一</a><span class="wk-meta">東京・<a href="/prefectures/tokyo/">県2部（T2）</a></span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
               </tbody>
             </table>
             <ul class="wk-fixtures">
