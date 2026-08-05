@@ -1624,6 +1624,8 @@ def main():
             (f"{DOMAIN}/tournaments/promotion-playoff-2026/", "weekly", "0.6"),
             # 新人戦まとめ（2026-07-02 先行公開。1〜3月開催）
             (f"{DOMAIN}/tournaments/shinjinsen-2026-27/", "weekly", "0.6"),
+            # 和倉ユースサッカー大会2026（2026-08-05 追加。8/6〜10開催中は毎日更新）
+            (f"{DOMAIN}/tournaments/wakura-youth-2026/", "daily", "0.7"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
