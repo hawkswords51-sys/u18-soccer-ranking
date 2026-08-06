@@ -153,7 +153,7 @@ __SCHEMA_BREADCRUMB__
   <style>
     /* ===== チームページ ヒーロー ===== */
     .team-hero {
-      background: linear-gradient(135deg, var(--primary-color), #004999);
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-deep, #16295f));
       color: white;
       padding: 28px 24px;
       border-radius: 12px;
@@ -282,7 +282,7 @@ __SCHEMA_BREADCRUMB__
       text-decoration: underline;
     }
     .team-content a:hover {
-      color: #004999;
+      color: var(--link-hover, #16295f);
     }
 
     /* ダークモード対応 (blockquote の背景色) */

@@ -1,3 +1,6 @@
+/* 見出し用フォント（明朝系）。@importはファイル先頭に置く必要がある */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&display=swap');
+
 /* =========================
    自動更新バナー
    ========================= */
@@ -28,7 +31,11 @@
 
 :root {
     color-scheme: light;
-    --primary-color: #0066CC;
+    --primary-color: #1e3a8a;      /* 深紺（2026-08-06 配色刷新。旧 #0066CC） */
+    --primary-deep: #16295f;       /* グラデーション終端などの一段濃い紺 */
+    --accent-color: #2e8b57;       /* 芝グリーン（アクセント） */
+    --link-hover: #16295f;         /* テキストリンクのhover色 */
+    --font-heading: 'Shippori Mincho', 'Noto Sans JP', serif;
     --secondary-color: #FFD700;
     --premier-color: #D4AF37;
     --prince-color: #4A90E2;
@@ -44,7 +51,7 @@
     --shadow: 0 2px 8px rgba(0,0,0,0.1);
     --shadow-lg: 0 4px 16px rgba(0,0,0,0.15);
     /* ダークモード用 (Phase 9-2) ※ data-theme="dark" 時に上書きされる */
-    --primary-hover-bg: rgba(0, 102, 204, 0.08);
+    --primary-hover-bg: rgba(30, 58, 138, 0.08);
     --modal-overlay: rgba(0, 0, 0, 0.5);
     --table-zebra: rgba(0, 0, 0, 0.02);
     --info-banner-bg: linear-gradient(90deg, #e8f5e9, #f1f8e9);
@@ -61,6 +68,9 @@
 [data-theme="dark"] {
     color-scheme: dark;
     --primary-color: #3b82f6;
+    --primary-deep: #1e3a8a;
+    --accent-color: #4ade80;
+    --link-hover: #93c5fd;
     --secondary-color: #fbbf24;
     --premier-color: #d4af37;
     --prince-color: #60a5fa;
@@ -69,7 +79,7 @@
     --text-light: #94a3b8;
     --bg-light: #0f172a;
     --bg-white: #1e293b;
-    --bg-card: #0f172a;        ← ★ 追加
+    --bg-card: #0f172a;        /* ★ 追加 */
     --border-color: #334155;
     --success-color: #4ade80;
     --danger-color: #f87171;
@@ -88,6 +98,9 @@
     :root:not([data-theme]) {
         color-scheme: dark;
         --primary-color: #3b82f6;
+        --primary-deep: #1e3a8a;
+        --accent-color: #4ade80;
+        --link-hover: #93c5fd;
         --secondary-color: #fbbf24;
         --premier-color: #d4af37;
         --prince-color: #60a5fa;
@@ -96,7 +109,7 @@
         --text-light: #94a3b8;
         --bg-light: #0f172a;
         --bg-white: #1e293b;
-        --bg-card: #0f172a;        ← ★ 追加
+        --bg-card: #0f172a;        /* ★ 追加 */
         --border-color: #334155;
         --success-color: #4ade80;
         --danger-color: #f87171;
@@ -124,6 +137,14 @@ body {
     line-height: 1.6;
 }
 
+/* 見出しは明朝系（本文・表はNoto Sans JPのまま） 2026-08-06 */
+h1, h2, h3,
+.site-title,
+.section-title {
+    font-family: var(--font-heading, 'Noto Sans JP', sans-serif);
+    letter-spacing: 0.02em;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -134,13 +155,14 @@ body {
    ヘッダー
    ========================= */
 .header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #004999 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-deep, #16295f) 100%);
     color: white;
     padding: 20px 0;
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 3px solid var(--accent-color, #2e8b57); /* 芝のライン */
 }
 
 .header-content {
@@ -948,7 +970,7 @@ body {
     color: var(--primary-color);
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color, #2e8b57);
 }
 
 .pref-grid {
@@ -1054,7 +1076,7 @@ body {
     align-items: center;
     padding: 25px 30px;
     border-bottom: 2px solid var(--border-color);
-    background: linear-gradient(135deg, var(--primary-color), #004999);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-deep, #16295f));
     color: white;
     border-radius: 15px 15px 0 0;
     /* 注: モーダルヘッダーはsticky にしない。
@@ -2089,7 +2111,7 @@ details[open] > summary > .league-accordion__chevron {
 .tournament-fulllist > summary {
     cursor: pointer;
     list-style: none;
-    color: var(--primary-color, #0066cc);
+    color: var(--primary-color, #1e3a8a);
     font-weight: 700;
     font-size: 0.92rem;
     padding: 6px 2px;
@@ -2778,7 +2800,7 @@ details[open] > summary > .league-accordion__chevron {
     align-items: center;
     gap: 10px;
     padding: 14px 28px;
-    background: linear-gradient(135deg, var(--primary-color), #004999);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-deep, #16295f));
     color: white;
     text-decoration: none;
     border-radius: 30px;
@@ -2799,7 +2821,7 @@ details[open] > summary > .league-accordion__chevron {
 .section-title-lp {
     font-size: 1.3rem;
     color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color, #2e8b57);
     padding-bottom: 8px;
     margin: 32px 0 16px;
 }
@@ -2925,7 +2947,7 @@ details[open] > summary > .league-accordion__chevron {
     color: var(--primary-color);
     font-size: 1.3rem;
     margin-bottom: 20px;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color, #2e8b57);
     padding-bottom: 8px;
 }
 
@@ -3482,7 +3504,7 @@ details[open] > summary > .league-accordion__chevron {
     gap: 10px;
     font-size: 1.3rem;
     color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color, #2e8b57);
     padding-bottom: 8px;
     margin-bottom: 16px;
 }
@@ -3555,7 +3577,7 @@ details[open] > summary > .league-accordion__chevron {
     gap: 10px;
     font-size: 1.3rem;
     color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color, #2e8b57);
     padding-bottom: 8px;
     margin-bottom: 16px;
 }
@@ -3702,7 +3724,7 @@ details[open] > summary > .league-accordion__chevron {
 .blog-article__body h2 {
     font-size: 1.4rem;
     color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color, #2e8b57);
     padding-bottom: 6px;
     margin: 36px 0 14px;
 }
@@ -3735,7 +3757,7 @@ details[open] > summary > .league-accordion__chevron {
 }
 
 .blog-article__body a:hover {
-    color: #004999;
+    color: var(--link-hover, #16295f);
 }
 
 .blog-article__body strong {
@@ -5449,8 +5471,8 @@ details[open] > summary > .league-accordion__chevron {
     color: inherit;
 }
 .team-profile-link:hover {
-    color: #004999;
-    border-bottom-color: #004999;
+    color: var(--link-hover, #16295f);
+    border-bottom-color: var(--link-hover, #16295f);
 }
 
 /* ダークモード対応 */
