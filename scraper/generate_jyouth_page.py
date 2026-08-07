@@ -440,7 +440,7 @@ def render_bracket_svg(sections):
 
     # 線は両テーマで視認できる固定スレートグレー（テーマ変数だとダークで暗すぎる）
     GRAY = "#94a3b8"
-    RED = "#dc2626"
+    RED = "var(--danger-color,#dc2626)"  # ダークでは #f87171（柔らかい赤）に自動切替
     # 文字はテーマ変数で自動追従（ライト=濃色／ダーク=淡色）
     TXT = "var(--text-primary,#1f2937)"
     SUB = "var(--text-secondary,#6b7280)"
@@ -584,9 +584,11 @@ def render_bracket_svg(sections):
         '.jy-bracket text.bk-won{fill:#dc2626}'
         '[data-theme="dark"] .jy-bracket text.bk-team{fill:#e5e7eb}'
         '[data-theme="dark"] .jy-bracket text.bk-acc{fill:#7cb0ff}'
+        '[data-theme="dark"] .jy-bracket text.bk-won{fill:#f87171}'
         '@media (prefers-color-scheme:dark){'
         ':root:not([data-theme="light"]) .jy-bracket text.bk-team{fill:#e5e7eb}'
         ':root:not([data-theme="light"]) .jy-bracket text.bk-acc{fill:#7cb0ff}'
+        ':root:not([data-theme="light"]) .jy-bracket text.bk-won{fill:#f87171}'
         '}'
         '</style>'
     )
@@ -594,7 +596,7 @@ def render_bracket_svg(sections):
         bracket_style +
         '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
-        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
+        '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
         '<div class="jy-bracket" style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
         'background:var(--bg-white,#fff);padding:8px 4px;">'

@@ -850,7 +850,7 @@ def render_bracket_svg(sections, reps_lines):
     xsR = [width - x for x in xsL]
 
     GRAY = "var(--border-color,#9ca3af)"
-    RED = "#dc2626"
+    RED = "var(--danger-color,#dc2626)"  # ダークでは #f87171（柔らかい赤）に自動切替
     TXT = "var(--text-primary,#1f2937)"
     SUB = "var(--text-secondary,#6b7280)"
     ACC = "var(--accent-color,#2563eb)"
@@ -1022,8 +1022,8 @@ def render_bracket_svg(sections, reps_lines):
     return (
         '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
-        '<span style="color:#dc2626;font-weight:700;">赤線</span>＝勝ち上がり ／ '
-        '<span style="border:1.5px solid #dc2626;border-radius:3px;padding:0 5px;">赤枠</span>＝勝ち残り(結果の入力に合わせて自動で更新されます)</p>'
+        '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり ／ '
+        '<span style="border:1.5px solid var(--danger-color,#dc2626);border-radius:3px;padding:0 5px;">赤枠</span>＝勝ち残り(結果の入力に合わせて自動で更新されます)</p>'
         '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
         'background:var(--bg-white,#fff);padding:8px 4px;">'
