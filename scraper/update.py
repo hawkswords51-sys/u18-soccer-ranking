@@ -839,6 +839,27 @@ def _teams_match(scraped: str, existing: str) -> bool:
     return _name_similarity(scraped, existing)
 
 
+def _matches_registered_alias(team: dict, scraped: str) -> bool:
+    """teams.json の該当チームに登録された aliases と一致するか判定する。
+
+    [2026-08-08 追加] 「流経大柏C」↔「流通経済大学付属柏高校3rd」のように、
+    略称と正式名が文字列として重ならない組み合わせは _teams_match() の
+    部分一致・類似判定では絶対に当たらない。teams.json 側に aliases を
+    書いても更新側が見ていなかったため、該当チームの成績が古いまま
+    止まる事故が起きていた（2026-08-08 千葉県1部で発覚）。
+    照合は _normalize_name() を通した完全一致のみ（部分一致はしない）＝
+    別チームへの誤マッチが起きない安全な判定にしている。
+    """
+    aliases = team.get("aliases") or []
+    if not aliases:
+        return False
+    s_norm = _normalize_name(scraped)
+    for a in aliases:
+        if scraped == a or s_norm == _normalize_name(a):
+            return True
+    return False
+
+
 def match_team_to_pref(team_name: str, candidate_prefs: list[str], data: dict) -> str | None:
     """
     チーム名を既存データの都道府県チームとマッチングする。
@@ -847,6 +868,10 @@ def match_team_to_pref(team_name: str, candidate_prefs: list[str], data: dict) -
     for pref_id in candidate_prefs:
         for team in data.get(pref_id, {}).get("teams", []):
             if team.get("name", "") == team_name:
+                return pref_id
+    for pref_id in candidate_prefs:
+        for team in data.get(pref_id, {}).get("teams", []):
+            if _matches_registered_alias(team, team_name):
                 return pref_id
     for pref_id in candidate_prefs:
         for team in data.get(pref_id, {}).get("teams", []):
@@ -884,6 +909,22 @@ def update_team_stats(
         _apply_stats(team, stats)
         already_updated.add(key)
         print(f"    ✓ 更新: {existing} ({pref_id})")
+        return True
+
+    # [2026-08-08] teams.json の "aliases" を名寄せに使う。
+    # 「流経大柏C」→「流通経済大学付属柏高校3rd」のように、略称と正式名が
+    # 文字列として重ならないケースはファジーマッチでは絶対に当たらず、
+    # teams.json に aliases を書いても以前は無視されていた（＝順位が止まる）。
+    for team in teams:
+        if not _matches_registered_alias(team, team_name):
+            continue
+        existing = team.get("name", "")
+        key = f"{pref_id}::{existing}"
+        if key in already_updated:
+            continue
+        _apply_stats(team, stats)
+        already_updated.add(key)
+        print(f"    ✓ 更新(alias): {existing} ({pref_id})")
         return True
 
     for team in teams:
@@ -943,6 +984,10 @@ def _apply_stats(team: dict, stats: dict) -> None:
     team["lost"]         = stats["lost"]
     team["goalsFor"]     = stats["goalsFor"]
     team["goalsAgainst"] = stats["goalsAgainst"]
+    # [2026-08-08] goalDiff は以前は更新されず古い値が残り続けていた（表示はGF-GAの
+    # 計算値なので実害はなかったが、データを見たときに混乱する）。ここで同期する。
+    if "goalDiff" in team:
+        team["goalDiff"] = (stats["goalsFor"] or 0) - (stats["goalsAgainst"] or 0)
     if stats.get("league"):
         team["league"] = stats["league"]
     if "leagueRank" in stats and stats["leagueRank"] is not None:
