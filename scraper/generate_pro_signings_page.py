@@ -54,6 +54,8 @@ def _player_rows(players: list, show_dest: bool) -> str:
         pos = html_escape(p.get("pos", ""))
         name = html_escape(p.get("name", ""))
         chip = ' <span class="ps-2nd">2種登録</span>' if p.get("type2") else ""
+        # 背番号（プロ契約済みの選手のみ）
+        num = f'<span class="ps-no">#{html_escape(str(p["num"]))}</span>' if p.get("num") else ""
         note = f'<span class="ps-note-inline">※{html_escape(p["note"])}</span>' if p.get("note") else ""
         if show_dest:
             dest = html_escape(p.get("dest", ""))
@@ -61,11 +63,14 @@ def _player_rows(players: list, show_dest: bool) -> str:
                          f'<span class="ps-club">{dest}</span> {note}</td>')
         else:
             dest_cell = f'<td class="ps-dest">{note}</td>'
+        timing = html_escape(str(p.get("timing", "")))
+        timing_cell = f'<td class="ps-timing">{timing}</td>' if timing else '<td class="ps-timing"></td>'
         rows.append(
             "<tr>"
             f'<td class="ps-pos ps-pos-{pos}">{pos}</td>'
-            f'<td class="ps-name">{name}{chip}</td>'
+            f'<td class="ps-name">{name}{num}{chip}</td>'
             f"{dest_cell}"
+            f"{timing_cell}"
             "</tr>"
         )
     return "".join(rows)
@@ -98,15 +103,19 @@ def _section(title: str, subtitle: str, players: list, show_dest: bool, empty_ms
 
 def build_ai_summary(data: dict) -> str:
     sign = data.get("signings") or []
-    total = len(sign)
-    hs = sum(1 for p in sign if p.get("cat") == "高体連")
-    yth = total - hs
+    naitei = [p for p in sign if p.get("status") != "pro"]
+    pro = [p for p in sign if p.get("status") == "pro"]
+    hs = sum(1 for p in naitei if p.get("cat") == "高体連")
+    yth = len(naitei) - hs
     season = html_escape(str(data.get("season", "")))
     body = (
-        f"このページは、高校・Jクラブユース（U-18年代）から{season}シーズンのJリーグ加入が内定した"
-        f"選手計{total}名（高体連{hs}名・Jクラブユース{yth}名）を、現所属チーム別に一覧できるまとめです。"
-        f"現所属チームに当サイトの詳細ページがある選手は、そのチームページ（順位・OB情報）へ直接移動できます。"
-        f"ユース所属のままトップチームの公式戦に出られる「2種登録選手」には氏名の横に「2種登録」タグを表示します。"
+        f"このページは、U-18年代（高校・Jクラブユース）からJリーグへ進む選手を、"
+        f"「①これから加入する内定者{len(naitei)}名（高体連{hs}名・Jクラブユース{yth}名）」と"
+        f"「②すでにプロ契約を結びトップチームに登録済みの選手{len(pro)}名」に分けて、"
+        f"現所属チーム別に一覧できるまとめです。"
+        f"近年のJクラブ育成組織では「高校在学中にプロ契約を結び、2種登録でユースにも所属する」形が一般的になり、"
+        f"クラブの発表も「加入内定」ではなく「プロ契約締結」で出るため、両者を分けて掲載しています。"
+        f"全選手をクラブ公式発表で個別に照合しています。"
     )
     style = (
         "margin:0 0 14px;padding:12px 16px;background:rgba(255,255,255,0.95);"
@@ -192,11 +201,13 @@ __SCHEMA__
     .ps-arrow{color:var(--text-light);margin-right:4px;}
     .ps-club{font-weight:700;color:#15803d;}
     .ps-note-inline{display:inline-block;font-size:.78rem;color:var(--text-light);margin-left:6px;}
+    .ps-timing{width:132px;text-align:right;white-space:nowrap;font-size:.82rem;color:var(--text-light);}
+    .ps-no{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;background:#475569;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:middle;}
     .ps-2nd{display:inline-block;font-size:.7rem;font-weight:700;color:#fff;background:#16a34a;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle;}
     .ps-empty{margin:0;padding:16px;background:var(--bg-light);border-radius:8px;color:var(--text-light);font-size:.9rem;line-height:1.8;}
     .ps-source{margin:6px 0 0;font-size:.8rem;color:var(--text-light);}
     .ps-source a{color:var(--text-light);}
-    @media(max-width:768px){.team-hero h1{font-size:1.25rem;}.ps-cat-sec{padding:16px 14px;}.ps-table{font-size:.85rem;}.ps-table td{padding:7px 8px;}.ps-name{white-space:normal;}}
+    @media(max-width:768px){.team-hero h1{font-size:1.25rem;}.ps-cat-sec{padding:16px 14px;}.ps-table{font-size:.85rem;}.ps-table td{padding:7px 8px;}.ps-name{white-space:normal;}.ps-timing{width:auto;font-size:.75rem;}}
   </style>
 </head>
 <body>
@@ -212,21 +223,27 @@ __SCHEMA__
   <main class="container">
     <nav class="breadcrumb"><a href="/">ホーム</a><span class="breadcrumb__sep">›</span><span>プロ内定選手</span></nav>
     <section class="team-hero">
-      <h1>__SEASON__年 Jリーグ プロ内定選手一覧（高校・ユース）</h1>
+      <h1>__SEASON__年 Jリーグ内定・プロ契約選手一覧（高校・ユース）</h1>
       __AI_SUMMARY__
-      <p class="team-lead">高校・Jクラブユースから来季Jリーグ加入が内定した選手を、現所属チーム別に掲載。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。ユース所属のままトップの公式戦に出られる「2種登録」の選手には氏名の横にタグを表示します。</p>
+      <p class="team-lead">U-18年代からJリーグへ進む選手を、<strong>①これから加入する内定者</strong>と<strong>②すでにプロ契約済みの選手</strong>に分けて、現所属チーム別に掲載しています。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。</p>
     </section>
     __SECTIONS__
     <section class="ps-cat-sec">
-      <h2><i class="fas fa-circle-info"></i> 「プロ内定」と「2種登録」の仕組み</h2>
+      <h2><i class="fas fa-circle-info"></i> 「内定」と「プロ契約済み」はどう違うのか</h2>
       <p style="line-height:1.9;margin:0 0 12px;">
-        <strong>プロ内定</strong>とは、高校やJクラブユースに在籍したまま、翌シーズンからのJリーグクラブ加入がクラブから公式に発表されることです。発表は夏頃から始まり、秋から冬（選手権の前後）にかけて増えていきます。ルートは大きく2つあり、Jクラブユースの選手はそのまま下部組織からトップチームへ上がる「トップ昇格」、高校（高体連）の選手は他クラブへの「加入内定」が中心です。内訳は年によって変わりますが、近年はクラブユースからのトップ昇格が多数を占める傾向にあります。高体連の内定選手にとっては、冬の<a href="/tournaments/senshuken-2026/">全国高校サッカー選手権</a>が「プロ入り前の集大成」となることが多く、内定発表後のプレーにも注目が集まります。
+        <strong>プロ内定</strong>とは、高校やJクラブユースに在籍したまま、これからのJリーグクラブ加入がクラブから公式に発表されることです。発表は夏頃から始まり、秋から冬（選手権の前後）にかけて増えていきます。ルートは大きく2つあり、Jクラブユースの選手はそのまま下部組織からトップチームへ上がる「トップ昇格」、高校（高体連）の選手は他クラブへの「加入内定」が中心です。高体連の内定選手にとっては、冬の<a href="/tournaments/senshuken-2026/">全国高校サッカー選手権</a>が「プロ入り前の集大成」となることが多く、内定発表後のプレーにも注目が集まります。
       </p>
       <p style="line-height:1.9;margin:0 0 12px;">
-        <strong>2種登録</strong>とは、JFAの選手登録制度で高校年代にあたる「第2種」の選手を、Jクラブがトップチームにも登録する仕組みです。登録された選手は、ユースや高校に所属したままJリーグやカップ戦などトップチームの公式戦に出場できます。加入内定済みの有望選手が、ひと足早くプロの舞台を経験するために活用されることが多い制度です。当ページでは、各クラブ公式の「2種登録完了のお知らせ」等で確認できた選手にだけ、氏名の横に緑の「2種登録」タグを表示しています（憶測では付けません）。
+        ただし近年、Jクラブの育成組織では<strong>高校在学中にプロ契約を結び、そのままユースにも所属し続ける</strong>形が一般的になりました。この場合クラブの発表は「加入内定のお知らせ」ではなく「<strong>プロ契約締結のお知らせ</strong>」で出ます。契約はその時点から発効するため、<strong>「内定者」ではなく、すでに背番号を持つトップチームの選手</strong>です。当ページで①と②を分けているのはこのためで、両者を同じ表に並べている一覧も多く見られますが、実態はまったく違います。
+      </p>
+      <p style="line-height:1.9;margin:0 0 12px;">
+        この二重の身分を支えているのが<strong>2種登録</strong>です。JFAの選手登録制度で高校年代にあたる「第2種」の選手を、Jクラブがトップチームにも登録する仕組みで、登録された選手はユースや高校に所属したままJリーグやカップ戦などトップチームの公式戦に出場できます。プロ契約を結んだ選手が高校卒業までユースの試合にも出続けられるのは、この制度があるからです。当ページでは、各クラブ公式の「2種登録完了のお知らせ」等で確認できた選手にだけ、氏名の横に緑の「2種登録」タグを表示しています（憶測では付けません）。<strong>2種登録はシーズン前後にクラブが一括発表する運用のため、当ページの掲載は網羅的ではありません</strong>。
+      </p>
+      <p style="line-height:1.9;margin:0 0 12px;">
+        加入時期の表記がクラブごとにバラバラなのは、Jリーグが2026/27シーズンから<strong>秋春制</strong>に移行したためです。「2026/27シーズンより」「2027年1月より」「2027年2月より」という3通りの言い回しが混在しており、当ページでは統一せず<strong>各クラブ公式の表現をそのまま</strong>載せています。
       </p>
       <p style="line-height:1.9;margin:0;">
-        内定選手には年代別の<a href="/national-team/">日本代表に選出されている選手</a>も多く含まれます。所属チームのリンクからは当サイトのチーム詳細ページ（最新順位・チームの歩み・OB選手）に移動できるので、「この選手のチームは今リーグで何位か」を<a href="/leagues/">プレミアリーグ・プリンスリーグの順位表</a>とあわせて追いかけるのがおすすめです。内定・2種登録が在籍するチームの詳細ページには緑の「プロ内定・2種登録」バッジを表示しています。
+        内定・プロ契約選手には年代別の<a href="/national-team/">日本代表に選出されている選手</a>も多く含まれます。所属チームのリンクからは当サイトのチーム詳細ページ（最新順位・チームの歩み・OB選手）に移動できるので、「この選手のチームは今リーグで何位か」を<a href="/leagues/">プレミアリーグ・プリンスリーグの順位表</a>とあわせて追いかけるのがおすすめです。該当選手が在籍するチームの詳細ページには緑の「プロ内定・2種登録」バッジを表示しています。
       </p>
     </section>
     <section class="ps-cat-sec">
@@ -280,16 +297,28 @@ def main() -> int:
         return 0
 
     season = str(data.get("season", ""))
-    title = f"{season}年 Jリーグ プロ内定選手一覧【高校・ユース】｜所属チーム別・2種登録"
-    desc = (f"高校・Jクラブユースから{season}シーズンのJリーグ加入が内定した選手を現所属チーム別に一覧。"
-            f"2種登録の選手にはタグを表示。所属チームの詳細ページ（順位・OB）へも移動できます。クラブ公式発表に準拠。")
+    all_players = data.get("signings") or []
+    naitei = [p for p in all_players if p.get("status") != "pro"]
+    pro = [p for p in all_players if p.get("status") == "pro"]
 
-    # 内定選手（現所属チーム別）。2種登録は各選手の type2 タグで表示（専用セクションは設けない）。
+    title = f"{season}年 Jリーグ内定・プロ契約選手一覧【高校・ユース】｜所属チーム別"
+    desc = (f"U-18年代からJリーグへ進む選手を、これから加入する「内定者」{len(naitei)}名と、"
+            f"すでにプロ契約済みの選手{len(pro)}名に分けて現所属チーム別に一覧。"
+            f"全選手をクラブ公式発表で個別照合。所属チームの詳細ページ（順位・OB）へも移動できます。")
+
     sections = _section(
-        "プロ内定選手", f"{season}シーズンのJリーグ加入が内定した高校・ユース年代の選手（現所属チーム別）。"
-        "ユース所属のままトップに出られる「2種登録」の選手には氏名の横にタグを表示します。",
-        data.get("signings") or [], show_dest=True,
+        "① これから加入する内定者",
+        f"まだ高校・ユースに在籍していて、これからJリーグクラブに加入する選手です（現所属チーム別）。"
+        f"加入時期は秋春制への移行にともないクラブごとに異なるため、公式発表の表記をそのまま載せています。",
+        naitei, show_dest=True,
         empty_msg="現在、掲載できる内定選手はありません。")
+
+    sections += _section(
+        "② すでにプロ契約済みの選手",
+        f"高校・ユースに在籍したままプロ契約を締結し、すでにトップチームに登録されている選手です（#は背番号）。"
+        f"「内定者」ではありませんが、U-18年代からプロへ進んだ選手として同じページで追跡しています。",
+        pro, show_dest=True,
+        empty_msg="現在、掲載できる選手はありません。")
 
     html = (TEMPLATE
             .replace("__GA__", GA_ID).replace("__AD__", ADSENSE_CLIENT).replace("__DOMAIN__", DOMAIN)
@@ -305,8 +334,8 @@ def main() -> int:
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / "index.html").write_text(html, encoding="utf-8")
-    print(f"  [OK] /pro-signings/ を生成（内定{len(data.get('signings') or [])}名・"
-          f"2種{len(data.get('second_category') or [])}名）")
+    print(f"  [OK] /pro-signings/ を生成（内定{len(naitei)}名・プロ契約済み{len(pro)}名・"
+          f"うち2種登録タグ{sum(1 for p in all_players if p.get('type2'))}名）")
     update_sitemap()
     return 0
 
