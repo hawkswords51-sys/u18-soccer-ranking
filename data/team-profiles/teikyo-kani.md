@@ -2,6 +2,9 @@
 id: teikyo-kani
 name: 帝京大学可児高校
 short_name: 帝京大可児
+aliases:
+  - 帝京大学可児
+  - 帝京可児
 league: プリンスリーグ東海
 prefecture: gifu
 prefecture_name: 岐阜県

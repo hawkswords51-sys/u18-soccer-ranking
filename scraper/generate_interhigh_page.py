@@ -109,6 +109,19 @@ def load_team_profile_map() -> dict:
                 sn = meta.get("short_name")
                 if sn and sn != tname:
                     team_map[sn] = tid
+                # frontmatter の aliases（別表記）も登録する。
+                # 県ページ・リーグページ（手順書4-14）と同じ名寄せをトーナメント表・
+                # 散文リンクにも効かせるため。既存キーは上書きしない（先勝ち）。
+                # ⚠ aliases がリストでなく「A／B／C」の文字列で書かれたmdが多数あるため、
+                #    文字列は区切り文字で分割する（そのまま回すと1文字ずつ登録されて
+                #    散文リンクが「大」「高」等の1文字に反応してしまう）。
+                raw_aliases = meta.get("aliases") or []
+                if isinstance(raw_aliases, str):
+                    raw_aliases = re.split(r"[／/、,]", raw_aliases)
+                for al in raw_aliases:
+                    al = str(al).strip()
+                    if len(al) >= 2:      # 1文字の別名は誤リンクの元なので採用しない
+                        team_map.setdefault(al, tid)
         except Exception:
             pass
     return team_map
