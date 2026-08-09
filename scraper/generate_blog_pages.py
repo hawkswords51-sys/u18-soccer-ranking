@@ -1135,6 +1135,7 @@ MEDICAL_HUB_THEMES = [
             "commotio-cordis-aed-2026",
             "2026-06-25-ankle-sprain-treatment",
             "lumbar-spondylolysis-2026",
+            "hamstring-strain-2026",
         ],
     ),
     (
