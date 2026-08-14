@@ -346,11 +346,20 @@ def render_tags_html(tags):
 
 
 def render_related_html(current_slug, current_category, all_articles):
-    """同じカテゴリの記事を上位5件"""
-    related = [
-        a for a in all_articles
-        if a["category"] == current_category and a["slug"] != current_slug
-    ][:5]
+    """同じカテゴリの記事を「新しい順」に5件
+
+    all_articles はファイル名順（＝日付の昇順）で渡ってくるため、
+    日付で降順に並べ替えてから上位5件を取る。
+    （並べ替えを省くと最も古い5件が「最新記事」として並ぶ）
+    """
+    related = sorted(
+        [
+            a for a in all_articles
+            if a["category"] == current_category and a["slug"] != current_slug
+        ],
+        key=lambda a: str(a["date"]),
+        reverse=True,
+    )[:5]
     if not related:
         return '          <li style="color:#888;">同カテゴリの記事はまだありません</li>'
     items = []

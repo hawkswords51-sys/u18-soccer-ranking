@@ -391,22 +391,7 @@ __PS_BADGE__
     </section>
 
     <section class="team-stats">
-      <div class="team-stat-card">
-        <div class="team-stat-label">所属リーグ</div>
-        <div class="team-stat-value">__LEAGUE__</div>
-      </div>
-      <div class="team-stat-card">
-        <div class="team-stat-label">創部</div>
-        <div class="team-stat-value">__FOUNDED__</div>
-      </div>
-      <div class="team-stat-card">
-        <div class="team-stat-label">所在地</div>
-        <div class="team-stat-value">__LOCATION__</div>
-      </div>
-      <div class="team-stat-card">
-        <div class="team-stat-label">監督</div>
-        <div class="team-stat-value">__HEAD_COACH__</div>
-      </div>
+__STAT_CARDS__
     </section>
 
     <article class="team-content">
@@ -514,6 +499,37 @@ def build_lead(meta: dict) -> str:
     if founded:
         parts_text.append(f"（{founded}年創部）")
     return "".join(parts_text) + "。最新の順位・歴代タイトル・OB選手・育成哲学などを徹底まとめ。"
+
+
+def build_stat_cards(meta: dict) -> str:
+    """hero下の情報カードを組み立てる。
+
+    値が無い項目はカードごと出さない（「—」を並べると未完成のページに見えるため）。
+    創部年が未調査のチームが多いので、空欄を見せずにカード数を減らす方針。
+    """
+    def _clean(v) -> str:
+        s = str(v).strip() if v not in (None, "") else ""
+        return "" if s in ("—", "-", "ー", "未定", "不明") else s
+
+    founded = _clean(meta.get("founded"))
+    coach = _clean(meta.get("head_coach")).split("（")[0]
+    cards = [
+        ("所属リーグ", _clean(meta.get("league"))),
+        ("創部", f"{founded}年" if founded else ""),
+        ("所在地", _clean(meta.get("location"))),
+        ("監督", coach),
+    ]
+    out = []
+    for label, value in cards:
+        if not value:
+            continue
+        out.append(
+            '      <div class="team-stat-card">\n'
+            f'        <div class="team-stat-label">{html_escape(label)}</div>\n'
+            f'        <div class="team-stat-value">{html_escape(value)}</div>\n'
+            '      </div>'
+        )
+    return "\n".join(out)
 
 
 def build_schema_team(meta: dict) -> str:
@@ -677,10 +693,7 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
         .replace("__NT_BADGE__", nt.render_team_badge_html(meta.get("id", ""), badge_map))
         .replace("__PS_BADGE__", ps.render_team_badge_html(meta.get("id", ""), ps_badge_map))
         .replace("__LEAD__", html_escape(lead))
-        .replace("__LEAGUE__", html_escape(meta.get("league", "—")))
-        .replace("__FOUNDED__", html_escape(f"{meta.get('founded', '—')}年" if meta.get("founded") else "—"))
-        .replace("__LOCATION__", html_escape(meta.get("location", "—")))
-        .replace("__HEAD_COACH__", html_escape(str(meta.get("head_coach", "—")).split("（")[0]))
+        .replace("__STAT_CARDS__", build_stat_cards(meta))
         .replace("__BODY_HTML__", body_html)
     )
 
