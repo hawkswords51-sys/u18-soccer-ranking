@@ -1094,7 +1094,10 @@ def generate_league_page(league_name, slug, label, category, description, season
     featured_teams_html = render_featured_teams_html(sorted_teams, label)
     league_stats_html = render_league_stats_html(sorted_teams, label)
     cross_table_html = render_cross_table_html(slug)
-    scorer_ranking_html = render_scorer_ranking_html(slug)
+    # リーグページは「2得点以上」を全員載せる（JSON側が2得点以上で作られているため）。
+    # 既定の limit=20 だと同点の集団の途中で切れ、同じ2得点でも載る選手と載らない選手が
+    # 出てしまう（2026-08-16に九州2部で発覚）。県ページは長大なJSONを持つので既定のまま。
+    scorer_ranking_html = render_scorer_ranking_html(slug, limit=60)
     
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":

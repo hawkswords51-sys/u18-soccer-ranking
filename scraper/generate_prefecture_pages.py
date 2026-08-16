@@ -278,12 +278,27 @@ def _bracket_parse_match(s):
     return {"a": a, "b": b, "sc": sc, "winner": w}
 
 
+def _is_placement_round(name: str) -> bool:
+    """「3位決定戦」「5位決定戦」「順位決定戦」など、勝ち上がりの山に属さないラウンドか。
+    ※「代表決定戦」は本戦出場をかけた勝ち上がりなので除外しない。"""
+    n = (name or "").replace(" ", "").replace("　", "")
+    if "代表決定" in n:
+        return False
+    return ("位決定" in n) or ("順位決定" in n)
+
+
 def render_tournament_bracket_svg(rounds):
     """各回戦の結果(rounds=[{'name','matches':[raw,...]}])から、終盤の山順を自動再構成して
     トーナメント表(SVG)を返す。ベスト16(末尾[8,4,2,1])優先、無理ならベスト8([4,2,1])。
-    きれいに組めた時(警告なし・優勝確定・行数=2のべき乗)だけ返し、それ以外は '' （＝一覧表示へ）。"""
+    きれいに組めた時(警告なし・優勝確定・行数=2のべき乗)だけ返し、それ以外は '' （＝一覧表示へ）。
+
+    ※3位決定戦・順位決定戦は勝ち上がりの山に属さない（準決勝の敗者同士の1試合）ため、
+      山の再構成からは除外する。含めると末尾の試合数が [4,2,1,1] のようになり
+      [8,4,2,1]/[4,2,1] のどちらにも一致せず、トーナメント表が出なくなる。"""
     parsed = []
     for r in rounds:
+        if _is_placement_round(r.get("name", "")):
+            continue
         ms = [_bracket_parse_match(x) for x in r.get("matches", [])]
         ms = [m for m in ms if m]
         if ms:
