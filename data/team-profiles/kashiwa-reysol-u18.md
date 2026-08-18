@@ -5,7 +5,7 @@ short_name: 柏レイソルU-18
 league: プレミアリーグEAST
 prefecture: chiba
 prefecture_name: 千葉県
-founded: 1986
+founded:
 location: 千葉県柏市（日立柏総合グラウンド・ゼロワットパワーフィールド柏）
 website: https://www.reysol.co.jp/academy/
 official_x:
