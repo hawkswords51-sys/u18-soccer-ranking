@@ -1592,6 +1592,8 @@ def main():
           <li><a href="/tournaments/wakura-youth-2026/">和倉ユースサッカー大会2026（8/6〜10・強豪48チーム）組み合わせ・日程・結果</a></li>
           <li><a href="/tournaments/senshuken-2026/">全国高校サッカー選手権2026（第105回）特設ページ</a></li>
           <li><a href="/tournaments/senshuken-history/">選手権 歴代優勝校一覧（第87回〜第104回）</a></li>
+          <li><a href="/tournaments/club-youth-u15-2026/">日本クラブユースサッカー選手権（U-15）2026 結果速報</a></li>
+          <li><a href="/tournaments/zenchu-2026/">全国中学校サッカー大会2026（全中）結果速報</a></li>
         </ul>
       </section>
     </div>
