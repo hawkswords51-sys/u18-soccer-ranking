@@ -1643,6 +1643,8 @@ def main():
             (f"{DOMAIN}/tournaments/wakura-youth-2026/", "daily", "0.7"),
             # 日本クラブユース選手権U-15 2026（2026-08-21 追加。U-15コンテンツ第1号）
             (f"{DOMAIN}/tournaments/club-youth-u15-2026/", "daily", "0.7"),
+            # 全国中学校サッカー大会2026（2026-08-21 追加。U-15コンテンツ第2号）
+            (f"{DOMAIN}/tournaments/zenchu-2026/", "daily", "0.7"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
