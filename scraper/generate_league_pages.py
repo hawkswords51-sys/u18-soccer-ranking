@@ -58,6 +58,53 @@ def load_league_history():
 
 LEAGUE_HISTORY = load_league_history()
 
+# === リーグ全史（歴代順位・名称/方式の変遷・プレミア昇格の歴史）の読み込み ===
+LEAGUE_HISTORY_FULL_PATH = Path(__file__).parent.parent / "data" / "league_history_full.yml"
+
+
+def load_league_history_full():
+    """data/league_history_full.yml を読み、slug → 全史データ の辞書にして返す。
+
+    1つのリーグ系統（例: 北信越）のデータを、1部・2部の両方のページから
+    参照できるように slugs: を展開しておく。
+    """
+    if not LEAGUE_HISTORY_FULL_PATH.exists():
+        return {}
+    try:
+        with open(LEAGUE_HISTORY_FULL_PATH, encoding="utf-8") as f:
+            raw = yaml.safe_load(f) or {}
+    except Exception as e:
+        print(f"⚠️ league_history_full.yml 読み込みエラー: {e}")
+        return {}
+
+    by_slug = {}
+    for family_id, data in raw.items():
+        if not isinstance(data, dict):
+            continue
+        data = dict(data)
+        data["_family_id"] = family_id
+        for slug in data.get("slugs", []):
+            by_slug[slug] = data
+    return by_slug
+
+
+LEAGUE_HISTORY_FULL = load_league_history_full()
+
+# 全史テーブルのマーカー配色。
+# 半透明の背景色にして文字色はテーマの既定色のままにしてあるので、
+# ライト／ダークのどちらでも読める（ダークモード対応のため色をベタ指定しない）。
+CHRONICLE_MARK_STYLES = {
+    "premier":   "background:rgba(34,197,94,.32); box-shadow:inset 3px 0 0 rgba(22,163,74,.9);",
+    "playoff":   "background:rgba(34,197,94,.14);",
+    "up":        "background:rgba(234,179,8,.26);",
+    "down":      "background:rgba(244,63,94,.16);",
+    "pref_down": "background:rgba(220,38,38,.30);",
+    "zenkoku":   "background:rgba(6,182,212,.26);",
+    "final":     "background:rgba(6,182,212,.12);",
+    "stay":      "background:rgba(245,158,11,.30);",
+    "stay_po":   "background:rgba(245,158,11,.14);",
+}
+
 # === プレミアファイナル歴代データの読み込み ===
 PREMIER_FINAL_HISTORY_PATH = Path(__file__).parent.parent / "data" / "premier_final_history.yml"
 
@@ -658,6 +705,230 @@ def render_past_champions_html(slug):
     """
 
 
+def _chronicle_team_cell(team, mark_styles):
+    """全史テーブルの1セル分のHTMLを返す"""
+    name = html_escape(str(team.get("name", "")))
+    if not name or name == "---":
+        return '<td style="text-align:center; color:var(--text-secondary,#6b7280);">—</td>'
+
+    slug = team.get("link")
+    if slug:
+        inner = (
+            f'<a href="/teams/{html_escape(str(slug))}/" '
+            f'style="color:inherit; text-decoration:underline; '
+            f'text-decoration-color:rgba(127,127,127,.5); text-underline-offset:2px;">{name}</a>'
+        )
+    else:
+        inner = name
+
+    sub = team.get("sub")
+    if sub:
+        inner += (
+            f'<span style="font-size:.85em; color:var(--text-secondary,#6b7280);">'
+            f'（{html_escape(str(sub))}）</span>'
+        )
+
+    style = mark_styles.get(team.get("mark", ""), "")
+    return f'<td style="padding:6px 10px; white-space:nowrap; {style}">{inner}</td>'
+
+
+def render_league_chronicle_html(slug, label):
+    """リーグの全史（名称・方式の変遷／プレミア昇格の歴史／歴代順位表）のHTMLを生成。
+
+    データは data/league_history_full.yml。該当データが無いリーグでは空文字を返すので、
+    北信越以外のリーグページは今まで通り何も表示されない。
+    """
+    data = LEAGUE_HISTORY_FULL.get(slug)
+    if not data:
+        return ""
+
+    muted = "var(--text-secondary,#6b7280)"
+    border = "var(--border-color,#e5e7eb)"
+    parts = []
+
+    # --- 導入文（共通 ＋ そのページ固有の一文） ---
+    intro = data.get("intro")
+    if intro:
+        parts.append(
+            f'<p style="line-height:1.9; margin:0 0 12px 0;">{html_escape(str(intro).strip())}</p>'
+        )
+    intro_slug = (data.get("intro_by_slug") or {}).get(slug)
+    if intro_slug:
+        parts.append(
+            f'<p style="line-height:1.9; margin:0 0 20px 0;">{html_escape(str(intro_slug).strip())}</p>'
+        )
+
+    # --- 大会名称の変遷 ---
+    name_history = data.get("name_history") or []
+    if name_history:
+        rows = "".join(
+            f'<li style="padding:8px 0; border-bottom:1px solid {border};">'
+            f'<span style="display:inline-block; min-width:9.5em; font-weight:600; color:{muted};">'
+            f'{html_escape(str(n.get("period","")))}</span>'
+            f'<span>{html_escape(str(n.get("name","")))}</span></li>'
+            for n in name_history
+        )
+        parts.append(
+            f'<h3 style="margin:28px 0 10px 0;">大会名称の変遷</h3>'
+            f'<ul style="list-style:none; padding:0; margin:0;">{rows}</ul>'
+        )
+
+    # --- 大会方式の変遷 ---
+    format_history = data.get("format_history") or []
+    if format_history:
+        rows = "".join(
+            f'<li style="padding:8px 0; border-bottom:1px solid {border};">'
+            f'<span style="display:inline-block; min-width:9.5em; font-weight:600; color:{muted};">'
+            f'{html_escape(str(f.get("period","")))}</span>'
+            f'<span>{html_escape(str(f.get("text","")))}</span></li>'
+            for f in format_history
+        )
+        parts.append(
+            f'<h3 style="margin:28px 0 10px 0;">大会方式の変遷</h3>'
+            f'<ul style="list-style:none; padding:0; margin:0;">{rows}</ul>'
+        )
+
+    # --- プレミアリーグ昇格の歴史 ---
+    promos = data.get("premier_promotions") or []
+    if promos:
+        rows = ""
+        for p in sorted(promos, key=lambda x: -int(x.get("year", 0))):
+            team = html_escape(str(p.get("team", "")))
+            if p.get("link"):
+                team = (
+                    f'<a href="/teams/{html_escape(str(p["link"]))}/" '
+                    f'style="color:inherit; text-decoration:underline; '
+                    f'text-decoration-color:rgba(127,127,127,.5); text-underline-offset:2px;">{team}</a>'
+                )
+            rows += (
+                f'<li style="padding:10px 0; border-bottom:1px solid {border};">'
+                f'<span style="display:inline-block; width:5.5em; font-weight:600; color:{muted};">'
+                f'{html_escape(str(p.get("year","")))}年度</span>'
+                f'<span style="font-weight:600;">{team}</span>'
+                f'<div style="margin-top:4px; font-size:.9em; color:{muted};">'
+                f'{html_escape(str(p.get("note","")))}</div></li>'
+            )
+        note = data.get("premier_note")
+        note_html = (
+            f'<p style="line-height:1.8; margin:14px 0 0 0; font-size:.95em; color:{muted};">'
+            f'{html_escape(str(note).strip())}</p>'
+            if note else ""
+        )
+        parts.append(
+            f'<h3 style="margin:28px 0 10px 0;">プレミアリーグへ昇格したチーム</h3>'
+            f'<ul style="list-style:none; padding:0; margin:0;">{rows}</ul>{note_html}'
+        )
+
+    # --- 歴代順位表 ---
+    eras = data.get("eras") or []
+    if eras:
+        parts.append('<h3 style="margin:32px 0 10px 0;">歴代順位</h3>')
+        parts.append(
+            f'<p style="font-size:.9em; color:{muted}; margin:0 0 16px 0;">'
+            f'表は横にスクロールできます。チーム名をクリックすると、そのチームの詳細ページに移動します。</p>'
+        )
+
+    for era in eras:
+        legend = era.get("legend") or {}
+        cols = era.get("cols") or []
+        has_div = any(r.get("div") for s in era.get("seasons", []) for r in s.get("rows", []))
+
+        parts.append(f'<h4 style="margin:26px 0 8px 0;">{html_escape(str(era.get("title","")))}</h4>')
+
+        if era.get("note"):
+            parts.append(
+                f'<p style="font-size:.9em; color:{muted}; margin:0 0 10px 0;">'
+                f'{html_escape(str(era["note"]))}</p>'
+            )
+
+        if legend:
+            chips = "".join(
+                f'<span style="display:inline-flex; align-items:center; gap:6px; '
+                f'margin:0 12px 8px 0; font-size:.85em;">'
+                f'<span style="display:inline-block; width:16px; height:16px; border-radius:3px; '
+                f'border:1px solid {border}; {CHRONICLE_MARK_STYLES.get(k, "")}"></span>'
+                f'{html_escape(str(v))}</span>'
+                for k, v in legend.items()
+            )
+            parts.append(f'<div style="margin:0 0 10px 0;">{chips}</div>')
+
+        head = '<th style="padding:6px 10px; white-space:nowrap;">回</th>' \
+               '<th style="padding:6px 10px; white-space:nowrap;">年度</th>'
+        if has_div:
+            head += '<th style="padding:6px 10px; white-space:nowrap;">区分</th>'
+        head += "".join(
+            f'<th style="padding:6px 10px; white-space:nowrap;">{html_escape(str(c))}</th>'
+            for c in cols
+        )
+
+        body = ""
+        for season in era.get("seasons", []):
+            season_rows = season.get("rows", [])
+            span = len(season_rows)
+            for i, row in enumerate(season_rows):
+                body += '<tr>'
+                if i == 0:
+                    rs = f' rowspan="{span}"' if span > 1 else ""
+                    body += (
+                        f'<td{rs} style="padding:6px 10px; text-align:center; font-weight:600; '
+                        f'vertical-align:middle;">{html_escape(str(season.get("kai","")))}</td>'
+                        f'<td{rs} style="padding:6px 10px; white-space:nowrap; font-weight:600; '
+                        f'vertical-align:middle;">{html_escape(str(season.get("year","")))}年</td>'
+                    )
+                if has_div:
+                    body += (
+                        f'<td style="padding:6px 10px; white-space:nowrap; color:{muted};">'
+                        f'{html_escape(str(row.get("div","") or "—"))}</td>'
+                    )
+                for team in row.get("teams", []):
+                    body += _chronicle_team_cell(team, CHRONICLE_MARK_STYLES)
+                # 列が足りない年は空欄で埋める
+                for _ in range(len(cols) - len(row.get("teams", []))):
+                    body += f'<td style="text-align:center; color:{muted};">—</td>'
+                body += '</tr>'
+
+            if season.get("note"):
+                ncols = len(cols) + (3 if has_div else 2)
+                body += (
+                    f'<tr><td colspan="{ncols}" style="padding:4px 10px 10px 10px; '
+                    f'font-size:.85em; color:{muted};">※ {html_escape(str(season["note"]))}</td></tr>'
+                )
+
+        parts.append(
+            '<div style="overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 0 6px 0;">'
+            '<table style="border-collapse:collapse; font-size:.9em; min-width:100%;">'
+            f'<thead><tr style="background:rgba(127,127,127,.12);">{head}</tr></thead>'
+            f'<tbody>{body}</tbody></table></div>'
+        )
+
+    # --- 出典 ---
+    sources = data.get("sources") or []
+    if sources:
+        items = "".join(
+            f'<li style="margin-bottom:4px;">'
+            f'<a href="{html_escape(str(s.get("url","")))}" rel="nofollow noopener" '
+            f'target="_blank" style="color:var(--accent-color,#2563eb);">'
+            f'{html_escape(str(s.get("label","")))}</a>'
+            + (f'（{html_escape(str(s["note"]))}）' if s.get("note") else "")
+            + '</li>'
+            for s in sources
+        )
+        parts.append(
+            f'<p style="font-size:.85em; color:{muted}; margin:20px 0 6px 0;">出典</p>'
+            f'<ul style="font-size:.85em; color:{muted}; padding-left:1.2em; margin:0;">{items}</ul>'
+        )
+
+    current_kai = data.get("current_kai")
+    if current_kai:
+        parts.append(
+            f'<p style="font-size:.9em; color:{muted}; margin:14px 0 0 0;">'
+            f'※ 第{html_escape(str(current_kai))}回（{date.today().year}年）は開催中。'
+            f'最新の順位はこのページ上部の順位表をご覧ください。</p>'
+        )
+
+    return "\n".join(parts)
+
+
 def render_pref_distribution_html(teams, current_slug):
     """所属都道府県の分布を地方別グリッドで表示（SEO強化版：アンカーテキストにチーム名・キーワードを盛り込み）"""
     pref_counts = {}
@@ -903,7 +1174,9 @@ __FINAL_PATH_SECTION__
         <h2><i class="fas fa-trophy"></i> 過去5年の優勝校</h2>
 __PAST_CHAMPIONS__
       </section>
-      
+
+__LEAGUE_CHRONICLE_SECTION__
+
       <section class="lp-section lp-faq">
         <h2><i class="fas fa-question-circle"></i> よくある質問</h2>
 __FAQ_HTML__
@@ -1091,6 +1364,22 @@ def generate_league_page(league_name, slug, label, category, description, season
     pref_distribution = render_pref_distribution_html(sorted_teams, slug)
     related_leagues = render_related_leagues_html(slug, category)
     past_champions_html = render_past_champions_html(slug)
+
+    # リーグ全史（data/league_history_full.yml があるリーグだけ出力される）
+    chronicle_html = render_league_chronicle_html(slug, label)
+    if chronicle_html:
+        # 見出しは「1部」「2部」ではなくリーグ系統の名前（例: プリンスリーグ北信越）を使う。
+        # 全史は1部・2部で共通の内容だから。
+        family = LEAGUE_HISTORY_FULL.get(slug, {})
+        chronicle_label = family.get("label") or label
+        chronicle_section = (
+            '      <section class="lp-section lp-chronicle" id="chronicle">\n'
+            f'        <h2><i class="fas fa-landmark"></i> {html_escape(chronicle_label)}の歴史</h2>\n'
+            f'{chronicle_html}\n'
+            '      </section>'
+        )
+    else:
+        chronicle_section = ""
     featured_teams_html = render_featured_teams_html(sorted_teams, label)
     league_stats_html = render_league_stats_html(sorted_teams, label)
     cross_table_html = render_cross_table_html(slug)
@@ -1182,6 +1471,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__FAQ_HTML__", faq_html)
         .replace("__RELATED_LEAGUES__", related_leagues)
         .replace("__PAST_CHAMPIONS__", past_champions_html)
+        .replace("__LEAGUE_CHRONICLE_SECTION__", chronicle_section)
         .replace("__FINAL_PATH_SECTION__", final_path_section)
         .replace("__SEASON_OVERVIEW__", html_escape(season_overview))
         .replace("__PROFILE_NOTICE__", profile_notice)

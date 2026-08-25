@@ -1,0 +1,606 @@
+# data/league_history_full.yml
+# ============================================================
+# リーグの「全史」データ（歴代順位表・名称の変遷・プレミア昇格の歴史）
+# generate_league_pages.py の render_league_chronicle_html() が読む。
+#
+# ■ 構造
+#   トップレベルのキー = リーグ系統のID（1部・2部で分かれていても1つにまとめる）
+#     slugs:  このデータを表示するリーグページのslug（複数可）
+#     eras:   時代ごとの順位表。1つのeraが1つの表になる。
+#     seasons[].rows[].teams[] の各要素:
+#       name  : 表示名（その年度の表記をそのまま使う）
+#       mark  : 昇降格などのマーカー（era.legend のキーと対応。無ければ省略）
+#       sub   : 補足の数字や語（2004-2007の「（3）」＝決定戦後の最終順位など）
+#
+# ■ マーカーのキー（era.legend で意味を定義する）
+#   premier / playoff / up / down / pref_down / zenkoku / final / stay / stay_po
+#
+# ■ 出典
+#   2003-2024: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ北信越』の歴代成績表
+#              （セルの色分けもDOMから機械的に読み取って転記。目視転記はしていない）
+#   2025:      JFA公式および北信越サッカー協会公式の最終順位表PDF（2本が独立に一致・勝点/得失点差も再計算で検算済み）
+#
+# ■ 更新のしかた
+#   毎年12月にシーズンが終わったら、最新年度を eras[0].seasons の先頭に追加する。
+#   マーカーは「その年度に何が起きたか」であって翌年の所属ではない。混同しない。
+# ============================================================
+
+hokushinetsu:
+  label: プリンスリーグ北信越
+  slugs:
+    - prince-hokushinetsu-1
+    - prince-hokushinetsu-2
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ北信越は2003年に第1回が開催され、2026年で第24回を迎えた。
+    新潟・富山・石川・福井・長野の5県のチームが参加する。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+  # ページごとの導入文（1部ページと2部ページで書き分ける）
+  intro_by_slug:
+    prince-hokushinetsu-1: >-
+      1部は北信越の最上位カテゴリで、ここを制すればプレミアリーグ参入戦への道が開ける。
+      ただし実際にプレミアへ昇格できたのは、23シーズンを通じて4回（富山第一が2回、アルビレックス新潟U-18と帝京長岡が1回ずつ）だけである。
+    prince-hokushinetsu-2: >-
+      2部は2023年に新設されたばかりのカテゴリで、上位が1部へ昇格し、下位が都道府県リーグへ落ちる。
+      2部の歴史はまだ浅いが、その下のリーグから上がってくるチームにとっては全国リーグへの入口にあたる。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 北信越
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ北信越
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 北信越
+
+  # ---- 大会方式の変遷 ----
+  format_history:
+    - period: 2003年
+      text: 6チームによる1回戦総当たり。優勝チームが高円宮杯全日本ユース(U-18)選手権の出場権を得た。
+    - period: 2004年
+      text: A・Bブロック各6チームの1回戦総当たりを行い、各ブロック1〜2位による優勝決定戦を実施。
+    - period: 2005年〜2006年
+      text: A・Bブロック各8チームの1回戦総当たり。各ブロック1〜2位が優勝決定戦、3〜4位が残留戦に回った。
+    - period: 2007年
+      text: A・Bブロック各8チームの1回戦総当たり。残留戦に回るのが各ブロック4〜5位に変わった。
+    - period: 2008年
+      text: ブロック分けを廃し、12チームの1回戦総当たりに。8〜12位が入れ替え戦に回った。
+    - period: 2009年
+      text: 12チームの1回戦総当たり。1〜6位が翌年の1部、7〜11位が2部へ回り、12位が県1部へ降格した。
+    - period: 2010年
+      text: 1部6チームの2回戦総当たりと、2部10チームの1回戦総当たり。2部1〜3位が1部へ昇格した。
+    - period: 2011年
+      text: 1部・2部とも8チームの2回戦総当たり。2部1〜2位が1部へ昇格、2部8位が県1部へ降格した。
+    - period: 2012年
+      text: 1部・2部とも8チームの2回戦総当たり。2部5〜8位が県1部へ降格した。翌2013年から1部制に戻る。
+    - period: 2013年
+      text: 10チームの2回戦総当たり。10位が県1部へ降格し、7〜9位が参入戦に回った。
+    - period: 2014年〜2022年
+      text: 10チームの2回戦総当たり。9〜10位が県1部へ降格する形が定着した。
+    - period: 2020年
+      text: 新型コロナウイルスの影響で日程・方式を変更。東西5チームずつの1回戦総当たりの後、順位決定戦を行った。
+    - period: 2021年
+      text: 新型コロナウイルスの影響で日程の一部が消化できず、チームごとに試合数の差が生じたため、1試合平均勝点で順位を決定した。
+    - period: 2023年〜
+      text: 1部10チーム・2部8チームの2部制に移行。2部の上位が1部へ昇格し、下位が県リーグへ降格する。
+
+  # ---- プレミアリーグ（全国リーグ）への昇格 ----
+  premier_promotions:
+    - year: 2010
+      team: 富山第一高校
+      link: toyama-daiichi
+      note: 2011年のプレミアリーグ発足に伴う参入。北信越から初のプレミア勢となった。
+    - year: 2015
+      team: アルビレックス新潟U-18
+      link: albirex-niigata-u18
+      note: 参入戦を勝ち抜き2016年からプレミアEASTへ。
+    - year: 2017
+      team: 富山第一高校
+      link: toyama-daiichi
+      note: 2018年からプレミアEASTへ復帰。
+    - year: 2023
+      team: 帝京長岡高校
+      link: teikyo-nagaoka
+      note: 2024年からプレミアEASTへ。2部制移行の初年度に1部を制した。
+  premier_note: >-
+    プレミアリーグへ上がったのはこの4回のみで、いずれも1年で戻ってきているわけではない点も含め、
+    北信越からの全国リーグ到達は簡単ではない。参入戦の出場権だけを得て昇格に届かなかった年は
+    下の順位表で「参入戦」のマーカーが付いたチームにあたる。
+
+  # ---- 歴代順位 ----
+  eras:
+    - title: 2023年〜（2部制）
+      note: 2023年から1部10チーム・2部8チームの2部制になった。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦 出場権獲得
+        down: プリンス2部へ降格
+        up: プリンス1部へ昇格
+        pref_down: 都道府県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          rows:
+            - div: 1部
+              teams:
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, mark: playoff }
+                - { name: 松本国際高, link: matsumoto-kokusai }
+                - { name: 星稜高, link: seiryo }
+                - { name: 鵬学園高, link: ohtori-gakuen }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18 }
+                - { name: 日本文理高, link: nihon-bunri }
+                - { name: 帝京長岡高2nd }
+                - { name: 松本山雅FC U-18, link: matsumoto-yamaga-u18 }
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18, mark: down }
+                - { name: 新潟明訓高, link: niigata-meikun, mark: down }
+            - div: 2部
+              teams:
+                - { name: 富山第一高, link: toyama-daiichi, mark: up }
+                - { name: 上越高, link: joetsu, mark: up }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 金沢学院大附, link: kanazawa-gakuin }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 開志学園JSC, link: kaishi-gakuen-jsc }
+                - { name: 帝京長岡高3rd, mark: pref_down }
+                - { name: 星稜高2nd, mark: pref_down }
+        - kai: 22
+          year: 2024
+          rows:
+            - div: 1部
+              teams:
+                - { name: カターレ富山U-18, link: kataller-toyama-u18, mark: playoff }
+                - { name: 星稜高, link: seiryo, mark: playoff }
+                - { name: 新潟明訓高, link: niigata-meikun }
+                - { name: 鵬学園高, link: ohtori-gakuen }
+                - { name: 日本文理高, link: nihon-bunri }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18 }
+                - { name: 帝京長岡高2nd }
+                - { name: 富山第一高, link: toyama-daiichi, mark: down }
+                - { name: 北越高, link: hokuetsu, mark: down }
+            - div: 2部
+              teams:
+                - { name: 松本山雅FCU-18, link: matsumoto-yamaga-u18, mark: up }
+                - { name: 松本国際高, link: matsumoto-kokusai, mark: up }
+                - { name: 帝京長岡高3rd }
+                - { name: 上越高, link: joetsu }
+                - { name: 星稜高2nd }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 遊学館高, mark: pref_down }
+                - { name: 富山第一高2nd, mark: pref_down }
+        - kai: 21
+          year: 2023
+          rows:
+            - div: 1部
+              teams:
+                - { name: 帝京長岡高, link: teikyo-nagaoka, mark: premier }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, mark: playoff }
+                - { name: 日本文理高, link: nihon-bunri }
+                - { name: 星稜高, link: seiryo }
+                - { name: 鵬学園高, link: ohtori-gakuen }
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18 }
+                - { name: 富山第一高, link: toyama-daiichi }
+                - { name: 北越高, link: hokuetsu }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18 }
+                - { name: 松本山雅FCU-18, link: matsumoto-yamaga-u18, mark: down }
+            - div: 2部
+              teams:
+                - { name: 新潟明訓高, link: niigata-meikun, mark: up }
+                - { name: 帝京長岡高2nd, mark: up }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 松本国際高, link: matsumoto-kokusai }
+                - { name: 遊学館高 }
+                - { name: 富山第一高2nd }
+                - { name: 星稜高2nd }
+                - { name: 龍谷富山高, mark: pref_down }
+
+    - title: 2018年〜2022年（1部制）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        playoff: プレミアリーグ参入戦 出場権獲得
+        down: 都道府県リーグへ降格
+      seasons:
+        - kai: 20
+          year: 2022
+          rows:
+            - teams:
+                - { name: 帝京長岡高, link: teikyo-nagaoka, mark: playoff }
+                - { name: 日本文理高, link: nihon-bunri, mark: playoff }
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18 }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 松本山雅FCU-18, link: matsumoto-yamaga-u18 }
+                - { name: 星稜高, link: seiryo }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18 }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: 遊学館高, mark: down }
+                - { name: 新潟明訓高, link: niigata-meikun, mark: down }
+        - kai: 19
+          year: 2021
+          note: 新型コロナウイルスの影響で試合数に差が生じ、1試合平均勝点で順位を決定した。
+          rows:
+            - teams:
+                - { name: 帝京長岡高, link: teikyo-nagaoka, mark: playoff }
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18, mark: playoff }
+                - { name: 松本山雅FCU-18, link: matsumoto-yamaga-u18 }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18 }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 新潟明訓高, link: niigata-meikun }
+                - { name: 星稜高, link: seiryo }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: 北越高, link: hokuetsu, mark: down }
+                - { name: 丸岡高, link: maruoka, mark: down }
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: 帝京長岡高, link: teikyo-nagaoka, mark: playoff }
+                - { name: 富山一高, link: toyama-daiichi, mark: playoff }
+                - { name: 丸岡高, link: maruoka }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 星稜高, link: seiryo }
+                - { name: 新潟明訓高, link: niigata-meikun }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18 }
+                - { name: 東京都市大塩尻高, mark: down }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc, mark: down }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 新潟明訓高, link: niigata-meikun, mark: playoff }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 星稜高, link: seiryo }
+                - { name: 富山一高2nd, mark: down }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18 }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
+                - { name: 日本文理高, link: nihon-bunri, mark: down }
+                - { name: 長岡向陵高, mark: down }
+
+    - title: 2020年（グループリーグ＋順位決定戦）
+      note: 新型コロナウイルスの影響で、東西5チームずつの1回戦総当たりの後に順位決定戦を行った。カッコ内が最終順位。
+      cols: ["1位（→1-4位T）", "2位（→1-4位T）", "3位（→5-8位T）", "4位（→5-8位T）", "5位（→9-10位決）"]
+      legend: {}
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - div: A
+              teams:
+                - { name: 帝京長岡高, link: teikyo-nagaoka, sub: 4位 }
+                - { name: 新潟明訓高, link: niigata-meikun, sub: 3位 }
+                - { name: 北越高, link: hokuetsu, sub: 7位 }
+                - { name: 松本山雅FC U-18, link: matsumoto-yamaga-u18, sub: 5位 }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, sub: 10位 }
+            - div: B
+              teams:
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18, sub: 2位 }
+                - { name: 丸岡高, link: maruoka, sub: 優勝 }
+                - { name: 星稜高, link: seiryo, sub: 8位 }
+                - { name: 富山一高, link: toyama-daiichi, sub: 6位 }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18, sub: 9位 }
+
+    - title: 2013年〜2017年（1部制）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦 出場権獲得
+        down: 都道府県リーグへ降格
+      seasons:
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: 富山一高, link: toyama-daiichi, mark: premier }
+                - { name: 帝京長岡高, link: teikyo-nagaoka, mark: playoff }
+                - { name: 星稜高, link: seiryo }
+                - { name: 日本文理高, link: nihon-bunri }
+                - { name: 新潟明訓高, link: niigata-meikun }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: 長岡向陵高 }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 鵬学園高, link: ohtori-gakuen, mark: down }
+                - { name: 新潟西高, mark: down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: 新潟明訓高, link: niigata-meikun, mark: playoff }
+                - { name: 帝京長岡高, link: teikyo-nagaoka, mark: playoff }
+                - { name: 星稜高, link: seiryo }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 新潟西高 }
+                - { name: 鵬学園高, link: ohtori-gakuen }
+                - { name: 長岡向陵高 }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 遊学館高, mark: down }
+                - { name: 高岡一高, mark: down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, mark: premier }
+                - { name: 新潟明訓高, link: niigata-meikun, mark: playoff }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 星稜高, link: seiryo }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 新潟西高 }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 遊学館高 }
+                - { name: 新潟工高, mark: down }
+                - { name: 創造学園高, mark: down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, mark: playoff }
+                - { name: 星稜高, link: seiryo, mark: playoff }
+                - { name: 遊学館高 }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 新潟西高 }
+                - { name: 新潟工高 }
+                - { name: 創造学園高 }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 丸岡高, link: maruoka, mark: down }
+                - { name: 富山一高2nd, mark: down }
+        - kai: 11
+          year: 2013
+          rows:
+            - teams:
+                - { name: 星稜高, link: seiryo, mark: playoff }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18, mark: playoff }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 新潟西高 }
+                - { name: 遊学館高 }
+                - { name: 創造学園高 }
+                - { name: 新潟工高 }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc, mark: down }
+                - { name: 東海大三高, mark: down }
+
+    - title: 2011年〜2012年（1部・2部制）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        playoff: プレミアリーグ参入戦 出場権獲得
+      seasons:
+        - kai: 10
+          year: 2012
+          note: 2部5〜8位が県1部へ降格し、翌2013年から1部制に戻った。
+          rows:
+            - div: 1部
+              teams:
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18, mark: playoff }
+                - { name: 星稜高, link: seiryo }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 東海大三高 }
+                - { name: 新潟工高 }
+                - { name: 遊学館高 }
+            - div: 2部
+              teams:
+                - { name: 新潟西高 }
+                - { name: 新潟明訓高, link: niigata-meikun }
+                - { name: 水橋高 }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 北陸高 }
+                - { name: 上田高 }
+                - { name: 石川県立工高 }
+                - { name: 日本航空高石川 }
+        - kai: 9
+          year: 2011
+          rows:
+            - div: 1部
+              teams:
+                - { name: 星稜高, link: seiryo, mark: playoff }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18 }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
+                - { name: 遊学館高 }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 日本航空高石川 }
+            - div: 2部
+              teams:
+                - { name: 新潟工高 }
+                - { name: 東海大三高 }
+                - { name: 新潟西高 }
+                - { name: 水橋高 }
+                - { name: 上田高 }
+                - { name: 石川県立工高 }
+                - { name: 富山国際大付属高 }
+                - { name: 福井商高 }
+
+    - title: 2010年（1部・2部制）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: 高円宮杯全日本ユース出場権獲得／プレミアリーグ昇格
+      seasons:
+        - kai: 8
+          year: 2010
+          note: 1部6チームの2回戦総当たり、2部10チームの1回戦総当たり。翌2011年にプレミアリーグが発足した。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 富山一高, link: toyama-daiichi, mark: premier }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18 }
+                - { name: 星稜高, link: seiryo }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 日本航空高石川 }
+            - div: 2部
+              teams:
+                - { name: 遊学館高 }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 新潟工高 }
+                - { name: 東海大三高 }
+                - { name: 水橋高 }
+                - { name: 啓新高 }
+                - { name: 松商学園高 }
+                - { name: 松本美須々ヶ丘高 }
+                - { name: 富山国際大付高 }
+
+    - title: 2008年〜2009年（12チーム1回戦総当たり）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース 出場権獲得
+      seasons:
+        - kai: 7
+          year: 2009
+          rows:
+            - teams:
+                - { name: 星稜高, link: seiryo, mark: zenkoku }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18 }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 北越高, link: hokuetsu }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 日本航空高石川 }
+                - { name: 松商学園高 }
+                - { name: 水橋高 }
+                - { name: 東海大三高 }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
+                - { name: 啓新高 }
+        - kai: 6
+          year: 2008
+          rows:
+            - teams:
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18, mark: zenkoku }
+                - { name: 星稜高, link: seiryo }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
+                - { name: 東海大三高 }
+                - { name: 石川県工高 }
+                - { name: 金沢桜丘高 }
+                - { name: 水橋高 }
+                - { name: 松商学園高 }
+                - { name: 富山工高 }
+
+    - title: 2004年〜2007年（A・Bブロック制）
+      note: ブロックごとの1回戦総当たりの後、各ブロック上位による優勝決定戦を行った。カッコ内は決定戦を含めた最終順位。
+      cols: [1位, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース 出場権獲得
+        final: 優勝決定戦 出場
+        stay: 残留
+        stay_po: 残留決定戦 出場
+      seasons:
+        - kai: 5
+          year: 2007
+          rows:
+            - div: A
+              teams:
+                - { name: 開志学園高JSC, link: kaishi-gakuen-jsc, sub: "3", mark: zenkoku }
+                - { name: 金沢桜丘高, sub: "4", mark: final }
+                - { name: 水橋高 }
+                - { name: 伏木高, sub: "3", mark: stay_po }
+                - { name: 丸岡高, link: maruoka, sub: "3", mark: stay_po }
+                - { name: 金沢泉丘高 }
+                - { name: 北陸高 }
+                - { name: 地球環境高 }
+            - div: B
+              teams:
+                - { name: 星稜高, link: seiryo, sub: "1", mark: zenkoku }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18, sub: "2", mark: zenkoku }
+                - { name: 富山一高, link: toyama-daiichi }
+                - { name: 帝京長岡高, link: teikyo-nagaoka, sub: "2", mark: stay_po }
+                - { name: 松商学園高, sub: "1", mark: stay }
+                - { name: 遊学館高 }
+                - { name: 福井商高 }
+                - { name: 松本美須々ヶ丘高 }
+        - kai: 4
+          year: 2006
+          rows:
+            - div: A
+              teams:
+                - { name: 星稜高, link: seiryo, sub: "2", mark: zenkoku }
+                - { name: 水橋高, sub: "1", mark: zenkoku }
+                - { name: 富山一高, link: toyama-daiichi, sub: "2", mark: stay_po }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18, sub: "1", mark: stay }
+                - { name: 福井商高 }
+                - { name: 金沢桜丘高 }
+                - { name: 東海大三高 }
+                - { name: 武蔵工大二高 }
+            - div: B
+              teams:
+                - { name: 松商学園高, sub: "3", mark: final }
+                - { name: 丸岡高, link: maruoka, sub: "3", mark: final }
+                - { name: 上田高, sub: "3", mark: stay_po }
+                - { name: 長岡向陵高, sub: "3", mark: stay_po }
+                - { name: 東京学館新潟高 }
+                - { name: 伏木高 }
+                - { name: 金沢泉丘高 }
+                - { name: 北陸高 }
+        - kai: 3
+          year: 2005
+          rows:
+            - div: A
+              teams:
+                - { name: 東京学館新潟高, sub: "3", mark: final }
+                - { name: 星稜高, link: seiryo, sub: "1", mark: zenkoku }
+                - { name: 武蔵工大二高, sub: "1", mark: stay }
+                - { name: 丸岡高, link: maruoka, sub: "1", mark: stay }
+                - { name: 水橋高 }
+                - { name: 小松市立高 }
+                - { name: 北陸高 }
+                - { name: 北越高, link: hokuetsu }
+            - div: B
+              teams:
+                - { name: 富山一高, link: toyama-daiichi, sub: "3", mark: final }
+                - { name: 松商学園高, sub: "2", mark: final }
+                - { name: 長野日本大学高, sub: "3", mark: stay_po }
+                - { name: 伏木高, sub: "3", mark: stay_po }
+                - { name: 金沢西高 }
+                - { name: 帝京長岡高, link: teikyo-nagaoka }
+                - { name: 福井商高 }
+                - { name: 金沢桜丘高 }
+        - kai: 2
+          year: 2004
+          rows:
+            - div: A
+              teams:
+                - { name: 星稜高, link: seiryo, sub: "1", mark: zenkoku }
+                - { name: 富山一高, link: toyama-daiichi, sub: "2", mark: final }
+                - { name: 松商学園高 }
+                - { name: 金沢桜丘高 }
+                - { name: 大野高 }
+                - { name: 新潟工高 }
+            - div: B
+              teams:
+                - { name: 水橋高, sub: "3", mark: final }
+                - { name: 伏木高, sub: "3", mark: final }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18 }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 金沢西高 }
+                - { name: 武蔵工大二高 }
+
+    - title: 2003年（第1回）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース 出場権獲得
+      seasons:
+        - kai: 1
+          year: 2003
+          note: 6チームによる1回戦総当たりでスタートした。
+          rows:
+            - teams:
+                - { name: 星稜高, link: seiryo, mark: zenkoku }
+                - { name: 水橋高 }
+                - { name: 丸岡高, link: maruoka }
+                - { name: 上田西高 }
+                - { name: アルビレックス新潟ユース, link: albirex-niigata-u18 }
+                - { name: 東京学館新潟高 }
+
+  sources:
+    - label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ北信越』
+      url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ北信越
+      note: 2003年〜2024年の歴代成績
+    - label: 北信越サッカー協会／JFA公式 各年度の最終順位表
+      url: https://www.jfa.jp/match/takamado_jfa_u18_prince2021/hokushinetsu/
+      note: 2025年の順位はJFA公式・北信越リーグ公式のPDFで照合
