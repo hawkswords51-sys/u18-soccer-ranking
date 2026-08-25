@@ -105,6 +105,8 @@ scraper/update_tournament_results.py が上の source から
 - 狭山 vs 今宮工科
 - 長尾 vs 咲くやこの花/常翔啓光学園
 - 関西大倉 vs 合同チームC
+- 追手門大手前 vs 泉大津
+- 追手門大手前 vs 岸和田
 
 ## 2回1次予選2回戦
 
