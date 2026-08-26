@@ -109,6 +109,9 @@ hokushinetsu:
     下の順位表で「参入戦」のマーカーが付いたチームにあたる。
 
   # ---- 歴代順位 ----
+  # eras[fold_from_era] 以降は <details> で折りたたむ。
+  # 1 ＝ 最新の「2023年〜（2部制）」だけ開いた状態にし、2018年以前は折りたたむ。
+  fold_from_era: 1
   eras:
     - title: 2023年〜（2部制）
       note: 2023年から1部10チーム・2部8チームの2部制になった。
@@ -196,7 +199,7 @@ hokushinetsu:
                 - { name: 星稜高2nd }
                 - { name: 龍谷富山高, mark: pref_down }
 
-    - title: 2018年〜2022年（1部制）
+    - title: 2021年〜2022年（1部制）
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
       legend:
         playoff: プレミアリーグ参入戦 出場権獲得
@@ -231,6 +234,36 @@ hokushinetsu:
                 - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
                 - { name: 北越高, link: hokuetsu, mark: down }
                 - { name: 丸岡高, link: maruoka, mark: down }
+
+    - title: 2020年（グループリーグ＋順位決定戦）
+      note: 新型コロナウイルスの影響で、東西5チームずつの1回戦総当たりの後に順位決定戦を行った。カッコ内が最終順位。
+      cols: ["1位（→1-4位T）", "2位（→1-4位T）", "3位（→5-8位T）", "4位（→5-8位T）", "5位（→9-10位決）"]
+      legend: {}
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - div: A
+              teams:
+                - { name: 帝京長岡高, link: teikyo-nagaoka, sub: 4位 }
+                - { name: 新潟明訓高, link: niigata-meikun, sub: 3位 }
+                - { name: 北越高, link: hokuetsu, sub: 7位 }
+                - { name: 松本山雅FC U-18, link: matsumoto-yamaga-u18, sub: 5位 }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, sub: 10位 }
+            - div: B
+              teams:
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18, sub: 2位 }
+                - { name: 丸岡高, link: maruoka, sub: 優勝 }
+                - { name: 星稜高, link: seiryo, sub: 8位 }
+                - { name: 富山一高, link: toyama-daiichi, sub: 6位 }
+                - { name: カターレ富山U-18, link: kataller-toyama-u18, sub: 9位 }
+
+    - title: 2018年〜2019年（1部制）
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        playoff: プレミアリーグ参入戦 出場権獲得
+        down: 都道府県リーグへ降格
+      seasons:
         - kai: 17
           year: 2019
           rows:
@@ -259,29 +292,6 @@ hokushinetsu:
                 - { name: 開志学園高JSC, link: kaishi-gakuen-jsc }
                 - { name: 日本文理高, link: nihon-bunri, mark: down }
                 - { name: 長岡向陵高, mark: down }
-
-    - title: 2020年（グループリーグ＋順位決定戦）
-      note: 新型コロナウイルスの影響で、東西5チームずつの1回戦総当たりの後に順位決定戦を行った。カッコ内が最終順位。
-      cols: ["1位（→1-4位T）", "2位（→1-4位T）", "3位（→5-8位T）", "4位（→5-8位T）", "5位（→9-10位決）"]
-      legend: {}
-      seasons:
-        - kai: 18
-          year: 2020
-          rows:
-            - div: A
-              teams:
-                - { name: 帝京長岡高, link: teikyo-nagaoka, sub: 4位 }
-                - { name: 新潟明訓高, link: niigata-meikun, sub: 3位 }
-                - { name: 北越高, link: hokuetsu, sub: 7位 }
-                - { name: 松本山雅FC U-18, link: matsumoto-yamaga-u18, sub: 5位 }
-                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, sub: 10位 }
-            - div: B
-              teams:
-                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18, sub: 2位 }
-                - { name: 丸岡高, link: maruoka, sub: 優勝 }
-                - { name: 星稜高, link: seiryo, sub: 8位 }
-                - { name: 富山一高, link: toyama-daiichi, sub: 6位 }
-                - { name: カターレ富山U-18, link: kataller-toyama-u18, sub: 9位 }
 
     - title: 2013年〜2017年（1部制）
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
