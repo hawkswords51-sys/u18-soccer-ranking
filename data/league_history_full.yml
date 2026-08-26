@@ -3960,3 +3960,475 @@ kyushu:
     - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープレミアリーグ
       label: Wikipedia『高円宮杯 JFA U-18サッカープレミアリーグ』WEST歴代順位
       note: 宮崎県協会の本文に昇格の記載が無い年の裏取り。2016年アビスパ福岡U-18と2018年大津の昇格をここで確定した
+
+# ============================================================
+# プリンスリーグ四国（2026-08-26追加）
+# ★出典はリーグ公式 pl-shikoku.com の「大会記録」（scoresheet{西暦}.html）。
+#   2003〜2025年の全順位が一次資料で揃う。まとめサイト・Wikipedia・JFA公式の4系統で優勝校を照合済み。
+# ★教訓：地域プリンスリーグの公式サイトに全記録があることがある
+#   （四国=pl-shikoku.com／北信越=h-prince.com／九州=宮崎県FAの記録ページ）。Wikipediaを見て諦めない。
+# ============================================================
+
+shikoku:
+  label: プリンスリーグ四国
+  slugs:
+    - prince-shikoku
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ四国は2003年に第1回が開催され、2026年で第24回を迎えた。
+    徳島・愛媛・香川・高知の4県のチームが参加し、1部・2部に分かれず1つのリーグで争われている。
+    第1回から2025年までの23シーズンで優勝を経験したのは8チームで、愛媛FC（愛媛FCユース／愛媛FC U-18）の11回が最多、
+    次いで徳島ヴォルティスユースが5回を数える。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 四国
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ四国
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 四国
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2013年〜2025年（10チームによる2回戦総当たり）
+      note: >-
+        10チームの2回戦総当たり（18試合）が定着した時代。優勝チームは全国リーグ・プレミアリーグへの
+        参入戦（プレーオフ）に四国代表として進み、下位チームは各県リーグからの参入戦を経て入れ替わる。
+        2020年は新型コロナウイルスの影響で1回戦総当たりに縮小され、この年度の結果による昇格・降格は行われなかった。
+        2021年も第10節から第13節が中止となり、全14試合で終了している。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
+        pref_down: 県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          rows:
+            - teams:
+                - { name: 愛媛FC U-18, link: ehime-fc-u18, mark: playoff }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 高知高校, link: kochi }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: FC今治U-18, link: fc-imabari-u18 }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18 }
+                - { name: 藤井学園寒川高校, mark: pref_down }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi, mark: pref_down }
+        - kai: 22
+          year: 2024
+          rows:
+            - teams:
+                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 藤井学園寒川高校 }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18 }
+                - { name: FC今治U-18, link: fc-imabari-u18 }
+                - { name: 帝京第五高校, mark: pref_down }
+                - { name: 徳島北高校, mark: pref_down }
+        - kai: 21
+          year: 2023
+          rows:
+            - teams:
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth, mark: playoff }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: FC今治U-18, link: fc-imabari-u18 }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18 }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 徳島北高校 }
+                - { name: 今治東中等教育学校, link: imabari-higashi, mark: pref_down }
+                - { name: 高知中央高校, link: kochi-chuo, mark: pref_down }
+        - kai: 20
+          year: 2022
+          rows:
+            - teams:
+                - { name: 愛媛FC U-18, link: ehime-fc-u18, mark: playoff }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18 }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 徳島北高校 }
+                - { name: 高知高校, link: kochi, mark: pref_down }
+                - { name: 新田高校, link: nitta, mark: pref_down }
+        - kai: 19
+          year: 2021
+          note: 第10節から第13節が中止となり、全14試合で終了した。
+          rows:
+            - teams:
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18, mark: playoff }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18, mark: playoff }
+                - { name: 高知高校, link: kochi }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 高知中央高校, link: kochi-chuo, mark: pref_down }
+                - { name: 尽誠学園高校, mark: pref_down }
+        - kai: 18
+          year: 2020
+          note: >-
+            新型コロナウイルスの影響で1回戦総当たりに縮小され、2試合が未消化のまま終了した。
+            この年度の結果による昇格・降格は行われていない。
+          rows:
+            - teams:
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18 }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 高知高校, link: kochi }
+                - { name: 高知中央高校, link: kochi-chuo }
+                - { name: 尽誠学園高校 }
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth, mark: playoff }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: カマタマーレ讃岐U-18, link: kamatamare-sanuki-u18 }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 高知中央高校, link: kochi-chuo }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 新田高校, link: nitta, mark: pref_down }
+                - { name: 高知西高校, mark: pref_down }
+                - { name: 高松商業高校, mark: pref_down }
+        - kai: 16
+          year: 2018
+          note: 優勝した愛媛FC U-18がプレーオフを勝ち抜き、2019年のプレミアリーグWESTへ昇格した。
+          rows:
+            - teams:
+                - { name: 愛媛FC U-18, link: ehime-fc-u18, mark: premier }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 高知西高校 }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 高松商業高校 }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校, mark: pref_down }
+                - { name: 明徳義塾高校, mark: pref_down }
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth, mark: playoff }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校 }
+                - { name: 高松商業高校 }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 明徳義塾高校 }
+                - { name: 高知西高校 }
+                - { name: 徳島北高校, mark: pref_down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: 明徳義塾高校, mark: playoff }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 高松商業高校 }
+                - { name: 大手前高松高校, link: otemae-takamatsu }
+                - { name: 四国学院大学香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校 }
+                - { name: 高知西高校 }
+                - { name: 済美高校, mark: pref_down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 徳島市立高校, link: tokushima-shiritsu, mark: playoff }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: 済美高校 }
+                - { name: 明徳義塾高校 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校 }
+                - { name: 高松商業高校 }
+                - { name: 今治東中等教育学校, link: imabari-higashi, mark: pref_down }
+                - { name: 徳島北高校, mark: pref_down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 明徳義塾高校 }
+                - { name: 高松商業高校 }
+                - { name: 徳島北高校 }
+                - { name: 松山工業高校 }
+                - { name: 尽誠学園高校, mark: pref_down }
+        - kai: 11
+          year: 2013
+          rows:
+            - teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 高松商業高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 尽誠学園高校 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 明徳義塾高校 }
+                - { name: 大洲高校, mark: pref_down }
+                - { name: 高知高校, link: kochi, mark: pref_down }
+
+    - title: 2008年〜2012年（1リーグ制）
+      note: >-
+        2008年・2009年は10チームによる1回戦総当たり、2010年は9チームによる1回戦総当たりの後に
+        上位6チームでもう一度1回戦総当たりを行った（上位6チームは13試合、下位3チームは8試合）。
+        2011年からは10チームによる2回戦総当たりになった。
+        2010年に優勝した愛媛FCユースは、2011年に発足した全国リーグ・プレミアリーグWESTの参加チームとなり、
+        2011年・2012年のプリンスリーグ四国には参加していない。2012年限りでプレミアWESTから降格し、2013年に復帰した。
+        この時期の昇格・降格は公表資料で確認できないため、マーカーは付けていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: 翌2011年に発足したプレミアリーグWESTへ参入
+      seasons:
+        - kai: 10
+          year: 2012
+          rows:
+            - teams:
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校 }
+                - { name: 高松商業高校 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 高知高校, link: kochi }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 尽誠学園高校 }
+                - { name: 高知商業高校 }
+                - { name: 済美高校 }
+                - { name: 松山商業高校 }
+        - kai: 9
+          year: 2011
+          rows:
+            - teams:
+                - { name: 済美高校 }
+                - { name: 松山工業高校 }
+                - { name: 高知商業高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 高松商業高校 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 富岡東高校 }
+                - { name: 徳島北高校 }
+        - kai: 8
+          year: 2010
+          note: 9チームによる1回戦総当たりの後、上位6チームでもう一度1回戦総当たりを行った。
+          rows:
+            - teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18, mark: premier }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 松山工業高校 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 済美高校 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 明徳義塾高校 }
+                - { name: 南宇和高校 }
+                - { name: 高知高校, link: kochi }
+        - kai: 7
+          year: 2009
+          rows:
+            - teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 徳島商業高校, link: tokushima-shogyo }
+                - { name: 松山工業高校 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 南宇和高校 }
+                - { name: 明徳義塾高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 鳴門高校, link: naruto }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 高松商業高校 }
+        - kai: 6
+          year: 2008
+          rows:
+            - teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 徳島商業高校, link: tokushima-shogyo }
+                - { name: 鳴門高校, link: naruto }
+                - { name: 松山工業高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 今治東中等教育学校, link: imabari-higashi }
+                - { name: 明徳義塾高校 }
+                - { name: 済美高校 }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 高松商業高校 }
+
+    - title: 2005年〜2007年（12チーム制）
+      note: >-
+        2005年と2007年は12チームによる1回戦総当たり。2006年は6チームずつ2ブロックに分けた1次リーグ（1回戦総当たり）の後、
+        各ブロック上位3チームが2次リーグA、下位3チームが2次リーグBに回り、最終順位は2次リーグAの結果で決まった。
+        2006年は2次リーグの途中で徳島商業高校が第9節・第10節を辞退（0-4の不戦敗）、尽誠学園高校は2次リーグBを全休している。
+        この時期の昇格・降格は公表資料で確認できないため、マーカーは付けていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend: {}
+      seasons:
+        - kai: 5
+          year: 2007
+          rows:
+            - teams:
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 鳴門高校, link: naruto }
+                - { name: 松山工業高校 }
+                - { name: 済美高校 }
+                - { name: 明徳義塾高校 }
+                - { name: 高知中央高校, link: kochi-chuo }
+                - { name: 高知高校, link: kochi }
+                - { name: 高松商業高校 }
+                - { name: 今治東高校, link: imabari-higashi }
+                - { name: 琴平高校 }
+        - kai: 4
+          year: 2006
+          note: 最終順位は2次リーグAの結果による。
+          rows:
+            - div: 1次リーグA
+              teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 高知高校, link: kochi }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 今治東高校, link: imabari-higashi }
+                - { name: 尽誠学園高校 }
+                - { name: 高松商業高校 }
+            - div: 1次リーグB
+              teams:
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 徳島商業高校, link: tokushima-shogyo }
+                - { name: 明徳義塾高校 }
+                - { name: 松山工業高校 }
+                - { name: 高知小津高校 }
+                - { name: 高松工芸高校 }
+            - div: 2次リーグA
+              teams:
+                - { name: 高知高校, link: kochi }
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 明徳義塾高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
+                - { name: 徳島商業高校, link: tokushima-shogyo }
+            - div: 2次リーグB
+              teams:
+                - { name: 今治東高校, link: imabari-higashi }
+                - { name: 松山工業高校 }
+                - { name: 高松商業高校 }
+                - { name: 高知小津高校 }
+                - { name: 高松工芸高校 }
+                - { name: 尽誠学園高校 }
+        - kai: 3
+          year: 2005
+          rows:
+            - teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 松山工業高校 }
+                - { name: 徳島商業高校, link: tokushima-shogyo }
+                - { name: 高知高校, link: kochi }
+                - { name: 高松商業高校 }
+                - { name: 明徳義塾高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 尽誠学園高校 }
+                - { name: 南宇和高校 }
+                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 済美高校 }
+                - { name: 城ノ内高校 }
+
+    - title: 2003年〜2004年（黎明期）
+      note: >-
+        第1回の2003年は8チームによる2回戦総当たり。2004年は6チームずつ2ブロックに分けて2回戦総当たりを行い、
+        各ブロック上位2チームによる4チームの決勝リーグで優勝を決め、下位4チームずつは順位決定戦に回った。
+        2004年はAブロックを無敗で1位通過した済美高校が決勝リーグでは4位に終わっている。
+        この時期の昇格・降格は公表資料で確認できないため、マーカーは付けていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend: {}
+      seasons:
+        - kai: 2
+          year: 2004
+          note: 最終順位は決勝リーグの結果による。
+          rows:
+            - div: Aブロック
+              teams:
+                - { name: 済美高校 }
+                - { name: 城ノ内高校 }
+                - { name: 高松商業高校 }
+                - { name: 高知高校, link: kochi }
+                - { name: 高松北高校 }
+                - { name: 鳴門高校, link: naruto }
+            - div: Bブロック
+              teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 松山工業高校 }
+                - { name: 徳島商業高校, link: tokushima-shogyo }
+                - { name: 尽誠学園高校 }
+                - { name: 明徳義塾高校 }
+                - { name: 佐川高校 }
+            - div: 決勝リーグ
+              teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 松山工業高校 }
+                - { name: 城ノ内高校 }
+                - { name: 済美高校 }
+        - kai: 1
+          year: 2003
+          note: 第1回大会。8チームによる2回戦総当たりで行われた。
+          rows:
+            - teams:
+                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 松山工業高校 }
+                - { name: 高知高校, link: kochi }
+                - { name: 鳴門高校, link: naruto }
+                - { name: 城ノ内高校 }
+                - { name: 尽誠学園高校 }
+                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 佐川高校 }
+
+  sources:
+    - url: https://pl-shikoku.com/?page_id=26
+      label: プリンスリーグ四国 公式サイト「大会記録」
+      note: 2003年から2025年までの優勝・準優勝・第三位の一覧。各年度の順位表ページへのリンク元。
+    - url: https://pl-shikoku.com/scoresheet2025.html
+      label: プリンスリーグ四国 公式サイト「大会記録 各年度」（scoresheet2003〜2025）
+      note: >-
+        全23シーズンの最終順位表（試合数・勝分敗・得失点・勝点）・表彰・参入戦の結果がそろう一次資料。
+        年度を差し替えると各年のページになる。本データの順位はすべてこのページから転記し、
+        勝点＝勝×3＋分／得失点差＝得点−失点をすべての行で検算した。
+    - url: https://no-football-no-life.com/prince-shikoku-historical/
+      label: No Football, No Life.「プリンスリーグ四国 歴代最終結果・順位表」
+      note: >-
+        2015年〜2023年の昇降格を「備考」列（参入戦→残留／県リーグ降格など）で明記している。
+        この期間のマーカーはここを根拠にした。順位・勝点は公式サイトと全行一致を確認済み。
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ四国
+      label: Wikipedia「高円宮杯 JFA U-18サッカープリンスリーグ四国」
+      note: 2003年〜2024年の歴代優勝チーム表。公式サイトの優勝校と全年一致することを確認した（順位表には使っていない）。
+    - url: https://www.jfa.jp/match/takamado_jfa_u18_premier2025_playoff/schedule_result/
+      label: JFA「高円宮杯 JFA U-18サッカープレミアリーグ プレーオフ」各年の出場チーム・結果
+      note: >-
+        2018・2019・2021・2022・2023・2025年に四国代表がプレーオフへ出場したことをJFA公式で確認した。
+        2024年は四国代表の出場がなかったため、2024年の優勝チームにマーカーを付けていない。
+    - url: https://no-football-no-life.com/premier-west-historical/
+      label: No Football, No Life.「プレミアリーグWEST 歴代最終結果・順位表」
+      note: >-
+        愛媛FCユースが2011年・2012年、愛媛FC U-18が2019年にプレミアリーグWESTに在籍していたことの確認に使用。
+        四国からプレミアに届いたのはこの2回のみ。
