@@ -4432,3 +4432,1015 @@ shikoku:
       note: >-
         愛媛FCユースが2011年・2012年、愛媛FC U-18が2019年にプレミアリーグWESTに在籍していたことの確認に使用。
         四国からプレミアに届いたのはこの2回のみ。
+
+# ============================================================
+# プリンスリーグ関西・中国（2026-08-26追加）＝これで全9地域＋プレミアが揃った
+# ★関西：2004〜2007年、中国：2003〜2008年は全順位が公開されていないため
+#   cols:[優勝] のeraにして優勝校だけを載せている（推測で埋めていない）。
+# ★中国には北信越・九州・四国のような全史の公式ページが存在しない
+#   （sportsonline.jp/prince は今季分のみ）。
+# ============================================================
+
+kansai:
+  label: プリンスリーグ関西
+  slugs:
+    - prince-kansai-1
+    - prince-kansai-2
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ関西は2003年に第1回が開催され、2026年で第24回を迎えた。
+    滋賀・京都・大阪・兵庫・奈良・和歌山の2府4県のチームが参加する。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+  intro_by_slug:
+    prince-kansai-1: >-
+      1部は関西の最上位カテゴリで、上位2チームがプレミアリーグ参入戦（プレーオフ）に進む。
+      プレミアリーグへ実際に上がったのは2011年のプレミア創設に伴う2チームを含めて通算10回、チーム数では8チームで、
+      履正社と東山だけが2回ずつ上がっている。
+    prince-kansai-2: >-
+      関西に2部が置かれていたのは2008年から2013年までと、2022年以降である。
+      2014年から2021年までは1部制で、下位チームは2部を経ずに府県リーグへ直接落ちていた。
+      現在は2部の上位2チームが翌年の1部へ上がり、下位は府県リーグへ降格する。
+
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 関西
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ関西
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 関西
+
+  fold_from_era: 1
+  eras:
+    - title: 2022年〜（1部・2部の2部制）
+      note: >-
+        2022年から1部・2部とも10チームの2回戦総当たりになった。
+        1部の上位2チームがプレミアリーグ参入戦に進み、2部の上位2チームが翌年の1部へ昇格する。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+        pref_down: 府県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          note: 1部は最終節の直接対決で阪南大高が東山を2-1で下し、逆転で優勝した。参入戦を勝ち抜いたのは2位の東山だった。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 阪南大高, link: hannan-daiko, mark: playoff }
+                - { name: 東山, link: higashiyama, mark: premier }
+                - { name: 履正社, link: riseisha }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18 }
+                - { name: 興國, link: kokoku }
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 近江, link: omi }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 東海大仰星, link: tokai-gyosei }
+            - div: 2部
+              teams:
+                - { name: 産大附属, link: osaka-sandai-fuzoku, mark: up }
+                - { name: 三田学園, link: sanda-gakuen, mark: up }
+                - { name: 滝川第二, link: takigawa-daini }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 関西学院, link: kwansei-gakuin }
+                - { name: ヴィッセル神戸U-18B }
+                - { name: 京都共栄, link: kyoto-kyoei }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 興國B }
+        - kai: 22
+          year: 2024
+          rows:
+            - div: 1部
+              teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth, mark: premier }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, mark: playoff }
+                - { name: 興國, link: kokoku }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 近江, link: omi }
+                - { name: 履正社, link: riseisha }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 京都共栄, link: kyoto-kyoei, mark: down }
+            - div: 2部
+              teams:
+                - { name: 東山, link: higashiyama, mark: up }
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18, mark: up }
+                - { name: 滝川第二, link: takigawa-daini }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 産大附属, link: osaka-sandai-fuzoku }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: ヴィッセル神戸U-18B }
+                - { name: 近江高校B }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto }
+        - kai: 21
+          year: 2023
+          rows:
+            - div: 1部
+              teams:
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, mark: playoff }
+                - { name: 近江, link: omi, mark: playoff }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth }
+                - { name: 興國, link: kokoku }
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18, mark: down }
+                - { name: 近大附属, link: kindai-fuzoku, mark: down }
+                - { name: 東山, link: higashiyama, mark: down }
+            - div: 2部
+              teams:
+                - { name: 神戸弘陵, link: kobe-koryo, mark: up }
+                - { name: 京都共栄, link: kyoto-kyoei, mark: up }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 近江高校B }
+                - { name: 産大附属, link: osaka-sandai-fuzoku }
+                - { name: 大阪学院, mark: pref_down }
+                - { name: 報徳学園, mark: pref_down }
+                - { name: 三田学園, link: sanda-gakuen, mark: pref_down }
+                - { name: 桃山学院, mark: pref_down }
+        - kai: 20
+          year: 2022
+          note: この年から1部・2部の2部制になった。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 興國, link: kokoku, mark: playoff }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, mark: playoff }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 近江, link: omi }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 大阪学院, mark: down }
+                - { name: 大阪桐蔭, link: osaka-toin, mark: down }
+                - { name: 報徳学園, mark: down }
+                - { name: 産大附属, link: osaka-sandai-fuzoku, mark: down }
+            - div: 2部
+              teams:
+                - { name: 近大附属, link: kindai-fuzoku, mark: up }
+                - { name: 東山, link: higashiyama, mark: up }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 三田学園, link: sanda-gakuen }
+                - { name: 和歌山北 }
+                - { name: 近大和歌山, mark: pref_down }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: pref_down }
+                - { name: 奈良育英, mark: pref_down }
+                - { name: 綾羽, mark: pref_down }
+
+    - title: 2021年（1部制・10チーム）
+      note: 10チームの2回戦総当たり。翌2022年から2部制に移行するため、下位3チームが2部へ回った。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
+        down: プリンス2部へ降格
+      seasons:
+        - kai: 19
+          year: 2021
+          rows:
+            - teams:
+                - { name: 履正社, link: riseisha, mark: premier }
+                - { name: 阪南大高, link: hannan-daiko, mark: playoff }
+                - { name: 興國, link: kokoku }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 産大附属, link: osaka-sandai-fuzoku }
+                - { name: 金光大阪, link: konko-osaka, mark: down }
+                - { name: 三田学園, link: sanda-gakuen, mark: down }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: down }
+
+    - title: 2020年（スーパープリンスリーグ関西）
+      note: >-
+        新型コロナウイルスの影響で、プレミアリーグWESTの京都サンガF.C. U-18・セレッソ大阪U-18・ガンバ大阪ユース・ヴィッセル神戸U-18の4チームを加えた
+        14チームで「スーパープリンスリーグ関西」として開催された。7チームずつ2ブロックの1回戦総当たりのあと、各ブロック同順位どうしで順位決定戦を行った。
+        レギュレーションにより昇格・降格はなかった。下の順位は順位決定戦を終えた最終順位。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位, 13位, 14位]
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - teams:
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 履正社, link: riseisha }
+                - { name: ヴィッセル神戸U-18, link: vissel-kobe-u18 }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 興國, link: kokoku }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18 }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 三田学園, link: sanda-gakuen }
+                - { name: 産大附属, link: osaka-sandai-fuzoku }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto }
+
+    - title: 2014年〜2019年（1部制・10チーム）
+      note: >-
+        2014年に1部制へ戻り、10チームの2回戦総当たりで争った。2部が無いため、下位チームは府県リーグへ直接降格した。
+        降格するチーム数はプレミアリーグとの昇降格の結果によって年ごとに変わる。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
+        pref_down: 府県リーグへ降格
+      seasons:
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: 阪南大高, link: hannan-daiko, mark: playoff }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 興國, link: kokoku }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 三田学園, link: sanda-gakuen }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 近大附属, link: kindai-fuzoku, mark: pref_down }
+                - { name: 近江, link: omi, mark: pref_down }
+                - { name: 神戸弘陵, link: kobe-koryo, mark: pref_down }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 東海大仰星, link: tokai-gyosei, mark: playoff }
+                - { name: 金光大阪, link: konko-osaka, mark: playoff }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 東山, link: higashiyama, mark: pref_down }
+                - { name: 近大和歌山, mark: pref_down }
+                - { name: 履正社, link: riseisha, mark: pref_down }
+                - { name: 滝川第二, link: takigawa-daini, mark: pref_down }
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: 大阪桐蔭, link: osaka-toin, mark: playoff }
+                - { name: 京都橘, link: kyoto-tachibana, mark: playoff }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 履正社, link: riseisha }
+                - { name: 野洲, mark: pref_down }
+                - { name: 関西大学第一, mark: pref_down }
+                - { name: 草津東, mark: pref_down }
+                - { name: 奈良育英, mark: pref_down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: 阪南大高, link: hannan-daiko, mark: premier }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 履正社, link: riseisha }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 関西大学第一 }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 野洲 }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 久御山, mark: pref_down }
+                - { name: 和歌山北, mark: pref_down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 神戸弘陵, link: kobe-koryo, mark: premier }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 関西大学第一 }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 東山, link: higashiyama, mark: pref_down }
+                - { name: 産大附属, link: osaka-sandai-fuzoku, mark: pref_down }
+                - { name: 滝川第二, link: takigawa-daini, mark: pref_down }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: pref_down }
+        - kai: 12
+          year: 2014
+          note: この年から1部制に戻った。
+          rows:
+            - teams:
+                - { name: 履正社, link: riseisha, mark: premier }
+                - { name: 産大附属, link: osaka-sandai-fuzoku, mark: playoff }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 関西大学第一 }
+                - { name: 洛北, mark: pref_down }
+                - { name: 野洲, mark: pref_down }
+                - { name: 比叡山, mark: pref_down }
+
+    - title: 2012年〜2013年（1部10チーム・2部10チーム）
+      note: >-
+        1部・2部とも10チームの2回戦総当たり。2013年はプレミアリーグ参入戦の枠が3つに増え、
+        リーグ2位の京都橘と3位の東山がプレミアリーグへ昇格した（優勝した大阪桐蔭は参入戦で敗れた）。
+        2014年から1部制に移行するため、2013年の2部は上位2チームを除く全チームが府県リーグへ降格した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+        pref_down: 府県リーグへ降格
+      seasons:
+        - kai: 11
+          year: 2013
+          rows:
+            - div: 1部
+              teams:
+                - { name: 大阪桐蔭, link: osaka-toin, mark: playoff }
+                - { name: 京都橘, link: kyoto-tachibana, mark: premier }
+                - { name: 東山, link: higashiyama, mark: premier }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 洛北 }
+                - { name: 関西大学第一 }
+                - { name: 産大附属, link: osaka-sandai-fuzoku }
+                - { name: 野洲, sub: "関西参入戦" }
+                - { name: 科学技術, mark: pref_down }
+                - { name: 久御山, mark: pref_down }
+            - div: 2部
+              teams:
+                - { name: 阪南大高, link: hannan-daiko, mark: up }
+                - { name: 神戸弘陵, link: kobe-koryo, mark: up }
+                - { name: 草津東, mark: pref_down }
+                - { name: 滝川第二, link: takigawa-daini, mark: pref_down }
+                - { name: 奈良市立一条, mark: pref_down }
+                - { name: 綾羽, mark: pref_down }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: pref_down }
+                - { name: 近大和歌山, mark: pref_down }
+                - { name: 和歌山北, mark: pref_down }
+                - { name: 京都両洋, mark: pref_down }
+        - kai: 10
+          year: 2012
+          rows:
+            - div: 1部
+              teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth, mark: playoff }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 洛北 }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 東山, link: higashiyama }
+                - { name: 野洲 }
+                - { name: 科学技術 }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: down }
+                - { name: 滝川第二, link: takigawa-daini, mark: down }
+            - div: 2部
+              teams:
+                - { name: 関西大学第一, mark: up }
+                - { name: 産大附属, link: osaka-sandai-fuzoku, mark: up }
+                - { name: 久御山, mark: up }
+                - { name: 草津東 }
+                - { name: 和歌山北 }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 奈良市立一条 }
+                - { name: 綾羽 }
+                - { name: 神戸国際大学付属, mark: pref_down }
+                - { name: 奈良育英, mark: pref_down }
+
+    - title: 2011年（1部8チーム・2部12チーム）
+      note: 1部は8チームの2回戦総当たり（全14節）、2部は12チームの1回戦総当たり（全11節）。翌2012年に1部が10チームへ拡大するため、2部の上位3チームが昇格した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
+        up: プリンス1部へ昇格
+        pref_down: 府県リーグへ降格
+      seasons:
+        - kai: 9
+          year: 2011
+          rows:
+            - div: 1部
+              teams:
+                - { name: ヴィッセル神戸U-18, link: vissel-kobe-u18, mark: playoff }
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth }
+                - { name: 大阪桐蔭, link: osaka-toin }
+                - { name: 滝川第二, link: takigawa-daini }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 科学技術 }
+                - { name: 野洲 }
+            - div: 2部
+              teams:
+                - { name: 近大附属, link: kindai-fuzoku, mark: up }
+                - { name: 東山, link: higashiyama, mark: up }
+                - { name: 洛北, mark: up }
+                - { name: 奈良育英 }
+                - { name: 草津東 }
+                - { name: 関西大学第一 }
+                - { name: 神戸国際大学付属 }
+                - { name: 須磨友が丘, mark: pref_down }
+                - { name: 近大和歌山, mark: pref_down }
+                - { name: 水口, mark: pref_down }
+                - { name: 法隆寺国際, mark: pref_down }
+                - { name: 郡山, mark: pref_down }
+
+    - title: 2008年〜2010年（1部8チーム・2部8チーム）
+      note: >-
+        1部・2部とも8チームの1回戦総当たり（全7節）。上位チームは高円宮杯全日本ユース(U-18)選手権の出場権をかけた
+        「高円宮杯出場決定戦」に進んだ。2010年は1部の上位2チームが、翌2011年に新設されたプレミアリーグへ参入した。
+        なお2010年のセレッソ大阪U-18は、プレミアリーグ昇格と高円宮杯出場の両方を決めている。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        premier: プレミアリーグ昇格
+        zenkoku: 高円宮杯全日本ユース 出場権獲得
+        final: 高円宮杯出場決定戦 進出
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+      seasons:
+        - kai: 8
+          year: 2010
+          rows:
+            - div: 1部
+              teams:
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18, mark: premier }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, mark: premier }
+                - { name: ヴィッセル神戸ユース, link: vissel-kobe-u18, mark: final }
+                - { name: 滝川第二, link: takigawa-daini, mark: final }
+                - { name: 大阪桐蔭, link: osaka-toin, mark: final }
+                - { name: 野洲 }
+                - { name: 科学技術 }
+                - { name: 京都橘, link: kyoto-tachibana }
+            - div: 2部
+              teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth, mark: final }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: final }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: 奈良育英 }
+                - { name: 草津東 }
+                - { name: 洛北 }
+                - { name: 神戸国際大学付属 }
+                - { name: 郡山 }
+        - kai: 7
+          year: 2009
+          rows:
+            - div: 1部
+              teams:
+                - { name: ヴィッセル神戸ユース, link: vissel-kobe-u18, mark: zenkoku }
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18, mark: final }
+                - { name: 野洲, mark: final }
+                - { name: 大阪桐蔭, link: osaka-toin, mark: final }
+                - { name: 滝川第二, link: takigawa-daini, mark: final }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18 }
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth, mark: down }
+                - { name: 奈良育英, mark: down }
+            - div: 2部
+              teams:
+                - { name: 科学技術, mark: up }
+                - { name: 京都橘, link: kyoto-tachibana, mark: up }
+                - { name: 一条 }
+                - { name: 近大和歌山 }
+                - { name: 大阪朝鮮高級学校 }
+                - { name: 草津東 }
+                - { name: 小野 }
+                - { name: 新宮 }
+        - kai: 6
+          year: 2008
+          rows:
+            - div: 1部
+              teams:
+                - { name: セレッソ大阪U-18, link: cerezo-osaka-u18, mark: zenkoku }
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth, mark: zenkoku }
+                - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, mark: final }
+                - { name: ヴィッセル神戸ユース, link: vissel-kobe-u18, mark: final }
+                - { name: 野洲, mark: final }
+                - { name: 大阪桐蔭, link: osaka-toin, mark: final }
+                - { name: 近大和歌山, mark: down }
+                - { name: 科学技術, mark: down }
+            - div: 2部
+              teams:
+                - { name: 滝川第二, link: takigawa-daini, mark: up }
+                - { name: 奈良育英, mark: up }
+                - { name: 守山北 }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto }
+                - { name: 近大附属, link: kindai-fuzoku }
+                - { name: エストレラ姫路FC U-18 }
+                - { name: 草津東 }
+                - { name: 久御山 }
+
+    - title: 2004年〜2007年（2リーグ制＋順位決定戦）
+      note: >-
+        この時期の全順位は公開されていない。ここには優勝チームだけを載せる。
+        2004年・2005年は16チームを2つのリーグに分けて8チームずつの1回戦総当たりを行い、各リーグ上位3チームずつで順位決定戦を実施した。
+        2006年・2007年は14チームを2つのリーグに分け、7チームずつの1回戦総当たりで争った。
+      cols: [優勝]
+      seasons:
+        - kai: 5
+          year: 2007
+          rows:
+            - teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth }
+        - kai: 4
+          year: 2006
+          rows:
+            - teams:
+                - { name: ヴィッセル神戸ユース, link: vissel-kobe-u18 }
+        - kai: 3
+          year: 2005
+          rows:
+            - teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth }
+        - kai: 2
+          year: 2004
+          rows:
+            - teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth }
+
+    - title: 2003年（第1回・最終順位）
+      note: >-
+        第1回。16チームを2つのリーグに分けて8チームずつの1回戦総当たりを行い、そのあと順位決定戦で1位から16位までを決めた。
+        下に並べたのは順位決定戦を終えたあとの最終順位で、リーグ戦だけの順位ではない。
+        同順位が4組あり、その2チーム目には実際の順位を添えた。優勝・準優勝の2チームが高円宮杯全日本ユース(U-18)選手権に出場した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位, 13位, 14位, 15位, 16位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース 出場権獲得
+        pref_down: 府県リーグへ降格
+      seasons:
+        - kai: 1
+          year: 2003
+          rows:
+            - teams:
+                - { name: ガンバ大阪ユース, link: gamba-osaka-youth, mark: zenkoku }
+                - { name: 滝川第二, link: takigawa-daini, mark: zenkoku }
+                - { name: セレッソ大阪, link: cerezo-osaka-u18 }
+                - { name: 京都パープルサンガユース, link: kyoto-sanga-u18 }
+                - { name: 金光大阪, link: konko-osaka }
+                - { name: 大阪朝鮮, sub: "5位" }
+                - { name: 奈良育英 }
+                - { name: ヴィッセル神戸ユース, link: vissel-kobe-u18 }
+                - { name: 御影工業 }
+                - { name: 水口, mark: pref_down }
+                - { name: 草津東, mark: pref_down }
+                - { name: 久御山, sub: "11位", mark: pref_down }
+                - { name: 平安, mark: pref_down }
+                - { name: 一条, sub: "13位", mark: pref_down }
+                - { name: 和歌山北, mark: pref_down }
+                - { name: 海南, sub: "15位", mark: pref_down }
+
+  sources:
+    - url: https://ja.wikipedia.org/wiki/%E9%AB%98%E5%86%86%E5%AE%AE%E6%9D%AF_JFA_U-18%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%AA%E3%83%BC%E3%82%B0%E9%96%A2%E8%A5%BF
+      label: Wikipedia「高円宮杯 JFA U-18サッカープリンスリーグ関西」
+      note: 2003年から2024年までの歴代優勝チームと大会方式の変遷。全順位は載っていないため、各年の1位が一致するかの照合に使った。
+    - url: http://www.kansai-fa.gr.jp/princeleague.html
+      label: 関西サッカー協会 プリンスリーグ関西（年度別アーカイブ）
+      note: 2009年から2023年までの星取表つき順位表。2003年〜2008年のページは存在せず、2024年・2025年のページはシーズン途中で更新が止まっている。
+    - url: https://www.jfa.jp/match/takamado_jfa_u18_prince2025/kansai/
+      label: JFA公式 プリンスリーグ2025 関西
+      note: 2025年の1部・2部の最終順位表。勝点＝勝×3＋分、得失点差＝得点−失点、試合数＝勝＋分＋負をすべて再計算して一致を確認した。
+    - url: https://www.jfa.jp/match/takamado_jfa_u18_prince2024/kansai/
+      label: JFA公式 プリンスリーグ2024 関西
+      note: 2024年の1部・2部の最終順位表。同じく全20行を検算済み。
+    - url: https://ja.wikipedia.org/wiki/2003%E5%B9%B4%E3%81%AEJFA%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%AA%E3%83%BC%E3%82%B0U-18
+      label: Wikipedia「2003年のJFAプリンスリーグU-18」
+      note: 第1回の参加16チーム・リーグ戦順位・順位決定戦・最終順位表。出典は『JFA News』2003年9月号。
+    - url: https://ja.wikipedia.org/wiki/2008%E5%B9%B4%E3%81%AEJFA%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B9%E3%83%AA%E3%83%BC%E3%82%B0U-18
+      label: Wikipedia「2008年〜2010年のJFAプリンスリーグU-18」
+      note: 2008・2009・2010年の1部／2部の順位表と、昇降格・高円宮杯出場決定戦の備考。関西サッカー協会の星取表と順位が一致することを確認した。
+    - url: https://ja.wikipedia.org/wiki/%E9%AB%98%E5%86%86%E5%AE%AE%E6%9D%AFU-18%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC%E3%83%AA%E3%83%BC%E3%82%B02013
+      label: Wikipedia「高円宮杯U-18サッカーリーグ2011〜2017」
+      note: 2011〜2015年と2017年の関西の順位表・昇降格欄。2013年に京都橘と東山がプレミアリーグへ昇格した経緯もここに書かれている。
+    - url: https://no-football-no-life.com/prince-kansai-historical/
+      label: No Football, No Life.「プリンスリーグ関西 歴代最終結果・順位表」
+      note: 2015年から2023年までの順位表と備考。
+    - url: https://runthin.net/prince-kansai
+      label: runthin.net「プリンスリーグ関西 歴代結果一覧」
+      note: 2014年から2023年までの順位表と「翌年度」欄。降格チーム数が上のサイトと食い違う年は、こちらを採った。
+
+chugoku:
+  label: プリンスリーグ中国
+  slugs:
+    - prince-chugoku
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ中国は2003年に第1回が開催され、2026年で第24回を迎えた。
+    鳥取・島根・岡山・広島・山口の5県のチームが参加する。
+    発足当初はサンフレッチェ広島ユースが第1回から4連覇し、2011年・2012年は1部・2部の2部制、
+    2013年からは10チームによる1部制で行われている。
+    ここでは第1回から前年度までの順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 中国
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ中国
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 中国
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2021年〜（1部制・10チーム）
+      note: >-
+        10チームによる2回戦総当たり。上位がプレミアリーグのプレーオフ（参入戦）に進み、
+        下位2チームが県リーグへ降格する。2021年は新型コロナウイルスの影響で消化試合数に差が出たため、
+        1試合平均勝点で順位を決定した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ プレーオフ（参入戦）出場
+        pref_down: 県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          rows:
+            - teams:
+                - { name: 米子北高校, link: yonago-kita, mark: premier }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: playoff }
+                - { name: 作陽学園高校, link: sakuyo-gakuen }
+                - { name: 高川学園高校, link: takagawa-gakuen }
+                - { name: 広島県瀬戸内高校, link: setouchi }
+                - { name: 立正大学淞南高校, link: rissho-shonan }
+                - { name: 岡山県立玉野光南高校, link: tamano-konan }
+                - { name: 広島県立広島皆実高校, link: hiroshima-minami }
+                - { name: サンフレッチェ広島F.Cユースセカンド, mark: pref_down }
+                - { name: 創志学園高校, mark: pref_down }
+        - kai: 22
+          year: 2024
+          rows:
+            - teams:
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: playoff }
+                - { name: 高川学園高校, link: takagawa-gakuen, mark: playoff }
+                - { name: 立正大学淞南高校, link: rissho-shonan }
+                - { name: 広島県瀬戸内高校, link: setouchi }
+                - { name: サンフレッチェ広島F.Cユース セカンド }
+                - { name: 玉野光南高校, link: tamano-konan }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 大社高校, link: taisha }
+                - { name: 就実高校, link: shujitsu, mark: pref_down }
+                - { name: レノファ山口FC U-18, link: renofa-yamaguchi-u18, mark: pref_down }
+        - kai: 21
+          year: 2023
+          rows:
+            - teams:
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18, mark: premier }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: playoff }
+                - { name: サンフレッチェ広島F.C.ユース セカンド }
+                - { name: 広島県瀬戸内高校, link: setouchi, mark: playoff }
+                - { name: レノファ山口FC U-18, link: renofa-yamaguchi-u18 }
+                - { name: 立正大淞南高校, link: rissho-shonan }
+                - { name: 就実高校, link: shujitsu }
+                - { name: 玉野光南高校, link: tamano-konan }
+                - { name: 作陽学園高校, link: sakuyo-gakuen, mark: pref_down }
+                - { name: 米子北高校セカンド, mark: pref_down }
+        - kai: 20
+          year: 2022
+          rows:
+            - teams:
+                - { name: 米子北高校, link: yonago-kita, mark: premier }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: playoff }
+                - { name: 立正大学淞南高校, link: rissho-shonan }
+                - { name: 瀬戸内高校, link: setouchi }
+                - { name: 作陽高校, link: sakuyo-gakuen }
+                - { name: 就実高校, link: shujitsu }
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18 }
+                - { name: サンフレッチェ広島ユース セカンド }
+                - { name: 大社高校, link: taisha, mark: pref_down }
+                - { name: 広島皆実高校, link: hiroshima-minami, mark: pref_down }
+        - kai: 19
+          year: 2021
+          rows:
+            - teams:
+                - { name: 米子北高校, link: yonago-kita, mark: playoff }
+                - { name: 瀬戸内高校, link: setouchi }
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 作陽高校, link: sakuyo-gakuen }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan }
+                - { name: 立正大学淞南高校, link: rissho-shonan }
+                - { name: 就実高校, link: shujitsu }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 玉野光南高校, link: tamano-konan, mark: pref_down }
+                - { name: ガイナーレ鳥取U-18, mark: pref_down }
+
+    - title: 2020年（スーパープリンスリーグ中国）
+      note: >-
+        新型コロナウイルスの影響でプレミアリーグが中止となったため、
+        プレミアリーグ所属のサンフレッチェ広島F.Cユースを加えた11チームで
+        「スーパープリンスリーグ中国」として1回戦総当たりで行われた。
+        レギュレーションにより昇格・降格はなし。立正大学淞南高校は棄権した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位]
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - teams:
+                - { name: サンフレッチェ広島F.Cユース, link: sanfrecce-hiroshima-youth }
+                - { name: 米子北高校, link: yonago-kita }
+                - { name: ガイナーレ鳥取U-18 }
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 瀬戸内高校, link: setouchi }
+                - { name: 玉野光南高校, link: tamano-konan }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan }
+                - { name: 作陽高校, link: sakuyo-gakuen }
+                - { name: 就実高校, link: shujitsu }
+                - { name: 立正大学淞南高校, link: rissho-shonan, sub: "棄権" }
+
+    - title: 2013年〜2019年（1部制へ移行）
+      note: >-
+        2013年から1部のみの10チーム編成となり、2回戦総当たりで行われるようになった。
+        上位がプレミアリーグの参入戦（2019年以降はプレーオフ）に進み、下位が県リーグへ降格する。
+        降格枠はプレミアリーグとの昇降格の結果によって年ごとに増減した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ 参入戦・プレーオフ出場
+        pref_down: 県リーグへ降格
+      seasons:
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: playoff }
+                - { name: 米子北高校, link: yonago-kita, mark: playoff }
+                - { name: 作陽高校, link: sakuyo-gakuen }
+                - { name: 立正大学淞南高校, link: rissho-shonan }
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 瀬戸内高校, link: setouchi }
+                - { name: 就実高校, link: shujitsu }
+                - { name: 大社高校, link: taisha, mark: pref_down }
+                - { name: 高川学園高校, link: takagawa-gakuen, mark: pref_down }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 作陽高校, link: sakuyo-gakuen, mark: playoff }
+                - { name: 立正大学淞南高校, link: rissho-shonan, mark: playoff }
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 高川学園高校, link: takagawa-gakuen }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 瀬戸内高校, link: setouchi }
+                - { name: サンフレッチェ広島ユースセカンド, mark: pref_down }
+                - { name: 玉野光南高校, link: tamano-konan, mark: pref_down }
+                - { name: ガイナーレ鳥取U-18, mark: pref_down }
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: 広島県立広島皆実高校, link: hiroshima-minami, mark: playoff }
+                - { name: 広島県瀬戸内高校, link: setouchi, mark: playoff }
+                - { name: サンフレッチェ広島F.Cユースセカンド }
+                - { name: 立正大淞南高校, link: rissho-shonan }
+                - { name: 岡山県作陽高校, link: sakuyo-gakuen }
+                - { name: 岡山県立玉野光南高校, link: tamano-konan }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan }
+                - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 広島県立広島観音高校, mark: pref_down }
+                - { name: 鳥取県立境高校, mark: pref_down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: 米子北高校, link: yonago-kita, mark: premier }
+                - { name: 広島皆実高校, link: hiroshima-minami, mark: playoff }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: playoff }
+                - { name: 岡山県作陽高校, link: sakuyo-gakuen }
+                - { name: サンフレッチェ広島F.Cユースセカンド }
+                - { name: 立正大学淞南高校, link: rissho-shonan }
+                - { name: 玉野光南高校, link: tamano-konan }
+                - { name: 広島県瀬戸内高校, link: setouchi }
+                - { name: 如水館高校, mark: pref_down }
+                - { name: 大社高校, link: taisha, mark: pref_down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 米子北高校, link: yonago-kita, mark: playoff }
+                - { name: 立正大淞南高校, link: rissho-shonan, mark: playoff }
+                - { name: 大社高校, link: taisha, mark: playoff }
+                - { name: 岡山県作陽高校, link: sakuyo-gakuen }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 玉野光南高校, link: tamano-konan }
+                - { name: サンフレッチェ広島F.Cユースベアーズ }
+                - { name: 広島県瀬戸内高校, link: setouchi }
+                - { name: 広島観音高校, mark: pref_down }
+                - { name: 高川学園高校, link: takagawa-gakuen, mark: pref_down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: 立正大淞南高校, link: rissho-shonan, mark: playoff }
+                - { name: 米子北高校, link: yonago-kita, mark: playoff }
+                - { name: 瀬戸内高校, link: setouchi, mark: playoff }
+                - { name: 作陽高校, link: sakuyo-gakuen }
+                - { name: 大社高校, link: taisha }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: 広島観音高校 }
+                - { name: サンフレッチェ広島ユースベアーズ }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan, mark: pref_down }
+                - { name: 山陽高校, mark: pref_down }
+        - kai: 11
+          year: 2013
+          rows:
+            - teams:
+                - { name: 瀬戸内高校, link: setouchi, mark: playoff }
+                - { name: 作陽高校, link: sakuyo-gakuen }
+                - { name: 立正大淞南高校, link: rissho-shonan }
+                - { name: 広島皆実高校, link: hiroshima-minami }
+                - { name: サンフレッチェ広島ユースB }
+                - { name: 米子北高校, link: yonago-kita }
+                - { name: 広島観音高校 }
+                - { name: 岡山学芸館高校, link: okayama-gakugeikan }
+                - { name: 玉野光南高校, link: tamano-konan, mark: pref_down }
+                - { name: 高川学園, link: takagawa-gakuen, mark: pref_down }
+
+    - title: 2011年〜2012年（1部・2部の2部制）
+      note: >-
+        プレミアリーグの発足に合わせて方式を改め、1部・2部とも10チームの2回戦総当たりになった。
+        1部の上位がプレミアリーグ参入戦に進み、下位は県ユースリーグへ降格した。
+        2013年から1部制に戻るため、2012年のリーグ終了後に1部下位・2部上位・各県リーグ優勝チームによる参入戦が行われた。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+      seasons:
+        - kai: 10
+          year: 2012
+          note: 2部の「作陽学園」は作陽高校のBチーム。1部の作陽（Aチーム）はこの年プレミアリーグに在籍していた。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 広島皆実, link: hiroshima-minami }
+                - { name: 立正大淞南, link: rissho-shonan }
+                - { name: 米子北, link: yonago-kita }
+                - { name: 広島観音 }
+                - { name: 瀬戸内, link: setouchi }
+                - { name: 岡山学芸館, link: okayama-gakugeikan }
+                - { name: 玉野光南, link: tamano-konan }
+                - { name: 聖光 }
+                - { name: 境 }
+                - { name: 開星 }
+            - div: 2部
+              teams:
+                - { name: 高川学園, link: takagawa-gakuen }
+                - { name: 大社, link: taisha }
+                - { name: 作陽学園 }
+                - { name: 山陽 }
+                - { name: 米子北2nd }
+                - { name: ガイナーレ鳥取ユース }
+                - { name: 西京, link: saikyo }
+                - { name: 高陽 }
+                - { name: 広島国泰寺 }
+                - { name: 宇部 }
+        - kai: 9
+          year: 2011
+          rows:
+            - div: 1部
+              teams:
+                - { name: 作陽, link: sakuyo-gakuen, mark: premier }
+                - { name: 広島皆実, link: hiroshima-minami }
+                - { name: 米子北, link: yonago-kita }
+                - { name: 瀬戸内, link: setouchi }
+                - { name: 玉野光南, link: tamano-konan }
+                - { name: 開星 }
+                - { name: 境 }
+                - { name: 高川学園, link: takagawa-gakuen }
+                - { name: 西京, link: saikyo }
+                - { name: 山陽 }
+            - div: 2部
+              teams:
+                - { name: 聖光 }
+                - { name: 岡山学芸館, link: okayama-gakugeikan }
+                - { name: 広島国泰寺 }
+                - { name: ガイナーレ鳥取ユース }
+                - { name: 岡山龍谷 }
+                - { name: 大社, link: taisha }
+                - { name: 山口 }
+                - { name: 八頭 }
+                - { name: 明誠学院 }
+                - { name: 福山葦陽 }
+
+    - title: 2009年〜2010年（2部制・2次ラウンド制）
+      note: >-
+        1部8チーム・2部8チームで1回戦総当たりの1次ラウンドを行い、
+        その結果をもとに上位4チーム・下位4チームに分かれて2次ラウンドを戦う方式だった
+        （上位グループのチームは5位以下に、下位グループのチームは4位以上にはならない）。
+        ここに載せた順位は、この規定にしたがって2次ラウンドの上位・下位グループの結果をつないだもの。
+        2009年の2部は、資料によって優勝チームの記載が食い違うため掲載していない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        premier: 高円宮杯出場権（この年はプレミアリーグ参入枠を兼ねる）
+        zenkoku: 高円宮杯全日本ユース 出場権獲得
+      seasons:
+        - kai: 8
+          year: 2010
+          rows:
+            - div: 1部
+              teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, mark: premier }
+                - { name: 広島観音, mark: premier }
+                - { name: 立正大淞南, link: rissho-shonan, mark: premier }
+                - { name: 米子北, link: yonago-kita }
+                - { name: 広島皆実, link: hiroshima-minami }
+                - { name: 瀬戸内, link: setouchi }
+                - { name: 高川学園, link: takagawa-gakuen }
+                - { name: 玉野光南, link: tamano-konan }
+            - div: 2部
+              teams:
+                - { name: 作陽, link: sakuyo-gakuen }
+                - { name: 境 }
+                - { name: 開星 }
+                - { name: 山陽 }
+                - { name: 西京, link: saikyo }
+                - { name: 岡山龍谷 }
+                - { name: 八頭 }
+                - { name: 下関中央工 }
+        - kai: 7
+          year: 2009
+          rows:
+            - div: 1部
+              teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, mark: zenkoku }
+                - { name: 広島観音, mark: zenkoku }
+                - { name: 瀬戸内, link: setouchi }
+                - { name: 高川学園, link: takagawa-gakuen }
+                - { name: 広島皆実, link: hiroshima-minami }
+                - { name: 作陽, link: sakuyo-gakuen }
+                - { name: 西京, link: saikyo }
+                - { name: 境 }
+
+    - title: 2003年〜2008年（優勝チームのみ）
+      note: >-
+        この時期の全順位は公開されていないため、優勝チームだけを載せている。
+        2003年は12チームを2リーグに分けて順位決定戦を行い、2004年・2005年は前期・後期の入れ替え制、
+        2006年は12チームの1回戦総当たり、2007年・2008年は1部・2部の2部制だった。
+      cols: [優勝]
+      seasons:
+        - kai: 6
+          year: 2008
+          rows:
+            - div: 1部
+              teams:
+                - { name: 広島皆実, link: hiroshima-minami }
+            - div: 2部
+              teams:
+                - { name: 瀬戸内, link: setouchi }
+        - kai: 5
+          year: 2007
+          rows:
+            - div: 1部
+              teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth }
+            - div: 2部
+              teams:
+                - { name: 境 }
+        - kai: 4
+          year: 2006
+          rows:
+            - teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth }
+        - kai: 3
+          year: 2005
+          rows:
+            - teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth }
+        - kai: 2
+          year: 2004
+          rows:
+            - teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth }
+        - kai: 1
+          year: 2003
+          rows:
+            - teams:
+                - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth }
+
+  sources:
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ中国
+      label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ中国』
+      note: 2003年〜2024年の歴代優勝チーム、レギュレーションと昇降格枠の変遷。全順位の表は無い。
+    - url: https://www.jfa.jp/match/takamado_jfa_u18_prince2025/chugoku/
+      label: JFA公式 プリンスリーグ2025 中国
+      note: 2025年の最終順位表。2023年・2024年も同じ形式のJFA公式ページから取得（西暦部分を差し替え）。
+    - url: https://runthin.net/prince-cyugoku
+      label: 【プリンスリーグ中国】歴代結果一覧（出典元：JFA）
+      note: 2013年〜2023年の最終順位表と、各年の昇格・降格の説明。
+    - url: https://no-football-no-life.com/prince-chugoku-historical/
+      label: プリンスリーグ中国 歴代最終結果・順位表
+      note: 2015年〜2023年の順位表の突き合わせに使用。2020年の表は8位・9位がどちらも岡山学芸館になっている誤記があり、採用していない。
+    - url: https://web.gekisaka.jp/pickup/detail/?308309-308309-fl
+      label: ゲキサカ「スーパープリンスリーグ中国 2020シーズン日程」
+      note: 2020年は全45試合の結果からこちらで勝点・得失点差を集計し直して順位を確定した。
+    - url: https://www.kawakitanet.com/league_soccer/main.php?pref_cd=53
+      label: kawakitanet リーグ戦一覧：中国
+      note: 2009年〜2012年の順位表（1部・2部、2009年・2010年は1次ラウンドと2次ラウンドの各表）。
+    - url: https://fre-spo.com/プリンス中国　今週末開幕/
+      label: フレンドリースポーツ「プリンス2024中国 リーグ戦全日程が終了し順位が確定する」
+      note: 2024年の降格チーム（就実・レノファ山口）とプレーオフ出場チームの確定記事。
+    - url: https://fre-spo.com/プリンス中国開幕【プリンスリーグ中国】/
+      label: フレンドリースポーツ「リーグ全日程が終了【プリンスリーグ中国】」
+      note: 2025年の降格チーム（サンフレッチェ広島セカンド・創志学園）の確定記事。
+    - url: https://www.jfa.jp/news/00035864/
+      label: JFA「東山、磐田、仙台、米子北の昇格が決定！ プレミアリーグ2025 プレーオフ」
+      note: 2025年の米子北のプレミアリーグ昇格。
