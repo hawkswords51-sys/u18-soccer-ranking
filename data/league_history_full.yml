@@ -614,3 +614,1968 @@ hokushinetsu:
     - label: 北信越サッカー協会／JFA公式 各年度の最終順位表
       url: https://www.jfa.jp/match/takamado_jfa_u18_prince2021/hokushinetsu/
       note: 2025年の順位はJFA公式・北信越リーグ公式のPDFで照合
+
+# ============================================================
+# 以下、2026-08-26 に追加した4地域。作り方は北信越とまったく同じ。
+# ★凡例の色と意味は地域ごとに全く違う（関東・北海道はピンクがプレミア昇格）ので、
+#   新しい地域を足すときは必ずその記事の凡例を読み直すこと。
+# ============================================================
+
+kanto:
+  label: プリンスリーグ関東
+  slugs:
+    - prince-kanto-1
+    - prince-kanto-2
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ関東は2003年に第1回が開催され、2026年で第24回を迎えた。
+    茨城・栃木・群馬・埼玉・千葉・東京・神奈川・山梨の1都7県のチームが参加する。
+    ここでは第1回（2003年）から前年度（2025年・第23回）までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+  intro_by_slug:
+    prince-kanto-1: >-
+      1部は関東の最上位カテゴリで、上位チームにプレミアリーグ参入戦への出場権が与えられる。
+      23シーズンの優勝は14チームが分け合っており、最多はFC東京U-18の4回（2008・2009・2010・2019年）である。
+      直近の2025年は上位3チームが参入戦に回ったが、いずれも敗退してプレミア昇格はゼロだった。
+    prince-kanto-2: >-
+      2部が置かれているのは2008年〜2013年と2022年以降で、上位が1部へ昇格し、下位が都県リーグへ降格する。
+      2014年〜2021年は2部が無く1部だけの1部制だったため、その期間の表には2部の順位が載っていない。
+      2011年の2部はグループA・グループBの2つに分かれて行われた。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 関東
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ関東
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 関東
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2022年〜（1部・2部制）
+      note: 2022年に2部が復活した。1部10チーム・2部10チーム（2022年の2部のみ6チーム）で行われている。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦へ出場（昇格ならず）
+        down: プリンスリーグ関東2部へ降格
+        up: プリンスリーグ関東1部へ昇格
+        pref_down: 都県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          rows:
+            - div: 1部
+              teams:
+                - { name: 帝京, link: teikyo, mark: playoff }
+                - { name: 桐生第一, link: kiryu-daiichi, mark: playoff }
+                - { name: 大宮U18, link: rb-omiya-ardija-u18, mark: playoff }
+                - { name: 千葉U-18, link: jef-united-chiba-u18 }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 山梨学院, link: yamanashi-gakuin }
+                - { name: 鹿島学園, link: kashima-gakuen, mark: down }
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: down }
+                - { name: 矢板中央, link: yaita-chuo, mark: down }
+                - { name: 栃木S U-18, link: tochigi-sc-u18, mark: down }
+            - div: 2部
+              teams:
+                - { name: 甲府U-18, link: ventforet-kofu-u18, mark: up }
+                - { name: 流通経大柏B, mark: up }
+                - { name: 日体大柏, link: nittaidai-kashiwa }
+                - { name: 鹿島ユースB }
+                - { name: 西武台, link: seibudai }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth, mark: pref_down }
+                - { name: 前橋育英B, mark: pref_down }
+                - { name: 健大高崎, mark: pref_down }
+                - { name: 國學院久我山, link: kokugakuin-kugayama, mark: pref_down }
+        - kai: 22
+          year: 2024
+          rows:
+            - div: 1部
+              teams:
+                - { name: 東京Vユース, link: tokyo-verdy-youth, mark: premier }
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: playoff }
+                - { name: 浦和ユース, link: urawa-reds-youth, mark: premier }
+                - { name: 矢板中央, link: yaita-chuo }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 帝京, link: teikyo }
+                - { name: 鹿島学園, link: kashima-gakuen }
+                - { name: 桐生第一, link: kiryu-daiichi }
+                - { name: 栃木S U-18, link: tochigi-sc-u18 }
+                - { name: 健大高崎, mark: down }
+            - div: 2部
+              teams:
+                - { name: 千葉U-18, link: jef-united-chiba-u18, mark: up }
+                - { name: 山梨学院, link: yamanashi-gakuin, mark: up }
+                - { name: 甲府U-18, link: ventforet-kofu-u18 }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 前橋育英B }
+                - { name: 流通経大柏B }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 國學院久我山, link: kokugakuin-kugayama }
+                - { name: 西武台, link: seibudai }
+                - { name: 前橋商, mark: pref_down }
+        - kai: 21
+          year: 2023
+          rows:
+            - div: 1部
+              teams:
+                - { name: 鹿島ユース, link: kashima-youth, mark: premier }
+                - { name: 浦和ユース, link: urawa-reds-youth, mark: playoff }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 帝京, link: teikyo }
+                - { name: 健大高崎 }
+                - { name: 桐生第一, link: kiryu-daiichi }
+                - { name: 矢板中央, link: yaita-chuo }
+                - { name: 鹿島学園, link: kashima-gakuen }
+                - { name: 甲府U-18, link: ventforet-kofu-u18, mark: down }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth, mark: down }
+            - div: 2部
+              teams:
+                - { name: 栃木S U-18, link: tochigi-sc-u18, mark: up }
+                - { name: 桐蔭学園, link: toin-gakuen, mark: up }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 西武台, link: seibudai }
+                - { name: 山梨学院, link: yamanashi-gakuin }
+                - { name: 國學院久我山, link: kokugakuin-kugayama }
+                - { name: 前橋育英B }
+                - { name: 流通経大柏B }
+                - { name: 水戸ユース, mark: pref_down }
+                - { name: 矢板中央B, mark: pref_down }
+        - kai: 20
+          year: 2022
+          note: 2部は6チームで行われた。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 昌平, link: shohei, mark: premier }
+                - { name: 帝京, link: teikyo, mark: playoff }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 矢板中央, link: yaita-chuo }
+                - { name: 鹿島学園, link: kashima-gakuen }
+                - { name: 流通経大柏B, mark: down }
+                - { name: 西武台, link: seibudai, mark: down }
+            - div: 2部
+              teams:
+                - { name: 甲府U-18, link: ventforet-kofu-u18, mark: up }
+                - { name: 健大高崎, mark: up }
+                - { name: 山梨学院, link: yamanashi-gakuin }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 矢板中央B }
+                - { name: 関東第一, mark: pref_down }
+
+    - title: 2014年〜2021年（1部制）
+      note: 2部が廃止され、1部10チームだけで行われた時代。2021年の10位は、翌2022年の2部復活にともなって2部へ回った。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦へ出場（昇格ならず）
+        down: プリンスリーグ関東2部へ降格
+        pref_down: 都県リーグへ降格
+      seasons:
+        - kai: 19
+          year: 2021
+          rows:
+            - teams:
+                - { name: 川崎U-18, link: kawasaki-frontale-u18, mark: premier }
+                - { name: 前橋育英, link: maebashi-ikuei, mark: premier }
+                - { name: 桐生第一, link: kiryu-daiichi, mark: premier }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 昌平, link: shohei }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 矢板中央, link: yaita-chuo }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 帝京, link: teikyo }
+                - { name: 山梨学院, link: yamanashi-gakuin, mark: down }
+        - kai: 18
+          year: 2020
+          note: 参加10チームは前年2019年と同じ顔ぶれで、昇格・降格のマーカーが付いたチームは1つもない。
+          rows:
+            - teams:
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 昌平, link: shohei }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 矢板中央, link: yaita-chuo }
+                - { name: 桐生第一, link: kiryu-daiichi }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 山梨学院, link: yamanashi-gakuin }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 帝京, link: teikyo }
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: F東京U-18, link: fc-tokyo-u18, mark: premier }
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: premier }
+                - { name: 横浜Cユース, link: yokohama-fc-youth, mark: premier }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 帝京, link: teikyo }
+                - { name: 桐生第一, link: kiryu-daiichi }
+                - { name: 矢板中央, link: yaita-chuo }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 矢板中央, link: yaita-chuo, mark: playoff }
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: playoff }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: premier }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 桐生第一, link: kiryu-daiichi }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 桐光学園, link: toko-gakuen, mark: pref_down }
+                - { name: 山梨学院, link: yamanashi-gakuin, mark: pref_down }
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: 前橋育英, link: maebashi-ikuei, mark: playoff }
+                - { name: 流通経大柏, link: ryukei-kashiwa, mark: premier }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth, mark: playoff }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 山梨学院, link: yamanashi-gakuin }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 千葉U-18, link: jef-united-chiba-u18, mark: pref_down }
+                - { name: 横浜Cユース, link: yokohama-fc-youth, mark: pref_down }
+                - { name: 鹿島学園, link: kashima-gakuen, mark: pref_down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: 浦和ユース, link: urawa-reds-youth, mark: premier }
+                - { name: 桐光学園, link: toko-gakuen, mark: playoff }
+                - { name: 東京Vユース, link: tokyo-verdy-youth, mark: playoff }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 横浜Cユース, link: yokohama-fc-youth }
+                - { name: 山梨学院, link: yamanashi-gakuin }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 帝京三, mark: pref_down }
+                - { name: 甲府U-18, link: ventforet-kofu-u18, mark: pref_down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: premier }
+                - { name: 前橋育英, link: maebashi-ikuei, mark: playoff }
+                - { name: 東京Vユース, link: tokyo-verdy-youth, mark: playoff }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 山梨学院大附, link: yamanashi-gakuin }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 甲府U-18, link: ventforet-kofu-u18 }
+                - { name: 昌平, link: shohei, mark: pref_down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: premier }
+                - { name: F東京U-18, link: fc-tokyo-u18, mark: premier }
+                - { name: 前橋育英, link: maebashi-ikuei, mark: playoff }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 山梨学院大附, link: yamanashi-gakuin }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 國學院久我山, link: kokugakuin-kugayama, mark: pref_down }
+                - { name: 湘南工大附, mark: pref_down }
+
+    - title: 2011年〜2013年（1部・2部制）
+      note: 1部は10チーム。2部は2011年のみグループA・グループBに分かれて行われ、2012年からは10チームの1リーグに戻った。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦へ出場（昇格ならず）
+        down: プリンスリーグ関東2部へ降格
+        up: プリンスリーグ関東1部へ昇格
+        pref_down: 都県リーグへ降格
+      seasons:
+        - kai: 11
+          year: 2013
+          note: 翌2014年に2部が廃止されたため、1部へ昇格した2チーム以外の2部勢は都県リーグへ回った。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 前橋育英, link: maebashi-ikuei, mark: playoff }
+                - { name: 柏U-18, link: kashiwa-reysol-u18, mark: premier }
+                - { name: 市船橋, link: ichiritsu-funabashi, mark: premier }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18 }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 山梨学院大附, link: yamanashi-gakuin }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 横浜Cユース, link: yokohama-fc-youth, mark: pref_down }
+                - { name: 八千代, mark: pref_down }
+            - div: 2部
+              teams:
+                - { name: 川崎U-18, link: kawasaki-frontale-u18, mark: up }
+                - { name: 國學院久我山, link: kokugakuin-kugayama, mark: up }
+                - { name: 千葉U-18, link: jef-united-chiba-u18, mark: pref_down }
+                - { name: 武南, mark: pref_down }
+                - { name: 桐蔭学園, link: toin-gakuen, mark: pref_down }
+                - { name: 佐野日大, mark: pref_down }
+                - { name: 関東第一, mark: pref_down }
+                - { name: 幕張総合, mark: pref_down }
+                - { name: 鹿島学園, link: kashima-gakuen, mark: pref_down }
+                - { name: 水戸ユース, mark: pref_down }
+        - kai: 10
+          year: 2012
+          rows:
+            - div: 1部
+              teams:
+                - { name: 桐光学園, link: toko-gakuen, mark: premier }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 山梨学院大附, link: yamanashi-gakuin }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 千葉U-18, link: jef-united-chiba-u18 }
+                - { name: 桐蔭学園, link: toin-gakuen }
+            - div: 2部
+              teams:
+                - { name: 横浜Cユース, link: yokohama-fc-youth, mark: up }
+                - { name: 八千代, mark: up }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: up }
+                - { name: 関東第一 }
+                - { name: 鹿島学園, link: kashima-gakuen }
+                - { name: 佐野日大 }
+                - { name: 柏日体, link: nittaidai-kashiwa, mark: pref_down }
+                - { name: 成立学園, link: seiritsu-gakuen, mark: pref_down }
+                - { name: 湘南U-18, link: shonan-bellmare-u18, mark: pref_down }
+                - { name: 第一学院, mark: pref_down }
+        - kai: 9
+          year: 2011
+          note: 2部はグループA・グループBに分かれて開催された。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 鹿島ユース, link: kashima-youth, mark: premier }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 千葉U-18, link: jef-united-chiba-u18 }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: down }
+                - { name: 八千代, mark: down }
+                - { name: 成立学園, link: seiritsu-gakuen, mark: down }
+            - div: 2部A
+              teams:
+                - { name: 山梨学院大附, link: yamanashi-gakuin, mark: up }
+                - { name: 湘南U-18, link: shonan-bellmare-u18 }
+                - { name: 佐野日大 }
+                - { name: 西武台, link: seibudai, mark: pref_down }
+                - { name: 浦和東, mark: pref_down }
+                - { name: 駒大高, mark: pref_down }
+                - { name: 幕張総合, mark: pref_down }
+                - { name: 水戸商, mark: pref_down }
+            - div: 2部B
+              teams:
+                - { name: 柏U-18, link: kashiwa-reysol-u18, mark: up }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18, mark: up }
+                - { name: 鹿島学園, link: kashima-gakuen }
+                - { name: 武南, mark: pref_down }
+                - { name: 矢板中央, link: yaita-chuo, mark: pref_down }
+                - { name: 麻布大渕野辺, mark: pref_down }
+                - { name: 桐生第一, link: kiryu-daiichi, mark: pref_down }
+                - { name: 真岡, mark: pref_down }
+
+    - title: 2008年〜2010年（1部・2部制／各12チーム）
+      note: >-
+        2008年に2部が新設され、1部・2部とも12チームで行われた。チーム名の先頭の★は、
+        その年の高円宮杯全日本ユース(U-18)サッカー選手権大会に出場したチーム（同大会は2010年まで開催）。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        premier: プレミアリーグ昇格
+        down: プリンスリーグ関東2部へ降格
+        up: プリンスリーグ関東1部へ昇格
+        pref_down: 都県リーグへ降格
+      seasons:
+        - kai: 8
+          year: 2010
+          note: 翌2011年のプレミアリーグ発足にともない、1部の上位5チームがプレミアリーグへ参入した。
+          rows:
+            - div: 1部
+              teams:
+                - { name: ★F東京U-18, link: fc-tokyo-u18, mark: premier }
+                - { name: ★流通経大柏, link: ryukei-kashiwa, mark: premier }
+                - { name: ★浦和ユース, link: urawa-reds-youth, mark: premier }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth, mark: premier }
+                - { name: ★三菱養和, link: mitsubishi-yowa-youth, mark: premier }
+                - { name: ★横浜Mユース, link: yokohama-fm-youth }
+                - { name: ★千葉U-18, link: jef-united-chiba-u18 }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: ★市船橋, link: ichiritsu-funabashi }
+                - { name: 八千代 }
+                - { name: 湘南U-18, link: shonan-bellmare-u18, mark: down }
+                - { name: 武南, mark: down }
+            - div: 2部
+              teams:
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: up }
+                - { name: 鹿島ユース, link: kashima-youth, mark: up }
+                - { name: 桐蔭学園, link: toin-gakuen, mark: up }
+                - { name: 前橋育英, link: maebashi-ikuei, mark: up }
+                - { name: 成立学園, link: seiritsu-gakuen, mark: up }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 幕張総合 }
+                - { name: 佐野日大 }
+                - { name: 矢板中央, link: yaita-chuo }
+                - { name: 浦和東 }
+                - { name: 鹿島学園, link: kashima-gakuen }
+                - { name: 日本航空, mark: pref_down }
+        - kai: 7
+          year: 2009
+          rows:
+            - div: 1部
+              teams:
+                - { name: ★F東京U-18, link: fc-tokyo-u18 }
+                - { name: ★三菱養和, link: mitsubishi-yowa-youth }
+                - { name: ★横浜Mユース, link: yokohama-fm-youth }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth }
+                - { name: ★桐光学園, link: toko-gakuen }
+                - { name: ★流通経大柏, link: ryukei-kashiwa }
+                - { name: ★浦和ユース, link: urawa-reds-youth }
+                - { name: ★千葉U-18, link: jef-united-chiba-u18 }
+                - { name: ★前橋育英, link: maebashi-ikuei, mark: down }
+                - { name: 鹿島ユース, link: kashima-youth, mark: down }
+                - { name: 矢板中央, link: yaita-chuo, mark: down }
+                - { name: 鹿島学園, link: kashima-gakuen, mark: down }
+            - div: 2部
+              teams:
+                - { name: 八千代, mark: up }
+                - { name: 湘南U-18, link: shonan-bellmare-u18, mark: up }
+                - { name: 市船橋, link: ichiritsu-funabashi, mark: up }
+                - { name: 武南, mark: up }
+                - { name: 日本航空 }
+                - { name: 佐野日大 }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 浦和東 }
+                - { name: 國學院久我山, link: kokugakuin-kugayama, mark: pref_down }
+                - { name: 鹿島高, mark: pref_down }
+                - { name: 相洋, mark: pref_down }
+                - { name: 桐生第一, link: kiryu-daiichi, mark: pref_down }
+        - kai: 6
+          year: 2008
+          rows:
+            - div: 1部
+              teams:
+                - { name: ★F東京U-18, link: fc-tokyo-u18 }
+                - { name: ★横浜Mユース, link: yokohama-fm-youth }
+                - { name: ★浦和ユース, link: urawa-reds-youth }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth }
+                - { name: ★流通経大柏, link: ryukei-kashiwa }
+                - { name: ★桐光学園, link: toko-gakuen }
+                - { name: ★前橋育英, link: maebashi-ikuei }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 桐蔭学園, link: toin-gakuen, mark: down }
+                - { name: ★市船橋, link: ichiritsu-funabashi, mark: down }
+                - { name: 武南, mark: down }
+                - { name: 湘南U-18, link: shonan-bellmare-u18, mark: down }
+            - div: 2部
+              teams:
+                - { name: 千葉U-18, link: jef-united-chiba-u18, mark: up }
+                - { name: 鹿島ユース, link: kashima-youth, mark: up }
+                - { name: 矢板中央, link: yaita-chuo, mark: up }
+                - { name: 鹿島学園, link: kashima-gakuen, mark: up }
+                - { name: 習志野, mark: pref_down }
+                - { name: 浦和東 }
+                - { name: 桐生第一, link: kiryu-daiichi }
+                - { name: 正智深谷, mark: pref_down }
+                - { name: 日大高, mark: pref_down }
+                - { name: 前橋商, mark: pref_down }
+                - { name: 成立学園, link: seiritsu-gakuen, mark: pref_down }
+                - { name: 甲府U-18, link: ventforet-kofu-u18, mark: pref_down }
+
+    - title: 2003年〜2007年（20チームの1部制）
+      note: >-
+        第1回から5年間は20チームが1つの表にまとまっている。順位は全体順位で、降格したチームの位置は
+        順位の並び順どおりにはなっていない。チーム名の先頭の★は、その年の高円宮杯全日本ユース(U-18)サッカー選手権大会に出場したチーム。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位, 13位, 14位, 15位, 16位, 17位, 18位, 19位, 20位]
+      legend:
+        down: プリンスリーグ関東2部へ降格
+        pref_down: 都県リーグへ降格
+      seasons:
+        - kai: 5
+          year: 2007
+          note: 翌2008年の2部新設にともない、2部へ回るチームが生まれた。
+          rows:
+            - teams:
+                - { name: ★市船橋, link: ichiritsu-funabashi }
+                - { name: ★流通経大柏, link: ryukei-kashiwa }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth }
+                - { name: ★横浜Mユース, link: yokohama-fm-youth }
+                - { name: ★浦和ユース, link: urawa-reds-youth }
+                - { name: 湘南U-18, link: shonan-bellmare-u18 }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 武南 }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 浦和東, mark: down }
+                - { name: 前橋商, mark: down }
+                - { name: 鹿島学園, link: kashima-gakuen, mark: down }
+                - { name: 習志野, mark: down }
+                - { name: 佐野日大, mark: pref_down }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 韮崎, mark: pref_down }
+                - { name: 八千代, mark: pref_down }
+        - kai: 4
+          year: 2006
+          rows:
+            - teams:
+                - { name: ★横浜Mユース, link: yokohama-fm-youth }
+                - { name: ★湘南U-18, link: shonan-bellmare-u18 }
+                - { name: ★鹿島ユース, link: kashima-youth }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 武南 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 八千代 }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 千葉U-18, link: jef-united-chiba-u18, mark: pref_down }
+                - { name: 前橋商 }
+                - { name: 小山南, mark: pref_down }
+                - { name: 鹿島高, mark: pref_down }
+                - { name: 渋谷幕張, mark: pref_down }
+                - { name: 韮崎 }
+                - { name: 浦和東 }
+                - { name: 高崎経大附, mark: pref_down }
+        - kai: 3
+          year: 2005
+          rows:
+            - teams:
+                - { name: ★横浜Mユース, link: yokohama-fm-youth }
+                - { name: ★前橋育英, link: maebashi-ikuei }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth }
+                - { name: ★浦和ユース, link: urawa-reds-youth }
+                - { name: ★浦和東 }
+                - { name: ★市船橋, link: ichiritsu-funabashi }
+                - { name: ★前橋商 }
+                - { name: 千葉U-18, link: jef-united-chiba-u18 }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 八千代 }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 渋谷幕張 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 韮崎 }
+                - { name: 桐光学園, link: toko-gakuen, mark: pref_down }
+                - { name: 鹿島高 }
+                - { name: 弥栄西, mark: pref_down }
+                - { name: 西武台, link: seibudai, mark: pref_down }
+                - { name: 矢板中央, link: yaita-chuo, mark: pref_down }
+                - { name: 帝京, link: teikyo, mark: pref_down }
+        - kai: 2
+          year: 2004
+          rows:
+            - teams:
+                - { name: ★桐蔭学園, link: toin-gakuen }
+                - { name: ★市船橋, link: ichiritsu-funabashi }
+                - { name: ★流通経大柏, link: ryukei-kashiwa }
+                - { name: ★東京Vユース, link: tokyo-verdy-youth }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 浦和東 }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 前橋商 }
+                - { name: 暁星, mark: pref_down }
+                - { name: 佐野日大, mark: pref_down }
+                - { name: 帝京, link: teikyo }
+                - { name: 渋谷幕張 }
+                - { name: 鹿島高 }
+                - { name: 日大藤沢, link: nichidai-fujisawa, mark: pref_down }
+                - { name: 武南, mark: pref_down }
+                - { name: 水戸商, mark: pref_down }
+                - { name: 実践学園, mark: pref_down }
+                - { name: 帝京三, mark: pref_down }
+        - kai: 1
+          year: 2003
+          note: 関東スーパーリーグを発展させる形で、20チームによる第1回が開催された。
+          rows:
+            - teams:
+                - { name: ★市船橋, link: ichiritsu-funabashi }
+                - { name: ★帝京, link: teikyo }
+                - { name: 桐光学園, link: toko-gakuen }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 鹿島高 }
+                - { name: 浦和東 }
+                - { name: 桐蔭学園, link: toin-gakuen }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: F東京U-18, link: fc-tokyo-u18, mark: pref_down }
+                - { name: 市原U-18, link: jef-united-chiba-u18, mark: pref_down }
+                - { name: 矢板中央, link: yaita-chuo, mark: pref_down }
+                - { name: 西武台, link: seibudai, mark: pref_down }
+                - { name: 佐野日大 }
+                - { name: 国士舘, link: kokushikan, mark: pref_down }
+                - { name: 前橋商 }
+                - { name: 韮崎, mark: pref_down }
+                - { name: 水戸商 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 甲府工, mark: pref_down }
+
+  sources:
+    - label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ関東』
+      url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ関東
+      note: 2003年〜2025年の歴代成績。昇降格の色分けはページのDOMから機械的に読み取って転記（目視転記はしていない）
+    - label: 高円宮杯 JFA U-18サッカープリンスリーグ関東 公式サイト
+      url: http://www.princeleague-kanto.com/
+      note: 大会方式・参加チームの確認用
+
+tohoku:
+  label: プリンスリーグ東北
+  slugs:
+    - prince-tohoku
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ東北は2003年に第1回が開催され、2026年で第24回を迎えた。
+    青森・岩手・宮城・秋田・山形・福島の6県のチームが参加する1部制のリーグで、
+    上位がプレミアリーグプレーオフに進み、下位が県リーグへ降格する。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 東北
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ東北
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 東北
+
+  # ---- 歴代順位 ----
+  # eras[fold_from_era] 以降は <details> で折りたたむ。
+  fold_from_era: 1
+  eras:
+    - title: 2021年〜2025年（1部制・10チーム）
+      note: 10チームによる2回戦総当たり。上位がプレミアリーグプレーオフに進出し、下位2チームが県リーグへ自動降格する（セカンドチームはプレーオフに進めない）。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグプレーオフ（参入戦）敗退
+        pref_down: 県リーグ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          rows:
+            - teams:
+                - { name: 尚志, link: shoshi, mark: playoff }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: premier }
+                - { name: 青森山田2nd }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 秋田U-18, link: blaublitz-akita-u18 }
+                - { name: 学法石川, link: gakuho-ishikawa }
+                - { name: 専大北上, link: senshu-kitakami }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 仙台育英, mark: pref_down }
+                - { name: 遠野, mark: pref_down }
+        - kai: 22
+          year: 2024
+          rows:
+            - teams:
+                - { name: 青森山田2nd }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 聖和学園, link: seiwa-gakuen, mark: playoff }
+                - { name: 尚志2nd, mark: pref_down }
+                - { name: 専大北上, link: senshu-kitakami }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 秋田U-18, link: blaublitz-akita-u18 }
+                - { name: 仙台育英 }
+                - { name: 帝京安積, link: teikyo-asaka, mark: pref_down }
+                - { name: 聖光学院, mark: pref_down }
+        - kai: 21
+          year: 2023
+          rows:
+            - teams:
+                - { name: 青森山田2nd }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 尚志2nd }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 帝京安積, link: teikyo-asaka }
+                - { name: 秋田U-18, link: blaublitz-akita-u18 }
+                - { name: 専大北上, link: senshu-kitakami }
+                - { name: 東北学院, link: tohoku-gakuin, mark: pref_down }
+                - { name: 盛岡商業, link: morioka-shogyo, mark: pref_down }
+        - kai: 20
+          year: 2022
+          rows:
+            - teams:
+                - { name: 青森山田2nd }
+                - { name: 尚志, link: shoshi, mark: premier }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 秋田U-18, link: blaublitz-akita-u18 }
+                - { name: 帝京安積, link: teikyo-asaka }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 仙台育英, mark: pref_down }
+                - { name: ノースアジア大明桜, link: meio, mark: pref_down }
+        - kai: 19
+          year: 2021
+          rows:
+            - teams:
+                - { name: 尚志, link: shoshi, mark: playoff }
+                - { name: 青森山田2nd }
+                - { name: 仙台育英, mark: playoff }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 帝京安積, link: teikyo-asaka }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 聖光学院, mark: pref_down }
+                - { name: 遠野, mark: pref_down }
+
+    - title: 2020年（スーパープリンスリーグ東北）
+      note: >-
+        新型コロナウイルス感染拡大の影響でプレミアリーグが中止となり、その代替大会として、
+        プレミアリーグとプリンスリーグ東北に参加予定だった12チームによる「スーパープリンスリーグ東北」が行われた。
+        このためプレミアリーグ所属だった青森山田高校もこの年だけ参加している。昇降格は行われていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend: {}
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - teams:
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 青森山田2nd }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 聖和, link: seiwa-gakuen }
+                - { name: 秋田U-18, link: blaublitz-akita-u18 }
+                - { name: 仙台育英 }
+                - { name: 尚志, link: shoshi }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 遠野 }
+                - { name: 帝京安積, link: teikyo-asaka }
+                - { name: 聖光学院 }
+                - { name: 盛岡商業, link: morioka-shogyo }
+
+    - title: 2013年〜2019年（1部制・10チーム）
+      note: 2013年に1部制へ戻り、10チームによる2回戦総当たりになった。県リーグへの自動降格枠は2013年〜2016年が3、2017年以降が2。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグプレーオフ（参入戦）敗退
+        pref_down: 県リーグ降格
+      seasons:
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: 青森山田2nd }
+                - { name: 山形ユース, link: montedio-yamagata-youth, mark: playoff }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 仙台育英 }
+                - { name: 尚志2nd, mark: pref_down }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 遠野 }
+                - { name: 聖光学院 }
+                - { name: 学法石川, link: gakuho-ishikawa, mark: pref_down }
+                - { name: 秋田商業, mark: pref_down }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 尚志, link: shoshi, mark: premier }
+                - { name: 青森山田2nd }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 仙台育英 }
+                - { name: 秋田商業 }
+                - { name: 遠野 }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 聖光学院 }
+                - { name: 山形中央, mark: pref_down }
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: 青森山田2nd }
+                - { name: 尚志, link: shoshi, mark: playoff }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 仙台育英 }
+                - { name: 遠野 }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 山形中央 }
+                - { name: 聖光学院 }
+                - { name: 東北, mark: pref_down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 尚志, link: shoshi }
+                - { name: 青森山田2nd }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 遠野 }
+                - { name: 仙台育英 }
+                - { name: 聖和学園, link: seiwa-gakuen, mark: pref_down }
+                - { name: 日大山形, mark: pref_down }
+                - { name: 盛岡中央, mark: pref_down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 尚志, link: shoshi, mark: playoff }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 青森山田2nd }
+                - { name: 遠野 }
+                - { name: 仙台育英 }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 塩釜ユース, mark: pref_down }
+                - { name: 学法石川, link: gakuho-ishikawa, mark: pref_down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 尚志, link: shoshi }
+                - { name: 青森山田2nd }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 仙台育英 }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 富岡, mark: pref_down }
+                - { name: 八戸学院光星, mark: pref_down }
+                - { name: 福島東, mark: pref_down }
+        - kai: 11
+          year: 2013
+          rows:
+            - teams:
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: playoff }
+                - { name: 青森山田2nd }
+                - { name: 盛岡商業, link: morioka-shogyo, mark: playoff }
+                - { name: 尚志, link: shoshi }
+                - { name: 富岡 }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 仙台育英 }
+                - { name: 東北, mark: pref_down }
+                - { name: 利府, mark: pref_down }
+                - { name: 盛岡市立, mark: pref_down }
+
+    - title: 2011年〜2012年（1部・2部制／各8チーム）
+      note: 2011年は東日本大震災の影響で1回戦総当たりに縮小された。2012年は2回戦総当たりで、翌2013年の1部制復帰に向けて参入戦が行われた。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグプレーオフ（参入戦）敗退
+        down: プリンスリーグ東北2部降格
+        up: プリンスリーグ東北1部昇格
+        pref_down: 県リーグ降格
+      seasons:
+        - kai: 10
+          year: 2012
+          rows:
+            - div: 1部
+              teams:
+                - { name: JFA福島, mark: premier }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 富岡 }
+                - { name: 尚志, link: shoshi }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 盛岡市立 }
+                - { name: 利府 }
+                - { name: 聖和学園, link: seiwa-gakuen, mark: pref_down }
+            - div: 2部
+              teams:
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: up }
+                - { name: 青森山田2nd, mark: up }
+                - { name: 日大山形, mark: pref_down }
+                - { name: 東北, mark: up }
+                - { name: 遠野, mark: pref_down }
+                - { name: 塩釜ユース, mark: pref_down }
+                - { name: 秋田商業, mark: pref_down }
+                - { name: 宮城県工業, mark: pref_down }
+        - kai: 9
+          year: 2011
+          rows:
+            - div: 1部
+              teams:
+                - { name: 聖和学園, link: seiwa-gakuen, mark: playoff }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 富岡 }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: down }
+                - { name: 東北, mark: down }
+                - { name: 遠野, mark: down }
+                - { name: 秋田商業, mark: down }
+            - div: 2部
+              teams:
+                - { name: JFA福島, mark: up }
+                - { name: 利府, mark: up }
+                - { name: 盛岡市立, mark: up }
+                - { name: 宮城県工業 }
+                - { name: 羽黒, mark: pref_down }
+                - { name: 福島工業, mark: pref_down }
+                - { name: 八戸学院光星, mark: pref_down }
+                - { name: 秋田南, mark: pref_down }
+
+    - title: 2009年〜2010年（1部・2部制）
+      note: >-
+        2009年から2部制になった。1部は6チーム、2部は2009年が8チーム・2010年が10チーム。
+        2010年の1部上位2チームは、翌2011年に始まるプレミアリーグへ参入した。
+        ★は高円宮杯全日本ユース(U-18)サッカー選手権大会への出場を表す（同大会は2010年まで開催）。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        down: プリンスリーグ東北2部降格
+        up: プリンスリーグ東北1部昇格
+        pref_down: 県リーグ降格
+      seasons:
+        - kai: 8
+          year: 2010
+          rows:
+            - div: 1部
+              teams:
+                - { name: ★青森山田, link: aomori-yamada, mark: premier }
+                - { name: 尚志, link: shoshi, mark: premier }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 東北 }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 秋田商業 }
+            - div: 2部
+              teams:
+                - { name: 盛岡商業, link: morioka-shogyo, mark: up }
+                - { name: 富岡, mark: up }
+                - { name: 遠野, mark: up }
+                - { name: 山形ユース, link: montedio-yamagata-youth, mark: up }
+                - { name: 宮城県工業 }
+                - { name: 福島工業 }
+                - { name: 日大山形, mark: pref_down }
+                - { name: 野辺地西, mark: pref_down }
+                - { name: 山形中央, mark: pref_down }
+                - { name: 西目, mark: pref_down }
+        - kai: 7
+          year: 2009
+          rows:
+            - div: 1部
+              teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 東北 }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 尚志, link: shoshi }
+                - { name: 山形中央, mark: down }
+            - div: 2部
+              teams:
+                - { name: 秋田商業, mark: up }
+                - { name: 山形ユース, link: montedio-yamagata-youth }
+                - { name: 福島工業 }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 利府, mark: pref_down }
+                - { name: 不来方, mark: pref_down }
+                - { name: 羽黒, mark: pref_down }
+                - { name: 光星学院, mark: pref_down }
+
+    - title: 2003年〜2008年（1部制）
+      note: >-
+        第1回の2003年は8チーム、2004年は12チームを2組に分けたうえで順位決定戦、2005年〜2008年は12チームの1回戦総当たりで行われた。
+        ★は高円宮杯全日本ユース(U-18)サッカー選手権大会への出場を表す。
+        2008年の水色は、翌2009年の2部制移行にともなって2部へ回ったチーム。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        down: プリンスリーグ東北2部降格
+        pref_down: 県リーグ降格
+      seasons:
+        - kai: 6
+          year: 2008
+          rows:
+            - teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: ★仙台ユース, link: vegalta-sendai-youth }
+                - { name: 聖和学園, link: seiwa-gakuen }
+                - { name: 尚志, link: shoshi }
+                - { name: 山形中央 }
+                - { name: 東北 }
+                - { name: 不来方, mark: down }
+                - { name: 羽黒, mark: down }
+                - { name: 西目, mark: pref_down }
+                - { name: 盛岡商業, link: morioka-shogyo, mark: down }
+                - { name: 秋田商業, mark: down }
+                - { name: 光星学院, mark: down }
+        - kai: 5
+          year: 2007
+          rows:
+            - teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 秋田商業 }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 東北 }
+                - { name: 羽黒 }
+                - { name: 福島工業, mark: pref_down }
+                - { name: FCみやぎ, mark: pref_down }
+                - { name: 光星学院 }
+                - { name: 遠野, mark: pref_down }
+                - { name: 湯本, mark: pref_down }
+                - { name: 山形中央, mark: pref_down }
+        - kai: 4
+          year: 2006
+          rows:
+            - teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: ★盛岡商業, link: morioka-shogyo }
+                - { name: 東北 }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 羽黒 }
+                - { name: 湯本 }
+                - { name: 不来方, mark: pref_down }
+                - { name: 秋田商業 }
+                - { name: 遠野 }
+                - { name: 光星学院 }
+                - { name: 西目, mark: pref_down }
+                - { name: FCみやぎ }
+        - kai: 3
+          year: 2005
+          rows:
+            - teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: ★FCみやぎ }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 仙台ユース, link: vegalta-sendai-youth }
+                - { name: 遠野 }
+                - { name: 秋田商業 }
+                - { name: 羽黒 }
+                - { name: 塩釜ユース, mark: pref_down }
+                - { name: 福島工業, mark: pref_down }
+                - { name: 東北 }
+                - { name: 福島東, mark: pref_down }
+                - { name: 三本木農業, mark: pref_down }
+        - kai: 2
+          year: 2004
+          note: 12チームを2つのリーグに分け、各リーグ上位2チームによる順位決定戦を行った。3位から12位までの順位は不明。
+          rows:
+            - teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: ★FCみやぎ }
+                - { name: 三本木農業 }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 遠野 }
+                - { name: 仙台育英, mark: pref_down }
+                - { name: 仙台第二, mark: pref_down }
+                - { name: 塩釜ユース }
+                - { name: 新屋, mark: pref_down }
+                - { name: 山形中央, mark: pref_down }
+                - { name: 福島東 }
+                - { name: 湯本, mark: pref_down }
+        - kai: 1
+          year: 2003
+          note: 8チームによる2回戦総当たりでスタートした。
+          rows:
+            - teams:
+                - { name: ★青森山田, link: aomori-yamada }
+                - { name: 仙台ユース, link: vegalta-sendai-youth, mark: pref_down }
+                - { name: 盛岡商業, link: morioka-shogyo }
+                - { name: 平工業, mark: pref_down }
+                - { name: 仙台育英 }
+                - { name: 山形中央 }
+                - { name: FCみやぎ }
+                - { name: 秋田商業, mark: pref_down }
+
+  sources:
+    - label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ東北』
+      url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ東北
+      note: 2003年〜2025年の歴代成績。昇降格の色分けはページのDOMから機械的に読み取って転記（目視転記はしていない）。
+    - label: 一般社団法人東北サッカー協会「高円宮杯 JFA U-18サッカープリンスリーグ東北」
+      url: https://www.tohoku-fa.jp/
+      note: 現行レギュレーション（10チーム2回戦総当たり／プレーオフ枠／県リーグ降格枠）とプレーオフ方式の確認
+
+tokai:
+  label: プリンスリーグ東海
+  slugs:
+    - prince-tokai
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ東海は2003年に第1回が開催され、2026年で第24回を迎えた。
+    岐阜・静岡・愛知・三重の4県のチームが参加する。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 東海
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ東海
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 東海
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2021年〜2025年（1部制・10チーム）
+      note: 10チームによる2回戦総当たり。優勝チームなどがプレミアリーグ参入をかけたプレーオフに回る。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        down: 都道府県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          note: >-
+            優勝した清水エスパルスユースは東海第1代表、2位のジュビロ磐田U-18は東海第2代表として
+            プレミアリーグ プレーオフに出場し、昇格を決めたのは磐田だけだった。
+          rows:
+            - teams:
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: premier }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 東海大翔洋, link: tokai-shizuoka-shoyo }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 富士市立, link: fuji-ichiritsu }
+                - { name: 静岡学園2nd, mark: down }
+                - { name: 名古屋U-18B, mark: down }
+        - kai: 22
+          year: 2024
+          rows:
+            - teams:
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 静岡学園2nd }
+                - { name: 名古屋U-18B }
+                - { name: 富士市立, link: fuji-ichiritsu }
+                - { name: 浜名, mark: down }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo, mark: down }
+        - kai: 21
+          year: 2023
+          note: 優勝したJFAアカデミー福島U-18は、この年度をもって男子の活動を終了した。
+          rows:
+            - teams:
+                - { name: JFA福島, sub: 活動終了 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 静岡学園2nd }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 富士市立, link: fuji-ichiritsu }
+                - { name: 名古屋U-18B }
+                - { name: 刈谷, mark: down }
+                - { name: 海星, mark: down }
+        - kai: 20
+          year: 2022
+          rows:
+            - teams:
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 富士市立, link: fuji-ichiritsu }
+                - { name: 静岡学園2nd }
+                - { name: 名古屋U-18B }
+                - { name: 帝京大可児, link: teikyo-kani, mark: down }
+                - { name: 清水桜が丘, mark: down }
+                - { name: 常葉大橘, mark: down }
+                - { name: 中京, mark: down }
+        - kai: 19
+          year: 2021
+          rows:
+            - teams:
+                - { name: 静岡学園, link: shizuoka-gakuen, mark: premier }
+                - { name: JFA福島, mark: premier }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 清水桜が丘 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 常葉大橘 }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 富士市立, link: fuji-ichiritsu }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo, mark: down }
+
+    - title: 2020年（スーパープリンスリーグ東海）
+      note: >-
+        新型コロナウイルスの影響でプレミアリーグが中止となり、プリンスリーグ東海に参加予定だったチームへ
+        プレミアリーグ参加予定だった東海勢を加えた14チームで「スーパープリンスリーグ東海」として開催された。
+        A・Bブロックに分かれてリーグ戦を行った後、順位決定戦で最終順位を決めている。
+        帝京大可児とジュビロ磐田U-18の中止試合は代替試合を行わず、両チームとも5位とされた。
+      cols: ["1位", "2位", "3位", "4位", "5位", "5位", "7位", "8位", "9位", "10位", "11位", "12位", "13位", "14位"]
+      legend: {}
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - teams:
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 帝京大可児, link: teikyo-kani, sub: 同5位 }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, sub: 同5位 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: JFA福島 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 中京大中京 }
+                - { name: 常葉大橘 }
+                - { name: 清水桜が丘 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 富士市立, link: fuji-ichiritsu }
+
+    - title: 2012年〜2019年（1部制・10チーム）
+      note: >-
+        2012年から2部を廃し、10チームによる2回戦総当たりに戻った。
+        都道府県リーグからの昇格は2チームで、降格数は東海勢のプレミアリーグ昇降格に応じて10チームになるよう調整される。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        down: 都道府県リーグへ降格
+      seasons:
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: JFA福島 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 清水桜が丘 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 富士市立, link: fuji-ichiritsu }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 中京大中京, mark: down }
+                - { name: 中京, mark: down }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: JFA福島 }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 清水桜が丘 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 中京大中京 }
+                - { name: 岐阜U-18, mark: down }
+                - { name: 名経大高蔵, mark: down }
+        - kai: 15
+          year: 2017
+          note: 名古屋・磐田の2チームがプレミアリーグへ上がり、この年度の降格はなかった。
+          rows:
+            - teams:
+                - { name: 名古屋U-18, link: nagoya-grampus-u18, mark: premier }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: premier }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: JFA福島 }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 清水桜が丘 }
+                - { name: 中京大中京 }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: JFA福島 }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 清水桜が丘 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 中京大中京 }
+                - { name: 東邦, mark: down }
+                - { name: 東海学園, mark: down }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo, mark: down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 清水桜が丘 }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 東海学園 }
+                - { name: 中京大中京 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 藤枝東, link: fujieda-higashi, mark: down }
+                - { name: 磐田東, mark: down }
+                - { name: 帝京大可児, link: teikyo-kani, mark: down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: 清水桜が丘 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 中京大中京 }
+                - { name: 磐田東 }
+                - { name: 東邦, mark: down }
+                - { name: 藤枝明誠, link: fujieda-meisei, mark: down }
+        - kai: 11
+          year: 2013
+          note: 5位の清水桜が丘は、清水商業高校と庵原高校が統合して誕生した高校。
+          rows:
+            - teams:
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 中京大中京 }
+                - { name: 清水桜が丘 }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo, mark: down }
+                - { name: 三重, link: mie, mark: down }
+                - { name: 清水東, mark: down }
+        - kai: 10
+          year: 2012
+          rows:
+            - teams:
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 清水商業 }
+                - { name: 中京大中京 }
+                - { name: 磐田東, mark: down }
+                - { name: 常葉大橘, mark: down }
+
+    - title: 2006年〜2011年（1部・2部制）
+      note: >-
+        2006年に2部が新設された。2006年は1部6チーム・2部8チーム、2007年から2010年は1部10チーム・2部8チーム、
+        2011年は1部8チーム・2部8チームで行われ、2011年限りで2部は廃止された。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+        pref_down: 都道府県リーグへ降格
+      seasons:
+        - kai: 9
+          year: 2011
+          note: >-
+            翌2012年から10チームの1部制に移るため、1部1〜7位と2部1位が翌年のプリンスリーグに残留し、
+            1部8位・2部2〜4位・各県リーグ1位の8チームで参入戦（2枠）を行った。2部5〜8位は都道府県リーグへ降格した。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 清水商業 }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 常葉大橘 }
+                - { name: 磐田東 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 中京大中京 }
+            - div: 2部
+              teams:
+                - { name: 藤枝東, link: fujieda-higashi, mark: up }
+                - { name: 清水東, mark: pref_down }
+                - { name: 津工業, mark: pref_down }
+                - { name: 飛龍, mark: pref_down }
+                - { name: 加藤学園暁秀, mark: pref_down }
+                - { name: 海星, mark: pref_down }
+                - { name: 各務原, mark: pref_down }
+                - { name: 愛知, mark: pref_down }
+        - kai: 8
+          year: 2010
+          note: 翌2011年のプレミアリーグ発足に伴い、1部の上位3チームが全国リーグへ進んだ。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: premier }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18, mark: premier }
+                - { name: 静岡学園, link: shizuoka-gakuen, mark: premier }
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 清水商業 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 中京大中京 }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 常葉大橘 }
+                - { name: 海星, mark: down }
+            - div: 2部
+              teams:
+                - { name: 帝京大可児, link: teikyo-kani, mark: up }
+                - { name: 磐田東, mark: up }
+                - { name: 加藤学園暁秀 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 飛龍 }
+                - { name: 岐阜工業, mark: pref_down }
+                - { name: 岡崎城西, mark: pref_down }
+                - { name: 三重, link: mie, mark: pref_down }
+        - kai: 7
+          year: 2009
+          rows:
+            - div: 1部
+              teams:
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 清水商業 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 常葉大橘 }
+                - { name: 藤枝東, link: fujieda-higashi, mark: down }
+                - { name: 磐田東, mark: down }
+            - div: 2部
+              teams:
+                - { name: 海星, mark: up }
+                - { name: 中京大中京, mark: up }
+                - { name: 岐阜工業 }
+                - { name: 加藤学園暁秀 }
+                - { name: 東海学園, mark: pref_down }
+                - { name: 浜名, mark: pref_down }
+                - { name: 名東, mark: pref_down }
+                - { name: 各務原, mark: pref_down }
+        - kai: 6
+          year: 2008
+          rows:
+            - div: 1部
+              teams:
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 磐田東 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 藤枝明誠, link: fujieda-meisei }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 常葉大橘 }
+                - { name: 中京大中京, mark: down }
+                - { name: 岐阜工業, mark: down }
+            - div: 2部
+              teams:
+                - { name: 清水商業, mark: up }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: up }
+                - { name: 東海学園 }
+                - { name: 浜名 }
+                - { name: 帝京大可児, link: teikyo-kani, mark: pref_down }
+                - { name: 津工業, mark: pref_down }
+                - { name: 愛知, mark: pref_down }
+                - { name: 中京, mark: pref_down }
+        - kai: 5
+          year: 2007
+          rows:
+            - div: 1部
+              teams:
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 中京大中京 }
+                - { name: 常葉大橘 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 岐阜工業 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: down }
+                - { name: 浜名, mark: down }
+            - div: 2部
+              teams:
+                - { name: 藤枝明誠, link: fujieda-meisei, mark: up }
+                - { name: 磐田東, mark: up }
+                - { name: 東海学園 }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 各務原, mark: pref_down }
+                - { name: 熱田, mark: pref_down }
+                - { name: 海星, mark: pref_down }
+                - { name: 三重, link: mie, mark: pref_down }
+        - kai: 4
+          year: 2006
+          note: 2部の新設初年度。翌2007年に1部が6チームから10チームへ拡大したため、2部の上位5チームが1部へ上がった。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 浜名 }
+                - { name: 磐田東, mark: down }
+            - div: 2部
+              teams:
+                - { name: 藤枝東, link: fujieda-higashi, mark: up }
+                - { name: 中京大中京, mark: up }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo, mark: up }
+                - { name: 岐阜工業, mark: up }
+                - { name: 常葉大橘, mark: up }
+                - { name: 帝京大可児, link: teikyo-kani }
+                - { name: 三重, link: mie }
+                - { name: 熱田 }
+
+    - title: 2003年〜2005年（1部制・10チーム）
+      note: 10チームによる1回戦総当たりでスタートした。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        pref_down: 都道府県リーグへ降格
+        down: 翌2006年に新設された2部へ
+      seasons:
+        - kai: 3
+          year: 2005
+          note: 翌2006年に1部が6チームへ縮小し2部が新設されたため、7〜10位は2部へ回った。
+          rows:
+            - teams:
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 浜名 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 磐田東 }
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 岐阜工業, mark: down }
+                - { name: 中京大中京, mark: down }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo, mark: down }
+                - { name: 藤枝東, link: fujieda-higashi, mark: down }
+        - kai: 2
+          year: 2004
+          note: 10位の岐阜工業が降格すると岐阜県のチームがいなくなるため、8位の東邦が代わりに降格した。
+          rows:
+            - teams:
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 浜名 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 東邦, mark: pref_down }
+                - { name: 暁, mark: pref_down }
+                - { name: 岐阜工業 }
+        - kai: 1
+          year: 2003
+          rows:
+            - teams:
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 岐阜工業 }
+                - { name: 磐田ユース, link: jubilo-iwata-u18 }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
+                - { name: 東邦 }
+                - { name: 藤枝東, link: fujieda-higashi }
+                - { name: 日生第二, mark: pref_down }
+                - { name: 各務原, mark: pref_down }
+
+  sources:
+    - label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ東海』
+      url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ東海
+      note: 2003年〜2025年の歴代成績（セルの色分けもDOMから機械的に読み取って転記）
+    - label: JFA公式 高円宮杯 JFA U-18サッカープリンスリーグ 2025 東海 順位表
+      url: https://www.jfa.jp/match/takamado_jfa_u18_prince2025/tokai/
+      note: 2025年の最終順位（全18節終了）を照合。勝点＝勝×3＋分、得失点差も再計算で検算済み
+    - label: JFA公式 高円宮杯 JFA U-18サッカープレミアリーグ 2025 プレーオフ
+      url: https://www.jfa.jp/match/takamado_jfa_u18_premier2025_playoff/
+      note: 清水エスパルスユース＝東海第1代表／ジュビロ磐田U-18＝東海第2代表、磐田の昇格決定を確認
+    - label: JFA公式 高円宮杯 JFA U-18サッカープリンスリーグ 2018 東海 順位表
+      url: https://www.jfa.jp/match/takamado_jfa_u18_prince2018/tokai/
+      note: 2017年の藤枝明誠が降格していない（2018年も参加）ことの確認
+
+hokkaido:
+  label: プリンスリーグ北海道
+  slugs:
+    - prince-hokkaido
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ北海道は2003年に第1回が開催され、2026年で第24回を迎えた。
+    全国に9つあるプリンスリーグの中で、ただ一つ1つの都道府県（北海道）のチームだけで構成されるリーグである。
+    第1回から2025年までの23シーズンで優勝したのは7チームだけで、北海道コンサドーレ札幌U-18が12回、旭川実業が5回を占める。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 北海道
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ北海道
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 北海道
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2024年〜（プリンスリーグ＋北海道FAリーグ）
+      note: >-
+        2024年に下部リーグとして「北海道FAリーグ」が新設された。
+        北海道サッカー協会の資料では「プリンス2部」と呼ばれることもあるが、
+        JFAが定めるプリンスリーグの枠組みには含まれていない。
+        プリンスの下位2チームとFAリーグの上位2チームが入れ替わり、FAリーグの下位2チームはブロックリーグへ降格する。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        playoff: プレミアリーグプレーオフ出場（昇格ならず）
+        down: 北海道FAリーグへ降格
+        up: プリンスリーグ北海道へ昇格
+        pref_down: ブロックリーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          note: >-
+            FAリーグ2位の札幌大谷高2ndは、トップチームがプリンスに残留したため昇格できず、
+            3位の北照高が繰り上げ昇格となった。
+          rows:
+            - div: プリンス
+              teams:
+                - { name: 札幌大谷, link: sapporo-otani, mark: playoff }
+                - { name: コンサドーレ, link: consadole-sapporo-u18 }
+                - { name: 北海 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 大谷室蘭 }
+                - { name: 札幌光星, link: sapporo-kosei }
+                - { name: 札幌創成, mark: down }
+                - { name: 札幌第一, mark: down }
+            - div: FAリーグ
+              teams:
+                - { name: 帯広北, mark: up }
+                - { name: 札幌大谷高2nd, sub: 昇格不可 }
+                - { name: 北照, sub: 繰り上げ, mark: up }
+                - { name: 旭川実2nd }
+                - { name: 大谷室蘭2nd }
+                - { name: VITA FC }
+                - { name: 駒大苫小牧, mark: pref_down }
+                - { name: 旭川志峯, mark: pref_down }
+        - kai: 22
+          year: 2024
+          rows:
+            - div: プリンス
+              teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 札幌創成 }
+                - { name: 北海 }
+                - { name: 大谷室蘭 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 駒大苫小牧, mark: down }
+                - { name: 北照, mark: down }
+            - div: FAリーグ
+              teams:
+                - { name: 札幌光星, link: sapporo-kosei, mark: up }
+                - { name: 札幌第一, mark: up }
+                - { name: 帯広北 }
+                - { name: 旭川実2nd }
+                - { name: VITA FC }
+                - { name: 旭川志峯 }
+                - { name: 函館大谷, mark: pref_down }
+                - { name: 帯広緑陽, mark: pref_down }
+
+    - title: 2011年〜2023年（8チーム2回戦総当たり）
+      note: >-
+        2011年のプレミアリーグ創設に伴い、優勝チーム（年によっては2位も）がプレミアリーグ参入戦へ回る形になった。
+        この期間にプレミアリーグへ在籍していたコンサドーレ札幌U-18（2011〜2015年）と旭川実業（2012年・2023年）は、
+        その年はこの順位表に登場しない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位]
+      legend:
+        premier: プレミアリーグ参入戦を勝ち抜き昇格
+        playoff: プレミアリーグ参入戦 出場（昇格ならず）
+        down: 下部リーグへ降格
+      seasons:
+        - kai: 21
+          year: 2023
+          note: >-
+            7位の旭川実業2ndは、トップチームがプレミアリーグから降格したため、
+            プレーオフの結果にかかわらず翌年新設の北海道FAリーグへ降格となった。
+          rows:
+            - teams:
+                - { name: 北海, mark: playoff }
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 駒大苫小牧 }
+                - { name: 大谷室蘭 }
+                - { name: 札幌創成 }
+                - { name: 旭川実2nd, mark: down }
+                - { name: 帯広北, mark: down }
+        - kai: 20
+          year: 2022
+          rows:
+            - teams:
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: premier }
+                - { name: 札幌大谷, link: sapporo-otani, mark: playoff }
+                - { name: コンサドーレ, link: consadole-sapporo-u18 }
+                - { name: 札幌創成 }
+                - { name: 大谷室蘭 }
+                - { name: 北海 }
+                - { name: 札幌光星, link: sapporo-kosei, mark: down }
+                - { name: 札幌第一, mark: down }
+        - kai: 19
+          year: 2021
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: playoff }
+                - { name: 大谷室蘭 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 札幌創成 }
+                - { name: 札幌第一 }
+                - { name: 東海大札幌, mark: down }
+                - { name: 駒大苫小牧, mark: down }
+        - kai: 18
+          year: 2020
+          note: >-
+            新型コロナウイルスの影響で開幕が9月にずれ、1回戦総当たりに縮小され、昇降格も行われなかった。
+            さらに最終節が中止となり、代替試合を行わずにその時点の順位が最終順位として確定した。
+          rows:
+            - teams:
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: コンサドーレ, link: consadole-sapporo-u18 }
+                - { name: 大谷室蘭 }
+                - { name: 札幌第一 }
+                - { name: 東海大札幌 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 札幌創成 }
+                - { name: 駒大苫小牧 }
+        - kai: 17
+          year: 2019
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: playoff }
+                - { name: 札幌第一 }
+                - { name: 駒大苫小牧 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 札幌創成 }
+                - { name: 帯広北, mark: down }
+                - { name: 白樺学園, mark: down }
+        - kai: 16
+          year: 2018
+          rows:
+            - teams:
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: playoff }
+                - { name: コンサドーレ, link: consadole-sapporo-u18 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 駒大苫小牧 }
+                - { name: 札幌創成 }
+                - { name: 帯広北 }
+                - { name: 東海大札幌, mark: down }
+                - { name: 大谷室蘭, mark: down }
+        - kai: 15
+          year: 2017
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 大谷室蘭 }
+                - { name: 東海大札幌 }
+                - { name: 帯広北 }
+                - { name: 北海, mark: down }
+                - { name: 札幌日大高, mark: down }
+        - kai: 14
+          year: 2016
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
+                - { name: 北海 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 帯広北 }
+                - { name: 大谷室蘭 }
+                - { name: 札幌第一, mark: down }
+                - { name: 駒大苫小牧, mark: down }
+        - kai: 13
+          year: 2015
+          rows:
+            - teams:
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: playoff }
+                - { name: 札幌第一 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 帯広北 }
+                - { name: 駒大苫小牧 }
+                - { name: 大谷室蘭 }
+                - { name: 旭川凌雲, mark: down }
+                - { name: 北星大附, mark: down }
+        - kai: 12
+          year: 2014
+          rows:
+            - teams:
+                - { name: 大谷室蘭, mark: playoff }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 札幌第一 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 帯広北 }
+                - { name: 駒大苫小牧 }
+                - { name: 北海, mark: down }
+                - { name: 東海大四, mark: down }
+        - kai: 11
+          year: 2013
+          rows:
+            - teams:
+                - { name: 帯広北, mark: playoff }
+                - { name: 大谷室蘭 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 札幌第一 }
+                - { name: 札幌大谷, link: sapporo-otani }
+                - { name: 北海 }
+                - { name: 札幌創成, mark: down }
+                - { name: 札幌日大高, mark: down }
+        - kai: 10
+          year: 2012
+          note: 6位の登別大谷高は2012年度をもって閉校となり、リーグを脱退した。
+          rows:
+            - teams:
+                - { name: 大谷室蘭, mark: playoff }
+                - { name: 帯広北 }
+                - { name: 札幌第一 }
+                - { name: 札幌創成 }
+                - { name: 北海 }
+                - { name: 登別大谷, sub: 脱退 }
+                - { name: 札幌新陽, mark: down }
+                - { name: 札幌光星, link: sapporo-kosei, mark: down }
+        - kai: 9
+          year: 2011
+          note: 優勝した旭川実業がプレミアリーグ参入戦で2連勝し、北海道から2チーム目のプレミアリーグ昇格を決めた。
+          rows:
+            - teams:
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: premier }
+                - { name: 帯広北 }
+                - { name: 北海 }
+                - { name: 札幌第一 }
+                - { name: 札幌創成 }
+                - { name: 室蘭大谷 }
+                - { name: 札幌光星, link: sapporo-kosei }
+                - { name: 北星大附, mark: down }
+
+    - title: 2003年〜2010年（1回戦総当たり）
+      note: >-
+        2003年・2004年・2010年は8チーム、2005年〜2009年は10チームによる1回戦総当たりで行われた。
+        下位チームはブロックリーグ勢との入替戦・決勝大会に回り、その結果で残留と降格が決まった。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース(U-18)選手権 出場権獲得
+        premier: 高円宮杯全日本ユース出場権獲得／プレミアリーグ昇格
+        stay: 入替戦・プレーオフの結果 残留
+        down: 下部（ブロックリーグ）へ降格
+      seasons:
+        - kai: 8
+          year: 2010
+          note: 優勝したコンサドーレ札幌U-18が、翌2011年に新設されたプレミアリーグへ北海道枠で参入した。
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: premier }
+                - { name: 室蘭大谷 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 北海 }
+                - { name: 札幌第一 }
+                - { name: 帯広北 }
+                - { name: 札幌創成, mark: stay }
+                - { name: 札幌新陽, mark: down }
+        - kai: 7
+          year: 2009
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
+                - { name: 札幌第一 }
+                - { name: 北海 }
+                - { name: 室蘭大谷 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 札幌新陽 }
+                - { name: 帯広北, mark: stay }
+                - { name: 札幌光星, link: sapporo-kosei, mark: down }
+                - { name: 登別大谷, mark: down }
+                - { name: 札幌白石, mark: down }
+        - kai: 6
+          year: 2008
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
+                - { name: 北海 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 帯広北 }
+                - { name: 室蘭大谷 }
+                - { name: 札幌第一 }
+                - { name: 札幌新陽 }
+                - { name: 登別大谷, mark: stay }
+                - { name: 北星大附, mark: down }
+                - { name: 札幌山の手, mark: down }
+        - kai: 5
+          year: 2007
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
+                - { name: 室蘭大谷 }
+                - { name: 帯広北 }
+                - { name: 北海 }
+                - { name: 札幌第一 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 北星大附 }
+                - { name: 札幌山の手, mark: stay }
+                - { name: 函館大有斗, mark: down }
+                - { name: 帯広大谷, mark: down }
+        - kai: 4
+          year: 2006
+          note: コンサドーレ札幌U-18以外のチームが優勝した最初の年で、札幌第一が初優勝した。
+          rows:
+            - teams:
+                - { name: 札幌第一, mark: zenkoku }
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: zenkoku }
+                - { name: 室蘭大谷 }
+                - { name: 札幌山の手 }
+                - { name: コンサドーレ, link: consadole-sapporo-u18 }
+                - { name: 北海 }
+                - { name: 帯広北 }
+                - { name: 登別大谷, mark: down }
+                - { name: 札幌光星, link: sapporo-kosei, mark: down }
+                - { name: 駒大苫小牧, mark: down }
+        - kai: 3
+          year: 2005
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
+                - { name: 帯広北 }
+                - { name: 室蘭大谷 }
+                - { name: 登別大谷 }
+                - { name: 北海 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 札幌山の手 }
+                - { name: 札幌第一, mark: stay }
+                - { name: 札幌白石, mark: down }
+                - { name: 札幌日大高, mark: down }
+        - kai: 2
+          year: 2004
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
+                - { name: 北海 }
+                - { name: 札幌第一 }
+                - { name: 帯広北 }
+                - { name: 旭川実, link: asahikawa-jitsugyo }
+                - { name: 室蘭大谷 }
+                - { name: 札幌白石 }
+                - { name: 登別大谷, mark: stay }
+        - kai: 1
+          year: 2003
+          note: 8チームによる1回戦総当たりでスタートし、下位3チームが自動降格した。
+          rows:
+            - teams:
+                - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
+                - { name: 帯広北 }
+                - { name: 室蘭大谷 }
+                - { name: 札幌白石 }
+                - { name: 札幌第一 }
+                - { name: 札幌山の手, mark: down }
+                - { name: 旭川東, mark: down }
+                - { name: 千歳, mark: down }
+
+  sources:
+    - label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ北海道』
+      url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ北海道
+      note: 2003年〜2025年の歴代成績（セルの色分けもDOMから機械的に読み取って転記）
+    - label: 北海道サッカー協会 各年度の最終結果
+      url: https://www.hokkaido-fa.jp/
+      note: 2024年・2025年のプリンスリーグ北海道および北海道FAリーグ最終順位
