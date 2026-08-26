@@ -2579,3 +2579,658 @@ hokkaido:
     - label: 北海道サッカー協会 各年度の最終結果
       url: https://www.hokkaido-fa.jp/
       note: 2024年・2025年のプリンスリーグ北海道および北海道FAリーグ最終順位
+
+# ============================================================
+# プレミアリーグEAST／WEST（2026-08-26追加）
+# ★プリンスと違い、回次の列を出さない（show_kai: false）。公式に「第◯回」を使わないため。
+# ★順位表に加えて tenure（チーム別の在籍年数）と top_scorers（歴代得点王）を持つ。
+# ★ファイナルの結果は /leagues/premier-final/ に専用ページがあるので、ここには書かない。
+# ============================================================
+
+premier_east:
+  label: プレミアリーグEAST
+  slugs:
+    - premier-east
+  show_kai: false          # プレミアは公式に「第◯回」を使わないため回次の列を出さない
+  related:
+    - { label: プレミアリーグ ファイナル 歴代結果, url: /leagues/premier-final/ }
+  first_year: 2011
+  current_kai: 16
+  intro: >-
+    プレミアリーグEASTは、2011年に始まった全国リーグ「高円宮杯 JFA U-18サッカープレミアリーグ」の東日本グループである。
+    各地域のプリンスリーグの上位から勝ち上がったチームだけが参加でき、年末にはEASTとWESTの優勝チームがファイナルで日本一を争う。
+  intro_by_slug:
+    premier-east: >-
+      実際に開催された14シーズンでEASTを制したのは9チーム。最多は青森山田高校の4回（2016・2019・2021・2023年）で、鹿島アントラーズユースの3回（2015・2018・2025年）が続く。なお東西の分け方は地理や移動距離を考えて毎年決められるため、同じチームでも年によって所属が変わることがある（京都サンガF.C. U-18は2017年だけ、富山第一高校は2018年だけEASTに所属した）。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プレミアリーグ EAST
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープレミアリーグ EAST
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2022年〜（12チーム制）
+      note: >-
+        プレミアリーグは公式には「第◯回」と数えず年で呼ぶ。この表の「回」は2011年を第1回として年ごとに振った通し番号で、中止となった2020年も1シーズンとして数えている。2022年から各地域12チームに拡大し、この年は下位2チームの自動降格に加えて10位のチームもプレーオフに回った。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        final: ファイナル（2017年まではチャンピオンシップ）優勝
+        down: プリンスリーグへ降格
+      seasons:
+        - kai: 15
+          year: 2025
+          rows:
+            - teams:
+                - { name: 鹿島ユース, link: kashima-youth, mark: final }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 横浜Cユース, link: yokohama-fc-youth }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 昌平, link: shohei }
+                - { name: 浦和ユース, link: urawa-reds-youth, mark: down }
+                - { name: 市船橋, link: ichiritsu-funabashi, mark: down }
+        - kai: 14
+          year: 2024
+          rows:
+            - teams:
+                - { name: 横浜Cユース, link: yokohama-fc-youth }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 昌平, link: shohei }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 尚志, link: shoshi, mark: down }
+                - { name: 大宮U18, link: rb-omiya-ardija-u18, mark: down }
+        - kai: 13
+          year: 2023
+          rows:
+            - teams:
+                - { name: 青森山田, link: aomori-yamada, mark: final }
+                - { name: 尚志, link: shoshi }
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 昌平, link: shohei }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 大宮U18, link: rb-omiya-ardija-u18 }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: down }
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: down }
+        - kai: 12
+          year: 2022
+          rows:
+            - teams:
+                - { name: 川崎U-18, link: kawasaki-frontale-u18 }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 大宮U18, link: rb-omiya-ardija-u18 }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 前橋育英, link: maebashi-ikuei }
+                - { name: 横浜Cユース, link: yokohama-fc-youth }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: JFA福島, mark: down }
+                - { name: 桐生第一, link: kiryu-daiichi, mark: down }
+    - title: 2011年〜2021年（10チーム制）
+      note: >-
+        2011年から2021年までは各地域10チームで争われた。2021年は翌年の12チーム制への拡大に伴い、自動降格は各地域1チームだけだった。またこの年はファイナルが中止になったため、優勝チームに色が付いていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        final: ファイナル（2017年まではチャンピオンシップ）優勝
+        down: プリンスリーグへ降格
+      seasons:
+        - kai: 11
+          year: 2021
+          rows:
+            - teams:
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 大宮U18, link: rb-omiya-ardija-u18 }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 横浜Cユース, link: yokohama-fc-youth }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 浦和ユース, link: urawa-reds-youth, mark: down }
+        - kai: 10
+          year: 2020
+          note: >-
+            新型コロナウイルス感染症の拡大によりプレミアリーグそのものが中止。参加予定だった関東のチームによるリーグ戦（プレミアリーグ関東）と、それ以外の地区の合同リーグ（スーパープリンスリーグ）が代わりに行われた。
+          rows:
+            - teams: []
+        - kai: 9
+          year: 2019
+          rows:
+            - teams:
+                - { name: 青森山田, link: aomori-yamada, mark: final }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 大宮U18, link: rb-omiya-ardija-u18 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 鹿島ユース, link: kashima-youth, mark: down }
+                - { name: 尚志, link: shoshi, mark: down }
+        - kai: 8
+          year: 2018
+          rows:
+            - teams:
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: F東京U-18, link: fc-tokyo-u18, mark: down }
+                - { name: 富山第一, link: toyama-daiichi, mark: down }
+        - kai: 7
+          year: 2017
+          rows:
+            - teams:
+                - { name: F東京U-18, link: fc-tokyo-u18, mark: final }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: down }
+                - { name: 横浜Mユース, link: yokohama-fm-youth, mark: down }
+        - kai: 6
+          year: 2016
+          rows:
+            - teams:
+                - { name: 青森山田, link: aomori-yamada, mark: final }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18 }
+                - { name: 横浜Mユース, link: yokohama-fm-youth }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 流通経大柏, link: ryukei-kashiwa, mark: down }
+                - { name: 新潟U-18, link: albirex-niigata-u18, mark: down }
+        - kai: 5
+          year: 2015
+          rows:
+            - teams:
+                - { name: 鹿島ユース, link: kashima-youth, mark: final }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 大宮ユース, link: rb-omiya-ardija-u18 }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: F東京U-18, link: fc-tokyo-u18 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 札幌U-18, link: consadole-sapporo-u18, mark: down }
+                - { name: JFA福島, mark: down }
+        - kai: 4
+          year: 2014
+          rows:
+            - teams:
+                - { name: 柏U-18, link: kashiwa-reysol-u18 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 市船橋, link: ichiritsu-funabashi }
+                - { name: JFA福島 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 札幌U-18, link: consadole-sapporo-u18 }
+                - { name: 東京Vユース, link: tokyo-verdy-youth, mark: down }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth, mark: down }
+        - kai: 3
+          year: 2013
+          rows:
+            - teams:
+                - { name: 流通経大柏, link: ryukei-kashiwa, mark: final }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: JFA福島 }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 札幌U-18, link: consadole-sapporo-u18 }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 静岡学園, link: shizuoka-gakuen, mark: down }
+                - { name: 桐光学園, link: toko-gakuen, mark: down }
+        - kai: 2
+          year: 2012
+          rows:
+            - teams:
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 札幌U-18, link: consadole-sapporo-u18 }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 鹿島ユース, link: kashima-youth }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: 浦和ユース, link: urawa-reds-youth, mark: down }
+                - { name: 旭川実, link: asahikawa-jitsugyo, mark: down }
+        - kai: 1
+          year: 2011
+          rows:
+            - teams:
+                - { name: 札幌U-18, link: consadole-sapporo-u18 }
+                - { name: 東京Vユース, link: tokyo-verdy-youth }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 浦和ユース, link: urawa-reds-youth }
+                - { name: 流通経大柏, link: ryukei-kashiwa }
+                - { name: 青森山田, link: aomori-yamada }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 三菱養和, link: mitsubishi-yowa-youth }
+                - { name: F東京U-18, link: fc-tokyo-u18, mark: down }
+                - { name: 尚志, link: shoshi, mark: down }
+
+  # ---- チーム別のプレミアリーグ在籍年数 ----
+  tenure:
+    title: チーム別のプレミアリーグ在籍年数
+    fold: true
+    summary: プレミアリーグEASTに在籍した全29チームの在籍年数を表示
+    note: >-
+      在籍年数は2011年から2026年までの通算。中止になった2020年も、参加が決まっていたシーズンとして1年に数えられている。2026年は開催中のシーズンを含む。清水エスパルスユース・京都サンガF.C. U-18・静岡学園高校・ジュビロ磐田U-18・横浜FCユース・富山第一高校・帝京長岡高校の7チームはEASTとWESTの両方に在籍した経験があり、年数は両地域を合わせた通算である。
+    rows:
+      - { name: 青森山田高校, link: aomori-yamada, years: 16, seasons: "2011〜2026" }
+      - { name: 流通経済大学附属柏高校, link: ryukei-kashiwa, years: 15, seasons: "2011〜2016, 2018〜2026" }
+      - { name: 柏レイソルU-18, link: kashiwa-reysol-u18, years: 13, seasons: "2014〜2026" }
+      - { name: 清水エスパルスユース, link: shimizu-s-pulse-youth, years: 12, seasons: "2011〜2022" }
+      - { name: FC東京U-18, link: fc-tokyo-u18, years: 12, seasons: "2011, 2015〜2018, 2020〜2026" }
+      - { name: 市立船橋高校, link: ichiritsu-funabashi, years: 12, seasons: "2014〜2025" }
+      - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, years: 11, seasons: "2011〜2021" }
+      - { name: 鹿島アントラーズユース, link: kashima-youth, years: 11, seasons: "2012〜2019, 2024〜2026" }
+      - { name: RB大宮アルディージャU18, link: rb-omiya-ardija-u18, years: 9, seasons: "2015〜2017, 2019〜2024" }
+      - { name: 浦和レッズユース, link: urawa-reds-youth, years: 8, seasons: "2011〜2012, 2017〜2021, 2025" }
+      - { name: 静岡学園高校, link: shizuoka-gakuen, years: 7, seasons: "2011〜2013, 2022〜2025" }
+      - { name: ジュビロ磐田U-18, link: jubilo-iwata-u18, years: 7, seasons: "2018〜2023, 2026" }
+      - { name: 横浜FCユース, link: yokohama-fc-youth, years: 7, seasons: "2020〜2026" }
+      - { name: 東京ヴェルディユース, link: tokyo-verdy-youth, years: 6, seasons: "2011〜2014, 2025〜2026" }
+      - { name: 横浜F・マリノスユース, link: yokohama-fm-youth, years: 6, seasons: "2016〜2017, 2020〜2023" }
+      - { name: 北海道コンサドーレ札幌U-18, link: consadole-sapporo-u18, years: 5, seasons: "2011〜2015" }
+      - { name: 富山第一高校, link: toyama-daiichi, years: 5, seasons: "2011〜2014, 2018" }
+      - { name: 川崎フロンターレU-18, link: kawasaki-frontale-u18, years: 5, seasons: "2022〜2026" }
+      - { name: 前橋育英高校, link: maebashi-ikuei, years: 5, seasons: "2022〜2026" }
+      - { name: 三菱養和SCユース, link: mitsubishi-yowa-youth, years: 4, seasons: "2011〜2014" }
+      - { name: JFAアカデミー福島, years: 4, seasons: "2013〜2015, 2022" }
+      - { name: 尚志高校, link: shoshi, years: 4, seasons: "2011, 2019, 2023〜2024" }
+      - { name: 昌平高校, link: shohei, years: 4, seasons: "2023〜2026" }
+      - { name: 帝京長岡高校, link: teikyo-nagaoka, years: 3, seasons: "2024〜2026" }
+      - { name: 旭川実業高校, link: asahikawa-jitsugyo, years: 2, seasons: "2012, 2023" }
+      - { name: 桐光学園高校, link: toko-gakuen, years: 1, seasons: "2013" }
+      - { name: アルビレックス新潟U-18, link: albirex-niigata-u18, years: 1, seasons: "2016" }
+      - { name: 桐生第一高校, link: kiryu-daiichi, years: 1, seasons: "2022" }
+      - { name: ベガルタ仙台ユース, link: vegalta-sendai-youth, years: 1, seasons: "2026" }
+
+  # ---- 歴代得点王 ----
+  top_scorers:
+    title: 歴代得点王
+    fold: false
+    note: >-
+      2020年は大会そのものが中止。2021年は出典に得点王の記載が無いため空けている。同じ年に複数の選手が並んだ年は、その全員を載せている。
+    rows:
+      - { year: 2025, player: 仲山獅恩, team: 東京ヴェルディユース, link: tokyo-verdy-youth, goals: 16 }
+      - { year: 2024, player: 吉田湊海, team: 鹿島アントラーズユース, link: kashima-youth, goals: 10 }
+      - { year: 2024, player: オノノジュ慶吏, team: 前橋育英高校, link: maebashi-ikuei, goals: 10 }
+      - { year: 2024, player: ワッド・モハメッド・サディキ, team: 柏レイソルU-18, link: kashiwa-reysol-u18, goals: 10 }
+      - { year: 2023, player: 岡崎寅太郎, team: 川崎フロンターレU-18, link: kawasaki-frontale-u18, goals: 18 }
+      - { year: 2022, player: 内野航太郎, team: 横浜F・マリノスユース, link: yokohama-fm-youth, goals: 21 }
+      - { year: 2019, player: 奥田陽琉, team: 柏レイソルU-18, link: kashiwa-reysol-u18, goals: 13 }
+      - { year: 2018, player: 檀崎竜孔, team: 青森山田高校, link: aomori-yamada, goals: 16 }
+      - { year: 2017, player: 郷家友太, team: 青森山田高校, link: aomori-yamada, goals: 9 }
+      - { year: 2016, player: 小柏剛, team: 大宮アルディージャユース, link: rb-omiya-ardija-u18, goals: 12 }
+      - { year: 2015, player: 佐藤亮, team: FC東京U-18, link: fc-tokyo-u18, goals: 16 }
+      - { year: 2014, player: 平川元樹, team: コンサドーレ札幌U-18, link: consadole-sapporo-u18, goals: 11 }
+      - { year: 2014, player: 下田悠哉, team: 三菱養和SCユース, link: mitsubishi-yowa-youth, goals: 11 }
+      - { year: 2013, player: 金子翔太, team: JFAアカデミー福島, goals: 16 }
+      - { year: 2012, player: 加賀美翔, team: 清水エスパルスユース, link: shimizu-s-pulse-youth, goals: 20 }
+      - { year: 2011, player: 矢島慎也, team: 浦和レッズユース, link: urawa-reds-youth, goals: 12 }
+
+  sources:
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープレミアリーグ
+      label: Wikipedia『高円宮杯 JFA U-18サッカープレミアリーグ』
+      note: 歴代順位・チーム別の在籍年数・歴代得点王
+premier_west:
+  label: プレミアリーグWEST
+  slugs:
+    - premier-west
+  show_kai: false          # プレミアは公式に「第◯回」を使わないため回次の列を出さない
+  related:
+    - { label: プレミアリーグ ファイナル 歴代結果, url: /leagues/premier-final/ }
+  first_year: 2011
+  current_kai: 16
+  intro: >-
+    プレミアリーグWESTは、2011年に始まった全国リーグ「高円宮杯 JFA U-18サッカープレミアリーグ」の西日本グループである。
+    チーム数はEASTと同じで、2011年から2021年までが10チーム、2022年からは12チーム。
+    2020年は全国で中止となり、地域別の代替大会に置き換えられた。
+  intro_by_slug:
+    premier-west: >-
+      実際に開催された14シーズンでWESTを制したのは7チームしかない。サンフレッチェ広島ユースが6回（2011・2012・2016・2018・2021・2023年）、ヴィッセル神戸U-18が3回（2013・2017・2025年）で、この2チームだけで9回を占める。広島ユースは2011年の開幕から一度も降格しておらず、2026年まで16年続けて在籍している。
+      実際に開催された14シーズンでWESTを制したのは7チームしかない。サンフレッチェ広島ユースが6回（2011・2012・2016・2018・2021・2023年）、ヴィッセル神戸U-18が3回（2013・2017・2025年）で、この2チームだけで9回を占める。広島ユースは2011年の開幕から一度も降格しておらず、2026年まで16年続けて在籍している。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プレミアリーグ WEST
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープレミアリーグ WEST
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2022年〜（12チーム制）
+      note: >-
+        プレミアリーグは公式には「第◯回」と数えず年で呼ぶ。この表の「回」は2011年を第1回として年ごとに振った通し番号で、中止となった2020年も1シーズンとして数えている。2022年から各地域12チームに拡大し、この年は下位2チームの自動降格に加えて10位のチームもプレーオフに回った。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        final: ファイナル（2017年まではチャンピオンシップ）優勝
+        down: プリンスリーグへ降格
+      seasons:
+        - kai: 15
+          year: 2025
+          rows:
+            - teams:
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 神村学園, link: kamimura-gakuen }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 大津, link: ohtsu }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 帝京長岡, link: teikyo-nagaoka }
+                - { name: 岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen, mark: down }
+                - { name: 東福岡, link: higashi-fukuoka, mark: down }
+        - kai: 14
+          year: 2024
+          rows:
+            - teams:
+                - { name: 大津, link: ohtsu, mark: final }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 神村学園, link: kamimura-gakuen }
+                - { name: 鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: 帝京長岡, link: teikyo-nagaoka }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 岡山U-18, link: fagiano-okayama-u18 }
+                - { name: 米子北, link: yonago-kita, mark: down }
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: down }
+        - kai: 13
+          year: 2023
+          note: >-
+            この年は横浜FCユース（神奈川県）がWESTに所属した。東西の分け方は地理や移動距離を考えて毎年決められる。
+          rows:
+            - teams:
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 大津, link: ohtsu }
+                - { name: 横浜Cユース, link: yokohama-fc-youth }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 米子北, link: yonago-kita }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: 神村学園, link: kamimura-gakuen }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: down }
+                - { name: 履正社, link: riseisha, mark: down }
+        - kai: 12
+          year: 2022
+          rows:
+            - teams:
+                - { name: 鳥栖U-18, link: sagan-tosu-u18, mark: final }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 大津, link: ohtsu }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 履正社, link: riseisha }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: C大阪U-18, link: cerezo-osaka-u18, mark: down }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: down }
+                - { name: G大阪ユース, link: gamba-osaka-youth, mark: down }
+    - title: 2011年〜2021年（10チーム制）
+      note: >-
+        2011年から2021年までは各地域10チームで争われた。2021年は翌年の12チーム制への拡大に伴い、自動降格は各地域1チームだけだった。またこの年はファイナルが中止になったため、優勝チームに色が付いていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        final: ファイナル（2017年まではチャンピオンシップ）優勝
+        down: プリンスリーグへ降格
+      seasons:
+        - kai: 11
+          year: 2021
+          rows:
+            - teams:
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 大津, link: ohtsu }
+                - { name: 鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 京都U-18, link: kyoto-sanga-u18, mark: down }
+        - kai: 10
+          year: 2020
+          note: >-
+            新型コロナウイルス感染症の拡大によりプレミアリーグそのものが中止。参加予定だった関東のチームによるリーグ戦（プレミアリーグ関東）と、それ以外の地区の合同リーグ（スーパープリンスリーグ）が代わりに行われた。
+          rows:
+            - teams: []
+        - kai: 9
+          year: 2019
+          rows:
+            - teams:
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 大津, link: ohtsu }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18, mark: down }
+                - { name: 愛媛U-18, link: ehime-fc-u18, mark: down }
+        - kai: 8
+          year: 2018
+          rows:
+            - teams:
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth, mark: final }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 名古屋U-18, link: nagoya-grampus-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 阪南大高, link: hannan-daiko, mark: down }
+                - { name: 米子北, link: yonago-kita, mark: down }
+        - kai: 7
+          year: 2017
+          rows:
+            - teams:
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 阪南大高, link: hannan-daiko }
+                - { name: 米子北, link: yonago-kita }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 神戸弘陵, link: kobe-koryo, mark: down }
+                - { name: 大津, link: ohtsu, mark: down }
+        - kai: 6
+          year: 2016
+          rows:
+            - teams:
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 神戸弘陵, link: kobe-koryo }
+                - { name: 大津, link: ohtsu }
+                - { name: 名古屋U18, link: nagoya-grampus-u18, mark: down }
+                - { name: 大分U-18, link: oita-trinita-u18, mark: down }
+        - kai: 5
+          year: 2015
+          rows:
+            - teams:
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 大分U-18, link: oita-trinita-u18 }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 名古屋U18, link: nagoya-grampus-u18 }
+                - { name: 履正社, link: riseisha, mark: down }
+                - { name: 京都橘, link: kyoto-tachibana, mark: down }
+        - kai: 4
+          year: 2014
+          rows:
+            - teams:
+                - { name: C大阪U-18, link: cerezo-osaka-u18, mark: final }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 名古屋U18, link: nagoya-grampus-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 京都橘, link: kyoto-tachibana }
+                - { name: 富山第一, link: toyama-daiichi, mark: down }
+                - { name: 東山, link: higashiyama, mark: down }
+        - kai: 3
+          year: 2013
+          rows:
+            - teams:
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 名古屋U18, link: nagoya-grampus-u18 }
+                - { name: G大阪ユース, link: gamba-osaka-youth }
+                - { name: 富山第一, link: toyama-daiichi }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18, mark: down }
+                - { name: 大津, link: ohtsu, mark: down }
+        - kai: 2
+          year: 2012
+          rows:
+            - teams:
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth, mark: final }
+                - { name: 神戸U-18, link: vissel-kobe-u18 }
+                - { name: 名古屋U18, link: nagoya-grampus-u18 }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: 富山第一, link: toyama-daiichi }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 作陽, link: sakuyo-gakuen, mark: down }
+                - { name: 愛媛ユース, link: ehime-fc-u18, mark: down }
+        - kai: 1
+          year: 2011
+          rows:
+            - teams:
+                - { name: 広島ユース, link: sanfrecce-hiroshima-youth, mark: final }
+                - { name: 京都U-18, link: kyoto-sanga-u18 }
+                - { name: C大阪U-18, link: cerezo-osaka-u18 }
+                - { name: 名古屋U18, link: nagoya-grampus-u18 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 愛媛ユース, link: ehime-fc-u18 }
+                - { name: 富山第一, link: toyama-daiichi }
+                - { name: 広島観音, mark: down }
+                - { name: 立正大淞南, link: rissho-shonan, mark: down }
+
+  # ---- チーム別のプレミアリーグ在籍年数 ----
+  tenure:
+    title: チーム別のプレミアリーグ在籍年数
+    fold: true
+    summary: プレミアリーグWESTに在籍した全30チームの在籍年数を表示
+    note: >-
+      在籍年数は2011年から2026年までの通算。中止になった2020年も、参加が決まっていたシーズンとして1年に数えられている。2026年は開催中のシーズンを含む。清水エスパルスユース・京都サンガF.C. U-18・静岡学園高校・ジュビロ磐田U-18・横浜FCユース・富山第一高校・帝京長岡高校の7チームはEASTとWESTの両方に在籍した経験があり、年数は両地域を合わせた通算である。
+    rows:
+      - { name: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, years: 16, seasons: "2011〜2026" }
+      - { name: 東福岡高校, link: higashi-fukuoka, years: 15, seasons: "2011〜2025" }
+      - { name: 名古屋グランパスU-18, link: nagoya-grampus-u18, years: 15, seasons: "2011〜2016, 2018〜2026" }
+      - { name: ヴィッセル神戸U-18, link: vissel-kobe-u18, years: 15, seasons: "2012〜2026" }
+      - { name: セレッソ大阪U-18, link: cerezo-osaka-u18, years: 12, seasons: "2011〜2022" }
+      - { name: 清水エスパルスユース, link: shimizu-s-pulse-youth, years: 12, seasons: "2011〜2022" }
+      - { name: ガンバ大阪ユース, link: gamba-osaka-youth, years: 12, seasons: "2013〜2022, 2025〜2026" }
+      - { name: 京都サンガF.C. U-18, link: kyoto-sanga-u18, years: 11, seasons: "2011〜2021" }
+      - { name: 大津高校, link: ohtsu, years: 11, seasons: "2013, 2016〜2017, 2019〜2026" }
+      - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18, years: 8, seasons: "2011〜2013, 2017〜2019, 2025〜2026" }
+      - { name: 静岡学園高校, link: shizuoka-gakuen, years: 7, seasons: "2011〜2013, 2022〜2025" }
+      - { name: ジュビロ磐田U-18, link: jubilo-iwata-u18, years: 7, seasons: "2018〜2023, 2026" }
+      - { name: サガン鳥栖U-18, link: sagan-tosu-u18, years: 7, seasons: "2020〜2026" }
+      - { name: 横浜FCユース, link: yokohama-fc-youth, years: 7, seasons: "2020〜2026" }
+      - { name: 富山第一高校, link: toyama-daiichi, years: 5, seasons: "2011〜2014, 2018" }
+      - { name: 米子北高校, link: yonago-kita, years: 5, seasons: "2017〜2018, 2023〜2024, 2026" }
+      - { name: 神村学園高等部, link: kamimura-gakuen, years: 4, seasons: "2023〜2026" }
+      - { name: 愛媛FC U-18, link: ehime-fc-u18, years: 3, seasons: "2011〜2012, 2019" }
+      - { name: 履正社高校, link: riseisha, years: 3, seasons: "2015, 2022〜2023" }
+      - { name: 帝京長岡高校, link: teikyo-nagaoka, years: 3, seasons: "2024〜2026" }
+      - { name: ファジアーノ岡山U-18, link: fagiano-okayama-u18, years: 3, seasons: "2024〜2026" }
+      - { name: 京都橘高校, link: kyoto-tachibana, years: 2, seasons: "2014〜2015" }
+      - { name: 東山高校, link: higashiyama, years: 2, seasons: "2014, 2026" }
+      - { name: 大分トリニータU-18, link: oita-trinita-u18, years: 2, seasons: "2015〜2016" }
+      - { name: 神戸弘陵学園高校, link: kobe-koryo, years: 2, seasons: "2016〜2017" }
+      - { name: 阪南大学高校, link: hannan-daiko, years: 2, seasons: "2017〜2018" }
+      - { name: 広島観音高校, years: 1, seasons: "2011" }
+      - { name: 立正大学淞南高校, link: rissho-shonan, years: 1, seasons: "2011" }
+      - { name: 作陽学園高校, link: sakuyo-gakuen, years: 1, seasons: "2012" }
+      - { name: 鹿児島城西高校, link: kagoshima-josei, years: 1, seasons: "2024" }
+
+  # ---- 歴代得点王 ----
+  top_scorers:
+    title: 歴代得点王
+    fold: false
+    note: >-
+      2020年は大会そのものが中止。2021年は出典に得点王の記載が無いため空けている。同じ年に複数の選手が並んだ年は、その全員を載せている。
+    rows:
+      - { year: 2025, player: 大西利都, team: 名古屋グランパスU-18, link: nagoya-grampus-u18, goals: 26 }
+      - { year: 2024, player: 山下景司, team: 大津高校, link: ohtsu, goals: 20 }
+      - { year: 2023, player: 碇明日麻, team: 大津高校, link: ohtsu, goals: 20 }
+      - { year: 2022, player: 木下慎之輔, team: セレッソ大阪U-18, link: cerezo-osaka-u18, goals: 15 }
+      - { year: 2019, player: 石井稜真, team: アビスパ福岡U-18, link: avispa-fukuoka-u18, goals: 13 }
+      - { year: 2018, player: 服部航平, team: 京都サンガF.C. U-18, link: kyoto-sanga-u18, goals: 15 }
+      - { year: 2018, player: 原田烈志, team: ガンバ大阪ユース, link: gamba-osaka-youth, goals: 15 }
+      - { year: 2017, player: 満田誠, team: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, goals: 11 }
+      - { year: 2017, player: 明比友宏, team: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, goals: 11 }
+      - { year: 2016, player: 山根永遠, team: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, goals: 12 }
+      - { year: 2016, player: 藤山雄生, team: 大津高校, link: ohtsu, goals: 12 }
+      - { year: 2015, player: 加藤陸次樹, team: サンフレッチェ広島ユース, link: sanfrecce-hiroshima-youth, goals: 14 }
+      - { year: 2014, player: 米澤令衣, team: ヴィッセル神戸U-18, link: vissel-kobe-u18, goals: 15 }
+      - { year: 2013, player: 米澤令衣, team: ヴィッセル神戸U-18, link: vissel-kobe-u18, goals: 12 }
+      - { year: 2012, player: 松村亮, team: ヴィッセル神戸U-18, link: vissel-kobe-u18, goals: 22 }
+      - { year: 2011, player: 三根和起, team: 京都サンガF.C. U-18, link: kyoto-sanga-u18, goals: 16 }
+
+  sources:
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープレミアリーグ
+      label: Wikipedia『高円宮杯 JFA U-18サッカープレミアリーグ』
+      note: 歴代順位・チーム別の在籍年数・歴代得点王。順位表の色分けはDOMから機械的に読み取って転記した
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープレミアリーグ_2026
+      label: Wikipedia『高円宮杯 JFA U-18サッカープレミアリーグ 2026』
+      note: 2026年の参加チームとEAST・WESTの分け方
+

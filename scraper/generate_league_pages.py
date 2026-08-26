@@ -777,6 +777,28 @@ def _chronicle_team_cell(team):
     return f'<td{cls} style="padding:6px 10px; white-space:nowrap;">{inner}</td>'
 
 
+def _chronicle_block(cfg, table_html, n_rows, muted, border):
+    """全史セクションの任意ブロック（在籍年数・得点王）を、見出し＋注記＋表にまとめる。
+
+    cfg に `fold: true` があれば <details> で折りたたむ。
+    """
+    title = html_escape(str(cfg.get("title", "")))
+    note = (
+        f'<p style="font-size:.9em; color:{muted}; margin:0 0 10px 0;">'
+        f'{html_escape(str(cfg["note"]).strip())}</p>'
+        if cfg.get("note") else ""
+    )
+    if cfg.get("fold"):
+        summary = html_escape(str(cfg.get("summary") or f"{title}を表示（{n_rows}件）"))
+        return (
+            f'<details style="margin:28px 0 0 0; border:1px solid {border}; '
+            f'border-radius:8px; padding:0 14px;">'
+            f'<summary style="cursor:pointer; padding:14px 0; font-weight:600;">{summary}</summary>'
+            f'<div style="padding-bottom:14px;">{note}{table_html}</div></details>'
+        )
+    return f'<h3 style="margin:32px 0 10px 0;">{title}</h3>{note}{table_html}'
+
+
 def render_league_chronicle_html(slug, label):
     """リーグの全史（名称・方式の変遷／プレミア昇格の歴史／歴代順位表）のHTMLを生成。
 
@@ -802,6 +824,16 @@ def render_league_chronicle_html(slug, label):
         parts.append(
             f'<p style="line-height:1.9; margin:0 0 20px 0;">{html_escape(str(intro_slug).strip())}</p>'
         )
+
+    # 関連ページへの導線（任意）
+    related = data.get("related") or []
+    if related:
+        links = "・".join(
+            f'<a href="{html_escape(str(r.get("url","")))}" '
+            f'style="color:var(--accent-color,#2563eb);">{html_escape(str(r.get("label","")))}</a>'
+            for r in related
+        )
+        parts.append(f'<p style="margin:0 0 20px 0; font-size:.95em;">{links}</p>')
 
     # --- 大会名称の変遷 ---
     name_history = data.get("name_history") or []
@@ -834,6 +866,9 @@ def render_league_chronicle_html(slug, label):
     # fold_from_era 番目以降の表は <details> で折りたたむ（既定は折りたたまない）
     fold_from = data.get("fold_from_era")
     fold_from = int(fold_from) if fold_from is not None else len(eras)
+
+    # プレミアリーグは公式に「第◯回」を使わないので、回の列を出さない
+    show_kai = data.get("show_kai", True)
 
     for era_index, era in enumerate(eras):
         legend = era.get("legend") or {}
@@ -873,7 +908,7 @@ def render_league_chronicle_html(slug, label):
             )
             parts.append(f'<div style="margin:0 0 10px 0;">{chips}</div>')
 
-        head = '<th style="padding:6px 10px; white-space:nowrap;">回</th>' \
+        head = ('<th style="padding:6px 10px; white-space:nowrap;">回</th>' if show_kai else "") + \
                '<th style="padding:6px 10px; white-space:nowrap;">年度</th>'
         if has_div:
             head += '<th style="padding:6px 10px; white-space:nowrap;">区分</th>'
@@ -890,9 +925,12 @@ def render_league_chronicle_html(slug, label):
                 body += '<tr>'
                 if i == 0:
                     rs = f' rowspan="{span}"' if span > 1 else ""
+                    if show_kai:
+                        body += (
+                            f'<td{rs} style="padding:6px 10px; text-align:center; font-weight:600; '
+                            f'vertical-align:middle;">{html_escape(str(season.get("kai","")))}</td>'
+                        )
                     body += (
-                        f'<td{rs} style="padding:6px 10px; text-align:center; font-weight:600; '
-                        f'vertical-align:middle;">{html_escape(str(season.get("kai","")))}</td>'
                         f'<td{rs} style="padding:6px 10px; white-space:nowrap; font-weight:600; '
                         f'vertical-align:middle;">{html_escape(str(season.get("year","")))}年</td>'
                     )
@@ -909,7 +947,7 @@ def render_league_chronicle_html(slug, label):
                 body += '</tr>'
 
             if season.get("note"):
-                ncols = len(cols) + (3 if has_div else 2)
+                ncols = len(cols) + (1 if has_div else 0) + (2 if show_kai else 1)
                 body += (
                     f'<tr><td colspan="{ncols}" style="padding:4px 10px 10px 10px; '
                     f'font-size:.85em; color:{muted};">※ {html_escape(str(season["note"]))}</td></tr>'
@@ -925,6 +963,73 @@ def render_league_chronicle_html(slug, label):
     # 折りたたみを閉じる
     if fold_from < len(eras):
         parts.append('</div></details>')
+
+    # --- チーム別の在籍年数（プレミア用。任意ブロック） ---
+    tenure = data.get("tenure")
+    if tenure and tenure.get("rows"):
+        head = (
+            f'<th style="padding:6px 10px; text-align:left;">チーム</th>'
+            f'<th style="padding:6px 10px; white-space:nowrap;">在籍年数</th>'
+            f'<th style="padding:6px 10px; text-align:left;">在籍した年度</th>'
+        )
+        body = ""
+        for r in tenure["rows"]:
+            name = html_escape(str(r.get("name", "")))
+            if r.get("link"):
+                name = (
+                    f'<a href="/teams/{html_escape(str(r["link"]))}/" '
+                    f'style="color:inherit; text-decoration:underline; '
+                    f'text-decoration-color:rgba(127,127,127,.5); text-underline-offset:2px;">{name}</a>'
+                )
+            body += (
+                f'<tr><td style="padding:6px 10px; white-space:nowrap;">{name}</td>'
+                f'<td style="padding:6px 10px; text-align:center; font-weight:600;">'
+                f'{html_escape(str(r.get("years","")))}</td>'
+                f'<td style="padding:6px 10px; font-size:.92em; color:{muted};">'
+                f'{html_escape(str(r.get("seasons","")))}</td></tr>'
+            )
+        table = (
+            '<div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">'
+            '<table style="border-collapse:collapse; font-size:.9em; min-width:100%;">'
+            f'<thead><tr style="background:rgba(127,127,127,.12);">{head}</tr></thead>'
+            f'<tbody>{body}</tbody></table></div>'
+        )
+        parts.append(_chronicle_block(tenure, table, len(tenure["rows"]), muted, border))
+
+    # --- 歴代得点王（プレミア用。任意ブロック） ---
+    scorers = data.get("top_scorers")
+    if scorers and scorers.get("rows"):
+        head = (
+            f'<th style="padding:6px 10px; white-space:nowrap;">年度</th>'
+            f'<th style="padding:6px 10px; text-align:left;">選手</th>'
+            f'<th style="padding:6px 10px; text-align:left;">所属チーム</th>'
+            f'<th style="padding:6px 10px; white-space:nowrap;">得点</th>'
+        )
+        body = ""
+        for r in scorers["rows"]:
+            team = html_escape(str(r.get("team", "")))
+            if r.get("link"):
+                team = (
+                    f'<a href="/teams/{html_escape(str(r["link"]))}/" '
+                    f'style="color:inherit; text-decoration:underline; '
+                    f'text-decoration-color:rgba(127,127,127,.5); text-underline-offset:2px;">{team}</a>'
+                )
+            body += (
+                f'<tr><td style="padding:6px 10px; white-space:nowrap; font-weight:600;">'
+                f'{html_escape(str(r.get("year","")))}年</td>'
+                f'<td style="padding:6px 10px; white-space:nowrap;">'
+                f'{html_escape(str(r.get("player","")))}</td>'
+                f'<td style="padding:6px 10px; white-space:nowrap;">{team}</td>'
+                f'<td style="padding:6px 10px; text-align:center;">'
+                f'{html_escape(str(r.get("goals","")))}</td></tr>'
+            )
+        table = (
+            '<div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">'
+            '<table style="border-collapse:collapse; font-size:.9em; min-width:100%;">'
+            f'<thead><tr style="background:rgba(127,127,127,.12);">{head}</tr></thead>'
+            f'<tbody>{body}</tbody></table></div>'
+        )
+        parts.append(_chronicle_block(scorers, table, len(scorers["rows"]), muted, border))
 
     # --- 出典 ---
     sources = data.get("sources") or []
@@ -945,9 +1050,13 @@ def render_league_chronicle_html(slug, label):
 
     current_kai = data.get("current_kai")
     if current_kai:
+        kai_txt = (
+            f'第{html_escape(str(current_kai))}回（{date.today().year}年）'
+            if show_kai else f'{date.today().year}年シーズン'
+        )
         parts.append(
             f'<p style="font-size:.9em; color:{muted}; margin:14px 0 0 0;">'
-            f'※ 第{html_escape(str(current_kai))}回（{date.today().year}年）は開催中。'
+            f'※ {kai_txt}は開催中。'
             f'最新の順位はこのページ上部の順位表をご覧ください。</p>'
         )
 
