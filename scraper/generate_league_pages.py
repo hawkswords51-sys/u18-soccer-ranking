@@ -91,19 +91,63 @@ def load_league_history_full():
 LEAGUE_HISTORY_FULL = load_league_history_full()
 
 # 全史テーブルのマーカー配色。
-# 半透明の背景色にして文字色はテーマの既定色のままにしてあるので、
-# ライト／ダークのどちらでも読める（ダークモード対応のため色をベタ指定しない）。
-CHRONICLE_MARK_STYLES = {
-    "premier":   "background:rgba(34,197,94,.32); box-shadow:inset 3px 0 0 rgba(22,163,74,.9);",
-    "playoff":   "background:rgba(34,197,94,.14);",
-    "up":        "background:rgba(234,179,8,.26);",
-    "down":      "background:rgba(244,63,94,.16);",
-    "pref_down": "background:rgba(220,38,38,.30);",
-    "zenkoku":   "background:rgba(6,182,212,.26);",
-    "final":     "background:rgba(6,182,212,.12);",
-    "stay":      "background:rgba(245,158,11,.30);",
-    "stay_po":   "background:rgba(245,158,11,.14);",
+#
+# 半透明の重ね塗りだと、ダークモードで全部くすんで見分けがつかなくなった（2026-08-26 Kei指摘）。
+# → ライトとダークで**別々のベタ色**を定義し、さらにセル左端に色の縦バーを入れて、
+#    色の濃さだけに頼らずに区別できるようにしてある。
+# 近い意味の2つ（プレミア昇格／参入戦、2部降格／県リーグ降格）は
+# **明るさではなく色相を変えて**取り違えを防ぐ（緑↔青緑、ローズ↔赤）。
+#
+# style.css と同じく「ライト／[data-theme=dark]／prefers-color-scheme」の3ブロックを必ず揃えること。
+CHRONICLE_MARKS = ["premier", "playoff", "up", "down", "pref_down",
+                   "zenkoku", "final", "stay", "stay_po"]
+
+_CH_LIGHT = {
+    "premier":   ("#86efac", "#15803d"),  # 緑
+    "playoff":   ("#99f6e4", "#0f766e"),  # 青緑（緑と色相を変える）
+    "up":        ("#fde047", "#a16207"),  # 黄
+    "down":      ("#fbcfe8", "#db2777"),  # ピンク（赤と色相を変える）
+    "pref_down": ("#f87171", "#991b1b"),  # 赤
+    "zenkoku":   ("#93c5fd", "#1d4ed8"),  # 青
+    "final":     ("#ddd6fe", "#7c3aed"),  # 紫（青と色相を変える）
+    "stay":      ("#fb923c", "#c2410c"),  # 濃いオレンジ
+    "stay_po":   ("#fed7aa", "#fb923c"),  # 薄いオレンジ
 }
+_CH_DARK = {
+    "premier":   ("#15803d", "#4ade80"),
+    "playoff":   ("#0f766e", "#5eead4"),
+    "up":        ("#a16207", "#fde047"),
+    "down":      ("#9d174d", "#f9a8d4"),
+    "pref_down": ("#b91c1c", "#fca5a5"),
+    "zenkoku":   ("#1d4ed8", "#93c5fd"),
+    "final":     ("#5b21b6", "#c4b5fd"),
+    "stay":      ("#c2410c", "#fdba74"),
+    "stay_po":   ("#7c2d12", "#fb923c"),
+}
+
+
+def _chronicle_rules(palette, prefix=""):
+    out = ""
+    for mark in CHRONICLE_MARKS:
+        bg, bar = palette[mark]
+        out += (
+            f"{prefix}.lp-chronicle .ch-{mark}"
+            f"{{background:{bg};box-shadow:inset 4px 0 0 {bar};}}\n"
+        )
+    return out
+
+
+CHRONICLE_STYLE_BLOCK = (
+    "<style>\n"
+    ".lp-chronicle .ch-cell{font-weight:600;}\n"
+    ".lp-chronicle .ch-swatch{display:inline-block;width:18px;height:18px;"
+    "border-radius:3px;vertical-align:middle;}\n"
+    + _chronicle_rules(_CH_LIGHT)
+    + _chronicle_rules(_CH_DARK, '[data-theme="dark"] ')
+    + "@media (prefers-color-scheme: dark){\n"
+    + _chronicle_rules(_CH_DARK, ':root:not([data-theme="light"]) ')
+    + "}\n</style>"
+)
 
 # === プレミアファイナル歴代データの読み込み ===
 PREMIER_FINAL_HISTORY_PATH = Path(__file__).parent.parent / "data" / "premier_final_history.yml"
@@ -705,7 +749,7 @@ def render_past_champions_html(slug):
     """
 
 
-def _chronicle_team_cell(team, mark_styles):
+def _chronicle_team_cell(team):
     """全史テーブルの1セル分のHTMLを返す"""
     name = html_escape(str(team.get("name", "")))
     if not name or name == "---":
@@ -728,8 +772,9 @@ def _chronicle_team_cell(team, mark_styles):
             f'（{html_escape(str(sub))}）</span>'
         )
 
-    style = mark_styles.get(team.get("mark", ""), "")
-    return f'<td style="padding:6px 10px; white-space:nowrap; {style}">{inner}</td>'
+    mark = team.get("mark", "")
+    cls = f' class="ch-cell ch-{mark}"' if mark in CHRONICLE_MARKS else ""
+    return f'<td{cls} style="padding:6px 10px; white-space:nowrap;">{inner}</td>'
 
 
 def render_league_chronicle_html(slug, label):
@@ -744,7 +789,7 @@ def render_league_chronicle_html(slug, label):
 
     muted = "var(--text-secondary,#6b7280)"
     border = "var(--border-color,#e5e7eb)"
-    parts = []
+    parts = [CHRONICLE_STYLE_BLOCK]
 
     # --- 導入文（共通 ＋ そのページ固有の一文） ---
     intro = data.get("intro")
@@ -821,9 +866,8 @@ def render_league_chronicle_html(slug, label):
         if legend:
             chips = "".join(
                 f'<span style="display:inline-flex; align-items:center; gap:6px; '
-                f'margin:0 12px 8px 0; font-size:.85em;">'
-                f'<span style="display:inline-block; width:16px; height:16px; border-radius:3px; '
-                f'border:1px solid {border}; {CHRONICLE_MARK_STYLES.get(k, "")}"></span>'
+                f'margin:0 14px 8px 0; font-size:.85em;">'
+                f'<span class="ch-swatch ch-{html_escape(str(k))}"></span>'
                 f'{html_escape(str(v))}</span>'
                 for k, v in legend.items()
             )
@@ -858,7 +902,7 @@ def render_league_chronicle_html(slug, label):
                         f'{html_escape(str(row.get("div","") or "—"))}</td>'
                     )
                 for team in row.get("teams", []):
-                    body += _chronicle_team_cell(team, CHRONICLE_MARK_STYLES)
+                    body += _chronicle_team_cell(team)
                 # 列が足りない年は空欄で埋める
                 for _ in range(len(cols) - len(row.get("teams", []))):
                     body += f'<td style="text-align:center; color:{muted};">—</td>'
