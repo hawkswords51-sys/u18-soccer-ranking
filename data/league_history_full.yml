@@ -211,7 +211,7 @@ hokushinetsu:
             - teams:
                 - { name: 帝京長岡高, link: teikyo-nagaoka, mark: playoff }
                 - { name: 日本文理高, link: nihon-bunri, mark: playoff }
-                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18 }
+                - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18, mark: playoff }
                 - { name: 富山一高, link: toyama-daiichi }
                 - { name: 松本山雅FCU-18, link: matsumoto-yamaga-u18 }
                 - { name: 星稜高, link: seiryo }
@@ -1731,6 +1731,7 @@ tokai:
       note: 10チームによる2回戦総当たり。優勝チームなどがプレミアリーグ参入をかけたプレーオフに回る。
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
       legend:
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
         premier: プレミアリーグ昇格
         down: 都道府県リーグへ降格
       seasons:
@@ -1741,7 +1742,7 @@ tokai:
             プレミアリーグ プレーオフに出場し、昇格を決めたのは磐田だけだった。
           rows:
             - teams:
-                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: playoff }
                 - { name: 磐田U-18, link: jubilo-iwata-u18, mark: premier }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
                 - { name: 藤枝東, link: fujieda-higashi }
@@ -1755,8 +1756,8 @@ tokai:
           year: 2024
           rows:
             - teams:
-                - { name: 清水ユース, link: shimizu-s-pulse-youth }
-                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: playoff }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: playoff }
                 - { name: 藤枝東, link: fujieda-higashi }
                 - { name: 藤枝明誠, link: fujieda-meisei }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
@@ -1771,7 +1772,7 @@ tokai:
           rows:
             - teams:
                 - { name: JFA福島, sub: 活動終了 }
-                - { name: 清水ユース, link: shimizu-s-pulse-youth }
+                - { name: 清水ユース, link: shimizu-s-pulse-youth, mark: playoff }
                 - { name: 藤枝明誠, link: fujieda-meisei }
                 - { name: 藤枝東, link: fujieda-higashi }
                 - { name: 静岡学園2nd }
@@ -1784,7 +1785,7 @@ tokai:
           year: 2022
           rows:
             - teams:
-                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan, mark: playoff }
                 - { name: 藤枝明誠, link: fujieda-meisei }
                 - { name: 藤枝東, link: fujieda-higashi }
                 - { name: 富士市立, link: fuji-ichiritsu }
@@ -1843,6 +1844,7 @@ tokai:
         都道府県リーグからの昇格は2チームで、降格数は東海勢のプレミアリーグ昇降格に応じて10チームになるよう調整される。
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
       legend:
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
         premier: プレミアリーグ昇格
         down: 都道府県リーグへ降格
       seasons:
@@ -1850,7 +1852,7 @@ tokai:
           year: 2019
           rows:
             - teams:
-                - { name: JFA福島 }
+                - { name: JFA福島, mark: playoff }
                 - { name: 静岡学園, link: shizuoka-gakuen }
                 - { name: 清水桜が丘 }
                 - { name: 藤枝東, link: fujieda-higashi }
@@ -1864,8 +1866,8 @@ tokai:
           year: 2018
           rows:
             - teams:
-                - { name: 静岡学園, link: shizuoka-gakuen }
-                - { name: JFA福島 }
+                - { name: 静岡学園, link: shizuoka-gakuen, mark: playoff }
+                - { name: JFA福島, mark: playoff }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
                 - { name: 清水桜が丘 }
                 - { name: 藤枝東, link: fujieda-higashi }
@@ -1891,10 +1893,11 @@ tokai:
                 - { name: 藤枝明誠, link: fujieda-meisei }
         - kai: 14
           year: 2016
+          note: 大会要項に「1位と2位のチームはプレミアリーグ参入戦に出場する」と明記されている。
           rows:
             - teams:
-                - { name: JFA福島 }
-                - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
+                - { name: JFA福島, mark: playoff }
+                - { name: 浜松開誠館, link: hamamatsu-kaiseikan, mark: playoff }
                 - { name: 藤枝明誠, link: fujieda-meisei }
                 - { name: 清水桜が丘 }
                 - { name: 静岡学園, link: shizuoka-gakuen }
@@ -1907,8 +1910,8 @@ tokai:
           year: 2015
           rows:
             - teams:
-                - { name: 静岡学園, link: shizuoka-gakuen }
-                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 静岡学園, link: shizuoka-gakuen, mark: playoff }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: playoff }
                 - { name: 清水桜が丘 }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
                 - { name: 東海学園 }
@@ -1921,7 +1924,7 @@ tokai:
           year: 2014
           rows:
             - teams:
-                - { name: 清水桜が丘 }
+                - { name: 清水桜が丘, mark: playoff }
                 - { name: 静岡学園, link: shizuoka-gakuen }
                 - { name: 磐田U-18, link: jubilo-iwata-u18 }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
@@ -1936,7 +1939,7 @@ tokai:
           note: 5位の清水桜が丘は、清水商業高校と庵原高校が統合して誕生した高校。
           rows:
             - teams:
-                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: playoff }
                 - { name: 藤枝東, link: fujieda-higashi }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
                 - { name: 中京大中京 }
@@ -1950,7 +1953,7 @@ tokai:
           year: 2012
           rows:
             - teams:
-                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: playoff }
                 - { name: 浜松開誠館, link: hamamatsu-kaiseikan }
                 - { name: 四日市中央工業, link: yokkaichi-chuo-kogyo }
                 - { name: 藤枝東, link: fujieda-higashi }
@@ -1967,6 +1970,7 @@ tokai:
         2011年は1部8チーム・2部8チームで行われ、2011年限りで2部は廃止された。
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
       legend:
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
         premier: プレミアリーグ昇格
         up: プリンス1部へ昇格
         down: プリンス2部へ降格
@@ -1980,7 +1984,7 @@ tokai:
           rows:
             - div: 1部
               teams:
-                - { name: 磐田U-18, link: jubilo-iwata-u18 }
+                - { name: 磐田U-18, link: jubilo-iwata-u18, mark: playoff }
                 - { name: 清水商業 }
                 - { name: 藤枝明誠, link: fujieda-meisei }
                 - { name: 常葉大橘 }
@@ -3298,8 +3302,8 @@ kyushu:
           rows:
             - div: 1部
               teams:
-                - { name: 日章学園, link: nissho-gakuen }
-                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 日章学園, link: nissho-gakuen, mark: playoff }
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: playoff }
                 - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
                 - { name: 飯塚, link: iizuka }
                 - { name: 国見, link: kunimi }
@@ -3389,7 +3393,7 @@ kyushu:
           rows:
             - teams:
                 - { name: 神村学園高等部, link: kamimura-gakuen, mark: premier }
-                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18, mark: playoff }
                 - { name: 大分トリニータU-18, link: oita-trinita-u18 }
                 - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
                 - { name: 九州国際大学付属, link: kyukoku-fu }
@@ -4024,7 +4028,7 @@ shikoku:
           year: 2024
           rows:
             - teams:
-                - { name: 愛媛FC U-18, link: ehime-fc-u18 }
+                - { name: 愛媛FC U-18, link: ehime-fc-u18, mark: playoff }
                 - { name: 徳島市立高校, link: tokushima-shiritsu }
                 - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
                 - { name: 藤井学園寒川高校 }
@@ -4169,7 +4173,7 @@ shikoku:
           year: 2014
           rows:
             - teams:
-                - { name: 徳島市立高校, link: tokushima-shiritsu }
+                - { name: 徳島市立高校, link: tokushima-shiritsu, mark: playoff }
                 - { name: 愛媛FCユース, link: ehime-fc-u18 }
                 - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
                 - { name: 今治東中等教育学校, link: imabari-higashi }
@@ -4183,7 +4187,7 @@ shikoku:
           year: 2013
           rows:
             - teams:
-                - { name: 愛媛FCユース, link: ehime-fc-u18 }
+                - { name: 愛媛FCユース, link: ehime-fc-u18, mark: playoff }
                 - { name: 高松商業高校 }
                 - { name: 香川西高校, link: kagawa-nishi }
                 - { name: 松山工業高校 }
@@ -4204,13 +4208,14 @@ shikoku:
         この時期の昇格・降格は公表資料で確認できないため、マーカーは付けていない。
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
       legend:
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
         premier: 翌2011年に発足したプレミアリーグWESTへ参入
       seasons:
         - kai: 10
           year: 2012
           rows:
             - teams:
-                - { name: 香川西高校, link: kagawa-nishi }
+                - { name: 香川西高校, link: kagawa-nishi, mark: playoff }
                 - { name: 松山工業高校 }
                 - { name: 高松商業高校 }
                 - { name: 徳島市立高校, link: tokushima-shiritsu }
@@ -4224,7 +4229,7 @@ shikoku:
           year: 2011
           rows:
             - teams:
-                - { name: 済美高校 }
+                - { name: 済美高校, mark: playoff }
                 - { name: 松山工業高校 }
                 - { name: 高知商業高校 }
                 - { name: 香川西高校, link: kagawa-nishi }
@@ -4499,7 +4504,7 @@ kansai:
                 - { name: セレッソ大阪U-18, link: cerezo-osaka-u18 }
                 - { name: 近江, link: omi }
                 - { name: 京都橘, link: kyoto-tachibana }
-                - { name: 東海大仰星, link: tokai-gyosei }
+                - { name: 東海大仰星, link: tokai-gyosei, mark: down }
             - div: 2部
               teams:
                 - { name: 産大附属, link: osaka-sandai-fuzoku, mark: up }
@@ -4510,8 +4515,8 @@ kansai:
                 - { name: 関西学院, link: kwansei-gakuin }
                 - { name: ヴィッセル神戸U-18B }
                 - { name: 京都共栄, link: kyoto-kyoei }
-                - { name: 近大附属, link: kindai-fuzoku }
-                - { name: 興國B }
+                - { name: 近大附属, link: kindai-fuzoku, mark: pref_down }
+                - { name: 興國B, mark: pref_down }
         - kai: 22
           year: 2024
           rows:
@@ -4537,8 +4542,8 @@ kansai:
                 - { name: 産大附属, link: osaka-sandai-fuzoku }
                 - { name: 大阪桐蔭, link: osaka-toin }
                 - { name: ヴィッセル神戸U-18B }
-                - { name: 近江高校B }
-                - { name: 初芝橋本, link: hatsushiba-hashimoto }
+                - { name: 近江高校B, mark: pref_down }
+                - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: pref_down }
         - kai: 21
           year: 2023
           rows:
@@ -4568,7 +4573,12 @@ kansai:
                 - { name: 桃山学院, mark: pref_down }
         - kai: 20
           year: 2022
-          note: この年から1部・2部の2部制になった。
+          note: >-
+            この年はプレミアWESTからガンバ大阪ユースとセレッソ大阪U-18の2チームが降格した一方、
+            参入戦から昇格した関西勢が無かったため、下位が大きく入れ替わった。
+            1部は7位から10位までの4チームが2部へ降格。2部は1部からの4チームと府県リーグからの3チームが入り、
+            昇格した上位2チームを除いて残留できたのは3位から5位までの3チームだけで、
+            6位の和歌山北以下5チームが府県リーグへ降格した。
           rows:
             - div: 1部
               teams:
@@ -4589,7 +4599,7 @@ kansai:
                 - { name: 金光大阪, link: konko-osaka }
                 - { name: 神戸弘陵, link: kobe-koryo }
                 - { name: 三田学園, link: sanda-gakuen }
-                - { name: 和歌山北 }
+                - { name: 和歌山北, mark: pref_down }
                 - { name: 近大和歌山, mark: pref_down }
                 - { name: 初芝橋本, link: hatsushiba-hashimoto, mark: pref_down }
                 - { name: 奈良育英, mark: pref_down }
@@ -5263,6 +5273,7 @@ chugoku:
         2013年から1部制に戻るため、2012年のリーグ終了後に1部下位・2部上位・各県リーグ優勝チームによる参入戦が行われた。
       cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
       legend:
+        playoff: プレミアリーグ参入戦（プレーオフ）出場
         premier: プレミアリーグ昇格
       seasons:
         - kai: 10
@@ -5271,7 +5282,7 @@ chugoku:
           rows:
             - div: 1部
               teams:
-                - { name: 広島皆実, link: hiroshima-minami }
+                - { name: 広島皆実, link: hiroshima-minami, mark: playoff }
                 - { name: 立正大淞南, link: rissho-shonan }
                 - { name: 米子北, link: yonago-kita }
                 - { name: 広島観音 }
