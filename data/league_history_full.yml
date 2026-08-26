@@ -3234,3 +3234,729 @@ premier_west:
       label: Wikipedia『高円宮杯 JFA U-18サッカープレミアリーグ 2026』
       note: 2026年の参加チームとEAST・WESTの分け方
 
+
+# ============================================================
+# プリンスリーグ九州（2026-08-26追加）
+# ★出典はWikipediaではなく宮崎県サッカー協会U-18の記録ページ（Keiが発見）。
+#   https://miyazaki-fa-u18.net/record/kiroku/prince.htm から年度別ページへ。
+#   Wikipediaの九州の記事は優勝校しか載っていないが、こちらは全順位＋勝点/得失点まである。
+# ★昇降格は色ではなく表の下の説明文に明記されている。説明文が無い年はマーカーを付けていない。
+# ============================================================
+
+kyushu:
+  label: プリンスリーグ九州
+  slugs:
+    - prince-kyushu-1
+    - prince-kyushu-2
+  first_year: 2003
+  current_kai: 24
+  intro: >-
+    プリンスリーグ九州は2003年に第1回が開催され、2026年で第24回を迎えた。
+    福岡・佐賀・長崎・熊本・大分・宮崎・鹿児島・沖縄の8県のチームが参加する。
+    ここでは第1回から前年度までの全順位と、リーグの形と名称がどう移り変わってきたかをまとめる。
+  intro_by_slug:
+    prince-kyushu-1: >-
+      1部は九州の最上位カテゴリで、ここを制すればプレミアリーグ参入戦への道が開ける。
+      第1回から2025年までの23シーズンで優勝したのは14チーム。最多は大津の4回（2011・2012・2015・2020年）で、
+      鹿児島城西とサガン鳥栖U-18が3回で続く。
+      この23シーズンにプレミアリーグへ上がったのはのべ11回・7チームで、
+      アビスパ福岡U-18と大津がそれぞれ3回を占める。
+    prince-kyushu-2: >-
+      2部が置かれたのは2004年から2014年までと、2023年に再開されてから現在までの計14シーズンである。
+      間の2015年から2022年までの8シーズンは1部だけの1部制で、2部は行われていなかった。
+      上位が1部へ昇格し、下位が県リーグへ落ちるという入口と出口の役割は、どちらの時代も変わっていない。
+
+  # ---- 大会名称の変遷 ----
+  name_history:
+    - period: 2003年〜2010年
+      name: JFAプリンスリーグU-18 九州
+    - period: 2011年〜2017年
+      name: 高円宮杯U-18サッカーリーグ プリンスリーグ九州
+    - period: 2018年〜
+      name: 高円宮杯 JFA U-18サッカープリンスリーグ 九州
+
+  # ---- 歴代順位 ----
+  fold_from_era: 1
+  eras:
+    - title: 2023年〜（2部制）
+      note: >-
+        2023年に2部が復活し、1部10チーム・2部（初年度は7チーム、2024年から10チーム）の2部制になった。
+        1部の上位2チームがプレミアリーグ参入戦に回る。
+        2023年は原典（宮崎県サッカー協会U-18）に昇降格の説明文が無いため、
+        優勝・参入戦以外のマーカーは付けていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦 出場権獲得
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+        pref_down: 都道府県リーグへ降格
+      seasons:
+        - kai: 23
+          year: 2025
+          note: プレミアリーグから東福岡が降格したため、1部の降格枠が3チームに広がった。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 飯塚, link: iizuka }
+                - { name: 国見, link: kunimi }
+                - { name: 大津2nd }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18, mark: down }
+                - { name: 東海大学付属福岡, link: tokai-fukuoka, mark: down }
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai, mark: down }
+            - div: 2部
+              teams:
+                - { name: 東海大学付属熊本星翔, link: tokai-kumamoto-seisho, mark: up }
+                - { name: FC琉球, link: fc-ryukyu-u18, mark: up }
+                - { name: 鵬翔, link: hosho }
+                - { name: サガン鳥栖2nd }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 鹿児島, link: kagoshima }
+                - { name: 柳ヶ浦, mark: pref_down }
+                - { name: 熊本国府, mark: pref_down }
+                - { name: 宮崎日本大学, mark: pref_down }
+        - kai: 22
+          year: 2024
+          note: 優勝したアビスパ福岡U-18が参入戦に勝ち、翌2025年からプレミアリーグWESTへ。
+          rows:
+            - div: 1部
+              teams:
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18, mark: premier }
+                - { name: 日章学園, link: nissho-gakuen, mark: playoff }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai }
+                - { name: 飯塚, link: iizuka }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 大津2nd }
+                - { name: 九州国際大学付属, link: kyukoku-fu, mark: down }
+                - { name: サガン鳥栖U-18, mark: down }
+            - div: 2部
+              teams:
+                - { name: 国見, link: kunimi, mark: up }
+                - { name: 東海大学付属福岡, link: tokai-fukuoka, mark: up }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 宮崎日本大学 }
+                - { name: 鹿児島, link: kagoshima }
+                - { name: FC琉球U-18, link: fc-ryukyu-u18 }
+                - { name: 熊本国府 }
+                - { name: 鵬翔, link: hosho }
+                - { name: 筑陽学園, mark: pref_down }
+                - { name: 大分, link: oita, mark: pref_down }
+        - kai: 21
+          year: 2023
+          note: >-
+            2部制が復活した年。2部は7チームでの実施だった。
+            優勝した鹿児島城西は翌2024年にプレミアリーグWESTに在籍している。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: premier }
+                - { name: 日章学園, link: nissho-gakuen, mark: playoff }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai }
+                - { name: 大津2nd }
+                - { name: サガン鳥栖U-18 2nd }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 筑陽学園 }
+            - div: 2部
+              teams:
+                - { name: ロアッソ熊本U-18, link: roasso-kumamoto-u18 }
+                - { name: 飯塚, link: iizuka }
+                - { name: 宮崎日本大学 }
+                - { name: 鹿児島, link: kagoshima }
+                - { name: FC琉球U-18, link: fc-ryukyu-u18 }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 大分, link: oita }
+
+    - title: 2021年〜2022年（1部制・10チーム）
+      note: 10チームの2回戦総当たり。上位が翌年のプレミアリーグ参入戦に回った。2023年から2部制に移行する。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦 出場権獲得
+      seasons:
+        - kai: 20
+          year: 2022
+          note: 優勝した神村学園高等部が参入戦に勝ち、翌2023年からプレミアリーグWESTへ。
+          rows:
+            - teams:
+                - { name: 神村学園高等部, link: kamimura-gakuen, mark: premier }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 大津2nd }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: サガン鳥栖U-18 2nd }
+                - { name: 筑陽学園 }
+                - { name: 鹿児島, link: kagoshima }
+        - kai: 19
+          year: 2021
+          note: 1位・2位がプレミアリーグ参入戦へ出場したが、どちらも昇格には届かなかった。
+          rows:
+            - teams:
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18, mark: playoff }
+                - { name: 神村学園高等部, link: kamimura-gakuen, mark: playoff }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: サガン鳥栖U-18 2nd }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 筑陽学園 }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: 国見, link: kunimi }
+
+    - title: 2020年（新型コロナウイルスの影響による特別大会）
+      note: >-
+        プリンスリーグの10チームにプレミアリーグ勢を加えた12チーム（サガン鳥栖は1チームに統一）で実施。
+        各パート6チームの1回戦総当たりを行い、その後に順位決定戦を行った。
+        順位決定戦の結果、最終順位は1位 大津、2位 東福岡、3位 大分トリニータU-18、4位 V・ファーレン長崎U-18、
+        5位 サガン鳥栖U-18、6位 神村学園高等部、9位 九州国際大学付属、10位 ロアッソ熊本ユース、
+        11位 筑陽学園、12位 国見。7位決定戦のアビスパ福岡U-18対日章学園は1-1で終わっており、
+        原典から7位・8位の確定ができないため、ここでは順位を書かない。昇降格のマーカーも付けていない。
+      cols: [1位, 2位, 3位, 4位, 5位, 6位]
+      seasons:
+        - kai: 18
+          year: 2020
+          rows:
+            - div: Ａパート
+              teams:
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 筑陽学園 }
+            - div: Ｂパート
+              teams:
+                - { name: 大津, link: ohtsu }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: 国見, link: kunimi }
+
+    - title: 2015年〜2019年（1部制・10チーム）
+      note: >-
+        2014年で2部が廃止され、2015年から10チームの1部だけになった。1位・2位がプレミアリーグ参入戦に出場する。
+        2016年から2019年は原典に降格の説明文が無いため、降格のマーカーは付けていない。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦 出場権獲得
+        stay_po: プリンスリーグ参入戦（残留をかけた入替戦）へ出場
+        pref_down: 都道府県リーグへ降格
+      seasons:
+        - kai: 17
+          year: 2019
+          note: 優勝したサガン鳥栖U-18が参入戦に勝利。2020年のプレミアリーグは中止となり、2021年から同リーグWESTに在籍した。
+          rows:
+            - teams:
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18, mark: premier }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18, mark: playoff }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 筑陽学園 }
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai }
+                - { name: 創成館 }
+        - kai: 16
+          year: 2018
+          note: 2位の大津が参入戦を勝ち抜き、翌2019年にプレミアリーグWESTへ復帰した。
+          rows:
+            - teams:
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18, mark: playoff }
+                - { name: 大津, link: ohtsu, mark: premier }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai }
+                - { name: 筑陽学園 }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+        - kai: 15
+          year: 2017
+          note: 1位・2位が参入戦に出場したが、どちらも昇格には届かなかった。
+          rows:
+            - teams:
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18, mark: playoff }
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai, mark: playoff }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: 鵬翔, link: hosho }
+        - kai: 14
+          year: 2016
+          note: 2位のアビスパ福岡U-18が参入戦に勝ち、翌2017年からプレミアリーグWESTへ。優勝した長崎総合科学大学附属は昇格に届かなかった。
+          rows:
+            - teams:
+                - { name: 長崎総合科学大学附属, link: nagasaki-sokadai, mark: playoff }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18, mark: premier }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: 鵬翔, link: hosho }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 鹿児島実業 }
+                - { name: 佐賀東, link: saga-higashi }
+        - kai: 13
+          year: 2015
+          note: 原典の備考欄に「プレミアリーグウエストへ昇格」「ＰＬ参入戦へ」「県リーグ降格」と明記されている。
+          rows:
+            - teams:
+                - { name: 大津, link: ohtsu, mark: premier }
+                - { name: 九州国際大学付属, link: kyukoku-fu, mark: playoff }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 鵬翔, link: hosho }
+                - { name: 鹿児島実業 }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 筑陽学園, mark: stay_po }
+                - { name: 東海大学付属第五, link: tokai-fukuoka, mark: pref_down }
+
+    - title: 2011年〜2014年（2部制）
+      note: >-
+        2011年のプレミアリーグ発足に伴い、優勝チームがプレミアリーグ参入戦に回る形になった。
+        1部は2011年・2012年が12チーム、2013年から10チーム。2部は2014年限りで廃止された。
+        東海大学付属第五は2016年に東海大学付属福岡へ改称している。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        premier: プレミアリーグ昇格
+        playoff: プレミアリーグ参入戦 出場権獲得
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+      seasons:
+        - kai: 12
+          year: 2014
+          note: 優勝した大分トリニータU-18が参入戦に勝ち、翌2015年からプレミアリーグWESTへ。2部の開催はこの年が最後。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 大分トリニータU-18, link: oita-trinita-u18, mark: premier }
+                - { name: 大津, link: ohtsu }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 筑陽学園 }
+                - { name: アビスパ福岡U-18, link: avispa-fukuoka-u18 }
+                - { name: 鵬翔, link: hosho }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 東海大学付属第五, link: tokai-fukuoka }
+            - div: 2部
+              teams:
+                - { name: 鹿児島実業, mark: up }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: 秀岳館 }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: 長崎日本大学 }
+                - { name: 折尾愛真 }
+                - { name: 那覇西 }
+                - { name: 出水中央 }
+                - { name: アミーゴス鹿児島U-18 }
+        - kai: 11
+          year: 2013
+          note: >-
+            1部を12チームから10チームに削減した年。優勝した大分トリニータU-18は参入戦で敗れ1部残留。
+            2部からの昇格については原典が「プレミアリーグの結果による」とするのみで明記が無いため、
+            昇格のマーカーは付けていない。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 大分トリニータU-18, link: oita-trinita-u18, mark: playoff }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 筑陽学園 }
+                - { name: 東海大学付属第五, link: tokai-fukuoka }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 鹿児島実業 }
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18 }
+                - { name: 秀岳館, mark: down }
+            - div: 2部
+              teams:
+                - { name: 鵬翔, link: hosho }
+                - { name: 折尾愛真 }
+                - { name: 出水中央 }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: ロアッソ熊本ユース, link: roasso-kumamoto-u18 }
+                - { name: ルーテル学院 }
+                - { name: 東福岡2nd }
+                - { name: FC KAGOSHIMA U-18 }
+                - { name: 長崎日本大学 }
+                - { name: 柳ヶ浦 }
+        - kai: 10
+          year: 2012
+          note: 優勝した大津が参入戦に勝利し、翌2013年からプレミアリーグWESTへ。アミーゴス鹿児島U-18はこの年からFC KAGOSHIMA U-18の表記になった。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 大津, link: ohtsu, mark: premier }
+                - { name: 筑陽学園 }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 東海大学付属第五, link: tokai-fukuoka }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 秀岳館 }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
+                - { name: 鹿児島実業 }
+                - { name: 佐賀東, link: saga-higashi, mark: down }
+                - { name: 長崎日本大学, mark: down }
+            - div: 2部
+              teams:
+                - { name: サガン鳥栖U-18, link: sagan-tosu-u18, mark: up }
+                - { name: 鵬翔, link: hosho }
+                - { name: 折尾愛真 }
+                - { name: ルーテル学院 }
+                - { name: FC KAGOSHIMA U-18 }
+                - { name: 大分, link: oita }
+                - { name: 佐賀学園 }
+                - { name: 国見, link: kunimi }
+                - { name: 福岡大学附属大濠 }
+                - { name: 出水中央 }
+        - kai: 9
+          year: 2011
+          note: 優勝した大津は参入戦で敗れ1部残留。2部は「1回戦制セントラル方式」で実施された。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 大津, link: ohtsu, mark: playoff }
+                - { name: 大分トリニータ, link: oita-trinita-u18 }
+                - { name: 筑陽学園 }
+                - { name: 鹿児島実業 }
+                - { name: 東海大学付属第五, link: tokai-fukuoka }
+                - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+                - { name: 長崎日本大学 }
+                - { name: 国見, link: kunimi, mark: down }
+                - { name: 鵬翔, link: hosho, mark: down }
+            - div: 2部
+              teams:
+                - { name: 佐賀東, link: saga-higashi, mark: up }
+                - { name: 秀岳館, mark: up }
+                - { name: 出水中央 }
+                - { name: 折尾愛真 }
+                - { name: ルーテル学院 }
+                - { name: サガン鳥栖, link: sagan-tosu-u18 }
+                - { name: 海星 }
+                - { name: 大分, link: oita }
+                - { name: 大分鶴崎 }
+                - { name: アミーゴス鹿児島 }
+                - { name: 那覇西 }
+                - { name: 宮崎西 }
+
+    - title: 2008年〜2010年（2部制・1部2部とも12チーム）
+      note: >-
+        2008年から2部も1部と同じ試合形式になった。
+        2010年までは高円宮杯全日本ユース(U-18)選手権の出場枠がリーグ成績で決まっており、
+        原典では出場チームが色分けされている（枠数は年により1〜2チーム）。
+        2010年は翌2011年のプレミアリーグ発足に伴い、上位2チームがプレミアリーグWESTへ参入した。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        premier: プレミアリーグ昇格
+        zenkoku: 高円宮杯全日本ユース(U-18)選手権 出場権獲得
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+      seasons:
+        - kai: 8
+          year: 2010
+          note: >-
+            アビスパ福岡と東福岡が翌2011年発足のプレミアリーグWESTへ。
+            全日本ユース大会の出場枠は1部の上位1チームだった。1部下位2チームの降格はこの年は行われていない。
+          rows:
+            - div: 1部
+              teams:
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18, mark: premier }
+                - { name: 東福岡, link: higashi-fukuoka, mark: premier }
+                - { name: 大分トリニータ, link: oita-trinita-u18 }
+                - { name: 大津, link: ohtsu }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 筑陽学園 }
+                - { name: 鹿児島実業 }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 国見, link: kunimi }
+                - { name: 鵬翔, link: hosho }
+                - { name: 東海大付属第五, link: tokai-fukuoka }
+                - { name: 神村学園高等部, link: kamimura-gakuen }
+            - div: 2部
+              teams:
+                - { name: 長崎日本大学, mark: up }
+                - { name: 九州国際大付属, link: kyukoku-fu, mark: up }
+                - { name: ルーテル学院 }
+                - { name: 大分鶴崎 }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 那覇西 }
+                - { name: アミーゴス鹿児島 }
+                - { name: 折尾愛真 }
+                - { name: 佐賀北 }
+                - { name: 海星 }
+                - { name: 出水中央 }
+                - { name: 宮崎工業 }
+        - kai: 7
+          year: 2009
+          note: 全日本ユース大会の出場枠は1部の上位2チーム。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 東福岡, link: higashi-fukuoka, mark: zenkoku }
+                - { name: 大分トリニータ, link: oita-trinita-u18, mark: zenkoku }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18 }
+                - { name: 東海大付属第五, link: tokai-fukuoka }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 大津, link: ohtsu }
+                - { name: 鹿児島実業 }
+                - { name: 筑陽学園 }
+                - { name: 神村学園, link: kamimura-gakuen }
+                - { name: 鵬翔, link: hosho }
+                - { name: 長崎日大, mark: down }
+                - { name: 佐賀東, link: saga-higashi, mark: down }
+            - div: 2部
+              teams:
+                - { name: 国見, link: kunimi, mark: up }
+                - { name: 日章学園, link: nissho-gakuen, mark: up }
+                - { name: 九州国際大付属, link: kyukoku-fu }
+                - { name: アミーゴス鹿児島 }
+                - { name: 那覇西 }
+                - { name: 熊本学園大付属 }
+                - { name: 海星 }
+                - { name: 柳ヶ浦 }
+                - { name: 佐賀北 }
+                - { name: 宮崎日大 }
+                - { name: 鹿児島商業 }
+                - { name: 折尾愛真 }
+        - kai: 6
+          year: 2008
+          note: 全日本ユース大会の出場枠は1部の上位1チーム。2部が前期・後期制から1部と同じ形式に変わった。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: zenkoku }
+                - { name: 大分トリニータ, link: oita-trinita-u18 }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18 }
+                - { name: 神村学園, link: kamimura-gakuen }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 鵬翔, link: hosho }
+                - { name: 大津, link: ohtsu }
+                - { name: 筑陽学園 }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 東海大付属第五, link: tokai-fukuoka }
+                - { name: 国見, link: kunimi, mark: down }
+                - { name: 九州国際大付属, link: kyukoku-fu, mark: down }
+            - div: 2部
+              teams:
+                - { name: 長崎日大, mark: up }
+                - { name: 鹿児島実業, mark: up }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: ルーテル学院 }
+                - { name: 大分鶴崎 }
+                - { name: 秀岳館 }
+                - { name: 佐賀北 }
+                - { name: 三潴 }
+                - { name: 大分工業 }
+                - { name: アミーゴス鹿児島 }
+                - { name: 那覇西 }
+                - { name: 都城工業 }
+
+    - title: 2004年〜2007年（2部制・2部は前期後期制）
+      note: >-
+        2部は前期リーグの結果で上位リーグ・下位リーグに分かれ、上位リーグの成績で昇格が決まった。
+        ここに載せた2部の順位は後期リーグ終了後のもので、上位リーグが1〜8位、下位リーグが9〜12位にあたる。
+        高円宮杯全日本ユース(U-18)選手権の出場枠は年により2〜5チームで、
+        全国高校総体の優勝校・準優勝校が別枠で加わる年もあった。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース(U-18)選手権 出場権獲得
+        up: プリンス1部へ昇格
+        down: プリンス2部へ降格
+      seasons:
+        - kai: 5
+          year: 2007
+          note: 全日本ユース大会の出場枠は1部の上位2チーム。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 東海大五, link: tokai-fukuoka, mark: zenkoku }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18, mark: zenkoku }
+                - { name: 大分トリニータ, link: oita-trinita-u18 }
+                - { name: 国見, link: kunimi }
+                - { name: 筑陽学園 }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 鵬翔, link: hosho }
+                - { name: 九国大付属, link: kyukoku-fu }
+                - { name: 大津, link: ohtsu }
+                - { name: ルーテル学院, mark: down }
+                - { name: 日章学園, link: nissho-gakuen, mark: down }
+            - div: 2部
+              teams:
+                - { name: 神村学園, link: kamimura-gakuen, mark: up }
+                - { name: 佐賀東, link: saga-higashi, mark: up }
+                - { name: 大分鶴崎 }
+                - { name: アミーゴス鹿児島 }
+                - { name: 熊本学園大付属 }
+                - { name: 鹿児島実業 }
+                - { name: 西原 }
+                - { name: 島原商業 }
+                - { name: 那覇西 }
+                - { name: 嘉穂東 }
+                - { name: 佐賀商業 }
+                - { name: 宮崎日大 }
+        - kai: 4
+          year: 2006
+          note: 全日本ユース大会の出場枠は1部の上位3チーム。
+          rows:
+            - div: 1部
+              teams:
+                - { name: ルーテル学院, mark: zenkoku }
+                - { name: 東福岡, link: higashi-fukuoka, mark: zenkoku }
+                - { name: 大分トリニータ, link: oita-trinita-u18, mark: zenkoku }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18 }
+                - { name: 東海大五, link: tokai-fukuoka }
+                - { name: 国見, link: kunimi }
+                - { name: 大津, link: ohtsu }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 筑陽学園 }
+                - { name: 鵬翔, link: hosho }
+                - { name: 鹿児島実業, mark: down }
+                - { name: 那覇西, mark: down }
+            - div: 2部
+              teams:
+                - { name: 九国大付属, link: kyukoku-fu, mark: up }
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: up }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 長崎日大 }
+                - { name: アミーゴス鹿児島 }
+                - { name: 大分鶴崎 }
+                - { name: 熊本国府 }
+                - { name: 情報科学 }
+                - { name: 鹿児島工業 }
+                - { name: 那覇 }
+                - { name: 柳ヶ浦 }
+                - { name: 都城工業 }
+        - kai: 3
+          year: 2005
+          note: >-
+            全日本ユース大会へは1部の上位4チームと、全国高校総体準優勝の那覇西を加えた5チームが出場した。
+            那覇西は2部1位でもあり、この表では1部昇格のマーカーを付けている。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 鵬翔, link: hosho, mark: zenkoku }
+                - { name: 大分トリニータ, link: oita-trinita-u18, mark: zenkoku }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18, mark: zenkoku }
+                - { name: 鹿児島実業, mark: zenkoku }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 国見, link: kunimi }
+                - { name: 東福岡, link: higashi-fukuoka }
+                - { name: 大津, link: ohtsu }
+                - { name: 東海大五, link: tokai-fukuoka }
+                - { name: 筑陽学園 }
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: down }
+                - { name: 情報科学, mark: down }
+            - div: 2部
+              teams:
+                - { name: 那覇西, mark: up }
+                - { name: ルーテル学院, mark: up }
+                - { name: 大分鶴崎 }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 大分, link: oita }
+                - { name: 長崎南山 }
+                - { name: サガン鳥栖, link: sagan-tosu-u18 }
+                - { name: 読谷 }
+                - { name: 北筑 }
+                - { name: 柳川 }
+                - { name: 鹿児島中央 }
+                - { name: 小林工業 }
+        - kai: 2
+          year: 2004
+          note: 全日本ユース大会へは1部の上位5チームと、全国高校総体優勝の国見を含む6チームが出場した。2部は11チームでの実施。
+          rows:
+            - div: 1部
+              teams:
+                - { name: 鹿児島実, mark: zenkoku }
+                - { name: 国見, link: kunimi, mark: zenkoku }
+                - { name: 鵬翔, link: hosho, mark: zenkoku }
+                - { name: 東海大五, link: tokai-fukuoka, mark: zenkoku }
+                - { name: 大津, link: ohtsu, mark: zenkoku }
+                - { name: 東福岡, link: higashi-fukuoka, mark: zenkoku }
+                - { name: 情報科学 }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 鹿児島城西, link: kagoshima-josei }
+                - { name: 筑陽学園 }
+                - { name: 那覇西, mark: down }
+                - { name: 大分鶴崎, mark: down }
+            - div: 2部
+              teams:
+                - { name: 大分トリニータ, link: oita-trinita-u18, mark: up }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18, mark: up }
+                - { name: 北筑 }
+                - { name: 熊本国府 }
+                - { name: 島原商業 }
+                - { name: 豊見城南 }
+                - { name: ルーテル学院 }
+                - { name: 鹿児島商業 }
+                - { name: 佐賀東, link: saga-higashi }
+                - { name: 長崎南山 }
+                - { name: 都城工業 }
+
+    - title: 2003年（第1回・16チーム）
+      note: >-
+        第1回は16チームをＡ・Ｂ2パートに分け、各パート8チームの1回戦総当たりを実施。
+        そのうえで順位決定戦を行い、1位から16位までを確定させた。ここに載せているのはその最終順位である。
+        全日本ユース大会へは上位3チームと全国高校総体優勝の国見を含む4チームが出場した
+        （国見は2位で既に出場権を持っていたため、枠は4位の鵬翔まで回っている）。
+      cols: [優勝, 2位, 3位, 4位, 5位, 6位, 7位, 8位, 9位, 10位, 11位, 12位, 13位, 14位, 15位, 16位]
+      legend:
+        zenkoku: 高円宮杯全日本ユース(U-18)選手権 出場権獲得
+      seasons:
+        - kai: 1
+          year: 2003
+          rows:
+            - teams:
+                - { name: 鹿児島城西, link: kagoshima-josei, mark: zenkoku }
+                - { name: 国見, link: kunimi, mark: zenkoku }
+                - { name: 東福岡, link: higashi-fukuoka, mark: zenkoku }
+                - { name: 鵬翔, link: hosho, mark: zenkoku }
+                - { name: 大津, link: ohtsu }
+                - { name: 情報科学 }
+                - { name: 東海大五, link: tokai-fukuoka }
+                - { name: 鹿児島実業 }
+                - { name: 那覇西 }
+                - { name: 日章学園, link: nissho-gakuen }
+                - { name: 筑陽学園 }
+                - { name: 大分鶴崎 }
+                - { name: 熊本国府 }
+                - { name: アビスパ福岡, link: avispa-fukuoka-u18 }
+                - { name: 長崎南山 }
+                - { name: 佐賀北 }
+
+  sources:
+    - url: https://miyazaki-fa-u18.net/record/kiroku/prince.htm
+      label: 宮崎県サッカー協会U-18「プリンスリーグ九州」歴代記録
+      note: 年度別ページに1部・2部の完全な順位表と、昇降格・全国大会出場枠を説明する本文がある。順位・チーム名・昇降格はすべてここから取った
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープリンスリーグ九州
+      label: Wikipedia『高円宮杯 JFA U-18サッカープリンスリーグ九州』
+      note: 歴代優勝チームと「参入戦に勝利し翌年プレミアWESTに参入」の備考。2019年のサガン鳥栖U-18の昇格はこれで確認
+    - url: https://ja.wikipedia.org/wiki/高円宮杯_JFA_U-18サッカープレミアリーグ
+      label: Wikipedia『高円宮杯 JFA U-18サッカープレミアリーグ』WEST歴代順位
+      note: 宮崎県協会の本文に昇格の記載が無い年の裏取り。2016年アビスパ福岡U-18と2018年大津の昇格をここで確定した

@@ -1034,15 +1034,21 @@ def render_league_chronicle_html(slug, label):
     # --- 出典 ---
     sources = data.get("sources") or []
     if sources:
-        items = "".join(
-            f'<li style="margin-bottom:4px;">'
-            f'<a href="{html_escape(str(s.get("url","")))}" rel="nofollow noopener" '
-            f'target="_blank" style="color:var(--accent-color,#2563eb);">'
-            f'{html_escape(str(s.get("label","")))}</a>'
-            + (f'（{html_escape(str(s["note"]))}）' if s.get("note") else "")
-            + '</li>'
-            for s in sources
-        )
+        def _source_li(s):
+            # 文字列だけで書かれている出典も受け付ける（リンクにはしない）
+            if not isinstance(s, dict):
+                return f'<li style="margin-bottom:4px;">{html_escape(str(s).strip())}</li>'
+            url = str(s.get("url", "")).strip()
+            label = html_escape(str(s.get("label", "")) or url)
+            link = (
+                f'<a href="{html_escape(url)}" rel="nofollow noopener" '
+                f'target="_blank" style="color:var(--accent-color,#2563eb);">{label}</a>'
+                if url else label
+            )
+            note = f'（{html_escape(str(s["note"]))}）' if s.get("note") else ""
+            return f'<li style="margin-bottom:4px;">{link}{note}</li>'
+
+        items = "".join(_source_li(s) for s in sources)
         parts.append(
             f'<p style="font-size:.85em; color:{muted}; margin:20px 0 6px 0;">出典</p>'
             f'<ul style="font-size:.85em; color:{muted}; padding-left:1.2em; margin:0;">{items}</ul>'
