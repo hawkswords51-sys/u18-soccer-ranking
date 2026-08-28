@@ -1647,6 +1647,10 @@ def main():
             (f"{DOMAIN}/tournaments/club-youth-u15-2026/", "daily", "0.7"),
             # 全国中学校サッカー大会2026（2026-08-21 追加。U-15コンテンツ第2号）
             (f"{DOMAIN}/tournaments/zenchu-2026/", "daily", "0.7"),
+            # 大学サッカー（2026-08-28 追加。ハブ＋総理大臣杯＋インカレ）
+            (f"{DOMAIN}/university/", "weekly", "0.7"),
+            (f"{DOMAIN}/tournaments/prime-minister-cup-2026/", "daily", "0.7"),
+            (f"{DOMAIN}/tournaments/incolle-2026/", "weekly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
