@@ -1651,6 +1651,8 @@ def main():
             (f"{DOMAIN}/university/", "weekly", "0.7"),
             (f"{DOMAIN}/tournaments/prime-minister-cup-2026/", "daily", "0.7"),
             (f"{DOMAIN}/tournaments/incolle-2026/", "weekly", "0.6"),
+            # 大学からのJ内定選手（2026-08-28 追加。経歴つき一覧）
+            (f"{DOMAIN}/university/pro-signings-2027/", "weekly", "0.7"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
