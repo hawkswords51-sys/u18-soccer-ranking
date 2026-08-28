@@ -59,6 +59,33 @@
     .univ-src { margin:8px 0 0; font-size:0.76rem; opacity:0.72; }
     .univ-player { border-left:3px solid var(--primary-color,#1e40af); padding:2px 0 2px 12px; margin:0 0 12px; }
     .univ-player strong { display:inline-block; }
+    .uv-jump { display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 18px; }
+    .uv-jump a { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:999px;
+      background:var(--bg-light,#f1f5fb); color:var(--text-primary,#1f2937); text-decoration:none;
+      font-weight:600; font-size:0.92em; border:1px solid var(--border-color,#e2e8f0); }
+    .uv-cnt { display:inline-block; min-width:18px; text-align:center; padding:1px 6px; border-radius:999px;
+      background:var(--primary-color,#1e40af); color:#fff; font-size:0.78em; }
+    .uv-divs { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+    .uv-div { border:1px solid var(--border-color,#d8dde8); border-radius:10px; padding:14px 14px 10px;
+      background:var(--bg-card,transparent); }
+    .uv-div h3 { margin:0 0 2px; font-size:1.02rem; }
+    .uv-asof { margin:0 0 8px; font-size:0.78rem; opacity:0.72; }
+    .uv-table td.uv-c, .uv-table th.uv-c { text-align:center; padding:6px 4px; }
+    .uv-table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+    .uv-table th, .uv-table td { border-bottom:1px solid var(--border-color,#e2e8f0); padding:6px 4px; }
+    .uv-table th { font-weight:600; opacity:0.85; white-space:nowrap; text-align:center; }
+    .uv-table .uv-name { text-align:left; }
+    .uv-table .uv-rank { opacity:0.7; text-align:center; }
+    .uv-table .uv-pts { font-weight:700; text-align:center; }
+    .uv-table tr.uv-top .uv-name { font-weight:700; }
+    .uv-table tr.uv-top .uv-rank { color:#b45309; font-weight:700; opacity:1; }
+    .uv-table tr.uv-bottom { opacity:0.78; }
+    [data-theme="dark"] .uv-table tr.uv-top .uv-rank { color:#fbbf24; }
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) .uv-table tr.uv-top .uv-rank { color:#fbbf24; }
+    }
+    .uv-src2 { margin:8px 0 0; font-size:0.76rem; opacity:0.72; }
+    .uv-region-note { margin:0 0 14px; line-height:1.85; }
   </style>
 </head>
 <body>
@@ -97,7 +124,7 @@
         <a href="/tournaments/prime-minister-cup-2026/"><i class="fas fa-medal"></i> 総理大臣杯2026（9/2開幕）</a>
         <a href="/tournaments/incolle-2026/"><i class="fas fa-trophy"></i> インカレ（大学選手権）</a>
         <a href="#shinro"><i class="fas fa-route"></i> プロへの進路データ</a>
-        <a href="#leagues"><i class="fas fa-table-list"></i> 9地域リーグ一覧</a>
+        <a href="#standings"><i class="fas fa-ranking-star"></i> リーグ順位表（18リーグ）</a>
       </div>
 
       <section class="lp-section">
@@ -170,8 +197,478 @@
         </p>
       </section>
 
+      <section class="lp-section" id="standings">
+        <h2><i class="fas fa-ranking-star"></i> 全国の大学リーグ順位表</h2>
+        <p style="line-height:1.9;">
+          8地域18リーグ・189チームの順位表です。各連盟の公式発表（順位表・全試合結果）に基づき、「勝点＝勝×3＋分」などの検算を通過したデータだけを掲載しています。多くのリーグは現在夏季中断中で、<strong>後期は9月中旬に再開</strong>します。四国は連盟公式でリーグ順位表が公開されていないため、掲載を見送っています。
+        </p>
+<!-- UNIV_STANDINGS_START -->
+        <div class="uv-jump">
+          <a href="#uv-region-1">北海道<span class="uv-cnt">1</span></a>
+          <a href="#uv-region-2">東北<span class="uv-cnt">2</span></a>
+          <a href="#uv-region-3">関東<span class="uv-cnt">3</span></a>
+          <a href="#uv-region-4">北信越<span class="uv-cnt">2</span></a>
+          <a href="#uv-region-5">東海<span class="uv-cnt">2</span></a>
+          <a href="#uv-region-6">関西<span class="uv-cnt">3</span></a>
+          <a href="#uv-region-7">中国<span class="uv-cnt">2</span></a>
+          <a href="#uv-region-9">九州<span class="uv-cnt">3</span></a>
+        </div>
+        <div id="uv-region-1">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 北海道</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>北海道学生サッカーリーグ1部（第45回）</h3>
+            <p class="uv-asof">前期終了（7月26日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">札幌大学</td><td class="uv-c">7</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">25</td><td class="uv-c">2</td><td class="uv-c">+23</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">北海道教育大学岩見沢校</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">27</td><td class="uv-c">8</td><td class="uv-c">+19</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">東海大学（札幌）</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">12</td><td class="uv-c">8</td><td class="uv-c">+4</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">星槎道都大学</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">6</td><td class="uv-c">8</td><td class="uv-c">-2</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">北翔大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">8</td><td class="uv-c">6</td><td class="uv-c">+2</td><td class="uv-pts">8</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">北海道大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">5</td><td class="uv-c">9</td><td class="uv-c">-4</td><td class="uv-pts">8</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">札幌大谷大学</td><td class="uv-c">7</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">5</td><td class="uv-c">5</td><td class="uv-c">25</td><td class="uv-c">-20</td><td class="uv-pts">4</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">8</td><td class="uv-name">北海学園大学</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">3</td><td class="uv-c">25</td><td class="uv-c">-22</td><td class="uv-pts">1</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://sc.footballnavi.jp/jufa-hokkaido/page.php?pno=676" target="_blank" rel="noopener">北海道学生サッカー連盟 公式星取表PDF</a></p>
+            <p class="uv-src2">※チーム名はPDFの略称を一般名称に展開して掲載</p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-2">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 東北</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>北日本エネルギーカップ 第51回東北地区大学サッカーリーグ1部</h3>
+            <p class="uv-asof">第7節終了時点</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">八戸学院大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">24</td><td class="uv-c">5</td><td class="uv-c">+19</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">富士大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">21</td><td class="uv-c">5</td><td class="uv-c">+16</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">仙台大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">26</td><td class="uv-c">7</td><td class="uv-c">+19</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">東日本国際大学</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">11</td><td class="uv-c">17</td><td class="uv-c">-6</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">東北学院大学</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">53</td><td class="uv-c">10</td><td class="uv-c">+43</td><td class="uv-pts">9</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">東北大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">8</td><td class="uv-c">10</td><td class="uv-c">-2</td><td class="uv-pts">6</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">東北工業大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">6</td><td class="uv-c">36</td><td class="uv-c">-30</td><td class="uv-pts">6</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">8</td><td class="uv-name">ノースアジア大学</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">59</td><td class="uv-c">-59</td><td class="uv-pts">0</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jfa.jp/match_47fa/102_tohoku/2026_university/div1/thfa/ranking.html" target="_blank" rel="noopener">JFA公式 順位表（東北サッカー協会）</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>北日本エネルギーカップ 第51回東北地区大学サッカーリーグ2部</h3>
+            <p class="uv-asof">夏季中断時点（消化試合数はチームにより4〜6）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">秋田大学</td><td class="uv-c">5</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">21</td><td class="uv-c">0</td><td class="uv-c">+21</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">東北福祉大学</td><td class="uv-c">6</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">22</td><td class="uv-c">7</td><td class="uv-c">+15</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">東北公益文科大学</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">20</td><td class="uv-c">11</td><td class="uv-c">+9</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">岩手大学</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">12</td><td class="uv-c">6</td><td class="uv-c">+6</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">青森大学</td><td class="uv-c">6</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">3</td><td class="uv-c">18</td><td class="uv-c">7</td><td class="uv-c">+11</td><td class="uv-pts">9</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">山形大学</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">9</td><td class="uv-c">8</td><td class="uv-c">+1</td><td class="uv-pts">9</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">宮城教育大学</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">7</td><td class="uv-c">-1</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">石巻専修大学</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">11</td><td class="uv-c">-5</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">弘前大学</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">3</td><td class="uv-c">8</td><td class="uv-c">17</td><td class="uv-c">-9</td><td class="uv-pts">6</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">青森中央学院大学</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">10</td><td class="uv-c">-4</td><td class="uv-pts">4</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">八戸工業大学</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">8</td><td class="uv-c">24</td><td class="uv-c">-16</td><td class="uv-pts">3</td></tr>
+                <tr><td class="uv-rank">12</td><td class="uv-name">福島大学</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">8</td><td class="uv-c">-5</td><td class="uv-pts">1</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">13</td><td class="uv-name">日本大学工学部</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">26</td><td class="uv-c">-23</td><td class="uv-pts">0</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jfa.jp/match_47fa/102_tohoku/2026_university/div2/thfa/ranking.html" target="_blank" rel="noopener">JFA公式 順位表（東北サッカー協会）</a></p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-3">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 関東</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>JR東日本カップ2026 第100回関東大学サッカーリーグ戦 1部</h3>
+            <p class="uv-asof">前期終了（6月13日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">国士舘大学</td><td class="uv-c">11</td><td class="uv-c">8</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">18</td><td class="uv-c">10</td><td class="uv-c">+8</td><td class="uv-pts">25</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">日本大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">18</td><td class="uv-c">16</td><td class="uv-c">+2</td><td class="uv-pts">20</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">中央大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">10</td><td class="uv-c">10</td><td class="uv-c">0</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">早稲田大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">19</td><td class="uv-c">16</td><td class="uv-c">+3</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">筑波大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">5</td><td class="uv-c">14</td><td class="uv-c">11</td><td class="uv-c">+3</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">日本体育大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">21</td><td class="uv-c">18</td><td class="uv-c">+3</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">法政大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">13</td><td class="uv-c">15</td><td class="uv-c">-2</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">東洋大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">10</td><td class="uv-c">12</td><td class="uv-c">-2</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">桐蔭横浜大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">5</td><td class="uv-c">19</td><td class="uv-c">18</td><td class="uv-c">+1</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">明治大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">11</td><td class="uv-c">15</td><td class="uv-c">-4</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">駒澤大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">13</td><td class="uv-c">18</td><td class="uv-c">-5</td><td class="uv-pts">11</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">東海大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">8</td><td class="uv-c">12</td><td class="uv-c">19</td><td class="uv-c">-7</td><td class="uv-pts">7</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jufa-kanto.jp/league" target="_blank" rel="noopener">関東大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>JR東日本カップ2026 第100回関東大学サッカーリーグ戦 2部</h3>
+            <p class="uv-asof">前期終了（7月18日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">産業能率大学</td><td class="uv-c">11</td><td class="uv-c">8</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">22</td><td class="uv-c">5</td><td class="uv-c">+17</td><td class="uv-pts">26</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">流通経済大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">21</td><td class="uv-c">18</td><td class="uv-c">+3</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">立正大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">20</td><td class="uv-c">14</td><td class="uv-c">+6</td><td class="uv-pts">20</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">関東学院大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">18</td><td class="uv-c">11</td><td class="uv-c">+7</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">城西大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">14</td><td class="uv-c">20</td><td class="uv-c">-6</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">東京国際大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">14</td><td class="uv-c">11</td><td class="uv-c">+3</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">専修大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">13</td><td class="uv-c">13</td><td class="uv-c">0</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">立教大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">12</td><td class="uv-c">13</td><td class="uv-c">-1</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">慶應義塾大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">18</td><td class="uv-c">20</td><td class="uv-c">-2</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">神奈川大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">11</td><td class="uv-c">18</td><td class="uv-c">-7</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">明治学院大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">13</td><td class="uv-c">23</td><td class="uv-c">-10</td><td class="uv-pts">11</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">拓殖大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">8</td><td class="uv-c">11</td><td class="uv-c">21</td><td class="uv-c">-10</td><td class="uv-pts">7</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jufa-kanto.jp/league" target="_blank" rel="noopener">関東大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>JR東日本カップ2026 第100回関東大学サッカーリーグ戦 3部</h3>
+            <p class="uv-asof">前期終了（7月11日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">山梨学院大学</td><td class="uv-c">11</td><td class="uv-c">10</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">31</td><td class="uv-c">9</td><td class="uv-c">+22</td><td class="uv-pts">31</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">順天堂大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">20</td><td class="uv-c">11</td><td class="uv-c">+9</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">國學院大學</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">18</td><td class="uv-c">12</td><td class="uv-c">+6</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">東京学芸大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">21</td><td class="uv-c">19</td><td class="uv-c">+2</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">東京農業大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">16</td><td class="uv-c">9</td><td class="uv-c">+7</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">青山学院大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">20</td><td class="uv-c">16</td><td class="uv-c">+4</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">亜細亜大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">18</td><td class="uv-c">16</td><td class="uv-c">+2</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">共栄大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">15</td><td class="uv-c">18</td><td class="uv-c">-3</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">作新学院大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">6</td><td class="uv-c">17</td><td class="uv-c">23</td><td class="uv-c">-6</td><td class="uv-pts">9</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">中央学院大学</td><td class="uv-c">11</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">6</td><td class="uv-c">9</td><td class="uv-c">20</td><td class="uv-c">-11</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">城西国際大学</td><td class="uv-c">11</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">9</td><td class="uv-c">14</td><td class="uv-c">28</td><td class="uv-c">-14</td><td class="uv-pts">4</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">上武大学</td><td class="uv-c">11</td><td class="uv-c">0</td><td class="uv-c">3</td><td class="uv-c">8</td><td class="uv-c">7</td><td class="uv-c">25</td><td class="uv-c">-18</td><td class="uv-pts">3</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jufa-kanto.jp/league" target="_blank" rel="noopener">関東大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-4">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 北信越</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>第54回北信越大学サッカーリーグ 1部</h3>
+            <p class="uv-asof">1回戦総当たり終了（全7節）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">松本大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">27</td><td class="uv-c">6</td><td class="uv-c">+21</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">新潟医療福祉大学</td><td class="uv-c">7</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">25</td><td class="uv-c">5</td><td class="uv-c">+20</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">金沢学院大学</td><td class="uv-c">7</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">21</td><td class="uv-c">7</td><td class="uv-c">+14</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">北陸大学</td><td class="uv-c">7</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">18</td><td class="uv-c">8</td><td class="uv-c">+10</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">新潟経営大学</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">11</td><td class="uv-c">11</td><td class="uv-c">0</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">新潟大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">7</td><td class="uv-c">28</td><td class="uv-c">-21</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">新潟産業大学</td><td class="uv-c">7</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">6</td><td class="uv-c">5</td><td class="uv-c">22</td><td class="uv-c">-17</td><td class="uv-pts">3</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">8</td><td class="uv-name">金沢大学</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">7</td><td class="uv-c">4</td><td class="uv-c">31</td><td class="uv-c">-27</td><td class="uv-pts">0</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://hufl.info/league/" target="_blank" rel="noopener">北信越大学サッカー連盟 公式</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>第54回北信越大学サッカーリーグ 2部</h3>
+            <p class="uv-asof">夏季中断時点（消化試合数はチームにより3〜4）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">金沢星稜大学</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">87</td><td class="uv-c">0</td><td class="uv-c">+87</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">福井工業大学</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">85</td><td class="uv-c">1</td><td class="uv-c">+84</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">信州大学</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">31</td><td class="uv-c">2</td><td class="uv-c">+29</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">富山大学</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">10</td><td class="uv-c">1</td><td class="uv-c">+9</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">福井大学</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">+2</td><td class="uv-pts">3</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">上越教育大学</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">21</td><td class="uv-c">-21</td><td class="uv-pts">1</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">金沢工業大学</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">47</td><td class="uv-c">-45</td><td class="uv-pts">0</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">富山国際大学</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">70</td><td class="uv-c">-68</td><td class="uv-pts">0</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">9</td><td class="uv-name">福井県立大学</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">77</td><td class="uv-c">-77</td><td class="uv-pts">0</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://hufl.info/league/" target="_blank" rel="noopener">北信越大学サッカー連盟 公式</a></p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-5">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 東海</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>第65回東海学生サッカーリーグ戦 1部</h3>
+            <p class="uv-asof">前期終了（第11節終了時点）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">東海学園大学</td><td class="uv-c">11</td><td class="uv-c">8</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">29</td><td class="uv-c">8</td><td class="uv-c">+21</td><td class="uv-pts">26</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">常葉大学</td><td class="uv-c">11</td><td class="uv-c">8</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">24</td><td class="uv-c">7</td><td class="uv-c">+17</td><td class="uv-pts">26</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">中京大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">26</td><td class="uv-c">11</td><td class="uv-c">+15</td><td class="uv-pts">24</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">静岡産業大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">23</td><td class="uv-c">12</td><td class="uv-c">+11</td><td class="uv-pts">20</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">四日市大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">33</td><td class="uv-c">15</td><td class="uv-c">+18</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">中部大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">38</td><td class="uv-c">24</td><td class="uv-c">+14</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">名古屋産業大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">5</td><td class="uv-c">20</td><td class="uv-c">25</td><td class="uv-c">-5</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">愛知学院大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">17</td><td class="uv-c">29</td><td class="uv-c">-12</td><td class="uv-pts">11</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">愛知東邦大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">13</td><td class="uv-c">26</td><td class="uv-c">-13</td><td class="uv-pts">11</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">日本福祉大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">8</td><td class="uv-c">9</td><td class="uv-c">30</td><td class="uv-c">-21</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">岐阜協立大学</td><td class="uv-c">11</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">7</td><td class="uv-c">12</td><td class="uv-c">30</td><td class="uv-c">-18</td><td class="uv-pts">6</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">名城大学</td><td class="uv-c">11</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">9</td><td class="uv-c">8</td><td class="uv-c">35</td><td class="uv-c">-27</td><td class="uv-pts">2</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="http://jufa.tokai-soccer.gr.jp/?page_id=26371" target="_blank" rel="noopener">東海学生サッカー連盟 公式</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>第65回東海学生サッカーリーグ戦 2部</h3>
+            <p class="uv-asof">前期終了（第9節終了時点）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">岐阜聖徳学園大学</td><td class="uv-c">9</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">26</td><td class="uv-c">12</td><td class="uv-c">+14</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">南山大学</td><td class="uv-c">9</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">17</td><td class="uv-c">5</td><td class="uv-c">+12</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">静岡大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">0</td><td class="uv-c">3</td><td class="uv-c">27</td><td class="uv-c">10</td><td class="uv-c">+17</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">名古屋学院大学</td><td class="uv-c">9</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">2</td><td class="uv-c">23</td><td class="uv-c">10</td><td class="uv-c">+13</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">名古屋経済大学</td><td class="uv-c">9</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">14</td><td class="uv-c">7</td><td class="uv-c">+7</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">名古屋商科大学</td><td class="uv-c">9</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">12</td><td class="uv-c">12</td><td class="uv-c">0</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">名古屋大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">6</td><td class="uv-c">9</td><td class="uv-c">16</td><td class="uv-c">-7</td><td class="uv-pts">9</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">愛知教育大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">0</td><td class="uv-c">6</td><td class="uv-c">14</td><td class="uv-c">22</td><td class="uv-c">-8</td><td class="uv-pts">9</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">常葉大学静岡キャンパス</td><td class="uv-c">9</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">28</td><td class="uv-c">-23</td><td class="uv-pts">4</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">10</td><td class="uv-name">愛知大学</td><td class="uv-c">9</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">8</td><td class="uv-c">4</td><td class="uv-c">29</td><td class="uv-c">-25</td><td class="uv-pts">3</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="http://jufa.tokai-soccer.gr.jp/?page_id=26433" target="_blank" rel="noopener">東海学生サッカー連盟 公式</a></p>
+            <p class="uv-src2">※名古屋経済大学の試合数は連盟公式表で8と表示されているが、勝敗内訳（5勝1分3敗）に基づき9試合として掲載</p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-6">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 関西</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>第104回関西学生サッカーリーグ 1部</h3>
+            <p class="uv-asof">前期終了（全11節）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">京都産業大学</td><td class="uv-c">11</td><td class="uv-c">8</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">28</td><td class="uv-c">10</td><td class="uv-c">+18</td><td class="uv-pts">26</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">同志社大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">21</td><td class="uv-c">12</td><td class="uv-c">+9</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">関西大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">2</td><td class="uv-c">3</td><td class="uv-c">22</td><td class="uv-c">12</td><td class="uv-c">+10</td><td class="uv-pts">20</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">関西学院大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">21</td><td class="uv-c">17</td><td class="uv-c">+4</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">立命館大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">13</td><td class="uv-c">11</td><td class="uv-c">+2</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">阪南大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">6</td><td class="uv-c">17</td><td class="uv-c">24</td><td class="uv-c">-7</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">桃山学院大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">5</td><td class="uv-c">16</td><td class="uv-c">21</td><td class="uv-c">-5</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">大阪体育大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">16</td><td class="uv-c">13</td><td class="uv-c">+3</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">甲南大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">13</td><td class="uv-c">13</td><td class="uv-c">0</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">大阪学院大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">5</td><td class="uv-c">14</td><td class="uv-c">15</td><td class="uv-c">-1</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">びわこ成蹊スポーツ大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">5</td><td class="uv-c">15</td><td class="uv-c">22</td><td class="uv-c">-7</td><td class="uv-pts">12</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">大阪商業大学</td><td class="uv-c">11</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">32</td><td class="uv-c">-26</td><td class="uv-pts">2</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jufa-kansai.jp/taikai/result_26nit_zen-1-1/" target="_blank" rel="noopener">関西学生サッカー連盟 公式結果速報から当サイト算出</a></p>
+            <p class="uv-src2">※順位は勝点→得失点差→総得点で当サイトが算出（同成績の場合は連盟規定の直接対決等で入れ替わる可能性があります）</p>
+          </div>
+          <div class="uv-div">
+            <h3>第104回関西学生サッカーリーグ 2部</h3>
+            <p class="uv-asof">前期終了（全11節）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">近畿大学</td><td class="uv-c">11</td><td class="uv-c">10</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">30</td><td class="uv-c">10</td><td class="uv-c">+20</td><td class="uv-pts">30</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">関西国際大学</td><td class="uv-c">11</td><td class="uv-c">8</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">27</td><td class="uv-c">13</td><td class="uv-c">+14</td><td class="uv-pts">25</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">大阪経済大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">25</td><td class="uv-c">13</td><td class="uv-c">+12</td><td class="uv-pts">22</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">関西福祉大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">24</td><td class="uv-c">8</td><td class="uv-c">+16</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">京都橘大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">18</td><td class="uv-c">10</td><td class="uv-c">+8</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">追手門学院大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">4</td><td class="uv-c">3</td><td class="uv-c">18</td><td class="uv-c">12</td><td class="uv-c">+6</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">神戸学院大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">5</td><td class="uv-c">15</td><td class="uv-c">17</td><td class="uv-c">-2</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">京都先端科学大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">11</td><td class="uv-c">27</td><td class="uv-c">-16</td><td class="uv-pts">11</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">龍谷大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">5</td><td class="uv-c">13</td><td class="uv-c">17</td><td class="uv-c">-4</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">大阪国際大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">2</td><td class="uv-c">7</td><td class="uv-c">9</td><td class="uv-c">26</td><td class="uv-c">-17</td><td class="uv-pts">8</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">大阪大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">9</td><td class="uv-c">9</td><td class="uv-c">21</td><td class="uv-c">-12</td><td class="uv-pts">6</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">大阪産業大学</td><td class="uv-c">11</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">28</td><td class="uv-c">-25</td><td class="uv-pts">4</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jufa-kansai.jp/taikai/result_26nit_zen-2-1/" target="_blank" rel="noopener">関西学生サッカー連盟 公式結果速報から当サイト算出</a></p>
+            <p class="uv-src2">※順位は勝点→得失点差→総得点で当サイトが算出（同成績の場合は連盟規定の直接対決等で入れ替わる可能性があります）</p>
+          </div>
+          <div class="uv-div">
+            <h3>第104回関西学生サッカーリーグ 3部</h3>
+            <p class="uv-asof">前期終了（全11節）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">芦屋大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">27</td><td class="uv-c">11</td><td class="uv-c">+16</td><td class="uv-pts">24</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">流通科学大学</td><td class="uv-c">11</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">16</td><td class="uv-c">11</td><td class="uv-c">+5</td><td class="uv-pts">21</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">大阪教育大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">18</td><td class="uv-c">13</td><td class="uv-c">+5</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">摂南大学</td><td class="uv-c">11</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">18</td><td class="uv-c">15</td><td class="uv-c">+3</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">京都大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">24</td><td class="uv-c">18</td><td class="uv-c">+6</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">神戸大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">15</td><td class="uv-c">16</td><td class="uv-c">-1</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">大阪信愛学院大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">5</td><td class="uv-c">13</td><td class="uv-c">15</td><td class="uv-c">-2</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">天理大学</td><td class="uv-c">11</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">6</td><td class="uv-c">17</td><td class="uv-c">24</td><td class="uv-c">-7</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">関西外国語大学</td><td class="uv-c">11</td><td class="uv-c">4</td><td class="uv-c">2</td><td class="uv-c">5</td><td class="uv-c">19</td><td class="uv-c">19</td><td class="uv-c">0</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">大阪公立大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">5</td><td class="uv-c">19</td><td class="uv-c">17</td><td class="uv-c">+2</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">11</td><td class="uv-name">姫路獨協大学</td><td class="uv-c">11</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">7</td><td class="uv-c">12</td><td class="uv-c">20</td><td class="uv-c">-8</td><td class="uv-pts">10</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">12</td><td class="uv-name">神戸国際大学</td><td class="uv-c">11</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">9</td><td class="uv-c">9</td><td class="uv-c">28</td><td class="uv-c">-19</td><td class="uv-pts">6</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://www.jufa-kansai.jp/taikai/result_26nit_zen-3-1/" target="_blank" rel="noopener">関西学生サッカー連盟 公式結果速報から当サイト算出</a></p>
+            <p class="uv-src2">※順位は勝点→得失点差→総得点で当サイトが算出（同成績の場合は連盟規定の直接対決等で入れ替わる可能性があります）</p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-7">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 中国</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>2026年度 中国大学サッカーリーグ 1部</h3>
+            <p class="uv-asof">前期終了（7月12日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">IPU・環太平洋大学</td><td class="uv-c">9</td><td class="uv-c">9</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">58</td><td class="uv-c">3</td><td class="uv-c">+55</td><td class="uv-pts">27</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">福山大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">20</td><td class="uv-c">12</td><td class="uv-c">+8</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">広島大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">20</td><td class="uv-c">12</td><td class="uv-c">+8</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">広島経済大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">0</td><td class="uv-c">3</td><td class="uv-c">20</td><td class="uv-c">10</td><td class="uv-c">+10</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">周南公立大学</td><td class="uv-c">9</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">4</td><td class="uv-c">13</td><td class="uv-c">16</td><td class="uv-c">-3</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">広島修道大学</td><td class="uv-c">9</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">14</td><td class="uv-c">18</td><td class="uv-c">-4</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">広島文化学園大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">5</td><td class="uv-c">12</td><td class="uv-c">13</td><td class="uv-c">-1</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">福山平成大学</td><td class="uv-c">9</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">7</td><td class="uv-c">9</td><td class="uv-c">21</td><td class="uv-c">-12</td><td class="uv-pts">6</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">川崎医療福祉大学</td><td class="uv-c">9</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">8</td><td class="uv-c">39</td><td class="uv-c">-31</td><td class="uv-pts">5</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">10</td><td class="uv-name">山口大学</td><td class="uv-c">9</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">8</td><td class="uv-c">3</td><td class="uv-c">33</td><td class="uv-c">-30</td><td class="uv-pts">1</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://jufa-chugoku.jp/result/2026/tid_558/ranking.html" target="_blank" rel="noopener">中国大学サッカー連盟 公式記録（football-system）</a></p>
+            <p class="uv-src2">※2位は福山大学・広島大学の2校（公式表記どおり同順位）</p>
+          </div>
+          <div class="uv-div">
+            <h3>2026年度 中国大学サッカーリーグ 2部</h3>
+            <p class="uv-asof">前期終了（7月19日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">岡山理科大学</td><td class="uv-c">10</td><td class="uv-c">9</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">59</td><td class="uv-c">9</td><td class="uv-c">+50</td><td class="uv-pts">28</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">岡山大学</td><td class="uv-c">10</td><td class="uv-c">9</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">47</td><td class="uv-c">12</td><td class="uv-c">+35</td><td class="uv-pts">27</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">広島国際大学</td><td class="uv-c">10</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">35</td><td class="uv-c">16</td><td class="uv-c">+19</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">吉備国際大学</td><td class="uv-c">10</td><td class="uv-c">5</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">29</td><td class="uv-c">21</td><td class="uv-c">+8</td><td class="uv-pts">18</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">島根大学</td><td class="uv-c">10</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">24</td><td class="uv-c">22</td><td class="uv-c">+2</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">下関市立大学</td><td class="uv-c">10</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">5</td><td class="uv-c">21</td><td class="uv-c">27</td><td class="uv-c">-6</td><td class="uv-pts">11</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">鳥取大学</td><td class="uv-c">10</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">5</td><td class="uv-c">16</td><td class="uv-c">34</td><td class="uv-c">-18</td><td class="uv-pts">11</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">就実大学</td><td class="uv-c">10</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">19</td><td class="uv-c">38</td><td class="uv-c">-19</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">島根県立大学</td><td class="uv-c">10</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">6</td><td class="uv-c">22</td><td class="uv-c">42</td><td class="uv-c">-20</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">10</td><td class="uv-name">尾道市立大学</td><td class="uv-c">10</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">8</td><td class="uv-c">23</td><td class="uv-c">45</td><td class="uv-c">-22</td><td class="uv-pts">6</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">11</td><td class="uv-name">広島工業大学</td><td class="uv-c">10</td><td class="uv-c">1</td><td class="uv-c">0</td><td class="uv-c">9</td><td class="uv-c">23</td><td class="uv-c">52</td><td class="uv-c">-29</td><td class="uv-pts">3</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://jufa-chugoku.jp/result/2026/tid_559/ranking.html" target="_blank" rel="noopener">中国大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+        </div>
+        </div>
+        <div id="uv-region-9">
+        <h3 style="margin:22px 0 10px;"><i class="fas fa-map-location-dot"></i> 九州</h3>
+        <div class="uv-divs">
+          <div class="uv-div">
+            <h3>第41回九州大学サッカーリーグ 1部</h3>
+            <p class="uv-asof">前期終了（7月11日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">福岡大学</td><td class="uv-c">9</td><td class="uv-c">8</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">29</td><td class="uv-c">4</td><td class="uv-c">+25</td><td class="uv-pts">24</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">鹿屋体育大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">24</td><td class="uv-c">10</td><td class="uv-c">+14</td><td class="uv-pts">20</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">日本文理大学</td><td class="uv-c">9</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">2</td><td class="uv-c">18</td><td class="uv-c">13</td><td class="uv-c">+5</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">九州産業大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">17</td><td class="uv-c">14</td><td class="uv-c">+3</td><td class="uv-pts">14</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">日本経済大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">14</td><td class="uv-c">18</td><td class="uv-c">-4</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">九州国際大学</td><td class="uv-c">9</td><td class="uv-c">4</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">10</td><td class="uv-c">16</td><td class="uv-c">-6</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">宮崎産業経営大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">2</td><td class="uv-c">4</td><td class="uv-c">15</td><td class="uv-c">13</td><td class="uv-c">+2</td><td class="uv-pts">11</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">九州共立大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">5</td><td class="uv-c">8</td><td class="uv-c">16</td><td class="uv-c">-8</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">西南学院大学</td><td class="uv-c">9</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">7</td><td class="uv-c">10</td><td class="uv-c">24</td><td class="uv-c">-14</td><td class="uv-pts">6</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">10</td><td class="uv-name">熊本学園大学</td><td class="uv-c">9</td><td class="uv-c">0</td><td class="uv-c">1</td><td class="uv-c">8</td><td class="uv-c">6</td><td class="uv-c">23</td><td class="uv-c">-17</td><td class="uv-pts">1</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://jufa-kyusyu.jp/league/2026/tid_560/ranking.html" target="_blank" rel="noopener">九州大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>第41回九州大学サッカーリーグ 2部</h3>
+            <p class="uv-asof">前期終了（8月13日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">東海大学熊本</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">31</td><td class="uv-c">13</td><td class="uv-c">+18</td><td class="uv-pts">20</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">長崎国際大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">24</td><td class="uv-c">12</td><td class="uv-c">+12</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">沖縄国際大学</td><td class="uv-c">9</td><td class="uv-c">6</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">22</td><td class="uv-c">14</td><td class="uv-c">+8</td><td class="uv-pts">19</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">鎮西学院大学</td><td class="uv-c">9</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">2</td><td class="uv-c">19</td><td class="uv-c">11</td><td class="uv-c">+8</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">九州医療科学大学</td><td class="uv-c">9</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">19</td><td class="uv-c">16</td><td class="uv-c">+3</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">西日本工業大学</td><td class="uv-c">9</td><td class="uv-c">4</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">22</td><td class="uv-c">22</td><td class="uv-c">0</td><td class="uv-pts">13</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">久留米大学</td><td class="uv-c">9</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">3</td><td class="uv-c">20</td><td class="uv-c">28</td><td class="uv-c">-8</td><td class="uv-pts">12</td></tr>
+                <tr><td class="uv-rank">8</td><td class="uv-name">佐賀大学</td><td class="uv-c">9</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">5</td><td class="uv-c">12</td><td class="uv-c">22</td><td class="uv-c">-10</td><td class="uv-pts">6</td></tr>
+                <tr><td class="uv-rank">9</td><td class="uv-name">九州大学</td><td class="uv-c">9</td><td class="uv-c">1</td><td class="uv-c">2</td><td class="uv-c">6</td><td class="uv-c">14</td><td class="uv-c">24</td><td class="uv-c">-10</td><td class="uv-pts">5</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">10</td><td class="uv-name">長崎総合科学大学</td><td class="uv-c">9</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">7</td><td class="uv-c">4</td><td class="uv-c">25</td><td class="uv-c">-21</td><td class="uv-pts">2</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://jufa-kyusyu.jp/league/2026/tid_561/ranking.html" target="_blank" rel="noopener">九州大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+          <div class="uv-div">
+            <h3>第41回九州大学サッカーリーグ 3部</h3>
+            <p class="uv-asof">前期終了（7月4日現在）</p>
+            <div class="univ-scroll">
+            <table class="uv-table">
+              <thead><tr><th>順</th><th class="uv-name" style="text-align:left;">チーム</th><th>試</th><th>勝</th><th>分</th><th>敗</th><th>得</th><th>失</th><th>差</th><th>点</th></tr></thead>
+              <tbody>
+                <tr class="uv-top"><td class="uv-rank">1</td><td class="uv-name">名桜大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">19</td><td class="uv-c">5</td><td class="uv-c">+14</td><td class="uv-pts">17</td></tr>
+                <tr><td class="uv-rank">2</td><td class="uv-name">熊本大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">1</td><td class="uv-c">1</td><td class="uv-c">18</td><td class="uv-c">6</td><td class="uv-c">+12</td><td class="uv-pts">16</td></tr>
+                <tr><td class="uv-rank">3</td><td class="uv-name">鹿児島国際大学</td><td class="uv-c">7</td><td class="uv-c">5</td><td class="uv-c">0</td><td class="uv-c">2</td><td class="uv-c">18</td><td class="uv-c">9</td><td class="uv-c">+9</td><td class="uv-pts">15</td></tr>
+                <tr><td class="uv-rank">4</td><td class="uv-name">宮崎大学</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">13</td><td class="uv-c">16</td><td class="uv-c">-3</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">5</td><td class="uv-name">福岡教育大学</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">1</td><td class="uv-c">3</td><td class="uv-c">13</td><td class="uv-c">18</td><td class="uv-c">-5</td><td class="uv-pts">10</td></tr>
+                <tr><td class="uv-rank">6</td><td class="uv-name">長崎大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">1</td><td class="uv-c">4</td><td class="uv-c">11</td><td class="uv-c">18</td><td class="uv-c">-7</td><td class="uv-pts">7</td></tr>
+                <tr><td class="uv-rank">7</td><td class="uv-name">沖縄大学</td><td class="uv-c">7</td><td class="uv-c">2</td><td class="uv-c">0</td><td class="uv-c">5</td><td class="uv-c">14</td><td class="uv-c">19</td><td class="uv-c">-5</td><td class="uv-pts">6</td></tr>
+                <tr class="uv-bottom"><td class="uv-rank">8</td><td class="uv-name">大分大学</td><td class="uv-c">7</td><td class="uv-c">0</td><td class="uv-c">0</td><td class="uv-c">7</td><td class="uv-c">3</td><td class="uv-c">18</td><td class="uv-c">-15</td><td class="uv-pts">0</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="uv-src2">出典：<a href="https://jufa-kyusyu.jp/league/2026/tid_562/ranking.html" target="_blank" rel="noopener">九州大学サッカー連盟 公式記録（football-system）</a></p>
+          </div>
+        </div>
+        </div>
+<!-- UNIV_STANDINGS_END -->
+      </section>
+
       <section class="lp-section" id="leagues">
-        <h2><i class="fas fa-table-list"></i> 9地域の大学リーグ</h2>
+        <h2><i class="fas fa-table-list"></i> 9地域の大学リーグ（連盟公式サイト）</h2>
         <p style="line-height:1.9;">
           各地域の連盟公式サイトへのリンクです。リーグ戦は多くの地域で9月中旬に後期が再開します。
         </p>
@@ -191,7 +688,7 @@
           </tbody>
         </table>
         </div>
-        <p class="univ-note" style="margin-top:10px;">※各リーグの順位表は今後、当サイトでも掲載できるよう準備を進めています。</p>
+        <p class="univ-note" style="margin-top:10px;">※順位表は上の<a href="#standings">「全国の大学リーグ順位表」</a>に掲載しています。</p>
       </section>
 
       <section class="lp-section">
