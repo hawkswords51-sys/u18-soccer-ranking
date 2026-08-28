@@ -117,15 +117,18 @@ def map_columns(cols):
         h = norm_header(c)
         if ("順位" in h or h == "順") and "rank" not in idx: idx["rank"] = i
         elif ("チーム" in h or "大学名" in h) and "name" not in idx: idx["name"] = i
-        elif "勝点" in h or "勝ち点" in h: idx["p"] = i
-        elif "試合" in h: idx["g"] = i
-        elif h in ("勝", "勝数"): idx["w"] = i
-        elif h in ("分", "引分", "分数", "引き分け"): idx["d"] = i
-        elif h in ("負", "敗", "負数", "敗数"): idx["l"] = i
-        elif ("得点" in h and "失" not in h) or h == "得": idx["gf"] = i
-        elif "失点" in h or h == "失": idx["ga"] = i
-    need = ["name", "p", "w", "d", "l", "gf", "ga"]
+        elif ("勝点" in h or "勝ち点" in h) and "p" not in idx: idx["p"] = i
+        elif "試合" in h and "g" not in idx: idx["g"] = i
+        elif h in ("勝", "勝数", "勝利") and "w" not in idx: idx["w"] = i
+        elif h in ("分", "引分", "分数", "引き分け") and "d" not in idx: idx["d"] = i
+        elif h in ("負", "敗", "負数", "敗数", "敗戦") and "l" not in idx: idx["l"] = i
+        elif (("得点" in h and "失" not in h and "差" not in h) or h == "得") and "gf" not in idx: idx["gf"] = i
+        elif (("失点" in h and "差" not in h) or h == "失") and "ga" not in idx: idx["ga"] = i
+    need = ["p", "w", "d", "l", "gf", "ga"]
     if all(k in idx for k in need):
+        # チーム名列のヘッダーが空のサイト（北信越hufl等）は先頭列をチーム名とみなす
+        if "name" not in idx:
+            idx["name"] = 0
         return idx
     return None
 
@@ -210,6 +213,8 @@ def finalize_rows(rows, league_id):
     """名寄せ・g補完・gd計算・順位補完をして teams 形式にする"""
     al = ALIASES.get(league_id, {})
     for r in rows:
+        # JFA東北の「八戸学院大学(青森県)」のような都道府県サフィックスを除去
+        r["name"] = re.sub(r"[（(][^（()）]{2,5}[都道府県][)）]$", "", r["name"]).strip()
         r["name"] = al.get(r["name"], r["name"])
         if r.get("g") is None or r["g"] != r["w"] + r["d"] + r["l"]:
             if r.get("g") is not None:

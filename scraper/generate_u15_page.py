@@ -401,6 +401,15 @@ def build_html(data):
 {faq_html}
       </section>
 
+      <section class="lp-section">
+        <h2><i class="fas fa-link"></i> 関連ページ（U-15 → U-18 → 大学）</h2>
+        <ul style="line-height:2.1;">
+          <li><a href="/leagues/">U-18（高校年代）リーグ一覧 — プレミア・プリンスリーグ（毎日自動更新）</a></li>
+          <li><a href="/university/">大学サッカーハブ — 全国20リーグ順位表と「高校→大学→プロ」の進路解説</a></li>
+          <li><a href="/blog/posts/interhigh-2026-data-review/">インターハイ2026 出場1,428人の前所属データ（U-15→U-18の接続）</a></li>
+        </ul>
+      </section>
+
     </div>
   </main>
 
