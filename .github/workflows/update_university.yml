@@ -1,0 +1,60 @@
+name: 大学リーグ 順位自動更新
+
+on:
+  # 毎週月曜 6:30 JST (= 日曜 21:30 UTC)。大学リーグは週末開催のため週1で十分
+  schedule:
+    - cron: '30 21 * * 0'
+  # 手動実行ボタン（初回テストや臨時更新用）
+  workflow_dispatch:
+
+# 高円宮杯の日次ワークフローと同じグループで順番待ちにする（push衝突防止・手順書1-7）
+concurrency:
+  group: site-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 依存ライブラリをインストール
+        run: pip install requests pandas lxml
+
+      - name: 大学リーグ順位を更新してページ再生成
+        run: python scraper/update_university_standings.py
+
+      - name: 変更をコミット & プッシュ
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/university/leagues-2026.json university/index.html
+
+          if git diff --staged --quiet; then
+            echo "変更なし – push スキップ"
+          else
+            git commit -m "chore: 大学リーグ順位 自動更新 $(date '+%Y-%m-%d')"
+            PUSHED=0
+            for i in 1 2 3; do
+              if git pull --rebase --autostash origin main && git push; then
+                PUSHED=1
+                break
+              fi
+              echo "push 失敗、リトライ $i/3 ..."
+              sleep 5
+            done
+            if [ "$PUSHED" != "1" ]; then
+              echo "::error::push が3回失敗しました。サイトに反映されていません。"
+              exit 1
+            fi
+          fi
