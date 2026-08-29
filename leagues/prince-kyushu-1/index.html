@@ -205,25 +205,6 @@
       "position": 6,
       "item": {
         "@type": "SportsTeam",
-        "name": "大津高校2nd",
-        "sport": "Football",
-        "memberOf": "プリンスリーグ 九州 1部",
-        "location": {
-          "@type": "Place",
-          "name": "熊本県",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "JP",
-            "addressRegion": "熊本県"
-          }
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 7,
-      "item": {
-        "@type": "SportsTeam",
         "name": "国見高校",
         "sport": "Football",
         "memberOf": "プリンスリーグ 九州 1部",
@@ -240,7 +221,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 8,
+      "position": 7,
       "item": {
         "@type": "SportsTeam",
         "name": "飯塚高校",
@@ -253,6 +234,25 @@
             "@type": "PostalAddress",
             "addressCountry": "JP",
             "addressRegion": "福岡県"
+          }
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "SportsTeam",
+        "name": "大津高校2nd",
+        "sport": "Football",
+        "memberOf": "プリンスリーグ 九州 1部",
+        "location": {
+          "@type": "Place",
+          "name": "熊本県",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "JP",
+            "addressRegion": "熊本県"
           }
         }
       }
@@ -418,6 +418,63 @@
         </a>
       </div>
 
+      <section class="lp-section rr-section" id="recent-results">
+<style>
+.rr-section{margin:28px 0;}
+.rr-section h2.section-title-lp{margin:0 0 8px;}
+.rr-meta{font-size:.9rem;color:var(--text-light);margin:0 0 12px;}
+.rr-list{list-style:none;margin:0 0 4px;padding:0;border:1px solid var(--border-color);
+  border-radius:10px;overflow:hidden;background:var(--bg-white);}
+.rr-row{display:grid;grid-template-columns:76px 1fr auto 1fr;align-items:center;gap:8px;
+  padding:11px 14px;border-bottom:1px solid var(--border-color);}
+.rr-list .rr-row:last-child{border-bottom:none;}
+.rr-date{font-size:.85rem;color:var(--text-light);white-space:nowrap;}
+.rr-team{font-size:1rem;color:var(--text-dark);line-height:1.35;}
+.rr-home{text-align:right;}
+.rr-away{text-align:left;}
+.rr-team a{color:var(--text-dark);text-decoration:none;border-bottom:1px dotted var(--border-color);}
+.rr-team a:hover{color:var(--accent-color);}
+.rr-win{font-weight:700;}
+.rr-score{font-weight:700;font-size:1.12rem;color:var(--accent-color);white-space:nowrap;
+  min-width:62px;text-align:center;}
+.rr-score .rr-dash{margin:0 5px;opacity:.6;font-weight:400;}
+.rr-vs{font-size:.85rem;color:var(--text-light);min-width:62px;text-align:center;}
+.rr-next-h{margin:20px 0 6px;font-size:1.05rem;font-weight:700;color:var(--text-dark);
+  display:flex;align-items:center;gap:8px;}
+.rr-next-h .rr-badge{font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:3px 9px;
+  border-radius:999px;background:var(--primary-hover-bg);color:var(--accent-color);}
+.rr-done{font-size:.92rem;color:var(--text-light);margin-top:14px;}
+.rr-src{font-size:.82rem;color:var(--text-light);margin:8px 0 0;}
+.rr-src a{color:var(--text-light);}
+@media (max-width:600px){
+  .rr-row{grid-template-columns:1fr auto 1fr;gap:6px;padding:10px 10px 9px;
+    row-gap:2px;}
+  .rr-date{grid-column:1 / -1;order:-1;font-size:.78rem;}
+  .rr-team{font-size:.92rem;}
+  .rr-score{font-size:1.02rem;min-width:52px;}
+  .rr-vs{min-width:52px;}
+}
+</style>
+        <h2 class="section-title-lp"><i class="fas fa-bolt"></i> 直近の試合結果（第9節）</h2>
+        <p class="rr-meta">2026年6月27日(土)〜7月11日(土)　2試合　未実施3試合</p>
+        <ul class="rr-list">
+          <li class="rr-row"><span class="rr-date">6/27(土)</span><span class="rr-team rr-home rr-win"><a href="/teams/roasso-kumamoto-u18/" class="team-profile-link">ロアッソ熊本<span class="nb">U-18</span></a></span><span class="rr-score">4<span class="rr-dash">-</span>1</span><span class="rr-team rr-away">大津<span class="nb">2nd</span></span></li>
+          <li class="rr-row"><span class="rr-date">7/11(土)</span><span class="rr-team rr-home rr-win"><a href="/teams/v-varen-nagasaki-u18/" class="team-profile-link">V・ファーレン長崎<span class="nb">U-18</span></a></span><span class="rr-score">3<span class="rr-dash">-</span>2</span><span class="rr-team rr-away"><a href="/teams/kagoshima-josei/" class="team-profile-link">鹿児島城西</a></span></li>
+          <li class="rr-row"><span class="rr-date">8/29(土)</span><span class="rr-team rr-home"><a href="/teams/fc-ryukyu-u18/" class="team-profile-link">FC琉球<span class="nb">U-18</span></a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/kunimi/" class="team-profile-link">国見</a></span></li>
+          <li class="rr-row"><span class="rr-date">8/29(土)</span><span class="rr-team rr-home"><a href="/teams/nissho-gakuen/" class="team-profile-link">日章学園</a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/higashi-fukuoka/" class="team-profile-link">東福岡</a></span></li>
+          <li class="rr-row"><span class="rr-date">8/29(土)</span><span class="rr-team rr-home"><a href="/teams/tokai-kumamoto-seisho/" class="team-profile-link">東海大熊本星翔</a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/iizuka/" class="team-profile-link">飯塚</a></span></li>
+        </ul>
+        <h3 class="rr-next-h"><span class="rr-badge">NEXT</span>次節 第10節　2026年9月5日(土)</h3>
+        <ul class="rr-list">
+          <li class="rr-row"><span class="rr-date">9/5(土)</span><span class="rr-team rr-home"><a href="/teams/fc-ryukyu-u18/" class="team-profile-link">FC琉球<span class="nb">U-18</span></a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/iizuka/" class="team-profile-link">飯塚</a></span></li>
+          <li class="rr-row"><span class="rr-date">9/5(土)</span><span class="rr-team rr-home"><a href="/teams/roasso-kumamoto-u18/" class="team-profile-link">ロアッソ熊本<span class="nb">U-18</span></a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/kagoshima-josei/" class="team-profile-link">鹿児島城西</a></span></li>
+          <li class="rr-row"><span class="rr-date">9/5(土)</span><span class="rr-team rr-home"><a href="/teams/kunimi/" class="team-profile-link">国見</a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/higashi-fukuoka/" class="team-profile-link">東福岡</a></span></li>
+          <li class="rr-row"><span class="rr-date">9/5(土)</span><span class="rr-team rr-home">大津<span class="nb">2nd</span></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/nissho-gakuen/" class="team-profile-link">日章学園</a></span></li>
+          <li class="rr-row"><span class="rr-date">9/5(土)</span><span class="rr-team rr-home"><a href="/teams/tokai-kumamoto-seisho/" class="team-profile-link">東海大熊本星翔</a></span><span class="rr-vs">vs</span><span class="rr-team rr-away"><a href="/teams/v-varen-nagasaki-u18/" class="team-profile-link">V・ファーレン長崎<span class="nb">U-18</span></a></span></li>
+        </ul>
+        <p class="rr-src">最終更新 2026-08-29　出典 <a href="https://koko-soccer.com/score/4337" target="_blank" rel="nofollow noopener">koko-soccer.com</a></p>
+      </section>
+
       <h2 class="section-title-lp">プリンスリーグ 九州 1部 順位表</h2>
       
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
@@ -493,6 +550,28 @@
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">6</span></td>
+          <td><strong><a href="/teams/kunimi/" class="team-profile-link">国見高校</a></strong></td>
+          <td><a href="/prefectures/nagasaki/" class="league-pref-link">長崎県</a></td>
+          <td><strong>12</strong></td>
+          <td>9</td>
+          <td>4</td>
+          <td>0</td>
+          <td>5</td>
+          <td style="color:#28a745;font-weight:600;">+1</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">7</span></td>
+          <td><strong><a href="/teams/iizuka/" class="team-profile-link">飯塚高校</a></strong></td>
+          <td><a href="/prefectures/fukuoka/" class="league-pref-link">福岡県</a></td>
+          <td><strong>11</strong></td>
+          <td>9</td>
+          <td>3</td>
+          <td>2</td>
+          <td>4</td>
+          <td style="color:#dc3545;font-weight:600;">-1</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">8</span></td>
           <td><strong>大津高校<span class="nb">2nd</span></strong></td>
           <td><a href="/prefectures/kumamoto/" class="league-pref-link">熊本県</a></td>
           <td><strong>10</strong></td>
@@ -503,48 +582,26 @@
           <td style="color:#dc3545;font-weight:600;">-12</td>
         </tr>
         <tr>
-          <td><span class="rank-badge rank-other">7</span></td>
-          <td><strong><a href="/teams/kunimi/" class="team-profile-link">国見高校</a></strong></td>
-          <td><a href="/prefectures/nagasaki/" class="league-pref-link">長崎県</a></td>
-          <td><strong>9</strong></td>
-          <td>8</td>
-          <td>3</td>
-          <td>0</td>
-          <td>5</td>
-          <td style="color:#dc3545;font-weight:600;">-1</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge rank-other">8</span></td>
-          <td><strong><a href="/teams/iizuka/" class="team-profile-link">飯塚高校</a></strong></td>
-          <td><a href="/prefectures/fukuoka/" class="league-pref-link">福岡県</a></td>
-          <td><strong>8</strong></td>
-          <td>8</td>
-          <td>2</td>
-          <td>2</td>
-          <td>4</td>
-          <td style="color:#dc3545;font-weight:600;">-4</td>
-        </tr>
-        <tr>
           <td><span class="rank-badge rank-other">9</span></td>
           <td><strong><a href="/teams/fc-ryukyu-u18/" class="team-profile-link">FC琉球<span class="nb">U-18</span></a></strong></td>
           <td><a href="/prefectures/okinawa/" class="league-pref-link">沖縄県</a></td>
           <td><strong>6</strong></td>
-          <td>8</td>
+          <td>9</td>
           <td>2</td>
           <td>0</td>
-          <td>6</td>
-          <td style="color:#dc3545;font-weight:600;">-9</td>
+          <td>7</td>
+          <td style="color:#dc3545;font-weight:600;">-11</td>
         </tr>
         <tr>
           <td><span class="rank-badge rank-other">10</span></td>
           <td><strong><a href="/teams/tokai-kumamoto-seisho/" class="team-profile-link">東海大学付属熊本星翔高校</a></strong></td>
           <td><a href="/prefectures/kumamoto/" class="league-pref-link">熊本県</a></td>
           <td><strong>3</strong></td>
-          <td>8</td>
+          <td>9</td>
           <td>1</td>
           <td>0</td>
-          <td>7</td>
-          <td style="color:#dc3545;font-weight:600;">-11</td>
+          <td>8</td>
+          <td style="color:#dc3545;font-weight:600;">-14</td>
         </tr>
           </tbody>
         </table>
@@ -759,7 +816,7 @@
             <section class="lp-section">
         <h2><i class="fas fa-chart-bar"></i> プリンスリーグ 九州 1部 数字で見るリーグの特徴</h2>
         <p class="lp-section-desc">
-          現在の順位表データから算出したプリンスリーグ 九州 1部の注目スタッツです。リーグ全体の総得点数は<strong>127得点</strong>に達しています。
+          現在の順位表データから算出したプリンスリーグ 九州 1部の注目スタッツです。リーグ全体の総得点数は<strong>132得点</strong>に達しています。
         </p>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px;">
 <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06);"><div style="font-size:1.6em;">⚽</div><div style="font-size:.85em;color:#64748b;margin:6px 0;">最多得点（攻撃力No.1）</div><div style="font-weight:700;font-size:1.05em;color:#1e293b;">V・ファーレン長崎<span class="nb">U-18</span></div><div style="font-size:.9em;color:#2563eb;font-weight:600;margin-top:4px;">25得点</div></div>
@@ -780,8 +837,8 @@
 <a href="/teams/roasso-kumamoto-u18/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">🥉</span><span style="font-weight:600;flex:1;">ロアッソ熊本<span class="nb">U-18</span></span><span style="font-size:.85em;color:#64748b;">熊本県 ›</span></a>
 <a href="/teams/nissho-gakuen/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">4位</span><span style="font-weight:600;flex:1;">日章学園高校</span><span style="font-size:.85em;color:#64748b;">宮崎県 ›</span></a>
 <a href="/teams/higashi-fukuoka/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">5位</span><span style="font-weight:600;flex:1;">東福岡高校</span><span style="font-size:.85em;color:#64748b;">福岡県 ›</span></a>
-<a href="/teams/kunimi/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">7位</span><span style="font-weight:600;flex:1;">国見高校</span><span style="font-size:.85em;color:#64748b;">長崎県 ›</span></a>
-<a href="/teams/iizuka/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">8位</span><span style="font-weight:600;flex:1;">飯塚高校</span><span style="font-size:.85em;color:#64748b;">福岡県 ›</span></a>
+<a href="/teams/kunimi/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">6位</span><span style="font-weight:600;flex:1;">国見高校</span><span style="font-size:.85em;color:#64748b;">長崎県 ›</span></a>
+<a href="/teams/iizuka/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">7位</span><span style="font-weight:600;flex:1;">飯塚高校</span><span style="font-size:.85em;color:#64748b;">福岡県 ›</span></a>
 <a href="/teams/fc-ryukyu-u18/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">9位</span><span style="font-weight:600;flex:1;">FC琉球<span class="nb">U-18</span></span><span style="font-size:.85em;color:#64748b;">沖縄県 ›</span></a>
 <a href="/teams/tokai-kumamoto-seisho/" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.06);"><span style="font-size:1.2em;font-weight:700;min-width:42px;text-align:center;">10位</span><span style="font-weight:600;flex:1;">東海大学付属熊本星翔高校</span><span style="font-size:.85em;color:#64748b;">熊本県 ›</span></a>
         </div>
