@@ -23,6 +23,7 @@ import yaml
 from pathlib import Path
 from datetime import date
 from cross_table import render_cross_table_html
+from recent_results import render_recent_results_html
 from scorer_table import render_scorer_ranking_html
 from league_contents import (
     TACTICAL_PREMIER_EAST, WATCHING_PREMIER_EAST,
@@ -1254,6 +1255,7 @@ __AI_SUMMARY__
         </a>
       </div>
 
+__RECENT_RESULTS__
       <h2 class="section-title-lp">__LEAGUE_LABEL__ 順位表</h2>
       __PROFILE_NOTICE__
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
@@ -1532,6 +1534,11 @@ def generate_league_page(league_name, slug, label, category, description, season
     featured_teams_html = render_featured_teams_html(sorted_teams, label)
     league_stats_html = render_league_stats_html(sorted_teams, label)
     cross_table_html = render_cross_table_html(slug)
+    # 順位表の直上に「直近の試合結果（第N節）＋次節の日程」を出す。
+    # データは戦績表と同じ data/league_matches/<slug>.json を再利用（2026-08-29新設）。
+    recent_results_html = render_recent_results_html(
+        slug, link_fn=render_team_name_with_link
+    )
     # リーグページは「2得点以上」を全員載せる（JSON側が2得点以上で作られているため）。
     # 既定の limit=20 だと同点の集団の途中で切れ、同じ2得点でも載る選手と載らない選手が
     # 出てしまう（2026-08-16に九州2部で発覚）。県ページは長大なJSONを持つので既定のまま。
@@ -1612,6 +1619,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
         .replace("__TEAM_ROWS__", team_rows)
+        .replace("__RECENT_RESULTS__", recent_results_html)
         .replace("__CROSS_TABLE__", cross_table_html)
         .replace("__SCORER_RANKING__", scorer_ranking_html)
         .replace("__FEATURED_TEAMS__", featured_teams_html)
