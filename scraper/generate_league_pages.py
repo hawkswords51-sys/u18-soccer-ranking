@@ -24,6 +24,7 @@ from pathlib import Path
 from datetime import date
 from cross_table import render_cross_table_html
 from recent_results import render_recent_results_html
+from home_pickup import update_home_pickup
 from scorer_table import render_scorer_ranking_html
 from league_contents import (
     TACTICAL_PREMIER_EAST, WATCHING_PREMIER_EAST,
@@ -2222,6 +2223,13 @@ def main():
     generate_premier_final_page()
     generated_slugs.append("premier-final")
     
+    # トップページの「PICK UP GAME」を書き換え（2026-08-29新設）
+    # index.html の HOME_PICKUP_START/END マーカー間。マーカーが無ければスキップする。
+    try:
+        update_home_pickup()
+    except Exception as e:
+        print(f"[PICK UP] 更新に失敗（ページ生成は続行）: {e}")
+
     # sitemap 完全版で更新
     update_sitemap_complete(teams_data, generated_slugs)
 
