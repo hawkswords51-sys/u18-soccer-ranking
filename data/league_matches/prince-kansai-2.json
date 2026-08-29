@@ -84,6 +84,18 @@
     },
     {
       "rank": 4,
+      "team": "関大北陽",
+      "pts": 17,
+      "played": 9,
+      "won": 5,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 16,
+      "ga": 11,
+      "gd": 5
+    },
+    {
+      "rank": 5,
       "team": "京都橘(B)",
       "pts": 17,
       "played": 9,
@@ -93,18 +105,6 @@
       "gf": 15,
       "ga": 14,
       "gd": 1
-    },
-    {
-      "rank": 5,
-      "team": "関大北陽",
-      "pts": 14,
-      "played": 8,
-      "won": 4,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 13,
-      "ga": 10,
-      "gd": 3
     },
     {
       "rank": 6,
@@ -146,13 +146,13 @@
       "rank": 9,
       "team": "ヴィッセル神戸U-18(B)",
       "pts": 4,
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 1,
-      "lost": 6,
-      "gf": 11,
-      "ga": 31,
-      "gd": -20
+      "lost": 7,
+      "gf": 12,
+      "ga": 34,
+      "gd": -22
     },
     {
       "rank": 10,
@@ -568,10 +568,10 @@
       "md": 9,
       "date": "2026-08-29",
       "home": "ヴィッセル神戸U-18(B)",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "関大北陽",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,

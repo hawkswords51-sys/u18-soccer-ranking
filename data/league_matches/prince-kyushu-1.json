@@ -85,29 +85,53 @@
     {
       "rank": 4,
       "team": "日章学園",
-      "pts": 12,
-      "played": 8,
+      "pts": 13,
+      "played": 9,
       "won": 4,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 4,
-      "gf": 20,
-      "ga": 13,
+      "gf": 21,
+      "ga": 14,
       "gd": 7
     },
     {
       "rank": 5,
       "team": "東福岡",
-      "pts": 12,
-      "played": 8,
+      "pts": 13,
+      "played": 9,
       "won": 3,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 2,
-      "gf": 10,
-      "ga": 8,
+      "gf": 11,
+      "ga": 9,
       "gd": 2
     },
     {
       "rank": 6,
+      "team": "国見",
+      "pts": 12,
+      "played": 9,
+      "won": 4,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 13,
+      "ga": 12,
+      "gd": 1
+    },
+    {
+      "rank": 7,
+      "team": "飯塚",
+      "pts": 11,
+      "played": 9,
+      "won": 3,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 12,
+      "ga": 13,
+      "gd": -1
+    },
+    {
+      "rank": 8,
       "team": "大津2nd",
       "pts": 10,
       "played": 9,
@@ -119,52 +143,28 @@
       "gd": -12
     },
     {
-      "rank": 7,
-      "team": "国見",
-      "pts": 9,
-      "played": 8,
-      "won": 3,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 11,
-      "ga": 12,
-      "gd": -1
-    },
-    {
-      "rank": 8,
-      "team": "飯塚",
-      "pts": 8,
-      "played": 8,
-      "won": 2,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 9,
-      "ga": 13,
-      "gd": -4
-    },
-    {
       "rank": 9,
       "team": "FC琉球U-18",
       "pts": 6,
-      "played": 8,
+      "played": 9,
       "won": 2,
       "drawn": 0,
-      "lost": 6,
+      "lost": 7,
       "gf": 7,
-      "ga": 16,
-      "gd": -9
+      "ga": 18,
+      "gd": -11
     },
     {
       "rank": 10,
       "team": "東海大熊本星翔",
       "pts": 3,
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 0,
-      "lost": 7,
+      "lost": 8,
       "gf": 3,
-      "ga": 14,
-      "gd": -11
+      "ga": 17,
+      "gd": -14
     }
   ],
   "matches": [
@@ -550,28 +550,28 @@
       "md": 9,
       "date": "2026-08-29",
       "home": "日章学園",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "東福岡",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,
       "date": "2026-08-29",
       "home": "東海大熊本星翔",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "飯塚",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,
       "date": "2026-08-29",
       "home": "FC琉球U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "国見",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,

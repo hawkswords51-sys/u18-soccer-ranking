@@ -249,7 +249,15 @@ def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
     if last_updated:
         src_bits.append(f"最終更新 {_html_escape(last_updated)}")
     if src:
-        src_bits.append(f'出典 <a href="{_html_escape(src)}" target="_blank" rel="nofollow noopener">koko-soccer.com</a>')
+        # 出典サイト名はURLのドメインから機械的に出す。
+        # リーグによって koko-soccer.com と jfa.jp が混在しているため決め打ちにしない。
+        host = str(src).split("//")[-1].split("/")[0]
+        if host.startswith("www."):
+            host = host[4:]
+        src_bits.append(
+            f'出典 <a href="{_html_escape(src)}" target="_blank" '
+            f'rel="nofollow noopener">{_html_escape(host)}</a>'
+        )
     if src_bits:
         html.append('        <p class="rr-src">' + "　".join(src_bits) + "</p>")
 
