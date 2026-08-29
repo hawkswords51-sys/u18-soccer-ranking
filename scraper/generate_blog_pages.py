@@ -1138,11 +1138,12 @@ MEDICAL_HUB_THEMES = [
     ),
     (
         "🚑 その場の判断が命を分ける",
-        "頭を打った・胸に当たって倒れた・足をひねった——現場での見極めと応急処置",
+        "頭を打った・胸に当たって倒れた・足をひねった・足がつった——現場での見極めと応急処置",
         [
             "concussion-return-to-play-2026",
             "commotio-cordis-aed-2026",
             "2026-06-25-ankle-sprain-treatment",
+            "muscle-cramps-2026",
         ],
     ),
     (
