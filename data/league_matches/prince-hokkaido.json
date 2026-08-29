@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 北海道",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4349",
-  "lastUpdated": "2026-08-28",
+  "lastUpdated": "2026-08-29",
   "teams": [
     {
       "name": "札幌大谷",
@@ -40,6 +40,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "札幌大谷",
+      "pts": 19,
+      "played": 9,
+      "won": 6,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 18,
+      "ga": 9,
+      "gd": 9
+    },
+    {
+      "rank": 2,
       "team": "北海道コンサドーレ札幌U-18",
       "pts": 18,
       "played": 8,
@@ -51,7 +63,7 @@
       "gd": 18
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "旭川実",
       "pts": 17,
       "played": 8,
@@ -63,19 +75,19 @@
       "gd": 7
     },
     {
-      "rank": 3,
-      "team": "札幌大谷",
-      "pts": 16,
-      "played": 8,
-      "won": 5,
+      "rank": 4,
+      "team": "北海道大谷室蘭",
+      "pts": 13,
+      "played": 9,
+      "won": 4,
       "drawn": 1,
-      "lost": 2,
-      "gf": 13,
-      "ga": 9,
-      "gd": 4
+      "lost": 4,
+      "gf": 10,
+      "ga": 16,
+      "gd": -6
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "札幌光星",
       "pts": 12,
       "played": 8,
@@ -85,18 +97,6 @@
       "gf": 14,
       "ga": 12,
       "gd": 2
-    },
-    {
-      "rank": 5,
-      "team": "北海道大谷室蘭",
-      "pts": 10,
-      "played": 8,
-      "won": 3,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 9,
-      "ga": 16,
-      "gd": -7
     },
     {
       "rank": 6,
@@ -114,25 +114,25 @@
       "rank": 7,
       "team": "北海",
       "pts": 7,
-      "played": 8,
+      "played": 9,
       "won": 2,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 5,
-      "ga": 8,
-      "gd": -3
+      "ga": 9,
+      "gd": -4
     },
     {
       "rank": 8,
       "team": "帯広北",
       "pts": 1,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 1,
-      "lost": 7,
+      "lost": 8,
       "gf": 1,
-      "ga": 17,
-      "gd": -16
+      "ga": 22,
+      "gd": -21
     }
   ],
   "matches": [
@@ -427,11 +427,11 @@
     {
       "md": 9,
       "date": "2026-08-29",
-      "home": "北照",
-      "hs": null,
-      "as": null,
-      "away": "札幌大谷",
-      "status": "scheduled"
+      "home": "札幌大谷",
+      "hs": 5,
+      "as": 0,
+      "away": "帯広北",
+      "status": "played"
     },
     {
       "md": 9,
@@ -446,10 +446,10 @@
       "md": 9,
       "date": "2026-08-29",
       "home": "北海道大谷室蘭",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "北海",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,
