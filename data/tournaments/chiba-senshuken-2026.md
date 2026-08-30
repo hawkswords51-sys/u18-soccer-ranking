@@ -79,7 +79,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 2次トーナメント1回戦（8/29）
 
-- 土気 vs 船橋啓明
+- 土気 1-0 船橋啓明
 
 ## 2次トーナメント2回戦（9/5・9/6）
 
@@ -131,3 +131,4 @@ scraper/update_tournament_results.py が上の source から
 - 柏南/茂原・東金商業 vs 麗澤/長生
 - 八千代松陰/柏井 vs 日大習志野/船橋北
 - 成田/船橋東 vs 市川昴/匝瑳・旭農業
+- 千葉敬愛/土気 vs 市原八幡/成東
