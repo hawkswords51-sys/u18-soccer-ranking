@@ -3756,10 +3756,10 @@
         "name": "東京学館新潟高校",
         "league": "新潟県1部",
         "rank": 14,
-        "points": 15,
-        "played": 10,
+        "points": 16,
+        "played": 11,
         "won": 4,
-        "drawn": 3,
+        "drawn": 4,
         "lost": 3,
         "goalsFor": 11,
         "goalsAgainst": 11,
@@ -3772,10 +3772,10 @@
         "name": "北越高校2nd",
         "league": "新潟県1部",
         "rank": 15,
-        "points": 10,
-        "played": 10,
+        "points": 11,
+        "played": 11,
         "won": 3,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 6,
         "goalsFor": 17,
         "goalsAgainst": 23,
@@ -9358,8 +9358,8 @@
         "leagueRank": 5
       },
       {
-        "id": "fk004",
-        "name": "東海大学付属福岡高校",
+        "id": "fk005",
+        "name": "九州国際大付属高校",
         "league": "プリンスリーグ九州2部",
         "rank": 4,
         "points": 12,
@@ -9367,13 +9367,14 @@
         "won": 3,
         "drawn": 3,
         "lost": 3,
-        "goalsFor": 18,
-        "goalsAgainst": 28,
+        "goalsFor": 11,
+        "goalsAgainst": 7,
         "prefectureRank": 4,
-        "goalDiff": -10,
-        "leagueRank": 7,
+        "goalDiff": 4,
+        "leagueRank": 5,
         "aliases": [
-          "東海大福岡"
+          "九州国際大附属高校",
+          "九州国際大付"
         ]
       },
       {
@@ -9394,8 +9395,8 @@
         ]
       },
       {
-        "id": "fk005",
-        "name": "九州国際大付属高校",
+        "id": "fk004",
+        "name": "東海大学付属福岡高校",
         "league": "プリンスリーグ九州2部",
         "rank": 6,
         "points": 12,
@@ -9403,14 +9404,13 @@
         "won": 3,
         "drawn": 3,
         "lost": 3,
-        "goalsFor": 11,
-        "goalsAgainst": 7,
+        "goalsFor": 18,
+        "goalsAgainst": 28,
         "prefectureRank": 6,
-        "goalDiff": 4,
-        "leagueRank": 5,
+        "goalDiff": -10,
+        "leagueRank": 7,
         "aliases": [
-          "九州国際大附属高校",
-          "九州国際大付"
+          "東海大福岡"
         ]
       },
       {
@@ -11203,7 +11203,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-08-30 11:55",
+    "lastUpdated": "2026-08-30 12:31",
     "year": 2026,
     "updatedCount": 543
   }
