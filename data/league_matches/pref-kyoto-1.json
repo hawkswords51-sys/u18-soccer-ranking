@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kansai/kyoto/league/table/163399",
   "sourceName": "京都少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-15",
+  "lastUpdated": "2026-08-30",
   "teams": [
     {
       "name": "東山B",
@@ -50,14 +50,14 @@
     {
       "rank": 1,
       "team": "東山B",
-      "points": 25,
-      "played": 9,
-      "won": 8,
+      "points": 28,
+      "played": 10,
+      "won": 9,
       "drawn": 1,
       "lost": 0,
-      "gf": 28,
-      "ga": 11,
-      "gd": 17
+      "gf": 30,
+      "ga": 12,
+      "gd": 18
     },
     {
       "rank": 2,
@@ -109,6 +109,18 @@
     },
     {
       "rank": 6,
+      "team": "京都サンガU-18B",
+      "points": 13,
+      "played": 10,
+      "won": 4,
+      "drawn": 1,
+      "lost": 5,
+      "gf": 23,
+      "ga": 20,
+      "gd": 3
+    },
+    {
+      "rank": 7,
       "team": "京都精華A",
       "points": 11,
       "played": 10,
@@ -118,18 +130,6 @@
       "gf": 18,
       "ga": 17,
       "gd": 1
-    },
-    {
-      "rank": 7,
-      "team": "京都サンガU-18B",
-      "points": 10,
-      "played": 9,
-      "won": 3,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 18,
-      "ga": 19,
-      "gd": -1
     },
     {
       "rank": 8,
@@ -147,161 +147,98 @@
       "rank": 9,
       "team": "福知山成美A",
       "points": 4,
-      "played": 9,
+      "played": 10,
       "won": 0,
       "drawn": 4,
-      "lost": 5,
-      "gf": 6,
-      "ga": 19,
-      "gd": -13
+      "lost": 6,
+      "gf": 7,
+      "ga": 21,
+      "gd": -14
     },
     {
       "rank": 10,
       "team": "城陽A",
       "points": 2,
-      "played": 9,
+      "played": 10,
       "won": 0,
       "drawn": 2,
-      "lost": 7,
-      "gf": 7,
-      "ga": 15,
-      "gd": -8
+      "lost": 8,
+      "gf": 8,
+      "ga": 20,
+      "gd": -12
     }
   ],
   "matches": [
     {
       "md": 0,
-      "date": "2026-06-27",
+      "date": "",
+      "home": "福知山成美A",
+      "hs": 1,
+      "as": 2,
+      "away": "東山B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "福知山成美A",
+      "hs": 0,
+      "as": 0,
+      "away": "京都橘C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
       "home": "東山B",
-      "hs": 2,
-      "as": 1,
+      "hs": 3,
+      "as": 2,
       "away": "立命館宇治A",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "京都共栄B",
+      "date": "2026-03-14",
+      "home": "城陽A",
       "hs": 0,
-      "as": 3,
-      "away": "東山B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "東山B",
-      "hs": 3,
-      "as": 0,
-      "away": "洛北A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "大谷A",
-      "hs": 2,
-      "as": 7,
-      "away": "東山B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "京都精華A",
-      "hs": 2,
-      "as": 3,
-      "away": "東山B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "東山B",
-      "hs": 1,
-      "as": 0,
-      "away": "京都サンガU-18B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "京都橘C",
-      "hs": 2,
-      "as": 4,
-      "away": "東山B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東山B",
-      "hs": null,
-      "as": null,
-      "away": "福知山成美A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "東山B",
-      "hs": 2,
-      "as": 2,
-      "away": "城陽A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "立命館宇治A",
-      "hs": 2,
       "as": 1,
       "away": "京都共栄B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "洛北A",
-      "hs": 2,
-      "as": 0,
-      "away": "立命館宇治A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
+      "date": "2026-03-14",
       "home": "大谷A",
       "hs": 1,
-      "as": 2,
-      "away": "立命館宇治A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "立命館宇治A",
-      "hs": 1,
-      "as": 0,
-      "away": "京都精華A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-04",
-      "home": "立命館宇治A",
-      "hs": 5,
       "as": 3,
+      "away": "洛北A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-15",
+      "home": "京都精華A",
+      "hs": 5,
+      "as": 1,
       "away": "京都サンガU-18B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-26",
-      "home": "立命館宇治A",
+      "date": "2026-03-20",
+      "home": "大谷A",
       "hs": 1,
       "as": 0,
-      "away": "京都橘C",
+      "away": "城陽A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-20",
+      "home": "京都精華A",
+      "hs": 1,
+      "as": 2,
+      "away": "京都共栄B",
       "status": "played"
     },
     {
@@ -315,218 +252,56 @@
     },
     {
       "md": 0,
-      "date": "2026-04-12",
-      "home": "城陽A",
-      "hs": 1,
+      "date": "2026-03-20",
+      "home": "京都橘C",
+      "hs": 3,
       "as": 2,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-20",
+      "home": "東山B",
+      "hs": 3,
+      "as": 0,
+      "away": "洛北A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "大谷A",
+      "hs": 2,
+      "as": 1,
+      "away": "京都精華A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "京都共栄B",
+      "hs": 2,
+      "as": 2,
+      "away": "京都橘C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "洛北A",
+      "hs": 2,
+      "as": 0,
       "away": "立命館宇治A",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-20",
-      "home": "洛北A",
-      "hs": 1,
-      "as": 2,
-      "away": "京都共栄B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "京都共栄B",
-      "hs": 2,
-      "as": 0,
-      "away": "大谷A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "京都精華A",
-      "hs": 1,
-      "as": 2,
-      "away": "京都共栄B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "京都サンガU-18B",
-      "hs": 0,
-      "as": 0,
-      "away": "京都共栄B",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-04",
-      "home": "京都共栄B",
+      "home": "東山B",
       "hs": 2,
-      "as": 2,
-      "away": "京都橘C",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "福知山成美A",
-      "hs": 0,
-      "as": 3,
-      "away": "京都共栄B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "京都共栄B",
-      "hs": 2,
-      "as": 1,
-      "away": "城陽A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "大谷A",
-      "hs": 2,
-      "as": 2,
-      "away": "洛北A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "洛北A",
-      "hs": 1,
-      "as": 1,
-      "away": "京都精華A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "京都サンガU-18B",
-      "hs": 5,
-      "as": 0,
-      "away": "洛北A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "洛北A",
-      "hs": 1,
-      "as": 0,
-      "away": "京都橘C",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "洛北A",
-      "hs": 2,
-      "as": 0,
-      "away": "福知山成美A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "洛北A",
-      "hs": 2,
-      "as": 1,
-      "away": "城陽A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "大谷A",
-      "hs": 2,
-      "as": 1,
-      "away": "京都精華A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "大谷A",
-      "hs": 5,
-      "as": 1,
-      "away": "京都サンガU-18B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "京都橘C",
-      "hs": 1,
-      "as": 1,
-      "away": "大谷A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "大谷A",
-      "hs": 2,
-      "as": 1,
-      "away": "福知山成美A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "大谷A",
-      "hs": 1,
-      "as": 0,
-      "away": "城陽A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "京都精華A",
-      "hs": 0,
-      "as": 2,
-      "away": "京都サンガU-18B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "京都精華A",
-      "hs": 3,
-      "as": 2,
-      "away": "京都橘C",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "福知山成美A",
-      "hs": 1,
-      "as": 1,
-      "away": "京都精華A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "京都精華A",
-      "hs": 4,
       "as": 2,
       "away": "城陽A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "京都橘C",
-      "hs": 3,
-      "as": 2,
-      "away": "京都サンガU-18B",
       "status": "played"
     },
     {
@@ -540,20 +315,182 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "京都サンガU-18B",
-      "hs": null,
-      "as": null,
-      "away": "城陽A",
-      "status": "scheduled"
+      "date": "2026-04-12",
+      "home": "京都精華A",
+      "hs": 2,
+      "as": 3,
+      "away": "東山B",
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-27",
+      "date": "2026-04-12",
+      "home": "京都橘C",
+      "hs": 1,
+      "as": 1,
+      "away": "大谷A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "洛北A",
+      "hs": 2,
+      "as": 0,
+      "away": "福知山成美A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "京都サンガU-18B",
+      "hs": 0,
+      "as": 0,
+      "away": "京都共栄B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "城陽A",
+      "hs": 1,
+      "as": 2,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "洛北A",
+      "hs": 2,
+      "as": 1,
+      "away": "城陽A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "大谷A",
+      "hs": 5,
+      "as": 1,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "立命館宇治A",
+      "hs": 1,
+      "as": 0,
+      "away": "京都精華A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
       "home": "京都橘C",
       "hs": 2,
-      "as": 2,
+      "as": 4,
+      "away": "東山B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "福知山成美A",
+      "hs": 0,
+      "as": 3,
+      "away": "京都共栄B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "洛北A",
+      "hs": 1,
+      "as": 1,
+      "away": "京都精華A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "京都共栄B",
+      "hs": 2,
+      "as": 0,
+      "away": "大谷A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "福知山成美A",
+      "hs": 0,
+      "as": 0,
+      "away": "城陽A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "立命館宇治A",
+      "hs": 1,
+      "as": 0,
+      "away": "京都橘C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "東山B",
+      "hs": 1,
+      "as": 0,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "大谷A",
+      "hs": 2,
+      "as": 1,
       "away": "福知山成美A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "洛北A",
+      "hs": 1,
+      "as": 0,
+      "away": "京都橘C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "京都精華A",
+      "hs": 4,
+      "as": 2,
+      "away": "城陽A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "京都共栄B",
+      "hs": 0,
+      "as": 3,
+      "away": "東山B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "大谷A",
+      "hs": 2,
+      "as": 7,
+      "away": "東山B",
       "status": "played"
     },
     {
@@ -567,12 +504,480 @@
     },
     {
       "md": 0,
-      "date": "2026-04-26",
+      "date": "2026-06-14",
       "home": "福知山成美A",
-      "hs": 0,
+      "hs": 1,
+      "as": 1,
+      "away": "京都精華A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "京都サンガU-18B",
+      "hs": 5,
       "as": 0,
+      "away": "洛北A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "立命館宇治A",
+      "hs": 2,
+      "as": 1,
+      "away": "京都共栄B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "洛北A",
+      "hs": 1,
+      "as": 2,
+      "away": "京都共栄B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "大谷A",
+      "hs": 1,
+      "as": 2,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "京都精華A",
+      "hs": 3,
+      "as": 2,
+      "away": "京都橘C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "大谷A",
+      "hs": 2,
+      "as": 2,
+      "away": "洛北A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "京都精華A",
+      "hs": 0,
+      "as": 2,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "京都共栄B",
+      "hs": 2,
+      "as": 1,
       "away": "城陽A",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "京都橘C",
+      "hs": 2,
+      "as": 2,
+      "away": "福知山成美A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "東山B",
+      "hs": 2,
+      "as": 1,
+      "away": "立命館宇治A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "立命館宇治A",
+      "hs": 5,
+      "as": 3,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-08-30",
+      "home": "城陽A",
+      "hs": 1,
+      "as": 5,
+      "away": "京都サンガU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "京都共栄B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "洛北A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "大谷A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "京都精華A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガU-18B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東山B",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "京都共栄B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "洛北A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "大谷A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "京都精華A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガU-18B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館宇治A",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都共栄B",
+      "hs": null,
+      "as": null,
+      "away": "洛北A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都共栄B",
+      "hs": null,
+      "as": null,
+      "away": "大谷A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都共栄B",
+      "hs": null,
+      "as": null,
+      "away": "京都精華A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都共栄B",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガU-18B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都共栄B",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都共栄B",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "洛北A",
+      "hs": null,
+      "as": null,
+      "away": "京都精華A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "洛北A",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガU-18B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "洛北A",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "洛北A",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "洛北A",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "大谷A",
+      "hs": null,
+      "as": null,
+      "away": "京都精華A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "大谷A",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガU-18B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "大谷A",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "大谷A",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "大谷A",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都精華A",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都精華A",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都精華A",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都サンガU-18B",
+      "hs": null,
+      "as": null,
+      "away": "京都橘C",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都サンガU-18B",
+      "hs": null,
+      "as": null,
+      "away": "福知山成美A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都サンガU-18B",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "京都橘C",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福知山成美A",
+      "hs": null,
+      "as": null,
+      "away": "城陽A",
+      "status": "scheduled"
     }
   ]
 }

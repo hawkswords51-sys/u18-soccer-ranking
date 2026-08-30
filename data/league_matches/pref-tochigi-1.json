@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kanto/tochigi/league/table/163569",
   "sourceName": "栃木少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-16",
+  "lastUpdated": "2026-08-30",
   "teams": [
     {
       "name": "佐野日大",
@@ -86,14 +86,14 @@
     {
       "rank": 4,
       "team": "宇短大附",
-      "points": 15,
-      "played": 8,
-      "won": 4,
+      "points": 18,
+      "played": 9,
+      "won": 5,
       "drawn": 3,
       "lost": 1,
-      "gf": 14,
+      "gf": 15,
       "ga": 9,
-      "gd": 5
+      "gd": 6
     },
     {
       "rank": 5,
@@ -111,28 +111,40 @@
       "rank": 6,
       "team": "真岡",
       "points": 9,
-      "played": 8,
+      "played": 9,
       "won": 3,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "gf": 11,
-      "ga": 14,
-      "gd": -3
+      "ga": 15,
+      "gd": -4
     },
     {
       "rank": 7,
       "team": "足利大附",
       "points": 9,
-      "played": 8,
+      "played": 9,
       "won": 3,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "gf": 11,
-      "ga": 19,
-      "gd": -8
+      "ga": 20,
+      "gd": -9
     },
     {
       "rank": 8,
+      "team": "文星芸大附",
+      "points": 9,
+      "played": 9,
+      "won": 2,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 10,
+      "ga": 23,
+      "gd": -13
+    },
+    {
+      "rank": 9,
       "team": "栃木シティFC",
       "points": 6,
       "played": 9,
@@ -142,18 +154,6 @@
       "gf": 15,
       "ga": 22,
       "gd": -7
-    },
-    {
-      "rank": 9,
-      "team": "文星芸大附",
-      "points": 6,
-      "played": 8,
-      "won": 1,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 9,
-      "ga": 23,
-      "gd": -14
     },
     {
       "rank": 10,
@@ -171,263 +171,11 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-06-21",
-      "home": "佐野日大",
-      "hs": 1,
-      "as": 0,
-      "away": "國學院栃木",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "佐野日大",
-      "hs": 2,
-      "as": 0,
-      "away": "宇短大附",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "栃木SC B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "佐野日大",
-      "hs": 2,
-      "as": 0,
-      "away": "足利大附",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "栃木シティFC",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
+      "date": "2026-03-07",
+      "home": "文星芸大附",
+      "hs": 0,
+      "as": 5,
       "away": "佐野日大",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "宇短大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "栃木SC B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "足利大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "栃木シティFC",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "國學院栃木",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "矢板中央B",
-      "hs": 3,
-      "as": 2,
-      "away": "佐野日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "矢板中央B",
-      "hs": 2,
-      "as": 3,
-      "away": "國學院栃木",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": null,
-      "as": null,
-      "away": "宇短大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "矢板中央B",
-      "hs": 3,
-      "as": 0,
-      "away": "栃木SC B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": null,
-      "as": null,
-      "away": "足利大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": null,
-      "as": null,
-      "away": "栃木シティFC",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "宇短大附",
-      "hs": null,
-      "as": null,
-      "away": "佐野日大",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "宇短大附",
-      "hs": 1,
-      "as": 1,
-      "away": "國學院栃木",
       "status": "played"
     },
     {
@@ -441,11 +189,29 @@
     },
     {
       "md": 0,
-      "date": "2026-04-12",
-      "home": "宇短大附",
-      "hs": 4,
-      "as": 2,
+      "date": "2026-03-08",
+      "home": "真岡",
+      "hs": 2,
+      "as": 4,
       "away": "栃木SC B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "栃木シティFC",
+      "hs": 1,
+      "as": 3,
+      "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "青藍泰斗",
+      "hs": 1,
+      "as": 2,
+      "away": "佐野日大",
       "status": "played"
     },
     {
@@ -459,125 +225,35 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "宇短大附",
-      "hs": null,
-      "as": null,
-      "away": "足利大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "宇短大附",
-      "hs": 3,
-      "as": 0,
-      "away": "栃木シティFC",
+      "date": "2026-03-15",
+      "home": "足利大附",
+      "hs": 2,
+      "as": 4,
+      "away": "栃木SC B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "宇短大附",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "宇短大附",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "栃木SC B",
-      "hs": 0,
-      "as": 1,
-      "away": "佐野日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "栃木SC B",
+      "date": "2026-03-15",
+      "home": "文星芸大附",
       "hs": 1,
       "as": 5,
-      "away": "國學院栃木",
+      "away": "矢板中央B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "宇短大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
+      "date": "2026-03-20",
+      "home": "青藍泰斗",
+      "hs": 0,
+      "as": 2,
       "away": "足利大附",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "栃木シティFC",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "真岡",
+      "date": "2026-03-20",
+      "home": "栃木シティFC",
       "hs": 1,
       "as": 2,
       "away": "佐野日大",
@@ -594,57 +270,48 @@
     },
     {
       "md": 0,
-      "date": "2026-06-21",
-      "home": "真岡",
+      "date": "2026-03-20",
+      "home": "文星芸大附",
       "hs": 1,
-      "as": 2,
-      "away": "矢板中央B",
+      "as": 1,
+      "away": "宇短大附",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "真岡",
-      "hs": null,
-      "as": null,
-      "away": "宇短大附",
-      "status": "scheduled"
+      "date": "2026-03-22",
+      "home": "青藍泰斗",
+      "hs": 0,
+      "as": 6,
+      "away": "栃木シティFC",
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-03-08",
-      "home": "真岡",
-      "hs": 2,
-      "as": 4,
+      "date": "2026-03-22",
+      "home": "足利大附",
+      "hs": 0,
+      "as": 3,
+      "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-28",
+      "home": "矢板中央B",
+      "hs": 3,
+      "as": 0,
       "away": "栃木SC B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "真岡",
-      "hs": null,
-      "as": null,
-      "away": "足利大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "真岡",
-      "hs": null,
-      "as": null,
-      "away": "栃木シティFC",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "真岡",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
+      "date": "2026-04-04",
+      "home": "文星芸大附",
+      "hs": 1,
+      "as": 1,
+      "away": "栃木SC B",
+      "status": "played"
     },
     {
       "md": 0,
@@ -657,20 +324,155 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-04-05",
       "home": "足利大附",
-      "hs": null,
-      "as": null,
-      "away": "佐野日大",
-      "status": "scheduled"
+      "hs": 4,
+      "as": 1,
+      "away": "栃木シティFC",
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-03-22",
-      "home": "足利大附",
-      "hs": 0,
+      "date": "2026-04-05",
+      "home": "佐野日大",
+      "hs": 2,
+      "as": 0,
+      "away": "宇短大附",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "矢板中央B",
+      "hs": 2,
       "as": 3,
       "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "佐野日大",
+      "hs": 2,
+      "as": 0,
+      "away": "足利大附",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "文星芸大附",
+      "hs": 0,
+      "as": 5,
+      "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "宇短大附",
+      "hs": 4,
+      "as": 2,
+      "away": "栃木SC B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "栃木シティFC",
+      "hs": 0,
+      "as": 2,
+      "away": "真岡",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "青藍泰斗",
+      "hs": 2,
+      "as": 3,
+      "away": "矢板中央B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "栃木シティFC",
+      "hs": 3,
+      "as": 1,
+      "away": "栃木SC B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "栃木SC B",
+      "hs": 0,
+      "as": 1,
+      "away": "佐野日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "足利大附",
+      "hs": 1,
+      "as": 2,
+      "away": "真岡",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "青藍泰斗",
+      "hs": 2,
+      "as": 2,
+      "away": "文星芸大附",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "栃木シティFC",
+      "hs": 1,
+      "as": 4,
+      "away": "矢板中央B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "宇短大附",
+      "hs": 1,
+      "as": 1,
+      "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "真岡",
+      "hs": 1,
+      "as": 2,
+      "away": "佐野日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "青藍泰斗",
+      "hs": 0,
+      "as": 1,
+      "away": "宇短大附",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "文星芸大附",
+      "hs": 3,
+      "as": 2,
+      "away": "栃木シティFC",
       "status": "played"
     },
     {
@@ -684,254 +486,11 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "足利大附",
-      "hs": null,
-      "as": null,
-      "away": "宇短大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-15",
-      "home": "足利大附",
-      "hs": 2,
-      "as": 4,
-      "away": "栃木SC B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "足利大附",
-      "hs": 1,
-      "as": 2,
-      "away": "真岡",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "足利大附",
-      "hs": 4,
-      "as": 1,
-      "away": "栃木シティFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "足利大附",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "足利大附",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "栃木シティFC",
-      "hs": 1,
-      "as": 2,
-      "away": "佐野日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "栃木シティFC",
-      "hs": 1,
-      "as": 3,
-      "away": "國學院栃木",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "栃木シティFC",
-      "hs": 1,
-      "as": 4,
-      "away": "矢板中央B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木シティFC",
-      "hs": null,
-      "as": null,
-      "away": "宇短大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "栃木シティFC",
-      "hs": 3,
-      "as": 1,
-      "away": "栃木SC B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "栃木シティFC",
-      "hs": 0,
-      "as": 2,
-      "away": "真岡",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木シティFC",
-      "hs": null,
-      "as": null,
-      "away": "足利大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木シティFC",
-      "hs": null,
-      "as": null,
-      "away": "文星芸大附",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木シティFC",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-07",
-      "home": "文星芸大附",
-      "hs": 0,
-      "as": 5,
-      "away": "佐野日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "文星芸大附",
-      "hs": 0,
-      "as": 5,
-      "away": "國學院栃木",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-15",
-      "home": "文星芸大附",
-      "hs": 1,
-      "as": 5,
-      "away": "矢板中央B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "文星芸大附",
-      "hs": 1,
-      "as": 1,
-      "away": "宇短大附",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "文星芸大附",
-      "hs": 1,
-      "as": 1,
-      "away": "栃木SC B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "文星芸大附",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "文星芸大附",
-      "hs": 1,
-      "as": 2,
-      "away": "足利大附",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-17",
-      "home": "文星芸大附",
-      "hs": 3,
-      "as": 2,
-      "away": "栃木シティFC",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "文星芸大附",
-      "hs": null,
-      "as": null,
-      "away": "青藍泰斗",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "青藍泰斗",
+      "home": "栃木SC B",
       "hs": 1,
-      "as": 2,
-      "away": "佐野日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "青藍泰斗",
-      "hs": 0,
       "as": 5,
       "away": "國學院栃木",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "青藍泰斗",
-      "hs": 2,
-      "as": 3,
-      "away": "矢板中央B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "青藍泰斗",
-      "hs": 0,
-      "as": 1,
-      "away": "宇短大附",
       "status": "played"
     },
     {
@@ -945,8 +504,116 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-06-21",
+      "home": "文星芸大附",
+      "hs": 1,
+      "as": 2,
+      "away": "足利大附",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "佐野日大",
+      "hs": 1,
+      "as": 0,
+      "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "宇短大附",
+      "hs": 3,
+      "as": 0,
+      "away": "栃木シティFC",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "真岡",
+      "hs": 1,
+      "as": 2,
+      "away": "矢板中央B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "宇短大附",
+      "hs": 1,
+      "as": 0,
+      "away": "足利大附",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "矢板中央B",
+      "hs": 3,
+      "as": 2,
+      "away": "佐野日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
       "home": "青藍泰斗",
+      "hs": 0,
+      "as": 5,
+      "away": "國學院栃木",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-19",
+      "home": "文星芸大附",
+      "hs": 1,
+      "as": 0,
+      "away": "真岡",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
+      "away": "國學院栃木",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
+      "away": "矢板中央B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
+      "away": "宇短大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
+      "away": "栃木SC B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐野日大",
       "hs": null,
       "as": null,
       "away": "真岡",
@@ -954,30 +621,363 @@
     },
     {
       "md": 0,
-      "date": "2026-03-20",
-      "home": "青藍泰斗",
-      "hs": 0,
-      "as": 2,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
       "away": "足利大附",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-03-22",
-      "home": "青藍泰斗",
-      "hs": 0,
-      "as": 6,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
       "away": "栃木シティFC",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "青藍泰斗",
-      "hs": 2,
-      "as": 2,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
       "away": "文星芸大附",
-      "status": "played"
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐野日大",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "矢板中央B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "宇短大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "栃木SC B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "真岡",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "足利大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "栃木シティFC",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "宇短大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "栃木SC B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "真岡",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "足利大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "栃木シティFC",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宇短大附",
+      "hs": null,
+      "as": null,
+      "away": "栃木SC B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宇短大附",
+      "hs": null,
+      "as": null,
+      "away": "真岡",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宇短大附",
+      "hs": null,
+      "as": null,
+      "away": "足利大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宇短大附",
+      "hs": null,
+      "as": null,
+      "away": "栃木シティFC",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宇短大附",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宇短大附",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木SC B",
+      "hs": null,
+      "as": null,
+      "away": "真岡",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木SC B",
+      "hs": null,
+      "as": null,
+      "away": "足利大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木SC B",
+      "hs": null,
+      "as": null,
+      "away": "栃木シティFC",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木SC B",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木SC B",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "真岡",
+      "hs": null,
+      "as": null,
+      "away": "足利大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "真岡",
+      "hs": null,
+      "as": null,
+      "away": "栃木シティFC",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "真岡",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "真岡",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "足利大附",
+      "hs": null,
+      "as": null,
+      "away": "栃木シティFC",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "足利大附",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "足利大附",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木シティFC",
+      "hs": null,
+      "as": null,
+      "away": "文星芸大附",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木シティFC",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "文星芸大附",
+      "hs": null,
+      "as": null,
+      "away": "青藍泰斗",
+      "status": "scheduled"
     }
   ]
 }
