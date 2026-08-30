@@ -107,9 +107,14 @@ JFA_PDF = [
      "divisions": ["chugoku-2"]},
     {"url": "https://www.jfa.jp/match_47fa/108_shikoku/takamado_jfa_u15_2026/schedule_result/pdf/League.pdf",
      "divisions": ["shikoku"]},
-    # 九州は1つのPDFに1部・2部が入る（1部の表が欠けている年があるため、取れた分だけ使う）
+    # 九州は1つのPDFに1部・2部が入る想定だったが、実際は**2部の表しか入っていない**（実ログ）。
+    # 1部が別URLに置かれている可能性があるので候補を順に試す。
     {"url": "https://www.jfa.jp/match_47fa/109_kyushu/takamado_jfa_u15_2026/kyushu_1_2/schedule_result/pdf/League.pdf",
-     "divisions": ["kyushu-1", "kyushu-2"]},
+     "divisions": ["kyushu-1", "kyushu-2"],
+     "extra_urls": [
+         "https://www.jfa.jp/match_47fa/109_kyushu/takamado_jfa_u15_2026/kyushu_1/schedule_result/pdf/League.pdf",
+         "https://www.jfa.jp/match_47fa/109_kyushu/takamado_jfa_u15_2026/kyushu1/schedule_result/pdf/League.pdf",
+     ]},
 ]
 
 # PDFの略称 → 掲載名（サイト表記）。四国のPDFは略称のみのため必須。
@@ -121,6 +126,34 @@ NAME_ALIASES = {
         "CSP": "CSP", "ソレアーダ高知": "ソレアーダ高知",
     },
 }
+
+
+# ★表示名の修正表（2026-08-30）
+#   PDFから読むと単語間の空白が落ちる（例「FC DENOVA 札幌」→「FCDENOVA札幌」）。
+#   照合は正規化して行うので支障は無いが、**サイトに出る名前が読みにくくなる**ため、
+#   正しい表記をここで与える。キーは正規化後の文字列。
+DISPLAY_NAME_FIXES = {
+    "FCDENOVA札幌": "FC DENOVA 札幌",
+    "DOHTOJrユース": "DOHTO Jrユース",
+    "北海道コンサドーレ札幌U-152nd": "北海道コンサドーレ札幌U-15 2nd",
+    "HKDFOOTBALLCLUBU-15": "HKD FOOTBALL CLUB U-15",
+    "プログレッソ十勝FCU-15": "プログレッソ十勝FC U-15",
+    "B.N.F.CU-15": "B.N.F.C U-15",
+    "VITAFC": "VITA FC",
+    "S.C.INTERNACIONALJAPAN": "S.C.INTER NACIONAL JAPAN",
+    "WizardsFootballClub": "Wizards Football Club",
+    "IRIS生野SOCCERSCHOOL": "IRIS生野SOCCER SCHOOL",
+    "ディアブロッサ高田FCU-15": "ディアブロッサ高田FC U-15",
+    "RIPACESILAS": "RIPACE SILAS",
+}
+
+
+# キー側も norm() を通しておく（norm はドットや空白を落とすため、生のキーでは一致しない）
+_FIXES_BY_NORM = {norm(k): v for k, v in DISPLAY_NAME_FIXES.items()}
+
+
+def fix_display_name(name: str) -> str:
+    return _FIXES_BY_NORM.get(norm(name), name)
 
 
 # =====================================================================
@@ -343,6 +376,11 @@ def fetch_tohoku(debug=False):
                         out[did] = teams
                         break
                 tried.append(f"{url.split('/')[-2]}/{url.split('/')[-1] or '(index)'}:表{len(tables)}個")
+                if did not in out and tables:
+                    for t in tables[:3]:
+                        hdr = [c.get_text(strip=True)
+                               for c in (t.find_all("tr")[:1] or [t])[0].find_all(["th", "td"])]
+                        print(f"      [自動診断] {did} の表ヘッダー: {hdr[:12]}")
                 if did in out:
                     print(f"  {did}: {len(out[did])}チーム（1位 {out[did][0]['name']}）")
                     break
@@ -498,6 +536,18 @@ def fetch_jfa_pdfs(only=None, debug=False):
                 print(f"  [警告] PDFが大きすぎます: {src['url']}")
                 continue
             got = parse_jfa_pdf(r.content, src["divisions"], NAME_ALIASES, debug=debug)
+            # 取れなかったディビジョンがあれば予備URLも試す
+            for extra in src.get("extra_urls", []):
+                if all(d in got for d in wants):
+                    break
+                try:
+                    r2 = requests.get(extra, headers=HEAD, timeout=TIMEOUT)
+                    r2.raise_for_status()
+                    missing = [d for d in src["divisions"] if d not in got]
+                    got.update(parse_jfa_pdf(r2.content, missing, NAME_ALIASES, debug=debug))
+                    print(f"  （予備URLを使用: .../{extra.split('/')[-4]}/）")
+                except Exception as e2:
+                    print(f"  [注意] 予備URL失敗 {extra.split('/')[-4]}: {type(e2).__name__}")
             tag = src["divisions"][0]
             if not got:
                 print(f"  [注意] {tag}: PDF({len(r.content)//1024}KB)から順位表を読めなかった")
@@ -560,6 +610,16 @@ def main():
         if problems:
             kept.append(f"{did}: " + " / ".join(problems[:2]))
             continue
+        # ★PDFから読むと単語間の空白が落ちる（例「FC DENOVA 札幌」→「FCDENOVA札幌」）。
+        #   照合は正規化して行っているので、**表示名は既存のきれいな表記を維持する**。
+        old_by_norm = {norm(t["name"]): t["name"] for t in (div.get("teams") or [])}
+        for t in teams:
+            fixed = fix_display_name(t["name"])
+            if fixed != t["name"]:
+                t["name"] = fixed                      # 修正表が最優先
+            else:
+                t["name"] = old_by_norm.get(norm(t["name"]), t["name"])
+
         if teams == div["teams"]:
             continue                      # 変化なし
         div["teams"] = teams

@@ -6,8 +6,8 @@ index.html の <!-- HOME_PICKUP_START --> 〜 <!-- HOME_PICKUP_END --> の間を
 毎日自動で書き換える。「今日のハイライト」(2-2) と同じマーカー方式。
 
 何を出すか（2026-08-29 Keiと決定）:
-  - 全15リーグ（プレミア2＋プリンス13）を横断して、**直近に試合が行われた日**を1日決め、
-    その日の試合から「注目カード」を4試合ピックアップする。
+  - 全15リーグ（プレミア2＋プリンス13）を横断して、**直近に試合が行われた3日間**（＝土日開催の
+    1節をひとまとまりに扱う）から「注目カード」を4試合ピックアップする。
   - 試合がない日（平日）は切り替えない。次の試合が行われるまで直近の結果が出続ける。
   - 選定基準は機械的に：**対戦した2チームの順位の合計が小さい順**（＝上位対決）。
     プレミアは -3 の優遇。同点なら総得点が多い試合を上に。
@@ -19,7 +19,7 @@ index.html の <!-- HOME_PICKUP_START --> 〜 <!-- HOME_PICKUP_END --> の間を
 """
 import json
 import re
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parent.parent
@@ -50,6 +50,7 @@ LEAGUES = {
 }
 
 PREMIER_BONUS = 3   # プレミアは順位合計をこの分だけ良く扱う
+WINDOW_DAYS = 3     # 「直近の1節」とみなす日数（土日開催をひとまとまりに扱う）
 MAX_PER_LEAGUE = 1  # 同じリーグから拾う上限（全国サイトなので地域を散らす。
                     # 動いたリーグが少ない日は下の穴埋めで2試合目以降も拾う）
 
@@ -66,6 +67,15 @@ def _fmt_date(iso: str) -> str:
         return str(iso)
 
 
+def _fmt_day(iso: str) -> str:
+    """カード内に出す短い日付。'2026-08-30' -> '8/30(日)'"""
+    try:
+        y, m, d = (int(x) for x in str(iso).split("-")[:3])
+        return f"{m}/{d}({_WD[date(y, m, d).weekday()]})"
+    except Exception:
+        return str(iso)
+
+
 def _load(slug):
     p = _MATCH_DIR / f"{slug}.json"
     if not p.exists():
@@ -77,43 +87,61 @@ def _load(slug):
 
 
 def collect_pickups(limit: int = 4):
-    """(試合日, [カード用dict, ...]) を返す。1試合も無ければ (None, [])。"""
+    """(対象にした試合日のリスト, [カード用dict, ...]) を返す。1試合も無ければ ([], [])。
+
+    ⚠️「最新の1日」だけを見てはいけない。日曜に順延分が1試合だけ組まれることがあり
+    （2026-08-30 九州2部 鹿児島 vs 九州国際大付が実例）、その1試合だけでトップページの
+    PICK UP が埋まってしまう。→ 最新の試合日を含む **直近3日間** をひとまとまり
+    （土日開催の1節）として扱い、それでも候補が足りなければ1日ずつ遡る。
+    """
     data = {}
-    latest = ""
+    all_matches = []   # (date, slug, match)
     for slug in LEAGUES:
         d = _load(slug)
         if not d:
             continue
         data[slug] = d
         for m in d.get("matches", []):
-            if m.get("status") == "played" and m.get("hs") is not None:
-                dt = str(m.get("date") or "")
-                if dt > latest:
-                    latest = dt
-    if not latest:
-        return None, []
+            if m.get("status") == "played" and m.get("hs") is not None and m.get("date"):
+                all_matches.append((str(m["date"]), slug, m))
+    if not all_matches:
+        return [], []
+
+    dates_desc = sorted({dt for dt, _, _ in all_matches}, reverse=True)
+    latest = dates_desc[0]
+    try:
+        y, mo, dd = (int(x) for x in latest.split("-")[:3])
+        floor = (date(y, mo, dd) - timedelta(days=WINDOW_DAYS - 1)).isoformat()
+    except Exception:
+        floor = latest
+    window = [dt for dt in dates_desc if dt >= floor]
+    # 直近3日間で足りなければ1日ずつ遡る
+    i = len(window)
+    while sum(1 for dt, _, _ in all_matches if dt in window) < limit and i < len(dates_desc):
+        window.append(dates_desc[i])
+        i += 1
+    window = set(window)
 
     cands = []
-    for slug, d in data.items():
+    for dt, slug, m in all_matches:
+        if dt not in window:
+            continue
+        d = data[slug]
         label, cat = LEAGUES[slug]
         rank = {r["team"]: r["rank"] for r in d.get("official_standings", [])}
         n_teams = max(len(rank), 1)
-        for m in d.get("matches", []):
-            if m.get("status") != "played" or m.get("hs") is None:
-                continue
-            if str(m.get("date") or "") != latest:
-                continue
-            rh = rank.get(m["home"], n_teams)
-            ra = rank.get(m["away"], n_teams)
-            score = rh + ra - (PREMIER_BONUS if cat == "premier" else 0)
-            cands.append({
-                "slug": slug, "label": label, "cat": cat, "sort": score,
-                "goals": (m["hs"] or 0) + (m["as"] or 0),
-                "home": m["home"], "hrank": rh, "hs": m["hs"],
-                "away": m["away"], "arank": ra, "as": m["as"],
-            })
+        rh = rank.get(m["home"], n_teams)
+        ra = rank.get(m["away"], n_teams)
+        score = rh + ra - (PREMIER_BONUS if cat == "premier" else 0)
+        cands.append({
+            "slug": slug, "label": label, "cat": cat, "sort": score, "date": dt,
+            "goals": (m["hs"] or 0) + (m["as"] or 0),
+            "home": m["home"], "hrank": rh, "hs": m["hs"],
+            "away": m["away"], "arank": ra, "as": m["as"],
+        })
     if not cands:
-        return None, []
+        return [], []
+    latest = sorted(window)
 
     cands.sort(key=lambda c: (c["sort"], -c["goals"], c["slug"]))
     picked, per = [], {}
@@ -147,6 +175,7 @@ _STYLE = """<style>
   padding:2px 9px;border-radius:999px;margin-bottom:9px;
   background:var(--primary-hover-bg);color:var(--accent-color);}
 .hp-badge.hp-premier{background:rgba(212,175,55,.16);color:#b8860b;}
+.hp-day{font-size:.72rem;color:var(--text-light);margin-left:7px;}
 .hp-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;}
 .hp-tm{font-size:.95rem;line-height:1.35;}
 .hp-tm.hp-h{text-align:right;} .hp-tm.hp-a{text-align:left;}
@@ -164,17 +193,28 @@ _STYLE = """<style>
 
 
 def render_home_pickup_html(limit: int = 4) -> str:
-    played_date, picks = collect_pickups(limit)
+    played_dates, picks = collect_pickups(limit)
     if not picks:
         return ""
+    used = sorted({c["date"] for c in picks})
+    if len(used) == 1:
+        date_label = f"{_fmt_date(used[0])}の試合から"
+    else:
+        tail = _fmt_date(used[-1])
+        if used[0][:4] == used[-1][:4]:      # 同じ年なら後ろの「2026年」は省く
+            tail = tail.split("年", 1)[1]
+        date_label = f"{_fmt_date(used[0])}〜{tail}の試合から"
+    multiday = len(used) > 1
     cards = []
     for c in picks:
         hw = " hp-win" if c["hs"] > c["as"] else ""
         aw = " hp-win" if c["as"] > c["hs"] else ""
         badge = "hp-badge hp-premier" if c["cat"] == "premier" else "hp-badge"
+        # 複数日にまたがる回だけ、どの日の試合かをカードに出す
+        day = f'<span class="hp-day">{_fmt_day(c["date"])}</span>' if multiday else ""
         cards.append(
             f'    <a class="hp-card" href="/leagues/{c["slug"]}/">'
-            f'<span class="{badge}">{_esc(c["label"])}</span>'
+            f'<span class="{badge}">{_esc(c["label"])}</span>{day}'
             f'<span class="hp-row">'
             f'<span class="hp-tm hp-h{hw}"><span class="hp-rk">{c["hrank"]}位</span>{_esc(c["home"])}</span>'
             f'<span class="hp-sc">{c["hs"]}<i>-</i>{c["as"]}</span>'
@@ -186,7 +226,7 @@ def render_home_pickup_html(limit: int = 4) -> str:
         '<section class="hp-sec" aria-label="注目試合の結果">\n'
         + _STYLE + "\n"
         + '  <div class="hp-head"><h2>🔥 PICK UP GAME — 注目カードの結果</h2>'
-        + f'<span class="hp-date">{_fmt_date(played_date)}の試合から</span></div>\n'
+        + f'<span class="hp-date">{date_label}</span></div>\n'
         + '  <div class="hp-grid">\n'
         + nl.join(cards) + "\n"
         + "  </div>\n"
