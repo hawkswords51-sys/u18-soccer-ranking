@@ -174,8 +174,17 @@ _H_MAP = [
 ]
 
 
-def _parse_standings_table(table):
-    """<table>から [{name,p,w,d,l,gf,ga,pts,rank}] を作る。順位表でなければ None。"""
+def _parse_standings_table(table, debug=False):
+    """<table>から [{name,p,w,d,l,gf,ga,pts,rank}] を作る。順位表でなければ None。
+
+    ★列ズレ対策（2026-08-30・実ログで発覚）
+      関東のサイトは <th> が10個なのにデータ行は11セルある（Clubの直後に
+      「勝 勝 分 勝 敗 >」という連勝連敗の欄が入るがヘッダーが無い）。
+      ヘッダーの位置で数値を読むと1列ずれて全行が捨てられ、リーグごと取得0件になる。
+      → **集計列（勝点〜得失差）はヘッダーの「右端からの位置」で読む**。
+        集計列は必ず行の末尾に並ぶので、途中に無名の列が挟まってもズレない。
+        さらに行ごとに「勝点=勝×3+分」で自己検査し、合わない行は捨てる。
+    """
     rows = table.find_all("tr")
     if len(rows) < 3:
         return None
@@ -183,59 +192,87 @@ def _parse_standings_table(table):
     if not (set(header) & _H_POINTS) or not (set(header) & _H_PLAYED):
         return None
 
-    idx = {}
+    # フィールド → 「ヘッダー末尾から数えた位置」
+    from_end = {}
     for i, h in enumerate(header):
         h = h.strip()
         for field, kws in _H_MAP:
-            if field not in idx and h in kws:
-                idx[field] = i
-    if not all(k in idx for k in ("pts", "p", "w", "d", "l", "gf", "ga")):
+            if field not in from_end and h in kws:
+                from_end[field] = len(header) - i
+    if not all(k in from_end for k in ("pts", "p", "w", "d", "l", "gf", "ga")):
         return None
-    # チーム名の列＝Club/チーム、無ければ数値でない最初の列
+
+    # チーム名は行の「左から」探す（左側に無名列が入ることは無い）
     name_i = None
     for i, h in enumerate(header):
         if h.strip().lower() in {"club", "チーム", "チーム名", "クラブ"}:
             name_i = i
             break
 
-    out = []
+    out, dropped = [], 0
     for tr in rows[1:]:
         cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
         if len(cells) < len(header):
             continue
 
         def num(field):
-            v = cells[idx[field]].strip().lstrip("+")
+            j = len(cells) - from_end[field]
+            if j < 0 or j >= len(cells):
+                return None
+            v = cells[j].strip().lstrip("+").replace("−", "-")
             return int(v) if re.fullmatch(r"-?\d+", v) else None
 
         vals = {f: num(f) for f in ("pts", "p", "w", "d", "l", "gf", "ga")}
         if any(v is None for v in vals.values()):
+            dropped += 1
             continue
-        if name_i is not None and name_i < len(cells):
-            name = cells[name_i]
-        else:
-            name = next((c for c in cells if c and not re.fullmatch(r"[-+\d\s]+", c)), "")
-        # 「▲」「▼」などの増減マークと連勝連敗の記号列を落とす
-        name = re.sub(r"^[▲▼△▽\s]+", "", name)
-        name = re.sub(r"[\s　]*(勝|敗|分)([\s　]*(勝|敗|分))*[\s　]*>?$", "", name).strip()
+        # 自己検査：列の対応が正しければ必ず成り立つ
+        if vals["pts"] != vals["w"] * 3 + vals["d"] or vals["p"] != vals["w"] + vals["d"] + vals["l"]:
+            dropped += 1
+            continue
+
+        name = cells[name_i] if (name_i is not None and name_i < len(cells)) else ""
+        if not name or re.fullmatch(r"[-+\d\s]+", name):
+            name = next((c for c in cells
+                         if c and not re.fullmatch(r"[-+\d\s]+", c) and len(c) >= 2), "")
+        name = _clean_team_name(name)
         if not name:
+            dropped += 1
             continue
         out.append({"rank": len(out) + 1, "name": name, **vals})
+
+    if debug:
+        print(f"      表: ヘッダー{len(header)}列 {header} → 採用{len(out)}行 / 捨てた{dropped}行")
     return out or None
 
 
-def fetch_kanto():
+def _clean_team_name(name: str) -> str:
+    """順位表セルから拾った文字列をチーム名だけにする。
+      - 先頭の昇降格マーク（▲▼）
+      - 末尾の連勝連敗（勝 勝 分 勝 敗 >）
+      - 末尾の（宮城県）などの県名 …… ★JFA東北の表はチーム名に県名が付く（実ログで発覚）
+    """
+    name = re.sub(r"^[▲▼△▽\s　]+", "", name or "")
+    name = re.sub(r"[\s　]*(勝|敗|分)([\s　]*(勝|敗|分))*[\s　]*>?$", "", name)
+    name = re.sub(r"[（(][^（）()]{1,8}[県都道府]?[）)]\s*$", "", name)
+    return name.strip()
+
+
+def fetch_kanto(debug=False):
     """関東の6ブロックを {division_id: teams} で返す"""
     r = requests.get(KANTO_URL, headers=HEAD, timeout=TIMEOUT)
     r.raise_for_status()
     r.encoding = r.apparent_encoding or "utf-8"
     soup = BeautifulSoup(r.text, "html.parser")
 
-    found = {}
-    for table in soup.find_all("table"):
-        teams = _parse_standings_table(table)
+    tables = soup.find_all("table")
+    print(f"  ページ内の表: {len(tables)}個")
+    found, parsed = {}, 0
+    for table in tables:
+        teams = _parse_standings_table(table, debug=debug)
         if not teams:
             continue
+        parsed += 1
         # 直前の見出し（1部Ａ 等）からディビジョンを判定
         head = table.find_previous(["h1", "h2", "h3", "h4", "h5", "caption"])
         key = None
@@ -245,15 +282,25 @@ def fetch_kanto():
                 if unicodedata.normalize("NFKC", label).replace(" ", "") == ht:
                     key = did
                     break
-        if key and key not in found:   # 同じ表がページ下部にも再掲されるので最初だけ採用
+        if key is None:
+            print(f"      [注意] 見出しからブロックを判定できない表（直前の見出し: "
+                  f"{head.get_text(strip=True)[:20] if head else 'なし'}）")
+            continue
+        if key not in found:           # 同じ表がページ下部にも再掲されるので最初だけ採用
             found[key] = teams
+    print(f"  順位表として読めた表: {parsed}個 → ブロック確定: {sorted(found)}")
+    if parsed == 0:
+        print("  [自動診断] 順位表を1つも読めませんでした。先頭3表のヘッダーを出します:")
+        for t in tables[:3]:
+            hdr = [c.get_text(strip=True) for c in (t.find_all("tr")[:1] or [t])[0].find_all(["th", "td"])]
+            print(f"      {hdr[:12]}")
     return found
 
 
 # =====================================================================
 # B) 東北（JFAの順位表HTML）
 # =====================================================================
-def fetch_tohoku():
+def fetch_tohoku(debug=False):
     out = {}
     for did, url in TOHOKU_URLS.items():
         try:
@@ -261,11 +308,16 @@ def fetch_tohoku():
             r.raise_for_status()
             r.encoding = r.apparent_encoding or "utf-8"
             soup = BeautifulSoup(r.text, "html.parser")
-            for table in soup.find_all("table"):
-                teams = _parse_standings_table(table)
+            tables = soup.find_all("table")
+            for table in tables:
+                teams = _parse_standings_table(table, debug=debug)
                 if teams:
                     out[did] = teams
                     break
+            if did not in out:
+                print(f"  [注意] {did}: 表{len(tables)}個のどれも順位表として読めなかった")
+            else:
+                print(f"  {did}: {len(out[did])}チーム（1位 {out[did][0]['name']}）")
         except Exception as e:
             print(f"  [警告] {did} の取得に失敗: {e}")
     return out
@@ -288,7 +340,7 @@ def _pdf_rows(page):
     return out
 
 
-def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div):
+def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div, debug=False):
     """星取表PDFから {division_id: teams} を作る。
     各ページの各行について「右端に並ぶ集計列（順位・勝点・勝・分・敗・得・失・得失差）」と
     「行の左側にあるチーム名」を拾う。表が複数ある場合はページ順に division を割り当てる。"""
@@ -296,7 +348,7 @@ def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div):
 
     results = []
     with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
-        for page in pdf.pages:
+        for pno, page in enumerate(pdf.pages, 1):
             block = []
             for ws in _pdf_rows(page):
                 texts = [w["text"] for w in ws]
@@ -333,6 +385,17 @@ def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div):
             if len(block) >= 6:
                 block.sort(key=lambda t: t["rank"])
                 results.append(block)
+            elif debug:
+                print(f"      PDF {pno}ページ目: 行として成立 {len(block)}件（6未満なので不採用）")
+                for ws in _pdf_rows(page)[:6]:
+                    print("        raw:", " | ".join(w["text"] for w in ws)[:150])
+
+    if not results:
+        print("      [自動診断] 表として成立する行がありませんでした。1ページ目の先頭行:")
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+            if pdf.pages:
+                for ws in _pdf_rows(pdf.pages[0])[:5]:
+                    print("        raw:", " | ".join(w["text"] for w in ws)[:160])
 
     out = {}
     for did, teams in zip(want_divisions, results):
@@ -347,7 +410,7 @@ def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div):
     return out
 
 
-def fetch_jfa_pdfs(only=None):
+def fetch_jfa_pdfs(only=None, debug=False):
     out = {}
     for src in JFA_PDF:
         wants = [d for d in src["divisions"] if (only is None or d in only)]
@@ -359,10 +422,14 @@ def fetch_jfa_pdfs(only=None):
             if len(r.content) > MAX_PDF_BYTES:
                 print(f"  [警告] PDFが大きすぎます: {src['url']}")
                 continue
-            got = parse_jfa_pdf(r.content, src["divisions"], NAME_ALIASES)
+            got = parse_jfa_pdf(r.content, src["divisions"], NAME_ALIASES, debug=debug)
+            tag = src["divisions"][0]
+            if not got:
+                print(f"  [注意] {tag}: PDF({len(r.content)//1024}KB)から順位表を読めなかった")
             for did in wants:
                 if did in got:
                     out[did] = got[did]
+                    print(f"  {did}: {len(got[did])}チーム（1位 {got[did][0]['name']}）")
         except Exception as e:
             print(f"  [警告] PDF取得/解析に失敗 {src['url']}: {e}")
     return out
@@ -375,6 +442,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="取得と検証だけ行い書き込まない")
     ap.add_argument("--only", default="", help="対象division idをカンマ区切りで指定")
+    ap.add_argument("--debug", action="store_true", help="表やPDFの中身を詳しく出力する")
     args = ap.parse_args()
     only = {s.strip() for s in args.only.split(",") if s.strip()} or None
 
@@ -388,20 +456,20 @@ def main():
     print("■ 関東（連盟公式の結果サイト）")
     try:
         if only is None or any(k.startswith("kanto-") for k in only):
-            fetched.update(fetch_kanto())
+            fetched.update(fetch_kanto(debug=args.debug))
     except Exception as e:
         print(f"  [警告] 関東の取得に失敗: {e}")
 
     print("■ 東北（JFA順位表HTML）")
     try:
         if only is None or any(k.startswith("michinoku-") for k in only):
-            fetched.update(fetch_tohoku())
+            fetched.update(fetch_tohoku(debug=args.debug))
     except Exception as e:
         print(f"  [警告] 東北の取得に失敗: {e}")
 
     print("■ JFA星取表PDF（北海道・北信越・東海・関西・中国・四国・九州）")
     try:
-        fetched.update(fetch_jfa_pdfs(only))
+        fetched.update(fetch_jfa_pdfs(only, debug=args.debug))
     except Exception as e:
         print(f"  [警告] PDF群の取得に失敗: {e}")
 
