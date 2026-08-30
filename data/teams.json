@@ -943,13 +943,13 @@
         "name": "ブラウブリッツ秋田U-18 2nd",
         "league": "秋田U-18リーグ",
         "rank": 4,
-        "points": 17,
-        "played": 10,
-        "won": 5,
+        "points": 20,
+        "played": 11,
+        "won": 6,
         "drawn": 2,
         "lost": 3,
-        "goalsFor": 17,
-        "goalsAgainst": 11,
+        "goalsFor": 21,
+        "goalsAgainst": 12,
         "prefectureRank": 4,
         "leagueRank": 3,
         "aliases": [
@@ -1015,12 +1015,12 @@
         "rank": 8,
         "prefectureRank": 8,
         "points": 7,
-        "played": 10,
+        "played": 11,
         "won": 2,
         "drawn": 1,
-        "lost": 7,
-        "goalsFor": 10,
-        "goalsAgainst": 33,
+        "lost": 8,
+        "goalsFor": 11,
+        "goalsAgainst": 37,
         "leagueRank": 7,
         "aliases": [
           "大曲工",
@@ -1249,10 +1249,27 @@
     "region": "東北",
     "teams": [
       {
+        "name": "尚志高校2nd",
+        "league": "福島F1リーグ",
+        "points": 31,
+        "played": 13,
+        "won": 10,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 66,
+        "goalsAgainst": 10,
+        "leagueRank": 1,
+        "rank": 1,
+        "prefectureRank": 1,
+        "aliases": [
+          "尚志セカンド"
+        ]
+      },
+      {
         "id": "f001",
         "name": "尚志高校",
         "league": "プリンスリーグ東北",
-        "rank": 1,
+        "rank": 2,
         "points": 31,
         "played": 11,
         "won": 10,
@@ -1260,43 +1277,23 @@
         "lost": 0,
         "goalsFor": 34,
         "goalsAgainst": 5,
-        "prefectureRank": 1,
+        "prefectureRank": 2,
         "leagueRank": 1
       },
       {
-        "name": "尚志高校2nd",
-        "league": "福島F1リーグ",
-        "points": 28,
-        "played": 12,
-        "won": 9,
-        "drawn": 1,
-        "lost": 2,
-        "goalsFor": 59,
-        "goalsAgainst": 10,
-        "leagueRank": 1,
-        "rank": 2,
-        "prefectureRank": 2,
-        "aliases": [
-          "尚志セカンド"
-        ]
-      },
-      {
-        "id": "f008",
-        "name": "ふたば未来学園高校",
+        "id": "f006",
+        "name": "聖光学院高校",
         "league": "福島F1リーグ",
         "rank": 3,
-        "points": 26,
+        "points": 27,
         "played": 13,
-        "won": 7,
-        "drawn": 5,
-        "lost": 1,
-        "goalsFor": 35,
-        "goalsAgainst": 8,
+        "won": 8,
+        "drawn": 3,
+        "lost": 2,
+        "goalsFor": 27,
+        "goalsAgainst": 7,
         "prefectureRank": 3,
-        "leagueRank": 2,
-        "aliases": [
-          "ふたば未来"
-        ]
+        "leagueRank": 2
       },
       {
         "id": "f004",
@@ -1314,8 +1311,8 @@
         "leagueRank": 8
       },
       {
-        "id": "f009",
-        "name": "いわきFC",
+        "id": "f008",
+        "name": "ふたば未来学園高校",
         "league": "福島F1リーグ",
         "rank": 5,
         "points": 26,
@@ -1323,10 +1320,13 @@
         "won": 7,
         "drawn": 5,
         "lost": 1,
-        "goalsFor": 19,
+        "goalsFor": 35,
         "goalsAgainst": 8,
         "prefectureRank": 5,
-        "leagueRank": 3
+        "leagueRank": 3,
+        "aliases": [
+          "ふたば未来"
+        ]
       },
       {
         "id": "f002",
@@ -1344,17 +1344,17 @@
         "leagueRank": 9
       },
       {
-        "id": "f006",
-        "name": "聖光学院高校",
+        "id": "f009",
+        "name": "いわきFC",
         "league": "福島F1リーグ",
         "rank": 7,
-        "points": 24,
-        "played": 12,
+        "points": 26,
+        "played": 13,
         "won": 7,
-        "drawn": 3,
-        "lost": 2,
-        "goalsFor": 26,
-        "goalsAgainst": 7,
+        "drawn": 5,
+        "lost": 1,
+        "goalsFor": 19,
+        "goalsAgainst": 8,
         "prefectureRank": 7,
         "leagueRank": 4
       },
@@ -1362,44 +1362,65 @@
         "name": "福島ユナイテッド",
         "league": "福島F1リーグ",
         "points": 16,
-        "played": 12,
+        "played": 13,
         "won": 4,
         "drawn": 4,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 16,
-        "goalsAgainst": 20,
+        "goalsAgainst": 21,
         "leagueRank": 5,
         "rank": 8,
         "prefectureRank": 8
       },
       {
+        "name": "郡山商業高校",
+        "league": "福島F1リーグ",
+        "rank": 9,
+        "prefectureRank": 9,
+        "points": 14,
+        "played": 13,
+        "won": 4,
+        "drawn": 2,
+        "lost": 7,
+        "goalsFor": 16,
+        "goalsAgainst": 23,
+        "leagueRank": 6,
+        "aliases": [
+          "郡山商",
+          "郡山商業",
+          "郡山商業高等学校",
+          "郡山商高",
+          "郡山商高校"
+        ]
+      },
+      {
         "id": "f010",
         "name": "福島東高校",
         "league": "福島F1リーグ",
-        "rank": 9,
+        "rank": 10,
         "points": 14,
-        "played": 12,
+        "played": 13,
         "won": 4,
         "drawn": 2,
-        "lost": 6,
+        "lost": 7,
         "goalsFor": 13,
-        "goalsAgainst": 17,
-        "prefectureRank": 9,
-        "leagueRank": 6
+        "goalsAgainst": 24,
+        "prefectureRank": 10,
+        "leagueRank": 7
       },
       {
         "name": "帝京安積高校2nd",
         "league": "福島F1リーグ",
         "points": 12,
-        "played": 12,
+        "played": 13,
         "won": 3,
         "drawn": 3,
-        "lost": 6,
+        "lost": 7,
         "goalsFor": 26,
-        "goalsAgainst": 19,
-        "leagueRank": 7,
-        "rank": 10,
-        "prefectureRank": 10,
+        "goalsAgainst": 21,
+        "leagueRank": 8,
+        "rank": 11,
+        "prefectureRank": 11,
         "aliases": [
           "帝京安積セカンド"
         ]
@@ -1414,32 +1435,11 @@
         "lost": 7,
         "goalsFor": 19,
         "goalsAgainst": 34,
-        "leagueRank": 8,
-        "rank": 11,
-        "prefectureRank": 11,
-        "aliases": [
-          "学法石川セカンド"
-        ]
-      },
-      {
-        "name": "郡山商業高校",
-        "league": "福島F1リーグ",
+        "leagueRank": 9,
         "rank": 12,
         "prefectureRank": 12,
-        "points": 11,
-        "played": 12,
-        "won": 3,
-        "drawn": 2,
-        "lost": 7,
-        "goalsFor": 14,
-        "goalsAgainst": 23,
-        "leagueRank": 9,
         "aliases": [
-          "郡山商",
-          "郡山商業",
-          "郡山商業高等学校",
-          "郡山商高",
-          "郡山商高校"
+          "学法石川セカンド"
         ]
       },
       {
@@ -6830,25 +6830,6 @@
         "leagueRank": 10
       },
       {
-        "id": "hy011",
-        "name": "神戸星城高校",
-        "league": "兵庫県1部",
-        "rank": 10,
-        "prefectureRank": 10,
-        "points": 15,
-        "played": 9,
-        "won": 4,
-        "drawn": 3,
-        "lost": 2,
-        "goalsFor": 14,
-        "goalsAgainst": 10,
-        "goalDiff": 4,
-        "leagueRank": 4,
-        "aliases": [
-          "神戸星城高校A"
-        ]
-      },
-      {
         "name": "滝川第二高校2nd",
         "league": "兵庫県1部",
         "points": 15,
@@ -6858,23 +6839,42 @@
         "lost": 3,
         "goalsFor": 13,
         "goalsAgainst": 11,
-        "leagueRank": 5,
-        "rank": 11,
-        "prefectureRank": 11,
+        "leagueRank": 4,
+        "rank": 10,
+        "prefectureRank": 10,
         "aliases": [
           "滝川第二B"
         ]
       },
       {
+        "id": "hy011",
+        "name": "神戸星城高校",
+        "league": "兵庫県1部",
+        "rank": 11,
+        "prefectureRank": 11,
+        "points": 15,
+        "played": 10,
+        "won": 4,
+        "drawn": 3,
+        "lost": 3,
+        "goalsFor": 14,
+        "goalsAgainst": 13,
+        "goalDiff": 1,
+        "leagueRank": 5,
+        "aliases": [
+          "神戸星城高校A"
+        ]
+      },
+      {
         "name": "神戸国際附属高校",
         "league": "兵庫県1部",
-        "points": 12,
-        "played": 9,
-        "won": 4,
+        "points": 15,
+        "played": 10,
+        "won": 5,
         "drawn": 0,
         "lost": 5,
-        "goalsFor": 13,
-        "goalsAgainst": 17,
+        "goalsFor": 16,
+        "goalsAgainst": 19,
         "leagueRank": 6,
         "rank": 12,
         "prefectureRank": 12,
@@ -6883,18 +6883,35 @@
         ]
       },
       {
-        "name": "神戸科学技術高校",
+        "name": "神戸弘陵学園高校2nd",
         "league": "兵庫県1部",
-        "points": 11,
-        "played": 9,
+        "points": 13,
+        "played": 10,
         "won": 3,
-        "drawn": 2,
-        "lost": 4,
-        "goalsFor": 17,
-        "goalsAgainst": 18,
+        "drawn": 4,
+        "lost": 3,
+        "goalsFor": 13,
+        "goalsAgainst": 12,
         "leagueRank": 7,
         "rank": 13,
         "prefectureRank": 13,
+        "aliases": [
+          "神戸弘陵B"
+        ]
+      },
+      {
+        "name": "神戸科学技術高校",
+        "league": "兵庫県1部",
+        "points": 11,
+        "played": 10,
+        "won": 3,
+        "drawn": 2,
+        "lost": 5,
+        "goalsFor": 19,
+        "goalsAgainst": 21,
+        "leagueRank": 8,
+        "rank": 14,
+        "prefectureRank": 14,
         "aliases": [
           "神戸科技A"
         ]
@@ -6909,28 +6926,11 @@
         "lost": 5,
         "goalsFor": 16,
         "goalsAgainst": 21,
-        "leagueRank": 8,
-        "rank": 14,
-        "prefectureRank": 14,
-        "aliases": [
-          "三田学園B"
-        ]
-      },
-      {
-        "name": "神戸弘陵学園高校2nd",
-        "league": "兵庫県1部",
-        "points": 10,
-        "played": 9,
-        "won": 2,
-        "drawn": 4,
-        "lost": 3,
-        "goalsFor": 10,
-        "goalsAgainst": 12,
         "leagueRank": 9,
         "rank": 15,
         "prefectureRank": 15,
         "aliases": [
-          "神戸弘陵B"
+          "三田学園B"
         ]
       },
       {
@@ -11203,7 +11203,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-08-30 16:54",
+    "lastUpdated": "2026-08-30 19:01",
     "year": 2026,
     "updatedCount": 543
   }
