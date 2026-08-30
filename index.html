@@ -175,7 +175,7 @@
             <!-- UPDATE_BANNER_START -->
             <div id="updateBanner" class="update-banner">
                 <i class="fas fa-sync-alt"></i>
-                <span id="updateBannerText">最終自動更新: 2026-08-30 13:13（543チーム更新）</span>
+                <span id="updateBannerText">最終自動更新: 2026-08-30 14:05（543チーム更新）</span>
             </div>
             <!-- UPDATE_BANNER_END -->
             <!-- ★ 季節限定：インターハイ本選バナー -->
@@ -204,7 +204,57 @@
 
             <!-- ★ PICK UP GAME（毎日自動更新。マーカー間はスクリプトが書き換えるので手で編集しない） -->
             <!-- HOME_PICKUP_START -->
-            <!-- HOME_PICKUP_END -->
+<section class="hp-sec" aria-label="注目試合の結果">
+<style>
+.hp-sec{--hp-card-bg:rgba(255,255,255,.97);--hp-card-fg:#1e293b;--hp-lg:#1e3a8a;--hp-sc:#1e3a8a;
+  margin:16px 0 26px;border-radius:14px;overflow:hidden;
+  background:linear-gradient(135deg,#1e3a8a,#16295f);box-shadow:0 6px 20px rgba(0,0,0,.18);}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
+    --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
+}
+:root[data-theme="dark"] .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
+  --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
+.hp-inner{padding:18px 20px 16px;}
+.hp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 14px;}
+.hp-fire{font-size:1.3rem;line-height:1;}
+.hp-sec h2{margin:0;font-size:1.35rem;color:#fff;letter-spacing:.04em;border:none;padding:0;}
+.hp-date{font-size:.82rem;color:rgba(255,255,255,.75);}
+.hp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
+.hp-card{display:block;padding:14px 14px 15px;border-radius:11px;background:var(--hp-card-bg);
+  color:var(--hp-card-fg);text-decoration:none;transition:transform .15s;}
+.hp-card:hover{transform:translateY(-2px);}
+.hp-badge{display:block;font-size:.72rem;font-weight:700;letter-spacing:.03em;
+  color:var(--hp-lg);margin-bottom:10px;}
+.hp-day{font-size:.7rem;opacity:.6;margin-left:7px;font-weight:400;}
+.hp-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;}
+.hp-tm{font-size:1rem;line-height:1.3;}
+.hp-tm.hp-h{text-align:right;} .hp-tm.hp-a{text-align:left;}
+.hp-rk{display:block;font-size:.66rem;font-weight:600;opacity:.55;}
+.hp-sc{font-weight:800;font-size:1.5rem;color:var(--hp-sc);white-space:nowrap;}
+.hp-sc i{margin:0 3px;opacity:.45;font-weight:400;font-style:normal;}
+.hp-win{font-weight:800;}
+.hp-more{margin:14px 0 0;font-size:.86rem;}
+.hp-more a{color:rgba(255,255,255,.92);}
+@media (max-width:600px){
+  .hp-inner{padding:16px 14px 14px;}
+  .hp-sec h2{font-size:1.15rem;}
+  .hp-grid{grid-template-columns:1fr;}
+  .hp-tm{font-size:.95rem;} .hp-sc{font-size:1.35rem;}
+}
+</style>
+  <div class="hp-inner">
+  <div class="hp-head"><span class="hp-fire">🔥</span><h2>PICK UP GAME</h2><span class="hp-date">注目カードの結果 ／ 2026年8月29日(土)の試合から</span></div>
+  <div class="hp-grid">
+    <a class="hp-card" href="/leagues/prince-hokkaido/"><span class="hp-badge">プリンス北海道</span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">5位</span>札幌光星</span><span class="hp-sc">1<i>-</i>2</span><span class="hp-tm hp-a hp-win"><span class="hp-rk">1位</span>旭川実</span></span></a>
+    <a class="hp-card" href="/leagues/prince-tohoku/"><span class="hp-badge">プリンス東北</span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">3位</span>専大北上</span><span class="hp-sc">0<i>-</i>2</span><span class="hp-tm hp-a hp-win"><span class="hp-rk">5位</span>聖和学園</span></span></a>
+    <a class="hp-card" href="/leagues/prince-kyushu-1/"><span class="hp-badge">プリンス九州1部</span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">4位</span>日章学園</span><span class="hp-sc">1<i>-</i>1</span><span class="hp-tm hp-a"><span class="hp-rk">5位</span>東福岡</span></span></a>
+    <a class="hp-card" href="/leagues/prince-kyushu-2/"><span class="hp-badge">プリンス九州2部</span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">2位</span>鵬翔</span><span class="hp-sc">3<i>-</i>2</span><span class="hp-tm hp-a"><span class="hp-rk">9位</span>長崎総科大附</span></span></a>
+  </div>
+  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果を見る →</a></p>
+  </div>
+</section>
+<!-- HOME_PICKUP_END -->
 
             <!-- ★ 今日のハイライト（毎日自動更新。マーカー間はスクリプトが書き換えるので手で編集しない） -->
             <!-- HOME_SUMMARY_START -->
