@@ -73,10 +73,16 @@ KANTO_HEADINGS = {
     "2部D": "kanto-2d", "２部Ｄ": "kanto-2d",
 }
 
+# 東北は同じ形式のページが3つ。★チャレンジ北(tohoku2)だけ順位表が読めないことがあるため
+# 予備URLを順に試す（最初に読めたものを採用する）。
+_THFA = "https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u15_2026"
 TOHOKU_URLS = {
-    "michinoku-top": "https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u15_2026/tohoku1/thfa/ranking.html",
-    "michinoku-n":   "https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u15_2026/tohoku2/thfa/ranking.html",
-    "michinoku-s":   "https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u15_2026/tohoku3/thfa/ranking.html",
+    "michinoku-top": [f"{_THFA}/tohoku1/thfa/ranking.html"],
+    "michinoku-n":   [f"{_THFA}/tohoku2/thfa/ranking.html",
+                      f"{_THFA}/tohoku2/schedule_result/ranking.html",
+                      f"{_THFA}/tohoku2/thfa/",
+                      f"{_THFA}/tohoku2/"],
+    "michinoku-s":   [f"{_THFA}/tohoku3/thfa/ranking.html"],
 }
 
 # JFA星取表PDF。1つのPDFに複数ディビジョンが入る場合は divisions を順に割り当てる
@@ -259,41 +265,61 @@ def _clean_team_name(name: str) -> str:
 
 
 def fetch_kanto(debug=False):
-    """関東の6ブロックを {division_id: teams} で返す"""
+    """関東の6ブロックを {division_id: teams} で返す。
+
+    ★2026-08-30の実ログでわかったこと
+      このページの <table> は**星取表（対戦表）6個だけ**で、順位表はテーブル要素ではない。
+      そのため表を探す方式では0件になる。→ **ページ本文のテキストから読む**方式に変更した。
+      本文は「# Club 勝点 試合 勝 分 敗 得 失 差」に続いて
+      「順位 [▲▼] チーム名 勝 勝 分 勝 敗 > 勝点 試合 勝 分 敗 得 失 差」が並ぶ規則的な形。
+    """
     r = requests.get(KANTO_URL, headers=HEAD, timeout=TIMEOUT)
     r.raise_for_status()
     r.encoding = r.apparent_encoding or "utf-8"
-    soup = BeautifulSoup(r.text, "html.parser")
+    text = unicodedata.normalize("NFKC", BeautifulSoup(r.text, "html.parser").get_text(" "))
+    text = re.sub(r"[\u3000\s]+", " ", text)
 
-    tables = soup.find_all("table")
-    print(f"  ページ内の表: {len(tables)}個")
-    found, parsed = {}, 0
-    for table in tables:
-        teams = _parse_standings_table(table, debug=debug)
-        if not teams:
-            continue
-        parsed += 1
-        # 直前の見出し（1部Ａ 等）からディビジョンを判定
-        head = table.find_previous(["h1", "h2", "h3", "h4", "h5", "caption"])
-        key = None
-        if head:
-            ht = unicodedata.normalize("NFKC", head.get_text(strip=True)).replace(" ", "")
-            for label, did in KANTO_HEADINGS.items():
-                if unicodedata.normalize("NFKC", label).replace(" ", "") == ht:
-                    key = did
-                    break
-        if key is None:
-            print(f"      [注意] 見出しからブロックを判定できない表（直前の見出し: "
-                  f"{head.get_text(strip=True)[:20] if head else 'なし'}）")
-            continue
-        if key not in found:           # 同じ表がページ下部にも再掲されるので最初だけ採用
-            found[key] = teams
-    print(f"  順位表として読めた表: {parsed}個 → ブロック確定: {sorted(found)}")
-    if parsed == 0:
-        print("  [自動診断] 順位表を1つも読めませんでした。先頭3表のヘッダーを出します:")
-        for t in tables[:3]:
-            hdr = [c.get_text(strip=True) for c in (t.find_all("tr")[:1] or [t])[0].find_all(["th", "td"])]
-            print(f"      {hdr[:12]}")
+    header_re = re.compile(r"#\s*Club\s*勝点\s*試合\s*勝\s*分\s*敗\s*得\s*失\s*差")
+    row_re = re.compile(
+        r"(\d{1,2})\s+(?:[▲▼△▽]\s*)?(.+?)\s+"          # 順位・(昇降格マーク)・チーム名
+        r"(?:(?:勝|分|敗)\s+)*>\s+"                        # 直近成績「勝 勝 分 勝 敗 >」
+        r"(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+([-−]?\d+)")
+    labels = {unicodedata.normalize("NFKC", k): v for k, v in KANTO_HEADINGS.items()}
+
+    starts = [m.start() for m in header_re.finditer(text)]
+    print(f"  順位表の見出しを{len(starts)}個検出")
+    found = {}
+    for i, st in enumerate(starts):
+        nxt = starts[i + 1] if i + 1 < len(starts) else len(text)
+        chunk = text[st:nxt]
+        # 直前240文字の中に出てくる最後のブロック名（1部A 等）を採用
+        before = text[max(0, st - 240):st]
+        best_pos, did = -1, None
+        for label, d in labels.items():          # 直前に一番近いブロック名を採用
+            pos = before.rfind(label)
+            if pos > best_pos:
+                best_pos, did = pos, d
+        teams = []
+        for m in row_re.finditer(chunk):
+            name = _clean_team_name(m.group(2))
+            pts, p, w, d_, l, gf, ga, gd = (int(x.replace("−", "-")) for x in m.groups()[2:])
+            if pts != w * 3 + d_ or p != w + d_ + l or gf - ga != gd:
+                continue                      # 自己検査に通った行だけ採用
+            if not name:
+                continue
+            teams.append({"rank": len(teams) + 1, "name": name, "p": p, "w": w,
+                          "d": d_, "l": l, "gf": gf, "ga": ga, "pts": pts})
+        if debug:
+            print(f"      ブロック{did or '?'}: {len(teams)}チーム")
+        if teams and did and did not in found:
+            found[did] = teams
+
+    print(f"  ブロック確定: {sorted(found)}")
+    if not found:
+        print("  [自動診断] 本文から順位表を読めませんでした。見出し周辺の本文:")
+        m = header_re.search(text)
+        if m:
+            print("      " + text[m.start():m.start() + 240])
     return found
 
 
@@ -302,24 +328,28 @@ def fetch_kanto(debug=False):
 # =====================================================================
 def fetch_tohoku(debug=False):
     out = {}
-    for did, url in TOHOKU_URLS.items():
-        try:
-            r = requests.get(url, headers=HEAD, timeout=TIMEOUT)
-            r.raise_for_status()
-            r.encoding = r.apparent_encoding or "utf-8"
-            soup = BeautifulSoup(r.text, "html.parser")
-            tables = soup.find_all("table")
-            for table in tables:
-                teams = _parse_standings_table(table, debug=debug)
-                if teams:
-                    out[did] = teams
+    for did, urls in TOHOKU_URLS.items():
+        tried = []
+        for url in urls:
+            try:
+                r = requests.get(url, headers=HEAD, timeout=TIMEOUT)
+                r.raise_for_status()
+                r.encoding = r.apparent_encoding or "utf-8"
+                soup = BeautifulSoup(r.text, "html.parser")
+                tables = soup.find_all("table")
+                for table in tables:
+                    teams = _parse_standings_table(table, debug=debug)
+                    if teams:
+                        out[did] = teams
+                        break
+                tried.append(f"{url.split('/')[-2]}/{url.split('/')[-1] or '(index)'}:表{len(tables)}個")
+                if did in out:
+                    print(f"  {did}: {len(out[did])}チーム（1位 {out[did][0]['name']}）")
                     break
-            if did not in out:
-                print(f"  [注意] {did}: 表{len(tables)}個のどれも順位表として読めなかった")
-            else:
-                print(f"  {did}: {len(out[did])}チーム（1位 {out[did][0]['name']}）")
-        except Exception as e:
-            print(f"  [警告] {did} の取得に失敗: {e}")
+            except Exception as e:
+                tried.append(f"{url.split('/')[-1] or '(index)'}:失敗({type(e).__name__})")
+        if did not in out:
+            print(f"  [注意] {did}: 順位表を読めなかった → 試したURL {tried}")
     return out
 
 
@@ -342,53 +372,84 @@ def _pdf_rows(page):
 
 def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div, debug=False):
     """星取表PDFから {division_id: teams} を作る。
-    各ページの各行について「右端に並ぶ集計列（順位・勝点・勝・分・敗・得・失・得失差）」と
-    「行の左側にあるチーム名」を拾う。表が複数ある場合はページ順に division を割り当てる。"""
+
+    ★2026-08-30の実ログでわかったPDFの構造
+      集計列は **「勝点・得点・失点・得失・順位」の5つだけ**で、勝/分/敗の列は無い。
+      チームごとに1行、次の形で並ぶ：  チーム名 | 勝点 | 得点 | 失点 | 得失 | 順位
+      勝敗数は星取マトリクスの ○（勝）△（分）●（敗）を数えて求める。
+      印はチーム行の上下2行に折り返して置かれるため、**各印を最も近いチーム行に割り当てる**。
+
+    安全のため、全チームで「勝点＝○×3＋△」が成り立ったときだけ採用する
+    （成り立たなければそのリーグは更新しない＝既存維持）。
+    """
     import pdfplumber
 
+    MARKS = {"○": "w", "◯": "w", "△": "d", "▲": "d", "●": "l", "×": "l"}
     results = []
     with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
         for pno, page in enumerate(pdf.pages, 1):
-            block = []
-            for ws in _pdf_rows(page):
+            words = page.extract_words(x_tolerance=1.5, y_tolerance=2.5)
+            if not words:
+                continue
+            lines = {}
+            for w in words:
+                lines.setdefault(round(w["top"] / 4.0), []).append(w)
+
+            # ① チーム行（末尾5つが 勝点・得点・失点・得失・順位）を拾う
+            teams = []
+            for key in sorted(lines):
+                ws = sorted(lines[key], key=lambda w: w["x0"])
                 texts = [w["text"] for w in ws]
-                # 行末から数値を集める（順位…得失差までの8個が必要）
-                nums, i = [], len(texts) - 1
-                while i >= 0 and re.fullmatch(r"[+\-]?\d+", texts[i]) and len(nums) < 12:
-                    nums.append(texts[i])
-                    i -= 1
-                nums.reverse()
-                if len(nums) < 8:
+                if len(texts) < 6:
                     continue
-                # 集計列は左→右に「順位 勝点 勝利 引分 敗戦 得点 失点 得失差」。
-                # 星取マトリクスの数字も末尾の数値列に混ざるため、右端から8個ずつ窓をずらし、
-                # 「得点−失点＝得失差」かつ「勝点＝勝×3＋分」を満たす窓だけを採用する。
-                rec = None
-                for s in range(len(nums) - 8, -1, -1):
-                    try:
-                        rank, pts, w_, d, l, gf, ga, gd = (
-                            int(x.lstrip("+")) for x in nums[s:s + 8])
-                    except ValueError:
-                        continue
-                    if gf - ga == gd and pts == w_ * 3 + d and rank >= 1 and w_ >= 0:
-                        rec = {"rank": rank, "p": w_ + d + l, "w": w_, "d": d,
-                               "l": l, "gf": gf, "ga": ga, "pts": pts}
-                        break
-                if rec is None:
+                tail = texts[-5:]
+                if not all(re.fullmatch(r"[+\-−]?\d+", t) for t in tail):
                     continue
-                name = "".join(t for t in texts[:i + 1]
-                               if not re.fullmatch(r"[+\-]?\d+|[○△●★＊*]", t)).strip()
+                pts, gf, ga, gd, rank = (int(t.replace("−", "-").lstrip("+")) for t in tail)
+                if gf - ga != gd or not (1 <= rank <= 30):
+                    continue
+                name = "".join(t for t in texts[:-5]
+                               if not re.fullmatch(r"[+\-−]?\d+|[○◯△▲●×\-]", t)).strip()
                 name = re.sub(r"^[★＊*\s]+", "", name)
-                if not name or len(name) < 2:
+                if len(name) < 2:
                     continue
-                block.append({"name": name, **rec})
-            if len(block) >= 6:
-                block.sort(key=lambda t: t["rank"])
-                results.append(block)
-            elif debug:
-                print(f"      PDF {pno}ページ目: 行として成立 {len(block)}件（6未満なので不採用）")
-                for ws in _pdf_rows(page)[:6]:
-                    print("        raw:", " | ".join(w["text"] for w in ws)[:150])
+                y = sum(w["top"] for w in ws) / len(ws)
+                teams.append({"name": name, "pts": pts, "gf": gf, "ga": ga,
+                              "rank": rank, "_y": y})
+            if len(teams) < 6:
+                continue
+
+            # ② 星取記号を、最も近いチーム行に割り当てて 勝/分/敗 を数える
+            for t in teams:
+                t["w"] = t["d"] = t["l"] = 0
+            ys = [t["_y"] for t in teams]
+            span = (max(ys) - min(ys)) / max(1, len(teams) - 1)      # 行の間隔
+            for w in words:
+                field = MARKS.get(w["text"])
+                if not field:
+                    continue
+                near = min(teams, key=lambda t: abs(t["_y"] - w["top"]))
+                if abs(near["_y"] - w["top"]) <= span * 0.9:
+                    near[field] += 1
+
+            ok = True
+            for t in teams:
+                t["p"] = t["w"] + t["d"] + t["l"]
+                if t["pts"] != t["w"] * 3 + t["d"]:
+                    ok = False
+            if not ok:
+                if debug:
+                    bad = [f"{t['name']}(勝点{t['pts']}／○{t['w']}△{t['d']}●{t['l']})"
+                           for t in teams if t["pts"] != t["w"] * 3 + t["d"]][:3]
+                    print(f"      PDF {pno}ページ目: 勝敗数と勝点が合わないので不採用 {bad}")
+                continue
+
+            title = " ".join(w["text"] for w in sorted(
+                lines[min(lines)], key=lambda w: w["x0"]))
+            for t in teams:
+                t.pop("_y", None)
+            teams.sort(key=lambda t: t["rank"])
+            results.append({"title": title, "teams": teams})
 
     if not results:
         print("      [自動診断] 表として成立する行がありませんでした。1ページ目の先頭行:")
@@ -397,16 +458,30 @@ def parse_jfa_pdf(pdf_bytes, want_divisions, aliases_by_div, debug=False):
                 for ws in _pdf_rows(pdf.pages[0])[:5]:
                     print("        raw:", " | ".join(w["text"] for w in ws)[:160])
 
+    # ③ ディビジョンへの割り当て（1PDFに複数ある場合はタイトルの「1部/2部」で判定）
     out = {}
-    for did, teams in zip(want_divisions, results):
+    remain = list(results)
+    for did in want_divisions:
+        hint = None
+        if did.endswith("-1"):
+            hint = "1部"
+        elif did.endswith("-2"):
+            hint = "2部"
+        pick = None
+        if hint:
+            pick = next((r for r in remain if hint in r["title"].replace(" ", "")), None)
+        if pick is None and len(want_divisions) == 1 and remain:
+            pick = remain[0]
+        if pick is None:
+            continue
+        remain.remove(pick)
         al = aliases_by_div.get(did, {})
-        for t in teams:
-            key = norm(t["name"])
+        for t in pick["teams"]:
             for a, real in al.items():
-                if norm(a) == key:
+                if norm(a) == norm(t["name"]):
                     t["name"] = real
                     break
-        out[did] = teams
+        out[did] = pick["teams"]
     return out
 
 
