@@ -2,6 +2,9 @@
 id: asahikawa-jitsugyo
 name: 旭川実業高校
 short_name: 旭川実業
+aliases:
+  - 旭川実        # koko-soccer の順位表・試合表での表記
+  - 旭実
 league: プリンスリーグ北海道
 prefecture: hokkaido
 prefecture_name: 北海道

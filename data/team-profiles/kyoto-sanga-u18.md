@@ -2,7 +2,11 @@
 id: kyoto-sanga-u18
 name: 京都サンガF.C. U-18
 short_name: 京都サンガU-18
-aliases: 京都サンガF.C. U-18／京都サンガU-18／京都パープルサンガユース
+aliases:
+  - 京都サンガF.C. U-18
+  - 京都サンガU-18
+  - 京都パープルサンガユース
+  - 京都サンガF.C.        # JFA公式の順位表・試合表での表記
 league: プリンスリーグ関西1部
 prefecture: kyoto
 prefecture_name: 京都府

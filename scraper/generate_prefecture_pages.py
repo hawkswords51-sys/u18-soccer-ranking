@@ -73,8 +73,15 @@ def _load_team_profile_map() -> dict:
                 if short_name and short_name != team_name:
                     team_map[short_name] = team_id
                 # 表記ゆれ吸収: frontmatter の aliases（teams.json 側の表記など）
-                for alias in (meta.get("aliases") or []):
-                    if isinstance(alias, str) and alias:
+                # ⚠ aliases はリスト形式と「A／B／C」の文字列形式が混在している。
+                #   文字列をそのまま for で回すと1文字ずつ登録されてしまい、別名が
+                #   一度も効かない（2026-08-30にリーグページ側で発覚し同時に修正）。
+                raw_aliases = meta.get("aliases") or []
+                if isinstance(raw_aliases, str):
+                    raw_aliases = re.split(r"[／/、,]", raw_aliases)
+                for alias in raw_aliases:
+                    alias = str(alias).strip()
+                    if len(alias) >= 2:   # 1文字の別名は誤リンクの元なので採用しない
                         team_map[alias] = team_id
         except Exception as e:
             print(f"  [WARN] team-profile {md_file.name} の読み込みエラー: {e}")

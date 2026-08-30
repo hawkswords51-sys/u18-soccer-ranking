@@ -19,6 +19,7 @@
 """
 import json
 import re
+import unicodedata
 import yaml
 from pathlib import Path
 from datetime import date
@@ -329,10 +330,48 @@ LEAGUE_DEFS = {
 # =========================================================================
 
 _TEAM_PROFILE_MAP_CACHE = None
+_TEAM_PROFILE_NORM_CACHE = {}   # 正規化キー -> team_id（_load_team_profile_map が構築）
+
+
+_SECOND_TEAM_RE = re.compile(r"(2nd|3rd|セカンド|サード|\(B\)|（B）|B$|Ｂ$)", re.I)
+
+
+def _split_aliases(value):
+    """frontmatter の aliases を必ずリストにして返す。
+
+    ⚠️ 2026-08-30に発覚：aliases は YAMLリストで書かれたファイル(50件)と、
+    「A／B／C」のスラッシュ区切り文字列で書かれたファイル(24件)が混在していた。
+    旧コードは文字列をそのまま for で回していたため、**1文字ずつがキーとして
+    登録され、スラッシュ区切りの別名は一度も効いていなかった**
+    （例：ジェフユナイテッド千葉U-18 がリンクされない原因）。
+    """
+    if not value:
+        return []
+    if isinstance(value, str):
+        return [p.strip() for p in re.split(r"[／/、,]", value) if p.strip()]
+    if isinstance(value, (list, tuple)):
+        return [str(p).strip() for p in value if str(p).strip()]
+    return []
+
+
+def _norm_team_key(s: str) -> str:
+    """チーム名の表記ゆれを吸収するための正規化キー。
+
+    全角/半角・空白・中黒・ピリオドを落とし、末尾の「高等学校/高校/学校」を外す。
+    ⚠️ 2nd・3rd・(B)・セカンド は**絶対に落とさない**（別チームなので）。
+    """
+    s = unicodedata.normalize("NFKC", str(s))
+    s = re.sub(r"[\s・．\.]", "", s)
+    s = re.sub(r"(高等学校|高校|学校)$", "", s)
+    return s
 
 
 def _load_team_profile_map() -> dict:
-    """data/team-profiles/*.md から {チーム名: id} のマップを構築。"""
+    """data/team-profiles/*.md から {チーム名: id} のマップを構築。
+
+    さらに ①正規化キー ②data/teams.json の aliases 経由の橋渡し を足して、
+    koko-soccer / JFA 表記（「盛岡商」「流通経済大柏」など）からも引けるようにする。
+    """
     import yaml
     profiles_dir = BASE_DIR / "data" / "team-profiles"
     team_map = {}
@@ -357,11 +396,47 @@ def _load_team_profile_map() -> dict:
                 if short_name and short_name != team_name:
                     team_map[short_name] = team_id
                 # 表記ゆれ吸収: frontmatter の aliases（teams.json 側の表記など）
-                for alias in (meta.get("aliases") or []):
-                    if isinstance(alias, str) and alias:
-                        team_map[alias] = team_id
+                for alias in _split_aliases(meta.get("aliases")):
+                    team_map[alias] = team_id
         except Exception as e:
             print(f"  [WARN] team-profile {md_file.name} の読み込みエラー: {e}")
+
+    # --- ① 正規化キーを足す（同じ正規化キーが別チームを指したら両方捨てる） ---
+    norm_map = {}
+    for k, v in team_map.items():
+        nk = _norm_team_key(k)
+        if nk in norm_map and norm_map[nk] != v:
+            norm_map[nk] = None       # 曖昧なので使わない
+        else:
+            norm_map.setdefault(nk, v)
+
+    # --- ② teams.json の aliases 経由で、出典表記（koko/JFA）からも引けるようにする ---
+    try:
+        teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        teams_data = {}
+    for pref_data in teams_data.values():
+        if not isinstance(pref_data, dict):
+            continue
+        for t in pref_data.get("teams", []) or []:
+            if not isinstance(t, dict):
+                continue
+            keys = [t.get("name")] + list(t.get("aliases") or [])
+            keys = [k for k in keys if k]
+            if not keys or any(_SECOND_TEAM_RE.search(k) for k in keys):
+                continue          # セカンドチームは1軍ページに繋がないよう除外
+            ids = {team_map.get(k) or norm_map.get(_norm_team_key(k)) for k in keys}
+            ids = {i for i in ids if i}
+            if len(ids) != 1:
+                continue          # 0件＝ページなし / 2件以上＝曖昧、どちらも触らない
+            team_id = ids.pop()
+            for k in keys:
+                nk = _norm_team_key(k)
+                if nk not in norm_map:
+                    norm_map[nk] = team_id
+
+    global _TEAM_PROFILE_NORM_CACHE
+    _TEAM_PROFILE_NORM_CACHE = {k: v for k, v in norm_map.items() if v}
     return team_map
 
 
@@ -379,7 +454,8 @@ def render_team_name_with_link(team_name: str) -> str:
     """プロフィールページがあるチームは <a> でラップ、なければ format のみ"""
     formatted = format_team_name(team_name)
     team_map = get_team_profile_map()
-    team_id = team_map.get(team_name)
+    # ①そのままの表記 → ②正規化キー（「盛岡商」→盛岡商業高校 等）の順に引く
+    team_id = team_map.get(team_name) or _TEAM_PROFILE_NORM_CACHE.get(_norm_team_key(team_name))
     if team_id:
         return (
             f'<a href="/teams/{team_id}/" class="team-profile-link">'
