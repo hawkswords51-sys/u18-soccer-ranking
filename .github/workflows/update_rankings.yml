@@ -27,7 +27,9 @@ on:
       - 'data/tournaments_data.yml'
       - 'data/team-profiles/**'
       - 'data/tournaments/**'
+      - 'data/university/**'
       - 'data/scorers/**'
+      - 'data/u15/**'
       - 'data/league_matches/**'
       - 'data/national-team-players.yml'
       - 'data/pro-signings.yml'
@@ -144,6 +146,19 @@ jobs:
             echo "scraper/fetch_pref_scorers.py がまだありません。スキップ。"
           fi
 
+      # ★ U-15（3種）地域リーグの順位表を自動更新
+      #   出典: 関東=連盟公式の結果サイト / 東北=JFA順位表HTML / 他7地域=JFA星取表PDF
+      #   検算NG・取得失敗のリーグは既存データを維持する（誤データを載せない安全設計）
+      - name: U-15地域リーグ順位表を更新
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_u15_leagues.py ]; then
+            python scraper/fetch_u15_leagues.py
+          else
+            echo "scraper/fetch_u15_leagues.py がまだありません。スキップ。"
+          fi
+
       # ★ 県予選トーナメント（選手権・インターハイ等）の組み合わせ・結果を自動更新
       #   対象: data/tournaments/*.md のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
       #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）
@@ -227,6 +242,31 @@ jobs:
             echo "scraper/generate_interhigh_page.py がまだありません。スキップ。"
           fi
           
+      # ★ 総理大臣杯（大学）ページを再生成
+      #   data/tournaments/pmc-2026.json にスコアを書いて push すれば、この工程で
+      #   トーナメント表(SVG)と対戦表が自動で作り直される（Kei単独で更新できる導線）
+      - name: 総理大臣杯ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_pmc_page.py ]; then
+            python scraper/generate_pmc_page.py
+          else
+            echo "scraper/generate_pmc_page.py がまだありません。スキップ。"
+          fi
+
+      # ★ 大学リーグ順位表ページ（/university/）を再生成
+      #   data/university/leagues-2026.json を手で直して push した時に反映させる
+      - name: 大学サッカーハブページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/generate_university_page.py ]; then
+            python scraper/generate_university_page.py
+          fi
+          if [ -f scraper/generate_university_signings.py ]; then
+            python scraper/generate_university_signings.py
+          fi
+
       # ★ Jユースカップ ページを生成
       - name: Jユースカップページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -235,6 +275,15 @@ jobs:
             python scraper/generate_jyouth_page.py
           else
             echo "scraper/generate_jyouth_page.py がまだありません。スキップ。"
+          fi
+
+      - name: U-15ハブページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_u15_page.py ]; then
+            python scraper/generate_u15_page.py
+          else
+            echo "scraper/generate_u15_page.py がまだありません。スキップ。"
           fi
 
       - name: 地域大会まとめページを再生成
@@ -276,6 +325,8 @@ jobs:
           if [ -d blog-source ]; then git add blog-source; fi
           if [ -d tournaments ]; then git add tournaments; fi
           if [ -d data/tournaments ]; then git add data/tournaments; fi
+          if [ -d u15 ]; then git add u15; fi
+          if [ -d data/u15 ]; then git add data/u15; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
           if [ -f index.html ]; then git add index.html; fi
 
