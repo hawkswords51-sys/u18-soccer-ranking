@@ -180,5 +180,6 @@ description: 北海道小樽市の私立・北照高校サッカー部の最新�
 - [札幌大谷高校 チーム詳細](/teams/sapporo-otani/)
 - [札幌光星高校 チーム詳細](/teams/sapporo-kosei/)
 - [北海道大谷室蘭高校 チーム詳細](/teams/hokkaido-otani-muroran/)
+- [北海高校 チーム詳細](/teams/hokkai/)
 - [2026年インターハイ特集](/tournaments/interhigh-2026/)
 - [高校サッカー順位確認システム トップ](/)
