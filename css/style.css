@@ -4318,11 +4318,13 @@ details[open] > summary > .league-accordion__chevron {
 
 @media (max-width: 768px) {
     /* テーブル全体: fixed レイアウトで列幅を厳密に制御 */
+    /* 得点・失点列を足した分だけ横幅を拡張（2026-08-30）
+       内訳: 56(順位) + 150(チーム名) + 88(県/リーグ) + 61 x 9列 = 843 */
     table.data-table,
     .data-table {
-        min-width: 720px !important;
+        min-width: 860px !important;
         table-layout: fixed !important;
-        width: 720px !important;
+        width: 860px !important;
     }
 
     /* 1列目: 県内順位 (少し縮める) */
@@ -5695,4 +5697,11 @@ tr.zone-row > td:first-child {
 
 .xt-formtable tr.zone-form-row > th:first-child {
     box-shadow: inset 4px 0 0 0 var(--zone-color);
+}
+
+/* 順位表：数値列は中央寄せにして、左のチーム名・所属県まわりを詰めて見せる
+   （1〜3列目＝順位／チーム名／所属県orリーグ は左寄せのまま） */
+.data-table th:nth-child(n+4),
+.data-table td:nth-child(n+4) {
+    text-align: center;
 }

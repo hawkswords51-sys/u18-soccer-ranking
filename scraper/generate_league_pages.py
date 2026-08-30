@@ -613,7 +613,9 @@ def render_team_row_for_league(team, rank, zone=None):
     won = team.get("won", 0) or 0
     drawn = team.get("drawn", 0) or 0
     lost = team.get("lost", 0) or 0
-    goal_diff = (team.get("goalsFor", 0) or 0) - (team.get("goalsAgainst", 0) or 0)
+    goals_for = team.get("goalsFor", 0) or 0
+    goals_against = team.get("goalsAgainst", 0) or 0
+    goal_diff = goals_for - goals_against
     diff_str = f"+{goal_diff}" if goal_diff > 0 else str(goal_diff)
     diff_color = "#28a745" if goal_diff > 0 else ("#dc3545" if goal_diff < 0 else "#666")
     rank_class = f"rank-{rank}" if rank <= 3 else "rank-other"
@@ -626,6 +628,8 @@ def render_team_row_for_league(team, rank, zone=None):
           <td>{won}</td>
           <td>{drawn}</td>
           <td>{lost}</td>
+          <td>{goals_for}</td>
+          <td>{goals_against}</td>
           <td style="color:{diff_color};font-weight:600;">{diff_str}</td>
         </tr>"""
 
@@ -1354,6 +1358,8 @@ __RECENT_RESULTS__
               <th>勝</th>
               <th>分</th>
               <th>負</th>
+              <th>得点</th>
+              <th>失点</th>
               <th>得失差</th>
             </tr>
           </thead>
@@ -1496,7 +1502,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         )
     else:
         team_rows = (
-            '        <tr><td colspan="9" style="text-align:center;padding:30px;color:#888;">'
+            '        <tr><td colspan="11" style="text-align:center;padding:30px;color:#888;">'
             'このリーグのデータはまだ登録されていません</td></tr>'
         )
 

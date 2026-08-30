@@ -953,7 +953,9 @@ def render_team_row(team, pref_rank):
     won = team.get("won", 0) or 0
     drawn = team.get("drawn", 0) or 0
     lost = team.get("lost", 0) or 0
-    goal_diff = (team.get("goalsFor", 0) or 0) - (team.get("goalsAgainst", 0) or 0)
+    goals_for = team.get("goalsFor", 0) or 0
+    goals_against = team.get("goalsAgainst", 0) or 0
+    goal_diff = goals_for - goals_against
     diff_str = f"+{goal_diff}" if goal_diff > 0 else str(goal_diff)
     diff_class = (
         "goal-diff-positive" if goal_diff > 0
@@ -970,6 +972,8 @@ def render_team_row(team, pref_rank):
           <td>{won}</td>
           <td>{drawn}</td>
           <td>{lost}</td>
+          <td>{goals_for}</td>
+          <td>{goals_against}</td>
           <td class="{diff_class}" style="color:{'#28a745' if goal_diff > 0 else ('#dc3545' if goal_diff < 0 else '#666')}">{diff_str}</td>
         </tr>"""
 
@@ -1574,6 +1578,8 @@ __TOURNAMENT_HTML__
               <th>勝</th>
               <th>分</th>
               <th>負</th>
+              <th>得点</th>
+              <th>失点</th>
               <th>得失差</th>
             </tr>
           </thead>
@@ -1820,9 +1826,11 @@ def render_division2_table(pref):
         won = t.get("won", 0) or 0
         drawn = t.get("drawn", 0) or 0
         lost = t.get("lost", 0) or 0
+        gf = t.get("goalsFor", 0) or 0
+        ga = t.get("goalsAgainst", 0) or 0
         gd = t.get("goalDiff")
         if gd is None:
-            gd = (t.get("goalsFor", 0) or 0) - (t.get("goalsAgainst", 0) or 0)
+            gd = gf - ga
         diff_str = f"+{gd}" if gd > 0 else str(gd)
         diff_color = "#28a745" if gd > 0 else ("#dc3545" if gd < 0 else "#666")
         rows.append(f"""        <tr>
@@ -1833,6 +1841,8 @@ def render_division2_table(pref):
           <td>{won}</td>
           <td>{drawn}</td>
           <td>{lost}</td>
+          <td>{gf}</td>
+          <td>{ga}</td>
           <td style="color:{diff_color}">{diff_str}</td>
         </tr>""")
     rows_html = "\n".join(rows)
@@ -1845,7 +1855,7 @@ def render_division2_table(pref):
         '            <thead>\n'
         '              <tr>\n'
         '                <th>順位</th><th>チーム名</th><th>勝点</th><th>試合</th>'
-        '<th>勝</th><th>分</th><th>負</th><th>得失差</th>\n'
+        '<th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失差</th>\n'
         '              </tr>\n'
         '            </thead>\n'
         '            <tbody>\n'
@@ -1922,7 +1932,7 @@ def generate_page(pref, all_prefs):
         )
     else:
         team_rows = (
-            '        <tr><td colspan="10" '
+            '        <tr><td colspan="12" '
             'style="text-align:center;padding:30px;color:#888;">'
             f'{html_escape(pref_name)}のデータはまだ登録されていません</td></tr>'
         )
