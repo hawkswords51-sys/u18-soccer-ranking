@@ -26,6 +26,7 @@ from cross_table import render_cross_table_html
 from recent_results import render_recent_results_html
 from home_pickup import update_home_pickup
 from scorer_table import render_scorer_ranking_html
+from league_zones import resolve_zones, zone_row_attrs, render_zone_legend_html
 from league_contents import (
     TACTICAL_PREMIER_EAST, WATCHING_PREMIER_EAST,
     TACTICAL_PREMIER_WEST, WATCHING_PREMIER_WEST,
@@ -488,10 +489,15 @@ def league_category(team_league):
     return "prefecture"
 
 
+ALL_TEAMS = []  # teams.json の全チーム（昇降格圏のセカンドチーム判定に使う）
+
+
 def collect_teams_by_league(teams_data):
     """リーグ名 → そのリーグ所属チームのリスト
     各チームには所属都道府県情報も付与
     """
+    global ALL_TEAMS
+    ALL_TEAMS = []
     result = {}
     for pref_id, pref_data in teams_data.items():
         if not isinstance(pref_data, dict) or "teams" not in pref_data:
@@ -505,6 +511,7 @@ def collect_teams_by_league(teams_data):
                 "_pref_id": pref_id,
                 "_pref_name": pref_data.get("name", pref_id),
             })
+            ALL_TEAMS.append(t)
     return result
 
 def format_team_name(name):
@@ -521,8 +528,8 @@ def format_team_name(name):
         )
     return escaped
 
-def render_team_row_for_league(team, rank):
-    """リーグページの順位表用 1行 HTML"""
+def render_team_row_for_league(team, rank, zone=None):
+    """リーグページの順位表用 1行 HTML（zone＝昇格圏/降格圏の色分け情報。無ければ従来通り）"""
     pref_id = team.get("_pref_id", "")
     pref_name = team.get("_pref_name", "—")
     points = team.get("points", 0) or 0
@@ -534,7 +541,7 @@ def render_team_row_for_league(team, rank):
     diff_str = f"+{goal_diff}" if goal_diff > 0 else str(goal_diff)
     diff_color = "#28a745" if goal_diff > 0 else ("#dc3545" if goal_diff < 0 else "#666")
     rank_class = f"rank-{rank}" if rank <= 3 else "rank-other"
-    return f"""        <tr>
+    return f"""        <tr{zone_row_attrs(zone)}>
           <td><span class="rank-badge {rank_class}">{rank}</span></td>
           <td><strong>{render_team_name_with_link(team.get("name", "—"))}</strong></td>
           <td><a href="/prefectures/{pref_id}/" class="league-pref-link">{html_escape(pref_name)}</a></td>
@@ -1279,6 +1286,7 @@ __TEAM_ROWS__
           </tbody>
         </table>
       </div>
+__ZONE_LEGEND__
       __CROSS_TABLE__
       __SCORER_RANKING__
       __LEAGUE_STATS__
@@ -1401,8 +1409,15 @@ def generate_league_page(league_name, slug, label, category, description, season
     team_count = len(sorted_teams)
     category_label = "全国最上位（プレミア）" if category == "premier" else "地域上位（プリンス）"
 
+    # 昇格圏・降格圏（data/league_zones.yml に定義があるリーグだけ色が付く）
+    zone_map = resolve_zones(slug, sorted_teams, ALL_TEAMS) if sorted_teams else {}
+    zone_legend_html = render_zone_legend_html(slug, zone_map)
+
     if sorted_teams:
-        team_rows = "\n".join(render_team_row_for_league(t, i + 1) for i, t in enumerate(sorted_teams))
+        team_rows = "\n".join(
+            render_team_row_for_league(t, i + 1, zone_map.get(i + 1))
+            for i, t in enumerate(sorted_teams)
+        )
     else:
         team_rows = (
             '        <tr><td colspan="9" style="text-align:center;padding:30px;color:#888;">'
@@ -1620,6 +1635,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
         .replace("__TEAM_ROWS__", team_rows)
+        .replace("__ZONE_LEGEND__", zone_legend_html)
         .replace("__RECENT_RESULTS__", recent_results_html)
         .replace("__CROSS_TABLE__", cross_table_html)
         .replace("__SCORER_RANKING__", scorer_ranking_html)

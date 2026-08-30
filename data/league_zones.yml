@@ -1,0 +1,676 @@
+# ============================================================
+# 順位表の「昇格圏・降格圏」色分け定義
+# ============================================================
+# ここに書いたリーグだけ、順位表の行に色帯＋淡い背景＋凡例が付く。
+# 書いていないリーグ／確認できていない枠は「何も色を付けない」＝安全設計。
+#
+# ■ zone の書き方
+#   ranks: [1]            … 順位を直接指定
+#   slots: 2 / from: top  … 上から2枠（bottom なら下から）
+#   skipSecondTeams: true … プレミア所属チームのセカンドチーム(2nd/3rd)を飛ばして
+#                           次順位に枠が繰り下がる（JFA参入戦要項＋2023-2024東北の実績で確認済み）
+#
+# ■ type（色）— 意味の近いものは明るさではなく色相を変える
+#   final              金   プレミアファイナル進出
+#   promotion          緑   上位ディビジョンへ自動昇格
+#   playoff            青緑 プレミアリーグ参入戦（プレーオフ）出場圏
+#   relegation_playoff 橙   降格プレーオフ・入替戦
+#   relegation         赤   自動降格
+#
+# ■ ⚠ 降格枠についての重要な注意（2026-08-30 調査で確定）
+#   降格チーム数は固定ではない。プレミアリーグとの入替結果でリーグの
+#   チーム数が動くため、実際の降格数は毎年12月の参入戦終了後に確定する。
+#   （実績：プリンス関東1部の降格は 2023年=2 / 2024年=1 / 2025年=4）
+#   そのため下位の色分けは confidence: standard（＝原則）とし、
+#   凡例に必ず注記を出す。断定できない地域は zone を書かない。
+# ============================================================
+
+_meta:
+  updated: "2026-08-30"
+  season: 2026
+  relegation_note: "が付いた枠は通常年の目安です。昇格・降格するチーム数はプレミアリーグとの入替結果によって変動し、12月の参入戦終了後に確定します。"
+  playoff_note: "プレミアリーグ所属チームのセカンドチームは参入戦に出場できないため、その分は次順位に繰り下がります。"
+
+leagues:
+
+  # ---------- プレミアリーグ（12チーム・全国最上位） ----------
+  premier-east:
+    source: "JFA 高円宮杯 JFA U-18 サッカープレミアリーグ 2026 リーグ概要"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/about_premier.html"
+    zones:
+      - ranks: [1]
+        type: final
+        label: "プレミアファイナル進出"
+        confidence: confirmed
+      - ranks: [11, 12]
+        type: relegation
+        label: "プリンスリーグへ降格"
+        confidence: confirmed
+
+  premier-west:
+    source: "JFA 高円宮杯 JFA U-18 サッカープレミアリーグ 2026 リーグ概要"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/about_premier.html"
+    zones:
+      - ranks: [1]
+        type: final
+        label: "プレミアファイナル進出"
+        confidence: confirmed
+      - ranks: [11, 12]
+        type: relegation
+        label: "プリンスリーグへ降格"
+        confidence: confirmed
+
+  # ---------- プリンスリーグ（地域・2部相当） ----------
+  # 参入戦の地域枠：北海道1／東北2／関東3／北信越1／東海2／関西2／中国2／四国1／九州2＝計16
+  # 出典：JFA プレミアリーグ2026 参入戦 大会要項
+
+  prince-hokkaido:
+    source: "北海道サッカー協会 2026年度 開催要項 ／ JFA プレミアリーグ2026参入戦 要項"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026_playoff/about.html"
+    zones:
+      - slots: 1
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [7, 8]
+        type: relegation
+        label: "北海道FAリーグへ降格"
+        confidence: confirmed
+
+  prince-tohoku:
+    source: "JFA プレミアリーグ2026参入戦 要項（上位）／東北サッカー協会 参入戦要項（下位・原則）"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026_playoff/about.html"
+    zones:
+      - slots: 2
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "県リーグへ降格"
+        confidence: standard
+
+  prince-kanto-1:
+    source: "JFA プレミアリーグ2026参入戦 要項"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026_playoff/about.html"
+    # 降格枠は関東サッカー協会が2026年度要項を非公開のため未記載（実績は年により1〜4と大きく変動）
+    zones:
+      - slots: 3
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+
+  prince-kanto-2:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 組合せ（昇格枠）"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kanto/"
+    # 降格枠は「8・9位＋10位はプレミア次第」で年により変動するため未記載
+    zones:
+      - ranks: [1, 2]
+        type: promotion
+        label: "関東1部へ昇格"
+        confidence: standard
+
+  prince-hokushinetsu-1:
+    source: "北信越サッカー協会 プリンスリーグ北信越2026 大会要項（0508版）"
+    sourceUrl: "http://www.hokushinetsu-fa.football/site/wp-content/uploads/2026/05/PLH2026_%E5%A4%A7%E4%BC%9A%E8%A6%81%E9%A0%85%EF%BC%880508%E7%89%88%EF%BC%89.pdf"
+    zones:
+      - slots: 1
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "北信越2部へ降格"
+        confidence: confirmed
+
+  prince-hokushinetsu-2:
+    source: "北信越サッカー協会 プリンスリーグ北信越2026 大会要項（0508版）"
+    sourceUrl: "http://www.hokushinetsu-fa.football/site/wp-content/uploads/2026/05/PLH2026_%E5%A4%A7%E4%BC%9A%E8%A6%81%E9%A0%85%EF%BC%880508%E7%89%88%EF%BC%89.pdf"
+    zones:
+      - ranks: [1, 2]
+        type: promotion
+        label: "北信越1部へ昇格"
+        confidence: standard
+      - ranks: [7, 8]
+        type: relegation
+        label: "県リーグへ降格"
+        confidence: confirmed
+
+  prince-tokai:
+    source: "JFA プレミアリーグ2026参入戦 要項（上位）／静岡県サッカー協会 2026年度規程 第41条（下位・原則）"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026_playoff/about.html"
+    zones:
+      - slots: 2
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "県リーグへ降格"
+        confidence: standard
+
+  prince-kansai-1:
+    source: "JFA プレミアリーグ2026参入戦 要項"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026_playoff/about.html"
+    # 降格枠は関西サッカー協会が2026年度要項を非公開のため未記載
+    zones:
+      - slots: 2
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+
+  # prince-kansai-2: 昇格枠・降格枠とも2026年度の公式要項が未公開のため色分けなし
+
+  prince-chugoku:
+    source: "JFA プレミアリーグ2026参入戦 要項（上位）／プリンスリーグ中国 開催要項（下位・原則）"
+    sourceUrl: "https://www.jfa.jp/match/takamado_jfa_u18_premier2026_playoff/about.html"
+    zones:
+      - slots: 2
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "県ユースリーグへ降格"
+        confidence: standard
+
+  prince-shikoku:
+    source: "プリンスリーグ四国 公式 大会要項"
+    sourceUrl: "https://pl-shikoku.com/?page_id=11"
+    zones:
+      - slots: 1
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "県リーグへ降格"
+        confidence: confirmed
+
+  prince-kyushu-1:
+    source: "プリンスリーグ九州 公式 大会要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    zones:
+      - slots: 2
+        from: top
+        skipSecondTeams: true
+        type: playoff
+        label: "プレミアリーグ参入戦 出場圏"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "九州2部へ降格"
+        confidence: standard
+
+  prince-kyushu-2:
+    source: "プリンスリーグ九州 公式 大会要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    zones:
+      - ranks: [1, 2]
+        type: promotion
+        label: "九州1部へ昇格"
+        confidence: confirmed
+      - ranks: [9, 10]
+        type: relegation
+        label: "県FAリーグへ降格"
+        confidence: standard
+
+  # ==========================================================
+  # 都道府県リーグ1部 → 地域プリンスリーグ参入戦の出場圏
+  # ----------------------------------------------------------
+  # 47県を個別に調べたのではなく、9地域それぞれの参入戦要項の
+  # 「各県◯チーム」という配分から確定させている。
+  # 未記載＝四国4県（各県枠が要項に明記なし）／北海道（参入戦ではなく
+  #   北海道FAリーグとプリンス北海道の直接入替なので構造が違う）。
+  # ==========================================================
+
+  # ---------- 東北 ----------
+  pref-aomori-1:
+    source: "東北サッカー協会 プリンスリーグ東北 参入戦（プレーオフ）要項"
+    sourceUrl: "https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東北参入戦 出場圏"
+        confidence: standard
+  pref-iwate-1:
+    source: "東北サッカー協会 プリンスリーグ東北 参入戦（プレーオフ）要項"
+    sourceUrl: "https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東北参入戦 出場圏"
+        confidence: standard
+  pref-miyagi-1:
+    source: "東北サッカー協会 プリンスリーグ東北 参入戦（プレーオフ）要項"
+    sourceUrl: "https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東北参入戦 出場圏"
+        confidence: standard
+  pref-akita-1:
+    source: "東北サッカー協会 プリンスリーグ東北 参入戦（プレーオフ）要項"
+    sourceUrl: "https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東北参入戦 出場圏"
+        confidence: standard
+  pref-yamagata-1:
+    source: "東北サッカー協会 プリンスリーグ東北 参入戦（プレーオフ）要項"
+    sourceUrl: "https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東北参入戦 出場圏"
+        confidence: standard
+  pref-fukushima-1:
+    source: "東北サッカー協会 プリンスリーグ東北 参入戦（プレーオフ）要項"
+    sourceUrl: "https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東北参入戦 出場圏"
+        confidence: standard
+
+  # ---------- 関東 ----------
+  pref-ibaraki-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-tochigi-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-gunma-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-saitama-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-chiba-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-tokyo-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-kanagawa-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+  pref-yamanashi-1:
+    source: "関東サッカー協会 プリンスリーグ関東2部参入戦 要項・組合せ"
+    sourceUrl: "https://kanto-fa.jp/info/?p=8287"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ関東2部参入戦 出場圏"
+        confidence: standard
+
+  # ---------- 北信越 ----------
+  pref-niigata-1:
+    source: "北信越サッカー協会 プリンスリーグ北信越 プレーオフ要項"
+    sourceUrl: "http://www.hokushinetsu-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ北信越2部参入戦 出場圏"
+        confidence: standard
+  pref-nagano-1:
+    source: "北信越サッカー協会 プリンスリーグ北信越 プレーオフ要項"
+    sourceUrl: "http://www.hokushinetsu-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ北信越2部参入戦 出場圏"
+        confidence: standard
+  pref-toyama-1:
+    source: "北信越サッカー協会 プリンスリーグ北信越 プレーオフ要項"
+    sourceUrl: "http://www.hokushinetsu-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ北信越2部参入戦 出場圏"
+        confidence: standard
+  pref-ishikawa-1:
+    source: "北信越サッカー協会 プリンスリーグ北信越 プレーオフ要項"
+    sourceUrl: "http://www.hokushinetsu-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ北信越2部参入戦 出場圏"
+        confidence: standard
+  pref-fukui-1:
+    source: "北信越サッカー協会 プリンスリーグ北信越 プレーオフ要項"
+    sourceUrl: "http://www.hokushinetsu-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ北信越2部参入戦 出場圏"
+        confidence: standard
+
+  # ---------- 東海 ----------
+  pref-shizuoka-1:
+    source: "静岡県サッカー協会 2026年度規程 第41条（Aリーグ上位2チームが参入戦出場権）"
+    sourceUrl: "https://www.shizuoka-fa.com/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東海参入戦 出場圏"
+        confidence: standard
+  pref-aichi-1:
+    source: "静岡県サッカー協会 2026年度規程 第41条（Aリーグ上位2チームが参入戦出場権）"
+    sourceUrl: "https://www.shizuoka-fa.com/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東海参入戦 出場圏"
+        confidence: standard
+  pref-gifu-1:
+    source: "静岡県サッカー協会 2026年度規程 第41条（Aリーグ上位2チームが参入戦出場権）"
+    sourceUrl: "https://www.shizuoka-fa.com/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東海参入戦 出場圏"
+        confidence: standard
+  pref-mie-1:
+    source: "静岡県サッカー協会 2026年度規程 第41条（Aリーグ上位2チームが参入戦出場権）"
+    sourceUrl: "https://www.shizuoka-fa.com/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ東海参入戦 出場圏"
+        confidence: standard
+
+  # ---------- 関西 ----------
+  pref-shiga-1:
+    source: "大阪府サッカー協会 2026年度 高円宮杯U-18リーグ大阪 大会要項（1部上位2チームが関西プレーオフ出場権）"
+    sourceUrl: "https://osaka-fa.or.jp/2shu/wp-content/uploads/sites/6/2026/01/11_youkou2_2026.pdf"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ関西2部参入戦 出場圏"
+        confidence: standard
+  pref-kyoto-1:
+    source: "大阪府サッカー協会 2026年度 高円宮杯U-18リーグ大阪 大会要項（1部上位2チームが関西プレーオフ出場権）"
+    sourceUrl: "https://osaka-fa.or.jp/2shu/wp-content/uploads/sites/6/2026/01/11_youkou2_2026.pdf"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ関西2部参入戦 出場圏"
+        confidence: standard
+  pref-osaka-1:
+    source: "大阪府サッカー協会 2026年度 高円宮杯U-18リーグ大阪 大会要項（1部上位2チームが関西プレーオフ出場権）"
+    sourceUrl: "https://osaka-fa.or.jp/2shu/wp-content/uploads/sites/6/2026/01/11_youkou2_2026.pdf"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ関西2部参入戦 出場圏"
+        confidence: standard
+  pref-hyogo-1:
+    source: "大阪府サッカー協会 2026年度 高円宮杯U-18リーグ大阪 大会要項（1部上位2チームが関西プレーオフ出場権）"
+    sourceUrl: "https://osaka-fa.or.jp/2shu/wp-content/uploads/sites/6/2026/01/11_youkou2_2026.pdf"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ関西2部参入戦 出場圏"
+        confidence: standard
+  pref-nara-1:
+    source: "大阪府サッカー協会 2026年度 高円宮杯U-18リーグ大阪 大会要項（1部上位2チームが関西プレーオフ出場権）"
+    sourceUrl: "https://osaka-fa.or.jp/2shu/wp-content/uploads/sites/6/2026/01/11_youkou2_2026.pdf"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ関西2部参入戦 出場圏"
+        confidence: standard
+  pref-wakayama-1:
+    source: "大阪府サッカー協会 2026年度 高円宮杯U-18リーグ大阪 大会要項（1部上位2チームが関西プレーオフ出場権）"
+    sourceUrl: "https://osaka-fa.or.jp/2shu/wp-content/uploads/sites/6/2026/01/11_youkou2_2026.pdf"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ関西2部参入戦 出場圏"
+        confidence: standard
+
+  # ---------- 中国 ----------
+  pref-hiroshima-1:
+    source: "中国サッカー協会 プリンスリーグ中国 参入戦 要項"
+    sourceUrl: "http://www.chugoku-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ中国参入戦 出場圏"
+        confidence: standard
+  pref-shimane-1:
+    source: "中国サッカー協会 プリンスリーグ中国 参入戦 要項"
+    sourceUrl: "http://www.chugoku-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ中国参入戦 出場圏"
+        confidence: standard
+  pref-okayama-1:
+    source: "中国サッカー協会 プリンスリーグ中国 参入戦 要項"
+    sourceUrl: "http://www.chugoku-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 2
+        from: top
+        type: playoff
+        label: "プリンスリーグ中国参入戦 出場圏"
+        confidence: standard
+  pref-tottori-1:
+    source: "中国サッカー協会 プリンスリーグ中国 参入戦 要項"
+    sourceUrl: "http://www.chugoku-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ中国参入戦 出場圏"
+        confidence: standard
+  pref-yamaguchi-1:
+    source: "中国サッカー協会 プリンスリーグ中国 参入戦 要項"
+    sourceUrl: "http://www.chugoku-fa.football/"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ中国参入戦 出場圏"
+        confidence: standard
+
+  # ---------- 九州 ----------
+  pref-fukuoka-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-saga-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-nagasaki-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-kumamoto-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-oita-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-miyazaki-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-kagoshima-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+  pref-okinawa-1:
+    source: "プリンスリーグ九州 公式 参入決定戦 要項"
+    sourceUrl: "https://www.pl-kyushu.com/abstract"
+    note: "参入戦に出場できるチーム数は、年度や各県の全国大会成績によって変わることがあります。最新の枠数は各県サッカー協会の大会要項をご確認ください。"
+    zones:
+      - slots: 1
+        from: top
+        type: playoff
+        label: "プリンスリーグ九州2部参入戦 出場圏"
+        confidence: standard
+

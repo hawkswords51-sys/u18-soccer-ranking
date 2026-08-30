@@ -147,12 +147,29 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
                 for gf, ga, ha in items]
         return '<td class="xt-cell"><div class="xt-cw">' + "".join(legs) + "</div></td>"
 
+    # 昇格圏（地域プリンス参入戦の出場圏）の色分け。
+    # data/league_zones.yml にこの slug の定義が無ければ空＝従来どおり色は付かない。
+    try:
+        from league_zones import resolve_zones, render_zone_legend_html
+        zmap = resolve_zones(slug, [{"name": n} for n in order])
+        # 15リーグページは順位表の直下に既に凡例があるので、ここでは出さない
+        # （県ページはこの戦績表が唯一の順位表なので出す）
+        zone_legend = render_zone_legend_html(slug, zmap) if is_pref else ""
+    except Exception:
+        zmap, zone_legend = {}, ""
+
+    def _zcls(i, prefix=""):
+        z = zmap.get(i)
+        if not z:
+            return ""
+        return " " + " ".join(c for c in (prefix, f'zone-{z["cls"]}') if c)
+
     head_cols = "".join(f'<th class="xt-vc"><span>{_html_escape(short[t])}</span></th>' for t in order)
     body_rows = []
     for i, row in enumerate(order, 1):
         tds = "".join(cell(row, col) for col in order)
         body_rows.append(
-            f'<tr><th class="xt-rk">{i}</th>'
+            f'<tr><th class="xt-rk{_zcls(i, "zone-cell")}">{i}</th>'
             f'<th class="xt-tn">{_html_escape(short[row])}</th>{tds}</tr>'
         )
 
@@ -183,7 +200,7 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
             for mk, r, tip in team_form(t)
         )
         form_rows.append(
-            f'<tr><th class="xt-rk">{i}</th>'
+            f'<tr class="zone-form-row{_zcls(i, "")}"><th class="xt-rk">{i}</th>'
             f'<th class="xt-tn2">{_html_escape(disp[t])}</th>'
             f'<td class="xt-rec">{s["w"]}勝{s["d"]}分{s["l"]}敗</td>'
             f'<td class="xt-form">{chips}</td></tr>'
@@ -307,6 +324,7 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
           <span class="xt-draw" style="color:#f9a825">分</span>
           <span class="xt-lose" style="color:#c62828">敗</span>
         </div>
+{zone_legend}
 
         <h2 style="margin-top:26px;">{form_heading}</h2>
         <p class="xt-note">○＝勝、△＝分、●＝敗。チップにマウスを乗せる（スマホは長押し）と相手とスコアが出ます。</p>

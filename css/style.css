@@ -5564,3 +5564,135 @@ html {
         scroll-behavior: auto;
     }
 }
+
+/* =========================================================
+   順位表の昇格圏・降格圏の色分け（scraper/league_zones.py）
+   ---------------------------------------------------------
+   - 行の左端に4pxの色帯＋行全体を淡く着色
+   - 意味の近い区分は「明るさ」ではなく「色相」で分ける
+     金=ファイナル進出／緑=自動昇格／青緑=参入戦／橙=降格PO／赤=自動降格
+   - チーム名列は position:sticky で背景が不透明なため、
+     tint を重ねる二重背景で同じ色に揃える
+   ========================================================= */
+.zone-final            { --zone-color: #d97706; --zone-tint: rgba(217, 119, 6, 0.10); }
+.zone-promotion        { --zone-color: #16a34a; --zone-tint: rgba(22, 163, 74, 0.10); }
+.zone-playoff          { --zone-color: #0d9488; --zone-tint: rgba(13, 148, 136, 0.10); }
+.zone-relegation-playoff { --zone-color: #ea580c; --zone-tint: rgba(234, 88, 12, 0.10); }
+.zone-relegation       { --zone-color: #dc2626; --zone-tint: rgba(220, 38, 38, 0.10); }
+
+tr.zone-row > td,
+tr.zone-row > th {
+    background-color: var(--zone-tint);
+}
+
+/* 左端に色帯（順位セル） */
+tr.zone-row > td:first-child {
+    box-shadow: inset 4px 0 0 0 var(--zone-color);
+}
+
+/* sticky なチーム名列は不透明背景なので tint を重ねて色を揃える */
+.data-table tr.zone-row > td:nth-child(2) {
+    background-image: linear-gradient(var(--zone-tint), var(--zone-tint));
+    background-color: var(--bg-white);
+}
+
+.data-table tbody tr.zone-row:hover > td,
+.data-table tbody tr.zone-row:hover > td:nth-child(2) {
+    background-color: var(--bg-light);
+}
+
+/* ---- 凡例 ---- */
+.zone-legend {
+    margin: 12px 0 4px;
+    padding: 12px 14px;
+    background: var(--bg-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.zone-legend__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+}
+
+.zone-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.88rem;
+    color: var(--text-dark);
+}
+
+.zone-legend__swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex: 0 0 auto;
+    background: var(--zone-tint);
+    border-left: 4px solid var(--zone-color);
+    box-sizing: border-box;
+}
+
+.zone-legend__rank {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.zone-legend__star {
+    color: var(--zone-color, #888);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.zone-legend__note {
+    margin: 8px 0 0;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-light, #666);
+}
+
+.zone-legend__note a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .zone-legend__list { gap: 6px 14px; }
+    .zone-legend__item { font-size: 0.82rem; }
+}
+
+/* ---- ダークモード（明示切替 / OS設定 の両方に同じ値を書く） ---- */
+[data-theme="dark"] .zone-final            { --zone-color: #fbbf24; --zone-tint: rgba(251, 191, 36, 0.16); }
+[data-theme="dark"] .zone-promotion        { --zone-color: #4ade80; --zone-tint: rgba(74, 222, 128, 0.16); }
+[data-theme="dark"] .zone-playoff          { --zone-color: #2dd4bf; --zone-tint: rgba(45, 212, 191, 0.16); }
+[data-theme="dark"] .zone-relegation-playoff { --zone-color: #fb923c; --zone-tint: rgba(251, 146, 60, 0.16); }
+[data-theme="dark"] .zone-relegation       { --zone-color: #f87171; --zone-tint: rgba(248, 113, 113, 0.16); }
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .zone-final            { --zone-color: #fbbf24; --zone-tint: rgba(251, 191, 36, 0.16); }
+    :root:not([data-theme="light"]) .zone-promotion        { --zone-color: #4ade80; --zone-tint: rgba(74, 222, 128, 0.16); }
+    :root:not([data-theme="light"]) .zone-playoff          { --zone-color: #2dd4bf; --zone-tint: rgba(45, 212, 191, 0.16); }
+    :root:not([data-theme="light"]) .zone-relegation-playoff { --zone-color: #fb923c; --zone-tint: rgba(251, 146, 60, 0.16); }
+    :root:not([data-theme="light"]) .zone-relegation       { --zone-color: #f87171; --zone-tint: rgba(248, 113, 113, 0.16); }
+}
+
+/* ---- 県ページの戦績表（cross_table.py）側の昇格圏表示 ---- */
+/* クロス表は情報密度が高いので、順位セルの色帯だけにして塗りつぶさない */
+.xt-cross th.xt-rk.zone-cell {
+    box-shadow: inset 4px 0 0 0 var(--zone-color);
+}
+
+/* 「各チームの戦績」表はリスト状なので行全体を淡く着色 */
+.xt-formtable tr.zone-form-row > th,
+.xt-formtable tr.zone-form-row > td {
+    background-color: var(--zone-tint);
+}
+
+.xt-formtable tr.zone-form-row > th:first-child {
+    box-shadow: inset 4px 0 0 0 var(--zone-color);
+}
