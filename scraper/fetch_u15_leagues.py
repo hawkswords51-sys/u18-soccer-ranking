@@ -50,6 +50,26 @@ def today_jst():
     return datetime.datetime.now(_JST).date()
 
 
+def fetch_soup(url: str):
+    """HTMLを取得して BeautifulSoup を返す。
+
+    ★2026-08-30：東北チャレンジ北のページで、ヘッダーが 'йха04ЧдÇҚ' のような
+      キリル文字に化けていた。`requests` の文字コード自動判定（apparent_encoding）が
+      誤判定していたのが原因。JFA系はUTF-8なので**UTF-8を最優先**し、
+      駄目なときだけ自動判定→cp932の順にフォールバックする。
+    """
+    r = requests.get(url, headers=HEAD, timeout=TIMEOUT)
+    r.raise_for_status()
+    for enc in ("utf-8", r.apparent_encoding, "cp932", "euc-jp"):
+        if not enc:
+            continue
+        try:
+            return BeautifulSoup(r.content.decode(enc), "html.parser")
+        except (UnicodeDecodeError, LookupError):
+            continue
+    return BeautifulSoup(r.content.decode("utf-8", errors="replace"), "html.parser")
+
+
 def norm(s: str) -> str:
     """チーム名照合用の正規化（全角半角・空白・記号ゆれを吸収）"""
     s = unicodedata.normalize("NFKC", s or "")
@@ -148,6 +168,25 @@ DISPLAY_NAME_FIXES = {
 }
 
 
+# ★同一チームとみなす表記のペア（2026-08-30）
+#   出典側が正式名に変えると「顔ぶれが変わった」で全リーグ弾かれてしまうため、
+#   同じチームだと分かっているものはここで同一視する。**表示は出典側の新しい表記を採用**する
+#   （例：九州1部は当サイトが略称「アリーバ」で持っていたが、JFA公式PDFは「アリーバFC」）。
+EQUIVALENT_NAMES = {
+    "kyushu-1": [("アリーバ", "アリーバFC")],
+}
+
+
+def _equiv_map(division_id):
+    """{正規化名: 代表キー} を返す（照合専用。表示名には影響しない）"""
+    m = {}
+    for pair in EQUIVALENT_NAMES.get(division_id, []):
+        key = norm(pair[0])
+        for alt in pair:
+            m[norm(alt)] = key
+    return m
+
+
 # キー側も norm() を通しておく（norm はドットや空白を落とすため、生のキーでは一致しない）
 _FIXES_BY_NORM = {norm(k): v for k, v in DISPLAY_NAME_FIXES.items()}
 
@@ -159,7 +198,7 @@ def fix_display_name(name: str) -> str:
 # =====================================================================
 # 検証（ここを通らないデータは絶対に書き込まない）
 # =====================================================================
-def verify(teams, old_teams, label):
+def verify(teams, old_teams, label, equiv=None):
     """新しい順位表が妥当か検証。問題があれば理由のリストを返す（空なら健全）。"""
     problems = []
     if not teams:
@@ -185,8 +224,10 @@ def verify(teams, old_teams, label):
         prev = t["pts"]
 
     if old_teams:
-        old_names = {norm(t["name"]) for t in old_teams}
-        new_names = {norm(t["name"]) for t in teams}
+        eq = equiv or {}
+        canon = lambda n: eq.get(norm(n), norm(n))
+        old_names = {canon(t["name"]) for t in old_teams}
+        new_names = {canon(t["name"]) for t in teams}
         if old_names != new_names:
             miss = old_names - new_names
             extra = new_names - old_names
@@ -306,10 +347,7 @@ def fetch_kanto(debug=False):
       本文は「# Club 勝点 試合 勝 分 敗 得 失 差」に続いて
       「順位 [▲▼] チーム名 勝 勝 分 勝 敗 > 勝点 試合 勝 分 敗 得 失 差」が並ぶ規則的な形。
     """
-    r = requests.get(KANTO_URL, headers=HEAD, timeout=TIMEOUT)
-    r.raise_for_status()
-    r.encoding = r.apparent_encoding or "utf-8"
-    text = unicodedata.normalize("NFKC", BeautifulSoup(r.text, "html.parser").get_text(" "))
+    text = unicodedata.normalize("NFKC", fetch_soup(KANTO_URL).get_text(" "))
     text = re.sub(r"[\u3000\s]+", " ", text)
 
     header_re = re.compile(r"#\s*Club\s*勝点\s*試合\s*勝\s*分\s*敗\s*得\s*失\s*差")
@@ -365,10 +403,7 @@ def fetch_tohoku(debug=False):
         tried = []
         for url in urls:
             try:
-                r = requests.get(url, headers=HEAD, timeout=TIMEOUT)
-                r.raise_for_status()
-                r.encoding = r.apparent_encoding or "utf-8"
-                soup = BeautifulSoup(r.text, "html.parser")
+                soup = fetch_soup(url)
                 tables = soup.find_all("table")
                 for table in tables:
                     teams = _parse_standings_table(table, debug=debug)
@@ -606,7 +641,7 @@ def main():
         if not div:
             skipped.append(f"{did}(JSONに未登録)")
             continue
-        problems = verify(teams, div.get("teams"), did)
+        problems = verify(teams, div.get("teams"), did, equiv=_equiv_map(did))
         if problems:
             kept.append(f"{did}: " + " / ".join(problems[:2]))
             continue
@@ -617,7 +652,7 @@ def main():
             fixed = fix_display_name(t["name"])
             if fixed != t["name"]:
                 t["name"] = fixed                      # 修正表が最優先
-            else:
+            elif norm(t["name"]) not in _equiv_map(did):
                 t["name"] = old_by_norm.get(norm(t["name"]), t["name"])
 
         if teams == div["teams"]:
