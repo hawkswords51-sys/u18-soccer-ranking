@@ -162,33 +162,46 @@ def collect_pickups(limit: int = 4):
     return latest, picked
 
 
+# バンド型（2026-08-30 Keiが3案から選択）。紺のグラデ帯で囲って周囲から切り離す。
+# 帯そのものはライト/ダーク共通の濃紺（白抜き文字が常に読める）。
+# 帯の中のカードだけテーマで切り替えるため、セクション内ローカル変数 --hp-* を使う。
 _STYLE = """<style>
-.hp-sec{margin:18px 0 24px;}
-.hp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 10px;}
-.hp-head h2{font-size:1.05rem;margin:0;}
-.hp-date{font-size:.85rem;color:var(--text-light);}
-.hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
-.hp-card{display:block;padding:13px 15px;border:1px solid var(--border-color);border-radius:10px;
-  background:var(--bg-white);text-decoration:none;color:var(--text-dark);transition:border-color .15s;}
-.hp-card:hover{border-color:var(--accent-color);}
-.hp-badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.03em;
-  padding:2px 9px;border-radius:999px;margin-bottom:9px;
-  background:var(--primary-hover-bg);color:var(--accent-color);}
-.hp-badge.hp-premier{background:rgba(212,175,55,.16);color:#b8860b;}
-.hp-day{font-size:.72rem;color:var(--text-light);margin-left:7px;}
-.hp-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;}
-.hp-tm{font-size:.95rem;line-height:1.35;}
-.hp-tm.hp-h{text-align:right;} .hp-tm.hp-a{text-align:left;}
-.hp-rk{display:block;font-size:.7rem;color:var(--text-light);}
-.hp-sc{font-weight:700;font-size:1.15rem;color:var(--accent-color);white-space:nowrap;}
-.hp-sc i{margin:0 4px;opacity:.55;font-weight:400;font-style:normal;}
-.hp-win{font-weight:700;}
-.hp-more{margin:10px 0 0;font-size:.88rem;}
-@media (max-width:600px){
-  .hp-grid{grid-template-columns:1fr;}
-  .hp-tm{font-size:.9rem;}
+.hp-sec{--hp-card-bg:rgba(255,255,255,.97);--hp-card-fg:#1e293b;--hp-lg:#1e3a8a;--hp-sc:#1e3a8a;
+  margin:16px 0 26px;border-radius:14px;overflow:hidden;
+  background:linear-gradient(135deg,#1e3a8a,#16295f);box-shadow:0 6px 20px rgba(0,0,0,.18);}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
+    --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
 }
-[data-theme="dark"] .hp-badge.hp-premier{background:rgba(212,175,55,.2);color:#e3c766;}
+:root[data-theme="dark"] .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
+  --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
+.hp-inner{padding:18px 20px 16px;}
+.hp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 14px;}
+.hp-fire{font-size:1.3rem;line-height:1;}
+.hp-sec h2{margin:0;font-size:1.35rem;color:#fff;letter-spacing:.04em;border:none;padding:0;}
+.hp-date{font-size:.82rem;color:rgba(255,255,255,.75);}
+.hp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
+.hp-card{display:block;padding:14px 14px 15px;border-radius:11px;background:var(--hp-card-bg);
+  color:var(--hp-card-fg);text-decoration:none;transition:transform .15s;}
+.hp-card:hover{transform:translateY(-2px);}
+.hp-badge{display:block;font-size:.72rem;font-weight:700;letter-spacing:.03em;
+  color:var(--hp-lg);margin-bottom:10px;}
+.hp-day{font-size:.7rem;opacity:.6;margin-left:7px;font-weight:400;}
+.hp-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;}
+.hp-tm{font-size:1rem;line-height:1.3;}
+.hp-tm.hp-h{text-align:right;} .hp-tm.hp-a{text-align:left;}
+.hp-rk{display:block;font-size:.66rem;font-weight:600;opacity:.55;}
+.hp-sc{font-weight:800;font-size:1.5rem;color:var(--hp-sc);white-space:nowrap;}
+.hp-sc i{margin:0 3px;opacity:.45;font-weight:400;font-style:normal;}
+.hp-win{font-weight:800;}
+.hp-more{margin:14px 0 0;font-size:.86rem;}
+.hp-more a{color:rgba(255,255,255,.92);}
+@media (max-width:600px){
+  .hp-inner{padding:16px 14px 14px;}
+  .hp-sec h2{font-size:1.15rem;}
+  .hp-grid{grid-template-columns:1fr;}
+  .hp-tm{font-size:.95rem;} .hp-sc{font-size:1.35rem;}
+}
 </style>"""
 
 
@@ -209,12 +222,11 @@ def render_home_pickup_html(limit: int = 4) -> str:
     for c in picks:
         hw = " hp-win" if c["hs"] > c["as"] else ""
         aw = " hp-win" if c["as"] > c["hs"] else ""
-        badge = "hp-badge hp-premier" if c["cat"] == "premier" else "hp-badge"
         # 複数日にまたがる回だけ、どの日の試合かをカードに出す
         day = f'<span class="hp-day">{_fmt_day(c["date"])}</span>' if multiday else ""
         cards.append(
             f'    <a class="hp-card" href="/leagues/{c["slug"]}/">'
-            f'<span class="{badge}">{_esc(c["label"])}</span>{day}'
+            f'<span class="hp-badge">{_esc(c["label"])}{day}</span>'
             f'<span class="hp-row">'
             f'<span class="hp-tm hp-h{hw}"><span class="hp-rk">{c["hrank"]}位</span>{_esc(c["home"])}</span>'
             f'<span class="hp-sc">{c["hs"]}<i>-</i>{c["as"]}</span>'
@@ -225,12 +237,14 @@ def render_home_pickup_html(limit: int = 4) -> str:
     return (
         '<section class="hp-sec" aria-label="注目試合の結果">\n'
         + _STYLE + "\n"
-        + '  <div class="hp-head"><h2>🔥 PICK UP GAME — 注目カードの結果</h2>'
-        + f'<span class="hp-date">{date_label}</span></div>\n'
+        + '  <div class="hp-inner">\n'
+        + '  <div class="hp-head"><span class="hp-fire">🔥</span><h2>PICK UP GAME</h2>'
+        + f'<span class="hp-date">注目カードの結果 ／ {date_label}</span></div>\n'
         + '  <div class="hp-grid">\n'
         + nl.join(cards) + "\n"
         + "  </div>\n"
-        + '  <p class="hp-more"><a href="/leagues/">▶ プレミア・プリンス全15リーグの順位表と全試合結果を見る</a></p>\n'
+        + '  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果を見る →</a></p>\n'
+        + "  </div>\n"
         + "</section>"
     )
 
@@ -244,6 +258,11 @@ def update_home_pickup(index_path: Path = None, limit: int = 4) -> bool:
     html = path.read_text(encoding="utf-8")
     if START not in html or END not in html:
         print("[PICK UP] マーカーが無いのでスキップ（HOME_PICKUP_START/END）")
+        return False
+    if html.count(START) > 1 or html.count(END) > 1:
+        # マーカーを移動したときに古い方を消し忘れると、空の方だけが更新され
+        # 古い内容が下に残り続ける（2026-08-30に一度やらかした）。気づけるように止める。
+        print("[PICK UP] マーカーが複数あります。index.html を確認してください（更新中止）")
         return False
     body = render_home_pickup_html(limit)
     if not body:
