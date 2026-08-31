@@ -138,5 +138,6 @@ description: 北海道札幌市東区の私立・札幌光星高校サッカー�
 - [札幌大谷高校 チーム詳細](/teams/sapporo-otani/)
 - [北海道大谷室蘭高校 チーム詳細](/teams/hokkaido-otani-muroran/)
 - [北海高校 チーム詳細](/teams/hokkai/)
+- [帯広北高校 チーム詳細](/teams/obihiro-kita/)
 - [2026年インターハイ特集](/tournaments/interhigh-2026/)
 - [高校サッカー順位確認システム トップ](/)

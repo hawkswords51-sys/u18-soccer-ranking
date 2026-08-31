@@ -181,5 +181,6 @@ Jリーグでの活躍から海外リーグへの挑戦、クラブ経営、フ�
 - [北海道大谷室蘭高校 チーム詳細](/teams/hokkaido-otani-muroran/)
 - [北照高校 チーム詳細](/teams/hokusho/)
 - [大手前高松高校 チーム詳細](/teams/otemae-takamatsu/)（2023年の第102回選手権1回戦で対戦）
+- [帯広北高校 チーム詳細](/teams/obihiro-kita/)
 - [2026年インターハイ特集](/tournaments/interhigh-2026/)
 - [高校サッカー順位確認システム トップ](/)
