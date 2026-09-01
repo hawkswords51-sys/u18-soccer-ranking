@@ -5477,21 +5477,18 @@
         "leagueRank": 4
       },
       {
-        "name": "名古屋グランパスU-18 2nd",
+        "name": "名古屋グランパスB",
         "league": "愛知県1部",
         "points": 13,
-        "played": 10,
+        "played": 11,
         "won": 3,
         "drawn": 4,
-        "lost": 3,
+        "lost": 4,
         "goalsFor": 18,
-        "goalsAgainst": 17,
+        "goalsAgainst": 19,
         "leagueRank": 5,
         "rank": 7,
-        "prefectureRank": 7,
-        "aliases": [
-          "グランパスB"
-        ]
+        "prefectureRank": 7
       },
       {
         "id": "ai005",
@@ -7172,10 +7169,29 @@
         "leagueRank": 1
       },
       {
+        "id": "wa001",
+        "name": "近大和歌山高校",
+        "league": "和歌山県JFA U-18サッカーリーグ",
+        "rank": 2,
+        "points": 31,
+        "played": 12,
+        "won": 10,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 56,
+        "goalsAgainst": 4,
+        "prefectureRank": 2,
+        "goalDiff": 52,
+        "leagueRank": 2,
+        "aliases": [
+          "近畿大学附属和歌山高校"
+        ]
+      },
+      {
         "id": "wa002",
         "name": "初芝橋本高校",
         "league": "和歌山県JFA U-18サッカーリーグ",
-        "rank": 2,
+        "rank": 3,
         "points": 28,
         "played": 12,
         "won": 9,
@@ -7183,28 +7199,9 @@
         "lost": 2,
         "goalsFor": 57,
         "goalsAgainst": 6,
-        "prefectureRank": 2,
-        "goalDiff": 51,
-        "leagueRank": 2
-      },
-      {
-        "id": "wa001",
-        "name": "近大和歌山高校",
-        "league": "和歌山県JFA U-18サッカーリーグ",
-        "rank": 3,
-        "points": 28,
-        "played": 11,
-        "won": 9,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 54,
-        "goalsAgainst": 4,
         "prefectureRank": 3,
-        "goalDiff": 50,
-        "leagueRank": 3,
-        "aliases": [
-          "近畿大学附属和歌山高校"
-        ]
+        "goalDiff": 51,
+        "leagueRank": 3
       },
       {
         "id": "wa011",
@@ -7213,13 +7210,13 @@
         "rank": 4,
         "prefectureRank": 4,
         "points": 21,
-        "played": 11,
+        "played": 12,
         "won": 7,
         "drawn": 0,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 48,
-        "goalsAgainst": 12,
-        "goalDiff": 36,
+        "goalsAgainst": 14,
+        "goalDiff": 34,
         "leagueRank": 4
       },
       {
@@ -11203,8 +11200,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-08-31 09:21",
+    "lastUpdated": "2026-09-01 10:03",
     "year": 2026,
-    "updatedCount": 535
+    "updatedCount": 543
   }
 }
