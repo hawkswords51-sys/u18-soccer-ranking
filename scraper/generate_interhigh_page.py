@@ -80,7 +80,7 @@ def render_featured_articles_section():
     return f"""
       <section class="lp-section">
         <h2><i class="fas fa-book-open"></i> 観戦コラム</h2>
-        <p style="color:var(--text-secondary,#6b7280);margin-bottom:12px;">本大会をより楽しむための特集記事をまとめています。</p>
+        <p style="color:var(--text-light,#666);margin-bottom:12px;">本大会をより楽しむための特集記事をまとめています。</p>
         <ul class="lp-related-links">
 {items}
         </ul>
@@ -282,7 +282,7 @@ def render_reps(lines):
                 name, record = token, ""
             if not name:
                 continue
-            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);white-space:nowrap;">({html_escape(record)})</span>' if record else "")
+            badge = (f'<span style="font-size:0.82em;color:var(--text-light,#666);white-space:nowrap;">({html_escape(record)})</span>' if record else "")
             # 学校名は途中で折り返さない(nowrap)。記録バッジは別要素で必要時のみ改行。
             # 校名の直後に所属リーグ（県・リーグ短縮）を表示。pref は見出しの県名を優先。
             rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{league_suffix(name, pref)}{badge}')
@@ -291,16 +291,16 @@ def render_reps(lines):
             continue
         items.append(
             '<div style="padding:10px 4px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-            f'<div style="color:var(--text-secondary,#6b7280);font-size:0.82em;margin-bottom:2px;">{pref_heading(pref)}</div>'
+            f'<div style="color:var(--text-light,#666);font-size:0.82em;margin-bottom:2px;">{pref_heading(pref)}</div>'
             f'<div style="line-height:1.6;">{"、".join(rendered)}</div>'
             '</div>'
         )
     if not items:
-        return '<p style="color:var(--text-secondary,#6b7280);">各県予選の終了後、代表校を順次掲載します。</p>'
+        return '<p style="color:var(--text-light,#666);">各県予選の終了後、代表校を順次掲載します。</p>'
     # 画面幅に応じて自動で1〜2カラム(モバイル=1列、PC=2列)。multi-columnの途中改行を回避。
     return ('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 28px;">'
             + "\n".join(items) + '</div>'
-            + f'<p style="margin-top:10px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
+            + f'<p style="margin-top:10px;color:var(--text-light,#666);font-size:0.9em;">出場校 {school_count} 校</p>')
 
 # 「## ○回戦」として扱わないセクション名（散文セクションはここに足す）
 # ★ここに足し忘れると、その見出しが「○回戦」扱いされて試合結果として描画されます。
@@ -429,7 +429,7 @@ def render_rounds(sections):
             blocks.append(f'<h3 style="margin-top:24px;color:var(--accent-color,#2563eb);">{html_escape(name)}</h3>'
                           f'<ul style="list-style:none;padding:0;">' + "\n".join(rows) + '</ul>')
     if not blocks:
-        return '<p style="color:var(--text-secondary,#6b7280);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します(決勝まで随時更新)。</p>'
+        return '<p style="color:var(--text-light,#666);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します(決勝まで随時更新)。</p>'
     return "\n".join(blocks)
 
 
@@ -611,7 +611,7 @@ def league_suffix(name, pref=None):
     else:
         lg_html = html_escape(short_lg)
     inner = f'{html_escape(p)}・{lg_html}' if p else lg_html
-    return (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);'
+    return (f'<span style="font-size:0.82em;color:var(--text-light,#666);'
             f'white-space:nowrap;">（{inner}）</span>')
 
 
@@ -864,8 +864,8 @@ def render_bracket_svg(sections, reps_lines):
 
     GRAY = "var(--border-color,#9ca3af)"
     RED = "var(--danger-color,#dc2626)"  # ダークでは #f87171（柔らかい赤）に自動切替
-    TXT = "var(--text-primary,#1f2937)"
-    SUB = "var(--text-secondary,#6b7280)"
+    TXT = "var(--text-dark,#1a1a1a)"
+    SUB = "var(--text-light,#666)"
     ACC = "var(--accent-color,#2563eb)"
 
     S = []
@@ -1033,7 +1033,7 @@ def render_bracket_svg(sections, reps_lines):
            + "".join(S) + '</svg>')
 
     return (
-        '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
+        '<p style="margin:0 0 8px;color:var(--text-light,#666);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
         '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり ／ '
         '<span style="border:1.5px solid var(--danger-color,#dc2626);border-radius:3px;padding:0 5px;">赤枠</span>＝勝ち残り(結果の入力に合わせて自動で更新されます)</p>'
@@ -1414,7 +1414,7 @@ def main():
         concussion_li = f'<li><a href="/blog/posts/{_concussion_slug}/">{_concussion_title}</a></li>'
     else:
         concussion_li = (
-            f'<li style="color:var(--text-secondary,#6b7280);">{_concussion_title}'
+            f'<li style="color:var(--text-light,#666);">{_concussion_title}'
             f'<span style="margin-left:6px;font-size:0.85em;">（2026-07-25 公開予定）</span></li>'
         )
 
@@ -1436,7 +1436,7 @@ def main():
         )
     else:
         _safety_concussion = (
-            '<span style="color:var(--text-secondary,#6b7280);">'
+            '<span style="color:var(--text-light,#666);">'
             '🧠 脳震盪コラム（7/25公開予定）</span>'
         )
     safety_box = f"""
