@@ -79,7 +79,8 @@ def resolve(matches):
 
 
 def validate(matches, by_no):
-    errs = []
+    """(errs, warns) を返す。errsがあれば生成中止、warnsは表示するだけで生成は続行。"""
+    errs, warns = [], []
     r1 = [m for m in matches if m["round"] == "1回戦"]
     teams = [t for m in r1 for t in (m["home"], m["away"])]
     if len(r1) != 16:
@@ -94,9 +95,15 @@ def validate(matches, by_no):
     if sorted(used) != list(range(1, len(matches))):
         errs.append("試合番号の接続が不正")
     for m in matches:
-        if m["hs"] is not None and m["as_"] is not None and winner_of(m) is None:
-            errs.append(f"[{m['no']}] スコアはあるが勝者が決まらない（引き分けならnoteにPKを記入）")
-    return errs
+        if m["hs"] is not None and m["as_"] is not None:
+            if m["hs"] < 0 or m["as_"] < 0:
+                errs.append(f"[{m['no']}] スコアが負の数")
+            elif winner_of(m) is None:
+                # 引き分けでPK未記入。試合途中の速報（0-0など）はこの状態が正常なので
+                # エラーにせず警告だけ出す。スコアはそのまま表示され、勝ち上がりは保留される。
+                warns.append(f"[{m['no']}] {m.get('home') or '?'} {m['hs']}-{m['as_']} "
+                             f"{m.get('away') or '?'} は引き分け中（PK決着後は note に PK4-3 の形式で記入）")
+    return errs, warns
 
 
 def build_sections(matches, by_no):
@@ -183,12 +190,14 @@ def main():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     matches = data["matches"]
     by_no = resolve(matches)
-    errs = validate(matches, by_no)
+    errs, warns = validate(matches, by_no)
     if errs:
         print("[エラー] 検証NGのため生成を中止:")
         for e in errs:
             print("  -", e)
         sys.exit(1)
+    for w in warns:
+        print("[注記]", w)
 
     sections = build_sections(matches, by_no)
     svg = render_bracket_svg(sections, [])
