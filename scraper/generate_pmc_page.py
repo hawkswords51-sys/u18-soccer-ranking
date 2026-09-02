@@ -152,11 +152,9 @@ def render_schedule(matches, by_no):
                     h = f'<span class="match-winner">{h}</span>'
                 elif w == m.get("away"):
                     a = f'<span class="match-winner">{a}</span>'
-                pk = ""
-                mm = re.search(r"PK\s*\d+\s*[-－ー]\s*\d+", m.get("note", ""))
-                if mm:
-                    pk = f'<span class="pmc-pk">{esc(mm.group(0))}</span>'
-                score = f'<strong>{m["hs"]} - {m["as_"]}</strong>{pk}'
+                # note に書いた内容（「PK4-3」「延長」など）はそのままスコア横に表示する
+                tag = f'<span class="pmc-pk">{esc(m["note"])}</span>' if m.get("note") else ""
+                score = f'<strong>{m["hs"]} - {m["as_"]}</strong>{tag}'
             else:
                 score = f'<span class="pmc-time">{esc(m["time"])}</span>'
             rows.append(
