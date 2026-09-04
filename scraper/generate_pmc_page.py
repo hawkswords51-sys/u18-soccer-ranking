@@ -30,6 +30,7 @@ from generate_interhigh_page import render_bracket_svg  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "tournaments" / "pmc-2026.json"
+LEAGUES = ROOT / "data" / "university" / "leagues-2026.json"
 PAGE = ROOT / "tournaments" / "prime-minister-cup-2026" / "index.html"
 B_START, B_END = "<!-- PMC_BRACKET_START -->", "<!-- PMC_BRACKET_END -->"
 S_START, S_END = "<!-- PMC_SCHEDULE_START -->", "<!-- PMC_SCHEDULE_END -->"
@@ -49,6 +50,27 @@ def short(name):
     s = s.replace("北海道教育大岩見沢校", "北教大岩見沢")
     s = s.replace("IPU・環太平洋大", "環太平洋大")
     return s
+
+
+def load_league_rank_map():
+    """data/university/leagues-2026.json から {大学名: (表示ラベル, 時点)} を作る。
+
+    例: 日本体育大学 → ("関東1部6位", "前期終了（6月13日現在）")
+    リーグ順位表を載せていない大学（出場校のうち下部リーグ所属など）は入らない。
+    """
+    if not LEAGUES.exists():
+        return {}
+    data = json.loads(LEAGUES.read_text(encoding="utf-8"))
+    out = {}
+    for lg in data.get("leagues", []):
+        region = lg.get("region", "")
+        m = re.search(r"-(\d+)$", lg.get("id", ""))
+        div = f"{m.group(1)}部" if m else ""
+        for t in lg.get("teams", []):
+            label = f"{region}{div}{t['rank']}位"
+            # 同名が複数リーグに出ることは無い想定だが、先勝ちにして上書きしない
+            out.setdefault(t["name"], (label, lg.get("asof", "")))
+    return out
 
 
 def winner_of(m):
@@ -130,7 +152,7 @@ def build_sections(matches, by_no):
     return sections
 
 
-def render_schedule(matches, by_no):
+def render_schedule(matches, by_no, ranks):
     out = []
     for rnd in ROUND_ORDER:
         ms = [m for m in matches if m["round"] == rnd]
@@ -142,7 +164,13 @@ def render_schedule(matches, by_no):
             def side(key, from_key, rep_key):
                 if m.get(key):
                     rep = f'<span class="pmc-rep">{esc(m[rep_key])}</span>' if m.get(rep_key) else ""
-                    return f'{esc(m[key])}{rep}'
+                    rk = ""
+                    if m[key] in ranks:
+                        label, asof = ranks[m[key]]
+                        tip = f"リーグ順位（{asof}）" if asof else "リーグ順位"
+                        rk = (f'<a class="pmc-rank" href="/university/#standings" '
+                              f'title="{esc(tip)}">{esc(label)}</a>')
+                    return f'{esc(m[key])}{rep}{rk}'
                 return f'<span class="pmc-tbd">[{m[from_key]}]の勝者</span>'
             h = side("home", "homeFrom", "homeRep")
             a = side("away", "awayFrom", "awayRep")
@@ -204,13 +232,20 @@ def main():
         sys.exit(1)
     svg = svg.replace("トーナメント表", "総理大臣杯2026 トーナメント表")
 
+    ranks = load_league_rank_map()
     src = PAGE.read_text(encoding="utf-8")
     src = replace_block(src, B_START, B_END, svg, "トーナメント表")
-    src = replace_block(src, S_START, S_END, render_schedule(matches, by_no), "日程・結果")
+    src = replace_block(src, S_START, S_END, render_schedule(matches, by_no, ranks), "日程・結果")
     PAGE.write_text(src, encoding="utf-8")
 
     played = sum(1 for m in matches if m["hs"] is not None)
-    print(f"OK: 全{len(matches)}試合（消化{played}）・SVG {len(svg)}バイトを生成")
+    r1_teams = [t for m in matches if m["round"] == "1回戦" for t in (m["home"], m["away"])]
+    hit = sum(1 for t in r1_teams if t in ranks)
+    print(f"OK: 全{len(matches)}試合（消化{played}）・SVG {len(svg)}バイト"
+          f"・リーグ順位バッジ {hit}/{len(r1_teams)}校")
+    miss = [t for t in r1_teams if t not in ranks]
+    if miss:
+        print("  [注記] リーグ順位表に見つからない大学:", "、".join(miss))
 
 
 if __name__ == "__main__":
