@@ -162,6 +162,8 @@ def render_schedule(matches, by_no, ranks):
         rows = []
         for m in ms:
             def side(key, from_key, rep_key):
+                """(校名だけのHTML, バッジ類のHTML) を返す。
+                勝者ハイライトは校名だけに掛ける（バッジを含めると背景が広がって読みにくい）。"""
                 if m.get(key):
                     rep = f'<span class="pmc-rep">{esc(m[rep_key])}</span>' if m.get(rep_key) else ""
                     rk = ""
@@ -170,16 +172,19 @@ def render_schedule(matches, by_no, ranks):
                         tip = f"リーグ順位（{asof}）" if asof else "リーグ順位"
                         rk = (f'<a class="pmc-rank" href="/university/#standings" '
                               f'title="{esc(tip)}">{esc(label)}</a>')
-                    return f'{esc(m[key])}{rep}{rk}'
-                return f'<span class="pmc-tbd">[{m[from_key]}]の勝者</span>'
-            h = side("home", "homeFrom", "homeRep")
-            a = side("away", "awayFrom", "awayRep")
+                    return esc(m[key]), f'{rep}{rk}'
+                return f'<span class="pmc-tbd">[{m[from_key]}]の勝者</span>', ""
+            h_name, h_badge = side("home", "homeFrom", "homeRep")
+            a_name, a_badge = side("away", "awayFrom", "awayRep")
             if m["hs"] is not None and m["as_"] is not None:
                 w = winner_of(m)
                 if w == m.get("home"):
-                    h = f'<span class="match-winner">{h}</span>'
+                    h_name = f'<span class="match-winner">{h_name}</span>'
                 elif w == m.get("away"):
-                    a = f'<span class="match-winner">{a}</span>'
+                    a_name = f'<span class="match-winner">{a_name}</span>'
+            h = f"{h_name}{h_badge}"
+            a = f"{a_name}{a_badge}"
+            if m["hs"] is not None and m["as_"] is not None:
                 # note に書いた内容（「PK4-3」「延長」など）はそのままスコア横に表示する
                 tag = f'<span class="pmc-pk">{esc(m["note"])}</span>' if m.get("note") else ""
                 score = f'<strong>{m["hs"]} - {m["as_"]}</strong>{tag}'
