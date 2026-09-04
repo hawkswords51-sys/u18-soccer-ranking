@@ -152,7 +152,20 @@ def build_sections(matches, by_no):
     return sections
 
 
-def render_schedule(matches, by_no, ranks):
+def build_rep_map(matches):
+    """1回戦の代表枠（「関東1」など）を {大学名: 代表枠} で覚えておく。
+    2回戦以降は勝ち上がりで入るためJSONに代表枠が無く、ここから引き継いで表示する。"""
+    rep = {}
+    for m in matches:
+        if m["round"] != "1回戦":
+            continue
+        for name_key, rep_key in (("home", "homeRep"), ("away", "awayRep")):
+            if m.get(name_key) and m.get(rep_key):
+                rep[m[name_key]] = m[rep_key]
+    return rep
+
+
+def render_schedule(matches, by_no, ranks, reps):
     out = []
     for rnd in ROUND_ORDER:
         ms = [m for m in matches if m["round"] == rnd]
@@ -165,7 +178,8 @@ def render_schedule(matches, by_no, ranks):
                 """(校名だけのHTML, バッジ類のHTML) を返す。
                 勝者ハイライトは校名だけに掛ける（バッジを含めると背景が広がって読みにくい）。"""
                 if m.get(key):
-                    rep = f'<span class="pmc-rep">{esc(m[rep_key])}</span>' if m.get(rep_key) else ""
+                    rep_txt = m.get(rep_key) or reps.get(m[key], "")
+                    rep = f'<span class="pmc-rep">{esc(rep_txt)}</span>' if rep_txt else ""
                     rk = ""
                     if m[key] in ranks:
                         label, asof = ranks[m[key]]
@@ -238,9 +252,10 @@ def main():
     svg = svg.replace("トーナメント表", "総理大臣杯2026 トーナメント表")
 
     ranks = load_league_rank_map()
+    reps = build_rep_map(matches)
     src = PAGE.read_text(encoding="utf-8")
     src = replace_block(src, B_START, B_END, svg, "トーナメント表")
-    src = replace_block(src, S_START, S_END, render_schedule(matches, by_no, ranks), "日程・結果")
+    src = replace_block(src, S_START, S_END, render_schedule(matches, by_no, ranks, reps), "日程・結果")
     PAGE.write_text(src, encoding="utf-8")
 
     played = sum(1 for m in matches if m["hs"] is not None)
