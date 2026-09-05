@@ -37,6 +37,10 @@ requests と json だけで済む。これで「試合当日の夜にサイト�
   5. チーム名が data/league_matches と data/teams.json の両方に1対1で名寄せできるか
   6. 今回の消化試合数が、既存JSONの消化試合数より減っていないか（＝退行なら書かない）
 
+未消化試合の日付・時刻・会場は毎回JFAの値で入れ替える（日程変更に追従する）。
+ただし「すでに結果が入っている試合の日付が動いた」場合だけ [要確認] をログに出す
+（出典が別試合と取り違えている等の事故を検知するため。更新自体は止めない）。
+
 「JFAが今日はまだ更新していない」と「JFAが壊れている」は区別しなくてよい。
 どちらも「消化試合が増えていないだけ」なので、既存維持で正しく振る舞う。
 
@@ -206,6 +210,32 @@ def _split_scorer(line: str) -> dict | None:
     if "オウンゴール" in name:
         return {"minute": minute, "name": name, "ownGoal": True}
     return {"minute": minute, "name": name}
+
+
+def date_change_warnings(old_matches, new_matches) -> list[str]:
+    """[2026-09-05 新設] 出典側の事故を検知するための照合。
+
+    日付が変わること自体は正常（日程変更・延期は普通に起きる）。異常なのは
+    **すでに結果が確定している試合の日付が動く**ケースで、出典が別の試合と
+    取り違えている等のサイン。見つけたら警告文を返す（更新自体は止めない。
+    止めると日程変更が永久に反映されなくなる）。
+    update_cross_tables.py の同名関数と同じ考え方。プレミアはそちらを通らなく
+    なったので、こちらにも同じ見張りを置いている。
+    """
+    prev = {}
+    for m in old_matches or []:
+        if m.get("status") == "played" and m.get("date"):
+            prev[(m.get("md"), m.get("home"), m.get("away"))] = m["date"]
+    warns = []
+    for m in new_matches:
+        if m.get("status") != "played":
+            continue
+        before = prev.get((m.get("md"), m.get("home"), m.get("away")))
+        after = m.get("date") or ""
+        if before and after and after != before:
+            warns.append(f"第{m['md']}節 {m['home']} vs {m['away']} の日付が "
+                         f"{before}→{after} に変化")
+    return warns
 
 
 def _md_of(match_type_name: str):
@@ -416,6 +446,7 @@ def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
     return {
         "slug": slug,
         "jfaNameBySite": jfa_name_by_site,
+        "dateWarnings": date_change_warnings(existing.get("matches"), out_matches),
         "matches": out_matches,
         "standings": out_standings,
         "official": official,
@@ -630,6 +661,8 @@ def run(dry_run: bool = False) -> list[str]:
         ok_slugs.append(res["slug"])
         print(f"  ✓ data/league_matches/{res['slug']}.json / "
               f"data/scorers/{res['slug']}.json を更新")
+        for w in res.get("dateWarnings", []):
+            print(f"  [要確認] {res['slug']}: {w}")
 
     write_status(ok_slugs)
     print(f"\n✅ 完了: {len(ok_slugs)} リーグをJFA公式JSONから更新しました")

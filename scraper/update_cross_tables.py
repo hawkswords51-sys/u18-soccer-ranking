@@ -12,6 +12,9 @@ data/league_matches/<slug>.json を更新する。
      （= kokoが遅れているリーグ。JFAから手で補完した北海道・東海・関西1部などを保護）。
   3. チーム名がJSONのチームと対応づかない、順位表が無い等の異常時も上書きしない。
   4. 上書きしない場合は「要確認」としてログに出すだけ（データは安全に据え置き）。
+  5. [2026-09-05追加] 未消化試合の日付・時刻は毎回出典の値で入れ替える（日程変更に追従）。
+     ただし「すでに結果が入っている試合の日付が動いた」場合だけ [要確認] を出す
+     （出典が別試合と取り違えている等の事故を検知するため。更新自体は止めない）。
   - teams（チーム名・短縮名 short）は既存JSONの設定をそのまま保持する。
 
 依存: pandas, lxml （GitHub Actions側で pip install）
@@ -215,6 +218,33 @@ def jfa_premier_ok_slugs() -> set:
         return set()
 
 
+def date_change_warnings(old_matches, new_matches):
+    """[2026-09-05 新設] 出典側の事故を検知するための照合。
+
+    日付が変わること自体は正常（日程変更・延期は普通に起きる）。異常なのは
+    **すでに結果が確定している試合の日付が動く**ケースで、これは出典が別の試合と
+    取り違えている・節の対応がずれた等のサイン。見つけたら警告文のリストを返す
+    （更新は止めない。止めると日程変更が永久に反映されなくなるため）。
+    """
+    prev = {}
+    for m in old_matches or []:
+        if m.get("status") == "played":
+            prev[(m.get("md"), m.get("home"), m.get("away"))] = m.get("date") or ""
+    warns = []
+    for m in new_matches:
+        if m.get("status") != "played":
+            continue
+        key = (m.get("md"), m.get("home"), m.get("away"))
+        before = prev.get(key)
+        if before is None or not before:
+            continue
+        after = m.get("date") or ""
+        if after and after != before:
+            warns.append(f"第{m['md']}節 {m['home']} vs {m['away']} の日付が "
+                         f"{before}→{after} に変化")
+    return warns
+
+
 def process(slug, jfa_ok=frozenset()):
     global _CURRENT_SLUG
     if slug in jfa_ok:
@@ -281,12 +311,18 @@ def process(slug, jfa_ok=frozenset()):
                                   lost=o["lost"], gf=o["gf"], ga=o["ga"],
                                   gd=o["gf"] - o["ga"]))
         rank += 1
+    # 未消化試合の日付・時刻は毎回この out_matches で丸ごと入れ替わる（＝出典に追従する）。
+    # そのうえで「結果が確定した試合の日付が動いた」ときだけ警告を出す。
+    warns = date_change_warnings(data.get("matches"), out_matches)
     data["matches"] = out_matches
     data["official_standings"] = out_standings
     from datetime import date as _d
     data["lastUpdated"] = _d.today().isoformat()
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
+    msg = f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
+    if warns:
+        msg += "\n      " + "\n      ".join(f"[要確認] {slug}: {w}" for w in warns)
+    return msg
 
 
 def main():
@@ -302,7 +338,13 @@ def main():
     review = [r for r in results if "要確認" in r]
     print(f"\n更新 {len(updated)} 件 / 要確認 {len(review)} 件")
     if review:
-        print("※要確認リーグは手動チェックを推奨（データは据え置き済みで安全）:")
+        # [2026-09-05] 「日付が X→Y に変化」だけは更新を止めていないので、
+        # 「据え置き済みで安全」と一括で書くと実態と食い違う。種類を分けて説明する。
+        print("※要確認リーグは手動チェックを推奨:")
+        print("  ・「取得/解析に失敗」「未知のチーム名」「検算不一致」")
+        print("    → 書き込んでいないのでデータは据え置き済みで安全。")
+        print("  ・「日付が X→Y に変化」")
+        print("    → 更新はしている。結果が確定した試合の日付が動いたので、出典の個別試合ページで確認する。")
         for r in review:
             print("  -", r)
     return 0
