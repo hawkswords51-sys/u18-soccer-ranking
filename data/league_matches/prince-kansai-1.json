@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西1部",
   "season": "2026",
   "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kansai/",
-  "lastUpdated": "2026-09-04",
+  "lastUpdated": "2026-09-05",
   "teams": [
     {
       "name": "京都橘",
@@ -50,16 +50,28 @@
       "rank": 1,
       "team": "京都橘",
       "pts": 25,
-      "played": 9,
+      "played": 10,
       "won": 8,
       "drawn": 1,
-      "lost": 0,
-      "gf": 19,
-      "ga": 5,
-      "gd": 14
+      "lost": 1,
+      "gf": 20,
+      "ga": 9,
+      "gd": 11
     },
     {
       "rank": 2,
+      "team": "履正社",
+      "pts": 20,
+      "played": 10,
+      "won": 6,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 22,
+      "ga": 14,
+      "gd": 8
+    },
+    {
+      "rank": 3,
       "team": "セレッソ大阪U-18",
       "pts": 19,
       "played": 9,
@@ -69,18 +81,6 @@
       "gf": 25,
       "ga": 12,
       "gd": 13
-    },
-    {
-      "rank": 3,
-      "team": "履正社",
-      "pts": 17,
-      "played": 9,
-      "won": 5,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 18,
-      "ga": 13,
-      "gd": 5
     },
     {
       "rank": 4,
@@ -121,25 +121,25 @@
     {
       "rank": 7,
       "team": "阪南大高",
-      "pts": 8,
-      "played": 9,
+      "pts": 9,
+      "played": 10,
       "won": 2,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 13,
-      "ga": 27,
+      "gf": 14,
+      "ga": 28,
       "gd": -14
     },
     {
       "rank": 8,
       "team": "産大附属",
-      "pts": 6,
-      "played": 9,
+      "pts": 7,
+      "played": 10,
       "won": 1,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 5,
-      "gf": 13,
-      "ga": 15,
+      "gf": 14,
+      "ga": 16,
       "gd": -2
     },
     {
@@ -577,19 +577,19 @@
       "md": 10,
       "date": "2026-09-05",
       "home": "産大附属",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "阪南大高",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-09-05",
       "home": "履正社",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "京都橘",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,

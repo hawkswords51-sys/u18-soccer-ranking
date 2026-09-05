@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東北",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4348",
-  "lastUpdated": "2026-09-04",
+  "lastUpdated": "2026-09-05",
   "teams": [
     {
       "name": "尚志",
@@ -49,53 +49,65 @@
     {
       "rank": 1,
       "team": "尚志",
-      "pts": 31,
-      "played": 11,
-      "won": 10,
+      "pts": 34,
+      "played": 12,
+      "won": 11,
       "drawn": 1,
       "lost": 0,
-      "gf": 34,
-      "ga": 5,
-      "gd": 29
+      "gf": 38,
+      "ga": 6,
+      "gd": 32
     },
     {
       "rank": 2,
       "team": "青森山田セカンド",
-      "pts": 28,
-      "played": 11,
-      "won": 9,
+      "pts": 31,
+      "played": 12,
+      "won": 10,
       "drawn": 1,
       "lost": 1,
-      "gf": 26,
+      "gf": 30,
       "ga": 11,
-      "gd": 15
+      "gd": 19
     },
     {
       "rank": 3,
       "team": "専大北上",
-      "pts": 17,
-      "played": 11,
+      "pts": 18,
+      "played": 12,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 4,
-      "gf": 18,
-      "ga": 12,
+      "gf": 19,
+      "ga": 13,
       "gd": 6
     },
     {
       "rank": 4,
-      "team": "東北学院",
+      "team": "モンテディオ山形ユース",
       "pts": 17,
-      "played": 11,
+      "played": 12,
       "won": 5,
       "drawn": 2,
-      "lost": 4,
-      "gf": 16,
-      "ga": 18,
+      "lost": 5,
+      "gf": 12,
+      "ga": 14,
       "gd": -2
     },
     {
       "rank": 5,
+      "team": "東北学院",
+      "pts": 17,
+      "played": 12,
+      "won": 5,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 17,
+      "ga": 22,
+      "gd": -5
+    },
+    {
+      "rank": 6,
       "team": "聖和学園",
       "pts": 16,
       "played": 11,
@@ -107,7 +119,7 @@
       "gd": 5
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "ブラウブリッツ秋田U-18",
       "pts": 14,
       "played": 11,
@@ -119,51 +131,39 @@
       "gd": -5
     },
     {
-      "rank": 7,
-      "team": "モンテディオ山形ユース",
-      "pts": 14,
-      "played": 11,
-      "won": 4,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 9,
-      "ga": 14,
-      "gd": -5
-    },
-    {
       "rank": 8,
       "team": "帝京安積",
       "pts": 13,
-      "played": 11,
+      "played": 12,
       "won": 4,
       "drawn": 1,
-      "lost": 6,
+      "lost": 7,
       "gf": 10,
-      "ga": 20,
-      "gd": -10
+      "ga": 23,
+      "gd": -13
     },
     {
       "rank": 9,
       "team": "学法石川",
       "pts": 5,
-      "played": 11,
+      "played": 12,
       "won": 1,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 10,
-      "ga": 20,
-      "gd": -10
+      "ga": 24,
+      "gd": -14
     },
     {
       "rank": 10,
       "team": "盛岡商",
-      "pts": 1,
-      "played": 11,
+      "pts": 2,
+      "played": 12,
       "won": 0,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 10,
-      "gf": 4,
-      "ga": 27,
+      "gf": 5,
+      "ga": 28,
       "gd": -23
     }
   ],
@@ -658,28 +658,28 @@
       "md": 12,
       "date": "2026-09-05",
       "home": "尚志",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "東北学院",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,
       "date": "2026-09-05",
       "home": "学法石川",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "青森山田セカンド",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,
       "date": "2026-09-05",
       "home": "盛岡商",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "専大北上",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,
@@ -694,10 +694,10 @@
       "md": 12,
       "date": "2026-09-05",
       "home": "モンテディオ山形ユース",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "帝京安積",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 13,

@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州2部",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4338",
-  "lastUpdated": "2026-09-04",
+  "lastUpdated": "2026-09-05",
   "teams": [
     {
       "name": "佐賀東",
@@ -84,6 +84,18 @@
     },
     {
       "rank": 4,
+      "team": "長崎総科大附",
+      "pts": 12,
+      "played": 10,
+      "won": 3,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 20,
+      "ga": 12,
+      "gd": 8
+    },
+    {
+      "rank": 5,
       "team": "サガン鳥栖U-18 2nd",
       "pts": 12,
       "played": 9,
@@ -95,7 +107,7 @@
       "gd": 4
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "九州国際大付",
       "pts": 12,
       "played": 9,
@@ -107,7 +119,7 @@
       "gd": 4
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "日章学園2nd",
       "pts": 12,
       "played": 9,
@@ -119,7 +131,7 @@
       "gd": -1
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "東海大福岡",
       "pts": 12,
       "played": 9,
@@ -131,28 +143,16 @@
       "gd": -10
     },
     {
-      "rank": 8,
+      "rank": 9,
       "team": "鹿児島",
       "pts": 10,
-      "played": 9,
+      "played": 10,
       "won": 2,
       "drawn": 4,
-      "lost": 3,
-      "gf": 14,
-      "ga": 14,
-      "gd": 0
-    },
-    {
-      "rank": 9,
-      "team": "長崎総科大附",
-      "pts": 9,
-      "played": 9,
-      "won": 2,
-      "drawn": 3,
       "lost": 4,
-      "gf": 13,
-      "ga": 12,
-      "gd": 1
+      "gf": 14,
+      "ga": 21,
+      "gd": -7
     },
     {
       "rank": 10,
@@ -577,9 +577,18 @@
       "md": 10,
       "date": "2026-09-05",
       "home": "鹿児島",
+      "hs": 0,
+      "as": 7,
+      "away": "長崎総科大附",
+      "status": "played"
+    },
+    {
+      "md": 10,
+      "date": "",
+      "home": "日章学園2nd",
       "hs": null,
       "as": null,
-      "away": "長崎総科大附",
+      "away": "サガン鳥栖U-18 2nd",
       "status": "scheduled"
     },
     {
@@ -607,15 +616,6 @@
       "hs": null,
       "as": null,
       "away": "鵬翔",
-      "status": "scheduled"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-06",
-      "home": "日章学園2nd",
-      "hs": null,
-      "as": null,
-      "away": "サガン鳥栖U-18 2nd",
       "status": "scheduled"
     },
     {

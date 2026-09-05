@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西2部",
   "season": "2026",
   "source": "https://koko-soccer.com/score/4341",
-  "lastUpdated": "2026-09-04",
+  "lastUpdated": "2026-09-05",
   "teams": [
     {
       "name": "滝川第二",
@@ -48,18 +48,6 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "滝川第二",
-      "pts": 20,
-      "played": 9,
-      "won": 6,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 23,
-      "ga": 12,
-      "gd": 11
-    },
-    {
-      "rank": 2,
       "team": "大阪桐蔭",
       "pts": 20,
       "played": 9,
@@ -71,7 +59,31 @@
       "gd": 11
     },
     {
+      "rank": 2,
+      "team": "滝川第二",
+      "pts": 20,
+      "played": 10,
+      "won": 6,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 24,
+      "ga": 15,
+      "gd": 9
+    },
+    {
       "rank": 3,
+      "team": "京都橘(B)",
+      "pts": 20,
+      "played": 10,
+      "won": 6,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 18,
+      "ga": 15,
+      "gd": 3
+    },
+    {
+      "rank": 4,
       "team": "東海大仰星",
       "pts": 19,
       "played": 9,
@@ -83,7 +95,7 @@
       "gd": 17
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "関大北陽",
       "pts": 17,
       "played": 9,
@@ -95,27 +107,15 @@
       "gd": 5
     },
     {
-      "rank": 5,
-      "team": "京都橘(B)",
-      "pts": 17,
-      "played": 9,
-      "won": 5,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 15,
-      "ga": 14,
-      "gd": 1
-    },
-    {
       "rank": 6,
       "team": "金光大阪",
-      "pts": 12,
-      "played": 9,
+      "pts": 13,
+      "played": 10,
       "won": 4,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 5,
-      "gf": 15,
-      "ga": 14,
+      "gf": 16,
+      "ga": 15,
       "gd": 1
     },
     {
@@ -145,13 +145,13 @@
     {
       "rank": 9,
       "team": "ヴィッセル神戸U-18(B)",
-      "pts": 4,
-      "played": 9,
+      "pts": 5,
+      "played": 10,
       "won": 1,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 7,
-      "gf": 12,
-      "ga": 34,
+      "gf": 13,
+      "ga": 35,
       "gd": -22
     },
     {
@@ -577,19 +577,19 @@
       "md": 10,
       "date": "2026-09-05",
       "home": "ヴィッセル神戸U-18(B)",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "金光大阪",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-09-05",
       "home": "京都橘(B)",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "滝川第二",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
