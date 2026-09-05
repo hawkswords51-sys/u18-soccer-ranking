@@ -1969,14 +1969,14 @@
         "league": "プリンスリーグ関東1部",
         "rank": 3,
         "points": 5,
-        "played": 9,
+        "played": 10,
         "won": 1,
         "drawn": 2,
-        "lost": 6,
+        "lost": 7,
         "goalsFor": 10,
-        "goalsAgainst": 19,
+        "goalsAgainst": 23,
         "prefectureRank": 3,
-        "goalDiff": -9,
+        "goalDiff": -13,
         "leagueRank": 10
       },
       {
@@ -2580,7 +2580,7 @@
         "goalsAgainst": 12,
         "prefectureRank": 9,
         "goalDiff": 7,
-        "leagueRank": 5
+        "leagueRank": 6
       },
       {
         "id": "c009",
@@ -2799,14 +2799,14 @@
         "league": "プリンスリーグ関東1部",
         "rank": 4,
         "points": 6,
-        "played": 9,
+        "played": 10,
         "won": 2,
         "drawn": 0,
-        "lost": 7,
-        "goalsFor": 13,
-        "goalsAgainst": 17,
+        "lost": 8,
+        "goalsFor": 14,
+        "goalsAgainst": 19,
         "prefectureRank": 4,
-        "goalDiff": -4,
+        "goalDiff": -5,
         "leagueRank": 9
       },
       {
@@ -3025,6 +3025,21 @@
         ]
       },
       {
+        "name": "修徳高校",
+        "points": 17,
+        "played": 11,
+        "won": 5,
+        "drawn": 2,
+        "lost": 4,
+        "goalsFor": 20,
+        "goalsAgainst": 14,
+        "goalDiff": 6,
+        "divRank": 2,
+        "aliases": [
+          "修徳"
+        ]
+      },
+      {
         "name": "東海大学付属高輪台高校",
         "points": 17,
         "played": 9,
@@ -3034,7 +3049,7 @@
         "goalsFor": 16,
         "goalsAgainst": 10,
         "goalDiff": 6,
-        "divRank": 2,
+        "divRank": 3,
         "aliases": [
           "東海大高輪台"
         ]
@@ -3049,7 +3064,7 @@
         "goalsFor": 11,
         "goalsAgainst": 6,
         "goalDiff": 5,
-        "divRank": 3,
+        "divRank": 4,
         "aliases": [
           "東京実業"
         ]
@@ -3064,24 +3079,9 @@
         "goalsFor": 10,
         "goalsAgainst": 7,
         "goalDiff": 3,
-        "divRank": 4,
-        "aliases": [
-          "関東第一"
-        ]
-      },
-      {
-        "name": "修徳高校",
-        "points": 14,
-        "played": 10,
-        "won": 4,
-        "drawn": 2,
-        "lost": 4,
-        "goalsFor": 16,
-        "goalsAgainst": 14,
-        "goalDiff": 2,
         "divRank": 5,
         "aliases": [
-          "修徳"
+          "関東第一"
         ]
       },
       {
@@ -3132,13 +3132,13 @@
       {
         "name": "東久留米総合高校",
         "points": 8,
-        "played": 10,
+        "played": 11,
         "won": 2,
         "drawn": 2,
-        "lost": 6,
+        "lost": 7,
         "goalsFor": 9,
-        "goalsAgainst": 24,
-        "goalDiff": -15,
+        "goalsAgainst": 28,
+        "goalDiff": -19,
         "divRank": 9,
         "aliases": [
           "東久留米"
@@ -3203,10 +3203,26 @@
         "leagueRank": 1
       },
       {
+        "id": "k003",
+        "name": "桐蔭学園高校",
+        "league": "プリンスリーグ関東1部",
+        "rank": 3,
+        "points": 11,
+        "played": 10,
+        "won": 3,
+        "drawn": 2,
+        "lost": 5,
+        "goalsFor": 12,
+        "goalsAgainst": 13,
+        "prefectureRank": 3,
+        "goalDiff": -1,
+        "leagueRank": 7
+      },
+      {
         "id": "k001",
         "name": "川崎フロンターレU-18",
         "league": "プレミアリーグEAST",
-        "rank": 3,
+        "rank": 4,
         "points": 9,
         "played": 12,
         "won": 2,
@@ -3214,25 +3230,9 @@
         "lost": 7,
         "goalsFor": 19,
         "goalsAgainst": 32,
-        "prefectureRank": 3,
+        "prefectureRank": 4,
         "goalDiff": -13,
         "leagueRank": 10
-      },
-      {
-        "id": "k003",
-        "name": "桐蔭学園高校",
-        "league": "プリンスリーグ関東1部",
-        "rank": 4,
-        "points": 8,
-        "played": 9,
-        "won": 2,
-        "drawn": 2,
-        "lost": 5,
-        "goalsFor": 8,
-        "goalsAgainst": 13,
-        "prefectureRank": 4,
-        "goalDiff": -5,
-        "leagueRank": 7
       },
       {
         "id": "k012",
@@ -4467,16 +4467,16 @@
         "name": "山梨学院高校",
         "league": "プリンスリーグ関東1部",
         "rank": 2,
-        "points": 11,
-        "played": 9,
-        "won": 3,
+        "points": 14,
+        "played": 10,
+        "won": 4,
         "drawn": 2,
         "lost": 4,
-        "goalsFor": 12,
-        "goalsAgainst": 13,
+        "goalsFor": 14,
+        "goalsAgainst": 14,
         "prefectureRank": 2,
-        "goalDiff": -1,
-        "leagueRank": 6
+        "goalDiff": 0,
+        "leagueRank": 5
       },
       {
         "name": "山梨学院B",
@@ -5063,14 +5063,14 @@
         "name": "飛龍高校",
         "league": "静岡県Aリーグ",
         "rank": 2,
-        "points": 18,
-        "played": 9,
-        "won": 5,
+        "points": 21,
+        "played": 10,
+        "won": 6,
         "drawn": 3,
         "lost": 1,
-        "goalsFor": 16,
-        "goalsAgainst": 5,
-        "goalDiff": 11,
+        "goalsFor": 19,
+        "goalsAgainst": 7,
+        "goalDiff": 12,
         "prefectureRank": 2,
         "leagueRank": 1
       },
@@ -5112,13 +5112,13 @@
         "league": "静岡県Aリーグ",
         "rank": 5,
         "points": 17,
-        "played": 9,
+        "played": 10,
         "won": 5,
         "drawn": 2,
-        "lost": 2,
-        "goalsFor": 14,
-        "goalsAgainst": 5,
-        "goalDiff": 9,
+        "lost": 3,
+        "goalsFor": 16,
+        "goalsAgainst": 8,
+        "goalDiff": 8,
         "prefectureRank": 5,
         "leagueRank": 2,
         "aliases": [
@@ -5805,15 +5805,15 @@
         "name": "草津東高校",
         "league": "滋賀県1部",
         "rank": 1,
-        "points": 27,
-        "played": 10,
-        "won": 9,
+        "points": 30,
+        "played": 11,
+        "won": 10,
         "drawn": 0,
         "lost": 1,
-        "goalsFor": 34,
+        "goalsFor": 36,
         "goalsAgainst": 6,
         "prefectureRank": 1,
-        "goalDiff": 28,
+        "goalDiff": 30,
         "leagueRank": 1
       },
       {
@@ -5822,14 +5822,14 @@
         "league": "プリンスリーグ関西1部",
         "rank": 2,
         "points": 14,
-        "played": 9,
+        "played": 10,
         "won": 4,
         "drawn": 2,
-        "lost": 3,
+        "lost": 4,
         "goalsFor": 21,
-        "goalsAgainst": 14,
+        "goalsAgainst": 17,
         "prefectureRank": 2,
-        "goalDiff": 7,
+        "goalDiff": 4,
         "leagueRank": 5
       },
       {
@@ -5859,13 +5859,13 @@
         "rank": 4,
         "prefectureRank": 4,
         "points": 22,
-        "played": 10,
+        "played": 11,
         "won": 7,
         "drawn": 1,
-        "lost": 2,
+        "lost": 3,
         "goalsFor": 10,
-        "goalsAgainst": 7,
-        "goalDiff": 3,
+        "goalsAgainst": 9,
+        "goalDiff": 1,
         "leagueRank": 2
       },
       {
@@ -6721,15 +6721,15 @@
         "name": "神戸弘陵学園高校",
         "league": "プリンスリーグ関西1部",
         "rank": 4,
-        "points": 10,
-        "played": 9,
-        "won": 2,
+        "points": 13,
+        "played": 10,
+        "won": 3,
         "drawn": 4,
         "lost": 3,
-        "goalsFor": 15,
+        "goalsFor": 18,
         "goalsAgainst": 16,
         "prefectureRank": 4,
-        "goalDiff": -1,
+        "goalDiff": 2,
         "leagueRank": 6,
         "aliases": [
           "神戸弘陵"
@@ -11200,7 +11200,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-05 19:18",
+    "lastUpdated": "2026-09-05 19:57",
     "year": 2026,
     "updatedCount": 543
   }

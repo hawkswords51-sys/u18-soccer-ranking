@@ -96,6 +96,18 @@
     },
     {
       "rank": 5,
+      "team": "山梨学院高等学校",
+      "pts": 14,
+      "played": 10,
+      "won": 4,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 14,
+      "ga": 14,
+      "gd": 0
+    },
+    {
+      "rank": 6,
       "team": "ジェフユナイテッド千葉U-18",
       "pts": 13,
       "played": 9,
@@ -107,28 +119,16 @@
       "gd": 7
     },
     {
-      "rank": 6,
-      "team": "山梨学院高等学校",
+      "rank": 7,
+      "team": "桐蔭学園",
       "pts": 11,
-      "played": 9,
+      "played": 10,
       "won": 3,
       "drawn": 2,
-      "lost": 4,
+      "lost": 5,
       "gf": 12,
       "ga": 13,
       "gd": -1
-    },
-    {
-      "rank": 7,
-      "team": "桐蔭学園",
-      "pts": 8,
-      "played": 9,
-      "won": 2,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 8,
-      "ga": 13,
-      "gd": -5
     },
     {
       "rank": 8,
@@ -146,25 +146,25 @@
       "rank": 9,
       "team": "帝京",
       "pts": 6,
-      "played": 9,
+      "played": 10,
       "won": 2,
       "drawn": 0,
-      "lost": 7,
-      "gf": 13,
-      "ga": 17,
-      "gd": -4
+      "lost": 8,
+      "gf": 14,
+      "ga": 19,
+      "gd": -5
     },
     {
       "rank": 10,
       "team": "桐生第一",
       "pts": 5,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 10,
-      "ga": 19,
-      "gd": -9
+      "ga": 23,
+      "gd": -13
     }
   ],
   "matches": [
@@ -586,19 +586,19 @@
       "md": 10,
       "date": "2026-09-05",
       "home": "桐蔭学園",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "桐生第一",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
       "date": "2026-09-05",
       "home": "山梨学院高等学校",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "帝京",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,

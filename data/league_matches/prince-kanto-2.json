@@ -86,13 +86,13 @@
       "rank": 4,
       "team": "西武台",
       "pts": 14,
-      "played": 9,
+      "played": 10,
       "won": 4,
       "drawn": 2,
-      "lost": 3,
-      "gf": 13,
-      "ga": 13,
-      "gd": 0
+      "lost": 4,
+      "gf": 14,
+      "ga": 15,
+      "gd": -1
     },
     {
       "rank": 5,
@@ -132,6 +132,18 @@
     },
     {
       "rank": 8,
+      "team": "栃木SC U-18",
+      "pts": 10,
+      "played": 10,
+      "won": 3,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 9,
+      "ga": 14,
+      "gd": -5
+    },
+    {
+      "rank": 9,
       "team": "鹿島アントラーズユースB",
       "pts": 8,
       "played": 9,
@@ -141,18 +153,6 @@
       "gf": 9,
       "ga": 12,
       "gd": -3
-    },
-    {
-      "rank": 9,
-      "team": "栃木SC U-18",
-      "pts": 7,
-      "played": 9,
-      "won": 2,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 7,
-      "ga": 13,
-      "gd": -6
     },
     {
       "rank": 10,
@@ -577,10 +577,10 @@
       "md": 10,
       "date": "2026-09-05",
       "home": "西武台",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "栃木SC U-18",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
