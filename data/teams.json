@@ -2226,10 +2226,24 @@
         "leagueRank": 9
       },
       {
+        "name": "昌平高校2nd",
+        "league": "埼玉Sリーグ",
+        "points": 19,
+        "played": 10,
+        "won": 5,
+        "drawn": 4,
+        "lost": 1,
+        "goalsFor": 18,
+        "goalsAgainst": 10,
+        "leagueRank": 2,
+        "rank": 5,
+        "prefectureRank": 5
+      },
+      {
         "id": "sa003",
         "name": "RB大宮アルディージャU18",
         "league": "プリンスリーグ関東1部",
-        "rank": 5,
+        "rank": 6,
         "points": 18,
         "played": 9,
         "won": 5,
@@ -2237,7 +2251,7 @@
         "lost": 1,
         "goalsFor": 11,
         "goalsAgainst": 6,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "goalDiff": 5,
         "leagueRank": 3,
         "aliases": [
@@ -2249,7 +2263,7 @@
         "id": "sa008",
         "name": "聖望学園高校",
         "league": "埼玉Sリーグ",
-        "rank": 6,
+        "rank": 7,
         "points": 16,
         "played": 9,
         "won": 5,
@@ -2257,22 +2271,8 @@
         "lost": 3,
         "goalsFor": 15,
         "goalsAgainst": 10,
-        "prefectureRank": 6,
-        "leagueRank": 2
-      },
-      {
-        "name": "昌平高校2nd",
-        "league": "埼玉Sリーグ",
-        "points": 16,
-        "played": 9,
-        "won": 4,
-        "drawn": 4,
-        "lost": 1,
-        "goalsFor": 14,
-        "goalsAgainst": 9,
-        "leagueRank": 3,
-        "rank": 7,
-        "prefectureRank": 7
+        "prefectureRank": 7,
+        "leagueRank": 3
       },
       {
         "name": "正智深谷高校",
@@ -2280,12 +2280,12 @@
         "rank": 8,
         "prefectureRank": 8,
         "points": 14,
-        "played": 9,
+        "played": 10,
         "won": 4,
         "drawn": 2,
-        "lost": 3,
-        "goalsFor": 21,
-        "goalsAgainst": 8,
+        "lost": 4,
+        "goalsFor": 22,
+        "goalsAgainst": 12,
         "leagueRank": 4
       },
       {
@@ -3645,13 +3645,13 @@
         "league": "新潟県1部",
         "rank": 8,
         "points": 19,
-        "played": 10,
+        "played": 11,
         "won": 6,
         "drawn": 1,
-        "lost": 3,
+        "lost": 4,
         "goalsFor": 22,
-        "goalsAgainst": 12,
-        "goalDiff": 10,
+        "goalsAgainst": 14,
+        "goalDiff": 8,
         "prefectureRank": 8,
         "leagueRank": 3,
         "aliases": [
@@ -3768,10 +3768,24 @@
         "leagueRank": 5
       },
       {
+        "name": "開志学園JSC 2nd",
+        "league": "新潟県1部",
+        "points": 13,
+        "played": 11,
+        "won": 4,
+        "drawn": 1,
+        "lost": 6,
+        "goalsFor": 15,
+        "goalsAgainst": 26,
+        "leagueRank": 6,
+        "rank": 15,
+        "prefectureRank": 15
+      },
+      {
         "id": "ni011",
         "name": "北越高校2nd",
         "league": "新潟県1部",
-        "rank": 15,
+        "rank": 16,
         "points": 11,
         "played": 11,
         "won": 3,
@@ -3780,25 +3794,11 @@
         "goalsFor": 17,
         "goalsAgainst": 23,
         "goalDiff": -6,
-        "prefectureRank": 15,
-        "leagueRank": 6,
+        "prefectureRank": 16,
+        "leagueRank": 7,
         "aliases": [
           "北越2nd"
         ]
-      },
-      {
-        "name": "開志学園JSC 2nd",
-        "league": "新潟県1部",
-        "points": 10,
-        "played": 10,
-        "won": 3,
-        "drawn": 1,
-        "lost": 6,
-        "goalsFor": 13,
-        "goalsAgainst": 26,
-        "leagueRank": 7,
-        "rank": 16,
-        "prefectureRank": 16
       },
       {
         "id": "ni017",
@@ -5224,23 +5224,24 @@
         "leagueRank": 6
       },
       {
-        "name": "藤枝明誠高校2nd",
+        "id": "s007",
+        "name": "静岡学園高校2nd",
         "league": "静岡県Aリーグ",
+        "rank": 12,
         "points": 15,
-        "played": 9,
+        "played": 10,
         "won": 4,
         "drawn": 3,
-        "lost": 2,
-        "goalsFor": 11,
-        "goalsAgainst": 9,
-        "leagueRank": 6,
-        "rank": 12,
+        "lost": 3,
+        "goalsFor": 26,
+        "goalsAgainst": 12,
         "prefectureRank": 12,
+        "goalDiff": 14,
+        "leagueRank": 6,
         "aliases": [
-          "藤枝明誠②",
-          "藤枝明誠2nd"
-        ],
-        "goalDiff": 2
+          "静岡学園高校II",
+          "静岡学園②"
+        ]
       },
       {
         "id": "s008",
@@ -5259,24 +5260,23 @@
         "leagueRank": 8
       },
       {
-        "id": "s007",
-        "name": "静岡学園高校2nd",
+        "name": "藤枝明誠高校2nd",
         "league": "静岡県Aリーグ",
-        "rank": 14,
-        "points": 12,
+        "points": 15,
         "played": 9,
-        "won": 3,
+        "won": 4,
         "drawn": 3,
-        "lost": 3,
-        "goalsFor": 21,
-        "goalsAgainst": 11,
-        "prefectureRank": 14,
-        "goalDiff": 10,
+        "lost": 2,
+        "goalsFor": 11,
+        "goalsAgainst": 9,
         "leagueRank": 7,
+        "rank": 14,
+        "prefectureRank": 14,
         "aliases": [
-          "静岡学園高校II",
-          "静岡学園②"
-        ]
+          "藤枝明誠②",
+          "藤枝明誠2nd"
+        ],
+        "goalDiff": 2
       },
       {
         "id": "s009",
@@ -5316,13 +5316,13 @@
         "league": "静岡県Aリーグ",
         "rank": 17,
         "points": 3,
-        "played": 9,
+        "played": 10,
         "won": 1,
         "drawn": 0,
-        "lost": 8,
-        "goalsFor": 6,
-        "goalsAgainst": 33,
-        "goalDiff": -27,
+        "lost": 9,
+        "goalsFor": 7,
+        "goalsAgainst": 38,
+        "goalDiff": -31,
         "prefectureRank": 17,
         "leagueRank": 9
       },
@@ -7031,15 +7031,15 @@
         "name": "生駒高校",
         "league": "奈良県NFAサッカーリーグ",
         "rank": 4,
-        "points": 19,
-        "played": 10,
-        "won": 6,
+        "points": 22,
+        "played": 11,
+        "won": 7,
         "drawn": 1,
         "lost": 3,
-        "goalsFor": 23,
-        "goalsAgainst": 12,
+        "goalsFor": 29,
+        "goalsAgainst": 16,
         "prefectureRank": 4,
-        "goalDiff": 11,
+        "goalDiff": 13,
         "leagueRank": 4
       },
       {
@@ -7112,14 +7112,14 @@
         "league": "奈良県NFAサッカーリーグ",
         "rank": 9,
         "points": 5,
-        "played": 10,
+        "played": 11,
         "won": 1,
         "drawn": 2,
-        "lost": 7,
-        "goalsFor": 8,
-        "goalsAgainst": 25,
+        "lost": 8,
+        "goalsFor": 12,
+        "goalsAgainst": 31,
         "prefectureRank": 9,
-        "goalDiff": -17,
+        "goalDiff": -19,
         "leagueRank": 9
       },
       {
@@ -11200,7 +11200,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-05 23:12",
+    "lastUpdated": "2026-09-06 00:46",
     "year": 2026,
     "updatedCount": 519
   }
