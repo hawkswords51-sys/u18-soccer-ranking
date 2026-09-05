@@ -1,9 +1,16 @@
 name: 高円宮杯 順位自動更新
 
 on:
-  # 毎日 7:00 JST (= UTC 22:00) に自動実行
+  # 毎日 7:00 JST (= UTC 22:00) と 22:00 JST (= UTC 13:00) の2回、自動実行
+  #  - 7:00 JST … 従来からの朝の更新
+  #  - 22:00 JST … [2026-09-05追加] 試合当日の夜に結果を反映するため。
+  #    プレミアはJFA公式JSONから取るので、夕方の試合もその日のうちにサイトへ出る。
+  #    Keiの希望は「土日祝の夜だけ」だが、GitHub Actionsのcronは日本の祝日を判定できず、
+  #    土日限定にすると祝日開催（プレミアでは普通にある）を取りこぼすため毎日回す。
+  #    試合が無い日は「変更なし」で終わるだけなので害はない。
   schedule:
     - cron: '0 22 * * *'
+    - cron: '0 13 * * *'
 
   # 手動実行ボタンもGitHub画面から使えるようにする
   workflow_dispatch:
@@ -66,6 +73,20 @@ jobs:
           pip install selenium webdriver-manager pyyaml markdown
           pip install pandas lxml
           pip install pdfplumber
+
+      # ★ プレミアEAST/WESTはJFA公式JSONが正本（2026-09-05〜）
+      #   ここで成功したリーグは、この後の update.py / update_cross_tables.py が
+      #   koko-soccer で上書きしないようスキップする（古い順位に戻る事故を防ぐ）。
+      #   取得や検算に失敗したら何も書かずに終わるので、その場合は従来どおりkokoが使われる。
+      - name: プレミアリーグをJFA公式JSONから更新
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_jfa_premier.py ]; then
+            python scraper/fetch_jfa_premier.py
+          else
+            echo "scraper/fetch_jfa_premier.py がまだありません。スキップ。"
+          fi
 
       - name: 順位データを更新
         if: ${{ github.event_name != 'push' }}

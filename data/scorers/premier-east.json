@@ -1,9 +1,11 @@
 {
   "league": "高円宮杯 JFA U-18 プレミアリーグ 2026 EAST 得点ランキング",
   "season": "2026",
-  "source": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/rankings.html",
-  "lastUpdated": "2026-08-31",
-  "note": "出典：JFA公式の得点ランキング（プレミアリーグ）。",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/",
+  "sourceLabel": "JFA公式",
+  "lastUpdated": "2026-09-05",
+  "asof": "2026-09-05",
+  "note": "2得点以上の選手を掲載。JFA公式の試合記録に載っている得点者を全試合ぶん集計したもの。オウンゴールは個人の得点に数えていません。",
   "scorers": [
     {
       "rank": 1,
@@ -37,14 +39,8 @@
     },
     {
       "rank": 6,
-      "name": "平島 大悟",
-      "team": "鹿島",
-      "goals": 6
-    },
-    {
-      "rank": 6,
-      "name": "石渡 智也",
-      "team": "鹿島",
+      "name": "立石 陽向",
+      "team": "前橋育英",
       "goals": 6
     },
     {
@@ -60,22 +56,257 @@
       "goals": 6
     },
     {
-      "rank": 10,
+      "rank": 6,
+      "name": "平島 大悟",
+      "team": "鹿島",
+      "goals": 6
+    },
+    {
+      "rank": 6,
+      "name": "石渡 智也",
+      "team": "鹿島",
+      "goals": 6
+    },
+    {
+      "rank": 11,
       "name": "木下 勝正",
       "team": "川崎F",
       "goals": 5
     },
     {
-      "rank": 10,
-      "name": "立石 陽向",
-      "team": "前橋育英",
-      "goals": 5
-    },
-    {
-      "rank": 10,
+      "rank": 11,
       "name": "和食 陽向",
       "team": "帝京長岡",
       "goals": 5
+    },
+    {
+      "rank": 13,
+      "name": "関 蒼葉",
+      "team": "前橋育英",
+      "goals": 4
+    },
+    {
+      "rank": 13,
+      "name": "岡中 舜",
+      "team": "帝京長岡",
+      "goals": 4
+    },
+    {
+      "rank": 13,
+      "name": "島田 大雅",
+      "team": "昌平",
+      "goals": 4
+    },
+    {
+      "rank": 13,
+      "name": "立野 京弥",
+      "team": "昌平",
+      "goals": 4
+    },
+    {
+      "rank": 13,
+      "name": "巻渕 彪悟",
+      "team": "柏",
+      "goals": 4
+    },
+    {
+      "rank": 13,
+      "name": "原田 幸",
+      "team": "青森山田",
+      "goals": 4
+    },
+    {
+      "rank": 13,
+      "name": "石井 珂那汰",
+      "team": "青森山田",
+      "goals": 4
+    },
+    {
+      "rank": 20,
+      "name": "中野 寛基",
+      "team": "FC東京",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "友松 祐貴",
+      "team": "FC東京",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "佐々木 亮",
+      "team": "仙台",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "小川 尋斗",
+      "team": "川崎F",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "廣瀬 寧生",
+      "team": "川崎F",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "古賀 大雅",
+      "team": "東京V",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "広瀬 怜音",
+      "team": "東京V",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "三國 ケースマン エブス",
+      "team": "青森山田",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "藤原 優人",
+      "team": "青森山田",
+      "goals": 3
+    },
+    {
+      "rank": 20,
+      "name": "髙木 瑛人",
+      "team": "鹿島",
+      "goals": 3
+    },
+    {
+      "rank": 30,
+      "name": "井部 結斗",
+      "team": "FC東京",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "松野 泰知",
+      "team": "FC東京",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "田中 遥大",
+      "team": "FC東京",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "菊池 倖征",
+      "team": "仙台",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "木下 遙",
+      "team": "前橋育英",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "深見 翔太",
+      "team": "前橋育英",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "川村 求",
+      "team": "川崎F",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "服部 啓翔",
+      "team": "帝京長岡",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "秋山 陽登",
+      "team": "帝京長岡",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "霧生 海伊",
+      "team": "帝京長岡",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "飯島 碧大",
+      "team": "昌平",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "木下 晴天",
+      "team": "東京V",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "若月 蓮",
+      "team": "東京V",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "上野 暉晏",
+      "team": "柏",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "五十嵐 陵",
+      "team": "柏",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "茂木 勇人 チュクソム",
+      "team": "柏",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "宮崎 泰史",
+      "team": "横浜FC",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "小島 頂嵯",
+      "team": "横浜FC",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "大徳 剛矢",
+      "team": "流経大柏",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "平野 万緑",
+      "team": "流経大柏",
+      "goals": 2
+    },
+    {
+      "rank": 30,
+      "name": "曽ヶ端 輝",
+      "team": "鹿島",
+      "goals": 2
     }
-  ]
+  ],
+  "coverage": []
 }

@@ -1,7 +1,8 @@
 {
   "league": "高円宮杯 JFA U-18 プレミアリーグ 2026 EAST",
   "season": "2026",
-  "source": "https://koko-soccer.com/score/4359",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-05",
   "teams": [
     {
@@ -70,16 +71,28 @@
       "rank": 2,
       "team": "鹿島アントラーズユース",
       "pts": 24,
-      "played": 11,
+      "played": 12,
       "won": 8,
       "drawn": 0,
-      "lost": 3,
+      "lost": 4,
       "gf": 34,
-      "ga": 16,
-      "gd": 18
+      "ga": 18,
+      "gd": 16
     },
     {
       "rank": 3,
+      "team": "柏レイソルU-18",
+      "pts": 23,
+      "played": 12,
+      "won": 7,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 16,
+      "ga": 8,
+      "gd": 8
+    },
+    {
+      "rank": 4,
       "team": "FC東京U-18",
       "pts": 22,
       "played": 11,
@@ -89,18 +102,6 @@
       "gf": 28,
       "ga": 15,
       "gd": 13
-    },
-    {
-      "rank": 4,
-      "team": "柏レイソルU-18",
-      "pts": 20,
-      "played": 11,
-      "won": 6,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 14,
-      "ga": 8,
-      "gd": 6
     },
     {
       "rank": 5,
@@ -203,29 +204,56 @@
     {
       "md": 1,
       "date": "2026-04-04",
-      "home": "昌平",
-      "hs": 3,
-      "as": 0,
-      "away": "東京ヴェルディユース",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
       "home": "FC東京U-18",
       "hs": 3,
       "as": 0,
       "away": "青森山田",
-      "status": "played"
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "15:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m102.pdf",
+      "homeScorers": [
+        {
+          "minute": "7",
+          "name": "中野 寛基"
+        },
+        {
+          "minute": "13",
+          "name": "樋口 佳"
+        },
+        {
+          "minute": "45+4",
+          "name": "樋口 佳"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 1,
-      "date": "2026-04-05",
-      "home": "鹿島アントラーズユース",
-      "hs": 0,
-      "as": 2,
-      "away": "柏レイソルU-18",
-      "status": "played"
+      "date": "2026-04-04",
+      "home": "昌平",
+      "hs": 3,
+      "as": 0,
+      "away": "東京ヴェルディユース",
+      "status": "played",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m101.pdf",
+      "homeScorers": [
+        {
+          "minute": "8",
+          "name": "松本 太佑"
+        },
+        {
+          "minute": "32",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "69",
+          "name": "島田 大雅"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 1,
@@ -234,16 +262,21 @@
       "hs": 0,
       "as": 2,
       "away": "流通経済大柏",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-05",
-      "home": "横浜FCユース",
-      "hs": 0,
-      "as": 1,
-      "away": "帝京長岡",
-      "status": "played"
+      "status": "played",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m104.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "20",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "51",
+          "name": "渡辺 瞳也"
+        }
+      ]
     },
     {
       "md": 1,
@@ -252,7 +285,54 @@
       "hs": 0,
       "as": 0,
       "away": "ベガルタ仙台ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m106.pdf",
+      "homeScorers": [],
+      "awayScorers": []
+    },
+    {
+      "md": 1,
+      "date": "2026-04-05",
+      "home": "横浜FCユース",
+      "hs": 0,
+      "as": 1,
+      "away": "帝京長岡",
+      "status": "played",
+      "venue": "神奈川県立保土ヶ谷公園サッカー場",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m105.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "7",
+          "name": "秋山 陽登"
+        }
+      ]
+    },
+    {
+      "md": 1,
+      "date": "2026-04-05",
+      "home": "鹿島アントラーズユース",
+      "hs": 0,
+      "as": 2,
+      "away": "柏レイソルU-18",
+      "status": "played",
+      "venue": "メルカリスタジアム",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m103.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "77",
+          "name": "岸野 遥大"
+        },
+        {
+          "minute": "90+3",
+          "name": "上野 暉晏"
+        }
+      ]
     },
     {
       "md": 2,
@@ -261,7 +341,70 @@
       "hs": 1,
       "as": 4,
       "away": "前橋育英",
-      "status": "played"
+      "status": "played",
+      "venue": "アイリストレーニングフィールド",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m201.pdf",
+      "homeScorers": [
+        {
+          "minute": "63",
+          "name": "菊池 倖征"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "16",
+          "name": "川口 優"
+        },
+        {
+          "minute": "19",
+          "name": "深見 翔太"
+        },
+        {
+          "minute": "46",
+          "name": "瀬間 飛結"
+        },
+        {
+          "minute": "52",
+          "name": "木下 遙"
+        }
+      ]
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "東京ヴェルディユース",
+      "hs": 3,
+      "as": 2,
+      "away": "川崎フロンターレU-18",
+      "status": "played",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m204.pdf",
+      "homeScorers": [
+        {
+          "minute": "17",
+          "name": "若月 蓮"
+        },
+        {
+          "minute": "90",
+          "name": "鈴木 暖人"
+        },
+        {
+          "minute": "90+2",
+          "name": "中山 太輝"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "60",
+          "name": "川村 求"
+        },
+        {
+          "minute": "70",
+          "name": "木下 勝正"
+        }
+      ]
     },
     {
       "md": 2,
@@ -270,7 +413,12 @@
       "hs": 0,
       "as": 0,
       "away": "FC東京U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m202.pdf",
+      "homeScorers": [],
+      "awayScorers": []
     },
     {
       "md": 2,
@@ -279,25 +427,21 @@
       "hs": 2,
       "as": 0,
       "away": "横浜FCユース",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "東京ヴェルディユース",
-      "hs": 3,
-      "as": 2,
-      "away": "川崎フロンターレU-18",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-12",
-      "home": "青森山田",
-      "hs": 1,
-      "as": 0,
-      "away": "昌平",
-      "status": "played"
+      "status": "played",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m203.pdf",
+      "homeScorers": [
+        {
+          "minute": "3",
+          "name": "福田 明史"
+        },
+        {
+          "minute": "45",
+          "name": "平野 万緑"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 2,
@@ -306,16 +450,57 @@
       "hs": 2,
       "as": 4,
       "away": "鹿島アントラーズユース",
-      "status": "played"
+      "status": "played",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m206.pdf",
+      "homeScorers": [
+        {
+          "minute": "16",
+          "name": "岡中 舜"
+        },
+        {
+          "minute": "61",
+          "name": "児山 雅稀"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "27",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "40",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "49",
+          "name": "石渡 智也"
+        },
+        {
+          "minute": "51",
+          "name": "吉田 湊海"
+        }
+      ]
     },
     {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "横浜FCユース",
-      "hs": 0,
-      "as": 1,
-      "away": "ベガルタ仙台ユース",
-      "status": "played"
+      "md": 2,
+      "date": "2026-04-12",
+      "home": "青森山田",
+      "hs": 1,
+      "as": 0,
+      "away": "昌平",
+      "status": "played",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m205.pdf",
+      "homeScorers": [
+        {
+          "minute": "66",
+          "name": "水谷 鉄生"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 3,
@@ -324,34 +509,49 @@
       "hs": 3,
       "as": 1,
       "away": "昌平",
-      "status": "played"
+      "status": "played",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m302.pdf",
+      "homeScorers": [
+        {
+          "minute": "9",
+          "name": "木下 勝正"
+        },
+        {
+          "minute": "49",
+          "name": "山川 陽平"
+        },
+        {
+          "minute": "82",
+          "name": "藤田 明日翔"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "6",
+          "name": "飯島 碧大"
+        }
+      ]
     },
     {
       "md": 3,
-      "date": "2026-04-19",
-      "home": "柏レイソルU-18",
-      "hs": 2,
-      "as": 0,
-      "away": "青森山田",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-19",
-      "home": "鹿島アントラーズユース",
-      "hs": 3,
-      "as": 1,
-      "away": "流通経済大柏",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-19",
-      "home": "前橋育英",
+      "date": "2026-04-18",
+      "home": "横浜FCユース",
       "hs": 0,
-      "as": 0,
-      "away": "東京ヴェルディユース",
-      "status": "played"
+      "as": 1,
+      "away": "ベガルタ仙台ユース",
+      "status": "played",
+      "venue": "ニッパツ三ツ沢球技場",
+      "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m301.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "62",
+          "name": "阿部 青空"
+        }
+      ]
     },
     {
       "md": 3,
@@ -360,16 +560,103 @@
       "hs": 4,
       "as": 1,
       "away": "帝京長岡",
-      "status": "played"
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "15:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m306.pdf",
+      "homeScorers": [
+        {
+          "minute": "29",
+          "name": "中野 寛基"
+        },
+        {
+          "minute": "45+3",
+          "name": "友松 祐貴"
+        },
+        {
+          "minute": "84",
+          "name": "オノノジュ 類主"
+        },
+        {
+          "minute": "90+1",
+          "name": "梶山 蓮翔"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "57",
+          "name": "児山 雅稀"
+        }
+      ]
     },
     {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "青森山田",
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "前橋育英",
+      "hs": 0,
+      "as": 0,
+      "away": "東京ヴェルディユース",
+      "status": "played",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m304.pdf",
+      "homeScorers": [],
+      "awayScorers": []
+    },
+    {
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "柏レイソルU-18",
       "hs": 2,
-      "as": 3,
-      "away": "川崎フロンターレU-18",
-      "status": "played"
+      "as": 0,
+      "away": "青森山田",
+      "status": "played",
+      "venue": "日立柏サッカー場",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m303.pdf",
+      "homeScorers": [
+        {
+          "minute": "78",
+          "name": "巻渕 彪悟"
+        },
+        {
+          "minute": "81",
+          "name": "巻渕 彪悟"
+        }
+      ],
+      "awayScorers": []
+    },
+    {
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "鹿島アントラーズユース",
+      "hs": 3,
+      "as": 1,
+      "away": "流通経済大柏",
+      "status": "played",
+      "venue": "メルカリスタジアム サブグラウンド",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m305.pdf",
+      "homeScorers": [
+        {
+          "minute": "10",
+          "name": "大貫 琉偉"
+        },
+        {
+          "minute": "14",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "33",
+          "name": "石渡 智也"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "75",
+          "name": "真壁 英人"
+        }
+      ]
     },
     {
       "md": 4,
@@ -378,7 +665,33 @@
       "hs": 0,
       "as": 5,
       "away": "鹿島アントラーズユース",
-      "status": "played"
+      "status": "played",
+      "venue": "アイリストレーニングフィールド",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m402.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "30",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "43",
+          "name": "曽ヶ端 輝"
+        },
+        {
+          "minute": "45+3",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "56",
+          "name": "曽ヶ端 輝"
+        },
+        {
+          "minute": "90",
+          "name": "吉田 湊海"
+        }
+      ]
     },
     {
       "md": 4,
@@ -387,7 +700,30 @@
       "hs": 3,
       "as": 1,
       "away": "柏レイソルU-18",
-      "status": "played"
+      "status": "played",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m403.pdf",
+      "homeScorers": [
+        {
+          "minute": "9",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "52",
+          "name": "和食 陽向"
+        },
+        {
+          "minute": "70",
+          "name": "臼井 珀真"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "19",
+          "name": "加茂 結斗"
+        }
+      ]
     },
     {
       "md": 4,
@@ -396,7 +732,22 @@
       "hs": 1,
       "as": 1,
       "away": "前橋育英",
-      "status": "played"
+      "status": "played",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m404.pdf",
+      "homeScorers": [
+        {
+          "minute": "33",
+          "name": "工藤 敦士"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "52",
+          "name": "関 蒼葉"
+        }
+      ]
     },
     {
       "md": 4,
@@ -405,7 +756,57 @@
       "hs": 2,
       "as": 0,
       "away": "横浜FCユース",
-      "status": "played"
+      "status": "played",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m405.pdf",
+      "homeScorers": [
+        {
+          "minute": "43",
+          "name": "古賀 大雅"
+        },
+        {
+          "minute": "79",
+          "name": "鈴木 暖人"
+        }
+      ],
+      "awayScorers": []
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "青森山田",
+      "hs": 2,
+      "as": 3,
+      "away": "川崎フロンターレU-18",
+      "status": "played",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m401.pdf",
+      "homeScorers": [
+        {
+          "minute": "49",
+          "name": "三國 ケースマン エブス"
+        },
+        {
+          "minute": "85",
+          "name": "森明 陽磨"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "15",
+          "name": "川村 求"
+        },
+        {
+          "minute": "45+3",
+          "name": "廣瀬 寧生"
+        },
+        {
+          "minute": "56",
+          "name": "小川 尋斗"
+        }
+      ]
     },
     {
       "md": 4,
@@ -414,7 +815,30 @@
       "hs": 3,
       "as": 1,
       "away": "FC東京U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m406.pdf",
+      "homeScorers": [
+        {
+          "minute": "23",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "57",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "71",
+          "name": "福田 明史"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "80",
+          "name": "梶山 蓮翔"
+        }
+      ]
     },
     {
       "md": 5,
@@ -423,7 +847,30 @@
       "hs": 3,
       "as": 1,
       "away": "川崎フロンターレU-18",
-      "status": "played"
+      "status": "played",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m501.pdf",
+      "homeScorers": [
+        {
+          "minute": "5",
+          "name": "関 蒼葉"
+        },
+        {
+          "minute": "75",
+          "name": "山本 翼"
+        },
+        {
+          "minute": "82",
+          "name": "立石 陽向"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "3",
+          "name": "廣瀬 寧生"
+        }
+      ]
     },
     {
       "md": 5,
@@ -432,7 +879,26 @@
       "hs": 1,
       "as": 2,
       "away": "青森山田",
-      "status": "played"
+      "status": "played",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m502.pdf",
+      "homeScorers": [
+        {
+          "minute": "53",
+          "name": "児山 雅稀"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "30",
+          "name": "石井 珂那汰"
+        },
+        {
+          "minute": "76",
+          "name": "三國 ケースマン エブス"
+        }
+      ]
     },
     {
       "md": 5,
@@ -441,7 +907,42 @@
       "hs": 4,
       "as": 3,
       "away": "昌平",
-      "status": "played"
+      "status": "played",
+      "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
+      "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m503.pdf",
+      "homeScorers": [
+        {
+          "minute": "4",
+          "name": "鈴木 晴弥"
+        },
+        {
+          "minute": "16",
+          "name": "小島 頂嵯"
+        },
+        {
+          "minute": "30",
+          "name": "福岡 湧大"
+        },
+        {
+          "minute": "76",
+          "name": "黒木 星南"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "38",
+          "name": "島田 大雅"
+        },
+        {
+          "minute": "54",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "90",
+          "name": "長谷川 昂星"
+        }
+      ]
     },
     {
       "md": 5,
@@ -450,16 +951,34 @@
       "hs": 2,
       "as": 3,
       "away": "東京ヴェルディユース",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "柏レイソルU-18",
-      "hs": 0,
-      "as": 1,
-      "away": "流通経済大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m504.pdf",
+      "homeScorers": [
+        {
+          "minute": "11",
+          "name": "大島 琉空"
+        },
+        {
+          "minute": "66",
+          "name": "平島 大悟"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "41",
+          "name": "古賀 大雅"
+        },
+        {
+          "minute": "51",
+          "name": "広瀬 怜音"
+        },
+        {
+          "minute": "68",
+          "name": "広瀬 怜音"
+        }
+      ]
     },
     {
       "md": 5,
@@ -468,43 +987,44 @@
       "hs": 3,
       "as": 0,
       "away": "ベガルタ仙台ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m506.pdf",
+      "homeScorers": [
+        {
+          "minute": "27",
+          "name": "梶山 蓮翔"
+        },
+        {
+          "minute": "50",
+          "name": "樋口 佳"
+        },
+        {
+          "minute": "74",
+          "name": "樋口 佳"
+        }
+      ],
+      "awayScorers": []
     },
     {
-      "md": 6,
-      "date": "2026-05-05",
-      "home": "青森山田",
-      "hs": 1,
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "柏レイソルU-18",
+      "hs": 0,
       "as": 1,
-      "away": "前橋育英",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-05",
-      "home": "昌平",
-      "hs": 1,
-      "as": 3,
-      "away": "鹿島アントラーズユース",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-05",
-      "home": "流通経済大柏",
-      "hs": 1,
-      "as": 0,
-      "away": "帝京長岡",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-05",
-      "home": "東京ヴェルディユース",
-      "hs": 2,
-      "as": 4,
-      "away": "FC東京U-18",
-      "status": "played"
+      "away": "流通経済大柏",
+      "status": "played",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m505.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "90",
+          "name": "渡辺 瞳也"
+        }
+      ]
     },
     {
       "md": 6,
@@ -513,7 +1033,145 @@
       "hs": 2,
       "as": 2,
       "away": "横浜FCユース",
-      "status": "played"
+      "status": "played",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m605.pdf",
+      "homeScorers": [
+        {
+          "minute": "4",
+          "name": "小川 尋斗"
+        },
+        {
+          "minute": "85",
+          "name": "全 天海"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "1",
+          "name": "宮崎 泰史"
+        },
+        {
+          "minute": "69",
+          "name": "宮崎 泰史"
+        }
+      ]
+    },
+    {
+      "md": 6,
+      "date": "2026-05-05",
+      "home": "昌平",
+      "hs": 1,
+      "as": 3,
+      "away": "鹿島アントラーズユース",
+      "status": "played",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m602.pdf",
+      "homeScorers": [
+        {
+          "minute": "82",
+          "name": "島田 大雅"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "28",
+          "name": "礒部 怜夢"
+        },
+        {
+          "minute": "65",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "75",
+          "name": "吉田 湊海"
+        }
+      ]
+    },
+    {
+      "md": 6,
+      "date": "2026-05-05",
+      "home": "東京ヴェルディユース",
+      "hs": 2,
+      "as": 4,
+      "away": "FC東京U-18",
+      "status": "played",
+      "venue": "ＡＧＦフィールド",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m604.pdf",
+      "homeScorers": [
+        {
+          "minute": "68",
+          "name": "鈴木 暖人"
+        },
+        {
+          "minute": "90",
+          "name": "沼田 晃人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "31",
+          "name": "樋口 佳"
+        },
+        {
+          "minute": "48",
+          "name": "樋口 佳"
+        },
+        {
+          "minute": "64",
+          "name": "樋口 佳"
+        },
+        {
+          "minute": "83",
+          "name": "中野 寛基"
+        }
+      ]
+    },
+    {
+      "md": 6,
+      "date": "2026-05-05",
+      "home": "流通経済大柏",
+      "hs": 1,
+      "as": 0,
+      "away": "帝京長岡",
+      "status": "played",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m603.pdf",
+      "homeScorers": [
+        {
+          "minute": "54",
+          "name": "大徳 剛矢"
+        }
+      ],
+      "awayScorers": []
+    },
+    {
+      "md": 6,
+      "date": "2026-05-05",
+      "home": "青森山田",
+      "hs": 1,
+      "as": 1,
+      "away": "前橋育英",
+      "status": "played",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m601.pdf",
+      "homeScorers": [
+        {
+          "minute": "90+2",
+          "name": "三國 ケースマン エブス"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "78",
+          "name": "中村 孝成"
+        }
+      ]
     },
     {
       "md": 6,
@@ -522,7 +1180,22 @@
       "hs": 1,
       "as": 1,
       "away": "柏レイソルU-18",
-      "status": "played"
+      "status": "played",
+      "venue": "アイリストレーニングフィールド",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m606.pdf",
+      "homeScorers": [
+        {
+          "minute": "76",
+          "name": "佐々木 亮"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "20",
+          "name": "黒沢 碧"
+        }
+      ]
     },
     {
       "md": 7,
@@ -531,16 +1204,25 @@
       "hs": 3,
       "as": 0,
       "away": "川崎フロンターレU-18",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-10",
-      "home": "流通経済大柏",
-      "hs": 2,
-      "as": 0,
-      "away": "東京ヴェルディユース",
-      "status": "played"
+      "status": "played",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m701.pdf",
+      "homeScorers": [
+        {
+          "minute": "34",
+          "name": "阿出川 琥吾"
+        },
+        {
+          "minute": "58",
+          "name": "巻渕 彪悟"
+        },
+        {
+          "minute": "90+3",
+          "name": "五十嵐 陵"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 7,
@@ -549,7 +1231,17 @@
       "hs": 0,
       "as": 1,
       "away": "前橋育英",
-      "status": "played"
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m703.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "35",
+          "name": "立石 陽向"
+        }
+      ]
     },
     {
       "md": 7,
@@ -558,7 +1250,26 @@
       "hs": 1,
       "as": 2,
       "away": "青森山田",
-      "status": "played"
+      "status": "played",
+      "venue": "ＷＡＣＫ女川スタジアム",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m704.pdf",
+      "homeScorers": [
+        {
+          "minute": "68",
+          "name": "佐々木 亮"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "53",
+          "name": "石井 珂那汰"
+        },
+        {
+          "minute": "74",
+          "name": "原田 幸"
+        }
+      ]
     },
     {
       "md": 7,
@@ -567,7 +1278,58 @@
       "hs": 4,
       "as": 1,
       "away": "昌平",
-      "status": "played"
+      "status": "played",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m705.pdf",
+      "homeScorers": [
+        {
+          "minute": "18",
+          "name": "岡中 舜"
+        },
+        {
+          "minute": "45+4",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "48",
+          "name": "和食 陽向"
+        },
+        {
+          "minute": "80",
+          "name": "児山 雅稀"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "51",
+          "name": "オウンゴール",
+          "ownGoal": true
+        }
+      ]
+    },
+    {
+      "md": 7,
+      "date": "2026-05-10",
+      "home": "流通経済大柏",
+      "hs": 2,
+      "as": 0,
+      "away": "東京ヴェルディユース",
+      "status": "played",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m702.pdf",
+      "homeScorers": [
+        {
+          "minute": "6",
+          "name": "平野 万緑"
+        },
+        {
+          "minute": "90",
+          "name": "渡辺 瞳也"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 7,
@@ -576,25 +1338,21 @@
       "hs": 2,
       "as": 0,
       "away": "横浜FCユース",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-05-16",
-      "home": "横浜FCユース",
-      "hs": 1,
-      "as": 2,
-      "away": "FC東京U-18",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-05-16",
-      "home": "鹿島アントラーズユース",
-      "hs": 5,
-      "as": 2,
-      "away": "青森山田",
-      "status": "played"
+      "status": "played",
+      "venue": "メルカリスタジアム サブグラウンド",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m706.pdf",
+      "homeScorers": [
+        {
+          "minute": "6",
+          "name": "石渡 智也"
+        },
+        {
+          "minute": "52",
+          "name": "平島 大悟"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 8,
@@ -603,7 +1361,102 @@
       "hs": 2,
       "as": 2,
       "away": "ベガルタ仙台ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m803.pdf",
+      "homeScorers": [
+        {
+          "minute": "8",
+          "name": "古賀 大雅"
+        },
+        {
+          "minute": "67",
+          "name": "鈴木 暖人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "15",
+          "name": "佐々木 亮"
+        },
+        {
+          "minute": "90+5",
+          "name": "菊池 倖征"
+        }
+      ]
+    },
+    {
+      "md": 8,
+      "date": "2026-05-16",
+      "home": "横浜FCユース",
+      "hs": 1,
+      "as": 2,
+      "away": "FC東京U-18",
+      "status": "played",
+      "venue": "神奈川県立保土ヶ谷公園サッカー場",
+      "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m801.pdf",
+      "homeScorers": [
+        {
+          "minute": "90+4",
+          "name": "川端 里季"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "25",
+          "name": "田中 遥大"
+        },
+        {
+          "minute": "73",
+          "name": "梶山 蓮翔"
+        }
+      ]
+    },
+    {
+      "md": 8,
+      "date": "2026-05-16",
+      "home": "鹿島アントラーズユース",
+      "hs": 5,
+      "as": 2,
+      "away": "青森山田",
+      "status": "played",
+      "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m802.pdf",
+      "homeScorers": [
+        {
+          "minute": "33",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "61",
+          "name": "石渡 智也"
+        },
+        {
+          "minute": "69",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "77",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "78",
+          "name": "石渡 智也"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "64",
+          "name": "原田 幸"
+        },
+        {
+          "minute": "74",
+          "name": "石井 珂那汰"
+        }
+      ]
     },
     {
       "md": 8,
@@ -612,16 +1465,17 @@
       "hs": 0,
       "as": 1,
       "away": "柏レイソルU-18",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-05-17",
-      "home": "昌平",
-      "hs": 0,
-      "as": 1,
-      "away": "流通経済大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m804.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "4",
+          "name": "巻渕 彪悟"
+        }
+      ]
     },
     {
       "md": 8,
@@ -630,7 +1484,53 @@
       "hs": 2,
       "as": 3,
       "away": "帝京長岡",
-      "status": "played"
+      "status": "played",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m806.pdf",
+      "homeScorers": [
+        {
+          "minute": "76",
+          "name": "木下 勝正"
+        },
+        {
+          "minute": "83",
+          "name": "木下 勝正"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "2",
+          "name": "和食 陽向"
+        },
+        {
+          "minute": "35",
+          "name": "霧生 海伊"
+        },
+        {
+          "minute": "87",
+          "name": "服部 啓翔"
+        }
+      ]
+    },
+    {
+      "md": 8,
+      "date": "2026-05-17",
+      "home": "昌平",
+      "hs": 0,
+      "as": 1,
+      "away": "流通経済大柏",
+      "status": "played",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m805.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "81",
+          "name": "渡辺 瞳也"
+        }
+      ]
     },
     {
       "md": 9,
@@ -639,7 +1539,29 @@
       "hs": 0,
       "as": 4,
       "away": "流通経済大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "アイリストレーニングフィールド",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m901.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "4",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "8",
+          "name": "大徳 剛矢"
+        },
+        {
+          "minute": "9",
+          "name": "福田 明史"
+        },
+        {
+          "minute": "82",
+          "name": "小澤 悠輝"
+        }
+      ]
     },
     {
       "md": 9,
@@ -648,16 +1570,42 @@
       "hs": 4,
       "as": 3,
       "away": "鹿島アントラーズユース",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-05-23",
-      "home": "昌平",
-      "hs": 1,
-      "as": 0,
-      "away": "柏レイソルU-18",
-      "status": "played"
+      "status": "played",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m902.pdf",
+      "homeScorers": [
+        {
+          "minute": "41",
+          "name": "立石 陽向"
+        },
+        {
+          "minute": "66",
+          "name": "深見 翔太"
+        },
+        {
+          "minute": "82",
+          "name": "立石 陽向"
+        },
+        {
+          "minute": "90+3",
+          "name": "立石 陽向"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "17",
+          "name": "吉田 湊海"
+        },
+        {
+          "minute": "45+2",
+          "name": "石渡 智也"
+        },
+        {
+          "minute": "76",
+          "name": "吉田 湊海"
+        }
+      ]
     },
     {
       "md": 9,
@@ -666,7 +1614,61 @@
       "hs": 2,
       "as": 5,
       "away": "FC東京U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m904.pdf",
+      "homeScorers": [
+        {
+          "minute": "71",
+          "name": "小川 尋斗"
+        },
+        {
+          "minute": "77",
+          "name": "木下 勝正"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "9",
+          "name": "友松 祐貴"
+        },
+        {
+          "minute": "35",
+          "name": "井部 結斗"
+        },
+        {
+          "minute": "38",
+          "name": "樋口 佳"
+        },
+        {
+          "minute": "54",
+          "name": "梶山 蓮翔"
+        },
+        {
+          "minute": "63",
+          "name": "井部 結斗"
+        }
+      ]
+    },
+    {
+      "md": 9,
+      "date": "2026-05-23",
+      "home": "昌平",
+      "hs": 1,
+      "as": 0,
+      "away": "柏レイソルU-18",
+      "status": "played",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m903.pdf",
+      "homeScorers": [
+        {
+          "minute": "90+2",
+          "name": "古川 雄規"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 9,
@@ -675,7 +1677,43 @@
       "hs": 5,
       "as": 2,
       "away": "帝京長岡",
-      "status": "played"
+      "status": "played",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m906.pdf",
+      "homeScorers": [
+        {
+          "minute": "9",
+          "name": "広瀬 怜音"
+        },
+        {
+          "minute": "22",
+          "name": "若月 蓮"
+        },
+        {
+          "minute": "49",
+          "name": "渡邉 春来"
+        },
+        {
+          "minute": "87",
+          "name": "鈴木 暖人"
+        },
+        {
+          "minute": "90",
+          "name": "鈴木 暖人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "12",
+          "name": "オウンゴール",
+          "ownGoal": true
+        },
+        {
+          "minute": "78",
+          "name": "児山 雅稀"
+        }
+      ]
     },
     {
       "md": 9,
@@ -684,25 +1722,25 @@
       "hs": 3,
       "as": 0,
       "away": "横浜FCユース",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-06-20",
-      "home": "鹿島アントラーズユース",
-      "hs": 3,
-      "as": 1,
-      "away": "川崎フロンターレU-18",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-06-20",
-      "home": "横浜FCユース",
-      "hs": 2,
-      "as": 2,
-      "away": "前橋育英",
-      "status": "played"
+      "status": "played",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m905.pdf",
+      "homeScorers": [
+        {
+          "minute": "70",
+          "name": "石井 珂那汰"
+        },
+        {
+          "minute": "81",
+          "name": "藤原 優人"
+        },
+        {
+          "minute": "88",
+          "name": "アンドレアス峯村 拓響ブラックマン"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 10,
@@ -711,7 +1749,42 @@
       "hs": 6,
       "as": 1,
       "away": "昌平",
-      "status": "played"
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1003.pdf",
+      "homeScorers": [
+        {
+          "minute": "18",
+          "name": "梶山 蓮翔"
+        },
+        {
+          "minute": "35",
+          "name": "松野 泰知"
+        },
+        {
+          "minute": "46",
+          "name": "梶山 蓮翔"
+        },
+        {
+          "minute": "55",
+          "name": "友松 祐貴"
+        },
+        {
+          "minute": "60",
+          "name": "田中 遥大"
+        },
+        {
+          "minute": "83",
+          "name": "松野 泰知"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "67",
+          "name": "白須 裕基"
+        }
+      ]
     },
     {
       "md": 10,
@@ -720,7 +1793,150 @@
       "hs": 10,
       "as": 1,
       "away": "ベガルタ仙台ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1004.pdf",
+      "homeScorers": [
+        {
+          "minute": "9",
+          "name": "秋山 陽登"
+        },
+        {
+          "minute": "18",
+          "name": "和食 陽向"
+        },
+        {
+          "minute": "21",
+          "name": "岡中 舜"
+        },
+        {
+          "minute": "45",
+          "name": "霧生 海伊"
+        },
+        {
+          "minute": "45+1",
+          "name": "岡中 舜"
+        },
+        {
+          "minute": "46",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "58",
+          "name": "堀田 宙吾"
+        },
+        {
+          "minute": "62",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "78",
+          "name": "平松 永宇"
+        },
+        {
+          "minute": "86",
+          "name": "服部 啓翔"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "43",
+          "name": "大山 真志"
+        }
+      ]
+    },
+    {
+      "md": 10,
+      "date": "2026-06-20",
+      "home": "横浜FCユース",
+      "hs": 2,
+      "as": 2,
+      "away": "前橋育英",
+      "status": "played",
+      "venue": "ニッパツ三ツ沢球技場",
+      "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1001.pdf",
+      "homeScorers": [
+        {
+          "minute": "11",
+          "name": "小島 頂嵯"
+        },
+        {
+          "minute": "90+4",
+          "name": "吉田 雅哉"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "45+1",
+          "name": "関 蒼葉"
+        },
+        {
+          "minute": "82",
+          "name": "木下 遙"
+        }
+      ]
+    },
+    {
+      "md": 10,
+      "date": "2026-06-20",
+      "home": "鹿島アントラーズユース",
+      "hs": 3,
+      "as": 1,
+      "away": "川崎フロンターレU-18",
+      "status": "played",
+      "venue": "メルカリスタジアム",
+      "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1002.pdf",
+      "homeScorers": [
+        {
+          "minute": "63",
+          "name": "福岡 勇和"
+        },
+        {
+          "minute": "64",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "80",
+          "name": "土井 空芽"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "7",
+          "name": "廣瀬 寧生"
+        }
+      ]
+    },
+    {
+      "md": 10,
+      "date": "2026-06-21",
+      "home": "柏レイソルU-18",
+      "hs": 2,
+      "as": 1,
+      "away": "東京ヴェルディユース",
+      "status": "played",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1006.pdf",
+      "homeScorers": [
+        {
+          "minute": "33",
+          "name": "大木 颯"
+        },
+        {
+          "minute": "55",
+          "name": "茂木 勇人 チュクソム"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "19",
+          "name": "木下 晴天"
+        }
+      ]
     },
     {
       "md": 10,
@@ -729,16 +1945,30 @@
       "hs": 1,
       "as": 3,
       "away": "青森山田",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-06-21",
-      "home": "柏レイソルU-18",
-      "hs": 2,
-      "as": 1,
-      "away": "東京ヴェルディユース",
-      "status": "played"
+      "status": "played",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1005.pdf",
+      "homeScorers": [
+        {
+          "minute": "14",
+          "name": "渡辺 瞳也"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "52",
+          "name": "原田 幸"
+        },
+        {
+          "minute": "57",
+          "name": "藤原 優人"
+        },
+        {
+          "minute": "70",
+          "name": "北島 京悟"
+        }
+      ]
     },
     {
       "md": 11,
@@ -747,34 +1977,26 @@
       "hs": 1,
       "as": 2,
       "away": "昌平",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-06-28",
-      "home": "青森山田",
-      "hs": 3,
-      "as": 2,
-      "away": "東京ヴェルディユース",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-06-28",
-      "home": "柏レイソルU-18",
-      "hs": 2,
-      "as": 1,
-      "away": "横浜FCユース",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-06-28",
-      "home": "帝京長岡",
-      "hs": 2,
-      "as": 0,
-      "away": "前橋育英",
-      "status": "played"
+      "status": "played",
+      "venue": "ユアテックスタジアム仙台",
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1101.pdf",
+      "homeScorers": [
+        {
+          "minute": "86",
+          "name": "甲斐 響太郎"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "9",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "28",
+          "name": "島田 大雅"
+        }
+      ]
     },
     {
       "md": 11,
@@ -783,7 +2005,116 @@
       "hs": 0,
       "as": 4,
       "away": "鹿島アントラーズユース",
-      "status": "played"
+      "status": "played",
+      "venue": "味の素スタジアム",
+      "kickoff": "17:30",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1106.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "25",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "28",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "42",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "75",
+          "name": "吉田 湊海"
+        }
+      ]
+    },
+    {
+      "md": 11,
+      "date": "2026-06-28",
+      "home": "帝京長岡",
+      "hs": 2,
+      "as": 0,
+      "away": "前橋育英",
+      "status": "played",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1105.pdf",
+      "homeScorers": [
+        {
+          "minute": "43",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "56",
+          "name": "和食 陽向"
+        }
+      ],
+      "awayScorers": []
+    },
+    {
+      "md": 11,
+      "date": "2026-06-28",
+      "home": "柏レイソルU-18",
+      "hs": 2,
+      "as": 1,
+      "away": "横浜FCユース",
+      "status": "played",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1104.pdf",
+      "homeScorers": [
+        {
+          "minute": "6",
+          "name": "茂木 勇人 チュクソム"
+        },
+        {
+          "minute": "70",
+          "name": "五十嵐 陵"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "25",
+          "name": "齋藤 翔"
+        }
+      ]
+    },
+    {
+      "md": 11,
+      "date": "2026-06-28",
+      "home": "青森山田",
+      "hs": 3,
+      "as": 2,
+      "away": "東京ヴェルディユース",
+      "status": "played",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1103.pdf",
+      "homeScorers": [
+        {
+          "minute": "36",
+          "name": "原田 幸"
+        },
+        {
+          "minute": "38",
+          "name": "藤原 優人"
+        },
+        {
+          "minute": "88",
+          "name": "小池 晴斗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "6",
+          "name": "木下 晴天"
+        },
+        {
+          "minute": "66",
+          "name": "草間 信"
+        }
+      ]
     },
     {
       "md": 11,
@@ -792,7 +2123,47 @@
       "hs": 2,
       "as": 6,
       "away": "流通経済大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1102.pdf",
+      "homeScorers": [
+        {
+          "minute": "30",
+          "name": "オウンゴール",
+          "ownGoal": true
+        },
+        {
+          "minute": "33",
+          "name": "木村 風斗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "11",
+          "name": "福田 明史"
+        },
+        {
+          "minute": "22",
+          "name": "福田 明史"
+        },
+        {
+          "minute": "45",
+          "name": "福田 明史"
+        },
+        {
+          "minute": "49",
+          "name": "櫻井 亮太"
+        },
+        {
+          "minute": "51",
+          "name": "古川 蒼真"
+        },
+        {
+          "minute": "64",
+          "name": "メンディー サイモン友"
+        }
+      ]
     },
     {
       "md": 12,
@@ -801,16 +2172,22 @@
       "hs": 1,
       "as": 1,
       "away": "川崎フロンターレU-18",
-      "status": "played"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-05",
-      "home": "流通経済大柏",
-      "hs": 1,
-      "as": 2,
-      "away": "前橋育英",
-      "status": "played"
+      "status": "played",
+      "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
+      "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1201.pdf",
+      "homeScorers": [
+        {
+          "minute": "2",
+          "name": "山下 湊司"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "60",
+          "name": "十河 晟央"
+        }
+      ]
     },
     {
       "md": 12,
@@ -819,25 +2196,81 @@
       "hs": 2,
       "as": 2,
       "away": "昌平",
-      "status": "played"
+      "status": "played",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1203.pdf",
+      "homeScorers": [
+        {
+          "minute": "8",
+          "name": "川本 悠祐"
+        },
+        {
+          "minute": "12",
+          "name": "オウンゴール",
+          "ownGoal": true
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "26",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "40",
+          "name": "飯島 碧大"
+        }
+      ]
     },
     {
       "md": 12,
       "date": "2026-09-05",
       "home": "柏レイソルU-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "鹿島アントラーズユース",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "18:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1204.pdf",
+      "homeScorers": [
+        {
+          "minute": "5",
+          "name": "長南 開史"
+        },
+        {
+          "minute": "85",
+          "name": "上野 暉晏"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 12,
-      "date": "2026-09-06",
-      "home": "青森山田",
-      "hs": null,
-      "as": null,
-      "away": "FC東京U-18",
-      "status": "scheduled"
+      "date": "2026-09-05",
+      "home": "流通経済大柏",
+      "hs": 1,
+      "as": 2,
+      "away": "前橋育英",
+      "status": "played",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "30",
+          "name": "井上 颯"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "45+1",
+          "name": "立石 陽向"
+        },
+        {
+          "minute": "60",
+          "name": "関 蒼葉"
+        }
+      ]
     },
     {
       "md": 12,
@@ -846,7 +2279,20 @@
       "hs": null,
       "as": null,
       "away": "横浜FCユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-06",
+      "home": "青森山田",
+      "hs": null,
+      "as": null,
+      "away": "FC東京U-18",
+      "status": "scheduled",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 13,
@@ -855,25 +2301,9 @@
       "hs": null,
       "as": null,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-12",
-      "home": "昌平",
-      "hs": null,
-      "as": null,
-      "away": "青森山田",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-12",
-      "home": "鹿島アントラーズユース",
-      "hs": null,
-      "as": null,
-      "away": "帝京長岡",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "09:30"
     },
     {
       "md": 13,
@@ -882,16 +2312,31 @@
       "hs": null,
       "as": null,
       "away": "東京ヴェルディユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "17:00"
     },
     {
       "md": 13,
-      "date": "2026-09-13",
-      "home": "横浜FCユース",
+      "date": "2026-09-12",
+      "home": "昌平",
       "hs": null,
       "as": null,
-      "away": "流通経済大柏",
-      "status": "scheduled"
+      "away": "青森山田",
+      "status": "scheduled",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "09:30"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-12",
+      "home": "鹿島アントラーズユース",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡",
+      "status": "scheduled",
+      "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
+      "kickoff": "16:00"
     },
     {
       "md": 13,
@@ -900,7 +2345,20 @@
       "hs": null,
       "as": null,
       "away": "柏レイソルU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-13",
+      "home": "横浜FCユース",
+      "hs": null,
+      "as": null,
+      "away": "流通経済大柏",
+      "status": "scheduled",
+      "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
+      "kickoff": "16:00"
     },
     {
       "md": 14,
@@ -909,25 +2367,9 @@
       "hs": null,
       "as": null,
       "away": "横浜FCユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-09-19",
-      "home": "流通経済大柏",
-      "hs": null,
-      "as": null,
-      "away": "鹿島アントラーズユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-09-19",
-      "home": "東京ヴェルディユース",
-      "hs": null,
-      "as": null,
-      "away": "前橋育英",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
+      "kickoff": "15:00"
     },
     {
       "md": 14,
@@ -936,16 +2378,31 @@
       "hs": null,
       "as": null,
       "away": "FC東京U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "17:00"
     },
     {
       "md": 14,
-      "date": "2026-09-20",
-      "home": "青森山田",
+      "date": "2026-09-19",
+      "home": "東京ヴェルディユース",
       "hs": null,
       "as": null,
-      "away": "柏レイソルU-18",
-      "status": "scheduled"
+      "away": "前橋育英",
+      "status": "scheduled",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-19",
+      "home": "流通経済大柏",
+      "hs": null,
+      "as": null,
+      "away": "鹿島アントラーズユース",
+      "status": "scheduled",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "16:00"
     },
     {
       "md": 14,
@@ -954,25 +2411,20 @@
       "hs": null,
       "as": null,
       "away": "川崎フロンターレU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "16:00"
     },
     {
-      "md": 15,
-      "date": "2026-09-26",
-      "home": "昌平",
-      "hs": null,
-      "as": null,
-      "away": "横浜FCユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 15,
-      "date": "2026-09-26",
-      "home": "流通経済大柏",
+      "md": 14,
+      "date": "2026-09-20",
+      "home": "青森山田",
       "hs": null,
       "as": null,
       "away": "柏レイソルU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -981,16 +2433,9 @@
       "hs": null,
       "as": null,
       "away": "FC東京U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 15,
-      "date": "2026-09-26",
-      "home": "東京ヴェルディユース",
-      "hs": null,
-      "as": null,
-      "away": "鹿島アントラーズユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
+      "kickoff": "17:00"
     },
     {
       "md": 15,
@@ -999,7 +2444,42 @@
       "hs": null,
       "as": null,
       "away": "前橋育英",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "昌平",
+      "hs": null,
+      "as": null,
+      "away": "横浜FCユース",
+      "status": "scheduled",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "東京ヴェルディユース",
+      "hs": null,
+      "as": null,
+      "away": "鹿島アントラーズユース",
+      "status": "scheduled",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "流通経済大柏",
+      "hs": null,
+      "as": null,
+      "away": "柏レイソルU-18",
+      "status": "scheduled",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "16:00"
     },
     {
       "md": 15,
@@ -1008,7 +2488,9 @@
       "hs": null,
       "as": null,
       "away": "帝京長岡",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 16,
@@ -1017,7 +2499,9 @@
       "hs": null,
       "as": null,
       "away": "青森山田",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 16,
@@ -1026,34 +2510,9 @@
       "hs": null,
       "as": null,
       "away": "昌平",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-04",
-      "home": "柏レイソルU-18",
-      "hs": null,
-      "as": null,
-      "away": "ベガルタ仙台ユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-04",
-      "home": "横浜FCユース",
-      "hs": null,
-      "as": null,
-      "away": "川崎フロンターレU-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-04",
-      "home": "帝京長岡",
-      "hs": null,
-      "as": null,
-      "away": "流通経済大柏",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "メルカリスタジアム サブグラウンド",
+      "kickoff": "11:00"
     },
     {
       "md": 16,
@@ -1062,16 +2521,42 @@
       "hs": null,
       "as": null,
       "away": "東京ヴェルディユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "16:00"
     },
     {
-      "md": 17,
-      "date": "2026-10-10",
-      "home": "青森山田",
+      "md": 16,
+      "date": "2026-10-04",
+      "home": "帝京長岡",
       "hs": null,
       "as": null,
       "away": "流通経済大柏",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-04",
+      "home": "柏レイソルU-18",
+      "hs": null,
+      "as": null,
+      "away": "ベガルタ仙台ユース",
+      "status": "scheduled",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-04",
+      "home": "横浜FCユース",
+      "hs": null,
+      "as": null,
+      "away": "川崎フロンターレU-18",
+      "status": "scheduled",
+      "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
+      "kickoff": "12:00"
     },
     {
       "md": 17,
@@ -1080,7 +2565,9 @@
       "hs": null,
       "as": null,
       "away": "帝京長岡",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -1089,7 +2576,9 @@
       "hs": null,
       "as": null,
       "away": "FC東京U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -1098,7 +2587,20 @@
       "hs": null,
       "as": null,
       "away": "柏レイソルU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-10-10",
+      "home": "青森山田",
+      "hs": null,
+      "as": null,
+      "away": "流通経済大柏",
+      "status": "scheduled",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -1107,7 +2609,9 @@
       "hs": null,
       "as": null,
       "away": "横浜FCユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -1116,25 +2620,9 @@
       "hs": null,
       "as": null,
       "away": "鹿島アントラーズユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-10-17",
-      "home": "柏レイソルU-18",
-      "hs": null,
-      "as": null,
-      "away": "昌平",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-10-17",
-      "home": "鹿島アントラーズユース",
-      "hs": null,
-      "as": null,
-      "away": "前橋育英",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "17:00"
     },
     {
       "md": 18,
@@ -1143,25 +2631,20 @@
       "hs": null,
       "as": null,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "14:00"
     },
     {
       "md": 18,
-      "date": "2026-10-18",
-      "home": "横浜FCユース",
+      "date": "2026-10-17",
+      "home": "鹿島アントラーズユース",
       "hs": null,
       "as": null,
-      "away": "青森山田",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-10-18",
-      "home": "帝京長岡",
-      "hs": null,
-      "as": null,
-      "away": "東京ヴェルディユース",
-      "status": "scheduled"
+      "away": "前橋育英",
+      "status": "scheduled",
+      "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
+      "kickoff": "14:00"
     },
     {
       "md": 18,
@@ -1170,7 +2653,42 @@
       "hs": null,
       "as": null,
       "away": "川崎フロンターレU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-10-18",
+      "home": "帝京長岡",
+      "hs": null,
+      "as": null,
+      "away": "東京ヴェルディユース",
+      "status": "scheduled",
+      "venue": "十日町市当間多目的グラウンド(クロアチアピッチ)",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-10-18",
+      "home": "柏レイソルU-18",
+      "hs": null,
+      "as": null,
+      "away": "昌平",
+      "status": "scheduled",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-10-18",
+      "home": "横浜FCユース",
+      "hs": null,
+      "as": null,
+      "away": "青森山田",
+      "status": "scheduled",
+      "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 19,
@@ -1179,16 +2697,9 @@
       "hs": null,
       "as": null,
       "away": "帝京長岡",
-      "status": "scheduled"
-    },
-    {
-      "md": 19,
-      "date": "2026-11-22",
-      "home": "青森山田",
-      "hs": null,
-      "as": null,
-      "away": "ベガルタ仙台ユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 19,
@@ -1197,16 +2708,9 @@
       "hs": null,
       "as": null,
       "away": "FC東京U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 19,
-      "date": "2026-11-22",
-      "home": "横浜FCユース",
-      "hs": null,
-      "as": null,
-      "away": "鹿島アントラーズユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 19,
@@ -1215,7 +2719,9 @@
       "hs": null,
       "as": null,
       "away": "柏レイソルU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "13:00"
     },
     {
       "md": 19,
@@ -1224,25 +2730,31 @@
       "hs": null,
       "as": null,
       "away": "流通経済大柏",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "14:00"
     },
     {
-      "md": 20,
-      "date": "2026-11-28",
-      "home": "ベガルタ仙台ユース",
+      "md": 19,
+      "date": "2026-11-22",
+      "home": "横浜FCユース",
       "hs": null,
       "as": null,
-      "away": "東京ヴェルディユース",
-      "status": "scheduled"
+      "away": "鹿島アントラーズユース",
+      "status": "scheduled",
+      "venue": "神奈川県立保土ヶ谷公園サッカー場",
+      "kickoff": "12:00"
     },
     {
-      "md": 20,
-      "date": "2026-11-28",
-      "home": "流通経済大柏",
+      "md": 19,
+      "date": "2026-11-22",
+      "home": "青森山田",
       "hs": null,
       "as": null,
-      "away": "昌平",
-      "status": "scheduled"
+      "away": "ベガルタ仙台ユース",
+      "status": "scheduled",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 20,
@@ -1251,25 +2763,31 @@
       "hs": null,
       "as": null,
       "away": "横浜FCユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "17:00"
     },
     {
       "md": 20,
-      "date": "2026-11-29",
-      "home": "青森山田",
+      "date": "2026-11-28",
+      "home": "ベガルタ仙台ユース",
       "hs": null,
       "as": null,
-      "away": "鹿島アントラーズユース",
-      "status": "scheduled"
+      "away": "東京ヴェルディユース",
+      "status": "scheduled",
+      "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
+      "kickoff": "13:00"
     },
     {
       "md": 20,
-      "date": "2026-11-29",
-      "home": "柏レイソルU-18",
+      "date": "2026-11-28",
+      "home": "流通経済大柏",
       "hs": null,
       "as": null,
-      "away": "前橋育英",
-      "status": "scheduled"
+      "away": "昌平",
+      "status": "scheduled",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "14:00"
     },
     {
       "md": 20,
@@ -1278,7 +2796,31 @@
       "hs": null,
       "as": null,
       "away": "川崎フロンターレU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 20,
+      "date": "2026-11-29",
+      "home": "柏レイソルU-18",
+      "hs": null,
+      "as": null,
+      "away": "前橋育英",
+      "status": "scheduled",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 20,
+      "date": "2026-11-29",
+      "home": "青森山田",
+      "hs": null,
+      "as": null,
+      "away": "鹿島アントラーズユース",
+      "status": "scheduled",
+      "venue": "青森山田高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 21,
@@ -1287,7 +2829,9 @@
       "hs": null,
       "as": null,
       "away": "帝京長岡",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "前橋育英高校高崎グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 21,
@@ -1296,7 +2840,9 @@
       "hs": null,
       "as": null,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "昌平高校グラウンド(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 21,
@@ -1305,7 +2851,9 @@
       "hs": null,
       "as": null,
       "away": "青森山田",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "ヴェルディグラウンド（人工芝）",
+      "kickoff": "12:00"
     },
     {
       "md": 21,
@@ -1314,16 +2862,9 @@
       "hs": null,
       "as": null,
       "away": "柏レイソルU-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 21,
-      "date": "2026-12-06",
-      "home": "鹿島アントラーズユース",
-      "hs": null,
-      "as": null,
-      "away": "FC東京U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "神奈川県立保土ヶ谷公園サッカー場",
+      "kickoff": "12:00"
     },
     {
       "md": 21,
@@ -1332,34 +2873,20 @@
       "hs": null,
       "as": null,
       "away": "川崎フロンターレU-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
+      "kickoff": "14:00"
     },
     {
-      "md": 22,
-      "date": "2026-12-13",
+      "md": 21,
+      "date": "2026-12-06",
       "home": "鹿島アントラーズユース",
       "hs": null,
       "as": null,
-      "away": "ベガルタ仙台ユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 22,
-      "date": "2026-12-13",
-      "home": "前橋育英",
-      "hs": null,
-      "as": null,
-      "away": "昌平",
-      "status": "scheduled"
-    },
-    {
-      "md": 22,
-      "date": "2026-12-13",
-      "home": "柏レイソルU-18",
-      "hs": null,
-      "as": null,
-      "away": "帝京長岡",
-      "status": "scheduled"
+      "away": "FC東京U-18",
+      "status": "scheduled",
+      "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
+      "kickoff": "14:00"
     },
     {
       "md": 22,
@@ -1368,16 +2895,20 @@
       "hs": null,
       "as": null,
       "away": "流通経済大柏",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
+      "kickoff": "13:00"
     },
     {
       "md": 22,
       "date": "2026-12-13",
-      "home": "横浜FCユース",
+      "home": "前橋育英",
       "hs": null,
       "as": null,
-      "away": "東京ヴェルディユース",
-      "status": "scheduled"
+      "away": "昌平",
+      "status": "scheduled",
+      "venue": "アースケア敷島サッカー･ラグビー場",
+      "kickoff": "13:00"
     },
     {
       "md": 22,
@@ -1386,7 +2917,42 @@
       "hs": null,
       "as": null,
       "away": "青森山田",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "Ankerフロンタウン生田（人工芝）",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 22,
+      "date": "2026-12-13",
+      "home": "柏レイソルU-18",
+      "hs": null,
+      "as": null,
+      "away": "帝京長岡",
+      "status": "scheduled",
+      "venue": "ゼロワットパワーフィールド柏",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 22,
+      "date": "2026-12-13",
+      "home": "横浜FCユース",
+      "hs": null,
+      "as": null,
+      "away": "東京ヴェルディユース",
+      "status": "scheduled",
+      "venue": "神奈川県立保土ヶ谷公園サッカー場",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 22,
+      "date": "2026-12-13",
+      "home": "鹿島アントラーズユース",
+      "hs": null,
+      "as": null,
+      "away": "ベガルタ仙台ユース",
+      "status": "scheduled",
+      "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
+      "kickoff": "13:00"
     }
   ]
 }

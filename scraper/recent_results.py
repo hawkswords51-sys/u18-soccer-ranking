@@ -14,6 +14,9 @@ generate_league_pages.py から呼ばれ、各リーグの順位表の直上に
   - 「次節」＝直近節より後で、まだ結果が入っていない最小の md。
     全日程が終わっていれば次節ブロックは出さない。
   - 配色は CSS 変数（var(--bg-white) 等）を使うのでダークモードでも崩れない。
+  - [2026-09-05] 会場・キックオフ時刻を各試合の下に小さく出す。これらは
+    プレミア（JFA公式JSON由来）にしか入っていないフィールドなので、
+    無いリーグでは自動的に出ない（存在チェック済み・既存ページに影響なし）。
 """
 import json
 from datetime import date
@@ -74,12 +77,25 @@ def _match_row(m: dict, link_fn, played: bool) -> str:
         h_cls = a_cls = ""
         center = '<span class="rr-vs">vs</span>'
 
+    # 会場・キックオフ時刻は data/league_matches/<slug>.json に入っているリーグだけ出す
+    # （プレミアはJFA公式JSON由来なので有り／プリンス・県リーグは無い）。
+    # 無いリーグでも壊れないよう、必ず存在チェックしてから描く。
+    sub_bits = []
+    kickoff = str(m.get("kickoff") or "").strip()
+    venue = str(m.get("venue") or "").strip()
+    if kickoff:
+        sub_bits.append(f"{_html_escape(kickoff)} キックオフ")
+    if venue:
+        sub_bits.append(_html_escape(venue))
+    sub = f'<span class="rr-sub">{"　".join(sub_bits)}</span>' if sub_bits else ""
+
     return (
         '<li class="rr-row">'
         f'<span class="rr-date">{dt}</span>'
         f'<span class="rr-team rr-home{h_cls}">{hn}</span>'
         f"{center}"
         f'<span class="rr-team rr-away{a_cls}">{an}</span>'
+        f"{sub}"
         "</li>"
     )
 
@@ -104,6 +120,8 @@ _STYLE = """<style>
   min-width:62px;text-align:center;}
 .rr-score .rr-dash{margin:0 5px;opacity:.6;font-weight:400;}
 .rr-vs{font-size:.85rem;color:var(--text-light);min-width:62px;text-align:center;}
+.rr-sub{grid-column:1 / -1;font-size:.78rem;color:var(--text-light);text-align:center;
+  margin-top:3px;line-height:1.4;}
 .rr-next-h{margin:20px 0 6px;font-size:1.05rem;font-weight:700;color:var(--text-dark);
   display:flex;align-items:center;gap:8px;}
 .rr-next-h .rr-badge{font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:3px 9px;

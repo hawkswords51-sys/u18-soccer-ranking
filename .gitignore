@@ -15,3 +15,7 @@ __pycache__/
 # note用のヘッダー画像（noteに直接アップするもので、サイトの公開物ではない）
 # サイトに載せる図解は img/blog/ に置くこと。ここはPushしない。
 note-headers/
+
+# JFA公式JSONの取得結果メモ（fetch_jfa_premier.py が作る作業用ファイル）
+# 「今日どのリーグをJFAから更新できたか」を後続スクリプトへ伝えるだけのもの。
+.jfa_premier_status.json

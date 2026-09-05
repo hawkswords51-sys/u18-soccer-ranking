@@ -754,6 +754,21 @@ def find_league_urls(year: int) -> dict[str, list[str]]:
     return urls
 
 
+def jfa_premier_ok_slugs() -> set[str]:
+    """本日 fetch_jfa_premier.py が JFA公式JSON から更新できたリーグのslug集合。
+
+    [2026-09-05 新設] プレミアの正本は JFA公式JSON になった。JFAで更新済みのリーグを
+    ここで再取得すると、反映の遅い koko の古い順位で上書きしてしまう（後勝ち事故）ので
+    スキップする。メモが無い／日付が古い場合は空集合＝従来どおり koko から取る。
+    """
+    try:
+        from fetch_jfa_premier import jfa_updated_slugs
+        return jfa_updated_slugs()
+    except Exception as e:
+        print(f"  （JFA更新メモを読めませんでした: {e} → 従来どおり取得します）")
+        return set()
+
+
 # [P1-7] 控えチームを示す末尾キーワード (丸数字・全角Ｂ対応は _is_reserve_team で NFKC)
 RESERVE_SUFFIXES = (
     "B", "C", "D",
@@ -1252,11 +1267,21 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
                     total_updated += 1
             time.sleep(1)
 
+    # [2026-09-05] プレミアはJFA公式JSONが正本。fetch_jfa_premier.py が先に成功していれば
+    # そのリーグは触らない（反映の遅い koko で上書きし直すと順位が古い方に戻るため）。
+    jfa_ok = jfa_premier_ok_slugs()
+
     print("\n[1/4] プレミアリーグ EAST を取得中...")
-    _process_premier("EAST", league_urls["premier_east"], "プレミアリーグEAST")
+    if "premier-east" in jfa_ok:
+        print("  → 本日JFA公式JSONで更新済みのためスキップします")
+    else:
+        _process_premier("EAST", league_urls["premier_east"], "プレミアリーグEAST")
 
     print("\n[2/4] プレミアリーグ WEST を取得中...")
-    _process_premier("WEST", league_urls["premier_west"], "プレミアリーグWEST")
+    if "premier-west" in jfa_ok:
+        print("  → 本日JFA公式JSONで更新済みのためスキップします")
+    else:
+        _process_premier("WEST", league_urls["premier_west"], "プレミアリーグWEST")
 
     print("\n[3/4] プリンスリーグ (全9地域) を取得中...")
     for region_key, url in league_urls["prince"].items():

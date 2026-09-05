@@ -200,8 +200,25 @@ def recompute(matches, teams_norm):
     return st, ok
 
 
-def process(slug):
+def jfa_premier_ok_slugs() -> set:
+    """本日 fetch_jfa_premier.py が JFA公式JSON から更新できたリーグのslug集合。
+
+    [2026-09-05 新設] プレミアの正本は JFA公式JSON になった。JFAで更新済みのリーグを
+    kokoで上書きすると、反映の遅い古い戦績に戻ってしまう（後勝ち事故）のでスキップする。
+    メモが無い／日付が古い場合は空集合＝従来どおり koko から取る。
+    """
+    try:
+        from fetch_jfa_premier import jfa_updated_slugs
+        return jfa_updated_slugs()
+    except Exception as e:
+        print(f"  （JFA更新メモを読めませんでした: {e} → 従来どおり取得します）")
+        return set()
+
+
+def process(slug, jfa_ok=frozenset()):
     global _CURRENT_SLUG
+    if slug in jfa_ok:
+        return f"[skip] {slug}: 本日JFA公式JSONで更新済み（kokoでは上書きしない）"
     _CURRENT_SLUG = slug  # LEAGUE_ALIASES をこのリーグの分だけ有効にする
     path = DIR / f"{slug}.json"
     if not path.exists():
@@ -274,9 +291,10 @@ def process(slug):
 
 def main():
     print("=== 戦績表 自動更新 ===")
+    jfa_ok = jfa_premier_ok_slugs()
     results = []
     for slug in KOKO_URL:
-        msg = process(slug)
+        msg = process(slug, jfa_ok)
         results.append(msg)
         print(" ", msg)
     # サマリー
