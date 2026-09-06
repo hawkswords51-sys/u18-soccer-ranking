@@ -54,9 +54,11 @@ def load() -> dict:
     try:
         d = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     except Exception:
-        return {"updatedAt": "", "leagues": {}}
+        return {"updatedAt": "", "leagues": {}, "pref_leagues": {}}
     if not isinstance(d, dict) or not isinstance(d.get("leagues"), dict):
-        return {"updatedAt": "", "leagues": {}}
+        return {"updatedAt": "", "leagues": {}, "pref_leagues": {}}
+    if not isinstance(d.get("pref_leagues"), dict):
+        d["pref_leagues"] = {}
     return d
 
 
@@ -87,7 +89,12 @@ def start_run(expected: dict) -> None:
             "consecutiveFallback": 0,
             "consecutiveFallbackPrev": int(prev.get("consecutiveFallback") or 0),
         }
-    save({"leagues": leagues})
+    # ⚠️ pref_leagues（県1部の記録）を巻き込んで消さないこと。
+    #    start_run() は fetch_jfa.py がワークフローの早い段階で呼ぶので、
+    #    ここで丸ごと書き換えると県1部の last_change の履歴が毎回消える。
+    d = load()
+    d["leagues"] = leagues
+    save(d)
 
 
 def set_result(slug: str, actual: str = "", reason: str = None,
@@ -124,3 +131,27 @@ def count_venues(matches) -> int:
 def count_played(matches) -> int:
     """消化試合数（記録用の共通ヘルパー）"""
     return sum(1 for m in (matches or []) if m.get("status") == "played")
+
+
+# ---------------------------------------------------------------------------
+# 県1部（pref_leagues）— 2026-09-07 追加
+# ---------------------------------------------------------------------------
+# fetch_pref_official.py が「自分がその県をどう処理したか」だけを書く。
+# 赤にするかどうかの判定は持ち込まない（audit_pref_freshness.py の担当）。
+#
+# なぜ要るか: 県1部の見張りはデータの鮮度から「止まっていること」を推定するが、
+# 鮮度だけでは「出典が休みなのか、こちらの取得が壊れたのか」を区別できない。
+# 取得スクリプト自身に成否を書かせれば、URL変更やサイト移転を3日で捕まえられる。
+RESULTS = ("ok", "fetch_error", "parse_empty", "verify_failed", "alias_failed")
+
+
+def set_pref_result(pref: str, result: str, note: str = "") -> None:
+    """1県分の取得結果を記録する。result は RESULTS のいずれか。"""
+    d = load()
+    entry = d.setdefault("pref_leagues", {}).setdefault(pref, {})
+    entry["result"] = result
+    entry["result_note"] = note
+    # いつ記録したか。これが古いままなら「スクリプトが走っていない」と分かる。
+    entry["result_date"] = datetime.now(JST).date().isoformat()
+    save(d)
+

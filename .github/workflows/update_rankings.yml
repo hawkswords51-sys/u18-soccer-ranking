@@ -413,6 +413,21 @@ jobs:
       #   **わざと一番最後に置いている**：ページ生成とコミットを先に終わらせてから
       #   赤くするため。ここを前に置くと、赤くなった日はサイトが更新されなくなる。
       #   赤になる条件: 3回連続でJFA以外 / 会場を持つ試合数が前回の半分未満 / 記録なし
+      # ★ 県1部の見張り（2026-09-07新設）
+      #   2026-07-15に県1部の自動更新が全県で死んだのに7週間気づけなかった。
+      #   ワークフローは緑のままだったから。「止まったこと」を知らせる仕組みが要る。
+      #   ⚠️ **必ずページ生成・コミットより後**に置くこと。赤にしてもサイトの更新は
+      #      止めない（古いデータでもサイトは動き続け、GitHubのトップに×が出るだけ）。
+      #   ⚠️ continue-on-error は付けない（付けると赤にならず、作った意味が無くなる）。
+      - name: 県1部の鮮度を点検（止まっていたら赤にする）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        run: |
+          if [ -f scraper/audit_pref_freshness.py ]; then
+            python scraper/audit_pref_freshness.py
+          else
+            echo "scraper/audit_pref_freshness.py がまだありません。スキップ。"
+          fi
+
       - name: 取得元を点検（JFA以外に落ちたリーグを検出）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         run: |

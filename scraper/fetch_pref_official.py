@@ -48,6 +48,7 @@ import time
 import unicodedata
 from datetime import date as _date
 from jst import today as _jst_today
+import fetch_status
 from pathlib import Path
 
 import requests
@@ -918,6 +919,30 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
 
 
+# ---------------------------------------------------------------------------
+# 取得結果の記録（2026-09-07 追加）
+# ---------------------------------------------------------------------------
+# process() が返したメッセージを、見張り用の結果コードに読み替えるだけ。
+# **判定（赤にするか）はここでは行わない** — audit_pref_freshness.py の担当。
+# process() 本体には一切手を入れていないので、更新処理の挙動は変わらない。
+def classify(msg: str) -> tuple[str, str]:
+    """process() の戻り値 → (結果コード, 説明)"""
+    body = msg.split(": ", 1)[-1]
+    if msg.startswith("[更新]"):
+        return "ok", body
+    # 公式側の消化数がこちらより少ない＝出典が遅れているだけ。取得は成功している。
+    # ここを失敗にすると、出典が休みの県が毎日赤くなる（打つ手が無いものは赤にしない）。
+    if "退行防止" in msg:
+        return "ok", body
+    if "取得失敗" in msg or "例外" in msg:
+        return "fetch_error", body
+    if "解析できず" in msg:
+        return "parse_empty", body
+    if "名寄せ" in msg or "1対1で対応しない" in msg:
+        return "alias_failed", body
+    return "verify_failed", body
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="県1部9県を県協会公式（GoalNote / tecra）から更新する")
@@ -937,6 +962,8 @@ def main() -> int:
         except Exception as e:      # 想定外でも他県は止めない
             msg = f"[要確認] pref-{pref}-1: 例外 {e}"
         print(" ", msg)
+        if not args.dry_run:
+            fetch_status.set_pref_result(pref, *classify(msg))
         if msg.startswith("[更新]"):
             updated += 1
         elif msg.startswith("[据え置き]"):
