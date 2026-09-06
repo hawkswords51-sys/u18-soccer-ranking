@@ -990,6 +990,8 @@ def update_team_stats(
             "goalsAgainst": 0,
         }
         # スクレイプ結果の数値を反映（league だけは default_league を保持）
+        # 県1部は成績キーが無いので、新規登録時は 0 のまま
+        #（この後 sync_teams_from_pref.py が pref-{県}-1.json から埋める）
         stats_for_apply = {k: v for k, v in stats.items() if k != "league"}
         _apply_stats(new_team, stats_for_apply)
         teams.append(new_team)
@@ -1002,18 +1004,25 @@ def update_team_stats(
 
 
 def _apply_stats(team: dict, stats: dict) -> None:
-    """チームエントリに成績データを適用する"""
-    team["points"]       = stats["points"]
-    team["played"]       = stats["played"]
-    team["won"]          = stats["won"]
-    team["drawn"]        = stats["drawn"]
-    team["lost"]         = stats["lost"]
-    team["goalsFor"]     = stats["goalsFor"]
-    team["goalsAgainst"] = stats["goalsAgainst"]
-    # [2026-08-08] goalDiff は以前は更新されず古い値が残り続けていた（表示はGF-GAの
-    # 計算値なので実害はなかったが、データを見たときに混乱する）。ここで同期する。
-    if "goalDiff" in team:
-        team["goalDiff"] = (stats["goalsFor"] or 0) - (stats["goalsAgainst"] or 0)
+    """チームエントリに成績データを適用する。
+
+    [2026-09-07] 成績のキーが無い呼び出しも許すようにした。県1部は
+    「所属とリーグ名だけ管理して、成績は書かない」形にしたため
+    （成績は sync_teams_from_pref.py が pref-{県}-1.json から同期する）。
+    プレミア・プリンスの呼び出しは従来どおり成績つきで来る。
+    """
+    if "points" in stats:
+        team["points"]       = stats["points"]
+        team["played"]       = stats["played"]
+        team["won"]          = stats["won"]
+        team["drawn"]        = stats["drawn"]
+        team["lost"]         = stats["lost"]
+        team["goalsFor"]     = stats["goalsFor"]
+        team["goalsAgainst"] = stats["goalsAgainst"]
+        # [2026-08-08] goalDiff は以前は更新されず古い値が残り続けていた（表示はGF-GAの
+        # 計算値なので実害はなかったが、データを見たときに混乱する）。ここで同期する。
+        if "goalDiff" in team:
+            team["goalDiff"] = (stats["goalsFor"] or 0) - (stats["goalsAgainst"] or 0)
     if stats.get("league"):
         team["league"] = stats["league"]
     if "leagueRank" in stats and stats["leagueRank"] is not None:
@@ -1228,10 +1237,19 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
         for s in standings:
             # 県リーグでもエイリアスを解決 (例: "関大北陽" → "関西大学北陽高校")
             s["name"] = _resolve_alias(s["name"])
-            s_no_league = {k: v for k, v in s.items() if k != "league"}
+            # [2026-09-07] ★県1部の「成績数値」はここでは書かない。
+            # 県ページは上部(teams.json)と下部(pref-*-1.json)で読むデータが違い、
+            # ここが junior-soccer から独立に書いていたせいで上下が食い違っていた
+            # （403で7/15以降凍結し、46県中32県・124チームがズレていた）。
+            # 順位の出どころは pref-{県}-1.json に一本化し、
+            # scraper/sync_teams_from_pref.py が teams.json へ同期する。
+            # ただし**チームの所属とリーグ名の管理はここに残す**。
+            # 新しいチームの発見やリーグ移動の追従まで止めてしまわないため。
+            stats_only_meta = {k: v for k, v in s.items()
+                               if k in ("name", "league", "leagueRank")}
             scraped_league = s.get("league", "") or existing_pref_league
             if update_team_stats(
-                data, pref_id, s["name"], s_no_league, already_updated,
+                data, pref_id, s["name"], stats_only_meta, already_updated,
                 auto_create=True,
                 default_league=scraped_league,
             ):

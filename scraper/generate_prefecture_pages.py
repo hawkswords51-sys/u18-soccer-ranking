@@ -112,12 +112,29 @@ def render_team_name_with_link(team_name: str) -> str:
     return formatted
 
 
+# 「直近の試合結果」を出さない県（2026-09-07新設）
+# 出典に試合日が無く、**日付を持たない試合のほうが新しい**と分かっている県。
+# このセクションは「最新の開催日から±2日」で直近節を決めるので、日付のある古い試合を
+# 「直近」として出してしまい、読者に嘘をつくことになる。
+#   山口 … 出典(SportsOnline)は全試合の開始日が 2026/04/04 のダミーで実日付が無い。
+#          当サイトの日付は既存データから引き継いだものなので、公式で新しく増えた
+#          4試合には日付が付かない。日付ありの最新は 7/18 だが実際にはもっと新しい
+#          試合が行われている（2026-09-07時点）。
+# ※ 戦績表（星取り表）と上部の順位表は日付を使わないので、そちらは通常どおり出る。
+# ※【解除条件】SportsOnline が実際の試合日を入れるようになったら、または今季終了で
+#   全試合が日付ありになったら、この集合から外す。
+NO_RECENT_RESULTS = {"yamaguchi"}
+
+
 def render_pref_recent_results(pref_id, pref_name):
     """県ページ用「直近の試合結果」（2026-09-06新設）。
     データ＝戦績表と同じ data/league_matches/pref-{id}-1.json。
     県1部は節番号(md)を持たないので、日付ベース版（最新開催日±2日）を使う。
     チーム名は戦績表と同じ表記そろえ（A/B→無印/2nd）をしてから
     チーム詳細ページへのリンクを付ける。データが無い県は空文字＝影響なし。"""
+    if pref_id in NO_RECENT_RESULTS:
+        return ""
+
     def _link(raw):
         return render_team_name_with_link(display_pref_team_name(raw))
 
