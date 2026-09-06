@@ -32,6 +32,10 @@ import json
 import re
 from pathlib import Path
 from datetime import date, datetime
+from jst import today as _jst_today, now as _jst_now
+# ⚠️ 他の generate_*.py と違い、ここでは date を JSTシムに差し替えないこと。
+#    format_date() / _to_dt() が isinstance(d, (date, datetime)) で型判定しており、
+#    差し替えると判定が外れて日付が「2026年9月3日」→「2026-09-03」に退行する。
 
 try:
     import yaml
@@ -957,7 +961,7 @@ def generate_rss(articles):
         try:
             return datetime.strptime(str(d), "%Y-%m-%d")
         except ValueError:
-            return datetime.now()
+            return _jst_now().replace(tzinfo=None)   # UTCだと1日ずれる（jst.py参照）
 
     jst = timezone(timedelta(hours=9))
     sorted_articles = sorted(articles, key=lambda a: str(a["date"]), reverse=True)[:20]
@@ -996,7 +1000,7 @@ def append_sitemap(slugs):
     if not SITEMAP_FILE.exists():
         print(f"[WARN] {SITEMAP_FILE} が存在しません。先に他の generator を実行してください。")
         return
-    today = date.today().isoformat()
+    today = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     content = SITEMAP_FILE.read_text(encoding="utf-8")
 
     # 既存ブログ URL を一旦除去 (重複防止)

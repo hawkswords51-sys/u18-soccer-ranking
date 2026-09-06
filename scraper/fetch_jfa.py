@@ -92,6 +92,7 @@ import re
 import sys
 import unicodedata
 from datetime import date, datetime, timedelta, timezone
+from jst import today as _jst_today
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -802,7 +803,7 @@ def write_league_matches(res: dict, existing: dict) -> None:
     data["source"] = res["page"]
     # 戦績表（星取り表）の「出典: ○○」に出る名前。cross_table.py が読む既存の仕組み。
     data["sourceName"] = "JFA公式"
-    data["lastUpdated"] = date.today().isoformat()
+    data["lastUpdated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     data["matches"] = res["matches"]
     data["official_standings"] = res["standings"]
     order = ["league", "season", "source", "sourceName", "lastUpdated", "teams",
@@ -825,7 +826,7 @@ def write_scorers(res: dict, league_label: str) -> None:
         "season": SEASON,
         "source": res["page"],
         "sourceLabel": "JFA公式",
-        "lastUpdated": date.today().isoformat(),
+        "lastUpdated": _jst_today().isoformat(),   # UTCだと1日ずれる（jst.py参照）
         "asof": res["asof"],
         "note": note,
         "scorers": res["scorers"],
@@ -933,7 +934,7 @@ def write_status(ok_slugs: list[str]) -> None:
     """成功したリーグを書き残す。update.py / update_cross_tables.py がこれを見て
     「JFAで更新済みのリーグは koko で上書きしない」と判断する。"""
     STATUS_FILE.write_text(json.dumps(
-        {"date": date.today().isoformat(), "season": SEASON, "ok": sorted(ok_slugs)},
+        {"date": _jst_today().isoformat(), "season": SEASON, "ok": sorted(ok_slugs)},
         ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
@@ -944,7 +945,7 @@ def jfa_updated_slugs() -> set[str]:
         d = json.loads(STATUS_FILE.read_text(encoding="utf-8"))
     except Exception:
         return set()
-    if d.get("date") != date.today().isoformat():
+    if d.get("date") != _jst_today().isoformat():
         return set()
     return set(d.get("ok") or [])
 

@@ -47,6 +47,7 @@ import sys
 import time
 import unicodedata
 from datetime import date as _date
+from jst import today as _jst_today
 from pathlib import Path
 
 import requests
@@ -912,7 +913,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     data["official_standings"] = meta["official"]
     data["source"] = src
     data["sourceName"] = cfg["label"]
-    data["lastUpdated"] = _date.today().isoformat()
+    data["lastUpdated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
 

@@ -22,7 +22,7 @@ import re
 import unicodedata
 import yaml
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime as _dt, timedelta as _td, timezone as _tz
 from cross_table import render_cross_table_html
 from recent_results import render_recent_results_html
 from home_pickup import update_home_pickup
@@ -45,6 +45,16 @@ from league_contents import (
     TACTICAL_PRINCE_KYUSHU_1, WATCHING_PRINCE_KYUSHU_1,
     TACTICAL_PRINCE_KYUSHU_2, WATCHING_PRINCE_KYUSHU_2,
 )
+
+
+class _JSTDate:
+    """GitHubのサーバーは世界標準時のため、日本時間の「今日」を返す（jst.py と同じ理由）"""
+    @staticmethod
+    def today():
+        return _dt.now(_tz(_td(hours=9))).date()
+
+date = _JSTDate
+
 # === リーグ履歴データの読み込み ===
 LEAGUE_HISTORY_PATH = Path(__file__).parent.parent / "data" / "league_history.yml"
 

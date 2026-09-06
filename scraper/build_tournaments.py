@@ -13,6 +13,7 @@ import re
 import sys
 import unicodedata
 from datetime import datetime
+from jst import now as _jst_now
 from pathlib import Path
 
 try:
@@ -175,7 +176,9 @@ def build() -> int:
 
     output = {
         "_meta": {
-            "lastUpdated":   datetime.now().isoformat(timespec='seconds'),
+            # JSTで書く。UTCのままだと日付が1日ずれる（jst.py参照）。
+            # 形は従来どおり（+09:00 は付けない）＝既存の値と見た目を変えない。
+            "lastUpdated":   _jst_now().strftime('%Y-%m-%dT%H:%M:%S'),
             "schemaVersion": 1,
             "source":        "manual_yaml",
         },

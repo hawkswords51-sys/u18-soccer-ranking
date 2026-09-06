@@ -17,6 +17,7 @@ import time
 import argparse
 import unicodedata
 from datetime import datetime
+from jst import now as _jst_now
 from pathlib import Path
 
 try:
@@ -344,7 +345,7 @@ def main() -> int:
     if args.year:
         target_years = [args.year]
     else:
-        current_year = datetime.now().year
+        current_year = _jst_now().year   # UTCだと1日ずれる（jst.py参照）
         target_years = list(range(current_year - args.years_back, current_year + 1))
     log(f"対象大会: {target_tournaments}")
     log(f"対象年度: {target_years}")
@@ -358,7 +359,7 @@ def main() -> int:
 
     # メタ情報更新
     data["_meta"] = {
-        "lastUpdated": datetime.now().isoformat(timespec="seconds"),
+        "lastUpdated": _jst_now().strftime("%Y-%m-%dT%H:%M:%S"),   # UTCだと1日ずれる（jst.py参照）
         "schemaVersion": 1,
     }
 

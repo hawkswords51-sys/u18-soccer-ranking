@@ -1371,7 +1371,8 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
 
 def main():
     parser = argparse.ArgumentParser(description="高円宮杯 U-18 順位自動更新スクリプト")
-    parser.add_argument("--year", type=int, default=datetime.now().year,
+    parser.add_argument("--year", type=int,
+                        default=datetime.now(timezone(timedelta(hours=9))).year,
                         help="対象年度 (デフォルト: 今年)")
     parser.add_argument("--dry-run", action="store_true",
                         help="実際には保存せずテスト実行")

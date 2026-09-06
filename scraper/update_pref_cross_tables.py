@@ -29,6 +29,7 @@ import sys
 import unicodedata
 from pathlib import Path
 from datetime import date as _date
+from jst import today as _jst_today
 
 DIR = Path(__file__).resolve().parent.parent / "data" / "league_matches"
 SEASON_YEAR = 2026
@@ -442,7 +443,7 @@ def process(slug: str, region: str, lid: str) -> str:
     data["matches"] = fixtures
     data["official_standings"] = meta["official"]
     data["source"] = f"{base}/table/{lid}"
-    data["lastUpdated"] = _date.today().isoformat()
+    data["lastUpdated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
 

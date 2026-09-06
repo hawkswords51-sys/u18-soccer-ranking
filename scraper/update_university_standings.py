@@ -21,6 +21,7 @@ import re
 import subprocess
 import sys
 from datetime import date
+from jst import today as _jst_today
 from io import StringIO
 from pathlib import Path
 
@@ -303,7 +304,7 @@ def main():
         except Exception as e:
             skipped.append(lid)
             print(f"[要確認] {lid}: 据え置き → {e}")
-    data["updated"] = date.today().isoformat()
+    data["updated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\n更新 {len(updated)} / 据え置き {len(skipped)}: {', '.join(skipped)}")
     # ページ再生成
