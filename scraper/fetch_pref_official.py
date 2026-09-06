@@ -83,8 +83,16 @@ PREF_OFFICIAL = {
     "aichi":    {"platform": "goalnote", "tid": "18269", "label": "愛知県サッカー協会 公式（GoalNote）"},
     "iwate":    {"platform": "goalnote", "tid": "18702", "label": "岩手県サッカー協会 公式（GoalNote）"},
     "nagasaki": {"platform": "goalnote", "tid": "18526", "label": "長崎県サッカー協会 公式（GoalNote）"},
-    "tottori":  {"platform": "goalnote", "tid": "18541", "label": "鳥取県サッカー協会 公式（GoalNote）"},
+    # 鳥取は前期(18541・8チーム1回戦総当たり・7/24完了)と後期(19293・上位4/下位4の
+    # グループ分け・9/5開幕)が**別大会として登録**されている。試合は両方から集め、
+    # 順位表は後期のもの（＝通年通算になっている）を使う。
+    # 後期はグループ分けなので総当たり枠を作らない（round_robin: False）。
+    "tottori":  {"platform": "goalnote", "tid": "19293", "extra_tids": ["18541"],
+                 "standings_from": "19293", "round_robin": False,
+                 "label": "鳥取県サッカー協会 公式（GoalNote）"},
     "kagawa":   {"platform": "goalnote", "tid": "18633", "label": "香川県サッカー協会 公式（GoalNote）"},
+    "yamagata": {"platform": "goalnote", "tid": "18649", "label": "山形県サッカー協会 公式（GoalNote）"},
+    "ibaraki":  {"platform": "goalnote", "tid": "18463", "label": "茨城県サッカー協会 公式（GoalNote）"},
     "shiga":    {"platform": "tecra", "host": "shiga-fa-u18.com", "label": "滋賀県サッカー協会 公式"},
     "fukuoka":  {"platform": "tecra", "host": "fukuoka-fa-u18.com", "label": "福岡県サッカー協会 公式"},
     "saga":     {"platform": "tecra", "host": "saga-fa-u18.com", "label": "佐賀県サッカー協会 公式"},
@@ -156,6 +164,24 @@ def _to_int(v):
 #           [番号, YYYY/MM/DD, HH:MM, ホーム, "1-2 [試合終了]", アウェイ, 会場, 詳細]
 #           未消化の行は [試合終了] を持たない
 # ============================================================
+def read_goalnote_all(cfg: dict) -> tuple[dict, list[dict]]:
+    """1県ぶんを読む。extra_tids があれば試合を合算する。
+
+    鳥取のように**前期と後期が別大会として登録**されている県がある。
+    その場合は試合を両方から集め、順位表は "standings_from" で指定した
+    大会（後期＝通年通算）のものだけを使う。
+    """
+    main_tid = cfg["tid"]
+    st_tid = cfg.get("standings_from", main_tid)
+    standings, matches = {}, []
+    for tid in [main_tid] + list(cfg.get("extra_tids") or []):
+        st, ms = read_goalnote({"tid": tid})
+        matches += ms
+        if tid == st_tid:
+            standings = st
+    return standings, matches
+
+
 def read_goalnote(cfg: dict) -> tuple[dict, list[dict]]:
     tid = cfg["tid"]
     soup = BeautifulSoup(
@@ -191,8 +217,9 @@ def read_goalnote(cfg: dict) -> tuple[dict, list[dict]]:
             vals = {k: _to_int(r[i + offset]) for k, i in col.items()}
             if team and all(v is not None for v in vals.values()):
                 standings[team] = vals
-        if standings:
-            break
+        # ⚠️ ここで break しない。鳥取の後期リーグのように**グループA・Bで表が分かれる**
+        #    大会があり、最初の表だけ読むと片方のグループしか取れない（実測で確認）。
+        #    見つかった順位表をすべて合算して1つのロスターとして扱う。
 
     soup2 = BeautifulSoup(
         fetch_html(f"https://www.goalnote.net/detail-schedule.php?tid={tid}"), "html.parser")
@@ -426,8 +453,9 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
 
     try:
         if cfg["platform"] == "goalnote":
-            standings, matches = read_goalnote(cfg)
-            src = f"https://www.goalnote.net/detail-standings.php?tid={cfg['tid']}"
+            standings, matches = read_goalnote_all(cfg)
+            src = ("https://www.goalnote.net/detail-standings.php?tid="
+                   f"{cfg.get('standings_from', cfg['tid'])}")
         else:
             standings, matches = read_tecra(cfg)
             src = f"https://{cfg['host']}/order/1/{SEASON_YEAR}/all"
@@ -453,7 +481,11 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     matches = [dict(m, home=name_map[m["home"]], away=name_map[m["away"]]) for m in matches]
 
     # --- 検算とJSON組み立て（junior-soccer版と同じ関数を使う） ---
-    res = build_from_source(standings, matches, existing_total)
+    # round_robin: False のリーグは総当たり枠を作らない。
+    # 鳥取の後期のようにグループ分けのリーグでは、8チームの総当たり（56枠）を
+    # 機械的に作ると**存在しない試合枠が大量に出る**。出典の試合一覧をそのまま枠にする。
+    res = build_from_source(standings, matches, existing_total,
+                            round_robin=cfg.get("round_robin", True))
     if isinstance(res, str):
         return f"[据え置き] {slug}: {res}"
     team_objs, fixtures, meta = res

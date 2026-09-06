@@ -285,10 +285,16 @@ def fetch_dfs(url: str):
 # 1県の処理
 # ----------------------------------------------------------------------------
 def build_from_source(standings: dict[str, dict], js_matches: list[dict],
-                      existing_total: int) -> tuple[list[dict], list[dict], dict] | str:
-    """junior-soccer の順位表＋試合一覧から JSON 本体（teams/matches/順位）を再構築。
+                      existing_total: int,
+                      round_robin: bool = True) -> tuple[list[dict], list[dict], dict] | str:
+    """出典の順位表＋試合一覧から JSON 本体（teams/matches/順位）を再構築。
     検算（試合一覧から再計算＝掲載順位表に完全一致）が通ればタプルを、
-    通らなければ理由文字列を返す。"""
+    通らなければ理由文字列を返す。
+
+    round_robin=False のときは**総当たりの枠を作らない**（2026-09-06追加）。
+    鳥取の後期のようにグループ分けのリーグでは、全チームの総当たり枠を機械的に作ると
+    存在しない試合枠が大量に出てしまう。その場合は出典の試合一覧をそのまま枠にする。
+    """
     teams = list(standings.keys())
     tset = set(teams)
     # 試合の全チームが順位表ロスターに含まれるか
@@ -312,6 +318,20 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
 
     # 総当たり制の推定（既存の全試合数から）
     n = len(teams)
+    if not round_robin:
+        # グループ分けのリーグ。出典に載っている試合だけを枠にする。
+        fixtures = [dict(md=0, date=m["date"], home=m["home"], hs=m["hs"],
+                         **{"as": m["as"]}, away=m["away"], status="played")
+                    for m in js_matches]
+        team_objs = [dict(name=t, short=short_of(t)) for t in teams]
+        ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
+                        -(st[x]["gf"] - st[x]["ga"]), -st[x]["gf"], x))
+        official = [dict(rank=i + 1, team=t, points=st[t]["pts"], played=st[t]["played"],
+                         won=st[t]["won"], drawn=st[t]["drawn"], lost=st[t]["lost"],
+                         gf=st[t]["gf"], ga=st[t]["ga"], gd=st[t]["gf"] - st[t]["ga"])
+                    for i, t in enumerate(ranked)]
+        return team_objs, fixtures, {"official": official, "played": len(js_matches)}
+
     double = existing_total >= n * (n - 1) * 0.75 if existing_total else True
     fixtures = generate_fixtures(teams, double)
     if double:
@@ -366,9 +386,11 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
 # 増やすときは fetch_pref_official.py の PREF_OFFICIAL と両方に足すこと。
 # ----------------------------------------------------------------------------
 MIGRATED_TO_OFFICIAL = {
+    # GoalNote 8県
     "pref-chiba-1", "pref-aichi-1", "pref-iwate-1", "pref-nagasaki-1",
-    "pref-tottori-1", "pref-kagawa-1", "pref-shiga-1", "pref-fukuoka-1",
-    "pref-saga-1",
+    "pref-tottori-1", "pref-kagawa-1", "pref-yamagata-1", "pref-ibaraki-1",
+    # tecra 3県（47ドメインを確認済みで、この3県で打ち止め）
+    "pref-shiga-1", "pref-fukuoka-1", "pref-saga-1",
 }
 
 
