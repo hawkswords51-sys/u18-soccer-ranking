@@ -81,6 +81,18 @@
     },
     {
       "rank": 3,
+      "team": "サンフレッチェ広島F.Cユース",
+      "pts": 21,
+      "played": 12,
+      "won": 6,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 20,
+      "ga": 16,
+      "gd": 4
+    },
+    {
+      "rank": 4,
       "team": "アビスパ福岡 U-18",
       "pts": 19,
       "played": 12,
@@ -92,7 +104,7 @@
       "gd": -1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "サガン鳥栖U-18",
       "pts": 18,
       "played": 12,
@@ -104,7 +116,7 @@
       "gd": 4
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "大津",
       "pts": 18,
       "played": 11,
@@ -113,18 +125,6 @@
       "lost": 5,
       "gf": 19,
       "ga": 16,
-      "gd": 3
-    },
-    {
-      "rank": 6,
-      "team": "サンフレッチェ広島F.Cユース",
-      "pts": 18,
-      "played": 11,
-      "won": 5,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 17,
-      "ga": 14,
       "gd": 3
     },
     {
@@ -143,13 +143,13 @@
       "rank": 8,
       "team": "神村学園",
       "pts": 16,
-      "played": 11,
+      "played": 12,
       "won": 4,
       "drawn": 4,
-      "lost": 3,
-      "gf": 19,
-      "ga": 20,
-      "gd": -1
+      "lost": 4,
+      "gf": 21,
+      "ga": 23,
+      "gd": -2
     },
     {
       "rank": 9,
@@ -2195,12 +2195,36 @@
       "md": 12,
       "date": "2026-09-06",
       "home": "サンフレッチェ広島F.Cユース",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "神村学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "安芸高田市サッカー公園",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "2",
+          "name": "正法地 有"
+        },
+        {
+          "minute": "46",
+          "name": "菊山 璃皇"
+        },
+        {
+          "minute": "59",
+          "name": "信重 亮二朗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "44",
+          "name": "岡野 綱人"
+        },
+        {
+          "minute": "88",
+          "name": "花城 瑛汰"
+        }
+      ]
     },
     {
       "md": 12,
