@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "大阪桐蔭",
+      "pts": 23,
+      "played": 10,
+      "won": 7,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 18,
+      "ga": 6,
+      "gd": 12
+    },
+    {
+      "rank": 2,
       "team": "東海大仰星",
       "pts": 22,
       "played": 10,
@@ -58,18 +70,6 @@
       "gf": 26,
       "ga": 8,
       "gd": 18
-    },
-    {
-      "rank": 2,
-      "team": "大阪桐蔭",
-      "pts": 20,
-      "played": 9,
-      "won": 6,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 16,
-      "ga": 5,
-      "gd": 11
     },
     {
       "rank": 3,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "京都共栄",
       "pts": 8,
-      "played": 9,
+      "played": 10,
       "won": 2,
       "drawn": 2,
-      "lost": 5,
-      "gf": 14,
-      "ga": 20,
-      "gd": -6
+      "lost": 6,
+      "gf": 15,
+      "ga": 22,
+      "gd": -7
     },
     {
       "rank": 8,
@@ -690,10 +690,10 @@
       "md": 10,
       "date": "2026-09-06",
       "home": "京都共栄",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "大阪桐蔭",
-      "status": "scheduled",
+      "status": "played",
       "venue": "京都共栄学園",
       "kickoff": "17:00"
     },
