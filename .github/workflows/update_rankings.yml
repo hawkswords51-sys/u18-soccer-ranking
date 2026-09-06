@@ -74,18 +74,19 @@ jobs:
           pip install pandas lxml
           pip install pdfplumber
 
-      # ★ プレミアEAST/WESTはJFA公式JSONが正本（2026-09-05〜）
+      # ★ プレミア2＋プリンス13の全15リーグはJFA公式が正本（2026-09-05〜／09-06拡大）
       #   ここで成功したリーグは、この後の update.py / update_cross_tables.py が
       #   koko-soccer で上書きしないようスキップする（古い順位に戻る事故を防ぐ）。
-      #   取得や検算に失敗したら何も書かずに終わるので、その場合は従来どおりkokoが使われる。
-      - name: プレミアリーグをJFA公式JSONから更新
+      #   取得や検算に失敗したリーグは何も書かずに終わるので、従来どおりkokoが使われる。
+      #   リーグごとに独立しているので、1リーグ失敗しても他はそのまま更新される。
+      - name: プレミア・プリンスをJFA公式から更新
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         continue-on-error: true
         run: |
-          if [ -f scraper/fetch_jfa_premier.py ]; then
-            python scraper/fetch_jfa_premier.py
+          if [ -f scraper/fetch_jfa.py ]; then
+            python scraper/fetch_jfa.py
           else
-            echo "scraper/fetch_jfa_premier.py がまだありません。スキップ。"
+            echo "scraper/fetch_jfa.py がまだありません。スキップ。"
           fi
 
       - name: 順位データを更新

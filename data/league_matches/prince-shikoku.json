@@ -1,7 +1,8 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 四国",
   "season": "2026",
-  "source": "https://koko-soccer.com/score/4339",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/shikoku/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
     {
@@ -171,29 +172,13 @@
     {
       "md": 1,
       "date": "2026-04-04",
-      "home": "愛媛FC U-18",
-      "hs": 7,
-      "as": 0,
-      "away": "新田",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
       "home": "FC今治U-18",
       "hs": 1,
       "as": 0,
       "away": "今治東中等教育学校",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
-      "home": "徳島商",
-      "hs": 1,
-      "as": 1,
-      "away": "カマタマーレ讃岐U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "11:00"
     },
     {
       "md": 1,
@@ -202,52 +187,42 @@
       "hs": 0,
       "as": 1,
       "away": "大手前高松",
-      "status": "played"
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "徳島商",
+      "hs": 1,
+      "as": 1,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "played",
+      "venue": "鳴門・大塚スポーツパーク球技場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "愛媛FC U-18",
+      "hs": 7,
+      "as": 0,
+      "away": "新田",
+      "status": "played",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "11:00"
     },
     {
       "md": 1,
       "date": "2026-06-13",
-      "home": "高知",
-      "hs": 0,
-      "as": 1,
-      "away": "徳島市立",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "大手前高松",
+      "home": "徳島市立",
       "hs": 1,
-      "as": 1,
-      "away": "FC今治U-18",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "新田",
-      "hs": 0,
-      "as": 2,
-      "away": "今治東中等教育学校",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "徳島商",
-      "hs": 2,
-      "as": 3,
-      "away": "愛媛FC U-18",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "高知",
-      "hs": 2,
-      "as": 3,
-      "away": "徳島ヴォルティスユース",
-      "status": "played"
+      "as": 0,
+      "away": "高知",
+      "status": "played",
+      "venue": "徳島市立高等学校",
+      "kickoff": "15:00"
     },
     {
       "md": 2,
@@ -256,16 +231,53 @@
       "hs": 0,
       "as": 7,
       "away": "徳島市立",
-      "status": "played"
+      "status": "played",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "14:00"
     },
     {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "愛媛FC U-18",
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "大手前高松",
       "hs": 1,
-      "as": 0,
-      "away": "カマタマーレ讃岐U-18",
-      "status": "played"
+      "as": 1,
+      "away": "FC今治U-18",
+      "status": "played",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "徳島商",
+      "hs": 2,
+      "as": 3,
+      "away": "愛媛FC U-18",
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "新田",
+      "hs": 0,
+      "as": 2,
+      "away": "今治東中等教育学校",
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "高知",
+      "hs": 2,
+      "as": 3,
+      "away": "徳島ヴォルティスユース",
+      "status": "played",
+      "venue": "高知県立春野総合運動公園球技場",
+      "kickoff": "13:00"
     },
     {
       "md": 3,
@@ -274,25 +286,9 @@
       "hs": 4,
       "as": 1,
       "away": "新田",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "大手前高松",
-      "hs": 1,
-      "as": 1,
-      "away": "徳島市立",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "徳島商",
-      "hs": 2,
-      "as": 7,
-      "away": "高知",
-      "status": "played"
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "11:00"
     },
     {
       "md": 3,
@@ -301,25 +297,42 @@
       "hs": 0,
       "as": 6,
       "away": "徳島ヴォルティスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "14:00"
     },
     {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "愛媛FC U-18",
-      "hs": 5,
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "大手前高松",
+      "hs": 1,
       "as": 1,
-      "away": "今治東中等教育学校",
-      "status": "played"
+      "away": "徳島市立",
+      "status": "played",
+      "venue": "宝山湖OKURAボールパーク",
+      "kickoff": "13:00"
     },
     {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "新田",
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "徳島商",
       "hs": 2,
-      "as": 2,
-      "away": "大手前高松",
-      "status": "played"
+      "as": 7,
+      "away": "高知",
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "愛媛FC U-18",
+      "hs": 1,
+      "as": 0,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "played",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "11:00"
     },
     {
       "md": 4,
@@ -328,16 +341,9 @@
       "hs": 2,
       "as": 4,
       "away": "徳島ヴォルティスユース",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "高知",
-      "hs": 3,
-      "as": 1,
-      "away": "FC今治U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "四国化成MEGLIO",
+      "kickoff": "13:00"
     },
     {
       "md": 4,
@@ -346,16 +352,42 @@
       "hs": 4,
       "as": 1,
       "away": "徳島商",
-      "status": "played"
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
     },
     {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "徳島商",
-      "hs": 1,
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "愛媛FC U-18",
+      "hs": 5,
+      "as": 1,
+      "away": "今治東中等教育学校",
+      "status": "played",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "新田",
+      "hs": 2,
       "as": 2,
       "away": "大手前高松",
-      "status": "played"
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "高知",
+      "hs": 3,
+      "as": 1,
+      "away": "FC今治U-18",
+      "status": "played",
+      "venue": "高知県立春野総合運動公園球技場",
+      "kickoff": "13:00"
     },
     {
       "md": 5,
@@ -364,7 +396,9 @@
       "hs": 1,
       "as": 2,
       "away": "愛媛FC U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -373,7 +407,31 @@
       "hs": 1,
       "as": 0,
       "away": "新田",
-      "status": "played"
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "徳島商",
+      "hs": 1,
+      "as": 2,
+      "away": "大手前高松",
+      "status": "played",
+      "venue": "鳴門・大塚スポーツパーク球技場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "徳島市立",
+      "hs": 1,
+      "as": 1,
+      "away": "今治東中等教育学校",
+      "status": "played",
+      "venue": "徳島市立高等学校",
+      "kickoff": "13:00"
     },
     {
       "md": 5,
@@ -382,25 +440,20 @@
       "hs": 5,
       "as": 1,
       "away": "カマタマーレ讃岐U-18",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "徳島市立",
-      "hs": 1,
-      "as": 1,
-      "away": "今治東中等教育学校",
-      "status": "played"
+      "status": "played",
+      "venue": "高知県立春野総合運動公園球技場",
+      "kickoff": "13:00"
     },
     {
       "md": 6,
       "date": "2026-05-09",
-      "home": "徳島商",
+      "home": "カマタマーレ讃岐U-18",
       "hs": 0,
-      "as": 2,
-      "away": "徳島ヴォルティスユース",
-      "status": "played"
+      "as": 3,
+      "away": "FC今治U-18",
+      "status": "played",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "14:00"
     },
     {
       "md": 6,
@@ -409,7 +462,20 @@
       "hs": 3,
       "as": 3,
       "away": "今治東中等教育学校",
-      "status": "played"
+      "status": "played",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-09",
+      "home": "徳島商",
+      "hs": 0,
+      "as": 2,
+      "away": "徳島ヴォルティスユース",
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
     },
     {
       "md": 6,
@@ -418,7 +484,9 @@
       "hs": 1,
       "as": 4,
       "away": "愛媛FC U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "徳島市立高等学校",
+      "kickoff": "13:00"
     },
     {
       "md": 6,
@@ -427,16 +495,9 @@
       "hs": 1,
       "as": 0,
       "away": "新田",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-09",
-      "home": "カマタマーレ讃岐U-18",
-      "hs": 0,
-      "as": 3,
-      "away": "FC今治U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "高知県立春野総合運動公園球技場",
+      "kickoff": "13:00"
     },
     {
       "md": 7,
@@ -445,25 +506,9 @@
       "hs": 1,
       "as": 1,
       "away": "大手前高松",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-16",
-      "home": "愛媛FC U-18",
-      "hs": 3,
-      "as": 2,
-      "away": "高知",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-16",
-      "home": "徳島ヴォルティスユース",
-      "hs": 1,
-      "as": 0,
-      "away": "FC今治U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "四国化成MEGLIO",
+      "kickoff": "11:00"
     },
     {
       "md": 7,
@@ -472,7 +517,20 @@
       "hs": 2,
       "as": 2,
       "away": "徳島商",
-      "status": "played"
+      "status": "played",
+      "venue": "SAKURAフィールド",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-16",
+      "home": "徳島ヴォルティスユース",
+      "hs": 1,
+      "as": 0,
+      "away": "FC今治U-18",
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
     },
     {
       "md": 7,
@@ -481,43 +539,20 @@
       "hs": 3,
       "as": 3,
       "away": "新田",
-      "status": "played"
+      "status": "played",
+      "venue": "徳島市立高等学校",
+      "kickoff": "16:00"
     },
     {
-      "md": 8,
-      "date": "2026-06-27",
+      "md": 7,
+      "date": "2026-05-16",
       "home": "愛媛FC U-18",
-      "hs": 2,
-      "as": 1,
-      "away": "大手前高松",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-06-27",
-      "home": "徳島ヴォルティスユース",
-      "hs": 2,
-      "as": 0,
-      "away": "徳島市立",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-06-27",
-      "home": "今治東中等教育学校",
-      "hs": 2,
-      "as": 1,
-      "away": "高知",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-06-27",
-      "home": "新田",
-      "hs": 2,
+      "hs": 3,
       "as": 2,
-      "away": "カマタマーレ讃岐U-18",
-      "status": "played"
+      "away": "高知",
+      "status": "played",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "11:00"
     },
     {
       "md": 8,
@@ -526,43 +561,53 @@
       "hs": 1,
       "as": 2,
       "away": "徳島商",
-      "status": "played"
+      "status": "played",
+      "venue": "桜井海浜ふれあい広場",
+      "kickoff": "14:00"
     },
     {
-      "md": 9,
-      "date": "2026-07-04",
-      "home": "徳島ヴォルティスユース",
-      "hs": 1,
-      "as": 0,
-      "away": "愛媛FC U-18",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-07-04",
-      "home": "大手前高松",
-      "hs": 3,
-      "as": 0,
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "今治東中等教育学校",
+      "hs": 2,
+      "as": 1,
       "away": "高知",
-      "status": "played"
+      "status": "played",
+      "venue": "SAKURAフィールド",
+      "kickoff": "13:00"
     },
     {
-      "md": 9,
-      "date": "2026-07-04",
-      "home": "徳島市立",
-      "hs": 1,
-      "as": 2,
-      "away": "FC今治U-18",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-07-04",
-      "home": "新田",
-      "hs": 4,
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "徳島ヴォルティスユース",
+      "hs": 2,
       "as": 0,
-      "away": "徳島商",
-      "status": "played"
+      "away": "徳島市立",
+      "status": "played",
+      "venue": "徳島市立高等学校",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "愛媛FC U-18",
+      "hs": 2,
+      "as": 1,
+      "away": "大手前高松",
+      "status": "played",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-27",
+      "home": "新田",
+      "hs": 2,
+      "as": 2,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "played",
+      "venue": "桜井海浜ふれあい広場",
+      "kickoff": "11:00"
     },
     {
       "md": 9,
@@ -571,34 +616,53 @@
       "hs": 4,
       "as": 0,
       "away": "カマタマーレ讃岐U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "SAKURAフィールド",
+      "kickoff": "18:30"
     },
     {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "新田",
-      "hs": 0,
-      "as": 2,
-      "away": "愛媛FC U-18",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-05",
+      "md": 9,
+      "date": "2026-07-04",
       "home": "大手前高松",
-      "hs": 0,
-      "as": 2,
-      "away": "徳島ヴォルティスユース",
-      "status": "played"
+      "hs": 3,
+      "as": 0,
+      "away": "高知",
+      "status": "played",
+      "venue": "倉田学園総合グラウンド",
+      "kickoff": "16:00"
     },
     {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "高知",
-      "hs": 3,
-      "as": 3,
-      "away": "徳島市立",
-      "status": "played"
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "徳島ヴォルティスユース",
+      "hs": 1,
+      "as": 0,
+      "away": "愛媛FC U-18",
+      "status": "played",
+      "venue": "徳島スポーツビレッジ：ピッチC",
+      "kickoff": "18:00"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "徳島市立",
+      "hs": 1,
+      "as": 2,
+      "away": "FC今治U-18",
+      "status": "played",
+      "venue": "徳島市立高等学校",
+      "kickoff": "18:00"
+    },
+    {
+      "md": 9,
+      "date": "2026-07-04",
+      "home": "新田",
+      "hs": 4,
+      "as": 0,
+      "away": "徳島商",
+      "status": "played",
+      "venue": "北条スポーツセンター球技場",
+      "kickoff": "18:00"
     },
     {
       "md": 10,
@@ -607,7 +671,9 @@
       "hs": 0,
       "as": 1,
       "away": "徳島商",
-      "status": "played"
+      "status": "played",
+      "venue": "香川県総合第2サッカー・ラグビー場",
+      "kickoff": "14:30"
     },
     {
       "md": 10,
@@ -616,25 +682,42 @@
       "hs": 0,
       "as": 2,
       "away": "FC今治U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "SAKURAフィールド",
+      "kickoff": "16:00"
     },
     {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "愛媛FC U-18",
-      "hs": null,
-      "as": null,
-      "away": "徳島商",
-      "status": "scheduled"
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "大手前高松",
+      "hs": 0,
+      "as": 2,
+      "away": "徳島ヴォルティスユース",
+      "status": "played",
+      "venue": "香川県総合第2サッカー・ラグビー場",
+      "kickoff": "10:00"
     },
     {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "徳島ヴォルティスユース",
-      "hs": null,
-      "as": null,
-      "away": "高知",
-      "status": "scheduled"
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "新田",
+      "hs": 0,
+      "as": 2,
+      "away": "愛媛FC U-18",
+      "status": "played",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "高知",
+      "hs": 3,
+      "as": 3,
+      "away": "徳島市立",
+      "status": "played",
+      "venue": "高知県立春野総合運動公園球技場",
+      "kickoff": "10:00"
     },
     {
       "md": 11,
@@ -643,7 +726,9 @@
       "hs": null,
       "as": null,
       "away": "大手前高松",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "10:00"
     },
     {
       "md": 11,
@@ -652,7 +737,20 @@
       "hs": null,
       "as": null,
       "away": "新田",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "SAKURAフィールド",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "高知",
+      "status": "scheduled",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "10:00"
     },
     {
       "md": 11,
@@ -661,7 +759,42 @@
       "hs": null,
       "as": null,
       "away": "カマタマーレ讃岐U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "徳島市立高等学校",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "今治東中等教育学校",
+      "status": "scheduled",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "10:00"
     },
     {
       "md": 12,
@@ -670,25 +803,20 @@
       "hs": null,
       "as": null,
       "away": "大手前高松",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "徳島市立高等学校",
+      "kickoff": "16:30"
     },
     {
       "md": 12,
       "date": "2026-09-19",
-      "home": "カマタマーレ讃岐U-18",
+      "home": "新田",
       "hs": null,
       "as": null,
-      "away": "愛媛FC U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "徳島ヴォルティスユース",
-      "hs": null,
-      "as": null,
-      "away": "今治東中等教育学校",
-      "status": "scheduled"
+      "away": "FC今治U-18",
+      "status": "scheduled",
+      "venue": "愛媛県総合球技場",
+      "kickoff": "10:00"
     },
     {
       "md": 12,
@@ -697,34 +825,9 @@
       "hs": null,
       "as": null,
       "away": "徳島商",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "新田",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "徳島ヴォルティスユース",
-      "hs": null,
-      "as": null,
-      "away": "カマタマーレ讃岐U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "大手前高松",
-      "hs": null,
-      "as": null,
-      "away": "新田",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "青少年センター",
+      "kickoff": "10:00"
     },
     {
       "md": 13,
@@ -733,16 +836,9 @@
       "hs": null,
       "as": null,
       "away": "高知",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "徳島商",
-      "hs": null,
-      "as": null,
-      "away": "徳島市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "愛媛県総合球技場",
+      "kickoff": "10:00"
     },
     {
       "md": 13,
@@ -751,70 +847,97 @@
       "hs": null,
       "as": null,
       "away": "愛媛FC U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "SAKURAフィールド",
+      "kickoff": "16:00"
     },
     {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "愛媛FC U-18",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "新田",
-      "hs": null,
-      "as": null,
-      "away": "徳島ヴォルティスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-10-04",
+      "md": 13,
+      "date": "2026-09-26",
       "home": "大手前高松",
       "hs": null,
       "as": null,
-      "away": "徳島商",
-      "status": "scheduled"
+      "away": "新田",
+      "status": "scheduled",
+      "venue": "瀬戸大橋記念公園第二",
+      "kickoff": "10:00"
     },
     {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "今治東中等教育学校",
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "徳島商",
       "hs": null,
       "as": null,
       "away": "徳島市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "鳴門・大塚スポーツパーク球技場",
+      "kickoff": "10:00"
     },
     {
       "md": 14,
-      "date": "2026-10-04",
+      "date": "2026-10-03",
       "home": "カマタマーレ讃岐U-18",
       "hs": null,
       "as": null,
       "away": "高知",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "14:00"
     },
     {
-      "md": 15,
-      "date": "2026-10-10",
-      "home": "愛媛FC U-18",
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "今治東中等教育学校",
       "hs": null,
       "as": null,
       "away": "徳島市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "SAKURAフィールド",
+      "kickoff": "13:00"
     },
     {
-      "md": 15,
-      "date": "2026-10-10",
-      "home": "徳島ヴォルティスユース",
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "大手前高松",
       "hs": null,
       "as": null,
       "away": "徳島商",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "未定"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled",
+      "venue": "北条スポーツセンター球技場",
+      "kickoff": "14:00"
     },
     {
       "md": 15,
@@ -823,7 +946,9 @@
       "hs": null,
       "as": null,
       "away": "カマタマーレ讃岐U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北条スポーツセンター球技場",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -832,7 +957,31 @@
       "hs": null,
       "as": null,
       "away": "大手前高松",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "SAKURAフィールド",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "徳島ヴォルティスユース",
+      "hs": null,
+      "as": null,
+      "away": "徳島商",
+      "status": "scheduled",
+      "venue": "徳島スポーツビレッジ：ピッチC",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "10:00"
     },
     {
       "md": 15,
@@ -841,34 +990,9 @@
       "hs": null,
       "as": null,
       "away": "高知",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-17",
-      "home": "愛媛FC U-18",
-      "hs": null,
-      "as": null,
-      "away": "高知",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-17",
-      "home": "新田",
-      "hs": null,
-      "as": null,
-      "away": "徳島市立",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-17",
-      "home": "大手前高松",
-      "hs": null,
-      "as": null,
-      "away": "カマタマーレ讃岐U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北条スポーツセンター球技場",
+      "kickoff": "14:00"
     },
     {
       "md": 16,
@@ -877,7 +1001,20 @@
       "hs": null,
       "as": null,
       "away": "徳島ヴォルティスユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "西条市ひうち陸上競技場",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "カマタマーレ讃岐U-18",
+      "status": "scheduled",
+      "venue": "瀬戸大橋記念公園第三",
+      "kickoff": "13:00"
     },
     {
       "md": 16,
@@ -886,7 +1023,64 @@
       "hs": null,
       "as": null,
       "away": "今治東中等教育学校",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "徳島スポーツビレッジ：ピッチC",
+      "kickoff": "15:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "新田",
+      "hs": null,
+      "as": null,
+      "away": "徳島市立",
+      "status": "scheduled",
+      "venue": "西条市ひうち陸上競技場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-17",
+      "home": "高知",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "カマタマーレ讃岐U-18",
+      "hs": null,
+      "as": null,
+      "away": "新田",
+      "status": "scheduled",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "大手前高松",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FC U-18",
+      "status": "scheduled",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "徳島商",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18",
+      "status": "scheduled",
+      "venue": "徳島スポーツビレッジ：ピッチB",
+      "kickoff": "13:00"
     },
     {
       "md": 17,
@@ -894,17 +1088,10 @@
       "home": "徳島市立",
       "hs": null,
       "as": null,
-      "away": "愛媛FC U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-23",
-      "home": "大手前高松",
-      "hs": null,
-      "as": null,
       "away": "徳島ヴォルティスユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "徳島市立高等学校",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -913,43 +1100,9 @@
       "hs": null,
       "as": null,
       "away": "今治東中等教育学校",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-23",
-      "home": "徳島商",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-23",
-      "home": "カマタマーレ讃岐U-18",
-      "hs": null,
-      "as": null,
-      "away": "新田",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-11-28",
-      "home": "愛媛FC U-18",
-      "hs": null,
-      "as": null,
-      "away": "徳島ヴォルティスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-11-28",
-      "home": "高知",
-      "hs": null,
-      "as": null,
-      "away": "大手前高松",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "青少年センター",
+      "kickoff": "13:00"
     },
     {
       "md": 18,
@@ -958,7 +1111,9 @@
       "hs": null,
       "as": null,
       "away": "徳島市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北条スポーツセンター陸上競技場",
+      "kickoff": "13:00"
     },
     {
       "md": 18,
@@ -967,7 +1122,9 @@
       "hs": null,
       "as": null,
       "away": "今治東中等教育学校",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "屋島レクザムフィールド",
+      "kickoff": "13:00"
     },
     {
       "md": 18,
@@ -976,7 +1133,31 @@
       "hs": null,
       "as": null,
       "away": "新田",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "鳴門・大塚スポーツパーク球技場",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "愛媛FC U-18",
+      "hs": null,
+      "as": null,
+      "away": "徳島ヴォルティスユース",
+      "status": "scheduled",
+      "venue": "愛フィールド梅津寺",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "高知",
+      "hs": null,
+      "as": null,
+      "away": "大手前高松",
+      "status": "scheduled",
+      "venue": "高知県立春野総合運動公園補助競技場",
+      "kickoff": "13:00"
     }
   ]
 }

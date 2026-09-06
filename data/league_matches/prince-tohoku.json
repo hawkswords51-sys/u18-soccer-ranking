@@ -1,7 +1,8 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東北",
   "season": "2026",
-  "source": "https://koko-soccer.com/score/4348",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/tohoku/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
     {
@@ -171,38 +172,13 @@
     {
       "md": 1,
       "date": "2026-04-04",
-      "home": "盛岡商",
-      "hs": 0,
-      "as": 2,
-      "away": "尚志",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
       "home": "モンテディオ山形ユース",
       "hs": 2,
       "as": 0,
       "away": "ブラウブリッツ秋田U-18",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
-      "home": "帝京安積",
-      "hs": 2,
-      "as": 5,
-      "away": "青森山田セカンド",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
-      "home": "東北学院",
-      "hs": 2,
-      "as": 2,
-      "away": "聖和学園",
-      "status": "played"
+      "status": "played",
+      "venue": "山形県総合運動公園第２運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 1,
@@ -211,16 +187,42 @@
       "hs": 0,
       "as": 1,
       "away": "専大北上",
-      "status": "played"
+      "status": "played",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "11:00"
     },
     {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "尚志",
-      "hs": 3,
-      "as": 0,
-      "away": "帝京安積",
-      "status": "played"
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "帝京安積",
+      "hs": 2,
+      "as": 5,
+      "away": "青森山田セカンド",
+      "status": "played",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "東北学院",
+      "hs": 2,
+      "as": 2,
+      "away": "聖和学園",
+      "status": "played",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "盛岡商",
+      "hs": 0,
+      "as": 2,
+      "away": "尚志",
+      "status": "played",
+      "venue": "岩手県フットボールセンター",
+      "kickoff": "10:30"
     },
     {
       "md": 2,
@@ -229,7 +231,20 @@
       "hs": 0,
       "as": 4,
       "away": "青森山田セカンド",
-      "status": "played"
+      "status": "played",
+      "venue": "山形県総合運動公園第２運動広場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "尚志",
+      "hs": 3,
+      "as": 0,
+      "away": "帝京安積",
+      "status": "played",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 2,
@@ -238,7 +253,9 @@
       "hs": 2,
       "as": 0,
       "away": "専大北上",
-      "status": "played"
+      "status": "played",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 2,
@@ -247,16 +264,20 @@
       "hs": 2,
       "as": 0,
       "away": "学法石川",
-      "status": "played"
+      "status": "played",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
     },
     {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "東北学院",
-      "hs": 1,
-      "as": 1,
-      "away": "尚志",
-      "status": "played"
+      "md": 2,
+      "date": "2026-04-12",
+      "home": "盛岡商",
+      "hs": 0,
+      "as": 3,
+      "away": "東北学院",
+      "status": "played",
+      "venue": "岩手県営運動公園第１グラウンド",
+      "kickoff": "13:30"
     },
     {
       "md": 3,
@@ -265,16 +286,9 @@
       "hs": 2,
       "as": 1,
       "away": "聖和学園",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "青森山田セカンド",
-      "hs": 2,
-      "as": 0,
-      "away": "学法石川",
-      "status": "played"
+      "status": "played",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 3,
@@ -283,7 +297,9 @@
       "hs": 2,
       "as": 0,
       "away": "盛岡商",
-      "status": "played"
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
     },
     {
       "md": 3,
@@ -292,34 +308,31 @@
       "hs": 2,
       "as": 0,
       "away": "モンテディオ山形ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "11:00"
     },
     {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "尚志",
-      "hs": 5,
-      "as": 0,
-      "away": "モンテディオ山形ユース",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "盛岡商",
-      "hs": 0,
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "東北学院",
+      "hs": 1,
       "as": 1,
-      "away": "ブラウブリッツ秋田U-18",
-      "status": "played"
+      "away": "尚志",
+      "status": "played",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "10:30"
     },
     {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "帝京安積",
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "青森山田セカンド",
       "hs": 2,
-      "as": 1,
+      "as": 0,
       "away": "学法石川",
-      "status": "played"
+      "status": "played",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 4,
@@ -328,16 +341,53 @@
       "hs": 7,
       "as": 0,
       "away": "東北学院",
-      "status": "played"
+      "status": "played",
+      "venue": "北上総合運動公園第２運動場",
+      "kickoff": "12:00"
     },
     {
       "md": 4,
-      "date": "2026-04-26",
+      "date": "2026-04-25",
+      "home": "尚志",
+      "hs": 5,
+      "as": 0,
+      "away": "モンテディオ山形ユース",
+      "status": "played",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "帝京安積",
+      "hs": 2,
+      "as": 1,
+      "away": "学法石川",
+      "status": "played",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "盛岡商",
+      "hs": 0,
+      "as": 1,
+      "away": "ブラウブリッツ秋田U-18",
+      "status": "played",
+      "venue": "岩手県フットボールセンター",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
       "home": "聖和学園",
       "hs": 2,
       "as": 2,
       "away": "青森山田セカンド",
-      "status": "played"
+      "status": "played",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "14:00"
     },
     {
       "md": 5,
@@ -346,7 +396,9 @@
       "hs": 1,
       "as": 2,
       "away": "東北学院",
-      "status": "played"
+      "status": "played",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 5,
@@ -355,7 +407,9 @@
       "hs": 2,
       "as": 0,
       "away": "学法石川",
-      "status": "played"
+      "status": "played",
+      "venue": "山形県総合運動公園第２運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 5,
@@ -364,16 +418,9 @@
       "hs": 1,
       "as": 2,
       "away": "尚志",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "青森山田セカンド",
-      "hs": 2,
-      "as": 0,
-      "away": "盛岡商",
-      "status": "played"
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -382,34 +429,20 @@
       "hs": 0,
       "as": 0,
       "away": "帝京安積",
-      "status": "played"
+      "status": "played",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
     },
     {
-      "md": 6,
-      "date": "2026-05-06",
-      "home": "尚志",
-      "hs": 1,
-      "as": 0,
-      "away": "学法石川",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-06",
+      "md": 5,
+      "date": "2026-05-02",
       "home": "青森山田セカンド",
-      "hs": 1,
+      "hs": 2,
       "as": 0,
-      "away": "東北学院",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-06",
-      "home": "聖和学園",
-      "hs": 1,
-      "as": 1,
-      "away": "モンテディオ山形ユース",
-      "status": "played"
+      "away": "盛岡商",
+      "status": "played",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 6,
@@ -418,7 +451,20 @@
       "hs": 1,
       "as": 1,
       "away": "ブラウブリッツ秋田U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-06",
+      "home": "尚志",
+      "hs": 1,
+      "as": 0,
+      "away": "学法石川",
+      "status": "played",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 6,
@@ -427,7 +473,31 @@
       "hs": 2,
       "as": 0,
       "away": "盛岡商",
-      "status": "played"
+      "status": "played",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-06",
+      "home": "聖和学園",
+      "hs": 1,
+      "as": 1,
+      "away": "モンテディオ山形ユース",
+      "status": "played",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-06",
+      "home": "青森山田セカンド",
+      "hs": 1,
+      "as": 0,
+      "away": "東北学院",
+      "status": "played",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 7,
@@ -436,25 +506,9 @@
       "hs": 1,
       "as": 5,
       "away": "尚志",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-10",
-      "home": "盛岡商",
-      "hs": 0,
-      "as": 2,
-      "away": "モンテディオ山形ユース",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-10",
-      "home": "専大北上",
-      "hs": 2,
-      "as": 3,
-      "away": "青森山田セカンド",
-      "status": "played"
+      "status": "played",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 7,
@@ -463,7 +517,20 @@
       "hs": 3,
       "as": 1,
       "away": "聖和学園",
-      "status": "played"
+      "status": "played",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-10",
+      "home": "専大北上",
+      "hs": 2,
+      "as": 3,
+      "away": "青森山田セカンド",
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
     },
     {
       "md": 7,
@@ -472,16 +539,20 @@
       "hs": 0,
       "as": 2,
       "away": "帝京安積",
-      "status": "played"
+      "status": "played",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "13:30"
     },
     {
-      "md": 8,
-      "date": "2026-05-17",
-      "home": "尚志",
-      "hs": 2,
-      "as": 1,
-      "away": "聖和学園",
-      "status": "played"
+      "md": 7,
+      "date": "2026-05-10",
+      "home": "盛岡商",
+      "hs": 0,
+      "as": 2,
+      "away": "モンテディオ山形ユース",
+      "status": "played",
+      "venue": "いわぎんスタジアム",
+      "kickoff": "10:30"
     },
     {
       "md": 8,
@@ -490,16 +561,9 @@
       "hs": 1,
       "as": 2,
       "away": "青森山田セカンド",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-05-17",
-      "home": "東北学院",
-      "hs": 1,
-      "as": 0,
-      "away": "モンテディオ山形ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 8,
@@ -508,7 +572,9 @@
       "hs": 2,
       "as": 2,
       "away": "盛岡商",
-      "status": "played"
+      "status": "played",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "11:00"
     },
     {
       "md": 8,
@@ -517,7 +583,31 @@
       "hs": 1,
       "as": 0,
       "away": "帝京安積",
-      "status": "played"
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-17",
+      "home": "尚志",
+      "hs": 2,
+      "as": 1,
+      "away": "聖和学園",
+      "status": "played",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-17",
+      "home": "東北学院",
+      "hs": 1,
+      "as": 0,
+      "away": "モンテディオ山形ユース",
+      "status": "played",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 9,
@@ -526,25 +616,9 @@
       "hs": 0,
       "as": 4,
       "away": "尚志",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-28",
-      "home": "盛岡商",
-      "hs": 0,
-      "as": 4,
-      "away": "聖和学園",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-28",
-      "home": "帝京安積",
-      "hs": 0,
-      "as": 1,
-      "away": "ブラウブリッツ秋田U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 9,
@@ -553,7 +627,20 @@
       "hs": 0,
       "as": 0,
       "away": "専大北上",
-      "status": "played"
+      "status": "played",
+      "venue": "モンテディオ山形石鳥居グラウンド",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-28",
+      "home": "帝京安積",
+      "hs": 0,
+      "as": 1,
+      "away": "ブラウブリッツ秋田U-18",
+      "status": "played",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 9,
@@ -562,34 +649,20 @@
       "hs": 4,
       "as": 2,
       "away": "学法石川",
-      "status": "played"
+      "status": "played",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "11:00"
     },
     {
-      "md": 10,
-      "date": "2026-07-04",
-      "home": "尚志",
-      "hs": 4,
-      "as": 1,
-      "away": "盛岡商",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-07-04",
-      "home": "聖和学園",
-      "hs": 1,
-      "as": 0,
-      "away": "東北学院",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-07-04",
-      "home": "青森山田セカンド",
-      "hs": 4,
-      "as": 0,
-      "away": "帝京安積",
-      "status": "played"
+      "md": 9,
+      "date": "2026-06-28",
+      "home": "盛岡商",
+      "hs": 0,
+      "as": 4,
+      "away": "聖和学園",
+      "status": "played",
+      "venue": "いわぎんスタジアム",
+      "kickoff": "10:30"
     },
     {
       "md": 10,
@@ -598,7 +671,42 @@
       "hs": 3,
       "as": 2,
       "away": "学法石川",
-      "status": "played"
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-07-04",
+      "home": "尚志",
+      "hs": 4,
+      "as": 1,
+      "away": "盛岡商",
+      "status": "played",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 10,
+      "date": "2026-07-04",
+      "home": "聖和学園",
+      "hs": 1,
+      "as": 0,
+      "away": "東北学院",
+      "status": "played",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-07-04",
+      "home": "青森山田セカンド",
+      "hs": 4,
+      "as": 0,
+      "away": "帝京安積",
+      "status": "played",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 10,
@@ -607,25 +715,9 @@
       "hs": 0,
       "as": 2,
       "away": "モンテディオ山形ユース",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-08-29",
-      "home": "帝京安積",
-      "hs": 0,
-      "as": 5,
-      "away": "尚志",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-08-29",
-      "home": "青森山田セカンド",
-      "hs": 1,
-      "as": 0,
-      "away": "モンテディオ山形ユース",
-      "status": "played"
+      "status": "played",
+      "venue": "ソユースタジアム",
+      "kickoff": "10:30"
     },
     {
       "md": 11,
@@ -634,16 +726,9 @@
       "hs": 0,
       "as": 0,
       "away": "ブラウブリッツ秋田U-18",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-08-29",
-      "home": "東北学院",
-      "hs": 3,
-      "as": 1,
-      "away": "盛岡商",
-      "status": "played"
+      "status": "played",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "11:00"
     },
     {
       "md": 11,
@@ -652,34 +737,42 @@
       "hs": 0,
       "as": 2,
       "away": "聖和学園",
-      "status": "played"
+      "status": "played",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
     },
     {
-      "md": 12,
-      "date": "2026-09-05",
-      "home": "尚志",
-      "hs": 4,
-      "as": 1,
-      "away": "東北学院",
-      "status": "played"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-05",
-      "home": "学法石川",
+      "md": 11,
+      "date": "2026-08-29",
+      "home": "帝京安積",
       "hs": 0,
-      "as": 4,
-      "away": "青森山田セカンド",
-      "status": "played"
+      "as": 5,
+      "away": "尚志",
+      "status": "played",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "10:30"
     },
     {
-      "md": 12,
-      "date": "2026-09-05",
-      "home": "盛岡商",
-      "hs": 1,
+      "md": 11,
+      "date": "2026-08-29",
+      "home": "東北学院",
+      "hs": 3,
       "as": 1,
-      "away": "専大北上",
-      "status": "played"
+      "away": "盛岡商",
+      "status": "played",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "16:15"
+    },
+    {
+      "md": 11,
+      "date": "2026-08-29",
+      "home": "青森山田セカンド",
+      "hs": 1,
+      "as": 0,
+      "away": "モンテディオ山形ユース",
+      "status": "played",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 12,
@@ -688,7 +781,42 @@
       "hs": 3,
       "as": 0,
       "away": "帝京安積",
-      "status": "played"
+      "status": "played",
+      "venue": "モンテディオ山形石鳥居グラウンド",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-05",
+      "home": "学法石川",
+      "hs": 0,
+      "as": 4,
+      "away": "青森山田セカンド",
+      "status": "played",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-05",
+      "home": "尚志",
+      "hs": 4,
+      "as": 1,
+      "away": "東北学院",
+      "status": "played",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-05",
+      "home": "盛岡商",
+      "hs": 1,
+      "as": 1,
+      "away": "専大北上",
+      "status": "played",
+      "venue": "いわぎんスタジアム",
+      "kickoff": "10:30"
     },
     {
       "md": 12,
@@ -697,25 +825,9 @@
       "hs": null,
       "as": null,
       "away": "ブラウブリッツ秋田U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-12",
-      "home": "モンテディオ山形ユース",
-      "hs": null,
-      "as": null,
-      "away": "尚志",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-12",
-      "home": "青森山田セカンド",
-      "hs": null,
-      "as": null,
-      "away": "聖和学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 13,
@@ -724,7 +836,20 @@
       "hs": null,
       "as": null,
       "away": "盛岡商",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-12",
+      "home": "モンテディオ山形ユース",
+      "hs": null,
+      "as": null,
+      "away": "尚志",
+      "status": "scheduled",
+      "venue": "山形県総合運動公園第２運動広場",
+      "kickoff": "10:30"
     },
     {
       "md": 13,
@@ -733,7 +858,9 @@
       "hs": null,
       "as": null,
       "away": "帝京安積",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "11:00"
     },
     {
       "md": 13,
@@ -742,25 +869,20 @@
       "hs": null,
       "as": null,
       "away": "専大北上",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "11:00"
     },
     {
-      "md": 14,
-      "date": "2026-09-19",
-      "home": "尚志",
+      "md": 13,
+      "date": "2026-09-12",
+      "home": "青森山田セカンド",
       "hs": null,
       "as": null,
-      "away": "専大北上",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-09-19",
-      "home": "盛岡商",
-      "hs": null,
-      "as": null,
-      "away": "青森山田セカンド",
-      "status": "scheduled"
+      "away": "聖和学園",
+      "status": "scheduled",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 14,
@@ -769,16 +891,20 @@
       "hs": null,
       "as": null,
       "away": "モンテディオ山形ユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "10:30"
     },
     {
       "md": 14,
       "date": "2026-09-19",
-      "home": "帝京安積",
+      "home": "尚志",
       "hs": null,
       "as": null,
-      "away": "聖和学園",
-      "status": "scheduled"
+      "away": "専大北上",
+      "status": "scheduled",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 14,
@@ -787,25 +913,31 @@
       "hs": null,
       "as": null,
       "away": "ブラウブリッツ秋田U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "11:00"
     },
     {
-      "md": 15,
-      "date": "2026-09-26",
-      "home": "学法石川",
-      "hs": null,
-      "as": null,
-      "away": "尚志",
-      "status": "scheduled"
-    },
-    {
-      "md": 15,
-      "date": "2026-09-26",
-      "home": "東北学院",
+      "md": 14,
+      "date": "2026-09-19",
+      "home": "盛岡商",
       "hs": null,
       "as": null,
       "away": "青森山田セカンド",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "いわぎんスタジアム",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-20",
+      "home": "帝京安積",
+      "hs": null,
+      "as": null,
+      "away": "聖和学園",
+      "status": "scheduled",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -814,7 +946,31 @@
       "hs": null,
       "as": null,
       "away": "専大北上",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "学法石川",
+      "hs": null,
+      "as": null,
+      "away": "尚志",
+      "status": "scheduled",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 15,
+      "date": "2026-09-26",
+      "home": "東北学院",
+      "hs": null,
+      "as": null,
+      "away": "青森山田セカンド",
+      "status": "scheduled",
+      "venue": "東北学院中・高サッカー場",
+      "kickoff": "10:30"
     },
     {
       "md": 15,
@@ -823,7 +979,9 @@
       "hs": null,
       "as": null,
       "away": "帝京安積",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "岩手県営運動公園第１グラウンド",
+      "kickoff": "10:30"
     },
     {
       "md": 15,
@@ -832,43 +990,9 @@
       "hs": null,
       "as": null,
       "away": "聖和学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-03",
-      "home": "尚志",
-      "hs": null,
-      "as": null,
-      "away": "ブラウブリッツ秋田U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-03",
-      "home": "青森山田セカンド",
-      "hs": null,
-      "as": null,
-      "away": "専大北上",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-03",
-      "home": "聖和学園",
-      "hs": null,
-      "as": null,
-      "away": "学法石川",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-10-03",
-      "home": "帝京安積",
-      "hs": null,
-      "as": null,
-      "away": "東北学院",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "モンテディオ山形石鳥居グラウンド",
+      "kickoff": "10:30"
     },
     {
       "md": 16,
@@ -877,7 +1001,75 @@
       "hs": null,
       "as": null,
       "away": "盛岡商",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "モンテディオ山形石鳥居グラウンド",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "尚志",
+      "hs": null,
+      "as": null,
+      "away": "ブラウブリッツ秋田U-18",
+      "status": "scheduled",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "帝京安積",
+      "hs": null,
+      "as": null,
+      "away": "東北学院",
+      "status": "scheduled",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "聖和学園",
+      "hs": null,
+      "as": null,
+      "away": "学法石川",
+      "status": "scheduled",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-10-03",
+      "home": "青森山田セカンド",
+      "hs": null,
+      "as": null,
+      "away": "専大北上",
+      "status": "scheduled",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "モンテディオ山形ユース",
+      "hs": null,
+      "as": null,
+      "away": "東北学院",
+      "status": "scheduled",
+      "venue": "モンテディオ山形石鳥居グラウンド",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-21",
+      "home": "帝京安積",
+      "hs": null,
+      "as": null,
+      "away": "専大北上",
+      "status": "scheduled",
+      "venue": "帝京安積高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -886,7 +1078,9 @@
       "hs": null,
       "as": null,
       "away": "学法石川",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "岩手県フットボールセンター",
+      "kickoff": "10:30"
     },
     {
       "md": 17,
@@ -895,7 +1089,9 @@
       "hs": null,
       "as": null,
       "away": "尚志",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -904,79 +1100,64 @@
       "hs": null,
       "as": null,
       "away": "ブラウブリッツ秋田U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-21",
-      "home": "帝京安積",
-      "hs": null,
-      "as": null,
-      "away": "専大北上",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-21",
-      "home": "モンテディオ山形ユース",
-      "hs": null,
-      "as": null,
-      "away": "東北学院",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "青森山田高校サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 18,
-      "date": "2026-04-12",
-      "home": "盛岡商",
-      "hs": 0,
-      "as": 3,
-      "away": "東北学院",
-      "status": "played"
-    },
-    {
-      "md": 19,
-      "date": "2026-11-28",
-      "home": "尚志",
-      "hs": null,
-      "as": null,
-      "away": "青森山田セカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 19,
-      "date": "2026-11-28",
-      "home": "聖和学園",
-      "hs": null,
-      "as": null,
-      "away": "盛岡商",
-      "status": "scheduled"
-    },
-    {
-      "md": 19,
       "date": "2026-11-28",
       "home": "ブラウブリッツ秋田U-18",
       "hs": null,
       "as": null,
       "away": "帝京安積",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "秋田県立中央公園運動広場",
+      "kickoff": "11:00"
     },
     {
-      "md": 19,
+      "md": 18,
       "date": "2026-11-28",
       "home": "学法石川",
       "hs": null,
       "as": null,
       "away": "東北学院",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "学法石川サッカーフィールド",
+      "kickoff": "11:00"
     },
     {
-      "md": 19,
+      "md": 18,
       "date": "2026-11-28",
       "home": "専大北上",
       "hs": null,
       "as": null,
       "away": "モンテディオ山形ユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "専修大学北上高校グランド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "尚志",
+      "hs": null,
+      "as": null,
+      "away": "青森山田セカンド",
+      "status": "scheduled",
+      "venue": "尚志高校サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-11-28",
+      "home": "聖和学園",
+      "hs": null,
+      "as": null,
+      "away": "盛岡商",
+      "status": "scheduled",
+      "venue": "聖和学園サッカー場",
+      "kickoff": "11:00"
     }
   ]
 }

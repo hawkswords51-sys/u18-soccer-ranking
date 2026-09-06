@@ -16,7 +16,7 @@
   ではなく出典の遅れ）。同じことが他リーグで起きていないか点検できるようにした。
 
 使い方:
-  python scraper/audit_match_dates.py            # プレミア2＋プリンス13を点検
+  python scraper/audit_match_dates.py            # プレミア2＋プリンス13を点検（JFA公式と照合）
   python scraper/audit_match_dates.py --pref     # 県1部の状況も併せて報告
 
 読み方:
@@ -33,21 +33,19 @@ import argparse
 import collections
 import json
 import sys
-import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import fetch_jfa_premier as fj          # noqa: E402
+import fetch_jfa as fj                  # noqa: E402
 import update_cross_tables as uct       # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DIR = ROOT / "data" / "league_matches"
 
-UA = {"User-Agent": "Mozilla/5.0 (u18-soccer.com date audit)"}
-JFA_SCHEDULE = (fj.BASE + "schedule.json")
-
-PREMIER = {"premier-east": "east", "premier-west": "west"}
+# fetch_jfa.py が知っているリーグ（プレミア2＋プリンス13）はJFA公式を正本として照合する。
+# それ以外（万一 fetch_jfa の対象外になったリーグ）は従来どおり koko と突き合わせる。
+JFA_CFG = {c["slug"]: c for c in fj.LEAGUES}
 
 
 def _load(slug: str) -> dict:
@@ -55,22 +53,19 @@ def _load(slug: str) -> dict:
 
 
 def _source_matches(slug: str) -> list[dict]:
-    """出典から [{md, home, away, date, status}] を取ってくる"""
-    if slug in PREMIER:
-        url = JFA_SCHEDULE.format(season=fj.SEASON, side=PREMIER[slug])
-        req = urllib.request.Request(url, headers=UA)
-        raw = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8"))
-        resolve = fj._build_resolver([t["name"] for t in _load(slug).get("teams", [])])
-        out = []
-        for m in raw["matchScheduleList"]["matchSchedule"]:
-            out.append(dict(
-                md=fj._md_of(m.get("matchTypeName")),
-                home=resolve(m.get("homeTeamName", "")),
-                away=resolve(m.get("awayTeamName", "")),
-                date=fj._iso_date(m.get("matchDate")),
-                status="played" if m.get("matchStatus") == "試合終了" else "scheduled",
-            ))
-        return out
+    """出典から [{md, home, away, date, status}] を取ってくる。
+    home/away は当サイトの表記に名寄せ済みの状態で返す。"""
+    cfg = JFA_CFG.get(slug)
+    if cfg:
+        u = fj.urls_of(cfg)
+        raw = (fj.read_tohoku_html(u) if cfg["fmt"] == "html"
+               else fj.read_json_source(u))
+        resolve = fj._build_resolver(
+            [t["name"] for t in _load(slug).get("teams", [])], slug)
+        return [dict(md=m["md"], home=resolve(m["home"]), away=resolve(m["away"]),
+                     date=m["date"],
+                     status="played" if m["played"] else "scheduled")
+                for m in raw["matches"]]
     uct._CURRENT_SLUG = slug   # LEAGUE_ALIASES をこのリーグの分だけ有効にする
     return uct.extract(uct.KOKO_URL[slug])[1]
 
@@ -95,6 +90,11 @@ def audit(slug: str) -> tuple[list[tuple], str]:
             continue
         s = by_key[key].pop(0)
         if (m.get("date") or "") == (s.get("date") or ""):
+            continue
+        # [2026-09-06] 出典側が空の場合はズレではない。
+        # fetch_jfa.py は「出典が空なら既存の値を残す」方針なので、
+        # ここで報告すると毎回同じ2件が出続けてノイズになる。
+        if not (s.get("date") or ""):
             continue
         kind = "未消化" if m.get("status") != "played" else "★消化済"
         rows.append((slug, m.get("md"), m.get("home"), m.get("away"),
@@ -130,7 +130,7 @@ def main() -> int:
     args = parser.parse_args()
 
     print("=== 試合日付の点検（書き込みはしません） ===")
-    slugs = list(PREMIER) + [s for s in uct.KOKO_URL if s.startswith("prince")]
+    slugs = [c["slug"] for c in fj.LEAGUES]
     rows = []
     for slug in slugs:
         r, summary = audit(slug)

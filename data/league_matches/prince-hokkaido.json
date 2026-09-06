@@ -1,7 +1,8 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 北海道",
   "season": "2026",
-  "source": "https://koko-soccer.com/score/4349",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/hokkaido/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
     {
@@ -139,11 +140,13 @@
     {
       "md": 1,
       "date": "2026-04-11",
-      "home": "札幌大谷",
+      "home": "北海",
       "hs": 2,
       "as": 1,
-      "away": "北照",
-      "status": "played"
+      "away": "札幌光星",
+      "status": "played",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 1,
@@ -152,16 +155,9 @@
       "hs": 0,
       "as": 0,
       "away": "帯広北",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-11",
-      "home": "北海",
-      "hs": 2,
-      "as": 1,
-      "away": "札幌光星",
-      "status": "played"
+      "status": "played",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 1,
@@ -170,7 +166,31 @@
       "hs": 0,
       "as": 2,
       "away": "旭川実",
-      "status": "played"
+      "status": "played",
+      "venue": "リーフラスフットボールパーク",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-11",
+      "home": "札幌大谷",
+      "hs": 2,
+      "as": 1,
+      "away": "北照",
+      "status": "played",
+      "venue": "札幌大谷高校丘珠Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-18",
+      "home": "北海",
+      "hs": 0,
+      "as": 1,
+      "away": "北海道大谷室蘭",
+      "status": "played",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 2,
@@ -179,25 +199,9 @@
       "hs": 4,
       "as": 0,
       "away": "北照",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-18",
-      "home": "北海",
-      "hs": 0,
-      "as": 1,
-      "away": "北海道大谷室蘭",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-18",
-      "home": "旭川実",
-      "hs": 2,
-      "as": 0,
-      "away": "札幌光星",
-      "status": "played"
+      "status": "played",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 2,
@@ -206,34 +210,20 @@
       "hs": 0,
       "as": 3,
       "away": "札幌大谷",
-      "status": "played"
+      "status": "played",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "10:00"
     },
     {
-      "md": 3,
-      "date": "2026-04-25",
-      "home": "札幌大谷",
-      "hs": 3,
-      "as": 2,
-      "away": "札幌光星",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-25",
+      "md": 2,
+      "date": "2026-04-18",
       "home": "旭川実",
-      "hs": 1,
+      "hs": 2,
       "as": 0,
-      "away": "帯広北",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-25",
-      "home": "北照",
-      "hs": 1,
-      "as": 1,
-      "away": "北海",
-      "status": "played"
+      "away": "札幌光星",
+      "status": "played",
+      "venue": "旭川実業高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 3,
@@ -242,7 +232,75 @@
       "hs": 1,
       "as": 7,
       "away": "北海道コンサドーレ札幌U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "伊達まなびの里サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-25",
+      "home": "北照",
+      "hs": 1,
+      "as": 1,
+      "away": "北海",
+      "status": "played",
+      "venue": "東雁来公園サッカー場(西)",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-25",
+      "home": "旭川実",
+      "hs": 1,
+      "as": 0,
+      "away": "帯広北",
+      "status": "played",
+      "venue": "リアルター夢りんご東光スポーツ公園球技場Ａ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-25",
+      "home": "札幌大谷",
+      "hs": 3,
+      "as": 2,
+      "away": "札幌光星",
+      "status": "played",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-05-02",
+      "home": "北海",
+      "hs": 2,
+      "as": 0,
+      "away": "帯広北",
+      "status": "played",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-05-02",
+      "home": "北海道大谷室蘭",
+      "hs": 3,
+      "as": 1,
+      "away": "札幌大谷",
+      "status": "played",
+      "venue": "リーフラスフットボールパーク",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-05-02",
+      "home": "旭川実",
+      "hs": 1,
+      "as": 1,
+      "away": "北照",
+      "status": "played",
+      "venue": "リアルター夢りんご東光スポーツ公園球技場Ａ",
+      "kickoff": "11:00"
     },
     {
       "md": 4,
@@ -251,34 +309,31 @@
       "hs": 0,
       "as": 4,
       "away": "北海道コンサドーレ札幌U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "10:00"
     },
     {
-      "md": 4,
-      "date": "2026-05-02",
-      "home": "北海",
+      "md": 5,
+      "date": "2026-05-06",
+      "home": "北海道コンサドーレ札幌U-18",
       "hs": 2,
       "as": 0,
-      "away": "帯広北",
-      "status": "played"
+      "away": "北海",
+      "status": "played",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "10:00"
     },
     {
-      "md": 4,
-      "date": "2026-05-02",
-      "home": "北海道大谷室蘭",
-      "hs": 3,
-      "as": 1,
-      "away": "札幌大谷",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-05-02",
-      "home": "旭川実",
-      "hs": 1,
-      "as": 1,
-      "away": "北照",
-      "status": "played"
+      "md": 5,
+      "date": "2026-05-06",
+      "home": "北照",
+      "hs": 0,
+      "as": 0,
+      "away": "北海道大谷室蘭",
+      "status": "played",
+      "venue": "東雁来公園サッカー場(東)",
+      "kickoff": "10:00"
     },
     {
       "md": 5,
@@ -287,25 +342,9 @@
       "hs": 0,
       "as": 5,
       "away": "札幌光星",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-06",
-      "home": "北海道コンサドーレ札幌U-18",
-      "hs": 2,
-      "as": 0,
-      "away": "北海",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-06",
-      "home": "北照",
-      "hs": 0,
-      "as": 0,
-      "away": "北海道大谷室蘭",
-      "status": "played"
+      "status": "played",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 5,
@@ -314,7 +353,9 @@
       "hs": 1,
       "as": 0,
       "away": "旭川実",
-      "status": "played"
+      "status": "played",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "kickoff": "11:00"
     },
     {
       "md": 6,
@@ -323,25 +364,9 @@
       "hs": 0,
       "as": 1,
       "away": "札幌大谷",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-30",
-      "home": "札幌光星",
-      "hs": 2,
-      "as": 0,
-      "away": "北照",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-30",
-      "home": "帯広北",
-      "hs": 0,
-      "as": 2,
-      "away": "北海道大谷室蘭",
-      "status": "played"
+      "status": "played",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 6,
@@ -350,25 +375,31 @@
       "hs": 3,
       "as": 3,
       "away": "旭川実",
-      "status": "played"
+      "status": "played",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "11:00"
     },
     {
-      "md": 7,
-      "date": "2026-06-27",
-      "home": "札幌大谷",
-      "hs": 1,
-      "as": 1,
-      "away": "北海道コンサドーレ札幌U-18",
-      "status": "played"
+      "md": 6,
+      "date": "2026-05-30",
+      "home": "帯広北",
+      "hs": 0,
+      "as": 2,
+      "away": "北海道大谷室蘭",
+      "status": "played",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "10:00"
     },
     {
-      "md": 7,
-      "date": "2026-06-27",
-      "home": "旭川実",
-      "hs": 1,
+      "md": 6,
+      "date": "2026-05-30",
+      "home": "札幌光星",
+      "hs": 2,
       "as": 0,
-      "away": "北海",
-      "status": "played"
+      "away": "北照",
+      "status": "played",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 7,
@@ -377,7 +408,31 @@
       "hs": 2,
       "as": 1,
       "away": "帯広北",
-      "status": "played"
+      "status": "played",
+      "venue": "望洋サッカー場",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-06-27",
+      "home": "旭川実",
+      "hs": 1,
+      "as": 0,
+      "away": "北海",
+      "status": "played",
+      "venue": "忠和公園 多目的広場Ａ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-06-27",
+      "home": "札幌大谷",
+      "hs": 1,
+      "as": 1,
+      "away": "北海道コンサドーレ札幌U-18",
+      "status": "played",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 7,
@@ -386,7 +441,9 @@
       "hs": 3,
       "as": 1,
       "away": "北海道大谷室蘭",
-      "status": "played"
+      "status": "played",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 8,
@@ -395,25 +452,9 @@
       "hs": 2,
       "as": 1,
       "away": "札幌大谷",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-07-05",
-      "home": "旭川実",
-      "hs": 3,
-      "as": 1,
-      "away": "北海道大谷室蘭",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-07-05",
-      "home": "札幌光星",
-      "hs": 1,
-      "as": 0,
-      "away": "北海",
-      "status": "played"
+      "status": "played",
+      "venue": "望洋サッカー場",
+      "kickoff": "10:00"
     },
     {
       "md": 8,
@@ -422,25 +463,31 @@
       "hs": 0,
       "as": 2,
       "away": "北海道コンサドーレ札幌U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "11:00"
     },
     {
-      "md": 9,
-      "date": "2026-08-29",
-      "home": "札幌大谷",
-      "hs": 5,
-      "as": 0,
-      "away": "帯広北",
-      "status": "played"
+      "md": 8,
+      "date": "2026-07-05",
+      "home": "旭川実",
+      "hs": 3,
+      "as": 1,
+      "away": "北海道大谷室蘭",
+      "status": "played",
+      "venue": "カムイの杜公園 球技場Ａ",
+      "kickoff": "10:00"
     },
     {
-      "md": 9,
-      "date": "2026-08-29",
+      "md": 8,
+      "date": "2026-07-05",
       "home": "札幌光星",
       "hs": 1,
-      "as": 2,
-      "away": "旭川実",
-      "status": "played"
+      "as": 0,
+      "away": "北海",
+      "status": "played",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 9,
@@ -449,7 +496,9 @@
       "hs": 1,
       "as": 0,
       "away": "北海",
-      "status": "played"
+      "status": "played",
+      "venue": "リーフラスフットボールパーク",
+      "kickoff": "10:00"
     },
     {
       "md": 9,
@@ -458,25 +507,31 @@
       "hs": 0,
       "as": 0,
       "away": "北海道コンサドーレ札幌U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "望洋サッカー場",
+      "kickoff": "11:00"
     },
     {
-      "md": 10,
-      "date": "2026-09-05",
+      "md": 9,
+      "date": "2026-08-29",
       "home": "札幌光星",
-      "hs": 3,
-      "as": 1,
-      "away": "札幌大谷",
-      "status": "played"
+      "hs": 1,
+      "as": 2,
+      "away": "旭川実",
+      "status": "played",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "11:00"
     },
     {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "北海道コンサドーレ札幌U-18",
+      "md": 9,
+      "date": "2026-08-29",
+      "home": "札幌大谷",
       "hs": 5,
       "as": 0,
-      "away": "北海道大谷室蘭",
-      "status": "played"
+      "away": "帯広北",
+      "status": "played",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 10,
@@ -485,7 +540,20 @@
       "hs": 1,
       "as": 3,
       "away": "北照",
-      "status": "played"
+      "status": "played",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "北海道コンサドーレ札幌U-18",
+      "hs": 5,
+      "as": 0,
+      "away": "北海道大谷室蘭",
+      "status": "played",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 10,
@@ -494,7 +562,20 @@
       "hs": 0,
       "as": 0,
       "away": "旭川実",
-      "status": "played"
+      "status": "played",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "札幌光星",
+      "hs": 3,
+      "as": 1,
+      "away": "札幌大谷",
+      "status": "played",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 11,
@@ -503,7 +584,31 @@
       "hs": null,
       "as": null,
       "away": "札幌光星",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "北照",
+      "hs": null,
+      "as": null,
+      "away": "旭川実",
+      "status": "scheduled",
+      "venue": "望洋サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "帯広北",
+      "hs": null,
+      "as": null,
+      "away": "北海",
+      "status": "scheduled",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 11,
@@ -512,34 +617,9 @@
       "hs": null,
       "as": null,
       "away": "北海道大谷室蘭",
-      "status": "scheduled"
-    },
-    {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "帯広北",
-      "hs": null,
-      "as": null,
-      "away": "北海",
-      "status": "scheduled"
-    },
-    {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "北照",
-      "hs": null,
-      "as": null,
-      "away": "旭川実",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "旭川実",
-      "hs": null,
-      "as": null,
-      "away": "札幌大谷",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 12,
@@ -548,7 +628,31 @@
       "hs": null,
       "as": null,
       "away": "北海道コンサドーレ札幌U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "北海道大谷室蘭",
+      "hs": null,
+      "as": null,
+      "away": "北照",
+      "status": "scheduled",
+      "venue": "リーフラスフットボールパーク",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "旭川実",
+      "hs": null,
+      "as": null,
+      "away": "札幌大谷",
+      "status": "scheduled",
+      "venue": "忠和公園 多目的広場Ａ",
+      "kickoff": "10:00"
     },
     {
       "md": 12,
@@ -557,34 +661,9 @@
       "hs": null,
       "as": null,
       "away": "帯広北",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "北海道大谷室蘭",
-      "hs": null,
-      "as": null,
-      "away": "北照",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "札幌大谷",
-      "hs": null,
-      "as": null,
-      "away": "北海",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "北照",
-      "hs": null,
-      "as": null,
-      "away": "札幌光星",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "札幌光星高校Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 13,
@@ -593,7 +672,20 @@
       "hs": null,
       "as": null,
       "away": "帯広北",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "リーフラスフットボールパーク",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "北照",
+      "hs": null,
+      "as": null,
+      "away": "札幌光星",
+      "status": "scheduled",
+      "venue": "望洋サッカー場",
+      "kickoff": "10:00"
     },
     {
       "md": 13,
@@ -602,16 +694,20 @@
       "hs": null,
       "as": null,
       "away": "北海道コンサドーレ札幌U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "忠和公園 多目的広場Ａ",
+      "kickoff": "11:00"
     },
     {
-      "md": 14,
-      "date": "2026-10-03",
-      "home": "北海道コンサドーレ札幌U-18",
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "札幌大谷",
       "hs": null,
       "as": null,
-      "away": "札幌大谷",
-      "status": "scheduled"
+      "away": "北海",
+      "status": "scheduled",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 14,
@@ -620,7 +716,20 @@
       "hs": null,
       "as": null,
       "away": "旭川実",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "北海高校Ｇ",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "北海道コンサドーレ札幌U-18",
+      "hs": null,
+      "as": null,
+      "away": "札幌大谷",
+      "status": "scheduled",
+      "venue": "北海道コンサドーレ札幌 東雁来Ｇ",
+      "kickoff": "10:00"
     },
     {
       "md": 14,
@@ -629,7 +738,9 @@
       "hs": null,
       "as": null,
       "away": "札幌光星",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "伊達まなびの里サッカー場",
+      "kickoff": "10:00"
     },
     {
       "md": 14,
@@ -638,7 +749,9 @@
       "hs": null,
       "as": null,
       "away": "北照",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "帯広北高校Ｇ",
+      "kickoff": "10:00"
     }
   ]
 }

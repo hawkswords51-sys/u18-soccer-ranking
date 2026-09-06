@@ -2,6 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東海",
   "season": "2026",
   "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/tokai/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
     {
@@ -171,11 +172,13 @@
     {
       "md": 1,
       "date": "2026-04-04",
-      "home": "静岡学園",
-      "hs": 6,
+      "home": "東海大翔洋",
+      "hs": 5,
       "as": 1,
-      "away": "愛工大名電",
-      "status": "played"
+      "away": "富士市立",
+      "status": "played",
+      "venue": "BOF",
+      "kickoff": "14:00"
     },
     {
       "md": 1,
@@ -184,16 +187,9 @@
       "hs": 1,
       "as": 1,
       "away": "藤枝明誠",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-04",
-      "home": "藤枝東",
-      "hs": 1,
-      "as": 0,
-      "away": "帝京大学可児",
-      "status": "played"
+      "status": "played",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "11:00"
     },
     {
       "md": 1,
@@ -202,16 +198,31 @@
       "hs": 3,
       "as": 1,
       "away": "三重",
-      "status": "played"
+      "status": "played",
+      "venue": "エスパルス三保グラウンド",
+      "kickoff": "14:00"
     },
     {
       "md": 1,
       "date": "2026-04-04",
-      "home": "東海大翔洋",
-      "hs": 5,
+      "home": "藤枝東",
+      "hs": 1,
+      "as": 0,
+      "away": "帝京大学可児",
+      "status": "played",
+      "venue": "藤枝東高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "静岡学園",
+      "hs": 6,
       "as": 1,
-      "away": "富士市立",
-      "status": "played"
+      "away": "愛工大名電",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
     },
     {
       "md": 2,
@@ -220,7 +231,9 @@
       "hs": 1,
       "as": 2,
       "away": "静岡学園",
-      "status": "played"
+      "status": "played",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "11:00"
     },
     {
       "md": 2,
@@ -229,25 +242,9 @@
       "hs": 1,
       "as": 4,
       "away": "浜松開誠館",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "藤枝明誠",
-      "hs": 0,
-      "as": 2,
-      "away": "藤枝東",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-11",
-      "home": "清水エスパルスユース",
-      "hs": 2,
-      "as": 1,
-      "away": "愛工大名電",
-      "status": "played"
+      "status": "played",
+      "venue": "富士市立高校",
+      "kickoff": "11:00"
     },
     {
       "md": 2,
@@ -256,25 +253,31 @@
       "hs": 1,
       "as": 1,
       "away": "帝京大学可児",
-      "status": "played"
+      "status": "played",
+      "venue": "BOF",
+      "kickoff": "14:00"
     },
     {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "静岡学園",
-      "hs": 4,
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "清水エスパルスユース",
+      "hs": 2,
       "as": 1,
-      "away": "富士市立",
-      "status": "played"
+      "away": "愛工大名電",
+      "status": "played",
+      "venue": "口論義運動公園",
+      "kickoff": "13:00"
     },
     {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "浜松開誠館",
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "藤枝明誠",
       "hs": 0,
-      "as": 0,
-      "away": "東海大翔洋",
-      "status": "played"
+      "as": 2,
+      "away": "藤枝東",
+      "status": "played",
+      "venue": "藤枝総合Ｇ",
+      "kickoff": "11:00"
     },
     {
       "md": 3,
@@ -283,16 +286,9 @@
       "hs": 1,
       "as": 1,
       "away": "清水エスパルスユース",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-18",
-      "home": "藤枝東",
-      "hs": 1,
-      "as": 2,
-      "away": "三重",
-      "status": "played"
+      "status": "played",
+      "venue": "showaスポーツピアザ",
+      "kickoff": "11:00"
     },
     {
       "md": 3,
@@ -301,7 +297,42 @@
       "hs": 0,
       "as": 5,
       "away": "藤枝明誠",
-      "status": "played"
+      "status": "played",
+      "venue": "CSアセット港サッカー場",
+      "kickoff": "13:30"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "浜松開誠館",
+      "hs": 0,
+      "as": 0,
+      "away": "東海大翔洋",
+      "status": "played",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "藤枝東",
+      "hs": 1,
+      "as": 2,
+      "away": "三重",
+      "status": "played",
+      "venue": "藤枝東高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "静岡学園",
+      "hs": 4,
+      "as": 1,
+      "away": "富士市立",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
     },
     {
       "md": 4,
@@ -310,16 +341,9 @@
       "hs": 0,
       "as": 0,
       "away": "藤枝明誠",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "静岡学園",
-      "hs": 4,
-      "as": 0,
-      "away": "帝京大学可児",
-      "status": "played"
+      "status": "played",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "11:00"
     },
     {
       "md": 4,
@@ -328,7 +352,20 @@
       "hs": 0,
       "as": 6,
       "away": "清水エスパルスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "富士市立高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "東海大翔洋",
+      "hs": 1,
+      "as": 3,
+      "away": "藤枝東",
+      "status": "played",
+      "venue": "BOF",
+      "kickoff": "14:00"
     },
     {
       "md": 4,
@@ -337,34 +374,20 @@
       "hs": 7,
       "as": 1,
       "away": "愛工大名電",
-      "status": "played"
+      "status": "played",
+      "venue": "口論義運動公園",
+      "kickoff": "13:00"
     },
     {
       "md": 4,
       "date": "2026-04-25",
-      "home": "東海大翔洋",
-      "hs": 1,
-      "as": 3,
-      "away": "藤枝東",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "帝京大学可児",
-      "hs": 1,
+      "home": "静岡学園",
+      "hs": 4,
       "as": 0,
-      "away": "浜松開誠館",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "藤枝東",
-      "hs": 3,
-      "as": 0,
-      "away": "愛工大名電",
-      "status": "played"
+      "away": "帝京大学可児",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -373,7 +396,20 @@
       "hs": 4,
       "as": 5,
       "away": "富士市立",
-      "status": "played"
+      "status": "played",
+      "venue": "富士市立高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "帝京大学可児",
+      "hs": 1,
+      "as": 0,
+      "away": "浜松開誠館",
+      "status": "played",
+      "venue": "TEIKYOけやきフィールド",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -382,7 +418,20 @@
       "hs": 1,
       "as": 4,
       "away": "静岡学園",
-      "status": "played"
+      "status": "played",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "15:00"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-02",
+      "home": "藤枝東",
+      "hs": 3,
+      "as": 0,
+      "away": "愛工大名電",
+      "status": "played",
+      "venue": "藤枝東高校",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -391,25 +440,9 @@
       "hs": 3,
       "as": 0,
       "away": "東海大翔洋",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-05",
-      "home": "愛工大名電",
-      "hs": 2,
-      "as": 3,
-      "away": "帝京大学可児",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-05",
-      "home": "浜松開誠館",
-      "hs": 3,
-      "as": 0,
-      "away": "三重",
-      "status": "played"
+      "status": "played",
+      "venue": "草薙陸上競技場",
+      "kickoff": "14:00"
     },
     {
       "md": 6,
@@ -418,7 +451,31 @@
       "hs": 1,
       "as": 4,
       "away": "藤枝東",
-      "status": "played"
+      "status": "played",
+      "venue": "富士市立高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-05",
+      "home": "愛工大名電",
+      "hs": 2,
+      "as": 3,
+      "away": "帝京大学可児",
+      "status": "played",
+      "venue": "花はすフィールドあいさい",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-05",
+      "home": "浜松開誠館",
+      "hs": 3,
+      "as": 0,
+      "away": "三重",
+      "status": "played",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "11:00"
     },
     {
       "md": 6,
@@ -427,7 +484,9 @@
       "hs": 1,
       "as": 3,
       "away": "静岡学園",
-      "status": "played"
+      "status": "played",
+      "venue": "草薙陸上競技場",
+      "kickoff": "11:00"
     },
     {
       "md": 6,
@@ -436,16 +495,9 @@
       "hs": 4,
       "as": 1,
       "away": "藤枝明誠",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-09",
-      "home": "静岡学園",
-      "hs": 2,
-      "as": 1,
-      "away": "藤枝東",
-      "status": "played"
+      "status": "played",
+      "venue": "草薙陸上競技場",
+      "kickoff": "14:00"
     },
     {
       "md": 7,
@@ -454,25 +506,9 @@
       "hs": 4,
       "as": 2,
       "away": "三重",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-09",
-      "home": "藤枝明誠",
-      "hs": 0,
-      "as": 2,
-      "away": "富士市立",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-09",
-      "home": "浜松開誠館",
-      "hs": 1,
-      "as": 1,
-      "away": "清水エスパルスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "市原産業スポーツフィールド",
+      "kickoff": "11:00"
     },
     {
       "md": 7,
@@ -481,25 +517,53 @@
       "hs": 4,
       "as": 2,
       "away": "愛工大名電",
-      "status": "played"
+      "status": "played",
+      "venue": "BOF",
+      "kickoff": "14:00"
     },
     {
-      "md": 8,
-      "date": "2026-06-13",
-      "home": "愛工大名電",
-      "hs": 1,
-      "as": 3,
-      "away": "富士市立",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-06-13",
-      "home": "静岡学園",
+      "md": 7,
+      "date": "2026-05-09",
+      "home": "浜松開誠館",
       "hs": 1,
       "as": 1,
-      "away": "浜松開誠館",
-      "status": "played"
+      "away": "清水エスパルスユース",
+      "status": "played",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-09",
+      "home": "藤枝明誠",
+      "hs": 0,
+      "as": 2,
+      "away": "富士市立",
+      "status": "played",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-09",
+      "home": "静岡学園",
+      "hs": 2,
+      "as": 1,
+      "away": "藤枝東",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-13",
+      "home": "三重",
+      "hs": 2,
+      "as": 1,
+      "away": "東海大翔洋",
+      "status": "played",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "14:30"
     },
     {
       "md": 8,
@@ -508,7 +572,20 @@
       "hs": 3,
       "as": 0,
       "away": "藤枝明誠",
-      "status": "played"
+      "status": "played",
+      "venue": "岐阜フットボールセンター天然芝",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-13",
+      "home": "愛工大名電",
+      "hs": 1,
+      "as": 3,
+      "away": "富士市立",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "17:00"
     },
     {
       "md": 8,
@@ -517,16 +594,20 @@
       "hs": 0,
       "as": 1,
       "away": "清水エスパルスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "藤枝東高校",
+      "kickoff": "15:00"
     },
     {
       "md": 8,
       "date": "2026-06-13",
-      "home": "三重",
-      "hs": 2,
+      "home": "静岡学園",
+      "hs": 1,
       "as": 1,
-      "away": "東海大翔洋",
-      "status": "played"
+      "away": "浜松開誠館",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
     },
     {
       "md": 9,
@@ -535,7 +616,9 @@
       "hs": 0,
       "as": 1,
       "away": "三重",
-      "status": "played"
+      "status": "played",
+      "venue": "名古屋学院大学瀬戸キャンパス",
+      "kickoff": "17:00"
     },
     {
       "md": 9,
@@ -544,7 +627,9 @@
       "hs": 1,
       "as": 2,
       "away": "静岡学園",
-      "status": "played"
+      "status": "played",
+      "venue": "エスパルス三保グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 9,
@@ -553,7 +638,9 @@
       "hs": 1,
       "as": 3,
       "away": "帝京大学可児",
-      "status": "played"
+      "status": "played",
+      "venue": "TEIKYOけやきフィールド",
+      "kickoff": "16:00"
     },
     {
       "md": 9,
@@ -562,7 +649,9 @@
       "hs": 1,
       "as": 3,
       "away": "浜松開誠館",
-      "status": "played"
+      "status": "played",
+      "venue": "藤枝総合Ｇ",
+      "kickoff": "17:00"
     },
     {
       "md": 9,
@@ -571,25 +660,9 @@
       "hs": 0,
       "as": 1,
       "away": "東海大翔洋",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "帝京大学可児",
-      "hs": 0,
-      "as": 1,
-      "away": "藤枝東",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "愛工大名電",
-      "hs": 0,
-      "as": 6,
-      "away": "静岡学園",
-      "status": "played"
+      "status": "played",
+      "venue": "藤枝総合Ｇ",
+      "kickoff": "17:00"
     },
     {
       "md": 10,
@@ -598,16 +671,9 @@
       "hs": 0,
       "as": 3,
       "away": "清水エスパルスユース",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "藤枝明誠",
-      "hs": 2,
-      "as": 1,
-      "away": "浜松開誠館",
-      "status": "played"
+      "status": "played",
+      "venue": "鈴鹿スポ杜メイン",
+      "kickoff": "16:00"
     },
     {
       "md": 10,
@@ -616,16 +682,42 @@
       "hs": 1,
       "as": 2,
       "away": "東海大翔洋",
-      "status": "played"
+      "status": "played",
+      "venue": "JSTEP",
+      "kickoff": "16:00"
     },
     {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "藤枝東",
-      "hs": null,
-      "as": null,
-      "away": "藤枝明誠",
-      "status": "scheduled"
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "帝京大学可児",
+      "hs": 0,
+      "as": 1,
+      "away": "藤枝東",
+      "status": "played",
+      "venue": "岐阜フットボールセンター天然芝",
+      "kickoff": "15:30"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "愛工大名電",
+      "hs": 0,
+      "as": 6,
+      "away": "静岡学園",
+      "status": "played",
+      "venue": "時之栖A",
+      "kickoff": "17:30"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "藤枝明誠",
+      "hs": 2,
+      "as": 1,
+      "away": "浜松開誠館",
+      "status": "played",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "16:00"
     },
     {
       "md": 11,
@@ -634,16 +726,9 @@
       "hs": null,
       "as": null,
       "away": "東海大翔洋",
-      "status": "scheduled"
-    },
-    {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "静岡学園",
-      "hs": null,
-      "as": null,
-      "away": "三重",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "岐阜フットボールセンター天然芝",
+      "kickoff": "15:30"
     },
     {
       "md": 11,
@@ -652,7 +737,31 @@
       "hs": null,
       "as": null,
       "away": "富士市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "藤枝東",
+      "hs": null,
+      "as": null,
+      "away": "藤枝明誠",
+      "status": "scheduled",
+      "venue": "藤枝総合G",
+      "kickoff": "15:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "静岡学園",
+      "hs": null,
+      "as": null,
+      "away": "三重",
+      "status": "scheduled",
+      "venue": "時之栖A",
+      "kickoff": "16:00"
     },
     {
       "md": 11,
@@ -661,25 +770,9 @@
       "hs": null,
       "as": null,
       "away": "清水エスパルスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "東海大翔洋",
-      "hs": null,
-      "as": null,
-      "away": "浜松開誠館",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "藤枝明誠",
-      "hs": null,
-      "as": null,
-      "away": "愛工大名電",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "草薙陸上競技場",
+      "kickoff": "16:00"
     },
     {
       "md": 12,
@@ -688,7 +781,9 @@
       "hs": null,
       "as": null,
       "away": "藤枝東",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "鈴鹿スポ杜メイン",
+      "kickoff": "16:00"
     },
     {
       "md": 12,
@@ -697,7 +792,20 @@
       "hs": null,
       "as": null,
       "away": "静岡学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "富士市立高校",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "東海大翔洋",
+      "hs": null,
+      "as": null,
+      "away": "浜松開誠館",
+      "status": "scheduled",
+      "venue": "蛇塚北",
+      "kickoff": "14:30"
     },
     {
       "md": 12,
@@ -706,16 +814,20 @@
       "hs": null,
       "as": null,
       "away": "帝京大学可児",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "JSTEP",
+      "kickoff": "17:00"
     },
     {
-      "md": 13,
-      "date": "2026-09-26",
+      "md": 12,
+      "date": "2026-09-19",
       "home": "藤枝明誠",
       "hs": null,
       "as": null,
-      "away": "三重",
-      "status": "scheduled"
+      "away": "愛工大名電",
+      "status": "scheduled",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "15:00"
     },
     {
       "md": 13,
@@ -724,16 +836,9 @@
       "hs": null,
       "as": null,
       "away": "静岡学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "藤枝東",
-      "hs": null,
-      "as": null,
-      "away": "東海大翔洋",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "岐阜フットボールセンター天然芝",
+      "kickoff": "11:00"
     },
     {
       "md": 13,
@@ -742,7 +847,9 @@
       "hs": null,
       "as": null,
       "away": "浜松開誠館",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "16:00"
     },
     {
       "md": 13,
@@ -751,43 +858,31 @@
       "hs": null,
       "as": null,
       "away": "富士市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "JSTEP",
+      "kickoff": "17:00"
     },
     {
-      "md": 14,
-      "date": "2026-10-03",
-      "home": "愛工大名電",
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "藤枝明誠",
       "hs": null,
       "as": null,
-      "away": "藤枝東",
-      "status": "scheduled"
+      "away": "三重",
+      "status": "scheduled",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "11:00"
     },
     {
-      "md": 14,
-      "date": "2026-10-03",
-      "home": "浜松開誠館",
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "藤枝東",
       "hs": null,
       "as": null,
-      "away": "帝京大学可児",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-10-03",
-      "home": "東海大翔洋",
-      "hs": null,
-      "as": null,
-      "away": "清水エスパルスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-10-03",
-      "home": "静岡学園",
-      "hs": null,
-      "as": null,
-      "away": "藤枝明誠",
-      "status": "scheduled"
+      "away": "東海大翔洋",
+      "status": "scheduled",
+      "venue": "藤枝東高校",
+      "kickoff": "15:00"
     },
     {
       "md": 14,
@@ -796,7 +891,53 @@
       "hs": null,
       "as": null,
       "away": "三重",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "愛工大名電",
+      "hs": null,
+      "as": null,
+      "away": "藤枝東",
+      "status": "scheduled",
+      "venue": "フジスパーク",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "東海大翔洋",
+      "hs": null,
+      "as": null,
+      "away": "清水エスパルスユース",
+      "status": "scheduled",
+      "venue": "J-STEP",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "浜松開誠館",
+      "hs": null,
+      "as": null,
+      "away": "帝京大学可児",
+      "status": "scheduled",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "静岡学園",
+      "hs": null,
+      "as": null,
+      "away": "藤枝明誠",
+      "status": "scheduled",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -805,7 +946,9 @@
       "hs": null,
       "as": null,
       "away": "愛工大名電",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "TEIKYOけやきフィールド",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -814,25 +957,9 @@
       "hs": null,
       "as": null,
       "away": "浜松開誠館",
-      "status": "scheduled"
-    },
-    {
-      "md": 15,
-      "date": "2026-10-17",
-      "home": "藤枝東",
-      "hs": null,
-      "as": null,
-      "away": "富士市立",
-      "status": "scheduled"
-    },
-    {
-      "md": 15,
-      "date": "2026-10-17",
-      "home": "静岡学園",
-      "hs": null,
-      "as": null,
-      "away": "東海大翔洋",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -841,7 +968,53 @@
       "hs": null,
       "as": null,
       "away": "清水エスパルスユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-17",
+      "home": "藤枝東",
+      "hs": null,
+      "as": null,
+      "away": "富士市立",
+      "status": "scheduled",
+      "venue": "藤枝東高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-17",
+      "home": "静岡学園",
+      "hs": null,
+      "as": null,
+      "away": "東海大翔洋",
+      "status": "scheduled",
+      "venue": "時之栖A",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-11-21",
+      "home": "三重",
+      "hs": null,
+      "as": null,
+      "away": "帝京大学可児",
+      "status": "scheduled",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-11-21",
+      "home": "富士市立",
+      "hs": null,
+      "as": null,
+      "away": "藤枝明誠",
+      "status": "scheduled",
+      "venue": "富士市立高校",
+      "kickoff": "11:00"
     },
     {
       "md": 16,
@@ -850,34 +1023,9 @@
       "hs": null,
       "as": null,
       "away": "東海大翔洋",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-11-21",
-      "home": "藤枝東",
-      "hs": null,
-      "as": null,
-      "away": "静岡学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-11-21",
-      "home": "富士市立",
-      "hs": null,
-      "as": null,
-      "away": "藤枝明誠",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-11-21",
-      "home": "三重",
-      "hs": null,
-      "as": null,
-      "away": "帝京大学可児",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "未定",
+      "kickoff": "未定"
     },
     {
       "md": 16,
@@ -886,25 +1034,20 @@
       "hs": null,
       "as": null,
       "away": "浜松開誠館",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "JSTEP",
+      "kickoff": "14:00"
     },
     {
-      "md": 17,
-      "date": "2026-11-28",
-      "home": "浜松開誠館",
+      "md": 16,
+      "date": "2026-11-21",
+      "home": "藤枝東",
       "hs": null,
       "as": null,
       "away": "静岡学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-28",
-      "home": "藤枝明誠",
-      "hs": null,
-      "as": null,
-      "away": "帝京大学可児",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "藤枝東高校",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -913,7 +1056,9 @@
       "hs": null,
       "as": null,
       "away": "愛工大名電",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "富士市立高校",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -922,7 +1067,31 @@
       "hs": null,
       "as": null,
       "away": "三重",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "BOF",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-28",
+      "home": "浜松開誠館",
+      "hs": null,
+      "as": null,
+      "away": "静岡学園",
+      "status": "scheduled",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-28",
+      "home": "藤枝明誠",
+      "hs": null,
+      "as": null,
+      "away": "帝京大学可児",
+      "status": "scheduled",
+      "venue": "藤枝明誠高校Ｇ",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -931,7 +1100,9 @@
       "hs": null,
       "as": null,
       "away": "藤枝東",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "草薙陸上競技場",
+      "kickoff": "11:00"
     },
     {
       "md": 18,
@@ -940,25 +1111,9 @@
       "hs": null,
       "as": null,
       "away": "愛工大名電",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "静岡学園",
-      "hs": null,
-      "as": null,
-      "away": "清水エスパルスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "東海大翔洋",
-      "hs": null,
-      "as": null,
-      "away": "藤枝明誠",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "松阪市総合運動公園人工芝",
+      "kickoff": "13:00"
     },
     {
       "md": 18,
@@ -967,7 +1122,20 @@
       "hs": null,
       "as": null,
       "away": "富士市立",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "市原産業スポーツフィールド",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "東海大翔洋",
+      "hs": null,
+      "as": null,
+      "away": "藤枝明誠",
+      "status": "scheduled",
+      "venue": "西ヶ谷総合運動場",
+      "kickoff": "13:00"
     },
     {
       "md": 18,
@@ -976,7 +1144,20 @@
       "hs": null,
       "as": null,
       "away": "藤枝東",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "浜松開誠館総合G",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "静岡学園",
+      "hs": null,
+      "as": null,
+      "away": "清水エスパルスユース",
+      "status": "scheduled",
+      "venue": "時之栖A",
+      "kickoff": "13:00"
     }
   ]
 }

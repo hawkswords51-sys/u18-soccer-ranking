@@ -1,43 +1,69 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-プレミアリーグ EAST/WEST を「JFA公式JSON」から更新する
-==========================================================
-2026-09-05 新設。
+プレミア2＋プリンス13の全15リーグを「JFA公式」から更新する
+============================================================
+2026-09-05 新設（プレミア2リーグ）／2026-09-06 プリンス13リーグに拡張。
 
 なぜ作ったか
 ------------
-プレミアの順位・戦績はこれまで koko-soccer をスクレイピングしていたが、反映が遅い。
+順位・戦績はこれまで koko-soccer をスクレイピングしていたが、反映が遅い。
 JFA公式の日程・結果ページは JavaScript で表を描くので素のHTMLでは中身が取れないが、
 そのページが裏で読んでいる JSON を直接叩けることが分かった。JSONなのでHTML解析は不要で、
 requests と json だけで済む。これで「試合当日の夜にサイトへ自動反映」できる。
 
-取りに行く先（{season} と {side} を入れ替えるだけ）
+取りに行く先
+------------
+プレミア（JSON・2リーグ）
   https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/match/schedule.json
-      … 全132試合。日付・会場・キックオフ時刻・スコア・得点者・公式記録PDFのURL
   https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/match/fight.json
-      … 順位表（competitionStanding）と星取り表（matchStarMap）
+
+プリンス（JSON・12リーグ）
+  https://www.jfa.jp/match_47fa/{code}/takamado_jfa_u18_prince{season}/[{div}/]match/schedule.json
+  https://www.jfa.jp/match_47fa/{code}/takamado_jfa_u18_prince{season}/[{div}/]match/fight.json
+  ※ 2部制の地域だけ {div}（kanto1 / kanto2 など）が挟まる。1部制の地域は挟まらない。
+
+プリンス東北（HTMLのみ・1リーグ）
+  https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u18_prince{season}/thfa/schedule.html
+  https://www.jfa.jp/match_47fa/102_tohoku/takamado_jfa_u18_prince{season}/thfa/ranking.html
+  ※ 東北だけJSONが無い。ただしJS描画ではない素のHTMLなので requests で取れる。
+
+  schedule.json / fight.json の中身
+    日付・会場・キックオフ時刻・スコア・得点者・公式記録PDFのURL
+    fight.json は matchStarMap（星取り表）＋ competitionStanding（順位表）
+    ※ プリンスの順位表は teamName を持たず teamAbbreviatedName だけのことがある。
 
 書き出す先
-  data/league_matches/premier-{east,west}.json … 全試合＋順位表（既存スキーマのまま）
-  data/scorers/premier-{east,west}.json        … 得点ランキング（得点者を自前で集計）
-  data/teams.json                              … プレミア24チームの成績・順位
+----------
+  data/league_matches/{slug}.json … 全試合＋順位表（既存スキーマのまま）
+  data/teams.json                 … 該当チームの成績・順位
+  data/scorers/premier-*.json     … 得点ランキング（**プレミア2リーグだけ**）
+
+⚠ プリンスの得点ランキングは触らない
+------------------------------------
+`data/scorers/prince-*.json` は**このスクリプトでは絶対に書き換えない**。
+現行のプリンスの得点ランキングはゲキサカ由来で、JFAのJSONの得点者とは表記も
+網羅範囲も違う。うっかり上書きすると既存のランキングが壊れる。
+（2026-09-06時点でJFA側にも得点者は入っているが、採用するかは別途判断する）
 
 安全設計（いちばん大事なところ）
 --------------------------------
-「JFA優先＋koko予備」。JFAが取れない・数字が合わないときは **1バイトも書かずに** 終了する。
-書かなければ既存データがそのまま残り、その後の update.py / update_cross_tables.py が
-従来どおり koko から更新する。つまり落ちてもサイトは止まらない。
+「JFA優先＋koko予備」。JFAが取れない・数字が合わないときは **そのリーグには1バイトも
+書かずに** 終了する。書かなければ既存データがそのまま残り、その後の update.py /
+update_cross_tables.py が従来どおり koko から更新する。つまり落ちてもサイトは止まらない。
+**リーグごとに完全に独立**しているので、1リーグが失敗しても他は通常どおり更新される。
 
 検算（1つでも落ちたらそのリーグは書かない）
-  1. HTTP・JSONパースが成功しているか
-  2. 順位表が12チームちょうどか
+  1. HTTP・JSON/HTMLのパースが成功しているか
+  2. 順位表のチーム数が既存JSONのチーム数と一致するか
   3. 各チームで  試合数 = 勝+分+敗   かつ  勝点 = 勝×3+分
-  4. schedule.json の消化試合から積み上げた 得点/失点/勝分敗/勝点 が、順位表と全項目一致するか
+  4. 日程の消化試合から積み上げた 得点/失点/勝分敗/勝点 が、順位表と全項目一致するか
   5. チーム名が data/league_matches と data/teams.json の両方に1対1で名寄せできるか
   6. 今回の消化試合数が、既存JSONの消化試合数より減っていないか（＝退行なら書かない）
 
 未消化試合の日付・時刻・会場は毎回JFAの値で入れ替える（日程変更に追従する）。
+ただし **JFA側が空のときだけは既存の値を残す**（空は値ではないので、上書きすると
+情報が減るだけ。北信越2部でJFAに日付が無い試合が実在する）。
 ただし「すでに結果が入っている試合の日付が動いた」場合だけ [要確認] をログに出す
 （出典が別試合と取り違えている等の事故を検知するため。更新自体は止めない）。
 
@@ -46,13 +72,15 @@ requests と json だけで済む。これで「試合当日の夜にサイト�
 
 年度切り替え
 ------------
-下の SEASON を "2027" に変えるだけ。（チーム入れ替えで名寄せが外れた場合は
-ログに [要確認] が出て自動的に koko 側へ回るので、サイトが壊れることはない）
+下の SEASON を "2027" に変えるだけで15リーグ全部が切り替わる。
+（チーム入れ替えで名寄せが外れた場合はログに [要確認] が出て自動的に koko 側へ回るので、
+  サイトが壊れることはない）
 
 使い方
 ------
-  python scraper/fetch_jfa_premier.py            # 取得して書き込む
-  python scraper/fetch_jfa_premier.py --dry-run  # 取得・検算だけして書き込まない
+  python scraper/fetch_jfa.py                  # 取得して書き込む
+  python scraper/fetch_jfa.py --dry-run        # 取得・検算だけして書き込まない（表を出す）
+  python scraper/fetch_jfa.py --only prince-tohoku,prince-tokai   # リーグを絞る
 終了コードは常に0（更新0件でも正常。要確認はログで通知する）。
 """
 import argparse
@@ -66,16 +94,69 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
+from bs4 import BeautifulSoup
 
 # ===== 設定 =====
-SEASON = "2026"          # ← 年度切り替えはここ1行だけ
+SEASON = "2026"          # ← 年度切り替えはここ1行だけ（15リーグ共通）
 
-BASE = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/match/"
-# サイトに「出典」として出す人間向けページ（JSONではなく日程・結果ページ）
-PAGE = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/schedule_result/"
+_PREMIER_MATCH = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/match/"
+_PREMIER_PAGE = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/schedule_result/"
+_PRINCE_BASE = "https://www.jfa.jp/match_47fa/{code}/takamado_jfa_u18_prince{season}/"
+# 出典として画面に出す人間向けページ（JSONの置き場所は直リンクすると403/404になる）
+_PRINCE_PAGE = "https://www.jfa.jp/match/takamado_jfa_u18_prince{season}/{region}/"
 
-SIDES = {"east": "premier-east", "west": "premier-west"}
-LEAGUE_NAMES = {"premier-east": "プレミアリーグEAST", "premier-west": "プレミアリーグWEST"}
+# ---- リーグ定義テーブル（ここに1行足せばリーグが増える）----
+#   slug     : data/league_matches/{slug}.json のファイル名
+#   fmt      : "json"（schedule.json+fight.json） / "html"（東北だけ）
+#   code     : 地域コード（プリンスのみ）
+#   div      : 2部制の地域だけ入る（kanto1 等）。1部制は無し
+#   region   : 出典リンク用の地域名（プリンスのみ）
+#   league   : teams.json の league フィールドに入れる値。**プレミアだけ**設定する
+#              （プリンスは既存の表記を尊重して触らない）
+#   scorers  : True のリーグだけ data/scorers/{slug}.json を書く。**プレミアだけ**
+LEAGUES = [
+    {"slug": "premier-east", "fmt": "json", "side": "east",
+     "league": "プレミアリーグEAST", "scorers": True},
+    {"slug": "premier-west", "fmt": "json", "side": "west",
+     "league": "プレミアリーグWEST", "scorers": True},
+
+    {"slug": "prince-hokkaido", "fmt": "json", "code": "101_hokkaido", "region": "hokkaido"},
+    {"slug": "prince-tohoku", "fmt": "html", "code": "102_tohoku", "dir": "thfa",
+     "region": "tohoku"},
+    {"slug": "prince-kanto-1", "fmt": "json", "code": "103_kanto", "div": "kanto1",
+     "region": "kanto"},
+    {"slug": "prince-kanto-2", "fmt": "json", "code": "103_kanto", "div": "kanto2",
+     "region": "kanto"},
+    {"slug": "prince-hokushinetsu-1", "fmt": "json", "code": "104_hokushinetsu",
+     "div": "hokushinetsu1", "region": "hokushinetsu"},
+    {"slug": "prince-hokushinetsu-2", "fmt": "json", "code": "104_hokushinetsu",
+     "div": "hokushinetsu2", "region": "hokushinetsu"},
+    {"slug": "prince-tokai", "fmt": "json", "code": "105_tokai", "region": "tokai"},
+    {"slug": "prince-kansai-1", "fmt": "json", "code": "106_kansai", "div": "kansai1",
+     "region": "kansai"},
+    {"slug": "prince-kansai-2", "fmt": "json", "code": "106_kansai", "div": "kansai2",
+     "region": "kansai"},
+    {"slug": "prince-chugoku", "fmt": "json", "code": "107_chugoku", "region": "chugoku"},
+    {"slug": "prince-shikoku", "fmt": "json", "code": "108_shikoku", "region": "shikoku"},
+    {"slug": "prince-kyushu-1", "fmt": "json", "code": "109_kyushu", "div": "kyushu1",
+     "region": "kyushu"},
+    {"slug": "prince-kyushu-2", "fmt": "json", "code": "109_kyushu", "div": "kyushu2",
+     "region": "kyushu"},
+]
+
+# update.py がプリンスを「地域まるごと」処理しているので、地域→slug の対応も持っておく。
+# その地域のslugが全部JFAで成功したときだけ update.py 側をスキップする。
+PRINCE_REGION_SLUGS = {
+    "hokkaido": ["prince-hokkaido"],
+    "tohoku": ["prince-tohoku"],
+    "kanto": ["prince-kanto-1", "prince-kanto-2"],
+    "hokushinetsu": ["prince-hokushinetsu-1", "prince-hokushinetsu-2"],
+    "tokai": ["prince-tokai"],
+    "kansai": ["prince-kansai-1", "prince-kansai-2"],
+    "chugoku": ["prince-chugoku"],
+    "shikoku": ["prince-shikoku"],
+    "kyushu": ["prince-kyushu-1", "prince-kyushu-2"],
+}
 
 ROOT = Path(__file__).resolve().parent.parent
 MATCH_DIR = ROOT / "data" / "league_matches"
@@ -90,18 +171,19 @@ HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 "
-        "(u18-soccer.com premier updater)"
+        "(u18-soccer.com league updater)"
     )
 }
-TIMEOUT = 20
+TIMEOUT = 25
 RETRIES = 2  # 初回とあわせて計3回
 
-# 得点ランキングに載せる下限（既存の data/scorers/prince-*.json と同じ流儀）
+# 得点ランキングに載せる下限（既存の data/scorers/*.json と同じ流儀）
 SCORER_MIN_GOALS = 2
 
 # 末尾の括弧を「中身が都道府県名のときだけ」外すための一覧。
-# fight.json の順位表だけ「流通経済大学付属柏高校(千葉県)」と県名が付き、
-# 星取り表と schedule.json は括弧なしなので、ここで表記を揃える。
+# プレミアの順位表は「流通経済大学付属柏高校(千葉県)」と県名が付き、
+# 星取り表と schedule.json は括弧なし。東北のHTMLも「専修大北上高校 (岩手県)」形式。
+# 一方セカンドチームの「(B)」は絶対に外してはいけないので、中身で判定する。
 # （update_cross_tables.py の norm() と同じ考え方）
 PREFECTURES = {
     "北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島",
@@ -113,12 +195,57 @@ PREFECTURES = {
     "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄",
 }
 
-# 自動の名寄せでは絶対に当たらない組み合わせだけを手で書く。
+# 全リーグ共通の読み替え。自動の名寄せでは絶対に当たらない組み合わせだけを手で書く。
 # キーは _norm() / _core() を通した後のJFA表記、値はこのリポジトリ側の表記。
-# 例: JFA「流通経済大学付属柏高校」↔ 当サイト「流通経済大柏」は共通部分が無く、
-#     部分一致でも類似判定でも当たらない。
 NAME_OVERRIDES = {
     "流通経済大学付属柏": "流通経済大柏",
+}
+
+# リーグ限定の読み替え（update_cross_tables.py の LEAGUE_ALIASES と同じ考え方）。
+# 同じ表記が別リーグでは別チームを指すことがあるので、全体の NAME_OVERRIDES には入れない。
+# 例:「大津高校2nd」は九州1部だけの読み替え。九州2部には「大津高校3rd」がいる。
+# キーは _norm() を通した後のJFA表記（全角Ｂは半角Bになる）。
+LEAGUE_ALIASES = {
+    "prince-tohoku": {
+        "専修大北上高校": "専大北上",
+        "青森山田高校セカンド": "青森山田セカンド",
+    },
+    "prince-kanto-1": {
+        "ジェフユナイテッド市原・千葉U-18": "ジェフユナイテッド千葉U-18",
+        "流通経済大学付属柏B": "流通経済大柏(B)",
+    },
+    "prince-kanto-2": {
+        "日本体育大学柏高校": "日体大柏",
+        "日本大学藤沢高校": "日大藤沢",
+    },
+    "prince-hokushinetsu-1": {
+        "富山U18": "カターレ富山U-18",
+        "新潟U18": "アルビレックス新潟U-18",
+        "松本U18": "松本山雅FC U-18",
+    },
+    "prince-hokushinetsu-2": {
+        "金沢U18": "ツエーゲン金沢U-18",
+        "長野U18": "AC長野パルセイロU-18",
+        "開志JSC高等部": "開志学園JSC",
+    },
+    "prince-kansai-2": {
+        "ヴィッセル神戸U-18B": "ヴィッセル神戸U-18(B)",
+        "京都橘B": "京都橘(B)",
+        "近江B": "近江(B)",
+    },
+    "prince-chugoku": {
+        "立正大学淞南高校": "立正大淞南",
+    },
+    "prince-kyushu-1": {
+        "大津高校2nd": "大津2nd",
+    },
+    "prince-kyushu-2": {
+        "サガン鳥栖U-18_2nd": "サガン鳥栖U-18 2nd",
+        "九州国際大学付属高校": "九州国際大付",
+        "大津高校3rd": "大津3rd",
+        "日章学園高校2nd": "日章学園2nd",
+        "長崎総合科学大学附属高校": "長崎総科大附",
+    },
 }
 
 
@@ -149,7 +276,7 @@ def _core(name: str) -> str:
     return s
 
 
-def _build_resolver(names: list[str]):
+def _build_resolver(names: list[str], slug: str = ""):
     """JFAのチーム名 → names の中の正式名 に変換する関数を作る。
     当たらなければ None を返す（＝呼び出し側で [要確認] にして書き込まない）。
     """
@@ -157,10 +284,16 @@ def _build_resolver(names: list[str]):
     for n in names:
         index.setdefault(_norm(n), n)
         index.setdefault(_core(n), n)
+    league_alias = {_norm(k): v for k, v in LEAGUE_ALIASES.get(slug, {}).items()}
 
     def resolve(jfa_name: str):
         n = _norm(jfa_name)
         c = _core(jfa_name)
+        # リーグ限定の読み替えを最優先（全体の読み替えより強い）
+        if n in league_alias:
+            return league_alias[n]
+        if c in league_alias:
+            return league_alias[c]
         if n in NAME_OVERRIDES:
             return NAME_OVERRIDES[n]
         if c in NAME_OVERRIDES:
@@ -178,27 +311,168 @@ def _build_resolver(names: list[str]):
 # ============================================================
 # 取得
 # ============================================================
-def fetch_json(url: str):
-    """JSONを取得する。失敗したら例外を投げる（呼び出し側で [要確認] にする）。"""
+def _fetch(url: str) -> str:
+    """本文を文字列で返す。失敗したら例外（呼び出し側で [要確認] にする）。"""
     last = None
-    for attempt in range(RETRIES + 1):
+    for _ in range(RETRIES + 1):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
             resp.raise_for_status()
             resp.encoding = "utf-8"
-            return json.loads(resp.text)
-        except Exception as e:   # 通信エラー・404・JSON壊れ すべてここ
+            return resp.text
+        except Exception as e:   # 通信エラー・404・タイムアウト すべてここ
             last = e
     raise RuntimeError(f"{url} の取得に失敗 ({last})")
 
 
+def fetch_json(url: str):
+    return json.loads(_fetch(url))
+
+
 # ============================================================
-# 解析
+# URL組み立て
+# ============================================================
+def urls_of(cfg: dict) -> dict:
+    """リーグ定義から実際に叩くURLを組み立てる"""
+    if "side" in cfg:      # プレミア
+        base = _PREMIER_MATCH.format(season=SEASON, side=cfg["side"])
+        return {"base": base,
+                "schedule": base + "schedule.json",
+                "fight": base + "fight.json",
+                "page": _PREMIER_PAGE.format(season=SEASON, side=cfg["side"])}
+    root = _PRINCE_BASE.format(code=cfg["code"], season=SEASON)
+    page = _PRINCE_PAGE.format(season=SEASON, region=cfg["region"])
+    if cfg["fmt"] == "html":   # 東北
+        base = root + cfg["dir"] + "/"
+        return {"base": base,
+                "schedule": base + "schedule.html",
+                "fight": base + "ranking.html",
+                "page": page}
+    base = root + (cfg["div"] + "/" if cfg.get("div") else "") + "match/"
+    return {"base": base,
+            "schedule": base + "schedule.json",
+            "fight": base + "fight.json",
+            "page": page}
+
+
+# ============================================================
+# 出典ごとの読み取り（どちらも同じ形の中間データを返す）
+#   matches:   [{md, date, kickoff, venue, report, home, away, hs, as, played,
+#                homeScorer[], awayScorer[]}]   home/away は**JFAの表記**
+#   standings: [{rank, name, pts, games, win, tie, lost, gf, ga}]  name も**JFAの表記**
+# ============================================================
+def _md_of(text) -> int | None:
+    """ '第12節' -> 12 """
+    m = re.search(r"(\d+)", str(text or ""))
+    return int(m.group(1)) if m else None
+
+
+def _iso_date(raw: str) -> str:
+    """ '2026/09/05' -> '2026-09-05' 。読めなければ空文字。"""
+    m = re.match(r"^\s*(\d{4})[/\-.](\d{1,2})[/\-.](\d{1,2})", str(raw or ""))
+    return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}" if m else ""
+
+
+def read_json_source(u: dict) -> dict:
+    """プレミア・プリンス（東北以外）の schedule.json / fight.json を読む"""
+    schedule_raw = fetch_json(u["schedule"])
+    fight_raw = fetch_json(u["fight"])
+    matches_raw = schedule_raw["matchScheduleList"]["matchSchedule"]
+    standing_raw = fight_raw["competitionStanding"]["team"]
+
+    matches = []
+    for m in matches_raw:
+        score = m.get("score") or {}
+        hs = str(score.get("homeScore", "")).strip()
+        as_ = str(score.get("awayScore", "")).strip()
+        # 「試合中」は途中経過が入るので消化扱いにしない（"試合終了" のみ消化）
+        played = (m.get("matchStatus") == "試合終了" and hs.isdigit() and as_.isdigit())
+        scorer = m.get("scorer") or {}
+        matches.append({
+            "md": _md_of(m.get("matchTypeName")),
+            "date": _iso_date(m.get("matchDate")),
+            "kickoff": str(m.get("matchTime") or "").strip(),
+            "venue": str(m.get("venueFullName") or m.get("venue") or "").strip(),
+            "report": str(m.get("officialReportURL") or "").strip(),
+            "home": m.get("homeTeamName", ""),
+            "away": m.get("awayTeamName", ""),
+            "hs": int(hs) if played else None,
+            "as": int(as_) if played else None,
+            "played": played,
+            "homeScorer": list(scorer.get("homeScorer") or []),
+            "awayScorer": list(scorer.get("awayScorer") or []),
+        })
+
+    standings = []
+    for t in standing_raw:
+        # プリンスの順位表は teamName を持たず teamAbbreviatedName だけのことがある
+        standings.append({
+            "rank": t.get("rank"),
+            "name": t.get("teamName") or t.get("teamAbbreviatedName"),
+            "pts": t.get("winPoint"), "games": t.get("games"), "win": t.get("win"),
+            "tie": t.get("tie"), "lost": t.get("lost"),
+            "gf": t.get("getScorePoint"), "ga": t.get("lostScorePoint"),
+        })
+    return {"matches": matches, "standings": standings}
+
+
+def read_tohoku_html(u: dict) -> dict:
+    """プリンス東北の静的HTMLを読む（JSONが無い唯一のリーグ）
+
+    日程表は「第N節」見出しごとに1テーブル。1行＝
+      No / 日程・時間 / 会場 / ホーム(県) / スコア / アウェイ(県) / 試合状況
+    日付は `26/ 09/06(日) 11:00` 形式（年は2桁・時刻は同じセル）。未消化のスコアは `-`。
+    順位表は 順位 / チーム名(県) / 勝点 / 試合数 / 勝利 / 引分 / 敗戦 / 得点 / 失点 / 得失点差。
+    """
+    soup = BeautifulSoup(_fetch(u["schedule"]), "html.parser")
+    matches = []
+    for table in soup.find_all("table"):
+        head = table.find_previous(string=re.compile(r"第\s*\d+\s*節"))
+        md = _md_of(head) if head else None
+        if md is None:
+            continue
+        for tr in table.find_all("tr"):
+            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
+            if len(cells) < 6 or not cells[0].strip().isdigit():
+                continue   # ヘッダー行などを飛ばす
+            dt, venue, home, score, away = cells[1], cells[2], cells[3], cells[4], cells[5]
+            dm = re.search(r"(\d{2})/\s*(\d{1,2})/(\d{1,2})", dt)
+            date_s = (f"20{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+                      if dm else "")
+            tm = re.search(r"(\d{1,2}):(\d{2})", dt)
+            kickoff = f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else ""
+            sm = re.match(r"^\s*(\d+)\s*[-ー－]\s*(\d+)\s*$", score)
+            matches.append({
+                "md": md, "date": date_s, "kickoff": kickoff, "venue": venue,
+                "report": "", "home": home, "away": away,
+                "hs": int(sm.group(1)) if sm else None,
+                "as": int(sm.group(2)) if sm else None,
+                "played": bool(sm),
+                "homeScorer": [], "awayScorer": [],
+            })
+
+    rank_soup = BeautifulSoup(_fetch(u["fight"]), "html.parser")
+    standings = []
+    for table in rank_soup.find_all("table"):
+        for tr in table.find_all("tr"):
+            c = [x.get_text(" ", strip=True) for x in tr.find_all(["th", "td"])]
+            if len(c) < 10 or not c[0].strip().isdigit():
+                continue
+            standings.append({"rank": c[0], "name": c[1], "pts": c[2], "games": c[3],
+                              "win": c[4], "tie": c[5], "lost": c[6],
+                              "gf": c[7], "ga": c[8]})
+        if standings:
+            break
+    return {"matches": matches, "standings": standings}
+
+
+# ============================================================
+# 共通処理（名寄せ・検算・出力データの組み立て）
 # ============================================================
 def _split_scorer(line: str) -> dict | None:
     """ '45+1分 立石 陽向' -> {'minute': '45+1', 'name': '立石 陽向'}
         '12分 オウンゴール' -> {'minute': '12', 'name': 'オウンゴール', 'ownGoal': True}
-    形式が違う行は None（集計に混ぜない）。
+    形式が違う行は None（集計に混ぜない）。プレミアの表記だけを対象にしている。
     """
     s = str(line or "").strip()
     m = re.match(r"^(\d+(?:\+\d+)?)\s*分\s*(.+)$", s)
@@ -219,8 +493,7 @@ def date_change_warnings(old_matches, new_matches) -> list[str]:
     **すでに結果が確定している試合の日付が動く**ケースで、出典が別の試合と
     取り違えている等のサイン。見つけたら警告文を返す（更新自体は止めない。
     止めると日程変更が永久に反映されなくなる）。
-    update_cross_tables.py の同名関数と同じ考え方。プレミアはそちらを通らなく
-    なったので、こちらにも同じ見張りを置いている。
+    update_cross_tables.py の同名関数と同じ考え方。
     """
     prev = {}
     for m in old_matches or []:
@@ -238,102 +511,99 @@ def date_change_warnings(old_matches, new_matches) -> list[str]:
     return warns
 
 
-def _md_of(match_type_name: str):
-    """ '第12節' -> 12 """
-    m = re.search(r"(\d+)", str(match_type_name or ""))
-    return int(m.group(1)) if m else None
+def _as_int(v):
+    """'27' や '+14' を int に。読めなければ None。"""
+    s = str(v if v is not None else "").strip().lstrip("+")
+    return int(s) if re.fullmatch(r"-?\d+", s) else None
 
 
-def _iso_date(raw: str) -> str:
-    """ '2026/09/05' -> '2026-09-05' 。読めなければ空文字。"""
-    m = re.match(r"^\s*(\d{4})[/\-.](\d{1,2})[/\-.](\d{1,2})", str(raw or ""))
-    return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}" if m else ""
-
-
-def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
-    """east / west 1つ分を取得・解析・検算する。
+def parse_league(cfg: dict, existing: dict) -> tuple[dict | None, str]:
+    """1リーグ分を取得・解析・検算する。
     戻り値: (結果dict, メッセージ)。検算に落ちたら (None, 理由)。
     """
-    base = BASE.format(season=SEASON, side=side)
+    slug = cfg["slug"]
+    u = urls_of(cfg)
     try:
-        schedule_raw = fetch_json(base + "schedule.json")
-        fight_raw = fetch_json(base + "fight.json")
-    except Exception as e:
-        return None, f"[要確認] {slug}: JFA公式JSONを取得できない ({e})"
-
-    try:
-        matches_raw = schedule_raw["matchScheduleList"]["matchSchedule"]
-        standing_raw = fight_raw["competitionStanding"]["team"]
+        raw = read_tohoku_html(u) if cfg["fmt"] == "html" else read_json_source(u)
     except (KeyError, TypeError) as e:
-        return None, f"[要確認] {slug}: JFA公式JSONの構造が変わっている ({e})"
+        return None, f"[要確認] {slug}: JFA公式データの構造が変わっている ({e})"
+    except Exception as e:
+        return None, f"[要確認] {slug}: JFA公式データを取得できない ({e})"
 
-    if len(standing_raw) != 12:
-        return None, f"[要確認] {slug}: 順位表が{len(standing_raw)}チーム（12でない）"
-
-    # --- 名寄せ表を作る（このリーグのJSONに書いてあるチーム名が正） ---
+    src_matches, src_standings = raw["matches"], raw["standings"]
     site_names = [t.get("name", "") for t in existing.get("teams", []) if t.get("name")]
-    if len(site_names) != 12:
-        return None, f"[要確認] {slug}: 既存JSONのteamsが{len(site_names)}件（12でない）"
-    resolve = _build_resolver(site_names)
+    n_teams = len(site_names)
+    if n_teams == 0:
+        return None, f"[要確認] {slug}: 既存JSONに teams が無い"
+    if len(src_standings) != n_teams:
+        return None, (f"[要確認] {slug}: 順位表が{len(src_standings)}チーム"
+                      f"（既存JSONは{n_teams}チーム）")
 
-    jfa_names = {t.get("teamName", "") for t in standing_raw}
-    for m in matches_raw:
-        jfa_names.add(m.get("homeTeamName", ""))
-        jfa_names.add(m.get("awayTeamName", ""))
-    name_map: dict[str, str] = {}
-    unknown = []
-    for j in sorted(jfa_names):
+    # --- 名寄せ ---
+    resolve = _build_resolver(site_names, slug)
+    jfa_names = {s["name"] for s in src_standings}
+    for m in src_matches:
+        jfa_names.add(m["home"])
+        jfa_names.add(m["away"])
+    name_map, unknown = {}, []
+    for j in sorted(n for n in jfa_names if n):
         hit = resolve(j)
         if hit is None:
             unknown.append(j)
         else:
             name_map[j] = hit
     if unknown:
-        return None, f"[要確認] {slug}: 名寄せできないチーム名 {unknown[:3]}（据え置き）"
-    if len(set(name_map.values())) != 12:
-        return None, f"[要確認] {slug}: チーム名が1対1で対応しない（据え置き）"
+        return None, f"[要確認] {slug}: 名寄せできないチーム名 {unknown[:4]}（据え置き）"
+    if len(set(name_map.values())) != n_teams:
+        return None, (f"[要確認] {slug}: チーム名が1対1で対応しない"
+                      f"（{len(set(name_map.values()))}/{n_teams}・据え置き）")
 
     # --- 試合一覧を組み立てる ---
-    out_matches = []
-    for m in matches_raw:
-        md = _md_of(m.get("matchTypeName"))
-        if md is None:
-            return None, f"[要確認] {slug}: 節番号が読めない試合がある（{m.get('matchTypeName')}）"
-        home = name_map[m.get("homeTeamName", "")]
-        away = name_map[m.get("awayTeamName", "")]
-        score = m.get("score") or {}
-        hs_raw = str(score.get("homeScore", "")).strip()
-        as_raw = str(score.get("awayScore", "")).strip()
-        played = (m.get("matchStatus") == "試合終了"
-                  and hs_raw.isdigit() and as_raw.isdigit())
+    # [2026-09-06] 出典の値が空のときは既存の値を残す。
+    # 「未消化試合は毎回出典で上書きする」原則と矛盾しない（空は値ではない）。
+    # 実例: 北信越2部 第13節の2試合は koko が日付を持っているのに JFA が空欄。
+    #       素直に上書きすると日付が消えて情報が減るので、既存を温存する。
+    prev_by_key: dict = {}
+    for m in existing.get("matches", []):
+        prev_by_key.setdefault((m.get("md"), m.get("home"), m.get("away")), []).append(m)
 
+    def _keep(rec_key, field):
+        """既存の同じ試合が持っている値（無ければ空文字）"""
+        cands = prev_by_key.get(rec_key)
+        return str((cands[0].get(field) or "")).strip() if cands else ""
+
+    want_scorers = bool(cfg.get("scorers"))
+    out_matches = []
+    for m in src_matches:
+        if m["md"] is None:
+            return None, f"[要確認] {slug}: 節番号が読めない試合がある"
+        key = (m["md"], name_map[m["home"]], name_map[m["away"]])
         rec = {
-            "md": md,
-            "date": _iso_date(m.get("matchDate")),
-            "home": home,
-            "hs": int(hs_raw) if played else None,
-            "as": int(as_raw) if played else None,
-            "away": away,
-            "status": "played" if played else "scheduled",
+            "md": m["md"],
+            # 出典の日付が空なら既存の日付を残す（情報を減らさない）
+            "date": m["date"] or _keep(key, "date"),
+            "home": name_map[m["home"]],
+            "hs": m["hs"] if m["played"] else None,
+            "as": m["as"] if m["played"] else None,
+            "away": name_map[m["away"]],
+            "status": "played" if m["played"] else "scheduled",
         }
-        # 会場・キックオフ時刻・公式記録PDF（プリンス・県リーグには無いフィールド。
-        # 表示側は存在チェックしてから描くこと）
-        venue = str(m.get("venueFullName") or m.get("venue") or "").strip()
+        # 会場・キックオフ時刻・公式記録PDF
+        # （県リーグのJSONには無いフィールド。表示側は存在チェックしてから描くこと）
+        # ここも出典が空なら既存の値を残す。
+        venue = m["venue"] or _keep(key, "venue")
         if venue:
             rec["venue"] = venue
-        kickoff = str(m.get("matchTime") or "").strip()
+        kickoff = m["kickoff"] or _keep(key, "kickoff")
         if kickoff:
             rec["kickoff"] = kickoff
-        report = str(m.get("officialReportURL") or "").strip()
+        report = urljoin(u["base"], m["report"]) if m["report"] else _keep(key, "reportUrl")
         if report:
-            rec["reportUrl"] = urljoin(base, report)
-        # 得点者（時間帯別得点などの企画に使えるよう、分も残す）
-        if played:
-            scorer = m.get("scorer") or {}
-            hsc = [x for x in (_split_scorer(s) for s in scorer.get("homeScorer") or []) if x]
-            asc = [x for x in (_split_scorer(s) for s in scorer.get("awayScorer") or []) if x]
-            rec["homeScorers"] = hsc
-            rec["awayScorers"] = asc
+            rec["reportUrl"] = report
+        # 得点者はプレミアだけ。プリンスは表記も網羅範囲も違うので取り込まない
+        if want_scorers and m["played"]:
+            rec["homeScorers"] = [x for x in (_split_scorer(s) for s in m["homeScorer"]) if x]
+            rec["awayScorers"] = [x for x in (_split_scorer(s) for s in m["awayScorer"]) if x]
         out_matches.append(rec)
 
     out_matches.sort(key=lambda r: (r["md"], r["date"], r["home"]))
@@ -341,8 +611,8 @@ def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
     # --- 消化試合から順位を組み立て直す（検算その1） ---
     calc = {n: dict(pts=0, played=0, won=0, drawn=0, lost=0, gf=0, ga=0)
             for n in set(name_map.values())}
-    goals = collections.Counter()      # (チーム, 選手) -> 得点
-    own_goals = collections.Counter()  # チーム -> もらったオウンゴール数
+    goals = collections.Counter()
+    own_goals = collections.Counter()
     last_played_date = ""
     for r in out_matches:
         if r["status"] != "played":
@@ -372,21 +642,15 @@ def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
 
     # --- JFA掲載の順位表を読む（検算その2・その3） ---
     official = {}
-    for t in standing_raw:
-        name = name_map[t.get("teamName", "")]
-        try:
-            official[name] = dict(
-                rank=int(t["rank"]),
-                pts=int(t["winPoint"]),
-                played=int(t["games"]),
-                won=int(t["win"]),
-                drawn=int(t["tie"]),
-                lost=int(t["lost"]),
-                gf=int(t["getScorePoint"]),
-                ga=int(t["lostScorePoint"]),
-            )
-        except (KeyError, ValueError, TypeError) as e:
-            return None, f"[要確認] {slug}: 順位表の数値が読めない（{t.get('teamName')} / {e}）"
+    for t in src_standings:
+        name = name_map[t["name"]]
+        vals = {k: _as_int(t[k]) for k in
+                ("rank", "pts", "games", "win", "tie", "lost", "gf", "ga")}
+        if any(v is None for v in vals.values()):
+            return None, f"[要確認] {slug}: 順位表の数値が読めない（{t['name']}）"
+        official[name] = dict(rank=vals["rank"], pts=vals["pts"], played=vals["games"],
+                              won=vals["win"], drawn=vals["tie"], lost=vals["lost"],
+                              gf=vals["gf"], ga=vals["ga"])
 
     mismatch = []
     for name, o in official.items():
@@ -409,7 +673,6 @@ def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
         return None, (f"[据え置き] {slug}: JFA消化{new_played} < 現在{cur_played}"
                       f"（減っているので上書きしない）")
 
-    # --- 順位表を書き出し用に並べる（JFA掲載の順位をそのまま使う） ---
     out_standings = []
     for name, o in sorted(official.items(), key=lambda kv: kv[1]["rank"]):
         out_standings.append(dict(rank=o["rank"], team=name, pts=o["pts"],
@@ -417,44 +680,58 @@ def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
                                   lost=o["lost"], gf=o["gf"], ga=o["ga"],
                                   gd=o["gf"] - o["ga"]))
 
-    # --- 得点ランキング（検算その4: 選手の得点合計＋OG＝GF） ---
-    short_by_name = {t.get("name", ""): (t.get("short") or t.get("name", ""))
-                     for t in existing.get("teams", [])}
-    coverage = []
-    for name, o in official.items():
-        counted = sum(v for (t, _), v in goals.items() if t == name) + own_goals[name]
-        if counted != o["gf"]:
-            coverage.append({"team": short_by_name.get(name, name),
-                             "missing": o["gf"] - counted})
+    # --- 得点ランキング（プレミアのみ・検算その4: 選手の得点合計＋OG＝GF） ---
+    ranked, coverage = [], []
+    if want_scorers:
+        short_by_name = {t.get("name", ""): (t.get("short") or t.get("name", ""))
+                         for t in existing.get("teams", [])}
+        for name, o in official.items():
+            counted = sum(v for (t, _), v in goals.items() if t == name) + own_goals[name]
+            if counted != o["gf"]:
+                coverage.append({"team": short_by_name.get(name, name),
+                                 "missing": o["gf"] - counted})
+        items = sorted(goals.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+        prev_goals, rank = None, 0
+        for i, ((team, player), g) in enumerate(items, 1):
+            if g != prev_goals:
+                rank, prev_goals = i, g
+            if g < SCORER_MIN_GOALS:
+                continue
+            ranked.append({"rank": rank, "name": player,
+                           "team": short_by_name.get(team, team), "goals": g})
 
-    ranked = []
-    items = sorted(goals.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
-    prev_goals = None
-    rank = 0
-    for i, ((team, player), g) in enumerate(items, 1):
-        if g != prev_goals:
-            rank = i
-            prev_goals = g
-        if g < SCORER_MIN_GOALS:
+    # --- 既存データとの差分件数（ドライラン表示用） ---
+    def _key(m):
+        return (m.get("md"), m.get("home"), m.get("away"))
+
+    old_by_key: dict = {}
+    for m in existing.get("matches", []):
+        old_by_key.setdefault(_key(m), []).append(m)
+    changed = 0
+    for r in out_matches:
+        cands = old_by_key.get(_key(r))
+        if not cands:
+            changed += 1
             continue
-        ranked.append({"rank": rank, "name": player,
-                       "team": short_by_name.get(team, team), "goals": g})
-
-    # teams.json を探すときに使う「当サイト表記 → JFA公式表記」の対応
-    jfa_name_by_site = {v: k for k, v in name_map.items()}
+        o = cands.pop(0)
+        if any(o.get(f) != r.get(f) for f in ("date", "hs", "as", "status")):
+            changed += 1
 
     return {
         "slug": slug,
-        "jfaNameBySite": jfa_name_by_site,
-        "dateWarnings": date_change_warnings(existing.get("matches"), out_matches),
+        "cfg": cfg,
         "matches": out_matches,
         "standings": out_standings,
-        "official": official,
         "scorers": ranked,
         "coverage": coverage,
         "asof": last_played_date,
         "played": new_played,
-        "page": PAGE.format(season=SEASON, side=side),
+        "curPlayed": cur_played,
+        "teams": n_teams,
+        "changed": changed,
+        "page": u["page"],
+        "nameMap": name_map,
+        "dateWarnings": date_change_warnings(existing.get("matches"), out_matches),
     }, f"[OK] {slug}: 消化{new_played}試合（検算すべて一致）"
 
 
@@ -463,7 +740,7 @@ def parse_side(side: str, slug: str, existing: dict) -> tuple[dict | None, str]:
 # ============================================================
 def write_league_matches(res: dict, existing: dict) -> None:
     """data/league_matches/<slug>.json を更新する。
-    league / season / teams は既存の設定をそのまま残す（表示側を触らずに済ませるため）。
+    league / teams は既存の設定をそのまま残す（表示側を触らずに済ませるため）。
     """
     data = dict(existing)
     data["season"] = SEASON
@@ -473,7 +750,6 @@ def write_league_matches(res: dict, existing: dict) -> None:
     data["lastUpdated"] = date.today().isoformat()
     data["matches"] = res["matches"]
     data["official_standings"] = res["standings"]
-    # キーの並びを既存ファイルと同じにする（差分を読みやすくするため）
     order = ["league", "season", "source", "sourceName", "lastUpdated", "teams",
              "official_standings", "matches"]
     ordered = {k: data[k] for k in order if k in data}
@@ -481,17 +757,16 @@ def write_league_matches(res: dict, existing: dict) -> None:
         ordered.setdefault(k, v)
     path = MATCH_DIR / f"{res['slug']}.json"
     # 既存ファイルに合わせて末尾に改行は付けない（無用な差分を出さないため）
-    path.write_text(json.dumps(ordered, ensure_ascii=False, indent=2),
-                    encoding="utf-8")
+    path.write_text(json.dumps(ordered, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def write_scorers(res: dict, existing_league_label: str) -> None:
-    """data/scorers/<slug>.json を更新する（得点者はJFA公式の試合記録を自前で集計）"""
+def write_scorers(res: dict, league_label: str) -> None:
+    """data/scorers/<slug>.json を更新する（**プレミアだけ**呼ばれる）"""
     note = (f"{SCORER_MIN_GOALS}得点以上の選手を掲載。"
             "JFA公式の試合記録に載っている得点者を全試合ぶん集計したもの。"
             "オウンゴールは個人の得点に数えていません。")
     out = {
-        "league": f"{existing_league_label} 得点ランキング",
+        "league": f"{league_label} 得点ランキング",
         "season": SEASON,
         "source": res["page"],
         "sourceLabel": "JFA公式",
@@ -501,13 +776,11 @@ def write_scorers(res: dict, existing_league_label: str) -> None:
         "scorers": res["scorers"],
         "coverage": res["coverage"],
     }
-    path = SCORER_DIR / f"{res['slug']}.json"
-    path.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n",
-                    encoding="utf-8")
+    (SCORER_DIR / f"{res['slug']}.json").write_text(
+        json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _scan_teams_json(teams_data: dict, matcher):
-    """teams.json 全体を走査し、matcher(チーム名とaliasesのリスト) が真になるチームを集める"""
     hits = []
     for pref_id, pref_data in teams_data.items():
         if pref_id == "_meta":
@@ -524,8 +797,8 @@ def _find_team_entry(teams_data: dict, site_name: str, jfa_name: str = ""):
     見つからない・複数当たる場合は None（＝書き込まずに [要確認]）。
 
     照合の順番:
-      1. JFA公式の表記との完全一致（teams.json は「前橋育英高校」等、JFA表記に近い）
-      2. 当サイトの戦績表での表記との完全一致（「流通経済大柏」等）
+      1. JFA公式の表記との完全一致
+      2. 当サイトの戦績表での表記との完全一致
       3. 「高校/高等学校/高等部」を落とした芯での一致（候補が1つに絞れるときだけ）
     aliases も必ず見る（過去に aliases を見ずに1チームだけ順位が止まる事故があった）。
     """
@@ -545,25 +818,32 @@ def _find_team_entry(teams_data: dict, site_name: str, jfa_name: str = ""):
     return None
 
 
+def teams_json_problems(teams_data: dict, res: dict) -> list[str]:
+    """teams.json 側で名寄せできないチームを洗い出す（書き込みはしない）"""
+    jfa_by_site = {v: k for k, v in res["nameMap"].items()}
+    problems = []
+    for row in res["standings"]:
+        if not _find_team_entry(teams_data, row["team"], jfa_by_site.get(row["team"], "")):
+            problems.append(f'{res["slug"]}: teams.json に「{row["team"]}」が1件に絞れない')
+    return problems
+
+
 def update_teams_json(results: list[dict]) -> tuple[bool, list[str]]:
-    """data/teams.json のプレミア該当チームの成績を更新する。
+    """data/teams.json の該当チームの成績を更新する。
     1チームでも見つからなければ **1件も書かずに** False を返す（中途半端に書かない）。
     """
     teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
-
-    plan = []       # (team_dict, stats) の予定表。全部そろってから一気に適用する
-    problems = []
+    plan, problems = [], []
     for res in results:
-        league_name = LEAGUE_NAMES[res["slug"]]
+        jfa_by_site = {v: k for k, v in res["nameMap"].items()}
         for row in res["standings"]:
-            jfa_name = res.get("jfaNameBySite", {}).get(row["team"], "")
-            found = _find_team_entry(teams_data, row["team"], jfa_name)
+            found = _find_team_entry(teams_data, row["team"],
+                                     jfa_by_site.get(row["team"], ""))
             if not found:
-                problems.append(f"{res['slug']}: teams.json に「{row['team']}」が1件に絞れない")
+                problems.append(
+                    f'{res["slug"]}: teams.json に「{row["team"]}」が1件に絞れない')
                 continue
-            _pref_id, team = found
-            plan.append((team, row, league_name))
-
+            plan.append((found[1], row, res["cfg"].get("league")))
     if problems:
         return False, problems
 
@@ -576,12 +856,15 @@ def update_teams_json(results: list[dict]) -> tuple[bool, list[str]]:
         team["goalsFor"] = row["gf"]
         team["goalsAgainst"] = row["ga"]
         team["goalDiff"] = row["gd"]
-        team["league"] = league_name
         team["leagueRank"] = row["rank"]
+        # league はプレミアだけ設定する。プリンスは既存の表記
+        #（「プリンスリーグ関東1部」等）を尊重して触らない。
+        if league_name:
+            team["league"] = league_name
 
     # 県内順位（rank / prefectureRank）と leagueRank の振り直しは、この直後に走る
-    # update.py・normalize_league_ranks.py が従来どおり担当する。ここでやると
-    # プレミアと無関係な県のチームまで並び替わって差分が読めなくなるため触らない。
+    # update.py・cleanup_aliases.py が従来どおり担当する。ここでやると
+    # 無関係な県のチームまで並び替わって差分が読めなくなるため触らない。
     teams_data["_meta"] = {
         **teams_data.get("_meta", {}),
         "lastUpdated": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M"),
@@ -611,71 +894,121 @@ def jfa_updated_slugs() -> set[str]:
     return set(d.get("ok") or [])
 
 
+def jfa_updated_prince_regions() -> set[str]:
+    """その地域のプリンス全部門がJFAで更新できた地域キーの集合。
+    update.py はプリンスを地域単位で処理するので、全部門そろったときだけスキップする。"""
+    ok = jfa_updated_slugs()
+    return {r for r, slugs in PRINCE_REGION_SLUGS.items() if ok.issuperset(slugs)}
+
+
 # ============================================================
 # メイン
 # ============================================================
-def run(dry_run: bool = False) -> list[str]:
-    """east/west を処理し、成功したslugのリストを返す"""
-    print(f"=== プレミアリーグ JFA公式JSON取得 ({SEASON}) ===")
-    results = []
-    messages = []
-    for side, slug in SIDES.items():
+def _print_dry_run_table(rows: list[dict]) -> None:
+    print()
+    print("=" * 104)
+    print("ドライラン結果（ファイルは1バイトも書いていません）")
+    print("=" * 104)
+    print(f"{'リーグ':<22s}{'取得':>4s}{'チーム':>7s}{'消化(JFA)':>11s}{'既存':>6s}"
+          f"{'名寄せ不能':>12s}{'差分':>6s}  判定")
+    print("-" * 104)
+    for r in rows:
+        print(f"{r['slug']:<22s}{r['fetch']:>4s}{r['teams']:>7s}{r['played']:>11s}"
+              f"{r['cur']:>6s}{r['unmapped']:>12s}{r['changed']:>6s}  {r['verdict']}")
+    print("-" * 104)
+    ok = [r for r in rows if r["verdict"].startswith("投入可")]
+    print(f"投入可 {len(ok)} / {len(rows)} リーグ")
+
+
+def run(dry_run: bool = False, only: set | None = None) -> list[str]:
+    """全リーグを処理し、成功したslugのリストを返す"""
+    print(f"=== JFA公式データ取得 ({SEASON}) ===")
+    targets = [c for c in LEAGUES if not only or c["slug"] in only]
+    results, rows = [], []
+
+    for cfg in targets:
+        slug = cfg["slug"]
         path = MATCH_DIR / f"{slug}.json"
         if not path.exists():
-            messages.append(f"[skip] {slug}: {path} が無い")
-            print(" ", messages[-1])
+            print(f"  [skip] {slug}: {path} が無い")
             continue
         existing = json.loads(path.read_text(encoding="utf-8"))
-        res, msg = parse_side(side, slug, existing)
-        messages.append(msg)
-        print(" ", msg)
+        res, msg = parse_league(cfg, existing)
+        print("  " + msg)
+
+        row = {"slug": slug, "fetch": "×", "teams": "-", "played": "-", "cur": "-",
+               "unmapped": "-", "changed": "-",
+               "verdict": msg.split(":", 1)[-1].strip()}
         if res:
             results.append((res, existing))
+            row.update(fetch="○", teams=str(res["teams"]), played=str(res["played"]),
+                       cur=str(res["curPlayed"]), unmapped="0",
+                       changed=str(res["changed"]), verdict="投入可")
+        rows.append(row)
+
+    # teams.json 側の名寄せも先に検査する（本番は1チームでも欠けたら全部書かない）
+    if results:
+        teams_data = json.loads(TEAMS_FILE.read_text(encoding="utf-8"))
+        blocked_slugs = set()
+        for res, _ in results:
+            probs = teams_json_problems(teams_data, res)
+            if not probs:
+                continue
+            blocked_slugs.add(res["slug"])
+            for row in rows:
+                if row["slug"] == res["slug"]:
+                    row["unmapped"] = f"teams {len(probs)}"
+                    row["verdict"] = "投入不可（teams.json名寄せ）"
+            for p in probs[:5]:
+                print(f"  [要確認] {p}")
+        results = [(r, e) for r, e in results if r["slug"] not in blocked_slugs]
+
+    if dry_run:
+        _print_dry_run_table(rows)
+        print("\n[DRY RUN] 書き込みはしていません。")
+        return []
 
     if not results:
         print("\n更新0件。既存データはそのまま（koko側の処理に任せます）。")
         return []
 
-    if dry_run:
-        for res, _ in results:
-            print(f"  [DRY RUN] {res['slug']}: "
-                  f"順位{len(res['standings'])}チーム / 試合{len(res['matches'])}件 / "
-                  f"得点ランキング{len(res['scorers'])}人 / 最終試合日 {res['asof']}")
-        print("\n[DRY RUN] 書き込みはしていません。")
-        return []
-
-    # teams.json は east/west まとめて（1チームでも名寄せできなければ全部書かない）
     ok, problems = update_teams_json([r for r, _ in results])
     if not ok:
         for p in problems:
             print(f"  [要確認] {p}")
-        print("\ndata/teams.json は更新しませんでした（既存維持）。"
-              "戦績表・得点ランキングも書き込みを中止します。")
+        print("\ndata/teams.json は更新しませんでした（既存維持）。書き込みを中止します。")
         return []
-    print(f"  ✓ data/teams.json を更新（{sum(len(r['standings']) for r, _ in results)}チーム）")
+    print(f"  ✓ data/teams.json を更新（{sum(r['teams'] for r, _ in results)}チーム）")
 
     ok_slugs = []
     for res, existing in results:
         write_league_matches(res, existing)
-        write_scorers(res, existing.get("league", res["slug"]))
+        if res["cfg"].get("scorers"):
+            write_scorers(res, existing.get("league", res["slug"]))
+            print(f"  ✓ data/league_matches/{res['slug']}.json / "
+                  f"data/scorers/{res['slug']}.json を更新")
+        else:
+            print(f"  ✓ data/league_matches/{res['slug']}.json を更新"
+                  f"（得点ランキングは触らない）")
         ok_slugs.append(res["slug"])
-        print(f"  ✓ data/league_matches/{res['slug']}.json / "
-              f"data/scorers/{res['slug']}.json を更新")
         for w in res.get("dateWarnings", []):
             print(f"  [要確認] {res['slug']}: {w}")
 
     write_status(ok_slugs)
-    print(f"\n✅ 完了: {len(ok_slugs)} リーグをJFA公式JSONから更新しました")
+    print(f"\n✅ 完了: {len(ok_slugs)} リーグをJFA公式から更新しました")
     return ok_slugs
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="プレミアリーグをJFA公式JSONから更新する")
+        description="プレミア2＋プリンス13リーグをJFA公式から更新する")
     parser.add_argument("--dry-run", action="store_true",
-                        help="取得・検算だけして書き込まない")
+                        help="取得・検算だけして書き込まない（結果を表で出す）")
+    parser.add_argument("--only", default="",
+                        help="対象リーグをカンマ区切りで指定（例: prince-tohoku,prince-tokai）")
     args = parser.parse_args()
-    run(dry_run=args.dry_run)
+    only = {s.strip() for s in args.only.split(",") if s.strip()} or None
+    run(dry_run=args.dry_run, only=only)
     return 0  # 更新0件でも異常ではないので常に0
 
 

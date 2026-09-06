@@ -2,6 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西1部",
   "season": "2026",
   "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kansai/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
     {
@@ -171,20 +172,13 @@
     {
       "md": 1,
       "date": "2026-04-05",
-      "home": "阪南大高",
-      "hs": 3,
-      "as": 4,
-      "away": "京都橘",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-05",
       "home": "セレッソ大阪U-18",
       "hs": 5,
       "as": 2,
       "away": "神戸弘陵",
-      "status": "played"
+      "status": "played",
+      "venue": "J-GREEN堺S2",
+      "kickoff": "13:00"
     },
     {
       "md": 1,
@@ -193,7 +187,9 @@
       "hs": 3,
       "as": 1,
       "away": "近江",
-      "status": "played"
+      "status": "played",
+      "venue": "J-GREEN堺S3",
+      "kickoff": "13:00"
     },
     {
       "md": 1,
@@ -202,7 +198,9 @@
       "hs": 0,
       "as": 2,
       "away": "三田学園",
-      "status": "played"
+      "status": "played",
+      "venue": "J-GREEN堺S4",
+      "kickoff": "13:00"
     },
     {
       "md": 1,
@@ -211,7 +209,20 @@
       "hs": 0,
       "as": 6,
       "away": "京都サンガF.C.",
-      "status": "played"
+      "status": "played",
+      "venue": "J-GREEN堺S5",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-05",
+      "home": "阪南大高",
+      "hs": 3,
+      "as": 4,
+      "away": "京都橘",
+      "status": "played",
+      "venue": "J-GREEN堺S1",
+      "kickoff": "13:00"
     },
     {
       "md": 2,
@@ -220,7 +231,9 @@
       "hs": 1,
       "as": 2,
       "away": "セレッソ大阪U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 2,
@@ -229,7 +242,9 @@
       "hs": 2,
       "as": 2,
       "away": "神戸弘陵",
-      "status": "played"
+      "status": "played",
+      "venue": "近江高校第二グランド",
+      "kickoff": "10:30"
     },
     {
       "md": 2,
@@ -238,7 +253,20 @@
       "hs": 3,
       "as": 2,
       "away": "産大附属",
-      "status": "played"
+      "status": "played",
+      "venue": "J-GREEN堺S2",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-12",
+      "home": "三田学園",
+      "hs": 1,
+      "as": 1,
+      "away": "興國",
+      "status": "played",
+      "venue": "三田学園",
+      "kickoff": "15:00"
     },
     {
       "md": 2,
@@ -247,16 +275,9 @@
       "hs": 3,
       "as": 0,
       "away": "履正社",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-12",
-      "home": "三田学園",
-      "hs": 1,
-      "as": 1,
-      "away": "興國",
-      "status": "played"
+      "status": "played",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "14:30"
     },
     {
       "md": 3,
@@ -265,7 +286,9 @@
       "hs": 1,
       "as": 1,
       "away": "神戸弘陵",
-      "status": "played"
+      "status": "played",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "11:00"
     },
     {
       "md": 3,
@@ -274,25 +297,9 @@
       "hs": 1,
       "as": 0,
       "away": "興國",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-19",
-      "home": "阪南大高",
-      "hs": 2,
-      "as": 2,
-      "away": "セレッソ大阪U-18",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-19",
-      "home": "産大附属",
-      "hs": 1,
-      "as": 1,
-      "away": "近江",
-      "status": "played"
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "13:30"
     },
     {
       "md": 3,
@@ -301,7 +308,31 @@
       "hs": 1,
       "as": 3,
       "away": "京都橘",
-      "status": "played"
+      "status": "played",
+      "venue": "滝川第二高校",
+      "kickoff": "13:30"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "産大附属",
+      "hs": 1,
+      "as": 1,
+      "away": "近江",
+      "status": "played",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "12:30"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "阪南大高",
+      "hs": 2,
+      "as": 2,
+      "away": "セレッソ大阪U-18",
+      "status": "played",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "10:00"
     },
     {
       "md": 4,
@@ -310,7 +341,42 @@
       "hs": 4,
       "as": 2,
       "away": "履正社",
-      "status": "played"
+      "status": "played",
+      "venue": "セレッソ大阪舞洲日本ハム桜G",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "三田学園",
+      "hs": 0,
+      "as": 1,
+      "away": "京都サンガF.C.",
+      "status": "played",
+      "venue": "滝川第二高校",
+      "kickoff": "15:30"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "産大附属",
+      "hs": 0,
+      "as": 1,
+      "away": "京都橘",
+      "status": "played",
+      "venue": "J-GREEN堺S5",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "興國",
+      "hs": 3,
+      "as": 2,
+      "away": "神戸弘陵",
+      "status": "played",
+      "venue": "セレッソ大阪舞洲シャウエッセンG",
+      "kickoff": "14:00"
     },
     {
       "md": 4,
@@ -319,43 +385,9 @@
       "hs": 6,
       "as": 0,
       "away": "阪南大高",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "産大附属",
-      "hs": 0,
-      "as": 1,
-      "away": "京都橘",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "興國",
-      "hs": 3,
-      "as": 2,
-      "away": "神戸弘陵",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "三田学園",
-      "hs": 0,
-      "as": 1,
-      "away": "京都サンガF.C.",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-04-29",
-      "home": "近江",
-      "hs": 1,
-      "as": 3,
-      "away": "京都サンガF.C.",
-      "status": "played"
+      "status": "played",
+      "venue": "野洲川歴史公園",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -364,7 +396,42 @@
       "hs": 3,
       "as": 1,
       "away": "興國",
-      "status": "played"
+      "status": "played",
+      "venue": "YANMAR HANASAKA STADIUM",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "産大附属",
+      "hs": 0,
+      "as": 1,
+      "away": "履正社",
+      "status": "played",
+      "venue": "J-GREEN堺S2",
+      "kickoff": "13:30"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "神戸弘陵",
+      "hs": 0,
+      "as": 1,
+      "away": "京都橘",
+      "status": "played",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "14:30"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-29",
+      "home": "近江",
+      "hs": 1,
+      "as": 3,
+      "away": "京都サンガF.C.",
+      "status": "played",
+      "venue": "近江高校第二グランド",
+      "kickoff": "10:30"
     },
     {
       "md": 5,
@@ -373,34 +440,20 @@
       "hs": 1,
       "as": 0,
       "away": "三田学園",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-04-29",
-      "home": "産大附属",
-      "hs": 0,
-      "as": 1,
-      "away": "履正社",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-04-29",
-      "home": "神戸弘陵",
-      "hs": 0,
-      "as": 1,
-      "away": "京都橘",
-      "status": "played"
+      "status": "played",
+      "venue": "J-GREEN堺S2",
+      "kickoff": "11:00"
     },
     {
       "md": 6,
       "date": "2026-05-04",
-      "home": "京都橘",
-      "hs": 2,
-      "as": 0,
-      "away": "近江",
-      "status": "played"
+      "home": "セレッソ大阪U-18",
+      "hs": 5,
+      "as": 2,
+      "away": "産大附属",
+      "status": "played",
+      "venue": "J-GREEN堺S4",
+      "kickoff": "11:00"
     },
     {
       "md": 6,
@@ -409,25 +462,9 @@
       "hs": 0,
       "as": 3,
       "away": "神戸弘陵",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-04",
-      "home": "セレッソ大阪U-18",
-      "hs": 5,
-      "as": 2,
-      "away": "産大附属",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-04",
-      "home": "興國",
-      "hs": 2,
-      "as": 2,
-      "away": "阪南大高",
-      "status": "played"
+      "status": "played",
+      "venue": "三田学園",
+      "kickoff": "10:30"
     },
     {
       "md": 6,
@@ -436,7 +473,31 @@
       "hs": 1,
       "as": 3,
       "away": "履正社",
-      "status": "played"
+      "status": "played",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "12:00"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-04",
+      "home": "京都橘",
+      "hs": 2,
+      "as": 0,
+      "away": "近江",
+      "status": "played",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "09:45"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-04",
+      "home": "興國",
+      "hs": 2,
+      "as": 2,
+      "away": "阪南大高",
+      "status": "played",
+      "venue": "J-GREEN堺S5",
+      "kickoff": "11:00"
     },
     {
       "md": 7,
@@ -445,7 +506,9 @@
       "hs": 4,
       "as": 0,
       "away": "阪南大高",
-      "status": "played"
+      "status": "played",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "10:30"
     },
     {
       "md": 7,
@@ -454,16 +517,9 @@
       "hs": 1,
       "as": 0,
       "away": "セレッソ大阪U-18",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-10",
-      "home": "神戸弘陵",
-      "hs": 2,
-      "as": 2,
-      "away": "履正社",
-      "status": "played"
+      "status": "played",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "13:00"
     },
     {
       "md": 7,
@@ -472,7 +528,20 @@
       "hs": 0,
       "as": 3,
       "away": "近江",
-      "status": "played"
+      "status": "played",
+      "venue": "三田学園",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-10",
+      "home": "神戸弘陵",
+      "hs": 2,
+      "as": 2,
+      "away": "履正社",
+      "status": "played",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "10:30"
     },
     {
       "md": 7,
@@ -481,7 +550,9 @@
       "hs": 0,
       "as": 6,
       "away": "産大附属",
-      "status": "played"
+      "status": "played",
+      "venue": "東海大仰星",
+      "kickoff": "14:00"
     },
     {
       "md": 8,
@@ -490,16 +561,9 @@
       "hs": 1,
       "as": 1,
       "away": "三田学園",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-06-13",
-      "home": "神戸弘陵",
-      "hs": 2,
-      "as": 1,
-      "away": "阪南大高",
-      "status": "played"
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 8,
@@ -508,16 +572,20 @@
       "hs": 1,
       "as": 1,
       "away": "京都サンガF.C.",
-      "status": "played"
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "18:15"
     },
     {
       "md": 8,
-      "date": "2026-06-14",
-      "home": "近江",
-      "hs": 1,
-      "as": 0,
-      "away": "セレッソ大阪U-18",
-      "status": "played"
+      "date": "2026-06-13",
+      "home": "神戸弘陵",
+      "hs": 2,
+      "as": 1,
+      "away": "阪南大高",
+      "status": "played",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "17:00"
     },
     {
       "md": 8,
@@ -526,16 +594,20 @@
       "hs": 4,
       "as": 1,
       "away": "興國",
-      "status": "played"
+      "status": "played",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "18:30"
     },
     {
-      "md": 9,
-      "date": "2026-06-20",
-      "home": "履正社",
-      "hs": 5,
-      "as": 1,
-      "away": "阪南大高",
-      "status": "played"
+      "md": 8,
+      "date": "2026-06-14",
+      "home": "近江",
+      "hs": 1,
+      "as": 0,
+      "away": "セレッソ大阪U-18",
+      "status": "played",
+      "venue": "近江高校第二グランド",
+      "kickoff": "10:30"
     },
     {
       "md": 9,
@@ -544,16 +616,9 @@
       "hs": 4,
       "as": 0,
       "away": "三田学園",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-20",
-      "home": "興國",
-      "hs": 3,
-      "as": 6,
-      "away": "近江",
-      "status": "played"
+      "status": "played",
+      "venue": "セレッソ大阪舞洲日本ハム桜G",
+      "kickoff": "17:00"
     },
     {
       "md": 9,
@@ -562,7 +627,31 @@
       "hs": 0,
       "as": 0,
       "away": "京都橘",
-      "status": "played"
+      "status": "played",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "18:30"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-20",
+      "home": "履正社",
+      "hs": 5,
+      "as": 1,
+      "away": "阪南大高",
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-20",
+      "home": "興國",
+      "hs": 3,
+      "as": 6,
+      "away": "近江",
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "18:15"
     },
     {
       "md": 9,
@@ -571,25 +660,9 @@
       "hs": 1,
       "as": 1,
       "away": "産大附属",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "産大附属",
-      "hs": 1,
-      "as": 1,
-      "away": "阪南大高",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-05",
-      "home": "履正社",
-      "hs": 4,
-      "as": 1,
-      "away": "京都橘",
-      "status": "played"
+      "status": "played",
+      "venue": "神戸弘陵グラウンド（順延試合）",
+      "kickoff": "18:00"
     },
     {
       "md": 10,
@@ -598,7 +671,31 @@
       "hs": 3,
       "as": 4,
       "away": "京都サンガF.C.",
-      "status": "played"
+      "status": "played",
+      "venue": "セレッソ大阪舞洲日本ハム桜G",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "履正社",
+      "hs": 4,
+      "as": 1,
+      "away": "京都橘",
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-05",
+      "home": "産大附属",
+      "hs": 1,
+      "as": 1,
+      "away": "阪南大高",
+      "status": "played",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "10:00"
     },
     {
       "md": 10,
@@ -607,7 +704,9 @@
       "hs": 3,
       "as": 0,
       "away": "近江",
-      "status": "played"
+      "status": "played",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "18:00"
     },
     {
       "md": 10,
@@ -616,25 +715,9 @@
       "hs": 2,
       "as": 2,
       "away": "三田学園",
-      "status": "played"
-    },
-    {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "近江",
-      "hs": null,
-      "as": null,
-      "away": "産大附属",
-      "status": "scheduled"
-    },
-    {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "興國",
-      "hs": null,
-      "as": null,
-      "away": "履正社",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "18:15"
     },
     {
       "md": 11,
@@ -643,7 +726,9 @@
       "hs": null,
       "as": null,
       "away": "阪南大高",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "セレッソ大阪舞洲日本ハム桜G",
+      "kickoff": "17:00"
     },
     {
       "md": 11,
@@ -652,16 +737,42 @@
       "hs": null,
       "as": null,
       "away": "京都サンガF.C.",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "18:00"
     },
     {
       "md": 11,
       "date": "2026-09-12",
+      "home": "興國",
+      "hs": null,
+      "as": null,
+      "away": "履正社",
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-13",
       "home": "京都橘",
       "hs": null,
       "as": null,
       "away": "三田学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "18:30"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-13",
+      "home": "近江",
+      "hs": null,
+      "as": null,
+      "away": "産大附属",
+      "status": "scheduled",
+      "venue": "近江高校第二グランド",
+      "kickoff": "10:30"
     },
     {
       "md": 12,
@@ -670,7 +781,31 @@
       "hs": null,
       "as": null,
       "away": "阪南大高",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "三木総合防災公園第２陸上競技場",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "京都サンガF.C.",
+      "hs": null,
+      "as": null,
+      "away": "近江",
+      "status": "scheduled",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "18:30"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-19",
+      "home": "京都橘",
+      "hs": null,
+      "as": null,
+      "away": "神戸弘陵",
+      "status": "scheduled",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "18:30"
     },
     {
       "md": 12,
@@ -679,7 +814,9 @@
       "hs": null,
       "as": null,
       "away": "産大附属",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 12,
@@ -688,52 +825,20 @@
       "hs": null,
       "as": null,
       "away": "セレッソ大阪U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "18:15"
     },
     {
-      "md": 12,
-      "date": "2026-09-19",
+      "md": 13,
+      "date": "2026-09-23",
       "home": "京都サンガF.C.",
       "hs": null,
       "as": null,
-      "away": "近江",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-19",
-      "home": "京都橘",
-      "hs": null,
-      "as": null,
-      "away": "神戸弘陵",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-23",
-      "home": "阪南大高",
-      "hs": null,
-      "as": null,
-      "away": "近江",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-23",
-      "home": "履正社",
-      "hs": null,
-      "as": null,
-      "away": "セレッソ大阪U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-23",
-      "home": "神戸弘陵",
-      "hs": null,
-      "as": null,
-      "away": "興國",
-      "status": "scheduled"
+      "away": "三田学園",
+      "status": "scheduled",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "18:30"
     },
     {
       "md": 13,
@@ -742,34 +847,42 @@
       "hs": null,
       "as": null,
       "away": "産大附属",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "18:30"
     },
     {
       "md": 13,
       "date": "2026-09-23",
-      "home": "京都サンガF.C.",
+      "home": "履正社",
       "hs": null,
       "as": null,
-      "away": "三田学園",
-      "status": "scheduled"
+      "away": "セレッソ大阪U-18",
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
     },
     {
-      "md": 14,
-      "date": "2026-09-26",
-      "home": "阪南大高",
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "神戸弘陵",
       "hs": null,
       "as": null,
       "away": "興國",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "18:00"
     },
     {
-      "md": 14,
-      "date": "2026-09-26",
-      "home": "近江",
+      "md": 13,
+      "date": "2026-09-23",
+      "home": "阪南大高",
       "hs": null,
       "as": null,
-      "away": "京都橘",
-      "status": "scheduled"
+      "away": "近江",
+      "status": "scheduled",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "12:00"
     },
     {
       "md": 14,
@@ -778,7 +891,31 @@
       "hs": null,
       "as": null,
       "away": "三田学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "18:00"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "近江",
+      "hs": null,
+      "as": null,
+      "away": "京都橘",
+      "status": "scheduled",
+      "venue": "野洲川歴史公園",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-26",
+      "home": "阪南大高",
+      "hs": null,
+      "as": null,
+      "away": "興國",
+      "status": "scheduled",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "10:00"
     },
     {
       "md": 14,
@@ -787,7 +924,9 @@
       "hs": null,
       "as": null,
       "away": "京都サンガF.C.",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 14,
@@ -796,16 +935,9 @@
       "hs": null,
       "as": null,
       "away": "セレッソ大阪U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 15,
-      "date": "2026-10-03",
-      "home": "近江",
-      "hs": null,
-      "as": null,
-      "away": "履正社",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "18:15"
     },
     {
       "md": 15,
@@ -814,7 +946,9 @@
       "hs": null,
       "as": null,
       "away": "興國",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "10:30"
     },
     {
       "md": 15,
@@ -823,7 +957,20 @@
       "hs": null,
       "as": null,
       "away": "阪南大高",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "近江",
+      "hs": null,
+      "as": null,
+      "away": "履正社",
+      "status": "scheduled",
+      "venue": "近江高校第二グランド",
+      "kickoff": "10:30"
     },
     {
       "md": 15,
@@ -832,7 +979,9 @@
       "hs": null,
       "as": null,
       "away": "産大附属",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "三田学園",
+      "kickoff": "10:30"
     },
     {
       "md": 15,
@@ -841,16 +990,9 @@
       "hs": null,
       "as": null,
       "away": "セレッソ大阪U-18",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-11-21",
-      "home": "阪南大高",
-      "hs": null,
-      "as": null,
-      "away": "京都サンガF.C.",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "神戸弘陵グラウンド",
+      "kickoff": "10:30"
     },
     {
       "md": 16,
@@ -859,7 +1001,9 @@
       "hs": null,
       "as": null,
       "away": "京都橘",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "南津守さくら公園天然芝G",
+      "kickoff": "11:00"
     },
     {
       "md": 16,
@@ -868,7 +1012,9 @@
       "hs": null,
       "as": null,
       "away": "神戸弘陵",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "13:30"
     },
     {
       "md": 16,
@@ -877,7 +1023,20 @@
       "hs": null,
       "as": null,
       "away": "興國",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "履正社茨木グラウンド",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-11-21",
+      "home": "阪南大高",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガF.C.",
+      "status": "scheduled",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "10:00"
     },
     {
       "md": 16,
@@ -886,16 +1045,9 @@
       "hs": null,
       "as": null,
       "away": "三田学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-28",
-      "home": "京都サンガF.C.",
-      "hs": null,
-      "as": null,
-      "away": "産大附属",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "野洲川歴史公園",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -904,16 +1056,31 @@
       "hs": null,
       "as": null,
       "away": "近江",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "セレッソ大阪舞洲日本ハム桜G",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-28",
+      "home": "京都サンガF.C.",
+      "hs": null,
+      "as": null,
+      "away": "産大附属",
+      "status": "scheduled",
+      "venue": "京都サンガF.C.東城陽G(人工芝)",
+      "kickoff": "10:30"
     },
     {
       "md": 17,
       "date": "2026-11-29",
-      "home": "阪南大高",
+      "home": "三田学園",
       "hs": null,
       "as": null,
-      "away": "神戸弘陵",
-      "status": "scheduled"
+      "away": "履正社",
+      "status": "scheduled",
+      "venue": "三田学園",
+      "kickoff": "15:00"
     },
     {
       "md": 17,
@@ -922,52 +1089,20 @@
       "hs": null,
       "as": null,
       "away": "京都橘",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "12:30"
     },
     {
       "md": 17,
       "date": "2026-11-29",
-      "home": "三田学園",
-      "hs": null,
-      "as": null,
-      "away": "履正社",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
       "home": "阪南大高",
       "hs": null,
       "as": null,
-      "away": "履正社",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "京都橘",
-      "hs": null,
-      "as": null,
-      "away": "京都サンガF.C.",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "近江",
-      "hs": null,
-      "as": null,
-      "away": "興國",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "産大附属",
-      "hs": null,
-      "as": null,
       "away": "神戸弘陵",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "10:00"
     },
     {
       "md": 18,
@@ -976,7 +1111,53 @@
       "hs": null,
       "as": null,
       "away": "セレッソ大阪U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "滝川第二高校",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "京都橘",
+      "hs": null,
+      "as": null,
+      "away": "京都サンガF.C.",
+      "status": "scheduled",
+      "venue": "KYOTO  TACHIBANA STADIUM",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "産大附属",
+      "hs": null,
+      "as": null,
+      "away": "神戸弘陵",
+      "status": "scheduled",
+      "venue": "OFA万博フットボールセンターA",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "近江",
+      "hs": null,
+      "as": null,
+      "away": "興國",
+      "status": "scheduled",
+      "venue": "近江高校第二グランド",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "阪南大高",
+      "hs": null,
+      "as": null,
+      "away": "履正社",
+      "status": "scheduled",
+      "venue": "阪南大学高見ノ里グラウンド",
+      "kickoff": "13:00"
     }
   ]
 }

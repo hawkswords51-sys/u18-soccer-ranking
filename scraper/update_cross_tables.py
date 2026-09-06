@@ -204,14 +204,14 @@ def recompute(matches, teams_norm):
 
 
 def jfa_premier_ok_slugs() -> set:
-    """本日 fetch_jfa_premier.py が JFA公式JSON から更新できたリーグのslug集合。
+    """本日 fetch_jfa.py が JFA公式から更新できたリーグのslug集合。
 
-    [2026-09-05 新設] プレミアの正本は JFA公式JSON になった。JFAで更新済みのリーグを
+    [2026-09-05 新設 / 09-06 プリンスにも拡大] 正本は JFA公式になった。JFAで更新済みのリーグを
     kokoで上書きすると、反映の遅い古い戦績に戻ってしまう（後勝ち事故）のでスキップする。
     メモが無い／日付が古い場合は空集合＝従来どおり koko から取る。
     """
     try:
-        from fetch_jfa_premier import jfa_updated_slugs
+        from fetch_jfa import jfa_updated_slugs
         return jfa_updated_slugs()
     except Exception as e:
         print(f"  （JFA更新メモを読めませんでした: {e} → 従来どおり取得します）")

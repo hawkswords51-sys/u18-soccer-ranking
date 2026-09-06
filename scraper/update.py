@@ -754,18 +754,29 @@ def find_league_urls(year: int) -> dict[str, list[str]]:
     return urls
 
 
-def jfa_premier_ok_slugs() -> set[str]:
-    """本日 fetch_jfa_premier.py が JFA公式JSON から更新できたリーグのslug集合。
+def jfa_ok_slugs() -> set[str]:
+    """本日 fetch_jfa.py が JFA公式から更新できたリーグのslug集合。
 
-    [2026-09-05 新設] プレミアの正本は JFA公式JSON になった。JFAで更新済みのリーグを
-    ここで再取得すると、反映の遅い koko の古い順位で上書きしてしまう（後勝ち事故）ので
-    スキップする。メモが無い／日付が古い場合は空集合＝従来どおり koko から取る。
+    [2026-09-05 新設 / 09-06 プリンスにも拡大] 正本は JFA公式になった。JFAで更新済みの
+    リーグをここで再取得すると、反映の遅い koko の古い順位で上書きしてしまう
+    （後勝ち事故）のでスキップする。
+    メモが無い／日付が古い場合は空集合＝従来どおり koko から取る。
     """
     try:
-        from fetch_jfa_premier import jfa_updated_slugs
+        from fetch_jfa import jfa_updated_slugs
         return jfa_updated_slugs()
     except Exception as e:
         print(f"  （JFA更新メモを読めませんでした: {e} → 従来どおり取得します）")
+        return set()
+
+
+def jfa_ok_prince_regions() -> set[str]:
+    """プリンスは地域まるごと処理しているので、その地域の全部門がJFAで更新できた
+    ときだけスキップする（1部だけ成功して2部が失敗した地域は従来どおり取りに行く）。"""
+    try:
+        from fetch_jfa import jfa_updated_prince_regions
+        return jfa_updated_prince_regions()
+    except Exception:
         return set()
 
 
@@ -1267,9 +1278,11 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
                     total_updated += 1
             time.sleep(1)
 
-    # [2026-09-05] プレミアはJFA公式JSONが正本。fetch_jfa_premier.py が先に成功していれば
-    # そのリーグは触らない（反映の遅い koko で上書きし直すと順位が古い方に戻るため）。
-    jfa_ok = jfa_premier_ok_slugs()
+    # [2026-09-05 / 09-06] プレミア・プリンスはJFA公式が正本。fetch_jfa.py が先に
+    # 成功していればそのリーグは触らない（反映の遅い koko で上書きし直すと順位が
+    # 古い方に戻るため）。
+    jfa_ok = jfa_ok_slugs()
+    jfa_regions = jfa_ok_prince_regions()
 
     print("\n[1/4] プレミアリーグ EAST を取得中...")
     if "premier-east" in jfa_ok:
@@ -1288,6 +1301,9 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
         candidate_prefs = PRINCE_REGION_PREFS.get(region_key, [])
         region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
         print(f"\n  地域: {region_key} / {region_name}")
+        if region_key in jfa_regions:
+            print("  → 本日JFA公式で更新済みのためスキップします")
+            continue
         print(f"  URL: {url}")
 
         divisions = fetch_prince_divisions(url, region_key)

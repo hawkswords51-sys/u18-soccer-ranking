@@ -1,7 +1,8 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関東2部",
   "season": "2026",
-  "source": "https://koko-soccer.com/score/4346",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kanto/",
+  "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
     {
@@ -175,7 +176,9 @@
       "hs": 3,
       "as": 2,
       "away": "鹿島アントラーズユースB",
-      "status": "played"
+      "status": "played",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "11:00"
     },
     {
       "md": 1,
@@ -184,7 +187,9 @@
       "hs": 5,
       "as": 0,
       "away": "FC町田ゼルビアユース",
-      "status": "played"
+      "status": "played",
+      "venue": "日産フィールド小机",
+      "kickoff": "13:00"
     },
     {
       "md": 1,
@@ -193,7 +198,9 @@
       "hs": 1,
       "as": 1,
       "away": "桐光学園",
-      "status": "played"
+      "status": "played",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "14:00"
     },
     {
       "md": 1,
@@ -202,7 +209,9 @@
       "hs": 2,
       "as": 0,
       "away": "西武台",
-      "status": "played"
+      "status": "played",
+      "venue": "壬生総合公園 陸上競技場",
+      "kickoff": "13:00"
     },
     {
       "md": 1,
@@ -211,7 +220,9 @@
       "hs": 1,
       "as": 1,
       "away": "日大藤沢",
-      "status": "played"
+      "status": "played",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 2,
@@ -220,7 +231,9 @@
       "hs": 0,
       "as": 2,
       "away": "横浜F・マリノスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "IIMURO GLASS 綾瀬市民スポーツセンター",
+      "kickoff": "13:00"
     },
     {
       "md": 2,
@@ -229,7 +242,9 @@
       "hs": 0,
       "as": 4,
       "away": "矢板中央",
-      "status": "played"
+      "status": "played",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "13:00"
     },
     {
       "md": 2,
@@ -238,7 +253,20 @@
       "hs": 1,
       "as": 0,
       "away": "栃木SC U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-12",
+      "home": "FC町田ゼルビアユース",
+      "hs": 1,
+      "as": 2,
+      "away": "日体大柏",
+      "status": "played",
+      "venue": "拓殖大学八王子キャンパスサッカー場",
+      "kickoff": "15:00"
     },
     {
       "md": 2,
@@ -247,16 +275,9 @@
       "hs": 4,
       "as": 2,
       "away": "鹿島学園",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-12",
-      "home": "FC町田ゼルビアユース",
-      "hs": 1,
-      "as": 2,
-      "away": "日体大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 3,
@@ -265,25 +286,9 @@
       "hs": 0,
       "as": 4,
       "away": "鹿島アントラーズユースB",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-19",
-      "home": "横浜F・マリノスユース",
-      "hs": 1,
-      "as": 0,
-      "away": "桐光学園",
-      "status": "played"
-    },
-    {
-      "md": 3,
-      "date": "2026-04-19",
-      "home": "栃木SC U-18",
-      "hs": 1,
-      "as": 0,
-      "away": "日体大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "13:00"
     },
     {
       "md": 3,
@@ -292,7 +297,31 @@
       "hs": 0,
       "as": 2,
       "away": "FC町田ゼルビアユース",
-      "status": "played"
+      "status": "played",
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "13:45"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "栃木SC U-18",
+      "hs": 1,
+      "as": 0,
+      "away": "日体大柏",
+      "status": "played",
+      "venue": "さくらスタジアム",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-19",
+      "home": "横浜F・マリノスユース",
+      "hs": 1,
+      "as": 0,
+      "away": "桐光学園",
+      "status": "played",
+      "venue": "ニッパツ三ツ沢球技場",
+      "kickoff": "13:00"
     },
     {
       "md": 3,
@@ -301,43 +330,9 @@
       "hs": 1,
       "as": 3,
       "away": "西武台",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "日体大柏",
-      "hs": 1,
-      "as": 0,
-      "away": "矢板中央",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "西武台",
-      "hs": 1,
-      "as": 1,
-      "away": "横浜F・マリノスユース",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "鹿島アントラーズユースB",
-      "hs": 1,
-      "as": 1,
-      "away": "鹿島学園",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-25",
-      "home": "桐光学園",
-      "hs": 1,
-      "as": 1,
-      "away": "日大藤沢",
-      "status": "played"
+      "status": "played",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 4,
@@ -346,16 +341,53 @@
       "hs": 2,
       "as": 1,
       "away": "栃木SC U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "NICHIBUN SAKURA FIELD",
+      "kickoff": "18:00"
     },
     {
-      "md": 5,
-      "date": "2026-05-02",
-      "home": "鹿島アントラーズユースB",
-      "hs": 0,
-      "as": 3,
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "日体大柏",
+      "hs": 1,
+      "as": 0,
+      "away": "矢板中央",
+      "status": "played",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "桐光学園",
+      "hs": 1,
+      "as": 1,
       "away": "日大藤沢",
-      "status": "played"
+      "status": "played",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "14:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "西武台",
+      "hs": 1,
+      "as": 1,
+      "away": "横浜F・マリノスユース",
+      "status": "played",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "鹿島アントラーズユースB",
+      "hs": 1,
+      "as": 1,
+      "away": "鹿島学園",
+      "status": "played",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "14:00"
     },
     {
       "md": 5,
@@ -364,16 +396,20 @@
       "hs": 0,
       "as": 1,
       "away": "横浜F・マリノスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
-      "date": "2026-05-03",
-      "home": "桐光学園",
-      "hs": 2,
-      "as": 2,
-      "away": "西武台",
-      "status": "played"
+      "date": "2026-05-02",
+      "home": "鹿島アントラーズユースB",
+      "hs": 0,
+      "as": 3,
+      "away": "日大藤沢",
+      "status": "played",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "10:00"
     },
     {
       "md": 5,
@@ -382,7 +418,20 @@
       "hs": 1,
       "as": 1,
       "away": "鹿島学園",
-      "status": "played"
+      "status": "played",
+      "venue": "ホンダヒート・グリーンスタジアム",
+      "kickoff": "13:00"
+    },
+    {
+      "md": 5,
+      "date": "2026-05-03",
+      "home": "桐光学園",
+      "hs": 2,
+      "as": 2,
+      "away": "西武台",
+      "status": "played",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 5,
@@ -391,16 +440,9 @@
       "hs": 2,
       "as": 4,
       "away": "FC町田ゼルビアユース",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-05-09",
-      "home": "横浜F・マリノスユース",
-      "hs": 0,
-      "as": 0,
-      "away": "鹿島アントラーズユースB",
-      "status": "played"
+      "status": "played",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "15:00"
     },
     {
       "md": 6,
@@ -409,16 +451,20 @@
       "hs": 1,
       "as": 2,
       "away": "矢板中央",
-      "status": "played"
+      "status": "played",
+      "venue": "壬生総合公園 陸上競技場",
+      "kickoff": "13:00"
     },
     {
       "md": 6,
-      "date": "2026-05-10",
-      "home": "日大藤沢",
+      "date": "2026-05-09",
+      "home": "横浜F・マリノスユース",
       "hs": 0,
-      "as": 1,
-      "away": "西武台",
-      "status": "played"
+      "as": 0,
+      "away": "鹿島アントラーズユースB",
+      "status": "played",
+      "venue": "日産フィールド小机",
+      "kickoff": "13:00"
     },
     {
       "md": 6,
@@ -427,7 +473,20 @@
       "hs": 0,
       "as": 1,
       "away": "桐光学園",
-      "status": "played"
+      "status": "played",
+      "venue": "FC町田ゼルビア三輪緑山ベース",
+      "kickoff": "14:30"
+    },
+    {
+      "md": 6,
+      "date": "2026-05-10",
+      "home": "日大藤沢",
+      "hs": 0,
+      "as": 1,
+      "away": "西武台",
+      "status": "played",
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "13:45"
     },
     {
       "md": 6,
@@ -436,7 +495,9 @@
       "hs": 2,
       "as": 3,
       "away": "日体大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 7,
@@ -445,7 +506,9 @@
       "hs": 3,
       "as": 1,
       "away": "栃木SC U-18",
-      "status": "played"
+      "status": "played",
+      "venue": "ニッパツ三ツ沢球技場",
+      "kickoff": "13:00"
     },
     {
       "md": 7,
@@ -454,25 +517,9 @@
       "hs": 3,
       "as": 0,
       "away": "鹿島学園",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-17",
-      "home": "桐光学園",
-      "hs": 1,
-      "as": 0,
-      "away": "鹿島アントラーズユースB",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-17",
-      "home": "西武台",
-      "hs": 3,
-      "as": 1,
-      "away": "FC町田ゼルビアユース",
-      "status": "played"
+      "status": "played",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "15:00"
     },
     {
       "md": 7,
@@ -481,7 +528,31 @@
       "hs": 1,
       "as": 0,
       "away": "日体大柏",
-      "status": "played"
+      "status": "played",
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "13:45"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-17",
+      "home": "桐光学園",
+      "hs": 1,
+      "as": 0,
+      "away": "鹿島アントラーズユースB",
+      "status": "played",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-17",
+      "home": "西武台",
+      "hs": 3,
+      "as": 1,
+      "away": "FC町田ゼルビアユース",
+      "status": "played",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "13:00"
     },
     {
       "md": 8,
@@ -490,16 +561,20 @@
       "hs": 1,
       "as": 1,
       "away": "横浜F・マリノスユース",
-      "status": "played"
+      "status": "played",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "16:00"
     },
     {
       "md": 8,
       "date": "2026-06-21",
-      "home": "鹿島アントラーズユースB",
+      "home": "日体大柏",
       "hs": 0,
-      "as": 2,
-      "away": "西武台",
-      "status": "played"
+      "as": 1,
+      "away": "桐光学園",
+      "status": "played",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "17:00"
     },
     {
       "md": 8,
@@ -508,7 +583,20 @@
       "hs": 0,
       "as": 3,
       "away": "日大藤沢",
-      "status": "played"
+      "status": "played",
+      "venue": "壬生総合公園 陸上競技場",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-21",
+      "home": "鹿島アントラーズユースB",
+      "hs": 0,
+      "as": 2,
+      "away": "西武台",
+      "status": "played",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "10:00"
     },
     {
       "md": 8,
@@ -517,16 +605,9 @@
       "hs": 3,
       "as": 0,
       "away": "FC町田ゼルビアユース",
-      "status": "played"
-    },
-    {
-      "md": 8,
-      "date": "2026-06-21",
-      "home": "日体大柏",
-      "hs": 0,
-      "as": 1,
-      "away": "桐光学園",
-      "status": "played"
+      "status": "played",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 9,
@@ -535,34 +616,9 @@
       "hs": null,
       "as": null,
       "away": "矢板中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-28",
-      "home": "横浜F・マリノスユース",
-      "hs": 8,
-      "as": 1,
-      "away": "鹿島学園",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-28",
-      "home": "桐光学園",
-      "hs": 1,
-      "as": 0,
-      "away": "栃木SC U-18",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-28",
-      "home": "西武台",
-      "hs": 1,
-      "as": 2,
-      "away": "日体大柏",
-      "status": "played"
+      "status": "scheduled",
+      "venue": "未定",
+      "kickoff": "未定"
     },
     {
       "md": 9,
@@ -571,7 +627,42 @@
       "hs": 2,
       "as": 1,
       "away": "鹿島アントラーズユースB",
-      "status": "played"
+      "status": "played",
+      "venue": "拓殖大学八王子キャンパスサッカー場",
+      "kickoff": "18:00"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-28",
+      "home": "桐光学園",
+      "hs": 1,
+      "as": 0,
+      "away": "栃木SC U-18",
+      "status": "played",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-28",
+      "home": "横浜F・マリノスユース",
+      "hs": 8,
+      "as": 1,
+      "away": "鹿島学園",
+      "status": "played",
+      "venue": "ニッパツ三ツ沢球技場",
+      "kickoff": "16:00"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-28",
+      "home": "西武台",
+      "hs": 1,
+      "as": 2,
+      "away": "日体大柏",
+      "status": "played",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "17:00"
     },
     {
       "md": 10,
@@ -580,34 +671,9 @@
       "hs": 1,
       "as": 2,
       "away": "栃木SC U-18",
-      "status": "played"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-06",
-      "home": "鹿島アントラーズユースB",
-      "hs": null,
-      "as": null,
-      "away": "日体大柏",
-      "status": "scheduled"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-06",
-      "home": "桐光学園",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 10,
-      "date": "2026-09-06",
-      "home": "日大藤沢",
-      "hs": null,
-      "as": null,
-      "away": "鹿島学園",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "17:00"
     },
     {
       "md": 10,
@@ -616,25 +682,42 @@
       "hs": null,
       "as": null,
       "away": "横浜F・マリノスユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "拓殖大学八王子キャンパスサッカー場",
+      "kickoff": "18:00"
     },
     {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "矢板中央",
+      "md": 10,
+      "date": "2026-09-06",
+      "home": "日大藤沢",
       "hs": null,
       "as": null,
-      "away": "西武台",
-      "status": "scheduled"
+      "away": "鹿島学園",
+      "status": "scheduled",
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "17:00"
     },
     {
-      "md": 11,
-      "date": "2026-09-12",
-      "home": "横浜F・マリノスユース",
+      "md": 10,
+      "date": "2026-09-06",
+      "home": "桐光学園",
       "hs": null,
       "as": null,
-      "away": "日大藤沢",
-      "status": "scheduled"
+      "away": "矢板中央",
+      "status": "scheduled",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-09-06",
+      "home": "鹿島アントラーズユースB",
+      "hs": null,
+      "as": null,
+      "away": "日体大柏",
+      "status": "scheduled",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "10:00"
     },
     {
       "md": 11,
@@ -643,7 +726,31 @@
       "hs": null,
       "as": null,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "17:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "横浜F・マリノスユース",
+      "hs": null,
+      "as": null,
+      "away": "日大藤沢",
+      "status": "scheduled",
+      "venue": "日産フィールド小机",
+      "kickoff": "10:00"
+    },
+    {
+      "md": 11,
+      "date": "2026-09-12",
+      "home": "矢板中央",
+      "hs": null,
+      "as": null,
+      "away": "西武台",
+      "status": "scheduled",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "11:00"
     },
     {
       "md": 11,
@@ -652,7 +759,9 @@
       "hs": null,
       "as": null,
       "away": "鹿島アントラーズユースB",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "壬生総合公園 陸上競技場",
+      "kickoff": "10:30"
     },
     {
       "md": 11,
@@ -661,7 +770,9 @@
       "hs": null,
       "as": null,
       "away": "桐光学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 12,
@@ -670,7 +781,9 @@
       "hs": null,
       "as": null,
       "away": "栃木SC U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "17:00"
     },
     {
       "md": 12,
@@ -679,16 +792,9 @@
       "hs": null,
       "as": null,
       "away": "鹿島学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-20",
-      "home": "鹿島アントラーズユースB",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "17:00"
     },
     {
       "md": 12,
@@ -697,7 +803,20 @@
       "hs": null,
       "as": null,
       "away": "日大藤沢",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "拓殖大学八王子キャンパスサッカー場",
+      "kickoff": "18:00"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-20",
+      "home": "鹿島アントラーズユースB",
+      "hs": null,
+      "as": null,
+      "away": "矢板中央",
+      "status": "scheduled",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "10:00"
     },
     {
       "md": 12,
@@ -706,25 +825,9 @@
       "hs": null,
       "as": null,
       "away": "横浜F・マリノスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "鹿島学園",
-      "hs": null,
-      "as": null,
-      "away": "鹿島アントラーズユースB",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-26",
-      "home": "矢板中央",
-      "hs": null,
-      "as": null,
-      "away": "日体大柏",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "17:00"
     },
     {
       "md": 13,
@@ -733,7 +836,42 @@
       "hs": null,
       "as": null,
       "away": "西武台",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "横浜国立大学フットボール場",
+      "kickoff": "16:30"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "矢板中央",
+      "hs": null,
+      "as": null,
+      "away": "日体大柏",
+      "status": "scheduled",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-26",
+      "home": "鹿島学園",
+      "hs": null,
+      "as": null,
+      "away": "鹿島アントラーズユースB",
+      "status": "scheduled",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "10:30"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-27",
+      "home": "日大藤沢",
+      "hs": null,
+      "as": null,
+      "away": "桐光学園",
+      "status": "scheduled",
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "17:00"
     },
     {
       "md": 13,
@@ -742,25 +880,9 @@
       "hs": null,
       "as": null,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 13,
-      "date": "2026-09-27",
-      "home": "日大藤沢",
-      "hs": null,
-      "as": null,
-      "away": "桐光学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-10-03",
-      "home": "西武台",
-      "hs": null,
-      "as": null,
-      "away": "桐光学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "壬生総合公園 陸上競技場",
+      "kickoff": "10:30"
     },
     {
       "md": 14,
@@ -769,7 +891,20 @@
       "hs": null,
       "as": null,
       "away": "日体大柏",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "横浜国立大学フットボール場",
+      "kickoff": "16:30"
+    },
+    {
+      "md": 14,
+      "date": "2026-10-03",
+      "home": "西武台",
+      "hs": null,
+      "as": null,
+      "away": "桐光学園",
+      "status": "scheduled",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "13:00"
     },
     {
       "md": 14,
@@ -778,16 +913,9 @@
       "hs": null,
       "as": null,
       "away": "矢板中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "鹿島学園",
-      "hs": null,
-      "as": null,
-      "away": "栃木SC U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "拓殖大学八王子キャンパスサッカー場",
+      "kickoff": "15:00"
     },
     {
       "md": 14,
@@ -796,16 +924,20 @@
       "hs": null,
       "as": null,
       "away": "鹿島アントラーズユースB",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "17:00"
     },
     {
-      "md": 15,
-      "date": "2026-10-10",
-      "home": "矢板中央",
+      "md": 14,
+      "date": "2026-10-04",
+      "home": "鹿島学園",
       "hs": null,
       "as": null,
       "away": "栃木SC U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 15,
@@ -814,7 +946,20 @@
       "hs": null,
       "as": null,
       "away": "鹿島学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-10",
+      "home": "矢板中央",
+      "hs": null,
+      "as": null,
+      "away": "栃木SC U-18",
+      "status": "scheduled",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -823,7 +968,9 @@
       "hs": null,
       "as": null,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 15,
@@ -832,7 +979,9 @@
       "hs": null,
       "as": null,
       "away": "日大藤沢",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "13:00"
     },
     {
       "md": 15,
@@ -841,7 +990,9 @@
       "hs": null,
       "as": null,
       "away": "横浜F・マリノスユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "16:00"
     },
     {
       "md": 16,
@@ -850,25 +1001,9 @@
       "hs": null,
       "as": null,
       "away": "桐光学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-11-21",
-      "home": "日体大柏",
-      "hs": null,
-      "as": null,
-      "away": "日大藤沢",
-      "status": "scheduled"
-    },
-    {
-      "md": 16,
-      "date": "2026-11-22",
-      "home": "栃木SC U-18",
-      "hs": null,
-      "as": null,
-      "away": "横浜F・マリノスユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "10:00"
     },
     {
       "md": 16,
@@ -877,7 +1012,31 @@
       "hs": null,
       "as": null,
       "away": "西武台",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "NICHIBUN SAKURA FIELD",
+      "kickoff": "18:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-11-22",
+      "home": "日体大柏",
+      "hs": null,
+      "as": null,
+      "away": "日大藤沢",
+      "status": "scheduled",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "11:00"
+    },
+    {
+      "md": 16,
+      "date": "2026-11-22",
+      "home": "栃木SC U-18",
+      "hs": null,
+      "as": null,
+      "away": "横浜F・マリノスユース",
+      "status": "scheduled",
+      "venue": "さくらスタジアム",
+      "kickoff": "13:00"
     },
     {
       "md": 16,
@@ -886,7 +1045,9 @@
       "hs": null,
       "as": null,
       "away": "矢板中央",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "16:00"
     },
     {
       "md": 17,
@@ -895,25 +1056,9 @@
       "hs": null,
       "as": null,
       "away": "鹿島アントラーズユースB",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-29",
-      "home": "桐光学園",
-      "hs": null,
-      "as": null,
-      "away": "日体大柏",
-      "status": "scheduled"
-    },
-    {
-      "md": 17,
-      "date": "2026-11-29",
-      "home": "日大藤沢",
-      "hs": null,
-      "as": null,
-      "away": "栃木SC U-18",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "西武台高校第二グラウンド",
+      "kickoff": "13:00"
     },
     {
       "md": 17,
@@ -922,7 +1067,31 @@
       "hs": null,
       "as": null,
       "away": "鹿島学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "拓殖大学八王子キャンパスサッカー場",
+      "kickoff": "15:00"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-29",
+      "home": "日大藤沢",
+      "hs": null,
+      "as": null,
+      "away": "栃木SC U-18",
+      "status": "scheduled",
+      "venue": "アサンテ　スポーツパーク（神奈川県立スポーツセンター）",
+      "kickoff": "13:45"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-29",
+      "home": "桐光学園",
+      "hs": null,
+      "as": null,
+      "away": "日体大柏",
+      "status": "scheduled",
+      "venue": "桐光学園サッカー場",
+      "kickoff": "11:00"
     },
     {
       "md": 17,
@@ -931,34 +1100,9 @@
       "hs": null,
       "as": null,
       "away": "矢板中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "鹿島学園",
-      "hs": null,
-      "as": null,
-      "away": "横浜F・マリノスユース",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "矢板中央",
-      "hs": null,
-      "as": null,
-      "away": "日大藤沢",
-      "status": "scheduled"
-    },
-    {
-      "md": 18,
-      "date": "2026-12-05",
-      "home": "栃木SC U-18",
-      "hs": null,
-      "as": null,
-      "away": "桐光学園",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "横浜国立大学フットボール場",
+      "kickoff": "16:30"
     },
     {
       "md": 18,
@@ -967,7 +1111,31 @@
       "hs": null,
       "as": null,
       "away": "西武台",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "日本体育大学柏高校",
+      "kickoff": "13:30"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "栃木SC U-18",
+      "hs": null,
+      "as": null,
+      "away": "桐光学園",
+      "status": "scheduled",
+      "venue": "壬生総合公園 陸上競技場",
+      "kickoff": "13:30"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "矢板中央",
+      "hs": null,
+      "as": null,
+      "away": "日大藤沢",
+      "status": "scheduled",
+      "venue": "矢板中央高校東泉グランド",
+      "kickoff": "13:30"
     },
     {
       "md": 18,
@@ -976,7 +1144,20 @@
       "hs": null,
       "as": null,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled"
+      "status": "scheduled",
+      "venue": "アントラーズアカデミーフィールド",
+      "kickoff": "13:30"
+    },
+    {
+      "md": 18,
+      "date": "2026-12-05",
+      "home": "鹿島学園",
+      "hs": null,
+      "as": null,
+      "away": "横浜F・マリノスユース",
+      "status": "scheduled",
+      "venue": "鹿島学園高校グラウンド",
+      "kickoff": "13:30"
     }
   ]
 }
