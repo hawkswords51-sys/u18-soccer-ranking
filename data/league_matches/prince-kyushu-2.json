@@ -1,7 +1,7 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州2部",
   "season": "2026",
-  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kyushu/",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kyushu/#league2",
   "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
@@ -49,18 +49,30 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "佐賀東",
+      "team": "大分トリニータU-18",
       "pts": 17,
-      "played": 9,
+      "played": 10,
       "won": 5,
       "drawn": 2,
-      "lost": 2,
-      "gf": 16,
-      "ga": 10,
-      "gd": 6
+      "lost": 3,
+      "gf": 21,
+      "ga": 14,
+      "gd": 7
     },
     {
       "rank": 2,
+      "team": "佐賀東",
+      "pts": 17,
+      "played": 10,
+      "won": 5,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 16,
+      "ga": 12,
+      "gd": 4
+    },
+    {
+      "rank": 3,
       "team": "鵬翔",
       "pts": 17,
       "played": 9,
@@ -70,18 +82,6 @@
       "gf": 15,
       "ga": 13,
       "gd": 2
-    },
-    {
-      "rank": 3,
-      "team": "大分トリニータU-18",
-      "pts": 14,
-      "played": 9,
-      "won": 4,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 19,
-      "ga": 14,
-      "gd": 5
     },
     {
       "rank": 4,
@@ -701,10 +701,10 @@
       "md": 10,
       "date": "2026-09-06",
       "home": "佐賀東",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "大分トリニータU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "佐賀東高校",
       "kickoff": "10:00"
     },

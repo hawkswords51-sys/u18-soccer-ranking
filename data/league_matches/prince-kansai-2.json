@@ -1,7 +1,7 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西2部",
   "season": "2026",
-  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kansai/",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kansai/#league2",
   "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "関大北陽",
+      "pts": 20,
+      "played": 10,
+      "won": 6,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 17,
+      "ga": 11,
+      "gd": 6
+    },
+    {
+      "rank": 4,
       "team": "京都橘(B)",
       "pts": 20,
       "played": 10,
@@ -84,7 +96,7 @@
       "gd": 3
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "東海大仰星",
       "pts": 19,
       "played": 9,
@@ -94,18 +106,6 @@
       "gf": 23,
       "ga": 6,
       "gd": 17
-    },
-    {
-      "rank": 5,
-      "team": "関大北陽",
-      "pts": 17,
-      "played": 9,
-      "won": 5,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 16,
-      "ga": 11,
-      "gd": 5
     },
     {
       "rank": 6,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "関西学院",
       "pts": 3,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 0,
-      "lost": 8,
+      "lost": 9,
       "gf": 9,
-      "ga": 23,
-      "gd": -14
+      "ga": 24,
+      "gd": -15
     }
   ],
   "matches": [
@@ -712,10 +712,10 @@
       "md": 10,
       "date": "2026-09-06",
       "home": "関西学院",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "関大北陽",
-      "status": "scheduled",
+      "status": "played",
       "venue": "関西学院第４フィールド",
       "kickoff": "10:00"
     },

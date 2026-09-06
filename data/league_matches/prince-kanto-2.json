@@ -1,7 +1,7 @@
 {
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関東2部",
   "season": "2026",
-  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kanto/",
+  "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kanto/#league2",
   "sourceName": "JFA公式",
   "lastUpdated": "2026-09-06",
   "teams": [
@@ -75,13 +75,13 @@
       "rank": 3,
       "team": "日体大柏",
       "pts": 15,
-      "played": 9,
+      "played": 10,
       "won": 5,
       "drawn": 0,
-      "lost": 4,
+      "lost": 5,
       "gf": 11,
-      "ga": 10,
-      "gd": 1
+      "ga": 14,
+      "gd": -3
     },
     {
       "rank": 4,
@@ -121,6 +121,18 @@
     },
     {
       "rank": 7,
+      "team": "鹿島アントラーズユースB",
+      "pts": 11,
+      "played": 10,
+      "won": 3,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 13,
+      "ga": 12,
+      "gd": 1
+    },
+    {
+      "rank": 8,
       "team": "矢板中央",
       "pts": 11,
       "played": 8,
@@ -132,7 +144,7 @@
       "gd": 1
     },
     {
-      "rank": 8,
+      "rank": 9,
       "team": "栃木SC U-18",
       "pts": 10,
       "played": 10,
@@ -142,18 +154,6 @@
       "gf": 9,
       "ga": 14,
       "gd": -5
-    },
-    {
-      "rank": 9,
-      "team": "鹿島アントラーズユースB",
-      "pts": 8,
-      "played": 9,
-      "won": 2,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 9,
-      "ga": 12,
-      "gd": -3
     },
     {
       "rank": 10,
@@ -684,7 +684,7 @@
       "away": "横浜F・マリノスユース",
       "status": "scheduled",
       "venue": "拓殖大学八王子キャンパスサッカー場",
-      "kickoff": "18:00"
+      "kickoff": "未定"
     },
     {
       "md": 10,
@@ -695,7 +695,7 @@
       "away": "鹿島学園",
       "status": "scheduled",
       "venue": "日本大学藤沢高校NFグラウンド",
-      "kickoff": "17:00"
+      "kickoff": "未定"
     },
     {
       "md": 10,
@@ -706,16 +706,16 @@
       "away": "矢板中央",
       "status": "scheduled",
       "venue": "桐光学園サッカー場",
-      "kickoff": "17:00"
+      "kickoff": "未定"
     },
     {
       "md": 10,
       "date": "2026-09-06",
       "home": "鹿島アントラーズユースB",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "日体大柏",
-      "status": "scheduled",
+      "status": "played",
       "venue": "アントラーズアカデミーフィールド",
       "kickoff": "10:00"
     },

@@ -102,7 +102,11 @@ SEASON = "2026"          # ← 年度切り替えはここ1行だけ（15リー�
 _PREMIER_MATCH = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/match/"
 _PREMIER_PAGE = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}/schedule_result/"
 _PRINCE_BASE = "https://www.jfa.jp/match_47fa/{code}/takamado_jfa_u18_prince{season}/"
-# 出典として画面に出す人間向けページ（JSONの置き場所は直リンクすると403/404になる）
+# 出典として画面に出す人間向けページ。
+# JSONの置き場所（match_47fa/…/match/）は直リンクすると403/404なので、読者向けの
+# 地域ページを指す。2部制の地域は同じページ内の #league1 / #league2 で部が分かれる。
+# ⚠ 東北だけこの形式のページが存在しない（404）。LEAGUES 側の "page" で個別指定する。
+#   （2026-09-06に15リーグ全部を実際に叩いて確認した）
 _PRINCE_PAGE = "https://www.jfa.jp/match/takamado_jfa_u18_prince{season}/{region}/"
 
 # ---- リーグ定義テーブル（ここに1行足せばリーグが増える）----
@@ -121,8 +125,13 @@ LEAGUES = [
      "league": "プレミアリーグWEST", "scorers": True},
 
     {"slug": "prince-hokkaido", "fmt": "json", "code": "101_hokkaido", "region": "hokkaido"},
+    # 東北だけ /match/takamado_jfa_u18_prince2026/tohoku/ が存在しない（404）。
+    # JFA公式サイト自身も東北の行だけ tohoku-fa.jp へリンクしている。
+    # 出典は「実際に読んでいるページ」を指すのが正しいので、こちらを直接指定する。
     {"slug": "prince-tohoku", "fmt": "html", "code": "102_tohoku", "dir": "thfa",
-     "region": "tohoku"},
+     "region": "tohoku",
+     "page": ("https://www.jfa.jp/match_47fa/102_tohoku/"
+              "takamado_jfa_u18_prince2026/thfa/schedule.html")},
     {"slug": "prince-kanto-1", "fmt": "json", "code": "103_kanto", "div": "kanto1",
      "region": "kanto"},
     {"slug": "prince-kanto-2", "fmt": "json", "code": "103_kanto", "div": "kanto2",
@@ -341,7 +350,10 @@ def urls_of(cfg: dict) -> dict:
                 "fight": base + "fight.json",
                 "page": _PREMIER_PAGE.format(season=SEASON, side=cfg["side"])}
     root = _PRINCE_BASE.format(code=cfg["code"], season=SEASON)
-    page = _PRINCE_PAGE.format(season=SEASON, region=cfg["region"])
+    page = cfg.get("page") or _PRINCE_PAGE.format(season=SEASON, region=cfg["region"])
+    # 2部制の地域は1枚のページに1部・2部が並ぶので、該当する部のアンカーまで指す
+    if not cfg.get("page") and cfg.get("div"):
+        page += f"#league{cfg['div'][-1]}"
     if cfg["fmt"] == "html":   # 東北
         base = root + cfg["dir"] + "/"
         return {"base": base,
