@@ -28,15 +28,15 @@ scraper/update_tournament_results.py が上の source から
 - 追手門学院 vs 門真なみはや
 - 山本 vs 大阪星光学院
 - 生野 vs 牧野
-- 枚方 vs 大教大天王寺
+- 枚方 3-0 大教大天王寺
 - 大阪教育C附 vs 大阪
-- 芦間 vs 千里
+- 芦間 0-8 千里
 - 明星 vs 夕陽丘
 - 清水谷 vs 高槻
 - 和泉 vs 茨木
 - 花園 vs 港
 - 住吉 vs 寝屋川
-- 東 vs 泉北
+- 東 0-9 泉北
 - 高石 vs みどり清朋
 - 鳳 vs 藤井寺
 - 交野 vs 守口東
@@ -128,3 +128,5 @@ scraper/update_tournament_results.py が上の source から
 - 桜宮 vs 大商学園/清風南海
 - 八尾翠翔/開明 vs 浪速
 - 春日丘 vs 箕面学園/英真学園
+- 金剛/泉北 vs 八尾北/星翔
+- 東淀工/千里 vs 旭/大阪国際大和田
