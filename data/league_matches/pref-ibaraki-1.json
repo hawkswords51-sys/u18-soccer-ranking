@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kanto/ibaraki/league/table/163357",
   "sourceName": "茨城少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-16",
+  "lastUpdated": "2026-09-06",
   "teams": [
     {
       "name": "第一学院A",
@@ -23,7 +23,7 @@
     },
     {
       "name": "水戸ホーリーホックユースA",
-      "short": "水戸ホーリーホ"
+      "short": "水戸ホーリーホックユースA"
     },
     {
       "name": "水戸啓明A",
@@ -38,12 +38,12 @@
       "short": "牛久栄進A"
     },
     {
-      "name": "水戸葵陵A",
-      "short": "水戸葵陵A"
-    },
-    {
       "name": "鹿島A",
       "short": "鹿島A"
+    },
+    {
+      "name": "水戸葵陵A",
+      "short": "水戸葵陵A"
     }
   ],
   "official_standings": [
@@ -98,13 +98,13 @@
     {
       "rank": 5,
       "team": "水戸ホーリーホックユースA",
-      "points": 18,
-      "played": 10,
+      "points": 19,
+      "played": 11,
       "won": 5,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 2,
-      "gf": 18,
-      "ga": 12,
+      "gf": 20,
+      "ga": 14,
       "gd": 6
     },
     {
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "鹿島A",
+      "points": 4,
+      "played": 11,
+      "won": 1,
+      "drawn": 1,
+      "lost": 9,
+      "gf": 9,
+      "ga": 33,
+      "gd": -24
+    },
+    {
+      "rank": 10,
       "team": "水戸葵陵A",
       "points": 3,
       "played": 10,
@@ -154,18 +166,6 @@
       "gf": 10,
       "ga": 24,
       "gd": -14
-    },
-    {
-      "rank": 10,
-      "team": "鹿島A",
-      "points": 3,
-      "played": 10,
-      "won": 1,
-      "drawn": 0,
-      "lost": 9,
-      "gf": 7,
-      "ga": 31,
-      "gd": -24
     }
   ],
   "matches": [
@@ -234,20 +234,20 @@
     },
     {
       "md": 0,
-      "date": "2026-03-21",
-      "home": "第一学院A",
-      "hs": 4,
-      "as": 3,
-      "away": "水戸葵陵A",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-04",
       "home": "第一学院A",
       "hs": 5,
       "as": 1,
       "away": "鹿島A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-21",
+      "home": "第一学院A",
+      "hs": 4,
+      "as": 3,
+      "away": "水戸葵陵A",
       "status": "played"
     },
     {
@@ -315,21 +315,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "明秀日立A",
-      "hs": null,
-      "as": null,
-      "away": "水戸葵陵A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-03-22",
       "home": "明秀日立A",
       "hs": 3,
       "as": 1,
       "away": "鹿島A",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "明秀日立A",
+      "hs": null,
+      "as": null,
+      "away": "水戸葵陵A",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -396,21 +396,21 @@
     },
     {
       "md": 0,
-      "date": "2026-05-04",
-      "home": "東洋大牛久A",
-      "hs": 1,
-      "as": 0,
-      "away": "水戸葵陵A",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "東洋大牛久A",
       "hs": null,
       "as": null,
       "away": "鹿島A",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "東洋大牛久A",
+      "hs": 1,
+      "as": 0,
+      "away": "水戸葵陵A",
+      "status": "played"
     },
     {
       "md": 0,
@@ -477,21 +477,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "鹿島学園B",
-      "hs": null,
-      "as": null,
-      "away": "水戸葵陵A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "鹿島学園B",
       "hs": 1,
       "as": 0,
       "away": "鹿島A",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿島学園B",
+      "hs": null,
+      "as": null,
+      "away": "水戸葵陵A",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -558,12 +558,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-05",
       "home": "水戸ホーリーホックユースA",
-      "hs": null,
-      "as": null,
-      "away": "水戸葵陵A",
-      "status": "scheduled"
+      "hs": 2,
+      "as": 2,
+      "away": "鹿島A",
+      "status": "played"
     },
     {
       "md": 0,
@@ -571,7 +571,7 @@
       "home": "水戸ホーリーホックユースA",
       "hs": null,
       "as": null,
-      "away": "鹿島A",
+      "away": "水戸葵陵A",
       "status": "scheduled"
     },
     {
@@ -639,21 +639,21 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "水戸啓明A",
-      "hs": 0,
-      "as": 1,
-      "away": "水戸葵陵A",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "水戸啓明A",
       "hs": null,
       "as": null,
       "away": "鹿島A",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "水戸啓明A",
+      "hs": 0,
+      "as": 1,
+      "away": "水戸葵陵A",
+      "status": "played"
     },
     {
       "md": 0,
@@ -720,21 +720,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "霞ヶ浦A",
-      "hs": null,
-      "as": null,
-      "away": "水戸葵陵A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "霞ヶ浦A",
       "hs": 6,
       "as": 0,
       "away": "鹿島A",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "霞ヶ浦A",
+      "hs": null,
+      "as": null,
+      "away": "水戸葵陵A",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -801,6 +801,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "牛久栄進A",
+      "hs": null,
+      "as": null,
+      "away": "鹿島A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "牛久栄進A",
       "hs": 2,
@@ -811,10 +820,82 @@
     {
       "md": 0,
       "date": "",
-      "home": "牛久栄進A",
+      "home": "鹿島A",
       "hs": null,
       "as": null,
-      "away": "鹿島A",
+      "away": "第一学院A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "鹿島A",
+      "hs": 1,
+      "as": 4,
+      "away": "明秀日立A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "鹿島A",
+      "hs": 1,
+      "as": 3,
+      "away": "東洋大牛久A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿島A",
+      "hs": null,
+      "as": null,
+      "away": "鹿島学園B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-28",
+      "home": "鹿島A",
+      "hs": 0,
+      "as": 3,
+      "away": "水戸ホーリーホックユースA",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "鹿島A",
+      "hs": 1,
+      "as": 2,
+      "away": "水戸啓明A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿島A",
+      "hs": null,
+      "as": null,
+      "away": "霞ヶ浦A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "鹿島A",
+      "hs": 1,
+      "as": 4,
+      "away": "牛久栄進A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿島A",
+      "hs": null,
+      "as": null,
+      "away": "水戸葵陵A",
       "status": "scheduled"
     },
     {
@@ -897,87 +978,6 @@
       "as": 1,
       "away": "鹿島A",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿島A",
-      "hs": null,
-      "as": null,
-      "away": "第一学院A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "鹿島A",
-      "hs": 1,
-      "as": 4,
-      "away": "明秀日立A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "鹿島A",
-      "hs": 1,
-      "as": 3,
-      "away": "東洋大牛久A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿島A",
-      "hs": null,
-      "as": null,
-      "away": "鹿島学園B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "鹿島A",
-      "hs": 0,
-      "as": 3,
-      "away": "水戸ホーリーホックユースA",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "鹿島A",
-      "hs": 1,
-      "as": 2,
-      "away": "水戸啓明A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿島A",
-      "hs": null,
-      "as": null,
-      "away": "霞ヶ浦A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "鹿島A",
-      "hs": 1,
-      "as": 4,
-      "away": "牛久栄進A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿島A",
-      "hs": null,
-      "as": null,
-      "away": "水戸葵陵A",
-      "status": "scheduled"
     }
   ]
 }

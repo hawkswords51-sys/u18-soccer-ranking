@@ -3,12 +3,8 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/hokushinetsu/nagano/league/table/163461",
   "sourceName": "長野少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-07-15",
+  "lastUpdated": "2026-09-06",
   "teams": [
-    {
-      "name": "松商学園",
-      "short": "松商学園"
-    },
     {
       "name": "市立長野",
       "short": "市立長野"
@@ -18,12 +14,16 @@
       "short": "都市大塩尻"
     },
     {
-      "name": "上田西",
-      "short": "上田西"
+      "name": "松商学園",
+      "short": "松商学園"
     },
     {
       "name": "松本山雅2nd",
       "short": "松本山雅2nd"
+    },
+    {
+      "name": "上田西",
+      "short": "上田西"
     },
     {
       "name": "松本県ケ丘",
@@ -41,71 +41,71 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "松商学園",
-      "points": 27,
-      "played": 11,
+      "team": "市立長野",
+      "points": 28,
+      "played": 12,
       "won": 9,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 2,
-      "gf": 30,
-      "ga": 6,
-      "gd": 24
+      "gf": 25,
+      "ga": 8,
+      "gd": 17
     },
     {
       "rank": 2,
-      "team": "市立長野",
-      "points": 25,
-      "played": 11,
+      "team": "都市大塩尻",
+      "points": 27,
+      "played": 12,
       "won": 8,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 21,
-      "ga": 8,
-      "gd": 13
+      "drawn": 3,
+      "lost": 1,
+      "gf": 35,
+      "ga": 12,
+      "gd": 23
     },
     {
       "rank": 3,
-      "team": "都市大塩尻",
-      "points": 24,
-      "played": 11,
-      "won": 7,
-      "drawn": 3,
-      "lost": 1,
-      "gf": 34,
-      "ga": 12,
-      "gd": 22
+      "team": "松商学園",
+      "points": 27,
+      "played": 12,
+      "won": 9,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 30,
+      "ga": 7,
+      "gd": 23
     },
     {
       "rank": 4,
-      "team": "上田西",
-      "points": 13,
-      "played": 11,
-      "won": 4,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 17,
-      "ga": 22,
-      "gd": -5
-    },
-    {
-      "rank": 5,
       "team": "松本山雅2nd",
-      "points": 13,
-      "played": 11,
+      "points": 14,
+      "played": 12,
       "won": 4,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 6,
       "gf": 13,
       "ga": 23,
       "gd": -10
     },
     {
+      "rank": 5,
+      "team": "上田西",
+      "points": 13,
+      "played": 12,
+      "won": 4,
+      "drawn": 1,
+      "lost": 7,
+      "gf": 17,
+      "ga": 23,
+      "gd": -6
+    },
+    {
       "rank": 6,
       "team": "松本県ケ丘",
-      "points": 12,
-      "played": 11,
+      "points": 13,
+      "played": 12,
       "won": 3,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 5,
       "gf": 10,
       "ga": 18,
@@ -114,29 +114,155 @@
     {
       "rank": 7,
       "team": "東海大諏訪",
-      "points": 7,
-      "played": 11,
-      "won": 2,
+      "points": 10,
+      "played": 12,
+      "won": 3,
       "drawn": 1,
       "lost": 8,
-      "gf": 9,
+      "gf": 10,
       "ga": 22,
-      "gd": -13
+      "gd": -12
     },
     {
       "rank": 8,
       "team": "松本第一",
       "points": 5,
-      "played": 11,
+      "played": 12,
       "won": 1,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 5,
-      "ga": 28,
-      "gd": -23
+      "ga": 32,
+      "gd": -27
     }
   ],
   "matches": [
+    {
+      "md": 0,
+      "date": "",
+      "home": "市立長野",
+      "hs": null,
+      "as": null,
+      "away": "都市大塩尻",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "市立長野",
+      "hs": 2,
+      "as": 0,
+      "away": "松商学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "市立長野",
+      "hs": 2,
+      "as": 1,
+      "away": "松本山雅2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "市立長野",
+      "hs": 1,
+      "as": 2,
+      "away": "上田西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "市立長野",
+      "hs": 1,
+      "as": 0,
+      "away": "松本県ケ丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "市立長野",
+      "hs": 3,
+      "as": 0,
+      "away": "東海大諏訪",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "市立長野",
+      "hs": 4,
+      "as": 0,
+      "away": "松本第一",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "都市大塩尻",
+      "hs": 2,
+      "as": 1,
+      "away": "市立長野",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "都市大塩尻",
+      "hs": 2,
+      "as": 1,
+      "away": "松商学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "都市大塩尻",
+      "hs": 2,
+      "as": 3,
+      "away": "松本山雅2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "都市大塩尻",
+      "hs": 3,
+      "as": 2,
+      "away": "上田西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "都市大塩尻",
+      "hs": 1,
+      "as": 1,
+      "away": "松本県ケ丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "都市大塩尻",
+      "hs": null,
+      "as": null,
+      "away": "東海大諏訪",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "都市大塩尻",
+      "hs": 1,
+      "as": 1,
+      "away": "松本第一",
+      "status": "played"
+    },
     {
       "md": 0,
       "date": "",
@@ -148,20 +274,11 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-05",
       "home": "松商学園",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "都市大塩尻",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "松商学園",
-      "hs": 3,
-      "as": 0,
-      "away": "上田西",
       "status": "played"
     },
     {
@@ -171,6 +288,15 @@
       "hs": 2,
       "as": 0,
       "away": "松本山雅2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "松商学園",
+      "hs": 3,
+      "as": 0,
+      "away": "上田西",
       "status": "played"
     },
     {
@@ -202,116 +328,53 @@
     },
     {
       "md": 0,
-      "date": "2026-05-09",
-      "home": "市立長野",
-      "hs": 2,
-      "as": 0,
-      "away": "松商学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "市立長野",
-      "hs": null,
-      "as": null,
-      "away": "都市大塩尻",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "市立長野",
+      "date": "2026-04-25",
+      "home": "松本山雅2nd",
       "hs": 1,
-      "as": 2,
-      "away": "上田西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-04",
-      "home": "市立長野",
-      "hs": 2,
-      "as": 1,
-      "away": "松本山雅2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "市立長野",
-      "hs": 1,
-      "as": 0,
-      "away": "松本県ケ丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "市立長野",
-      "hs": 3,
-      "as": 0,
-      "away": "東海大諏訪",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "市立長野",
-      "hs": null,
-      "as": null,
-      "away": "松本第一",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "都市大塩尻",
-      "hs": 2,
-      "as": 1,
-      "away": "松商学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "都市大塩尻",
-      "hs": 2,
-      "as": 1,
+      "as": 4,
       "away": "市立長野",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-07-04",
-      "home": "都市大塩尻",
-      "hs": 3,
+      "date": "2026-05-23",
+      "home": "松本山雅2nd",
+      "hs": 0,
+      "as": 5,
+      "away": "都市大塩尻",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "松本山雅2nd",
+      "hs": 1,
+      "as": 5,
+      "away": "松商学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "松本山雅2nd",
+      "hs": 1,
       "as": 2,
       "away": "上田西",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-05",
-      "home": "都市大塩尻",
-      "hs": 2,
-      "as": 3,
-      "away": "松本山雅2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "都市大塩尻",
-      "hs": 1,
-      "as": 1,
+      "date": "2026-09-05",
+      "home": "松本山雅2nd",
+      "hs": 0,
+      "as": 0,
       "away": "松本県ケ丘",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "都市大塩尻",
+      "home": "松本山雅2nd",
       "hs": null,
       "as": null,
       "away": "東海大諏訪",
@@ -319,20 +382,11 @@
     },
     {
       "md": 0,
-      "date": "2026-06-28",
-      "home": "都市大塩尻",
-      "hs": 1,
-      "as": 1,
-      "away": "松本第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "上田西",
+      "date": "2026-06-13",
+      "home": "松本山雅2nd",
       "hs": 0,
-      "as": 5,
-      "away": "松商学園",
+      "as": 0,
+      "away": "松本第一",
       "status": "played"
     },
     {
@@ -351,6 +405,15 @@
       "hs": 2,
       "as": 4,
       "away": "都市大塩尻",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "上田西",
+      "hs": 0,
+      "as": 5,
+      "away": "松商学園",
       "status": "played"
     },
     {
@@ -391,78 +454,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "松本山雅2nd",
-      "hs": 1,
-      "as": 5,
-      "away": "松商学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "松本山雅2nd",
-      "hs": 1,
-      "as": 4,
-      "away": "市立長野",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "松本山雅2nd",
-      "hs": 0,
-      "as": 5,
-      "away": "都市大塩尻",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "松本山雅2nd",
-      "hs": 1,
-      "as": 2,
-      "away": "上田西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松本山雅2nd",
-      "hs": null,
-      "as": null,
-      "away": "松本県ケ丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松本山雅2nd",
-      "hs": null,
-      "as": null,
-      "away": "東海大諏訪",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "松本山雅2nd",
-      "hs": 0,
-      "as": 0,
-      "away": "松本第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松本県ケ丘",
-      "hs": null,
-      "as": null,
-      "away": "松商学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-05-23",
       "home": "松本県ケ丘",
       "hs": 2,
@@ -481,12 +472,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
+      "date": "",
       "home": "松本県ケ丘",
-      "hs": 0,
-      "as": 0,
-      "away": "上田西",
-      "status": "played"
+      "hs": null,
+      "as": null,
+      "away": "松商学園",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -495,6 +486,15 @@
       "hs": 1,
       "as": 2,
       "away": "松本山雅2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "松本県ケ丘",
+      "hs": 0,
+      "as": 0,
+      "away": "上田西",
       "status": "played"
     },
     {
@@ -513,15 +513,6 @@
       "hs": 2,
       "as": 0,
       "away": "松本第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "東海大諏訪",
-      "hs": 1,
-      "as": 3,
-      "away": "松商学園",
       "status": "played"
     },
     {
@@ -544,12 +535,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-06-13",
       "home": "東海大諏訪",
-      "hs": null,
-      "as": null,
-      "away": "上田西",
-      "status": "scheduled"
+      "hs": 1,
+      "as": 3,
+      "away": "松商学園",
+      "status": "played"
     },
     {
       "md": 0,
@@ -558,6 +549,15 @@
       "hs": 0,
       "as": 2,
       "away": "松本山雅2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "東海大諏訪",
+      "hs": 1,
+      "as": 0,
+      "away": "上田西",
       "status": "played"
     },
     {
@@ -580,15 +580,6 @@
     },
     {
       "md": 0,
-      "date": "2026-07-04",
-      "home": "松本第一",
-      "hs": 0,
-      "as": 4,
-      "away": "松商学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-02",
       "home": "松本第一",
       "hs": 0,
@@ -607,12 +598,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-07-04",
       "home": "松本第一",
-      "hs": null,
-      "as": null,
-      "away": "上田西",
-      "status": "scheduled"
+      "hs": 0,
+      "as": 4,
+      "away": "松商学園",
+      "status": "played"
     },
     {
       "md": 0,
@@ -622,6 +613,15 @@
       "as": 2,
       "away": "松本山雅2nd",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松本第一",
+      "hs": null,
+      "as": null,
+      "away": "上田西",
+      "status": "scheduled"
     },
     {
       "md": 0,

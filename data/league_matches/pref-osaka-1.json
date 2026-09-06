@@ -3,11 +3,15 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kansai/osaka/league/table/163328",
   "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-08-30",
+  "lastUpdated": "2026-09-06",
   "teams": [
     {
       "name": "大阪学院",
       "short": "大阪学院"
+    },
+    {
+      "name": "近大附属",
+      "short": "近大附属"
     },
     {
       "name": "履正社B",
@@ -18,16 +22,16 @@
       "short": "清風"
     },
     {
-      "name": "近大附属",
-      "short": "近大附属"
+      "name": "桃山学院",
+      "short": "桃山学院"
     },
     {
       "name": "常翔学園",
       "short": "常翔学園"
     },
     {
-      "name": "桃山学院",
-      "short": "桃山学院"
+      "name": "興國B",
+      "short": "興國B"
     },
     {
       "name": "摂津",
@@ -38,10 +42,6 @@
       "short": "アサンプション"
     },
     {
-      "name": "興國B",
-      "short": "興國B"
-    },
-    {
       "name": "香里ヌヴェール",
       "short": "香里ヌヴェール"
     }
@@ -50,17 +50,29 @@
     {
       "rank": 1,
       "team": "大阪学院",
-      "points": 22,
-      "played": 8,
-      "won": 7,
+      "points": 25,
+      "played": 9,
+      "won": 8,
       "drawn": 1,
       "lost": 0,
-      "gf": 28,
+      "gf": 31,
       "ga": 7,
-      "gd": 21
+      "gd": 24
     },
     {
       "rank": 2,
+      "team": "近大附属",
+      "points": 18,
+      "played": 9,
+      "won": 5,
+      "drawn": 3,
+      "lost": 1,
+      "gf": 18,
+      "ga": 6,
+      "gd": 12
+    },
+    {
+      "rank": 3,
       "team": "履正社B",
       "points": 17,
       "played": 9,
@@ -72,110 +84,242 @@
       "gd": 3
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "清風",
-      "points": 16,
-      "played": 9,
+      "points": 17,
+      "played": 10,
       "won": 5,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 3,
-      "gf": 11,
-      "ga": 10,
+      "gf": 12,
+      "ga": 11,
       "gd": 1
     },
     {
-      "rank": 4,
-      "team": "近大附属",
+      "rank": 5,
+      "team": "桃山学院",
       "points": 15,
-      "played": 8,
-      "won": 4,
-      "drawn": 3,
-      "lost": 1,
-      "gf": 12,
-      "ga": 6,
+      "played": 9,
+      "won": 5,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 23,
+      "ga": 17,
       "gd": 6
     },
     {
-      "rank": 5,
-      "team": "常翔学園",
-      "points": 14,
-      "played": 8,
-      "won": 4,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 12,
-      "ga": 9,
-      "gd": 3
-    },
-    {
       "rank": 6,
-      "team": "桃山学院",
-      "points": 12,
-      "played": 8,
+      "team": "常翔学園",
+      "points": 15,
+      "played": 10,
       "won": 4,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 20,
-      "ga": 16,
-      "gd": 4
+      "drawn": 3,
+      "lost": 3,
+      "gf": 14,
+      "ga": 13,
+      "gd": 1
     },
     {
       "rank": 7,
-      "team": "摂津",
-      "points": 10,
-      "played": 9,
+      "team": "興國B",
+      "points": 11,
+      "played": 10,
       "won": 3,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 5,
-      "gf": 12,
+      "gf": 21,
       "ga": 17,
-      "gd": -5
+      "gd": 4
     },
     {
       "rank": 8,
-      "team": "興國B",
-      "points": 8,
-      "played": 9,
-      "won": 2,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 15,
-      "ga": 16,
-      "gd": -1
+      "team": "摂津",
+      "points": 10,
+      "played": 10,
+      "won": 3,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 12,
+      "ga": 20,
+      "gd": -8
     },
     {
       "rank": 9,
       "team": "アサンプション",
       "points": 6,
-      "played": 9,
+      "played": 10,
       "won": 2,
       "drawn": 0,
-      "lost": 7,
-      "gf": 18,
-      "ga": 31,
-      "gd": -13
+      "lost": 8,
+      "gf": 19,
+      "ga": 37,
+      "gd": -18
     },
     {
       "rank": 10,
       "team": "香里ヌヴェール",
       "points": 3,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 0,
-      "lost": 8,
+      "lost": 9,
       "gf": 9,
-      "ga": 28,
-      "gd": -19
+      "ga": 34,
+      "gd": -25
     }
   ],
   "matches": [
     {
       "md": 0,
       "date": "",
-      "home": "興國B",
+      "home": "大阪学院",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "大阪学院",
+      "hs": 4,
+      "as": 0,
+      "away": "履正社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "大阪学院",
+      "hs": 3,
+      "as": 0,
+      "away": "清風",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "大阪学院",
+      "hs": 3,
+      "as": 0,
+      "away": "桃山学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "大阪学院",
+      "hs": 3,
+      "as": 2,
+      "away": "常翔学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "大阪学院",
+      "hs": 2,
+      "as": 2,
+      "away": "興國B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "大阪学院",
       "hs": 5,
       "as": 0,
+      "away": "摂津",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "大阪学院",
+      "hs": 5,
+      "as": 1,
+      "away": "アサンプション",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "大阪学院",
+      "hs": 3,
+      "as": 2,
       "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "近大附属",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "近大附属",
+      "hs": 1,
+      "as": 1,
+      "away": "履正社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "近大附属",
+      "hs": 0,
+      "as": 1,
+      "away": "清風",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "近大附属",
+      "hs": 1,
+      "as": 0,
+      "away": "桃山学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "近大附属",
+      "hs": 1,
+      "as": 1,
+      "away": "常翔学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "近大附属",
+      "hs": 4,
+      "as": 0,
+      "away": "興國B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "近大附属",
+      "hs": 1,
+      "as": 1,
+      "away": "摂津",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "近大附属",
+      "hs": 3,
+      "as": 2,
+      "away": "アサンプション",
       "status": "played"
     },
     {
@@ -189,10 +333,118 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "履正社B",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "履正社B",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "履正社B",
+      "hs": 1,
+      "as": 0,
+      "away": "清風",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-05",
       "home": "履正社B",
       "hs": 2,
       "as": 1,
+      "away": "桃山学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "履正社B",
+      "hs": 5,
+      "as": 1,
+      "away": "常翔学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "履正社B",
+      "hs": null,
+      "as": null,
+      "away": "興國B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "履正社B",
+      "hs": 2,
+      "as": 1,
+      "away": "摂津",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "履正社B",
+      "hs": null,
+      "as": null,
+      "away": "アサンプション",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "履正社B",
+      "hs": 3,
+      "as": 2,
+      "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "清風",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "清風",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "清風",
+      "hs": null,
+      "as": null,
+      "away": "履正社B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "清風",
+      "hs": 4,
+      "as": 3,
       "away": "桃山学院",
       "status": "played"
     },
@@ -207,177 +459,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-05",
-      "home": "大阪学院",
-      "hs": 5,
-      "as": 0,
-      "away": "摂津",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "興國B",
-      "hs": 4,
-      "as": 1,
-      "away": "アサンプション",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "大阪学院",
-      "hs": 3,
-      "as": 2,
-      "away": "常翔学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "近大附属",
-      "hs": 1,
-      "as": 1,
-      "away": "摂津",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "興國B",
-      "hs": 2,
-      "as": 4,
-      "away": "桃山学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "近大附属",
-      "hs": 1,
-      "as": 1,
-      "away": "常翔学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "履正社B",
-      "hs": 1,
-      "as": 0,
-      "away": "清風",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "アサンプション",
-      "hs": 5,
-      "as": 3,
-      "away": "香里ヌヴェール",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "近大附属",
-      "hs": 1,
-      "as": 0,
-      "away": "桃山学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "大阪学院",
-      "hs": 3,
-      "as": 0,
-      "away": "清風",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "アサンプション",
-      "hs": 2,
-      "as": 4,
-      "away": "摂津",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "常翔学園",
-      "hs": 1,
-      "as": 0,
-      "away": "興國B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "履正社B",
-      "hs": 3,
-      "as": 2,
-      "away": "香里ヌヴェール",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "近大附属",
-      "hs": 3,
-      "as": 2,
-      "away": "アサンプション",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "香里ヌヴェール",
-      "hs": 1,
-      "as": 0,
-      "away": "清風",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "大阪学院",
-      "hs": 3,
-      "as": 0,
-      "away": "桃山学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "履正社B",
-      "hs": 5,
-      "as": 1,
-      "away": "常翔学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "摂津",
-      "hs": 1,
-      "as": 0,
-      "away": "興國B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "桃山学院",
-      "hs": 3,
-      "as": 2,
-      "away": "アサンプション",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "清風",
       "hs": 1,
@@ -387,57 +468,84 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "大阪学院",
-      "hs": 4,
-      "as": 0,
-      "away": "履正社B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "摂津",
+      "date": "2026-06-28",
+      "home": "清風",
       "hs": 2,
       "as": 1,
-      "away": "香里ヌヴェール",
+      "away": "摂津",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-04",
-      "home": "近大附属",
-      "hs": 0,
+      "date": "2026-06-20",
+      "home": "清風",
+      "hs": 3,
       "as": 1,
-      "away": "清風",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "興國B",
-      "hs": 2,
-      "as": 2,
-      "away": "履正社B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "大阪学院",
-      "hs": 3,
-      "as": 2,
-      "away": "香里ヌヴェール",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "常翔学園",
-      "hs": 3,
-      "as": 0,
       "away": "アサンプション",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "清風",
+      "hs": null,
+      "as": null,
+      "away": "香里ヌヴェール",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "桃山学院",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "桃山学院",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "桃山学院",
+      "hs": null,
+      "as": null,
+      "away": "履正社B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "桃山学院",
+      "hs": null,
+      "as": null,
+      "away": "清風",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "桃山学院",
+      "hs": 3,
+      "as": 1,
+      "away": "常翔学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "桃山学院",
+      "hs": null,
+      "as": null,
+      "away": "興國B",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -450,73 +558,10 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "大阪学院",
-      "hs": 5,
-      "as": 1,
-      "away": "アサンプション",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "履正社B",
-      "hs": 2,
-      "as": 1,
-      "away": "摂津",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "清風",
-      "hs": 4,
-      "as": 3,
-      "away": "桃山学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "常翔学園",
+      "date": "2026-04-29",
+      "home": "桃山学院",
       "hs": 3,
-      "as": 0,
-      "away": "香里ヌヴェール",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "近大附属",
-      "hs": 4,
-      "as": 0,
-      "away": "興國B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "大阪学院",
-      "hs": 2,
       "as": 2,
-      "away": "興國B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "常翔学園",
-      "hs": 1,
-      "as": 0,
-      "away": "摂津",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "清風",
-      "hs": 3,
-      "as": 1,
       "away": "アサンプション",
       "status": "played"
     },
@@ -531,21 +576,264 @@
     },
     {
       "md": 0,
-      "date": "2026-06-21",
-      "home": "近大附属",
+      "date": "",
+      "home": "常翔学園",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "常翔学園",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "常翔学園",
+      "hs": null,
+      "as": null,
+      "away": "履正社B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "清風",
       "hs": 1,
       "as": 1,
+      "away": "常翔学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "常翔学園",
+      "hs": null,
+      "as": null,
+      "away": "桃山学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "常翔学園",
+      "hs": 1,
+      "as": 0,
+      "away": "興國B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "常翔学園",
+      "hs": 1,
+      "as": 0,
+      "away": "摂津",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "常翔学園",
+      "hs": 3,
+      "as": 0,
+      "away": "アサンプション",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "常翔学園",
+      "hs": 3,
+      "as": 0,
+      "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "興國B",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "興國B",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "興國B",
+      "hs": 2,
+      "as": 2,
       "away": "履正社B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-28",
-      "home": "清風",
+      "date": "",
+      "home": "興國B",
+      "hs": null,
+      "as": null,
+      "away": "清風",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "興國B",
       "hs": 2,
+      "as": 4,
+      "away": "桃山学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "興國B",
+      "hs": null,
+      "as": null,
+      "away": "常翔学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "興國B",
+      "hs": null,
+      "as": null,
+      "away": "摂津",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "興國B",
+      "hs": 4,
       "as": 1,
+      "away": "アサンプション",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "興國B",
+      "hs": 5,
+      "as": 0,
+      "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "大阪学院",
+      "hs": 3,
+      "as": 0,
       "away": "摂津",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "摂津",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "摂津",
+      "hs": null,
+      "as": null,
+      "away": "履正社B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "摂津",
+      "hs": null,
+      "as": null,
+      "away": "清風",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "摂津",
+      "hs": null,
+      "as": null,
+      "away": "桃山学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "摂津",
+      "hs": null,
+      "as": null,
+      "away": "常翔学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "摂津",
+      "hs": 1,
+      "as": 0,
+      "away": "興國B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "摂津",
+      "hs": null,
+      "as": null,
+      "away": "アサンプション",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "摂津",
+      "hs": 2,
+      "as": 1,
+      "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "アサンプション",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "アサンプション",
+      "hs": null,
+      "as": null,
+      "away": "近大附属",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -559,19 +847,136 @@
     {
       "md": 0,
       "date": "",
-      "home": "大阪学院",
+      "home": "アサンプション",
       "hs": null,
       "as": null,
-      "away": "近大附属",
+      "away": "清風",
       "status": "scheduled"
     },
     {
       "md": 0,
       "date": "",
-      "home": "常翔学園",
+      "home": "アサンプション",
       "hs": null,
       "as": null,
       "away": "桃山学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "アサンプション",
+      "hs": null,
+      "as": null,
+      "away": "常翔学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "興國B",
+      "hs": 6,
+      "as": 1,
+      "away": "アサンプション",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "アサンプション",
+      "hs": 2,
+      "as": 4,
+      "away": "摂津",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "アサンプション",
+      "hs": 5,
+      "as": 3,
+      "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "大阪学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "近大附属",
+      "hs": 6,
+      "as": 0,
+      "away": "香里ヌヴェール",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "履正社B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "香里ヌヴェール",
+      "hs": 1,
+      "as": 0,
+      "away": "清風",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "桃山学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "常翔学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "興國B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "摂津",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "香里ヌヴェール",
+      "hs": null,
+      "as": null,
+      "away": "アサンプション",
       "status": "scheduled"
     }
   ]

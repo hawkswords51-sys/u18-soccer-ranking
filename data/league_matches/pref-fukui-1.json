@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/hokushinetsu/fukui/league/table/163632",
   "sourceName": "福井少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-08-30",
+  "lastUpdated": "2026-09-06",
   "teams": [
     {
       "name": "福井商業",
@@ -14,20 +14,16 @@
       "short": "北陸"
     },
     {
-      "name": "丸岡2nd",
-      "short": "丸岡2nd"
-    },
-    {
       "name": "工大福井",
       "short": "工大福井"
     },
     {
-      "name": "啓新",
-      "short": "啓新"
+      "name": "丸岡2nd",
+      "short": "丸岡2nd"
     },
     {
-      "name": "敦賀気比",
-      "short": "敦賀気比"
+      "name": "啓新",
+      "short": "啓新"
     },
     {
       "name": "武生",
@@ -36,35 +32,51 @@
     {
       "name": "坂井",
       "short": "坂井"
+    },
+    {
+      "name": "敦賀気比",
+      "short": "敦賀気比"
     }
   ],
   "official_standings": [
     {
       "rank": 1,
       "team": "福井商業",
-      "points": 25,
-      "played": 10,
-      "won": 8,
+      "points": 28,
+      "played": 11,
+      "won": 9,
       "drawn": 1,
       "lost": 1,
-      "gf": 37,
+      "gf": 56,
       "ga": 6,
-      "gd": 31
+      "gd": 50
     },
     {
       "rank": 2,
       "team": "北陸",
-      "points": 23,
-      "played": 10,
-      "won": 7,
+      "points": 26,
+      "played": 11,
+      "won": 8,
       "drawn": 2,
       "lost": 1,
-      "gf": 34,
+      "gf": 37,
       "ga": 9,
-      "gd": 25
+      "gd": 28
     },
     {
       "rank": 3,
+      "team": "工大福井",
+      "points": 21,
+      "played": 11,
+      "won": 6,
+      "drawn": 3,
+      "lost": 2,
+      "gf": 27,
+      "ga": 10,
+      "gd": 17
+    },
+    {
+      "rank": 4,
       "team": "丸岡2nd",
       "points": 18,
       "played": 10,
@@ -76,28 +88,16 @@
       "gd": 16
     },
     {
-      "rank": 4,
-      "team": "工大福井",
-      "points": 18,
-      "played": 10,
-      "won": 5,
-      "drawn": 3,
-      "lost": 2,
-      "gf": 23,
-      "ga": 10,
-      "gd": 13
-    },
-    {
       "rank": 5,
       "team": "啓新",
       "points": 18,
-      "played": 10,
+      "played": 11,
       "won": 6,
       "drawn": 0,
-      "lost": 4,
+      "lost": 5,
       "gf": 15,
-      "ga": 10,
-      "gd": 5
+      "ga": 14,
+      "gd": 1
     },
     {
       "rank": 6,
@@ -115,107 +115,35 @@
       "rank": 7,
       "team": "坂井",
       "points": 4,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 1,
-      "lost": 8,
+      "lost": 9,
       "gf": 6,
-      "ga": 44,
-      "gd": -38
+      "ga": 47,
+      "gd": -41
     },
     {
       "rank": 8,
       "team": "敦賀気比",
       "points": 3,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 0,
-      "lost": 9,
+      "lost": 10,
       "gf": 8,
-      "ga": 34,
-      "gd": -26
+      "ga": 53,
+      "gd": -45
     }
   ],
   "matches": [
     {
       "md": 0,
-      "date": "",
-      "home": "啓新",
-      "hs": 2,
-      "as": 0,
-      "away": "坂井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "坂井",
-      "hs": 1,
-      "as": 0,
-      "away": "啓新",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "北陸",
-      "hs": 2,
-      "as": 2,
-      "away": "工大福井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
+      "date": "2026-05-02",
       "home": "福井商業",
-      "hs": 5,
-      "as": 0,
-      "away": "武生",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "丸岡2nd",
-      "hs": 3,
+      "hs": 2,
       "as": 1,
-      "away": "敦賀気比",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "坂井",
-      "hs": 1,
-      "as": 4,
-      "away": "福井商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "丸岡2nd",
-      "hs": 0,
-      "as": 0,
-      "away": "工大福井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "武生",
-      "hs": 0,
-      "as": 1,
-      "away": "啓新",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "北陸",
-      "hs": 3,
-      "as": 1,
-      "away": "敦賀気比",
+      "away": "北陸",
       "status": "played"
     },
     {
@@ -229,6 +157,87 @@
     },
     {
       "md": 0,
+      "date": "2026-05-10",
+      "home": "福井商業",
+      "hs": 1,
+      "as": 2,
+      "away": "丸岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福井商業",
+      "hs": null,
+      "as": null,
+      "away": "啓新",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "福井商業",
+      "hs": 5,
+      "as": 0,
+      "away": "武生",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-20",
+      "home": "福井商業",
+      "hs": 9,
+      "as": 0,
+      "away": "坂井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "福井商業",
+      "hs": 5,
+      "as": 0,
+      "away": "敦賀気比",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "北陸",
+      "hs": null,
+      "as": null,
+      "away": "福井商業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "北陸",
+      "hs": 2,
+      "as": 2,
+      "away": "工大福井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "北陸",
+      "hs": null,
+      "as": null,
+      "away": "丸岡2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "北陸",
+      "hs": null,
+      "as": null,
+      "away": "啓新",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "北陸",
       "hs": 1,
@@ -238,42 +247,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-19",
-      "home": "啓新",
-      "hs": 2,
-      "as": 1,
-      "away": "敦賀気比",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "丸岡2nd",
-      "hs": 6,
-      "as": 1,
-      "away": "坂井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "啓新",
-      "hs": 1,
-      "as": 2,
-      "away": "工大福井",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "福井商業",
-      "hs": 5,
-      "as": 0,
-      "away": "敦賀気比",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-25",
       "home": "北陸",
       "hs": 5,
@@ -283,29 +256,47 @@
     },
     {
       "md": 0,
-      "date": "2026-04-26",
-      "home": "丸岡2nd",
-      "hs": 1,
+      "date": "2026-04-11",
+      "home": "北陸",
+      "hs": 3,
       "as": 1,
-      "away": "武生",
+      "away": "敦賀気比",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "福井商業",
+      "date": "2026-07-12",
+      "home": "工大福井",
       "hs": 2,
+      "as": 2,
+      "away": "福井商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "工大福井",
+      "hs": 0,
       "as": 1,
       "away": "北陸",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "啓新",
+      "date": "2026-07-20",
+      "home": "工大福井",
       "hs": 1,
       "as": 0,
       "away": "丸岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "啓新",
+      "hs": 0,
+      "as": 4,
+      "away": "工大福井",
       "status": "played"
     },
     {
@@ -315,42 +306,6 @@
       "hs": 3,
       "as": 0,
       "away": "武生",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "坂井",
-      "hs": 1,
-      "as": 2,
-      "away": "敦賀気比",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "福井商業",
-      "hs": 1,
-      "as": 2,
-      "away": "丸岡2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "啓新",
-      "hs": 1,
-      "as": 4,
-      "away": "北陸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "武生",
-      "hs": 1,
-      "as": 0,
-      "away": "敦賀気比",
       "status": "played"
     },
     {
@@ -365,20 +320,20 @@
     {
       "md": 0,
       "date": "2026-05-23",
-      "home": "啓新",
-      "hs": 0,
-      "as": 1,
-      "away": "福井商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
       "home": "工大福井",
       "hs": 4,
       "as": 0,
       "away": "敦賀気比",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "丸岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "福井商業",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -391,11 +346,110 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "武生",
+      "date": "2026-04-11",
+      "home": "丸岡2nd",
+      "hs": 0,
+      "as": 0,
+      "away": "工大福井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "丸岡2nd",
+      "hs": null,
+      "as": null,
+      "away": "啓新",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "丸岡2nd",
       "hs": 1,
       "as": 1,
+      "away": "武生",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "丸岡2nd",
+      "hs": 6,
+      "as": 1,
       "away": "坂井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "丸岡2nd",
+      "hs": 3,
+      "as": 1,
+      "away": "敦賀気比",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "啓新",
+      "hs": 0,
+      "as": 1,
+      "away": "福井商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "啓新",
+      "hs": 1,
+      "as": 4,
+      "away": "北陸",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "啓新",
+      "hs": 1,
+      "as": 2,
+      "away": "工大福井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "啓新",
+      "hs": 1,
+      "as": 0,
+      "away": "丸岡2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-20",
+      "home": "啓新",
+      "hs": 4,
+      "as": 0,
+      "away": "武生",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "啓新",
+      "hs": 2,
+      "as": 0,
+      "away": "坂井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "啓新",
+      "hs": 2,
+      "as": 1,
+      "away": "敦賀気比",
       "status": "played"
     },
     {
@@ -409,21 +463,84 @@
     },
     {
       "md": 0,
-      "date": "2026-06-14",
-      "home": "丸岡2nd",
-      "hs": 5,
+      "date": "2026-07-12",
+      "home": "北陸",
+      "hs": 9,
+      "as": 0,
+      "away": "武生",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武生",
+      "hs": null,
+      "as": null,
+      "away": "工大福井",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "武生",
+      "hs": null,
+      "as": null,
+      "away": "丸岡2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "武生",
+      "hs": 0,
       "as": 1,
+      "away": "啓新",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "武生",
+      "hs": 1,
+      "as": 1,
+      "away": "坂井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "武生",
+      "hs": 1,
+      "as": 0,
       "away": "敦賀気比",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-14",
-      "home": "工大福井",
-      "hs": 0,
-      "as": 1,
-      "away": "北陸",
+      "date": "2026-04-11",
+      "home": "坂井",
+      "hs": 1,
+      "as": 4,
+      "away": "福井商業",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "北陸",
+      "hs": 3,
+      "as": 0,
+      "away": "坂井",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "坂井",
+      "hs": null,
+      "as": null,
+      "away": "工大福井",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -436,38 +553,38 @@
     },
     {
       "md": 0,
-      "date": "2026-07-12",
-      "home": "工大福井",
-      "hs": 2,
-      "as": 2,
-      "away": "福井商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-12",
-      "home": "北陸",
-      "hs": 9,
+      "date": "2026-04-04",
+      "home": "坂井",
+      "hs": 1,
       "as": 0,
-      "away": "武生",
+      "away": "啓新",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-07-12",
-      "home": "啓新",
-      "hs": 3,
-      "as": 1,
+      "date": "",
+      "home": "坂井",
+      "hs": null,
+      "as": null,
+      "away": "武生",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "坂井",
+      "hs": 1,
+      "as": 2,
       "away": "敦賀気比",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-07-20",
-      "home": "啓新",
-      "hs": 4,
+      "date": "2026-09-05",
+      "home": "福井商業",
+      "hs": 19,
       "as": 0,
-      "away": "武生",
+      "away": "敦賀気比",
       "status": "played"
     },
     {
@@ -481,138 +598,30 @@
     },
     {
       "md": 0,
-      "date": "2026-07-20",
-      "home": "工大福井",
-      "hs": 1,
-      "as": 0,
-      "away": "丸岡2nd",
+      "date": "",
+      "home": "敦賀気比",
+      "hs": null,
+      "as": null,
+      "away": "工大福井",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "丸岡2nd",
+      "hs": 5,
+      "as": 1,
+      "away": "敦賀気比",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-07-20",
-      "home": "福井商業",
-      "hs": 9,
-      "as": 0,
-      "away": "坂井",
+      "date": "2026-07-12",
+      "home": "啓新",
+      "hs": 3,
+      "as": 1,
+      "away": "敦賀気比",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "福井商業",
-      "hs": null,
-      "as": null,
-      "away": "北陸",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "福井商業",
-      "hs": null,
-      "as": null,
-      "away": "丸岡2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "福井商業",
-      "hs": null,
-      "as": null,
-      "away": "啓新",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "福井商業",
-      "hs": null,
-      "as": null,
-      "away": "敦賀気比",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "北陸",
-      "hs": null,
-      "as": null,
-      "away": "丸岡2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "北陸",
-      "hs": null,
-      "as": null,
-      "away": "啓新",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "北陸",
-      "hs": null,
-      "as": null,
-      "away": "坂井",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "丸岡2nd",
-      "hs": null,
-      "as": null,
-      "away": "啓新",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "丸岡2nd",
-      "hs": null,
-      "as": null,
-      "away": "武生",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "工大福井",
-      "hs": null,
-      "as": null,
-      "away": "啓新",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "工大福井",
-      "hs": null,
-      "as": null,
-      "away": "敦賀気比",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "工大福井",
-      "hs": null,
-      "as": null,
-      "away": "武生",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "工大福井",
-      "hs": null,
-      "as": null,
-      "away": "坂井",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -627,15 +636,6 @@
       "md": 0,
       "date": "",
       "home": "敦賀気比",
-      "hs": null,
-      "as": null,
-      "away": "坂井",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "武生",
       "hs": null,
       "as": null,
       "away": "坂井",
