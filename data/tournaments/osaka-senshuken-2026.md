@@ -25,9 +25,9 @@ scraper/update_tournament_results.py が上の source から
 - 昇陽 vs 久米田
 - 茨木西 vs 佐野工科
 - 登美丘 vs 刀根山
-- 追手門学院 vs 門真なみはや
+- 追手門学院 3-0 門真なみはや
 - 山本 vs 大阪星光学院
-- 生野 vs 牧野
+- 生野 1-1(PK5-4) 牧野
 - 枚方 3-0 大教大天王寺
 - 大阪教育C附 vs 大阪
 - 芦間 0-8 千里
@@ -41,7 +41,7 @@ scraper/update_tournament_results.py が上の source から
 - 鳳 vs 藤井寺
 - 交野 vs 守口東
 - 三島 vs 利晶学園
-- 日根野 vs あべの翔学
+- 日根野 1-3 あべの翔学
 - 東住吉 vs 佐野
 - 近大泉州 vs 大阪学芸
 - 咲くやこの花 vs 常翔啓光学園
@@ -130,3 +130,6 @@ scraper/update_tournament_results.py が上の source から
 - 春日丘 vs 箕面学園/英真学園
 - 金剛/泉北 vs 八尾北/星翔
 - 東淀工/千里 vs 旭/大阪国際大和田
+- 長野/追手門学院 vs 豊島/東住吉総合
+- 桜塚/生野 vs 太成学院大高/枚方
+- OBFC/あべの翔学 vs 上宮太子/金蘭千里
