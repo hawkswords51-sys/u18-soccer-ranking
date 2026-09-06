@@ -42,7 +42,7 @@ scraper/update_tournament_results.py が上の source から
 - 和光国際 vs 大宮光陵
 - 合同5 vs 上尾
 - 富士見 vs 所沢西
-- 桶川 vs 浦和実
+- 桶川 1-3 浦和実
 - 滑川総合 vs 開智
 - ふじみ野 vs 春日部工
 - 大宮武蔵野・岩槻商業・浦和ルーテル vs 松山

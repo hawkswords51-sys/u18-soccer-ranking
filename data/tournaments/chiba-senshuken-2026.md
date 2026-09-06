@@ -90,7 +90,7 @@ scraper/update_tournament_results.py が上の source から
 - 市立千葉 2-1 西武台千葉
 - 千葉商 0-1 柏の葉
 - 千葉敬愛 vs 土気/船橋啓明
-- 千葉北 vs 茂原北陵
+- 千葉北 0-2 茂原北陵
 - 袖ヶ浦 vs 松戸馬橋
 - 東海大浦安 vs 県立柏
 - 千葉南 vs 幕張総合

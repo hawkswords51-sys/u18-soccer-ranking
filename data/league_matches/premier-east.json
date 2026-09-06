@@ -95,16 +95,28 @@
       "rank": 4,
       "team": "FC東京U-18",
       "pts": 22,
-      "played": 11,
+      "played": 12,
       "won": 7,
       "drawn": 1,
-      "lost": 3,
-      "gf": 28,
-      "ga": 15,
-      "gd": 13
+      "lost": 4,
+      "gf": 29,
+      "ga": 17,
+      "gd": 12
     },
     {
       "rank": 5,
+      "team": "青森山田",
+      "pts": 22,
+      "played": 12,
+      "won": 7,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 21,
+      "ga": 20,
+      "gd": 1
+    },
+    {
+      "rank": 6,
       "team": "前橋育英",
       "pts": 19,
       "played": 12,
@@ -114,18 +126,6 @@
       "gf": 18,
       "ga": 15,
       "gd": 3
-    },
-    {
-      "rank": 6,
-      "team": "青森山田",
-      "pts": 19,
-      "played": 11,
-      "won": 6,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 19,
-      "ga": 19,
-      "gd": 0
     },
     {
       "rank": 7,
@@ -2288,12 +2288,28 @@
       "md": 12,
       "date": "2026-09-06",
       "home": "青森山田",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "FC東京U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "青森山田高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "3",
+          "name": "藤原 優人"
+        },
+        {
+          "minute": "50",
+          "name": "石井 珂那汰"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "90+4",
+          "name": "橋本 凜来"
+        }
+      ]
     },
     {
       "md": 13,

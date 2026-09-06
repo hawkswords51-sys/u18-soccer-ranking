@@ -4,9 +4,9 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 70,
+      "matchesPlayed": 71,
       "venueCount": 132,
-      "venueCountPrev": 0,
+      "venueCountPrev": 132,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -16,7 +16,7 @@
       "reason": "",
       "matchesPlayed": 69,
       "venueCount": 132,
-      "venueCountPrev": 0,
+      "venueCountPrev": 132,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -26,16 +26,16 @@
       "reason": "",
       "matchesPlayed": 40,
       "venueCount": 56,
-      "venueCountPrev": 0,
+      "venueCountPrev": 56,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "",
+      "actual": "koko",
       "reason": "検算不一致 ['聖和学園.試合 日程から計算12≠順位表11', '聖和学園.勝 日程から計算5≠順位表4', '聖和学園.得点 日程から計算18≠順位表17'] …（据え置き）",
-      "matchesPlayed": 0,
-      "venueCount": 0,
+      "matchesPlayed": 59,
+      "venueCount": 90,
       "venueCountPrev": 0,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
@@ -46,7 +46,7 @@
       "reason": "",
       "matchesPlayed": 48,
       "venueCount": 89,
-      "venueCountPrev": 0,
+      "venueCountPrev": 89,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -56,7 +56,7 @@
       "reason": "",
       "matchesPlayed": 46,
       "venueCount": 89,
-      "venueCountPrev": 0,
+      "venueCountPrev": 89,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -66,7 +66,7 @@
       "reason": "",
       "matchesPlayed": 65,
       "venueCount": 90,
-      "venueCountPrev": 0,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -76,7 +76,7 @@
       "reason": "",
       "matchesPlayed": 48,
       "venueCount": 56,
-      "venueCountPrev": 0,
+      "venueCountPrev": 56,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -86,7 +86,7 @@
       "reason": "",
       "matchesPlayed": 50,
       "venueCount": 89,
-      "venueCountPrev": 0,
+      "venueCountPrev": 89,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -96,7 +96,7 @@
       "reason": "",
       "matchesPlayed": 50,
       "venueCount": 90,
-      "venueCountPrev": 0,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -106,7 +106,7 @@
       "reason": "",
       "matchesPlayed": 49,
       "venueCount": 90,
-      "venueCountPrev": 0,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -114,9 +114,9 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 49,
+      "matchesPlayed": 50,
       "venueCount": 90,
-      "venueCountPrev": 0,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
@@ -126,15 +126,15 @@
       "reason": "",
       "matchesPlayed": 50,
       "venueCount": 90,
-      "venueCountPrev": 0,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     },
     "prince-kyushu-1": {
       "expected": "jfa",
-      "actual": "",
+      "actual": "koko",
       "reason": "JFA消化49 < 現在50（減っているので上書きしない）",
-      "matchesPlayed": 0,
+      "matchesPlayed": 50,
       "venueCount": 0,
       "venueCountPrev": 0,
       "consecutiveFallback": 0,
@@ -146,10 +146,10 @@
       "reason": "",
       "matchesPlayed": 47,
       "venueCount": 90,
-      "venueCountPrev": 0,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-06T12:40:20+09:00"
+  "updatedAt": "2026-09-06T13:01:01+09:00"
 }
