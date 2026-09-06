@@ -320,8 +320,9 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
     n = len(teams)
     if not round_robin:
         # グループ分けのリーグ。出典に載っている試合だけを枠にする。
-        fixtures = [dict(md=0, date=m["date"], home=m["home"], hs=m["hs"],
-                         **{"as": m["as"]}, away=m["away"], status="played")
+        fixtures = [dict(md=m.get("md", 0) or 0, date=m["date"], home=m["home"],
+                         hs=m["hs"], **{"as": m["as"]}, away=m["away"],
+                         status="played")
                     for m in js_matches]
         team_objs = [dict(name=t, short=short_of(t)) for t in teams]
         ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
@@ -367,6 +368,10 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
         f["hs"], f["as"], f["status"] = m["hs"], m["as"], "played"
         if m["date"]:
             f["date"] = m["date"]
+        # [2026-09-07] 出典が節番号を持っている県（宮崎など）はそれを引き継ぐ。
+        # 大半の県は節を公開しておらず md が無いので、その場合は 0 のままにする。
+        if m.get("md"):
+            f["md"] = m["md"]
 
     team_objs = [dict(name=t, short=short_of(t)) for t in teams]
     ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
@@ -391,6 +396,10 @@ MIGRATED_TO_OFFICIAL = {
     "pref-tottori-1", "pref-kagawa-1", "pref-yamagata-1", "pref-ibaraki-1",
     # tecra 3県（47ドメインを確認済みで、この3県で打ち止め）
     "pref-shiga-1", "pref-fukuoka-1", "pref-saga-1",
+    # 県ごとの独自システム 3県（2026-09-07追加）
+    "pref-gunma-1",      # management.gunma-fa.com（県協会のリーグ管理システム）
+    "pref-miyazaki-1",   # miyazaki-fa-u18.net（U-18リーグ専用サイト）
+    "pref-yamaguchi-1",  # sportsonline.jp（県協会が案内する速報システム）
 }
 
 
