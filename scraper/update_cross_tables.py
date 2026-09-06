@@ -177,7 +177,13 @@ def extract(url: str):
                 dm = re.search(r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})", date_raw)
                 date = (f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
                         if dm else "")
-                matches.append(dict(md=md, date=date, home=home, hs=hs,
+                # [2026-09-06] kokoの日程セルは "2026.09.0611:00" のように日付と時刻が
+                # 連結されている。JFAが使えないときのフォールバックでも時刻を保てるよう、
+                # 日付の後ろに続く時刻を拾う（会場はkokoに列が無いので取れない）。
+                tm = re.search(r"(\d{1,2}):(\d{2})", date_raw[dm.end():] if dm else "")
+                kickoff = f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else ""
+                matches.append(dict(md=md, date=date, kickoff=kickoff,
+                                    home=home, hs=hs,
                                     **{"as": as_}, away=away, status=status))
     return standings, matches
 
@@ -245,6 +251,54 @@ def date_change_warnings(old_matches, new_matches):
     return warns
 
 
+def merge_with_existing(out_matches, existing_matches):
+    """[2026-09-06 新設] kokoの結果を既存データに重ねる（フォールバック時の情報保護）。
+
+    JFAが使えない日は koko で更新するが、素直に上書きすると**JFAでしか取れない情報**
+    （会場・公式記録PDF）と、**JFAの方が正しい情報**（節番号）が消えてしまう。
+    そこで次のように混ぜる。
+
+      スコア・status … kokoを採用（新しいから落ちてきた）
+      日付           … kokoを採用。kokoが持たなければ既存を維持
+                       ただし既存が dateTbd（出典が「未定」と明言）なら空のまま維持
+      キックオフ時刻  … kokoが取れれば採用、取れなければ既存を維持
+      会場・記録PDF   … 既存を維持（kokoには存在しない情報）
+      節番号         … ★既存を優先。kokoは「表の並び順」で節を数えるため延期試合が
+                       あると実際の節とずれる。JFA切替時に8試合の節番号が直っており、
+                       ここでkokoに戻すとまた壊れる。
+
+    対応づけは「ホームチーム＋アウェイチーム」。同じ組み合わせが2回現れるリーグ
+    （四国・北信越）があるので、出てきた順に1つずつ消費する。
+    """
+    prev = {}
+    for m in existing_matches or []:
+        prev.setdefault((m.get("home"), m.get("away")), []).append(m)
+    for r in out_matches:
+        cands = prev.get((r["home"], r["away"]))
+        if not cands:
+            continue          # 既存に無い試合＝新しく現れた試合。kokoの値をそのまま使う
+        o = cands.pop(0)
+        if o.get("md") is not None:
+            r["md"] = o["md"]
+        if o.get("dateTbd"):
+            # 出典が「未定」と言っている試合。kokoが古い日付を持っていても復活させない
+            r["date"] = ""
+            r["dateTbd"] = True
+        elif not r.get("date"):
+            r["date"] = o.get("date", "")
+        if not r.get("kickoff") and o.get("kickoff"):
+            r["kickoff"] = o["kickoff"]
+        for f in ("venue", "reportUrl"):
+            if o.get(f):
+                r[f] = o[f]
+    # 空の値はキーごと落とす（既存スキーマに合わせる）
+    for r in out_matches:
+        for f in ("kickoff", "venue", "reportUrl"):
+            if f in r and not r[f]:
+                del r[f]
+    return out_matches
+
+
 def process(slug, jfa_ok=frozenset()):
     global _CURRENT_SLUG
     if slug in jfa_ok:
@@ -300,7 +354,11 @@ def process(slug, jfa_ok=frozenset()):
     out_matches = [dict(md=m["md"], date=m["date"],
                         home=name_by_norm[m["home"]], hs=m["hs"],
                         **{"as": m["as"]}, away=name_by_norm[m["away"]],
-                        status=m["status"]) for m in matches]
+                        status=m["status"], kickoff=m.get("kickoff", ""))
+                   for m in matches]
+    # JFA由来の会場・記録PDF・直った節番号を失わないよう、既存データに重ねる
+    out_matches = merge_with_existing(out_matches, data.get("matches"))
+    out_matches.sort(key=lambda r: (r["md"], r["date"], r["home"]))
     out_standings = []
     rank = 1
     for t in sorted(teams_norm, key=lambda n: (-standings[n]["pts"],
@@ -316,6 +374,9 @@ def process(slug, jfa_ok=frozenset()):
     warns = date_change_warnings(data.get("matches"), out_matches)
     data["matches"] = out_matches
     data["official_standings"] = out_standings
+    # このリーグは今回kokoから入った。出典表記もそれに合わせる（JFA公式のままにしない）
+    data["source"] = url
+    data["sourceName"] = "高校サッカードットコム"
     from datetime import date as _d
     data["lastUpdated"] = _d.today().isoformat()
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")

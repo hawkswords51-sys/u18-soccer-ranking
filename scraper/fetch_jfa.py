@@ -322,16 +322,22 @@ def _build_resolver(names: list[str], slug: str = ""):
 # ============================================================
 # 取得
 # ============================================================
-def _fetch(url: str) -> str:
-    """本文を文字列で返す。失敗したら例外（呼び出し側で [要確認] にする）。"""
+def _fetch(url: str, parse=None):
+    """本文を取得して返す。parse を渡すとその場で変換する。失敗したら例外。
+
+    [2026-09-06] parse も**このリトライの中で**行うようにした。
+    JFAは編集中に途中まで書かれたJSONを返すことがあり（実例: 関西2部が
+    「Expecting ',' delimiter」で失敗し、数分後には正常に読めた）、
+    解析をリトライの外でやっていると1回の失敗でそのリーグがkoko予備に落ちてしまう。
+    """
     last = None
     for _ in range(RETRIES + 1):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
             resp.raise_for_status()
             resp.encoding = "utf-8"
-            return resp.text
-        except Exception as e:   # 通信エラー・404・タイムアウト すべてここ
+            return parse(resp.text) if parse else resp.text
+        except Exception as e:   # 通信エラー・404・タイムアウト・解析失敗 すべてここ
             last = e
     raise RuntimeError(f"{url} の取得に失敗 ({last})")
 
@@ -346,7 +352,7 @@ def fetch_json(url: str):
     静かにkoko予備へ落ちてしまうため、制御文字を許容して読む。
     許容するのはこの1点だけで、構造の検査や検算は従来どおり行う。
     """
-    return json.loads(_fetch(url), strict=False)
+    return _fetch(url, parse=lambda text: json.loads(text, strict=False))
 
 
 # ============================================================
@@ -625,6 +631,10 @@ def parse_league(cfg: dict, existing: dict) -> tuple[dict | None, str]:
             # 出典の日付が空なら既存の日付を残す（情報を減らさない）。
             # ただし出典が「未定」と明言している場合は残さない（古い日付の復活を防ぐ）。
             "date": m["date"] or ("" if m.get("dateUnknown") else _keep(key, "date")),
+            # [2026-09-06] 出典が「未定」と明言した試合に印を付ける。
+            # kokoへフォールバックしたとき、kokoが持っている古い日付で
+            # 埋め戻されるのを防ぐため（update_cross_tables.merge_with_existing が見る）。
+            **({"dateTbd": True} if m.get("dateUnknown") else {}),
             "home": name_map[m["home"]],
             "hs": m["hs"] if m["played"] else None,
             "as": m["as"] if m["played"] else None,
