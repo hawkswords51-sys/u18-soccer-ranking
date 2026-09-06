@@ -374,6 +374,21 @@ jobs:
             fi
           fi
 
+      # ★ 取得元の見張り（2026-09-06新設）
+      #   どのリーグがどの出典から入ったかは data/fetch_status.json に記録済み。
+      #   ここでそれを読み、JFA以外に落ちたリーグを [要注意] として出す。
+      #   **わざと一番最後に置いている**：ページ生成とコミットを先に終わらせてから
+      #   赤くするため。ここを前に置くと、赤くなった日はサイトが更新されなくなる。
+      #   赤になる条件: 3回連続でJFA以外 / 会場を持つ試合数が前回の半分未満 / 記録なし
+      - name: 取得元を点検（JFA以外に落ちたリーグを検出）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        run: |
+          if [ -f scraper/check_fetch_status.py ]; then
+            python scraper/check_fetch_status.py
+          else
+            echo "scraper/check_fetch_status.py がまだありません。スキップ。"
+          fi
+
       # ★ Phase 9-E: IndexNow に更新を通知（Bing 等への即時インデックス通知）
       - name: IndexNow に更新を通知
         if: ${{ github.event.inputs.dry_run != 'true' }}

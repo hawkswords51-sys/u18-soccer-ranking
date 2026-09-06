@@ -98,6 +98,8 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
+import fetch_status
+
 # ===== 設定 =====
 SEASON = "2026"          # ← 年度切り替えはここ1行だけ（15リーグ共通）
 
@@ -978,6 +980,9 @@ def run(dry_run: bool = False, only: set | None = None) -> list[str]:
     print(f"=== JFA公式データ取得 ({SEASON}) ===")
     targets = [c for c in LEAGUES if not only or c["slug"] in only]
     results, rows = [], []
+    # [2026-09-06] 取得元の見張り。この実行の枠を作る（ドライランでは記録しない）
+    if not dry_run:
+        fetch_status.start_run({c["slug"]: "jfa" for c in LEAGUES})
 
     for cfg in targets:
         slug = cfg["slug"]
@@ -988,6 +993,10 @@ def run(dry_run: bool = False, only: set | None = None) -> list[str]:
         existing = json.loads(path.read_text(encoding="utf-8"))
         res, msg = parse_league(cfg, existing)
         print("  " + msg)
+        if not dry_run and not res:
+            # JFAは使えなかった。actual はまだ確定させない
+            #（この後 update_cross_tables.py が koko で処理する）
+            fetch_status.set_result(slug, reason=msg.split(":", 1)[-1].strip())
 
         row = {"slug": slug, "fetch": "×", "teams": "-", "played": "-", "cur": "-",
                "unmapped": "-", "changed": "-",
@@ -1044,6 +1053,9 @@ def run(dry_run: bool = False, only: set | None = None) -> list[str]:
             print(f"  ✓ data/league_matches/{res['slug']}.json を更新"
                   f"（得点ランキングは触らない）")
         ok_slugs.append(res["slug"])
+        fetch_status.set_result(res["slug"], actual="jfa", reason="",
+                                matches_played=fetch_status.count_played(res["matches"]),
+                                venue_count=fetch_status.count_venues(res["matches"]))
         for w in res.get("dateWarnings", []):
             print(f"  [要確認] {res['slug']}: {w}")
 

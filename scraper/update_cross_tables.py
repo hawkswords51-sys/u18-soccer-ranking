@@ -28,6 +28,8 @@ from pathlib import Path
 
 import pandas as pd
 
+import fetch_status
+
 ROOT = Path(__file__).resolve().parent.parent
 DIR = ROOT / "data" / "league_matches"
 
@@ -386,6 +388,31 @@ def process(slug, jfa_ok=frozenset()):
     return msg
 
 
+def _record(slug, msg):
+    """[2026-09-06] koko経由の結果を取得元の見張り(data/fetch_status.json)に記録する。
+
+    reason は「なぜJFAで入らなかったか」を残したいので、fetch_jfa.py が書いた
+    JFA側の理由を土台にする。kokoでも入らなかった（据え置き）ときだけ、
+    koko側の理由を後ろに足す。
+    """
+    try:
+        data = json.loads((DIR / f"{slug}.json").read_text(encoding="utf-8"))
+    except Exception:
+        data = {}
+    matches = data.get("matches", [])
+    actual = "koko" if msg.startswith("[更新]") else "held"
+    jfa_reason = (fetch_status.load().get("leagues", {})
+                  .get(slug, {}).get("reason") or "")
+    koko_reason = msg.split(":", 1)[-1].split("\n")[0].strip()
+    if actual == "koko":
+        reason = jfa_reason or "JFAで取得できず"
+    else:
+        reason = " / ".join(x for x in (jfa_reason, f"kokoも不可: {koko_reason}") if x)
+    fetch_status.set_result(slug, actual=actual, reason=reason,
+                            matches_played=fetch_status.count_played(matches),
+                            venue_count=fetch_status.count_venues(matches))
+
+
 def main():
     print("=== 戦績表 自動更新 ===")
     jfa_ok = jfa_premier_ok_slugs()
@@ -394,6 +421,9 @@ def main():
         msg = process(slug, jfa_ok)
         results.append(msg)
         print(" ", msg)
+        if slug not in jfa_ok:
+            # JFAが使えずここに回ってきたリーグ。実際に使った出典を確定させる
+            _record(slug, msg)
     # サマリー
     updated = [r for r in results if r.startswith("[更新]")]
     review = [r for r in results if "要確認" in r]
