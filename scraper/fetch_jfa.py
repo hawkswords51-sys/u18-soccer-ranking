@@ -64,6 +64,8 @@ update_cross_tables.py が従来どおり koko から更新する。つまり落
 未消化試合の日付・時刻・会場は毎回JFAの値で入れ替える（日程変更に追従する）。
 ただし **JFA側が空のときだけは既存の値を残す**（空は値ではないので、上書きすると
 情報が減るだけ。北信越2部でJFAに日付が無い試合が実在する）。
+一方 **JFAが「未定」と書いている場合は残さない**。「未定」は空欄ではなく
+「日程が白紙に戻った」という情報なので、古い日付を復活させると誤情報になる。
 ただし「すでに結果が入っている試合の日付が動いた」場合だけ [要確認] をログに出す
 （出典が別試合と取り違えている等の事故を検知するため。更新自体は止めない）。
 
@@ -335,7 +337,16 @@ def _fetch(url: str) -> str:
 
 
 def fetch_json(url: str):
-    return json.loads(_fetch(url))
+    """JFAのJSONを読む。
+
+    [2026-09-06] strict=False にしている理由：JFAのJSONは文字列の中に生のタブ文字が
+    入っていることがある（実例: 北信越2部の得点者 "86,細谷陽翔\t\t"）。
+    厳密なJSONでは文字列内の制御文字は違反なので、標準のパーサは
+    「Invalid control character」で丸ごと失敗する。そうなるとそのリーグだけ
+    静かにkoko予備へ落ちてしまうため、制御文字を許容して読む。
+    許容するのはこの1点だけで、構造の検査や検算は従来どおり行う。
+    """
+    return json.loads(_fetch(url), strict=False)
 
 
 # ============================================================
@@ -379,6 +390,18 @@ def _md_of(text) -> int | None:
     return int(m.group(1)) if m else None
 
 
+def _undecided(value) -> bool:
+    """出典が「未定」と書いているか。
+
+    [2026-09-06] JFAは日程が決まっていない試合に `matchDate="未定"` `matchTime="未定"`
+    を入れる（延期などで日程が白紙に戻った試合）。これは**値が無い**のではなく
+    **「未定である」という情報**なので、空欄と同じ扱いにしてはいけない。
+    空欄と混同すると「出典が空なら既存の値を残す」ルールが働いて、
+    もう無効になった古い日付が復活してしまう（実例: 2026-09-06 関東1部の第10節2試合）。
+    """
+    return str(value or "").strip() in ("未定", "未定日", "TBD", "-")
+
+
 def _iso_date(raw: str) -> str:
     """ '2026/09/05' -> '2026-09-05' 。読めなければ空文字。"""
     m = re.match(r"^\s*(\d{4})[/\-.](\d{1,2})[/\-.](\d{1,2})", str(raw or ""))
@@ -400,11 +423,17 @@ def read_json_source(u: dict) -> dict:
         # 「試合中」は途中経過が入るので消化扱いにしない（"試合終了" のみ消化）
         played = (m.get("matchStatus") == "試合終了" and hs.isdigit() and as_.isdigit())
         scorer = m.get("scorer") or {}
+        raw_date = m.get("matchDate")
+        raw_time = m.get("matchTime")
+        raw_venue = m.get("venueFullName") or m.get("venue")
         matches.append({
             "md": _md_of(m.get("matchTypeName")),
-            "date": _iso_date(m.get("matchDate")),
-            "kickoff": str(m.get("matchTime") or "").strip(),
-            "venue": str(m.get("venueFullName") or m.get("venue") or "").strip(),
+            "date": "" if _undecided(raw_date) else _iso_date(raw_date),
+            "dateUnknown": _undecided(raw_date),
+            "kickoff": "" if _undecided(raw_time) else str(raw_time or "").strip(),
+            "kickoffUnknown": _undecided(raw_time),
+            "venue": "" if _undecided(raw_venue) else str(raw_venue or "").strip(),
+            "venueUnknown": _undecided(raw_venue),
             "report": str(m.get("officialReportURL") or "").strip(),
             "home": m.get("homeTeamName", ""),
             "away": m.get("awayTeamName", ""),
@@ -456,6 +485,7 @@ def read_tohoku_html(u: dict) -> dict:
             sm = re.match(r"^\s*(\d+)\s*[-ー－]\s*(\d+)\s*$", score)
             matches.append({
                 "md": md, "date": date_s, "kickoff": kickoff, "venue": venue,
+                "dateUnknown": False, "kickoffUnknown": False, "venueUnknown": False,
                 "report": "", "home": home, "away": away,
                 "hs": int(sm.group(1)) if sm else None,
                 "as": int(sm.group(2)) if sm else None,
@@ -592,8 +622,9 @@ def parse_league(cfg: dict, existing: dict) -> tuple[dict | None, str]:
         key = (m["md"], name_map[m["home"]], name_map[m["away"]])
         rec = {
             "md": m["md"],
-            # 出典の日付が空なら既存の日付を残す（情報を減らさない）
-            "date": m["date"] or _keep(key, "date"),
+            # 出典の日付が空なら既存の日付を残す（情報を減らさない）。
+            # ただし出典が「未定」と明言している場合は残さない（古い日付の復活を防ぐ）。
+            "date": m["date"] or ("" if m.get("dateUnknown") else _keep(key, "date")),
             "home": name_map[m["home"]],
             "hs": m["hs"] if m["played"] else None,
             "as": m["as"] if m["played"] else None,
@@ -603,10 +634,10 @@ def parse_league(cfg: dict, existing: dict) -> tuple[dict | None, str]:
         # 会場・キックオフ時刻・公式記録PDF
         # （県リーグのJSONには無いフィールド。表示側は存在チェックしてから描くこと）
         # ここも出典が空なら既存の値を残す。
-        venue = m["venue"] or _keep(key, "venue")
+        venue = m["venue"] or ("" if m.get("venueUnknown") else _keep(key, "venue"))
         if venue:
             rec["venue"] = venue
-        kickoff = m["kickoff"] or _keep(key, "kickoff")
+        kickoff = m["kickoff"] or ("" if m.get("kickoffUnknown") else _keep(key, "kickoff"))
         if kickoff:
             rec["kickoff"] = kickoff
         report = urljoin(u["base"], m["report"]) if m["report"] else _keep(key, "reportUrl")

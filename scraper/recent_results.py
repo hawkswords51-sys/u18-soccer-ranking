@@ -67,6 +67,12 @@ def _match_row(m: dict, link_fn, played: bool) -> str:
     hn = link_fn(home) if link_fn else _html_escape(home)
     an = link_fn(away) if link_fn else _html_escape(away)
     dt = _fmt_date(m.get("date", ""))
+    # [2026-09-06] 日付が無い＝出典が「未定」と言っている試合（延期などで日程が白紙）。
+    # 空欄のままだと「日付を取り損ねた」のか「未定」なのか読者に伝わらないので明示する。
+    # このモジュールはリーグページ15枚でしか使われていないので、日付を持たない
+    # 県リーグの表示には影響しない。
+    if not dt and not played:
+        dt = '<span class="rr-tbd">日程未定</span>'
 
     if played:
         hs, a_s = m.get("hs"), m.get("as")
@@ -110,6 +116,7 @@ _STYLE = """<style>
   padding:11px 14px;border-bottom:1px solid var(--border-color);}
 .rr-list .rr-row:last-child{border-bottom:none;}
 .rr-date{font-size:.85rem;color:var(--text-light);white-space:nowrap;}
+.rr-date .rr-tbd{opacity:.85;}
 .rr-team{font-size:1rem;color:var(--text-dark);line-height:1.35;}
 .rr-home{text-align:right;}
 .rr-away{text-align:left;}
