@@ -290,9 +290,110 @@ def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
     return nl.join(html) + nl
 
 
+# ============================================================
+# 県ページ用（2026-09-06追加）: 日付ベースの「直近の試合結果」
+# ------------------------------------------------------------
+# 県1部の data/league_matches/pref-*.json は **節番号(md)を持たない**
+# （全試合 md=0 ／出典の junior-soccer.jp 等が節を公開していないため）。
+# そのためリーグページ版の「第N節」方式はそのままでは使えない。
+# 代わりに「最新の開催日 ± window_days 日」＝直近の週末で束ねて出す。
+# 未消化試合は日付そのものが入らない仕様なので「次節」ブロックは出さない。
+# データが無い／1試合も消化していない県では '' を返す＝既存ページに影響なし。
+# ============================================================
+def render_recent_results_by_date_html(
+    slug: str,
+    heading: str = "直近の試合結果",
+    link_fn=None,
+    window_days: int = 2,
+    note: str = "",
+) -> str:
+    """節を持たないリーグ（県1部）向け。最新の開催日から window_days 日以内の
+    消化試合をまとめて出す。データが無ければ ''（空文字）。"""
+    path = _MATCH_DIR / f"{slug}.json"
+    if not path.exists():
+        return ""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+
+    played = [m for m in data.get("matches", []) if _is_played(m) and m.get("date")]
+    if not played:
+        return ""
+
+    def _d(m):
+        try:
+            y, mo, dd = (int(x) for x in str(m.get("date")).split("-")[:3])
+            return date(y, mo, dd)
+        except Exception:
+            return None
+
+    dated = [(d, m) for d, m in ((_d(m), m) for m in played) if d is not None]
+    if not dated:
+        return ""
+
+    latest = max(d for d, _ in dated)
+    # 最新の開催日を含む「かたまり」＝土日開催の1節に相当する範囲。
+    # 例）9/6(日)が最新なら 9/4〜9/6 の試合をまとめて出す。
+    rows_src = sorted(
+        [(d, m) for d, m in dated if (latest - d).days <= window_days],
+        key=lambda t: (t[0], str(t[1].get("home") or "")),
+    )
+
+    dates = sorted({d for d, _ in rows_src})
+    if len(dates) == 1:
+        date_label = _fmt_date(dates[0].isoformat(), "kanji", with_year=True)
+    else:
+        date_label = (
+            f'{_fmt_date(dates[0].isoformat(), "kanji", with_year=True)}'
+            f'〜{_fmt_date(dates[-1].isoformat(), "kanji")}'
+        )
+
+    rows = [_match_row(m, link_fn, True) for _, m in rows_src]
+
+    nl = "\n"
+    html = [
+        '      <section class="lp-section rr-section" id="recent-results">',
+        _STYLE,
+        f'        <h2 class="section-title-lp"><i class="fas fa-bolt"></i> '
+        f"{_html_escape(heading)}</h2>",
+        f'        <p class="rr-meta">{date_label}　{len(rows)}試合</p>',
+        '        <ul class="rr-list">',
+        nl.join("          " + r for r in rows),
+        "        </ul>",
+    ]
+    if note:
+        html.append(f'        <p class="rr-src">{_html_escape(note)}</p>')
+
+    src = data.get("source", "")
+    src_name = data.get("sourceName", "")
+    last_updated = data.get("lastUpdated", "")
+    src_bits = []
+    if last_updated:
+        src_bits.append(f"最終更新 {_html_escape(last_updated)}")
+    if src:
+        if not src_name:
+            src_name = str(src).split("//")[-1].split("/")[0]
+            if src_name.startswith("www."):
+                src_name = src_name[4:]
+        src_bits.append(
+            f'出典 <a href="{_html_escape(src)}" target="_blank" '
+            f'rel="nofollow noopener">{_html_escape(src_name)}</a>'
+        )
+    if src_bits:
+        html.append('        <p class="rr-src">' + "　".join(src_bits) + "</p>")
+
+    html.append("      </section>")
+    return nl.join(html) + nl
+
+
 # 単体テスト用: python recent_results.py prince-hokkaido
 if __name__ == "__main__":
     import sys
     s = sys.argv[1] if len(sys.argv) > 1 else "premier-east"
-    out = render_recent_results_html(s, label="")
+    # 県1部（pref-*）は節を持たないので日付ベース版を呼ぶ
+    if s.startswith("pref-"):
+        out = render_recent_results_by_date_html(s)
+    else:
+        out = render_recent_results_html(s, label="")
     print(out if out else f"(データなし: {s}.json)")

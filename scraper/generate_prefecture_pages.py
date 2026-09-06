@@ -26,7 +26,8 @@ import contextlib as _contextlib
 import unicodedata as _ud
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
-from cross_table import render_cross_table_html
+from cross_table import render_cross_table_html, display_pref_team_name
+from recent_results import render_recent_results_by_date_html
 from scorer_table import render_scorer_ranking_html
 from prefecture_intro import render_prefecture_intro_html, render_ranking_method_html
 import generate_jyouth_page as _bracket  # トーナメント表(SVG)描画を再利用
@@ -109,7 +110,24 @@ def render_team_name_with_link(team_name: str) -> str:
             f'{formatted}</a>'
         )
     return formatted
-    
+
+
+def render_pref_recent_results(pref_id, pref_name):
+    """県ページ用「直近の試合結果」（2026-09-06新設）。
+    データ＝戦績表と同じ data/league_matches/pref-{id}-1.json。
+    県1部は節番号(md)を持たないので、日付ベース版（最新開催日±2日）を使う。
+    チーム名は戦績表と同じ表記そろえ（A/B→無印/2nd）をしてから
+    チーム詳細ページへのリンクを付ける。データが無い県は空文字＝影響なし。"""
+    def _link(raw):
+        return render_team_name_with_link(display_pref_team_name(raw))
+
+    return render_recent_results_by_date_html(
+        f"pref-{pref_id}-1",
+        heading=f"{pref_name}1部 直近の試合結果",
+        link_fn=_link,
+    )
+
+
 # ============================================================
 # 全都道府県共通の特集記事（インハイ総括など、全国共通の話題）
 # 各県ページの「観戦コラム」セクションの先頭に表示される
@@ -1592,6 +1610,7 @@ __TEAM_ROWS__
         </table>
       </div>
 __RANKING_METHOD__
+__PREF_RECENT_RESULTS__
 __PREF_CROSS_TABLE__
 __PREF_SCORER_RANKING__
 __LOWER_DIVISIONS__
@@ -2115,6 +2134,7 @@ def generate_page(pref, all_prefs):
         .replace("__AI_SUMMARY__", build_ai_summary(pref_name, teams))
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__RANKING_METHOD__", render_ranking_method_html(pref_name))
+        .replace("__PREF_RECENT_RESULTS__", render_pref_recent_results(pref_id, pref_name))
         .replace("__PREF_CROSS_TABLE__", render_cross_table_html(f"pref-{pref_id}-1"))
         .replace("__PREF_SCORER_RANKING__", render_scorer_ranking_html(f"pref-{pref_id}-1"))
         .replace("__LOWER_DIVISIONS__", lower_divisions_html)

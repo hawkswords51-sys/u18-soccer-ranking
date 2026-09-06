@@ -38,6 +38,37 @@ def _html_escape(s: str) -> str:
     return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
 
+# ============================================================
+# 県1部のチーム名表記そろえ（2026-09-06にモジュール共有へ切り出し）
+# 出典（junior-soccer.jp 等）は1軍を「◯◯A」、2軍を「◯◯B」と書くが、
+# サイトの順位表は「◯◯」「◯◯2nd」なので表示側でそろえる。
+# 戦績表と「直近の試合結果」で同じ表記になるよう、両方からこれを使う。
+# ※ データ側（自動更新）が元表記に戻っても表示側で吸収する。
+# ============================================================
+PREF_NAME_OVERRIDE = {"FC東京2nd": "FC東京U-18 2nd"}
+
+
+def align_pref_team_name(s):
+    s = str(s)
+    for suf in ("・A", "・Ａ"):
+        if s.endswith(suf):
+            return s[: -len(suf)]
+    for suf in ("・B", "・Ｂ"):
+        if s.endswith(suf):
+            return s[: -len(suf)] + "2nd"
+    if s.endswith("A") or s.endswith("Ａ"):
+        return s[:-1]
+    if s.endswith("B") or s.endswith("Ｂ"):
+        return s[:-1] + "2nd"
+    return s
+
+
+def display_pref_team_name(s):
+    """出典表記 -> サイト表示名（A/B変換＋個別override）"""
+    n = align_pref_team_name(s)
+    return PREF_NAME_OVERRIDE.get(n, n)
+
+
 def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り表）",
                             form_heading: str = "各チームの戦績") -> str:
     """リーグ slug の戦績表セクションHTMLを返す。データが無ければ ''（空）。
@@ -63,26 +94,15 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
     # 大阪2部（pref-osaka-2a 等）はB/Cチームが主役のリーグなので出典表記のまま出す。
     is_pref1 = is_pref and slug.endswith("-1")
 
-    def _align_name(s):
-        s = str(s)
-        for suf in ("・A", "・Ａ"):
-            if s.endswith(suf):
-                return s[: -len(suf)]
-        for suf in ("・B", "・Ｂ"):
-            if s.endswith(suf):
-                return s[: -len(suf)] + "2nd"
-        if s.endswith("A") or s.endswith("Ａ"):
-            return s[:-1]
-        if s.endswith("B") or s.endswith("Ｂ"):
-            return s[:-1] + "2nd"
-        return s
+    # 表記そろえはモジュール共有の関数を使う（「直近の試合結果」と同じ表記にするため）
+    _align_name = align_pref_team_name
 
     names = [t["name"] for t in teams]
     short = {t["name"]: t.get("short", t["name"]) for t in teams}
     disp = {t["name"]: t["name"] for t in teams}   # 各チーム戦績の表示用フルネーム
     # B→2nd 変換後の表示名を、正式表記へ上書き（必要に応じて追記）。
     # データ側(自動更新)が戻っても表示側で吸収するので安全。
-    _NAME_OVERRIDE = {"FC東京2nd": "FC東京U-18 2nd"}
+    _NAME_OVERRIDE = PREF_NAME_OVERRIDE
     if is_pref1:
         short = {n: _NAME_OVERRIDE.get(_align_name(v), _align_name(v)) for n, v in short.items()}
         disp = {n: _NAME_OVERRIDE.get(_align_name(v), _align_name(v)) for n, v in disp.items()}
