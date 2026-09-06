@@ -1,9 +1,9 @@
 {
   "league": "高円宮杯 JFA U-18 サッカーリーグ 2026 福岡県1部",
   "season": "2026",
-  "source": "https://junior-soccer.jp/kyushu/fukuoka/league/table/163495",
-  "sourceName": "福岡少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-08-30",
+  "source": "https://fukuoka-fa-u18.com/order/1/2026/all",
+  "sourceName": "福岡県サッカー協会 公式",
+  "lastUpdated": "2026-09-06",
   "teams": [
     {
       "name": "ギラヴァンツ北九州A",
@@ -18,12 +18,12 @@
       "short": "アビスパ福岡B"
     },
     {
-      "name": "筑陽学園",
-      "short": "筑陽学園"
-    },
-    {
       "name": "東福岡B",
       "short": "東福岡B"
+    },
+    {
+      "name": "筑陽学園",
+      "short": "筑陽学園"
     },
     {
       "name": "飯塚B",
@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "筑陽学園",
       "points": 17,
-      "played": 10,
+      "played": 11,
       "won": 5,
       "drawn": 2,
-      "lost": 3,
-      "gf": 14,
-      "ga": 14,
-      "gd": 0
+      "lost": 4,
+      "gf": 15,
+      "ga": 16,
+      "gd": -1
     },
     {
       "rank": 6,
@@ -133,6 +133,18 @@
     },
     {
       "rank": 8,
+      "team": "博多",
+      "points": 6,
+      "played": 11,
+      "won": 2,
+      "drawn": 0,
+      "lost": 9,
+      "gf": 16,
+      "ga": 50,
+      "gd": -34
+    },
+    {
+      "rank": 9,
       "team": "希望が丘",
       "points": 5,
       "played": 10,
@@ -142,18 +154,6 @@
       "gf": 8,
       "ga": 25,
       "gd": -17
-    },
-    {
-      "rank": 9,
-      "team": "博多",
-      "points": 3,
-      "played": 10,
-      "won": 1,
-      "drawn": 0,
-      "lost": 9,
-      "gf": 14,
-      "ga": 49,
-      "gd": -35
     },
     {
       "rank": 10,
@@ -171,12 +171,39 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "アビスパ福岡B",
+      "date": "",
+      "home": "ギラヴァンツ北九州A",
+      "hs": null,
+      "as": null,
+      "away": "福大若葉",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "ギラヴァンツ北九州A",
       "hs": 4,
-      "as": 1,
-      "away": "東海大福岡B",
+      "as": 0,
+      "away": "アビスパ福岡B",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "ギラヴァンツ北九州A",
+      "hs": null,
+      "as": null,
+      "away": "東福岡B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "ギラヴァンツ北九州A",
+      "hs": null,
+      "as": null,
+      "away": "筑陽学園",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -189,6 +216,96 @@
     },
     {
       "md": 0,
+      "date": "2026-05-02",
+      "home": "ギラヴァンツ北九州A",
+      "hs": 4,
+      "as": 0,
+      "away": "東海大福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "ギラヴァンツ北九州A",
+      "hs": 9,
+      "as": 1,
+      "away": "博多",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "ギラヴァンツ北九州A",
+      "hs": null,
+      "as": null,
+      "away": "希望が丘",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "ギラヴァンツ北九州A",
+      "hs": null,
+      "as": null,
+      "away": "福大大濠",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-05",
+      "home": "福大若葉",
+      "hs": 2,
+      "as": 2,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福大若葉",
+      "hs": null,
+      "as": null,
+      "away": "アビスパ福岡B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "福大若葉",
+      "hs": 4,
+      "as": 3,
+      "away": "東福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "福大若葉",
+      "hs": 1,
+      "as": 0,
+      "away": "筑陽学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福大若葉",
+      "hs": null,
+      "as": null,
+      "away": "飯塚B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福大若葉",
+      "hs": null,
+      "as": null,
+      "away": "東海大福岡B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-05",
       "home": "福大若葉",
       "hs": 5,
@@ -198,9 +315,9 @@
     },
     {
       "md": 0,
-      "date": "2026-04-05",
-      "home": "東福岡B",
-      "hs": 1,
+      "date": "2026-04-18",
+      "home": "福大若葉",
+      "hs": 3,
       "as": 0,
       "away": "希望が丘",
       "status": "played"
@@ -216,237 +333,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-12",
-      "home": "ギラヴァンツ北九州A",
-      "hs": 9,
-      "as": 1,
-      "away": "博多",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "東福岡B",
-      "hs": 2,
-      "as": 2,
-      "away": "東海大福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
+      "date": "",
       "home": "アビスパ福岡B",
-      "hs": 1,
-      "as": 1,
-      "away": "飯塚B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "福大大濠",
-      "hs": 1,
-      "as": 3,
+      "hs": null,
+      "as": null,
       "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "博多",
-      "hs": 1,
-      "as": 7,
-      "away": "アビスパ福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "福大若葉",
-      "hs": 3,
-      "as": 0,
-      "away": "希望が丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "東海大福岡B",
-      "hs": 3,
-      "as": 4,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "飯塚B",
-      "hs": 2,
-      "as": 1,
-      "away": "東福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "東海大福岡B",
-      "hs": 1,
-      "as": 7,
-      "away": "福大若葉",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "博多",
-      "hs": 0,
-      "as": 3,
-      "away": "東福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "希望が丘",
-      "hs": 1,
-      "as": 6,
-      "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "飯塚B",
-      "hs": 0,
-      "as": 2,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "福大若葉",
-      "hs": 4,
-      "as": 3,
-      "away": "東福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "福大大濠",
-      "hs": 1,
-      "as": 1,
-      "away": "希望が丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "ギラヴァンツ北九州A",
-      "hs": 4,
-      "as": 0,
-      "away": "東海大福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "アビスパ福岡B",
-      "hs": 0,
-      "as": 0,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "飯塚B",
-      "hs": 6,
-      "as": 2,
-      "away": "博多",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "博多",
-      "hs": 3,
-      "as": 4,
-      "away": "東海大福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "東福岡B",
-      "hs": 1,
-      "as": 0,
-      "away": "福大大濠",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "福大若葉",
-      "hs": 1,
-      "as": 0,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "飯塚B",
-      "hs": 4,
-      "as": 2,
-      "away": "希望が丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "ギラヴァンツ北九州A",
-      "hs": 4,
-      "as": 0,
-      "away": "アビスパ福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "東海大福岡B",
-      "hs": 3,
-      "as": 1,
-      "away": "希望が丘",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "博多",
-      "hs": 1,
-      "as": 2,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "東福岡B",
-      "hs": 0,
-      "as": 3,
-      "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "福大大濠",
-      "hs": 0,
-      "as": 2,
-      "away": "飯塚B",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -454,168 +346,6 @@
       "home": "アビスパ福岡B",
       "hs": 0,
       "as": 0,
-      "away": "福大若葉",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-06",
-      "home": "筑陽学園",
-      "hs": 0,
-      "as": 4,
-      "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-07",
-      "home": "東海大福岡B",
-      "hs": 3,
-      "as": 0,
-      "away": "福大大濠",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "東海大福岡B",
-      "hs": 4,
-      "as": 1,
-      "away": "飯塚B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "希望が丘",
-      "hs": 0,
-      "as": 4,
-      "away": "アビスパ福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-14",
-      "home": "福大大濠",
-      "hs": 2,
-      "as": 3,
-      "away": "博多",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "希望が丘",
-      "hs": 1,
-      "as": 3,
-      "away": "東福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "福大大濠",
-      "hs": 1,
-      "as": 3,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "飯塚B",
-      "hs": 0,
-      "as": 3,
-      "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "博多",
-      "hs": 0,
-      "as": 6,
-      "away": "福大若葉",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "博多",
-      "hs": 2,
-      "as": 5,
-      "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "福大大濠",
-      "hs": 0,
-      "as": 8,
-      "away": "福大若葉",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "東海大福岡B",
-      "hs": 0,
-      "as": 4,
-      "away": "東福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "希望が丘",
-      "hs": 0,
-      "as": 0,
-      "away": "筑陽学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "飯塚B",
-      "hs": 1,
-      "as": 4,
-      "away": "アビスパ福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-04",
-      "home": "福大大濠",
-      "hs": 1,
-      "as": 4,
-      "away": "アビスパ福岡B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-05",
-      "home": "福大若葉",
-      "hs": 2,
-      "as": 2,
-      "away": "ギラヴァンツ北九州A",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-11",
-      "home": "筑陽学園",
-      "hs": 3,
-      "as": 2,
-      "away": "福大大濠",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-11",
-      "home": "飯塚B",
-      "hs": 3,
-      "as": 2,
       "away": "福大若葉",
       "status": "played"
     },
@@ -630,17 +360,71 @@
     },
     {
       "md": 0,
-      "date": "2026-08-29",
-      "home": "希望が丘",
-      "hs": 2,
-      "as": 0,
+      "date": "",
+      "home": "アビスパ福岡B",
+      "hs": null,
+      "as": null,
       "away": "筑陽学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "アビスパ福岡B",
+      "hs": 1,
+      "as": 1,
+      "away": "飯塚B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "アビスパ福岡B",
+      "hs": 4,
+      "as": 1,
+      "away": "東海大福岡B",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "ギラヴァンツ北九州A",
+      "home": "アビスパ福岡B",
+      "hs": null,
+      "as": null,
+      "away": "博多",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "アビスパ福岡B",
+      "hs": null,
+      "as": null,
+      "away": "希望が丘",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "アビスパ福岡B",
+      "hs": null,
+      "as": null,
+      "away": "福大大濠",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "東福岡B",
+      "hs": 0,
+      "as": 3,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東福岡B",
       "hs": null,
       "as": null,
       "away": "福大若葉",
@@ -649,7 +433,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "ギラヴァンツ北九州A",
+      "home": "東福岡B",
       "hs": null,
       "as": null,
       "away": "アビスパ福岡B",
@@ -658,7 +442,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "ギラヴァンツ北九州A",
+      "home": "東福岡B",
       "hs": null,
       "as": null,
       "away": "筑陽学園",
@@ -667,7 +451,79 @@
     {
       "md": 0,
       "date": "",
-      "home": "ギラヴァンツ北九州A",
+      "home": "東福岡B",
+      "hs": null,
+      "as": null,
+      "away": "飯塚B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "東福岡B",
+      "hs": 2,
+      "as": 2,
+      "away": "東海大福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東福岡B",
+      "hs": null,
+      "as": null,
+      "away": "博多",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "東福岡B",
+      "hs": 1,
+      "as": 0,
+      "away": "希望が丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "東福岡B",
+      "hs": 1,
+      "as": 0,
+      "away": "福大大濠",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-06",
+      "home": "筑陽学園",
+      "hs": 0,
+      "as": 4,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "筑陽学園",
+      "hs": null,
+      "as": null,
+      "away": "福大若葉",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "筑陽学園",
+      "hs": 0,
+      "as": 0,
+      "away": "アビスパ福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "筑陽学園",
       "hs": null,
       "as": null,
       "away": "東福岡B",
@@ -676,7 +532,16 @@
     {
       "md": 0,
       "date": "",
-      "home": "ギラヴァンツ北九州A",
+      "home": "筑陽学園",
+      "hs": null,
+      "as": null,
+      "away": "飯塚B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "筑陽学園",
       "hs": null,
       "as": null,
       "away": "東海大福岡B",
@@ -684,17 +549,107 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "ギラヴァンツ北九州A",
-      "hs": null,
-      "as": null,
+      "date": "2026-09-05",
+      "home": "筑陽学園",
+      "hs": 1,
+      "as": 2,
+      "away": "博多",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-08-29",
+      "home": "筑陽学園",
+      "hs": 0,
+      "as": 2,
       "away": "希望が丘",
-      "status": "scheduled"
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-11",
+      "home": "筑陽学園",
+      "hs": 3,
+      "as": 2,
+      "away": "福大大濠",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "飯塚B",
+      "hs": 0,
+      "as": 3,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-11",
+      "home": "飯塚B",
+      "hs": 3,
+      "as": 2,
+      "away": "福大若葉",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "飯塚B",
+      "hs": 1,
+      "as": 4,
+      "away": "アビスパ福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "飯塚B",
+      "hs": 2,
+      "as": 1,
+      "away": "東福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "飯塚B",
+      "hs": 0,
+      "as": 2,
+      "away": "筑陽学園",
+      "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "ギラヴァンツ北九州A",
+      "home": "飯塚B",
+      "hs": null,
+      "as": null,
+      "away": "東海大福岡B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "飯塚B",
+      "hs": 6,
+      "as": 2,
+      "away": "博多",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "飯塚B",
+      "hs": 4,
+      "as": 2,
+      "away": "希望が丘",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "飯塚B",
       "hs": null,
       "as": null,
       "away": "福大大濠",
@@ -703,7 +658,25 @@
     {
       "md": 0,
       "date": "",
-      "home": "福大若葉",
+      "home": "東海大福岡B",
+      "hs": null,
+      "as": null,
+      "away": "ギラヴァンツ北九州A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "東海大福岡B",
+      "hs": 1,
+      "as": 7,
+      "away": "福大若葉",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東海大福岡B",
       "hs": null,
       "as": null,
       "away": "アビスパ福岡B",
@@ -711,89 +684,125 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "福大若葉",
-      "hs": null,
-      "as": null,
+      "date": "2026-06-27",
+      "home": "東海大福岡B",
+      "hs": 0,
+      "as": 4,
+      "away": "東福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "東海大福岡B",
+      "hs": 3,
+      "as": 4,
       "away": "筑陽学園",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "福大若葉",
-      "hs": null,
-      "as": null,
-      "away": "東福岡B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "福大若葉",
-      "hs": null,
-      "as": null,
+      "date": "2026-06-14",
+      "home": "東海大福岡B",
+      "hs": 4,
+      "as": 1,
       "away": "飯塚B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "福大若葉",
+      "home": "東海大福岡B",
       "hs": null,
       "as": null,
-      "away": "東海大福岡B",
+      "away": "博多",
       "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "福大若葉",
-      "hs": null,
-      "as": null,
+      "date": "2026-05-09",
+      "home": "東海大福岡B",
+      "hs": 3,
+      "as": 1,
       "away": "希望が丘",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "アビスパ福岡B",
-      "hs": null,
-      "as": null,
+      "date": "2026-06-07",
+      "home": "東海大福岡B",
+      "hs": 3,
+      "as": 0,
+      "away": "福大大濠",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "博多",
+      "hs": 2,
+      "as": 5,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "博多",
+      "hs": 0,
+      "as": 6,
+      "away": "福大若葉",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "博多",
+      "hs": 1,
+      "as": 7,
+      "away": "アビスパ福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "博多",
+      "hs": 0,
+      "as": 3,
+      "away": "東福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "博多",
+      "hs": 1,
+      "as": 2,
       "away": "筑陽学園",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "アビスパ福岡B",
+      "home": "博多",
       "hs": null,
       "as": null,
-      "away": "東福岡B",
+      "away": "飯塚B",
       "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "アビスパ福岡B",
-      "hs": null,
-      "as": null,
+      "date": "2026-05-05",
+      "home": "博多",
+      "hs": 3,
+      "as": 4,
       "away": "東海大福岡B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "アビスパ福岡B",
-      "hs": null,
-      "as": null,
-      "away": "博多",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "アビスパ福岡B",
+      "home": "博多",
       "hs": null,
       "as": null,
       "away": "希望が丘",
@@ -802,7 +811,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "アビスパ福岡B",
+      "home": "博多",
       "hs": null,
       "as": null,
       "away": "福大大濠",
@@ -810,26 +819,53 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "筑陽学園",
-      "hs": null,
-      "as": null,
-      "away": "東福岡B",
-      "status": "scheduled"
+      "date": "2026-04-26",
+      "home": "希望が丘",
+      "hs": 1,
+      "as": 6,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "筑陽学園",
+      "home": "希望が丘",
       "hs": null,
       "as": null,
-      "away": "東福岡B",
+      "away": "福大若葉",
       "status": "scheduled"
     },
     {
       "md": 0,
+      "date": "2026-06-14",
+      "home": "希望が丘",
+      "hs": 0,
+      "as": 4,
+      "away": "アビスパ福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "希望が丘",
+      "hs": 1,
+      "as": 3,
+      "away": "東福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "希望が丘",
+      "hs": 0,
+      "as": 0,
+      "away": "筑陽学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
-      "home": "筑陽学園",
+      "home": "希望が丘",
       "hs": null,
       "as": null,
       "away": "飯塚B",
@@ -838,7 +874,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "筑陽学園",
+      "home": "希望が丘",
       "hs": null,
       "as": null,
       "away": "東海大福岡B",
@@ -847,127 +883,10 @@
     {
       "md": 0,
       "date": "",
-      "home": "筑陽学園",
+      "home": "希望が丘",
       "hs": null,
       "as": null,
       "away": "博多",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東福岡B",
-      "hs": null,
-      "as": null,
-      "away": "飯塚B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東福岡B",
-      "hs": null,
-      "as": null,
-      "away": "博多",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東福岡B",
-      "hs": null,
-      "as": null,
-      "away": "福大大濠",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "飯塚B",
-      "hs": null,
-      "as": null,
-      "away": "東海大福岡B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "飯塚B",
-      "hs": null,
-      "as": null,
-      "away": "博多",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "飯塚B",
-      "hs": null,
-      "as": null,
-      "away": "希望が丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "飯塚B",
-      "hs": null,
-      "as": null,
-      "away": "福大大濠",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海大福岡B",
-      "hs": null,
-      "as": null,
-      "away": "博多",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海大福岡B",
-      "hs": null,
-      "as": null,
-      "away": "希望が丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海大福岡B",
-      "hs": null,
-      "as": null,
-      "away": "福大大濠",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "博多",
-      "hs": null,
-      "as": null,
-      "away": "希望が丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "博多",
-      "hs": null,
-      "as": null,
-      "away": "希望が丘",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "博多",
-      "hs": null,
-      "as": null,
-      "away": "福大大濠",
       "status": "scheduled"
     },
     {
@@ -978,6 +897,87 @@
       "as": null,
       "away": "福大大濠",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "福大大濠",
+      "hs": 1,
+      "as": 3,
+      "away": "ギラヴァンツ北九州A",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "福大大濠",
+      "hs": 0,
+      "as": 8,
+      "away": "福大若葉",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-07-04",
+      "home": "福大大濠",
+      "hs": 1,
+      "as": 4,
+      "away": "アビスパ福岡B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福大大濠",
+      "hs": null,
+      "as": null,
+      "away": "東福岡B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-21",
+      "home": "福大大濠",
+      "hs": 1,
+      "as": 3,
+      "away": "筑陽学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "福大大濠",
+      "hs": 0,
+      "as": 2,
+      "away": "飯塚B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "福大大濠",
+      "hs": null,
+      "as": null,
+      "away": "東海大福岡B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-14",
+      "home": "福大大濠",
+      "hs": 2,
+      "as": 3,
+      "away": "博多",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "福大大濠",
+      "hs": 1,
+      "as": 1,
+      "away": "希望が丘",
+      "status": "played"
     }
   ]
 }

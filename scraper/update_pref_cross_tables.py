@@ -324,7 +324,20 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
             f = key.get((m["home"], m["away"]))
         else:
             f = key.get(frozenset((m["home"], m["away"])))
-        if f is None:
+        # [2026-09-06修正] 県リーグは出典の「左右」が実際のホーム/アウェイとは限らず、
+        # 同じ並びで2回対戦が記録されることがある（香川・佐賀は前期後期ともホームが同じ）。
+        # 以前はここで上書きしていたため2試合目が1試合目を消していた
+        # （香川で5件・佐賀で4件が消滅）。
+        # 枠が埋まっていたら**反対回りの空き枠**に入れる。こうすると枠の総数＝総当たり数
+        # （チーム数×(チーム数-1)）が保たれ、戦績表の「全◯◯試合」がずれない。
+        if double and f is not None and f.get("status") == "played":
+            f2 = key.get((m["away"], m["home"]))
+            if f2 is not None and f2.get("status") != "played":
+                f = f2
+        if f is None or f.get("status") == "played":
+            # 反対回りも埋まっている場合だけ新しい行として足す。
+            # ※出典が同じ試合を誤って2重登録している場合は、この後の検算
+            #   （試合から再計算した順位＝公式順位表）が合わなくなるので据え置きになる。
             md_max += 1
             fixtures.append(dict(md=md_max, date=m["date"], home=m["home"],
                                  hs=m["hs"], **{"as": m["as"]},
@@ -345,7 +358,23 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
     return team_objs, fixtures, {"official": official, "played": len(js_matches)}
 
 
+# ----------------------------------------------------------------------------
+# 公式データ源へ移行済みの県（2026-09-06）
+# この9県は scraper/fetch_pref_official.py が県協会公式（GoalNote / tecra）から
+# 更新する。ここで junior-soccer から上書きすると、せっかく直したデータが
+# 誤った内容に戻る（愛知のスコア誤り・岩手の重複二重計上など）。
+# 増やすときは fetch_pref_official.py の PREF_OFFICIAL と両方に足すこと。
+# ----------------------------------------------------------------------------
+MIGRATED_TO_OFFICIAL = {
+    "pref-chiba-1", "pref-aichi-1", "pref-iwate-1", "pref-nagasaki-1",
+    "pref-tottori-1", "pref-kagawa-1", "pref-shiga-1", "pref-fukuoka-1",
+    "pref-saga-1",
+}
+
+
 def process(slug: str, region: str, lid: str) -> str:
+    if slug in MIGRATED_TO_OFFICIAL:
+        return f"[skip] {slug}: 公式ソースへ移行済み"
     path = DIR / f"{slug}.json"
     if not path.exists():
         return f"[skip] {slug}: JSONなし"
