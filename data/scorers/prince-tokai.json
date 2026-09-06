@@ -2,29 +2,29 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東海 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448176-448176-fl",
-  "lastUpdated": "2026-08-31",
+  "lastUpdated": "2026-09-07",
   "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
+      "name": "坂本健悟",
+      "team": "静学",
+      "goals": 9
+    },
+    {
+      "rank": 2,
       "name": "遠藤壮大",
       "team": "富士",
       "goals": 7
     },
     {
-      "rank": 1,
+      "rank": 2,
       "name": "増田瑛斗",
       "team": "藤枝東",
       "goals": 7
     },
     {
-      "rank": 1,
-      "name": "坂本健悟",
-      "team": "静学",
-      "goals": 7
-    },
-    {
-      "rank": 1,
+      "rank": 2,
       "name": "松永悠輝",
       "team": "静学",
       "goals": 7
@@ -36,95 +36,102 @@
       "goals": 6
     },
     {
-      "rank": 6,
+      "rank": 5,
+      "name": "西尾周賢",
+      "team": "翔洋",
+      "goals": 6
+    },
+    {
+      "rank": 7,
       "name": "杉山琥二郎",
       "team": "清水",
       "goals": 5
     },
     {
-      "rank": 7,
+      "rank": 8,
       "name": "川崎成道",
       "team": "三重",
       "goals": 4
     },
     {
-      "rank": 7,
-      "name": "西尾周賢",
-      "team": "翔洋",
-      "goals": 4
-    },
-    {
-      "rank": 7,
+      "rank": 8,
       "name": "中村拓海",
       "team": "翔洋",
       "goals": 4
     },
     {
-      "rank": 7,
+      "rank": 8,
       "name": "宗像玲瑠",
       "team": "開誠館",
       "goals": 4
     },
     {
-      "rank": 11,
+      "rank": 8,
+      "name": "沢井翼",
+      "team": "静学",
+      "goals": 4
+    },
+    {
+      "rank": 12,
       "name": "郭原優輝",
       "team": "三重",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "宇都宮大志",
       "team": "富士",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "大澤俊哉",
       "team": "名電",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "杉本悠悟",
       "team": "名電",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "今村心優",
       "team": "開誠館",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "佐藤利仁",
       "team": "清水",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "山崎瑛晴",
       "team": "清水",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "福地諒大",
       "team": "藤枝東",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "安永龍生",
-      "team": "静学",
-      "goals": 3
-    },
-    {
-      "rank": 11,
-      "name": "沢井翼",
       "team": "静学",
       "goals": 3
     }
   ],
-  "coverage": []
+  "coverage": [
+    {
+      "team": "清水",
+      "attributed": 23,
+      "gf": 25,
+      "missing": 2
+    }
+  ]
 }

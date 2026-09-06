@@ -2,20 +2,20 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 東北 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448171-448171-fl",
-  "lastUpdated": "2026-08-31",
+  "lastUpdated": "2026-09-07",
   "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
       "name": "京増倫泰",
       "team": "尚志",
-      "goals": 9
+      "goals": 11
     },
     {
       "rank": 2,
       "name": "平野拓",
       "team": "東北学院",
-      "goals": 7
+      "goals": 8
     },
     {
       "rank": 3,
@@ -97,8 +97,26 @@
     },
     {
       "rank": 12,
+      "name": "栗原優介",
+      "team": "尚志",
+      "goals": 3
+    },
+    {
+      "rank": 12,
+      "name": "齋藤真希人",
+      "team": "尚志",
+      "goals": 3
+    },
+    {
+      "rank": 12,
       "name": "奥村玲央",
       "team": "尚志",
+      "goals": 3
+    },
+    {
+      "rank": 12,
+      "name": "庄司蔵人",
+      "team": "山形ユース",
       "goals": 3
     },
     {
@@ -106,25 +124,20 @@
       "name": "谷川翔哉",
       "team": "帝京安積",
       "goals": 3
-    },
-    {
-      "rank": 12,
-      "name": "鈴木珀",
-      "team": "帝京安積",
-      "goals": 3
-    },
-    {
-      "rank": 12,
-      "name": "黒沼蓮",
-      "team": "BB秋田",
-      "goals": 3
-    },
-    {
-      "rank": 12,
-      "name": "吉崎爽心",
-      "team": "青森山田2nd",
-      "goals": 3
     }
   ],
-  "coverage": []
+  "coverage": [
+    {
+      "team": "聖和",
+      "attributed": 17,
+      "gf": 19,
+      "missing": 2
+    },
+    {
+      "team": "BB秋田",
+      "attributed": 10,
+      "gf": 11,
+      "missing": 1
+    }
+  ]
 }
