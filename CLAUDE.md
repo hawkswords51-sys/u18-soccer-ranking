@@ -6,10 +6,29 @@
 - 運営ルールの正本は別フォルダの「運営マスター手順書.md」
   (~/Documents/Claude/Projects/u18-soccer.com運営/運営マスター手順書.md)。判断に迷ったら読む。
 
-## Claude Codeに任せている範囲（2026-08時点）
-**チームページ（data/team-profiles/*.md）の公開作業のみ。**
-速報更新・スクリプト改修・ブログ記事はCowork側で行う。
-範囲外の作業を頼まれたら、実行前に「これはCowork側の範囲ですが進めますか」と確認する。
+## Claude Codeに任せている範囲（2026-09-06 拡大）
+**リポジトリの中で完結する作業は全部やってよい。** 以前は「チームページの公開だけ」だったが、
+2026-09-06に範囲を広げた（きっかけ＝県ページ「直近の試合結果」の実装をこの方式でやって
+うまくいったため）。
+
+| 工程 | 担当 |
+|---|---|
+| チームページの公開（検証→Commit→Push→反映確認） | **Claude Code** |
+| スクリプト改修・新機能の実装（`scraper/**`・CSS・JS） | **Claude Code**（Coworkが書いた実装指示書に沿って） |
+| データJSONの反映・Commit・Push | **Claude Code** |
+| **git 操作すべて**（status・add・commit・push・rebase・lockの掃除） | **Claude Code** |
+| 調査・fact check・記事執筆・チームページ本文 | Cowork |
+| 出典サイトからのデータ取得と検算（内蔵ブラウザを使う） | Cowork |
+| 実装指示書の作成 | Cowork |
+| X・note・docx/xlsx | Cowork |
+
+**実装指示書方式**：Coworkが `~/Documents/Claude/Projects/u18-soccer.com運営/` に
+`〇〇_実装指示書_YYYY-MM-DD.md` を置き、Keiがそのパスを貼る。指示書には**実測済みの期待値**が
+入っているので、そのとおりになるかを突き合わせながら実装する。指示書と実物が食い違ったら、
+勝手に直さずKeiに報告する。
+
+判断に迷う作業（サイトの方針が絡む、指示書に無い、他の機能を壊しうる）だけ、
+実行前に「これは進めてよいですか」と確認する。
 
 ## 公開の仕組み
 - data/team-profiles/** を編集して main に push すると、GitHub Actions が自動で
@@ -24,6 +43,9 @@
    （過去に検証用の一時ファイルがコミットに混入した事故あり）。
 3. **git push --force は絶対に使わない。**
 4. **ファイル削除は必ず事前にKeiに確認する。**
+   例外：`.git/index.lock` が0バイトで残っている場合は消してよい（Coworkのサンドボックスが
+   作る残骸。サンドボックス側は権限が無くて消せない。GitHub Desktopの「Commit failed:
+   A lock file already exists」はこれが原因）。Gitのプロセスが動いていないことだけ確認する。
 5. push前に git status を見せ、「これをコミットします」とKeiの承認を取ってから実行する。
 
 ## チームページの公開前チェック（毎回）
