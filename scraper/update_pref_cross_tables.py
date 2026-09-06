@@ -386,7 +386,7 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
 
 # ----------------------------------------------------------------------------
 # 公式データ源へ移行済みの県（2026-09-06）
-# この9県は scraper/fetch_pref_official.py が県協会公式（GoalNote / tecra）から
+# この県は scraper/fetch_pref_official.py が県協会公式（GoalNote / tecra ほか）から
 # 更新する。ここで junior-soccer から上書きすると、せっかく直したデータが
 # 誤った内容に戻る（愛知のスコア誤り・岩手の重複二重計上など）。
 # 増やすときは fetch_pref_official.py の PREF_OFFICIAL と両方に足すこと。

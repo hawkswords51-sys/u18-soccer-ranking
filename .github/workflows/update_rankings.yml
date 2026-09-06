@@ -148,13 +148,15 @@ jobs:
             echo "scraper/update_cross_tables.py がまだありません。スキップ。"
           fi
 
-      # ★ 県1部9県は県協会公式（GoalNote / tecra）から更新（2026-09-06〜）
+      # ★ 県1部の一部は県協会公式（GoalNote / tecra ほか）から更新（2026-09-06〜）
+      #   対象県は増えていく。実数は scraper/fetch_pref_official.py の PREF_OFFICIAL を数えること
+      #   （2026-09-07時点で14県。残り32県は junior-soccer・北海道はJSONなし）。
       #   junior-soccer.jp は Actions から403で弾かれるようになり、7/15以降ずっと
-      #   自動更新が止まっていた。9県は県協会の公式システムにデータがあるので
+      #   自動更新が止まっていた。一部の県は県協会の公式システムにデータがあるので
       #   そちらへ移行した。出典の格が上がるうえ、junior-soccer側にあった
       #   スコア誤り（千葉2件・愛知1件）や重複二重計上（岩手）も解消される。
-      #   この9県は下の junior-soccer のステップでは [skip] される。
-      - name: 戦績表データを更新（県1部9県・県協会公式出典）
+      #   これらの県は下の junior-soccer のステップでは [skip] される。
+      - name: 戦績表データを更新（県1部・県協会公式出典）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         continue-on-error: true
         run: |
