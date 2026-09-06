@@ -117,6 +117,18 @@
     },
     {
       "rank": 6,
+      "team": "帝京長岡",
+      "pts": 21,
+      "played": 12,
+      "won": 7,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 31,
+      "ga": 21,
+      "gd": 10
+    },
+    {
+      "rank": 7,
       "team": "前橋育英",
       "pts": 19,
       "played": 12,
@@ -126,18 +138,6 @@
       "gf": 18,
       "ga": 15,
       "gd": 3
-    },
-    {
-      "rank": 7,
-      "team": "帝京長岡",
-      "pts": 18,
-      "played": 11,
-      "won": 6,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 29,
-      "ga": 21,
-      "gd": 8
     },
     {
       "rank": 8,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "横浜FCユース",
       "pts": 5,
-      "played": 11,
+      "played": 12,
       "won": 1,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 10,
-      "ga": 22,
-      "gd": -12
+      "ga": 24,
+      "gd": -14
     }
   ],
   "matches": [
@@ -2277,12 +2277,23 @@
       "md": 12,
       "date": "2026-09-06",
       "home": "帝京長岡",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "横浜FCユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "65",
+          "name": "和食 陽向"
+        },
+        {
+          "minute": "90+2",
+          "name": "堀田 宙吾"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 12,
