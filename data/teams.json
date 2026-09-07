@@ -1427,18 +1427,18 @@
         ]
       },
       {
-        "name": "郡山高校",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
         "prefectureRank": 11,
-        "points": 14,
+        "points": 3,
         "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
-        "leagueRank": 8,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1464,18 +1464,18 @@
       },
       {
         "id": "f007",
-        "name": "郡山商業高校",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "points": 3,
+        "points": 14,
         "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
         "prefectureRank": 13,
-        "leagueRank": 10,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1804,19 +1804,21 @@
         "leagueRank": 8
       },
       {
-        "id": "to009",
-        "name": "國學院栃木高校",
+        "name": "矢板中央高校2nd",
         "league": "栃木U-18ユースリーグ",
-        "rank": 3,
         "points": 25,
         "played": 10,
         "won": 8,
         "drawn": 1,
         "lost": 1,
-        "goalsFor": 28,
-        "goalsAgainst": 6,
+        "goalsFor": 36,
+        "goalsAgainst": 13,
+        "leagueRank": 2,
+        "rank": 3,
         "prefectureRank": 3,
-        "leagueRank": 3
+        "aliases": [
+          "矢板中央B"
+        ]
       },
       {
         "id": "to002",
@@ -1835,21 +1837,19 @@
         "leagueRank": 9
       },
       {
-        "name": "矢板中央高校2nd",
+        "id": "to009",
+        "name": "國學院栃木高校",
         "league": "栃木U-18ユースリーグ",
+        "rank": 5,
         "points": 25,
         "played": 10,
         "won": 8,
         "drawn": 1,
         "lost": 1,
-        "goalsFor": 36,
-        "goalsAgainst": 13,
-        "leagueRank": 2,
-        "rank": 5,
+        "goalsFor": 28,
+        "goalsAgainst": 6,
         "prefectureRank": 5,
-        "aliases": [
-          "矢板中央B"
-        ]
+        "leagueRank": 3
       },
       {
         "id": "to006",
@@ -1867,8 +1867,8 @@
         "leagueRank": 4
       },
       {
-        "id": "to007",
-        "name": "足利大附高校",
+        "id": "to004",
+        "name": "真岡高校",
         "league": "栃木U-18ユースリーグ",
         "rank": 7,
         "points": 12,
@@ -1876,9 +1876,24 @@
         "won": 4,
         "drawn": 0,
         "lost": 6,
+        "goalsFor": 12,
+        "goalsAgainst": 15,
+        "prefectureRank": 7,
+        "leagueRank": 5
+      },
+      {
+        "id": "to007",
+        "name": "足利大附高校",
+        "league": "栃木U-18ユースリーグ",
+        "rank": 8,
+        "points": 12,
+        "played": 10,
+        "won": 4,
+        "drawn": 0,
+        "lost": 6,
         "goalsFor": 13,
         "goalsAgainst": 20,
-        "prefectureRank": 7,
+        "prefectureRank": 8,
         "leagueRank": 6
       },
       {
@@ -1892,27 +1907,12 @@
         "goalsFor": 18,
         "goalsAgainst": 25,
         "leagueRank": 7,
-        "rank": 8,
-        "prefectureRank": 8,
+        "rank": 9,
+        "prefectureRank": 9,
         "aliases": [
           "栃木SC U-18B",
           "栃木SC B"
         ]
-      },
-      {
-        "id": "to004",
-        "name": "真岡高校",
-        "league": "栃木U-18ユースリーグ",
-        "rank": 9,
-        "points": 12,
-        "played": 10,
-        "won": 4,
-        "drawn": 0,
-        "lost": 6,
-        "goalsFor": 12,
-        "goalsAgainst": 15,
-        "prefectureRank": 9,
-        "leagueRank": 5
       },
       {
         "name": "文星芸術大学附属高校",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-07 19:37",
+    "lastUpdated": "2026-09-07 19:51",
     "year": 2026,
     "updatedCount": 412
   }
