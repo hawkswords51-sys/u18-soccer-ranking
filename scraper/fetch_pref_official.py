@@ -106,6 +106,42 @@ PREF_OFFICIAL = {
     "gunma":     {"platform": "gunma", "tid": "173",
                   "source": "https://gunma-fa.com/post-694/",
                   "label": "群馬県サッカー協会 公式"},
+    # 2026-09-07 追加の5県。ここも県ごとの独自システムで、共通化していない。
+    "tokyo":     {"platform": "tokyo", "dt": "1", "ltno": "16",
+                  "source": f"https://www.tleague-u18.com/schedule.php"
+                            f"?dy={SEASON_YEAR}&dt=1&ltno=16",
+                  "label": "東京都U-18サッカーリーグ 公式"},
+    # ⚠️ 神奈川は610KBのページで504が頻発する。この県だけリトライを長くする
+    #    （全県で増やすと他県の小さなサーバに無用な負荷がかかる）。
+    "kanagawa":  {"platform": "kanagawa",
+                  "base": f"https://www.kanagawa-fa.gr.jp/cms/u18-league/{SEASON_YEAR}/div1/",
+                  "source": f"https://www.kanagawa-fa.gr.jp/cms/u18-league/{SEASON_YEAR}/div1/",
+                  "label": "神奈川県サッカー協会 公式（2種大会部会）",
+                  "retries": 6, "retry_wait": 5.0},
+    "toyama":    {"platform": "toyama", "tid": "82",
+                  "source": "https://www.taikai-go.com/tournaments/82/schedule",
+                  "label": "富山県サッカー協会 公式（大会GO）"},
+    "kumamoto":  {"platform": "kumamoto", "id": "1006",
+                  "source": "https://kumamoto-fa.net/league/competition/gamelist/?id=1006",
+                  "label": "熊本県サッカー協会 公式"},
+    # 星取表が勝点・得点・失点・順位しか持たない（勝分敗が無い）ため専用ゲート。
+    "okinawa":   {"platform": "okinawa", "tid": "161",
+                  "source": "http://www.okinawa-soccer-habu.com/scores/table/161",
+                  "label": "沖縄県サッカー協会 公式（波布リーグ）",
+                  "standings_gate": "okinawa",
+                  # 移行の初回だけ効く既知差分。junior-soccer が
+                  # 2026-04-29「那覇西 vs 那覇」を 1-2（那覇の勝ち）としていたが、
+                  # 公式は 1-1（引分）。これ1件で手順書の宿題だった
+                  # 「那覇は試合が増えるのに勝点が減る」が完全に説明できる
+                  # （勝ち→引分で−2pt、加えて既存は1試合取りこぼし）。
+                  # 公式が正しいので、既存側の誤りとして除外する。
+                  # 一度移行すれば公式の値に置き換わるので、次回以降は
+                  # 「known_bad に書いた試合が見つからない」と警告が出る。そうしたら消す。
+                  "known_bad_existing": [
+                      {"date": "2026-04-29", "home": "那覇西", "away": "那覇",
+                       "hs": 1, "as": 2},
+                  ]},
+
     "miyazaki":  {"platform": "miyazaki",
                   "url": f"https://miyazaki-fa-u18.net/schedule/{SEASON_YEAR}/U-18-1.htm",
                   "source": f"https://miyazaki-fa-u18.net/schedule/{SEASON_YEAR}/U-18-1.htm",
@@ -152,6 +188,32 @@ PREF_ALIAS = {
         "テゲバジャーロ宮崎U-18": "テゲバジャーロ",
         "ヴェロスクロノス都農U-18": "ヴェロスクロノス",
     },
+    # 東京は10チームすべて公式表記＝既存JSONの表記なのでALIAS不要
+    "kanagawa": {
+        # 公式は正式名称＋全角Ａ/Ｂ。既存JSONは略称＋半角A/B。
+        # ⚠️ 「湘南工科大附Ａ」だけ既存JSONが全角Ａ。既存の表記を勝手に揃えない。
+        "湘南ベルマーレU-18･Ａ": "湘南ベルマーレA",
+        "東海大学付属相模高校Ａ": "東海大相模A",
+        "桐光学園高校Ｂ": "桐光学園B",
+        "横浜創英高校Ａ": "横浜創英A",
+        "法政大学第二高校Ａ": "法政二A",
+        "湘南工科大学附属高校Ａ": "湘南工科大附Ａ",
+        "桐蔭学園高校Ｂ": "桐蔭学園B",
+        "川崎市立橘高校Ａ": "川崎橘A",
+        "日本大学藤沢高校Ｂ": "日大藤沢B",
+        "相洋高校Ａ": "相洋A",
+    },
+    "toyama": {
+        "富一2nd": "富山第一2nd",
+    },
+    "kumamoto": {
+        # 試合表側の表記から寄せる（順位表の正式名称は名寄せに使わない）
+        "熊本商業高校": "熊本商業",
+    },
+    "okinawa": {
+        "沖縄SV Ｕ-18": "沖縄SV",
+        "FC琉球OKINAWA U-18 2nd": "FC琉球OKINAWA 2nd",
+    },
     "yamaguchi": {
         "小野田工": "小野田工業",
         "宇部工": "宇部工業",
@@ -166,19 +228,50 @@ _TECRA_DATE_RE = re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
 # ============================================================
 # 取得
 # ============================================================
-def fetch_html(url: str, encoding: str | None = None) -> str:
-    """HTMLを取得する。encoding を渡すとその文字コードで読む
-    （出典が Content-Type に charset を書いていない場合に使う）。"""
+def fetch_html(url: str, encoding: str | None = None,
+               retries: int = RETRIES, wait: float = SLEEP,
+               timeout: int = TIMEOUT, must_contain: str = "") -> str:
+    """HTMLを取得する。
+
+    encoding      … その文字コードで読む。出典が Content-Type に charset を
+                    書いていないとき必須（書かないと requests が ISO-8859-1 を
+                    仮定し、**例外を出さずに静かに文字化けする**。宮崎・沖縄がこれ）
+    retries/wait  … 県ごとに変える。神奈川は610KBのページで504が頻発するため
+                    長めにする。**全県のリトライを増やすと他県の小さなサーバに
+                    無用な負荷がかかる**ので、必要な県だけに効かせること
+    must_contain  … デコード結果にこの文字列が無ければ失敗扱いにする。
+                    文字化けを黙って通さないためのガード
+    """
     last = None
-    for _ in range(RETRIES):
+    for _ in range(retries):
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=timeout)
+            resp.raise_for_status()
+            resp.encoding = encoding or resp.apparent_encoding or "utf-8"
+            text = resp.text
+            if must_contain and must_contain not in text:
+                raise RuntimeError(f"期待した文字列 {must_contain!r} が無い"
+                                   f"（文字コードの取り違えの可能性）")
+            return text
+        except Exception as e:
+            last = e
+            time.sleep(wait)
+    raise RuntimeError(f"{url} の取得に失敗 ({last})")
+
+
+def fetch_json(url: str, retries: int = RETRIES, wait: float = SLEEP):
+    """JSONを取得する。パースもリトライの中で行う
+    （途中で切れたレスポンスを1回で諦めないため）。"""
+    last = None
+    for _ in range(retries):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
             resp.raise_for_status()
-            resp.encoding = encoding or resp.apparent_encoding or "utf-8"
-            return resp.text
+            resp.encoding = "utf-8"
+            return json.loads(resp.text, strict=False)
         except Exception as e:
             last = e
-            time.sleep(SLEEP)
+            time.sleep(wait)
     raise RuntimeError(f"{url} の取得に失敗 ({last})")
 
 
@@ -592,6 +685,475 @@ def read_yamaguchi(cfg: dict) -> tuple[dict, list[dict]]:
 # ============================================================
 # 名寄せ（公式表記 → 既存JSONのチーム名）
 # ============================================================
+# ============================================================
+# 東京（tleague-u18.com）— 東京都U-18サッカーリーグ公式
+#   順位表 rank.php / 試合 schedule.php。どちらも素のHTML・UTF-8・table 1つ。
+# ⚠️ **順位表の列は「勝・敗・引」の順**。他県によくある「勝・分・敗」ではない。
+#    ここを取り違えると勝点は合うのに勝分敗だけズレる（検算をすり抜けない＝気づける）。
+# ⚠️ 1行目は「<<スワイプでご覧いただけます>>」の注記。2行目がヘッダ。
+#    列名で引くので、注記行が増減しても壊れない。
+# 年度切り替え: URLの dy を差し替える
+# ============================================================
+_TOKYO_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
+_TOKYO_TIME_RE = re.compile(r"(\d{1,2}):(\d{2})")
+
+
+def _tokyo_cols(header: list[str]) -> dict:
+    """ヘッダ行から列の位置を決める。「引」と「勝」の取り違えを防ぐため完全一致で引く。"""
+    want = {"team": ("チーム名",), "pts": ("勝点",), "played": ("試合数",),
+            "won": ("勝",), "lost": ("敗",), "drawn": ("引",),
+            "gf": ("得点",), "ga": ("失点",)}
+    col = {}
+    for i, c in enumerate(header):
+        t = c.strip()
+        for key, names in want.items():
+            if key not in col and t in names:
+                col[key] = i
+    return col
+
+
+def read_tokyo(cfg: dict) -> tuple[dict, list[dict]]:
+    base = "https://tleague-u18.com"
+    q = f"dy={SEASON_YEAR}&dt={cfg['dt']}&ltno={cfg['ltno']}"
+
+    # --- 順位表 ---
+    soup = BeautifulSoup(fetch_html(f"{base}/rank.php?{q}"), "html.parser")
+    time.sleep(SLEEP)
+    standings = {}
+    for table in soup.find_all("table"):
+        rows = _rows(table)
+        head = next((r for r in rows if "勝点" in r and "チーム名" in r), None)
+        if not head:
+            continue
+        col = _tokyo_cols(head)
+        if len(col) < 8:
+            continue
+        for r in rows[rows.index(head) + 1:]:
+            if len(r) <= max(col.values()):
+                continue
+            team = r[col["team"]].strip()
+            vals = {k: _to_int(r[i]) for k, i in col.items() if k != "team"}
+            if team and all(v is not None for v in vals.values()):
+                standings[team] = vals
+        if standings:
+            break
+
+    # --- 試合 ---
+    soup2 = BeautifulSoup(fetch_html(f"{base}/schedule.php?{q}"), "html.parser")
+    time.sleep(SLEEP)
+    matches = []
+    for table in soup2.find_all("table"):
+        rows = _rows(table)
+        head = next((r for r in rows if "ホームチーム" in r), None)
+        if not head:
+            continue
+        idx = {name: head.index(name) for name in
+               ("節", "日時", "ホームチーム", "スコア", "アウェイチーム", "会場")
+               if name in head}
+        if len(idx) < 5:
+            continue
+        for r in rows[rows.index(head) + 1:]:
+            if len(r) <= max(idx.values()):
+                continue
+            home = r[idx["ホームチーム"]].strip()
+            away = r[idx["アウェイチーム"]].strip()
+            if not home or not away:
+                continue
+            sc = r[idx["スコア"]].strip()
+            m = re.match(r"^(\d+)\s*-\s*(\d+)$", sc)
+            # 未消化はスコア欄が空。枠は generate_fixtures 側が作る。
+            if not m:
+                continue
+            raw = r[idx["日時"]]
+            # 日時未定は「--/-- :」。年は無いので SEASON_YEAR を補う。
+            dm = _TOKYO_DATE_RE.search(raw)
+            date = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}" if dm else ""
+            tm = _TOKYO_TIME_RE.search(raw)
+            matches.append(dict(
+                date=date, home=home, hs=int(m.group(1)),
+                **{"as": int(m.group(2))}, away=away,
+                md=_to_int(r[idx["節"]]) or 0,
+                kickoff=f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else "",
+                venue=r[idx["会場"]].strip() if "会場" in idx else "",
+            ))
+        if matches:
+            break
+    return standings, matches
+
+
+# ============================================================
+# 富山（taikai-go.com「大会GO」）— 順位表と試合がJSONで取れる
+#   /api/tournaments/{id}/standings … data[0].teams[] に順位表
+#   /api/tournaments/{id}/results   … data[0].teams[]（id→名前）と matches[]
+#   /tournaments/{id}/schedule      … 日付・時刻・会場はこのHTMLにしかない
+# ⚠️ /api/tournaments/{id}/matches は 401（要認証）。使うのは results のほう。
+# ⚠️ results の試合に日付が無いので、match_code（M1, M3…）をキーに schedule と join する。
+# ⚠️ schedule のHTMLはレスポンシブ対応でテキストが二重に出る。textContent を
+#    そのまま使わず要素単位で取ること。
+# 年度切り替え: /api/tournaments/public-groups/7 で新年度のT1のIDを取る
+# ============================================================
+_TOYAMA_CODE_RE = re.compile(r"\bM\d+\b")
+_TOYAMA_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
+
+
+def _toyama_schedule(tid: str) -> dict:
+    """/schedule のHTMLから {match_code: (日付, 時刻, 会場)} を作る。
+
+    行の中に M番号 と 日付が両方あるものだけを拾う。二重テキスト対策として、
+    同じ match_code が複数回出てきたら最初の1件だけを採用する。
+    """
+    soup = BeautifulSoup(fetch_html(f"https://www.taikai-go.com/tournaments/{tid}/schedule"),
+                         "html.parser")
+    time.sleep(SLEEP)
+    out = {}
+    cur_date = ""
+    for el in soup.find_all(["tr", "li", "div", "section", "article"]):
+        # 子要素を持たない末端に近いものだけ見る（親を見ると全文が入る）
+        txt = el.get_text(" ", strip=True)
+        if len(txt) > 200:
+            continue
+        dm = _TOYAMA_DATE_RE.search(txt)
+        if dm and not _TOYAMA_CODE_RE.search(txt):
+            cur_date = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+            continue
+        cm = _TOYAMA_CODE_RE.search(txt)
+        if not cm:
+            continue
+        code = cm.group(0)
+        if code in out:
+            continue
+        date = cur_date
+        if dm:
+            date = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+        tm = re.search(r"(\d{1,2}):(\d{2})", txt)
+        out[code] = (date, f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else "")
+    return out
+
+
+def read_toyama(cfg: dict) -> tuple[dict, list[dict]]:
+    tid = cfg["tid"]
+    api = "https://www.taikai-go.com/api/tournaments"
+
+    st = fetch_json(f"{api}/{tid}/standings")
+    time.sleep(SLEEP)
+    standings = {}
+    for blk in (st.get("data") or []):
+        for t in (blk.get("teams") or []):
+            name = (t.get("team_name") or "").strip()
+            if not name:
+                continue
+            standings[name] = dict(
+                pts=t.get("points"), played=t.get("matches_played"),
+                won=t.get("wins"), drawn=t.get("draws"), lost=t.get("losses"),
+                gf=t.get("goals_for"), ga=t.get("goals_against"))
+
+    res = fetch_json(f"{api}/{tid}/results")
+    time.sleep(SLEEP)
+    sched = _toyama_schedule(tid)
+    matches = []
+    for blk in (res.get("data") or []):
+        id2name = {t.get("team_id"): (t.get("team_name") or "").strip()
+                   for t in (blk.get("teams") or [])}
+        for m in (blk.get("matches") or []):
+            # completed だけを消化として扱う。scheduled の枠は generate_fixtures が作る。
+            if m.get("match_status") != "completed":
+                continue
+            home = id2name.get(m.get("team1_id"), "")
+            away = id2name.get(m.get("team2_id"), "")
+            hs, as_ = m.get("team1_goals"), m.get("team2_goals")
+            if not home or not away or hs is None or as_ is None:
+                continue
+            date, kick = sched.get(m.get("match_code") or "", ("", ""))
+            matches.append(dict(date=date, home=home, hs=int(hs),
+                                **{"as": int(as_)}, away=away, kickoff=kick))
+    return standings, matches
+
+
+# ============================================================
+# 熊本（kumamoto-fa.net）— 県協会のリーグシステム。得点者まで公開している
+#   試合 gamelist/?id= … table 1つ・182行＝ヘッダ2＋90試合×2行
+#     ホーム行(12セル): 編集|節|対戦日時|試合会場|チーム|前半|後半|合計|得点者|アシスト|警告|退場
+#     アウェイ行(8セル): チーム|前半|後半|合計|得点者|アシスト|警告|退場
+#     → ホーム得点＝ホーム行[7]（合計）／アウェイ得点＝アウェイ行[3]（合計）
+#   順位表 ranking/?id= … 順位|チーム名|試合|勝点|勝|分|敗|得点|失点|得失
+# ⚠️ **順位表と試合表でチーム名の表記が違う**（順位表＝熊本県立熊本商業高等学校 /
+#    試合表＝熊本商業高校）。JSONに入れるのは試合表側の略称にし、
+#    順位表とは**順位の並び**で対応づける（process の standings は試合表の名前で作る）。
+# 年度切り替え: kumamoto-fa.net/league/ の一覧から新年度の1部の id を取る
+# ============================================================
+_KUMAMOTO_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
+_KUMAMOTO_MD_RE = re.compile(r"第\s*(\d+)\s*節")
+
+
+def read_kumamoto(cfg: dict) -> tuple[dict, list[dict]]:
+    tid = cfg["id"]
+    base = "https://kumamoto-fa.net/league/competition"
+
+    # --- 試合（こちらが名前の正本） ---
+    soup = BeautifulSoup(fetch_html(f"{base}/gamelist/?id={tid}"), "html.parser")
+    time.sleep(SLEEP)
+    table = max(soup.find_all("table"), key=lambda t: len(t.find_all("tr")), default=None)
+    matches, order = [], []
+    if table is not None:
+        rows = [[c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
+                for tr in table.find_all("tr")]
+        i = 0
+        while i < len(rows) - 1:
+            h, a = rows[i], rows[i + 1]
+            if len(h) != 12 or len(a) != 8:
+                i += 1
+                continue
+            home, away = h[4].strip(), a[0].strip()
+            for n in (home, away):
+                if n and n not in order:
+                    order.append(n)
+            hs, as_ = _to_int(h[7]), _to_int(a[3])       # 「合計」列。未消化は "-"
+            if home and away and hs is not None and as_ is not None:
+                dm = _KUMAMOTO_DATE_RE.search(h[2])
+                tm = re.search(r"(\d{1,2}):(\d{2})", h[2])
+                mm = _KUMAMOTO_MD_RE.search(h[1])
+                matches.append(dict(
+                    date=(f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+                          if dm else ""),
+                    home=home, hs=hs, **{"as": as_}, away=away,
+                    md=int(mm.group(1)) if mm else 0,
+                    kickoff=f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else "",
+                    venue=h[3].strip()))
+            i += 2
+
+    # --- 順位表（正式名称。順位の並びで試合表の名前に対応づける） ---
+    soup2 = BeautifulSoup(fetch_html(f"{base}/ranking/?id={tid}"), "html.parser")
+    time.sleep(SLEEP)
+    ranked = []
+    for table in soup2.find_all("table"):
+        rows = _rows(table)
+        head = next((r for r in rows if "勝点" in r and "順位" in r), None)
+        if not head:
+            continue
+        col = {}
+        for i, c in enumerate(head):
+            for key, names in (("pts", ("勝点",)), ("played", ("試合",)),
+                               ("won", ("勝",)), ("drawn", ("分",)), ("lost", ("敗",)),
+                               ("gf", ("得点",)), ("ga", ("失点",))):
+                if key not in col and c.strip() in names:
+                    col[key] = i
+        if len(col) < 7:
+            continue
+        for r in rows[rows.index(head) + 1:]:
+            if len(r) <= max(col.values()):
+                continue
+            rank = _to_int(r[0])
+            vals = {k: _to_int(r[i]) for k, i in col.items()}
+            if rank is not None and all(v is not None for v in vals.values()):
+                ranked.append((rank, vals))
+        if ranked:
+            break
+    ranked.sort(key=lambda x: x[0])
+
+    # 公式順位表（正式名称）を、試合表の名前（略称）に載せ替える。
+    # ⚠️ 「順位の並びで対応づける」方式は、公式と当方で同着の並べ方が違うと
+    #    静かにズレる。ここでは**成績(勝点・試合数・得失点)の完全一致**で
+    #    対応づけ、1対1にならなければ空を返して据え置きにする（fail closed）。
+    standings = {}
+    if ranked and order:
+        mine = standings_from_matches(matches, order)
+        used = set()
+        for _, vals in ranked:
+            hit = [t for t in order
+                   if t not in used
+                   and mine[t]["pts"] == vals["pts"]
+                   and mine[t]["played"] == vals["played"]
+                   and mine[t]["gf"] == vals["gf"]
+                   and mine[t]["ga"] == vals["ga"]]
+            if len(hit) != 1:
+                print(f"       [要確認] 熊本: 公式順位表の行 {vals} に対応する"
+                      f"チームが{len(hit)}件（1件でない）。据え置きます。")
+                return {}, matches
+            standings[hit[0]] = vals
+            used.add(hit[0])
+    return standings, matches
+
+
+# ============================================================
+# 神奈川（kanagawa-fa.gr.jp）— 県協会2種大会部会。WordPress + AnWP Football Leagues
+#   試合 /div1/       … **<table> ではない**。div.anwp-fl-game が90個
+#   順位表 /div1/group-1/ … これも div。.standing-table の直下に
+#                          ヘッダ10個 → 各チーム10個 が平らに並ぶ
+# ⚠️ **610KBのページで504が頻発する**（実測：初回504・2回目200）。
+#    この県だけリトライ回数と待ち時間を長くしている。
+# ⚠️ 日付は **data-fl-game-kickoff（ISO8601・JST付き）が正本**。
+#    画面の日本語表記をパースしないこと。
+# ⚠️ 順位表のデータセルは意味クラス（standing-table__won 等）を持っているが、
+#    **ヘッダの並びから列の意味を決めて位置で拾う**ようにしている。
+#    プラグインの版が変わってクラスが落ちても壊れないため。
+# 年度切り替え: パスの 2026 を差し替える
+# ============================================================
+_KANAGAWA_HEAD = {"勝点": "pts", "試合": "played", "勝": "won", "分": "drawn",
+                  "敗": "lost", "得": "gf", "失": "ga", "差": "gd"}
+
+
+def read_kanagawa(cfg: dict) -> tuple[dict, list[dict]]:
+    base = cfg["base"]
+    rt, wt = cfg.get("retries", RETRIES), cfg.get("retry_wait", SLEEP)
+
+    # --- 順位表 ---
+    soup = BeautifulSoup(fetch_html(f"{base}group-1/", retries=rt, wait=wt,
+                                    timeout=90, must_contain="Club"), "html.parser")
+    time.sleep(SLEEP)
+    standings = {}
+    tbl = soup.select_one(".standing-table")
+    if tbl is not None:
+        cells = [c for c in tbl.find_all(recursive=False)]
+        texts = [c.get_text(" ", strip=True) for c in cells]
+        # ヘッダは「# Club 勝点 試合 …」。Club の次から数値列が始まる。
+        try:
+            club_i = texts.index("Club")
+        except ValueError:
+            club_i = -1
+        if club_i >= 0:
+            order = []                      # 数値列の意味を左から並べる
+            j = club_i + 1
+            while j < len(texts) and texts[j] in _KANAGAWA_HEAD:
+                order.append(_KANAGAWA_HEAD[texts[j]])
+                j += 1
+            width = 2 + len(order)          # 順位 + チーム名 + 数値列
+            for k in range(j, len(cells) - width + 1, width):
+                row = cells[k:k + width]
+                # チーム名セルには直近5試合の ○●△ が混ざるので a 要素から取る
+                link = row[1].find("a")
+                name = (link.get_text(" ", strip=True) if link
+                        else row[1].get_text(" ", strip=True)).strip()
+                vals = {}
+                for n, key in enumerate(order):
+                    vals[key] = _to_int(row[2 + n].get_text(" ", strip=True))
+                vals.pop("gd", None)        # 得失差は得点-失点から出るので持たない
+                if name and all(v is not None for v in vals.values()):
+                    standings[name] = vals
+
+    # --- 試合 ---
+    soup2 = BeautifulSoup(fetch_html(base, retries=rt, wait=wt, timeout=90,
+                                     must_contain="anwp-fl-game"), "html.parser")
+    time.sleep(SLEEP)
+    matches = []
+    md = 0
+    for el in soup2.find_all(True):
+        cls = el.get("class") or []
+        if "competition__stage-title" in cls:
+            m = re.search(r"(\d+)", el.get_text(" ", strip=True))
+            if m:
+                md = int(m.group(1))
+            continue
+        if "anwp-fl-game" not in cls:
+            continue
+        # game-status-1 が消化。枠は generate_fixtures 側が作る。
+        if "game-status-1" not in cls:
+            continue
+        h = el.select_one(".match-slim__team-home-title")
+        a = el.select_one(".match-slim__team-away-title")
+        hs = el.select_one(".anwp-fl-game__scores-home")
+        as_ = el.select_one(".anwp-fl-game__scores-away")
+        if not (h and a and hs and as_):
+            continue
+        hv, av = _to_int(hs.get_text(strip=True)), _to_int(as_.get_text(strip=True))
+        if hv is None or av is None:
+            continue
+        kick = el.get("data-fl-game-kickoff") or ""     # 2026-03-07T12:00:00+09:00
+        matches.append(dict(
+            date=kick[:10], home=h.get_text(" ", strip=True),
+            hs=hv, **{"as": av}, away=a.get_text(" ", strip=True),
+            md=md, kickoff=kick[11:16]))
+    return standings, matches
+
+
+# ============================================================
+# 沖縄（okinawa-soccer-habu.com）— 県協会2種委員会「波布リーグ」
+#   試合 /scores/table/161 … table 1つ・57行。日程と会場に rowspan がかかるので
+#     行によってセル数が 8/10/11/12 と変わる。**列番号で取ってはいけない。**
+#     td.all_score を基準に、2つ前=ホーム名/1つ前=ホーム得点/1つ後=アウェイ得点/
+#     2つ後=アウェイ名 で取る。
+#   星取表 /scores/sheet/161 … 勝ち点・得点・失点・得失差・順位
+# ⚠️ **星取表のHTMLが不正**。<tr> 開始9個に対し </tr> の閉じが1個しかなく、
+#    パースすると全チームが1行に潰れる（山口は逆に閉じのほうが多かった。壊れ方が違う）。
+#    → セルを平らに並べ、ヘッダ幅（「順位」の位置+1＝12）で切り直す。
+#    切ったあとデータ行がちょうどチーム数になることを必ず確認する。
+# ⚠️ **HTTPヘッダに charset が無い**（meta は UTF-8）。明示しないと requests が
+#    ISO-8859-1 を仮定して静かに文字化けする。宮崎とまったく同じ罠。
+# ⚠️ 得点/失点は1セルに見えるが <span> が3つ（得点・失点・得失差）。
+#    get_text() をそのまま使うと "17710" に連結される。区切りを指定して分ける。
+# 得点者・警告退場も取れる（将来の県別得点ランキング用。いまは使わない）
+# 年度切り替え: /scores/table/ の番号を差し替える（県協会サイトからは辿れない）
+# ============================================================
+_OKINAWA_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
+
+
+def read_okinawa(cfg: dict) -> tuple[dict, list[dict]]:
+    base = f"http://www.okinawa-soccer-habu.com/scores"
+    tid = cfg["tid"]
+
+    # --- 星取表（順位表として使う） ---
+    soup = BeautifulSoup(fetch_html(f"{base}/sheet/{tid}", encoding="utf-8",
+                                    must_contain="勝ち点"), "html.parser")
+    time.sleep(SLEEP)
+    standings = {}
+    tbl = max(soup.find_all("table"),
+              key=lambda t: len(t.find_all(["td", "th"])), default=None)
+    if tbl is not None:
+        cells = tbl.find_all(["td", "th"])
+        texts = [c.get_text("|", strip=True) for c in cells]
+        if "順位" in texts:
+            width = texts.index("順位") + 1
+            rows = [cells[i:i + width] for i in range(width, len(cells), width)]
+            rows = [r for r in rows if len(r) == width]
+            for r in rows:
+                name = r[0].get_text(" ", strip=True).strip()
+                pts = _to_int(r[-3].get_text(strip=True))
+                # 得失点セルは <span>得点</span><span>失点</span><span>差</span>
+                gs = [x for x in r[-2].get_text("|", strip=True).split("|") if x != ""]
+                rank = _to_int(r[-1].get_text(strip=True))
+                if name and pts is not None and rank is not None and len(gs) >= 2:
+                    standings[name] = dict(pts=pts, gf=_to_int(gs[0]),
+                                           ga=_to_int(gs[1]), rank=rank)
+
+    # --- 試合 ---
+    soup2 = BeautifulSoup(fetch_html(f"{base}/table/{tid}", encoding="utf-8",
+                                     must_contain="得点者"), "html.parser")
+    time.sleep(SLEEP)
+    matches = []
+    tbl2 = max(soup2.find_all("table"),
+               key=lambda t: len(t.find_all("tr")), default=None)
+    cur_date = ""
+    if tbl2 is not None:
+        for tr in tbl2.find_all("tr"):
+            cs = tr.find_all(["td", "th"])
+            if not cs:
+                continue
+            # 日程は rowspan で複数行にまたがる。現れたら以降の行に引き継ぐ。
+            first = cs[0]
+            if first.get("rowspan") and _OKINAWA_DATE_RE.search(first.get_text()):
+                dm = _OKINAWA_DATE_RE.search(first.get_text())
+                cur_date = (f"{SEASON_YEAR}-{int(dm.group(1)):02d}-"
+                            f"{int(dm.group(2)):02d}")
+            sc = tr.find("td", class_="all_score")
+            if sc is None or sc not in cs:
+                continue
+            i = cs.index(sc)
+            if i < 2 or i + 2 >= len(cs):
+                continue
+            home = cs[i - 2].get_text(" ", strip=True).strip()
+            away = cs[i + 2].get_text(" ", strip=True).strip()
+            hs = _to_int(cs[i - 1].get_text(strip=True))
+            as_ = _to_int(cs[i + 1].get_text(strip=True))
+            if not home or not away or hs is None or as_ is None:
+                continue      # 未消化。枠は generate_fixtures 側が作る
+            tm = re.search(r"(\d{1,2}):(\d{2})", " ".join(
+                c.get_text(" ", strip=True) for c in cs[:i - 2]))
+            matches.append(dict(date=cur_date, home=home, hs=hs,
+                                **{"as": as_}, away=away,
+                                kickoff=f"{int(tm.group(1)):02d}:{tm.group(2)}"
+                                if tm else ""))
+    return standings, matches
+
+
 def build_name_map(official_names, site_names, pref) -> tuple[dict, list]:
     """1対1（全単射）が取れたら (対応表, []) を、取れなければ (部分表, 未対応リスト) を返す。"""
     alias = PREF_ALIAS.get(pref, {})
@@ -626,8 +1188,15 @@ def build_name_map(official_names, site_names, pref) -> tuple[dict, list]:
 #        「既存にあって公式に無い試合がゼロ」であることを確認する
 # ============================================================
 def self_check_gate(existing: dict, standings: dict, matches: list[dict],
-                    site_names: list[str]) -> list[str]:
-    """通れば空リスト、落ちたら理由のリストを返す"""
+                    site_names: list[str], known_bad: list[dict] | None = None) -> list[str]:
+    """通れば空リスト、落ちたら理由のリストを返す
+
+    known_bad … **既存JSON側が誤っていると確認済みの試合**を除外する。
+    移行の初回だけ効く。junior-soccer のスコア誤りが1件でもあると
+    「既存にあって公式に無い試合」として弾かれ、正しい移行が止まるため。
+    ⚠️ 日付・両チーム・スコアまで完全一致で指定する。件数を書くだけの
+       ゆるい除外にすると、本物の取りこぼしまで通してしまう。
+    """
     ng = []
     if len(standings) != len(site_names):
         ng.append(f"チーム数 {len(standings)} が既存の {len(site_names)} と違う")
@@ -651,6 +1220,7 @@ def self_check_gate(existing: dict, standings: dict, matches: list[dict],
         return (h, a, hs, as_)
 
     new_keys = collections.Counter(key(m) for m in matches)
+    bad_keys = collections.Counter(key(b) for b in (known_bad or []))
     missing = []
     for m in existing.get("matches", []):
         if m.get("status") != "played" or m.get("hs") is None:
@@ -658,8 +1228,14 @@ def self_check_gate(existing: dict, standings: dict, matches: list[dict],
         k = key(m)
         if new_keys.get(k):
             new_keys[k] -= 1
+        elif bad_keys.get(k):
+            bad_keys[k] -= 1          # 既存側が誤っていると確認済み。除外する
         else:
             missing.append(m)
+    for k, n in bad_keys.items():
+        if n:
+            ng.append(f"known_bad に書いた試合 {k} が既存JSONに見つからない"
+                      f"（すでに直っている？ 設定を見直すこと）")
     if missing:
         ng.append(f"既存にあって公式に無い試合が{len(missing)}件"
                   f"（例: {missing[0].get('home')} {missing[0].get('hs')}-"
@@ -811,7 +1387,9 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
         else:
             # 県ごとの独自システム。読者に見せる公式ページを source にする。
             reader = {"gunma": read_gunma, "miyazaki": read_miyazaki,
-                      "yamaguchi": read_yamaguchi}[cfg["platform"]]
+                      "yamaguchi": read_yamaguchi, "tokyo": read_tokyo,
+                      "kanagawa": read_kanagawa, "toyama": read_toyama,
+                      "kumamoto": read_kumamoto, "okinawa": read_okinawa}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
@@ -861,7 +1439,38 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     # --- 宮崎は公式順位表が画像PDFなので、順位表を自前計算して代替ゲートで守る ---
     if cfg.get("standings_gate") == "self":
         standings = standings_from_matches(matches, site_names)
-        ng = self_check_gate(data, standings, matches, site_names)
+        ng = self_check_gate(data, standings, matches, site_names,
+                             cfg.get("known_bad_existing"))
+        if ng:
+            return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
+
+    # --- 沖縄は星取表が勝点・得点・失点・順位しか持たない（勝分敗が無い）ので、
+    #     順位表を自前計算し、公式の4項目と突き合わせる代替ゲートで守る ---
+    if cfg.get("standings_gate") == "okinawa":
+        official = {name_map.get(k, k): v for k, v in standings.items()}
+        standings = standings_from_matches(matches, site_names)
+        ng = self_check_gate(data, standings, matches, site_names,
+                             cfg.get("known_bad_existing"))
+        mine_rank = sorted(site_names,
+                           key=lambda t: (-standings[t]["pts"],
+                                          -(standings[t]["gf"] - standings[t]["ga"]),
+                                          -standings[t]["gf"]))
+        for team, off in official.items():
+            got = standings.get(team)
+            if got is None:
+                ng.append(f"{team}: 星取表にあるが試合から作れない")
+                continue
+            for key, label in (("pts", "勝点"), ("gf", "得点"), ("ga", "失点")):
+                if off.get(key) is not None and got[key] != off[key]:
+                    ng.append(f"{team}: {label} 公式{off[key]} ≠ 試合から{got[key]}")
+            if off.get("rank") and team in mine_rank:
+                # 同着があると並べ方で前後しうるので、勝点が同じ相手との入れ替わりは許す
+                mine_i = mine_rank.index(team) + 1
+                if mine_i != off["rank"]:
+                    same = [t for t in site_names
+                            if standings[t]["pts"] == got["pts"]]
+                    if len(same) < 2:
+                        ng.append(f"{team}: 順位 公式{off['rank']} ≠ 試合から{mine_i}")
         if ng:
             return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
 

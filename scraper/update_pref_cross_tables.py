@@ -401,6 +401,8 @@ MIGRATED_TO_OFFICIAL = {
     "pref-gunma-1",      # management.gunma-fa.com（県協会のリーグ管理システム）
     "pref-miyazaki-1",   # miyazaki-fa-u18.net（U-18リーグ専用サイト）
     "pref-yamaguchi-1",  # sportsonline.jp（県協会が案内する速報システム）
+    "pref-tokyo-1", "pref-kanagawa-1", "pref-toyama-1",
+    "pref-kumamoto-1", "pref-okinawa-1",
 }
 
 
