@@ -69,7 +69,14 @@ def canon(name: str) -> str:
     n = unicodedata.normalize("NFKC", name or "").strip()
     n = n.replace("　", "").replace(" ", "")
     n = re.sub(r"[（(][^）)]*[）)]$", "", n)  # 末尾の（県名）を除去
-    for suf in ("高等学校", "高校", "中等教育学校", "高等部"):
+    # ⚠️ 「中等教育学校」を落とさないこと（2026-09-07）。落とすと茨城の
+    #    土浦日大 と 土浦日大中等教育学校 が同じ「土浦日大」になり、
+    #    「同一校が同ラウンドに2回」と誤検知して両方の追記が保留され、
+    #    さらに追記時の校名も誤ったほうで書かれる。別の学校なので区別する。
+    # ⚠️ generate_prefecture_pages.py の _bracket_canon は**同じ直し方をしない**。
+    #    愛媛インターハイのmdが同一ファイル内で「今治東」「今治東中等教育学校」の
+    #    両表記を使っており、変更すると勝者の伝播が切れてSVGトーナメント表が消える。
+    for suf in ("高等学校", "高校", "高等部"):
         if n.endswith(suf) and len(n) > len(suf):
             n = n[: -len(suf)]
             break
@@ -460,6 +467,8 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
         # 出典異常検知: 同一校が同ラウンドに複数回登場していないか（ノックアウトではあり得ない）
         team_counts = {}
         for km in kr["matches"]:
+            if {match_key(km["home"]), match_key(km["away"])} in ignore_pairs:
+                continue  # 無視指定のカードは重複判定から除く（巻き添え保留を防ぐ）
             for nm in (km["home"], km["away"]):
                 k = match_key(nm)
                 team_counts[k] = team_counts.get(k, 0) + 1
