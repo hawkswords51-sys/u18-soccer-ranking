@@ -98,6 +98,36 @@ def official_prefs() -> dict:
         return {}
 
 
+def collect_temp_exceptions() -> dict:
+    """いま有効な一時的な例外を集める。
+
+    ⚠️ **「除外ルールを作ったら、除外した県を可視化する」**（4-2c）と同じ考え方。
+       例外は書いた本人しか覚えていないので、見えるようにしておかないと居座る。
+    出どころ:
+      - fetch_pref_official.TEMP_EXCEPTIONS … 理由と外す条件を書いた台帳
+      - fetch_pref_official.PREF_OFFICIAL[*]["known_bad_existing"]
+      - sync_teams_from_pref.REGRESSION_EXEMPT
+    台帳に書き忘れていても、実際に効いている例外は後ろ2つから拾えるようにしてある。
+    """
+    out = {}
+    try:
+        import fetch_pref_official as F
+        out.update(dict(F.TEMP_EXCEPTIONS))
+        for pref, cfg in F.PREF_OFFICIAL.items():
+            if cfg.get("known_bad_existing"):
+                n = len(cfg["known_bad_existing"])
+                out[pref] = out.get(pref, "") + f"[known_bad_existing {n}件]"
+    except Exception as e:
+        out["(読めず)"] = f"fetch_pref_official: {e}"
+    try:
+        import sync_teams_from_pref as S
+        for pref in (S.REGRESSION_EXEMPT or set()):
+            out[pref] = out.get(pref, "") + "[REGRESSION_EXEMPT]"
+    except Exception as e:
+        out["(読めず2)"] = f"sync_teams_from_pref: {e}"
+    return out
+
+
 # ---------------------------------------------------------------------------
 # 1県分を読む
 # ---------------------------------------------------------------------------
@@ -185,7 +215,8 @@ def update_record(rec: dict, cur: dict, today: date, is_official: bool) -> dict:
 # ---------------------------------------------------------------------------
 # 判定
 # ---------------------------------------------------------------------------
-def judge(records: dict, today: date, official: dict, jobs: dict) -> dict:
+def judge(records: dict, today: date, official: dict, jobs: dict,
+          temp_exceptions: dict) -> dict:
     """赤・黄・情報・正常などをまとめて返す。"""
     offseason = today.month in OFFSEASON_MONTHS
     red, yellow, info, ok = [], [], [], []
@@ -289,6 +320,14 @@ def judge(records: dict, today: date, official: dict, jobs: dict) -> dict:
             info.append(f"{pref:12s} 消化済みなのに試合日が無い試合が"
                         f"{r['played_without_date']}件（出典が試合日を公開していない）")
 
+    # --- ⚪️ 一時的な例外の可視化（2026-09-07追加） ---
+    # 例外は書いた本人しか覚えていないので、放っておくと居座り、ガードが効かないまま
+    # 何年も過ぎる。島根が「完了」扱いで7週間黙っていたのと同じ構図になる。
+    # **例外がゼロなら「なし」と1行出るだけ。** 常に何か出ていると読み飛ばされる。
+    info.append("一時的な例外が有効: " + (
+        " ／ ".join(f"{k}（{v}）" for k, v in sorted(temp_exceptions.items()))
+        if temp_exceptions else "なし"))
+
     return {"red": red, "yellow": yellow, "info": info, "ok": ok,
             "unrecorded": unrecorded, "done": done}
 
@@ -321,7 +360,8 @@ def main() -> int:
                     "played_without_date": cur["played_without_date"]})
         records[pref] = update_record(rec, cur, today, pref in official)
 
-    j = judge(records, today, official, status.get("jobs", {}))
+    j = judge(records, today, official, status.get("jobs", {}),
+              collect_temp_exceptions())
     red, yellow, info, ok = j["red"], j["yellow"], j["info"], j["ok"]
 
     national = max((r.get("latest_match", "") for r in records.values()), default="")
