@@ -108,6 +108,24 @@ jobs:
             echo "scraper/dedup_near_duplicates.py がまだありません。スキップ。"
           fi
 
+      # ★ プレミア・プリンスの成績と順位をリーグJSONから導出（2026-09-07新設）
+      #   teams.json が「独立に計算されたもう1つの順位表」になっていた。
+      #   fetch_jfa.py は JFAから取れたリーグしか teams.json を書かないので、
+      #   kokoへフォールバックしたリーグはリーグJSONだけが新しくなり、
+      #   同じページの順位表と戦績表が食い違う（9/7にプリンス九州1部で発生）。
+      #   ⚠️ **必ず normalize_league_ranks / cleanup_aliases より前**に置くこと。
+      #      cleanup_aliases の renumber_pref_ranks() が leagueRank を並べ替えキーに
+      #      使うので、後に置くと県内総合の並びが1回ぶん古いままになる。
+      - name: プレミア・プリンスの順位を teams.json へ同期（正本から導出）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/sync_teams_from_leagues.py ]; then
+            python scraper/sync_teams_from_leagues.py
+          else
+            echo "scraper/sync_teams_from_leagues.py がまだありません。スキップ。"
+          fi
+
       - name: リーグ順位を勝点ベースで再計算 (都道府県内のみ)
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
         run: |

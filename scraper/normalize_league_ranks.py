@@ -5,31 +5,31 @@
 - 各都道府県内のみで リーグごとに再計算
 - 11チーム以上の不審なリーグは全チーム名を出力
 
-⚠️ このスクリプトを単体で実行してはいけない（2026-09-05 調査で判明）
----------------------------------------------------------------
-このスクリプトは「県ごと・リーグごと」に順位を振り直す。ところが**プレミアと
-プリンスは全国／地域で1つのリーグ**なので、県内で区切ると誤った順位になる。
+✅ leagueRank はもう触らない（2026-09-07 修正）
+-----------------------------------------------
+**このスクリプトは `rank` / `prefectureRank` の振り直しと診断ログだけを担当する。**
+
+かつてはここで `leagueRank` も「県ごと・リーグごと」に振り直していた。ところが
+**プレミアとプリンスは全国／地域で1つのリーグ**なので、県内で区切ると誤った順位になる。
 例: 千葉にはプレミアEASTのチームが2つ（流通経済大柏=1位、柏レイソル=3位）いるが、
-    ここでは千葉の中だけを見るので「1位・2位」に書き換わってしまう。
-実測では24チーム中22チームの leagueRank が壊れる。
+    県内だけを見ると「1位・2位」に書き換わってしまう。実測で24チーム中22チームが壊れた。
 
-**いまサイトが壊れていないのは、ワークフローでこの直後に走る
-`cleanup_aliases.py --apply` が leagueRank を全国単位で振り直して直しているから。**
-（update_rankings.yml のステップ順: 順位データを更新 → 近似重複を削除 →
-  ★このスクリプト★ → 大会成績YAML → エイリアス重複・空チームを自動クリーンアップ）
+サイトが壊れていなかったのは、直後に走る `cleanup_aliases.py --apply` が leagueRank を
+全国単位で振り直していたからだが、**その覆いは「県内順位を全国順位に直す」だけで
+正しさを保証していなかった**（teams.json 自身の勝点から再計算しており、リーグJSONの
+`official_standings.rank` を見ていない）。実際 2026-09-07 に、プリンス九州1部が koko へ
+フォールバックして teams.json だけ古くなり、**東福岡と飯塚の順位が入れ替わって
+公開されていた**（同じページの順位表と戦績表が食い違っていた）。
 
-したがって:
-  - 単体で `python scraper/normalize_league_ranks.py` を実行して、その結果を
-    そのままコミットしてはいけない。必ず `cleanup_aliases.py --apply --remove-empty`
-    まで続けて実行すること。
-  - ワークフローのステップ順を入れ替えるときは、この2つの前後関係を必ず保つこと。
+⚠️ **覆い隠されているから大丈夫、は成り立たない。** 覆っている側の実行順・処理内容が
+   変わった瞬間に、誰も気づかないまま表に出る。
 
-根本的に直すには、ここで leagueRank を触らないようにするのが筋だが、
-`cleanup_aliases.py` が県内順位(rank/prefectureRank)の並べ替えキーに leagueRank を
-使っているため、直すと県内順位まで動いてしまい、かえって不自然な並び（第2チームが
-上位リーグのチームより上に来る等）になるケースが出る。2026-09-05時点では
-「現状維持＋この注意書き」を選んでいる。着手するなら cleanup_aliases.py の
-renumber_pref_ranks() の並べ替えキーごと設計し直すこと。
+→ **leagueRank の出どころは `sync_teams_from_leagues.py`（プレミア・プリンス）と
+   `sync_teams_from_pref.py`（県1部）に一本化した。どちらもリーグJSONの
+   `official_standings.rank` を正本とする。ここでは書かない。**
+
+⚠️ このスクリプトを消さないこと。`rank` / `prefectureRank` の振り直しと、
+   11チーム以上の不審なリーグの検出ログは、いまも必要。
 """
 import json
 from pathlib import Path
@@ -49,7 +49,6 @@ def main():
     print("リーグ順位再計算 開始 (v4 - 詳細診断)")
     print("=" * 70)
 
-    total_fixes = 0
     rank_fixes = 0      # [2026-09-05] rank の書き換えも数える。従来は leagueRank しか
                         # 数えていなかったので、rank を数百件書き換えていても
                         # 「合計 0 件」と表示され、ログが実態と食い違っていた。
@@ -93,10 +92,8 @@ def main():
             ))
             for i, t in enumerate(sorted_teams):
                 new_rank = i + 1
-                old_rank = t.get("leagueRank")
-                if old_rank != new_rank:
-                    t["leagueRank"] = new_rank
-                    total_fixes += 1
+                # ⚠️ leagueRank はここでは書かない（県内で区切ると全国リーグが壊れる）。
+                #    出どころは sync_teams_from_leagues.py / sync_teams_from_pref.py。
                 if "rank" in t and t.get("rank") != new_rank:
                     t["rank"] = new_rank
                     rank_fixes += 1
@@ -107,10 +104,8 @@ def main():
     )
 
     print("=" * 70)
-    print(f"[完了] leagueRank {total_fixes} 件 / rank {rank_fixes} 件を再計算")
-    print("⚠ このスクリプト単体ではプレミア・プリンスの leagueRank が県内順位に化けます。")
-    print("  必ず続けて cleanup_aliases.py --apply --remove-empty を実行してください")
-    print("  （ワークフローでは自動で実行されます）。")
+    print(f"[完了] rank {rank_fixes} 件を再計算（leagueRank はここでは書きません）")
+    print("  leagueRank の出どころは sync_teams_from_leagues.py / sync_teams_from_pref.py です。")
     if suspicious_leagues:
         print(f"[警告] 11チーム以上の不審なリーグ: {len(suspicious_leagues)} 件")
         for pref, lg, n in suspicious_leagues:
