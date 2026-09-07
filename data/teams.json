@@ -1427,19 +1427,18 @@
         ]
       },
       {
-        "id": "f007",
-        "name": "郡山商業高校",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "points": 3,
-        "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
         "prefectureRank": 11,
-        "leagueRank": 10,
+        "points": 14,
+        "played": 14,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1464,18 +1463,19 @@
         "leagueRank": 9
       },
       {
-        "name": "郡山高校",
+        "id": "f007",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "prefectureRank": 13,
-        "points": 14,
+        "points": 3,
         "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
-        "leagueRank": 8,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "prefectureRank": 13,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -8127,27 +8127,20 @@
         ]
       },
       {
-        "id": "hr004",
-        "name": "サンフレッチェ広島F.C.ユース 2nd",
+        "id": "hr007",
+        "name": "如水館高校",
         "league": "広島県1部",
         "rank": 4,
-        "points": 20,
-        "played": 9,
-        "won": 6,
-        "drawn": 2,
-        "lost": 1,
+        "points": 22,
+        "played": 10,
+        "won": 7,
+        "drawn": 1,
+        "lost": 2,
         "goalsFor": 29,
-        "goalsAgainst": 16,
+        "goalsAgainst": 14,
         "prefectureRank": 4,
-        "goalDiff": 13,
-        "leagueRank": 3,
-        "aliases": [
-          "サンフレッチェ広島F.C.ユースセカンド",
-          "サンフレセカンド",
-          "サンフレッチェ広島F.Cユース 2nd",
-          "広島FCユース2nd",
-          "サンフレッチェB"
-        ]
+        "goalDiff": 15,
+        "leagueRank": 2
       },
       {
         "id": "hr003",
@@ -8166,20 +8159,27 @@
         "leagueRank": 6
       },
       {
-        "id": "hr007",
-        "name": "如水館高校",
+        "id": "hr004",
+        "name": "サンフレッチェ広島F.C.ユース 2nd",
         "league": "広島県1部",
         "rank": 6,
-        "points": 22,
-        "played": 10,
-        "won": 7,
-        "drawn": 1,
-        "lost": 2,
+        "points": 20,
+        "played": 9,
+        "won": 6,
+        "drawn": 2,
+        "lost": 1,
         "goalsFor": 29,
-        "goalsAgainst": 14,
+        "goalsAgainst": 16,
         "prefectureRank": 6,
-        "goalDiff": 15,
-        "leagueRank": 2
+        "goalDiff": 13,
+        "leagueRank": 3,
+        "aliases": [
+          "サンフレッチェ広島F.C.ユースセカンド",
+          "サンフレセカンド",
+          "サンフレッチェ広島F.Cユース 2nd",
+          "広島FCユース2nd",
+          "サンフレッチェB"
+        ]
       },
       {
         "name": "広島工業大学高校",
@@ -9547,39 +9547,6 @@
         ]
       },
       {
-        "name": "東福岡高校2nd",
-        "league": "福岡県1部",
-        "points": 17,
-        "played": 10,
-        "won": 5,
-        "drawn": 2,
-        "lost": 3,
-        "goalsFor": 21,
-        "goalsAgainst": 15,
-        "leagueRank": 5,
-        "rank": 9,
-        "prefectureRank": 9,
-        "aliases": [
-          "東福岡B"
-        ]
-      },
-      {
-        "id": "fk008",
-        "name": "筑陽学園高校",
-        "league": "福岡県1部",
-        "rank": 10,
-        "points": 17,
-        "played": 11,
-        "won": 5,
-        "drawn": 2,
-        "lost": 4,
-        "goalsFor": 15,
-        "goalsAgainst": 16,
-        "prefectureRank": 10,
-        "goalDiff": -1,
-        "leagueRank": 6
-      },
-      {
         "name": "飯塚高校2nd",
         "league": "福岡県1部",
         "points": 19,
@@ -9590,8 +9557,41 @@
         "goalsFor": 30,
         "goalsAgainst": 24,
         "leagueRank": 4,
+        "rank": 9,
+        "prefectureRank": 9
+      },
+      {
+        "name": "東福岡高校2nd",
+        "league": "福岡県1部",
+        "points": 17,
+        "played": 10,
+        "won": 5,
+        "drawn": 2,
+        "lost": 3,
+        "goalsFor": 21,
+        "goalsAgainst": 15,
+        "leagueRank": 5,
+        "rank": 10,
+        "prefectureRank": 10,
+        "aliases": [
+          "東福岡B"
+        ]
+      },
+      {
+        "id": "fk008",
+        "name": "筑陽学園高校",
+        "league": "福岡県1部",
         "rank": 11,
-        "prefectureRank": 11
+        "points": 17,
+        "played": 11,
+        "won": 5,
+        "drawn": 2,
+        "lost": 4,
+        "goalsFor": 15,
+        "goalsAgainst": 16,
+        "prefectureRank": 11,
+        "goalDiff": -1,
+        "leagueRank": 6
       },
       {
         "name": "東海大学付属福岡高校2nd",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-07 18:36",
+    "lastUpdated": "2026-09-07 18:40",
     "year": 2026,
     "updatedCount": 412
   }
