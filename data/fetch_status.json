@@ -137,7 +137,7 @@
       "matchesPlayed": 50,
       "venueCount": 0,
       "venueCountPrev": 0,
-      "consecutiveFallback": 0,
+      "consecutiveFallback": 2,
       "consecutiveFallbackPrev": 1
     },
     "prince-kyushu-2": {
@@ -147,11 +147,11 @@
       "matchesPlayed": 49,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 0,
+      "consecutiveFallback": 2,
       "consecutiveFallbackPrev": 1
     }
   },
-  "updatedAt": "2026-09-08T03:09:29+09:00",
+  "updatedAt": "2026-09-08T03:09:36+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -728,9 +728,9 @@
       "sourceName": "岡山県サッカー協会 公式",
       "last_change": "2026-09-05",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-08",
+      "result_streak": 1,
+      "status": "warn"
     },
     "okinawa": {
       "result": "ok",
@@ -1051,7 +1051,7 @@
       "status": "warn"
     },
     "_meta": {
-      "checked": "2026-09-07",
+      "checked": "2026-09-08",
       "national_latest": "2026-09-06",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
