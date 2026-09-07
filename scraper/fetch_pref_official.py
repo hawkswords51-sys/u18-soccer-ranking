@@ -142,6 +142,33 @@ PREF_OFFICIAL = {
                        "hs": 1, "as": 2},
                   ]},
 
+    # 2026-09-07 追加の2県。どちらも**枠を作り直す**（double_round）。
+    # 1回戦制の枠のまま止まっていたため、島根は「完了」と誤認されて見張りも黙っていた。
+    "shimane":   {"platform": "shimane",
+                  "url": "https://www.sportsonline.jp/reportv2/PublisherFull/"
+                         "viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E",
+                  "source": "https://www.sportsonline.jp/reportv2/PublisherFull/"
+                            "viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E",
+                  "label": "島根県サッカー協会 公式（SportsOnline）",
+                  "double_round": True},
+    "okayama":   {"platform": "okayama",
+                  "entry": "http://okayama-fa.or.jp/2022/2-2",
+                  "heading": "高円宮杯 JFA U-18 サッカーリーグ OKAYAMA",
+                  "source": "http://okayama-fa.or.jp/2022/2-2",
+                  "label": "岡山県サッカー協会 公式",
+                  "double_round": True,
+                  # 公式順位表が存在しないので、順位表は試合から自前計算して代替ゲートで守る
+                  "standings_gate": "self",
+                  # 移行の初回だけ効く既知差分。junior-soccer が 2026-04-12
+                  # 「創志学園 vs 倉敷古城池」を 1-0 としていたが、公式PDFは 0-1。
+                  # ⚠️ この型（スコア反転）は検算では絶対に検出できない。両チームの勝点が
+                  #    3ずつ入れ替わるだけで、リーグ全体の合計勝点が変わらないため。
+                  # 移行後は公式値に置き換わるので、次回から「見つからない」と警告が出る。消すこと。
+                  "known_bad_existing": [
+                      {"date": "2026-04-12", "home": "創志学園",
+                       "away": "倉敷古城池", "hs": 1, "as": 0},
+                  ]},
+
     "miyazaki":  {"platform": "miyazaki",
                   "url": f"https://miyazaki-fa-u18.net/schedule/{SEASON_YEAR}/U-18-1.htm",
                   "source": f"https://miyazaki-fa-u18.net/schedule/{SEASON_YEAR}/U-18-1.htm",
@@ -213,6 +240,14 @@ PREF_ALIAS = {
     "okinawa": {
         "沖縄SV Ｕ-18": "沖縄SV",
         "FC琉球OKINAWA U-18 2nd": "FC琉球OKINAWA 2nd",
+    },
+    # 島根は norm() が全角Ｂ→半角B を吸収するので ALIAS 不要（全単射を実測で確認）
+    "okayama": {
+        # PDFは略称。全角空白は読み取り側で除去済み。
+        "学芸館B": "岡山学芸館B",
+        "ファジB": "ファジ岡山U-18B",
+        "光南B": "玉野光南B",
+        "古城池": "倉敷古城池",
     },
     "yamaguchi": {
         "小野田工": "小野田工業",
@@ -1154,6 +1189,222 @@ def read_okinawa(cfg: dict) -> tuple[dict, list[dict]]:
     return standings, matches
 
 
+# ============================================================
+# 島根（SportsOnline）— 山口・広島と同じ仕組みだが**壊れ方が違う**
+#   viewdata.aspx 1本で順位表と全試合が取れる（POST・ViewState・cookie 不要）。
+#   table[2] = 星取表＋順位表 … 順位|チーム名|8チーム列|勝数|負数|引分|勝点|得点|失点|得失差
+#   table[3] = 全試合一覧     … 組み合わせ|開始日|開始時刻|進行状況|会場|審判|ユニフォーム
+# ⚠️ **山口のパーサを流用しないこと。** 同じ SportsOnline でも壊れ方が逆で
+#    （山口は `</tr>` が多い／島根は `<tr>` が多い）、表の位置も列の並びも違う。
+#    「同じ仕組みだから」で共通化すると静かにズレる。
+# ⚠️ 順位表のHTMLが不正で全チームが1行に潰れる（実測 tr開始122 / 閉じ130）。
+#    ヘッダ幅（「得失差」の位置+1＝17）で切り直し、**行数がチーム数と一致するか必ず確認**する。
+# ⚠️ 山口と違い **実際の試合日が入っている**（最新 2026/09/06）ので
+#    NO_RECENT_RESULTS には入れない。
+# ⚠️ **1回戦制28枠のまま「完了」と誤認されて7/15から止まっていた県**（2026-09-07判明）。
+#    枠を56に作り直す（cfg の double_round）。
+# 年度切り替え: parentid / rallyid を差し替える（Rally.aspx の子大会一覧から）
+# ============================================================
+_SHIMANE_SCORE_RE = re.compile(r"^(.+?)\s+(\d+)\s*-\s*(\d+)\s+(.+)$")
+_SHIMANE_DATE_RE = re.compile(r"(\d{4})/(\d{1,2})/(\d{1,2})")
+
+
+def read_shimane(cfg: dict) -> tuple[dict, list[dict]]:
+    soup = BeautifulSoup(fetch_html(cfg["url"], encoding="utf-8",
+                                    must_contain="得失差"), "html.parser")
+    time.sleep(SLEEP)
+    tables = soup.find_all("table")
+
+    # --- 順位表（潰れた1行を列数で切り直す） ---
+    standings = {}
+    for table in tables:
+        cells = table.find_all(["td", "th"])
+        texts = [c.get_text(" ", strip=True) for c in cells]
+        if "得失差" not in texts or "勝点" not in texts:
+            continue
+        width = texts.index("得失差") + 1
+        head = texts[:width]
+        col = {}
+        for i, c in enumerate(head):
+            for key, name in (("won", "勝数"), ("lost", "負数"), ("drawn", "引分"),
+                              ("pts", "勝点"), ("gf", "得点"), ("ga", "失点")):
+                if key not in col and c == name:
+                    col[key] = i
+        if len(col) < 6:
+            continue
+        rows = [texts[i:i + width] for i in range(width, len(texts), width)]
+        rows = [r for r in rows if len(r) == width]
+        for r in rows:
+            team = r[1].strip()
+            vals = {k: _to_int(r[i]) for k, i in col.items()}
+            vals["played"] = sum(v for k, v in vals.items()
+                                 if k in ("won", "drawn", "lost") and v is not None)
+            if team and all(v is not None for v in vals.values()):
+                standings[team] = vals
+        if standings:
+            break
+
+    # --- 試合一覧 ---
+    matches = []
+    for table in tables:
+        rows = [[c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
+                for tr in table.find_all("tr")]
+        head = next((r for r in rows if len(r) >= 4 and "組み合わせ" in r[0]), None)
+        if not head:
+            continue
+        for r in rows[rows.index(head) + 1:]:
+            # 途中に「Away」などの区切り行が入る。セル数で弾く。
+            if len(r) < 4:
+                continue
+            if "試合終了" not in r[3]:
+                continue          # 未消化。枠は generate_fixtures 側が作る
+            m = _SHIMANE_SCORE_RE.match(r[0])
+            if not m:
+                continue
+            dm = _SHIMANE_DATE_RE.search(r[1])
+            matches.append(dict(
+                date=(f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+                      if dm else ""),
+                home=m.group(1).strip(), hs=int(m.group(2)),
+                **{"as": int(m.group(3))}, away=m.group(4).strip(),
+                kickoff=r[2].strip() if len(r) > 2 else "",
+                venue=r[4].strip() if len(r) > 4 else ""))
+        if matches:
+            break
+    return standings, matches
+
+
+# ============================================================
+# 岡山（okayama-fa.or.jp）— 県協会のテキストPDF
+# ⚠️ **PDFのURLは更新のたびに変わる**（2026-09-07に1日で /2026/06/ → /2026/09/ に変わった）。
+#    URLを固定で書かず、**入口ページから毎回辿る**こと。
+#    同じページに `➡2026` が3つある（高校総体・OKAYAMA・チャレンジリーグ）ので、
+#    **見出し「高円宮杯 JFA U-18 サッカーリーグ OKAYAMA」の直後**のリンクを取る。
+# ⚠️ **1ページに県1部（左段）と県2部（右段）が並ぶ。** テキスト抽出すると1行に両方出るので、
+#    **座標（extract_words）で x < 430 の左段だけを取る**。こうすると2部がそもそも入ってこない
+#    （`光南B`(1部) と `光南C`(2部) の取り違えが構造的に起きない）。
+#    チーム名の集合による絞り込みは保険として残す。
+# ⚠️ 単語の top は1試合の中で数px ばらつく（チーム名が少し上に出る）ので、
+#    許容差4pxでクラスタしてから x 順に並べる。
+# ⚠️ 節と日付：**ページ末尾に一覧は無い**。各節ブロックの中の行に埋め込まれている。
+#    - `1 4月4日 就実 9:00 3 ファジB 3 - 0 就 実 B 8` … 行頭に「節 月日」
+#    - `2 理大 12:30 3 …` ＋ 独立行 `4月11日`        … 節2だけ番号と日付が別の行
+#    - `4月12日 創志赤坂 12:30 1 …`                  … その節の既定日と違う日＝行頭日付を優先
+#    試合行は**節ごとに5試合ずつ節番号の順**に並ぶので、5件ずつ区切って節番号を振る。
+# ⚠️ チーム名に全角空白が入る（`光 南 B` `古 城 池`）ので除去してから名寄せする。
+# ⚠️ **公式順位表は存在しない。** 順位表は試合から自前計算し、代替ゲートで守る（宮崎と同じ）。
+# ✅ **版日付ガード**：PDF冒頭の版日付（`2026/9/7`）より後の日付を持つ「消化済み」試合を
+#    作っていたら、日付の割り当てが壊れている。**据え置きにする。**
+#    これは「取れなくなったこと」ではなく「静かに間違ったものを取り始めたこと」を捕まえる
+#    仕掛けで、鮮度チェック（4-2c）では拾えない種類の事故に効く。
+# 年度切り替え: 入口URLは固定。見出し直下の新年度リンクを自動で辿る
+# ============================================================
+_OKAYAMA_SPLIT_X = 430          # 県1部（左段）と県2部（右段）の境界
+_OKAYAMA_ROW_TOL = 4            # 同じ行とみなす top の許容差(px)
+_OKAYAMA_MATCH_RE = re.compile(
+    r"(\d{1,2}:\d{2})\s+(\d{1,2})\s+(.+?)\s+(?:(\d+)\s*-\s*(\d+)|-)\s+(.+?)\s+(\d{1,2})\s*$")
+_OKAYAMA_HEAD_MD_DATE = re.compile(r"^(\d{1,2})\s+(\d{1,2})月(\d{1,2})日")
+_OKAYAMA_HEAD_DATE = re.compile(r"^(\d{1,2})月(\d{1,2})日")
+_OKAYAMA_ONLY_DATE = re.compile(r"^(\d{1,2})月(\d{1,2})日$")
+_OKAYAMA_VERSION_RE = re.compile(r"(\d{4})/(\d{1,2})/(\d{1,2})")
+
+
+def _okayama_pdf_url(cfg: dict) -> str:
+    """入口ページから、その年度のリーグ戦PDFのURLを辿る。"""
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8",
+                                    must_contain=cfg["heading"]), "html.parser")
+    time.sleep(SLEEP)
+    node = soup.find(string=re.compile(re.escape(cfg["heading"])))
+    if node is None:
+        raise RuntimeError(f"入口ページに見出し {cfg['heading']!r} が無い")
+    for a in node.parent.find_all_next("a", href=True):
+        if a["href"].lower().endswith(".pdf"):
+            return a["href"]
+    raise RuntimeError("見出しの後にPDFリンクが無い")
+
+
+def _okayama_rows(page) -> list[str]:
+    """左段（県1部）だけを、1試合＝1行の文字列にして返す。"""
+    ws = [w for w in page.extract_words()
+          if w["x0"] < _OKAYAMA_SPLIT_X and w["top"] > 75]
+    ws.sort(key=lambda w: (w["top"], w["x0"]))
+    groups, cur, base = [], [], None
+    for w in ws:
+        if base is None or abs(w["top"] - base) <= _OKAYAMA_ROW_TOL:
+            cur.append(w)
+            base = w["top"] if base is None else base
+        else:
+            groups.append(cur)
+            cur, base = [w], w["top"]
+    if cur:
+        groups.append(cur)
+    return [" ".join(x["text"] for x in sorted(g, key=lambda y: y["x0"]))
+            for g in groups]
+
+
+def read_okayama(cfg: dict) -> tuple[dict, list[dict]]:
+    import io
+    import pdfplumber
+
+    url = _okayama_pdf_url(cfg)
+    resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+    resp.raise_for_status()
+    time.sleep(SLEEP)
+
+    with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
+        lines = [ln for pg in pdf.pages for ln in _okayama_rows(pg)]
+        vm = _OKAYAMA_VERSION_RE.search(pdf.pages[0].extract_text() or "")
+    if not vm:
+        raise RuntimeError("PDF冒頭の版日付が読めない")
+    version = f"{vm.group(1)}-{int(vm.group(2)):02d}-{int(vm.group(3)):02d}"
+
+    matches, md_date = [], {}
+    for line in lines:
+        m = _OKAYAMA_MATCH_RE.search(line)
+        if not m:
+            # 節2のように、節の既定日だけが独立行で出ることがある
+            d = _OKAYAMA_ONLY_DATE.match(line.strip())
+            if d:
+                md_date[len(matches) // 5 + 1] = \
+                    f"{SEASON_YEAR}-{int(d.group(1)):02d}-{int(d.group(2)):02d}"
+            continue
+        pre = line[:m.start()].strip()
+        own = ""
+        hm = _OKAYAMA_HEAD_MD_DATE.match(pre)
+        if hm:
+            md_date[int(hm.group(1))] = \
+                f"{SEASON_YEAR}-{int(hm.group(2)):02d}-{int(hm.group(3)):02d}"
+        else:
+            hd = _OKAYAMA_HEAD_DATE.match(pre)
+            if hd:      # その節の既定日と違う日に行われた試合。行頭の日付を優先する
+                own = f"{SEASON_YEAR}-{int(hd.group(1)):02d}-{int(hd.group(2)):02d}"
+        matches.append(dict(
+            md=len(matches) // 5 + 1, _own=own,
+            home=m.group(3).replace(" ", "").replace("　", ""),
+            away=m.group(6).replace(" ", "").replace("　", ""),
+            hs=int(m.group(4)) if m.group(4) else None,
+            **{"as": int(m.group(5)) if m.group(5) else None},
+            kickoff=m.group(1)))
+
+    for x in matches:
+        x["date"] = x.pop("_own") or md_date.get(x["md"], "")
+
+    # ✅ 版日付ガード。日付の割り当てが壊れたことを検知する唯一の手がかり。
+    future = [x for x in matches
+              if x["hs"] is not None and x["date"] and x["date"] > version]
+    if future:
+        raise RuntimeError(
+            f"版日付({version})より後の日付を持つ消化済み試合が{len(future)}件ある"
+            f"（例: {future[0]['date']} {future[0]['home']} vs {future[0]['away']}）。"
+            f"節と日付の割り当てが壊れている疑い")
+    blank = [x for x in matches if x["hs"] is not None and not x["date"]]
+    if blank:
+        raise RuntimeError(f"日付を割り当てられなかった消化済み試合が{len(blank)}件ある")
+
+    # 公式順位表は存在しない。process 側で試合から自前計算する（standings_gate: self）。
+    return {}, matches
+
+
 def build_name_map(official_names, site_names, pref) -> tuple[dict, list]:
     """1対1（全単射）が取れたら (対応表, []) を、取れなければ (部分表, 未対応リスト) を返す。"""
     alias = PREF_ALIAS.get(pref, {})
@@ -1389,7 +1640,9 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
             reader = {"gunma": read_gunma, "miyazaki": read_miyazaki,
                       "yamaguchi": read_yamaguchi, "tokyo": read_tokyo,
                       "kanagawa": read_kanagawa, "toyama": read_toyama,
-                      "kumamoto": read_kumamoto, "okinawa": read_okinawa}[cfg["platform"]]
+                      "kumamoto": read_kumamoto, "okinawa": read_okinawa,
+                      "shimane": read_shimane,
+                      "okayama": read_okayama}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
@@ -1478,7 +1731,15 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     # round_robin: False のリーグは総当たり枠を作らない。
     # 鳥取の後期のようにグループ分けのリーグでは、8チームの総当たり（56枠）を
     # 機械的に作ると**存在しない試合枠が大量に出る**。出典の試合一覧をそのまま枠にする。
-    res = build_from_source(standings, matches, existing_total,
+    # 枠を2回戦制で作り直す県（島根28→56・岡山45→90）。
+    # build_from_source は既存の枠数から1回戦制/2回戦制を推定するので、
+    # 1回戦制の枠のまま止まっていた県はヒントを与えないと枠が増えない。
+    # ⚠️ 退行防止は**枠数ではなく消化試合数**で見る（下の new_played < cur_played）。
+    total_hint = existing_total
+    if cfg.get("double_round"):
+        n = len(site_names)
+        total_hint = n * (n - 1)
+    res = build_from_source(standings, matches, total_hint,
                             round_robin=cfg.get("round_robin", True))
     if isinstance(res, str):
         return f"[据え置き] {slug}: {res}"

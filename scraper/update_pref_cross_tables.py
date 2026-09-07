@@ -403,6 +403,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-yamaguchi-1",  # sportsonline.jp（県協会が案内する速報システム）
     "pref-tokyo-1", "pref-kanagawa-1", "pref-toyama-1",
     "pref-kumamoto-1", "pref-okinawa-1",
+    "pref-shimane-1", "pref-okayama-1",
 }
 
 
