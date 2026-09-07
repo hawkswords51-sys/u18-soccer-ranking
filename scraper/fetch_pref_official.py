@@ -196,6 +196,14 @@ PREF_OFFICIAL = {
                   #       3ずつ入れ替わるだけで、リーグ全体の合計勝点が変わらないため。
                   #    移行で公式値に置き換わったため設定を削除（残すと毎回 verify_failed）。
 
+    # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
+    # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
+    #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
+    "tochigi":   {"platform": "lsin", "event": "1059", "club": "3", "teams": 10,
+                  "unit_name": "高円宮杯U-18リーグ１部",
+                  "source": "https://api.lsin.jp/?m=r&e=1059&c=3",
+                  "label": "栃木県サッカー協会 公式（LSIN cloud）"},
+
     "miyazaki":  {"platform": "miyazaki",
                   "url": f"https://miyazaki-fa-u18.net/schedule/{SEASON_YEAR}/U-18-1.htm",
                   "source": f"https://miyazaki-fa-u18.net/schedule/{SEASON_YEAR}/U-18-1.htm",
@@ -275,6 +283,12 @@ PREF_ALIAS = {
         "ファジB": "ファジ岡山U-18B",
         "光南B": "玉野光南B",
         "古城池": "倉敷古城池",
+    },
+    "tochigi": {
+        # ⚠️ 「矢板中央Ｂ」は norm() が全角Ｂ→半角B を吸収するので**不要**
+        #    （指示書には3件とあったが、実測すると2件で足りた）。
+        "栃木SCU-18B": "栃木SC B",
+        "栃木シティU-18": "栃木シティFC",
     },
     "yamaguchi": {
         "小野田工": "小野田工業",
@@ -1454,6 +1468,241 @@ def read_okayama(cfg: dict) -> tuple[dict, list[dict]]:
     return {}, matches
 
 
+# ============================================================
+# 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
+#   m=r … 星取表＋順位表（**成績の正本**）
+#   m=s … スコア速報（**日付・時刻・会場の供給元**）
+#   m=p … 組み合わせ（使わない）
+#
+# ⚠️ **1大会に3つのビューがある。** 2026-09-07に `m=r` だけを見て「日付が無いから
+#    移行は見送り」と判断し、あとで撤回した。**出典を見るときは、他のビュー・他の
+#    パラメータが無いかを必ず確認すること。**（同じ型を同日に4回踏んでいる：
+#    宮崎=framesetの宣言だけ／神奈川=innerTextだけ／山口=ChromeのDOMだけ／栃木=m=rだけ）
+#
+# ⚠️⚠️ **BeautifulSoup の find_all は入れ子のテーブルまで再帰的に拾う。**
+#    星取表のセルの中に `<table class="scoreDatail">` が入っているため、
+#    素直に取ると 11行→**191行**、19列のはずが入れ子の td まで混ざって
+#    順位表の列がずれる（勝点が `'2 1 - …'` になる）。
+#    **行もセルも `find_parent("table") is table` で直下だけに絞る。**
+#    ※ ブラウザの `table.rows` / `row.cells` は直下しか返さないので、
+#      DOMで確認しているとこの差は見えない。**パーサのAPIの意味論の違い。**
+#
+# ⚠️ 1部の特定に「行数が11」は使えない（上記のとおり191行に見える）。
+#    **直前の見出しテキスト「高円宮杯U-18リーグ１部」で特定する。**
+#    ページには星取表が13個あり、2部以下や「(データ破損)」という表も含まれる。
+#
+# ⚠️ **勝敗と引き分けで書式が違う。**
+#      勝敗   <td class="score">2 <i class="fa fa-circle"></i> 3</td>  → "2 3"
+#      引分   <td class="score">2 △ 2</td>                             → "2 △ 2"（△は文字）
+#      未消化 <td class="score last">- -</td>
+#    空白区切りを前提にすると**引き分け（10レグ＝5試合）だけが丸ごと落ちる**。
+#    各チームの不足数が「分」の数と一致する形で現れるので気づきにくい。
+#    → **レグの文字列から数字と `-` のトークンを順に抜き、先頭2つを得点とする。**
+#      これなら △ も ○ も明示的に扱わずに済む。
+# ⚠️ **セルの textContent をまとめて数字で切ってはいけない。** 1stレグと2ndレグの間に
+#    改行が無いので `5 0` と `6 0` が `5 06 0` に連結し、`06` という数字ができる。
+#    **必ず td.score を1レグずつ取り出してから、そのレグの中だけでトークンを読む。**
+#
+# ⚠️ `m=s` には1試合足りないことがある（日時が未入力の試合）。**落とさずに日付だけ空にする。**
+#    2026-09-07時点で1件（矢板中央Ｂ 2-3 國學院栃木）。件数はログに出す（増えていたら
+#    m=s の入力が滞っているサイン）。
+#
+# 年度切り替え: e= を https://api.lsin.jp/?c=3 の大会一覧から拾う。
+#              unit_id は m=s の units[...] の unit_name から引く（決め打ちしない）。
+# ============================================================
+_LSIN_UNIT_RE = re.compile(r'unit_id\s*:\s*(\d+)\s*,\s*unit_name\s*:\s*["\']([^"\']+)["\']')
+_LSIN_TOKEN_RE = re.compile(r"\d+|-")
+_LSIN_DATE_RE = re.compile(r"(\d{4})年(\d{1,2})月(\d{1,2})日")
+_LSIN_TIME_RE = re.compile(r"(\d{1,2}):(\d{2})")
+
+
+def _lsin_legs(cell) -> list:
+    """1セル（＝ある対戦カード）のレグを [(hs, as), None, ...] で返す。
+
+    レグごとに td.score を取り出し、**そのレグの中だけで**トークンを読む。
+    "2 3"→(2,3) ／ "2 △ 2"→(2,2) ／ "- -"→None
+    """
+    out = []
+    for sc in cell.select("table.scoreDatail td.score"):
+        txt = sc.get_text(" ", strip=True).replace("\xa0", " ")
+        tok = _LSIN_TOKEN_RE.findall(txt)[:2]
+        if len(tok) == 2 and tok[0].isdigit() and tok[1].isdigit():
+            out.append((int(tok[0]), int(tok[1])))
+        else:
+            out.append(None)
+    return out
+
+
+def _lsin_schedule(url: str, unit_name: str) -> list[dict]:
+    """m=s から**消化済み（試合終了）**のパネルだけを
+    [{home, away, hs, as, date, kickoff, venue}] で返す。
+
+    ⚠️ **未消化パネルを混ぜてはいけない。** m=s には未来の試合も入っているので、
+       混ぜると**消化済み試合に未来の日付が付く**（2026-09-07に実際に踏んだ。
+       9/6が最新のはずが9/13になった）。
+    ⚠️ ステータスの判定は **.strip() してから**（先頭に空白が入る）。
+    """
+    html = fetch_html(url, encoding="utf-8", must_contain="マッチナンバー")
+    time.sleep(SLEEP)
+    m = next((mm for mm in _LSIN_UNIT_RE.finditer(html)
+              if mm.group(2).strip() == unit_name), None)
+    if not m:
+        raise RuntimeError(f"m=s に unit_name {unit_name!r} が見つからない"
+                           f"（年度が変わって名前が変わった可能性）")
+    unit_id = m.group(1)
+    soup = BeautifulSoup(html, "html.parser")
+    out = []
+    for panel in soup.select(f'div[data-unitid="{unit_id}"]'):
+        txt = panel.get_text(" ", strip=True).replace("\xa0", " ")
+        if not txt.strip().startswith("試合終了"):
+            continue                      # 未消化は日付の供給元にしない
+        dm = _LSIN_DATE_RE.search(txt)
+        if not dm:
+            continue
+        tm = _LSIN_TIME_RE.search(txt[dm.end():dm.end() + 20])
+        vm = re.search(r"\[会場\]\s*(\S+)", txt)
+        # チーム名の行 → その次の行が得点
+        names, score = None, None
+        trs = panel.find_all("tr")
+        for i, tr in enumerate(trs):
+            cs = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
+            cs = [c for c in cs if c]
+            if len(cs) == 2 and not all(c.isdigit() for c in cs):
+                names = cs
+                for nxt in trs[i + 1:]:
+                    ns = [c.get_text(" ", strip=True) for c in nxt.find_all(["td", "th"])]
+                    ns = [c for c in ns if c]
+                    if len(ns) == 2 and all(c.isdigit() for c in ns):
+                        score = (int(ns[0]), int(ns[1]))
+                    break
+                break
+        if not names or score is None:
+            continue
+        out.append(dict(home=names[0], away=names[1], hs=score[0],
+                        **{"as": score[1]},
+                        date=f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}",
+                        kickoff=f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else "",
+                        venue=vm.group(1) if vm else ""))
+    return out
+
+
+def read_lsin(cfg: dict) -> tuple[dict, list[dict]]:
+    base = f"https://api.lsin.jp/?e={cfg['event']}&c={cfg['club']}"
+    unit_name = cfg["unit_name"]
+
+    # --- m=r：星取表と順位表（成績の正本） ---
+    soup = BeautifulSoup(fetch_html(f"{base}&m=r".replace("?e=", "?m=r&e="),
+                                    encoding="utf-8", must_contain=unit_name),
+                         "html.parser")
+    time.sleep(SLEEP)
+    # 各星取表の直前にある「見出しらしいテキスト」を1つ拾って、unit_name と突き合わせる。
+    # ⚠️ 直前の非空テキストで止めてはいけない（空白や記号が挟まる）。
+    #    「リーグ」か「部」を含む短い文字列を見出しとみなす。
+    table = None
+    for t in soup.find_all("table"):
+        if not t.select("table.scoreDatail"):
+            continue
+        for prev in t.find_all_previous(string=True):
+            txt = prev.strip()
+            if not txt or len(txt) > 60:
+                continue
+            if "リーグ" not in txt and "部" not in txt:
+                continue
+            if txt == unit_name:
+                table = t
+            break
+        if table is not None:
+            break
+    if table is None:
+        raise RuntimeError(f"m=r に見出し {unit_name!r} の星取表が見つからない")
+
+    # ★ 行もセルも直下だけを取る（入れ子の scoreDatail を拾わないため）
+    rows = [tr for tr in table.find_all("tr") if tr.find_parent("table") is table]
+
+    def cells(tr):
+        return [c for c in tr.find_all(["td", "th"])
+                if c.find_parent("table") is table]
+
+    head = [c.get_text(" ", strip=True) for c in cells(rows[0])]
+    col = {}
+    for i, c in enumerate(head):
+        key = c.replace(" ", "")
+        for k, name in (("pts", "勝点"), ("won", "勝数"), ("drawn", "分数"),
+                        ("lost", "負数"), ("gf", "得点"), ("ga", "失点")):
+            if k not in col and key == name:
+                col[k] = i
+    n_teams = min(col.values()) - 1 if col else 0
+    teams = head[1:1 + n_teams]
+    expected = cfg.get("teams")
+    if expected is not None and len(teams) != expected:
+        raise RuntimeError(f"星取表のチーム数 {len(teams)} が設定の {expected} と違う")
+    if len(rows) - 1 != len(teams):
+        raise RuntimeError(f"星取表の行数 {len(rows) - 1} がチーム数 {len(teams)} と違う")
+
+    standings, matches = {}, []
+    for i in range(1, len(rows)):
+        ri = cells(rows[i])
+        standings[teams[i - 1]] = {k: _to_int(ri[v].get_text(" ", strip=True))
+                                   for k, v in col.items()}
+        standings[teams[i - 1]]["played"] = sum(
+            standings[teams[i - 1]][k] or 0 for k in ("won", "drawn", "lost"))
+        # 同じ試合が両チームの行に出るので i < j の組だけ採る
+        for j in range(i + 1, len(teams) + 1):
+            for lg in _lsin_legs(ri[j]):
+                if lg is None:
+                    continue
+                matches.append(dict(date="", home=teams[i - 1], hs=lg[0],
+                                    **{"as": lg[1]}, away=teams[j - 1]))
+
+    # --- m=s から日付を補う ---
+    # ⚠️ **カード名だけで突き合わせてはいけない。** 2回戦制なので同じカードが2試合あり、
+    #    1件だけ拾うと**両レグに同じ日付が付く**（2026-09-07に実際に踏んだ）。
+    #    ホーム・アウェイ・両得点の4つ組で照合し、それでも決まらない
+    #    （＝同じカードで同じスコアの2レグ）ときは**日付順にレグ順へ割り当てる**。
+    sched = _lsin_schedule(f"{base}&m=s".replace("?e=", "?m=s&e="), unit_name)
+
+    def _key(m, swap=False):
+        h, a, hs, as_ = m["home"], m["away"], m["hs"], m["as"]
+        return (a, h, as_, hs) if swap else (h, a, hs, as_)
+
+    pool = collections.defaultdict(list)
+    for x in sched:
+        pool[_key(x)].append(x)
+    for v in pool.values():
+        v.sort(key=lambda x: (x["date"], x["kickoff"]))
+
+    nodate, ambiguous = 0, 0
+    for m in matches:
+        got = None
+        for k in (_key(m), _key(m, swap=True)):
+            if pool.get(k):
+                if len(pool[k]) > 1:
+                    ambiguous += 1
+                got = pool[k].pop(0)      # 日付順に古いものから割り当てる
+                break
+        if got:
+            m["date"], m["kickoff"], m["venue"] = got["date"], got["kickoff"], got["venue"]
+        else:
+            nodate += 1
+
+    # ★ 全単射の確認：どちらか一方にしか無いものを**両方向**でログに出す。
+    #   片側だけ数えると取りこぼしに気づけない。
+    leftover = [x for v in pool.values() for x in v]
+    print(f"       （栃木: 試合終了パネル {len(sched)}件 / 星取表の消化 {len(matches)}件 → "
+          f"日付を付けた {len(matches) - nodate}件）")
+    if nodate:
+        print(f"       （栃木: 星取表にあり m=s に無い試合 {nodate}件"
+              f"＝日付なしで取り込む。増えていたら m=s の入力が滞っているサイン）")
+    if leftover:
+        print(f"       [要確認] 栃木: m=s にあり星取表に無い試合が{len(leftover)}件"
+              f"（例 {leftover[0]['date']} {leftover[0]['home']} {leftover[0]['hs']}-"
+              f"{leftover[0]['as']} {leftover[0]['away']}）")
+    if ambiguous:
+        print(f"       （栃木: 同じカードで同じスコアの2レグが{ambiguous}件あり、"
+              f"日付順にレグ順へ割り当てた）")
+    return standings, matches
+
+
 def build_name_map(official_names, site_names, pref) -> tuple[dict, list]:
     """1対1（全単射）が取れたら (対応表, []) を、取れなければ (部分表, 未対応リスト) を返す。"""
     alias = PREF_ALIAS.get(pref, {})
@@ -1690,6 +1939,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "yamaguchi": read_yamaguchi, "tokyo": read_tokyo,
                       "kanagawa": read_kanagawa, "toyama": read_toyama,
                       "kumamoto": read_kumamoto, "okinawa": read_okinawa,
+                      "lsin": read_lsin,
                       "sportsonline_table": read_sportsonline_table,
                       "okayama": read_okayama}[cfg["platform"]]
             standings, matches = reader(cfg)

@@ -405,6 +405,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-kumamoto-1", "pref-okinawa-1",
     "pref-shimane-1", "pref-okayama-1",
     "pref-hiroshima-1",
+    "pref-tochigi-1",
 }
 
 
