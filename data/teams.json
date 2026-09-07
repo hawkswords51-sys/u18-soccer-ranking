@@ -1428,18 +1428,18 @@
       },
       {
         "id": "f007",
-        "name": "郡山高校",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "points": 14,
+        "points": 3,
         "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
         "prefectureRank": 11,
-        "leagueRank": 8,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1464,18 +1464,18 @@
         "leagueRank": 9
       },
       {
-        "name": "郡山商業高校",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
         "prefectureRank": 13,
-        "points": 3,
+        "points": 14,
         "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
-        "leagueRank": 10,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -7793,22 +7793,6 @@
     "region": "中国",
     "teams": [
       {
-        "id": "oka002",
-        "name": "岡山学芸館高校",
-        "league": "プリンスリーグ中国",
-        "rank": 1,
-        "points": 25,
-        "played": 10,
-        "won": 8,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 26,
-        "goalsAgainst": 7,
-        "prefectureRank": 1,
-        "goalDiff": 19,
-        "leagueRank": 1
-      },
-      {
         "name": "岡山学芸館高校2nd",
         "league": "岡山県1部",
         "points": 26,
@@ -7819,11 +7803,27 @@
         "goalsFor": 33,
         "goalsAgainst": 5,
         "leagueRank": 1,
-        "rank": 2,
-        "prefectureRank": 2,
+        "rank": 1,
+        "prefectureRank": 1,
         "aliases": [
           "岡山学芸館B"
         ]
+      },
+      {
+        "id": "oka002",
+        "name": "岡山学芸館高校",
+        "league": "プリンスリーグ中国",
+        "rank": 2,
+        "points": 25,
+        "played": 10,
+        "won": 8,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 26,
+        "goalsAgainst": 7,
+        "prefectureRank": 2,
+        "goalDiff": 19,
+        "leagueRank": 1
       },
       {
         "id": "oka001",
@@ -9556,7 +9556,7 @@
         "lost": 3,
         "goalsFor": 21,
         "goalsAgainst": 15,
-        "leagueRank": 4,
+        "leagueRank": 5,
         "rank": 9,
         "prefectureRank": 9,
         "aliases": [
@@ -9577,19 +9577,19 @@
         "goalsAgainst": 16,
         "prefectureRank": 10,
         "goalDiff": -1,
-        "leagueRank": 5
+        "leagueRank": 6
       },
       {
         "name": "飯塚高校2nd",
         "league": "福岡県1部",
-        "points": 16,
-        "played": 11,
-        "won": 5,
+        "points": 19,
+        "played": 12,
+        "won": 6,
         "drawn": 1,
         "lost": 5,
-        "goalsFor": 20,
-        "goalsAgainst": 22,
-        "leagueRank": 6,
+        "goalsFor": 30,
+        "goalsAgainst": 24,
+        "leagueRank": 4,
         "rank": 11,
         "prefectureRank": 11
       },
@@ -9652,12 +9652,12 @@
         "name": "福岡大学附属大濠高校",
         "league": "福岡県1部",
         "points": 1,
-        "played": 11,
+        "played": 12,
         "won": 0,
         "drawn": 1,
-        "lost": 10,
-        "goalsFor": 8,
-        "goalsAgainst": 35,
+        "lost": 11,
+        "goalsFor": 10,
+        "goalsAgainst": 45,
         "leagueRank": 10,
         "rank": 15,
         "prefectureRank": 15,
@@ -11306,8 +11306,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-07 15:25",
+    "lastUpdated": "2026-09-07 16:21",
     "year": 2026,
-    "updatedCount": 413
+    "updatedCount": 412
   }
 }
