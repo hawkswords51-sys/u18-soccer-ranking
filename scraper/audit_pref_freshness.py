@@ -31,6 +31,7 @@
   🔴 赤①  公式出典の県で、取得そのものが3日以上続けて失敗している
            （fetch_pref_official.py が自分で書いた result を読む）
   🔴 赤②  全国どこの県でも試合結果が入らなくなった（＝7/15型の全県同時停止）
+  🔴 赤③  teams.json を書く導出ジョブ（sync_teams_from_*）が3日以上失敗している
   🟡 黄   個別の県で消化試合数が14日以上増えていない（赤にはしない）
   ⚪️ 情報  構造がおかしい／見張りが黙る状態になっている県
 
@@ -184,7 +185,7 @@ def update_record(rec: dict, cur: dict, today: date, is_official: bool) -> dict:
 # ---------------------------------------------------------------------------
 # 判定
 # ---------------------------------------------------------------------------
-def judge(records: dict, today: date, official: dict) -> dict:
+def judge(records: dict, today: date, official: dict, jobs: dict) -> dict:
     """赤・黄・情報・正常などをまとめて返す。"""
     offseason = today.month in OFFSEASON_MONTHS
     red, yellow, info, ok = [], [], [], []
@@ -214,6 +215,35 @@ def judge(records: dict, today: date, official: dict) -> dict:
         if n is not None and n >= FETCH_FAIL_DAYS and not offseason:
             red.append(f"{pref:12s} 取得結果が{n}日更新されていません"
                        f"（{r.get('result_date')} が最後。ワークフローで走っていない疑い）")
+
+    # --- 赤③ teams.json を書く導出ジョブが失敗している（2026-09-07追加） ---
+    # sync_teams_from_leagues / sync_teams_from_pref には continue-on-error: true が
+    # 付いている（コミットより前のステップなので、赤くするとその日のサイト更新が
+    # 丸ごと止まる）。握りつぶしたままだと、同期が失敗しても緑のまま古い teams.json で
+    # ページが作られ、「県ページ・リーグページの上下が食い違う」状態が公開される。
+    # → **握りつぶすが、必ず表に出す。** ここで拾って赤にする。
+    #   この見張りはコミット・デプロイより後の最終ステップにいるので、
+    #   赤にしてもサイトの更新は止まらない。
+    for job in ("sync_teams_from_leagues", "sync_teams_from_pref"):
+        e = jobs.get(job)
+        if not e:
+            info.append(f"{job:12s} まだ一度も記録されていません（初回実行前）")
+            continue
+        if e.get("result") != "ok":
+            n = days_between(e.get("since", ""), today)
+            line = (f"{job:12s} 失敗しています: {e.get('result')}"
+                    f"（{e.get('since', '?')} から{n if n is not None else '?'}日）"
+                    f" {str(e.get('note', ''))[:60]}")
+            if n is not None and n >= FETCH_FAIL_DAYS and not offseason:
+                red.append(line)
+            else:
+                yellow.append(line + f"  ※{FETCH_FAIL_DAYS}日続いたら赤")
+            continue
+        # ok だが記録自体が古い＝ステップが走っていない
+        n = days_between(e.get("date", ""), today)
+        if n is not None and n >= FETCH_FAIL_DAYS and not offseason:
+            red.append(f"{job:12s} 記録が{n}日更新されていません"
+                       f"（{e.get('date')} が最後。ワークフローで走っていない疑い）")
 
     # --- 赤② 全国同時停止 ---
     national = max((r.get("latest_match", "") for r in records.values()), default="")
@@ -291,7 +321,7 @@ def main() -> int:
                     "played_without_date": cur["played_without_date"]})
         records[pref] = update_record(rec, cur, today, pref in official)
 
-    j = judge(records, today, official)
+    j = judge(records, today, official, status.get("jobs", {}))
     red, yellow, info, ok = j["red"], j["yellow"], j["info"], j["ok"]
 
     national = max((r.get("latest_match", "") for r in records.values()), default="")
@@ -300,7 +330,7 @@ def main() -> int:
     if today.month in OFFSEASON_MONTHS:
         print(f"  ※ {today.month}月はオフシーズンのため赤にしません（情報としては出します）")
     print()
-    print(f"🔴 要対応 {len(red)}県")
+    print(f"🔴 要対応 {len(red)}件")
     for line in red:
         print("   " + line)
     print(f"🟡 情報（打つ手が無いもの・赤にしない） {len(yellow)}件")

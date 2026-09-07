@@ -54,11 +54,13 @@ def load() -> dict:
     try:
         d = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     except Exception:
-        return {"updatedAt": "", "leagues": {}, "pref_leagues": {}}
+        return {"updatedAt": "", "leagues": {}, "pref_leagues": {}, "jobs": {}}
     if not isinstance(d, dict) or not isinstance(d.get("leagues"), dict):
-        return {"updatedAt": "", "leagues": {}, "pref_leagues": {}}
+        return {"updatedAt": "", "leagues": {}, "pref_leagues": {}, "jobs": {}}
     if not isinstance(d.get("pref_leagues"), dict):
         d["pref_leagues"] = {}
+    if not isinstance(d.get("jobs"), dict):
+        d["jobs"] = {}
     return d
 
 
@@ -153,5 +155,36 @@ def set_pref_result(pref: str, result: str, note: str = "") -> None:
     entry["result_note"] = note
     # いつ記録したか。これが古いままなら「スクリプトが走っていない」と分かる。
     entry["result_date"] = datetime.now(JST).date().isoformat()
+    save(d)
+
+
+# ---------------------------------------------------------------------------
+# 導出ジョブの成否（jobs）— 2026-09-07 追加
+# ---------------------------------------------------------------------------
+# teams.json を書く「導出」スクリプト（sync_teams_from_leagues / sync_teams_from_pref）が
+# 自分の成否だけを書く。判定は audit_pref_freshness.py が行う。
+#
+# なぜ要るか:
+#   この2本には continue-on-error: true が付いている。**外してはいけない**
+#   （コミットより前のステップなので、赤くするとその日のサイト更新が丸ごと止まる）。
+#   しかし握りつぶしたままだと、同期が失敗しても緑のまま古い teams.json でページが
+#   作られ、「県ページの上下が食い違う」状態が誰にも気づかれずに公開される。
+#   → **握りつぶすが、必ず表に出す。** 成否をここに書き、コミット・デプロイより後の
+#     最終ステップにいる見張りが赤にする。サイトの更新は止まらない。
+#   これは fetch_pref_official.py の赤①（取得失敗を3日続いたら赤）と同じ仕組み。
+def set_job_result(job: str, result: str, note: str = "") -> None:
+    """1ジョブ分の成否を記録する。result は "ok" か、それ以外（失敗の種類）。"""
+    d = load()
+    entry = d.setdefault("jobs", {}).setdefault(job, {})
+    prev_result = entry.get("result")
+    entry["result"] = result
+    entry["note"] = note[:200]
+    entry["date"] = datetime.now(JST).date().isoformat()   # いつ記録したか
+    if result == "ok":
+        entry["since"] = ""
+    elif prev_result != "ok" and entry.get("since"):
+        pass                                               # 失敗が続いている。開始日は据え置き
+    else:
+        entry["since"] = entry["date"]                     # 失敗が始まった日
     save(d)
 

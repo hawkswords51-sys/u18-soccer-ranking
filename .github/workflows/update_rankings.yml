@@ -112,6 +112,17 @@ jobs:
             echo "scraper/dedup_near_duplicates.py がまだありません。スキップ。"
           fi
 
+      # ══════════════════════════════════════════════════════════════
+      # ★ ステップの分類（2026-09-07 原則化）
+      #   **取得**（外部にアクセスする）… push では飛ばす。push起動はデータを直した人が
+      #     すでに正しい値を持っているので、取りに行く必要がない。
+      #   **導出**（data/ を読んで data/ を書くだけ）… push でも走らせる。
+      #     飛ばすと「データは新しいのに、そこから作る値だけ古い」状態になる。
+      #   2026-09-07に、導出4本（この下の同期・順位再計算・クリーンアップ）に
+      #   `github.event_name != 'push'` が付いており、data/teams.json や
+      #   data/league_matches/** を直接編集して push すると
+      #   **ページの上と下が食い違う**事故が起きた。条件を外して解消。
+      # ══════════════════════════════════════════════════════════════
       # ★ プレミア・プリンスの成績と順位をリーグJSONから導出（2026-09-07新設）
       #   teams.json が「独立に計算されたもう1つの順位表」になっていた。
       #   fetch_jfa.py は JFAから取れたリーグしか teams.json を書かないので、
@@ -121,7 +132,7 @@ jobs:
       #      cleanup_aliases の renumber_pref_ranks() が leagueRank を並べ替えキーに
       #      使うので、後に置くと県内総合の並びが1回ぶん古いままになる。
       - name: プレミア・プリンスの順位を teams.json へ同期（正本から導出）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         continue-on-error: true
         run: |
           if [ -f scraper/sync_teams_from_leagues.py ]; then
@@ -131,7 +142,7 @@ jobs:
           fi
 
       - name: リーグ順位を勝点ベースで再計算 (都道府県内のみ)
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           if [ -f scraper/normalize_league_ranks.py ]; then
             python scraper/normalize_league_ranks.py
@@ -150,7 +161,7 @@ jobs:
 
       # ★ エイリアス重複・空チームの自動クリーンアップ
       - name: エイリアス重複・空チームを自動クリーンアップ
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           if [ -f scraper/cleanup_aliases.py ]; then
             python scraper/cleanup_aliases.py --apply --remove-empty
@@ -242,7 +253,7 @@ jobs:
       #   県1部の順位の出どころを pref-*-1.json に一本化する。
       #   **必ずページ生成より前**に置くこと（生成時点で teams.json が新しい必要がある）。
       - name: 県1部の順位を teams.json へ同期（上下の食い違いを防ぐ）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         continue-on-error: true
         run: |
           if [ -f scraper/sync_teams_from_pref.py ]; then

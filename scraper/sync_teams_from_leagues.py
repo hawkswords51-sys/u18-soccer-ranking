@@ -48,6 +48,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import fetch_status  # noqa: E402
 from update_pref_cross_tables import norm  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -160,6 +161,24 @@ def plan_league(lg: str, entries: list, dry: bool) -> tuple[str, list]:
             f"（うち値が変わる {changed}）", plan)
 
 
+def _run_and_record(fn, job: str) -> int:
+    """本体を走らせ、成否を fetch_status.json に記録する。
+
+    ⚠️ ワークフローではこのステップに continue-on-error: true が付いている。
+       **外してはいけない**（コミットより前なので、赤くするとその日のサイト更新が
+       丸ごと止まる）。代わりにここで成否を記録し、コミット・デプロイより後にいる
+       audit_pref_freshness.py が赤にする。**握りつぶすが、必ず表に出す。**
+    """
+    try:
+        rc = fn()
+    except Exception as e:
+        fetch_status.set_job_result(job, type(e).__name__, str(e))
+        raise
+    fetch_status.set_job_result(job, "ok" if rc == 0 else "nonzero_exit",
+                                "" if rc == 0 else f"終了コード {rc}")
+    return rc
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="teams.json のプレミア・プリンス成績をリーグJSONから同期する")
@@ -206,4 +225,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # --dry-run は書き込まないので記録もしない（本番の成否だけを見張りに渡す）
+    if "--dry-run" in sys.argv:
+        sys.exit(main())
+    sys.exit(_run_and_record(main, "sync_teams_from_leagues"))
