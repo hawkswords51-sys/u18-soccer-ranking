@@ -25,6 +25,8 @@ scraper/update_tournament_results.py が上の source から
 - 伊奈 vs 太田一
 - 中央 vs 清真学園
 - 県南合同1 vs 古河二
+- 下館一 vs 日立商
+<!-- 無視: 下妻一 vs 日立商 -->
 - 守谷 vs 下館二
 - 勝田中等 vs 鉾田二
 - 並木中等 vs 土浦湖北
@@ -35,6 +37,7 @@ scraper/update_tournament_results.py が上の source から
 - 下館工 vs 麻生
 - 下妻二 vs 江戸川学園取手
 - 県東合同 vs 古河三
+- 土浦日大中等教育学校 vs 水海道一
 - つくば秀英 vs 勝田工
 - 土浦二 vs 水城
 - 県⻄合同 vs 岩瀬日大
@@ -45,6 +48,7 @@ scraper/update_tournament_results.py が上の source から
 - 県立八千代 vs 県南合同2
 - 高萩清松 vs 佐和
 - 日立工 vs 竜ヶ崎一
+- 土浦日大 vs 下妻一
 - 石岡一 vs 藤代
 - 日立一 vs 水戸三
 - 水戸農 vs 緑岡
@@ -61,7 +65,8 @@ scraper/update_tournament_results.py が上の source から
 - 日立一/水戸三 vs 科技学園日立/水戸工
 - 鉾田一/茨城高専 vs 土浦工/藤代紫水
 - 竹園/水戸合同 vs 県南合同1/古河二
-- 下妻一/日立商 vs 下館工/麻生
+- 下館一/日立商 vs 下館工/麻生
+<!-- 無視: 下妻一/日立商 vs 下館工/麻生 -->
 - 県立八千代/県南合同2 vs 高萩清松/佐和
 - 日立北/茨城 vs 日立工/竜ヶ崎一
 - 常磐大高/取手松陽 vs 鬼怒商/多賀

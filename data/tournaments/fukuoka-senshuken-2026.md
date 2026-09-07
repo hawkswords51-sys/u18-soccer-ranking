@@ -106,7 +106,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 2次トーナメント2回戦（10/3・10/4）
 
-- 九州国際大付 vs 柳川/小倉
+- 九産大九州 vs 柳川/小倉
 - 香椎工業 vs 筑紫
 - 誠修 vs 中間/久留米高専
 - 筑前 vs 小倉東
@@ -116,6 +116,7 @@ scraper/update_tournament_results.py が上の source から
 - 育徳館 vs 筑紫中央
 - 小倉工業 vs 嘉穂/八幡工業
 - 久留米筑水 vs 九産大九産
+<!-- 無視: 久留米筑水 vs 九産大九州 -->
 - 福智 vs 福岡第一/宗像
 - 福岡講倫館 vs 福翔
 - 北筑 vs 折尾愛真/香住丘
