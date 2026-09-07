@@ -138,13 +138,35 @@ PREF_OFFICIAL = {
 
     # 2026-09-07 追加の2県。どちらも**枠を作り直す**（double_round）。
     # 1回戦制の枠のまま止まっていたため、島根は「完了」と誤認されて見張りも黙っていた。
-    "shimane":   {"platform": "shimane",
+    "shimane":   {"platform": "sportsonline_table", "teams": 8,
                   "url": "https://www.sportsonline.jp/reportv2/PublisherFull/"
                          "viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E",
                   "source": "https://www.sportsonline.jp/reportv2/PublisherFull/"
                             "viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E",
                   "label": "島根県サッカー協会 公式（SportsOnline）",
                   "double_round": True},
+    # 広島（2026-09-07追加）。島根と同じ SportsOnline の1ページ型で、
+    # **島根のリーダを無改造で当てて動くことを実測で確認**したうえで共用にした。
+    # 枠は90のまま（2回戦制で作られている）。ALIASは不要（10チームすべて表記が一致）。
+    "hiroshima": {"platform": "sportsonline_table", "teams": 10,
+                  "url": "https://www.sportsonline.jp/reportv2/PublisherFull/"
+                         "viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E",
+                  "source": "https://www.sportsonline.jp/reportv2/PublisherFull/"
+                            "viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E",
+                  "label": "広島県サッカー協会 公式（SportsOnline）",
+                  # 移行の初回だけ効く既知差分。junior-soccer が
+                  # **公式に存在しない試合**「サンフレセカンド 5-1 銀河学院」（日付が空）を
+                  # 登録していた。公式では両者は一度も対戦していない（2026-09-07に
+                  # 全試合を突き合わせて確認）。当サイト側でこの1件だけ日付が空で、
+                  # 公式は9/6まで入力済みなので「実在するが公式が未入力」とは考えにくい。
+                  # ⚠️ これは「スコアの誤り」「重複登録」とも違う**存在しない試合の登録**という
+                  #    新しい型。**日付が空の消化済み試合は、まずこれを疑う。**
+                  # このためサンフレセカンドが 10試合 → 9試合 に減るが、退行ではない。
+                  # 移行後は「見つからない」と警告が出るので、そうしたら削除すること。
+                  "known_bad_existing": [
+                      {"date": "", "home": "サンフレセカンド", "away": "銀河学院",
+                       "hs": 5, "as": 1},
+                  ]},
     "okayama":   {"platform": "okayama",
                   "entry": "http://okayama-fa.or.jp/2022/2-2",
                   "heading": "高円宮杯 JFA U-18 サッカーリーグ OKAYAMA",
@@ -1181,26 +1203,35 @@ def read_okinawa(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
-# 島根（SportsOnline）— 山口・広島と同じ仕組みだが**壊れ方が違う**
+# SportsOnline の「星取表＋全試合が1ページ」型（島根・広島で共用）
 #   viewdata.aspx 1本で順位表と全試合が取れる（POST・ViewState・cookie 不要）。
-#   table[2] = 星取表＋順位表 … 順位|チーム名|8チーム列|勝数|負数|引分|勝点|得点|失点|得失差
+#   table[2] = 星取表＋順位表 … 順位|チーム名|Nチーム列|勝数|負数|引分|勝点|得点|失点|得失差
 #   table[3] = 全試合一覧     … 組み合わせ|開始日|開始時刻|進行状況|会場|審判|ユニフォーム
-# ⚠️ **山口のパーサを流用しないこと。** 同じ SportsOnline でも壊れ方が逆で
-#    （山口は `</tr>` が多い／島根は `<tr>` が多い）、表の位置も列の並びも違う。
-#    「同じ仕組みだから」で共通化すると静かにズレる。
-# ⚠️ 順位表のHTMLが不正で全チームが1行に潰れる（実測 tr開始122 / 閉じ130）。
-#    ヘッダ幅（「得失差」の位置+1＝17）で切り直し、**行数がチーム数と一致するか必ず確認**する。
-# ⚠️ 山口と違い **実際の試合日が入っている**（最新 2026/09/06）ので
-#    NO_RECENT_RESULTS には入れない。
-# ⚠️ **1回戦制28枠のまま「完了」と誤認されて7/15から止まっていた県**（2026-09-07判明）。
-#    枠を56に作り直す（cfg の double_round）。
+#
+# ✅ 共用の根拠（2026-09-07）: 島根用に書いたこの関数を**無改造で広島に当てて動くことを
+#    実測で確認**したうえで共用にした。構造を決め打ちしていないので列数が違っても動く
+#    （順位表は「得失差」の位置からヘッダ幅を導出／列は名前で引く／試合表はヘッダで探す）。
+#    実測: 島根8チーム17列・広島10チーム19列。
+# ⚠️ **3県目が出てきたら、まず無改造で当ててみること。**
+#    **無改造で動いたら共用、分岐が要るなら別リーダにする。**
+#    分岐を足して共用を維持するより、別に書くほうが安全（「同じプラットフォームだから
+#    同じだろう」で共通化して静かにズレるのが、いちばん避けたい形）。
+# ⚠️ **山口は共用しない。** 日付が全部ダミーで既存JSONからの引き継ぎ処理が要り、
+#    表の位置も違う。表面の違いではなく**扱いの違い**なので混ぜない。
+#
+# ⚠️ **HTMLの壊れ方は県ごとに違う**（山口=`</tr>`が多い／島根=`<tr>`が多い／
+#    広島=`</tr>`が多いが順位表の潰れ方は島根と同じ）。壊れ方と必要な対処は別物。
+#    どの県でも順位表は1行に潰れるので、ヘッダ幅で切り直す。
+#    ★**復元後の行数がチーム数と一致しなければ失敗にする**（共用なので、片方の県で
+#      HTMLの形が変わったときにもう片方の期待で黙って通るのを防ぐ）。
+# ⚠️ 山口と違い **実際の試合日が入っている**ので NO_RECENT_RESULTS には入れない。
 # 年度切り替え: parentid / rallyid を差し替える（Rally.aspx の子大会一覧から）
 # ============================================================
-_SHIMANE_SCORE_RE = re.compile(r"^(.+?)\s+(\d+)\s*-\s*(\d+)\s+(.+)$")
-_SHIMANE_DATE_RE = re.compile(r"(\d{4})/(\d{1,2})/(\d{1,2})")
+_SPORTSONLINE_SCORE_RE = re.compile(r"^(.+?)\s+(\d+)\s*-\s*(\d+)\s+(.+)$")
+_SPORTSONLINE_DATE_RE = re.compile(r"(\d{4})/(\d{1,2})/(\d{1,2})")
 
 
-def read_shimane(cfg: dict) -> tuple[dict, list[dict]]:
+def read_sportsonline_table(cfg: dict) -> tuple[dict, list[dict]]:
     soup = BeautifulSoup(fetch_html(cfg["url"], encoding="utf-8",
                                     must_contain="得失差"), "html.parser")
     time.sleep(SLEEP)
@@ -1224,7 +1255,20 @@ def read_shimane(cfg: dict) -> tuple[dict, list[dict]]:
         if len(col) < 6:
             continue
         rows = [texts[i:i + width] for i in range(width, len(texts), width)]
-        rows = [r for r in rows if len(r) == width]
+        full = [r for r in rows if len(r) == width]
+        # ★ 復元後の行数がチーム数と一致しなければ**失敗にする**（据え置き）。
+        #   共用のリーダなので、片方の県でHTMLの形が変わったときに
+        #   もう片方の期待で黙って通るのを防ぐ。警告ではなく失敗にすること。
+        expected = cfg.get("teams")
+        if expected is not None and len(full) != expected:
+            raise RuntimeError(
+                f"順位表の復元行数 {len(full)} がチーム数 {expected} と一致しない"
+                f"（列数{width}で切り直した結果。出典のHTMLの形が変わった疑い）")
+        if len(full) != len(rows):
+            raise RuntimeError(
+                f"順位表に列数{width}で割り切れない行がある"
+                f"（{len(rows) - len(full)}行。出典のHTMLの形が変わった疑い）")
+        rows = full
         for r in rows:
             team = r[1].strip()
             vals = {k: _to_int(r[i]) for k, i in col.items()}
@@ -1249,10 +1293,10 @@ def read_shimane(cfg: dict) -> tuple[dict, list[dict]]:
                 continue
             if "試合終了" not in r[3]:
                 continue          # 未消化。枠は generate_fixtures 側が作る
-            m = _SHIMANE_SCORE_RE.match(r[0])
+            m = _SPORTSONLINE_SCORE_RE.match(r[0])
             if not m:
                 continue
-            dm = _SHIMANE_DATE_RE.search(r[1])
+            dm = _SPORTSONLINE_DATE_RE.search(r[1])
             matches.append(dict(
                 date=(f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
                       if dm else ""),
@@ -1632,7 +1676,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "yamaguchi": read_yamaguchi, "tokyo": read_tokyo,
                       "kanagawa": read_kanagawa, "toyama": read_toyama,
                       "kumamoto": read_kumamoto, "okinawa": read_okinawa,
-                      "shimane": read_shimane,
+                      "sportsonline_table": read_sportsonline_table,
                       "okayama": read_okayama}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
@@ -1761,8 +1805,33 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                 f"合わない（試合が落ちている・据え置き）")
 
     new_played = meta["played"]
-    if new_played < cur_played:
+    # 退行防止：公式の消化数がこちらより少なければ据え置く。
+    # ⚠️ この原則そのものは残すこと。2026-09-07に沖縄が那覇の異常値
+    #    （試合が減るのに勝点が増える）で守られたのは、このガードのおかげ。
+    # ただし known_bad_existing に**明示された試合だけ**は、既存側の誤りと確認済みなので
+    # 分母から外す。除外を一般的に緩めない（件数だけのゆるい除外にしない）ため、
+    # 「既存JSONに実在し、かつ日付・両チーム・スコアまで完全一致するもの」だけを数える。
+    known_bad = cfg.get("known_bad_existing") or []
+    bogus = 0
+    if known_bad:
+        def _k(m):
+            h, a, hs, as_ = m.get("home"), m.get("away"), m.get("hs"), m.get("as")
+            if h > a:
+                h, a, hs, as_ = a, h, as_, hs
+            return (m.get("date") or "", h, a, hs, as_)
+        want = collections.Counter(_k(b) for b in known_bad)
+        for m in data.get("matches", []):
+            if m.get("status") != "played" or m.get("hs") is None:
+                continue
+            k = _k(m)
+            if want.get(k):
+                want[k] -= 1
+                bogus += 1
+        if bogus:
+            print(f"       （{pref}: known_bad_existing の{bogus}件を退行判定の分母から除外）")
+    if new_played < cur_played - bogus:
         return (f"[据え置き] {slug}: 公式消化{new_played} < 現在{cur_played}"
+                f"{f'−既知の誤り{bogus}' if bogus else ''}"
                 f"（公式側が遅れている。退行防止）")
 
     diff = diff_against_existing(data, fixtures)

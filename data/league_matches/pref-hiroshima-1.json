@@ -1,29 +1,29 @@
 {
   "league": "高円宮杯 JFA U-18 サッカーリーグ 2026 広島県1部",
   "season": "2026",
-  "source": "https://junior-soccer.jp/chugoku/hiroshima/league/table/163654",
-  "sourceName": "広島少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-09-06",
+  "source": "https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E",
+  "sourceName": "広島県サッカー協会 公式（SportsOnline）",
+  "lastUpdated": "2026-09-07",
   "teams": [
     {
       "name": "瀬戸内セカンド",
       "short": "瀬戸内セカンド"
     },
     {
-      "name": "サンフレセカンド",
-      "short": "サンフレセカンド"
-    },
-    {
       "name": "如水館",
       "short": "如水館"
     },
     {
-      "name": "沼田",
-      "short": "沼田"
+      "name": "サンフレセカンド",
+      "short": "サンフレセカン"
     },
     {
       "name": "広工大高",
       "short": "広工大高"
+    },
+    {
+      "name": "沼田",
+      "short": "沼田"
     },
     {
       "name": "広島新庄",
@@ -61,30 +61,42 @@
     },
     {
       "rank": 2,
-      "team": "サンフレセカンド",
-      "points": 23,
+      "team": "如水館",
+      "points": 22,
       "played": 10,
       "won": 7,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 34,
-      "ga": 17,
-      "gd": 17
-    },
-    {
-      "rank": 3,
-      "team": "如水館",
-      "points": 21,
-      "played": 9,
-      "won": 7,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 2,
-      "gf": 26,
-      "ga": 11,
+      "gf": 29,
+      "ga": 14,
       "gd": 15
     },
     {
+      "rank": 3,
+      "team": "サンフレセカンド",
+      "points": 20,
+      "played": 9,
+      "won": 6,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 29,
+      "ga": 16,
+      "gd": 13
+    },
+    {
       "rank": 4,
+      "team": "広工大高",
+      "points": 17,
+      "played": 10,
+      "won": 5,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 18,
+      "ga": 10,
+      "gd": 8
+    },
+    {
+      "rank": 5,
       "team": "沼田",
       "points": 16,
       "played": 10,
@@ -96,28 +108,16 @@
       "gd": 8
     },
     {
-      "rank": 5,
-      "team": "広工大高",
-      "points": 16,
-      "played": 9,
-      "won": 5,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 15,
-      "ga": 7,
-      "gd": 8
-    },
-    {
       "rank": 6,
       "team": "広島新庄",
-      "points": 9,
-      "played": 9,
-      "won": 3,
+      "points": 12,
+      "played": 10,
+      "won": 4,
       "drawn": 0,
       "lost": 6,
-      "gf": 9,
+      "gf": 10,
       "ga": 22,
-      "gd": -13
+      "gd": -12
     },
     {
       "rank": 7,
@@ -163,21 +163,12 @@
       "won": 2,
       "drawn": 0,
       "lost": 7,
-      "gf": 10,
-      "ga": 26,
-      "gd": -16
+      "gf": 9,
+      "ga": 22,
+      "gd": -13
     }
   ],
   "matches": [
-    {
-      "md": 0,
-      "date": "2026-08-29",
-      "home": "瀬戸内セカンド",
-      "hs": 5,
-      "as": 1,
-      "away": "サンフレセカンド",
-      "status": "played"
-    },
     {
       "md": 0,
       "date": "2026-06-28",
@@ -189,12 +180,12 @@
     },
     {
       "md": 0,
-      "date": "2026-05-09",
+      "date": "",
       "home": "瀬戸内セカンド",
-      "hs": 1,
-      "as": 0,
-      "away": "沼田",
-      "status": "played"
+      "hs": null,
+      "as": null,
+      "away": "サンフレセカンド",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -203,6 +194,15 @@
       "hs": 0,
       "as": 0,
       "away": "広工大高",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "瀬戸内セカンド",
+      "hs": 1,
+      "as": 0,
+      "away": "沼田",
       "status": "played"
     },
     {
@@ -234,9 +234,9 @@
     },
     {
       "md": 0,
-      "date": "2026-09-05",
+      "date": "2026-04-04",
       "home": "瀬戸内セカンド",
-      "hs": 6,
+      "hs": 3,
       "as": 0,
       "away": "広島観音",
       "status": "played"
@@ -253,11 +253,92 @@
     {
       "md": 0,
       "date": "",
-      "home": "サンフレセカンド",
+      "home": "如水館",
       "hs": null,
       "as": null,
       "away": "瀬戸内セカンド",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "如水館",
+      "hs": null,
+      "as": null,
+      "away": "サンフレセカンド",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "如水館",
+      "hs": 3,
+      "as": 2,
+      "away": "広工大高",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "如水館",
+      "hs": 3,
+      "as": 2,
+      "away": "沼田",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "如水館",
+      "hs": null,
+      "as": null,
+      "away": "広島新庄",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "如水館",
+      "hs": 4,
+      "as": 0,
+      "away": "広島国際学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "如水館",
+      "hs": 3,
+      "as": 0,
+      "away": "広島翔洋",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "如水館",
+      "hs": 3,
+      "as": 1,
+      "away": "広島観音",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "如水館",
+      "hs": 3,
+      "as": 0,
+      "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-08-29",
+      "home": "サンフレセカンド",
+      "hs": 1,
+      "as": 5,
+      "away": "瀬戸内セカンド",
+      "status": "played"
     },
     {
       "md": 0,
@@ -270,20 +351,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "サンフレセカンド",
-      "hs": 2,
-      "as": 1,
-      "away": "沼田",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "サンフレセカンド",
       "hs": 3,
       "as": 2,
       "away": "広工大高",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "サンフレセカンド",
+      "hs": 2,
+      "as": 1,
+      "away": "沼田",
       "status": "played"
     },
     {
@@ -326,15 +407,15 @@
       "md": 0,
       "date": "",
       "home": "サンフレセカンド",
-      "hs": 5,
-      "as": 1,
+      "hs": null,
+      "as": null,
       "away": "銀河学院",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
       "date": "",
-      "home": "如水館",
+      "home": "広工大高",
       "hs": null,
       "as": null,
       "away": "瀬戸内セカンド",
@@ -342,168 +423,15 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "如水館",
-      "hs": null,
-      "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
+      "date": "2026-09-06",
       "home": "如水館",
       "hs": 3,
-      "as": 2,
-      "away": "沼田",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "如水館",
-      "hs": 3,
-      "as": 2,
+      "as": 3,
       "away": "広工大高",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-08-29",
-      "home": "如水館",
-      "hs": 3,
-      "as": 0,
-      "away": "広島新庄",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "如水館",
-      "hs": 4,
-      "as": 0,
-      "away": "広島国際学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "如水館",
-      "hs": 3,
-      "as": 0,
-      "away": "広島翔洋",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "如水館",
-      "hs": 3,
-      "as": 1,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "如水館",
-      "hs": 3,
-      "as": 0,
-      "away": "銀河学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "沼田",
-      "hs": null,
-      "as": null,
-      "away": "瀬戸内セカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "沼田",
-      "hs": null,
-      "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "沼田",
-      "hs": null,
-      "as": null,
-      "away": "如水館",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "沼田",
-      "hs": null,
-      "as": null,
-      "away": "広工大高",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "沼田",
-      "hs": null,
-      "as": null,
-      "away": "広島新庄",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "沼田",
-      "hs": 5,
-      "as": 2,
-      "away": "広島国際学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "沼田",
-      "hs": 2,
-      "as": 0,
-      "away": "広島翔洋",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "沼田",
-      "hs": 5,
-      "as": 0,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "沼田",
-      "hs": 3,
-      "as": 1,
-      "away": "銀河学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "広工大高",
-      "hs": null,
-      "as": null,
-      "away": "瀬戸内セカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "広工大高",
       "hs": null,
@@ -517,17 +445,8 @@
       "home": "広工大高",
       "hs": null,
       "as": null,
-      "away": "如水館",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "広工大高",
-      "hs": 2,
-      "as": 0,
       "away": "沼田",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -577,11 +496,101 @@
     {
       "md": 0,
       "date": "",
+      "home": "沼田",
+      "hs": null,
+      "as": null,
+      "away": "瀬戸内セカンド",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "沼田",
+      "hs": null,
+      "as": null,
+      "away": "如水館",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "沼田",
+      "hs": null,
+      "as": null,
+      "away": "サンフレセカンド",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-08-30",
+      "home": "沼田",
+      "hs": 0,
+      "as": 2,
+      "away": "広工大高",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "沼田",
+      "hs": null,
+      "as": null,
+      "away": "広島新庄",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "沼田",
+      "hs": 5,
+      "as": 2,
+      "away": "広島国際学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "沼田",
+      "hs": 2,
+      "as": 0,
+      "away": "広島翔洋",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "沼田",
+      "hs": 5,
+      "as": 0,
+      "away": "広島観音",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "沼田",
+      "hs": 3,
+      "as": 1,
+      "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
       "home": "広島新庄",
       "hs": null,
       "as": null,
       "away": "瀬戸内セカンド",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-08-29",
+      "home": "広島新庄",
+      "hs": 0,
+      "as": 3,
+      "away": "如水館",
+      "status": "played"
     },
     {
       "md": 0,
@@ -594,12 +603,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-04-11",
       "home": "広島新庄",
-      "hs": null,
-      "as": null,
-      "away": "如水館",
-      "status": "scheduled"
+      "hs": 0,
+      "as": 1,
+      "away": "広工大高",
+      "status": "played"
     },
     {
       "md": 0,
@@ -608,15 +617,6 @@
       "hs": 1,
       "as": 2,
       "away": "沼田",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "広島新庄",
-      "hs": 0,
-      "as": 1,
-      "away": "広工大高",
       "status": "played"
     },
     {
@@ -670,7 +670,7 @@
       "home": "広島国際学院",
       "hs": null,
       "as": null,
-      "away": "サンフレセカンド",
+      "away": "如水館",
       "status": "scheduled"
     },
     {
@@ -679,17 +679,8 @@
       "home": "広島国際学院",
       "hs": null,
       "as": null,
-      "away": "如水館",
+      "away": "サンフレセカンド",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "沼田",
-      "hs": 1,
-      "as": 1,
-      "away": "広島国際学院",
-      "status": "played"
     },
     {
       "md": 0,
@@ -698,6 +689,15 @@
       "hs": 1,
       "as": 0,
       "away": "広工大高",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "沼田",
+      "hs": 1,
+      "as": 1,
+      "away": "広島国際学院",
       "status": "played"
     },
     {
@@ -747,6 +747,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "広島翔洋",
+      "hs": null,
+      "as": null,
+      "away": "如水館",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-09-05",
       "home": "サンフレセカンド",
       "hs": 1,
@@ -760,7 +769,7 @@
       "home": "広島翔洋",
       "hs": null,
       "as": null,
-      "away": "如水館",
+      "away": "広工大高",
       "status": "scheduled"
     },
     {
@@ -770,15 +779,6 @@
       "hs": null,
       "as": null,
       "away": "沼田",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "広島翔洋",
-      "hs": null,
-      "as": null,
-      "away": "広工大高",
       "status": "scheduled"
     },
     {
@@ -810,30 +810,21 @@
     },
     {
       "md": 0,
-      "date": "2026-06-28",
-      "home": "広島翔洋",
-      "hs": 1,
-      "as": 0,
-      "away": "銀河学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "広島観音",
-      "hs": 0,
-      "as": 3,
-      "away": "瀬戸内セカンド",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
-      "home": "広島観音",
+      "home": "広島翔洋",
       "hs": null,
       "as": null,
-      "away": "サンフレセカンド",
+      "away": "銀河学院",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "瀬戸内セカンド",
+      "hs": 6,
+      "as": 0,
+      "away": "広島観音",
+      "status": "played"
     },
     {
       "md": 0,
@@ -850,7 +841,7 @@
       "home": "広島観音",
       "hs": null,
       "as": null,
-      "away": "沼田",
+      "away": "サンフレセカンド",
       "status": "scheduled"
     },
     {
@@ -860,6 +851,15 @@
       "hs": null,
       "as": null,
       "away": "広工大高",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "広島観音",
+      "hs": null,
+      "as": null,
+      "away": "沼田",
       "status": "scheduled"
     },
     {
@@ -882,7 +882,7 @@
     },
     {
       "md": 0,
-      "date": "2026-09-05",
+      "date": "2026-08-30",
       "home": "広島観音",
       "hs": 2,
       "as": 0,
@@ -913,15 +913,6 @@
       "home": "銀河学院",
       "hs": null,
       "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
       "away": "如水館",
       "status": "scheduled"
     },
@@ -931,7 +922,7 @@
       "home": "銀河学院",
       "hs": null,
       "as": null,
-      "away": "沼田",
+      "away": "サンフレセカンド",
       "status": "scheduled"
     },
     {
@@ -949,8 +940,17 @@
       "home": "銀河学院",
       "hs": null,
       "as": null,
-      "away": "広島新庄",
+      "away": "沼田",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "広島新庄",
+      "hs": 1,
+      "as": 0,
+      "away": "銀河学院",
+      "status": "played"
     },
     {
       "md": 0,
@@ -963,12 +963,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-06-28",
       "home": "銀河学院",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "広島翔洋",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,

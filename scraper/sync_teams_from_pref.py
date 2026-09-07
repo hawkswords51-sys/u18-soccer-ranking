@@ -71,7 +71,14 @@ TEAMS_FILE = ROOT / "data" / "teams.json"
 # ⚠️ 例外はこの1県だけにすること。他県は必ずガードを通す。
 # ※ 同期後も創志学園は19ptのまま（4/12のスコア反転が pref JSON 側に残っているため）。
 #   岡山を県協会公式へ移すときに直す。
-REGRESSION_EXEMPT = {"okayama"}
+# 広島（2026-09-07追加・こちらも一時的）。junior-soccer が**公式に存在しない試合**
+# 「サンフレセカンド 5-1 銀河学院」（日付が空）を登録していたため、公式へ移行すると
+# その2チームが 10試合 → 9試合 に減る。**存在しない試合が消えるだけで退行ではない。**
+# ⚠️ 除外しないと県まるごと据え置きになり、**県ページの上（順位表・AI要約）だけが
+#    古いまま残る**＝今日ずっと直してきた「上下の食い違い」がここで再発する。
+# ⚠️ 一度同期すれば teams.json も9試合になり、次回からは減らないのでガードを通る。
+#    **fetch_pref_official.py の known_bad_existing を消すときに、これも一緒に消すこと。**
+REGRESSION_EXEMPT = {"okayama", "hiroshima"}
 
 
 def is_pref_league(league: str | None) -> bool:
