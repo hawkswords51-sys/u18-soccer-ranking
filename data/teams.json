@@ -283,29 +283,10 @@
     "region": "東北",
     "teams": [
       {
-        "id": "a003",
-        "name": "青森山田高校3rd",
-        "league": "青森県1部",
-        "rank": 1,
-        "points": 30,
-        "played": 11,
-        "won": 10,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 61,
-        "goalsAgainst": 6,
-        "prefectureRank": 1,
-        "leagueRank": 1,
-        "aliases": [
-          "青森山田3rd",
-          "青森山田高校サード"
-        ]
-      },
-      {
         "id": "a002",
         "name": "青森山田高校2nd",
         "league": "プリンスリーグ東北",
-        "rank": 2,
+        "rank": 1,
         "points": 31,
         "played": 12,
         "won": 10,
@@ -313,7 +294,7 @@
         "lost": 1,
         "goalsFor": 30,
         "goalsAgainst": 11,
-        "prefectureRank": 2,
+        "prefectureRank": 1,
         "leagueRank": 2,
         "aliases": [
           "青森山田高校セカンド",
@@ -321,6 +302,25 @@
           "青森山田2nd"
         ],
         "goalDiff": 19
+      },
+      {
+        "id": "a003",
+        "name": "青森山田高校3rd",
+        "league": "青森県1部",
+        "rank": 2,
+        "points": 30,
+        "played": 11,
+        "won": 10,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 61,
+        "goalsAgainst": 6,
+        "prefectureRank": 2,
+        "leagueRank": 1,
+        "aliases": [
+          "青森山田3rd",
+          "青森山田高校サード"
+        ]
       },
       {
         "id": "a001",
@@ -1427,10 +1427,10 @@
         ]
       },
       {
+        "id": "f007",
         "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "prefectureRank": 11,
         "points": 3,
         "played": 14,
         "won": 1,
@@ -1438,6 +1438,7 @@
         "lost": 13,
         "goalsFor": 2,
         "goalsAgainst": 86,
+        "prefectureRank": 11,
         "leagueRank": 10,
         "aliases": [
           "郡山商",
@@ -1463,10 +1464,10 @@
         "leagueRank": 9
       },
       {
-        "id": "f007",
         "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
+        "prefectureRank": 13,
         "points": 14,
         "played": 14,
         "won": 4,
@@ -1474,7 +1475,6 @@
         "lost": 8,
         "goalsFor": 16,
         "goalsAgainst": 26,
-        "prefectureRank": 13,
         "leagueRank": 8,
         "aliases": [
           "郡山商",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-07 19:51",
+    "lastUpdated": "2026-09-07 21:45",
     "year": 2026,
     "updatedCount": 412
   }

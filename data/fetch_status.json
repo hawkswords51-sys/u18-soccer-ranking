@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-07T19:51:58+09:00",
+  "updatedAt": "2026-09-07T21:45:48+09:00",
   "pref_leagues": {
     "chiba": {
       "result": "ok",
@@ -244,8 +244,8 @@
       "result_date": "2026-09-07"
     },
     "okinawa": {
-      "result": "verify_failed",
-      "result_note": "検算不一致 [\"known_bad に書いた試合 ('那覇', '那覇西', 2, 1) が既存JSONに見つからない（すでに直っている？ 設定を見直すこと）\"] …",
+      "result": "ok",
+      "result_note": "消化32試合に更新（検算一致）",
       "result_date": "2026-09-07"
     },
     "shimane": {
@@ -254,8 +254,8 @@
       "result_date": "2026-09-07"
     },
     "okayama": {
-      "result": "verify_failed",
-      "result_note": "検算不一致 [\"known_bad に書いた試合 ('倉敷古城池', '創志学園', 0, 1) が既存JSONに見つからない（すでに直っている？ 設定を見直すこと）\"] …",
+      "result": "ok",
+      "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-07"
     },
     "hiroshima": {
