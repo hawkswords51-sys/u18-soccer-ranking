@@ -38,6 +38,10 @@ on:
       - 'data/scorers/**'
       - 'data/u15/**'
       - 'data/league_matches/**'
+      # ⚠️ teams.json は県ページ上部の順位表とAI要約一文を作っている。
+      #    league_matches と同格なのにここから漏れており、2026-09-07に
+      #    teams.json だけを直した push が何も起動せず、反映されない事故が起きた。
+      - 'data/teams.json'
       - 'data/national-team-players.yml'
       - 'data/pro-signings.yml'
       - 'data/premier_final_history.yml'

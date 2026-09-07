@@ -85,10 +85,6 @@ ALIAS = {
     "prince-hokkaido": {
         "旭川実": "旭川実業高校",
     },
-    "prince-kyushu-2": {
-        # teams.json 側にアンダースコアが入っており norm() で寄らない
-        "サガン鳥栖U-18 2nd": "サガン鳥栖U-18_2nd",
-    },
 }
 
 FIELDS = (("points", "pts"), ("played", "played"), ("won", "won"),
