@@ -473,6 +473,43 @@ jobs:
           fi
 
       # ★ Phase 9-E: IndexNow に更新を通知（Bing 等への即時インデックス通知）
+      # ══════════════════════════════════════════════════════════════
+      # ★ 見張りの記録を保存する（2026-09-07新設）
+      #   ⚠️ **コミットより後ろに置いたステップの書き込みは、ログには出るが捨てられる。**
+      #      「走っている・ログも出る・ジョブも緑」なのに記録だけが残らない、という形になる。
+      #      実際 audit_pref_freshness と check_fetch_status の2本がこれで、
+      #      - audit の last_change（消化数が最後に増えた日）が1日も貯まらず、
+      #        黄の判定「消化数が14日増えていない」が前回値と比較できていなかった
+      #      - check の consecutiveFallback が毎回0に戻り、**「3回連続フォールバックで赤」
+      #        という見張りが 2026-09-06 の新設以来ずっと機能していなかった**
+      #   見張り自体はサイト更新を止めないために**コミットより後**に置く必要があるので、
+      #   記録の保存だけをここで行う。
+      #   ⚠️ **if: always() が必須。** 監査が赤(exit 1)で終わるとその後のステップは
+      #      通常スキップされ、**赤くなった日にこそ記録が残らない**という最悪の形になる。
+      #   ※ data/fetch_status.json は push トリガーの paths に入っていないので、
+      #     このコミットでワークフローが再起動することはない
+      #     （加えて GITHUB_TOKEN による push は仕様上ワークフローを起動しない）。
+      # ══════════════════════════════════════════════════════════════
+      - name: 見張りの記録を保存（赤でも必ず残す）
+        if: ${{ always() && github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -z "$(git status --porcelain data/fetch_status.json)" ]; then
+            echo "data/fetch_status.json に変更なし。コミットしません。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/fetch_status.json
+          git commit -m "chore: 見張りの記録を更新 (fetch_status.json)"
+          for i in 1 2 3; do
+            if git pull --rebase --autostash origin main && git push; then
+              echo "保存しました。"; exit 0
+            fi
+            echo "リトライ $i"; sleep 5
+          done
+          echo "::error::fetch_status.json の保存に失敗しました"
+          exit 1
+
       - name: IndexNow に更新を通知
         if: ${{ github.event.inputs.dry_run != 'true' }}
         continue-on-error: true
