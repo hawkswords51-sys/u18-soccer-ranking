@@ -40,6 +40,11 @@ class _JSTDate:
 
 date = _JSTDate
 
+# 県予選の1回戦などは試合数が非常に多い（神奈川の選手権予選1回戦=68試合）。
+# 試合数がこの数以上の回戦は、県ページ上で既定「閉じた状態」の折りたたみにする。
+# 数字を変えるだけで畳む範囲を調整できる（小さくすると畳まれる回戦が増える）。
+ROUND_COLLAPSE_MIN_MATCHES = 20
+
 # =========================================================================
 # Phase D: チーム個別ページへのリンク用 (data/team-profiles/*.md からマップ構築)
 # =========================================================================
@@ -622,6 +627,7 @@ def render_tournament_html(pref_id, teams, division2=None):
         # HTML生成
         rounds_html_list = []
         for r in rounds:
+            n_matches = len(r["matches"])
             if not r["matches"]:
                 matches_html = '            <li style="color:#888;">（試合確定後に追記）</li>'
             else:
@@ -629,14 +635,27 @@ def render_tournament_html(pref_id, teams, division2=None):
                     f'            <li>{enrich_match(m)}</li>'
                     for m in r["matches"]
                 )
-            rounds_html_list.append(
-                f'        <div class="tournament-round">\n'
-                f'          <h3>{r["name"]}</h3>\n'
+            matches_ul = (
                 f'          <ul class="tournament-matches">\n'
                 f'{matches_html}\n'
                 f'          </ul>\n'
-                f'        </div>'
             )
+            if n_matches >= ROUND_COLLAPSE_MIN_MATCHES:
+                # 試合数が多い回戦は既定で折りたたむ（1回戦68試合などでページが極端に長くなるため）
+                rounds_html_list.append(
+                    f'        <details class="tournament-round tournament-round--fold">\n'
+                    f'          <summary><h3>{r["name"]}'
+                    f'<span class="tournament-round__count">全{n_matches}試合</span></h3></summary>\n'
+                    f'{matches_ul}'
+                    f'        </details>'
+                )
+            else:
+                rounds_html_list.append(
+                    f'        <div class="tournament-round">\n'
+                    f'          <h3>{r["name"]}</h3>\n'
+                    f'{matches_ul}'
+                    f'        </div>'
+                )
 
         status_html = f' <span class="tournament-status">[{status}]</span>' if status else ''
         subtitle_html = f'\n        <p class="tournament-subtitle" style="color:#666;font-size:0.9em;margin-top:-8px;">{subtitle}</p>' if subtitle else ''

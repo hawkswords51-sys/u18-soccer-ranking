@@ -2129,6 +2129,38 @@ details[open] > summary > .league-accordion__chevron {
     content: "▼ ";
 }
 
+/* 試合数の多い回戦（1回戦など）の折りたたみ */
+.tournament-round--fold > summary {
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    padding: 4px 2px;
+    min-height: 32px;
+}
+.tournament-round--fold > summary::-webkit-details-marker { display: none; }
+.tournament-round--fold > summary h3 {
+    display: inline;
+    vertical-align: middle;
+}
+.tournament-round--fold > summary h3::before {
+    content: "▶ ";
+    font-size: 0.8em;
+    color: var(--primary-color, #1e3a8a);
+}
+.tournament-round--fold[open] > summary h3::before {
+    content: "▼ ";
+}
+.tournament-round__count {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-light, #666);
+    white-space: nowrap;
+}
+@media (max-width: 640px) {
+    .tournament-round--fold > summary { min-height: 44px; }
+}
+
 .tournament-section-title {
     margin: 0;
     padding: 12px 18px;
