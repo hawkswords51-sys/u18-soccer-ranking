@@ -447,6 +447,22 @@ jobs:
             fi
           fi
 
+      # ★ Phase 9-E: IndexNow に更新を通知（Bing 等への即時インデックス通知）
+      #   [2026-09-08] **見張り2本より前に移した。** 以前は一番最後に置いていたため、
+      #   `取得元を点検` が赤で終わった日は後続としてスキップされ、
+      #   **データはpushできているのに検索エンジンへの通知だけが飛ばない**状態になっていた
+      #   （2026-09-08朝に実際に発生）。IndexNowは取得ではなく通知なので、
+      #   点検の前で何も困らない。
+      - name: IndexNow に更新を通知
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/notify_indexnow.py ] && [ -f sitemap.xml ]; then
+            python scraper/notify_indexnow.py
+          else
+            echo "scraper/notify_indexnow.py または sitemap.xml がありません。スキップ。"
+          fi
+
       # ★ 取得元の見張り（2026-09-06新設）
       #   どのリーグがどの出典から入ったかは data/fetch_status.json に記録済み。
       #   ここでそれを読み、JFA以外に落ちたリーグを [要注意] として出す。
@@ -477,7 +493,6 @@ jobs:
             echo "scraper/check_fetch_status.py がまだありません。スキップ。"
           fi
 
-      # ★ Phase 9-E: IndexNow に更新を通知（Bing 等への即時インデックス通知）
       # ══════════════════════════════════════════════════════════════
       # ★ 見張りの記録を保存する（2026-09-07新設）
       #   ⚠️ **コミットより後ろに置いたステップの書き込みは、ログには出るが捨てられる。**
@@ -514,13 +529,3 @@ jobs:
           done
           echo "::error::fetch_status.json の保存に失敗しました"
           exit 1
-
-      - name: IndexNow に更新を通知
-        if: ${{ github.event.inputs.dry_run != 'true' }}
-        continue-on-error: true
-        run: |
-          if [ -f scraper/notify_indexnow.py ] && [ -f sitemap.xml ]; then
-            python scraper/notify_indexnow.py
-          else
-            echo "scraper/notify_indexnow.py または sitemap.xml がありません。スキップ。"
-          fi
