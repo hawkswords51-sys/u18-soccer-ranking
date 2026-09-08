@@ -78,6 +78,15 @@ FETCH_FAIL_DAYS = 3
 # オフシーズン。この月は赤を出さない（情報としては出す）。
 OFFSEASON_MONTHS = (12, 1, 2)
 
+# ★しきい値は「一時的な失敗がありうるか」で決める（2026-09-08）
+#   FETCH_FAIL_DAYS（3日）は「待てば直る一時的な失敗」を吸収するためのもの。
+#   出典サイトの一時的な不調やネットワークの失敗はこれで消える。
+#   **外部通信をしないジョブは、失敗すれば人が直すまで必ず同じように失敗する。**
+#   吸収するものが無いところに待ち時間を置くと、発見が遅れるだけなので初回から赤にする。
+#   時間をかけて直したい事情ができたときは、しきい値ではなく
+#   data/fetch_watch_exceptions.json（期限つき例外）で扱うこと。理由が記録に残る。
+NO_RETRY_JOBS = ("build_tournaments",)
+
 
 def current_season(today: date) -> str:
     """シーズン年。2月開幕なので1月は前年シーズン扱い（既存の年補完ルールに合わせる）。"""
@@ -268,7 +277,12 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
             line = (f"{job:12s} 失敗しています: {e.get('result')}"
                     f"（{e.get('since', '?')} から{n if n is not None else '?'}日）"
                     f" {str(e.get('note', ''))[:60]}")
-            if n is not None and n >= FETCH_FAIL_DAYS and not offseason:
+            if job in NO_RETRY_JOBS:
+                # 待っても直らない種類の失敗。初回から赤にする。
+                # オフシーズンでも赤にする（YAMLの壊れは季節と無関係で、
+                # 選手権・クラブユースは12〜1月が本番なので大会実績こそ効いてくる）。
+                red.append(line + "  ※外部通信をしないジョブなので初回から赤")
+            elif n is not None and n >= FETCH_FAIL_DAYS and not offseason:
                 red.append(line)
             else:
                 yellow.append(line + f"  ※{FETCH_FAIL_DAYS}日続いたら赤")
