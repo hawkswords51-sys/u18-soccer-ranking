@@ -16,6 +16,8 @@ from datetime import datetime
 from jst import now as _jst_now
 from pathlib import Path
 
+import fetch_status
+
 try:
     import yaml
 except ImportError:
@@ -306,5 +308,29 @@ def build() -> int:
     return 0
 
 
+def _run_and_record(job: str = "build_tournaments") -> int:
+    """build() を走らせ、成否を fetch_status.json に記録する（2026-09-08追加）。
+
+    ⚠️ ワークフローではこのステップに continue-on-error: true が付いている。
+       **外してはいけない**（コミットより前のステップなので、赤くすると
+       YAMLの打ち間違い1つでその日のサイト更新が丸ごと止まる）。
+       ただし握りつぶしたままだと、**data/tournaments_data.yml を直して push →
+       Actionsは緑 → サイトは変わらない**、という一番わかりにくい形になる
+       （このYAMLは push起動の対象パスなので、編集直後に必ずこの経路を通る）。
+       失敗しても data/tournaments.json は前回の内容が残るため、ページは
+       古いまま静かに公開され続ける。
+       → **握りつぶすが、必ず表に出す。** ここで成否を記録し、コミット・デプロイより
+         後にいる audit_pref_freshness.py が赤にする（sync_teams_from_* と同じ形）。
+    """
+    try:
+        rc = build()
+    except Exception as e:
+        fetch_status.set_job_result(job, type(e).__name__, str(e))
+        raise
+    fetch_status.set_job_result(job, "ok" if rc == 0 else "nonzero_exit",
+                                "" if rc == 0 else f"終了コード {rc}")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(build())
+    sys.exit(_run_and_record())

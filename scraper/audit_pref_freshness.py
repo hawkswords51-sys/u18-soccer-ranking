@@ -255,7 +255,10 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
     # → **握りつぶすが、必ず表に出す。** ここで拾って赤にする。
     #   この見張りはコミット・デプロイより後の最終ステップにいるので、
     #   赤にしてもサイトの更新は止まらない。
-    for job in ("sync_teams_from_leagues", "sync_teams_from_pref"):
+    # [2026-09-08] build_tournaments を追加。これも continue-on-error: true が付いた
+    #   コミットより前のステップで、失敗しても data/tournaments.json は前回の内容が
+    #   残るため、大会実績が古いまま静かに公開され続ける（見張りが無かった）。
+    for job in ("sync_teams_from_leagues", "sync_teams_from_pref", "build_tournaments"):
         e = jobs.get(job)
         if not e:
             info.append(f"{job:12s} まだ一度も記録されていません（初回実行前）")
