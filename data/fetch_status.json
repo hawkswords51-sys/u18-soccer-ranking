@@ -137,8 +137,8 @@
       "matchesPlayed": 50,
       "venueCount": 0,
       "venueCountPrev": 0,
-      "consecutiveFallback": 2,
-      "consecutiveFallbackPrev": 1
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 2
     },
     "prince-kyushu-2": {
       "expected": "jfa",
@@ -147,11 +147,11 @@
       "matchesPlayed": 49,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 2,
-      "consecutiveFallbackPrev": 1
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 2
     }
   },
-  "updatedAt": "2026-09-08T03:09:36+09:00",
+  "updatedAt": "2026-09-08T09:02:42+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -712,8 +712,8 @@
       "status": "ok"
     },
     "okayama": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (http://okayama-fa.or.jp/2022/2-2 の取得に失敗 (HTTPConnectionPool(host='okayama-fa.or.jp', port=80): Max retries exceeded with url: /2022/2-2 (Caused by ConnectTimeoutError(<HTTPConnection(host='okayama-fa.or.jp', port=80) at 0x7f385bde6ed0>, 'Connection to okayama-fa.or.jp timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-08",
       "season": "2026",
       "complete": false,
