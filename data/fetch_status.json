@@ -137,21 +137,21 @@
       "matchesPlayed": 50,
       "venueCount": 0,
       "venueCountPrev": 0,
-      "consecutiveFallback": 3,
-      "consecutiveFallbackPrev": 2
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 3
     },
     "prince-kyushu-2": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "名寄せできないチーム名 ['サガン鳥栖U-18_2nd']（据え置き）",
+      "actual": "jfa",
+      "reason": "",
       "matchesPlayed": 49,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 3,
-      "consecutiveFallbackPrev": 2
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 3
     }
   },
-  "updatedAt": "2026-09-08T14:02:16+09:00",
+  "updatedAt": "2026-09-08T21:51:26+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1013,7 +1013,7 @@
     },
     "yamaguchi": {
       "result": "ok",
-      "result_note": "消化38試合に更新（検算一致）",
+      "result_note": "消化39試合に更新（検算一致）",
       "result_date": "2026-09-08",
       "season": "2026",
       "complete": false,
