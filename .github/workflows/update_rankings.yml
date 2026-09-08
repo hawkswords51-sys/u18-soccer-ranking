@@ -186,6 +186,23 @@ jobs:
             echo "scraper/update_cross_tables.py がまだありません。スキップ。"
           fi
 
+      # ★ フォールバック中のリーグに、JFAから「会場」だけを補う（2026-09-08新設）
+      #   kokoは会場を持たないので、JFAから落ちたリーグは全試合の会場が空になり、
+      #   サイトの表示が「11:00 キックオフ」だけになる（2026-09-08のプリンス九州1部）。
+      #   ⚠️ **必ず update_cross_tables.py（koko取得）より後**に置くこと。
+      #      前に置くとkoko側の書き込みで会場が消える。
+      #   ⚠️ 会場だけを補い、キックオフ時刻には触らない。同じ試合で出典どうしの時刻が
+      #      食い違うことがあり（九州1部で2件）、どちらが正しいか判定する材料が無いため。
+      - name: フォールバック中のリーグの会場をJFAから補完
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/backfill_venues.py ]; then
+            python scraper/backfill_venues.py
+          else
+            echo "scraper/backfill_venues.py がまだありません。スキップ。"
+          fi
+
       # ★ 県1部の一部は県協会公式（GoalNote / tecra ほか）から更新（2026-09-06〜）
       #   対象県は増えていく。実数は scraper/fetch_pref_official.py の PREF_OFFICIAL を数えること
       #   （2026-09-07時点で14県。残り32県は junior-soccer・北海道はJSONなし）。
