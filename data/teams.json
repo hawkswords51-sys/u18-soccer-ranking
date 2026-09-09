@@ -1427,18 +1427,19 @@
         ]
       },
       {
-        "name": "郡山商業高校",
+        "id": "f007",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "prefectureRank": 11,
-        "points": 3,
+        "points": 14,
         "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
-        "leagueRank": 10,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
+        "prefectureRank": 11,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1463,19 +1464,18 @@
         "leagueRank": 9
       },
       {
-        "id": "f007",
-        "name": "郡山高校",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "points": 14,
-        "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
         "prefectureRank": 13,
-        "leagueRank": 8,
+        "points": 3,
+        "played": 14,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-09 09:24",
+    "lastUpdated": "2026-09-09 11:24",
     "year": 2026,
     "updatedCount": 412
   }
