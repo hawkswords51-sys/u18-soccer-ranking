@@ -137,8 +137,8 @@
       "matchesPlayed": 50,
       "venueCount": 89,
       "venueCountPrev": 89,
-      "consecutiveFallback": 7,
-      "consecutiveFallbackPrev": 6
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 7
     },
     "prince-kyushu-2": {
       "expected": "jfa",
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-09T19:15:32+09:00",
+  "updatedAt": "2026-09-09T19:26:20+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -522,8 +522,8 @@
       "status": "ok"
     },
     "kumamoto": {
-      "result": "ok",
-      "result_note": "消化58試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7f6cec73e1d0>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-09",
       "season": "2026",
       "complete": false,
@@ -711,8 +711,8 @@
       "status": "ok"
     },
     "okayama": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (http://okayama-fa.or.jp/2022/2-2 の取得に失敗 (HTTPConnectionPool(host='okayama-fa.or.jp', port=80): Max retries exceeded with url: /2022/2-2 (Caused by ConnectTimeoutError(<HTTPConnection(host='okayama-fa.or.jp', port=80) at 0x7f0cff707410>, 'Connection to okayama-fa.or.jp timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-09",
       "season": "2026",
       "complete": false,
