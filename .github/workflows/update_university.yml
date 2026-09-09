@@ -53,10 +53,14 @@ jobs:
                 PUSHED=1
                 break
               fi
+              # ★rebaseが衝突したまま次へ進むと、後続ステップが detached HEAD で全部こける
+              #   （2026-09-09 実測: 見張りの記録を保存 が commit exit=128 で失敗）
+              git rebase --abort 2>/dev/null || true
               echo "push 失敗、リトライ $i/3 ..."
               sleep 5
             done
             if [ "$PUSHED" != "1" ]; then
+              echo "--- 失敗時の状態 ---"; git status --short | head -20
               echo "::error::push が3回失敗しました。サイトに反映されていません。"
               exit 1
             fi
