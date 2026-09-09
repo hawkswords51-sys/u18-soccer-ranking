@@ -17,4 +17,11 @@ source: https://koko-soccer.com/score/XXXX
    scraper/update_tournament_results.py が、組み合わせ（vs行）も結果（スコア）も
    自動で追記していく。決勝の結果が入ると status は自動で「終了」になる。
 4. Actionsログの「⚠ 要確認」は週末にまとめて確認する（詳細は運営マスター手順書 4-11）。
+5. ハブに試合表が無くブロック別ページに分かれている県（広島など）は、
+   source: の代わりに sources: のブロックリストで全ページのURLを並べる。
+     sources:
+       - https://koko-soccer.com/score/4555
+       - https://koko-soccer.com/score/4553
+   取得したラウンドはラウンド名で束ねて1つにまとめる。1本が取れなくても
+   理由をログに残して残りのページで処理を続ける。
 -->

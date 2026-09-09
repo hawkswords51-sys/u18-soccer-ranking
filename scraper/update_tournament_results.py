@@ -7,6 +7,9 @@ data/tournaments/*.md に組み合わせとスコアを自動で追記する。
 
 対象ファイルの条件:
   - frontmatter に `source: https://koko-soccer.com/score/XXXX` がある
+    （複数ページに分かれた大会は `sources:` のブロックリストで複数指定できる。
+     広島の選手権予選のように、ハブページに試合表が無くブロック別ページに
+     分かれている県で使う。取得したラウンドはラウンド名で束ねて1つにまとめる。）
   - frontmatter の `status:` が「終了」でない
 
 安全設計（誤データ混入を防ぐ最重要ポイント）:
@@ -55,7 +58,7 @@ ABBREV_SUFFIX = [
 
 # ラウンド名の正規化順序（新ラウンド見出しを挿入する位置の決定に使用）
 ROUND_ORDER = [
-    "1回戦", "2回戦", "3回戦", "4回戦", "5回戦",
+    "1回戦", "2回戦", "3回戦", "4回戦", "5回戦", "ブロック決勝",
     "ベスト16", "4回戦", "準々決勝", "準決勝", "代表決定戦", "3位決定戦", "決勝",
 ]
 
@@ -260,11 +263,37 @@ def split_frontmatter(content: str):
 
 
 def parse_meta(frontmatter_str: str) -> dict:
+    """frontmatter を {キー: 値} にする。
+
+    スカラー（`source: https://...`）に加えて、YAMLのブロックリストを読む:
+
+        sources:
+          - https://koko-soccer.com/score/4555
+          - https://koko-soccer.com/score/4553
+
+    リスト項目が1つ以上続いたキーだけ値が list になる（`キー:` の後に何も
+    続かなければ従来どおり空文字のまま）。スカラーの挙動は一切変えない。
+    """
     meta = {}
+    list_key = None          # 直前の「値が空のキー」＝リスト見出し候補
     for line in frontmatter_str.strip().split("\n"):
+        stripped = line.strip()
+        # インデントされた「- 値」はリスト項目
+        if (list_key is not None and line[:1] in (" ", "\t")
+                and stripped.startswith("- ")):
+            item = stripped[2:].strip().strip('"').strip("'")
+            if item:
+                if not isinstance(meta.get(list_key), list):
+                    meta[list_key] = []
+                meta[list_key].append(item)
+            continue
+        list_key = None
         if ":" in line:
             k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
+            k, v = k.strip(), v.strip()
+            meta[k] = v
+            if v == "":
+                list_key = k
     return meta
 
 
@@ -614,21 +643,59 @@ def _rescan_rounds(body_lines):
 # main
 # ---------------------------------------------------------------------------
 
-def process_file(md_path: Path, url: str, dry_run: bool):
+def fetch_and_merge(urls):
+    """複数のkokoページを取得し、ラウンド名で束ねて1つのrounds配列にする。
+
+    返り値 (rounds, failures)。1本でも取れれば rounds は非空になり、
+    取れなかったURLは failures に理由つきで残る（握りつぶさず必ずログに出す）。
+    """
+    merged, by_key, failures = [], {}, []
+    for u in urls:
+        try:
+            rounds = fetch_koko_rounds(u)
+        except Exception as e:
+            failures.append((u, f"取得失敗 {type(e).__name__}: {e}"))
+            continue
+        if not rounds:
+            failures.append((u, "試合テーブルが見つからない"))
+            continue
+        for r in rounds:
+            k = round_key(r["name"])
+            if k in by_key:
+                by_key[k]["matches"].extend(r["matches"])
+            else:
+                nr = {"name": r["name"], "matches": list(r["matches"])}
+                by_key[k] = nr
+                merged.append(nr)
+    if len(urls) > 1:
+        # ブロックごとに載っているラウンドが違うので、出現順ではなく
+        # ROUND_ORDER の順に並べ直す（同順位は出現順を保つ＝安定ソート）
+        merged.sort(key=lambda r: round_sort_pos(r["name"]))
+    return merged, failures
+
+
+def process_file(md_path: Path, urls, dry_run: bool):
     content = md_path.read_text(encoding="utf-8")
     fm, _ = split_frontmatter(content)
     meta = parse_meta(fm or "")
     pref = meta.get("prefecture", "")
-    log(f"▶ {md_path.name} ({pref}) ← {url}")
+    if isinstance(urls, str):
+        urls = [urls]
+    if len(urls) == 1:
+        log(f"▶ {md_path.name} ({pref}) ← {urls[0]}")
+    else:
+        log(f"▶ {md_path.name} ({pref}) ← {len(urls)}ページを統合")
 
-    try:
-        koko_rounds = fetch_koko_rounds(url)
-    except Exception as e:
-        log(f"  ⚠ 取得失敗のため据え置き: {e}")
-        return
+    koko_rounds, failures = fetch_and_merge(urls)
+
+    for u, why in failures:
+        log(f"  ⚠ {u}: {why}")
 
     if not koko_rounds:
-        log("  ⚠ 試合テーブルが見つからないため据え置き")
+        if len(urls) == 1 and failures and "取得失敗" in failures[0][1]:
+            log(f"  ⚠ 取得失敗のため据え置き: {failures[0][1]}")
+        else:
+            log("  ⚠ 試合テーブルが見つからないため据え置き")
         return
 
     name_map = build_name_map(pref)
@@ -636,6 +703,9 @@ def process_file(md_path: Path, url: str, dry_run: bool):
         md_path, koko_rounds, name_map, dry_run=dry_run)
 
     total = sum(len(r["matches"]) for r in koko_rounds)
+    if len(urls) > 1:
+        log(f"  統合: {len(urls) - len(failures)}/{len(urls)}ページ "
+            f"→ ラウンド{len(koko_rounds)}種")
     log(f"  koko試合数={total} / スコア記入={filled} / カード追加={added}"
         f"{'（dry-run: 保存なし）' if dry_run and modified else ''}"
         f"{'' if modified else ' → 変更なし'}")
@@ -647,7 +717,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--file", help="単体テスト用: 対象mdのパス")
-    ap.add_argument("--url", help="単体テスト用: kokoページURL（--fileと併用）")
+    ap.add_argument("--url", action="append",
+                    help="単体テスト用: kokoページURL（--fileと併用）。"
+                         "複数ページの大会は --url を繰り返し指定する")
     args = ap.parse_args()
 
     if args.file and args.url:
@@ -661,20 +733,24 @@ def main():
         if fm is None:
             continue
         meta = parse_meta(fm)
-        src = meta.get("source", "")
-        if "koko-soccer.com" not in src:
+        # sources（リスト）が優先。無ければ従来どおり source（単数）。
+        srcs = meta.get("sources") or meta.get("source", "")
+        if isinstance(srcs, str):
+            srcs = [srcs] if srcs else []
+        srcs = [u for u in srcs if "koko-soccer.com" in u]
+        if not srcs:
             continue
         if meta.get("status") == "終了":
             continue
-        targets.append((md_path, src))
+        targets.append((md_path, srcs))
 
     if not targets:
         log("source付きの未終了トーナメントはありません（正常終了）")
         return 0
 
     log(f"対象: {len(targets)}ファイル")
-    for md_path, url in targets:
-        process_file(md_path, url, args.dry_run)
+    for md_path, urls in targets:
+        process_file(md_path, urls, args.dry_run)
     return 0
 
 

@@ -1,0 +1,88 @@
+---
+prefecture: hiroshima
+title: 第105回全国高校サッカー選手権大会 広島県大会
+subtitle: 選手権予選
+year: 2026
+category: 選手権予選
+status: 開催前
+sources:
+  - https://koko-soccer.com/score/4555
+  - https://koko-soccer.com/score/4553
+  - https://koko-soccer.com/score/4554
+  - https://koko-soccer.com/score/4552
+  - https://koko-soccer.com/score/4551
+  - https://koko-soccer.com/score/4550
+  - https://koko-soccer.com/score/4549
+  - https://koko-soccer.com/score/4548
+  - https://koko-soccer.com/score/4547
+  - https://koko-soccer.com/score/4546
+  - https://koko-soccer.com/score/4545
+  - https://koko-soccer.com/score/4544
+---
+## 1回戦（9/5・9/6・9/12・9/13）
+
+- 福山 vs 三原
+- 熊野・賀茂北 vs AICJ
+- 福山商・府中東 0-7 北部合同
+- ひろしま協創 1-5 広島工
+- 総合技術 0-5 広島城北
+- 呉三津田 vs 呉宮原
+- 広島商 vs 安芸南
+- 近大福山 vs 尾道商
+- 尾三合同 vs 並木学院
+- 安芸府中 vs 宮島工
+- 広 vs 広島学院
+- 呉高専 17-0 賀茂
+- 広大附属 1-1(PK3-4) 大門
+- 広陵 14-0 福山工
+- 広大福山 3-1 高陽東
+- 広島市商 vs 中等・廿西・千代田
+- 福山誠之館 vs 海田
+
+## 2回戦（8/12・8/13・9/12・9/13・9/19）
+
+- 山陽 vs 熊野・賀茂北/AICJ
+- 福山/三原 vs 呉港
+- 尾道東 vs 北部合同
+- 広島井口 vs 府中
+- 広島工 vs シンギュラリティ
+- 舟入 vs 可部
+- 油木 vs 竹原
+- 呉合同 vs 広島城北
+- 広島桜が丘 vs 呉三津田/呉宮原
+- 広島商/安芸南 vs 高陽
+- 崇徳 vs 尾三合同/並木学院
+- 近大福山/尾道商 vs 尾道
+- 清水ヶ丘 vs 安芸府中/宮島工
+- 広/広島学院 vs 尾道北
+- 神辺 vs 呉高専
+- 広島朝鮮 vs 廿日市
+- 美鈴が丘 vs 西条農
+- 大門 vs 戸手
+- 基町 vs 広島市工
+- 広島 vs 広陵
+- 広大福山 vs 神辺旭
+- 安古市 vs 広島なぎさ
+- 広島観音 vs 広島市商/中等・廿西・千代田
+- 福山誠之館/海田 vs 福山葦陽
+
+## 3回戦（9/12・9/19）
+
+- 広島新庄 vs 広島井口/府中
+- 尾道東/北部合同 vs 星槎国際広島
+- 英数学館 vs 広島工/シンギュラリティ
+- 舟入/可部 vs 祇園北
+- 広島国泰寺 vs 油木/竹原
+- 呉合同/広島城北 vs 広島翔洋
+- 修道 vs 広島朝鮮/廿日市
+- 神辺/呉高専 vs 銀河学院
+- 福山明王台 vs 大門/戸手
+- 美鈴が丘/西条農 vs 広島国際学院
+- 広島工業大学 vs 基町/広島市工
+- 広島/広陵 vs 盈進
+- 近大東広島 vs 広大福山/神辺旭
+- 安古市/広島なぎさ vs 五日市
+
+## ブロック決勝（9/20）
+
+- 崇徳/尾三合同/並木学院 vs 近大福山/尾道商/尾道
