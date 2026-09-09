@@ -1164,6 +1164,7 @@ MEDICAL_HUB_THEMES = [
         "🔋 コンディショニング・栄養・睡眠",
         "「走れない」「疲れが抜けない」の医学的な背景と対策",
         [
+            "recovery-between-matches-2026",
             "pre-match-meal-strategy-2026",
             "2026-07-19-overtraining-syndrome",
             "2026-06-08-iron-deficiency-anemia",
