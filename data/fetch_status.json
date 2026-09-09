@@ -137,8 +137,8 @@
       "matchesPlayed": 50,
       "venueCount": 89,
       "venueCountPrev": 89,
-      "consecutiveFallback": 8,
-      "consecutiveFallbackPrev": 7
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 8
     },
     "prince-kyushu-2": {
       "expected": "jfa",
@@ -151,12 +151,12 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-10T01:37:13+09:00",
+  "updatedAt": "2026-09-10T02:18:43+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
       "result_note": "消化59試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -213,7 +213,7 @@
     "chiba": {
       "result": "ok",
       "result_note": "消化47試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -270,7 +270,7 @@
     "fukuoka": {
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -326,7 +326,7 @@
     "gunma": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -347,7 +347,7 @@
     "hiroshima": {
       "result": "ok",
       "result_note": "消化49試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -386,7 +386,7 @@
     "ibaraki": {
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -425,7 +425,7 @@
     "iwate": {
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -446,7 +446,7 @@
     "kagawa": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -485,7 +485,7 @@
     "kanagawa": {
       "result": "ok",
       "result_note": "消化53試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -522,9 +522,9 @@
       "status": "ok"
     },
     "kumamoto": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7f6cec73e1d0>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
-      "result_date": "2026-09-09",
+      "result": "ok",
+      "result_note": "消化58試合に更新（検算一致）",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -599,7 +599,7 @@
     "miyazaki": {
       "result": "ok",
       "result_note": "消化57試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -638,7 +638,7 @@
     "nagasaki": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -713,7 +713,7 @@
     "okayama": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -734,7 +734,7 @@
     "okinawa": {
       "result": "ok",
       "result_note": "消化32試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -773,7 +773,7 @@
     "saga": {
       "result": "ok",
       "result_note": "消化32試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -812,7 +812,7 @@
     "shiga": {
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -833,7 +833,7 @@
     "shimane": {
       "result": "ok",
       "result_note": "消化31試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -872,7 +872,7 @@
     "tochigi": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -911,7 +911,7 @@
     "tokyo": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -932,7 +932,7 @@
     "tottori": {
       "result": "ok",
       "result_note": "消化32試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": true,
       "single_round": false,
@@ -953,7 +953,7 @@
     "toyama": {
       "result": "ok",
       "result_note": "消化44試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -992,7 +992,7 @@
     "yamagata": {
       "result": "ok",
       "result_note": "消化65試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1013,7 +1013,7 @@
     "yamaguchi": {
       "result": "ok",
       "result_note": "消化39試合に更新（検算一致）",
-      "result_date": "2026-09-09",
+      "result_date": "2026-09-10",
       "season": "2026",
       "complete": false,
       "single_round": false,
