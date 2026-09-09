@@ -27,6 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_interhigh_page import render_bracket_svg  # noqa: E402
+from scorer_table import render_scorer_ranking_html, render_assist_ranking_html  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "tournaments" / "pmc-2026.json"
@@ -34,6 +35,7 @@ LEAGUES = ROOT / "data" / "university" / "leagues-2026.json"
 PAGE = ROOT / "tournaments" / "prime-minister-cup-2026" / "index.html"
 B_START, B_END = "<!-- PMC_BRACKET_START -->", "<!-- PMC_BRACKET_END -->"
 S_START, S_END = "<!-- PMC_SCHEDULE_START -->", "<!-- PMC_SCHEDULE_END -->"
+R_START, R_END = "<!-- PMC_RANKING_START -->", "<!-- PMC_RANKING_END -->"
 
 # SVGの二分木に載せるための1回戦の並び順（トーナメント表の上から下）
 BRACKET_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 16, 15, 14, 13, 12, 11, 10, 9]
@@ -256,6 +258,17 @@ def main():
     src = PAGE.read_text(encoding="utf-8")
     src = replace_block(src, B_START, B_END, svg, "トーナメント表")
     src = replace_block(src, S_START, S_END, render_schedule(matches, by_no, ranks, reps), "日程・結果")
+
+    # 得点・アシストランキング（2得点以上／2アシスト以上を掲載）
+    # data/scorers/pmc-2026.json が無ければ空になり、マーカー間が空になるだけ。
+    try:
+        rank_html = (render_scorer_ranking_html("pmc-2026", limit=300, min_goals=2)
+                     + render_assist_ranking_html("pmc-2026", limit=300, min_assists=2))
+    except Exception as e:
+        print("[注記] ランキングの生成に失敗:", e)
+        rank_html = ""
+    src = replace_block(src, R_START, R_END, rank_html, "得点・アシストランキング")
+
     PAGE.write_text(src, encoding="utf-8")
 
     played = sum(1 for m in matches if m["hs"] is not None)

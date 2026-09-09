@@ -91,6 +91,78 @@ def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None
 """
 
 
+def render_assist_ranking_html(slug: str, limit: int = 300, min_assists: int = None) -> str:
+    """アシストランキング セクション。
+
+    data/scorers/<slug>.json に "assists" 配列があるときだけ描画し、無ければ ""。
+    データ形: assists:[{rank,name,team,assists}] / 説明文は "assistNote"。
+    この関数を呼ばない既存ページ（インターハイ・県・リーグ等）は一切影響を受けない。
+    """
+    path = _DIR / f"{slug}.json"
+    if not path.exists():
+        return ""
+    try:
+        d = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    recs = d.get("assists", [])
+    if min_assists is not None:
+        recs = [s for s in recs if s.get("assists", 0) >= min_assists]
+    if not recs:
+        return ""
+
+    rows = []
+    for s in recs[:limit]:
+        medal = ""
+        if s["rank"] == 1: medal = "xa-gold"
+        elif s["rank"] == 2: medal = "xa-silver"
+        elif s["rank"] == 3: medal = "xa-bronze"
+        rows.append(
+            f'<tr><td class="xa-rk {medal}">{s["rank"]}</td>'
+            f'<td class="xa-nm">{_esc(s["name"])}</td>'
+            f'<td class="xa-tm">{_esc(s.get("team",""))}</td>'
+            f'<td class="xa-as">{s["assists"]}</td></tr>'
+        )
+    nl = "\n"
+    src = d.get("source", "")
+    src_label = d.get("sourceLabel") or "大会公式記録"
+    src_html = (f'　出典: <a href="{_esc(src)}" rel="nofollow" target="_blank">'
+                f'{_esc(src_label)}</a>') if src else ""
+
+    return f"""
+      <section class="xa-section" id="assist-ranking">
+        <style>
+        .xa-section{{margin:40px 0 12px;}}
+        .xa-section h2{{font-size:1.5rem;margin:0 0 6px;border-left:6px solid #2980b9;padding-left:12px;}}
+        .xa-meta{{font-size:.95rem;color:inherit;opacity:.75;margin:0 0 4px;}}
+        .xa-note{{font-size:.85rem;color:inherit;opacity:.7;margin:2px 2px 10px;line-height:1.5;}}
+        .xa-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;max-width:560px;}}
+        .xa-table{{width:100%;border-collapse:collapse;font-size:15px;background:#fff;color:#222;}}
+        .xa-table th,.xa-table td{{border-bottom:1px solid #eee;padding:9px 12px;text-align:left;color:#222;}}
+        .xa-table thead th{{background:#2980b9;color:#fff;font-weight:600;}}
+        .xa-table .xa-rk{{width:48px;text-align:center;font-weight:700;color:#555;}}
+        .xa-table .xa-as{{width:64px;text-align:center;font-weight:700;color:#2980b9;}}
+        .xa-table .xa-tm{{color:#555;font-size:14px;}}
+        .xa-rk.xa-gold,.xa-rk.xa-silver,.xa-rk.xa-bronze{{color:#fff;}}
+        .xa-rk.xa-gold{{color:#fff;background:#f1c40f;border-radius:50%;}}
+        .xa-rk.xa-silver{{color:#fff;background:#b0bec5;border-radius:50%;}}
+        .xa-rk.xa-bronze{{color:#fff;background:#cd7f32;border-radius:50%;}}
+        </style>
+        <h2>🅰 アシストランキング</h2>
+        <p class="xa-meta">最終更新 {_esc(d.get('lastUpdated',''))}{src_html}</p>
+        <p class="xa-note">{_esc(d.get('assistNote',''))}</p>
+        <div class="xa-wrap">
+          <table class="xa-table">
+            <thead><tr><th class="xa-rk">順</th><th>選手</th><th>チーム</th><th class="xa-as">AS</th></tr></thead>
+            <tbody>
+{nl.join(rows)}
+            </tbody>
+          </table>
+        </div>
+      </section>
+"""
+
+
 if __name__ == "__main__":
     import sys
     print(render_scorer_ranking_html(sys.argv[1] if len(sys.argv) > 1 else "prince-hokkaido"))
