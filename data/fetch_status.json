@@ -137,7 +137,7 @@
       "matchesPlayed": 50,
       "venueCount": 89,
       "venueCountPrev": 89,
-      "consecutiveFallback": 0,
+      "consecutiveFallback": 9,
       "consecutiveFallbackPrev": 8
     },
     "prince-kyushu-2": {
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-10T02:18:43+09:00",
+  "updatedAt": "2026-09-10T02:18:53+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -538,9 +538,9 @@
       "sourceName": "熊本県サッカー協会 公式",
       "last_change": "2026-09-06",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "2026-09-09",
-      "result_streak": 1,
-      "status": "warn"
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok"
     },
     "kyoto": {
       "season": "2026",
@@ -1049,7 +1049,7 @@
       "status": "warn"
     },
     "_meta": {
-      "checked": "2026-09-09",
+      "checked": "2026-09-10",
       "national_latest": "2026-09-06",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
