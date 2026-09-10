@@ -24,6 +24,13 @@ jobs:
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
+        # ★ジョブ開始時点の main を取る（2026-09-09）
+        #   既定は「イベント発生時点のSHA」なので、concurrency(site-update)で
+        #   順番待ちした回が、待っている間に進んだ origin を持たないまま生成し、
+        #   同じ生成物ファイル（teams.json/index.html/tournaments.json）で
+        #   内容衝突して赤になっていた。順番待ちだけでは防げない。
+        with:
+          ref: main
 
       - name: Python 3.11 をセットアップ
         uses: actions/setup-python@v5

@@ -3,7 +3,7 @@ name: 戦績表 自動更新
 # 毎週月曜 朝6時(日本時間)に自動実行 ＋ 手動実行ボタン
 on:
   schedule:
-    - cron: "0 21 * * 0"   # 日曜21:00 UTC = 月曜06:00 JST
+    - cron: "17 21 * * 0"  # 日曜21:17 UTC = 月曜06:17 JST（毎時00分は遅れやすい・手順書1-7b）
   workflow_dispatch:        # 手動でも実行できる
 
 permissions:
@@ -22,6 +22,13 @@ jobs:
     steps:
       - name: リポジトリを取得
         uses: actions/checkout@v4
+        # ★ジョブ開始時点の main を取る（2026-09-09）
+        #   既定は「イベント発生時点のSHA」なので、concurrency(site-update)で
+        #   順番待ちした回が、待っている間に進んだ origin を持たないまま生成し、
+        #   同じ生成物ファイル（teams.json/index.html/tournaments.json）で
+        #   内容衝突して赤になっていた。順番待ちだけでは防げない。
+        with:
+          ref: main
 
       - name: Python を準備
         uses: actions/setup-python@v5
@@ -41,7 +48,25 @@ jobs:
           if [ -n "$(git status --porcelain data/league_matches)" ]; then
             git add data/league_matches
             git commit -m "戦績表データ自動更新 ($(date +%F))"
-            git push
+            # ★他2本と同じ形に揃えた（2026-09-09）。素の git push は
+            #   ①弾かれたときの回復機会（実測：rebase成功なら試行2で通る）を捨て、
+            #   ②set -e が無いので push 失敗でも緑のまま終わりうる、という2つの穴があった。
+            PUSHED=0
+            for i in 1 2 3; do
+              if git pull --rebase --autostash origin main && git push; then
+                PUSHED=1
+                break
+              fi
+              # ★rebaseが衝突したまま次へ進むと後続が detached HEAD で壊れる（2026-09-09実測）
+              git rebase --abort 2>/dev/null || true
+              echo "push 失敗、リトライ $i/3 ..."
+              sleep 5
+            done
+            if [ "$PUSHED" != "1" ]; then
+              echo "--- 失敗時の状態 ---"; git status --short | head -20
+              echo "::error::push が3回失敗しました。サイトに反映されていません。"
+              exit 1
+            fi
             echo "更新をプッシュしました（サイトが自動で再ビルドされます）"
           else
             echo "更新はありませんでした"

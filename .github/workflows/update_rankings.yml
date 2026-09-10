@@ -55,6 +55,8 @@ on:
 # 同時に2本走らせない設定（2026-07-19追加）
 # Push起動・定期実行・手動Runが重なると、後発が「変更があればコミット＆プッシュ」で
 # 衝突して赤になるため、同時実行は順番待ちにする（cancel-in-progress: falseで取り消さず待機）
+# ⚠️ 順番待ちは「同時に走らないこと」しか保証しない。待っている間に origin が進むと
+#    古いSHAで生成して衝突する。そちらは checkout の ref: main で対処している（2026-09-09）。
 concurrency:
   group: site-update
   cancel-in-progress: false
@@ -68,6 +70,13 @@ jobs:
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
+        # ★ジョブ開始時点の main を取る（2026-09-09）
+        #   既定は「イベント発生時点のSHA」なので、concurrency(site-update)で
+        #   順番待ちした回が、待っている間に進んだ origin を持たないまま生成し、
+        #   同じ生成物ファイル（teams.json/index.html/tournaments.json）で
+        #   内容衝突して赤になっていた。順番待ちだけでは防げない。
+        with:
+          ref: main
 
       - name: Python 3.11 をセットアップ
         uses: actions/setup-python@v5
