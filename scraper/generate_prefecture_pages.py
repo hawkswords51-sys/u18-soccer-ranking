@@ -624,6 +624,13 @@ def render_tournament_html(pref_id, teams, division2=None):
             elif line.startswith('- ') and current_round is not None:
                 current_round["matches"].append(line[2:].strip())
 
+        # ★まだ1試合も入っていない大会は、セクションごと出さない（2026-09-10）
+        #   koko が組み合わせを載せる前に md を先行作成しておく運用のため、
+        #   これが無いと「見出しだけの空の箱」が県ページに並ぶ。
+        #   一部の回戦だけ空（「（試合確定後に追記）」）は従来どおり表示する。
+        if not any(r["matches"] for r in rounds):
+            continue
+
         # HTML生成
         rounds_html_list = []
         for r in rounds:
