@@ -688,14 +688,23 @@ def process_file(md_path: Path, urls, dry_run: bool):
 
     koko_rounds, failures = fetch_and_merge(urls)
 
-    for u, why in failures:
+    # ★「取得できなかった」と「出典がまだ載せていない」を分ける（2026-09-10）
+    #   組み合わせ発表前の県も source を先に入れておく運用にしたため、
+    #   未掲載を ⚠ で出すと週末に見るべき本物の警告が埋もれる。
+    #   未掲載は ℹ の情報行にし、1県1行に抑える。
+    hard = [(u, why) for u, why in failures if "取得失敗" in why]
+    empty = [(u, why) for u, why in failures if "取得失敗" not in why]
+
+    for u, why in hard:
         log(f"  ⚠ {u}: {why}")
+    if empty and len(urls) > 1:
+        log(f"  ℹ 未掲載: {len(empty)}/{len(urls)}ページに試合表なし")
 
     if not koko_rounds:
-        if len(urls) == 1 and failures and "取得失敗" in failures[0][1]:
-            log(f"  ⚠ 取得失敗のため据え置き: {failures[0][1]}")
+        if hard:
+            log(f"  ⚠ 取得失敗のため据え置き: {hard[0][1]}")
         else:
-            log("  ⚠ 試合テーブルが見つからないため据え置き")
+            log("  ℹ 未掲載（出典に試合表がまだ無い）→ 据え置き")
         return
 
     name_map = build_name_map(pref)
