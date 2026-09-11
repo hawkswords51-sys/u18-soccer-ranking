@@ -704,6 +704,184 @@ def render_tournament_html(pref_id, teams, division2=None):
     return "\n".join(html_parts)
 
 
+# ------------------------------------------------------------
+# 「高校サッカー部だけの強豪校」節（2026-09-11 神奈川で1県テスト）
+# 背景：神奈川ページの検索語の約半分が「神奈川 サッカー 強い高校」系（43語・1,077表示・
+#       CTR0.74%・平均9.3位）。ページはJユースが先頭で、「強い高校」を探す人の意図とずれていた。
+#       答えになるデータ（リーグ所属・全国大会成績）は既にあるので、見出し付きの節として出す。
+# 効果測定は4週間後の週次レポートで「強豪・強い高校」系の検索語の順位・CTRを見る。
+# 当たれば 47県共通の節にする（STRONG_SCHOOLS_PREFS に県を足すだけで出る）。
+# ------------------------------------------------------------
+STRONG_SCHOOLS_PREFS = {"kanagawa"}
+
+_SECOND_TEAM_SUFFIXES = ("2nd", "3rd", "4th", "セカンド", "サード",
+                         "Ⅱ", "Ⅲ", "②", "③", "B", "C")
+
+
+def _load_national_results_by_pref(pref_id, years=5):
+    """tournaments.json から、この県の選手権・インターハイの結果を返す。
+    戻り値: [(t_id, t_short, year(int), team_name, result, rank)]（直近 years 年度分）"""
+    tournaments_file = BASE_DIR / "data" / "tournaments.json"
+    if not tournaments_file.exists():
+        return []
+    try:
+        data = json.loads(tournaments_file.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    out = []
+    for t_id in ("all_japan_highschool", "interhigh"):
+        t = data.get("tournaments", {}).get(t_id)
+        if not t:
+            continue
+        t_short = "選手権" if t_id == "all_japan_highschool" else "インターハイ"
+        results = t.get("results", {})
+        ys = sorted((y for y in results if any(
+            x.get("pref") == pref_id for x in results[y].get("teams", []))),
+            reverse=True)[:years]
+        for y in ys:
+            for x in results[y].get("teams", []):
+                if x.get("pref") == pref_id:
+                    out.append((t_id, t_short, int(y), x.get("team", ""),
+                                x.get("result", ""), x.get("rank")))
+    return out
+
+
+def _strong_schools_data(pref_id, teams):
+    """高校サッカー部（控えチームを除く）を県内総合順位の順に並べ、全国大会成績をひも付ける。
+    戻り値: (rows, others)
+      rows   = [{"name", "league", "results": {"選手権": [(year, result, rank)], "インターハイ": [...]}}]
+      others = 全国大会には出ているが、当サイトの掲載チーム（県1部以上）にいない高校 [(name, results)]"""
+    schools = [t for t in sort_teams(teams)
+               if is_high_school(t.get("name", ""))
+               and not t.get("name", "").endswith(_SECOND_TEAM_SUFFIXES)]
+    # 名前・別名 → 正式名
+    key_map = {}
+    for t in schools:
+        for n in [t.get("name", "")] + list(t.get("aliases") or []):
+            if n:
+                key_map.setdefault(n, t["name"])
+    by_school = {}
+    others = {}
+    for t_id, t_short, y, name, result, rank in _load_national_results_by_pref(pref_id):
+        canon = key_map.get(name)
+        bucket = by_school if canon else others
+        k = canon or name
+        lst = bucket.setdefault(k, {}).setdefault(t_short, [])
+        # 同じ大会・同じ年度の重複（表記ゆれで2行ある等）は、成績の良い方だけ残す
+        dup = [e for e in lst if e[0] == y]
+        if dup:
+            old = dup[0]
+            if (rank or 999) < (old[2] or 999):
+                lst.remove(old)
+                lst.append((y, result, rank))
+            continue
+        lst.append((y, result, rank))
+    rows = []
+    for t in schools:
+        rows.append({"name": t["name"], "league": t.get("league", ""),
+                     "results": by_school.get(t["name"], {})})
+    return rows, sorted(others.items())
+
+
+def _fmt_national(results):
+    """{'選手権': [(2025,'ベスト8',8), ...]} → 表示文字列（HTML）"""
+    parts = []
+    for t_short in ("選手権", "インターハイ"):
+        lst = sorted(results.get(t_short, []), key=lambda e: -e[0])
+        if not lst:
+            continue
+        items = []
+        for y, result, rank in lst:
+            label = "出場" if result == "代表" else result
+            items.append(f"{y}年度 {html_escape(label)}")
+        parts.append(f"<strong>{t_short}</strong> " + "・".join(items))
+    return "<br>".join(parts) if parts else "—"
+
+
+def _best_national(rows):
+    """直近5年の最高成績（rank最小）を返す: [(name, t_short, year, result)]。同率は全部。"""
+    best = []
+    best_rank = 999
+    for r in rows:
+        for t_short, lst in r["results"].items():
+            for y, result, rank in lst:
+                if rank is None:
+                    continue
+                if rank < best_rank:
+                    best_rank, best = rank, [(r["name"], t_short, y, result)]
+                elif rank == best_rank:
+                    best.append((r["name"], t_short, y, result))
+    return best
+
+
+def _short_league_label(league):
+    return (league or "—").replace("プレミアリーグ", "プレミア").replace("プリンスリーグ", "プリンス")
+
+
+def render_strong_schools(pref_id, pref_name, teams):
+    """「{県}の高校サッカー強豪校（高校サッカー部）」節。STRONG_SCHOOLS_PREFS の県だけ出す。"""
+    if pref_id not in STRONG_SCHOOLS_PREFS:
+        return ""
+    rows, others = _strong_schools_data(pref_id, teams)
+    if not rows:
+        return ""
+    pn = html_escape(pref_name)
+    best = _best_national(rows)
+    best_sentence = ""
+    if best:
+        b = "、".join(f"{html_escape(n)}の{t}{html_escape(res)}（{y}年度）" for n, t, y, res in best)
+        best_sentence = f"直近5年の全国大会での最高成績は、<strong>{b}</strong>です。"
+    # 表は順位表用の .data-table（最小幅720px・折り返し禁止・左2列固定）を使わない。
+    # スマホで「全国大会」列が画面外に出てしまうため、2列・折り返しありの軽い表にする。
+    # 色はすべてCSS変数（ダークモード対応。明色の決め打ちをしない＝手順書4-16）。
+    td_style = "padding:8px;border-bottom:1px solid var(--border-color);vertical-align:top;"
+    trs = []
+    for i, r in enumerate(rows, 1):
+        trs.append(
+            "            <tr>"
+            f"<td style=\"{td_style}\">{i}. {render_team_name_with_link(r['name'])}<br>"
+            f"<span style=\"font-size:0.85em;color:var(--text-light);\">"
+            f"{html_escape(_short_league_label(r['league']))}</span></td>"
+            f"<td style=\"{td_style}\">{_fmt_national(r['results'])}</td>"
+            "</tr>"
+        )
+    others_html = ""
+    if others:
+        items = "".join(
+            f"<li>{html_escape(n)}：{_fmt_national(res)}</li>" for n, res in others)
+        others_html = (
+            '        <p style="margin-top:12px;">このほか、直近5年に全国大会へ出場した高校'
+            '（今季は県1部以外に所属）：</p>\n'
+            f'        <ul style="padding-left:1.5em;">{items}</ul>\n'
+        )
+    return (
+        '      <section class="lp-section strong-schools">\n'
+        f'        <h2>🏫 {pn}の高校サッカー強豪校（高校サッカー部）</h2>\n'
+        f'        <p class="lp-section-desc">{pn}で「サッカーが強い高校」を探している方向けに、'
+        'Jクラブのユースを除いた<strong>高校サッカー部だけ</strong>を並べました。'
+        '並び順は今季の県内総合順位（所属リーグの格＋リーグ内順位）で、'
+        f'直近5年の全国大会（選手権・インターハイ）の成績を併記しています。{best_sentence}</p>\n'
+        '        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">\n'
+        '        <table class="strong-schools-table" style="width:100%;border-collapse:collapse;'
+        'margin-top:12px;font-size:0.92em;">\n'
+        '          <thead><tr>'
+        '<th style="background:var(--primary-color);color:#fff;padding:8px;text-align:left;width:42%;">'
+        '高校（今季の所属リーグ）</th>'
+        '<th style="background:var(--primary-color);color:#fff;padding:8px;text-align:left;">'
+        '直近5年の全国大会</th></tr></thead>\n'
+        '          <tbody>\n'
+        + "\n".join(trs) + "\n"
+        '          </tbody>\n'
+        '        </table>\n'
+        '        </div>\n'
+        '        <p style="color:var(--text-light);font-size:0.85em;margin-top:8px;">'
+        '※年度は大会の開催年度（選手権は冬の大会のため、2025年度＝2025年12月〜2026年1月開催）。'
+        '「—」は直近5年の出場記録なし。所属リーグと並び順は毎日の自動更新に合わせて変わります。</p>\n'
+        + others_html +
+        '      </section>'
+    )
+
+
 def render_tournament_results(pref_id):
     """都道府県の過去の全国大会成績HTMLを返す。
     全国高校選手権・インターハイのみ表示。直近5年。"""
@@ -1353,7 +1531,7 @@ def render_itemlist_schema(teams, pref_name, pref_id):
     }
 
 
-def build_faqs(pref_name, teams):
+def build_faqs(pref_name, teams, pref_id=None):
     """都道府県ごとの FAQ を生成（5問）"""
     sorted_t = sort_teams(teams)
     team_count = len(teams)
@@ -1434,13 +1612,28 @@ def build_faqs(pref_name, teams):
         f"なお本サイトでは、{html_escape(pref_name)}を含む各都道府県の<strong>1部</strong>所属チームのみを掲載対象としています。"
     )
 
-    return [
+    faqs = [
         (f"{html_escape(pref_name)}で最も強い高校サッカー部・クラブユースはどこですか？", a1),
         (f"{html_escape(pref_name)}の U-18 年代のチーム構成は？（高校サッカー部・クラブユース）", a2),
         (f"{html_escape(pref_name)}のプレミアリーグ・プリンスリーグ所属チームは？", a3),
         ("順位データはいつ更新されますか？", a4),
         ("高円宮杯 JFA U-18 サッカーリーグとは何ですか？", a5),
     ]
+
+    # テスト県（STRONG_SCHOOLS_PREFS）だけ：高校サッカー部に限った「強い高校」の問いを2問目に（2026-09-11）
+    if pref_id in STRONG_SCHOOLS_PREFS:
+        rows, _others = _strong_schools_data(pref_id, teams)
+        if rows:
+            top = "、".join(
+                f"{html_escape(r['name'])}（{html_escape(_short_league_label(r['league']))}）"
+                for r in rows[:3])
+            a_hs = f"高校サッカー部に限ると、今季の県内総合順位の上位は<strong>{top}</strong>です。"
+            best = _best_national(rows)
+            if best:
+                b = "、".join(f"{html_escape(n)}の{t}{html_escape(res)}（{y}年度）" for n, t, y, res in best)
+                a_hs += f"直近5年の全国大会（選手権・インターハイ）では、{b}が最高成績です。"
+            faqs.insert(1, (f"{html_escape(pref_name)}でサッカーが強い高校（高校サッカー部）はどこですか？", a_hs))
+    return faqs
 
 
 def render_faq_schema(faqs):
@@ -1621,6 +1814,7 @@ __AI_SUMMARY__
         </div>
       </div>
 __FEATURED_ARTICLES__
+__STRONG_SCHOOLS__
 __TOURNAMENT_RESULTS__
 __TOURNAMENT_HTML__
       <!-- メイン CTA -->
@@ -2150,7 +2344,7 @@ def generate_page(pref, all_prefs):
         # データなし都道府県は空の ItemList を出さない
         itemlist_json = json.dumps({"@context": "https://schema.org", "@type": "ItemList", "name": f"{pref_name} 順位表 (準備中)", "itemListElement": []}, ensure_ascii=False, indent=2)
     # FAQ
-    faqs = build_faqs(pref_name, teams)
+    faqs = build_faqs(pref_name, teams, pref_id)
     faq_schema = json.dumps(render_faq_schema(faqs), ensure_ascii=False, indent=2)
     faq_html = render_faq_html(faqs)
     # ★ Phase 9-A ステップ3: 内部リンクセクション
@@ -2186,6 +2380,7 @@ def generate_page(pref, all_prefs):
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__PREF_NAME__", html_escape(pref_name))
         .replace("__FEATURED_ARTICLES__", render_featured_articles(pref_id))
+        .replace("__STRONG_SCHOOLS__\n", (lambda h: h + "\n" if h else "")(render_strong_schools(pref_id, pref_name, teams)))
         .replace("__TOURNAMENT_RESULTS__", render_tournament_results(pref_id))
         .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams, pref.get("division2")))
         .replace("__TEAM_COUNT__", str(team_count))
