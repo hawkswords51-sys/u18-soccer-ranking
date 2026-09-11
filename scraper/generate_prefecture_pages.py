@@ -2109,6 +2109,20 @@ def generate_page(pref, all_prefs):
         description = description.replace(
             "1部リーグ（U-18年代）", "1部リーグ（T1・U-18年代）"
         )
+    # 香川: 最大クエリ「香川県高校サッカーリーグ」(1,026表示/3か月・平均5.46位)がCTR0.68%。
+    #       titleは「香川県高校サッカー 1部リーグ」で語順が割れていた → 検索語どおりに。
+    #       「強豪・強い高校」系(計300表示・CTR1.33%)向けに description へ「強豪校」を追加。
+    #       （2026-09-11 1県テスト。効果測定は4週間後の週次レポートで当該クエリのCTRを見る）
+    elif pref_id == "kagawa":
+        title = title.replace(
+            f"{pref_name}高校サッカー 1部リーグ 順位", f"{pref_name}高校サッカーリーグ1部 順位・結果"
+        )
+        if notable_full:
+            description = (
+                f"{pref_name}高校サッカーリーグ1部（U-18年代）の最新順位を毎日自動更新中。"
+                f"{notable_full}など強豪校を含む{team_count}校の試合結果・戦績表に加え、"
+                f"選手権・インターハイの直近5年の代表校もまとめて確認できます。"
+            )
 
     keywords = (
         f"{pref_name},高校サッカー,クラブユース,U-18,U18,高円宮杯,プレミアリーグ,プリンスリーグ,"
@@ -2118,6 +2132,8 @@ def generate_page(pref, all_prefs):
         keywords += ",OFAリーグ,OFAリーグ1部"
     elif pref_id == "toyama":
         keywords += ",T1,富山T1リーグ"
+    elif pref_id == "kagawa":
+        keywords += ",香川県高校サッカーリーグ,強豪校"
     # 構造化データ
     breadcrumb = json.dumps(
         render_breadcrumb_schema(pref_name, pref_id),
