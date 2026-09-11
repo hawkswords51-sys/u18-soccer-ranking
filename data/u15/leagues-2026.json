@@ -1,13 +1,13 @@
 {
  "season": 2026,
- "updated": "2026-09-07",
+ "updated": "2026-09-12",
  "note": "各リーグの公式発表から自動更新。8月は夏季中断期間のため順位が動きません（9月再開）。",
  "divisions": [
   {
    "id": "hokkaido-1",
    "region": "北海道",
    "name": "Connect カブスリーグU-15 1部（第20回）",
-   "asof": "2026年9月6日時点（自動更新）",
+   "asof": "2026年9月12日時点（自動更新）",
    "sourceLabel": "JFA公式 星取表PDF",
    "sourceUrl": "https://www.jfa.jp/match/takamado_jfa_u15_2026/regional/hokkaido1/",
    "note": "",
@@ -80,35 +80,35 @@
     },
     {
      "name": "北海道コンサドーレ旭川U-15",
-     "pts": 10,
+     "pts": 11,
      "gf": 11,
      "ga": 21,
      "rank": 7,
      "w": 3,
-     "d": 1,
+     "d": 2,
      "l": 6,
-     "p": 10
+     "p": 11
+    },
+    {
+     "name": "FC DENOVA 札幌",
+     "pts": 7,
+     "gf": 7,
+     "ga": 31,
+     "rank": 8,
+     "w": 1,
+     "d": 4,
+     "l": 7,
+     "p": 12
     },
     {
      "name": "スプレッド・イーグルFC函館",
      "pts": 6,
      "gf": 7,
      "ga": 25,
-     "rank": 8,
+     "rank": 9,
      "w": 2,
      "d": 0,
      "l": 9,
-     "p": 11
-    },
-    {
-     "name": "FC DENOVA 札幌",
-     "pts": 6,
-     "gf": 7,
-     "ga": 31,
-     "rank": 9,
-     "w": 1,
-     "d": 3,
-     "l": 7,
      "p": 11
     },
     {
