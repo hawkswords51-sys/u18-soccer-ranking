@@ -132,13 +132,13 @@
     },
     "prince-kyushu-1": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "JFA消化49 < 現在50（減っているので上書きしない）",
+      "actual": "jfa",
+      "reason": "",
       "matchesPlayed": 50,
       "venueCount": 89,
       "venueCountPrev": 89,
-      "consecutiveFallback": 13,
-      "consecutiveFallbackPrev": 12
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 13
     },
     "prince-kyushu-2": {
       "expected": "jfa",
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-11T09:19:55+09:00",
+  "updatedAt": "2026-09-11T13:48:29+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",

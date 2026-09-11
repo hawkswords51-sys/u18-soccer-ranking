@@ -1427,10 +1427,10 @@
         ]
       },
       {
+        "id": "f007",
         "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "prefectureRank": 11,
         "points": 3,
         "played": 14,
         "won": 1,
@@ -1438,6 +1438,7 @@
         "lost": 13,
         "goalsFor": 2,
         "goalsAgainst": 86,
+        "prefectureRank": 11,
         "leagueRank": 10,
         "aliases": [
           "郡山商",
@@ -1463,10 +1464,10 @@
         "leagueRank": 9
       },
       {
-        "id": "f007",
         "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
+        "prefectureRank": 13,
         "points": 14,
         "played": 14,
         "won": 4,
@@ -1474,7 +1475,6 @@
         "lost": 8,
         "goalsFor": 16,
         "goalsAgainst": 26,
-        "prefectureRank": 13,
         "leagueRank": 8,
         "aliases": [
           "郡山商",
@@ -3075,14 +3075,14 @@
     "division2": [
       {
         "name": "成立学園高校",
-        "points": 19,
-        "played": 9,
-        "won": 5,
+        "points": 22,
+        "played": 10,
+        "won": 6,
         "drawn": 4,
         "lost": 0,
-        "goalsFor": 15,
-        "goalsAgainst": 6,
-        "goalDiff": 9,
+        "goalsFor": 17,
+        "goalsAgainst": 7,
+        "goalDiff": 10,
         "divRank": 1,
         "aliases": [
           "成立"
@@ -3151,13 +3151,13 @@
       {
         "name": "日本大学第三高校",
         "points": 14,
-        "played": 10,
+        "played": 11,
         "won": 4,
         "drawn": 2,
-        "lost": 4,
-        "goalsFor": 14,
-        "goalsAgainst": 14,
-        "goalDiff": 0,
+        "lost": 5,
+        "goalsFor": 15,
+        "goalsAgainst": 16,
+        "goalDiff": -1,
         "divRank": 6,
         "aliases": [
           "日大三"
@@ -11306,8 +11306,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-11 09:19",
+    "lastUpdated": "2026-09-11 13:48",
     "year": 2026,
-    "updatedCount": 412
+    "updatedCount": 385
   }
 }
