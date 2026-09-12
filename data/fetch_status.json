@@ -37,7 +37,7 @@
       "matchesPlayed": 60,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 0,
+      "consecutiveFallback": 4,
       "consecutiveFallbackPrev": 3
     },
     "prince-kanto-1": {
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-12T12:10:36+09:00",
+  "updatedAt": "2026-09-12T12:10:48+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -391,14 +391,13 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 55,
+      "played": 56,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-06",
+      "latest_match": "2026-09-12",
       "source": "official",
       "sourceName": "茨城県サッカー協会 公式（GoalNote）",
-      "last_change": "2026-09-06",
-      "last_change_note": "初回のため最終試合日で代用",
+      "last_change": "2026-09-12",
       "result_since": "",
       "result_streak": 0,
       "status": "ok"
@@ -726,9 +725,9 @@
       "sourceName": "岡山県サッカー協会 公式",
       "last_change": "2026-09-05",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-12",
+      "result_streak": 1,
+      "status": "warn"
     },
     "okinawa": {
       "result": "ok",
@@ -778,17 +777,16 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 32,
+      "played": 33,
       "total": 56,
       "teams": 8,
-      "latest_match": "2026-06-27",
+      "latest_match": "2026-09-12",
       "source": "official",
       "sourceName": "佐賀県サッカー協会 公式",
-      "last_change": "2026-06-27",
-      "last_change_note": "初回のため最終試合日で代用",
+      "last_change": "2026-09-12",
       "result_since": "",
       "result_streak": 0,
-      "status": "warn"
+      "status": "ok"
     },
     "saitama": {
       "season": "2026",
