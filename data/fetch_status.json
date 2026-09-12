@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-13T01:26:15+09:00",
+  "updatedAt": "2026-09-13T01:26:24+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -219,7 +219,7 @@
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
       "result_streak": 0,
-      "status": "ok"
+      "status": "warn"
     },
     "aomori": {
       "season": "2026",
@@ -1061,7 +1061,7 @@
       "status": "warn"
     },
     "_meta": {
-      "checked": "2026-09-12",
+      "checked": "2026-09-13",
       "national_latest": "2026-09-12",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
