@@ -1427,18 +1427,18 @@
         ]
       },
       {
-        "name": "郡山高校",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
         "prefectureRank": 11,
-        "points": 14,
+        "points": 3,
         "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
-        "leagueRank": 8,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1464,18 +1464,18 @@
       },
       {
         "id": "f007",
-        "name": "郡山商業高校",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "points": 3,
+        "points": 14,
         "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
         "prefectureRank": 13,
-        "leagueRank": 10,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -3089,6 +3089,21 @@
         ]
       },
       {
+        "name": "関東第一高校",
+        "points": 18,
+        "played": 11,
+        "won": 5,
+        "drawn": 3,
+        "lost": 3,
+        "goalsFor": 12,
+        "goalsAgainst": 7,
+        "goalDiff": 5,
+        "divRank": 2,
+        "aliases": [
+          "関東第一"
+        ]
+      },
+      {
         "name": "修徳高校",
         "points": 17,
         "played": 11,
@@ -3098,7 +3113,7 @@
         "goalsFor": 20,
         "goalsAgainst": 14,
         "goalDiff": 6,
-        "divRank": 2,
+        "divRank": 3,
         "aliases": [
           "修徳"
         ]
@@ -3113,7 +3128,7 @@
         "goalsFor": 16,
         "goalsAgainst": 10,
         "goalDiff": 6,
-        "divRank": 3,
+        "divRank": 4,
         "aliases": [
           "東海大高輪台"
         ]
@@ -3128,24 +3143,9 @@
         "goalsFor": 11,
         "goalsAgainst": 6,
         "goalDiff": 5,
-        "divRank": 4,
-        "aliases": [
-          "東京実業"
-        ]
-      },
-      {
-        "name": "関東第一高校",
-        "points": 15,
-        "played": 10,
-        "won": 4,
-        "drawn": 3,
-        "lost": 3,
-        "goalsFor": 10,
-        "goalsAgainst": 7,
-        "goalDiff": 3,
         "divRank": 5,
         "aliases": [
-          "関東第一"
+          "東京実業"
         ]
       },
       {
@@ -3196,13 +3196,13 @@
       {
         "name": "東久留米総合高校",
         "points": 8,
-        "played": 11,
+        "played": 12,
         "won": 2,
         "drawn": 2,
-        "lost": 7,
+        "lost": 8,
         "goalsFor": 9,
-        "goalsAgainst": 28,
-        "goalDiff": -19,
+        "goalsAgainst": 30,
+        "goalDiff": -21,
         "divRank": 9,
         "aliases": [
           "東久留米"
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-12 09:15",
+    "lastUpdated": "2026-09-12 09:27",
     "year": 2026,
     "updatedCount": 393
   }
