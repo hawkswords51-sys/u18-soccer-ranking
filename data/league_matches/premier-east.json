@@ -131,13 +131,13 @@
       "rank": 7,
       "team": "前橋育英",
       "pts": 19,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 4,
-      "lost": 3,
-      "gf": 18,
-      "ga": 15,
-      "gd": 3
+      "lost": 4,
+      "gf": 19,
+      "ga": 17,
+      "gd": 2
     },
     {
       "rank": 8,
@@ -165,6 +165,18 @@
     },
     {
       "rank": 10,
+      "team": "ベガルタ仙台ユース",
+      "pts": 10,
+      "played": 13,
+      "won": 2,
+      "drawn": 4,
+      "lost": 7,
+      "gf": 11,
+      "ga": 35,
+      "gd": -24
+    },
+    {
+      "rank": 11,
       "team": "川崎フロンターレU-18",
       "pts": 9,
       "played": 12,
@@ -174,18 +186,6 @@
       "gf": 19,
       "ga": 32,
       "gd": -13
-    },
-    {
-      "rank": 11,
-      "team": "ベガルタ仙台ユース",
-      "pts": 7,
-      "played": 12,
-      "won": 1,
-      "drawn": 4,
-      "lost": 7,
-      "gf": 9,
-      "ga": 34,
-      "gd": -25
     },
     {
       "rank": 12,
@@ -2328,12 +2328,28 @@
       "md": 13,
       "date": "2026-09-12",
       "home": "前橋育英",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "前橋育英高校高崎グラウンド(人工芝)",
-      "kickoff": "09:30"
+      "kickoff": "09:30",
+      "homeScorers": [
+        {
+          "minute": "13",
+          "name": "立石 陽向"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "39",
+          "name": "大山 真志"
+        },
+        {
+          "minute": "90+2",
+          "name": "大山 真志"
+        }
+      ]
     },
     {
       "md": 13,

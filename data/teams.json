@@ -725,16 +725,16 @@
         "name": "ベガルタ仙台ユース",
         "league": "プレミアリーグEAST",
         "rank": 3,
-        "points": 7,
-        "played": 12,
-        "won": 1,
+        "points": 10,
+        "played": 13,
+        "won": 2,
         "drawn": 4,
         "lost": 7,
-        "goalsFor": 9,
-        "goalsAgainst": 34,
+        "goalsFor": 11,
+        "goalsAgainst": 35,
         "prefectureRank": 3,
-        "goalDiff": -25,
-        "leagueRank": 11
+        "goalDiff": -24,
+        "leagueRank": 10
       },
       {
         "id": "m005",
@@ -1427,10 +1427,10 @@
         ]
       },
       {
+        "id": "f007",
         "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "prefectureRank": 11,
         "points": 3,
         "played": 14,
         "won": 1,
@@ -1438,6 +1438,7 @@
         "lost": 13,
         "goalsFor": 2,
         "goalsAgainst": 86,
+        "prefectureRank": 11,
         "leagueRank": 10,
         "aliases": [
           "郡山商",
@@ -1463,10 +1464,10 @@
         "leagueRank": 9
       },
       {
-        "id": "f007",
         "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
+        "prefectureRank": 13,
         "points": 14,
         "played": 14,
         "won": 4,
@@ -1474,7 +1475,6 @@
         "lost": 8,
         "goalsFor": 16,
         "goalsAgainst": 26,
-        "prefectureRank": 13,
         "leagueRank": 8,
         "aliases": [
           "郡山商",
@@ -2004,14 +2004,14 @@
         "league": "プレミアリーグEAST",
         "rank": 2,
         "points": 19,
-        "played": 12,
+        "played": 13,
         "won": 5,
         "drawn": 4,
-        "lost": 3,
-        "goalsFor": 18,
-        "goalsAgainst": 15,
+        "lost": 4,
+        "goalsFor": 19,
+        "goalsAgainst": 17,
         "prefectureRank": 2,
-        "goalDiff": 3,
+        "goalDiff": 2,
         "leagueRank": 7
       },
       {
@@ -3296,7 +3296,7 @@
         "goalsAgainst": 32,
         "prefectureRank": 4,
         "goalDiff": -13,
-        "leagueRank": 10
+        "leagueRank": 11
       },
       {
         "id": "k012",
@@ -3625,16 +3625,16 @@
         "name": "アルビレックス新潟U-18",
         "league": "プリンスリーグ北信越1部",
         "rank": 3,
-        "points": 23,
-        "played": 13,
+        "points": 24,
+        "played": 14,
         "won": 6,
-        "drawn": 5,
+        "drawn": 6,
         "lost": 2,
-        "goalsFor": 21,
-        "goalsAgainst": 10,
+        "goalsFor": 22,
+        "goalsAgainst": 11,
         "prefectureRank": 3,
         "goalDiff": 11,
-        "leagueRank": 2
+        "leagueRank": 1
       },
       {
         "id": "ni001",
@@ -3676,13 +3676,13 @@
         "name": "日本文理高校",
         "league": "プリンスリーグ北信越1部",
         "rank": 6,
-        "points": 19,
-        "played": 13,
+        "points": 20,
+        "played": 14,
         "won": 6,
-        "drawn": 1,
+        "drawn": 2,
         "lost": 6,
-        "goalsFor": 24,
-        "goalsAgainst": 15,
+        "goalsFor": 25,
+        "goalsAgainst": 16,
         "prefectureRank": 6,
         "goalDiff": 9,
         "leagueRank": 4
@@ -3723,26 +3723,10 @@
         ]
       },
       {
-        "id": "ni005",
-        "name": "上越高校",
-        "league": "プリンスリーグ北信越1部",
-        "rank": 9,
-        "points": 19,
-        "played": 14,
-        "won": 4,
-        "drawn": 7,
-        "lost": 3,
-        "goalsFor": 18,
-        "goalsAgainst": 21,
-        "prefectureRank": 9,
-        "goalDiff": -3,
-        "leagueRank": 6
-      },
-      {
         "id": "ni010",
         "name": "日本文理高校2nd",
         "league": "プリンスリーグ北信越2部",
-        "rank": 10,
+        "rank": 9,
         "points": 10,
         "played": 13,
         "won": 3,
@@ -3750,12 +3734,28 @@
         "lost": 9,
         "goalsFor": 11,
         "goalsAgainst": 20,
-        "prefectureRank": 10,
+        "prefectureRank": 9,
         "goalDiff": -9,
         "leagueRank": 6,
         "aliases": [
           "日本文理2nd"
         ]
+      },
+      {
+        "id": "ni005",
+        "name": "上越高校",
+        "league": "プリンスリーグ北信越1部",
+        "rank": 10,
+        "points": 19,
+        "played": 14,
+        "won": 4,
+        "drawn": 7,
+        "lost": 3,
+        "goalsFor": 18,
+        "goalsAgainst": 21,
+        "prefectureRank": 10,
+        "goalDiff": -3,
+        "leagueRank": 7
       },
       {
         "id": "ni012",
@@ -3944,15 +3944,15 @@
         "league": "プリンスリーグ北信越1部",
         "rank": 2,
         "points": 24,
-        "played": 13,
+        "played": 14,
         "won": 7,
         "drawn": 3,
-        "lost": 3,
-        "goalsFor": 24,
-        "goalsAgainst": 12,
+        "lost": 4,
+        "goalsFor": 25,
+        "goalsAgainst": 15,
         "prefectureRank": 2,
-        "goalDiff": 12,
-        "leagueRank": 1
+        "goalDiff": 10,
+        "leagueRank": 2
       },
       {
         "id": "ty004",
@@ -4157,16 +4157,16 @@
         "name": "星稜高校",
         "league": "プリンスリーグ北信越1部",
         "rank": 3,
-        "points": 16,
-        "played": 13,
-        "won": 3,
+        "points": 19,
+        "played": 14,
+        "won": 4,
         "drawn": 7,
         "lost": 3,
-        "goalsFor": 17,
-        "goalsAgainst": 19,
+        "goalsFor": 20,
+        "goalsAgainst": 20,
         "prefectureRank": 3,
-        "goalDiff": -2,
-        "leagueRank": 7
+        "goalDiff": 0,
+        "leagueRank": 5
       },
       {
         "id": "is008",
@@ -4780,7 +4780,7 @@
         "goalsAgainst": 11,
         "prefectureRank": 5,
         "goalDiff": -1,
-        "leagueRank": 5
+        "leagueRank": 6
       },
       {
         "id": "na008",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-12 11:38",
+    "lastUpdated": "2026-09-12 11:49",
     "year": 2026,
     "updatedCount": 403
   }
