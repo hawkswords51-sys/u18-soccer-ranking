@@ -149,7 +149,7 @@ TEMPLATE = """<!DOCTYPE html>
   <title>__TITLE__</title>
   <meta name="description" content="__DESC__">
   <meta name="keywords" content="プロ内定,Jリーグ内定,加入内定,2種登録,高校サッカー,ユース,トップ昇格,__SEASON__">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="__CANON__">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="高校サッカー順位確認システム">

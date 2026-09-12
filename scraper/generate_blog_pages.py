@@ -166,7 +166,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
   <meta name="description" content="__DESCRIPTION__">
   <meta name="keywords" content="__KEYWORDS__">
   <meta name="author" content="__AUTHOR__">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="__CANONICAL__">
 
   <meta property="og:type" content="article">
@@ -722,7 +722,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
   <title>ブログ | 高校サッカー U-18 戦術・選手・コラム情報</title>
   <meta name="description" content="高校サッカーU-18のシーズン展望・注目チーム解説・戦術分析・選手紹介に加え、救急科専門医による熱中症・貧血・睡眠・脳震盪などの医学コラムを毎週お届けします。選手・保護者・指導者に役立つ、医学的根拠にもとづくコンディショニング情報を発信中です。">
   <meta name="keywords" content="高校サッカー,U-18,ブログ,シーズン展望,戦術分析,医学コラム,選手紹介">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://u18-soccer.com/blog/">
   <link rel="alternate" type="application/rss+xml" title="高校サッカー順位確認システム ブログ" href="https://u18-soccer.com/blog/feed.xml">
 
@@ -1303,7 +1303,7 @@ MEDICAL_HUB_TEMPLATE = """<!DOCTYPE html>
   <title>__TITLE__</title>
   <meta name="description" content="__DESCRIPTION__">
   <meta name="keywords" content="高校サッカー,医学コラム,熱中症,脳震盪,救急医,スポーツ医学,コンディショニング">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="__CANONICAL__">
 
   <meta property="og:type" content="website">

@@ -1699,7 +1699,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <title>__TITLE__</title>
   <meta name="description" content="__DESCRIPTION__">
   <meta name="keywords" content="__KEYWORDS__">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="format-detection" content="telephone=no">
   <link rel="canonical" href="__CANONICAL__">
 

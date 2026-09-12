@@ -150,7 +150,7 @@ TEMPLATE = """<!DOCTYPE html>
   <title>__TITLE__</title>
   <meta name="description" content="__DESC__">
   <meta name="keywords" content="U-16日本代表,U-17日本代表,U-18日本代表,メンバー,招集,高校サッカー,ユース,所属チーム">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="__CANON__">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="高校サッカー順位確認システム">

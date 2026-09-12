@@ -1248,7 +1248,7 @@ LEAGUE_PAGE_TEMPLATE = """<!DOCTYPE html>
   <title>__TITLE__</title>
   <meta name="description" content="__DESCRIPTION__">
   <meta name="keywords" content="__KEYWORDS__">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="format-detection" content="telephone=no">
   <link rel="canonical" href="__CANONICAL__">
 
@@ -1905,7 +1905,7 @@ def generate_premier_final_page():
   <title>{html_escape(title)}</title>
   <meta name="description" content="{html_escape(description)}">
   <meta name="keywords" content="{html_escape(keywords)}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="{canonical}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="高校サッカー順位確認システム">
@@ -2072,7 +2072,7 @@ LEAGUE_INDEX_TEMPLATE = """<!DOCTYPE html>
   <title>リーグ一覧 | 高円宮杯 JFA U-18 サッカープレミア・プリンスリーグ全国順位表</title>
   <meta name="description" content="高円宮杯 JFA U-18 サッカーリーグ全カテゴリの順位表を一括確認できます。全国最高峰のプレミアリーグEAST/WEST、地域のプリンスリーグ9地域、各都道府県の1部リーグまで、所属チーム・勝点・得失点差・最新順位を毎日自動更新。気になるチームの全国でのレベルを横断的にチェックできます。">
   <meta name="keywords" content="高円宮杯,U-18,プレミアリーグ,プリンスリーグ,高校サッカー,順位,リーグ一覧">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://u18-soccer.com/leagues/">
 
   <meta property="og:type" content="website">

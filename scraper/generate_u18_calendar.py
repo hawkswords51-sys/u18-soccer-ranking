@@ -209,7 +209,7 @@ def main():
   <title>{html_escape(seo_title)}</title>
   <meta name="description" content="{html_escape(description)}">
   <meta name="keywords" content="{html_escape(keywords)}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="{CANONICAL}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="高校サッカー順位確認システム">

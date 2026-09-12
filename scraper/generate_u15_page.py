@@ -222,6 +222,7 @@ def build_html(data):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html_escape(title)}</title>
   <meta name="description" content="{html_escape(desc)}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="keywords" content="U-15,中学サッカー,高円宮杯,順位表,2026,地域リーグ,ジュニアユース,クラブユース,全中">
   <link rel="canonical" href="{CANONICAL}">
   <meta property="og:type" content="website">
