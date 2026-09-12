@@ -37,7 +37,7 @@
       "matchesPlayed": 60,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 0,
+      "consecutiveFallback": 1,
       "consecutiveFallbackPrev": 0
     },
     "prince-kanto-1": {
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-12T11:20:23+09:00",
+  "updatedAt": "2026-09-12T11:20:31+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -332,14 +332,13 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 50,
+      "played": 53,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-05",
+      "latest_match": "2026-09-12",
       "source": "official",
       "sourceName": "群馬県サッカー協会 公式",
-      "last_change": "2026-09-05",
-      "last_change_note": "初回のため最終試合日で代用",
+      "last_change": "2026-09-12",
       "result_since": "",
       "result_streak": 0,
       "status": "ok"
@@ -1050,7 +1049,7 @@
     },
     "_meta": {
       "checked": "2026-09-12",
-      "national_latest": "2026-09-06",
+      "national_latest": "2026-09-12",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
       "fetchFailDays": 3
