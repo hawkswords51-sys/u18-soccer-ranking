@@ -142,14 +142,14 @@
     {
       "rank": 8,
       "team": "東京ヴェルディユース",
-      "pts": 15,
-      "played": 12,
-      "won": 4,
+      "pts": 18,
+      "played": 13,
+      "won": 5,
       "drawn": 3,
       "lost": 5,
-      "gf": 22,
-      "ga": 24,
-      "gd": -2
+      "gf": 26,
+      "ga": 27,
+      "gd": -1
     },
     {
       "rank": 9,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "川崎フロンターレU-18",
       "pts": 9,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 3,
-      "lost": 7,
-      "gf": 19,
-      "ga": 32,
-      "gd": -13
+      "lost": 8,
+      "gf": 22,
+      "ga": 36,
+      "gd": -14
     },
     {
       "rank": 12,
@@ -2356,12 +2356,44 @@
       "md": 13,
       "date": "2026-09-12",
       "home": "川崎フロンターレU-18",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 4,
       "away": "東京ヴェルディユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "Ankerフロンタウン生田（人工芝）",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "homeScorers": [
+        {
+          "minute": "62",
+          "name": "木下 勝正"
+        },
+        {
+          "minute": "66",
+          "name": "十河 晟央"
+        },
+        {
+          "minute": "78",
+          "name": "小川 尋斗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "8",
+          "name": "沼田 晃人"
+        },
+        {
+          "minute": "23",
+          "name": "木下 晴天"
+        },
+        {
+          "minute": "40",
+          "name": "若月 蓮"
+        },
+        {
+          "minute": "87",
+          "name": "広瀬 怜音"
+        }
+      ]
     },
     {
       "md": 13,
@@ -2413,6 +2445,7 @@
       "status": "played",
       "venue": "メルカリスタジアム サブグラウンド",
       "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1303.pdf",
       "homeScorers": [
         {
           "minute": "22",

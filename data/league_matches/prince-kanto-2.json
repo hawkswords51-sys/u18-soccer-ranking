@@ -75,16 +75,28 @@
       "rank": 3,
       "team": "日体大柏",
       "pts": 15,
+      "played": 11,
+      "won": 5,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 11,
+      "ga": 15,
+      "gd": -4
+    },
+    {
+      "rank": 4,
+      "team": "FC町田ゼルビアユース",
+      "pts": 15,
       "played": 10,
       "won": 5,
       "drawn": 0,
       "lost": 5,
-      "gf": 11,
-      "ga": 14,
-      "gd": -3
+      "gf": 13,
+      "ga": 18,
+      "gd": -5
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "矢板中央",
       "pts": 14,
       "played": 9,
@@ -96,7 +108,7 @@
       "gd": 3
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "西武台",
       "pts": 14,
       "played": 11,
@@ -106,18 +118,6 @@
       "gf": 16,
       "ga": 19,
       "gd": -3
-    },
-    {
-      "rank": 6,
-      "team": "FC町田ゼルビアユース",
-      "pts": 12,
-      "played": 9,
-      "won": 4,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 12,
-      "ga": 18,
-      "gd": -6
     },
     {
       "rank": 7,
@@ -722,10 +722,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "日体大柏",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日本体育大学柏高校",
       "kickoff": "17:00"
     },

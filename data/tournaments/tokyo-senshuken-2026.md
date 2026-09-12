@@ -109,7 +109,7 @@ source: https://koko-soccer.com/score/4529
 - 南多摩中等 vs 京華
 - 都立目黒 vs 青稜
 - 聖学院 vs 明法
-- 正則 vs 明星
+- 正則 0-0(PK4-5) 明星
 - 芝浦工大高 vs 都立田無
 - 都立大田桜台 vs 獨協
 - 立教池袋 vs 中央大学高
