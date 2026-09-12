@@ -133,6 +133,18 @@
     },
     {
       "rank": 8,
+      "team": "ヴィッセル神戸U-18(B)",
+      "pts": 8,
+      "played": 11,
+      "won": 2,
+      "drawn": 2,
+      "lost": 7,
+      "gf": 16,
+      "ga": 37,
+      "gd": -21
+    },
+    {
+      "rank": 9,
       "team": "近江(B)",
       "pts": 7,
       "played": 10,
@@ -144,28 +156,16 @@
       "gd": -5
     },
     {
-      "rank": 9,
-      "team": "ヴィッセル神戸U-18(B)",
-      "pts": 5,
-      "played": 10,
-      "won": 1,
-      "drawn": 2,
-      "lost": 7,
-      "gf": 13,
-      "ga": 35,
-      "gd": -22
-    },
-    {
       "rank": 10,
       "team": "関西学院",
       "pts": 3,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 0,
-      "lost": 9,
-      "gf": 9,
-      "ga": 24,
-      "gd": -15
+      "lost": 10,
+      "gf": 11,
+      "ga": 27,
+      "gd": -16
     }
   ],
   "matches": [
@@ -745,10 +745,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "関西学院",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "ヴィッセル神戸U-18(B)",
-      "status": "scheduled",
+      "status": "played",
       "venue": "神戸弘陵グラウンド",
       "kickoff": "15:30"
     },

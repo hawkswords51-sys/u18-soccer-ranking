@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "松本山雅FC U-18",
+      "pts": 25,
+      "played": 14,
+      "won": 7,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 29,
+      "ga": 22,
+      "gd": 7
+    },
+    {
+      "rank": 2,
       "team": "アルビレックス新潟U-18",
       "pts": 24,
       "played": 14,
@@ -60,7 +72,7 @@
       "gd": 11
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "富山第一",
       "pts": 24,
       "played": 14,
@@ -70,18 +82,6 @@
       "gf": 25,
       "ga": 15,
       "gd": 10
-    },
-    {
-      "rank": 3,
-      "team": "松本山雅FC U-18",
-      "pts": 22,
-      "played": 13,
-      "won": 6,
-      "drawn": 4,
-      "lost": 3,
-      "gf": 27,
-      "ga": 21,
-      "gd": 6
     },
     {
       "rank": 4,
@@ -135,13 +135,13 @@
       "rank": 8,
       "team": "鵬学園",
       "pts": 12,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 6,
-      "lost": 5,
-      "gf": 13,
-      "ga": 18,
-      "gd": -5
+      "lost": 6,
+      "gf": 14,
+      "ga": 20,
+      "gd": -6
     },
     {
       "rank": 9,
@@ -932,10 +932,10 @@
       "md": 14,
       "date": "2026-09-12",
       "home": "鵬学園",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "松本山雅FC U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鵬学園",
       "kickoff": "09:30"
     },

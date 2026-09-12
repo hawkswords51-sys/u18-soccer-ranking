@@ -14,12 +14,12 @@
       "short": "益田東"
     },
     {
-      "name": "明誠",
-      "short": "明誠"
-    },
-    {
       "name": "開星",
       "short": "開星"
+    },
+    {
+      "name": "明誠",
+      "short": "明誠"
     },
     {
       "name": "出雲",
@@ -65,6 +65,18 @@
     },
     {
       "rank": 3,
+      "team": "開星",
+      "points": 17,
+      "played": 8,
+      "won": 5,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 20,
+      "ga": 9,
+      "gd": 11
+    },
+    {
+      "rank": 4,
       "team": "明誠",
       "points": 16,
       "played": 8,
@@ -76,28 +88,16 @@
       "gd": 9
     },
     {
-      "rank": 4,
-      "team": "開星",
-      "points": 14,
-      "played": 7,
-      "won": 4,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 18,
-      "ga": 8,
-      "gd": 10
-    },
-    {
       "rank": 5,
       "team": "出雲",
       "points": 11,
-      "played": 8,
+      "played": 9,
       "won": 3,
       "drawn": 2,
-      "lost": 3,
-      "gf": 11,
-      "ga": 13,
-      "gd": -2
+      "lost": 4,
+      "gf": 12,
+      "ga": 15,
+      "gd": -3
     },
     {
       "rank": 6,
@@ -148,20 +148,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "立正大淞南B",
-      "hs": 6,
-      "as": 2,
-      "away": "明誠",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-16",
       "home": "立正大淞南B",
       "hs": 1,
       "as": 1,
       "away": "開星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "立正大淞南B",
+      "hs": 6,
+      "as": 2,
+      "away": "明誠",
       "status": "played"
     },
     {
@@ -211,20 +211,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "益田東",
-      "hs": 4,
-      "as": 1,
-      "away": "明誠",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-23",
       "home": "益田東",
       "hs": 1,
       "as": 3,
       "away": "開星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "益田東",
+      "hs": 4,
+      "as": 1,
+      "away": "明誠",
       "status": "played"
     },
     {
@@ -259,6 +259,69 @@
       "date": "2026-04-18",
       "home": "益田東",
       "hs": 10,
+      "as": 0,
+      "away": "松江商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "開星",
+      "hs": null,
+      "as": null,
+      "away": "立正大淞南B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "開星",
+      "hs": null,
+      "as": null,
+      "away": "益田東",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "開星",
+      "hs": null,
+      "as": null,
+      "away": "明誠",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "開星",
+      "hs": 2,
+      "as": 2,
+      "away": "出雲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "開星",
+      "hs": 6,
+      "as": 0,
+      "away": "大社B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "開星",
+      "hs": 2,
+      "as": 0,
+      "away": "出雲工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "開星",
+      "hs": 1,
       "as": 0,
       "away": "松江商業",
       "status": "played"
@@ -329,7 +392,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "開星",
+      "home": "出雲",
       "hs": null,
       "as": null,
       "away": "立正大淞南B",
@@ -338,7 +401,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "開星",
+      "home": "出雲",
       "hs": null,
       "as": null,
       "away": "益田東",
@@ -346,66 +409,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "開星",
-      "hs": null,
-      "as": null,
-      "away": "明誠",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
+      "date": "2026-09-12",
       "home": "開星",
       "hs": 2,
-      "as": 2,
+      "as": 1,
       "away": "出雲",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "開星",
-      "hs": 6,
-      "as": 0,
-      "away": "大社B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "開星",
-      "hs": 2,
-      "as": 0,
-      "away": "出雲工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "開星",
-      "hs": 1,
-      "as": 0,
-      "away": "松江商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "出雲",
-      "hs": null,
-      "as": null,
-      "away": "立正大淞南B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "出雲",
-      "hs": null,
-      "as": null,
-      "away": "益田東",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -415,15 +424,6 @@
       "as": 1,
       "away": "出雲",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "出雲",
-      "hs": null,
-      "as": null,
-      "away": "開星",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -476,7 +476,7 @@
       "home": "大社B",
       "hs": null,
       "as": null,
-      "away": "明誠",
+      "away": "開星",
       "status": "scheduled"
     },
     {
@@ -485,7 +485,7 @@
       "home": "大社B",
       "hs": null,
       "as": null,
-      "away": "開星",
+      "away": "明誠",
       "status": "scheduled"
     },
     {
@@ -539,7 +539,7 @@
       "home": "出雲工業",
       "hs": null,
       "as": null,
-      "away": "明誠",
+      "away": "開星",
       "status": "scheduled"
     },
     {
@@ -548,7 +548,7 @@
       "home": "出雲工業",
       "hs": null,
       "as": null,
-      "away": "開星",
+      "away": "明誠",
       "status": "scheduled"
     },
     {
@@ -602,7 +602,7 @@
       "home": "松江商業",
       "hs": null,
       "as": null,
-      "away": "明誠",
+      "away": "開星",
       "status": "scheduled"
     },
     {
@@ -611,7 +611,7 @@
       "home": "松江商業",
       "hs": null,
       "as": null,
-      "away": "開星",
+      "away": "明誠",
       "status": "scheduled"
     },
     {

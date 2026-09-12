@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
-      "pts": 25,
-      "played": 12,
-      "won": 8,
+      "pts": 28,
+      "played": 13,
+      "won": 9,
       "drawn": 1,
       "lost": 3,
-      "gf": 28,
-      "ga": 17,
-      "gd": 11
+      "gf": 32,
+      "ga": 18,
+      "gd": 14
     },
     {
       "rank": 2,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 5,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 2,
-      "lost": 9,
-      "gf": 10,
-      "ga": 30,
-      "gd": -20
+      "lost": 10,
+      "gf": 11,
+      "ga": 34,
+      "gd": -23
     }
   ],
   "matches": [
@@ -2277,12 +2277,36 @@
       "md": 13,
       "date": "2026-09-12",
       "home": "ファジアーノ岡山U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 4,
       "away": "ヴィッセル神戸U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "スチールハブフィールド寄島",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "45+4",
+          "name": "安西 来起"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "28",
+          "name": "坂口 佑樹"
+        },
+        {
+          "minute": "58",
+          "name": "菊池 謙剛"
+        },
+        {
+          "minute": "74",
+          "name": "石井 海翔"
+        },
+        {
+          "minute": "87",
+          "name": "上野 颯太"
+        }
+      ]
     },
     {
       "md": 13,

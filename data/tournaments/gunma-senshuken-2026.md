@@ -58,7 +58,7 @@ scraper/update_tournament_results.py が上の source から
 ## Eブロック1回戦（9/12）
 
 - 吉井 1-0 伊勢崎
-- 樹徳 vs 桐生市商
+- 樹徳 2-0 桐生市商
 
 ## Eブロック決勝（9/20）
 
@@ -80,7 +80,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Gブロック2回戦（9/12）
 
-- 太田 vs 館林
+- 太田 1-0 館林
 - 桐生工 1-0 高崎北/関東学園大附
 
 ## Hブロック1回戦（9/5）

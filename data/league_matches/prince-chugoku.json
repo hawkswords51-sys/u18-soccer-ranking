@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "瀬戸内",
+      "pts": 25,
+      "played": 11,
+      "won": 8,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 26,
+      "ga": 8,
+      "gd": 18
+    },
+    {
+      "rank": 3,
       "team": "立正大淞南",
       "pts": 25,
       "played": 11,
@@ -69,18 +81,6 @@
       "lost": 2,
       "gf": 26,
       "ga": 11,
-      "gd": 15
-    },
-    {
-      "rank": 3,
-      "team": "瀬戸内",
-      "pts": 22,
-      "played": 10,
-      "won": 7,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 23,
-      "ga": 8,
       "gd": 15
     },
     {
@@ -110,10 +110,10 @@
     {
       "rank": 6,
       "team": "広島皆実",
-      "pts": 12,
-      "played": 10,
+      "pts": 13,
+      "played": 11,
       "won": 3,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 4,
       "gf": 6,
       "ga": 10,
@@ -133,6 +133,18 @@
     },
     {
       "rank": 8,
+      "team": "高川学園",
+      "pts": 8,
+      "played": 11,
+      "won": 1,
+      "drawn": 5,
+      "lost": 5,
+      "gf": 9,
+      "ga": 16,
+      "gd": -7
+    },
+    {
+      "rank": 9,
       "team": "大社",
       "pts": 8,
       "played": 11,
@@ -144,28 +156,16 @@
       "gd": -21
     },
     {
-      "rank": 9,
-      "team": "高川学園",
-      "pts": 7,
-      "played": 10,
-      "won": 1,
-      "drawn": 4,
-      "lost": 5,
-      "gf": 9,
-      "ga": 16,
-      "gd": -7
-    },
-    {
       "rank": 10,
       "team": "玉野光南",
       "pts": 7,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 1,
-      "lost": 7,
+      "lost": 8,
       "gf": 12,
-      "ga": 22,
-      "gd": -10
+      "ga": 25,
+      "gd": -13
     }
   ],
   "matches": [
@@ -745,10 +745,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "瀬戸内",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "玉野光南",
-      "status": "scheduled",
+      "status": "played",
       "venue": "北広島町大朝グラウンド",
       "kickoff": "15:00"
     },
@@ -767,10 +767,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "高川学園",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "広島皆実",
-      "status": "scheduled",
+      "status": "played",
       "venue": "高川学園サッカー場",
       "kickoff": "15:00"
     },

@@ -57,6 +57,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "鹿島アントラーズユース",
+      "pts": 27,
+      "played": 13,
+      "won": 9,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 38,
+      "ga": 20,
+      "gd": 18
+    },
+    {
+      "rank": 2,
       "team": "流通経済大柏",
       "pts": 27,
       "played": 12,
@@ -66,18 +78,6 @@
       "gf": 25,
       "ga": 11,
       "gd": 14
-    },
-    {
-      "rank": 2,
-      "team": "鹿島アントラーズユース",
-      "pts": 24,
-      "played": 12,
-      "won": 8,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 34,
-      "ga": 18,
-      "gd": 16
     },
     {
       "rank": 3,
@@ -119,13 +119,13 @@
       "rank": 6,
       "team": "帝京長岡",
       "pts": 21,
-      "played": 12,
+      "played": 13,
       "won": 7,
       "drawn": 0,
-      "lost": 5,
-      "gf": 31,
-      "ga": 21,
-      "gd": 10
+      "lost": 6,
+      "gf": 33,
+      "ga": 25,
+      "gd": 8
     },
     {
       "rank": 7,
@@ -2407,12 +2407,40 @@
       "md": 13,
       "date": "2026-09-12",
       "home": "鹿島アントラーズユース",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 2,
       "away": "帝京長岡",
-      "status": "scheduled",
+      "status": "played",
       "venue": "メルカリスタジアム サブグラウンド",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "22",
+          "name": "林 勘太"
+        },
+        {
+          "minute": "60",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "66",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "73",
+          "name": "髙木 瑛人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "64",
+          "name": "堀田 宙吾"
+        },
+        {
+          "minute": "89",
+          "name": "霧生 海伊"
+        }
+      ]
     },
     {
       "md": 13,
