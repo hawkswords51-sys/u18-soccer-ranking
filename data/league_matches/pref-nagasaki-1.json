@@ -14,12 +14,12 @@
       "short": "創成館"
     },
     {
-      "name": "国見2nd",
-      "short": "国見2nd"
-    },
-    {
       "name": "長崎日大",
       "short": "長崎日大"
+    },
+    {
+      "name": "国見2nd",
+      "short": "国見2nd"
     },
     {
       "name": "鎮西学院",
@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "長崎日大",
+      "points": 23,
+      "played": 11,
+      "won": 7,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 26,
+      "ga": 8,
+      "gd": 18
+    },
+    {
+      "rank": 3,
       "team": "創成館",
       "points": 23,
       "played": 11,
@@ -72,7 +84,7 @@
       "gd": 10
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "国見2nd",
       "points": 22,
       "played": 11,
@@ -82,18 +94,6 @@
       "gf": 29,
       "ga": 17,
       "gd": 12
-    },
-    {
-      "rank": 4,
-      "team": "長崎日大",
-      "points": 20,
-      "played": 10,
-      "won": 6,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 24,
-      "ga": 8,
-      "gd": 16
     },
     {
       "rank": 5,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "佐世保実業",
       "points": 3,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 0,
-      "lost": 9,
+      "lost": 10,
       "gf": 10,
-      "ga": 24,
-      "gd": -14
+      "ga": 26,
+      "gd": -16
     },
     {
       "rank": 10,
@@ -180,21 +180,21 @@
     },
     {
       "md": 0,
-      "date": "2026-05-09",
-      "home": "九州文化学園",
-      "hs": 4,
-      "as": 2,
-      "away": "国見2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "九州文化学園",
       "hs": null,
       "as": null,
       "away": "長崎日大",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "九州文化学園",
+      "hs": 4,
+      "as": 2,
+      "away": "国見2nd",
+      "status": "played"
     },
     {
       "md": 0,
@@ -265,7 +265,7 @@
       "home": "創成館",
       "hs": null,
       "as": null,
-      "away": "国見2nd",
+      "away": "長崎日大",
       "status": "scheduled"
     },
     {
@@ -274,7 +274,7 @@
       "home": "創成館",
       "hs": null,
       "as": null,
-      "away": "長崎日大",
+      "away": "国見2nd",
       "status": "scheduled"
     },
     {
@@ -330,6 +330,87 @@
       "as": 1,
       "away": "長崎南山",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "長崎日大",
+      "hs": 4,
+      "as": 0,
+      "away": "九州文化学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "長崎日大",
+      "hs": 0,
+      "as": 1,
+      "away": "創成館",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "長崎日大",
+      "hs": null,
+      "as": null,
+      "away": "国見2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "長崎日大",
+      "hs": null,
+      "as": null,
+      "away": "鎮西学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "長崎日大",
+      "hs": null,
+      "as": null,
+      "away": "Vファーレン長崎2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "長崎日大",
+      "hs": null,
+      "as": null,
+      "away": "長崎総附2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "長崎日大",
+      "hs": 3,
+      "as": 0,
+      "away": "海星",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "長崎日大",
+      "hs": 3,
+      "as": 1,
+      "away": "佐世保実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "長崎日大",
+      "hs": null,
+      "as": null,
+      "away": "長崎南山",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -414,87 +495,6 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "長崎日大",
-      "hs": 4,
-      "as": 0,
-      "away": "九州文化学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "長崎日大",
-      "hs": 0,
-      "as": 1,
-      "away": "創成館",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長崎日大",
-      "hs": null,
-      "as": null,
-      "away": "国見2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長崎日大",
-      "hs": null,
-      "as": null,
-      "away": "鎮西学院",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長崎日大",
-      "hs": null,
-      "as": null,
-      "away": "Vファーレン長崎2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長崎日大",
-      "hs": null,
-      "as": null,
-      "away": "長崎総附2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "長崎日大",
-      "hs": 3,
-      "as": 0,
-      "away": "海星",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "長崎日大",
-      "hs": 3,
-      "as": 1,
-      "away": "佐世保実業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長崎日大",
-      "hs": null,
-      "as": null,
-      "away": "長崎南山",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "鎮西学院",
       "hs": null,
@@ -513,21 +513,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "鎮西学院",
-      "hs": null,
-      "as": null,
-      "away": "国見2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-06-27",
       "home": "鎮西学院",
       "hs": 0,
       "as": 0,
       "away": "長崎日大",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鎮西学院",
+      "hs": null,
+      "as": null,
+      "away": "国見2nd",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -594,20 +594,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-17",
-      "home": "Vファーレン長崎2nd",
-      "hs": 4,
-      "as": 2,
-      "away": "国見2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "Vファーレン長崎2nd",
       "hs": 0,
       "as": 2,
       "away": "長崎日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "Vファーレン長崎2nd",
+      "hs": 4,
+      "as": 2,
+      "away": "国見2nd",
       "status": "played"
     },
     {
@@ -675,20 +675,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "長崎総附2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "国見2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "長崎総附2nd",
       "hs": 0,
       "as": 3,
       "away": "長崎日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "長崎総附2nd",
+      "hs": 1,
+      "as": 1,
+      "away": "国見2nd",
       "status": "played"
     },
     {
@@ -756,20 +756,20 @@
     },
     {
       "md": 0,
-      "date": "2026-09-12",
-      "home": "海星",
-      "hs": 2,
-      "as": 3,
-      "away": "国見2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-09-05",
       "home": "海星",
       "hs": 2,
       "as": 2,
       "away": "長崎日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "海星",
+      "hs": 2,
+      "as": 3,
+      "away": "国見2nd",
       "status": "played"
     },
     {
@@ -837,21 +837,21 @@
     },
     {
       "md": 0,
+      "date": "2026-09-12",
+      "home": "佐世保実業",
+      "hs": 0,
+      "as": 2,
+      "away": "長崎日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "佐世保実業",
       "hs": 1,
       "as": 2,
       "away": "国見2nd",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐世保実業",
-      "hs": null,
-      "as": null,
-      "away": "長崎日大",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -918,20 +918,20 @@
     },
     {
       "md": 0,
-      "date": "2026-09-05",
-      "home": "長崎南山",
-      "hs": 0,
-      "as": 5,
-      "away": "国見2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-09",
       "home": "長崎南山",
       "hs": 0,
       "as": 7,
       "away": "長崎日大",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "長崎南山",
+      "hs": 0,
+      "as": 5,
+      "away": "国見2nd",
       "status": "played"
     },
     {

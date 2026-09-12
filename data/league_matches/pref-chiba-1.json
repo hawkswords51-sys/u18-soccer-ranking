@@ -10,6 +10,10 @@
       "short": "市立船橋B"
     },
     {
+      "name": "中央学院",
+      "short": "中央学院"
+    },
+    {
       "name": "流経大柏C",
       "short": "流経大柏C"
     },
@@ -18,8 +22,8 @@
       "short": "専修大松戸"
     },
     {
-      "name": "中央学院",
-      "short": "中央学院"
+      "name": "ジェフU-18B",
+      "short": "ジェフU-18"
     },
     {
       "name": "習志野",
@@ -28,10 +32,6 @@
     {
       "name": "八千代",
       "short": "八千代"
-    },
-    {
-      "name": "ジェフU-18B",
-      "short": "ジェフU-18"
     },
     {
       "name": "レイソルU-18B",
@@ -61,27 +61,27 @@
     },
     {
       "rank": 2,
-      "team": "流経大柏C",
-      "points": 19,
-      "played": 9,
-      "won": 5,
-      "drawn": 4,
-      "lost": 0,
-      "gf": 24,
+      "team": "中央学院",
+      "points": 21,
+      "played": 10,
+      "won": 7,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 34,
       "ga": 12,
-      "gd": 12
+      "gd": 22
     },
     {
       "rank": 3,
-      "team": "中央学院",
-      "points": 18,
-      "played": 9,
-      "won": 6,
-      "drawn": 0,
-      "lost": 3,
-      "gf": 32,
-      "ga": 12,
-      "gd": 20
+      "team": "流経大柏C",
+      "points": 19,
+      "played": 10,
+      "won": 5,
+      "drawn": 4,
+      "lost": 1,
+      "gf": 24,
+      "ga": 14,
+      "gd": 10
     },
     {
       "rank": 4,
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "ジェフU-18B",
+      "points": 16,
+      "played": 11,
+      "won": 5,
+      "drawn": 1,
+      "lost": 5,
+      "gf": 21,
+      "ga": 21,
+      "gd": 0
+    },
+    {
+      "rank": 6,
       "team": "習志野",
       "points": 14,
       "played": 9,
@@ -108,7 +120,7 @@
       "gd": 6
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "八千代",
       "points": 14,
       "played": 9,
@@ -120,28 +132,16 @@
       "gd": 5
     },
     {
-      "rank": 7,
-      "team": "ジェフU-18B",
-      "points": 13,
-      "played": 10,
-      "won": 4,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 17,
-      "ga": 18,
-      "gd": -1
-    },
-    {
       "rank": 8,
       "team": "東京学館浦安",
       "points": 7,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 1,
-      "lost": 7,
-      "gf": 9,
-      "ga": 19,
-      "gd": -10
+      "lost": 8,
+      "gf": 12,
+      "ga": 23,
+      "gd": -11
     },
     {
       "rank": 9,
@@ -171,6 +171,15 @@
   "matches": [
     {
       "md": 0,
+      "date": "",
+      "home": "市立船橋B",
+      "hs": null,
+      "as": null,
+      "away": "中央学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-06-28",
       "home": "市立船橋B",
       "hs": 1,
@@ -193,7 +202,7 @@
       "home": "市立船橋B",
       "hs": null,
       "as": null,
-      "away": "中央学院",
+      "away": "ジェフU-18B",
       "status": "scheduled"
     },
     {
@@ -212,15 +221,6 @@
       "hs": null,
       "as": null,
       "away": "八千代",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "市立船橋B",
-      "hs": null,
-      "as": null,
-      "away": "ジェフU-18B",
       "status": "scheduled"
     },
     {
@@ -252,12 +252,102 @@
     },
     {
       "md": 0,
+      "date": "2026-04-11",
+      "home": "中央学院",
+      "hs": 1,
+      "as": 2,
+      "away": "市立船橋B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "中央学院",
+      "hs": 2,
+      "as": 0,
+      "away": "流経大柏C",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "中央学院",
+      "hs": 0,
+      "as": 3,
+      "away": "専修大松戸",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "中央学院",
+      "hs": 5,
+      "as": 1,
+      "away": "ジェフU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "中央学院",
+      "hs": null,
+      "as": null,
+      "away": "習志野",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "中央学院",
+      "hs": null,
+      "as": null,
+      "away": "八千代",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-29",
+      "home": "中央学院",
+      "hs": 8,
+      "as": 0,
+      "away": "レイソルU-18B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "中央学院",
+      "hs": null,
+      "as": null,
+      "away": "東京学館浦安",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "中央学院",
+      "hs": 7,
+      "as": 1,
+      "away": "拓大紅陵",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "流経大柏C",
       "hs": null,
       "as": null,
       "away": "市立船橋B",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "流経大柏C",
+      "hs": 4,
+      "as": 3,
+      "away": "中央学院",
+      "status": "played"
     },
     {
       "md": 0,
@@ -270,11 +360,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
+      "date": "2026-04-19",
       "home": "流経大柏C",
-      "hs": 4,
-      "as": 3,
-      "away": "中央学院",
+      "hs": 2,
+      "as": 2,
+      "away": "ジェフU-18B",
       "status": "played"
     },
     {
@@ -293,15 +383,6 @@
       "hs": 2,
       "as": 2,
       "away": "八千代",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "流経大柏C",
-      "hs": 2,
-      "as": 2,
-      "away": "ジェフU-18B",
       "status": "played"
     },
     {
@@ -342,6 +423,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "専修大松戸",
+      "hs": null,
+      "as": null,
+      "away": "中央学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-12",
       "home": "専修大松戸",
       "hs": 1,
@@ -355,7 +445,7 @@
       "home": "専修大松戸",
       "hs": null,
       "as": null,
-      "away": "中央学院",
+      "away": "ジェフU-18B",
       "status": "scheduled"
     },
     {
@@ -375,15 +465,6 @@
       "as": 0,
       "away": "八千代",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "専修大松戸",
-      "hs": null,
-      "as": null,
-      "away": "ジェフU-18B",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -414,17 +495,26 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "中央学院",
-      "hs": 1,
-      "as": 2,
+      "date": "2026-04-29",
+      "home": "ジェフU-18B",
+      "hs": 3,
+      "as": 1,
       "away": "市立船橋B",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "中央学院",
+      "home": "ジェフU-18B",
+      "hs": null,
+      "as": null,
+      "away": "中央学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "ジェフU-18B",
       "hs": null,
       "as": null,
       "away": "流経大柏C",
@@ -432,26 +522,26 @@
     },
     {
       "md": 0,
-      "date": "2026-06-20",
-      "home": "中央学院",
-      "hs": 0,
-      "as": 3,
+      "date": "2026-07-05",
+      "home": "ジェフU-18B",
+      "hs": 2,
+      "as": 1,
       "away": "専修大松戸",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "中央学院",
-      "hs": null,
-      "as": null,
+      "date": "2026-06-21",
+      "home": "ジェフU-18B",
+      "hs": 1,
+      "as": 3,
       "away": "習志野",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "中央学院",
+      "home": "ジェフU-18B",
       "hs": null,
       "as": null,
       "away": "八千代",
@@ -459,36 +549,27 @@
     },
     {
       "md": 0,
-      "date": "2026-06-28",
-      "home": "中央学院",
-      "hs": 5,
-      "as": 1,
-      "away": "ジェフU-18B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-29",
-      "home": "中央学院",
-      "hs": 8,
-      "as": 0,
+      "date": "2026-04-12",
+      "home": "ジェフU-18B",
+      "hs": 0,
+      "as": 3,
       "away": "レイソルU-18B",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "中央学院",
-      "hs": null,
-      "as": null,
+      "date": "2026-09-12",
+      "home": "ジェフU-18B",
+      "hs": 4,
+      "as": 3,
       "away": "東京学館浦安",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "中央学院",
-      "hs": 7,
+      "date": "2026-03-28",
+      "home": "ジェフU-18B",
+      "hs": 6,
       "as": 1,
       "away": "拓大紅陵",
       "status": "played"
@@ -504,6 +585,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-29",
+      "home": "習志野",
+      "hs": 1,
+      "as": 2,
+      "away": "中央学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "習志野",
       "hs": null,
@@ -522,12 +612,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
+      "date": "",
       "home": "習志野",
-      "hs": 1,
-      "as": 2,
-      "away": "中央学院",
-      "status": "played"
+      "hs": null,
+      "as": null,
+      "away": "ジェフU-18B",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -537,15 +627,6 @@
       "as": 2,
       "away": "八千代",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "習志野",
-      "hs": null,
-      "as": null,
-      "away": "ジェフU-18B",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -585,6 +666,15 @@
     },
     {
       "md": 0,
+      "date": "2026-04-18",
+      "home": "八千代",
+      "hs": 0,
+      "as": 2,
+      "away": "中央学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "八千代",
       "hs": null,
@@ -603,11 +693,11 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
+      "date": "2026-04-25",
       "home": "八千代",
-      "hs": 0,
-      "as": 2,
-      "away": "中央学院",
+      "hs": 1,
+      "as": 0,
+      "away": "ジェフU-18B",
       "status": "played"
     },
     {
@@ -618,15 +708,6 @@
       "as": null,
       "away": "習志野",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "八千代",
-      "hs": 1,
-      "as": 0,
-      "away": "ジェフU-18B",
-      "status": "played"
     },
     {
       "md": 0,
@@ -657,93 +738,21 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "ジェフU-18B",
-      "hs": 3,
-      "as": 1,
-      "away": "市立船橋B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "ジェフU-18B",
-      "hs": null,
-      "as": null,
-      "away": "流経大柏C",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-07-05",
-      "home": "ジェフU-18B",
-      "hs": 2,
-      "as": 1,
-      "away": "専修大松戸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "ジェフU-18B",
-      "hs": null,
-      "as": null,
-      "away": "中央学院",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "ジェフU-18B",
-      "hs": 1,
-      "as": 3,
-      "away": "習志野",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "ジェフU-18B",
-      "hs": null,
-      "as": null,
-      "away": "八千代",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "ジェフU-18B",
-      "hs": 0,
-      "as": 3,
-      "away": "レイソルU-18B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "ジェフU-18B",
-      "hs": null,
-      "as": null,
-      "away": "東京学館浦安",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "ジェフU-18B",
-      "hs": 6,
-      "as": 1,
-      "away": "拓大紅陵",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-20",
       "home": "レイソルU-18B",
       "hs": 1,
       "as": 2,
       "away": "市立船橋B",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "レイソルU-18B",
+      "hs": null,
+      "as": null,
+      "away": "中央学院",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -769,7 +778,7 @@
       "home": "レイソルU-18B",
       "hs": null,
       "as": null,
-      "away": "中央学院",
+      "away": "ジェフU-18B",
       "status": "scheduled"
     },
     {
@@ -788,15 +797,6 @@
       "hs": null,
       "as": null,
       "away": "八千代",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "レイソルU-18B",
-      "hs": null,
-      "as": null,
-      "away": "ジェフU-18B",
       "status": "scheduled"
     },
     {
@@ -828,6 +828,15 @@
     },
     {
       "md": 0,
+      "date": "2026-07-04",
+      "home": "東京学館浦安",
+      "hs": 0,
+      "as": 4,
+      "away": "中央学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-04-29",
       "home": "東京学館浦安",
       "hs": 1,
@@ -846,11 +855,11 @@
     },
     {
       "md": 0,
-      "date": "2026-07-04",
+      "date": "2026-04-05",
       "home": "東京学館浦安",
-      "hs": 0,
-      "as": 4,
-      "away": "中央学院",
+      "hs": 1,
+      "as": 0,
+      "away": "ジェフU-18B",
       "status": "played"
     },
     {
@@ -869,15 +878,6 @@
       "hs": 1,
       "as": 2,
       "away": "八千代",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "東京学館浦安",
-      "hs": 1,
-      "as": 0,
-      "away": "ジェフU-18B",
       "status": "played"
     },
     {
@@ -913,6 +913,15 @@
       "home": "拓大紅陵",
       "hs": null,
       "as": null,
+      "away": "中央学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "拓大紅陵",
+      "hs": null,
+      "as": null,
       "away": "流経大柏C",
       "status": "scheduled"
     },
@@ -927,12 +936,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-05",
       "home": "拓大紅陵",
-      "hs": null,
-      "as": null,
-      "away": "中央学院",
-      "status": "scheduled"
+      "hs": 0,
+      "as": 2,
+      "away": "ジェフU-18B",
+      "status": "played"
     },
     {
       "md": 0,
@@ -950,15 +959,6 @@
       "hs": 0,
       "as": 5,
       "away": "八千代",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "拓大紅陵",
-      "hs": 0,
-      "as": 2,
-      "away": "ジェフU-18B",
       "status": "played"
     },
     {
