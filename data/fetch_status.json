@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-12T19:24:25+09:00",
+  "updatedAt": "2026-09-12T19:24:33+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -312,9 +312,9 @@
       "source": "official",
       "sourceName": "福岡県サッカー協会 公式",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-12",
+      "result_streak": 1,
+      "status": "warn"
     },
     "fukushima": {
       "season": "2026",
@@ -368,9 +368,9 @@
       "source": "official",
       "sourceName": "群馬県サッカー協会 公式",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-12",
+      "result_streak": 1,
+      "status": "warn"
     },
     "hiroshima": {
       "result": "ok",
@@ -381,7 +381,7 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 50,
+      "played": 51,
       "total": 90,
       "teams": 10,
       "latest_match": "2026-09-12",
@@ -638,9 +638,9 @@
       "sourceName": "宮崎県サッカー協会 公式（U-18リーグ）",
       "last_change": "2026-08-30",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-12",
+      "result_streak": 1,
+      "status": "warn"
     },
     "nagano": {
       "season": "2026",
@@ -809,9 +809,9 @@
       "source": "official",
       "sourceName": "佐賀県サッカー協会 公式",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-12",
+      "result_streak": 1,
+      "status": "warn"
     },
     "saitama": {
       "season": "2026",
@@ -847,9 +847,9 @@
       "source": "official",
       "sourceName": "滋賀県サッカー協会 公式",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-12",
+      "result_streak": 1,
+      "status": "warn"
     },
     "shimane": {
       "result": "ok",
@@ -860,7 +860,7 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 33,
+      "played": 35,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-09-12",
