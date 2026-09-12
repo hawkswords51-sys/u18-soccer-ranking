@@ -50,14 +50,14 @@
     {
       "rank": 1,
       "team": "横浜F・マリノスユース",
-      "pts": 21,
-      "played": 9,
-      "won": 6,
+      "pts": 24,
+      "played": 10,
+      "won": 7,
       "drawn": 3,
       "lost": 0,
-      "gf": 22,
-      "ga": 4,
-      "gd": 18
+      "gf": 24,
+      "ga": 5,
+      "gd": 19
     },
     {
       "rank": 2,
@@ -109,18 +109,6 @@
     },
     {
       "rank": 6,
-      "team": "日大藤沢",
-      "pts": 11,
-      "played": 8,
-      "won": 3,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 9,
-      "ga": 7,
-      "gd": 2
-    },
-    {
-      "rank": 7,
       "team": "鹿島アントラーズユースB",
       "pts": 11,
       "played": 10,
@@ -132,7 +120,7 @@
       "gd": 1
     },
     {
-      "rank": 8,
+      "rank": 7,
       "team": "矢板中央",
       "pts": 11,
       "played": 8,
@@ -141,6 +129,18 @@
       "lost": 3,
       "gf": 13,
       "ga": 12,
+      "gd": 1
+    },
+    {
+      "rank": 8,
+      "team": "日大藤沢",
+      "pts": 11,
+      "played": 9,
+      "won": 3,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 10,
+      "ga": 9,
       "gd": 1
     },
     {
@@ -733,10 +733,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "横浜F・マリノスユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "日大藤沢",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日産フィールド小机",
       "kickoff": "10:00"
     },

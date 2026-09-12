@@ -24,7 +24,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 40,
+      "matchesPlayed": 43,
       "venueCount": 56,
       "venueCountPrev": 56,
       "consecutiveFallback": 0,
@@ -37,8 +37,8 @@
       "matchesPlayed": 60,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 3,
-      "consecutiveFallbackPrev": 2
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 3
     },
     "prince-kanto-1": {
       "expected": "jfa",
@@ -54,7 +54,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 46,
+      "matchesPlayed": 47,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-12T11:49:31+09:00",
+  "updatedAt": "2026-09-12T12:10:36+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -384,7 +384,7 @@
     },
     "ibaraki": {
       "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -710,8 +710,8 @@
       "status": "ok"
     },
     "okayama": {
-      "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (http://okayama-fa.or.jp/2022/2-2 の取得に失敗 (HTTPConnectionPool(host='okayama-fa.or.jp', port=80): Max retries exceeded with url: /2022/2-2 (Caused by ConnectTimeoutError(<HTTPConnection(host='okayama-fa.or.jp', port=80) at 0x7f82e7ec88d0>, 'Connection to okayama-fa.or.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -771,7 +771,7 @@
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化32試合に更新（検算一致）",
+      "result_note": "消化33試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
