@@ -13,3 +13,15 @@ source: https://koko-soccer.com/score/4454
 scraper/update_tournament_results.py が見出しも対戦カードも自動で追記する。
 ★見出しを先に作り込まないこと（栃木 8/22 の教訓）。
 -->
+
+## 1回戦（9/22）
+
+- 羽水 vs 福井高専
+- 丹生 vs 坂井
+- 啓新 vs 科学技術
+- 敦賀工 vs 藤島
+- 若狭 vs 鯖江
+- 勝山 vs 大野
+- 敦賀気比 vs 高志
+- 福井農林 vs 敦賀
+- 金津 vs 美方

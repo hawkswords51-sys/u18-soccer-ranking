@@ -20,7 +20,7 @@ scraper/update_tournament_results.py が上の source から
 - 勝間田・真庭 vs 倉敷南
 - 備前緑陽 vs 岡山
 - 岡山大安寺 vs 勝山
-- 玉野 vs 総社南
+- 玉野 2-0 総社南
 - 津山商 vs 笠岡商
 - 岡山白陵 vs 玉島
 - 笠工・鷲羽井原・矢掛 vs 林野
@@ -55,3 +55,4 @@ scraper/update_tournament_results.py が上の source から
 
 - 倉敷古城池 vs 岡山芳泉/明誠学院
 - 総社/高梁 vs 玉島商/倉敷青陵
+- 創志学園 vs 玉野/津山東

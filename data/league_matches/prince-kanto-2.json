@@ -85,18 +85,30 @@
     },
     {
       "rank": 4,
-      "team": "西武台",
+      "team": "矢板中央",
       "pts": 14,
-      "played": 10,
+      "played": 9,
       "won": 4,
       "drawn": 2,
-      "lost": 4,
-      "gf": 14,
-      "ga": 15,
-      "gd": -1
+      "lost": 3,
+      "gf": 17,
+      "ga": 14,
+      "gd": 3
     },
     {
       "rank": 5,
+      "team": "西武台",
+      "pts": 14,
+      "played": 11,
+      "won": 4,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 16,
+      "ga": 19,
+      "gd": -3
+    },
+    {
+      "rank": 6,
       "team": "FC町田ゼルビアユース",
       "pts": 12,
       "played": 9,
@@ -108,25 +120,13 @@
       "gd": -6
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "鹿島アントラーズユースB",
       "pts": 11,
       "played": 10,
       "won": 3,
       "drawn": 2,
       "lost": 5,
-      "gf": 13,
-      "ga": 12,
-      "gd": 1
-    },
-    {
-      "rank": 7,
-      "team": "矢板中央",
-      "pts": 11,
-      "played": 8,
-      "won": 3,
-      "drawn": 2,
-      "lost": 3,
       "gf": 13,
       "ga": 12,
       "gd": 1
@@ -744,10 +744,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "矢板中央",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 2,
       "away": "西武台",
-      "status": "scheduled",
+      "status": "played",
       "venue": "矢板中央高校東泉グランド",
       "kickoff": "11:00"
     },

@@ -81,6 +81,18 @@
     },
     {
       "rank": 3,
+      "team": "サガン鳥栖U-18",
+      "pts": 21,
+      "played": 13,
+      "won": 6,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 18,
+      "ga": 13,
+      "gd": 5
+    },
+    {
+      "rank": 4,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 21,
       "played": 12,
@@ -92,7 +104,7 @@
       "gd": 4
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "アビスパ福岡 U-18",
       "pts": 19,
       "played": 12,
@@ -102,18 +114,6 @@
       "gf": 16,
       "ga": 17,
       "gd": -1
-    },
-    {
-      "rank": 5,
-      "team": "サガン鳥栖U-18",
-      "pts": 18,
-      "played": 12,
-      "won": 5,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 17,
-      "ga": 13,
-      "gd": 4
     },
     {
       "rank": 6,
@@ -167,13 +167,13 @@
       "rank": 10,
       "team": "東山",
       "pts": 14,
-      "played": 12,
+      "played": 13,
       "won": 4,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 10,
-      "ga": 16,
-      "gd": -6
+      "ga": 17,
+      "gd": -7
     },
     {
       "rank": 11,
@@ -2258,12 +2258,20 @@
       "md": 13,
       "date": "2026-09-12",
       "home": "サガン鳥栖U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "東山",
-      "status": "scheduled",
+      "status": "played",
       "venue": "佐賀市健康運動センター(天然芝)",
-      "kickoff": "10:00"
+      "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1307.pdf",
+      "homeScorers": [
+        {
+          "minute": "81",
+          "name": "谷 大地"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 13,

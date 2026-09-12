@@ -8,39 +8,59 @@
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "premier-west": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 71,
+      "matchesPlayed": 72,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-hokkaido": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 43,
+      "matchesPlayed": 44,
       "venueCount": 56,
       "venueCountPrev": 56,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['尚志.試合 日程から計算13≠順位表12', '尚志.敗 日程から計算1≠順位表0', '尚志.失点 日程から計算7≠順位表6'] …（据え置き）",
-      "matchesPlayed": 60,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 65,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 4,
-      "consecutiveFallbackPrev": 3
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 4,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-kanto-1": {
+      "expected": "jfa",
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 49,
+      "venueCount": 89,
+      "venueCountPrev": 89,
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
+    },
+    "prince-kanto-2": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
@@ -48,27 +68,21 @@
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
-    },
-    "prince-kanto-2": {
-      "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
-      "matchesPlayed": 47,
-      "venueCount": 89,
-      "venueCountPrev": 89,
-      "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-hokushinetsu-1": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 68,
+      "matchesPlayed": 69,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-hokushinetsu-2": {
       "expected": "jfa",
@@ -78,7 +92,9 @@
       "venueCount": 56,
       "venueCountPrev": 56,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-tokai": {
       "expected": "jfa",
@@ -88,7 +104,9 @@
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-kansai-1": {
       "expected": "jfa",
@@ -98,7 +116,9 @@
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-kansai-2": {
       "expected": "jfa",
@@ -108,37 +128,45 @@
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-chugoku": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 50,
+      "matchesPlayed": 53,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-shikoku": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 50,
+      "matchesPlayed": 52,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-kyushu-1": {
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 50,
+      "matchesPlayed": 53,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     },
     "prince-kyushu-2": {
       "expected": "jfa",
@@ -148,10 +176,12 @@
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallbackPrev": 0,
+      "fallbackSince": "",
+      "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-12T12:10:48+09:00",
+  "updatedAt": "2026-09-12T13:40:34+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -325,7 +355,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化53試合に更新（検算一致）",
+      "result_note": "消化54試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -384,7 +414,7 @@
     },
     "ibaraki": {
       "result": "ok",
-      "result_note": "消化56試合に更新（検算一致）",
+      "result_note": "消化58試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -635,7 +665,7 @@
     },
     "nagasaki": {
       "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -709,8 +739,8 @@
       "status": "ok"
     },
     "okayama": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (http://okayama-fa.or.jp/2022/2-2 の取得に失敗 (HTTPConnectionPool(host='okayama-fa.or.jp', port=80): Max retries exceeded with url: /2022/2-2 (Caused by ConnectTimeoutError(<HTTPConnection(host='okayama-fa.or.jp', port=80) at 0x7f82e7ec88d0>, 'Connection to okayama-fa.or.jp timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -868,7 +898,7 @@
     },
     "tochigi": {
       "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
+      "result_note": "消化51試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,

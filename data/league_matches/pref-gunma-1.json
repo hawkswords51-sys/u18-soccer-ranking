@@ -6,12 +6,12 @@
   "lastUpdated": "2026-09-12",
   "teams": [
     {
-      "name": "健大高崎",
-      "short": "健大高崎"
-    },
-    {
       "name": "前橋育英B",
       "short": "前橋育英B"
+    },
+    {
+      "name": "健大高崎",
+      "short": "健大高崎"
     },
     {
       "name": "常磐",
@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "前橋育英B",
+      "points": 30,
+      "played": 11,
+      "won": 10,
+      "drawn": 0,
+      "lost": 1,
+      "gf": 38,
+      "ga": 8,
+      "gd": 30
+    },
+    {
+      "rank": 2,
       "team": "健大高崎",
       "points": 27,
       "played": 10,
@@ -58,18 +70,6 @@
       "gf": 40,
       "ga": 7,
       "gd": 33
-    },
-    {
-      "rank": 2,
-      "team": "前橋育英B",
-      "points": 27,
-      "played": 10,
-      "won": 9,
-      "drawn": 0,
-      "lost": 1,
-      "gf": 33,
-      "ga": 8,
-      "gd": 25
     },
     {
       "rank": 3,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "伊勢崎工業",
       "points": 11,
-      "played": 10,
+      "played": 11,
       "won": 3,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 6,
-      "ga": 15,
-      "gd": -9
+      "ga": 20,
+      "gd": -14
     },
     {
       "rank": 8,
@@ -169,87 +169,6 @@
     }
   ],
   "matches": [
-    {
-      "md": 0,
-      "date": "",
-      "home": "健大高崎",
-      "hs": null,
-      "as": null,
-      "away": "前橋育英B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "健大高崎",
-      "hs": 3,
-      "as": 1,
-      "away": "常磐",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "健大高崎",
-      "hs": 5,
-      "as": 0,
-      "away": "前橋商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "健大高崎",
-      "hs": 0,
-      "as": 1,
-      "away": "高経大附属",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "健大高崎",
-      "hs": 4,
-      "as": 3,
-      "away": "桐生第一B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-07",
-      "home": "健大高崎",
-      "hs": 2,
-      "as": 0,
-      "away": "伊勢崎工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "健大高崎",
-      "hs": 5,
-      "as": 0,
-      "away": "共愛学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "健大高崎",
-      "hs": 3,
-      "as": 1,
-      "away": "新島学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "健大高崎",
-      "hs": 9,
-      "as": 0,
-      "away": "高崎商業",
-      "status": "played"
-    },
     {
       "md": 0,
       "date": "2026-06-20",
@@ -334,11 +253,83 @@
     {
       "md": 0,
       "date": "",
-      "home": "常磐",
+      "home": "健大高崎",
       "hs": null,
       "as": null,
-      "away": "健大高崎",
+      "away": "前橋育英B",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "健大高崎",
+      "hs": 3,
+      "as": 1,
+      "away": "常磐",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "健大高崎",
+      "hs": 5,
+      "as": 0,
+      "away": "前橋商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-20",
+      "home": "健大高崎",
+      "hs": 0,
+      "as": 1,
+      "away": "高経大附属",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "健大高崎",
+      "hs": 4,
+      "as": 3,
+      "away": "桐生第一B",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-07",
+      "home": "健大高崎",
+      "hs": 2,
+      "as": 0,
+      "away": "伊勢崎工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "健大高崎",
+      "hs": 5,
+      "as": 0,
+      "away": "共愛学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "健大高崎",
+      "hs": 3,
+      "as": 1,
+      "away": "新島学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "健大高崎",
+      "hs": 9,
+      "as": 0,
+      "away": "高崎商業",
+      "status": "played"
     },
     {
       "md": 0,
@@ -347,6 +338,15 @@
       "hs": null,
       "as": null,
       "away": "前橋育英B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "常磐",
+      "hs": null,
+      "as": null,
+      "away": "健大高崎",
       "status": "scheduled"
     },
     {
@@ -418,7 +418,7 @@
       "home": "前橋商業",
       "hs": null,
       "as": null,
-      "away": "健大高崎",
+      "away": "前橋育英B",
       "status": "scheduled"
     },
     {
@@ -427,7 +427,7 @@
       "home": "前橋商業",
       "hs": null,
       "as": null,
-      "away": "前橋育英B",
+      "away": "健大高崎",
       "status": "scheduled"
     },
     {
@@ -499,7 +499,7 @@
       "home": "高経大附属",
       "hs": null,
       "as": null,
-      "away": "健大高崎",
+      "away": "前橋育英B",
       "status": "scheduled"
     },
     {
@@ -508,7 +508,7 @@
       "home": "高経大附属",
       "hs": null,
       "as": null,
-      "away": "前橋育英B",
+      "away": "健大高崎",
       "status": "scheduled"
     },
     {
@@ -580,7 +580,7 @@
       "home": "桐生第一B",
       "hs": null,
       "as": null,
-      "away": "健大高崎",
+      "away": "前橋育英B",
       "status": "scheduled"
     },
     {
@@ -589,7 +589,7 @@
       "home": "桐生第一B",
       "hs": null,
       "as": null,
-      "away": "前橋育英B",
+      "away": "健大高崎",
       "status": "scheduled"
     },
     {
@@ -657,8 +657,8 @@
     },
     {
       "md": 0,
-      "date": "2026-09-05",
-      "home": "健大高崎",
+      "date": "2026-09-12",
+      "home": "前橋育英B",
       "hs": 5,
       "as": 0,
       "away": "伊勢崎工業",
@@ -666,12 +666,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "伊勢崎工業",
-      "hs": null,
-      "as": null,
-      "away": "前橋育英B",
-      "status": "scheduled"
+      "date": "2026-09-05",
+      "home": "健大高崎",
+      "hs": 5,
+      "as": 0,
+      "away": "伊勢崎工業",
+      "status": "played"
     },
     {
       "md": 0,
@@ -742,7 +742,7 @@
       "home": "共愛学園",
       "hs": null,
       "as": null,
-      "away": "健大高崎",
+      "away": "前橋育英B",
       "status": "scheduled"
     },
     {
@@ -751,7 +751,7 @@
       "home": "共愛学園",
       "hs": null,
       "as": null,
-      "away": "前橋育英B",
+      "away": "健大高崎",
       "status": "scheduled"
     },
     {
@@ -819,21 +819,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "新島学園",
-      "hs": null,
-      "as": null,
-      "away": "健大高崎",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-09-05",
       "home": "前橋育英B",
       "hs": 5,
       "as": 1,
       "away": "新島学園",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "新島学園",
+      "hs": null,
+      "as": null,
+      "away": "健大高崎",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -904,7 +904,7 @@
       "home": "高崎商業",
       "hs": null,
       "as": null,
-      "away": "健大高崎",
+      "away": "前橋育英B",
       "status": "scheduled"
     },
     {
@@ -913,7 +913,7 @@
       "home": "高崎商業",
       "hs": null,
       "as": null,
-      "away": "前橋育英B",
+      "away": "健大高崎",
       "status": "scheduled"
     },
     {

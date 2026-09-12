@@ -123,16 +123,28 @@
       "rank": 7,
       "team": "桐蔭学園",
       "pts": 11,
-      "played": 10,
+      "played": 11,
       "won": 3,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 12,
-      "ga": 13,
-      "gd": -1
+      "ga": 15,
+      "gd": -3
     },
     {
       "rank": 8,
+      "team": "帝京",
+      "pts": 9,
+      "played": 11,
+      "won": 3,
+      "drawn": 0,
+      "lost": 8,
+      "gf": 16,
+      "ga": 19,
+      "gd": -3
+    },
+    {
+      "rank": 9,
       "team": "ヴァンフォーレ甲府U-18",
       "pts": 8,
       "played": 10,
@@ -142,18 +154,6 @@
       "gf": 7,
       "ga": 20,
       "gd": -13
-    },
-    {
-      "rank": 9,
-      "team": "帝京",
-      "pts": 6,
-      "played": 10,
-      "won": 2,
-      "drawn": 0,
-      "lost": 8,
-      "gf": 14,
-      "ga": 19,
-      "gd": -5
     },
     {
       "rank": 10,
@@ -734,10 +734,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "帝京",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "桐蔭学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "帝京科学大学千住総合グラウンド",
       "kickoff": "11:00"
     },
