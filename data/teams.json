@@ -1128,25 +1128,10 @@
         "leagueRank": 2
       },
       {
-        "id": "y006",
-        "name": "日大山形高校",
-        "league": "山形U-18Yリーグ",
-        "rank": 4,
-        "points": 28,
-        "played": 14,
-        "won": 9,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 30,
-        "goalsAgainst": 18,
-        "prefectureRank": 4,
-        "leagueRank": 4
-      },
-      {
         "id": "y007",
         "name": "鶴岡東高校",
         "league": "山形U-18Yリーグ",
-        "rank": 5,
+        "rank": 4,
         "points": 30,
         "played": 14,
         "won": 10,
@@ -1154,8 +1139,23 @@
         "lost": 4,
         "goalsFor": 40,
         "goalsAgainst": 12,
-        "prefectureRank": 5,
+        "prefectureRank": 4,
         "leagueRank": 3
+      },
+      {
+        "id": "y006",
+        "name": "日大山形高校",
+        "league": "山形U-18Yリーグ",
+        "rank": 5,
+        "points": 28,
+        "played": 14,
+        "won": 9,
+        "drawn": 1,
+        "lost": 4,
+        "goalsFor": 30,
+        "goalsAgainst": 18,
+        "prefectureRank": 5,
+        "leagueRank": 4
       },
       {
         "id": "y005",
@@ -1427,19 +1427,18 @@
         ]
       },
       {
-        "id": "f007",
-        "name": "郡山商業高校",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "points": 3,
-        "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
         "prefectureRank": 11,
-        "leagueRank": 10,
+        "points": 14,
+        "played": 14,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1464,18 +1463,19 @@
         "leagueRank": 9
       },
       {
-        "name": "郡山高校",
+        "id": "f007",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "prefectureRank": 13,
-        "points": 14,
+        "points": 3,
         "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
-        "leagueRank": 8,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "prefectureRank": 13,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -3920,23 +3920,20 @@
     "region": "北信越",
     "teams": [
       {
-        "id": "ty003",
-        "name": "富山第一高校2nd",
+        "id": "ty004",
+        "name": "高岡第一高校",
         "league": "富山県T1",
         "rank": 1,
         "points": 28,
-        "played": 11,
+        "played": 12,
         "won": 9,
         "drawn": 1,
-        "lost": 1,
-        "goalsFor": 43,
-        "goalsAgainst": 10,
+        "lost": 2,
+        "goalsFor": 48,
+        "goalsAgainst": 8,
         "prefectureRank": 1,
-        "goalDiff": 33,
-        "leagueRank": 2,
-        "aliases": [
-          "富山第一2nd"
-        ]
+        "goalDiff": 40,
+        "leagueRank": 1
       },
       {
         "id": "ty002",
@@ -3955,20 +3952,23 @@
         "leagueRank": 3
       },
       {
-        "id": "ty004",
-        "name": "高岡第一高校",
+        "id": "ty003",
+        "name": "富山第一高校2nd",
         "league": "富山県T1",
         "rank": 3,
         "points": 28,
-        "played": 12,
+        "played": 11,
         "won": 9,
         "drawn": 1,
-        "lost": 2,
-        "goalsFor": 48,
-        "goalsAgainst": 8,
+        "lost": 1,
+        "goalsFor": 43,
+        "goalsAgainst": 10,
         "prefectureRank": 3,
-        "goalDiff": 40,
-        "leagueRank": 1
+        "goalDiff": 33,
+        "leagueRank": 2,
+        "aliases": [
+          "富山第一2nd"
+        ]
       },
       {
         "id": "ty001",
@@ -7423,21 +7423,20 @@
     "region": "中国",
     "teams": [
       {
-        "name": "米子北高校2nd",
+        "id": "tt003",
+        "name": "ガイナーレ鳥取U-18",
         "league": "鳥取県1部",
-        "points": 24,
-        "played": 9,
-        "won": 8,
-        "drawn": 0,
-        "lost": 1,
-        "goalsFor": 56,
-        "goalsAgainst": 12,
-        "leagueRank": 2,
         "rank": 1,
+        "points": 27,
+        "played": 9,
+        "won": 9,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 51,
+        "goalsAgainst": 6,
         "prefectureRank": 1,
-        "aliases": [
-          "米子北B"
-        ]
+        "goalDiff": 45,
+        "leagueRank": 1
       },
       {
         "id": "tt001",
@@ -7456,20 +7455,21 @@
         "leagueRank": 9
       },
       {
-        "id": "tt003",
-        "name": "ガイナーレ鳥取U-18",
+        "name": "米子北高校2nd",
         "league": "鳥取県1部",
-        "rank": 3,
-        "points": 27,
+        "points": 24,
         "played": 9,
-        "won": 9,
+        "won": 8,
         "drawn": 0,
-        "lost": 0,
-        "goalsFor": 51,
-        "goalsAgainst": 6,
+        "lost": 1,
+        "goalsFor": 56,
+        "goalsAgainst": 12,
+        "leagueRank": 2,
+        "rank": 3,
         "prefectureRank": 3,
-        "goalDiff": 45,
-        "leagueRank": 1
+        "aliases": [
+          "米子北B"
+        ]
       },
       {
         "id": "tt004",
@@ -7665,26 +7665,10 @@
         "leagueRank": 9
       },
       {
-        "id": "sm005",
-        "name": "明誠高校",
-        "league": "島根県1部",
-        "rank": 5,
-        "points": 16,
-        "played": 8,
-        "won": 5,
-        "drawn": 1,
-        "lost": 2,
-        "goalsFor": 27,
-        "goalsAgainst": 18,
-        "prefectureRank": 5,
-        "goalDiff": 9,
-        "leagueRank": 4
-      },
-      {
         "id": "sm006",
         "name": "開星高校",
         "league": "島根県1部",
-        "rank": 6,
+        "rank": 5,
         "points": 17,
         "played": 8,
         "won": 5,
@@ -7692,9 +7676,25 @@
         "lost": 1,
         "goalsFor": 20,
         "goalsAgainst": 9,
-        "prefectureRank": 6,
+        "prefectureRank": 5,
         "goalDiff": 11,
         "leagueRank": 3
+      },
+      {
+        "id": "sm005",
+        "name": "明誠高校",
+        "league": "島根県1部",
+        "rank": 6,
+        "points": 16,
+        "played": 8,
+        "won": 5,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 27,
+        "goalsAgainst": 18,
+        "prefectureRank": 6,
+        "goalDiff": 9,
+        "leagueRank": 4
       },
       {
         "id": "sm008",
@@ -8823,42 +8823,10 @@
         "leagueRank": 10
       },
       {
-        "id": "kg006",
-        "name": "尽誠学園高校",
-        "league": "香川県1部",
-        "rank": 5,
-        "points": 24,
-        "played": 11,
-        "won": 8,
-        "drawn": 0,
-        "lost": 3,
-        "goalsFor": 24,
-        "goalsAgainst": 6,
-        "prefectureRank": 5,
-        "goalDiff": 18,
-        "leagueRank": 4
-      },
-      {
-        "id": "kg010",
-        "name": "高松東高校",
-        "league": "香川県1部",
-        "rank": 6,
-        "points": 23,
-        "played": 11,
-        "won": 7,
-        "drawn": 2,
-        "lost": 2,
-        "goalsFor": 28,
-        "goalsAgainst": 9,
-        "prefectureRank": 6,
-        "goalDiff": 19,
-        "leagueRank": 5
-      },
-      {
         "id": "kg003",
         "name": "藤井学園寒川高校",
         "league": "香川県1部",
-        "rank": 7,
+        "rank": 5,
         "points": 24,
         "played": 11,
         "won": 7,
@@ -8866,12 +8834,44 @@
         "lost": 1,
         "goalsFor": 29,
         "goalsAgainst": 6,
-        "prefectureRank": 7,
+        "prefectureRank": 5,
         "goalDiff": 23,
         "leagueRank": 3,
         "aliases": [
           "寒川"
         ]
+      },
+      {
+        "id": "kg006",
+        "name": "尽誠学園高校",
+        "league": "香川県1部",
+        "rank": 6,
+        "points": 24,
+        "played": 11,
+        "won": 8,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 24,
+        "goalsAgainst": 6,
+        "prefectureRank": 6,
+        "goalDiff": 18,
+        "leagueRank": 4
+      },
+      {
+        "id": "kg010",
+        "name": "高松東高校",
+        "league": "香川県1部",
+        "rank": 7,
+        "points": 23,
+        "played": 11,
+        "won": 7,
+        "drawn": 2,
+        "lost": 2,
+        "goalsFor": 28,
+        "goalsAgainst": 9,
+        "prefectureRank": 7,
+        "goalDiff": 19,
+        "leagueRank": 5
       },
       {
         "id": "kg008",
@@ -9530,6 +9530,22 @@
         ]
       },
       {
+        "id": "fk008",
+        "name": "筑陽学園高校",
+        "league": "福岡県1部",
+        "rank": 8,
+        "points": 20,
+        "played": 12,
+        "won": 6,
+        "drawn": 2,
+        "lost": 4,
+        "goalsFor": 17,
+        "goalsAgainst": 16,
+        "prefectureRank": 8,
+        "goalDiff": 1,
+        "leagueRank": 3
+      },
+      {
         "name": "アビスパ福岡U-18 2nd",
         "league": "福岡県1部",
         "points": 19,
@@ -9540,8 +9556,8 @@
         "goalsFor": 27,
         "goalsAgainst": 12,
         "leagueRank": 4,
-        "rank": 8,
-        "prefectureRank": 8,
+        "rank": 9,
+        "prefectureRank": 9,
         "aliases": [
           "アビスパ福岡B"
         ]
@@ -9557,8 +9573,8 @@
         "goalsFor": 30,
         "goalsAgainst": 24,
         "leagueRank": 5,
-        "rank": 9,
-        "prefectureRank": 9
+        "rank": 10,
+        "prefectureRank": 10
       },
       {
         "name": "東福岡高校2nd",
@@ -9571,27 +9587,11 @@
         "goalsFor": 21,
         "goalsAgainst": 15,
         "leagueRank": 6,
-        "rank": 10,
-        "prefectureRank": 10,
+        "rank": 11,
+        "prefectureRank": 11,
         "aliases": [
           "東福岡B"
         ]
-      },
-      {
-        "id": "fk008",
-        "name": "筑陽学園高校",
-        "league": "福岡県1部",
-        "rank": 11,
-        "points": 20,
-        "played": 12,
-        "won": 6,
-        "drawn": 2,
-        "lost": 4,
-        "goalsFor": 17,
-        "goalsAgainst": 16,
-        "prefectureRank": 11,
-        "goalDiff": 1,
-        "leagueRank": 3
       },
       {
         "name": "東海大学付属福岡高校2nd",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-12 18:30",
+    "lastUpdated": "2026-09-12 18:40",
     "year": 2026,
     "updatedCount": 393
   }
