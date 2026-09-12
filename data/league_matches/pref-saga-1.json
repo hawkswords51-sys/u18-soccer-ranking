@@ -10,12 +10,12 @@
       "short": "佐賀東2nd"
     },
     {
-      "name": "佐賀清和",
-      "short": "佐賀清和"
-    },
-    {
       "name": "佐賀商業",
       "short": "佐賀商業"
+    },
+    {
+      "name": "佐賀清和",
+      "short": "佐賀清和"
     },
     {
       "name": "佐賀北",
@@ -53,6 +53,18 @@
     },
     {
       "rank": 2,
+      "team": "佐賀商業",
+      "points": 21,
+      "played": 9,
+      "won": 7,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 32,
+      "ga": 14,
+      "gd": 18
+    },
+    {
+      "rank": 3,
       "team": "佐賀清和",
       "points": 21,
       "played": 9,
@@ -62,18 +74,6 @@
       "gf": 20,
       "ga": 12,
       "gd": 8
-    },
-    {
-      "rank": 3,
-      "team": "佐賀商業",
-      "points": 18,
-      "played": 8,
-      "won": 6,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 26,
-      "ga": 14,
-      "gd": 12
     },
     {
       "rank": 4,
@@ -103,13 +103,13 @@
       "rank": 6,
       "team": "佐賀農業",
       "points": 6,
-      "played": 8,
+      "played": 9,
       "won": 2,
       "drawn": 0,
-      "lost": 6,
+      "lost": 7,
       "gf": 10,
-      "ga": 32,
-      "gd": -22
+      "ga": 38,
+      "gd": -28
     },
     {
       "rank": 7,
@@ -139,20 +139,20 @@
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "佐賀東2nd",
-      "hs": 5,
-      "as": 0,
-      "away": "佐賀清和",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-16",
       "home": "佐賀東2nd",
       "hs": 8,
       "as": 2,
       "away": "佐賀商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "佐賀東2nd",
+      "hs": 5,
+      "as": 0,
+      "away": "佐賀清和",
       "status": "played"
     },
     {
@@ -196,6 +196,69 @@
       "date": "2026-04-11",
       "home": "佐賀東2nd",
       "hs": 9,
+      "as": 0,
+      "away": "佐賀西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐賀商業",
+      "hs": null,
+      "as": null,
+      "away": "佐賀東2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐賀商業",
+      "hs": null,
+      "as": null,
+      "away": "佐賀清和",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "佐賀商業",
+      "hs": 3,
+      "as": 1,
+      "away": "佐賀北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐賀商業",
+      "hs": null,
+      "as": null,
+      "away": "龍谷",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "佐賀農業",
+      "hs": 0,
+      "as": 6,
+      "away": "佐賀商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "佐賀商業",
+      "hs": 2,
+      "as": 0,
+      "away": "佐賀学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "佐賀商業",
+      "hs": 4,
       "as": 0,
       "away": "佐賀西",
       "status": "played"
@@ -266,65 +329,11 @@
     {
       "md": 0,
       "date": "",
-      "home": "佐賀商業",
+      "home": "佐賀北",
       "hs": null,
       "as": null,
       "away": "佐賀東2nd",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐賀商業",
-      "hs": null,
-      "as": null,
-      "away": "佐賀清和",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "佐賀商業",
-      "hs": 3,
-      "as": 1,
-      "away": "佐賀北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐賀商業",
-      "hs": null,
-      "as": null,
-      "away": "龍谷",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐賀商業",
-      "hs": null,
-      "as": null,
-      "away": "佐賀農業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "佐賀商業",
-      "hs": 2,
-      "as": 0,
-      "away": "佐賀学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "佐賀商業",
-      "hs": 4,
-      "as": 0,
-      "away": "佐賀西",
-      "status": "played"
     },
     {
       "md": 0,
@@ -332,7 +341,7 @@
       "home": "佐賀北",
       "hs": null,
       "as": null,
-      "away": "佐賀東2nd",
+      "away": "佐賀商業",
       "status": "scheduled"
     },
     {
@@ -343,15 +352,6 @@
       "as": 1,
       "away": "佐賀清和",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐賀北",
-      "hs": null,
-      "as": null,
-      "away": "佐賀商業",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -400,20 +400,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "龍谷",
-      "hs": 0,
-      "as": 2,
-      "away": "佐賀清和",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-10",
       "home": "龍谷",
       "hs": 0,
       "as": 2,
       "away": "佐賀商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "龍谷",
+      "hs": 0,
+      "as": 2,
+      "away": "佐賀清和",
       "status": "played"
     },
     {
@@ -463,21 +463,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "佐賀農業",
-      "hs": null,
-      "as": null,
-      "away": "佐賀清和",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "佐賀農業",
       "hs": 1,
       "as": 3,
       "away": "佐賀商業",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "佐賀農業",
+      "hs": null,
+      "as": null,
+      "away": "佐賀清和",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -526,20 +526,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "佐賀学園",
-      "hs": 1,
-      "as": 5,
-      "away": "佐賀清和",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-27",
       "home": "佐賀商業",
       "hs": 9,
       "as": 2,
       "away": "佐賀学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "佐賀学園",
+      "hs": 1,
+      "as": 5,
+      "away": "佐賀清和",
       "status": "played"
     },
     {
@@ -593,7 +593,7 @@
       "home": "佐賀西",
       "hs": null,
       "as": null,
-      "away": "佐賀清和",
+      "away": "佐賀商業",
       "status": "scheduled"
     },
     {
@@ -602,7 +602,7 @@
       "home": "佐賀西",
       "hs": null,
       "as": null,
-      "away": "佐賀商業",
+      "away": "佐賀清和",
       "status": "scheduled"
     },
     {

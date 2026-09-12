@@ -10,28 +10,28 @@
       "short": "高松商業"
     },
     {
-      "name": "高松東",
-      "short": "高松東"
-    },
-    {
       "name": "香川西",
       "short": "香川西"
-    },
-    {
-      "name": "寒川",
-      "short": "寒川"
     },
     {
       "name": "尽誠学園",
       "short": "尽誠学園"
     },
     {
-      "name": "高松工芸",
-      "short": "高松工芸"
+      "name": "高松東",
+      "short": "高松東"
+    },
+    {
+      "name": "寒川",
+      "short": "寒川"
     },
     {
       "name": "高松北",
       "short": "高松北"
+    },
+    {
+      "name": "高松工芸",
+      "short": "高松工芸"
     },
     {
       "name": "大手前高松S",
@@ -61,30 +61,42 @@
     },
     {
       "rank": 2,
-      "team": "高松東",
-      "points": 23,
-      "played": 10,
-      "won": 7,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 28,
-      "ga": 7,
-      "gd": 21
+      "team": "香川西",
+      "points": 25,
+      "played": 11,
+      "won": 8,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 47,
+      "ga": 8,
+      "gd": 39
     },
     {
       "rank": 3,
-      "team": "香川西",
-      "points": 22,
-      "played": 10,
-      "won": 7,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 41,
-      "ga": 8,
-      "gd": 33
+      "team": "尽誠学園",
+      "points": 24,
+      "played": 11,
+      "won": 8,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 24,
+      "ga": 6,
+      "gd": 18
     },
     {
       "rank": 4,
+      "team": "高松東",
+      "points": 23,
+      "played": 11,
+      "won": 7,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 28,
+      "ga": 9,
+      "gd": 19
+    },
+    {
+      "rank": 5,
       "team": "寒川",
       "points": 21,
       "played": 10,
@@ -96,19 +108,19 @@
       "gd": 17
     },
     {
-      "rank": 5,
-      "team": "尽誠学園",
-      "points": 21,
-      "played": 10,
-      "won": 7,
+      "rank": 6,
+      "team": "高松北",
+      "points": 12,
+      "played": 11,
+      "won": 4,
       "drawn": 0,
-      "lost": 3,
-      "gf": 22,
-      "ga": 6,
-      "gd": 16
+      "lost": 7,
+      "gf": 13,
+      "ga": 25,
+      "gd": -12
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "高松工芸",
       "points": 12,
       "played": 10,
@@ -120,28 +132,16 @@
       "gd": -14
     },
     {
-      "rank": 7,
-      "team": "高松北",
-      "points": 9,
-      "played": 10,
-      "won": 3,
-      "drawn": 0,
-      "lost": 7,
-      "gf": 10,
-      "ga": 24,
-      "gd": -14
-    },
-    {
       "rank": 8,
       "team": "大手前高松S",
       "points": 6,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 0,
-      "lost": 8,
-      "gf": 11,
-      "ga": 31,
-      "gd": -20
+      "lost": 9,
+      "gf": 12,
+      "ga": 34,
+      "gd": -22
     },
     {
       "rank": 9,
@@ -159,16 +159,34 @@
       "rank": 10,
       "team": "蓬莱",
       "points": 1,
-      "played": 10,
+      "played": 11,
       "won": 0,
       "drawn": 1,
-      "lost": 9,
+      "lost": 10,
       "gf": 2,
-      "ga": 29,
-      "gd": -27
+      "ga": 35,
+      "gd": -33
     }
   ],
   "matches": [
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松商業",
+      "hs": null,
+      "as": null,
+      "away": "香川西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "高松商業",
+      "hs": 2,
+      "as": 1,
+      "away": "尽誠学園",
+      "status": "played"
+    },
     {
       "md": 0,
       "date": "2026-04-04",
@@ -184,25 +202,16 @@
       "home": "高松商業",
       "hs": null,
       "as": null,
-      "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松商業",
-      "hs": null,
-      "as": null,
       "away": "寒川",
       "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-06-27",
+      "date": "2026-04-25",
       "home": "高松商業",
-      "hs": 2,
-      "as": 1,
-      "away": "尽誠学園",
+      "hs": 3,
+      "as": 2,
+      "away": "高松北",
       "status": "played"
     },
     {
@@ -212,15 +221,6 @@
       "hs": 3,
       "as": 0,
       "away": "高松工芸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "高松商業",
-      "hs": 3,
-      "as": 2,
-      "away": "高松北",
       "status": "played"
     },
     {
@@ -246,87 +246,6 @@
       "date": "2026-04-18",
       "home": "高松商業",
       "hs": 3,
-      "as": 0,
-      "away": "蓬莱",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "高松商業",
-      "hs": 1,
-      "as": 0,
-      "away": "高松東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松東",
-      "hs": null,
-      "as": null,
-      "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松東",
-      "hs": null,
-      "as": null,
-      "away": "寒川",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松東",
-      "hs": null,
-      "as": null,
-      "away": "尽誠学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "高松東",
-      "hs": 5,
-      "as": 0,
-      "away": "高松工芸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松東",
-      "hs": null,
-      "as": null,
-      "away": "高松北",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "高松東",
-      "hs": 5,
-      "as": 1,
-      "away": "大手前高松S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "高松東",
-      "hs": 5,
-      "as": 1,
-      "away": "カマタマーレ讃岐S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "高松東",
-      "hs": 5,
       "as": 0,
       "away": "蓬莱",
       "status": "played"
@@ -342,6 +261,15 @@
     },
     {
       "md": 0,
+      "date": "2026-05-23",
+      "home": "香川西",
+      "hs": 2,
+      "as": 1,
+      "away": "尽誠学園",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "2026-05-09",
       "home": "香川西",
       "hs": 1,
@@ -360,11 +288,11 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
+      "date": "2026-04-29",
       "home": "香川西",
-      "hs": 2,
-      "as": 1,
-      "away": "尽誠学園",
+      "hs": 6,
+      "as": 0,
+      "away": "高松北",
       "status": "played"
     },
     {
@@ -374,15 +302,6 @@
       "hs": 4,
       "as": 1,
       "away": "高松工芸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "香川西",
-      "hs": 6,
-      "as": 0,
-      "away": "高松北",
       "status": "played"
     },
     {
@@ -414,20 +333,173 @@
     },
     {
       "md": 0,
-      "date": "2026-05-23",
-      "home": "寒川",
-      "hs": 2,
-      "as": 2,
+      "date": "",
+      "home": "尽誠学園",
+      "hs": null,
+      "as": null,
       "away": "高松商業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "尽誠学園",
+      "hs": null,
+      "as": null,
+      "away": "香川西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "尽誠学園",
+      "hs": 0,
+      "as": 2,
+      "away": "高松東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "尽誠学園",
+      "hs": null,
+      "as": null,
+      "away": "寒川",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "尽誠学園",
+      "hs": 5,
+      "as": 0,
+      "away": "高松北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "尽誠学園",
+      "hs": 3,
+      "as": 0,
+      "away": "高松工芸",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "尽誠学園",
+      "hs": 2,
+      "as": 0,
+      "away": "大手前高松S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "尽誠学園",
+      "hs": 3,
+      "as": 0,
+      "away": "カマタマーレ讃岐S",
       "status": "played"
     },
     {
       "md": 0,
       "date": "2026-04-29",
-      "home": "寒川",
+      "home": "尽誠学園",
+      "hs": 2,
+      "as": 0,
+      "away": "蓬莱",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "高松商業",
       "hs": 1,
-      "as": 1,
+      "as": 0,
       "away": "高松東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松東",
+      "hs": null,
+      "as": null,
+      "away": "香川西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "尽誠学園",
+      "hs": 2,
+      "as": 0,
+      "away": "高松東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松東",
+      "hs": null,
+      "as": null,
+      "away": "寒川",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松東",
+      "hs": null,
+      "as": null,
+      "away": "高松北",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "高松東",
+      "hs": 5,
+      "as": 0,
+      "away": "高松工芸",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "高松東",
+      "hs": 5,
+      "as": 1,
+      "away": "大手前高松S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "高松東",
+      "hs": 5,
+      "as": 1,
+      "away": "カマタマーレ讃岐S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "高松東",
+      "hs": 5,
+      "as": 0,
+      "away": "蓬莱",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "寒川",
+      "hs": 2,
+      "as": 2,
+      "away": "高松商業",
       "status": "played"
     },
     {
@@ -450,125 +522,134 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "寒川",
-      "hs": 5,
-      "as": 0,
-      "away": "高松工芸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "寒川",
-      "hs": 3,
-      "as": 0,
-      "away": "高松北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "寒川",
-      "hs": 4,
-      "as": 0,
-      "away": "大手前高松S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "寒川",
-      "hs": 2,
-      "as": 0,
-      "away": "カマタマーレ讃岐S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "寒川",
-      "hs": 4,
-      "as": 0,
-      "away": "蓬莱",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "尽誠学園",
-      "hs": null,
-      "as": null,
-      "away": "高松商業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "尽誠学園",
-      "hs": 0,
-      "as": 2,
-      "away": "高松東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "尽誠学園",
-      "hs": null,
-      "as": null,
-      "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "尽誠学園",
-      "hs": null,
-      "as": null,
-      "away": "寒川",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "尽誠学園",
-      "hs": 3,
-      "as": 0,
-      "away": "高松工芸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "尽誠学園",
-      "hs": 5,
-      "as": 0,
-      "away": "高松北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "尽誠学園",
-      "hs": 2,
-      "as": 0,
-      "away": "大手前高松S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "尽誠学園",
-      "hs": 3,
-      "as": 0,
-      "away": "カマタマーレ讃岐S",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
-      "home": "尽誠学園",
+      "home": "寒川",
+      "hs": 1,
+      "as": 1,
+      "away": "高松東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "寒川",
+      "hs": 3,
+      "as": 0,
+      "away": "高松北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "寒川",
+      "hs": 5,
+      "as": 0,
+      "away": "高松工芸",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "寒川",
+      "hs": 4,
+      "as": 0,
+      "away": "大手前高松S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "寒川",
+      "hs": 2,
+      "as": 0,
+      "away": "カマタマーレ讃岐S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "寒川",
+      "hs": 4,
+      "as": 0,
+      "away": "蓬莱",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松北",
+      "hs": null,
+      "as": null,
+      "away": "高松商業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松北",
+      "hs": null,
+      "as": null,
+      "away": "香川西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松北",
+      "hs": null,
+      "as": null,
+      "away": "尽誠学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "高松北",
+      "hs": 0,
+      "as": 1,
+      "away": "高松東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松北",
+      "hs": null,
+      "as": null,
+      "away": "寒川",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "高松北",
+      "hs": 2,
+      "as": 1,
+      "away": "高松工芸",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "高松北",
+      "hs": 3,
+      "as": 0,
+      "away": "大手前高松S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "高松北",
+      "hs": 1,
+      "as": 2,
+      "away": "カマタマーレ讃岐S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "高松北",
       "hs": 2,
       "as": 0,
       "away": "蓬莱",
@@ -589,25 +670,7 @@
       "home": "高松工芸",
       "hs": null,
       "as": null,
-      "away": "高松東",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松工芸",
-      "hs": null,
-      "as": null,
       "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松工芸",
-      "hs": null,
-      "as": null,
-      "away": "寒川",
       "status": "scheduled"
     },
     {
@@ -617,6 +680,24 @@
       "hs": null,
       "as": null,
       "away": "尽誠学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松工芸",
+      "hs": null,
+      "as": null,
+      "away": "高松東",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高松工芸",
+      "hs": null,
+      "as": null,
+      "away": "寒川",
       "status": "scheduled"
     },
     {
@@ -658,87 +739,6 @@
     {
       "md": 0,
       "date": "",
-      "home": "高松北",
-      "hs": null,
-      "as": null,
-      "away": "高松商業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "高松北",
-      "hs": 0,
-      "as": 1,
-      "away": "高松東",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松北",
-      "hs": null,
-      "as": null,
-      "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松北",
-      "hs": null,
-      "as": null,
-      "away": "寒川",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "高松北",
-      "hs": null,
-      "as": null,
-      "away": "尽誠学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "高松北",
-      "hs": 2,
-      "as": 1,
-      "away": "高松工芸",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "高松北",
-      "hs": 3,
-      "as": 0,
-      "away": "大手前高松S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "高松北",
-      "hs": 1,
-      "as": 2,
-      "away": "カマタマーレ讃岐S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-16",
-      "home": "高松北",
-      "hs": 2,
-      "as": 0,
-      "away": "蓬莱",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
       "home": "大手前高松S",
       "hs": null,
       "as": null,
@@ -751,25 +751,7 @@
       "home": "大手前高松S",
       "hs": null,
       "as": null,
-      "away": "高松東",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "大手前高松S",
-      "hs": null,
-      "as": null,
       "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "大手前高松S",
-      "hs": null,
-      "as": null,
-      "away": "寒川",
       "status": "scheduled"
     },
     {
@@ -787,7 +769,7 @@
       "home": "大手前高松S",
       "hs": null,
       "as": null,
-      "away": "高松工芸",
+      "away": "高松東",
       "status": "scheduled"
     },
     {
@@ -796,7 +778,25 @@
       "home": "大手前高松S",
       "hs": null,
       "as": null,
-      "away": "高松北",
+      "away": "寒川",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "高松北",
+      "hs": 3,
+      "as": 1,
+      "away": "大手前高松S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "大手前高松S",
+      "hs": null,
+      "as": null,
+      "away": "高松工芸",
       "status": "scheduled"
     },
     {
@@ -824,15 +824,6 @@
       "hs": null,
       "as": null,
       "away": "高松商業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "カマタマーレ讃岐S",
-      "hs": null,
-      "as": null,
-      "away": "高松東",
       "status": "scheduled"
     },
     {
@@ -850,15 +841,6 @@
       "home": "カマタマーレ讃岐S",
       "hs": null,
       "as": null,
-      "away": "寒川",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "カマタマーレ讃岐S",
-      "hs": null,
-      "as": null,
       "away": "尽誠学園",
       "status": "scheduled"
     },
@@ -868,7 +850,16 @@
       "home": "カマタマーレ讃岐S",
       "hs": null,
       "as": null,
-      "away": "高松工芸",
+      "away": "高松東",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "カマタマーレ讃岐S",
+      "hs": null,
+      "as": null,
+      "away": "寒川",
       "status": "scheduled"
     },
     {
@@ -878,6 +869,15 @@
       "hs": null,
       "as": null,
       "away": "高松北",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "カマタマーレ讃岐S",
+      "hs": null,
+      "as": null,
+      "away": "高松工芸",
       "status": "scheduled"
     },
     {
@@ -909,27 +909,9 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "蓬莱",
-      "hs": null,
-      "as": null,
-      "away": "高松東",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "蓬莱",
-      "hs": null,
-      "as": null,
-      "away": "香川西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "寒川",
-      "hs": 1,
+      "date": "2026-09-12",
+      "home": "香川西",
+      "hs": 6,
       "as": 0,
       "away": "蓬莱",
       "status": "played"
@@ -949,8 +931,17 @@
       "home": "蓬莱",
       "hs": null,
       "as": null,
-      "away": "高松工芸",
+      "away": "高松東",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "寒川",
+      "hs": 1,
+      "as": 0,
+      "away": "蓬莱",
+      "status": "played"
     },
     {
       "md": 0,
@@ -959,6 +950,15 @@
       "hs": null,
       "as": null,
       "away": "高松北",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "蓬莱",
+      "hs": null,
+      "as": null,
+      "away": "高松工芸",
       "status": "scheduled"
     },
     {

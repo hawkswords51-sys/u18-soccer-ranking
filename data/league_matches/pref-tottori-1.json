@@ -6,12 +6,12 @@
   "lastUpdated": "2026-09-12",
   "teams": [
     {
-      "name": "ガイナーレ鳥取",
-      "short": "ガイナーレ鳥取"
-    },
-    {
       "name": "米子北B",
       "short": "米子北B"
+    },
+    {
+      "name": "ガイナーレ鳥取",
+      "short": "ガイナーレ鳥取"
     },
     {
       "name": "鳥取城北",
@@ -41,6 +41,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "米子北B",
+      "points": 24,
+      "played": 9,
+      "won": 8,
+      "drawn": 0,
+      "lost": 1,
+      "gf": 56,
+      "ga": 12,
+      "gd": 44
+    },
+    {
+      "rank": 2,
       "team": "ガイナーレ鳥取",
       "points": 24,
       "played": 8,
@@ -52,28 +64,16 @@
       "gd": 37
     },
     {
-      "rank": 2,
-      "team": "米子北B",
-      "points": 21,
-      "played": 8,
-      "won": 7,
-      "drawn": 0,
-      "lost": 1,
-      "gf": 51,
-      "ga": 12,
-      "gd": 39
-    },
-    {
       "rank": 3,
       "team": "鳥取城北",
       "points": 11,
-      "played": 8,
+      "played": 9,
       "won": 3,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 12,
-      "ga": 10,
-      "gd": 2
+      "ga": 15,
+      "gd": -3
     },
     {
       "rank": 4,
@@ -171,6 +171,15 @@
       "hs": 3,
       "as": 3,
       "away": "鳥取東",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "鳥取城北",
+      "hs": 0,
+      "as": 5,
+      "away": "米子北B",
       "status": "played"
     },
     {

@@ -24,7 +24,7 @@ scraper/update_tournament_results.py が上の source から
 - 津山商 vs 笠岡商
 - 岡山白陵 vs 玉島
 - 笠工・鷲羽井原・矢掛 vs 林野
-- 和気・吉備高原 vs 新見
+- 和気・吉備高原 2-1 新見
 - 岡山商大附 vs 興陽
 - 津山高専 vs 岡山一宮
 
@@ -56,3 +56,4 @@ scraper/update_tournament_results.py が上の source から
 - 倉敷古城池 vs 岡山芳泉/明誠学院
 - 総社/高梁 vs 玉島商/倉敷青陵
 - 創志学園 vs 玉野/津山東
+- 東岡山工/和気・吉備高原 vs 邑久/岡山朝日
