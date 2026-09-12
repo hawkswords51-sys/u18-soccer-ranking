@@ -32,8 +32,8 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
+      "actual": "koko",
+      "reason": "検算不一致 ['ブラウブリッツ秋田U-18.試合 日程から計算13≠順位表12', 'ブラウブリッツ秋田U-18.分 日程から計算3≠順位表2', 'ブラウブリッツ秋田U-18.勝点 日程から計算15≠順位表14'] …（据え置き）",
       "matchesPlayed": 60,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-12T09:27:49+09:00",
+  "updatedAt": "2026-09-12T11:20:23+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -325,7 +325,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
+      "result_note": "消化53試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
