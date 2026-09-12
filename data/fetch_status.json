@@ -4,7 +4,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 72,
+      "matchesPlayed": 73,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -33,12 +33,12 @@
     "prince-tohoku": {
       "expected": "jfa",
       "actual": "koko",
-      "reason": "検算不一致 ['ブラウブリッツ秋田U-18.試合 日程から計算13≠順位表12', 'ブラウブリッツ秋田U-18.分 日程から計算3≠順位表2', 'ブラウブリッツ秋田U-18.勝点 日程から計算15≠順位表14'] …（据え置き）",
+      "reason": "検算不一致 ['尚志.試合 日程から計算13≠順位表12', '尚志.敗 日程から計算1≠順位表0', '尚志.失点 日程から計算7≠順位表6'] …（据え置き）",
       "matchesPlayed": 60,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 1,
-      "consecutiveFallbackPrev": 0
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 1
     },
     "prince-kanto-1": {
       "expected": "jfa",
@@ -64,7 +64,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 65,
+      "matchesPlayed": 66,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -74,7 +74,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 48,
+      "matchesPlayed": 49,
       "venueCount": 56,
       "venueCountPrev": 56,
       "consecutiveFallback": 0,
@@ -151,7 +151,7 @@
       "consecutiveFallbackPrev": 0
     }
   },
-  "updatedAt": "2026-09-12T11:20:31+09:00",
+  "updatedAt": "2026-09-12T11:38:39+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",

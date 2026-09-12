@@ -107,13 +107,13 @@
       "rank": 5,
       "team": "青森山田",
       "pts": 22,
-      "played": 12,
+      "played": 13,
       "won": 7,
       "drawn": 1,
-      "lost": 4,
-      "gf": 21,
-      "ga": 20,
-      "gd": 1
+      "lost": 5,
+      "gf": 23,
+      "ga": 24,
+      "gd": -1
     },
     {
       "rank": 6,
@@ -154,14 +154,14 @@
     {
       "rank": 9,
       "team": "昌平",
-      "pts": 11,
-      "played": 12,
-      "won": 3,
+      "pts": 14,
+      "played": 13,
+      "won": 4,
       "drawn": 2,
       "lost": 7,
-      "gf": 16,
-      "ga": 26,
-      "gd": -10
+      "gf": 20,
+      "ga": 28,
+      "gd": -8
     },
     {
       "rank": 10,
@@ -2350,12 +2350,40 @@
       "md": 13,
       "date": "2026-09-12",
       "home": "昌平",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 2,
       "away": "青森山田",
-      "status": "scheduled",
+      "status": "played",
       "venue": "昌平高校グラウンド(人工芝)",
-      "kickoff": "09:30"
+      "kickoff": "09:30",
+      "homeScorers": [
+        {
+          "minute": "1",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "21",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "49",
+          "name": "立野 京弥"
+        },
+        {
+          "minute": "51",
+          "name": "オツコロ 海桜"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "46",
+          "name": "木村 魁心"
+        },
+        {
+          "minute": "90+2",
+          "name": "高江洲 真吾"
+        }
+      ]
     },
     {
       "md": 13,
