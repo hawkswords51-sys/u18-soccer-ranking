@@ -1427,19 +1427,18 @@
         ]
       },
       {
-        "id": "f007",
-        "name": "郡山商業高校",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "points": 3,
-        "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
         "prefectureRank": 11,
-        "leagueRank": 10,
+        "points": 14,
+        "played": 14,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
+        "leagueRank": 8,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -1464,18 +1463,19 @@
         "leagueRank": 9
       },
       {
-        "name": "郡山高校",
+        "id": "f007",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "prefectureRank": 13,
-        "points": 14,
+        "points": 3,
         "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
-        "leagueRank": 8,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "prefectureRank": 13,
+        "leagueRank": 10,
         "aliases": [
           "郡山商",
           "郡山商業",
@@ -2550,10 +2550,26 @@
         ]
       },
       {
+        "id": "c008",
+        "name": "中央学院高校",
+        "league": "千葉県1部",
+        "rank": 5,
+        "points": 21,
+        "played": 10,
+        "won": 7,
+        "drawn": 0,
+        "lost": 3,
+        "goalsFor": 34,
+        "goalsAgainst": 12,
+        "goalDiff": 22,
+        "prefectureRank": 5,
+        "leagueRank": 2
+      },
+      {
         "id": "c002",
         "name": "柏レイソルU-18",
         "league": "プレミアリーグEAST",
-        "rank": 5,
+        "rank": 6,
         "points": 23,
         "played": 12,
         "won": 7,
@@ -2561,29 +2577,9 @@
         "lost": 3,
         "goalsFor": 16,
         "goalsAgainst": 8,
-        "prefectureRank": 5,
+        "prefectureRank": 6,
         "goalDiff": 8,
         "leagueRank": 3
-      },
-      {
-        "id": "c011",
-        "name": "流通経済大学付属柏高校3rd",
-        "league": "千葉県1部",
-        "rank": 6,
-        "points": 19,
-        "played": 10,
-        "won": 5,
-        "drawn": 4,
-        "lost": 1,
-        "goalsFor": 24,
-        "goalsAgainst": 14,
-        "goalDiff": 10,
-        "prefectureRank": 6,
-        "leagueRank": 3,
-        "aliases": [
-          "流経大柏C",
-          "流通経済大学付属柏高校C"
-        ]
       },
       {
         "id": "c005",
@@ -2608,20 +2604,24 @@
         ]
       },
       {
-        "id": "c008",
-        "name": "中央学院高校",
+        "id": "c011",
+        "name": "流通経済大学付属柏高校3rd",
         "league": "千葉県1部",
         "rank": 8,
-        "points": 21,
+        "points": 19,
         "played": 10,
-        "won": 7,
-        "drawn": 0,
-        "lost": 3,
-        "goalsFor": 34,
-        "goalsAgainst": 12,
-        "goalDiff": 22,
+        "won": 5,
+        "drawn": 4,
+        "lost": 1,
+        "goalsFor": 24,
+        "goalsAgainst": 14,
+        "goalDiff": 10,
         "prefectureRank": 8,
-        "leagueRank": 2
+        "leagueRank": 3,
+        "aliases": [
+          "流経大柏C",
+          "流通経済大学付属柏高校C"
+        ]
       },
       {
         "id": "c004",
@@ -2660,10 +2660,31 @@
         ]
       },
       {
+        "id": "c007",
+        "name": "ジェフユナイテッド市原・千葉U-18 2nd",
+        "league": "千葉県1部",
+        "rank": 11,
+        "points": 16,
+        "played": 11,
+        "won": 5,
+        "drawn": 1,
+        "lost": 5,
+        "goalsFor": 21,
+        "goalsAgainst": 21,
+        "goalDiff": 0,
+        "prefectureRank": 11,
+        "leagueRank": 5,
+        "aliases": [
+          "ジェフU-18B",
+          "ジェフu-18B",
+          "ジェフユナイテッド市原・千葉U-18B"
+        ]
+      },
+      {
         "id": "c015",
         "name": "習志野高校",
         "league": "千葉県1部",
-        "rank": 11,
+        "rank": 12,
         "points": 14,
         "played": 9,
         "won": 4,
@@ -2672,7 +2693,7 @@
         "goalsFor": 16,
         "goalsAgainst": 10,
         "goalDiff": 6,
-        "prefectureRank": 11,
+        "prefectureRank": 12,
         "leagueRank": 6
       },
       {
@@ -2686,29 +2707,8 @@
         "goalsFor": 18,
         "goalsAgainst": 13,
         "leagueRank": 7,
-        "rank": 12,
-        "prefectureRank": 12
-      },
-      {
-        "id": "c007",
-        "name": "ジェフユナイテッド市原・千葉U-18 2nd",
-        "league": "千葉県1部",
         "rank": 13,
-        "points": 16,
-        "played": 11,
-        "won": 5,
-        "drawn": 1,
-        "lost": 5,
-        "goalsFor": 21,
-        "goalsAgainst": 21,
-        "goalDiff": 0,
-        "prefectureRank": 13,
-        "leagueRank": 5,
-        "aliases": [
-          "ジェフU-18B",
-          "ジェフu-18B",
-          "ジェフユナイテッド市原・千葉U-18B"
-        ]
+        "prefectureRank": 13
       },
       {
         "id": "c012",
@@ -3231,30 +3231,10 @@
     "region": "関東",
     "teams": [
       {
-        "id": "k007",
-        "name": "湘南ベルマーレU-18",
-        "league": "神奈川県K1",
-        "rank": 1,
-        "points": 25,
-        "played": 10,
-        "won": 8,
-        "drawn": 1,
-        "lost": 1,
-        "goalsFor": 25,
-        "goalsAgainst": 6,
-        "goalDiff": 19,
-        "prefectureRank": 1,
-        "leagueRank": 2,
-        "aliases": [
-          "湘南ベルマーレA",
-          "湘南ベルマーレユース"
-        ]
-      },
-      {
         "id": "k004",
         "name": "横浜F・マリノスユース",
         "league": "プリンスリーグ関東2部",
-        "rank": 2,
+        "rank": 1,
         "points": 24,
         "played": 10,
         "won": 7,
@@ -3262,9 +3242,30 @@
         "lost": 0,
         "goalsFor": 24,
         "goalsAgainst": 5,
-        "prefectureRank": 2,
+        "prefectureRank": 1,
         "goalDiff": 19,
         "leagueRank": 1
+      },
+      {
+        "id": "k012",
+        "name": "東海大相模高校",
+        "league": "神奈川県K1",
+        "rank": 2,
+        "points": 26,
+        "played": 12,
+        "won": 8,
+        "drawn": 2,
+        "lost": 2,
+        "goalsFor": 25,
+        "goalsAgainst": 14,
+        "goalDiff": 11,
+        "prefectureRank": 2,
+        "leagueRank": 1,
+        "aliases": [
+          "東海大相模高校",
+          "東海大学付属相模高校",
+          "東海大相模A"
+        ]
       },
       {
         "id": "k003",
@@ -3299,24 +3300,23 @@
         "leagueRank": 11
       },
       {
-        "id": "k012",
-        "name": "東海大相模高校",
+        "id": "k007",
+        "name": "湘南ベルマーレU-18",
         "league": "神奈川県K1",
         "rank": 5,
-        "points": 26,
-        "played": 12,
+        "points": 25,
+        "played": 10,
         "won": 8,
-        "drawn": 2,
-        "lost": 2,
+        "drawn": 1,
+        "lost": 1,
         "goalsFor": 25,
-        "goalsAgainst": 14,
-        "goalDiff": 11,
+        "goalsAgainst": 6,
+        "goalDiff": 19,
         "prefectureRank": 5,
-        "leagueRank": 1,
+        "leagueRank": 2,
         "aliases": [
-          "東海大相模高校",
-          "東海大学付属相模高校",
-          "東海大相模A"
+          "湘南ベルマーレA",
+          "湘南ベルマーレユース"
         ]
       },
       {
@@ -9530,22 +9530,6 @@
         ]
       },
       {
-        "id": "fk008",
-        "name": "筑陽学園高校",
-        "league": "福岡県1部",
-        "rank": 8,
-        "points": 20,
-        "played": 12,
-        "won": 6,
-        "drawn": 2,
-        "lost": 4,
-        "goalsFor": 17,
-        "goalsAgainst": 16,
-        "prefectureRank": 8,
-        "goalDiff": 1,
-        "leagueRank": 4
-      },
-      {
         "name": "アビスパ福岡U-18 2nd",
         "league": "福岡県1部",
         "points": 22,
@@ -9556,11 +9540,27 @@
         "goalsFor": 29,
         "goalsAgainst": 13,
         "leagueRank": 3,
-        "rank": 9,
-        "prefectureRank": 9,
+        "rank": 8,
+        "prefectureRank": 8,
         "aliases": [
           "アビスパ福岡B"
         ]
+      },
+      {
+        "id": "fk008",
+        "name": "筑陽学園高校",
+        "league": "福岡県1部",
+        "rank": 9,
+        "points": 20,
+        "played": 12,
+        "won": 6,
+        "drawn": 2,
+        "lost": 4,
+        "goalsFor": 17,
+        "goalsAgainst": 16,
+        "prefectureRank": 9,
+        "goalDiff": 1,
+        "leagueRank": 4
       },
       {
         "name": "飯塚高校2nd",
@@ -9964,20 +9964,18 @@
         ]
       },
       {
-        "id": "ng004",
-        "name": "創成館高校",
+        "name": "長崎日大",
         "league": "長崎県1部",
-        "rank": 4,
         "points": 23,
         "played": 11,
         "won": 7,
         "drawn": 2,
         "lost": 2,
-        "goalsFor": 23,
-        "goalsAgainst": 13,
-        "prefectureRank": 4,
-        "goalDiff": 10,
-        "leagueRank": 3
+        "goalsFor": 26,
+        "goalsAgainst": 8,
+        "leagueRank": 2,
+        "rank": 4,
+        "prefectureRank": 4
       },
       {
         "id": "ng001",
@@ -9996,10 +9994,26 @@
         "leagueRank": 3
       },
       {
+        "id": "ng004",
+        "name": "創成館高校",
+        "league": "長崎県1部",
+        "rank": 6,
+        "points": 23,
+        "played": 11,
+        "won": 7,
+        "drawn": 2,
+        "lost": 2,
+        "goalsFor": 23,
+        "goalsAgainst": 13,
+        "prefectureRank": 6,
+        "goalDiff": 10,
+        "leagueRank": 3
+      },
+      {
         "id": "ng005",
         "name": "国見高校2nd",
         "league": "長崎県1部",
-        "rank": 6,
+        "rank": 7,
         "points": 22,
         "played": 11,
         "won": 7,
@@ -10007,23 +10021,9 @@
         "lost": 3,
         "goalsFor": 29,
         "goalsAgainst": 17,
-        "prefectureRank": 6,
+        "prefectureRank": 7,
         "goalDiff": 12,
         "leagueRank": 4
-      },
-      {
-        "name": "長崎日大",
-        "league": "長崎県1部",
-        "points": 23,
-        "played": 11,
-        "won": 7,
-        "drawn": 2,
-        "lost": 2,
-        "goalsFor": 26,
-        "goalsAgainst": 8,
-        "leagueRank": 2,
-        "rank": 7,
-        "prefectureRank": 7
       },
       {
         "name": "Vファーレン長崎2nd",
@@ -11306,7 +11306,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-12 23:26",
+    "lastUpdated": "2026-09-12 23:44",
     "year": 2026,
     "updatedCount": 393
   }
