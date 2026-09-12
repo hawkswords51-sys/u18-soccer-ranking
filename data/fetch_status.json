@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 50,
+      "matchesPlayed": 51,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 52,
+      "matchesPlayed": 53,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -124,7 +124,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 52,
+      "matchesPlayed": 53,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,11 +181,11 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-12T19:24:33+09:00",
+  "updatedAt": "2026-09-12T20:22:20+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
-      "result_note": "消化60試合に更新（検算一致）",
+      "result_note": "消化61試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -297,8 +297,8 @@
       "status": "ok"
     },
     "fukuoka": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://fukuoka-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='fukuoka-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukuoka-fa-u18.com', port=443) at 0x7f1d189ee590>, 'Connection to fukuoka-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化57試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -353,8 +353,8 @@
       "status": "warn"
     },
     "gunma": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Max retries exceeded with url: /api/table/173 (Caused by ConnectTimeoutError(<HTTPSConnection(host='management.gunma-fa.com', port=443) at 0x7f1d189ef9d0>, 'Connection to management.gunma-fa.com timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -622,8 +622,8 @@
       "status": "ok"
     },
     "miyazaki": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://miyazaki-fa-u18.net/schedule/2026/U-18-1.htm の取得に失敗 (HTTPSConnectionPool(host='miyazaki-fa-u18.net', port=443): Max retries exceeded with url: /schedule/2026/U-18-1.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='miyazaki-fa-u18.net', port=443) at 0x7f1d197c8d50>, 'Connection to miyazaki-fa-u18.net timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化62試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -794,8 +794,8 @@
       "status": "ok"
     },
     "saga": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://saga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='saga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='saga-fa-u18.com', port=443) at 0x7f1d189f7790>, 'Connection to saga-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化36試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,
@@ -832,8 +832,8 @@
       "status": "ok"
     },
     "shiga": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://shiga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='shiga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='shiga-fa-u18.com', port=443) at 0x7f1d189d4810>, 'Connection to shiga-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result": "ok",
+      "result_note": "消化57試合に更新（検算一致）",
       "result_date": "2026-09-12",
       "season": "2026",
       "complete": false,

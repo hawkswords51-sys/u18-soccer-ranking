@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "東海大仰星",
+      "pts": 25,
+      "played": 11,
+      "won": 7,
+      "drawn": 4,
+      "lost": 0,
+      "gf": 30,
+      "ga": 8,
+      "gd": 22
+    },
+    {
+      "rank": 2,
       "team": "大阪桐蔭",
       "pts": 24,
       "played": 11,
@@ -58,18 +70,6 @@
       "gf": 20,
       "ga": 8,
       "gd": 12
-    },
-    {
-      "rank": 2,
-      "team": "東海大仰星",
-      "pts": 22,
-      "played": 10,
-      "won": 6,
-      "drawn": 4,
-      "lost": 0,
-      "gf": 26,
-      "ga": 8,
-      "gd": 18
     },
     {
       "rank": 3,
@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "関大北陽",
       "pts": 20,
-      "played": 10,
+      "played": 11,
       "won": 6,
       "drawn": 2,
-      "lost": 2,
+      "lost": 3,
       "gf": 17,
-      "ga": 11,
-      "gd": 6
+      "ga": 15,
+      "gd": 2
     },
     {
       "rank": 6,
@@ -734,10 +734,10 @@
       "md": 11,
       "date": "2026-09-12",
       "home": "関大北陽",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "東海大仰星",
-      "status": "scheduled",
+      "status": "played",
       "venue": "履正社茨木グラウンド",
       "kickoff": "18:15"
     },
