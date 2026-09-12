@@ -14,13 +14,15 @@ GitHub Actions は緑のまま流れた**。フォールバックがあるとサ
 
 赤（ジョブ失敗）にする条件
 --------------------------
-  1. **3回連続以上** JFA以外から入っているリーグがある
-     出典側の一時的な遅れなら3回（＝1日半）で直るはず。直らないなら自前のバグを疑う
+  1. **3日続けて** JFA以外から入っているリーグがある
+     出典側の一時的な遅れなら3日で直るはず。直らないなら自前のバグを疑う
+     ★2026-09-12: 「3回連続」から「3日連続」へ変更。回数だと手動Runを3連打した
+       だけで数分で赤になり、「1日半直らない」という赤の意味が成立しなかった
   2. **venueCount（会場を持つ試合数）が前回の半分未満**に落ちたリーグがある
      2026-09-06の事故#1（改名の取り残しで会場・時刻・得点者が全消失）を一発で捕まえる
   3. どの経路でも記録されなかったリーグがある（actual が空＝途中で落ちた可能性）
 
-1〜2回のフォールバックは**緑のまま**にして `[要注意]` をログに出すだけにする。
+1〜2日目のフォールバックは**緑のまま**にして `[要注意]` をログに出すだけにする。
 出典側の遅れは日常的に起きるので、毎回赤にすると誰も見なくなる。
 
 ★期限つきの既知原因（2026-09-08 追加）
@@ -51,8 +53,8 @@ from pathlib import Path
 
 import fetch_status
 
-# 何回連続でJFA以外だったら赤にするか
-FALLBACK_LIMIT = 3
+# 何「日」続けてJFA以外だったら赤にするか（回数ではなく日数。同じ日に何回実行しても増えない）
+FALLBACK_LIMIT_DAYS = 3
 
 ROOT = Path(__file__).resolve().parent.parent
 EXCEPTIONS_PATH = ROOT / "data" / "fetch_watch_exceptions.json"
@@ -111,13 +113,29 @@ def classify_exception(entry: dict, today: date) -> tuple[str, str]:
 
 
 def finalize(status: dict) -> dict:
-    """連続回数を確定させる（jfaに戻ったら0、それ以外は前回＋1）"""
+    """フォールバックの「回数」と「日数」を確定させる。
+
+    consecutiveFallback  … 何回連続でJFA以外だったか（参考値。手動Runでも増える）
+    fallbackSince        … いまのフォールバックが始まった日（JST, YYYY-MM-DD）
+    fallbackDays         … その日から今日までを数えた日数（同じ日に何回実行しても増えない）
+
+    赤の判定に使うのは fallbackDays。手動Runの連打で赤が誤爆しないようにするため
+    （2026-09-12: 試合中のリーグに対してRunを3連打し、3分で3回に達して赤になった）。
+    """
+    today = today_jst()
     for entry in status.get("leagues", {}).values():
         prev = int(entry.get("consecutiveFallbackPrev") or 0)
         if entry.get("actual") == entry.get("expected"):
             entry["consecutiveFallback"] = 0
+            entry["fallbackSince"] = ""
+            entry["fallbackDays"] = 0
         else:
             entry["consecutiveFallback"] = prev + 1
+            since = _parse_date(entry.get("fallbackSince"))
+            if since is None or since > today:
+                since = today          # 初回、または日付が壊れている場合は今日から数え直す
+            entry["fallbackSince"] = since.isoformat()
+            entry["fallbackDays"] = (today - since).days + 1
     return status
 
 
@@ -148,13 +166,16 @@ def main() -> int:
         print(f"[要注意] JFAで入るはずのリーグが{len(odd)}件、別経路になりました")
         for slug, e in sorted(odd.items()):
             actual = e.get("actual") or "記録なし"
-            streak = e.get("consecutiveFallback", 0)
-            print(f"  {slug:24s} {actual:5s} ({streak}回目)  {e.get('reason','')}")
+            streak = int(e.get("consecutiveFallback") or 0)
+            days = int(e.get("fallbackDays") or 0)
+            since = e.get("fallbackSince") or "?"
+            print(f"  {slug:24s} {actual:5s} ({days}日目・{streak}回目・{since}から)"
+                  f"  {e.get('reason','')}")
             if not e.get("actual"):
                 problems.append((slug, "どの経路でも記録されなかった"
                                        "（途中で処理が落ちた可能性）"))
-            elif streak >= FALLBACK_LIMIT:
-                problems.append((slug, f"{streak}回連続で{actual}から入っている"
+            elif days >= FALLBACK_LIMIT_DAYS:
+                problems.append((slug, f"{since}から{days}日続けて{actual}から入っている"
                                        f"（{e.get('reason','')}）"))
 
     # 会場を持つ試合数が前回の半分未満に落ちていないか（データ消失の一発検出）
@@ -219,10 +240,12 @@ def main() -> int:
 
     # 「あと何回で赤か」の注記は、まだ赤の一歩手前にいるリーグがあるときだけ出す
     # （既知の原因として黄にしたリーグしか無い日にこれを出すと、話がねじれる）
-    if any(int(e.get("consecutiveFallback") or 0) < FALLBACK_LIMIT for e in odd.values()):
+    if any(int(e.get("fallbackDays") or 0) < FALLBACK_LIMIT_DAYS for e in odd.values()):
         print()
-        print(f"※ {FALLBACK_LIMIT}回連続になるまでは緑のままにします"
-              f"（出典側の一時的な遅れは日常的に起きるため）。")
+        print(f"※ {FALLBACK_LIMIT_DAYS}日続くまでは緑のままにします"
+              f"（出典側の一時的な遅れは日常的に起きるため）。"
+              f"\n※ 数えているのは日数です。同じ日に何回実行しても増えません。"
+              f"試合中の試合があるリーグは、その試合が終わるまで何回実行しても同じです。")
     return 0
 
 

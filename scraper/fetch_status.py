@@ -24,8 +24,10 @@ GitHub Actions は緑のまま流れた**。フォールバックが事故を隠
   matchesPlayed           消化試合数
   venueCount              会場を持つ試合数。事故#1（会場が全消失）の唯一の手がかりだった
   venueCountPrev          前回の venueCount（半減の検出に使う）
-  consecutiveFallback     何回連続で jfa 以外だったか（jfaに戻ったら0）
+  consecutiveFallback     何回連続で jfa 以外だったか（参考値。jfaに戻ったら0）
   consecutiveFallbackPrev 前回の連続回数
+  fallbackSince           いまのフォールバックが始まった日 JST(YYYY-MM-DD)。jfaに戻ったら空
+  fallbackDays            fallbackSince から今日までの日数。★赤の判定はこれを使う
 
 役割分担
 --------
@@ -90,6 +92,10 @@ def start_run(expected: dict) -> None:
             "venueCountPrev": int(prev.get("venueCount") or 0),
             "consecutiveFallback": 0,
             "consecutiveFallbackPrev": int(prev.get("consecutiveFallback") or 0),
+            # フォールバックが始まった日（JST）。check_fetch_status.py が確定させる。
+            # ここでは前回の値をそのまま引き継ぐ（消すと日数が毎回1に戻る）。
+            "fallbackSince": str(prev.get("fallbackSince") or ""),
+            "fallbackDays": int(prev.get("fallbackDays") or 0),
         }
     # ⚠️ pref_leagues（県1部の記録）を巻き込んで消さないこと。
     #    start_run() は fetch_jfa.py がワークフローの早い段階で呼ぶので、
@@ -113,6 +119,7 @@ def set_result(slug: str, actual: str = "", reason: str = None,
         "matchesPlayed": 0, "venueCount": 0,
         "venueCountPrev": 0, "consecutiveFallback": 0,
         "consecutiveFallbackPrev": 0,
+        "fallbackSince": "", "fallbackDays": 0,
     })
     if actual:
         entry["actual"] = actual
