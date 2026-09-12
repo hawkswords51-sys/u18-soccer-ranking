@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [腰痛, 腰椎分離症, 疲労骨折, 成長期, 高校サッカー]
 description: 12〜14歳の男子サッカー選手163名を6か月追跡した2026年の研究では、28.5%で腰椎分離症が進行しました。進行を予測したのは骨髄浮腫・仙骨のアライメント・股関節外旋の硬さ。体を反らすと痛む理由、初期ほどレントゲンに写らない落とし穴、硬性コルセットで骨がつく確率を救急科専門医が解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/spondylolysis-mechanism.jpg
 medicalTopic: 腰椎分離症
 updated: 2026-08-17
 faq:

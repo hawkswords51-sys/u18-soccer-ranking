@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [リカバリー, 連戦, 中2日, 選手権予選, 筋肉痛, 高校サッカー]
 description: スポーツ医学の提言では、公式戦の間隔は組織が完全に修復するために最低96時間が必要とされています。中2日（72時間）はそれを下回る条件です。筋肉が壊れた指標（CK）と筋肉痛は試合の48時間後にピークを迎え、72時間後もまだ高い——つまり「2日後が一番危ない日」です。アイスバスも測定機器もない高校の部活で、水・糖質・睡眠・翌日の過ごし方だけで何ができるかを、救急科専門医が解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/recovery-48h-peak.jpg
 medicalTopic: 連戦時のリカバリー（試合後の疲労回復）
 faq:
   - q: "中2日で、体は完全に回復できますか？"

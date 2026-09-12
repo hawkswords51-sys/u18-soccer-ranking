@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [試合前の食事, 補食, スポーツ栄養, カーボローディング, 高校サッカー]
 description: 試合前日と当日に「何を・いつ食べるか」を救急医が解説。前日は糖質中心で揚げ物と生ものを避け、当日はキックオフ3〜4時間前の食事と1〜2時間前の補食で逆算。連戦の合間の食べ方、夏の弁当の食中毒予防、試合後30分のリカバリーまで。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/breakfast-heatstroke.png
 medicalTopic: スポーツ栄養（試合前後の食事）
 updated: 2026-07-22
 faq:

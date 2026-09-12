@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [脳震盪, 頭部外傷, セカンドインパクト症候群, 応急処置, 高校サッカー, インターハイ]
 description: サッカーの脳震盪は約9割が意識を失いません。頭を打った直後に現場で確認すべき危険なサイン、当日復帰が禁止される理由（セカンドインパクト症候群）、国際基準に基づく段階的競技復帰プロトコルまで、救急医が選手・保護者・指導者向けに解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/concussion-metabolic-crisis.jpg
 medicalTopic: 脳震盪
 updated: 2026-08-11
 faq:

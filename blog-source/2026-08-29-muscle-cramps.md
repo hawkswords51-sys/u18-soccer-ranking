@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [こむら返り, 筋痙攣, 足がつる, 芍薬甘草湯, 熱中症, 高校サッカー]
 description: 後半に足がつるのは「水分・塩分が足りないから」——この説明は、いまのスポーツ医学では主流ではありません。トライアスロン選手210名の前向き研究で痙攣を予測したのは脱水でも血中ナトリウムでもなく、いつもより速いペースと過去の痙攣歴でした。その場で止める方法、ピクルス液・マグネシウム・芍薬甘草湯の評価、そして「つっただけ」で済まない危険なサインまで、救急科専門医が解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/muscle-cramps-proprioceptor-balance.jpg
 medicalTopic: 運動関連筋痙攣（こむら返り）
 faq:
   - q: "足がつるのは、水分不足・塩分不足が原因ではないのですか？"

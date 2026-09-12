@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [肉離れ, ハムストリング, 怪我予防, 復帰プロトコル, 高校サッカー]
 description: 予防法が確立されたはずなのに、プロサッカーのハムストリング損傷は全外傷の12%から24%へ倍増しました。復帰期間を決めるのは「腱が関わったかどうか」。成長期に見逃されやすい坐骨結節の裂離骨折、受傷直後にやってはいけない3つのこと、そして再発を防ぐ復帰基準とノルディックハムストリングまで救急科専門医が解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/hamstring-two-types.jpg
 medicalTopic: ハムストリング肉離れ（筋損傷）
 updated: 2026-08-17
 faq:

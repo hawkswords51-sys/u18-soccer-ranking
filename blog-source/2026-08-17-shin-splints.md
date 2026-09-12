@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [シンスプリント, 疲労骨折, すねの痛み, 成長期, 怪我予防, 高校サッカー]
 description: 走り込みが増える時期に急増する「すねの痛み」。広い範囲が痛むシンスプリントと、一点が痛む疲労骨折は対処がまったく違います。「レントゲンで異常なし」でも骨折が否定できない理由（初期の感度は12〜56%）、サッカー選手が最も警戒すべき第5中足骨の疲労骨折（ジョーンズ骨折）と足の甲の奥の舟状骨まで、救急科専門医が見分け方と受診の目安を解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/shin-splints-mtss-tsf-diff.jpg
 medicalTopic: シンスプリント・疲労骨折
 faq:
   - q: "シンスプリントと疲労骨折は自分で見分けられますか？"

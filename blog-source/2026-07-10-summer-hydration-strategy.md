@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [熱中症, 水分補給, 経口補水液, スポーツドリンク, 高校サッカー]
 description: 5月の熱中症記事の続編。真夏の練習・大会で命を守る水分補給を救急医が解説。「のどが渇いたら飲む」が遅すぎる理由、スポーツドリンク・経口補水液（OS-1）・水の使い分け、量とタイミングの計算式、水だけ大量に飲むと倒れる低ナトリウム血症の危険まで。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/breakfast-heatstroke.png
 medicalTopic: 熱中症（脱水・水分補給）
 updated: 2026-07-19
 faq:

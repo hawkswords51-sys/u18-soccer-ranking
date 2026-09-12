@@ -7,7 +7,7 @@ category: 医学コラム
 tags: [オスグッド病, 膝の痛み, 成長期, 怪我予防, 高校サッカー]
 description: 12〜15歳の約1割、スポーツをする思春期では約2割が経験するオスグッド病。夜だけ痛む本物の「成長痛」との見分け方から、「我慢」でも「完全休養」でもない現在の標準＝痛みを目安にした活動調整（12週間で8割が改善した研究）、放置した先にある脛骨粗面裂離骨折のリスクまで、救急科専門医が解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/osgood-mechanism-weakest-link.jpg
 medicalTopic: オスグッド病
 faq:
   - q: "オスグッド病は成長痛ですか？放っておけば治りますか？"

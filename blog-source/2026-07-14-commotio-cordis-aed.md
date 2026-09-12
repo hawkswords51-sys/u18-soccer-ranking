@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [心臓振盪, AED, 心肺蘇生, 安全管理, 高校サッカー]
 description: 健康な心臓でも、胸へのボール直撃のタイミング次第で心停止が起きる「心臓振盪」。FIFAの世界規模レジストリが記録したサッカーでの実数、倒れた選手を見たときの確認手順と死戦期呼吸の罠、胸骨圧迫とAED、AEDまでの距離の目安（150m）、女子選手へのAEDがためらわれている問題、そして助かったあとの競技復帰まで、救急科専門医が一次資料にあたって解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/commotio-cordis-differential.jpg
 medicalTopic: 心臓振盪・スポーツ中の心停止
 updated: 2026-08-11
 faq:

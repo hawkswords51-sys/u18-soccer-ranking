@@ -6,7 +6,7 @@ category: 医学コラム
 tags: [オーバートレーニング, 疲労骨折, 夏トレ, 安静時心拍数, 高校サッカー]
 description: 夏休みの追い込みで「練習しているのに調子が落ちる」のは、頑張りが足りないのではなくオーバートレーニング症候群かもしれません。単なる疲労との違い、毎朝の心拍数でわかる早期サイン、疲労骨折との関係、そして計画的に「休む」練習設計まで、救急医が解説します。
 author: Dr.Kazu Soccer
-ogImage: https://u18-soccer.com/og-image.png
+ogImage: https://u18-soccer.com/img/blog/sleep-injury-risk.png
 medicalTopic: オーバートレーニング症候群
 updated: 2026-07-19
 faq:
