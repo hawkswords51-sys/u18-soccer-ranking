@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-13T09:09:09+09:00",
+  "updatedAt": "2026-09-13T09:09:19+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "fetch_error",
@@ -199,9 +199,9 @@
       "source": "official",
       "sourceName": "愛知県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "akita": {
       "season": "2026",
@@ -255,9 +255,9 @@
       "source": "official",
       "sourceName": "千葉県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "ehime": {
       "season": "2026",
@@ -425,9 +425,9 @@
       "source": "official",
       "sourceName": "茨城県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "ishikawa": {
       "season": "2026",
@@ -464,9 +464,9 @@
       "sourceName": "岩手県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-05",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "kagawa": {
       "result": "fetch_error",
@@ -484,9 +484,9 @@
       "source": "official",
       "sourceName": "香川県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "kagoshima": {
       "season": "2026",
@@ -673,9 +673,9 @@
       "source": "official",
       "sourceName": "長崎県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "nara": {
       "season": "2026",
@@ -960,9 +960,9 @@
       "source": "official",
       "sourceName": "鳥取県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "toyama": {
       "result": "ok",
@@ -1018,9 +1018,9 @@
       "source": "official",
       "sourceName": "山形県サッカー協会 公式（GoalNote）",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok"
+      "result_since": "2026-09-13",
+      "result_streak": 1,
+      "status": "warn"
     },
     "yamaguchi": {
       "result": "ok",
@@ -1030,14 +1030,14 @@
       "complete": false,
       "single_round": false,
       "dup_pairs": 28,
-      "played_without_date": 6,
-      "played": 40,
+      "played_without_date": 8,
+      "played": 42,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-07-18",
       "source": "official",
       "sourceName": "山口県サッカー協会 公式（SportsOnline）",
-      "last_change": "2026-09-12",
+      "last_change": "2026-09-13",
       "result_since": "",
       "result_streak": 0,
       "status": "ok"
