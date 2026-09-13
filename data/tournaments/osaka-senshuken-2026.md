@@ -77,7 +77,7 @@ scraper/update_tournament_results.py が上の source から
 - 高津 vs 大阪朝鮮高級学校
 - 同志社香里 vs 和泉/茨木
 - 富田林 vs 花園/港
-- 公大高専 vs 高槻北
+- 公大高専 0-4 高槻北
 - 日新 vs 槻の木
 - 天王寺 vs 住吉/寝屋川
 - 八尾 vs 東淀川
@@ -89,7 +89,7 @@ scraper/update_tournament_results.py が上の source から
 - 桜和 vs 城工・みらい
 - 箕面自由学園 vs 鳳/藤井寺
 - 四條畷 vs 大阪青凌
-- 池田 vs 交野/守口東
+- 池田 2-1 交野/守口東
 - 阿倍野 vs 堺上
 - 芥川 vs 三国丘
 - 大商学園 vs 清風南海

@@ -41,6 +41,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "那覇",
+      "points": 19,
+      "played": 9,
+      "won": 6,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 15,
+      "ga": 9,
+      "gd": 6
+    },
+    {
+      "rank": 2,
       "team": "興南",
       "points": 16,
       "played": 8,
@@ -50,18 +62,6 @@
       "gf": 17,
       "ga": 7,
       "gd": 10
-    },
-    {
-      "rank": 2,
-      "team": "那覇",
-      "points": 16,
-      "played": 8,
-      "won": 5,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 13,
-      "ga": 8,
-      "gd": 5
     },
     {
       "rank": 3,
@@ -115,13 +115,13 @@
       "rank": 7,
       "team": "FC琉球OKINAWA 2nd",
       "points": 6,
-      "played": 8,
+      "played": 9,
       "won": 2,
       "drawn": 0,
-      "lost": 6,
-      "gf": 16,
-      "ga": 27,
-      "gd": -11
+      "lost": 7,
+      "gf": 17,
+      "ga": 29,
+      "gd": -12
     },
     {
       "rank": 8,
@@ -184,12 +184,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-12",
       "home": "那覇",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "FC琉球OKINAWA 2nd",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,

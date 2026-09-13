@@ -1427,10 +1427,10 @@
         ]
       },
       {
-        "id": "f007",
         "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
+        "prefectureRank": 11,
         "points": 3,
         "played": 14,
         "won": 1,
@@ -1438,7 +1438,6 @@
         "lost": 13,
         "goalsFor": 2,
         "goalsAgainst": 86,
-        "prefectureRank": 11,
         "leagueRank": 10,
         "aliases": [
           "郡山商",
@@ -1464,10 +1463,10 @@
         "leagueRank": 9
       },
       {
+        "id": "f007",
         "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "prefectureRank": 13,
         "points": 14,
         "played": 14,
         "won": 4,
@@ -1475,6 +1474,7 @@
         "lost": 8,
         "goalsFor": 16,
         "goalsAgainst": 26,
+        "prefectureRank": 13,
         "leagueRank": 8,
         "aliases": [
           "郡山商",
@@ -4700,26 +4700,10 @@
     "region": "北信越",
     "teams": [
       {
-        "id": "na005",
-        "name": "市立長野高校",
-        "league": "長野県1部",
-        "rank": 1,
-        "points": 28,
-        "played": 12,
-        "won": 9,
-        "drawn": 1,
-        "lost": 2,
-        "goalsFor": 25,
-        "goalsAgainst": 8,
-        "prefectureRank": 1,
-        "goalDiff": 17,
-        "leagueRank": 1
-      },
-      {
         "id": "na002",
         "name": "松本山雅FC U-18",
         "league": "プリンスリーグ北信越1部",
-        "rank": 2,
+        "rank": 1,
         "points": 25,
         "played": 14,
         "won": 7,
@@ -4727,8 +4711,24 @@
         "lost": 3,
         "goalsFor": 29,
         "goalsAgainst": 22,
-        "prefectureRank": 2,
+        "prefectureRank": 1,
         "goalDiff": 7,
+        "leagueRank": 1
+      },
+      {
+        "id": "na005",
+        "name": "市立長野高校",
+        "league": "長野県1部",
+        "rank": 2,
+        "points": 28,
+        "played": 12,
+        "won": 9,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 25,
+        "goalsAgainst": 8,
+        "prefectureRank": 2,
+        "goalDiff": 17,
         "leagueRank": 1
       },
       {
@@ -11162,7 +11162,7 @@
         "goalsAgainst": 7,
         "prefectureRank": 1,
         "goalDiff": 10,
-        "leagueRank": 1
+        "leagueRank": 2
       },
       {
         "id": "oki001",
@@ -11185,16 +11185,16 @@
         "name": "那覇高校",
         "league": "沖縄県波布リーグ1部",
         "rank": 3,
-        "points": 16,
-        "played": 8,
-        "won": 5,
+        "points": 19,
+        "played": 9,
+        "won": 6,
         "drawn": 1,
         "lost": 2,
-        "goalsFor": 13,
-        "goalsAgainst": 8,
+        "goalsFor": 15,
+        "goalsAgainst": 9,
         "prefectureRank": 3,
-        "goalDiff": 5,
-        "leagueRank": 2
+        "goalDiff": 6,
+        "leagueRank": 1
       },
       {
         "id": "oki002",
@@ -11266,14 +11266,14 @@
         "league": "沖縄県波布リーグ1部",
         "rank": 8,
         "points": 6,
-        "played": 8,
+        "played": 9,
         "won": 2,
         "drawn": 0,
-        "lost": 6,
-        "goalsFor": 16,
-        "goalsAgainst": 27,
+        "lost": 7,
+        "goalsFor": 17,
+        "goalsAgainst": 29,
         "prefectureRank": 8,
-        "goalDiff": -11,
+        "goalDiff": -12,
         "leagueRank": 7,
         "aliases": [
           "FC琉球OKINAWA 2nd"
@@ -11306,8 +11306,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-13 10:05",
+    "lastUpdated": "2026-09-13 10:52",
     "year": 2026,
-    "updatedCount": 0
+    "updatedCount": 393
   }
 }
