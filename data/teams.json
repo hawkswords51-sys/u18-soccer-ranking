@@ -1427,24 +1427,23 @@
         ]
       },
       {
-        "name": "郡山商業高校",
+        "id": "f007",
+        "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "prefectureRank": 11,
-        "points": 3,
+        "points": 14,
         "played": 14,
-        "won": 1,
-        "drawn": 0,
-        "lost": 13,
-        "goalsFor": 2,
-        "goalsAgainst": 86,
-        "leagueRank": 10,
+        "won": 4,
+        "drawn": 2,
+        "lost": 8,
+        "goalsFor": 16,
+        "goalsAgainst": 26,
+        "prefectureRank": 11,
+        "leagueRank": 8,
         "aliases": [
-          "郡山商",
-          "郡山商業",
-          "郡山商業高等学校",
-          "郡山商高",
-          "郡山商高校"
+          "郡山",
+          "郡山高",
+          "郡山高等学校"
         ]
       },
       {
@@ -1463,23 +1462,24 @@
         "leagueRank": 9
       },
       {
-        "id": "f007",
-        "name": "郡山高校",
+        "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 13,
-        "points": 14,
-        "played": 14,
-        "won": 4,
-        "drawn": 2,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 26,
         "prefectureRank": 13,
-        "leagueRank": 8,
+        "points": 3,
+        "played": 14,
+        "won": 1,
+        "drawn": 0,
+        "lost": 13,
+        "goalsFor": 2,
+        "goalsAgainst": 86,
+        "leagueRank": 10,
         "aliases": [
-          "郡山",
-          "郡山高",
-          "郡山高等学校"
+          "郡山商",
+          "郡山商業",
+          "郡山商業高等学校",
+          "郡山商高",
+          "郡山商高校"
         ]
       }
     ],
@@ -11147,20 +11147,20 @@
     "region": "九州",
     "teams": [
       {
-        "id": "oki006",
-        "name": "興南高校",
+        "id": "oki008",
+        "name": "那覇高校",
         "league": "沖縄県波布リーグ1部",
         "rank": 1,
-        "points": 16,
-        "played": 8,
-        "won": 5,
+        "points": 19,
+        "played": 9,
+        "won": 6,
         "drawn": 1,
         "lost": 2,
-        "goalsFor": 17,
-        "goalsAgainst": 7,
+        "goalsFor": 15,
+        "goalsAgainst": 9,
         "prefectureRank": 1,
-        "goalDiff": 10,
-        "leagueRank": 2
+        "goalDiff": 6,
+        "leagueRank": 1
       },
       {
         "id": "oki001",
@@ -11179,20 +11179,20 @@
         "leagueRank": 9
       },
       {
-        "id": "oki008",
-        "name": "那覇高校",
+        "id": "oki006",
+        "name": "興南高校",
         "league": "沖縄県波布リーグ1部",
         "rank": 3,
-        "points": 19,
-        "played": 9,
-        "won": 6,
+        "points": 16,
+        "played": 8,
+        "won": 5,
         "drawn": 1,
         "lost": 2,
-        "goalsFor": 15,
-        "goalsAgainst": 9,
+        "goalsFor": 17,
+        "goalsAgainst": 7,
         "prefectureRank": 3,
-        "goalDiff": 6,
-        "leagueRank": 1
+        "goalDiff": 10,
+        "leagueRank": 2
       },
       {
         "id": "oki002",
@@ -11304,7 +11304,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-13 10:52",
+    "lastUpdated": "2026-09-13 11:30",
     "year": 2026,
     "updatedCount": 393
   }
