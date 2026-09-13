@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "鵬翔",
+      "pts": 18,
+      "played": 11,
+      "won": 5,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 17,
+      "ga": 16,
+      "gd": 1
+    },
+    {
+      "rank": 3,
       "team": "大分トリニータU-18",
       "pts": 17,
       "played": 10,
@@ -70,18 +82,6 @@
       "gf": 21,
       "ga": 14,
       "gd": 7
-    },
-    {
-      "rank": 3,
-      "team": "鵬翔",
-      "pts": 17,
-      "played": 10,
-      "won": 5,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 17,
-      "ga": 16,
-      "gd": 1
     },
     {
       "rank": 4,
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "日章学園2nd",
+      "pts": 13,
+      "played": 10,
+      "won": 3,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 20,
+      "ga": 21,
+      "gd": -1
+    },
+    {
+      "rank": 6,
       "team": "長崎総科大附",
       "pts": 12,
       "played": 10,
@@ -108,7 +120,7 @@
       "gd": 8
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "サガン鳥栖U-18 2nd",
       "pts": 12,
       "played": 10,
@@ -118,18 +130,6 @@
       "gf": 22,
       "ga": 19,
       "gd": 3
-    },
-    {
-      "rank": 7,
-      "team": "日章学園2nd",
-      "pts": 12,
-      "played": 9,
-      "won": 3,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 20,
-      "ga": 21,
-      "gd": -1
     },
     {
       "rank": 8,
@@ -756,10 +756,10 @@
       "md": 11,
       "date": "2026-09-13",
       "home": "日章学園2nd",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "鵬翔",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日章学園人工芝サッカー場",
       "kickoff": "11:00"
     },

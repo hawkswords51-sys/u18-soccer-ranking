@@ -105,6 +105,18 @@
     },
     {
       "rank": 5,
+      "team": "神村学園",
+      "pts": 19,
+      "played": 13,
+      "won": 5,
+      "drawn": 4,
+      "lost": 4,
+      "gf": 25,
+      "ga": 26,
+      "gd": -1
+    },
+    {
+      "rank": 6,
       "team": "アビスパ福岡 U-18",
       "pts": 19,
       "played": 12,
@@ -116,7 +128,7 @@
       "gd": -1
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "大津",
       "pts": 18,
       "played": 11,
@@ -128,7 +140,7 @@
       "gd": 3
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "ガンバ大阪ユース",
       "pts": 17,
       "played": 12,
@@ -138,18 +150,6 @@
       "gf": 18,
       "ga": 19,
       "gd": -1
-    },
-    {
-      "rank": 8,
-      "team": "神村学園",
-      "pts": 16,
-      "played": 12,
-      "won": 4,
-      "drawn": 4,
-      "lost": 4,
-      "gf": 21,
-      "ga": 23,
-      "gd": -2
     },
     {
       "rank": 9,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "ジュビロ磐田U-18",
       "pts": 8,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 2,
-      "lost": 8,
-      "gf": 24,
-      "ga": 33,
-      "gd": -9
+      "lost": 9,
+      "gf": 27,
+      "ga": 37,
+      "gd": -10
     },
     {
       "rank": 12,
@@ -2335,12 +2335,46 @@
       "md": 13,
       "date": "2026-09-13",
       "home": "神村学園",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 3,
       "away": "ジュビロ磐田U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿児島県立サッカー・ラグビー場",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1310.pdf",
+      "homeScorers": [
+        {
+          "minute": "12",
+          "name": "大空 星那"
+        },
+        {
+          "minute": "64",
+          "name": "大空 星那"
+        },
+        {
+          "minute": "88",
+          "name": "オウンゴール",
+          "ownGoal": true
+        },
+        {
+          "minute": "90+3",
+          "name": "大空 星那"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "45",
+          "name": "奥田 悠真"
+        },
+        {
+          "minute": "45+4",
+          "name": "奥田 悠真"
+        },
+        {
+          "minute": "72",
+          "name": "服部 公紀"
+        }
+      ]
     },
     {
       "md": 13,

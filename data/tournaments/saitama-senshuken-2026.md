@@ -89,7 +89,7 @@ scraper/update_tournament_results.py が上の source から
 - 川越工 vs 新座柳瀬
 - 川口青陵 vs 進修館/浦和商
 - 川越南 vs 春日部共栄
-- 浦和北 vs 和光国際/大宮光陵
+- 浦和北 3-1 和光国際/大宮光陵
 - 岩槻 vs いずみ
 - 南稜 vs 合同5/上尾
 - 開智中高 vs 久喜北陽
@@ -103,7 +103,7 @@ scraper/update_tournament_results.py が上の source から
 - 深谷商 vs 杉戸
 - 春日部 vs 大宮武蔵野・岩槻商業・浦和ルーテル/松山
 - 朝霞 vs 大宮東
-- 県立川越 vs 飯能/深谷一
+- 県立川越 3-2 飯能/深谷一
 - 越谷北 vs 越谷総技・草加西・松伏
 - 南稜 vs 久喜工業・羽生実業/上尾
 - 所沢商業・日高 vs 越谷南
