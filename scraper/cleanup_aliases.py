@@ -24,8 +24,6 @@ MANUAL_RENAMES: dict[tuple[str, str], str] = {
     ("shizuoka", "藤枝明誠②"):       "藤枝明誠高校2nd",
     ("ibaraki",  "鹿島アントラーズユースB"): "鹿島アントラーズユース2nd",
     ("miyazaki", "テゲバジャーロ"): "テゲバジャーロ宮崎U-18",
-    ("fukushima", "郡山商業高校"): "郡山高校",
-    ("fukushima", "郡山高校"): "郡山商業高校",
     # ★ 福岡: canonical 不在のため rename で正式名にする
     ("fukuoka", "東福岡B"): "東福岡高校2nd",
     ("fukuoka", "アビスパ福岡B"): "アビスパ福岡U-18 2nd",
@@ -225,7 +223,26 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
 # =====================================================================
 # 処理ロジック
 # =====================================================================
+def _assert_no_swap_pairs() -> None:
+    """★2026-09-13追加：MANUAL_RENAMES に A→B と B→A が両方あったら止める。
+
+    両方向を書くと、配列の並び順しだいで「打ち消す」か「2校の名前を入れ替える」かが
+    毎回変わり、正しく働くことがない。実際に福島の郡山高校／郡山商業高校で起き、
+    毎回 teams.json に差分が出続けていた（並びが逆の回には郡山高校に郡山商業の
+    勝点3が付く状態だった）。
+    MANUAL_RENAMES は人が手で書く設定で、待てば直る類の失敗ではないので、
+    警告で流さずにはっきり止める（手順書2-1「外部通信をしないジョブに待ち時間を設けない」）。
+    """
+    for (pref, old), new in MANUAL_RENAMES.items():
+        if MANUAL_RENAMES.get((pref, new)) == old:
+            raise SystemExit(
+                f"[設定エラー] MANUAL_RENAMES に相互スワップがあります: "
+                f"[{pref}] '{old}' ⇄ '{new}'。どちらか一方だけ残してください。"
+            )
+
+
 def apply_manual_renames(prefectures: dict) -> int:
+    _assert_no_swap_pairs()
     count = 0
     for (pref_id, old_name), new_name in MANUAL_RENAMES.items():
         pref = prefectures.get(pref_id)
