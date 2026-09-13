@@ -81,6 +81,18 @@
     },
     {
       "rank": 3,
+      "team": "サンフレッチェ広島F.Cユース",
+      "pts": 24,
+      "played": 13,
+      "won": 7,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 23,
+      "ga": 18,
+      "gd": 5
+    },
+    {
+      "rank": 4,
       "team": "サガン鳥栖U-18",
       "pts": 21,
       "played": 13,
@@ -90,18 +102,6 @@
       "gf": 18,
       "ga": 13,
       "gd": 5
-    },
-    {
-      "rank": 4,
-      "team": "サンフレッチェ広島F.Cユース",
-      "pts": 21,
-      "played": 12,
-      "won": 6,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 20,
-      "ga": 16,
-      "gd": 4
     },
     {
       "rank": 5,
@@ -155,13 +155,13 @@
       "rank": 9,
       "team": "米子北",
       "pts": 15,
-      "played": 11,
+      "played": 12,
       "won": 4,
       "drawn": 3,
-      "lost": 4,
-      "gf": 21,
-      "ga": 17,
-      "gd": 4
+      "lost": 5,
+      "gf": 23,
+      "ga": 20,
+      "gd": 3
     },
     {
       "rank": 10,
@@ -2380,12 +2380,37 @@
       "md": 13,
       "date": "2026-09-13",
       "home": "米子北",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "サンフレッチェ広島F.Cユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "Ａｘｉｓバードスタジアム",
-      "kickoff": "15:00"
+      "kickoff": "15:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1311.pdf",
+      "homeScorers": [
+        {
+          "minute": "10",
+          "name": "洞 琉斗"
+        },
+        {
+          "minute": "72",
+          "name": "洞 琉斗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "24",
+          "name": "正法地 有"
+        },
+        {
+          "minute": "48",
+          "name": "信重 亮二朗"
+        },
+        {
+          "minute": "69",
+          "name": "信重 亮二朗"
+        }
+      ]
     },
     {
       "md": 14,
