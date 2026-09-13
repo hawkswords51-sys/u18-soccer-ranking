@@ -101,7 +101,14 @@ def start_run(expected: dict) -> None:
     #    start_run() は fetch_jfa.py がワークフローの早い段階で呼ぶので、
     #    ここで丸ごと書き換えると県1部の last_change の履歴が毎回消える。
     d = load()
-    d["leagues"] = leagues
+    old_leagues = d.get("leagues", {})
+    # ★2026-09-13: expected に入っていないリーグ（＝今回取りに行かないリーグ）の
+    #   記録はそのまま残す。範囲を絞った手動Run（scope=premier 等）で
+    #   venueCountPrev や fallbackSince の履歴が消えるのを防ぐ。
+    #   全リーグを取る回では expected に全部入るので、従来と完全に同じ結果になる。
+    merged = dict(old_leagues)
+    merged.update(leagues)
+    d["leagues"] = merged
     save(d)
 
 

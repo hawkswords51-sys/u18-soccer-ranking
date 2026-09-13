@@ -21,6 +21,7 @@ data/league_matches/<slug>.json を更新する。
 使い方: python scraper/update_cross_tables.py
         終了コード 0=正常（更新0件でも正常）。要確認があっても0で終わる（ログで通知）。
 """
+import argparse
 import json
 import re
 import sys
@@ -414,10 +415,30 @@ def _record(slug, msg):
 
 
 def main():
+    # ★2026-09-13: 手動Runの範囲指定（scope）に対応。
+    #   絞らずに全15リーグを回すと、scope=premier の回でもプリンス13リーグを
+    #   kokoから取りに行き、_record() で見張りの記録まで書き換えてしまう。
+    #   slug の正本は KOKO_URL / fetch_jfa.LEAGUES 側に置き、ここでは
+    #   「種類」（前方一致）だけを受ける。
+    ap = argparse.ArgumentParser(description="戦績表（星取り表）データを更新する")
+    ap.add_argument("--only", default="",
+                    help="対象リーグをカンマ区切りで指定（例: premier-east,prince-tokai）")
+    ap.add_argument("--group", default="", choices=["", "all", "premier", "prince"],
+                    help="種類でまとめて指定（premier / prince）。--only と併用可")
+    args = ap.parse_args()
+    only = {x.strip() for x in args.only.split(",") if x.strip()} or None
+    if args.group in ("premier", "prince"):
+        group = {s for s in KOKO_URL if s.startswith(args.group + "-")}
+        only = (only & group) if only else group
+    targets = [s for s in KOKO_URL if not only or s in only]
+
     print("=== 戦績表 自動更新 ===")
+    if only:
+        print(f"  対象: {len(targets)}/{len(KOKO_URL)} リーグ"
+              f"（--group {args.group or '-'} / --only {args.only or '-'}）")
     jfa_ok = jfa_premier_ok_slugs()
     results = []
-    for slug in KOKO_URL:
+    for slug in targets:
         msg = process(slug, jfa_ok)
         results.append(msg)
         print(" ", msg)

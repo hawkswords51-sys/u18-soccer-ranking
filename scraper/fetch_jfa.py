@@ -989,7 +989,11 @@ def run(dry_run: bool = False, only: set | None = None) -> list[str]:
     results, rows = [], []
     # [2026-09-06] 取得元の見張り。この実行の枠を作る（ドライランでは記録しない）
     if not dry_run:
-        fetch_status.start_run({c["slug"]: "jfa" for c in LEAGUES})
+        # ★2026-09-13: 今回取りに行くリーグの枠だけ作り直す。
+        #   --only / --group で絞った回に、他リーグの記録を消さないため
+        #   （fetch_status.start_run はマージ方式）。
+        #   全リーグを取る回では targets == LEAGUES なので従来と同じ。
+        fetch_status.start_run({c["slug"]: "jfa" for c in targets})
 
     for cfg in targets:
         slug = cfg["slug"]
@@ -1078,8 +1082,16 @@ def main() -> int:
                         help="取得・検算だけして書き込まない（結果を表で出す）")
     parser.add_argument("--only", default="",
                         help="対象リーグをカンマ区切りで指定（例: prince-tohoku,prince-tokai）")
+    # ★2026-09-13: 種類でまとめて指定する。slug の一覧をワークフローYAMLに
+    #   書かせないための入口（slugの正本は上の LEAGUES テーブル1か所）。
+    parser.add_argument("--group", default="", choices=["", "all", "premier", "prince"],
+                        help="種類でまとめて指定（premier / prince）。--only と併用可")
     args = parser.parse_args()
     only = {s.strip() for s in args.only.split(",") if s.strip()} or None
+    if args.group in ("premier", "prince"):
+        # slug は premier-east / premier-west / prince-* なので前方一致で分かれる
+        group = {c["slug"] for c in LEAGUES if c["slug"].startswith(args.group + "-")}
+        only = (only & group) if only else group
     run(dry_run=args.dry_run, only=only)
     return 0  # 更新0件でも異常ではないので常に0
 

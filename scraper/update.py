@@ -1259,8 +1259,18 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
     return total
 
 
-def scrape_and_update(year: int, dry_run: bool = False) -> int:
-    """メイン処理: スクレイピングしてteams.jsonを更新"""
+def scrape_and_update(year: int, dry_run: bool = False, scope: str = "all") -> int:
+    """メイン処理: スクレイピングしてteams.jsonを更新
+
+    scope で取りに行く範囲を絞れる（2026-09-13追加）。
+      all     … 従来どおり全部
+      premier … プレミアEAST/WESTだけ
+      prince  … プリンス全9地域だけ
+      pref    … 県リーグ（1部・2部）だけ
+    ⚠️ 順位の再計算と _meta の更新は **どの scope でも必ず走らせる**。
+       ここを飛ばすとトップページの「最終更新」が動かず、
+       Keiから見て「反映されていない」ように見える。
+    """
     print(f"\n===== 高円宮杯 {year} データ取得開始 =====")
     print(f"データファイル: {DATA_FILE}")
 
@@ -1302,20 +1312,30 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
     jfa_ok = jfa_ok_slugs()
     jfa_regions = jfa_ok_prince_regions()
 
+    do_premier = scope in ("all", "premier")
+    do_prince = scope in ("all", "prince")
+    do_pref = scope in ("all", "pref")
+
     print("\n[1/4] プレミアリーグ EAST を取得中...")
-    if "premier-east" in jfa_ok:
+    if not do_premier:
+        print(f"  → [scope={scope}] この回では取得しません")
+    elif "premier-east" in jfa_ok:
         print("  → 本日JFA公式JSONで更新済みのためスキップします")
     else:
         _process_premier("EAST", league_urls["premier_east"], "プレミアリーグEAST")
 
     print("\n[2/4] プレミアリーグ WEST を取得中...")
-    if "premier-west" in jfa_ok:
+    if not do_premier:
+        print(f"  → [scope={scope}] この回では取得しません")
+    elif "premier-west" in jfa_ok:
         print("  → 本日JFA公式JSONで更新済みのためスキップします")
     else:
         _process_premier("WEST", league_urls["premier_west"], "プレミアリーグWEST")
 
     print("\n[3/4] プリンスリーグ (全9地域) を取得中...")
-    for region_key, url in league_urls["prince"].items():
+    if not do_prince:
+        print(f"  → [scope={scope}] この回では取得しません")
+    for region_key, url in (league_urls["prince"].items() if do_prince else []):
         candidate_prefs = PRINCE_REGION_PREFS.get(region_key, [])
         region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
         print(f"\n  地域: {region_key} / {region_name}")
@@ -1342,13 +1362,19 @@ def scrape_and_update(year: int, dry_run: bool = False) -> int:
         time.sleep(1)
 
     print("\n[4/4] 県リーグ (各都道府県) を取得中...")
-    pref_updated = scrape_pref_leagues(data, already_updated)
-    total_updated += pref_updated
-    print(f"\n  県リーグ更新チーム数: {pref_updated}")
+    if do_pref:
+        pref_updated = scrape_pref_leagues(data, already_updated)
+        total_updated += pref_updated
+        print(f"\n  県リーグ更新チーム数: {pref_updated}")
+    else:
+        print(f"  → [scope={scope}] 県リーグはこの回では取得しません")
 
     print("\n[4.5/4] 県リーグ2部 (対象県のみ) を取得中...")
-    div2_count = scrape_pref_second_divisions(data)
-    print(f"  県リーグ2部 取得チーム数: {div2_count}")
+    if do_pref:
+        div2_count = scrape_pref_second_divisions(data)
+        print(f"  県リーグ2部 取得チーム数: {div2_count}")
+    else:
+        print(f"  → [scope={scope}] 県リーグ2部はこの回では取得しません")
 
     print(f"\n順位を再計算中... ({len(data)} 都道府県)")
     recalculate_ranks(data)
@@ -1376,9 +1402,13 @@ def main():
                         help="対象年度 (デフォルト: 今年)")
     parser.add_argument("--dry-run", action="store_true",
                         help="実際には保存せずテスト実行")
+    # ★2026-09-13: 手動Runの範囲指定（ワークフローの scope から渡す）
+    parser.add_argument("--scope", default="all",
+                        choices=["all", "premier", "prince", "pref"],
+                        help="取りに行く範囲（既定 all）")
     args = parser.parse_args()
 
-    updated = scrape_and_update(year=args.year, dry_run=args.dry_run)
+    updated = scrape_and_update(year=args.year, dry_run=args.dry_run, scope=args.scope)
     sys.exit(0 if updated >= 0 else 1)
 
 

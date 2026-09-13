@@ -29,6 +29,19 @@ on:
         type: boolean
         required: false
         default: false
+      # ★2026-09-13 追加：プレミアの結果を最短で出すための範囲指定
+      #   9分の実行のうち8分以上は「プレミア以外の取得」だった（run #1200 実測）。
+      #   生成・コミット・通知はどの範囲でも必ず走る。取得だけを絞る。
+      scope:
+        description: '更新する範囲（premier=プレミアだけ・約1分）'
+        type: choice
+        required: false
+        default: 'all'
+        options:
+          - all
+          - premier
+          - prince
+          - pref
 
   # データ・記事ファイルを編集して push したら即時反映（手動 Run workflow 不要）
   # ※push起動時はスクレイピング(順位取得等)をスキップし、ページ再生成＋コミットだけ走る
@@ -67,6 +80,12 @@ jobs:
     permissions:
       contents: write   # data/teams.json をコミット・プッシュするため
 
+    # ★2026-09-13: 手動Runの範囲指定。schedule / push では inputs が null に
+    #   なるので 'all' に落とす（ここが空文字になると env.SCOPE == 'all' の条件が
+    #   すべて false になり、見張り2本が二度と走らなくなる）。
+    env:
+      SCOPE: ${{ github.event.inputs.scope || 'all' }}
+
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
@@ -98,11 +117,16 @@ jobs:
       #   取得や検算に失敗したリーグは何も書かずに終わるので、従来どおりkokoが使われる。
       #   リーグごとに独立しているので、1リーグ失敗しても他はそのまま更新される。
       - name: プレミア・プリンスをJFA公式から更新
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE != 'pref' }}
         continue-on-error: true
         run: |
+          # ★2026-09-13: scope=premier/prince のときだけ種類を渡す。
+          #   リーグのslug一覧はYAMLに書かない（正本は fetch_jfa.py の LEAGUES）。
+          ARGS=""
+          if [ "$SCOPE" != "all" ]; then ARGS="--group $SCOPE"; fi
           if [ -f scraper/fetch_jfa.py ]; then
-            python scraper/fetch_jfa.py
+            python scraper/fetch_jfa.py $ARGS
           else
             echo "scraper/fetch_jfa.py がまだありません。スキップ。"
           fi
@@ -115,6 +139,9 @@ jobs:
           ARGS=""
           if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
           if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          # ★2026-09-13: 取得の範囲だけを絞る。順位の再計算と _meta の更新は
+          #   update.py の中で scope に関係なく必ず走る（ページが古いまま残らないように）。
+          ARGS="$ARGS --scope $SCOPE"
           python scraper/update.py $ARGS
 
       - name: 近似重複チームを自動検出・削除
@@ -186,11 +213,16 @@ jobs:
       # ★ 戦績表データ(data/league_matches)を更新（順位表と同じ実行で一緒に更新）
       #   ページ生成より前に実行し、最新の戦績表がリーグ／県ページに反映されるようにする
       - name: 戦績表データを更新（プレミア・プリンス）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE != 'pref' }}
         continue-on-error: true
         run: |
+          # ★2026-09-13: 絞らないと scope=premier の回でもプリンス13リーグを
+          #   kokoから取りに行き、見張りの記録まで書き換わる。
+          ARGS=""
+          if [ "$SCOPE" != "all" ]; then ARGS="--group $SCOPE"; fi
           if [ -f scraper/update_cross_tables.py ]; then
-            python scraper/update_cross_tables.py
+            python scraper/update_cross_tables.py $ARGS
           else
             echo "scraper/update_cross_tables.py がまだありません。スキップ。"
           fi
@@ -203,7 +235,8 @@ jobs:
       #   ⚠️ 会場だけを補い、キックオフ時刻には触らない。同じ試合で出典どうしの時刻が
       #      食い違うことがあり（九州1部で2件）、どちらが正しいか判定する材料が無いため。
       - name: フォールバック中のリーグの会場をJFAから補完
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE != 'pref' }}
         continue-on-error: true
         run: |
           if [ -f scraper/backfill_venues.py ]; then
@@ -221,7 +254,8 @@ jobs:
       #   スコア誤り（千葉2件・愛知1件）や重複二重計上（岩手）も解消される。
       #   これらの県は下の junior-soccer のステップでは [skip] される。
       - name: 戦績表データを更新（県1部・県協会公式出典）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && (env.SCOPE == 'all' || env.SCOPE == 'pref') }}
         continue-on-error: true
         run: |
           if [ -f scraper/fetch_pref_official.py ]; then
@@ -231,7 +265,8 @@ jobs:
           fi
 
       - name: 戦績表データを更新（県1部・junior-soccer出典）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && (env.SCOPE == 'all' || env.SCOPE == 'pref') }}
         continue-on-error: true
         run: |
           if [ -f scraper/update_pref_cross_tables.py ]; then
@@ -241,7 +276,8 @@ jobs:
           fi
 
       - name: 県別得点ランキングを更新（県協会公式 / GoalNote）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && (env.SCOPE == 'all' || env.SCOPE == 'pref') }}
         continue-on-error: true
         run: |
           if [ -f scraper/fetch_pref_scorers.py ]; then
@@ -254,7 +290,8 @@ jobs:
       #   出典: 関東=連盟公式の結果サイト / 東北=JFA順位表HTML / 他7地域=JFA星取表PDF
       #   検算NG・取得失敗のリーグは既存データを維持する（誤データを載せない安全設計）
       - name: U-15地域リーグ順位表を更新
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
         continue-on-error: true
         run: |
           if [ -f scraper/fetch_u15_leagues.py ]; then
@@ -267,7 +304,8 @@ jobs:
       #   対象: data/tournaments/*.md のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
       #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）
       - name: 県予選トーナメント結果を更新（koko-soccer出典）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
         continue-on-error: true
         run: |
           if [ -f scraper/update_tournament_results.py ]; then
@@ -506,7 +544,8 @@ jobs:
       #      止めない（古いデータでもサイトは動き続け、GitHubのトップに×が出るだけ）。
       #   ⚠️ continue-on-error は付けない（付けると赤にならず、作った意味が無くなる）。
       - name: 県1部の鮮度を点検（止まっていたら赤にする）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
         run: |
           if [ -f scraper/audit_pref_freshness.py ]; then
             python scraper/audit_pref_freshness.py
@@ -515,7 +554,8 @@ jobs:
           fi
 
       - name: 取得元を点検（JFA以外に落ちたリーグを検出）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
         run: |
           if [ -f scraper/check_fetch_status.py ]; then
             python scraper/check_fetch_status.py
