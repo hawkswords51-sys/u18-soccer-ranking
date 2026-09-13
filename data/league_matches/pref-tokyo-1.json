@@ -2,27 +2,27 @@
   "league": "高円宮杯 JFA U-18 サッカーリーグ 東京 T1（東京都1部）",
   "season": "2026",
   "source": "https://www.tleague-u18.com/schedule.php?dy=2026&dt=1&ltno=16",
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-09-14",
   "teams": [
     {
       "name": "三菱養和",
       "short": "三菱養和"
     },
     {
-      "name": "堀越",
-      "short": "堀越"
-    },
-    {
       "name": "実践学園",
       "short": "実践学園"
     },
     {
-      "name": "久我山",
-      "short": "久我山"
+      "name": "堀越",
+      "short": "堀越"
     },
     {
       "name": "大成",
       "short": "大成"
+    },
+    {
+      "name": "久我山",
+      "short": "久我山"
     },
     {
       "name": "多摩大目黒",
@@ -60,6 +60,18 @@
     },
     {
       "rank": 2,
+      "team": "実践学園",
+      "points": 22,
+      "played": 11,
+      "won": 7,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 15,
+      "ga": 5,
+      "gd": 10
+    },
+    {
+      "rank": 3,
       "team": "堀越",
       "points": 22,
       "played": 11,
@@ -71,31 +83,7 @@
       "gd": 8
     },
     {
-      "rank": 3,
-      "team": "実践学園",
-      "points": 19,
-      "played": 10,
-      "won": 6,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 14,
-      "ga": 5,
-      "gd": 9
-    },
-    {
       "rank": 4,
-      "team": "久我山",
-      "points": 14,
-      "played": 9,
-      "won": 4,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 9,
-      "ga": 10,
-      "gd": -1
-    },
-    {
-      "rank": 5,
       "team": "大成",
       "points": 14,
       "played": 12,
@@ -104,6 +92,18 @@
       "lost": 4,
       "gf": 12,
       "ga": 14,
+      "gd": -2
+    },
+    {
+      "rank": 5,
+      "team": "久我山",
+      "points": 14,
+      "played": 10,
+      "won": 4,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 9,
+      "ga": 11,
       "gd": -2
     },
     {
@@ -174,7 +174,7 @@
       "home": "三菱養和",
       "hs": null,
       "as": null,
-      "away": "堀越",
+      "away": "実践学園",
       "status": "scheduled"
     },
     {
@@ -183,17 +183,8 @@
       "home": "三菱養和",
       "hs": null,
       "as": null,
-      "away": "実践学園",
+      "away": "堀越",
       "status": "scheduled"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-21",
-      "home": "三菱養和",
-      "hs": 3,
-      "as": 0,
-      "away": "久我山",
-      "status": "played"
     },
     {
       "md": 7,
@@ -202,6 +193,15 @@
       "hs": 3,
       "as": 2,
       "away": "大成",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-21",
+      "home": "三菱養和",
+      "hs": 3,
+      "as": 0,
+      "away": "久我山",
       "status": "played"
     },
     {
@@ -250,87 +250,6 @@
       "status": "played"
     },
     {
-      "md": 6,
-      "date": "2026-05-04",
-      "home": "堀越",
-      "hs": 1,
-      "as": 0,
-      "away": "三菱養和",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-21",
-      "home": "堀越",
-      "hs": 2,
-      "as": 1,
-      "away": "実践学園",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "堀越",
-      "hs": null,
-      "as": null,
-      "away": "久我山",
-      "status": "scheduled"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-13",
-      "home": "堀越",
-      "hs": 1,
-      "as": 0,
-      "away": "大成",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-18",
-      "home": "堀越",
-      "hs": 0,
-      "as": 0,
-      "away": "多摩大目黒",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "堀越",
-      "hs": null,
-      "as": null,
-      "away": "国士舘",
-      "status": "scheduled"
-    },
-    {
-      "md": 1,
-      "date": "2026-04-01",
-      "home": "堀越",
-      "hs": 2,
-      "as": 2,
-      "away": "FC東京B",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-29",
-      "home": "堀越",
-      "hs": 3,
-      "as": 3,
-      "away": "帝京B",
-      "status": "played"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-10",
-      "home": "堀越",
-      "hs": 0,
-      "as": 2,
-      "away": "早稲田実業",
-      "status": "played"
-    },
-    {
       "md": 4,
       "date": "2026-04-19",
       "home": "実践学園",
@@ -349,21 +268,21 @@
       "status": "scheduled"
     },
     {
-      "md": 3,
-      "date": "2026-04-12",
-      "home": "実践学園",
-      "hs": 0,
-      "as": 1,
-      "away": "久我山",
-      "status": "played"
-    },
-    {
       "md": 10,
       "date": "2026-06-28",
       "home": "実践学園",
       "hs": 1,
       "as": 1,
       "away": "大成",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-12",
+      "home": "実践学園",
+      "hs": 0,
+      "as": 1,
+      "away": "久我山",
       "status": "played"
     },
     {
@@ -412,83 +331,83 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "久我山",
-      "hs": null,
-      "as": null,
+      "md": 6,
+      "date": "2026-05-04",
+      "home": "堀越",
+      "hs": 1,
+      "as": 0,
       "away": "三菱養和",
-      "status": "scheduled"
+      "status": "played"
     },
     {
-      "md": 5,
-      "date": "2026-04-26",
-      "home": "久我山",
+      "md": 9,
+      "date": "2026-06-21",
+      "home": "堀越",
+      "hs": 2,
+      "as": 1,
+      "away": "実践学園",
+      "status": "played"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-13",
+      "home": "堀越",
       "hs": 1,
-      "as": 2,
-      "away": "堀越",
+      "as": 0,
+      "away": "大成",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "久我山",
+      "home": "堀越",
       "hs": null,
       "as": null,
-      "away": "実践学園",
+      "away": "久我山",
       "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "久我山",
-      "hs": null,
-      "as": null,
-      "away": "大成",
-      "status": "scheduled"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-10",
-      "home": "久我山",
-      "hs": 2,
-      "as": 2,
+      "md": 4,
+      "date": "2026-04-18",
+      "home": "堀越",
+      "hs": 0,
+      "as": 0,
       "away": "多摩大目黒",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "久我山",
+      "home": "堀越",
       "hs": null,
       "as": null,
       "away": "国士舘",
       "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "久我山",
-      "hs": null,
-      "as": null,
-      "away": "FC東京B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "久我山",
-      "hs": null,
-      "as": null,
-      "away": "帝京B",
-      "status": "scheduled"
-    },
-    {
       "md": 1,
-      "date": "2026-04-02",
-      "home": "久我山",
-      "hs": 1,
-      "as": 0,
+      "date": "2026-04-01",
+      "home": "堀越",
+      "hs": 2,
+      "as": 2,
+      "away": "FC東京B",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-29",
+      "home": "堀越",
+      "hs": 3,
+      "as": 3,
+      "away": "帝京B",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-10",
+      "home": "堀越",
+      "hs": 0,
+      "as": 2,
       "away": "早稲田実業",
       "status": "played"
     },
@@ -502,21 +421,21 @@
       "status": "scheduled"
     },
     {
-      "md": 3,
-      "date": "2026-04-12",
-      "home": "大成",
-      "hs": 1,
-      "as": 1,
-      "away": "堀越",
-      "status": "played"
-    },
-    {
       "md": 1,
       "date": "2026-04-01",
       "home": "大成",
       "hs": 0,
       "as": 2,
       "away": "実践学園",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-12",
+      "home": "大成",
+      "hs": 1,
+      "as": 1,
+      "away": "堀越",
       "status": "played"
     },
     {
@@ -574,6 +493,87 @@
       "status": "scheduled"
     },
     {
+      "md": 0,
+      "date": "",
+      "home": "久我山",
+      "hs": null,
+      "as": null,
+      "away": "三菱養和",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-13",
+      "home": "久我山",
+      "hs": 0,
+      "as": 1,
+      "away": "実践学園",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-26",
+      "home": "久我山",
+      "hs": 1,
+      "as": 2,
+      "away": "堀越",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "久我山",
+      "hs": null,
+      "as": null,
+      "away": "大成",
+      "status": "scheduled"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-10",
+      "home": "久我山",
+      "hs": 2,
+      "as": 2,
+      "away": "多摩大目黒",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "久我山",
+      "hs": null,
+      "as": null,
+      "away": "国士舘",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "久我山",
+      "hs": null,
+      "as": null,
+      "away": "FC東京B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "久我山",
+      "hs": null,
+      "as": null,
+      "away": "帝京B",
+      "status": "scheduled"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-02",
+      "home": "久我山",
+      "hs": 1,
+      "as": 0,
+      "away": "早稲田実業",
+      "status": "played"
+    },
+    {
       "md": 8,
       "date": "2026-06-13",
       "home": "多摩大目黒",
@@ -581,15 +581,6 @@
       "as": 1,
       "away": "三菱養和",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "多摩大目黒",
-      "hs": null,
-      "as": null,
-      "away": "堀越",
-      "status": "scheduled"
     },
     {
       "md": 11,
@@ -606,7 +597,7 @@
       "home": "多摩大目黒",
       "hs": null,
       "as": null,
-      "away": "久我山",
+      "away": "堀越",
       "status": "scheduled"
     },
     {
@@ -617,6 +608,15 @@
       "as": 1,
       "away": "大成",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "多摩大目黒",
+      "hs": null,
+      "as": null,
+      "away": "久我山",
+      "status": "scheduled"
     },
     {
       "md": 1,
@@ -664,15 +664,6 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "国士舘",
-      "hs": null,
-      "as": null,
-      "away": "堀越",
-      "status": "scheduled"
-    },
-    {
       "md": 6,
       "date": "2026-05-02",
       "home": "国士舘",
@@ -682,13 +673,13 @@
       "status": "played"
     },
     {
-      "md": 2,
-      "date": "2026-04-04",
+      "md": 0,
+      "date": "",
       "home": "国士舘",
-      "hs": 2,
-      "as": 1,
-      "away": "久我山",
-      "status": "played"
+      "hs": null,
+      "as": null,
+      "away": "堀越",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -698,6 +689,15 @@
       "as": null,
       "away": "大成",
       "status": "scheduled"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-04",
+      "home": "国士舘",
+      "hs": 2,
+      "as": 1,
+      "away": "久我山",
+      "status": "played"
     },
     {
       "md": 10,
@@ -745,15 +745,6 @@
       "status": "scheduled"
     },
     {
-      "md": 10,
-      "date": "2026-06-24",
-      "home": "FC東京B",
-      "hs": 1,
-      "as": 4,
-      "away": "堀越",
-      "status": "played"
-    },
-    {
       "md": 0,
       "date": "",
       "home": "FC東京B",
@@ -763,12 +754,12 @@
       "status": "scheduled"
     },
     {
-      "md": 4,
-      "date": "2026-04-18",
+      "md": 10,
+      "date": "2026-06-24",
       "home": "FC東京B",
       "hs": 1,
-      "as": 2,
-      "away": "久我山",
+      "as": 4,
+      "away": "堀越",
       "status": "played"
     },
     {
@@ -778,6 +769,15 @@
       "hs": 1,
       "as": 1,
       "away": "大成",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-18",
+      "home": "FC東京B",
+      "hs": 1,
+      "as": 2,
+      "away": "久我山",
       "status": "played"
     },
     {
@@ -826,15 +826,6 @@
       "status": "scheduled"
     },
     {
-      "md": 11,
-      "date": "2026-09-06",
-      "home": "堀越",
-      "hs": 3,
-      "as": 0,
-      "away": "帝京B",
-      "status": "played"
-    },
-    {
       "md": 7,
       "date": "2026-05-10",
       "home": "帝京B",
@@ -844,12 +835,12 @@
       "status": "played"
     },
     {
-      "md": 8,
-      "date": "2026-06-14",
-      "home": "帝京B",
-      "hs": 0,
+      "md": 11,
+      "date": "2026-09-06",
+      "home": "堀越",
+      "hs": 3,
       "as": 0,
-      "away": "久我山",
+      "away": "帝京B",
       "status": "played"
     },
     {
@@ -859,6 +850,15 @@
       "hs": 2,
       "as": 3,
       "away": "大成",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-06-14",
+      "home": "帝京B",
+      "hs": 0,
+      "as": 0,
+      "away": "久我山",
       "status": "played"
     },
     {
@@ -912,15 +912,6 @@
       "home": "早稲田実業",
       "hs": null,
       "as": null,
-      "away": "堀越",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "早稲田実業",
-      "hs": null,
-      "as": null,
       "away": "実践学園",
       "status": "scheduled"
     },
@@ -930,7 +921,7 @@
       "home": "早稲田実業",
       "hs": null,
       "as": null,
-      "away": "久我山",
+      "away": "堀越",
       "status": "scheduled"
     },
     {
@@ -941,6 +932,15 @@
       "as": 1,
       "away": "大成",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "早稲田実業",
+      "hs": null,
+      "as": null,
+      "away": "久我山",
+      "status": "scheduled"
     },
     {
       "md": 0,

@@ -47,7 +47,7 @@ scraper/update_tournament_results.py が上の source から
 - 合同B 0-7 上越総合技術/三条東
 - 新潟一 1-6 五泉
 - 新潟商 13-0 合同A
-- 新潟向陽/長岡商 vs 関根学園
+- 新潟向陽/長岡商 5-3 関根学園
 - 巻 2-1 万代
 - 加茂 1-3 新発田南
 
@@ -78,3 +78,4 @@ scraper/update_tournament_results.py が上の source から
 - 新潟工/新発田南 vs 三条/開志国際
 - 加茂暁星/敬和学園 vs 新潟商/中越
 - 新潟西/五泉 vs 新潟南/上越
+- 新潟江南/新潟向陽 vs 上越総合技術/日本文理
