@@ -181,11 +181,11 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-13T01:26:24+09:00",
+  "updatedAt": "2026-09-13T09:09:09+09:00",
   "pref_leagues": {
     "aichi": {
-      "result": "ok",
-      "result_note": "消化61試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18269 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18269 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -240,8 +240,8 @@
       "status": "ok"
     },
     "chiba": {
-      "result": "ok",
-      "result_note": "消化49試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18441 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18441 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -410,8 +410,8 @@
       "status": "ok"
     },
     "ibaraki": {
-      "result": "ok",
-      "result_note": "消化59試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18463 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18463 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -448,8 +448,8 @@
       "status": "ok"
     },
     "iwate": {
-      "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18702 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18702 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -469,8 +469,8 @@
       "status": "ok"
     },
     "kagawa": {
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18633 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18633 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -658,8 +658,8 @@
       "status": "ok"
     },
     "nagasaki": {
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18526 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18526 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -945,8 +945,8 @@
       "status": "ok"
     },
     "tottori": {
-      "result": "ok",
-      "result_note": "消化34試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=19293 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=19293 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": true,
@@ -1003,8 +1003,8 @@
       "status": "ok"
     },
     "yamagata": {
-      "result": "ok",
-      "result_note": "消化69試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.goalnote.net/detail-standings.php?tid=18649 の取得に失敗 (HTTPSConnectionPool(host='www.goalnote.net', port=443): Max retries exceeded with url: /detail-standings.php?tid=18649 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,
@@ -1024,7 +1024,7 @@
     },
     "yamaguchi": {
       "result": "ok",
-      "result_note": "消化40試合に更新（検算一致）",
+      "result_note": "消化42試合に更新（検算一致）",
       "result_date": "2026-09-13",
       "season": "2026",
       "complete": false,

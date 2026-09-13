@@ -1427,10 +1427,10 @@
         ]
       },
       {
+        "id": "f007",
         "name": "郡山商業高校",
         "league": "福島F1リーグ",
         "rank": 11,
-        "prefectureRank": 11,
         "points": 3,
         "played": 14,
         "won": 1,
@@ -1438,6 +1438,7 @@
         "lost": 13,
         "goalsFor": 2,
         "goalsAgainst": 86,
+        "prefectureRank": 11,
         "leagueRank": 10,
         "aliases": [
           "郡山商",
@@ -1463,10 +1464,10 @@
         "leagueRank": 9
       },
       {
-        "id": "f007",
         "name": "郡山高校",
         "league": "福島F1リーグ",
         "rank": 13,
+        "prefectureRank": 13,
         "points": 14,
         "played": 14,
         "won": 4,
@@ -1474,7 +1475,6 @@
         "lost": 8,
         "goalsFor": 16,
         "goalsAgainst": 26,
-        "prefectureRank": 13,
         "leagueRank": 8,
         "aliases": [
           "郡山商",
@@ -8323,15 +8323,15 @@
         "name": "高川学園高校2nd",
         "league": "山口県1部",
         "rank": 1,
-        "points": 30,
-        "played": 10,
-        "won": 10,
+        "points": 33,
+        "played": 11,
+        "won": 11,
         "drawn": 0,
         "lost": 0,
-        "goalsFor": 72,
+        "goalsFor": 76,
         "goalsAgainst": 5,
         "prefectureRank": 1,
-        "goalDiff": 67,
+        "goalDiff": 71,
         "leagueRank": 1,
         "aliases": [
           "高川B",
@@ -8392,15 +8392,15 @@
         "name": "西京高校",
         "league": "山口県1部",
         "rank": 5,
-        "points": 21,
-        "played": 9,
-        "won": 7,
+        "points": 24,
+        "played": 10,
+        "won": 8,
         "drawn": 0,
         "lost": 2,
-        "goalsFor": 64,
+        "goalsFor": 73,
         "goalsAgainst": 9,
         "prefectureRank": 5,
-        "goalDiff": 55,
+        "goalDiff": 64,
         "leagueRank": 3
       },
       {
@@ -8448,15 +8448,15 @@
         "league": "山口県1部",
         "rank": 8,
         "points": 6,
-        "played": 9,
+        "played": 10,
         "won": 2,
         "drawn": 0,
-        "lost": 7,
+        "lost": 8,
         "goalsFor": 8,
-        "goalsAgainst": 48,
+        "goalsAgainst": 52,
         "prefectureRank": 8,
-        "goalDiff": -40,
-        "leagueRank": 6,
+        "goalDiff": -44,
+        "leagueRank": 7,
         "aliases": [
           "山口鴻城"
         ]
@@ -8475,7 +8475,7 @@
         "goalsAgainst": 54,
         "prefectureRank": 9,
         "goalDiff": -43,
-        "leagueRank": 7
+        "leagueRank": 6
       },
       {
         "id": "yg011",
@@ -8484,13 +8484,13 @@
         "rank": 10,
         "prefectureRank": 10,
         "points": 4,
-        "played": 9,
+        "played": 10,
         "won": 1,
         "drawn": 1,
-        "lost": 7,
+        "lost": 8,
         "goalsFor": 16,
-        "goalsAgainst": 49,
-        "goalDiff": -33,
+        "goalsAgainst": 58,
+        "goalDiff": -42,
         "leagueRank": 8,
         "aliases": [
           "宇部工",
@@ -11306,8 +11306,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-13 01:26",
+    "lastUpdated": "2026-09-13 09:09",
     "year": 2026,
-    "updatedCount": 393
+    "updatedCount": 397
   }
 }
