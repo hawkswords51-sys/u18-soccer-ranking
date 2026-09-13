@@ -28,6 +28,7 @@ from recent_results import render_recent_results_html
 from home_pickup import update_home_pickup
 from scorer_table import render_scorer_ranking_html
 from league_zones import resolve_zones, zone_row_attrs, render_zone_legend_html
+from pref_order import league_category  # プレミア/プリンス/県リーグの分類（正本）
 from league_contents import (
     TACTICAL_PREMIER_EAST, WATCHING_PREMIER_EAST,
     TACTICAL_PREMIER_WEST, WATCHING_PREMIER_WEST,
@@ -564,15 +565,6 @@ def html_escape(s):
         .replace("<", "&lt;").replace(">", "&gt;")
         .replace('"', "&quot;").replace("'", "&#39;")
     )
-
-
-def league_category(team_league):
-    lg = team_league or ""
-    if "プレミアリーグ" in lg:
-        return "premier"
-    if "プリンスリーグ" in lg:
-        return "prince"
-    return "prefecture"
 
 
 ALL_TEAMS = []  # teams.json の全チーム（昇降格圏のセカンドチーム判定に使う）

@@ -331,6 +331,19 @@ jobs:
             echo "scraper/sync_teams_from_pref.py がまだありません。スキップ。"
           fi
 
+      # ★ 県内総合順位を、ページの表示と同じ並びで振り直す（2026-09-13新設）
+      #   ⚠️ 必ず sync_teams_from_pref.py の**後ろ**に置くこと。
+      #      県1部の leagueRank はそこで確定するので、前に置くと1回ぶん古い値で並べてしまう。
+      #   ⚠️ 必ずページ生成の**前**に置くこと。
+      - name: 県内総合順位を振り直す（ページの並びと一致させる）
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/renumber_pref_overall.py ]; then
+            python scraper/renumber_pref_overall.py
+          else
+            echo "scraper/renumber_pref_overall.py がまだありません。スキップ。"
+          fi
+
       # ★ Phase 9-A: 都道府県別 SEO ランディングページ自動生成
       - name: 都道府県別 SEO ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}

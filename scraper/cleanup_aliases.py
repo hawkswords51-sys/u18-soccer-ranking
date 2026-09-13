@@ -408,7 +408,8 @@ def remove_teams(prefectures: dict, targets: list[tuple[str, str, str]]) -> int:
 
 
 def renumber_pref_ranks(prefectures: dict) -> int:
-    """削除後に prefectureRank と rank を 1..N で振り直す。"""
+    """削除後に prefectureRank と rank を 1..N で振り直す。
+    公開される並びの正本は pref_order.pref_sort_key（renumber_pref_overall.py が振る）。"""
     count = 0
     for pref_id, pref in prefectures.items():
         if not isinstance(pref, dict) or "teams" not in pref:

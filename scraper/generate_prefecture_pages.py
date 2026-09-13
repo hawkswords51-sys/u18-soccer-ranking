@@ -31,6 +31,7 @@ from recent_results import render_recent_results_by_date_html
 from scorer_table import render_scorer_ranking_html
 from prefecture_intro import render_prefecture_intro_html, render_ranking_method_html
 import generate_jyouth_page as _bracket  # トーナメント表(SVG)描画を再利用
+from pref_order import league_category, pref_sort_key  # 県内総合順位の並べ替えルール（正本）
 
 class _JSTDate:
     """GitHubのサーバーは世界標準時のため、日本時間の「今日」を返す"""
@@ -1009,30 +1010,11 @@ def html_escape(s):
     )
 
 
-def league_category(team_league):
-    lg = team_league or ""
-    if "プレミアリーグ" in lg:
-        return "premier"
-    if "プリンスリーグ" in lg:
-        return "prince"
-    return "prefecture"
-
 def get_notable_teams_for_title(teams):
     """都道府県の上位チーム（タイトル用）を最大3校返す。
     優先：プレミア > プリンス1部 > プリンス2部 > 県1部
     控えチーム（2nd, 3rd, セカンド等）と長すぎる名前は除外。
     """
-    tier_order = {"premier": 0, "prince": 1, "prefecture": 2}
-
-    def get_division(league):
-        if not league:
-            return 9
-        if "1部" in league:
-            return 1
-        if "2部" in league:
-            return 2
-        return 0
-
     def is_main_team(name):
         """1軍チーム判定（控えチームを除外）"""
         suffixes = ["2nd", "3rd", "4th", "セカンド", "サード",
@@ -1050,14 +1032,8 @@ def get_notable_teams_for_title(teams):
                 .replace("帝京大学", "帝京大")   # 帝京大学可児 → 帝京大可児
                 .strip())
 
-    sorted_teams = sorted(
-        teams,
-        key=lambda t: (
-            tier_order.get(league_category(t.get("league")), 9),
-            get_division(t.get("league")),
-            t.get("rank", 99),
-        )
-    )
+    # 並べ替えのルールは pref_order.py が正本（ページの順位表と同じ並び）
+    sorted_teams = sorted(teams, key=pref_sort_key)
 
     notable = []
     for t in sorted_teams:
@@ -1109,30 +1085,8 @@ def count_team_types(teams):
 
 
 def sort_teams(teams):
-    """ティア順 → 部(1部/2部) → 県内順位順にソート"""
-    tier_order = {"premier": 0, "prince": 1, "prefecture": 2}
-
-    def get_division(league):
-        """リーグ名から'1部'/'2部'などを抽出して数値で返す。
-        部の表記がなければ0(プレミアEAST/WESTなど)。"""
-        if not league:
-            return 9
-        if "1部" in league:
-            return 1
-        if "2部" in league:
-            return 2
-        if "3部" in league:
-            return 3
-        return 0
-
-    return sorted(
-        teams,
-        key=lambda t: (
-            tier_order.get(league_category(t.get("league")), 9),
-            get_division(t.get("league")),
-            t.get("rank") or 99,
-        ),
-    )
+    """県内総合順位の並びにソート（ルールの正本は pref_order.pref_sort_key）"""
+    return sorted(teams, key=pref_sort_key)
 
 def format_team_name(name):
     """チーム名: U-18, 2nd, 3rd, ユース, F.C. を <span class="nb"> で改行禁止に"""
