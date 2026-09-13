@@ -70,13 +70,13 @@
     {
       "rank": 2,
       "team": "名古屋グランパスU-18",
-      "pts": 24,
-      "played": 12,
+      "pts": 25,
+      "played": 13,
       "won": 7,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 2,
-      "gf": 30,
-      "ga": 17,
+      "gf": 31,
+      "ga": 18,
       "gd": 13
     },
     {
@@ -105,6 +105,18 @@
     },
     {
       "rank": 5,
+      "team": "アビスパ福岡 U-18",
+      "pts": 20,
+      "played": 13,
+      "won": 6,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 17,
+      "ga": 18,
+      "gd": -1
+    },
+    {
+      "rank": 6,
       "team": "神村学園",
       "pts": 19,
       "played": 13,
@@ -113,18 +125,6 @@
       "lost": 4,
       "gf": 25,
       "ga": 26,
-      "gd": -1
-    },
-    {
-      "rank": 6,
-      "team": "アビスパ福岡 U-18",
-      "pts": 19,
-      "played": 12,
-      "won": 6,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 16,
-      "ga": 17,
       "gd": -1
     },
     {
@@ -2313,12 +2313,25 @@
       "md": 13,
       "date": "2026-09-13",
       "home": "名古屋グランパスU-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "アビスパ福岡 U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "トヨタスポーツセンター(天然芝)",
-      "kickoff": "18:00"
+      "kickoff": "18:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1312.pdf",
+      "homeScorers": [
+        {
+          "minute": "13",
+          "name": "八色 隼人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "47",
+          "name": "藤川 虎三"
+        }
+      ]
     },
     {
       "md": 13,
