@@ -38,25 +38,25 @@
       "short": "広島翔洋"
     },
     {
-      "name": "広島観音",
-      "short": "広島観音"
-    },
-    {
       "name": "銀河学院",
       "short": "銀河学院"
+    },
+    {
+      "name": "広島観音",
+      "short": "広島観音"
     }
   ],
   "official_standings": [
     {
       "rank": 1,
       "team": "瀬戸内セカンド",
-      "points": 26,
-      "played": 10,
+      "points": 27,
+      "played": 11,
       "won": 8,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 0,
-      "gf": 28,
-      "ga": 4,
+      "gf": 29,
+      "ga": 5,
       "gd": 24
     },
     {
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "銀河学院",
+      "points": 7,
+      "played": 10,
+      "won": 2,
+      "drawn": 1,
+      "lost": 7,
+      "gf": 10,
+      "ga": 23,
+      "gd": -13
+    },
+    {
+      "rank": 10,
       "team": "広島観音",
       "points": 7,
       "played": 11,
@@ -154,18 +166,6 @@
       "gf": 9,
       "ga": 34,
       "gd": -25
-    },
-    {
-      "rank": 10,
-      "team": "銀河学院",
-      "points": 6,
-      "played": 9,
-      "won": 2,
-      "drawn": 0,
-      "lost": 7,
-      "gf": 9,
-      "ga": 22,
-      "gd": -13
     }
   ],
   "matches": [
@@ -234,20 +234,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "瀬戸内セカンド",
-      "hs": 3,
-      "as": 0,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-11",
       "home": "瀬戸内セカンド",
       "hs": 4,
       "as": 0,
       "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "瀬戸内セカンド",
+      "hs": 3,
+      "as": 0,
+      "away": "広島観音",
       "status": "played"
     },
     {
@@ -315,20 +315,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-18",
-      "home": "如水館",
-      "hs": 3,
-      "as": 1,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-16",
       "home": "如水館",
       "hs": 3,
       "as": 0,
       "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "如水館",
+      "hs": 3,
+      "as": 1,
+      "away": "広島観音",
       "status": "played"
     },
     {
@@ -396,21 +396,21 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "サンフレセカンド",
-      "hs": 2,
-      "as": 2,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "サンフレセカンド",
       "hs": null,
       "as": null,
       "away": "銀河学院",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "サンフレセカンド",
+      "hs": 2,
+      "as": 2,
+      "away": "広島観音",
+      "status": "played"
     },
     {
       "md": 0,
@@ -477,20 +477,20 @@
     },
     {
       "md": 0,
-      "date": "2026-06-28",
-      "home": "沼田",
-      "hs": 5,
-      "as": 0,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-19",
       "home": "沼田",
       "hs": 3,
       "as": 1,
       "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "沼田",
+      "hs": 5,
+      "as": 0,
+      "away": "広島観音",
       "status": "played"
     },
     {
@@ -558,20 +558,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-17",
-      "home": "広工大高",
-      "hs": 5,
-      "as": 0,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-05-10",
       "home": "広工大高",
       "hs": 2,
       "as": 0,
       "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "広工大高",
+      "hs": 5,
+      "as": 0,
+      "away": "広島観音",
       "status": "played"
     },
     {
@@ -639,20 +639,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "広島新庄",
-      "hs": 3,
-      "as": 0,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-04",
       "home": "広島新庄",
       "hs": 1,
       "as": 4,
       "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "広島新庄",
+      "hs": 3,
+      "as": 0,
+      "away": "広島観音",
       "status": "played"
     },
     {
@@ -720,20 +720,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "広島国際学院",
-      "hs": 0,
-      "as": 1,
-      "away": "広島観音",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-08-29",
       "home": "広島国際学院",
       "hs": 5,
       "as": 1,
       "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "広島国際学院",
+      "hs": 0,
+      "as": 1,
+      "away": "広島観音",
       "status": "played"
     },
     {
@@ -805,7 +805,7 @@
       "home": "広島翔洋",
       "hs": null,
       "as": null,
-      "away": "広島観音",
+      "away": "銀河学院",
       "status": "scheduled"
     },
     {
@@ -814,8 +814,89 @@
       "home": "広島翔洋",
       "hs": null,
       "as": null,
-      "away": "銀河学院",
+      "away": "広島観音",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-13",
+      "home": "瀬戸内セカンド",
+      "hs": 1,
+      "as": 1,
+      "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "銀河学院",
+      "hs": null,
+      "as": null,
+      "away": "如水館",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "銀河学院",
+      "hs": null,
+      "as": null,
+      "away": "サンフレセカンド",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "銀河学院",
+      "hs": null,
+      "as": null,
+      "away": "沼田",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "銀河学院",
+      "hs": null,
+      "as": null,
+      "away": "広工大高",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "広島新庄",
+      "hs": 1,
+      "as": 0,
+      "away": "銀河学院",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "銀河学院",
+      "hs": null,
+      "as": null,
+      "away": "広島国際学院",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "銀河学院",
+      "hs": 0,
+      "as": 1,
+      "away": "広島翔洋",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "銀河学院",
+      "hs": 3,
+      "as": 2,
+      "away": "広島観音",
+      "status": "played"
     },
     {
       "md": 0,
@@ -897,87 +978,6 @@
       "as": null,
       "away": "銀河学院",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "瀬戸内セカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "如水館",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "沼田",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "広工大高",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-06",
-      "home": "広島新庄",
-      "hs": 1,
-      "as": 0,
-      "away": "銀河学院",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "広島国際学院",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "銀河学院",
-      "hs": 0,
-      "as": 1,
-      "away": "広島翔洋",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-23",
-      "home": "銀河学院",
-      "hs": 3,
-      "as": 2,
-      "away": "広島観音",
-      "status": "played"
     }
   ]
 }
