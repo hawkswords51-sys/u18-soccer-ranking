@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "鹿島アントラーズユースB",
+      "pts": 14,
+      "played": 11,
+      "won": 4,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 16,
+      "ga": 12,
+      "gd": 4
+    },
+    {
+      "rank": 6,
       "team": "矢板中央",
       "pts": 14,
       "played": 9,
@@ -108,7 +120,7 @@
       "gd": 3
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "西武台",
       "pts": 14,
       "played": 11,
@@ -118,18 +130,6 @@
       "gf": 16,
       "ga": 19,
       "gd": -3
-    },
-    {
-      "rank": 7,
-      "team": "鹿島アントラーズユースB",
-      "pts": 11,
-      "played": 10,
-      "won": 3,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 13,
-      "ga": 12,
-      "gd": 1
     },
     {
       "rank": 8,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "栃木SC U-18",
       "pts": 10,
-      "played": 10,
+      "played": 11,
       "won": 3,
       "drawn": 1,
-      "lost": 6,
+      "lost": 7,
       "gf": 9,
-      "ga": 14,
-      "gd": -5
+      "ga": 17,
+      "gd": -8
     },
     {
       "rank": 10,
@@ -755,10 +755,10 @@
       "md": 11,
       "date": "2026-09-13",
       "home": "栃木SC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "鹿島アントラーズユースB",
-      "status": "scheduled",
+      "status": "played",
       "venue": "壬生総合公園 陸上競技場",
       "kickoff": "10:30"
     },

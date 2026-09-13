@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "滝川第二",
+      "pts": 23,
+      "played": 11,
+      "won": 7,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 27,
+      "ga": 17,
+      "gd": 10
+    },
+    {
+      "rank": 4,
       "team": "京都橘(B)",
       "pts": 21,
       "played": 11,
@@ -82,18 +94,6 @@
       "gf": 20,
       "ga": 17,
       "gd": 3
-    },
-    {
-      "rank": 4,
-      "team": "滝川第二",
-      "pts": 20,
-      "played": 10,
-      "won": 6,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 24,
-      "ga": 15,
-      "gd": 9
     },
     {
       "rank": 5,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "近江(B)",
       "pts": 7,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 1,
-      "lost": 7,
-      "gf": 13,
-      "ga": 18,
-      "gd": -5
+      "lost": 8,
+      "gf": 15,
+      "ga": 21,
+      "gd": -6
     },
     {
       "rank": 10,
@@ -756,10 +756,10 @@
       "md": 11,
       "date": "2026-09-13",
       "home": "滝川第二",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "近江(B)",
-      "status": "scheduled",
+      "status": "played",
       "venue": "三木総合防災公園第２陸上競技場",
       "kickoff": "10:30"
     },

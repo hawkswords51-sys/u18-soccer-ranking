@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "市立船橋",
+      "pts": 23,
+      "played": 10,
+      "won": 7,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 16,
+      "ga": 6,
+      "gd": 10
+    },
+    {
+      "rank": 2,
       "team": "浦和レッズユース",
       "pts": 21,
       "played": 11,
@@ -58,18 +70,6 @@
       "gf": 16,
       "ga": 8,
       "gd": 8
-    },
-    {
-      "rank": 2,
-      "team": "市立船橋",
-      "pts": 20,
-      "played": 9,
-      "won": 6,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 14,
-      "ga": 5,
-      "gd": 9
     },
     {
       "rank": 3,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "ヴァンフォーレ甲府U-18",
       "pts": 8,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 5,
-      "lost": 4,
-      "gf": 7,
-      "ga": 20,
-      "gd": -13
+      "lost": 5,
+      "gf": 8,
+      "ga": 22,
+      "gd": -14
     },
     {
       "rank": 10,
@@ -756,10 +756,10 @@
       "md": 11,
       "date": "2026-09-13",
       "home": "市立船橋",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "ヴァンフォーレ甲府U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "グラスポ法典公園球技場",
       "kickoff": "11:00"
     },
