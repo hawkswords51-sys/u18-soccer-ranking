@@ -91,6 +91,33 @@ def version_date(text: str) -> str | None:
     return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
 
 
+_LABEL_YMD_RE = re.compile(r"(?<!\d)(20\d{2})(\d{2})(\d{2})(?!\d)")
+_LABEL_MD_RE = re.compile(r"(?<!\d)(\d{2})(\d{2})(?!\d)")
+
+
+def version_from_label(text: str, season_year: int | str | None = None) -> str | None:
+    """ファイル名やリンク文字に埋め込まれた版日付を `YYYY-MM-DD` で返す（2026-09-15追加）。
+
+      `t20260913.pdf`（徳島）            … 年入り8桁 → そのまま確定
+      `0913-U-18県リーグ….pdf`（兵庫）   … 4桁の月日 → season_year を補う
+      `2026_日程…(0913更新)`（秋田）     … 同上
+    年入り8桁を優先し、無ければ（season_year が渡されたときだけ）4桁の月日を探す。
+    月日として成り立たない数字（`2026` など）は読み飛ばす。見つからなければ None。
+    ⚠️ 年なしの月日は「シーズン年のもの」とみなしている。年をまたぐリーグでは県側で補正すること。"""
+    s = text or ""
+    for m in _LABEL_YMD_RE.finditer(s):
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if 1 <= mo <= 12 and 1 <= d <= 31:
+            return f"{y}-{mo:02d}-{d:02d}"
+    if season_year is None:
+        return None
+    for m in _LABEL_MD_RE.finditer(s):
+        mo, d = int(m.group(1)), int(m.group(2))
+        if 1 <= mo <= 12 and 1 <= d <= 31:
+            return f"{int(season_year)}-{mo:02d}-{d:02d}"
+    return None
+
+
 # ---------------------------------------------------------------------------
 # 4. 行・表への復元
 # ---------------------------------------------------------------------------
