@@ -2,53 +2,53 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448178-448178-fl",
-  "lastUpdated": "2026-09-07",
+  "lastUpdated": "2026-09-14",
   "note": "2得点以上の選手を掲載。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
-      "name": "柿ヶ原淳太",
-      "team": "桐蔭",
-      "goals": 8
-    },
-    {
-      "rank": 1,
       "name": "本城圭太",
       "team": "滝二",
-      "goals": 8
+      "goals": 9
     },
     {
       "rank": 1,
       "name": "波多野蒼大",
       "team": "滝二",
+      "goals": 9
+    },
+    {
+      "rank": 3,
+      "name": "柿ヶ原淳太",
+      "team": "桐蔭",
       "goals": 8
     },
     {
-      "rank": 4,
+      "rank": 3,
       "name": "小堀厳咲",
       "team": "仰星",
-      "goals": 7
+      "goals": 8
     },
     {
-      "rank": 5,
+      "rank": 3,
+      "name": "浅井瑛斗",
+      "team": "仰星",
+      "goals": 8
+    },
+    {
+      "rank": 6,
       "name": "中野琉允",
       "team": "仰星",
       "goals": 6
     },
     {
-      "rank": 5,
-      "name": "浅井瑛斗",
-      "team": "仰星",
-      "goals": 6
-    },
-    {
-      "rank": 5,
+      "rank": 6,
       "name": "水野仁",
       "team": "北陽",
       "goals": 6
     },
     {
-      "rank": 5,
+      "rank": 6,
       "name": "奥田泰翔",
       "team": "関学",
       "goals": 6
@@ -79,52 +79,65 @@
     },
     {
       "rank": 10,
+      "name": "北村勇貴",
+      "team": "滝二",
+      "goals": 4
+    },
+    {
+      "rank": 10,
       "name": "尾崎世空",
       "team": "神戸B",
       "goals": 4
     },
     {
-      "rank": 14,
+      "rank": 10,
+      "name": "姉川琥珀",
+      "team": "金光",
+      "goals": 4
+    },
+    {
+      "rank": 16,
+      "name": "岡田暉生",
+      "team": "橘B",
+      "goals": 3
+    },
+    {
+      "rank": 16,
       "name": "中山蒼仁",
       "team": "橘B",
       "goals": 3
     },
     {
-      "rank": 14,
+      "rank": 16,
       "name": "名部希翔",
       "team": "仰星",
       "goals": 3
     },
     {
-      "rank": 14,
+      "rank": 16,
       "name": "仲地勇人",
       "team": "仰星",
       "goals": 3
     },
     {
-      "rank": 14,
-      "name": "北村勇貴",
-      "team": "滝二",
-      "goals": 3
-    },
-    {
-      "rank": 14,
+      "rank": 16,
       "name": "山岡凌陽",
       "team": "近江B",
       "goals": 3
-    },
-    {
-      "rank": 14,
-      "name": "岡田英大",
-      "team": "近江B",
-      "goals": 3
-    },
-    {
-      "rank": 14,
-      "name": "アディカリリュウイチ",
-      "team": "金光",
-      "goals": 3
     }
   ],
-  "coverage": []
+  "coverage": [
+    {
+      "team": "神戸B",
+      "attributed": 13,
+      "gf": 16,
+      "missing": 3
+    },
+    {
+      "team": "関学",
+      "attributed": 9,
+      "gf": 11,
+      "missing": 2
+    }
+  ]
 }
