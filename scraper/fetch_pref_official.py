@@ -229,6 +229,14 @@ PREF_OFFICIAL = {
                   "source": "https://fa-akita.net/16943/",
                   "label": "秋田県サッカー協会 公式"},
 
+    # 兵庫（2026-09-14追加）。日程･結果PDF（1部）＋戦績表PDF（read_hyogo のコメント参照）。
+    # 戦績表は勝点・得失点差・順位だけ → 勝点＋得失点差で照合する "pts_gd" ゲート。
+    "hyogo":     {"platform": "hyogo", "teams": 10, "first_no": 101,
+                  "entry": "https://hyogo-fa.gr.jp/competition_info/13224/",
+                  "source": "https://hyogo-fa.gr.jp/competition_info/13224/",
+                  "label": "兵庫県サッカー協会 公式",
+                  "standings_gate": "pts_gd"},
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -322,6 +330,12 @@ PREF_ALIAS = {
         #    （指示書には3件とあったが、実測すると2件で足りた）。
         "栃木SCU-18B": "栃木SC B",
         "栃木シティU-18": "栃木シティFC",
+    },
+    "hyogo": {
+        # 日程･戦績表PDFは略称（チーム名の空白は読み取り側で除去済み）
+        "報徳A": "報徳学園A",
+        "三田B": "三田学園B",
+        "蒼開": "蒼開A",
     },
     "niigata": {
         # 一覧ページの1件（No.30）だけ「JSC」が抜けている。
@@ -1847,6 +1861,95 @@ def read_akita(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 兵庫（hyogo-fa.gr.jp）— 県協会の日程･結果PDF（1部）＋戦績表PDF（1･2部）（2026-09-14追加）
+#   入口: /competition_info/13224/（高円宮杯U-18兵庫県リーグ1部･2部 2026）
+#   リンク文字（空白を詰めたもの）が「日程･結果(1部)」「戦績表(1･2部)」のPDFを使う。
+# ⚠️ **同じページにプレーオフの「プレーオフ日程･結果」「プレーオフ戦績表」がある。** 県1部ではない。
+#    前方一致だと誤爆するので**リンク文字の完全一致**で取る。中点は半角カナの `･`（U+FF65）。
+# ⚠️ 日程PDFの見出しは1ページ目「前期(1～9節)」2ページ目も「前期(10～18節)」（誤記）。実際は通年90試合
+#    （試合番号 101〜190）。**試合番号が101〜190で過不足なく揃うこと**を確認して取りこぼしを防ぐ。
+# ⚠️ 表として読むと「月/日」「試合番号」「対戦カード」の列に分かれる。対戦カードは
+#    `芦 屋 学 園 A 2 VS 2 蒼 開`（**チーム名は1文字ずつ空白区切り**）、未消化は `三 田 B VS 芦 屋 学 園 A`。
+# ⚠️ 開始時刻に `17;00`（セミコロン）の誤記がある。**時刻は使わない。**
+# ⚠️ 戦績表は1ページに1部と2部の表が並ぶ。**日程のチーム名と同じ10チームの表を1部とみなす。**
+#    各チーム「前期」「後期」の2行で、勝点・得失点差・順位は前期の行にだけある。
+#    **勝分敗・試合数・得点・失点は無い** → 勝点＋得失点差で照合するゲート（standings_gate: "pts_gd"）。
+# ⚠️ 版日付はPDF本文に無い（URLの先頭 `0913-` だけ）。版日付ガードは「今日（JST）より後の消化済み試合」で代用。
+# 年度切り替え: 入口の記事ID（13224）が年度で変わる見込み。新年度の「高円宮杯U-18兵庫県リーグ1部･2部」
+#              記事に entry を差し替える。ページタイトルの年度を必須にしているので、差し替え忘れは取得失敗で止まる。
+# ============================================================
+_HYOGO_CARD_RE = re.compile(r"^(.+?)\s+(?:(\d+)\s+VS\s+(\d+)|VS)\s+(.+)$")
+_HYOGO_DATE_RE = re.compile(r"^(\d{1,2})/(\d{1,2})$")
+
+
+def read_hyogo(cfg: dict) -> tuple[dict, list[dict]]:
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8",
+                                    must_contain=f"兵庫県リーグ1部･2部 {SEASON_YEAR}"), "html.parser")
+    time.sleep(SLEEP)
+    sched_url = pdf_source.pdf_link_by_text(soup, lambda t: t == "日程･結果(1部)", "日程･結果(1部)")
+    table_url = pdf_source.pdf_link_by_text(soup, lambda t: t == "戦績表(1･2部)", "戦績表(1･2部)")
+
+    # --- 日程･結果（1部） ---
+    content = pdf_source.fetch_pdf(sched_url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    matches, numbers = [], []
+    for t in tables:
+        head = [re.sub(r"\s+", "", c or "") for c in t[0]]
+        if not {"月/日", "試合番号", "対戦カード"} <= set(head):
+            raise RuntimeError(f"日程表のヘッダが想定と違う: {head}")
+        c_day, c_no, c_card = head.index("月/日"), head.index("試合番号"), head.index("対戦カード")
+        for r in t[1:]:
+            dm = _HYOGO_DATE_RE.match((r[c_day] or "").strip())
+            cm = _HYOGO_CARD_RE.match(re.sub(r"\s+", " ", (r[c_card] or "").strip()))
+            no = (r[c_no] or "").strip()
+            if not (dm and cm and no.isdigit()):
+                raise RuntimeError(f"1部の行が読めない: {r}")
+            numbers.append(int(no))
+            matches.append(dict(
+                md=0, date=f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}",
+                home=re.sub(r"\s+", "", cm.group(1)), away=re.sub(r"\s+", "", cm.group(4)),
+                hs=int(cm.group(2)) if cm.group(2) else None,
+                **{"as": int(cm.group(3)) if cm.group(3) else None}))
+    n = cfg["teams"]
+    want = list(range(cfg["first_no"], cfg["first_no"] + n * (n - 1)))
+    if sorted(numbers) != want:
+        raise RuntimeError(f"試合番号が {cfg['first_no']}〜{want[-1]} で揃っていない（{len(numbers)}件）")
+    teams = {m["home"] for m in matches} | {m["away"] for m in matches}
+
+    # --- 戦績表（1･2部）→ 1部の勝点・得失点差・順位 ---
+    content = pdf_source.fetch_pdf(table_url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    standings = None
+    for t in tables:
+        head = [re.sub(r"\s+", "", c or "") for c in t[0]]
+        if not {"勝点", "得失点差", "順位"} <= set(head):
+            continue
+        c_pts, c_gd, c_rank = head.index("勝点"), head.index("得失点差"), head.index("順位")
+        rows = {}
+        for r in t[1:]:
+            name = re.sub(r"\s+", "", r[0] or "")
+            if name and (r[1] or "").strip() == "前期":
+                rows[name] = dict(pts=int(r[c_pts]), gd=int(r[c_gd]), rank=int(r[c_rank]))
+        if set(rows) == teams:
+            standings = rows
+            break
+    if standings is None:
+        raise RuntimeError("戦績表に、日程と同じ10チームの表（1部）が無い")
+
+    # ✅ 版日付ガードの代用（本文に版日付が無い）
+    today = _jst_today().isoformat()
+    future = [m for m in matches if m["hs"] is not None and m["date"] > today]
+    if future:
+        raise RuntimeError(f"今日({today})より後の日付を持つ消化済み試合が{len(future)}件"
+                           f"（例: {future[0]['date']} {future[0]['home']} vs {future[0]['away']}）")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2320,7 +2423,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "lsin": read_lsin,
                       "sportsonline_table": read_sportsonline_table,
                       "okayama": read_okayama, "oita": read_oita,
-                      "niigata": read_niigata, "akita": read_akita}[cfg["platform"]]
+                      "niigata": read_niigata, "akita": read_akita,
+                      "hyogo": read_hyogo}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
@@ -2402,6 +2506,41 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                             if standings[t]["pts"] == got["pts"]]
                     if len(same) < 2:
                         ng.append(f"{team}: 順位 公式{off['rank']} ≠ 試合から{mine_i}")
+        if ng:
+            return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
+
+    # --- 公式順位表が「勝点・得失点差・順位」しか持たない県（兵庫 2026-09-14〜）。
+    #     順位表は試合から自前計算し、代替ゲート（self と同じ5項目）に加えて
+    #     **チームごとの勝点・得失点差**と順位を公式と突き合わせる。
+    #     チーム単位で見るので、リーグ合計が変わらないスコア反転（岡山で実例）も捕まる。
+    #     使い回すには、reader が {チーム: {"pts", "gd", "rank"}} を返せばよい ---
+    if cfg.get("standings_gate") == "pts_gd":
+        official = {name_map.get(k, k): v for k, v in standings.items()}
+        standings = standings_from_matches(matches, site_names)
+        ng = self_check_gate(data, standings, matches, site_names,
+                             cfg.get("known_bad_existing"))
+        if set(official) != set(site_names):
+            ng.append(f"公式順位表のチーム {sorted(set(official) ^ set(site_names))} が既存と合わない")
+        if sum(v["gd"] for v in official.values()) != 0:
+            ng.append("公式順位表の得失点差の合計が0でない（読み取りの誤り）")
+        for team, off in official.items():
+            got = standings.get(team)
+            if got is None:
+                continue
+            if got["pts"] != off["pts"]:
+                ng.append(f"{team}: 勝点 公式{off['pts']} ≠ 試合から{got['pts']}")
+            if got["gf"] - got["ga"] != off["gd"]:
+                ng.append(f"{team}: 得失点差 公式{off['gd']} ≠ 試合から{got['gf'] - got['ga']}")
+        # 順位：公式は勝点→得失点差。両方が並ぶチーム同士の前後だけは許す
+        mine = sorted(site_names, key=lambda t: (-standings[t]["pts"],
+                                                 -(standings[t]["gf"] - standings[t]["ga"])))
+        for team, off in official.items():
+            if team in mine and mine.index(team) + 1 != off["rank"]:
+                g = standings[team]
+                tied = [t for t in site_names if (standings[t]["pts"], standings[t]["gf"] - standings[t]["ga"])
+                        == (g["pts"], g["gf"] - g["ga"])]
+                if len(tied) < 2:
+                    ng.append(f"{team}: 順位 公式{off['rank']} ≠ 試合から{mine.index(team) + 1}")
         if ng:
             return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
 
