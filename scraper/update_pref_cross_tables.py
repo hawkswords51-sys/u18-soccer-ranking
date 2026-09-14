@@ -410,6 +410,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-niigata-1",    # niigata-fa.or.jp（県協会の試合一覧HTML＋星取表PDF）2026-09-14追加
     "pref-akita-1",      # fa-akita.net（県協会の日程PDF＋星取表PDF）2026-09-14追加
     "pref-hyogo-1",      # hyogo-fa.gr.jp（県協会の日程･結果PDF＋戦績表PDF）2026-09-14追加
+    "pref-tokushima-1",  # tokushima-fa.jp（県協会の日程・結果PDF）2026-09-15追加
 }
 
 

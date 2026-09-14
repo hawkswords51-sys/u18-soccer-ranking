@@ -237,6 +237,14 @@ PREF_OFFICIAL = {
                   "label": "兵庫県サッカー協会 公式",
                   "standings_gate": "pts_gd"},
 
+    # 徳島（2026-09-15追加）。日程・結果PDF 1本（read_tokushima のコメント参照）。
+    # 公式順位表が無いので self ゲート＋読み取り側の前後半検算・No.連番・対戦の組のチェック。
+    "tokushima": {"platform": "tokushima", "teams": 10,
+                  "entry": "https://tokushima-fa.jp/post-414/",
+                  "source": "https://tokushima-fa.jp/post-414/",
+                  "label": "徳島県サッカー協会 公式",
+                  "standings_gate": "self"},
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -1950,6 +1958,100 @@ def read_hyogo(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 徳島（tokushima-fa.jp）— 県協会の日程・結果PDF 1本（T1/T2/T3 同居）（2026-09-15追加）
+#   入口: /post-414/（2010年度からの**年度別アーカイブ**が1ページに並ぶ）
+# ⚠️⚠️ **どの年度もリンク文字が「※ダウンロード」**。リンク文字では特定できない。
+#    → 見出し「高円宮杯U-18サッカーリーグ{年}・徳島県Tリーグ」の直後のPDFを取る（岡山方式）。
+#    ⚠️ 見出しの後ろは前年度以前のリンクが続くので、今年のリンクが消えると**前年度を黙って拾う**。
+#       → **ファイル名の版日付（t20260913）の年がシーズン年であること**を必須にする。
+# ⚠️ 協会ページの T1/T2/T3 リンク先 fukuoka-soccer.com はファン投稿型（「公式結果ではありません」）。**使わない。**
+# ⚠️ **公式順位表が無い** → standings_gate: "self"。守りは構造チェックと、下の前後半検算だけ。
+#    ❌ 新しく入る試合のホーム/アウェイの取り違えと、括弧（前後半）の無い行のスコアの読み違いは、
+#       原理的に検出できない（突き合わせる公式の集計値が無い）。
+# ⭐️ **前後半スコアの和＝合計スコア**（`2 - 7 (1-3,1-4)`）で、スコアの読み違いの大半を捕まえる。
+#    括弧の無い行がある（2026-09-15時点でT1に2件：No.124・126）ので括弧は任意。無い行の件数をログに出す。
+# ⚠️ 表として読む（2ページ目以降）。末尾の「変更日／変更内容」も表なので、ヘッダ先頭が「節」の表だけ使う。
+# ⚠️ 節はファイルの並び順と一致しない（延期分が後ろ）。日付は各行の `YYYY/MM/DD(曜)` から取る。
+# ⚠️ `No.` は T1/T2/T3 通しの連番 → 全Divまとめて 1〜最大 が過不足なく揃うことで取りこぼしを検出。
+# ⚠️ スコアの空白が崩れる行がある（`10- 0`・`1 -10`）。
+# 名寄せは norm() で10チームすべて寄る（「高校」「ユース」の除去・全角Ｓ）。ALIAS不要（2026-09-15実測）。
+# 年度切り替え: 見出しに SEASON_YEAR を使うので設定変更は不要。
+# ============================================================
+_TOKUSHIMA_SCORE_RE = re.compile(r"^(\d+)\s*-\s*(\d+)(?:\s*\((\d+)-(\d+),(\d+)-(\d+)\))?$")
+_TOKUSHIMA_DATE_RE = re.compile(r"^(\d{4})/(\d{2})/(\d{2})")
+
+
+def read_tokushima(cfg: dict) -> tuple[dict, list[dict]]:
+    heading = f"高円宮杯U-18サッカーリーグ{SEASON_YEAR}・徳島県Tリーグ"
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8", must_contain=heading), "html.parser")
+    time.sleep(SLEEP)
+    url = pdf_source.pdf_link_after_heading(soup, heading)
+    version = pdf_source.version_from_label(url.rsplit("/", 1)[-1])
+    if not version or not version.startswith(f"{SEASON_YEAR}-"):
+        raise RuntimeError(f"PDFのファイル名から{SEASON_YEAR}年の版日付が読めない（{url}）。前年度のPDFを拾っている疑い")
+
+    content = pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+
+    numbers, matches, no_half = [], [], []
+    for t in tables:
+        head = [re.sub(r"\s+", "", c or "") for c in t[0]]
+        if not head or head[0] != "節":
+            continue                              # 注意事項・変更履歴の表
+        if not {"No.", "日付", "Div", "試合開始"} <= set(head):
+            raise RuntimeError(f"日程表のヘッダが想定と違う: {head}")
+        c_no, c_date, c_div = head.index("No."), head.index("日付"), head.index("Div")
+        c_home = head.index("試合開始") + 1        # 以降「ホーム／スコア（前後半）／…／アウェイ」
+        for r in t[1:]:
+            no = (r[c_no] or "").strip()
+            if not no.isdigit():
+                raise RuntimeError(f"No. が読めない行: {r}")
+            numbers.append(int(no))
+            if (r[c_div] or "").strip() != "T1":
+                continue
+            dm = _TOKUSHIMA_DATE_RE.match((r[c_date] or "").strip())
+            score = re.sub(r"\s+", " ", (r[c_home + 1] or "").strip())
+            home = re.sub(r"\s+", "", r[c_home] or "")
+            away = re.sub(r"\s+", "", r[-1] or "")
+            if not dm or dm.group(1) != str(SEASON_YEAR) or not home or not away:
+                raise RuntimeError(f"T1の行が読めない: {r}")
+            if score in ("-", ""):
+                hs = as_ = None
+            else:
+                sm = _TOKUSHIMA_SCORE_RE.match(score)
+                if not sm:
+                    raise RuntimeError(f"スコアが読めない: No.{no} {score!r}")
+                hs, as_ = int(sm.group(1)), int(sm.group(2))
+                if sm.group(3) is None:
+                    no_half.append(no)
+                else:
+                    h1, a1, h2, a2 = (int(x) for x in sm.group(3, 4, 5, 6))
+                    if (h1 + h2, a1 + a2) != (hs, as_):
+                        raise RuntimeError(f"前後半の和が合計と合わない: No.{no} {home} {score} {away}")
+            matches.append(dict(md=0, date=f"{dm.group(1)}-{dm.group(2)}-{dm.group(3)}",
+                                home=home, away=away, hs=hs, **{"as": as_}))
+
+    if sorted(numbers) != list(range(1, len(numbers) + 1)):
+        raise RuntimeError(f"No. が 1〜{len(numbers)} で揃っていない（取りこぼし・重複の疑い）")
+    n = cfg["teams"]
+    if len(matches) != n * (n - 1):
+        raise RuntimeError(f"T1が{len(matches)}試合（2回戦総当たりの{n * (n - 1)}と違う）")
+    pairs = collections.Counter(frozenset((m["home"], m["away"])) for m in matches)
+    if max(pairs.values()) > 2 or len(pairs) != n * (n - 1) // 2:
+        raise RuntimeError(f"対戦の組が想定と違う（最大{max(pairs.values())}回・{len(pairs)}組）＝重複登録の疑い")
+    if no_half:
+        print(f"       （徳島: 前後半の記載が無く前後半検算をしていないT1の消化済み試合 {len(no_half)}件: "
+              f"No.{','.join(no_half)}）")
+    future = [m for m in matches if m["hs"] is not None and m["date"] > version]
+    if future:
+        raise RuntimeError(f"版日付({version})より後の日付を持つ消化済み試合が{len(future)}件"
+                           f"（例: {future[0]['date']} {future[0]['home']} vs {future[0]['away']}）")
+    return {}, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2424,7 +2526,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "sportsonline_table": read_sportsonline_table,
                       "okayama": read_okayama, "oita": read_oita,
                       "niigata": read_niigata, "akita": read_akita,
-                      "hyogo": read_hyogo}[cfg["platform"]]
+                      "hyogo": read_hyogo, "tokushima": read_tokushima}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
