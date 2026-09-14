@@ -7,6 +7,8 @@ PDF出典の県別得点ランキング 自動更新（茨城・福井・三重�
 掲載ページから最新PDFリンクを自動発見してダウンロード・解析し、
 data/scorers/pref-<id>-1.json を更新する。
 fetch_pref_scorers.py の main() から呼ばれる（単体実行も可）。
+単体実行: python scraper/fetch_pdf_scorers.py [--dry-run] [pref-mie-1 ...]
+  --dry-run … 保存せず、書き込むはずのJSONを標準出力に出す
 
 背景: PDFのファイル名は更新の度に変わる（日付・ハッシュ入り）ため
 固定URLでは追えない。→「掲載ページのリンク文言」から毎回発見する。
@@ -21,7 +23,7 @@ fetch_pref_scorers.py の main() から呼ばれる（単体実行も可）。
 - 茨城: テキストPDF。No/氏名/所属チーム/得点。O.G行は除外。
 - 福井: フォント都合で漢字がCJK互換部首で出る＋得点列に迷い数字が混ざる。
         → 部首正規化＋「順位グループから得点を復元」する専用ロジック。
-- 三重: 2026-07-11時点で公式サイトがダウンしており実PDF未検証。
+- 三重: 2026-09 から左右2列組みのPDF。_pdf_lines_2col() で列を分けてから
         汎用パーサ＋厳格検証（失敗時は既存維持なので実害なし）。
 - 愛媛: テキストPDF。順位/チーム名/氏名/得点。上位のみの掲載。
 """
@@ -103,6 +105,70 @@ def _pdf_lines(content: bytes):
             if cur:
                 cur.sort(key=lambda x: x["x0"])
                 lines.append(" ".join(x["text"] for x in cur))
+    return lines
+
+
+def _pdf_lines_2col(content: bytes):
+    """左右2列組みのPDF用。ページごとに中央付近の縦の空白で左列・右列に分け、
+    「左列を上から → 右列を上から」の順で行テキストのリストにする。
+    2026-09-14 三重の新PDF（1行に2人分が並ぶ）のために新設。
+    ⚠️ 他県が使う _pdf_lines() は変えないこと（行の束ね方はそちらと同じにしてある）。
+    中央に空白が見つからないページは1列として扱う。"""
+    import pdfplumber
+    left_lines, right_lines = [], []
+    with pdfplumber.open(io.BytesIO(content)) as pdf:
+        for page in pdf.pages:
+            words = page.extract_words(x_tolerance=1.5, y_tolerance=3)
+            split = _column_gap(words, page.width)
+            if split is not None:
+                left = _group_words([w for w in words if w["x1"] <= split])
+                right = _group_words([w for w in words if w["x0"] >= split])
+                # 左右どちらにも「順位 … 得点」の形の行がある時だけ2列とみなす
+                # （1列のPDFで氏名とチーム名の間の空白を列の境目と誤認しないため）
+                if _has_rank_rows(left) and _has_rank_rows(right):
+                    left_lines += left
+                    right_lines += right
+                    continue
+            left_lines += _group_words(words)
+    return left_lines + right_lines
+
+
+def _has_rank_rows(lines) -> bool:
+    for ln in lines:
+        toks = _fix(ln).split()
+        if len(toks) >= 3 and toks[0].isdigit() and toks[-1].isdigit():
+            return True
+    return False
+
+
+def _column_gap(words, width):
+    """ページ幅の30〜70%の範囲で、どの単語も掛かっていない最も広い縦の空白の中央x。無ければNone。"""
+    lo, hi = width * 0.3, width * 0.7
+    spans = sorted((max(w["x0"], lo), min(w["x1"], hi)) for w in words if w["x1"] > lo and w["x0"] < hi)
+    best, cur = None, lo
+    for x0, x1 in spans + [(hi, hi)]:
+        if x0 - cur > (best[1] - best[0] if best else 8):
+            best = (cur, x0)
+        cur = max(cur, x1)
+    return (best[0] + best[1]) / 2 if best else None
+
+
+def _group_words(words):
+    """単語を y 座標で束ねて行テキストにする（_pdf_lines() と同じ束ね方）"""
+    lines = []
+    words = sorted(words, key=lambda w: (w["top"], w["x0"]))
+    cur, cur_top = [], None
+    for w in words:
+        if cur_top is None or abs(w["top"] - cur_top) <= 3:
+            cur.append(w)
+            cur_top = w["top"] if cur_top is None else cur_top
+        else:
+            cur.sort(key=lambda x: x["x0"])
+            lines.append(" ".join(x["text"] for x in cur))
+            cur, cur_top = [w], w["top"]
+    if cur:
+        cur.sort(key=lambda x: x["x0"])
+        lines.append(" ".join(x["text"] for x in cur))
     return lines
 
 
@@ -297,18 +363,26 @@ def discover_mie():
         ctx = _fix(a.find_parent("tr").get_text(" ")) if a.find_parent("tr") else text
         if "得点" not in text and "得点" not in ctx:
             continue
+        # ★2026-09-14修正：1部の行には「大会要項／日程および組合せ／星取表／得点ランキング」が
+        #   同じ<tr>に並ぶため、ctx の「1部」だけで点を付けると4リンクが同点になり、
+        #   先頭の大会要項PDFを拾っていた。リンク自身の文字に「得点」があるものを最優先にする。
         score = 0
+        if "得点" in text:
+            score += 10
+        if "ランキング" in text:
+            score += 2
         if "1部" in text or "１部" in text:
-            score = 3
+            score += 4
         elif "1部" in ctx or "１部" in ctx:
-            score = 2
-        elif "得点" in text:
-            score = 1
+            score += 1
         if f"/{SEASON}/" in a["href"]:
             score += 1
+        if any(x in text for x in ("要項", "日程", "組合", "星取")):
+            score -= 10
         if best is None or score > best[0]:
             best = (score, urljoin(MIE_PAGE, a["href"]))
-    if best is None or best[0] < 2:
+    # しきい値：リンク文字に「得点」があり(10)、1部の行にある(1)ものだけを通す
+    if best is None or best[0] < 11:
         raise RuntimeError("1部の得点ランキングPDFリンクが見つからない")
     return best[1], MIE_PAGE
 
@@ -352,6 +426,8 @@ def parse_mie(lines, known):
 
 # ── 愛媛 ──────────────────────────────────────────────────────
 EHIME_LIST = f"https://efa.jp/meeting/second/?y={SEASON}"
+# 協会の得点王PDFは「FC今治NEXT」、同じE1の日程・結果PDFと順位表は「FC今治U-18S」（E1に今治は1チームのみ・出典で同一確認 2026-09-14）
+EHIME_ALIASES = {"FC今治NEXT": "FC今治U-18S"}
 
 
 def discover_ehime():
@@ -414,18 +490,19 @@ PDF_PREFS = {
         note="福井県サッカー協会公式のF1リーグ得点ランキング（PDF）より掲載しています。"),
     "pref-mie-1": dict(
         discover=discover_mie, parse=parse_mie, aliases=MIE_ALIASES,
+        lines=_pdf_lines_2col,  # 2026-09 から左右2列組み（1列のPDFでもそのまま読める）
         league=f"高円宮杯 JFA U-18 サッカーリーグ{SEASON} 三重 1部 得点ランキング",
         label="三重県サッカー協会 公式（PDF）",
         note="三重県サッカー協会公式の［1部］得点ランキング（PDF）より掲載しています。"),
     "pref-ehime-1": dict(
-        discover=discover_ehime, parse=parse_ehime, aliases=None,
+        discover=discover_ehime, parse=parse_ehime, aliases=EHIME_ALIASES,
         league=f"高円宮杯 JFA U-18 サッカーリーグ{SEASON} 愛媛（E1リーグ）1部 得点王",
         label="愛媛県サッカー協会 公式（PDF）",
         note="愛媛県サッカー協会公式の「E1リーグ得点王」（PDF）掲載分です。上位のみの掲載です。"),
 }
 
 
-def _update_pdf_one(slug: str, cfg: dict, today: str) -> str:
+def _update_pdf_one(slug: str, cfg: dict, today: str, dry_run: bool = False) -> str:
     path = DIR / f"{slug}.json"
     try:
         pdf_url, page_url = cfg["discover"]()
@@ -435,7 +512,7 @@ def _update_pdf_one(slug: str, cfg: dict, today: str) -> str:
         known = _known_teams(slug, cfg.get("aliases"))
         if not known:
             raise RuntimeError("既知チーム辞書が空（league_matches/scorersが読めない）")
-        scorers, asof = cfg["parse"](_pdf_lines(r.content), known)
+        scorers, asof = cfg["parse"](cfg.get("lines", _pdf_lines)(r.content), known)
     except Exception as e:
         return f"  {slug}: 取得/解析失敗のためスキップ（既存維持）: {e}"
     if not scorers:
@@ -452,6 +529,8 @@ def _update_pdf_one(slug: str, cfg: dict, today: str) -> str:
     new = json.dumps(obj, ensure_ascii=False, indent=2)
     if path.exists() and path.read_text(encoding="utf-8") == new:
         return f"  {slug}: 変更なし（{len(scorers)}名）"
+    if dry_run:
+        return f"  {slug}: [DRY RUN] 更新されるはず {len(scorers)}名（書き込みなし）\n{new}"
     path.write_text(new, encoding="utf-8")
     top = scorers[0]
     return (f"  {slug}: 更新 {len(scorers)}名 1位={top['name']}({top['goals']}) "
@@ -459,12 +538,14 @@ def _update_pdf_one(slug: str, cfg: dict, today: str) -> str:
 
 
 def run(today: str):
-    only = sys.argv[1:] if __name__ == "__main__" and len(sys.argv) > 1 else None
+    args = sys.argv[1:] if __name__ == "__main__" else []
+    dry_run = "--dry-run" in args
+    only = [a for a in args if not a.startswith("--")] or None
     msgs = []
     for slug, cfg in PDF_PREFS.items():
         if only and slug not in only:
             continue
-        msgs.append(_update_pdf_one(slug, cfg, today))
+        msgs.append(_update_pdf_one(slug, cfg, today, dry_run))
     return msgs
 
 
