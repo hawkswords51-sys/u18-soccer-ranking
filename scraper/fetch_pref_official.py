@@ -97,6 +97,9 @@ SLEEP = 1.5      # 相手のサーバに優しく（1リクエストごとに待
 #   記録がコミットされない）。この台帳は6件目を作らないための仕掛け。
 TEMP_EXCEPTIONS: dict[str, str] = {
     # "pref": "2026-09-07 追加：理由 → 外す条件",
+    "niigata": ("2026-09-14 追加：一覧ページで「試合予定」のままの 7/18 の2試合を星取表PDFの結果で補完"
+                "（PREF_OFFICIAL の hoshitori_results）→ 外す条件＝一覧ページに 07.18 の2件のスコアが"
+                "入力されたら（期限ではなくイベント待ち。協会が2か月未入力のため2週間ルールの意図的な例外）"),
 }
 
 
@@ -203,6 +206,19 @@ PREF_OFFICIAL = {
                   "label": "大分県サッカー協会 公式",
                   "double_round": True,
                   "standings_gate": "okinawa"},
+    # 新潟（2026-09-14追加）。試合一覧HTML＋星取表PDFの2ソース構成（read_niigata のコメント参照）。
+    # 一覧に公式順位表は無く、星取表は第11節止まりなので、順位表は試合から自前計算して self ゲートで守る。
+    "niigata":   {"platform": "niigata", "tid": "591", "teams": 8,
+                  "source": "https://www.niigata-fa.or.jp/result/contest/tournament_id/591",
+                  "label": "新潟県サッカー協会 公式",
+                  "standings_gate": "self",
+                  # 一覧ページで「試合予定」のままだが、星取表PDFに結果が載っている試合。
+                  # 出典: https://www.niigata-fa.or.jp/news/public/detail?id=743
+                  #       「N1星取表（第11節終了時点）」2026_result_U18_N1_11.pdf（2026-09-08更新）
+                  "hoshitori_results": [
+                      {"date": "2026-07-18", "home": "上越2nd", "away": "新潟工業", "hs": 7, "as": 0},
+                      {"date": "2026-07-18", "home": "北越2nd", "away": "帝京長岡3rd", "hs": 3, "as": 4},
+                  ]},
 
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
@@ -297,6 +313,11 @@ PREF_ALIAS = {
         #    （指示書には3件とあったが、実測すると2件で足りた）。
         "栃木SCU-18B": "栃木SC B",
         "栃木シティU-18": "栃木シティFC",
+    },
+    "niigata": {
+        # 一覧ページの1件（No.30）だけ「JSC」が抜けている。
+        # ※「開志学園JSC2nd」と既存の「開志学園JSC 2nd」は norm() が同一視するので不要。
+        "開志学園2nd": "開志学園JSC 2nd",
     },
     "yamaguchi": {
         "小野田工": "小野田工業",
@@ -1637,6 +1658,81 @@ def read_oita(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 新潟（niigata-fa.or.jp）— 県協会の試合一覧HTML＋星取表PDFの2ソース構成（2026-09-14追加）
+#   一覧: /result/contest/tournament_id/{tid} … 1部の全56試合が1ページ（素のHTML）
+#   補完: 記事「高円宮杯U-18新潟県リーグ 星取表」の「N1星取表（第◯節終了時点）」PDF
+# ⚠️⚠️ **一覧ページに入力漏れがある。** 2026-09-14時点で 7/18 の2試合が一覧では「試合予定」の
+#    ままだが、**星取表PDF（第11節終了時点・9/8更新）には結果が載っている**。星取表の順位表
+#    （勝点・得点・失点）は、一覧の9/8までの42試合だけだと8チーム中4チームしか合わず、
+#    この2試合を足すと8チーム全部が一致した。→ 設定 "hoshitori_results" で補う。
+#    📌「第◯節終了時点」は古さではなく**網羅範囲**の表示。どちらが新しいかだけでなく何を含むかを見る。
+#    - 一覧に後からスコアが入ったら**一覧を使う**（補完は使われなくなる＝設定を消すサイン）
+#    - そのとき星取表の値と食い違っていたら**書き込まない**（どちらかが誤っている）
+#    - 補完対象の試合が一覧から消えていたら**書き込まない**（ページの作りが変わった疑い）
+#    星取表は第11節止まりで9/13の試合を含まないので、**検算ゲートには使わない**（self ゲート）。
+# ⚠️ **節番号と日付が単調でない**（第6節が8/30、第11節に7/18と9/5が混在）。日付は必ず各行から取る。
+# ⚠️ 年は本文に無い（`09.13` だけ）。ページの大会名に SEASON_YEAR が含まれることを必須にしている
+#    ので、年度が変わって tid が古いままなら取得失敗で止まる。
+# 年度切り替え: tid を新年度の「高円宮杯 JFA U-18サッカーリーグ{年} 新潟県リーグ 1部」のものに差し替え、
+#              hoshitori_results を空にする
+# ============================================================
+_NIIGATA_SCORE_RE = re.compile(r"^(\d+)\s*-\s*(\d+)$")
+_NIIGATA_DATE_RE = re.compile(r"^(\d{2})\.(\d{2})$")
+
+
+def read_niigata(cfg: dict) -> tuple[dict, list[dict]]:
+    url = f"https://www.niigata-fa.or.jp/result/contest/tournament_id/{cfg['tid']}"
+    soup = BeautifulSoup(fetch_html(url, encoding="utf-8",
+                                    must_contain=f"U-18サッカーリーグ{SEASON_YEAR}"), "html.parser")
+    time.sleep(SLEEP)
+    matches = []
+    for b in soup.select("div.p-result__tournament"):
+        md_p = b.select(".type p")
+        date_p = b.select(".date p")
+        side = b.select(".score > p")
+        if len(md_p) < 2 or not date_p or len(side) < 3:
+            raise RuntimeError("試合ブロックの形が想定と違う（ページの作りが変わった疑い）")
+        dm = _NIIGATA_DATE_RE.match(date_p[0].get_text(strip=True))
+        if not dm:
+            raise RuntimeError(f"日付が読めない: {date_p[0].get_text(strip=True)!r}")
+        mid = re.sub(r"\s+", " ", side[1].get_text(" ", strip=True))
+        sm = _NIIGATA_SCORE_RE.match(mid)
+        if not sm and mid != "試合予定":
+            raise RuntimeError(f"スコア欄が読めない: {mid!r}")
+        mdm = re.search(r"\d+", md_p[1].get_text(strip=True))
+        matches.append(dict(
+            md=int(mdm.group()) if mdm else 0,
+            date=f"{SEASON_YEAR}-{dm.group(1)}-{dm.group(2)}",
+            home=re.sub(r"\s+", "", side[0].get_text(strip=True)),
+            away=re.sub(r"\s+", "", side[-1].get_text(strip=True)),
+            hs=int(sm.group(1)) if sm else None,
+            **{"as": int(sm.group(2)) if sm else None}))
+    if len(matches) != cfg["teams"] * (cfg["teams"] - 1):
+        raise RuntimeError(f"試合数が{len(matches)}（2回戦総当たりの{cfg['teams'] * (cfg['teams'] - 1)}と違う）")
+
+    # --- 星取表PDFでしか確認できない結果を補う ---
+    for sup in cfg.get("hoshitori_results") or []:
+        hit = [m for m in matches
+               if m["date"] == sup["date"] and {m["home"], m["away"]} == {sup["home"], sup["away"]}]
+        if len(hit) != 1:
+            raise RuntimeError(f"補完する試合 {sup['date']} {sup['home']} vs {sup['away']} が"
+                               f"一覧に{len(hit)}件（1件のはず）")
+        m = hit[0]
+        hs, as_ = ((sup["hs"], sup["as"]) if m["home"] == sup["home"] else (sup["as"], sup["hs"]))
+        if m["hs"] is None:
+            m["hs"], m["as"] = hs, as_
+            print(f"       （新潟: 一覧で「試合予定」の {sup['date']} {m['home']} {hs}-{as_} {m['away']} "
+                  f"を星取表PDFの結果で補完）")
+        elif (m["hs"], m["as"]) != (hs, as_):
+            raise RuntimeError(f"{sup['date']} {m['home']} vs {m['away']}: 一覧 {m['hs']}-{m['as']} と"
+                               f"星取表 {hs}-{as_} が食い違う")
+        else:
+            print(f"       （新潟: {sup['date']} {m['home']} vs {m['away']} は一覧に入力済み。"
+                  f"hoshitori_results から外してよい）")
+    return {}, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2109,7 +2205,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "kumamoto": read_kumamoto, "okinawa": read_okinawa,
                       "lsin": read_lsin,
                       "sportsonline_table": read_sportsonline_table,
-                      "okayama": read_okayama, "oita": read_oita}[cfg["platform"]]
+                      "okayama": read_okayama, "oita": read_oita,
+                      "niigata": read_niigata}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
