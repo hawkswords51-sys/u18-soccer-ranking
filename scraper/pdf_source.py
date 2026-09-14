@@ -57,6 +57,58 @@ def pdf_link_by_text(soup, predicate, label: str) -> str:
     return hits[0]
 
 
+def pdf_links_all_by_text(soup, predicate) -> list[tuple[str, str]]:
+    """リンク文字（空白を詰めたもの）が predicate を満たすPDFリンクを**全部** [(リンク文字, URL)] で返す
+    （2026-09-15追加。節ごとにPDFが分かれる県など、複数本を使う県向け）。重複URLは1つにまとめる。"""
+    out, seen = [], set()
+    for a in soup.find_all("a", href=True):
+        if not a["href"].lower().endswith(".pdf") or a["href"] in seen:
+            continue
+        text = re.sub(r"\s+", "", a.get_text())
+        if predicate(text):
+            out.append((text, a["href"]))
+            seen.add(a["href"])
+    return out
+
+
+def pdf_links_in_table_row(soup, label_predicate) -> list[list[tuple[str, str]]]:
+    """表の行見出し（行の最初のセルの文字。NFKC＋空白を詰めたもの）が label_predicate を満たす行を探し、
+    その行の**残りのセルごと**に、PDFリンクを [(リンク文字, URL)] で返す（2026-09-15追加・青森）。
+    ⚠️ リンク文字の無いアイコンだけのリンクも含める（青森は文字リンクが古い版・アイコンが現行版）。
+    該当する行がちょうど1つでなければ失敗。"""
+    import unicodedata
+    rows = []
+    for tr in soup.find_all("tr"):
+        cells = tr.find_all(["th", "td"])
+        if not cells:
+            continue
+        label = re.sub(r"\s+", "", unicodedata.normalize("NFKC", cells[0].get_text()))
+        if label_predicate(label):
+            rows.append(cells)
+    if len(rows) != 1:
+        raise RuntimeError(f"条件に合う表の行が{len(rows)}件（1件のはず）")
+    return [[(re.sub(r"\s+", "", a.get_text()), a["href"]) for a in c.find_all("a", href=True)
+             if a["href"].lower().endswith(".pdf")] for c in rows[0][1:]]
+
+
+def newest_by_label_version(urls, season_year) -> tuple[str, str]:
+    """URLのファイル名の版日付（version_from_label）がいちばん新しいものを (URL, 版日付) で返す。
+    版日付が読めないURLがある・最新が同着のときは失敗（どれが現行版か決められない）。"""
+    from urllib.parse import unquote
+    dated = []
+    for u in urls:
+        v = version_from_label(unquote(u).rsplit("/", 1)[-1], season_year)
+        if not v:
+            raise RuntimeError(f"ファイル名から版日付が読めない: {unquote(u)}")
+        dated.append((v, u))
+    if not dated:
+        raise RuntimeError("PDFリンクが無い")
+    dated.sort()
+    if len(dated) > 1 and dated[-1][0] == dated[-2][0]:
+        raise RuntimeError(f"版日付が同じPDFが複数ある（{dated[-1][0]}）")
+    return dated[-1][1], dated[-1][0]
+
+
 # ---------------------------------------------------------------------------
 # 2. 取得
 # ---------------------------------------------------------------------------
@@ -150,6 +202,26 @@ def page_row_texts(page, row_tol: float, x_max: float | None = None,
                    top_min: float | None = None) -> list[str]:
     """page_rows を1行＝1文字列（空白区切り）にした薄いラッパー。"""
     return [" ".join(t for _x, t in row) for row in page_rows(page, row_tol, x_max, top_min)]
+
+
+def page_words(page, x_tolerance: float = 1.5) -> list[dict]:
+    """座標つきの単語（pdfplumber の extract_words）。表の罫線が崩れていて表として読めないPDF用。"""
+    return page.extract_words(x_tolerance=x_tolerance)
+
+
+def page_hrules(page, x_from: float, x_to: float, max_thickness: float = 2.5) -> list[float]:
+    """x_from〜x_to を横切る**細い横線**の y 座標（中心・昇順・重複除去）を返す（2026-09-15追加・青森）。
+    ⚠️ セルの背景の塗りつぶし矩形は線とみなさない（太さで除外）。表抽出はこの境目を罫線と誤認して
+       結合セルを途中で切ることがある（青森の日程PDFで実例）。"""
+    ys = set()
+    for r in page.rects:
+        if r["bottom"] - r["top"] <= max_thickness and r["x0"] <= x_from and r["x1"] >= x_to:
+            ys.add(round((r["top"] + r["bottom"]) / 2, 1))
+    for e in page.lines:
+        if abs(e["top"] - e["bottom"]) <= max_thickness and min(e["x0"], e["x1"]) <= x_from \
+                and max(e["x0"], e["x1"]) >= x_to:
+            ys.add(round((e["top"] + e["bottom"]) / 2, 1))
+    return sorted(ys)
 
 
 def page_tables(page) -> list[list[list]]:
