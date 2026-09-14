@@ -195,6 +195,14 @@ PREF_OFFICIAL = {
                   #    ⚠️ この型（スコア反転）は検算では絶対に検出できない。両チームの勝点が
                   #       3ずつ入れ替わるだけで、リーグ全体の合計勝点が変わらないため。
                   #    移行で公式値に置き換わったため設定を削除（残すと毎回 verify_failed）。
+    # 大分（2026-09-14追加）。前期・後期の対戦表PDFを合わせて90枠にする。
+    # 星取表は勝点・得点・失点（前期／通算／後期）しか持たないので、沖縄と同じ代替ゲート。
+    # ALIASは不要（10チームすべて表記が既存JSONと一致。2026-09-14実測）。
+    "oita":      {"platform": "oita", "teams": 10,
+                  "source": "https://www.ofa.or.jp/news/tournaments/high-school/",
+                  "label": "大分県サッカー協会 公式",
+                  "double_round": True,
+                  "standings_gate": "okinawa"},
 
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
@@ -1469,6 +1477,166 @@ def read_okayama(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 大分（ofa.or.jp）— 県協会のテキストPDF。前期・後期で記事もPDFも別（2026-09-14追加）
+# ⚠️ **1回戦総当たり×2（前期 第1〜9節・後期 第10〜18節）。** 前期45試合だけで「全試合消化済み」
+#    に見え、見張りが7/19から2か月黙っていた。**前期と後期の対戦表を両方読んで90枠にする**（double_round）。
+# ⚠️ **PDFのURLは版ごとに変わる**（`2026ofa1ten-1.pdf`／`2026ofa1tenkouki.pdf`…）。
+#    入口＝高校カテゴリの記事一覧 → 「OFAリーグ前期/後期 …試合結果」の記事 → PDF と毎回辿る。
+#    記事一覧はページ送りがあるので、前期の記事が2ページ目以降に落ちても探しに行く。
+# ⚠️ **記事の中のリンク文字は「対戦表」「星取表」だけで、1部〜3部Cが同じ文字で並ぶ。**
+#    見出しでも見分けられない。→ **PDF冒頭の「OFA1部リーグ」を読んで1部を特定する**
+#    （ファイル名の `ofa1` には頼らない）。
+# ⚠️ 日付は対戦表の「月日」列。**節の途中で日付が変わる**（第12節=9/19と9/20、第15節=10/10と10/12）
+#    ので、節ではなく**行ごとに直前の月日を引き継ぐ**。延期で第10節が12/12に回っている。
+# ⚠️ **星取表の勝点・得点・失点・得失差は「前期／通算／後期」の3段重ね**（1セルに改行区切り）。
+#    2026-09-14に3段とも試合から計算した値と10チーム全部で一致することを確認した。
+#    **中段（通算）を公式順位表として使う。** 勝分敗・試合数・順位は無い（左端の数字は
+#    チーム番号で順位ではない）→ 沖縄と同じ「勝点・得点・失点」の代替ゲートで守る。
+# ⚠️ 星取表のマス目は公式側の記入ミスがある（2026-09-14時点、中津東の後期 1×2 大分西 が
+#    「大分」の列に入っている）。**試合はマス目からは作らず、対戦表から作る。**
+# ✅ 版日付ガード：記事タイトルの「(9/13現在)」より後の日付を持つ消化済み試合があれば据え置く。
+# 年度切り替え: 入口URLは固定。記事タイトルの年度（SEASON_YEAR）で絞る
+# ============================================================
+_OITA_ENTRY = "https://www.ofa.or.jp/news/tournaments/high-school/"
+_OITA_MAX_PAGES = 5
+_OITA_ASOF_RE = re.compile(r"(\d{1,2})/(\d{1,2})\s*現在")
+_OITA_MD_RE = re.compile(r"第\s*(\d+)\s*節")
+_OITA_DATE_RE = re.compile(r"(\d{1,2})月(\d{1,2})日")
+_OITA_SCORE_RE = re.compile(r"^(\d+)\s*-\s*(\d+)$")
+
+
+def _oita_articles() -> dict:
+    """{"前期": (タイトル, URL), "後期": (…)} をそれぞれ最新の記事で返す。"""
+    found = {}
+    for page in range(1, _OITA_MAX_PAGES + 1):
+        url = _OITA_ENTRY if page == 1 else f"{_OITA_ENTRY}page/{page}/"
+        soup = BeautifulSoup(fetch_html(url, encoding="utf-8"), "html.parser")
+        time.sleep(SLEEP)
+        for a in soup.find_all("a", href=True):
+            title = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
+            if not (f"サッカーリーグ{SEASON_YEAR}" in title and "OFAリーグ" in title
+                    and "試合結果" in title):
+                continue
+            for phase in ("前期", "後期"):
+                if phase in title and phase not in found:   # 一覧は新しい順
+                    found[phase] = (title, a["href"])
+        if "前期" in found and "後期" in found:
+            break
+    return found
+
+
+def _oita_pdf(article_url: str, link_text: str, title_word: str) -> bytes:
+    """記事の中から、PDF冒頭に title_word（例「OFA1部リーグ」）を含む link_text のPDFを返す。"""
+    import io
+    import pdfplumber
+
+    soup = BeautifulSoup(fetch_html(article_url, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    for a in soup.find_all("a", href=True):
+        if a.get_text(strip=True) != link_text or not a["href"].lower().endswith(".pdf"):
+            continue
+        resp = requests.get(a["href"], headers=HEADERS, timeout=TIMEOUT)
+        resp.raise_for_status()
+        time.sleep(SLEEP)
+        with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
+            head = re.sub(r"\s+", "", pdf.pages[0].extract_text() or "")[:200]
+        if title_word in head:
+            return resp.content
+    raise RuntimeError(f"記事に1部の{link_text}PDFが無い（{article_url}）")
+
+
+def _oita_schedule(content: bytes) -> list[dict]:
+    """対戦表PDF → 試合のリスト（未消化も含む）"""
+    import io
+    import pdfplumber
+
+    with pdfplumber.open(io.BytesIO(content)) as pdf:
+        rows = [r for pg in pdf.pages for t in pg.extract_tables() for r in t]
+    out, md, day = [], None, ""
+    for r in rows:
+        if len(r) < 6:
+            continue
+        mm = _OITA_MD_RE.search(r[0] or "")
+        if mm:
+            md = int(mm.group(1))
+        dm = _OITA_DATE_RE.search(r[1] or "")
+        if dm:
+            day = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+        card = re.sub(r"[\s　]+", "", r[4] or "")
+        if "vs" not in card:
+            continue
+        home, away = card.split("vs", 1)
+        sm = _OITA_SCORE_RE.match((r[5] or "").strip())
+        if (r[5] or "").strip() and not sm:
+            raise RuntimeError(f"結果欄が読めない: {r[5]!r}（{home} vs {away}）")
+        out.append(dict(md=md, date=day, home=home, away=away,
+                        hs=int(sm.group(1)) if sm else None,
+                        **{"as": int(sm.group(2)) if sm else None},
+                        kickoff=(r[3] or "").strip()))
+    return out
+
+
+def _oita_totals(content: bytes) -> dict:
+    """星取表PDF → {チーム名: {pts, gf, ga}}（中段＝通算）"""
+    import io
+    import pdfplumber
+
+    with pdfplumber.open(io.BytesIO(content)) as pdf:
+        rows = pdf.pages[0].extract_tables()[0]
+    head = [re.sub(r"\s+", "", c or "") for c in rows[0]]
+    col = {k: head.index(k) for k in ("勝点", "得点", "失点")}
+    totals = {}
+    for r in rows[1:]:
+        if not (r[0] or "").strip().isdigit():
+            continue
+        name = re.sub(r"\s+", "", r[1] or "")
+        vals = {}
+        for key, label in (("pts", "勝点"), ("gf", "得点"), ("ga", "失点")):
+            stack = (r[col[label]] or "").split("\n")
+            if len(stack) != 3:
+                raise RuntimeError(f"{name} の{label}が「前期／通算／後期」の3段になっていない: {stack}")
+            vals[key] = int(stack[1])
+        totals[name] = vals
+    return totals
+
+
+def read_oita(cfg: dict) -> tuple[dict, list[dict]]:
+    arts = _oita_articles()
+    if "前期" not in arts:
+        raise RuntimeError(f"入口から{SEASON_YEAR}年のOFAリーグ前期の結果記事が見つからない")
+
+    matches, versions = [], []
+    for phase in ("前期", "後期"):
+        if phase not in arts:
+            continue
+        title, url = arts[phase]
+        got = _oita_schedule(_oita_pdf(url, "対戦表", "OFA1部リーグ"))
+        if len(got) != cfg["teams"] * (cfg["teams"] - 1) // 2:
+            raise RuntimeError(f"{phase}の対戦表が{len(got)}試合（1回戦総当たりの"
+                               f"{cfg['teams'] * (cfg['teams'] - 1) // 2}試合と違う）")
+        matches += got
+        am = _OITA_ASOF_RE.search(title)
+        if am:
+            versions.append(f"{SEASON_YEAR}-{int(am.group(1)):02d}-{int(am.group(2)):02d}")
+
+    # 公式順位表の代わり＝最新の記事（後期があれば後期）の星取表の「通算」段
+    latest = arts.get("後期") or arts["前期"]
+    standings = _oita_totals(_oita_pdf(latest[1], "星取表", "OFA1部リーグ"))
+
+    # ✅ 版日付ガード（「(9/13現在)」より後の日付を持つ消化済み試合＝日付の割り当てが壊れている）
+    version = max(versions) if versions else _jst_today().isoformat()
+    future = [x for x in matches if x["hs"] is not None and x["date"] > version]
+    if future:
+        raise RuntimeError(
+            f"版日付({version})より後の日付を持つ消化済み試合が{len(future)}件ある"
+            f"（例: {future[0]['date']} {future[0]['home']} vs {future[0]['away']}）")
+    blank = [x for x in matches if x["hs"] is not None and not x["date"]]
+    if blank:
+        raise RuntimeError(f"日付を割り当てられなかった消化済み試合が{len(blank)}件ある")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -1941,7 +2109,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "kumamoto": read_kumamoto, "okinawa": read_okinawa,
                       "lsin": read_lsin,
                       "sportsonline_table": read_sportsonline_table,
-                      "okayama": read_okayama}[cfg["platform"]]
+                      "okayama": read_okayama, "oita": read_oita}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:

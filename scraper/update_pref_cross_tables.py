@@ -406,6 +406,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-shimane-1", "pref-okayama-1",
     "pref-hiroshima-1",
     "pref-tochigi-1",
+    "pref-oita-1",       # ofa.or.jp（県協会の前期・後期の対戦表PDF）2026-09-14追加
 }
 
 
