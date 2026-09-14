@@ -62,6 +62,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from update_pref_cross_tables import (  # noqa: E402
     SEASON_YEAR, build_from_source, norm,
 )
+import pdf_source  # noqa: E402  PDF出典の下ごしらえ（URLを辿る・取得・版日付・行/表の復元）
 
 ROOT = Path(__file__).resolve().parent.parent
 DIR = ROOT / "data" / "league_matches"
@@ -1398,7 +1399,6 @@ _OKAYAMA_MATCH_RE = re.compile(
 _OKAYAMA_HEAD_MD_DATE = re.compile(r"^(\d{1,2})\s+(\d{1,2})月(\d{1,2})日")
 _OKAYAMA_HEAD_DATE = re.compile(r"^(\d{1,2})月(\d{1,2})日")
 _OKAYAMA_ONLY_DATE = re.compile(r"^(\d{1,2})月(\d{1,2})日$")
-_OKAYAMA_VERSION_RE = re.compile(r"(\d{4})/(\d{1,2})/(\d{1,2})")
 
 
 def _okayama_pdf_url(cfg: dict) -> str:
@@ -1406,49 +1406,24 @@ def _okayama_pdf_url(cfg: dict) -> str:
     soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8",
                                     must_contain=cfg["heading"]), "html.parser")
     time.sleep(SLEEP)
-    node = soup.find(string=re.compile(re.escape(cfg["heading"])))
-    if node is None:
-        raise RuntimeError(f"入口ページに見出し {cfg['heading']!r} が無い")
-    for a in node.parent.find_all_next("a", href=True):
-        if a["href"].lower().endswith(".pdf"):
-            return a["href"]
-    raise RuntimeError("見出しの後にPDFリンクが無い")
+    return pdf_source.pdf_link_after_heading(soup, cfg["heading"])
 
 
 def _okayama_rows(page) -> list[str]:
     """左段（県1部）だけを、1試合＝1行の文字列にして返す。"""
-    ws = [w for w in page.extract_words()
-          if w["x0"] < _OKAYAMA_SPLIT_X and w["top"] > 75]
-    ws.sort(key=lambda w: (w["top"], w["x0"]))
-    groups, cur, base = [], [], None
-    for w in ws:
-        if base is None or abs(w["top"] - base) <= _OKAYAMA_ROW_TOL:
-            cur.append(w)
-            base = w["top"] if base is None else base
-        else:
-            groups.append(cur)
-            cur, base = [w], w["top"]
-    if cur:
-        groups.append(cur)
-    return [" ".join(x["text"] for x in sorted(g, key=lambda y: y["x0"]))
-            for g in groups]
+    return pdf_source.page_row_texts(page, _OKAYAMA_ROW_TOL, x_max=_OKAYAMA_SPLIT_X, top_min=75)
 
 
 def read_okayama(cfg: dict) -> tuple[dict, list[dict]]:
-    import io
-    import pdfplumber
-
     url = _okayama_pdf_url(cfg)
-    resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-    resp.raise_for_status()
+    content = pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, wait=SLEEP)
     time.sleep(SLEEP)
 
-    with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
+    with pdf_source.open_pdf(content) as pdf:
         lines = [ln for pg in pdf.pages for ln in _okayama_rows(pg)]
-        vm = _OKAYAMA_VERSION_RE.search(pdf.pages[0].extract_text() or "")
-    if not vm:
+        version = pdf_source.version_date(pdf.pages[0].extract_text() or "")
+    if not version:
         raise RuntimeError("PDF冒頭の版日付が読めない")
-    version = f"{vm.group(1)}-{int(vm.group(2)):02d}-{int(vm.group(3)):02d}"
 
     matches, md_date = [], {}
     for line in lines:
