@@ -245,6 +245,13 @@ PREF_OFFICIAL = {
                   "label": "徳島県サッカー協会 公式",
                   "standings_gate": "self"},
 
+    # 青森（2026-09-15追加）。大会日程PDF（前期・後期）＋星取表PDF（read_aomori のコメント参照）。
+    # 星取表は勝点・得点・失点（＋得失点差）だけ → 沖縄と同じ代替ゲート。
+    "aomori":    {"platform": "aomori", "teams": 9,
+                  "source": "https://www.aomori-fa.jp/category/committee/all-committee/highschool/",
+                  "label": "青森県サッカー協会 公式",
+                  "standings_gate": "okinawa"},
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -338,6 +345,15 @@ PREF_ALIAS = {
         #    （指示書には3件とあったが、実測すると2件で足りた）。
         "栃木SCU-18B": "栃木SC B",
         "栃木シティU-18": "栃木シティFC",
+    },
+    "aomori": {
+        # 日程PDFは正式名、星取表は略称（どちらも空白除去・NFKC後の表記）。norm() で寄らないものだけ。
+        "八戸工業大学第一高等学校": "八戸工大一",
+        "八工大一": "八戸工大一",
+        "八学野西": "八戸学院野辺地西",
+        "八学光星": "八戸学院光星",
+        "ヴァンラーレU-18": "ヴァンラーレ八戸U18",   # 星取表の半角カナ ｳﾞｧﾝﾗｰﾚU-18 を NFKC したもの
+        "三農恵拓": "三本木農業恵拓",
     },
     "hyogo": {
         # 日程･戦績表PDFは略称（チーム名の空白は読み取り側で除去済み）
@@ -2052,6 +2068,162 @@ def read_tokushima(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 青森（aomori-fa.jp）— 県協会の大会日程PDF（前期・後期）＋星取表PDF（2026-09-15追加）
+#   入口: 2種カテゴリの記事一覧 → タイトルに「サッカーリーグ青森{年}」を含む記事 → 記事の表からPDF
+# ⚠️ **記事タイトルもURLも更新・年度で変わる**（2025年度の記事と1文字違い）。記事URLは固定しない。
+#    一覧はページ送りがあるので数ページ探す。タイトルの年がシーズン年でなければ使わない。
+# ⚠️⚠️ **記事の表の「大会日程」行の各セル（前期・後期）にPDFリンクが2本ある。**
+#    テキストリンク「前期」「後期」は4月版（古い）、隣の文字なしPDFアイコンが現行版。
+#    → セルの全リンクから**ファイル名の版日付が最新のもの**を選ぶ（pdf_source.newest_by_label_version）。
+#    ⚠️ フォルダの年月は使わない（0907版が /2026/08/ にある）。
+# ⚠️⚠️ **日程PDFは表として読めない。** セルの背景の塗りつぶしの境目を pdfplumber が罫線と誤認し、
+#    結合された月日セルを途中で切る（4/29 の最初の2試合に 4/25 が付いた）。
+#    → 単語の座標で読む。月日・カテゴリーは**その列を横切る細い横線で区切ったブロック**の中の文字を、
+#       同じブロックにある試合行に付ける（pdf_source.page_hrules）。
+#    ⚠️ 節と月日が1語にくっつくことがある（「第１４節9月12日」）。月日は単語の中から探す。
+# ⚠️ 1部と2部が同じPDFに交互に入る。カテゴリーのブロックで分け、1部が teams チーム・1部と2部が重ならないことを確認。
+#    チーム名は完全一致で扱う（`三本木農業恵拓`／`三本木`／`三本木農業恵拓２ｎｄ` が共存）。
+# ⚠️ 星取表は1部・2部が1ページ。表として読める。1部の表（左上が「１部リーグ」）の各行の
+#    先頭＝略称、末尾4列＝勝点・得点・失点・得失点差。**勝分敗・試合数・順位は無い**
+#    → 沖縄と同じ代替ゲート（勝点・得点・失点）。ヘッダのチーム名は縦書きなので使わない。
+#    略称は半角カナを含む（`ｳﾞｧﾝﾗｰﾚU-18`）ので NFKC してから名寄せする。
+# 年度切り替え: 記事はタイトルの年で探すので設定変更は不要。
+# ============================================================
+_AOMORI_ENTRY = "https://www.aomori-fa.jp/category/committee/all-committee/highschool/"
+_AOMORI_MD_RE = re.compile(r"(\d{1,2})月(\d{1,2})日")
+_AOMORI_TIME_RE = re.compile(r"^\d{1,2}:\d{2}$")
+_AOMORI_SCORE_RE = re.compile(r"^(?:(\d+)-(\d+)|-)$")
+
+
+def _aomori_article() -> str:
+    year = str(SEASON_YEAR)
+    for page in range(1, 4):
+        url = _AOMORI_ENTRY if page == 1 else f"{_AOMORI_ENTRY}page/{page}/"
+        soup = BeautifulSoup(fetch_html(url, encoding="utf-8"), "html.parser")
+        time.sleep(SLEEP)
+        for a in soup.find_all("a", href=True):
+            title = re.sub(r"\s+", "", unicodedata.normalize("NFKC", a.get_text()))
+            if "高円宮杯" in title and f"サッカーリーグ青森{year}" in title:
+                return a["href"]
+    raise RuntimeError(f"記事一覧に{year}年の「高円宮杯…サッカーリーグ青森{year}」の記事が無い")
+
+
+def _aomori_blocks(page, words, head_word: str, pattern) -> list[tuple[float, float, str]]:
+    """見出し head_word の列を横切る細い線で区切ったブロックごとに、その中で pattern に合う文字を返す"""
+    hw = [w for w in words if re.sub(r"\s+", "", w["text"]) == head_word]
+    if len(hw) != 1:
+        raise RuntimeError(f"日程表の見出し「{head_word}」が{len(hw)}個")
+    x0, x1 = hw[0]["x0"], hw[0]["x1"]
+    ys = pdf_source.page_hrules(page, x0, x1)
+    blocks = []
+    for top, bottom in zip(ys, ys[1:]):
+        hits = []
+        for w in words:
+            cy = (w["top"] + w["bottom"]) / 2
+            if top < cy < bottom and w["x0"] < x1 + 8 and w["x1"] > x0 - 8:
+                m = pattern.search(unicodedata.normalize("NFKC", w["text"]))
+                if m:
+                    hits.append(m.group(0))
+        if len(hits) > 1:
+            raise RuntimeError(f"「{head_word}」の1ブロックに候補が複数: {hits}")
+        blocks.append((top, bottom, hits[0] if hits else ""))
+    return blocks
+
+
+def _aomori_schedule(content: bytes) -> list[dict]:
+    out = []
+    with pdf_source.open_pdf(content) as pdf:
+        for page in pdf.pages:
+            words = pdf_source.page_words(page)
+            head = {re.sub(r"\s+", "", w["text"]): w for w in words}
+            for k in ("キックオフ", "主"):
+                if k not in head:
+                    raise RuntimeError(f"日程表の見出し「{k}」が無い")
+            days = _aomori_blocks(page, words, "月日", _AOMORI_MD_RE)
+            cats = _aomori_blocks(page, words, "カテゴリー", re.compile(r"[12]部"))
+            x_ko, x_end = head["キックオフ"]["x0"] - 8, head["主"]["x0"] - 4
+            for t in [w for w in words if _AOMORI_TIME_RE.match(w["text"]) and x_ko <= w["x0"] < x_ko + 40]:
+                cy = (t["top"] + t["bottom"]) / 2
+                row = sorted([w for w in words if abs(w["top"] - t["top"]) <= 3
+                              and t["x1"] < w["x0"] < x_end], key=lambda w: w["x0"])
+                toks = [unicodedata.normalize("NFKC", w["text"]) for w in row]
+                sc = [i for i, s in enumerate(toks) if _AOMORI_SCORE_RE.match(s)]
+                if len(sc) != 1 or sc[0] == 0 or sc[0] == len(toks) - 1:
+                    raise RuntimeError(f"日程の行が読めない: {t['text']} {toks}")
+                day = next((d for top, bottom, d in days if top < cy < bottom), "")
+                cat = next((c for top, bottom, c in cats if top < cy < bottom), "")
+                dm = _AOMORI_MD_RE.search(day)
+                if not dm or not cat:
+                    raise RuntimeError(f"月日・カテゴリーを割り当てられない: {t['text']} {toks}")
+                m = _AOMORI_SCORE_RE.match(toks[sc[0]])
+                out.append(dict(cat=cat, md=0,
+                                date=f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}",
+                                home="".join(toks[:sc[0]]), away="".join(toks[sc[0] + 1:]),
+                                hs=int(m.group(1)) if m.group(1) else None,
+                                **{"as": int(m.group(2)) if m.group(2) else None}))
+    return out
+
+
+def read_aomori(cfg: dict) -> tuple[dict, list[dict]]:
+    article = _aomori_article()
+    soup = BeautifulSoup(fetch_html(article, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    sched_cells = pdf_source.pdf_links_in_table_row(soup, lambda t: t == "大会日程")
+    hoshi_cells = pdf_source.pdf_links_in_table_row(soup, lambda t: t.startswith("星取表") and "1部" in t)
+    sched = [pdf_source.newest_by_label_version([u for _t, u in cell], SEASON_YEAR)
+             for cell in sched_cells if cell]
+    hoshi = [pdf_source.newest_by_label_version([u for _t, u in cell], SEASON_YEAR)
+             for cell in hoshi_cells if cell]
+    if len(sched) != 2 or len(hoshi) != 1:
+        raise RuntimeError(f"日程PDFが{len(sched)}本（前期・後期の2本のはず）・星取表PDFが{len(hoshi)}本")
+
+    rows = []
+    for url, _v in sched:
+        rows += _aomori_schedule(pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, wait=SLEEP))
+        time.sleep(SLEEP)
+    one = [r for r in rows if r["cat"] == "1部"]
+    t1 = {r["home"] for r in one} | {r["away"] for r in one}
+    t2 = {r["home"] for r in rows if r["cat"] != "1部"} | {r["away"] for r in rows if r["cat"] != "1部"}
+    n = cfg["teams"]
+    if len(t1) != n or t1 & t2:
+        raise RuntimeError(f"1部のチームが{len(t1)}（{n}のはず）／2部と重なるチーム {sorted(t1 & t2)}")
+    if len(one) != n * (n - 1):
+        raise RuntimeError(f"1部が{len(one)}試合（2回戦総当たりの{n * (n - 1)}と違う）")
+    pairs = collections.Counter(frozenset((r["home"], r["away"])) for r in one)
+    if max(pairs.values()) != 2 or len(pairs) != n * (n - 1) // 2:
+        raise RuntimeError("1部の対戦の組が想定と違う（重複・欠落の疑い）")
+
+    # --- 星取表（1部）：略称・勝点・得点・失点・得失点差 ---
+    content = pdf_source.fetch_pdf(hoshi[0][0], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    t_one = [t for t in tables if unicodedata.normalize("NFKC", re.sub(r"\s+", "", t[0][0] or "")) == "1部リーグ"]
+    if len(t_one) != 1:
+        raise RuntimeError(f"星取表に1部の表が{len(t_one)}個")
+    standings = {}
+    for r in t_one[0][1:]:
+        name = unicodedata.normalize("NFKC", re.sub(r"\s+", "", r[0] or ""))
+        vals = [(c or "").strip() for c in r[-4:]]
+        if not name or not all(re.fullmatch(r"-?\d+", v) for v in vals):
+            raise RuntimeError(f"星取表の1部の行が読めない: {r}")
+        pts, gf, ga, gd = (int(v) for v in vals)
+        if gf - ga != gd:
+            raise RuntimeError(f"星取表 {name}: 得点{gf}−失点{ga}≠得失点差{gd}（読み取りの誤り）")
+        standings[name] = dict(pts=pts, gf=gf, ga=ga)
+    if len(standings) != n or sum(v["gf"] for v in standings.values()) != sum(v["ga"] for v in standings.values()):
+        raise RuntimeError("星取表の1部が9チームでない、または得点計≠失点計")
+
+    version = max(v for _u, v in sched)
+    matches = [{k: v for k, v in r.items() if k != "cat"} for r in one]
+    future = [m for m in matches if m["hs"] is not None and m["date"] > version]
+    if future:
+        raise RuntimeError(f"版日付({version})より後の日付を持つ消化済み試合が{len(future)}件"
+                           f"（例: {future[0]['date']} {future[0]['home']} vs {future[0]['away']}）")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2526,7 +2698,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "sportsonline_table": read_sportsonline_table,
                       "okayama": read_okayama, "oita": read_oita,
                       "niigata": read_niigata, "akita": read_akita,
-                      "hyogo": read_hyogo, "tokushima": read_tokushima}[cfg["platform"]]
+                      "hyogo": read_hyogo, "tokushima": read_tokushima,
+                      "aomori": read_aomori}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
