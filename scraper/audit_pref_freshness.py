@@ -307,6 +307,19 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
         if r.get("season") and r["season"] != season:
             continue                       # 旧シーズンのファイル
         if r.get("complete"):
+            # ⚠️ 「全試合消化済み」は「シーズン終了」とは限らない。
+            #    大分は前期45試合が埋まった時点で complete になるが、実際は後期がある
+            #    （2026-09-14発覚：後期は9/12から結果あり。7/19から57日誰も気づけなかった）。
+            #    情報行（⚪️）には出ていたが fetch_status の status が ok のままで、週次報告に届かなかった。
+            #    枠が1回戦制のまま止まっている県は、2回戦制／後期に入った疑いとして必ず黄に出す。
+            #    鳥取（後期グループ分けで34枠）は single_round でないので、ここには入らない。
+            n_done = days_between(r.get("last_change", ""), today)
+            if r.get("single_round") and n_done is not None and n_done >= PREF_STALE_DAYS:
+                yellow.append(f"{pref:12s} 全試合消化済み（{r['played']}/{r['total']}）のまま"
+                              f"{n_done}日動いていません＝2回戦制／後期に入った疑い"
+                              f"（最終試合 {r.get('latest_match') or '—'}"
+                              f"・{r.get('sourceName') or '出典不明'}）")
+                continue
             done.append(pref)              # 全試合消化済み（情報行では出す）
             continue
         n = days_between(r.get("last_change", ""), today)
