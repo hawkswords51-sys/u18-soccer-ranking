@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-14T02:06:41+09:00",
+  "updatedAt": "2026-09-14T09:21:50+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -507,8 +507,8 @@
       "status": "warn"
     },
     "kanagawa": {
-      "result": "verify_failed",
-      "result_note": "検算不一致 湘南ベルマーレA.played 試合11≠表10; 湘南ベルマーレA.won 試合9≠表8 …（順位表と個別試合が未整合。待機）",
+      "result": "ok",
+      "result_note": "消化58試合に更新（検算一致）",
       "result_date": "2026-09-14",
       "season": "2026",
       "complete": false,
