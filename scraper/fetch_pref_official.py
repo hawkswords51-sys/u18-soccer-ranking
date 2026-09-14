@@ -221,6 +221,14 @@ PREF_OFFICIAL = {
                       {"date": "2026-07-18", "home": "北越2nd", "away": "帝京長岡3rd", "hs": 3, "as": 4},
                   ]},
 
+    # 秋田（2026-09-14追加）。日程PDF＋星取表PDF（read_akita のコメント参照）。
+    # 星取表に勝・負・分・勝点・得点・失点が揃っているので、通常の検算ゲート（全項目一致）。
+    # ALIASは不要（8チームすべて表記が既存JSONと一致。2026-09-14実測）。
+    "akita":     {"platform": "akita", "teams": 8,
+                  "entry": "https://fa-akita.net/16943/",
+                  "source": "https://fa-akita.net/16943/",
+                  "label": "秋田県サッカー協会 公式"},
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -1708,6 +1716,137 @@ def read_niigata(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 秋田（fa-akita.net）— 県協会の日程PDF＋星取表PDF（2026-09-14追加・pdf_source を使う最初の県）
+#   入口: 記事「【◯◯更新】2種大会情報」（2026年度は /16943/）。リンク文字が
+#         「2026_日程1部・2部･3部(0913更新)」「2026_星取表1部・2部・3部A･3部B(0913更新)」
+# ⚠️ **PDFのURLはハッシュ名で更新のたびに変わる。** リンク文字（年度＋「日程」/「星取表」＋「1部」）で辿る。
+# ⚠️ **日程PDFの「節」「月日」は結合セルで、文字はセルの縦中央に出る。**
+#    座標で「上にある一番近い月日」を前方補完すると、ブロック前半の試合に前の日付が付く。
+#    → **表として読む**（pdf_source.page_tables）。結合セルの値は先頭行に入り、以降は None。
+#    テキスト抽出だと節・月日が末尾にまとめて出て、節も 14→13 の順に見えるが、表では 1→14 の順に並ぶ。
+# ⚠️ 1ブロックの中で同じ日付のセルが分かれていることがある（7/4 のブロックが2つ）。表の読み方なら問題ない。
+# ⚠️ 1部は「カテゴリー」列が `A1` の行（A2=2部・A3=3部A）。列は**ヘッダの名前で位置を決める**。
+# ⚠️ 星取表は1部〜3部Bが1ファイル4ページ。**ページ冒頭の「１部 星取表」で1部を特定**する。
+#    ⚠️⚠️ **列の順が「勝 負 分」**（東京と同じ罠）。ヘッダの名前で位置を取るので順番に依存しない。
+#    ✅ 表の下に合計行（勝計 負計 分計 得点計 失点計 得失計）がある → 読み取りの自己検算に使う。
+# ✅ 版日付ガード：日程PDF冒頭の「2026/9/13 更新」より後の日付を持つ消化済み試合があれば停止。
+# 年度切り替え: 入口の記事IDが年度で変わる見込み（平成27〜30年度は別記事だった）。
+#              新年度の「2種大会情報」記事のURLに entry を差し替える。リンク文字の年度で絞っているので、
+#              差し替え忘れは「PDFリンクが0件」の取得失敗で止まる（古い年度を黙って読まない）。
+# ============================================================
+_AKITA_DATE_RE = re.compile(r"(\d{1,2})月(\d{1,2})日")
+_AKITA_TIME_RE = re.compile(r"^(\d{1,2}:\d{2}|未定)?$")   # 時刻が「未定」のまま消化済みの試合がある
+
+
+def _akita_links(cfg: dict) -> tuple[str, str]:
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8",
+                                    must_contain=f"{SEASON_YEAR}_日程"), "html.parser")
+    time.sleep(SLEEP)
+    year = str(SEASON_YEAR)
+    sched = pdf_source.pdf_link_by_text(
+        soup, lambda t: t.startswith(f"{year}_日程") and "1部" in t, "1部の日程")
+    hoshi = pdf_source.pdf_link_by_text(
+        soup, lambda t: t.startswith(f"{year}_星取表") and "1部" in t, "1部の星取表")
+    return sched, hoshi
+
+
+def _akita_schedule(content: bytes) -> tuple[list[dict], str]:
+    with pdf_source.open_pdf(content) as pdf:
+        version = pdf_source.version_date(pdf.pages[0].extract_text() or "")
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    if not version:
+        raise RuntimeError("日程PDF冒頭の版日付が読めない")
+    out, md, day = [], None, ""
+    for t in tables:
+        head = [re.sub(r"\s+", "", c or "") for c in t[0]]
+        if not {"節", "月日", "カテゴリー", "時間", "対戦"} <= set(head):
+            raise RuntimeError(f"日程表のヘッダが想定と違う: {head}")
+        c_md, c_day, c_cat = head.index("節"), head.index("月日"), head.index("カテゴリー")
+        c_time, c_vs = head.index("時間"), head.index("対戦")   # 対戦＝ホーム／得点／-／得点／アウェイ の5列
+        for r in t[1:]:
+            if (r[c_md] or "").strip().isdigit():
+                md = int(r[c_md])
+            dm = _AKITA_DATE_RE.search(r[c_day] or "")
+            if dm:
+                day = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+            if (r[c_cat] or "").strip() != "A1":
+                continue
+            home, hs, sep, as_, away = [(r[c_vs + i] or "").strip() for i in range(5)]
+            if sep != "-" or not _AKITA_TIME_RE.match((r[c_time] or "").strip()) or not home or not away:
+                raise RuntimeError(f"1部の行が読めない: {r}")
+            if hs.isdigit() and as_.isdigit():
+                hs, as_ = int(hs), int(as_)
+            elif not hs and not as_:
+                hs = as_ = None
+            else:
+                raise RuntimeError(f"スコアが読めない: {home} {hs}-{as_} {away}")
+            if md is None or not day:
+                raise RuntimeError(f"節・月日を割り当てられない: {home} vs {away}")
+            out.append(dict(md=md, date=day, home=home, away=away, hs=hs, **{"as": as_},
+                            kickoff=(r[c_time] or "").strip()))
+    return out, version
+
+
+def _akita_standings(content: bytes) -> tuple[dict, list[int]]:
+    with pdf_source.open_pdf(content) as pdf:
+        page = next((p for p in pdf.pages
+                     if "1部星取表" in unicodedata.normalize("NFKC", re.sub(r"\s+", "", (p.extract_text() or "")[:80]))),
+                    None)
+        if page is None:
+            raise RuntimeError("星取表PDFに1部のページが無い")
+        tables = pdf_source.page_tables(page)
+        lines = (page.extract_text() or "").splitlines()
+    if len(tables) != 1:
+        raise RuntimeError(f"1部の星取表ページの表が{len(tables)}個")
+    t = tables[0]
+    head = [re.sub(r"\s+", "", c or "") for c in t[0]]
+    col = {k: head.index(v) for k, v in (("won", "勝"), ("lost", "負"), ("drawn", "分"),
+                                          ("pts", "勝点"), ("gf", "得点"), ("ga", "失点"))}
+    standings = {}
+    for r in t[1:]:
+        name = (r[0] or "").strip()
+        if not name or not all((r[c] or "").strip().lstrip("-").isdigit() for c in col.values()):
+            continue
+        v = {k: int(r[c]) for k, c in col.items()}
+        v["played"] = v["won"] + v["drawn"] + v["lost"]
+        standings[name] = v
+    # 表の下の合計行「勝計 負計 分計 得点計 失点計 得失計」
+    tm = re.fullmatch(r"(\d+) (\d+) (\d+) (\d+) (\d+) (-?\d+)", lines[-1].strip()) if lines else None
+    if not tm:
+        raise RuntimeError("星取表の合計行が読めない")
+    totals = [int(x) for x in tm.groups()]
+    return standings, totals
+
+
+def read_akita(cfg: dict) -> tuple[dict, list[dict]]:
+    sched_url, hoshi_url = _akita_links(cfg)
+    matches, version = _akita_schedule(pdf_source.fetch_pdf(sched_url, HEADERS, TIMEOUT, wait=SLEEP))
+    time.sleep(SLEEP)
+    standings, totals = _akita_standings(pdf_source.fetch_pdf(hoshi_url, HEADERS, TIMEOUT, wait=SLEEP))
+    time.sleep(SLEEP)
+
+    n = cfg["teams"]
+    if len(matches) != n * (n - 1):
+        raise RuntimeError(f"1部の試合が{len(matches)}件（2回戦総当たりの{n * (n - 1)}件と違う）")
+    if len(standings) != n:
+        raise RuntimeError(f"星取表の1部が{len(standings)}チーム（{n}のはず）")
+    # ✅ 星取表の読み取りの自己検算（合計行と、表から足し上げた値が一致するか）
+    got = [sum(v[k] for v in standings.values()) for k in ("won", "lost", "drawn", "gf", "ga")]
+    if got != totals[:5] or totals[3] - totals[4] != totals[5] or got[0] != got[1] or got[3] != got[4]:
+        raise RuntimeError(f"星取表の合計が合わない（表から {got}／合計行 {totals}）")
+    played = [m for m in matches if m["hs"] is not None]
+    if sum(v["played"] for v in standings.values()) != len(played) * 2:
+        raise RuntimeError(f"星取表の試合数の合計が 消化{len(played)}×2 と合わない"
+                           f"（日程と星取表の版がずれている疑い）")
+    # ✅ 版日付ガード
+    future = [m for m in played if m["date"] > version]
+    if future:
+        raise RuntimeError(f"版日付({version})より後の日付を持つ消化済み試合が{len(future)}件"
+                           f"（例: {future[0]['date']} {future[0]['home']} vs {future[0]['away']}）")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2181,7 +2320,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "lsin": read_lsin,
                       "sportsonline_table": read_sportsonline_table,
                       "okayama": read_okayama, "oita": read_oita,
-                      "niigata": read_niigata}[cfg["platform"]]
+                      "niigata": read_niigata, "akita": read_akita}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
