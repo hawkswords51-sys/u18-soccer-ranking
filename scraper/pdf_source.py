@@ -91,6 +91,23 @@ def pdf_links_in_table_row(soup, label_predicate) -> list[list[tuple[str, str]]]
              if a["href"].lower().endswith(".pdf")] for c in rows[0][1:]]
 
 
+def pdf_links_in_list_item(soup, label_predicate) -> list[tuple[str, str]]:
+    """箇条書き（<li>）のうち、項目の文字（NFKC＋空白を詰めたもの）が label_predicate を満たすものを探し、
+    その項目の中のPDFリンクを [(リンク文字, URL)] で返す（2026-09-15追加・長野）。
+    ⚠️ 長野は部ごとに1項目で、リンク文字（「日程・試合結果」「星取表」）が全部の部で同じ。項目の先頭の
+       ラベル（「１部」「２部A」…）で選ぶ。該当する項目がちょうど1つでなければ失敗。"""
+    import unicodedata
+    hits = []
+    for li in soup.find_all("li"):
+        label = re.sub(r"\s+", "", unicodedata.normalize("NFKC", li.get_text()))
+        if label_predicate(label):
+            hits.append(li)
+    if len(hits) != 1:
+        raise RuntimeError(f"条件に合う箇条書きの項目が{len(hits)}件（1件のはず）")
+    return [(re.sub(r"\s+", "", a.get_text()), a["href"]) for a in hits[0].find_all("a", href=True)
+            if a["href"].lower().endswith(".pdf")]
+
+
 def newest_by_label_version(urls, season_year) -> tuple[str, str]:
     """URLのファイル名の版日付（version_from_label）がいちばん新しいものを (URL, 版日付) で返す。
     版日付が読めないURLがある・最新が同着のときは失敗（どれが現行版か決められない）。"""
