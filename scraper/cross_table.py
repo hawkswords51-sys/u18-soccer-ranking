@@ -33,6 +33,13 @@ from pathlib import Path
 # その下の data/league_matches/ を試合データの置き場にする。
 _MATCH_DIR = Path(__file__).resolve().parent.parent / "data" / "league_matches"
 
+# ホーム/アウェイを出典が持っていないリーグ（slug）。ここに入れた slug では、戦績表のマスの H/A 印、
+# 凡例の「H＝ホーム戦、A＝アウェイ戦」、各チームの戦績チップの補足の H/A を出さない（2026-09-15新設）。
+# 例：セントラル開催で日程表がチーム番号順に並ぶだけの県。その県の JSON の home/away は
+#    「マスを一意に埋めるための格納規約」であって事実ではないので、読者に H/A として見せない。
+# ⚠️ ここに無い slug の出力は1バイトも変わらない作りにしてある（変えたら全ページの生成物 diff で確かめる）。
+NO_HOME_AWAY_SLUGS: set[str] = set()
+
 
 def _html_escape(s: str) -> str:
     return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
@@ -93,6 +100,9 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
     # A/B→2nd の表記変換と「県1部」説明文は県1部（slugが -1 終わり）だけに適用。
     # 大阪2部（pref-osaka-2a 等）はB/Cチームが主役のリーグなので出典表記のまま出す。
     is_pref1 = is_pref and slug.endswith("-1")
+    # 出典がホーム/アウェイを持たないリーグでは H/A を表示しない（NO_HOME_AWAY_SLUGS 参照）
+    show_ha = slug not in NO_HOME_AWAY_SLUGS
+    ha_span = (lambda ha: f'<span class="xt-ha">{ha}</span>') if show_ha else (lambda ha: "")
 
     # 表記そろえはモジュール共有の関数を使う（「直近の試合結果」と同じ表記にするため）
     _align_name = align_pref_team_name
@@ -161,9 +171,9 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
         # 1試合のみ：セル全面を着色（高さ差による余白を防ぐ）
         if len(items) == 1:
             gf, ga, ha = items[0]
-            return f'<td class="xt-one {rcls(gf,ga)}"><span class="xt-ha">{ha}</span>{gf}-{ga}</td>'
+            return f'<td class="xt-one {rcls(gf,ga)}">{ha_span(ha)}{gf}-{ga}</td>'
         # 2試合：各段(ホーム戦/アウェイ戦)を独立して色分け（上下で半分ずつ）
-        legs = [f'<span class="xt-leg {rcls(gf,ga)}"><span class="xt-ha">{ha}</span>{gf}-{ga}</span>'
+        legs = [f'<span class="xt-leg {rcls(gf,ga)}">{ha_span(ha)}{gf}-{ga}</span>'
                 for gf, ga, ha in items]
         return '<td class="xt-cell"><div class="xt-cw">' + "".join(legs) + "</div></td>"
 
@@ -208,7 +218,8 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
             md = m.get("md") or 0
             mdate = m.get("date") or ""
             prefix = f'第{md}節 ' if md else (f'{mdate} ' if mdate else '')
-            tip = f'{prefix}{ha} {short.get(opp, opp)} {gf}-{ga}'
+            tip = (f'{prefix}{ha} {short.get(opp, opp)} {gf}-{ga}' if show_ha
+                   else f'{prefix}{short.get(opp, opp)} {gf}-{ga}')
             seq.append((mark, r, tip))
         return seq
 
@@ -251,6 +262,8 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
         )
 
     nl = "\n"
+    ha_note = ("\n        <span class=\"xt-ha\">H</span>＝ホーム戦、<span class=\"xt-ha\">A</span>＝アウェイ戦。"
+               if show_ha else "")
     return f"""
       <section class="xt-section" id="cross-table">
         <style>
@@ -328,8 +341,7 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
         <h2>{heading}</h2>
         <p class="xt-meta">消化 {n_played} / 全 {n_total} 試合　最終更新 {last_updated}{source_html}</p>
         {pref_scope}
-        <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(黄)／敗(赤)。
-        <span class="xt-ha">H</span>＝ホーム戦、<span class="xt-ha">A</span>＝アウェイ戦。
+        <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(黄)／敗(赤)。{ha_note}
         往復2試合とも終わったマスは通算成績で色分けしています。「―」はまだ対戦していないカードです。</p>
         <div class="xt-scroll">
           <table class="xt-cross">
