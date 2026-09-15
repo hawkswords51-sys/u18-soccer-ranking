@@ -252,7 +252,6 @@ jobs:
       #   自動更新が止まっていた。一部の県は県協会の公式システムにデータがあるので
       #   そちらへ移行した。出典の格が上がるうえ、junior-soccer側にあった
       #   スコア誤り（千葉2件・愛知1件）や重複二重計上（岩手）も解消される。
-      #   これらの県は下の junior-soccer のステップでは [skip] される。
       - name: 戦績表データを更新（県1部・県協会公式出典）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
                 && (env.SCOPE == 'all' || env.SCOPE == 'pref') }}
@@ -264,16 +263,14 @@ jobs:
             echo "scraper/fetch_pref_official.py がまだありません。スキップ。"
           fi
 
-      - name: 戦績表データを更新（県1部・junior-soccer出典）
-        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && (env.SCOPE == 'all' || env.SCOPE == 'pref') }}
-        continue-on-error: true
-        run: |
-          if [ -f scraper/update_pref_cross_tables.py ]; then
-            python scraper/update_pref_cross_tables.py
-          else
-            echo "scraper/update_pref_cross_tables.py がまだありません。スキップ。"
-          fi
+      # ⚠️ 「戦績表データを更新（県1部・junior-soccer出典）」のステップは 2026-09-15 に外した。
+      #   junior-soccer.jp（Cloudflare）は Actions の接続元IPを 403 で弾いている
+      #   （7/16 に途中から Read timed out、7/17 以降は全リーグ 403。User-Agent は無関係で、Mac の住宅回線からは通る）。
+      #   弾いているのは相手側の判断なので、プロキシ等での回避も、取得間隔を詰めることもしない。
+      #   毎日2回 403 を叩き続けるのは相手に対しても行儀が悪く、continue-on-error で緑のまま2か月誰も気づかなかった。
+      #   → scraper/update_pref_cross_tables.py は **Mac から週1で手動実行する専用**（埼玉は対象外）。
+      #     取り込みが止まったことは audit_pref_freshness.py が非公式県の lastUpdated からの日数で🟡にする。
+      #   ❌ このステップを戻さないこと（戻しても 403 で何も取れず、失敗が緑に隠れるだけ）。
 
       - name: 県別得点ランキングを更新（県協会公式 / GoalNote）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'

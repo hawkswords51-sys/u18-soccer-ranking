@@ -93,6 +93,17 @@ def current_season(today: date) -> str:
     return str(today.year if today.month >= 2 else today.year - 1)
 
 
+def manual_excluded() -> dict:
+    """非公式県のうち、Macの手動取り込みの対象外にしている県 → 理由（update_pref_cross_tables.py が正本）。
+    見張りの対象からも外すが、**毎回の要約に1行出して黙らせない**（⚪️情報に埋めると人に届かない・4-2c）。"""
+    try:
+        import update_pref_cross_tables as U
+        return dict(U.MANUAL_IMPORT_EXCLUDED)
+    except Exception as e:
+        print(f"  ※ update_pref_cross_tables を読めませんでした（{e}）。対象外の県は無しとして続けます。")
+        return {}
+
+
 def official_prefs() -> dict:
     """fetch_pref_official.py が担当している県 → 表示名。
 
@@ -164,6 +175,8 @@ def read_pref(path: Path) -> dict:
         "single_round": bool(teams) and len(ms) == teams * (teams - 1) // 2,
         "complete": bool(ms) and len(played) == len(ms),
         "sourceName": d.get("sourceName") or "",
+        # 非公式県（Macの手動取り込み）の見張りに使う。update_pref_cross_tables.py が検算一致で保存したときだけ進む。
+        "last_updated": str(d.get("lastUpdated") or "")[:10],
     }
 
 
@@ -189,6 +202,7 @@ def update_record(rec: dict, cur: dict, today: date, is_official: bool) -> dict:
         "latest_match": cur["latest_match"],
         "source": "official" if is_official else "junior-soccer (manual)",
         "sourceName": cur["sourceName"],
+        "last_updated": cur["last_updated"],
     })
 
     # last_change は played が変わったときだけ書き換える（毎日上書きしない）。
@@ -225,11 +239,13 @@ def update_record(rec: dict, cur: dict, today: date, is_official: bool) -> dict:
 # 判定
 # ---------------------------------------------------------------------------
 def judge(records: dict, today: date, official: dict, jobs: dict,
-          temp_exceptions: dict) -> dict:
+          temp_exceptions: dict, excluded: dict | None = None) -> dict:
     """赤・黄・情報・正常などをまとめて返す。"""
     offseason = today.month in OFFSEASON_MONTHS
     red, yellow, info, ok = [], [], [], []
     unrecorded, done = [], []
+    excluded = excluded or {}
+    skipped = []
 
     # --- 赤① 取得そのものが壊れている（公式県のみ） ---
     for pref in sorted(official):
@@ -306,6 +322,22 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
         r = records[pref]
         if r.get("season") and r["season"] != season:
             continue                       # 旧シーズンのファイル
+        # ★2026-09-15：非公式県（junior-soccer）は「手動取り込みが止まっていること」を見る。
+        #   junior-soccer は Actions のIPを403で弾くので、Actionsから取りに行くのをやめ、Macから週1で
+        #   update_pref_cross_tables.py を走らせる運用にした。消化数の停滞は試合が無い期間と区別できないので、
+        #   取り込みが検算一致で保存したときだけ進む lastUpdated からの日数で黄にする（打つ手＝Macで走らせる）。
+        #   赤にはしない（Actions側に打つ手が無い）。
+        if pref not in official:
+            if pref in excluded:
+                skipped.append(pref)       # 手動取り込みの対象外（埼玉）。要約に必ず1行出す
+                continue
+            n_imp = days_between(r.get("last_updated", ""), today)
+            if n_imp is None or n_imp >= PREF_STALE_DAYS:
+                yellow.append(f"{pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
+                              f"（lastUpdated {r.get('last_updated') or '—'}・{r['played']}/{r['total']}"
+                              f"・最終試合 {r.get('latest_match') or '—'}"
+                              f"）→ Macで update_pref_cross_tables.py を実行")
+                continue
         if r.get("complete"):
             # ⚠️ 「全試合消化済み」は「シーズン終了」とは限らない。
             #    大分は前期45試合が埋まった時点で complete になるが、実際は後期がある
@@ -321,6 +353,9 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
                               f"・{r.get('sourceName') or '出典不明'}）")
                 continue
             done.append(pref)              # 全試合消化済み（情報行では出す）
+            continue
+        if pref not in official:
+            ok.append(pref)                # 取り込みは14日以内に走っている
             continue
         n = days_between(r.get("last_change", ""), today)
         if n is not None and n >= PREF_STALE_DAYS:
@@ -359,7 +394,7 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
         if temp_exceptions else "なし"))
 
     return {"red": red, "yellow": yellow, "info": info, "ok": ok,
-            "unrecorded": unrecorded, "done": done}
+            "unrecorded": unrecorded, "done": done, "skipped": skipped}
 
 
 def main() -> int:
@@ -390,8 +425,9 @@ def main() -> int:
                     "played_without_date": cur["played_without_date"]})
         records[pref] = update_record(rec, cur, today, pref in official)
 
+    excluded = manual_excluded()
     j = judge(records, today, official, status.get("jobs", {}),
-              collect_temp_exceptions())
+              collect_temp_exceptions(), excluded)
     red, yellow, info, ok = j["red"], j["yellow"], j["info"], j["ok"]
 
     national = max((r.get("latest_match", "") for r in records.values()), default="")
@@ -415,10 +451,13 @@ def main() -> int:
     print(f"✅ 正常 {len(ok)}県"
           f"（ほかに全試合消化済みで対象外 {len(j['done'])}県: "
           f"{', '.join(j['done']) if j['done'] else 'なし'}）")
+    for pref in j["skipped"]:
+        print(f"⏸️ {pref}＝別運用のため見張りの対象外（{excluded.get(pref, '')}）")
 
     if not args.no_save:
         for pref, r in records.items():
-            r["status"] = ("alert" if any(pref in line for line in red)
+            r["status"] = ("excluded" if pref in j["skipped"]
+                           else "alert" if any(pref in line for line in red)
                            else "warn" if any(pref in line for line in yellow) else "ok")
         status["pref_leagues"] = dict(sorted(records.items()))
         status["pref_leagues"]["_meta"] = {

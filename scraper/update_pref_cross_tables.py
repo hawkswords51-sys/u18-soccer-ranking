@@ -420,9 +420,20 @@ MIGRATED_TO_OFFICIAL = {
 }
 
 
+# Macの手動取り込みで取りに行かない県 → 理由（audit_pref_freshness.py もこれを読み、見張りの対象外として毎回1行出す）。
+# ⚠️ 2026-09-15：このスクリプトは Actions から外し、Macから週1で手動実行する専用になった
+#    （junior-soccer が Actions のIPを403で弾くため。update_rankings.yml のコメント参照）。
+MANUAL_IMPORT_EXCLUDED = {
+    "saitama": ("別運用。元の「触らない」理由＝手動編集がbotに戻される、は Actions のステップを外したので消えた"
+                "（2026-09-15）。sfa2.jp（県協会公式・9/14調査で生存）への移行候補"),
+}
+
+
 def process(slug: str, region: str, lid: str, dry_run: bool = False) -> str:
     if slug in MIGRATED_TO_OFFICIAL:
         return f"[skip] {slug}: 公式ソースへ移行済み"
+    if slug.startswith("pref-") and slug[len("pref-"):].rsplit("-", 1)[0] in MANUAL_IMPORT_EXCLUDED:
+        return f"[skip] {slug}: 別運用のため取り込みの対象外（MANUAL_IMPORT_EXCLUDED）"
     path = DIR / f"{slug}.json"
     if not path.exists():
         return f"[skip] {slug}: JSONなし"
