@@ -420,7 +420,7 @@ MIGRATED_TO_OFFICIAL = {
 }
 
 
-def process(slug: str, region: str, lid: str) -> str:
+def process(slug: str, region: str, lid: str, dry_run: bool = False) -> str:
     if slug in MIGRATED_TO_OFFICIAL:
         return f"[skip] {slug}: 公式ソースへ移行済み"
     path = DIR / f"{slug}.json"
@@ -454,6 +454,8 @@ def process(slug: str, region: str, lid: str) -> str:
     if new_played < cur_played:
         return (f"[据え置き] {slug}: junior-soccer消化{new_played} < 現在{cur_played}"
                 f"（退行防止・JFA分保護）")
+    if dry_run:
+        return f"[DRY RUN] {slug}: 消化{cur_played}→{new_played}試合（検算一致・書き込みなし）"
 
     data["teams"] = team_objs
     data["matches"] = fixtures
@@ -464,18 +466,20 @@ def process(slug: str, region: str, lid: str) -> str:
     return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
 
 
-def main():
+def main(dry_run: bool = False):
     print("=== 県1部＋追加リーグ 戦績表 自動更新（junior-soccer出典） ===")
+    if dry_run:
+        print("  （--dry-run：取得と検算だけ行い、JSONは書き換えない）")
     updated = held = warn = 0
     targets = [(f"pref-{p}-1", r, l) for p, (r, l) in JS_LEAGUE.items()]
     targets += [(s, r, l) for s, (r, l) in EXTRA_LEAGUES.items()]
     for slug, region, lid in targets:
         try:
-            msg = process(slug, region, lid)
+            msg = process(slug, region, lid, dry_run)
         except Exception as e:  # 想定外でも全体は止めない
             msg = f"[要確認] {slug}: 例外 {e}"
         print(" ", msg)
-        if msg.startswith("[更新]"):
+        if msg.startswith(("[更新]", "[DRY RUN]")):
             updated += 1
         elif msg.startswith("[要確認]"):
             warn += 1
@@ -485,8 +489,17 @@ def main():
 
 
 if __name__ == "__main__":
-    if "--test" in sys.argv:
+    # ⚠️ 2026-09-15：以前は "--test" 以外の引数をすべて素通りして main() が走り、`--help` を付けても
+    #    JSONを書き換えていた（「中身を見るだけのつもり」の操作がいちばん危ない操作になっていた）。
+    #    argparse にして、知らない引数はエラーで止める。
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="県1部の戦績表JSONを junior-soccer.jp から更新する（公式へ移行済みの県は skip）。")
+    parser.add_argument("--test", action="store_true", help="解析ロジックの合成テストだけ実行する（取得・書き込みなし）")
+    parser.add_argument("--dry-run", action="store_true", help="取得と検算だけ行い、JSONは書き換えない")
+    args = parser.parse_args()
+    if args.test:
         import test_pref_cross_tables
         test_pref_cross_tables.main()
     else:
-        main()
+        main(dry_run=args.dry_run)
