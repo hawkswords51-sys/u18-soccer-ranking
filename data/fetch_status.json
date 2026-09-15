@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-15T18:00:34+09:00",
+  "updatedAt": "2026-09-15T19:51:36+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -298,7 +298,10 @@
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
       "result_streak": 0,
-      "status": "ok"
+      "status": "ok",
+      "result": "ok",
+      "result_note": "消化48試合に更新（検算一致）",
+      "result_date": "2026-09-15"
     },
     "fukuoka": {
       "result": "ok",
@@ -354,7 +357,10 @@
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
       "result_streak": 0,
-      "status": "warn"
+      "status": "warn",
+      "result": "ok",
+      "result_note": "消化55試合に更新（検算一致）",
+      "result_date": "2026-09-15"
     },
     "gunma": {
       "result": "ok",
@@ -1072,7 +1078,10 @@
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
       "result_streak": 0,
-      "status": "warn"
+      "status": "warn",
+      "result": "ok",
+      "result_note": "消化32試合に更新（検算一致）",
+      "result_date": "2026-09-15"
     },
     "_meta": {
       "checked": "2026-09-15",
