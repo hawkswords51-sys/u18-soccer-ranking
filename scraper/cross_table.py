@@ -38,7 +38,9 @@ _MATCH_DIR = Path(__file__).resolve().parent.parent / "data" / "league_matches"
 # 例：セントラル開催で日程表がチーム番号順に並ぶだけの県。その県の JSON の home/away は
 #    「マスを一意に埋めるための格納規約」であって事実ではないので、読者に H/A として見せない。
 # ⚠️ ここに無い slug の出力は1バイトも変わらない作りにしてある（変えたら全ページの生成物 diff で確かめる）。
-NO_HOME_AWAY_SLUGS: set[str] = set()
+NO_HOME_AWAY_SLUGS: set[str] = {
+    "pref-gifu-1",   # 岐阜県1部（2026-09-15）。日程表がチーム番号順に並ぶだけでホーム/アウェイを持たない
+}
 
 
 def _html_escape(s: str) -> str:

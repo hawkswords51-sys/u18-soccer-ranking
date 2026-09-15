@@ -283,6 +283,14 @@ PREF_OFFICIAL = {
                   #    junior-soccer が 6/28「韮崎 2-1 VF甲府B」を登録していたが、公式ではこの対戦は第4節の1回だけ
                   #    （4/25 韮崎 0-2 VF甲府B）。6/28 の実体は第6節 日大明誠 1-2 韮崎（対戦相手の取り違え）と見られる。
 
+    # 岐阜（2026-09-15追加）。戦績表PDF＋日程表PDF（read_gifu のコメント参照）。
+    # ⚠️ home/away は公式に無いので「1巡目＝番号の小さい側／2巡目＝大きい側」の格納規約。事実ではない。
+    #    表示は cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。戦績表が全項目そろうので通常の検算ゲート。
+    "gifu":      {"platform": "gifu", "teams": 10,
+                  "source": "https://www.gifu-fa.com/type2-category/g1/",
+                  "label": "岐阜県サッカー協会 公式",
+                  "hoshitori_names": {"帝京大可児B": "帝京可児B", "FC岐阜U-18": "FC岐阜"}},
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -385,6 +393,11 @@ PREF_ALIAS = {
         "八学光星": "八戸学院光星",
         "ヴァンラーレU-18": "ヴァンラーレ八戸U18",   # 星取表の半角カナ ｳﾞｧﾝﾗｰﾚU-18 を NFKC したもの
         "三農恵拓": "三本木農業恵拓",
+    },
+    "gifu": {
+        # 日程表の表記（戦績表の表記は読み取り側で日程表の表記に読み替え済み）
+        "岐阜工業": "岐阜工",
+        "土岐商業": "土岐商",
     },
     "hyogo": {
         # 日程･戦績表PDFは略称（チーム名の空白は読み取り側で除去済み）
@@ -2630,6 +2643,196 @@ def read_yamanashi(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 岐阜（gifu-fa.com）— 県協会の戦績表PDF（第N節結果の記事）＋日程表PDF（2026-09-15追加）
+#   入口: /type2-category/g1/（2種 G1 の記事一覧）。❌ /highschool/ は2026-07-03で凍結した旧サイト。
+# ⚠️ 記事の題名で新しさを判断しない（「最新版」の日程がいちばん古い）。
+#    戦績表＝題名「{年} G1 第N節結果」のNが最大の記事、日程表＝題名に「G1」「日程」を含む記事のうち
+#    **記事の公開日時（<time datetime>）が最新**のもの。
+# ⚠️⚠️ **公式にホーム/アウェイは無い。** 日程表はチーム番号の昇順に並べているだけ（降順の行0件・セントラル開催）。
+#    → **格納規約**：1巡目（第1〜9節）は番号の小さい側を home、2巡目（第10〜18節）は大きい側を home。
+#       これは事実の主張ではなく、90マスを一意に埋めるための約束。**「向きが逆だ」と直さないこと。**
+#       表示では cross_table.NO_HOME_AWAY_SLUGS に入れて H/A を出さない。
+# ⚠️ 戦績表の各マスは上段＝1巡目・下段＝2巡目。表として読むと2試合が1つの文字列につながり、
+#    1試合だけのマスが上段か下段か分からない → **数字の縦位置（マスの中央より上か下か）で分ける**。
+#    1巡目・2巡目の中では同じ組が1回ずつなので、「第1〜9節の試合＝上段、第10〜18節＝下段」で一意に結べる
+#    （延期で日付の順が前後しても崩れない）。
+# ⚠️ 日程表は表として読める（2026-09-15に画像と照合：90行・各節5試合・巡目ごとに45組）。末尾に振替ブロック
+#    （12/5 第16節・第13節、6/20 第11節）があり、節も日付も時系列順ではない。月日は行ごとに引き継ぐ。
+#    G1の行＝両側にチーム番号がある行（B/Cチームの試合は番号が無い）。`#N/A` などの行も番号が無いので外れる。
+# ✅ 戦績表に勝・分・負・勝点・得点・失点がそろう → 通常の検算ゲート（全項目一致）。鏡チェックを先に行う。
+# 年度切り替え: 題名の年で絞るので設定変更は不要。
+# ============================================================
+_GIFU_LIST = "https://www.gifu-fa.com/type2-category/g1/"
+
+
+def _gifu_article(url: str):
+    soup = BeautifulSoup(fetch_html(url, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    t = soup.find("time", attrs={"datetime": True})
+    return soup, (t["datetime"] if t else "")
+
+
+def read_gifu(cfg: dict) -> tuple[dict, list[dict]]:
+    year = str(SEASON_YEAR)
+    nfkc = lambda s: re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+    soup = BeautifulSoup(fetch_html(_GIFU_LIST, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    results, schedules = [], []
+    for a in soup.find_all("a", href=True):
+        title = nfkc(a.get_text())
+        if not title.startswith(f"{year}G1"):
+            continue
+        m = re.search(r"第(\d+)節結果", title)
+        if m:
+            results.append((int(m.group(1)), a["href"]))
+        elif "日程" in title:
+            schedules.append(a["href"])
+    results, schedules = sorted(set(results)), list(dict.fromkeys(schedules))
+    if not results or not schedules:
+        raise RuntimeError(f"記事一覧に{year} G1 の結果記事（{len(results)}件）・日程記事（{len(schedules)}件）が無い")
+
+    # --- 戦績表（節番号が最大の結果記事） ---
+    n_md, res_url = results[-1]
+    art, res_published = _gifu_article(res_url)
+    if not re.match(r"\d{4}-\d{2}-\d{2}", res_published or ""):
+        raise RuntimeError("戦績表の記事の公開日時が読めない")
+    pdf_url = pdf_source.pdf_link_by_text(art, lambda t: f"({n_md}節終了)" in nfkc(t) and "戦績表" in t,
+                                          f"戦績表({n_md}節終了)")
+    content = pdf_source.fetch_pdf(pdf_url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        page = pdf.pages[0]
+        tbs = page.find_tables()
+        if len(tbs) != 1:
+            raise RuntimeError(f"戦績表PDFの表が{len(tbs)}個")
+        tb, words = tbs[0], pdf_source.page_words(page)
+        data = tb.extract()
+        head = [nfkc(c) for c in data[0]]
+        n = cfg["teams"]
+        want = ["勝数", "分数", "負数", "勝点", "得点", "失点", "得失点差", "順位"]
+        if head[1 + n:] != want:
+            raise RuntimeError(f"戦績表のヘッダが想定と違う: {head[1 + n:]}")
+        rename = cfg.get("hoshitori_names", {})
+        order, standings, legs = [], {}, {}
+        team_rows = [i for i, r in enumerate(data) if i > 0 and nfkc(r[0])]
+        for i in team_rows:
+            order.append(rename.get(nfkc(data[i][0]), nfkc(data[i][0])))
+        if len(order) != n:
+            raise RuntimeError(f"戦績表のチームが{len(order)}（{n}のはず）")
+        # ⚠️ 表の行の区切りは崩れている（2物理行目が別の行になる列がある）。マス単位の高さは使わず、
+        #    縦＝「そのチームの行の上端〜次のチームの行の上端」、横＝見出し行の列 で範囲を決める。
+        cols = tb.rows[0].cells[1:1 + n]
+        if any(c is None for c in cols):
+            raise RuntimeError("戦績表の見出し行の列が取れない")
+        tops = [tb.rows[i].bbox[1] for i in team_rows] + [tb.bbox[3]]
+        for k, (i, me) in enumerate(zip(team_rows, order)):
+            v = dict(zip(want, (int(nfkc(data[i][1 + n + kk])) for kk in range(len(want)))))
+            count = 0
+            for j, opp in enumerate(order):
+                if opp == me:
+                    continue
+                x0, x1 = cols[j][0], cols[j][2]
+                top, bottom = tops[k], tops[k + 1]
+                mid = (top + bottom) / 2
+                nums = [w for w in words if x0 <= w["x0"] < x1 and top <= w["top"] < bottom
+                        and re.fullmatch(r"\d+", w["text"])]
+                pair = []
+                for upper in (True, False):
+                    ns = sorted((w for w in nums if (w["top"] < mid) == upper), key=lambda w: w["x0"])
+                    if len(ns) not in (0, 2):
+                        raise RuntimeError(f"戦績表 {me}×{opp} の{'上' if upper else '下'}段が読めない")
+                    pair.append((int(ns[0]["text"]), int(ns[1]["text"])) if ns else None)
+                legs[(me, opp)] = pair
+                count += sum(1 for x in pair if x)
+            if v["勝数"] + v["分数"] + v["負数"] != count or 3 * v["勝数"] + v["分数"] != v["勝点"] \
+                    or v["得点"] - v["失点"] != v["得失点差"]:
+                raise RuntimeError(f"戦績表 {me} の自己検算が合わない（マスの試合数{count}・{v}）")
+            standings[me] = dict(pts=v["勝点"], played=count, won=v["勝数"], drawn=v["分数"],
+                                 lost=v["負数"], gf=v["得点"], ga=v["失点"])
+    for (a, b), pr in legs.items():                  # ✅ 鏡チェック
+        if [None if x is None else (x[1], x[0]) for x in pr] != legs[(b, a)]:
+            raise RuntimeError(f"戦績表の鏡チェックが合わない: {a}×{b} {pr} / {b}×{a} {legs[(b, a)]}")
+
+    # --- 日程表（公開日時が最新の日程記事） ---
+    dated = []
+    for u in schedules:
+        art, dt = _gifu_article(u)
+        links = pdf_source.pdf_links_all_by_text(art, lambda t: "日程" in t)
+        if links:
+            dated.append((dt, links))
+    if not dated or not dated[0][0]:
+        raise RuntimeError("日程記事に日程表PDFが無い、または公開日時が読めない")
+    dated.sort(key=lambda x: x[0])
+    if len(dated[-1][1]) != 1:
+        raise RuntimeError(f"最新の日程記事に日程表PDFが{len(dated[-1][1])}本")
+    content = pdf_source.fetch_pdf(dated[-1][1][0][1], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        rows = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) for r in t]
+    sched, md, day, numbered = [], None, "", {}
+    for r in rows:
+        if len(r) != 9:
+            continue
+        mm = re.search(r"第(\d+)節", nfkc(r[0]))
+        if mm:
+            md = int(mm.group(1))
+        dm = re.search(r"(\d{1,2})/(\d{1,2})", nfkc(r[1]))
+        if dm:
+            day = f"{year}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+        if not (nfkc(r[2]).isdigit() and nfkc(r[5]).isdigit()):
+            continue
+        hn, an = int(nfkc(r[2])), int(nfkc(r[5]))
+        for num, name in ((hn, nfkc(r[3])), (an, nfkc(r[6]))):
+            if numbered.setdefault(num, name) != name:
+                raise RuntimeError(f"日程表のチーム番号{num}の名前が行によって違う")
+        if hn >= an or not md or not day:
+            raise RuntimeError(f"日程表のG1の行が想定と違う（番号の昇順でない、または節・日付なし）: {r}")
+        sched.append(dict(md=md, date=day, lo=hn, hi=an))
+    if sorted(numbered) != list(range(1, n + 1)) or [numbered[k] for k in range(1, n + 1)] != order:
+        raise RuntimeError(f"日程表のチーム番号と戦績表の並びが合わない: {numbered} / {order}")
+    if len(sched) != n * (n - 1) or any(sum(1 for s in sched if s["md"] == k) != n // 2 for k in range(1, 2 * (n - 1) + 1)):
+        raise RuntimeError(f"日程表のG1が{len(sched)}試合、または節ごとの試合数が{n // 2}でない")
+    half = n - 1
+    for rnd in (1, 2):
+        ps = [frozenset((s["lo"], s["hi"])) for s in sched if (s["md"] <= half) == (rnd == 1)]
+        if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
+            raise RuntimeError(f"日程表の{rnd}巡目に同じ組が重複または欠落")
+
+    # ✅ 上段・下段の件数の期待値チェック（2026-09-15 Kei追加）
+    #    「第N節結果」の N と日程表から、各チームの上段（1巡目）・下段（2巡目）の件数の期待値を出し、
+    #    戦績表から読んだ件数と違えば止める。1巡目の試合が延期されて下段だけ埋まった／上下段の判定が崩れた、
+    #    を取り違える前に捕まえる。
+    #    期待値に数えるのは「第N節以内」かつ「日程表の日付が戦績表の記事の公開日以前」の試合。
+    #    日程表に載っている振替（例：第13節 FC岐阜×岐阜工業＝12/5）は日付で自然に外れるので、止まり続けない。
+    cutoff = res_published[:10]
+    for team_no, team in numbered.items():
+        exp = [0, 0]
+        for s in sched:
+            if team_no in (s["lo"], s["hi"]) and s["md"] <= n_md and s["date"] <= cutoff:
+                exp[0 if s["md"] <= half else 1] += 1
+        got = [sum(1 for opp in order if opp != team and legs[(team, opp)][k]) for k in (0, 1)]
+        if got != exp:
+            raise RuntimeError(f"戦績表 {team} の上段・下段の件数 {got} が、日程表から見込んだ {exp}"
+                               f"（第{n_md}節まで・{cutoff}以前）と違う（延期または上下段の判定崩れの疑い）")
+
+    # --- 格納規約で試合を作る（1巡目＝番号の小さい側が home／2巡目＝大きい側が home） ---
+    matches = []
+    for s in sched:
+        rnd = 0 if s["md"] <= half else 1
+        lo, hi = numbered[s["lo"]], numbered[s["hi"]]
+        home, away = (lo, hi) if rnd == 0 else (hi, lo)
+        leg = legs[(home, away)][rnd]
+        matches.append(dict(md=s["md"], date=s["date"], home=home, away=away,
+                            hs=leg[0] if leg else None, **{"as": leg[1] if leg else None}))
+    today = _jst_today().isoformat()
+    future = [m for m in matches if m["hs"] is not None and m["date"] > today]
+    if future:
+        raise RuntimeError(f"今日({today})より後の予定日に結果がある試合が{len(future)}件（例: {future[0]['date']} "
+                           f"{future[0]['home']}×{future[0]['away']}）")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -3106,7 +3309,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "niigata": read_niigata, "akita": read_akita,
                       "hyogo": read_hyogo, "tokushima": read_tokushima,
                       "aomori": read_aomori, "nagano": read_nagano,
-                      "fukui": read_fukui, "yamanashi": read_yamanashi}[cfg["platform"]]
+                      "fukui": read_fukui, "yamanashi": read_yamanashi,
+                      "gifu": read_gifu}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:

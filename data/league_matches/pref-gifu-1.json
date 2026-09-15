@@ -1,17 +1,21 @@
 {
   "league": "高円宮杯 JFA U-18 サッカーリーグ 2026 岐阜県1部（G1）",
   "season": "2026",
-  "source": "https://junior-soccer.jp/tokai/gifu/league/table/163412",
-  "sourceName": "岐阜少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-08-30",
+  "source": "https://www.gifu-fa.com/type2-category/g1/",
+  "sourceName": "岐阜県サッカー協会 公式",
+  "lastUpdated": "2026-09-15",
   "teams": [
     {
-      "name": "FC岐阜",
-      "short": "FC岐阜"
+      "name": "帝京可児B",
+      "short": "帝京可児B"
     },
     {
       "name": "美濃加茂",
       "short": "美濃加茂"
+    },
+    {
+      "name": "FC岐阜",
+      "short": "FC岐阜"
     },
     {
       "name": "中京",
@@ -20,10 +24,6 @@
     {
       "name": "岐阜工",
       "short": "岐阜工"
-    },
-    {
-      "name": "帝京可児B",
-      "short": "帝京可児B"
     },
     {
       "name": "大垣日大",
@@ -38,12 +38,12 @@
       "short": "岐阜第一"
     },
     {
-      "name": "土岐商",
-      "short": "土岐商"
-    },
-    {
       "name": "関商工",
       "short": "関商工"
+    },
+    {
+      "name": "土岐商",
+      "short": "土岐商"
     }
   ],
   "official_standings": [
@@ -170,349 +170,16 @@
   ],
   "matches": [
     {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "FC岐阜",
-      "hs": 3,
-      "as": 1,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "美濃加茂",
-      "hs": 10,
-      "as": 1,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
+      "md": 9,
+      "date": "2026-05-09",
       "home": "帝京可児B",
-      "hs": 5,
-      "as": 2,
-      "away": "土岐商",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "岐阜工",
-      "hs": 3,
-      "as": 0,
-      "away": "大垣日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "中京",
-      "hs": 5,
-      "as": 2,
-      "away": "長良",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "長良",
-      "hs": 2,
-      "as": 1,
-      "away": "岐阜工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "FC岐阜",
-      "hs": 1,
-      "as": 0,
-      "away": "土岐商",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "帝京可児B",
-      "hs": 2,
-      "as": 0,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "美濃加茂",
-      "hs": 5,
-      "as": 1,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "中京",
-      "hs": 4,
-      "as": 1,
-      "away": "大垣日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "長良",
-      "hs": 1,
-      "as": 2,
-      "away": "大垣日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "帝京可児B",
-      "hs": 2,
-      "as": 3,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "中京",
-      "hs": 2,
-      "as": 0,
-      "away": "岐阜工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "FC岐阜",
-      "hs": 5,
-      "as": 0,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "美濃加茂",
-      "hs": 7,
-      "as": 1,
-      "away": "土岐商",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "長良",
-      "hs": 2,
-      "as": 1,
-      "away": "帝京可児B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "FC岐阜",
-      "hs": 1,
-      "as": 0,
-      "away": "岐阜工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "美濃加茂",
-      "hs": 1,
-      "as": 1,
-      "away": "大垣日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "中京",
-      "hs": 2,
-      "as": 0,
-      "away": "土岐商",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "岐阜第一",
-      "hs": 2,
-      "as": 1,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "関商工",
-      "hs": 2,
-      "as": 4,
-      "away": "中京",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "帝京可児B",
-      "hs": 3,
-      "as": 0,
-      "away": "大垣日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "美濃加茂",
-      "hs": 4,
-      "as": 2,
-      "away": "岐阜工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "土岐商",
-      "hs": 1,
-      "as": 2,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "FC岐阜",
-      "hs": 1,
-      "as": 2,
-      "away": "長良",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "長良",
-      "hs": 1,
+      "hs": 0,
       "as": 3,
       "away": "美濃加茂",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "中京",
-      "hs": 8,
-      "as": 0,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "土岐商",
-      "hs": 3,
-      "as": 1,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "FC岐阜",
-      "hs": 1,
-      "as": 0,
-      "away": "大垣日大",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "帝京可児B",
-      "hs": 1,
-      "as": 1,
-      "away": "岐阜工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "長良",
-      "hs": 1,
-      "as": 2,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "中京",
-      "hs": 3,
-      "as": 1,
-      "away": "帝京可児B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "FC岐阜",
-      "hs": 3,
-      "as": 0,
-      "away": "美濃加茂",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "大垣日大",
-      "hs": 5,
-      "as": 0,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "岐阜工",
-      "hs": 6,
-      "as": 1,
-      "away": "土岐商",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "大垣日大",
-      "hs": 6,
-      "as": 0,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "美濃加茂",
-      "hs": 4,
-      "as": 2,
-      "away": "中京",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-04",
-      "home": "関商工",
-      "hs": 1,
-      "as": 3,
-      "away": "岐阜工",
-      "status": "played"
-    },
-    {
-      "md": 0,
+      "md": 8,
       "date": "2026-05-04",
       "home": "帝京可児B",
       "hs": 1,
@@ -521,7 +188,547 @@
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 7,
+      "date": "2026-04-29",
+      "home": "帝京可児B",
+      "hs": 1,
+      "as": 3,
+      "away": "中京",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-04-25",
+      "home": "帝京可児B",
+      "hs": 1,
+      "as": 1,
+      "away": "岐阜工",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-18",
+      "home": "帝京可児B",
+      "hs": 3,
+      "as": 0,
+      "away": "大垣日大",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-11",
+      "home": "帝京可児B",
+      "hs": 1,
+      "as": 2,
+      "away": "長良",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-04",
+      "home": "帝京可児B",
+      "hs": 2,
+      "as": 3,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-03-28",
+      "home": "帝京可児B",
+      "hs": 2,
+      "as": 0,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-03-14",
+      "home": "帝京可児B",
+      "hs": 5,
+      "as": 2,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 18,
+      "date": "",
+      "home": "美濃加茂",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 7,
+      "date": "2026-04-29",
+      "home": "美濃加茂",
+      "hs": 0,
+      "as": 3,
+      "away": "FC岐阜",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-04",
+      "home": "美濃加茂",
+      "hs": 4,
+      "as": 2,
+      "away": "中京",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-18",
+      "home": "美濃加茂",
+      "hs": 4,
+      "as": 2,
+      "away": "岐阜工",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-11",
+      "home": "美濃加茂",
+      "hs": 1,
+      "as": 1,
+      "away": "大垣日大",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-04-25",
+      "home": "美濃加茂",
+      "hs": 3,
+      "as": 1,
+      "away": "長良",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-03-28",
+      "home": "美濃加茂",
+      "hs": 5,
+      "as": 1,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-03-14",
+      "home": "美濃加茂",
+      "hs": 10,
+      "as": 1,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-04",
+      "home": "美濃加茂",
+      "hs": 7,
+      "as": 1,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 17,
+      "date": "",
+      "home": "FC岐阜",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "",
+      "home": "FC岐阜",
+      "hs": null,
+      "as": null,
+      "away": "美濃加茂",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "2026-05-09",
+      "home": "FC岐阜",
+      "hs": 3,
+      "as": 2,
+      "away": "中京",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-11",
+      "home": "FC岐阜",
+      "hs": 1,
+      "as": 0,
+      "away": "岐阜工",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-04-25",
+      "home": "FC岐阜",
+      "hs": 1,
+      "as": 0,
+      "away": "大垣日大",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-18",
+      "home": "FC岐阜",
+      "hs": 1,
+      "as": 2,
+      "away": "長良",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-03-14",
+      "home": "FC岐阜",
+      "hs": 3,
+      "as": 1,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-04",
+      "home": "FC岐阜",
+      "hs": 5,
+      "as": 0,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-03-28",
+      "home": "FC岐阜",
+      "hs": 1,
+      "as": 0,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 16,
+      "date": "",
+      "home": "中京",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "",
+      "home": "中京",
+      "hs": null,
+      "as": null,
+      "away": "美濃加茂",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "",
+      "home": "中京",
+      "hs": null,
+      "as": null,
+      "away": "FC岐阜",
+      "status": "scheduled"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-04",
+      "home": "中京",
+      "hs": 2,
+      "as": 0,
+      "away": "岐阜工",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-03-28",
+      "home": "中京",
+      "hs": 4,
+      "as": 1,
+      "away": "大垣日大",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-03-14",
+      "home": "中京",
+      "hs": 5,
+      "as": 2,
+      "away": "長良",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-04-25",
+      "home": "中京",
+      "hs": 8,
+      "as": 0,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-18",
+      "home": "中京",
+      "hs": 4,
+      "as": 2,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-11",
+      "home": "中京",
+      "hs": 2,
+      "as": 0,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 15,
+      "date": "",
+      "home": "岐阜工",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "",
+      "home": "岐阜工",
+      "hs": null,
+      "as": null,
+      "away": "美濃加茂",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "",
+      "home": "岐阜工",
+      "hs": null,
+      "as": null,
+      "away": "FC岐阜",
+      "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "",
+      "home": "岐阜工",
+      "hs": null,
+      "as": null,
+      "away": "中京",
+      "status": "scheduled"
+    },
+    {
+      "md": 1,
+      "date": "2026-03-14",
+      "home": "岐阜工",
+      "hs": 3,
+      "as": 0,
+      "away": "大垣日大",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-03-28",
+      "home": "岐阜工",
+      "hs": 1,
+      "as": 2,
+      "away": "長良",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-05-09",
+      "home": "岐阜工",
+      "hs": 2,
+      "as": 0,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-04",
+      "home": "岐阜工",
+      "hs": 3,
+      "as": 1,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-04-29",
+      "home": "岐阜工",
+      "hs": 6,
+      "as": 1,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 14,
+      "date": "",
+      "home": "大垣日大",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "",
+      "home": "大垣日大",
+      "hs": null,
+      "as": null,
+      "away": "美濃加茂",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "",
+      "home": "大垣日大",
+      "hs": null,
+      "as": null,
+      "away": "FC岐阜",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-08-29",
+      "home": "大垣日大",
+      "hs": 1,
+      "as": 2,
+      "away": "中京",
+      "status": "played"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-13",
+      "home": "大垣日大",
+      "hs": 1,
+      "as": 2,
+      "away": "岐阜工",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-04",
+      "home": "大垣日大",
+      "hs": 2,
+      "as": 1,
+      "away": "長良",
+      "status": "played"
+    },
+    {
+      "md": 8,
+      "date": "2026-05-04",
+      "home": "大垣日大",
+      "hs": 6,
+      "as": 0,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-04-29",
+      "home": "大垣日大",
+      "hs": 5,
+      "as": 0,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-05-09",
+      "home": "大垣日大",
+      "hs": 6,
+      "as": 1,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 13,
+      "date": "",
+      "home": "長良",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 15,
+      "date": "",
+      "home": "長良",
+      "hs": null,
+      "as": null,
+      "away": "美濃加茂",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "",
+      "home": "長良",
+      "hs": null,
+      "as": null,
+      "away": "FC岐阜",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-13",
+      "home": "長良",
+      "hs": 1,
+      "as": 4,
+      "away": "中京",
+      "status": "played"
+    },
+    {
+      "md": 11,
+      "date": "2026-08-29",
+      "home": "長良",
+      "hs": 1,
+      "as": 4,
+      "away": "岐阜工",
+      "status": "played"
+    },
+    {
+      "md": 12,
+      "date": "",
+      "home": "長良",
+      "hs": null,
+      "as": null,
+      "away": "大垣日大",
+      "status": "scheduled"
+    },
+    {
+      "md": 7,
+      "date": "2026-04-29",
+      "home": "長良",
+      "hs": 1,
+      "as": 2,
+      "away": "岐阜第一",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-05-09",
+      "home": "長良",
+      "hs": 5,
+      "as": 0,
+      "away": "関商工",
+      "status": "played"
+    },
+    {
+      "md": 8,
       "date": "2026-05-04",
       "home": "長良",
       "hs": 1,
@@ -530,448 +737,241 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "FC岐阜",
-      "hs": 3,
-      "as": 2,
-      "away": "中京",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "長良",
-      "hs": 5,
-      "as": 0,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
+      "md": 12,
+      "date": "",
       "home": "岐阜第一",
-      "hs": 0,
-      "as": 2,
-      "away": "岐阜工",
+      "hs": null,
+      "as": null,
+      "away": "帝京可児B",
+      "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "2026-08-29",
+      "home": "岐阜第一",
+      "hs": 1,
+      "as": 5,
+      "away": "美濃加茂",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "帝京可児B",
+      "md": 10,
+      "date": "2026-06-13",
+      "home": "岐阜第一",
       "hs": 0,
       "as": 3,
-      "away": "美濃加茂",
+      "away": "FC岐阜",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "大垣日大",
-      "hs": 6,
-      "as": 1,
-      "away": "土岐商",
-      "status": "played"
+      "md": 15,
+      "date": "",
+      "home": "岐阜第一",
+      "hs": null,
+      "as": null,
+      "away": "中京",
+      "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "大垣日大",
-      "hs": 1,
-      "as": 2,
+      "md": 18,
+      "date": "",
+      "home": "岐阜第一",
+      "hs": null,
+      "as": null,
       "away": "岐阜工",
-      "status": "played"
+      "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "帝京可児B",
-      "hs": 4,
-      "as": 0,
-      "away": "土岐商",
-      "status": "played"
+      "md": 17,
+      "date": "",
+      "home": "岐阜第一",
+      "hs": null,
+      "as": null,
+      "away": "大垣日大",
+      "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "美濃加茂",
-      "hs": 6,
-      "as": 0,
-      "away": "関商工",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "FC岐阜",
-      "hs": 3,
-      "as": 0,
-      "away": "岐阜第一",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "中京",
-      "hs": 4,
-      "as": 1,
+      "md": 16,
+      "date": "",
+      "home": "岐阜第一",
+      "hs": null,
+      "as": null,
       "away": "長良",
-      "status": "played"
+      "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "FC岐阜",
+      "md": 4,
+      "date": "2026-04-11",
+      "home": "岐阜第一",
       "hs": 2,
-      "as": 0,
-      "away": "土岐商",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-08-29",
-      "home": "帝京可児B",
-      "hs": 3,
-      "as": 0,
+      "as": 1,
       "away": "関商工",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-08-29",
-      "home": "美濃加茂",
-      "hs": 5,
+      "md": 5,
+      "date": "2026-04-18",
+      "home": "岐阜第一",
+      "hs": 2,
       "as": 1,
-      "away": "岐阜第一",
+      "away": "土岐商",
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 11,
       "date": "2026-08-29",
-      "home": "大垣日大",
-      "hs": 1,
-      "as": 2,
-      "away": "中京",
+      "home": "関商工",
+      "hs": 0,
+      "as": 3,
+      "away": "帝京可児B",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-08-29",
-      "home": "岐阜工",
-      "hs": 4,
-      "as": 1,
-      "away": "長良",
+      "md": 10,
+      "date": "2026-06-13",
+      "home": "関商工",
+      "hs": 0,
+      "as": 6,
+      "away": "美濃加茂",
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 12,
       "date": "",
-      "home": "FC岐阜",
+      "home": "関商工",
+      "hs": null,
+      "as": null,
+      "away": "FC岐阜",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "",
+      "home": "関商工",
+      "hs": null,
+      "as": null,
+      "away": "中京",
+      "status": "scheduled"
+    },
+    {
+      "md": 17,
+      "date": "",
+      "home": "関商工",
+      "hs": null,
+      "as": null,
+      "away": "岐阜工",
+      "status": "scheduled"
+    },
+    {
+      "md": 16,
+      "date": "",
+      "home": "関商工",
+      "hs": null,
+      "as": null,
+      "away": "大垣日大",
+      "status": "scheduled"
+    },
+    {
+      "md": 18,
+      "date": "",
+      "home": "関商工",
+      "hs": null,
+      "as": null,
+      "away": "長良",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "",
+      "home": "関商工",
+      "hs": null,
+      "as": null,
+      "away": "岐阜第一",
+      "status": "scheduled"
+    },
+    {
+      "md": 6,
+      "date": "2026-04-25",
+      "home": "関商工",
+      "hs": 1,
+      "as": 3,
+      "away": "土岐商",
+      "status": "played"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-13",
+      "home": "土岐商",
+      "hs": 0,
+      "as": 4,
+      "away": "帝京可児B",
+      "status": "played"
+    },
+    {
+      "md": 12,
+      "date": "",
+      "home": "土岐商",
       "hs": null,
       "as": null,
       "away": "美濃加茂",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 11,
+      "date": "2026-06-20",
+      "home": "土岐商",
+      "hs": 0,
+      "as": 2,
+      "away": "FC岐阜",
+      "status": "played"
+    },
+    {
+      "md": 13,
       "date": "",
-      "home": "FC岐阜",
+      "home": "土岐商",
       "hs": null,
       "as": null,
       "away": "中京",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 16,
       "date": "",
-      "home": "FC岐阜",
+      "home": "土岐商",
       "hs": null,
       "as": null,
       "away": "岐阜工",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 18,
       "date": "",
-      "home": "FC岐阜",
-      "hs": null,
-      "as": null,
-      "away": "帝京可児B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "FC岐阜",
+      "home": "土岐商",
       "hs": null,
       "as": null,
       "away": "大垣日大",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 17,
       "date": "",
-      "home": "FC岐阜",
+      "home": "土岐商",
       "hs": null,
       "as": null,
       "away": "長良",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 14,
       "date": "",
-      "home": "FC岐阜",
-      "hs": null,
-      "as": null,
-      "away": "関商工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "美濃加茂",
-      "hs": null,
-      "as": null,
-      "away": "中京",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "美濃加茂",
-      "hs": null,
-      "as": null,
-      "away": "岐阜工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "美濃加茂",
-      "hs": null,
-      "as": null,
-      "away": "帝京可児B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "美濃加茂",
-      "hs": null,
-      "as": null,
-      "away": "大垣日大",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "美濃加茂",
-      "hs": null,
-      "as": null,
-      "away": "長良",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "美濃加茂",
-      "hs": null,
-      "as": null,
-      "away": "土岐商",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "中京",
-      "hs": null,
-      "as": null,
-      "away": "岐阜工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "中京",
-      "hs": null,
-      "as": null,
-      "away": "帝京可児B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "中京",
+      "home": "土岐商",
       "hs": null,
       "as": null,
       "away": "岐阜第一",
       "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "中京",
-      "hs": null,
-      "as": null,
-      "away": "土岐商",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "中京",
-      "hs": null,
-      "as": null,
-      "away": "関商工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岐阜工",
-      "hs": null,
-      "as": null,
-      "away": "帝京可児B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岐阜工",
-      "hs": null,
-      "as": null,
-      "away": "岐阜第一",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岐阜工",
-      "hs": null,
-      "as": null,
-      "away": "土岐商",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岐阜工",
-      "hs": null,
-      "as": null,
-      "away": "関商工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京可児B",
-      "hs": null,
-      "as": null,
-      "away": "大垣日大",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京可児B",
-      "hs": null,
-      "as": null,
-      "away": "長良",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京可児B",
-      "hs": null,
-      "as": null,
-      "away": "岐阜第一",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "大垣日大",
-      "hs": null,
-      "as": null,
-      "away": "長良",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "大垣日大",
-      "hs": null,
-      "as": null,
-      "away": "岐阜第一",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "大垣日大",
-      "hs": null,
-      "as": null,
-      "away": "土岐商",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "大垣日大",
-      "hs": null,
-      "as": null,
-      "away": "関商工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長良",
-      "hs": null,
-      "as": null,
-      "away": "岐阜第一",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長良",
-      "hs": null,
-      "as": null,
-      "away": "土岐商",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長良",
-      "hs": null,
-      "as": null,
-      "away": "関商工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岐阜第一",
-      "hs": null,
-      "as": null,
-      "away": "土岐商",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岐阜第一",
-      "hs": null,
-      "as": null,
-      "away": "関商工",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
+      "md": 15,
       "date": "",
       "home": "土岐商",
       "hs": null,
