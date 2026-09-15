@@ -1,9 +1,9 @@
 {
   "league": "高円宮杯 JFA U-18 サッカーリーグ 2026 山梨県1部",
   "season": "2026",
-  "source": "https://junior-soccer.jp/kanto/yamanashi/league/table/163809",
-  "sourceName": "山梨少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-08-30",
+  "source": "https://www.yamanashi-football.com/pages/75/",
+  "sourceName": "山梨県サッカー協会 公式",
+  "lastUpdated": "2026-09-15",
   "teams": [
     {
       "name": "韮崎",
@@ -41,83 +41,83 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "韮崎",
-      "points": 18,
-      "played": 7,
+      "team": "山梨学院B",
+      "points": 19,
+      "played": 8,
       "won": 6,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 1,
-      "gf": 14,
-      "ga": 6,
-      "gd": 8
+      "gf": 22,
+      "ga": 7,
+      "gd": 15
     },
     {
       "rank": 2,
-      "team": "山梨学院B",
-      "points": 13,
-      "played": 6,
-      "won": 4,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 19,
+      "team": "韮崎",
+      "points": 18,
+      "played": 8,
+      "won": 6,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 13,
       "ga": 6,
-      "gd": 13
+      "gd": 7
     },
     {
       "rank": 3,
       "team": "日大明誠",
-      "points": 10,
-      "played": 6,
+      "points": 12,
+      "played": 8,
       "won": 3,
-      "drawn": 1,
+      "drawn": 3,
       "lost": 2,
-      "gf": 14,
-      "ga": 7,
+      "gf": 15,
+      "ga": 8,
       "gd": 7
     },
     {
       "rank": 4,
-      "team": "駿台甲府",
-      "points": 9,
-      "played": 6,
+      "team": "日本航空",
+      "points": 10,
+      "played": 8,
       "won": 3,
-      "drawn": 0,
-      "lost": 3,
-      "gf": 7,
-      "ga": 11,
-      "gd": -4
+      "drawn": 1,
+      "lost": 4,
+      "gf": 10,
+      "ga": 10,
+      "gd": 0
     },
     {
       "rank": 5,
       "team": "帝京第三",
-      "points": 7,
-      "played": 6,
+      "points": 9,
+      "played": 8,
       "won": 2,
-      "drawn": 1,
+      "drawn": 3,
       "lost": 3,
-      "gf": 11,
-      "ga": 9,
+      "gf": 13,
+      "ga": 11,
       "gd": 2
     },
     {
       "rank": 6,
-      "team": "日本航空",
-      "points": 7,
-      "played": 6,
-      "won": 2,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 5,
-      "ga": 9,
-      "gd": -4
+      "team": "駿台甲府",
+      "points": 9,
+      "played": 8,
+      "won": 3,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 8,
+      "ga": 18,
+      "gd": -10
     },
     {
       "rank": 7,
       "team": "VF甲府B",
-      "points": 6,
-      "played": 7,
+      "points": 7,
+      "played": 8,
       "won": 2,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 5,
       "gf": 9,
       "ga": 17,
@@ -126,37 +126,55 @@
     {
       "rank": 8,
       "team": "東海大甲府",
-      "points": 3,
-      "played": 6,
-      "won": 1,
-      "drawn": 0,
+      "points": 7,
+      "played": 8,
+      "won": 2,
+      "drawn": 1,
       "lost": 5,
-      "gf": 3,
+      "gf": 4,
       "ga": 17,
-      "gd": -14
+      "gd": -13
     }
   ],
   "matches": [
     {
-      "md": 0,
+      "md": 14,
       "date": "",
-      "home": "日本航空",
-      "hs": 0,
-      "as": 1,
-      "away": "東海大甲府",
-      "status": "played"
+      "home": "韮崎",
+      "hs": null,
+      "as": null,
+      "away": "山梨学院B",
+      "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 13,
       "date": "",
-      "home": "駿台甲府",
+      "home": "韮崎",
+      "hs": null,
+      "as": null,
+      "away": "日大明誠",
+      "status": "scheduled"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "韮崎",
       "hs": 1,
-      "as": 2,
-      "away": "VF甲府B",
+      "as": 0,
+      "away": "駿台甲府",
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 12,
+      "date": "",
+      "home": "韮崎",
+      "hs": null,
+      "as": null,
+      "away": "帝京第三",
+      "status": "scheduled"
+    },
+    {
+      "md": 1,
       "date": "2026-04-04",
       "home": "韮崎",
       "hs": 2,
@@ -165,25 +183,43 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "VF甲府B",
-      "hs": 1,
-      "as": 4,
-      "away": "帝京第三",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "東海大甲府",
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "韮崎",
       "hs": 0,
-      "as": 4,
-      "away": "日大明誠",
+      "as": 2,
+      "away": "VF甲府B",
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "韮崎",
+      "hs": 4,
+      "as": 0,
+      "away": "東海大甲府",
+      "status": "played"
+    },
+    {
+      "md": 7,
+      "date": "2026-09-05",
+      "home": "山梨学院B",
+      "hs": 1,
+      "as": 0,
+      "away": "韮崎",
+      "status": "played"
+    },
+    {
+      "md": 12,
+      "date": "",
+      "home": "山梨学院B",
+      "hs": null,
+      "as": null,
+      "away": "日大明誠",
+      "status": "scheduled"
+    },
+    {
+      "md": 1,
       "date": "2026-04-05",
       "home": "山梨学院B",
       "hs": 7,
@@ -192,25 +228,16 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "帝京第三",
-      "hs": 4,
-      "as": 0,
-      "away": "東海大甲府",
-      "status": "played"
+      "md": 13,
+      "date": "",
+      "home": "山梨学院B",
+      "hs": null,
+      "as": null,
+      "away": "帝京第三",
+      "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "日大明誠",
-      "hs": 6,
-      "as": 2,
-      "away": "VF甲府B",
-      "status": "played"
-    },
-    {
-      "md": 0,
+      "md": 2,
       "date": "2026-04-11",
       "home": "山梨学院B",
       "hs": 4,
@@ -219,34 +246,7 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "韮崎",
-      "hs": 1,
-      "as": 0,
-      "away": "駿台甲府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "帝京第三",
-      "hs": 1,
-      "as": 3,
-      "away": "駿台甲府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "日大明誠",
-      "hs": 1,
-      "as": 1,
-      "away": "日本航空",
-      "status": "played"
-    },
-    {
-      "md": 0,
+      "md": 3,
       "date": "2026-04-18",
       "home": "山梨学院B",
       "hs": 2,
@@ -255,17 +255,8 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "韮崎",
-      "hs": 4,
-      "as": 0,
-      "away": "東海大甲府",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-26",
+      "md": 4,
+      "date": "2026-04-25",
       "home": "山梨学院B",
       "hs": 4,
       "as": 2,
@@ -273,7 +264,25 @@
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 6,
+      "date": "2026-06-28",
+      "home": "日大明誠",
+      "hs": 1,
+      "as": 2,
+      "away": "韮崎",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-06-20",
+      "home": "日大明誠",
+      "hs": 2,
+      "as": 1,
+      "away": "山梨学院B",
+      "status": "played"
+    },
+    {
+      "md": 4,
       "date": "2026-04-26",
       "home": "日大明誠",
       "hs": 0,
@@ -282,25 +291,106 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "日本航空",
+      "md": 14,
+      "date": "",
+      "home": "日大明誠",
+      "hs": null,
+      "as": null,
+      "away": "帝京第三",
+      "status": "scheduled"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "日大明誠",
+      "hs": 1,
+      "as": 1,
+      "away": "日本航空",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "日大明誠",
+      "hs": 6,
+      "as": 2,
+      "away": "VF甲府B",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "日大明誠",
+      "hs": 4,
+      "as": 0,
+      "away": "東海大甲府",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "",
+      "home": "駿台甲府",
+      "hs": null,
+      "as": null,
+      "away": "韮崎",
+      "status": "scheduled"
+    },
+    {
+      "md": 8,
+      "date": "2026-09-12",
+      "home": "駿台甲府",
+      "hs": 1,
+      "as": 2,
+      "away": "山梨学院B",
+      "status": "played"
+    },
+    {
+      "md": 11,
+      "date": "",
+      "home": "駿台甲府",
+      "hs": null,
+      "as": null,
+      "away": "日大明誠",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "",
+      "home": "駿台甲府",
+      "hs": null,
+      "as": null,
+      "away": "帝京第三",
+      "status": "scheduled"
+    },
+    {
+      "md": 14,
+      "date": "",
+      "home": "駿台甲府",
+      "hs": null,
+      "as": null,
+      "away": "日本航空",
+      "status": "scheduled"
+    },
+    {
+      "md": 6,
+      "date": "2026-06-28",
+      "home": "駿台甲府",
+      "hs": 1,
+      "as": 2,
+      "away": "VF甲府B",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-06-20",
+      "home": "駿台甲府",
       "hs": 1,
       "as": 0,
-      "away": "帝京第三",
+      "away": "東海大甲府",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-04-26",
-      "home": "VF甲府B",
-      "hs": 2,
-      "as": 0,
-      "away": "韮崎",
-      "status": "played"
-    },
-    {
-      "md": 0,
+      "md": 5,
       "date": "2026-06-20",
       "home": "帝京第三",
       "hs": 1,
@@ -309,322 +399,178 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "日大明誠",
-      "hs": 2,
+      "md": 6,
+      "date": "2026-06-28",
+      "home": "帝京第三",
+      "hs": 1,
       "as": 1,
       "away": "山梨学院B",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "駿台甲府",
+      "md": 7,
+      "date": "2026-09-05",
+      "home": "帝京第三",
       "hs": 1,
+      "as": 1,
+      "away": "日大明誠",
+      "status": "played"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-18",
+      "home": "帝京第三",
+      "hs": 1,
+      "as": 3,
+      "away": "駿台甲府",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-25",
+      "home": "帝京第三",
+      "hs": 0,
+      "as": 1,
+      "away": "日本航空",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-04",
+      "home": "帝京第三",
+      "hs": 4,
+      "as": 1,
+      "away": "VF甲府B",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-11",
+      "home": "帝京第三",
+      "hs": 4,
       "as": 0,
       "away": "東海大甲府",
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "2026-06-21",
+      "md": 8,
+      "date": "2026-09-12",
       "home": "日本航空",
-      "hs": 2,
+      "hs": 0,
       "as": 1,
-      "away": "VF甲府B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "山梨学院B",
-      "hs": 1,
-      "as": 1,
-      "away": "帝京第三",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "韮崎",
-      "hs": 2,
-      "as": 1,
-      "away": "VF甲府B",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "日大明誠",
-      "hs": 1,
-      "as": 2,
       "away": "韮崎",
       "status": "played"
     },
     {
-      "md": 0,
+      "md": 9,
       "date": "",
-      "home": "韮崎",
+      "home": "日本航空",
       "hs": null,
       "as": null,
       "away": "山梨学院B",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 10,
       "date": "",
-      "home": "韮崎",
+      "home": "日本航空",
+      "hs": null,
+      "as": null,
+      "away": "日大明誠",
+      "status": "scheduled"
+    },
+    {
+      "md": 7,
+      "date": "2026-09-05",
+      "home": "日本航空",
+      "hs": 5,
+      "as": 0,
+      "away": "駿台甲府",
+      "status": "played"
+    },
+    {
+      "md": 11,
+      "date": "",
+      "home": "日本航空",
+      "hs": null,
+      "as": null,
+      "away": "帝京第三",
+      "status": "scheduled"
+    },
+    {
+      "md": 5,
+      "date": "2026-06-20",
+      "home": "日本航空",
+      "hs": 2,
+      "as": 1,
+      "away": "VF甲府B",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-06-28",
+      "home": "日本航空",
+      "hs": 0,
+      "as": 1,
+      "away": "東海大甲府",
+      "status": "played"
+    },
+    {
+      "md": 11,
+      "date": "",
+      "home": "VF甲府B",
+      "hs": null,
+      "as": null,
+      "away": "韮崎",
+      "status": "scheduled"
+    },
+    {
+      "md": 10,
+      "date": "",
+      "home": "VF甲府B",
       "hs": null,
       "as": null,
       "away": "山梨学院B",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 9,
       "date": "",
-      "home": "韮崎",
+      "home": "VF甲府B",
       "hs": null,
       "as": null,
       "away": "日大明誠",
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 13,
       "date": "",
-      "home": "韮崎",
+      "home": "VF甲府B",
       "hs": null,
       "as": null,
       "away": "駿台甲府",
       "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "韮崎",
-      "hs": null,
-      "as": null,
+      "md": 8,
+      "date": "2026-09-12",
+      "home": "VF甲府B",
+      "hs": 1,
+      "as": 1,
       "away": "帝京第三",
-      "status": "scheduled"
+      "status": "played"
     },
     {
-      "md": 0,
+      "md": 12,
       "date": "",
-      "home": "韮崎",
+      "home": "VF甲府B",
       "hs": null,
       "as": null,
       "away": "日本航空",
       "status": "scheduled"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "韮崎",
-      "hs": null,
-      "as": null,
-      "away": "東海大甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山梨学院B",
-      "hs": null,
-      "as": null,
-      "away": "日大明誠",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山梨学院B",
-      "hs": null,
-      "as": null,
-      "away": "駿台甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山梨学院B",
-      "hs": null,
-      "as": null,
-      "away": "帝京第三",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山梨学院B",
-      "hs": null,
-      "as": null,
-      "away": "日本航空",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山梨学院B",
-      "hs": null,
-      "as": null,
-      "away": "VF甲府B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "山梨学院B",
-      "hs": null,
-      "as": null,
-      "away": "東海大甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日大明誠",
-      "hs": null,
-      "as": null,
-      "away": "駿台甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日大明誠",
-      "hs": null,
-      "as": null,
-      "away": "帝京第三",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日大明誠",
-      "hs": null,
-      "as": null,
-      "away": "帝京第三",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日大明誠",
-      "hs": null,
-      "as": null,
-      "away": "日本航空",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日大明誠",
-      "hs": null,
-      "as": null,
-      "away": "VF甲府B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日大明誠",
-      "hs": null,
-      "as": null,
-      "away": "東海大甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "駿台甲府",
-      "hs": null,
-      "as": null,
-      "away": "帝京第三",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "駿台甲府",
-      "hs": null,
-      "as": null,
-      "away": "日本航空",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "駿台甲府",
-      "hs": null,
-      "as": null,
-      "away": "日本航空",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "駿台甲府",
-      "hs": null,
-      "as": null,
-      "away": "VF甲府B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "駿台甲府",
-      "hs": null,
-      "as": null,
-      "away": "東海大甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第三",
-      "hs": null,
-      "as": null,
-      "away": "日本航空",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第三",
-      "hs": null,
-      "as": null,
-      "away": "VF甲府B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第三",
-      "hs": null,
-      "as": null,
-      "away": "東海大甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日本航空",
-      "hs": null,
-      "as": null,
-      "away": "VF甲府B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "日本航空",
-      "hs": null,
-      "as": null,
-      "away": "東海大甲府",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
+      "md": 14,
       "date": "",
       "home": "VF甲府B",
       "hs": null,
@@ -633,13 +579,67 @@
       "status": "scheduled"
     },
     {
-      "md": 0,
+      "md": 10,
       "date": "",
-      "home": "VF甲府B",
+      "home": "東海大甲府",
       "hs": null,
       "as": null,
-      "away": "東海大甲府",
+      "away": "韮崎",
       "status": "scheduled"
+    },
+    {
+      "md": 11,
+      "date": "",
+      "home": "東海大甲府",
+      "hs": null,
+      "as": null,
+      "away": "山梨学院B",
+      "status": "scheduled"
+    },
+    {
+      "md": 8,
+      "date": "2026-09-13",
+      "home": "東海大甲府",
+      "hs": 0,
+      "as": 0,
+      "away": "日大明誠",
+      "status": "played"
+    },
+    {
+      "md": 12,
+      "date": "",
+      "home": "東海大甲府",
+      "hs": null,
+      "as": null,
+      "away": "駿台甲府",
+      "status": "scheduled"
+    },
+    {
+      "md": 9,
+      "date": "",
+      "home": "東海大甲府",
+      "hs": null,
+      "as": null,
+      "away": "帝京第三",
+      "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "",
+      "home": "東海大甲府",
+      "hs": null,
+      "as": null,
+      "away": "日本航空",
+      "status": "scheduled"
+    },
+    {
+      "md": 7,
+      "date": "2026-09-05",
+      "home": "東海大甲府",
+      "hs": 1,
+      "as": 0,
+      "away": "VF甲府B",
+      "status": "played"
     }
   ]
 }

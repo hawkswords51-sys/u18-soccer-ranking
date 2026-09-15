@@ -271,6 +271,18 @@ PREF_OFFICIAL = {
                   #    （星取表と第N節結果PDFの2つの公式資料で一致）。移行で既存JSONから消えたため、
                   #    残すと「見つからない」警告で毎回 verify_failed になる。
 
+    # 山梨（2026-09-15追加）。星取表PDF＋通し日程PDF（read_yamanashi のコメント参照）。
+    # 星取表は勝点・得点・失点・得失点差だけ → 沖縄と同じ代替ゲート。ALIASは不要（8チームとも既存JSONと同じ表記）。
+    "yamanashi": {"platform": "yamanashi", "teams": 8,
+                  "entry": "https://www.yamanashi-football.com/pages/75/",
+                  "source": "https://www.yamanashi-football.com/pages/75/",
+                  "label": "山梨県サッカー協会 公式",
+                  "hoshitori_names": {"東海甲府": "東海大甲府"},
+                  "standings_gate": "okinawa"},
+                  # ✅ known_bad_existing は 2026-09-15 の移行時だけ使い、設定には残していない。
+                  #    junior-soccer が 6/28「韮崎 2-1 VF甲府B」を登録していたが、公式ではこの対戦は第4節の1回だけ
+                  #    （4/25 韮崎 0-2 VF甲府B）。6/28 の実体は第6節 日大明誠 1-2 韮崎（対戦相手の取り違え）と見られる。
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -2489,6 +2501,135 @@ def read_fukui(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 山梨（yamanashi-football.com）— 県協会の星取表PDF（結果：１部）＋通し日程PDF（日程：１・２・３部）（2026-09-15追加）
+#   入口: /pages/75/（各種大会情報）。リンク文字（全角）が「１部」「１・２・３部」の完全一致。
+#   ⚠️ 「４部」は日程と結果の両方にあるので、同じ書き方を他の部に流用しないこと。
+# ⚠️⚠️ **星取表にホーム/アウェイも日付も無い**（福井で退けた「案1」と同じ形）。山梨には節ごとの結果資料が
+#    無いので、**節の順番で数えた「そのペアの何回目か」→ 星取表の上段（1巡目）／下段（2巡目）**で割り当てる。
+#    星取表が「日付順」ではなく「巡目」で書かれているなら延期しても崩れないが、2026-09-15時点は延期が無く未確認。
+#    → 巡目の前提が崩れた形を検出したら止める（下の守り①②）＋ 版日付までの予定数と結果数の差をログに出す（③）。
+#    延期が起きたら、VF甲府Bのクラブ公式（https://www.ventforet.jp/academy/U-18?year=年）の日付・相手で
+#    1チームぶん実物を確かめられる（自動取得には入れない：ホーム/アウェイの列が無く、協会より更新が遅れる）。
+# ⚠️ **向き（ホーム/アウェイ）の根拠は日程PDFだけ。** 日付も日程PDF（4/9版の予定）だが、VF甲府Bの8節ぶんが
+#    クラブ公式の実際の日付と一致した（2026-09-15）。
+# ⚠️⚠️ **「1節＝1日」と仮定しない。** 第1〜4節は2日に分かれている（第4節＝4/25×3・4/26×1）。
+#    日付は1試合ごとに日程表の行から取る（表として読むと月日は結合ブロックの先頭行に入り、行ごとに引き継げる）。
+# ⚠️ 日程PDFは1〜3部の通し。「リーグ」列が `1` の行だけを使う。
+# ⚠️ 星取表は「東海甲府」、日程PDFと既存JSONは「東海大甲府」。星取表側だけ読み替える。
+# ✅ 星取表の鏡チェック（A行B列とB行A列が逆向きで一致）→ 沖縄と同じ代替ゲート（勝点・得点・失点）。
+# ✅ 版日付＝星取表PDF本文の `2026/9/13`。表題の年（「2026山梨県ユースリーグ 1部リーグ 星取表」）も必須。
+# ❌ 山梨県高体連サイトの `123部日程.pdf` は中身が駐車場案内図（2026-09-15）。使わない。
+# 年度切り替え: 入口は固定。表題の年で前年度のPDFを読む事故を止める。
+# ============================================================
+_YAMANASHI_SCORE_RE = re.compile(r"(\d+)\s*-\s*(\d+)")
+
+
+def read_yamanashi(cfg: dict) -> tuple[dict, list[dict]]:
+    year = str(SEASON_YEAR)
+    nfkc = lambda s: re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    result_url = pdf_source.pdf_link_by_text(soup, lambda t: t == "１部", "結果「１部」")
+    sched_url = pdf_source.pdf_link_by_text(soup, lambda t: t == "１・２・３部", "日程「１・２・３部」")
+
+    # --- 星取表 ---
+    content = pdf_source.fetch_pdf(result_url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        text = pdf.pages[0].extract_text() or ""
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    version = pdf_source.version_date(text)
+    if f"{year}山梨県ユースリーグ1部リーグ星取表" not in nfkc(text) or not version or not version.startswith(f"{year}-"):
+        raise RuntimeError(f"星取表PDFの表題または版日付が{year}年でない（前年度のPDFの疑い）")
+    if len(tables) != 1:
+        raise RuntimeError(f"星取表PDFの表が{len(tables)}個")
+    rename = cfg.get("hoshitori_names", {})
+    head = [nfkc(c) for c in tables[0][0]]
+    n = cfg["teams"]
+    teams = [rename.get(h, h) for h in head[1:1 + n]]
+    if head[1 + n:1 + n + 4] != ["勝点", "得点", "失点", "得失点差"]:
+        raise RuntimeError(f"星取表のヘッダが想定と違う: {head}")
+    standings, cells = {}, {}
+    for r in tables[0][1:]:
+        me = rename.get(nfkc(r[0]), nfkc(r[0]))
+        pts, gf, ga, gd = (int(nfkc(x)) for x in r[1 + n:1 + n + 4])
+        if gf - ga != gd:
+            raise RuntimeError(f"星取表 {me}: 得点−失点≠得失点差（読み取りの誤り）")
+        standings[me] = dict(pts=pts, gf=gf, ga=ga)
+        for j, opp in enumerate(teams):
+            if opp == me:
+                continue
+            segs = unicodedata.normalize("NFKC", r[1 + j] or "").split("\n")
+            legs = []
+            for seg in segs[:2]:
+                m = _YAMANASHI_SCORE_RE.search(seg)
+                legs.append((int(m.group(1)), int(m.group(2))) if m else None)
+            legs += [None] * (2 - len(legs))
+            # 守り①：上段が空なのに下段にだけ結果がある＝巡目の前提が崩れた
+            if legs[0] is None and legs[1] is not None:
+                raise RuntimeError(f"星取表 {me}×{opp}: 上段が空なのに下段に結果がある（巡目の前提が崩れた疑い）")
+            cells[(me, opp)] = legs
+    if set(standings) != set(teams) or len(teams) != n:
+        raise RuntimeError("星取表の行と列のチームが合わない")
+    for (a, b), legs in cells.items():            # ✅ 鏡チェック
+        if [None if x is None else (x[1], x[0]) for x in legs] != cells[(b, a)]:
+            raise RuntimeError(f"星取表の鏡チェックが合わない: {a}×{b} {legs} / {b}×{a} {cells[(b, a)]}")
+
+    # --- 通し日程（1部） ---
+    content = pdf_source.fetch_pdf(sched_url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        if f"{year}山梨" not in nfkc(pdf.pages[0].extract_text() or "")[:60]:
+            raise RuntimeError(f"日程PDFの表題が{year}年でない")
+        rows = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) for r in t]
+    sched, md, day = [], None, ""
+    for r in rows:
+        if len(r) != 7 or nfkc(r[1]) == "日時":
+            continue
+        mm = re.search(r"第(\d+)節", nfkc(r[0]))
+        if mm:
+            md = int(mm.group(1))
+        dm = re.search(r"(\d{1,2})月(\d{1,2})日", nfkc(r[1]))
+        if dm:
+            day = f"{year}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+        if nfkc(r[3]) != "1":
+            continue
+        home, away = nfkc(r[4]), nfkc(r[5])
+        if not (home in standings and away in standings and md and day):
+            raise RuntimeError(f"日程の1部の行が読めない: {r}")
+        sched.append(dict(md=md, date=day, home=home, away=away))
+    if len(sched) != n * (n - 1) or [s["md"] for s in sched] != sorted(s["md"] for s in sched):
+        raise RuntimeError(f"日程の1部が{len(sched)}試合、または節の順に並んでいない")
+
+    # --- 割り当て：そのペアの何回目か（節の順）→ 上段／下段 ---
+    count, matches = collections.Counter(), []
+    for s in sched:
+        k = frozenset((s["home"], s["away"]))
+        i = count[k]
+        count[k] += 1
+        if i > 1:
+            raise RuntimeError(f"日程に {s['home']}×{s['away']} が3回以上ある")
+        leg = cells[(s["home"], s["away"])][i]
+        # 守り②：日程上の2試合目に結果があるのに1試合目が空（①と同じ形を試合の側から確かめる）
+        if i == 1 and leg is not None and cells[(s["home"], s["away"])][0] is None:
+            raise RuntimeError(f"{s['home']}×{s['away']}: 2試合目に結果があるのに1試合目が空（巡目の前提が崩れた疑い）")
+        matches.append(dict(md=s["md"], date=s["date"], home=s["home"], away=s["away"],
+                            hs=leg[0] if leg else None, **{"as": leg[1] if leg else None}))
+    played = [m for m in matches if m["hs"] is not None]
+    # 守り③：版日付までに行われているはずの試合数と、星取表の結果数の差をログに出す（止めない）
+    due = sum(1 for s in sched if s["date"] <= version)
+    if due != len(played):
+        print(f"       （山梨: 版日付{version}までの予定{due}試合に対し、星取表の結果は{len(played)}試合"
+              f"＝{due - len(played):+d}。延期または星取表の更新遅れの可能性）")
+    future = [m for m in played if m["date"] > version]
+    if future:
+        examples = ", ".join("{} {}×{}".format(m["date"], m["home"], m["away"]) for m in future[:3])
+        print(f"       （山梨: 版日付{version}より後の予定日に結果がある試合 {len(future)}件：{examples}。"
+              f"予定より前倒しで行われた可能性）")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2965,7 +3106,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "niigata": read_niigata, "akita": read_akita,
                       "hyogo": read_hyogo, "tokushima": read_tokushima,
                       "aomori": read_aomori, "nagano": read_nagano,
-                      "fukui": read_fukui}[cfg["platform"]]
+                      "fukui": read_fukui, "yamanashi": read_yamanashi}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
