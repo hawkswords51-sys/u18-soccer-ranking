@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/shikoku/kochi/league/table/163885",
   "sourceName": "高知少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-09-06",
+  "lastUpdated": "2026-09-16",
   "teams": [
     {
       "name": "高知中央",
@@ -30,12 +30,12 @@
       "short": "岡豊"
     },
     {
-      "name": "宿毛工業",
-      "short": "宿毛工業"
-    },
-    {
       "name": "高知国際",
       "short": "高知国際"
+    },
+    {
+      "name": "宿毛工業",
+      "short": "宿毛工業"
     }
   ],
   "official_standings": [
@@ -43,97 +43,97 @@
       "rank": 1,
       "team": "高知中央",
       "points": 27,
-      "played": 9,
+      "played": 10,
       "won": 9,
       "drawn": 0,
-      "lost": 0,
-      "gf": 47,
-      "ga": 9,
-      "gd": 38
+      "lost": 1,
+      "gf": 49,
+      "ga": 12,
+      "gd": 37
     },
     {
       "rank": 2,
       "team": "高知S",
-      "points": 18,
-      "played": 9,
-      "won": 5,
+      "points": 21,
+      "played": 10,
+      "won": 6,
       "drawn": 3,
       "lost": 1,
-      "gf": 26,
-      "ga": 10,
-      "gd": 16
+      "gf": 28,
+      "ga": 11,
+      "gd": 17
     },
     {
       "rank": 3,
       "team": "高知小津",
-      "points": 17,
-      "played": 9,
-      "won": 5,
+      "points": 20,
+      "played": 10,
+      "won": 6,
       "drawn": 2,
       "lost": 2,
-      "gf": 19,
+      "gf": 22,
       "ga": 7,
-      "gd": 12
+      "gd": 15
     },
     {
       "rank": 4,
       "team": "明徳義塾",
       "points": 16,
-      "played": 9,
+      "played": 10,
       "won": 5,
       "drawn": 1,
-      "lost": 3,
-      "gf": 28,
-      "ga": 14,
-      "gd": 14
+      "lost": 4,
+      "gf": 29,
+      "ga": 16,
+      "gd": 13
     },
     {
       "rank": 5,
       "team": "土佐",
       "points": 13,
-      "played": 9,
+      "played": 10,
       "won": 4,
       "drawn": 1,
-      "lost": 4,
+      "lost": 5,
       "gf": 21,
-      "ga": 21,
-      "gd": 0
+      "ga": 24,
+      "gd": -3
     },
     {
       "rank": 6,
       "team": "岡豊",
-      "points": 10,
-      "played": 9,
-      "won": 3,
+      "points": 13,
+      "played": 10,
+      "won": 4,
       "drawn": 1,
       "lost": 5,
-      "gf": 16,
-      "ga": 23,
-      "gd": -7
+      "gf": 19,
+      "ga": 25,
+      "gd": -6
     },
     {
       "rank": 7,
-      "team": "宿毛工業",
+      "team": "高知国際",
       "points": 3,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 0,
-      "lost": 8,
-      "gf": 9,
-      "ga": 47,
-      "gd": -38
+      "lost": 9,
+      "gf": 7,
+      "ga": 41,
+      "gd": -34
     },
     {
       "rank": 8,
-      "team": "高知国際",
-      "points": 0,
-      "played": 9,
-      "won": 0,
+      "team": "宿毛工業",
+      "points": 3,
+      "played": 10,
+      "won": 1,
       "drawn": 0,
       "lost": 9,
-      "gf": 4,
-      "ga": 39,
-      "gd": -35
+      "gf": 11,
+      "ga": 50,
+      "gd": -39
     }
   ],
   "matches": [
@@ -175,20 +175,11 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-12",
       "home": "高知中央",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "岡豊",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "高知中央",
-      "hs": 5,
-      "as": 0,
-      "away": "宿毛工業",
       "status": "played"
     },
     {
@@ -198,6 +189,15 @@
       "hs": 3,
       "as": 1,
       "away": "高知国際",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "高知中央",
+      "hs": 5,
+      "as": 0,
+      "away": "宿毛工業",
       "status": "played"
     },
     {
@@ -220,12 +220,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "高知S",
-      "hs": null,
-      "as": null,
-      "away": "明徳義塾",
-      "status": "scheduled"
+      "date": "2026-09-12",
+      "home": "明徳義塾",
+      "hs": 1,
+      "as": 2,
+      "away": "高知S",
+      "status": "played"
     },
     {
       "md": 0,
@@ -247,20 +247,20 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "高知S",
-      "hs": 3,
-      "as": 0,
-      "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-04-11",
       "home": "高知S",
       "hs": 7,
       "as": 1,
       "away": "高知国際",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "高知S",
+      "hs": 3,
+      "as": 0,
+      "away": "宿毛工業",
       "status": "played"
     },
     {
@@ -310,20 +310,20 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "高知小津",
-      "hs": 8,
-      "as": 1,
-      "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-08-29",
       "home": "高知小津",
       "hs": 3,
       "as": 0,
       "away": "高知国際",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "高知小津",
+      "hs": 8,
+      "as": 1,
+      "away": "宿毛工業",
       "status": "played"
     },
     {
@@ -373,20 +373,20 @@
     },
     {
       "md": 0,
-      "date": "2026-04-26",
-      "home": "明徳義塾",
-      "hs": 7,
-      "as": 2,
-      "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "2026-06-13",
       "home": "明徳義塾",
       "hs": 6,
       "as": 0,
       "away": "高知国際",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-26",
+      "home": "明徳義塾",
+      "hs": 7,
+      "as": 2,
+      "away": "宿毛工業",
       "status": "played"
     },
     {
@@ -409,12 +409,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "土佐",
-      "hs": null,
-      "as": null,
-      "away": "高知小津",
-      "status": "scheduled"
+      "date": "2026-09-12",
+      "home": "高知小津",
+      "hs": 3,
+      "as": 0,
+      "away": "土佐",
+      "status": "played"
     },
     {
       "md": 0,
@@ -436,21 +436,21 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "土佐",
-      "hs": 4,
-      "as": 0,
-      "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "土佐",
       "hs": null,
       "as": null,
       "away": "高知国際",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "土佐",
+      "hs": 4,
+      "as": 0,
+      "away": "宿毛工業",
+      "status": "played"
     },
     {
       "md": 0,
@@ -499,83 +499,20 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "岡豊",
+      "hs": null,
+      "as": null,
+      "away": "高知国際",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-04-11",
       "home": "岡豊",
       "hs": 5,
       "as": 2,
       "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "岡豊",
-      "hs": null,
-      "as": null,
-      "away": "高知国際",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-08-29",
-      "home": "高知中央",
-      "hs": 11,
-      "as": 0,
-      "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "宿毛工業",
-      "hs": null,
-      "as": null,
-      "away": "高知S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "宿毛工業",
-      "hs": null,
-      "as": null,
-      "away": "高知小津",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "宿毛工業",
-      "hs": null,
-      "as": null,
-      "away": "明徳義塾",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "宿毛工業",
-      "hs": null,
-      "as": null,
-      "away": "土佐",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "岡豊",
-      "hs": 4,
-      "as": 2,
-      "away": "宿毛工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "宿毛工業",
-      "hs": 2,
-      "as": 0,
-      "away": "高知国際",
       "status": "played"
     },
     {
@@ -634,12 +571,75 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-12",
       "home": "高知国際",
+      "hs": 3,
+      "as": 2,
+      "away": "宿毛工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-08-29",
+      "home": "高知中央",
+      "hs": 11,
+      "as": 0,
+      "away": "宿毛工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宿毛工業",
       "hs": null,
       "as": null,
-      "away": "宿毛工業",
+      "away": "高知S",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宿毛工業",
+      "hs": null,
+      "as": null,
+      "away": "高知小津",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宿毛工業",
+      "hs": null,
+      "as": null,
+      "away": "明徳義塾",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "宿毛工業",
+      "hs": null,
+      "as": null,
+      "away": "土佐",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "岡豊",
+      "hs": 4,
+      "as": 2,
+      "away": "宿毛工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "宿毛工業",
+      "hs": 2,
+      "as": 0,
+      "away": "高知国際",
+      "status": "played"
     }
   ]
 }

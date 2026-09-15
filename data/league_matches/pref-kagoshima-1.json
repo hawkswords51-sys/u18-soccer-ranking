@@ -3,8 +3,12 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kyushu/kagoshima/league/table/163821",
   "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-08-30",
+  "lastUpdated": "2026-09-16",
   "teams": [
+    {
+      "name": "鹿児島ユナイテッド",
+      "short": "鹿児島ユナイテ"
+    },
     {
       "name": "城西EAGLE",
       "short": "城西EAGLE"
@@ -14,20 +18,16 @@
       "short": "鹿児島実業"
     },
     {
-      "name": "鹿児島ユナイテッド",
-      "short": "鹿児島ユナイテ"
-    },
-    {
       "name": "神村学園2nd",
       "short": "神村学園2nd"
     },
     {
-      "name": "鹿屋中央",
-      "short": "鹿屋中央"
-    },
-    {
       "name": "鹿児島情報",
       "short": "鹿児島情報"
+    },
+    {
+      "name": "鹿屋中央",
+      "short": "鹿屋中央"
     },
     {
       "name": "樟南",
@@ -49,283 +49,193 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "城西EAGLE",
-      "points": 31,
-      "played": 12,
-      "won": 10,
+      "team": "鹿児島ユナイテッド",
+      "points": 34,
+      "played": 14,
+      "won": 11,
       "drawn": 1,
-      "lost": 1,
-      "gf": 40,
+      "lost": 2,
+      "gf": 54,
       "ga": 8,
-      "gd": 32
+      "gd": 46
     },
     {
       "rank": 2,
-      "team": "鹿児島実業",
-      "points": 31,
-      "played": 12,
-      "won": 10,
+      "team": "城西EAGLE",
+      "points": 34,
+      "played": 13,
+      "won": 11,
       "drawn": 1,
       "lost": 1,
-      "gf": 28,
-      "ga": 9,
-      "gd": 19
+      "gf": 44,
+      "ga": 10,
+      "gd": 34
     },
     {
       "rank": 3,
-      "team": "鹿児島ユナイテッド",
-      "points": 30,
-      "played": 12,
+      "team": "鹿児島実業",
+      "points": 32,
+      "played": 14,
       "won": 10,
-      "drawn": 0,
+      "drawn": 2,
       "lost": 2,
-      "gf": 49,
-      "ga": 4,
-      "gd": 45
+      "gf": 33,
+      "ga": 16,
+      "gd": 17
     },
     {
       "rank": 4,
       "team": "神村学園2nd",
       "points": 25,
-      "played": 12,
+      "played": 13,
       "won": 7,
       "drawn": 4,
-      "lost": 1,
-      "gf": 42,
-      "ga": 11,
-      "gd": 31
+      "lost": 2,
+      "gf": 43,
+      "ga": 15,
+      "gd": 28
     },
     {
       "rank": 5,
-      "team": "鹿屋中央",
-      "points": 16,
-      "played": 12,
-      "won": 5,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 16,
-      "ga": 38,
-      "gd": -22
+      "team": "鹿児島情報",
+      "points": 18,
+      "played": 13,
+      "won": 6,
+      "drawn": 0,
+      "lost": 7,
+      "gf": 15,
+      "ga": 32,
+      "gd": -17
     },
     {
       "rank": 6,
-      "team": "鹿児島情報",
-      "points": 15,
-      "played": 12,
+      "team": "鹿屋中央",
+      "points": 16,
+      "played": 13,
       "won": 5,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 7,
-      "gf": 13,
-      "ga": 31,
-      "gd": -18
+      "gf": 17,
+      "ga": 40,
+      "gd": -23
     },
     {
       "rank": 7,
       "team": "樟南",
-      "points": 10,
-      "played": 12,
-      "won": 3,
+      "points": 13,
+      "played": 13,
+      "won": 4,
       "drawn": 1,
       "lost": 8,
-      "gf": 17,
-      "ga": 18,
-      "gd": -1
+      "gf": 21,
+      "ga": 19,
+      "gd": 2
     },
     {
       "rank": 8,
       "team": "出水中央",
-      "points": 9,
-      "played": 12,
-      "won": 3,
+      "points": 12,
+      "played": 13,
+      "won": 4,
       "drawn": 0,
       "lost": 9,
-      "gf": 14,
+      "gf": 15,
       "ga": 23,
-      "gd": -9
+      "gd": -8
     },
     {
       "rank": 9,
       "team": "鹿児島2nd",
       "points": 8,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 2,
-      "lost": 8,
-      "gf": 8,
-      "ga": 20,
-      "gd": -12
+      "lost": 9,
+      "gf": 9,
+      "ga": 22,
+      "gd": -13
     },
     {
       "rank": 10,
       "team": "松陽",
       "points": 0,
-      "played": 12,
+      "played": 13,
       "won": 0,
       "drawn": 0,
-      "lost": 12,
+      "lost": 13,
       "gf": 3,
-      "ga": 68,
-      "gd": -65
+      "ga": 69,
+      "gd": -66
     }
   ],
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-04",
-      "home": "鹿児島実業",
-      "hs": 3,
-      "as": 0,
-      "away": "鹿児島2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "神村学園2nd",
-      "hs": 1,
-      "as": 0,
-      "away": "出水中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "鹿屋中央",
-      "hs": 3,
-      "as": 2,
-      "away": "樟南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
+      "date": "2026-05-06",
       "home": "鹿児島ユナイテッド",
-      "hs": 9,
-      "as": 0,
-      "away": "鹿児島情報",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "城西EAGLE",
-      "hs": 5,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "鹿児島実業",
-      "hs": 3,
-      "as": 2,
-      "away": "出水中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "樟南",
-      "hs": 3,
+      "hs": 0,
       "as": 1,
-      "away": "鹿児島情報",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "鹿児島ユナイテッド",
-      "hs": 3,
-      "as": 1,
-      "away": "鹿児島2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "神村学園2nd",
-      "hs": 10,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "城西EAGLE",
-      "hs": 4,
-      "as": 0,
-      "away": "鹿屋中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "出水中央",
-      "hs": 1,
-      "as": 6,
-      "away": "鹿児島ユナイテッド",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "鹿児島実業",
-      "hs": 4,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "樟南",
-      "hs": 1,
-      "as": 0,
-      "away": "鹿児島2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "神村学園2nd",
-      "hs": 4,
-      "as": 0,
-      "away": "鹿屋中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "鹿児島情報",
-      "hs": 1,
-      "as": 0,
       "away": "城西EAGLE",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "鹿児島実業",
-      "hs": 2,
-      "as": 1,
-      "away": "鹿屋中央",
+      "date": "2026-09-13",
+      "home": "鹿児島ユナイテッド",
+      "hs": 3,
+      "as": 3,
+      "away": "鹿児島実業",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "神村学園2nd",
+      "date": "2026-05-10",
+      "home": "鹿児島ユナイテッド",
       "hs": 2,
+      "as": 0,
+      "away": "神村学園2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "鹿児島ユナイテッド",
+      "hs": 9,
       "as": 0,
       "away": "鹿児島情報",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "城西EAGLE",
+      "date": "2026-04-29",
+      "home": "鹿児島ユナイテッド",
+      "hs": 9,
+      "as": 0,
+      "away": "鹿屋中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "鹿児島ユナイテッド",
+      "hs": 1,
+      "as": 0,
+      "away": "樟南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "鹿児島ユナイテッド",
+      "hs": 1,
+      "as": 0,
+      "away": "出水中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "鹿児島ユナイテッド",
       "hs": 3,
       "as": 1,
       "away": "鹿児島2nd",
@@ -342,30 +252,12 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "鹿児島情報",
-      "hs": 1,
-      "as": 0,
-      "away": "鹿児島2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "鹿児島ユナイテッド",
-      "hs": 9,
-      "as": 0,
-      "away": "鹿屋中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "出水中央",
-      "hs": 3,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
+      "date": "",
+      "home": "城西EAGLE",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島ユナイテッド",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -378,110 +270,29 @@
     },
     {
       "md": 0,
-      "date": "2026-05-02",
-      "home": "鹿児島ユナイテッド",
-      "hs": 1,
-      "as": 0,
-      "away": "樟南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "鹿児島情報",
-      "hs": 4,
-      "as": 1,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "鹿児島実業",
-      "hs": 1,
-      "as": 1,
-      "away": "神村学園2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "鹿屋中央",
-      "hs": 0,
-      "as": 0,
-      "away": "鹿児島2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
+      "date": "",
       "home": "城西EAGLE",
-      "hs": 2,
-      "as": 1,
-      "away": "出水中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "鹿児島実業",
-      "hs": 2,
-      "as": 1,
-      "away": "樟南",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "鹿児島2nd",
-      "hs": 0,
-      "as": 0,
+      "hs": null,
+      "as": null,
       "away": "神村学園2nd",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-05-06",
+      "date": "2026-06-27",
       "home": "鹿児島情報",
-      "hs": 2,
-      "as": 1,
-      "away": "出水中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "鹿児島ユナイテッド",
-      "hs": 0,
-      "as": 1,
+      "hs": 1,
+      "as": 5,
       "away": "城西EAGLE",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-05-06",
-      "home": "鹿屋中央",
-      "hs": 2,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "鹿児島実業",
+      "date": "2026-04-11",
+      "home": "城西EAGLE",
       "hs": 4,
       "as": 0,
-      "away": "鹿児島情報",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "鹿児島2nd",
-      "hs": 4,
-      "as": 0,
-      "away": "松陽",
+      "away": "鹿屋中央",
       "status": "played"
     },
     {
@@ -495,8 +306,8 @@
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "鹿屋中央",
+      "date": "2026-05-02",
+      "home": "城西EAGLE",
       "hs": 2,
       "as": 1,
       "away": "出水中央",
@@ -504,11 +315,20 @@
     },
     {
       "md": 0,
-      "date": "2026-05-10",
-      "home": "鹿児島ユナイテッド",
-      "hs": 2,
+      "date": "2026-04-25",
+      "home": "城西EAGLE",
+      "hs": 3,
+      "as": 1,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "城西EAGLE",
+      "hs": 5,
       "as": 0,
-      "away": "神村学園2nd",
+      "away": "松陽",
       "status": "played"
     },
     {
@@ -522,12 +342,84 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "鹿屋中央",
+      "date": "2026-09-12",
+      "home": "城西EAGLE",
+      "hs": 4,
+      "as": 2,
+      "away": "鹿児島実業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "鹿児島実業",
       "hs": 1,
+      "as": 1,
+      "away": "神村学園2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "鹿児島実業",
+      "hs": 4,
       "as": 0,
       "away": "鹿児島情報",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "鹿児島実業",
+      "hs": 2,
+      "as": 1,
+      "away": "鹿屋中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "鹿児島実業",
+      "hs": 2,
+      "as": 1,
+      "away": "樟南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "鹿児島実業",
+      "hs": 3,
+      "as": 2,
+      "away": "出水中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "鹿児島実業",
+      "hs": 3,
+      "as": 0,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "鹿児島実業",
+      "hs": 4,
+      "as": 0,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "神村学園2nd",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島ユナイテッド",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -540,29 +432,65 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "樟南",
-      "hs": 5,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
+      "date": "",
+      "home": "神村学園2nd",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島実業",
+      "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "出水中央",
+      "date": "2026-04-25",
+      "home": "神村学園2nd",
       "hs": 2,
       "as": 0,
-      "away": "鹿児島2nd",
+      "away": "鹿児島情報",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-06",
-      "home": "出水中央",
+      "date": "2026-04-19",
+      "home": "神村学園2nd",
+      "hs": 4,
+      "as": 0,
+      "away": "鹿屋中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "樟南",
+      "hs": 4,
+      "as": 1,
+      "away": "神村学園2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "神村学園2nd",
       "hs": 1,
       "as": 0,
-      "away": "樟南",
+      "away": "出水中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "神村学園2nd",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "神村学園2nd",
+      "hs": 10,
+      "as": 0,
+      "away": "松陽",
       "status": "played"
     },
     {
@@ -576,57 +504,39 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "鹿児島実業",
-      "hs": 2,
-      "as": 1,
-      "away": "鹿児島2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "樟南",
-      "hs": 2,
-      "as": 3,
-      "away": "鹿屋中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "城西EAGLE",
-      "hs": 6,
-      "as": 0,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "出水中央",
+      "date": "2026-04-19",
+      "home": "鹿児島情報",
       "hs": 1,
-      "as": 3,
-      "away": "神村学園2nd",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "鹿児島実業",
-      "hs": 3,
-      "as": 1,
-      "away": "出水中央",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "鹿児島ユナイテッド",
-      "hs": 5,
       "as": 0,
-      "away": "鹿児島2nd",
+      "away": "城西EAGLE",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿児島情報",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島実業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿児島情報",
+      "hs": null,
+      "as": null,
+      "away": "神村学園2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿児島情報",
+      "hs": null,
+      "as": null,
+      "away": "鹿屋中央",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -639,11 +549,38 @@
     },
     {
       "md": 0,
-      "date": "2026-06-20",
-      "home": "神村学園2nd",
-      "hs": 13,
+      "date": "2026-05-06",
+      "home": "鹿児島情報",
+      "hs": 2,
+      "as": 1,
+      "away": "出水中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "鹿児島情報",
+      "hs": 1,
+      "as": 0,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "鹿児島情報",
+      "hs": 4,
       "as": 1,
       "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "鹿児島ユナイテッド",
+      "hs": 2,
+      "as": 1,
+      "away": "鹿屋中央",
       "status": "played"
     },
     {
@@ -657,6 +594,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "鹿屋中央",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島実業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-06-27",
       "home": "鹿屋中央",
       "hs": 3,
@@ -666,39 +612,75 @@
     },
     {
       "md": 0,
-      "date": "2026-06-27",
-      "home": "鹿児島実業",
-      "hs": 3,
-      "as": 1,
-      "away": "松陽",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "鹿児島情報",
-      "hs": 1,
-      "as": 5,
-      "away": "城西EAGLE",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "鹿児島2nd",
+      "date": "2026-05-16",
+      "home": "鹿屋中央",
       "hs": 1,
       "as": 0,
+      "away": "鹿児島情報",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "鹿屋中央",
+      "hs": 3,
+      "as": 2,
       "away": "樟南",
       "status": "played"
     },
     {
       "md": 0,
-      "date": "2026-06-27",
-      "home": "鹿児島ユナイテッド",
-      "hs": 1,
-      "as": 0,
+      "date": "2026-05-10",
+      "home": "鹿屋中央",
+      "hs": 2,
+      "as": 1,
       "away": "出水中央",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "鹿屋中央",
+      "hs": 0,
+      "as": 0,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "鹿屋中央",
+      "hs": 2,
+      "as": 0,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "樟南",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島ユナイテッド",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "樟南",
+      "hs": null,
+      "as": null,
+      "away": "城西EAGLE",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "樟南",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島実業",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -711,228 +693,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島実業",
-      "status": "scheduled"
+      "date": "2026-04-11",
+      "home": "樟南",
+      "hs": 3,
+      "as": 1,
+      "away": "鹿児島情報",
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島ユナイテッド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
-      "away": "神村学園2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
-      "away": "樟南",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
-      "away": "出水中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島実業",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島ユナイテッド",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島実業",
-      "hs": null,
-      "as": null,
-      "away": "神村学園2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島実業",
-      "hs": null,
-      "as": null,
+      "date": "2026-06-13",
+      "home": "樟南",
+      "hs": 2,
+      "as": 3,
       "away": "鹿屋中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島実業",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島情報",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島実業",
-      "hs": null,
-      "as": null,
-      "away": "樟南",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島ユナイテッド",
-      "hs": null,
-      "as": null,
-      "away": "神村学園2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島ユナイテッド",
-      "hs": null,
-      "as": null,
-      "away": "鹿屋中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島ユナイテッド",
-      "hs": null,
-      "as": null,
-      "away": "樟南",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島ユナイテッド",
-      "hs": null,
-      "as": null,
-      "away": "松陽",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "神村学園2nd",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島情報",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "神村学園2nd",
-      "hs": null,
-      "as": null,
-      "away": "樟南",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "神村学園2nd",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿屋中央",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島情報",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿屋中央",
-      "hs": null,
-      "as": null,
-      "away": "出水中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿屋中央",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿屋中央",
-      "hs": null,
-      "as": null,
-      "away": "松陽",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島情報",
-      "hs": null,
-      "as": null,
-      "away": "出水中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島情報",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鹿児島情報",
-      "hs": null,
-      "as": null,
-      "away": "松陽",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -945,20 +720,65 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-04-19",
       "home": "樟南",
-      "hs": null,
-      "as": null,
-      "away": "松陽",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "出水中央",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "樟南",
+      "hs": 5,
+      "as": 0,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "出水中央",
+      "hs": 1,
+      "as": 6,
+      "away": "鹿児島ユナイテッド",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "出水中央",
+      "hs": null,
+      "as": null,
+      "away": "城西EAGLE",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "鹿児島実業",
+      "hs": 3,
+      "as": 1,
+      "away": "出水中央",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "出水中央",
+      "hs": 1,
+      "as": 3,
+      "away": "神村学園2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "出水中央",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島情報",
       "status": "scheduled"
     },
     {
@@ -967,8 +787,44 @@
       "home": "出水中央",
       "hs": null,
       "as": null,
-      "away": "松陽",
+      "away": "鹿屋中央",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-06",
+      "home": "出水中央",
+      "hs": 1,
+      "as": 0,
+      "away": "樟南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "出水中央",
+      "hs": 2,
+      "as": 0,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "出水中央",
+      "hs": 3,
+      "as": 0,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "鹿児島ユナイテッド",
+      "hs": 5,
+      "as": 0,
+      "away": "鹿児島2nd",
+      "status": "played"
     },
     {
       "md": 0,
@@ -976,7 +832,151 @@
       "home": "鹿児島2nd",
       "hs": null,
       "as": null,
+      "away": "城西EAGLE",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "鹿児島実業",
+      "hs": 2,
+      "as": 1,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "鹿児島2nd",
+      "hs": 0,
+      "as": 0,
+      "away": "神村学園2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "鹿児島情報",
+      "hs": 2,
+      "as": 1,
+      "away": "鹿児島2nd",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿児島2nd",
+      "hs": null,
+      "as": null,
+      "away": "鹿屋中央",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "鹿児島2nd",
+      "hs": 1,
+      "as": 0,
+      "away": "樟南",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "鹿児島2nd",
+      "hs": null,
+      "as": null,
+      "away": "出水中央",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "鹿児島2nd",
+      "hs": 4,
+      "as": 0,
       "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松陽",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島ユナイテッド",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "城西EAGLE",
+      "hs": 6,
+      "as": 0,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "鹿児島実業",
+      "hs": 3,
+      "as": 1,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "神村学園2nd",
+      "hs": 13,
+      "as": 1,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松陽",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島情報",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松陽",
+      "hs": null,
+      "as": null,
+      "away": "鹿屋中央",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松陽",
+      "hs": null,
+      "as": null,
+      "away": "樟南",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "出水中央",
+      "hs": 1,
+      "as": 0,
+      "away": "松陽",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松陽",
+      "hs": null,
+      "as": null,
+      "away": "鹿児島2nd",
       "status": "scheduled"
     }
   ]
