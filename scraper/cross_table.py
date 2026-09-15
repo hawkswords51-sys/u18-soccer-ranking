@@ -41,6 +41,7 @@ _MATCH_DIR = Path(__file__).resolve().parent.parent / "data" / "league_matches"
 NO_HOME_AWAY_SLUGS: set[str] = {
     "pref-gifu-1",   # 岐阜県1部（2026-09-15）。日程表がチーム番号順に並ぶだけでホーム/アウェイを持たない
     "pref-yamanashi-1",  # 山梨県1部（2026-09-15）。日程表の左側の会場は29件・右側17件で「左＝ホーム」と言えない
+    "pref-mie-1",        # 三重県1部（2026-09-15）。学校名の会場20試合が左5・右4・どちらでもない11＝セントラル開催
 }
 
 
