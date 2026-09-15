@@ -413,6 +413,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-tokushima-1",  # tokushima-fa.jp（県協会の日程・結果PDF）2026-09-15追加
     "pref-aomori-1",     # aomori-fa.jp（県協会の大会日程PDF＋星取表PDF）2026-09-15追加
     "pref-nagano-1",     # nagano-fa.or.jp（県協会の日程及び試合結果PDF＋星取表PDF）2026-09-15追加
+    "pref-fukui-1",      # fukui-fa.com（県協会の節ごとの試合結果PDF＋星取表PDF）2026-09-15追加
 }
 
 

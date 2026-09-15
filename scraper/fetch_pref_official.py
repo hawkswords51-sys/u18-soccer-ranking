@@ -259,6 +259,18 @@ PREF_OFFICIAL = {
                   "source": "https://www.nagano-fa.or.jp/cat_2",
                   "label": "長野県サッカー協会 公式"},
 
+    # 福井（2026-09-15追加）。節ごとの試合結果PDF（F1第N節結果・13本前後）＋星取表PDF。
+    # ⚠️ 2本（日程＋星取表）ではなく節ごとPDFを全部取る理由は read_fukui のコメント参照（延期で向きが静かに入れ替わるため）。
+    # 星取表は勝点・得点・失点だけ → 沖縄と同じ代替ゲート。ALIASは不要（8チームとも既存JSONと同じ表記）。
+    "fukui":     {"platform": "fukui", "teams": 8,
+                  "source": "https://www.fukui-fa.com/author/high-school/",
+                  "label": "福井県サッカー協会 公式",
+                  "standings_gate": "okinawa"},
+                  # ✅ known_bad_existing は 2026-09-15 の移行時だけ使い、設定には残していない。
+                  #    junior-soccer が 5/10「福井商業 1-2 丸岡2nd」としていたが、公式は 丸岡2nd 2-0 福井商業
+                  #    （星取表と第N節結果PDFの2つの公式資料で一致）。移行で既存JSONから消えたため、
+                  #    残すと「見つからない」警告で毎回 verify_failed になる。
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -2334,6 +2346,149 @@ def read_nagano(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 福井（fukui-fa.com）— 県協会の節ごとの試合結果PDF（F1第N節結果）＋星取表PDF（F1リーグ）（2026-09-15追加）
+#   入口: /author/high-school/（記事一覧）→ リンク文字「…リーグ{年}福井」→ 年度のリーグページ
+# ⚠️⚠️ **なぜ「日程PDF＋星取表」の2本ではなく、節ごとの結果PDFを全部（13本前後）取るのか**
+#    星取表のマスには**ホーム/アウェイも「どちらが1試合目か」も無い**（行チームから見たスコアだけ）。
+#    日程PDFと組むには「マスの1行目＝日程上の1試合目」と仮定するしかなく、**延期で1試合目が
+#    2試合目より後になると、日付だけでなく向きとスコアの割り当てまで静かに入れ替わる**。
+#    勝点・得点・失点は変わらないので検算では絶対に捕まらない（2026-09-15に48/48で仮定が成り立つことは
+#    確認したが、それは延期がまだ無いからにすぎない）。
+#    節ごとの結果PDFには**ホーム・スコア・前後半・アウェイ・実際の日付**が明記されている。
+#    → **「2本で足りるのに無駄」と思って減らさないこと。**
+# ⚠️ 1本でも取れなければ全体を止める。理由は「構造が変わった疑い（リンクが無い等）」と
+#    「一時的な取得失敗の疑い（リトライ後も失敗）」を分けてメッセージに出す。
+# ⚠️ 節ごとPDFは1ページに1試合1表（最大4表）。表の1行目＝[ホーム(＋勝点), -, ホーム得点, 前半/後半, アウェイ得点, アウェイ(＋勝点)]。
+#    チーム名は改行の前（1行目）だけ。数字で区切ると「丸岡2nd」が「丸岡」になる。
+#    日付は**表の上にある見出し「第12節 9月12日(土)」**（同じ列で一番近いもの）から取る。
+#    ✅ 前後半の和＝合計を全試合で検算する（徳島と同じ）。
+# ⚠️ 星取表（F1リーグ）は勝点・得点・失点・得失差・順位だけ（勝分敗・試合数なし）→ 沖縄と同じ代替ゲート。
+#    ✅ **節ごとPDFの試合の集合（向きなし）＝星取表のマスの集合**を照合する（出典をまたいだ検算）。
+# ⚠️ 得点ランキングPDF（fetch_pdf_scorers.py）は漢字がCJK互換部首で出るが、この2種類では出なかった
+#    （2026-09-15確認）。念のため同じ正規化（_fix: 部首置換＋NFKC）を通す。
+# 年度切り替え: 記事一覧のリンク文字の年で辿るので設定変更は不要。
+# ============================================================
+_FUKUI_LIST = "https://www.fukui-fa.com/author/high-school/"
+_FUKUI_ROUND_RE = re.compile(r"^F1第(\d+)節結果$")
+_FUKUI_MD_RE = re.compile(r"(\d{1,2})月(\d{1,2})日")
+_FUKUI_HALF_RE = re.compile(r"(\d+)\s*-\s*(\d+)")
+_FUKUI_CELL_RE = re.compile(r"(\d+)\s*[○●△]\s*(\d+)")
+
+
+def _fukui_fix(s: str) -> str:
+    from fetch_pdf_scorers import _fix      # CJK互換部首の置換＋NFKC（得点ランキングと同じ正規化）
+    return re.sub(r"\s+", "", _fix(s or ""))
+
+
+def _fukui_fetch(url: str, what: str) -> bytes:
+    try:
+        return pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, wait=SLEEP)
+    except Exception as e:
+        raise RuntimeError(f"一時的な取得失敗の疑い（{what}・リトライ後も失敗）: {e}")
+
+
+def _fukui_round(content: bytes, md: int) -> list[dict]:
+    out = []
+    with pdf_source.open_pdf(content) as pdf:
+        for page in pdf.pages:
+            words = pdf_source.page_words(page)
+            heads = [(w, _FUKUI_MD_RE.search(_fukui_fix(w["text"]))) for w in words]
+            heads = [(w, m) for w, m in heads if m]
+            secs = [(w, re.search(r"第(\d+)節", _fukui_fix(w["text"]))) for w in words]
+            secs = [(w, m) for w, m in secs if m]
+            for tb in page.find_tables():
+                r0 = tb.extract()[0]
+                if len(r0) != 6:
+                    raise RuntimeError(f"構造が変わった疑い（第{md}節PDFの表の列数が{len(r0)}）")
+                col_above = lambda cands: [(tb.bbox[1] - w["bottom"], m) for w, m in cands
+                                           if w["bottom"] <= tb.bbox[1] + 1 and w["x0"] < tb.bbox[2] and w["x1"] > tb.bbox[0]]
+                above, sec = col_above(heads), col_above(secs)
+                if not above or not sec:
+                    raise RuntimeError(f"構造が変わった疑い（第{md}節PDFの表の上に「第N節 M月D日」の見出しが無い）")
+                dm = min(above, key=lambda x: x[0])[1]
+                # ✅ 見出しの節番号＝リンクの節番号（日付を別の見出しと取り違えたら止める）
+                if int(min(sec, key=lambda x: x[0])[1].group(1)) != md:
+                    raise RuntimeError(f"第{md}節PDFの表の見出しの節番号が{min(sec, key=lambda x: x[0])[1].group(1)}（日付の割り当てが壊れた疑い）")
+                home = _fukui_fix((r0[0] or "").split("\n")[0])
+                away = _fukui_fix((r0[5] or "").split("\n")[0])
+                hs, as_ = _fukui_fix(r0[2]), _fukui_fix(r0[4])
+                halves = _FUKUI_HALF_RE.findall(r0[3] or "")
+                if not (home and away and hs.isdigit() and as_.isdigit() and len(halves) == 2):
+                    raise RuntimeError(f"構造が変わった疑い（第{md}節PDFの行が読めない: {r0}）")
+                hs, as_ = int(hs), int(as_)
+                if (sum(int(a) for a, _b in halves), sum(int(b) for _a, b in halves)) != (hs, as_):
+                    raise RuntimeError(f"前後半の和が合計と合わない: 第{md}節 {home} {hs}-{as_} {away} {halves}")
+                out.append(dict(md=md, date=f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}",
+                                home=home, away=away, hs=hs, **{"as": as_}))
+    return out
+
+
+def read_fukui(cfg: dict) -> tuple[dict, list[dict]]:
+    year = str(SEASON_YEAR)
+    soup = BeautifulSoup(fetch_html(_FUKUI_LIST, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    pages = [a["href"] for a in soup.find_all("a", href=True) if f"リーグ{year}福井" in _fukui_fix(a.get_text())]
+    if not pages:
+        raise RuntimeError(f"構造が変わった疑い（記事一覧に「リーグ{year}福井」のリンクが無い）")
+    soup = BeautifulSoup(fetch_html(pages[0], encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+
+    fixed = lambda t: _fukui_fix(t)
+    result_url = pdf_source.pdf_link_by_text(soup, lambda t: fixed(t) == "F1リーグ(pdf)", "F1リーグ(pdf)（星取表）")
+    rounds = sorted((int(_FUKUI_ROUND_RE.match(fixed(t)).group(1)), u)
+                    for t, u in pdf_source.pdf_links_all_by_text(soup, lambda t: bool(_FUKUI_ROUND_RE.match(fixed(t)))))
+    nums = [md for md, _u in rounds]
+    if not nums or nums != list(range(1, len(nums) + 1)):
+        raise RuntimeError(f"構造が変わった疑い（F1第N節結果のリンクが1から連番でない: {nums}）")
+
+    matches = []
+    for md, url in rounds:
+        matches += _fukui_round(_fukui_fetch(url, f"第{md}節PDF"), md)
+        time.sleep(SLEEP)
+    n = cfg["teams"]
+    if len(matches) != len(nums) * (n // 2):
+        raise RuntimeError(f"節ごとPDFの試合数が{len(matches)}（{len(nums)}節×{n // 2}のはず）")
+
+    # --- 星取表（F1リーグ）：勝点・得点・失点・得失差・順位 と、マスの試合 ---
+    content = _fukui_fetch(result_url, "星取表PDF")
+    with pdf_source.open_pdf(content) as pdf:
+        title = _fukui_fix((pdf.pages[0].extract_text() or "")[:60])
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    if f"サッカーリーグ{year}福井" not in title or len(tables) != 1:
+        raise RuntimeError(f"構造が変わった疑い（星取表PDFの見出しが{year}年でない、または表が{len(tables)}個）")
+    head = [_fukui_fix(c) for c in tables[0][0]]
+    if head[0] != "チーム名" or not {"勝点", "得点", "失点", "得失差"} <= set(head):
+        raise RuntimeError(f"構造が変わった疑い（星取表のヘッダ: {head}）")
+    teams = [re.sub(r"^\d+", "", h) for h in head[1:1 + n]]
+    col = {k: head.index(k) for k in ("勝点", "得点", "失点", "得失差")}
+    standings, cells = {}, collections.Counter()
+    for r in tables[0][1:]:
+        me = re.sub(r"^\d+", "", _fukui_fix(r[0]))
+        v = {k: int(_fukui_fix(r[c])) for k, c in col.items()}
+        if v["得点"] - v["失点"] != v["得失差"]:
+            raise RuntimeError(f"星取表 {me}: 得点−失点≠得失差（読み取りの誤り）")
+        standings[me] = dict(pts=v["勝点"], gf=v["得点"], ga=v["失点"])
+        for j, opp in enumerate(teams):
+            for a, b in _FUKUI_CELL_RE.findall(unicodedata.normalize("NFKC", r[1 + j] or "")):
+                cells[(me, opp, int(a), int(b))] += 1
+    if set(standings) != set(teams) or len(teams) != n:
+        raise RuntimeError("構造が変わった疑い（星取表の行と列のチームが合わない）")
+    # ✅ 出典をまたいだ照合：節ごとPDFの試合（両チームの目線）＝星取表のマス
+    mine = collections.Counter()
+    for m in matches:
+        mine[(m["home"], m["away"], m["hs"], m["as"])] += 1
+        mine[(m["away"], m["home"], m["as"], m["hs"])] += 1
+    if mine != cells:
+        raise RuntimeError(f"節ごとPDFの試合と星取表のマスが合わない（節PDFのみ {sorted((mine - cells).elements())[:2]}・"
+                           f"星取表のみ {sorted((cells - mine).elements())[:2]}）")
+    today = _jst_today().isoformat()
+    future = [m for m in matches if m["date"] > today]
+    if future:
+        raise RuntimeError(f"今日({today})より後の日付を持つ消化済み試合が{len(future)}件（日付の割り当てが壊れた疑い）")
+    return standings, matches
+
+
+# ============================================================
 # 栃木（api.lsin.jp「LSIN cloud」）— 星取表と日程が別ビューに分かれている
 #   m=r … 星取表＋順位表（**成績の正本**）
 #   m=s … スコア速報（**日付・時刻・会場の供給元**）
@@ -2809,7 +2964,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "okayama": read_okayama, "oita": read_oita,
                       "niigata": read_niigata, "akita": read_akita,
                       "hyogo": read_hyogo, "tokushima": read_tokushima,
-                      "aomori": read_aomori, "nagano": read_nagano}[cfg["platform"]]
+                      "aomori": read_aomori, "nagano": read_nagano,
+                      "fukui": read_fukui}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
