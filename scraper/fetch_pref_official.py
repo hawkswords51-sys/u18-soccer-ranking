@@ -321,6 +321,16 @@ PREF_OFFICIAL = {
     # ⚠️ home/away は「日程表の左側＝home」の格納規約で、**事実ではない**。会場に学校のグラウンドが出るが、
     #    東山総合で東山が右・京都共栄Gで京都共栄が右・橘のスタジアムに橘が出ない試合がある（2026-09-16）＝
     #    左右も会場もホームを表していない。表示は cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。
+    # 高知（2026-09-17追加）。星取表PDF（スコア・丸数字の節番号＝主資料）＋日程表PDF（日付の付与用）。
+    # 星取表に勝分敗がそろうので通常の検算ゲート（高知小津の得点だけ KNOWN_SOURCE_ERRORS で差を明示）。
+    # ⚠️ home/away は「日程表の左側＝home」の格納規約で、**事実ではない**。ホーム試合数は8チームとも7-7で
+    #    28ペアすべて左右が入れ替わるが、機械的に総当たりを組めばそうなるだけで根拠にならない。
+    #    会場は56試合中54が中立で、唯一の学校会場（明徳義塾高校）でも明徳義塾が左（第6節）と右（第13節）の両方に出る。
+    #    表示は cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。「向きが逆だ」と直さないこと。
+    "kochi":     {"platform": "kochi", "teams": 8,
+                  "source": "https://www.kochi-fa.com/class02/class02sch/entry-305.html",
+                  "label": "高知県サッカー協会 公式"},
+
     # 奈良（2026-09-17追加）。日程表PDF（1試合1行・結果入り＝主資料）＋1部リーグ星取表PDF（合計列だけ使う）。
     # 星取表に勝分敗が無く、失点も総得点−得失点で導くので沖縄と同じ代替ゲート。ALIASは不要（3か所とも同表記）。
     # ⚠️ home/away は「日程表の左側＝home」の格納規約で、**事実ではない**（左右はチーム番号順。奈良クラブユースは
@@ -2903,6 +2913,226 @@ def read_gifu(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 高知（kochi-fa.com）— 県協会の星取表PDF（スコア・節番号＝**主資料**）＋ 日程表PDF（日付の付与用）（2026-09-17追加）
+#   入口: /class02/class02sch/entry-305.html（第2種）。⚠️ **必ず https://www. で開く**（PDFは www 側にある）。
+#   ⚠️ 同じページに2部・3部A/B/C・順位戦、さらに前年度分も並ぶ。リンク文字は「日程表」「星取表」だけで部も年も入らない。
+#     → **本文の並び順（「2026」→「▶1部」）を辿って、その直後の2本だけ**を取る。URLは更新のたびに変わるので直リンクしない。
+# ⭐️ 星取表は各マスに**丸数字①〜⑭で節番号**が入っている（巡目の材料が出典にある3例目）。
+#    上段は①〜⑦・下段は⑧〜⑭（2026-09-14版で40マスすべて例外なし）→ **巡目の割り当てにも検算にも使う。**
+# ⚠️⚠️ **未消化のマスが `0－0` と表示される。** 本物の0-0と見分けがつかないので、
+#    **○●△の印があるマスだけを消化として扱う**（愛媛の「印とスコアの整合」の逆向きの使い方）。
+# ⚠️⚠️ **丸数字は NFKC で普通の数字になる（⑦→7）。** セル全体に NFKC を当てるとスコアに節番号が混ざる。
+#    **NFKC はチーム名にだけ当て、数字を拾うときは丸数字を除外する。**
+# ⚠️ 星取表は表として読むと段がずれる（`page_tables` では節とスコアが1つのセルに混ざる）。
+#    → 表の**列（見出し行のセル）と行の帯**を使い、帯を3pt上にずらして上段・下段に分ける（岐阜と同じ作法）。
+# ⚠️ 日程表は2カラム同居だが `page_tables` が左右を別の表として返す（各表6列）。チーム名は1文字ずつ空白で区切られる。
+#    対戦欄は `高知中央5(2vs0)0宿毛工業` の形（前半得点つき）。**日程表は日付を付けるためだけに使う。**
+# ⚠️ ホーム/アウェイは出さない（cross_table.NO_HOME_AWAY_SLUGS）。
+#    ホーム試合数は8チームとも7-7で28ペアすべて左右が入れ替わるが、**機械的に総当たりを組めばそうなるだけで根拠にならない**。
+#    会場は56試合中54が中立の公共施設で、唯一の学校会場（明徳義塾高校）でも明徳義塾が左（第6節）と右（第13節）の両方に出る。
+# ✅ 星取表に勝分敗がそろうので通常の検算ゲート。ただし**高知小津の得点だけ合計欄が3多い**（KNOWN_SOURCE_ERRORS）。
+# 年度切り替え: 本文の年の並びで追随する。
+# ============================================================
+_KOCHI_ENTRY = "https://www.kochi-fa.com/class02/class02sch/entry-305.html"
+_KOCHI_CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭"
+
+
+def _kochi_links(year: str) -> dict:
+    """入口ページの並び順（{年} → ▶1部 → 日程表／星取表）を辿ってPDFのURLを返す。"""
+    from urllib.parse import urljoin
+    from bs4 import NavigableString
+    soup = BeautifulSoup(fetch_html(_KOCHI_ENTRY, encoding=None), "html.parser")
+    time.sleep(SLEEP)
+    nfkc = lambda s: re.sub(r"[\s​　]+", "", unicodedata.normalize("NFKC", s or ""))
+    cur_year = cur_sect = None
+    out = {}
+    for node in soup.descendants:
+        if isinstance(node, NavigableString):
+            t = nfkc(str(node))
+            if re.fullmatch(r"・?20\d\d", t):
+                cur_year = t[-4:]
+            elif re.fullmatch(r"[▶▼]\d部|順位戦", t):
+                cur_sect = t
+        elif getattr(node, "name", "") == "a" and node.get("href") and "media-download" in node["href"]:
+            label = nfkc(node.get_text())
+            if cur_year == year and cur_sect in ("▶1部", "▼1部") and label in ("日程表", "星取表"):
+                out.setdefault(label, urljoin(_KOCHI_ENTRY, node["href"]))
+    return out
+
+
+def read_kochi(cfg: dict) -> tuple[dict, list[dict]]:
+    year = str(SEASON_YEAR)
+    nfkc = lambda s: re.sub(r"[\s　]+", "", unicodedata.normalize("NFKC", s or ""))
+    links = _kochi_links(year)
+    for key in ("日程表", "星取表"):
+        if key not in links:
+            raise RuntimeError(f"入口ページの{year}年・1部の欄に「{key}」のリンクが見つからない")
+
+    # --- 星取表（スコア・節番号・成績。主資料） ---
+    content = pdf_source.fetch_pdf(links["星取表"], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    n = cfg["teams"]
+    with pdf_source.open_pdf(content) as pdf:
+        page = pdf.pages[0]
+        if f"サッカーリーグ{year}高知県リーグ1部" not in nfkc(page.extract_text() or ""):
+            raise RuntimeError(f"星取表PDFの表題が{year}年の高知県リーグ1部でない")
+        tbs = page.find_tables()
+        if len(tbs) != 1:
+            raise RuntimeError(f"星取表PDFの表が{len(tbs)}個")
+        tb = tbs[0]
+        head = [nfkc(c) for c in tb.extract()[0]]
+        want = ["勝", "分", "負", "勝点", "得点", "失点", "得失点差", "順位"]
+        if head[2:2 + n + 8][n:] != want:
+            raise RuntimeError(f"星取表のヘッダが想定と違う: {head}")
+        teams = head[2:2 + n]
+        cols = [tb.rows[0].cells[2 + j] for j in range(n)]
+        num_cols = [tb.rows[0].cells[2 + n + j] for j in range(8)]
+        bands = [(r.bbox[1], r.bbox[3]) for r in tb.rows if r.bbox[3] - r.bbox[1] > 40]
+        if len(bands) != n or any(c is None for c in cols + num_cols):
+            raise RuntimeError(f"星取表の行の帯が{len(bands)}本（{n}本のはず）、または列が取れない")
+        words = pdf_source.page_words(page)
+
+    def plain_ints(ws):
+        """丸数字（節番号）を除いた数字だけ。⚠️ NFKC は ⑦ を 7 にするので、必ず元の文字で判定する。"""
+        return [int(nfkc(w["text"])) for w in ws
+                if re.fullmatch(r"-?\d+", nfkc(w["text"])) and not any(ch in _KOCHI_CIRCLED for ch in w["text"])]
+
+    # ⚠️ マスの中身は行の帯より少し上に出る（節番号が帯の上端をまたぐ）。帯を3pt上にずらす。
+    shift, standings, legs = 3, {}, {}
+    for k, (b0, b1) in enumerate(bands):
+        top, bot = b0 - shift, b1 - shift
+        mid = (top + bot) / 2
+        me = teams[k]
+        vals = []
+        for c in num_cols:
+            ws = [w for w in words if c[0] <= w["x0"] < c[2] and top <= w["top"] < bot]
+            got = plain_ints(ws)
+            if len(got) != 1:
+                raise RuntimeError(f"星取表 {me} の成績欄が読めない（{len(got)}個の数字）")
+            vals.append(got[0])
+        won, drawn, lost, pts, gf, ga, gd, rank = vals
+        if 3 * won + drawn != pts or gf - ga != gd:
+            raise RuntimeError(f"星取表 {me} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・差{gd}）")
+        standings[me] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
+                             lost=lost, gf=gf, ga=ga)
+        for j, opp in enumerate(teams):
+            if j == k:
+                continue
+            pair = []
+            for a, b in ((top, mid), (mid, bot)):
+                ws = sorted([w for w in words if cols[j][0] <= w["x0"] < cols[j][2] and a <= w["top"] < b],
+                            key=lambda w: (w["top"], w["x0"]))
+                md = [_KOCHI_CIRCLED.index(ch) + 1 for w in ws for ch in w["text"] if ch in _KOCHI_CIRCLED]
+                mark = [nfkc(w["text"]) for w in ws if nfkc(w["text"]) in "○●△"]
+                score = plain_ints(ws)
+                if len(md) != 1:
+                    raise RuntimeError(f"星取表 {me}×{opp} のマスに節番号が{len(md)}個")
+                # ⚠️ 未消化のマスも `0－0` と出るので、**印の有無**で消化を決める（スコアで決めない）。
+                if not mark:
+                    pair.append(dict(md=md[0], score=None))
+                    continue
+                if len(score) != 2:
+                    raise RuntimeError(f"星取表 {me}×{opp} のスコアが読めない: {score}")
+                if mark[0] != ("○" if score[0] > score[1] else "●" if score[0] < score[1] else "△"):
+                    raise RuntimeError(f"星取表 {me}×{opp}: ○●△とスコアが合わない {mark[0]} {score}")
+                pair.append(dict(md=md[0], score=(score[0], score[1])))
+            half = n - 1
+            for i, p in enumerate(pair):       # ✅ 上段は①〜⑦・下段は⑧〜⑭
+                if (p["md"] <= half) != (i == 0):
+                    raise RuntimeError(f"星取表 {me}×{opp} の{'上' if i == 0 else '下'}段に第{p['md']}節がある"
+                                       f"（上段は1〜{half}節・下段は{half + 1}節以降のはず）")
+            legs[(me, opp)] = pair
+    for (a, b), pr in legs.items():            # ✅ 鏡チェック（節番号とスコアの両方）
+        for i, p in enumerate(pr):
+            q = legs[(b, a)][i]
+            if p["md"] != q["md"] or (p["score"] is None) != (q["score"] is None) \
+                    or (p["score"] and p["score"][::-1] != q["score"]):
+                raise RuntimeError(f"星取表の鏡チェックが合わない: {a}×{b} {p} / {b}×{a} {q}")
+    # ✅ 出典の合計と、マスから数えた値を突き合わせる（既知の誤りは KNOWN_SOURCE_ERRORS の差で明示）
+    known = KNOWN_SOURCE_ERRORS.get("kochi", {})
+    mine = {t: dict(pts=0, played=0, won=0, drawn=0, lost=0, gf=0, ga=0) for t in teams}
+    for (a, _b), pr in legs.items():
+        for p in pr:
+            if not p["score"]:
+                continue
+            gf_, ga_ = p["score"]
+            s = mine[a]
+            s["played"] += 1
+            s["gf"] += gf_
+            s["ga"] += ga_
+            s["won"] += gf_ > ga_
+            s["drawn"] += gf_ == ga_
+            s["lost"] += gf_ < ga_
+            s["pts"] += 3 if gf_ > ga_ else 1 if gf_ == ga_ else 0
+    for team, off in standings.items():
+        want_diff = {k: 0 for k in off}
+        want_diff.update(known.get(team, {}))
+        got = {k: off[k] - mine[team][k] for k in off}
+        if got != want_diff:
+            extra = ("。協会が直したなら KNOWN_SOURCE_ERRORS から高知の項目を消すこと"
+                     if known.get(team) else "")
+            raise RuntimeError(f"星取表 {team} の合計欄がマスから数えた値と合わない（公式−計算＝"
+                               f"{ {k: v for k, v in got.items() if v} }・見込みは"
+                               f"{ {k: v for k, v in want_diff.items() if v} or '差なし' }）{extra}")
+    standings = {t: dict(mine[t]) for t in teams}   # 既知の差を除いた値＝マスと一致する値
+
+    # --- 日程表（ペア＋巡目 → 日付） ---
+    content = pdf_source.fetch_pdf(links["日程表"], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        if f"サッカーリーグ{year}高知県リーグ1部" not in nfkc(pdf.pages[0].extract_text() or ""):
+            raise RuntimeError(f"日程表PDFの表題が{year}年の高知県リーグ1部でない")
+        rows = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) if len(t[0]) == 6 for r in t]
+    alt = "|".join(sorted((re.escape(t) for t in teams), key=len, reverse=True))
+    card = re.compile(rf"({alt})(\d+)\((\d*)vs(\d*)\)(\d+)({alt})")
+    md = None
+    dates = {}
+    for r in rows:
+        c = [nfkc(x) for x in r]
+        if len(c) != 6 or c[0] == "節":
+            continue
+        mm = re.fullmatch(r"第(\d+)節", c[0])
+        if mm:
+            md = int(mm.group(1))
+        dm = re.match(r"(\d{1,2})/(\d{1,2})", c[1])
+        m = card.match(c[3])
+        if not m:
+            continue
+        if not (dm and md):
+            raise RuntimeError(f"日程表の行に節または日付が無い: {r}")
+        home, away = m.group(1), m.group(6)
+        key = (frozenset((home, away)), md)
+        if key in dates:
+            raise RuntimeError(f"日程表に第{md}節の {home}×{away} が2回ある")
+        dates[key] = (f"{year}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}", home, away)
+    if len(dates) != n * (n - 1):
+        raise RuntimeError(f"日程表から{len(dates)}試合（{n * (n - 1)}試合のはず）")
+
+    # --- 星取表（スコア・節）と日程表（日付・左右）を「ペア＋節」で結合 ---
+    matches, seen = [], set()
+    for (key, md_), (date, home, away) in sorted(dates.items(), key=lambda kv: kv[0][1]):
+        p = legs[(home, away)][0 if md_ <= n - 1 else 1]
+        if p["md"] != md_:
+            raise RuntimeError(f"日程表の第{md_}節 {home}×{away} が、星取表では第{p['md']}節になっている")
+        if (key, md_) in seen:
+            continue
+        seen.add((key, md_))
+        matches.append(dict(md=md_, date=date, home=home, away=away,
+                            hs=p["score"][0] if p["score"] else None,
+                            **{"as": p["score"][1] if p["score"] else None}))
+    played = [m for m in matches if m["hs"] is not None]
+    if len(played) * 2 != sum(v["played"] for v in standings.values()):
+        raise RuntimeError(f"結合後の消化{len(played)}試合×2が、星取表の試合数の合計"
+                           f"{sum(v['played'] for v in standings.values())}と合わない")
+    today = _jst_today().isoformat()
+    future = [m for m in played if m["date"] > today]
+    if future:
+        raise RuntimeError(f"今日({today})より後の予定日に結果がある試合が{len(future)}件"
+                           f"（例: {future[0]['date']} {future[0]['home']}×{future[0]['away']}）")
+    return standings, matches
+
+
+# ============================================================
 # 奈良（narafa.or.jp）— 県協会の日程表PDF（結果入り・**主資料**）＋ 1部リーグ星取表PDF（検算用）（2026-09-17追加）
 #   入口: /pages/26/（第二種）。リンク文字は「日程表」「1部リーグ星取表」（NFKC後）。
 #   ⚠️ PDFのURLは更新のたびに変わるので、必ずページのリンクから取る。2部・3部A・3部Bの星取表も同じページにある。
@@ -3426,8 +3656,14 @@ _EHIME_LIST = "https://efa.jp/meeting/second/?y={}"
 #        (2) ○●とスコアが矛盾するのもこの1マスだけ
 #        (3) 得失点の列の合計が0でなく +4（このマスを直すと0になる）
 #   外す条件：協会が星取表を直すと差が0になり read_ehime が止まる。止まったらこの項目を消す。
+# 高知（2026-09-14版の星取表）：高知小津の「得点」の合計欄だけが3多い（表25・マスから計算すると22）。
+#   証拠 (1) 鏡チェックは40試合すべて一致＝マスは正しい（＝愛媛のような「マスが逆向き」ではない）
+#        (2) 8チーム中7チームは合計が一致し、高知小津も勝分敗・勝点・失点は一致
+#        (3) 得点を22にすると Σ得点＝Σ失点＝187、Σ得失点差＝0 になる
+#   外す条件：協会が直すと差が0になり read_kochi が止まる。止まったらこの項目を消す。
 KNOWN_SOURCE_ERRORS: dict[str, dict[str, dict[str, int]]] = {
     "ehime": {"大洲": {"gf": +2, "ga": -2}},
+    "kochi": {"高知小津": {"gf": +3}},
 }
 
 
@@ -4241,7 +4477,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "fukui": read_fukui, "yamanashi": read_yamanashi,
                       "gifu": read_gifu, "mie": read_mie,
                       "ehime": read_ehime, "kyoto": read_kyoto,
-                      "fukushima": read_fukushima, "nara": read_nara}[cfg["platform"]]
+                      "fukushima": read_fukushima, "nara": read_nara,
+                      "kochi": read_kochi}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
