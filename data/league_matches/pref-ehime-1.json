@@ -1,10 +1,14 @@
 {
   "league": "高円宮杯 JFA U-18 サッカーリーグ 2026 愛媛県1部（E1）",
   "season": "2026",
-  "source": "https://junior-soccer.jp/shikoku/ehime/league/table/163579",
-  "sourceName": "愛媛少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-09-06",
+  "source": "https://efa.jp/meeting/second/?y=2026",
+  "sourceName": "愛媛県サッカー協会 公式",
+  "lastUpdated": "2026-09-16",
   "teams": [
+    {
+      "name": "愛媛FCU-18S",
+      "short": "愛媛FCU-1"
+    },
     {
       "name": "帝京第五",
       "short": "帝京第五"
@@ -18,28 +22,24 @@
       "short": "今治東S"
     },
     {
-      "name": "愛媛FCU-18S",
-      "short": "愛媛FCU-18S"
-    },
-    {
-      "name": "FC今治U-18S",
-      "short": "FC今治U-18S"
-    },
-    {
-      "name": "松山工業",
-      "short": "松山工業"
+      "name": "松山商業",
+      "short": "松山商業"
     },
     {
       "name": "松山北",
       "short": "松山北"
     },
     {
+      "name": "松山工業",
+      "short": "松山工業"
+    },
+    {
       "name": "今治西",
       "short": "今治西"
     },
     {
-      "name": "松山商業",
-      "short": "松山商業"
+      "name": "FC今治U-18S",
+      "short": "FC今治U-1"
     },
     {
       "name": "大洲",
@@ -50,300 +50,138 @@
     {
       "rank": 1,
       "team": "帝京第五",
-      "points": 25,
-      "played": 10,
-      "won": 8,
+      "points": 28,
+      "played": 12,
+      "won": 9,
       "drawn": 1,
-      "lost": 1,
-      "gf": 30,
-      "ga": 3,
+      "lost": 2,
+      "gf": 32,
+      "ga": 5,
       "gd": 27
     },
     {
       "rank": 2,
       "team": "済美",
-      "points": 22,
-      "played": 8,
-      "won": 7,
-      "drawn": 1,
-      "lost": 0,
-      "gf": 27,
-      "ga": 4,
-      "gd": 23
+      "points": 26,
+      "played": 11,
+      "won": 8,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 31,
+      "ga": 6,
+      "gd": 25
     },
     {
       "rank": 3,
-      "team": "今治東S",
-      "points": 18,
-      "played": 9,
-      "won": 6,
+      "team": "愛媛FCU-18S",
+      "points": 24,
+      "played": 10,
+      "won": 8,
       "drawn": 0,
-      "lost": 3,
-      "gf": 17,
-      "ga": 10,
-      "gd": 7
+      "lost": 2,
+      "gf": 38,
+      "ga": 7,
+      "gd": 31
     },
     {
       "rank": 4,
-      "team": "愛媛FCU-18S",
-      "points": 17,
-      "played": 9,
-      "won": 5,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 22,
-      "ga": 7,
-      "gd": 15
+      "team": "今治東S",
+      "points": 19,
+      "played": 12,
+      "won": 6,
+      "drawn": 1,
+      "lost": 5,
+      "gf": 19,
+      "ga": 18,
+      "gd": 1
     },
     {
       "rank": 5,
       "team": "FC今治U-18S",
-      "points": 15,
-      "played": 9,
-      "won": 5,
+      "points": 18,
+      "played": 11,
+      "won": 6,
       "drawn": 0,
-      "lost": 4,
-      "gf": 24,
-      "ga": 16,
+      "lost": 5,
+      "gf": 26,
+      "ga": 18,
       "gd": 8
     },
     {
       "rank": 6,
       "team": "松山工業",
-      "points": 10,
-      "played": 9,
-      "won": 3,
+      "points": 16,
+      "played": 11,
+      "won": 5,
       "drawn": 1,
       "lost": 5,
-      "gf": 9,
-      "ga": 15,
-      "gd": -6
+      "gf": 21,
+      "ga": 16,
+      "gd": 5
     },
     {
       "rank": 7,
       "team": "松山北",
-      "points": 9,
-      "played": 10,
-      "won": 2,
+      "points": 12,
+      "played": 12,
+      "won": 3,
       "drawn": 3,
-      "lost": 5,
-      "gf": 13,
-      "ga": 22,
+      "lost": 6,
+      "gf": 16,
+      "ga": 25,
       "gd": -9
     },
     {
       "rank": 8,
-      "team": "今治西",
-      "points": 8,
-      "played": 10,
-      "won": 2,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 9,
-      "ga": 31,
-      "gd": -22
+      "team": "松山商業",
+      "points": 10,
+      "played": 12,
+      "won": 3,
+      "drawn": 1,
+      "lost": 8,
+      "gf": 14,
+      "ga": 30,
+      "gd": -16
     },
     {
       "rank": 9,
-      "team": "松山商業",
-      "points": 7,
-      "played": 10,
+      "team": "今治西",
+      "points": 8,
+      "played": 12,
       "won": 2,
-      "drawn": 1,
-      "lost": 7,
-      "gf": 11,
-      "ga": 24,
-      "gd": -13
+      "drawn": 2,
+      "lost": 8,
+      "gf": 9,
+      "ga": 44,
+      "gd": -35
     },
     {
       "rank": 10,
       "team": "大洲",
       "points": 4,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 1,
-      "lost": 8,
-      "gf": 9,
-      "ga": 39,
-      "gd": -30
+      "lost": 9,
+      "gf": 11,
+      "ga": 48,
+      "gd": -37
     }
   ],
   "matches": [
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "帝京第五",
-      "hs": 0,
-      "as": 0,
-      "away": "済美",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第五",
-      "hs": null,
-      "as": null,
-      "away": "今治東S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-05-17",
-      "home": "帝京第五",
-      "hs": 0,
-      "as": 1,
-      "away": "愛媛FCU-18S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-28",
-      "home": "帝京第五",
-      "hs": 2,
-      "as": 0,
-      "away": "FC今治U-18S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "帝京第五",
-      "hs": 2,
-      "as": 0,
-      "away": "松山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第五",
-      "hs": null,
-      "as": null,
-      "away": "松山北",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第五",
-      "hs": null,
-      "as": null,
-      "away": "今治西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "帝京第五",
-      "hs": 2,
-      "as": 0,
-      "away": "松山商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京第五",
-      "hs": null,
-      "as": null,
-      "away": "大洲",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "済美",
-      "hs": null,
-      "as": null,
-      "away": "帝京第五",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "済美",
+      "home": "愛媛FCU-18S",
       "hs": 1,
       "as": 0,
-      "away": "今治東S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "済美",
-      "hs": null,
-      "as": null,
-      "away": "愛媛FCU-18S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "済美",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-22",
-      "home": "済美",
-      "hs": 3,
-      "as": 1,
-      "away": "松山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "済美",
-      "hs": null,
-      "as": null,
-      "away": "松山北",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-29",
-      "home": "済美",
-      "hs": 5,
-      "as": 1,
-      "away": "今治西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "済美",
-      "hs": 4,
-      "as": 0,
-      "away": "松山商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "済美",
-      "hs": 10,
-      "as": 0,
-      "away": "大洲",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "今治東S",
-      "hs": 0,
-      "as": 2,
       "away": "帝京第五",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "今治東S",
+      "home": "愛媛FCU-18S",
       "hs": null,
       "as": null,
       "away": "済美",
@@ -352,109 +190,19 @@
     {
       "md": 0,
       "date": "2026-05-03",
-      "home": "今治東S",
-      "hs": 3,
-      "as": 2,
-      "away": "愛媛FCU-18S",
+      "home": "愛媛FCU-18S",
+      "hs": 2,
+      "as": 3,
+      "away": "今治東S",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "今治東S",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18S",
-      "status": "scheduled"
     },
     {
       "md": 0,
       "date": "2026-04-29",
-      "home": "今治東S",
-      "hs": 2,
-      "as": 0,
-      "away": "松山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-29",
-      "home": "今治東S",
-      "hs": 0,
-      "as": 3,
-      "away": "松山北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "今治東S",
-      "hs": null,
-      "as": null,
-      "away": "今治西",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-22",
-      "home": "今治東S",
+      "home": "愛媛FCU-18S",
       "hs": 2,
       "as": 1,
       "away": "松山商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "今治東S",
-      "hs": 4,
-      "as": 0,
-      "away": "大洲",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "愛媛FCU-18S",
-      "hs": null,
-      "as": null,
-      "away": "帝京第五",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "愛媛FCU-18S",
-      "hs": null,
-      "as": null,
-      "away": "済美",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "愛媛FCU-18S",
-      "hs": null,
-      "as": null,
-      "away": "今治東S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "愛媛FCU-18S",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "愛媛FCU-18S",
-      "hs": 0,
-      "as": 1,
-      "away": "松山工業",
       "status": "played"
     },
     {
@@ -464,6 +212,15 @@
       "hs": 5,
       "as": 2,
       "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "愛媛FCU-18S",
+      "hs": 0,
+      "as": 1,
+      "away": "松山工業",
       "status": "played"
     },
     {
@@ -481,7 +238,7 @@
       "home": "愛媛FCU-18S",
       "hs": null,
       "as": null,
-      "away": "松山商業",
+      "away": "FC今治U-18S",
       "status": "scheduled"
     },
     {
@@ -496,34 +253,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "FC今治U-18S",
-      "hs": null,
-      "as": null,
-      "away": "帝京第五",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "FC今治U-18S",
-      "hs": 1,
-      "as": 2,
-      "away": "済美",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "FC今治U-18S",
-      "hs": 1,
-      "as": 4,
-      "away": "今治東S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "FC今治U-18S",
+      "home": "帝京第五",
       "hs": null,
       "as": null,
       "away": "愛媛FCU-18S",
@@ -531,8 +261,44 @@
     },
     {
       "md": 0,
+      "date": "2026-04-11",
+      "home": "帝京第五",
+      "hs": 0,
+      "as": 0,
+      "away": "済美",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
-      "home": "FC今治U-18S",
+      "home": "帝京第五",
+      "hs": null,
+      "as": null,
+      "away": "今治東S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-04",
+      "home": "帝京第五",
+      "hs": 2,
+      "as": 0,
+      "away": "松山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "帝京第五",
+      "hs": 3,
+      "as": 1,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "帝京第五",
       "hs": null,
       "as": null,
       "away": "松山工業",
@@ -540,35 +306,26 @@
     },
     {
       "md": 0,
-      "date": "2026-04-05",
-      "home": "FC今治U-18S",
-      "hs": 5,
-      "as": 1,
-      "away": "松山北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "FC今治U-18S",
-      "hs": 0,
-      "as": 1,
+      "date": "",
+      "home": "帝京第五",
+      "hs": null,
+      "as": null,
       "away": "今治西",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-04-12",
-      "home": "FC今治U-18S",
-      "hs": 3,
-      "as": 2,
-      "away": "松山商業",
+      "date": "2026-03-28",
+      "home": "帝京第五",
+      "hs": 2,
+      "as": 0,
+      "away": "FC今治U-18S",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "FC今治U-18S",
+      "home": "帝京第五",
       "hs": null,
       "as": null,
       "away": "大洲",
@@ -577,11 +334,344 @@
     {
       "md": 0,
       "date": "",
-      "home": "松山工業",
+      "home": "済美",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FCU-18S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "帝京第五",
+      "hs": 2,
+      "as": 1,
+      "away": "済美",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "済美",
+      "hs": 1,
+      "as": 0,
+      "away": "今治東S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "済美",
+      "hs": null,
+      "as": null,
+      "away": "松山商業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "済美",
+      "hs": null,
+      "as": null,
+      "away": "松山北",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-22",
+      "home": "済美",
+      "hs": 3,
+      "as": 1,
+      "away": "松山工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-29",
+      "home": "済美",
+      "hs": 5,
+      "as": 1,
+      "away": "今治西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "済美",
+      "hs": null,
+      "as": null,
+      "away": "FC今治U-18S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "済美",
+      "hs": 10,
+      "as": 0,
+      "away": "大洲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "今治東S",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FCU-18S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "今治東S",
+      "hs": 0,
+      "as": 2,
+      "away": "帝京第五",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "済美",
+      "hs": 3,
+      "as": 0,
+      "away": "今治東S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-22",
+      "home": "今治東S",
+      "hs": 2,
+      "as": 1,
+      "away": "松山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-29",
+      "home": "今治東S",
+      "hs": 0,
+      "as": 3,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "今治東S",
+      "hs": null,
+      "as": null,
+      "away": "松山工業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "今治東S",
+      "hs": null,
+      "as": null,
+      "away": "今治西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "今治東S",
+      "hs": 4,
+      "as": 1,
+      "away": "FC今治U-18S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-13",
+      "home": "大洲",
+      "hs": 2,
+      "as": 2,
+      "away": "今治東S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松山商業",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FCU-18S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "帝京第五",
+      "hs": 7,
+      "as": 0,
+      "away": "松山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "松山商業",
+      "hs": 0,
+      "as": 4,
+      "away": "済美",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松山商業",
+      "hs": null,
+      "as": null,
+      "away": "今治東S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松山商業",
+      "hs": null,
+      "as": null,
+      "away": "松山北",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-29",
+      "home": "松山商業",
+      "hs": 2,
+      "as": 1,
+      "away": "松山工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "松山商業",
+      "hs": 1,
+      "as": 2,
+      "away": "今治西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-13",
+      "home": "FC今治U-18S",
+      "hs": 1,
+      "as": 2,
+      "away": "松山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "松山商業",
+      "hs": 3,
+      "as": 1,
+      "away": "大洲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-13",
+      "home": "愛媛FCU-18S",
+      "hs": 3,
+      "as": 0,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松山北",
       "hs": null,
       "as": null,
       "away": "帝京第五",
       "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "松山北",
+      "hs": 1,
+      "as": 2,
+      "away": "済美",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
+      "home": "今治東S",
+      "hs": 0,
+      "as": 3,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "松山北",
+      "hs": 1,
+      "as": 1,
+      "away": "松山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松山北",
+      "hs": null,
+      "as": null,
+      "away": "松山工業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "松山北",
+      "hs": 2,
+      "as": 2,
+      "away": "今治西",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "FC今治U-18S",
+      "hs": 4,
+      "as": 0,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "松山北",
+      "hs": 2,
+      "as": 0,
+      "away": "大洲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "松山工業",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FCU-18S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-06",
+      "home": "松山工業",
+      "hs": 0,
+      "as": 2,
+      "away": "帝京第五",
+      "status": "played"
     },
     {
       "md": 0,
@@ -594,21 +684,39 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-04-29",
       "home": "松山工業",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "今治東S",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-05-23",
+      "home": "松山商業",
+      "hs": 1,
+      "as": 4,
+      "away": "松山工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
       "home": "松山工業",
-      "hs": null,
-      "as": null,
-      "away": "愛媛FCU-18S",
-      "status": "scheduled"
+      "hs": 0,
+      "as": 0,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "今治西",
+      "hs": 0,
+      "as": 7,
+      "away": "松山工業",
+      "status": "played"
     },
     {
       "md": 0,
@@ -625,116 +733,17 @@
       "home": "松山工業",
       "hs": null,
       "as": null,
-      "away": "松山北",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "松山工業",
-      "hs": 2,
-      "as": 1,
-      "away": "今治西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山工業",
-      "hs": null,
-      "as": null,
-      "away": "松山商業",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山工業",
-      "hs": null,
-      "as": null,
       "away": "大洲",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "松山北",
-      "hs": 1,
-      "as": 3,
-      "away": "帝京第五",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "松山北",
-      "hs": 1,
-      "as": 2,
-      "away": "済美",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山北",
-      "hs": null,
-      "as": null,
-      "away": "今治東S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山北",
-      "hs": null,
-      "as": null,
-      "away": "愛媛FCU-18S",
       "status": "scheduled"
     },
     {
       "md": 0,
       "date": "2026-09-06",
-      "home": "FC今治U-18S",
-      "hs": 4,
+      "home": "愛媛FCU-18S",
+      "hs": 6,
       "as": 0,
-      "away": "松山北",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "松山北",
-      "hs": 0,
-      "as": 0,
-      "away": "松山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "松山北",
-      "hs": 2,
-      "as": 2,
       "away": "今治西",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "松山北",
-      "hs": 1,
-      "as": 1,
-      "away": "松山商業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山北",
-      "hs": null,
-      "as": null,
-      "away": "大洲",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -747,12 +756,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "今治西",
-      "hs": null,
-      "as": null,
-      "away": "済美",
-      "status": "scheduled"
+      "date": "2026-05-24",
+      "home": "済美",
+      "hs": 0,
+      "as": 0,
+      "away": "今治西",
+      "status": "played"
     },
     {
       "md": 0,
@@ -765,29 +774,11 @@
     },
     {
       "md": 0,
-      "date": "2026-09-06",
-      "home": "愛媛FCU-18S",
-      "hs": 0,
-      "as": 0,
-      "away": "今治西",
-      "status": "played"
-    },
-    {
-      "md": 0,
       "date": "",
       "home": "今治西",
       "hs": null,
       "as": null,
-      "away": "FC今治U-18S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "今治西",
-      "hs": null,
-      "as": null,
-      "away": "松山工業",
+      "away": "松山商業",
       "status": "scheduled"
     },
     {
@@ -801,12 +792,21 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-04-11",
       "home": "今治西",
-      "hs": null,
-      "as": null,
-      "away": "松山商業",
-      "status": "scheduled"
+      "hs": 1,
+      "as": 2,
+      "away": "松山工業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "今治西",
+      "hs": 1,
+      "as": 0,
+      "away": "FC今治U-18S",
+      "status": "played"
     },
     {
       "md": 0,
@@ -819,26 +819,35 @@
     },
     {
       "md": 0,
-      "date": "2026-09-05",
+      "date": "",
+      "home": "FC今治U-18S",
+      "hs": null,
+      "as": null,
+      "away": "愛媛FCU-18S",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-23",
       "home": "帝京第五",
-      "hs": 7,
-      "as": 0,
-      "away": "松山商業",
+      "hs": 0,
+      "as": 1,
+      "away": "FC今治U-18S",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "FC今治U-18S",
+      "hs": 1,
+      "as": 2,
+      "away": "済美",
       "status": "played"
     },
     {
       "md": 0,
       "date": "",
-      "home": "松山商業",
-      "hs": null,
-      "as": null,
-      "away": "済美",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山商業",
+      "home": "FC今治U-18S",
       "hs": null,
       "as": null,
       "away": "今治東S",
@@ -846,55 +855,55 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "松山商業",
-      "hs": 1,
-      "as": 2,
-      "away": "愛媛FCU-18S",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山商業",
-      "hs": null,
-      "as": null,
-      "away": "FC今治U-18S",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-29",
-      "home": "松山商業",
-      "hs": 2,
-      "as": 0,
-      "away": "松山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "松山商業",
-      "hs": null,
-      "as": null,
-      "away": "松山北",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "松山商業",
-      "hs": 1,
-      "as": 2,
-      "away": "今治西",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "松山商業",
+      "date": "2026-04-12",
+      "home": "FC今治U-18S",
       "hs": 3,
+      "as": 2,
+      "away": "松山商業",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "FC今治U-18S",
+      "hs": 5,
       "as": 1,
+      "away": "松山北",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "FC今治U-18S",
+      "hs": null,
+      "as": null,
+      "away": "松山工業",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "FC今治U-18S",
+      "hs": null,
+      "as": null,
+      "away": "今治西",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "FC今治U-18S",
+      "hs": 5,
+      "as": 3,
+      "away": "大洲",
+      "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-24",
+      "home": "愛媛FCU-18S",
+      "hs": 7,
+      "as": 0,
       "away": "大洲",
       "status": "played"
     },
@@ -918,30 +927,30 @@
     },
     {
       "md": 0,
+      "date": "2026-04-12",
+      "home": "大洲",
+      "hs": 0,
+      "as": 4,
+      "away": "今治東S",
+      "status": "played"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "大洲",
       "hs": null,
       "as": null,
-      "away": "今治東S",
+      "away": "松山商業",
       "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "2026-05-24",
-      "home": "愛媛FCU-18S",
-      "hs": 0,
-      "as": 0,
-      "away": "大洲",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
+      "date": "",
       "home": "大洲",
-      "hs": 3,
-      "as": 5,
-      "away": "FC今治U-18S",
-      "status": "played"
+      "hs": null,
+      "as": null,
+      "away": "松山北",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -950,15 +959,6 @@
       "hs": 0,
       "as": 4,
       "away": "松山工業",
-      "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-06",
-      "home": "大洲",
-      "hs": 0,
-      "as": 2,
-      "away": "松山北",
       "status": "played"
     },
     {
@@ -976,7 +976,7 @@
       "home": "大洲",
       "hs": null,
       "as": null,
-      "away": "松山商業",
+      "away": "FC今治U-18S",
       "status": "scheduled"
     }
   ]

@@ -305,6 +305,16 @@ PREF_OFFICIAL = {
                   "hoshitori_names": {"四日市中央工業": "四中工", "宇治山田商業": "宇治山田商"},
                   "standings_gate": "okinawa"},
 
+    # 愛媛（2026-09-16追加）。E1日程PDF（1試合1行・結果入り＝主資料）＋E1星取表PDF（順位表だけ使う）。
+    # 星取表に勝分敗がそろうので通常の検算ゲート（全項目一致）。ALIASは不要（日程PDFの表記＝既存JSONの表記）。
+    # ⚠️ home/away は「日程PDFの左側＝home」の格納規約で、**事実ではない**。会場10種すべてが公共施設で
+    #    学校名の会場が1つも無い（2026-09-15）＝完全なセントラル開催。表示は cross_table.NO_HOME_AWAY_SLUGS で
+    #    H/A を出さない。「向きが逆だ」と直さないこと。
+    "ehime":     {"platform": "ehime", "teams": 10,
+                  "source": "https://efa.jp/meeting/second/?y=" + str(SEASON_YEAR),
+                  "label": "愛媛県サッカー協会 公式",
+                  "hoshitori_names": {"愛媛FCS": "愛媛FCU-18S", "FC今治NEXT": "FC今治U-18S"}},
+
     # 栃木（2026-09-07追加）。LSIN cloud は星取表(m=r)と日程(m=s)が別ビュー。
     # ⚠️ c= は都道府県IDではなく LSIN の契約団体ID。1〜320を総当たりして
     #    公開されているのは c=3（栃木）だけと確認済み。**他県への横展開はできない。**
@@ -2855,6 +2865,192 @@ def read_gifu(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 愛媛（efa.jp）— 県協会の E1日程PDF（結果入り・**主資料**）＋ E1星取表PDF（検算用）（2026-09-16追加）
+#   入口: /meeting/second/?y={年}（第2種）→ リンク文字に「リーグ{年}愛媛」を含む記事（fetch_pdf_scorers.discover_ehime と同じ経路）。
+#   ⚠️ 記事IDは年度で変わるので直リンクにしない。
+# ⚠️⚠️ **同じ記事に E2A・E2B・E3東予A/B・E3中予・E3南予 の日程と星取表が並ぶ。** リンク文字が「E1日程」「E1星取表」で
+#    始まるものだけを取る（"E2A日程" は前方一致で外れる）。
+# ⭐️ 日程PDFは**1試合1行**（月・日・曜日・会場・時間・対戦・結果・対戦）で、前期45＋後期45＝90試合。
+#    ⚠️ 1行だけ日付・会場・時刻が空の行がある（2026-09-15版＝後期の 済美×松山工業。PDF上は赤地＝日程未定）。
+#      **落とさずに日付なしの未消化として持つ。** 逆に「日付が無いのにスコアがある」行は読み取りの崩れなので止める。
+# ⚠️ **「節」の列が無い。** 巡目は日程PDFの「前期／後期」の見出しで分かる（星取表の表題も「上段：前期、下段：後期」）。
+#    → 星取表のマスは読まない（未消化が `―` だらけで、上段・下段が1つの文字列につながる形）。**スコアは日程PDFが正本**、
+#      星取表は**順位表（勝分敗・勝点・得点・失点・得失点・順位）だけ**を使い、既定ゲート（全項目一致）で突き合わせる。
+# ⚠️⚠️ **両PDFとも本文に版日付が無い。** リンク文字（`E1日程(9/15)`）とファイル名（`2-26-E1_0915.pdf`）だけ。
+#    → `version_from_label`（年なし＝シーズン年を補う）。**2本の版日付が食い違ったら止める**
+#      （星取表だけ古いと、新しい日程と古い順位表を突き合わせてゲートが誤って落ちる）。
+# ⚠️ **ホーム/アウェイは無い。** 会場10種すべてが公共施設で学校名の会場が0（しおさい20・今治SP17・梅津寺14・桜井9・
+#    平野9・北条球技場8・SAKURAフィールド4・北条陸上4・あけぼの3・丸山1＝2026-09-15）＝完全なセントラル開催。
+#    home/away は「日程PDFの左側＝home」の格納規約で事実ではない。cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。
+# ⚠️ 星取表だけ表記が違う（愛媛FCS→愛媛FCU-18S・FC今治NEXT→FC今治U-18S）。日程PDFは既存JSONと同じ表記。
+#    ❌ fetch_pdf_scorers.py の EHIME_ALIASES は得点王用で「愛媛FCS」を持たない。流用しない。
+# 年度切り替え: 入口の ?y= と記事のリンク文字の年で追随する。
+# ============================================================
+_EHIME_LIST = "https://efa.jp/meeting/second/?y={}"
+
+# ⚠️ **出典（県協会）そのものの既知の誤り**（2026-09-16新設）。値は「公式の順位表 − 日程PDFから計算した値」の差。
+#    ❌ 「検算しない」形にはしないこと。差を書くと、**協会が直した瞬間に差が0になって止まり、
+#       コードのほうから「この例外を消せ」と言ってくる**。絶対値で書くと試合が進むたびに壊れる。
+# 愛媛（2026-09-15版の星取表）：大洲の行×FC今治NEXTの列（前期）が「5―3 ●」＝左右が逆。正しくは 3―5。
+#   そのため星取表の**大洲の合計だけ**が 得点+2 / 失点-2 ずれている（勝分敗・勝点は正しい）。
+#   証拠 (1) 全マスの鏡チェックで食い違うのはこの1組だけ（FC今治NEXTの行は 5―3 ○ で日程PDFと一致）
+#        (2) ○●とスコアが矛盾するのもこの1マスだけ
+#        (3) 得失点の列の合計が0でなく +4（このマスを直すと0になる）
+#   外す条件：協会が星取表を直すと差が0になり read_ehime が止まる。止まったらこの項目を消す。
+KNOWN_SOURCE_ERRORS: dict[str, dict[str, dict[str, int]]] = {
+    "ehime": {"大洲": {"gf": +2, "ga": -2}},
+}
+
+
+def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
+    from urllib.parse import urljoin
+    year = str(SEASON_YEAR)
+    nfkc = lambda s: re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+    entry = _EHIME_LIST.format(year)
+    soup = BeautifulSoup(fetch_html(entry, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    arts = [urljoin(entry, a["href"]) for a in soup.find_all("a", href=True)
+            if f"リーグ{year}愛媛" in nfkc(a.get_text())]
+    if len(arts) != 1:
+        raise RuntimeError(f"入口に{year}年のEリーグの記事が{len(arts)}件（1件のはず）")
+    art = BeautifulSoup(fetch_html(arts[0], encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    links = collections.defaultdict(list)
+    for a in art.find_all("a", href=True):
+        if not a["href"].lower().endswith(".pdf"):
+            continue
+        for want in ("E1日程", "E1星取表"):
+            if nfkc(a.get_text()).startswith(want):
+                links[want].append(urljoin(arts[0], a["href"]))
+    versions = {}
+    for want in ("E1日程", "E1星取表"):
+        if len(links[want]) != 1:
+            raise RuntimeError(f"記事に「{want}」のPDFが{len(links[want])}本（1本のはず）")
+        versions[want] = pdf_source.version_from_label(links[want][0], SEASON_YEAR)
+        if not versions[want] or not versions[want].startswith(f"{year}-"):
+            raise RuntimeError(f"「{want}」PDFの版日付（ファイル名）が{year}年として読めない: {links[want][0]}")
+    if versions["E1日程"] != versions["E1星取表"]:
+        raise RuntimeError(f"日程PDF({versions['E1日程']})と星取表PDF({versions['E1星取表']})の版日付が違う"
+                           f"（片方だけ更新されている。突き合わせが誤って落ちるので止める）")
+    version = versions["E1日程"]
+
+    # --- 日程PDF（結果入り・主資料） ---
+    content = pdf_source.fetch_pdf(links["E1日程"][0], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        rows = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) for r in t]
+    matches, seg, nodate = [], None, 0
+    for r in rows:
+        if len(r) != 10:
+            raise RuntimeError(f"日程PDFの行の列数が想定と違う: {r}")
+        c = [nfkc(x) for x in r]
+        if c[0] == "月":
+            continue
+        if c[0] in ("前期", "後期"):
+            seg = c[0]
+            continue
+        home, away = c[5], c[9]
+        hs, as_ = (int(c[6]) if c[6].isdigit() else None), (int(c[8]) if c[8].isdigit() else None)
+        if not (home and away and seg):
+            raise RuntimeError(f"日程PDFの行が読めない（対戦または前期/後期の見出しが無い）: {r}")
+        if c[0].isdigit() and c[1].isdigit():
+            date = f"{year}-{int(c[0]):02d}-{int(c[1]):02d}"
+        else:
+            # 日程未定の行（PDF上は赤地）。落とさずに日付なしの未消化として持つ。
+            if hs is not None or as_ is not None:
+                raise RuntimeError(f"日程PDFに「日付が無いのに結果がある」行がある（読み取りの崩れ）: {r}")
+            date, nodate = "", nodate + 1
+        if (hs is None) != (as_ is None):
+            raise RuntimeError(f"日程PDFの結果が片側だけ入っている: {r}")
+        matches.append(dict(seg=seg, date=date, home=home, away=away, hs=hs, **{"as": as_}))
+    n = cfg["teams"]
+    if len(matches) != n * (n - 1):
+        raise RuntimeError(f"日程PDFから{len(matches)}試合（{n * (n - 1)}試合のはず）")
+    for s in ("前期", "後期"):
+        ps = [frozenset((m["home"], m["away"])) for m in matches if m["seg"] == s]
+        if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
+            raise RuntimeError(f"日程PDFの{s}が{len(ps)}試合・重複{len(ps) - len(set(ps))}件（同じ組が1回ずつのはず）")
+    if nodate:
+        print(f"       （愛媛: 日程未定の試合が{nodate}件。日付なしの未消化として持つ）")
+    played = [m for m in matches if m["hs"] is not None]
+    future = [m for m in played if m["date"] > version]
+    if future:
+        raise RuntimeError(f"版日付({version})より後の予定日に結果がある試合が{len(future)}件（例: {future[0]['date']} "
+                           f"{future[0]['home']}×{future[0]['away']}）")
+
+    # --- 星取表PDF（順位表だけを使う） ---
+    content = pdf_source.fetch_pdf(links["E1星取表"][0], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        text = "".join(pg.extract_text() or "" for pg in pdf.pages)
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    if f"{year}E1リーグ" not in nfkc(text):
+        raise RuntimeError(f"星取表PDFの表題が{year}年のE1リーグでない")
+    want = ["勝", "分", "負", "勝点", "得点", "失点", "得失点", "順位"]
+    grids = [t for t in tables if t and [nfkc(c) for c in t[0][-8:]] == want]
+    if len(grids) != 1:
+        raise RuntimeError(f"星取表PDFの順位表が{len(grids)}個")
+    rename = cfg.get("hoshitori_names", {})
+    standings, ranks = {}, []
+    for r in grids[0][1:]:
+        if not re.fullmatch(r"[A-Z]", nfkc(r[0])):
+            continue                      # 下段（2巡目）の行。マスは読まない
+        team = rename.get(nfkc(r[1]), nfkc(r[1]))
+        v = [nfkc(x) for x in r[-8:]]
+        if not all(re.fullmatch(r"-?\d+", x) for x in v):
+            raise RuntimeError(f"星取表 {team} の順位表の数値が読めない: {v}")
+        won, drawn, lost, pts, gf, ga, gd, rank = (int(x) for x in v)
+        if 3 * won + drawn != pts or gf - ga != gd:
+            raise RuntimeError(f"星取表 {team} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・得失点{gd}）")
+        standings[team] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
+                               lost=lost, gf=gf, ga=ga)
+        ranks.append((rank, team))
+    if len(standings) != n:
+        raise RuntimeError(f"星取表の順位表が{len(standings)}チーム（{n}チームのはず）")
+    if sorted(standings) != sorted({m["home"] for m in matches} | {m["away"] for m in matches}):
+        raise RuntimeError("星取表のチームと日程PDFのチームが合わない")
+
+    # ✅ 星取表の順位表と、日程PDFの結果から計算した値を1チームずつ突き合わせる。
+    #    既知の出典の誤り（KNOWN_SOURCE_ERRORS）は「公式 − 計算」の差として明示し、その差ちょうどでなければ止める。
+    #    ⚠️ 差が0になった＝協会が直した。そのときも止める（例外を消させるため）。
+    mine = {t: dict(pts=0, played=0, won=0, drawn=0, lost=0, gf=0, ga=0) for t in standings}
+    for m in played:
+        for t, gf, ga in ((m["home"], m["hs"], m["as"]), (m["away"], m["as"], m["hs"])):
+            s = mine[t]
+            s["played"] += 1
+            s["gf"] += gf
+            s["ga"] += ga
+            s["won"] += gf > ga
+            s["drawn"] += gf == ga
+            s["lost"] += gf < ga
+            s["pts"] += 3 if gf > ga else 1 if gf == ga else 0
+    known = KNOWN_SOURCE_ERRORS.get("ehime", {})
+    for team, off in standings.items():
+        want = {k: 0 for k in off}
+        want.update(known.get(team, {}))
+        got = {k: off[k] - mine[team][k] for k in off}
+        if got != want:
+            extra = ("。協会が直したなら KNOWN_SOURCE_ERRORS から愛媛の項目を消すこと"
+                     if known.get(team) else "")
+            raise RuntimeError(f"星取表 {team} の順位表と日程PDFの結果が合わない（公式−計算＝"
+                               f"{ {k: v for k, v in got.items() if v} }・見込みは"
+                               f"{ {k: v for k, v in want.items() if v} or '差なし' }）{extra}")
+    standings = {t: dict(mine[t]) for t in standings}   # 既知の差を除いた値＝日程PDFと一致する値
+    if sum(v["gf"] - v["ga"] for v in standings.values()) != 0:
+        raise RuntimeError("順位表の得失点の合計が0でない（読み取りの誤り、または出典の誤り）")
+    for (r1, t1), (r2, t2) in zip(sorted(ranks), sorted(ranks)[1:]):
+        if standings[t1]["pts"] < standings[t2]["pts"]:
+            raise RuntimeError(f"星取表の順位が勝点の降順でない: {r1}位 {t1}（勝点{standings[t1]['pts']}）→ "
+                               f"{r2}位 {t2}（勝点{standings[t2]['pts']}）")
+    # 星取表の消化数と日程PDFの結果数（勝分敗の合計は1試合2件）
+    if sum(v["played"] for v in standings.values()) != 2 * len(played):
+        raise RuntimeError(f"星取表の勝分敗の合計{sum(v['played'] for v in standings.values())}が"
+                           f"日程PDFの結果{len(played)}試合×2と合わない")
+    return standings, [dict(date=m["date"], home=m["home"], away=m["away"],
+                            hs=m["hs"], **{"as": m["as"]}) for m in matches]
+
+
+# ============================================================
 # 三重（fa-mie.jp）— 県協会の星取表PDF＋日程および組合せPDF（2026-09-15追加）
 #   入口: /category2/（2種）。1部の <tr>（「高円宮杯JFA U-18サッカーリーグ{年} 三重県１部」）に
 #   大会要項／日程および組合せ／星取表／得点ランキング の4本が並ぶ（得点は fetch_pdf_scorers.py の discover_mie）。
@@ -3514,7 +3710,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "hyogo": read_hyogo, "tokushima": read_tokushima,
                       "aomori": read_aomori, "nagano": read_nagano,
                       "fukui": read_fukui, "yamanashi": read_yamanashi,
-                      "gifu": read_gifu, "mie": read_mie}[cfg["platform"]]
+                      "gifu": read_gifu, "mie": read_mie,
+                      "ehime": read_ehime}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:

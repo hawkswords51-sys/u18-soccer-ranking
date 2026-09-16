@@ -417,6 +417,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-yamanashi-1",  # yamanashi-football.com（県協会の星取表PDF＋通し日程PDF）2026-09-15追加
     "pref-gifu-1",       # gifu-fa.com（県協会の戦績表PDF＋日程表PDF）2026-09-15追加
     "pref-mie-1",        # fa-mie.jp（県協会の星取表PDF＋日程および組合せPDF）2026-09-15追加
+    "pref-ehime-1",      # efa.jp（県協会のE1日程PDF＋E1星取表PDF）2026-09-16追加
 }
 
 
