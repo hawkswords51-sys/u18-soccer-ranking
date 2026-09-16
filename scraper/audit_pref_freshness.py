@@ -152,7 +152,11 @@ def collect_temp_exceptions() -> dict:
 # 1県分を読む
 # ---------------------------------------------------------------------------
 def read_pref(path: Path) -> dict:
-    pref = path.name[len("pref-"):-len("-1.json")]
+    # ⚠️ キーは「pref-」と「.json」を外しただけの名前にする（`osaka-2a` を `osaka` に潰さない）。
+    #    1部は従来どおり末尾の「-1」を落として `osaka`・`tokyo` のままにする（既存の記録と互換）。
+    pref = path.name[len("pref-"):-len(".json")]
+    if pref.endswith("-1"):
+        pref = pref[:-2]
     d = json.loads(path.read_text(encoding="utf-8"))
     ms = d.get("matches", [])
     played = [m for m in ms if m.get("status") == "played"]
@@ -327,13 +331,22 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
         #   update_pref_cross_tables.py を走らせる運用にした。消化数の停滞は試合が無い期間と区別できないので、
         #   取り込みが検算一致で保存したときだけ進む lastUpdated からの日数で黄にする（打つ手＝Macで走らせる）。
         #   赤にはしない（Actions側に打つ手が無い）。
+        # ★2026-09-16：🟡は「打つ手」で区別する。行頭の記号がその区別。
+        #   🟡A＝こちらが取り込めば直る（lastUpdated から14日）→ Macで走らせる
+        #   🟡C＝消化数が14日増えていない（出典に結果が出ていないか、取得の不具合）→ 出典を確認する
+        #   ❌ 「出典側が止まっている」を**全国基準日との差**で出す案（🟡B）は入れない。
+        #      2026-09-16に5〜9月を1日ずつ再現して全49リーグで測ったところ、差の中央値8日に対し
+        #      95%点55日・最大83日で、**夏の中断が全国一斉でない**（7/24まで試合がある県と6/13で前期を終える県がある）ため
+        #      30日でも45日でも正常な県が高頻度で鳴った（30日＝延べ1204件・全49リーグが該当）。
+        #      「打つ手のある🟡だけを出す」原則に反するので、指標の設計から見直す（宿題）。
         if pref not in official:
             if pref in excluded:
                 skipped.append(pref)       # 手動取り込みの対象外（埼玉）。要約に必ず1行出す
                 continue
             n_imp = days_between(r.get("last_updated", ""), today)
             if n_imp is None or n_imp >= PREF_STALE_DAYS:
-                yellow.append(f"{pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
+                # 🟡A（打つ手があるほう）を見出しにする。🟡Bにも当たる県は末尾に添えるだけ（1リーグ1行）。
+                yellow.append(f"🟡A {pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
                               f"（lastUpdated {r.get('last_updated') or '—'}・{r['played']}/{r['total']}"
                               f"・最終試合 {r.get('latest_match') or '—'}"
                               f"）→ Macで update_pref_cross_tables.py を実行")
@@ -359,9 +372,11 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
             continue
         n = days_between(r.get("last_change", ""), today)
         if n is not None and n >= PREF_STALE_DAYS:
-            yellow.append(f"{pref:12s} 消化数が{n}日変わっていません"
+            # 出典側の停滞が30日未満のもの（30日以上は上の🟡Bで拾っている）。
+            yellow.append(f"🟡C {pref:12s} 消化数が{n}日変わっていません"
                           f"（{r['played']}/{r['total']}・最終試合 {r.get('latest_match') or '—'}"
-                          f"・{r.get('sourceName') or '出典不明'}）")
+                          f"・{r.get('sourceName') or '出典不明'}）"
+                          f"→ 出典に新しい結果が出ていないか確認（出ていれば取得の不具合を疑う）")
         else:
             ok.append(pref)
 
@@ -408,9 +423,13 @@ def main() -> int:
     today = jst_today()
     official = official_prefs()
 
-    paths = sorted(MATCH_DIR.glob("pref-*-1.json"))
+    # ⚠️ 2026-09-16：対象を `pref-*-1.json`（46ファイル）から `pref-*.json`（＋大阪2部A/B/C＝49）へ広げた。
+    #    大阪2部が2か月どの見張りにも入っていなかったのは、対象が「入れたものだけ」だったため。
+    #    **既定を「全部入る」にして、新しいリーグが増えたら自動で見張りに入る**向きにする。
+    #    ⚠️ 北海道は `pref-hokkaido-1.json` そのものが存在しない（上部の順位表だけ update.py が毎日作っている）。
+    paths = sorted(MATCH_DIR.glob("pref-*.json"))
     if not paths:
-        print("data/league_matches/pref-*-1.json が見つかりません。点検をスキップします。")
+        print("data/league_matches/pref-*.json が見つかりません。点検をスキップします。")
         return 0
 
     status = fetch_status.load()
@@ -432,7 +451,10 @@ def main() -> int:
 
     national = max((r.get("latest_match", "") for r in records.values()), default="")
     print(f"=== 県1部 鮮度チェック（{today.isoformat()} JST）===")
-    print(f"  対象 {len(records)}県 ／ 全国基準日（どこかの県で試合があった最新日）{national}")
+    # ⚠️ 「47県」と書かない。実際は県1部46（北海道は戦績表そのものが無い）＋大阪2部A/B/C。
+    n_pref1 = sum(1 for p in paths if p.name.endswith("-1.json"))
+    print(f"  対象 {len(records)}リーグ（県1部{n_pref1}＝北海道は戦績表なし／"
+          f"追加リーグ{len(records) - n_pref1}） ／ 全国基準日（どこかの県で試合があった最新日）{national}")
     if today.month in OFFSEASON_MONTHS:
         print(f"  ※ {today.month}月はオフシーズンのため赤にしません（情報としては出します）")
     print()
