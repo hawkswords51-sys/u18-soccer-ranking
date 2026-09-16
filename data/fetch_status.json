@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-17T02:52:40+09:00",
+  "updatedAt": "2026-09-17T02:52:51+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -202,7 +202,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "akita": {
       "season": "2026",
@@ -223,7 +223,7 @@
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "aomori": {
       "season": "2026",
@@ -245,7 +245,7 @@
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "chiba": {
       "result": "ok",
@@ -266,7 +266,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "ehime": {
       "season": "2026",
@@ -284,7 +284,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-17",
       "result": "ok",
       "result_note": "消化57試合に更新（検算一致）",
       "result_date": "2026-09-17"
@@ -308,7 +308,7 @@
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "fukuoka": {
       "result": "fetch_error",
@@ -326,9 +326,9 @@
       "source": "official",
       "sourceName": "福岡県サッカー協会 公式",
       "last_change": "2026-09-15",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-17",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-16"
     },
     "fukushima": {
@@ -336,18 +336,18 @@
       "complete": false,
       "single_round": false,
       "dup_pairs": 45,
-      "played_without_date": 2,
+      "played_without_date": 0,
       "played": 75,
       "total": 90,
       "teams": 10,
       "latest_match": "2026-09-12",
-      "source": "junior-soccer (manual)",
-      "sourceName": "福島少年サッカー応援団（junior-soccer.jp）",
+      "source": "official",
+      "sourceName": "福島県サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-17",
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
       "result_date": "2026-09-17"
@@ -372,7 +372,7 @@
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "gunma": {
       "result": "fetch_error",
@@ -390,9 +390,9 @@
       "source": "official",
       "sourceName": "群馬県サッカー協会 公式",
       "last_change": "2026-09-12",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-17",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-16"
     },
     "hiroshima": {
@@ -414,7 +414,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "hyogo": {
       "season": "2026",
@@ -435,7 +435,7 @@
       "result": "ok",
       "result_note": "消化60試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "ibaraki": {
       "result": "ok",
@@ -456,7 +456,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "ishikawa": {
       "season": "2026",
@@ -496,7 +496,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "kagawa": {
       "result": "ok",
@@ -517,7 +517,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "kagoshima": {
       "season": "2026",
@@ -556,25 +556,25 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "kochi": {
       "season": "2026",
       "complete": false,
       "single_round": false,
       "dup_pairs": 28,
-      "played_without_date": 1,
+      "played_without_date": 0,
       "played": 40,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-09-12",
-      "source": "junior-soccer (manual)",
-      "sourceName": "高知少年サッカー応援団（junior-soccer.jp）",
+      "source": "official",
+      "sourceName": "高知県サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-17",
       "result": "ok",
       "result_note": "消化40試合に更新（検算一致）",
       "result_date": "2026-09-17"
@@ -598,7 +598,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "kyoto": {
       "season": "2026",
@@ -616,7 +616,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-17",
       "result": "ok",
       "result_note": "消化60試合に更新（検算一致）",
       "result_date": "2026-09-17"
@@ -640,7 +640,7 @@
       "result": "ok",
       "result_note": "消化36試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "miyagi": {
       "season": "2026",
@@ -679,7 +679,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "nagano": {
       "season": "2026",
@@ -700,7 +700,7 @@
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "nagasaki": {
       "result": "ok",
@@ -721,7 +721,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "nara": {
       "season": "2026",
@@ -733,13 +733,13 @@
       "total": 90,
       "teams": 10,
       "latest_match": "2026-09-12",
-      "source": "junior-soccer (manual)",
-      "sourceName": "奈良少年サッカー応援団（junior-soccer.jp）",
+      "source": "official",
+      "sourceName": "奈良県サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-17",
       "result": "ok",
       "result_note": "消化59試合に更新（検算一致）",
       "result_date": "2026-09-17"
@@ -763,7 +763,7 @@
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "oita": {
       "season": "2026",
@@ -784,7 +784,7 @@
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "okayama": {
       "result": "ok",
@@ -806,7 +806,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "okinawa": {
       "result": "ok",
@@ -827,7 +827,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "osaka": {
       "season": "2026",
@@ -846,6 +846,63 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-16"
+    },
+    "osaka-2a": {
+      "season": "2026",
+      "complete": false,
+      "single_round": false,
+      "dup_pairs": 28,
+      "played_without_date": 0,
+      "played": 34,
+      "total": 56,
+      "teams": 8,
+      "latest_match": "2026-09-13",
+      "source": "junior-soccer (manual)",
+      "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
+      "last_updated": "2026-09-16",
+      "last_change": "2026-09-13",
+      "last_change_note": "初回のため最終試合日で代用",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok"
+    },
+    "osaka-2b": {
+      "season": "2026",
+      "complete": false,
+      "single_round": false,
+      "dup_pairs": 28,
+      "played_without_date": 0,
+      "played": 36,
+      "total": 56,
+      "teams": 8,
+      "latest_match": "2026-09-13",
+      "source": "junior-soccer (manual)",
+      "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
+      "last_updated": "2026-09-16",
+      "last_change": "2026-09-13",
+      "last_change_note": "初回のため最終試合日で代用",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok"
+    },
+    "osaka-2c": {
+      "season": "2026",
+      "complete": false,
+      "single_round": false,
+      "dup_pairs": 28,
+      "played_without_date": 0,
+      "played": 35,
+      "total": 56,
+      "teams": 8,
+      "latest_match": "2026-09-13",
+      "source": "junior-soccer (manual)",
+      "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
+      "last_updated": "2026-09-16",
+      "last_change": "2026-09-13",
+      "last_change_note": "初回のため最終試合日で代用",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok"
     },
     "saga": {
       "result": "ok",
@@ -866,7 +923,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "saitama": {
       "season": "2026",
@@ -906,7 +963,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "shimane": {
       "result": "ok",
@@ -927,7 +984,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "shizuoka": {
       "season": "2026",
@@ -966,7 +1023,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "tokushima": {
       "season": "2026",
@@ -987,7 +1044,7 @@
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "tokyo": {
       "result": "ok",
@@ -1008,7 +1065,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "tottori": {
       "result": "ok",
@@ -1029,7 +1086,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "toyama": {
       "result": "ok",
@@ -1050,7 +1107,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "wakayama": {
       "season": "2026",
@@ -1089,7 +1146,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "yamaguchi": {
       "result": "ok",
@@ -1110,7 +1167,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "yamanashi": {
       "season": "2026",
@@ -1131,10 +1188,10 @@
       "result": "ok",
       "result_note": "消化32試合に更新（検算一致）",
       "result_date": "2026-09-17",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-17"
     },
     "_meta": {
-      "checked": "2026-09-16",
+      "checked": "2026-09-17",
       "national_latest": "2026-09-13",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
