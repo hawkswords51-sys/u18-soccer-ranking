@@ -321,6 +321,15 @@ PREF_OFFICIAL = {
     # ⚠️ home/away は「日程表の左側＝home」の格納規約で、**事実ではない**。会場に学校のグラウンドが出るが、
     #    東山総合で東山が右・京都共栄Gで京都共栄が右・橘のスタジアムに橘が出ない試合がある（2026-09-16）＝
     #    左右も会場もホームを表していない。表示は cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。
+    # 福島（2026-09-16追加）。日程表PDF3本（節・日付・HOME/AWAY・会場）＋F1星取表PDF（スコア）＋F1順位表PDF。
+    # 順位表に勝分敗がそろうので通常の検算ゲート。ALIASは不要（NFKCで半角カナが既存JSONの表記にそろう）。
+    # ⚠️ home/away は「日程表のHOME列＝home」の格納規約で、**事実ではない**（ホーム試合数が均等でない・
+    #    30ペアが両巡目とも同じ側・会場の持ち主はHOME側23/AWAY側13/どちらでもない54）。
+    #    表示は cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。「向きが逆だ」と直さないこと。
+    "fukushima": {"platform": "fukushima", "teams": 10,
+                  "source": "https://fukushima-fa.com/match/c_match/ffa02/",
+                  "label": "福島県サッカー協会 公式"},
+
     "kyoto":     {"platform": "kyoto", "teams": 10,
                   "source": "https://www.kyoto-fa.or.jp/archives.php?category=13",
                   "label": "京都府サッカー協会 公式",
@@ -2884,6 +2893,217 @@ def read_gifu(cfg: dict) -> tuple[dict, list[dict]]:
 
 
 # ============================================================
+# 福島（fukushima-fa.com）— 県協会の日程表PDF3本（節・日付・**HOME/AWAY**・会場）＋ F1星取表PDF（スコア）＋ F1順位表PDF（2026-09-16追加）
+#   入口: /match/c_match/ffa02/（2種）。⚠️ **記事は一覧の2ページ目にあることがある**ので1〜2ページ目を見る。
+#   リンク文字「高円宮杯JFA U-18サッカーリーグ{年} 福島（F1、F2）」。記事URLは年度で変わるので直リンクにしない。
+# ⚠️⚠️ **日程表に HOME/AWAY の列はあるが、ホーム/アウェイを表していない**（2026-09-16実測）。
+#    ・各チームのホーム試合数が均等でない（2回戦総当たりなら全チーム9・9のはず。尚志ｾｶﾝﾄﾞ15/3・いわきFC 5/13）
+#    ・45ペアのうち**30ペアは1巡目も2巡目も同じ側がHOME**（本物のホーム/アウェイなら0ペア）
+#    ・会場の持ち主は HOME側23・AWAY側13・どちらでもない54（会場は「主管」列と相関している）
+#    → home/away は「日程表のHOME列＝home」の格納規約で事実ではない。cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。
+#    📌 **列名を証拠にしないこと。**「出典に HOME と書いてある」だけでは、ホーム/アウェイの根拠にならない。
+# ⚠️ スコアと日付が別のファイル（山梨・三重と同じ型）。**星取表に日付と節が無い**ので、
+#    日程表と星取表を「ペア＋巡目」で結合する。巡目は節番号（第1〜9節＝1巡目＝上段／第10〜18節＝2巡目＝下段）。
+# ⚠️⚠️ **日程PDFには F1 と F2 が混在し、同じ節の中で行が交互に出る。**
+#    ❌ 「カテ」列（F1/F2）で絞らない（結合セルでカバー行数が一定でない）。
+#    ❌ チーム名の部分一致で絞らない（**F2の名前がF1の名前を含む**：福島ﾕﾅｲﾃｯﾄﾞｾｶﾝﾄﾞ ⊃ 福島ﾕﾅｲﾃｯﾄﾞ、
+#       聖光学院ｾｶﾝﾄﾞ、いわきFCｾｶﾝﾄﾞ、ふたば未来学園ｾｶﾝﾄﾞ、尚志ｻｰﾄﾞ ⊃ 尚志ｾｶﾝﾄﾞ）。
+#    ✅ **HOME列とAWAY列の両方が順位表の10チームに完全一致する行だけ**を採る（F1とF2でチームは重複しない）。
+#    ⚠️ 主管・審判の列にもチーム名が出る。列で絞ってから名前を見ること（`page_tables` なら列が分かれる）。
+# ⚠️ 名寄せは NFKC（半角カナ→全角カナ）だけで既存JSONの表記にそろう。個別の対応表は不要。
+# ⚠️⚠️ **日程表3本は版が古いのが正常**（1-6節=3/17・7-12節=6/17・13-18節=3/2）。星取表・順位表は9/12版。
+#    ❌ 「版日付が違ったら止める」はこの県では使えない。
+#    ✅ 代わりに **「星取表に結果があるのに、日程表のその試合の予定日がまだ来ていない」なら止める**
+#       （進行中の節が3月版PDFの範囲なので、延期で日付が動いていたらここで引っかかる）。
+# ✅ 順位表は勝点・勝分敗・得点・失点・差・順位がそろう → 通常の検算ゲート。星取表の右端の成績欄とも突き合わせる。
+# 年度切り替え: 記事のリンク文字の年で追随する。
+# ============================================================
+_FUKUSHIMA_LIST = "https://fukushima-fa.com/match/c_match/ffa02/"
+_FUKUSHIMA_SCORE_COLS = 3   # 星取表は1対戦につき「得点・○●△・失点」の3列
+
+
+def _fukushima_names(cell: str, teams) -> list[str]:
+    """日程表のHOME/AWAYのマスを1部のチーム名に割る。1部でなければ空リスト。
+
+    ⚠️ 2行ぶんが1つのマスに連結されることがある（2026-09-16実測：13節の
+       `郡山商業学法石川ｾｶﾝﾄﾞ` × `ふたば未来学園いわきFC`）。**先頭から最長一致で切り、
+       全部が1部のチーム名で消費できたときだけ採用**する。部分一致で拾わないための作法でもある
+       （F2の名前がF1の名前を含むので、途中で余りが出れば F2 と分かって外れる）。"""
+    out, rest = [], cell
+    while rest:
+        hit = max((t for t in teams if rest.startswith(t)), key=len, default=None)
+        if hit is None:
+            return []
+        out.append(hit)
+        rest = rest[len(hit):]
+    return out
+
+
+def read_fukushima(cfg: dict) -> tuple[dict, list[dict]]:
+    from urllib.parse import urljoin
+    year = str(SEASON_YEAR)
+    nfkc = lambda s: re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+    arts = []
+    for page in (_FUKUSHIMA_LIST, _FUKUSHIMA_LIST + "page/2/"):
+        soup = BeautifulSoup(fetch_html(page, encoding=None), "html.parser")
+        time.sleep(SLEEP)
+        arts += [urljoin(page, a["href"]) for a in soup.find_all("a", href=True)
+                 if f"U-18サッカーリーグ{year}福島" in nfkc(a.get_text())]
+    arts = list(dict.fromkeys(arts))
+    if len(arts) != 1:
+        raise RuntimeError(f"入口に{year}年のF1・F2の記事が{len(arts)}件（1件のはず）")
+    art = BeautifulSoup(fetch_html(arts[0], encoding=None), "html.parser")
+    time.sleep(SLEEP)
+    links = collections.defaultdict(list)
+    for a in art.find_all("a", href=True):
+        if not a["href"].lower().endswith(".pdf"):
+            continue
+        t = nfkc(a.get_text())
+        for key in ("日程表", "F1星取表", "F1順位表"):
+            if t.startswith(key):
+                links[key].append(urljoin(arts[0], a["href"]))
+    if len(links["日程表"]) != 3 or len(links["F1星取表"]) != 1 or len(links["F1順位表"]) != 1:
+        raise RuntimeError(f"記事のPDFが想定と違う（日程表{len(links['日程表'])}本・"
+                           f"星取表{len(links['F1星取表'])}本・順位表{len(links['F1順位表'])}本）")
+
+    # --- 順位表（検算の相手・チーム名の正本） ---
+    content = pdf_source.fetch_pdf(links["F1順位表"][0], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        text = "".join(pg.extract_text() or "" for pg in pdf.pages)
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    if f"サッカーリーグ{year}福島1部" not in nfkc(text):
+        raise RuntimeError(f"順位表PDFの表題が{year}年の福島1部でない")
+    want = ["チーム名", "勝ち点", "勝", "分", "負", "得点", "失点", "差", "順位"]
+    grids = [t for t in tables if t and [nfkc(c) for c in t[0]] == want]
+    n = cfg["teams"]
+    if len(grids) != 1 or len(grids[0]) != 1 + n:
+        raise RuntimeError(f"順位表PDFの表が想定と違う（{len(grids)}個・{len(grids[0]) if grids else 0}行）")
+    standings, ranks = {}, []
+    for r in grids[0][1:]:
+        team = nfkc(r[0])
+        v = [nfkc(x) for x in r[1:]]
+        if not all(re.fullmatch(r"[+-]?\d+", x) for x in v):
+            raise RuntimeError(f"順位表 {team} の数値が読めない: {v}")
+        pts, won, drawn, lost, gf, ga, gd, rank = (int(x) for x in v)
+        if 3 * won + drawn != pts or gf - ga != gd:
+            raise RuntimeError(f"順位表 {team} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・差{gd}）")
+        standings[team] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
+                               lost=lost, gf=gf, ga=ga)
+        ranks.append((rank, team))
+    if len(standings) != n:
+        raise RuntimeError(f"順位表が{len(standings)}チーム（{n}チームのはず）")
+    if sum(v["gf"] - v["ga"] for v in standings.values()) != 0:
+        raise RuntimeError("順位表の得失差の合計が0でない（読み取りの誤り、または出典の誤り）")
+
+    # --- 星取表（スコア。上段＝1巡目・下段＝2巡目） ---
+    content = pdf_source.fetch_pdf(links["F1星取表"][0], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    with pdf_source.open_pdf(content) as pdf:
+        text = "".join(pg.extract_text() or "" for pg in pdf.pages)
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    if f"サッカーリーグ{year}福島1部" not in nfkc(text):
+        raise RuntimeError(f"星取表PDFの表題が{year}年の福島1部でない")
+    grids = [t for t in tables if t and nfkc(t[0][0]) == "チーム名"
+             and len(t) == 1 + 2 * n and len(t[0]) == 1 + _FUKUSHIMA_SCORE_COLS * n + 8]
+    if len(grids) != 1:
+        raise RuntimeError(f"星取表PDFの表が{len(grids)}個（1個のはず）")
+    grid = grids[0]
+    order = [nfkc(grid[1 + 2 * k][0]) for k in range(n)]
+    if sorted(order) != sorted(standings):
+        raise RuntimeError(f"星取表の行のチームが順位表と合わない: {order}")
+    legs = {}
+    for k, me in enumerate(order):
+        upper, lower = grid[1 + 2 * k], grid[2 + 2 * k]
+        if nfkc(lower[0]):
+            raise RuntimeError(f"星取表 {me} の下段にチーム名がある（行の並びが想定と違う）")
+        # 右端の成績欄が順位表と一致するか（星取表と順位表は別PDFなので二重確認になる）
+        v = [nfkc(x) for x in upper[-8:]]
+        if not all(re.fullmatch(r"[+-]?\d+", x) for x in v):
+            raise RuntimeError(f"星取表 {me} の成績欄が読めない: {v}")
+        o = standings[me]
+        if [int(x) for x in v[:7]] != [o["pts"], o["won"], o["drawn"], o["lost"], o["gf"], o["ga"],
+                                       o["gf"] - o["ga"]]:
+            raise RuntimeError(f"星取表 {me} の成績欄が順位表と合わない（{v[:7]}）")
+        for j, opp in enumerate(order):
+            if opp == me:
+                continue
+            pair = []
+            for row in (upper, lower):
+                c = [nfkc(x) for x in row[1 + _FUKUSHIMA_SCORE_COLS * j:1 + _FUKUSHIMA_SCORE_COLS * (j + 1)]]
+                if not any(c):
+                    pair.append(None)
+                    continue
+                if not (c[0].isdigit() and c[2].isdigit() and c[1] in "○●△"):
+                    raise RuntimeError(f"星取表 {me}×{opp} のマスが読めない: {c}")
+                gf, ga = int(c[0]), int(c[2])
+                if c[1] != ("○" if gf > ga else "●" if gf < ga else "△"):
+                    raise RuntimeError(f"星取表 {me}×{opp}: ○●△とスコアが合わない {c}")
+                pair.append((gf, ga))
+            # 守り：上段（1巡目）が空なのに下段（2巡目）にだけ結果がある
+            if pair[0] is None and pair[1] is not None:
+                raise RuntimeError(f"星取表 {me}×{opp}: 上段が空なのに下段に結果がある（巡目の前提が崩れた疑い）")
+            legs[(me, opp)] = pair
+    for (a, b), pr in legs.items():                  # ✅ 鏡チェック（上段・下段とも）
+        if [None if x is None else (x[1], x[0]) for x in pr] != legs[(b, a)]:
+            raise RuntimeError(f"星取表の鏡チェックが合わない: {a}×{b} {pr} / {b}×{a} {legs[(b, a)]}")
+
+    # --- 日程表3本（節・日付・HOME/AWAY） ---
+    sched = []
+    for url in links["日程表"]:
+        content = pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, wait=SLEEP)
+        time.sleep(SLEEP)
+        with pdf_source.open_pdf(content) as pdf:
+            rows = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) for r in t]
+        md = day = None
+        for r in rows:
+            c = [nfkc(x) for x in r]
+            # ⚠️ 表によって列数が違う（主管・審判が無い表がある）。先頭6列（節・日・曜・カテ・HOME・AWAY）は共通。
+            if len(c) < 6 or c[0] == "節":
+                continue
+            if c[0].isdigit():
+                md = int(c[0])
+            dm = re.fullmatch(r"(\d{1,2})/(\d{1,2})", c[1])
+            if dm:
+                day = f"{year}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
+            # ⚠️ カテ列や部分一致で絞らない。両側が1部の10チームに（分割後も）完全一致する行だけがF1。
+            homes, aways = _fukushima_names(c[4], standings), _fukushima_names(c[5], standings)
+            if not homes or len(homes) != len(aways):
+                continue
+            if not (md and day):
+                raise RuntimeError(f"日程表のF1の行に節または日付が無い: {r}")
+            for home, away in zip(homes, aways):
+                sched.append(dict(md=md, date=day, home=home, away=away))
+    half = n - 1
+    if len(sched) != n * (n - 1):
+        raise RuntimeError(f"日程表3本からF1が{len(sched)}試合（{n * (n - 1)}試合のはず）")
+    if any(sum(1 for s in sched if s["md"] == k) != n // 2 for k in range(1, 2 * half + 1)):
+        raise RuntimeError("日程表の節ごとの試合数が想定と違う")
+    for rnd in (1, 2):
+        ps = [frozenset((s["home"], s["away"])) for s in sched if (s["md"] <= half) == (rnd == 1)]
+        if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
+            raise RuntimeError(f"日程表の{rnd}巡目（第{'1-9' if rnd == 1 else '10-18'}節）に同じ組が重複または欠落")
+
+    # --- 結合（ペア＋巡目） ---
+    matches, today = [], _jst_today().isoformat()
+    for s in sched:
+        x = legs[(s["home"], s["away"])][0 if s["md"] <= half else 1]
+        matches.append(dict(md=s["md"], date=s["date"], home=s["home"], away=s["away"],
+                            hs=x[0] if x else None, **{"as": x[1] if x else None}))
+    # ✅ 日程表は版が古いのが正常なので版日付では守れない。「予定日がまだ来ていないのに結果がある」で守る。
+    future = [m for m in matches if m["hs"] is not None and m["date"] > today]
+    if future:
+        raise RuntimeError(f"星取表に結果があるのに日程表の予定日({future[0]['date']})がまだ来ていない試合が"
+                           f"{len(future)}件（例: 第{future[0]['md']}節 {future[0]['home']}×{future[0]['away']}）"
+                           f"。日程表の版が古く、延期で日付が動いた疑い")
+    played = [m for m in matches if m["hs"] is not None]
+    if sum(v["played"] for v in standings.values()) != 2 * len(played):
+        raise RuntimeError(f"順位表の試合数の合計{sum(v['played'] for v in standings.values())}が"
+                           f"星取表の結果{len(played)}試合×2と合わない")
+    return standings, matches
+
+
+# ============================================================
 # 京都（kyoto-fa.or.jp）— 府協会の TOPリーグ日程PDF（結果入り・**主資料**）＋ リザルトPDF（星取表・検算用）（2026-09-16追加）
 #   入口: /archives.php?category=13（第2種）→ リンク文字「高円宮杯JFA U-18サッカーリーグ{年}京都」の記事。
 #   ⚠️ 記事IDは年度で変わるので直リンクにしない。
@@ -3881,7 +4101,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "aomori": read_aomori, "nagano": read_nagano,
                       "fukui": read_fukui, "yamanashi": read_yamanashi,
                       "gifu": read_gifu, "mie": read_mie,
-                      "ehime": read_ehime, "kyoto": read_kyoto}[cfg["platform"]]
+                      "ehime": read_ehime, "kyoto": read_kyoto,
+                      "fukushima": read_fukushima}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
