@@ -38,6 +38,10 @@ _MATCH_DIR = Path(__file__).resolve().parent.parent / "data" / "league_matches"
 # 例：セントラル開催で日程表がチーム番号順に並ぶだけの県。その県の JSON の home/away は
 #    「マスを一意に埋めるための格納規約」であって事実ではないので、読者に H/A として見せない。
 # ⚠️ ここに無い slug の出力は1バイトも変わらない作りにしてある（変えたら全ページの生成物 diff で確かめる）。
+# 出典側の二重登録（両チーム・スコア・日付が完全に同じレコード）を1件に畳んだ記録。
+# ⚠️ 黙って畳まない。生成スクリプトがまとめてログに出し、人が「重複入力か、同日開催の別試合か」を判断する。
+DUPLICATE_LOG: list[dict] = []
+
 NO_HOME_AWAY_SLUGS: set[str] = {
     "pref-gifu-1",   # 岐阜県1部（2026-09-15）。日程表がチーム番号順に並ぶだけでホーム/アウェイを持たない
     "pref-yamanashi-1",  # 山梨県1部（2026-09-15）。日程表の左側の会場は29件・右側17件で「左＝ホーム」と言えない
@@ -146,12 +150,28 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
         else:
             s["l"] += 1
 
-    result = {}  # (home, away) -> (hs, as)
+    # ⚠️ 2026-09-16まで result は「(home, away) → 1試合」の辞書で、出典が1巡目も2巡目も同じ左右で
+    #    記録していると**2試合目が1試合目を黙って上書き**していた（全47リーグで308試合が戦績表から消えていた）。
+    #    順位表とチップは add() が別に持っているので無事＝**戦績表のマスだけ**が空いていた。
+    #    → リストにして件数を落とさない。**完全一致（両チーム・スコア・日付が同じ）のレコードだけ1件に畳む**
+    #      （出典側の二重登録。畳んだ件は呼び出し側でログに出す）。日付が違えば別試合として両方出す。
+    result = {}  # (home, away) -> [(hs, as_, date, md), ...]
+    collapsed = []
     for m in played:
         h, a, hs, as_ = m["home"], m["away"], m["hs"], m["as"]
         add(h, hs, as_)
         add(a, as_, hs)
-        result[(h, a)] = (hs, as_)
+        date, md = m.get("date") or "", m.get("md") or 0
+        same = [x for x in result.get((h, a), []) if (x[0], x[1], x[2]) == (hs, as_, date)]
+        if same:
+            collapsed.append(dict(slug=slug, home=h, away=a, hs=hs, **{"as": as_}, date=date))
+            continue
+        result.setdefault((h, a), []).append((hs, as_, date, md))
+    # 同じ向きが複数あるときは日付→節の順に並べる（日付なしは末尾）
+    for k in result:
+        result[k].sort(key=lambda t: (t[2] == "", t[2], t[3]))
+    if collapsed:
+        DUPLICATE_LOG.extend(collapsed)
 
     # 並び順 = 勝点 → 得失差 → 総得点（同点時）
     order = sorted(
@@ -163,13 +183,13 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
     def cell(row, col):
         if row == col:
             return '<td class="xt-diag"></td>'
+        # ⚠️ (row,col) を先・(col,row) を後、の順番は変えないこと
+        #    （H/Aを出す県の2試合セルは「H段が上・A段が下」で並んでいる）。
         items = []
-        if (row, col) in result:                 # row がホームの試合
-            hs, as_ = result[(row, col)]
+        for hs, as_, _d, _md in result.get((row, col), []):    # row がホームの試合
             items.append((hs, as_, "H"))
-        if (col, row) in result:                 # row がアウェイの試合
-            hs, as_ = result[(col, row)]
-            items.append((as_, hs, "A"))          # row 視点へ変換
+        for hs, as_, _d, _md in result.get((col, row), []):    # row がアウェイの試合
+            items.append((as_, hs, "A"))                        # row 視点へ変換
         if not items:
             return '<td class="xt-np">―</td>'
         def rcls(gf, ga):
