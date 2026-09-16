@@ -51,6 +51,24 @@ NO_HOME_AWAY_SLUGS: set[str] = {
     "pref-kochi-1",      # 高知県1部（2026-09-17）。会場56試合中54が中立・唯一の学校会場でも左右が一致しない
     "pref-nara-1",       # 奈良県1部（2026-09-17）。左右はチーム番号順（奈良クラブユースは12試合すべて左・五條は全部右）
     "pref-fukushima-1",  # 福島県1部（2026-09-16）。日程表に HOME/AWAY 列はあるが、ホーム試合数が尚志2nd 15・いわきFC 5と偏る
+    # ↓ 2026-09-16の総点検（Kei）。いずれも **2試合あるペアが全部「同じ側」**＝ホーム/アウェイではない。
+    #   本物のH/Aなら同じ組の2試合が同じ側になることは原理的に無いので、この検算は「H/Aではない」方向にだけ効く。
+    #   ⚠️ 判定則ができた2026-09-15（岐阜）より前に移行した県。出典の左右をそのまま格納しているだけで、事実ではない。
+    #   ⚠️ **出典の型（GoalNote・SportsOnline・LSIN などのプラットフォーム）はH/Aを出す根拠にならない。**
+    #      富山はAPIのフィールド名が team1/team2 で、そもそもホーム/アウェイではなかった。
+    "pref-yamagata-1",   # 24ペア中24が同じ側（GoalNote）
+    "pref-akita-1",      # 20ペア中20が同じ側（PDF）
+    "pref-toyama-1",     # 20ペア中20が同じ側。APIが team1_id/team2_id＝ホーム/アウェイではない
+    "pref-yamaguchi-1",  # 14ペア中14が同じ側（SportsOnline）
+    "pref-kanagawa-1",   # 13ペア中13が同じ側（PDF）
+    "pref-gunma-1",      # 10ペア中10が同じ側（PDF）
+    "pref-hiroshima-1",  # 10ペア中10が同じ側（SportsOnline）
+    "pref-kagawa-1",     # 10ペア中10が同じ側（GoalNote）
+    "pref-tochigi-1",    #  9ペア中 9が同じ側（LSIN）
+    "pref-saga-1",       #  8ペア中 8が同じ側
+    "pref-shimane-1",    #  7ペア中 7が同じ側（SportsOnline）
+    "pref-tottori-1",    #  6ペア中 6が同じ側（GoalNote）
+    "pref-oita-1",       #  5ペア中 5が同じ側（PDF）
 }
 
 
