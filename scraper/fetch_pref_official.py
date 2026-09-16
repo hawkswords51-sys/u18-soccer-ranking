@@ -4149,6 +4149,21 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     upcoming = [m for m in matches if m.get("hs") is None or m.get("as") is None]
     matches = [m for m in matches if m.get("hs") is not None and m.get("as") is not None]
 
+    # --- 出典そのものの自己矛盾チェック（2026-09-16追加）---
+    # 総当たり表なら「Σ(得点−失点)＝0」が必ず成り立つ（誰かの得点は誰かの失点）。
+    # **こちらのデータと突き合わせる前に、出典が出典自身と合っているか**を見る検査で、
+    # 愛媛（星取表の1マスが左右逆で Σ＝+4）・高知（Σ＝+3）と、2県で実際に当たっている。
+    # ⚠️⚠️ **必ず「出典の数字」で計算すること。** 代替ゲート（self/okinawa/pts_gd）では、この後
+    #    standings が standings_from_matches() の値に置き換わる。置き換わったほうは作り方から必ず 0 になるので、
+    #    そこで数えても永遠に鳴らない（=何も検査しない検査になる）。
+    # ⚠️ gf/ga を持たない県（pts_gd の兵庫は gd だけ・self の宮崎/徳島は順位表なし）は対象外。落とさず飛ばす。
+    #    兵庫は pts_gd ゲートの中に同じ検査が既にある（二重に足さない）。
+    if standings and all(v.get("gf") is not None and v.get("ga") is not None for v in standings.values()):
+        gd_sum = sum(v["gf"] - v["ga"] for v in standings.values())
+        if gd_sum != 0:
+            return (f"[据え置き] {slug}: 出典の順位表の Σ(得点−失点) が {gd_sum:+d} で0でない"
+                    f"（読み取りの誤り、または出典の誤り）")
+
     # --- 宮崎は公式順位表が画像PDFなので、順位表を自前計算して代替ゲートで守る ---
     if cfg.get("standings_gate") == "self":
         standings = standings_from_matches(matches, site_names)
@@ -4200,7 +4215,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
         if set(official) != set(site_names):
             ng.append(f"公式順位表のチーム {sorted(set(official) ^ set(site_names))} が既存と合わない")
         if sum(v["gd"] for v in official.values()) != 0:
-            ng.append("公式順位表の得失点差の合計が0でない（読み取りの誤り）")
+            ng.append("公式順位表の得失点差の合計が0でない（読み取りの誤り、または出典の誤り）")
         for team, off in official.items():
             got = standings.get(team)
             if got is None:
