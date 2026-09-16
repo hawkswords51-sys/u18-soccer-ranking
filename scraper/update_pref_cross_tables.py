@@ -420,6 +420,7 @@ MIGRATED_TO_OFFICIAL = {
     "pref-ehime-1",      # efa.jp（県協会のE1日程PDF＋E1星取表PDF）2026-09-16追加
     "pref-kyoto-1",      # kyoto-fa.or.jp（府協会のTOPリーグ日程PDF＋リザルトPDF）2026-09-16追加
     "pref-fukushima-1",  # fukushima-fa.com（県協会の日程表PDF3本＋F1星取表＋F1順位表）2026-09-16追加
+    "pref-wakayama-1",   # wfa.or.jp（県協会の「1部リーグ 試合結果」PDF1本）2026-09-17追加
     "pref-kochi-1",      # kochi-fa.com（県協会の星取表PDF＋日程表PDF）2026-09-17追加
     "pref-nara-1",       # narafa.or.jp（県協会の日程表PDF＋1部リーグ星取表PDF）2026-09-17追加
 }
