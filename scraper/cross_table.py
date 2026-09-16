@@ -186,21 +186,25 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
         # ⚠️ (row,col) を先・(col,row) を後、の順番は変えないこと
         #    （H/Aを出す県の2試合セルは「H段が上・A段が下」で並んでいる）。
         items = []
-        for hs, as_, _d, _md in result.get((row, col), []):    # row がホームの試合
-            items.append((hs, as_, "H"))
-        for hs, as_, _d, _md in result.get((col, row), []):    # row がアウェイの試合
-            items.append((as_, hs, "A"))                        # row 視点へ変換
+        for hs, as_, d, md in result.get((row, col), []):      # row がホームの試合
+            items.append((hs, as_, "H", d, md))
+        for hs, as_, d, md in result.get((col, row), []):      # row がアウェイの試合
+            items.append((as_, hs, "A", d, md))                 # row 視点へ変換
+        # ⭐️ H/A を出さない県は「H段が上」に意味が無く、約半分のマスで上が後の試合になっていた
+        #    （2026-09-16：岐阜・三重・愛媛・京都・山梨で確認）。その県だけ日付→節の順に積む。
+        if not show_ha:
+            items.sort(key=lambda t: (t[3] == "", t[3], t[4]))
         if not items:
             return '<td class="xt-np">―</td>'
         def rcls(gf, ga):
             return "xt-win" if gf > ga else ("xt-draw" if gf == ga else "xt-lose")
         # 1試合のみ：セル全面を着色（高さ差による余白を防ぐ）
         if len(items) == 1:
-            gf, ga, ha = items[0]
+            gf, ga, ha = items[0][:3]
             return f'<td class="xt-one {rcls(gf,ga)}">{ha_span(ha)}{gf}-{ga}</td>'
         # 2試合：各段(ホーム戦/アウェイ戦)を独立して色分け（上下で半分ずつ）
         legs = [f'<span class="xt-leg {rcls(gf,ga)}">{ha_span(ha)}{gf}-{ga}</span>'
-                for gf, ga, ha in items]
+                for gf, ga, ha, _d, _md in items]
         return '<td class="xt-cell"><div class="xt-cw">' + "".join(legs) + "</div></td>"
 
     # 昇格圏（地域プリンス参入戦の出場圏）の色分け。
