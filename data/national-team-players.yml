@@ -17,7 +17,7 @@
 #       例）増田大空: club=ジュビロ磐田 / origin=流通経済大学付属柏高校（流経大柏にリンク）
 #       ※そのクラブの下部組織上がり（2種登録）はorigin不要。生成側が自動でU-18名にしてリンクする。
 # =====================================================================
-updated: 2026-09-09
+updated: 2026-09-17
 
 categories:
   # -------------------------------------------------------------------
@@ -52,12 +52,12 @@ categories:
 
   # -------------------------------------------------------------------
   - code: u17
-    label: U-17日本代表
+    label: U-17日本代表（国際ユースサッカーin新潟）
     age_note: 主に高校2年生相当（2009年生まれ世代）
     event: 第28回 国際ユースサッカーin新潟
     period: 2026年9月14〜21日／新潟
-    source: https://www.jfa.jp/news/00036727/
-    note: 2026/9/9発表の招集メンバー19名。背番号はJFA未発表のため空欄。9/17 vs U-17ミャンマー代表、9/19 vs U-17新潟選抜、9/21 vs U-17ニュージーランド代表（新潟市陸上競技場／デンカビッグスワンスタジアム）。
+    source: https://www.jfa.jp/news/00036741/
+    note: 2026/9/9発表の19名から、9/14に舘美駿・迫田凌和・鮫島充輝の3名がリモージュ国際大会参加のため離脱し、4名が追加招集された20名。背番号はJFA未発表のため空欄。9/17 vs U-17ミャンマー代表、9/19 vs U-17新潟選抜、9/21 vs U-17ニュージーランド代表（新潟市陸上競技場／デンカビッグスワンスタジアム）。
     players:
       - {pos: GK, name: 高岸 縁,     club: 日章学園高}
       - {pos: GK, name: 木田 蓮人,   club: 帝京長岡高}
@@ -68,16 +68,51 @@ categories:
       - {pos: DF, name: 落合 哉太,   club: 柏レイソルU-18}
       - {pos: DF, name: 瀬賀 結臣,   club: FC東京U-18}
       - {pos: DF, name: 伊藤 航,     club: FC東京U-18}
-      - {pos: DF, name: 鮫島 充輝,   club: 名古屋グランパスU-18}
-      - {pos: MF, name: 舘美 駿,     club: 修徳高}
       - {pos: MF, name: 内田 煌生,   club: 流通経済大学付属柏高}
       - {pos: MF, name: 齋藤 太陽,   club: 名古屋グランパスU-18}
       - {pos: MF, name: 深江 龍明,   club: ガンバ大阪ユース}
       - {pos: MF, name: 岡本 新大,   club: ガンバ大阪ユース}
       - {pos: MF, name: 秋元 大樹,   club: 市立船橋高}
-      - {pos: MF, name: 迫田 凌和,   club: RB大宮アルディージャU18}
+      - {pos: MF, name: 永添 功樹,   club: セレッソ大阪U-18}
+      - {pos: MF, name: 今村 涼弥,   club: 横浜F・マリノスユース}
+      - {pos: MF, name: 浅田 連,     club: ヴィッセル神戸U-18}
       - {pos: FW, name: 平井 一輝,   club: ロアッソ熊本ユース}
       - {pos: FW, name: 児山 雅稀,   club: 帝京長岡高}
+      - {pos: FW, name: 高田 憲慎,   club: 帝京大学可児高}
+
+  # -------------------------------------------------------------------
+  # ⚠️ 2026-09-19〜21 は新潟とリモージュの会期が重なり、U-17は2チーム同時編成。
+  #    code は id に使われるので絶対に重複させないこと（重複するとジャンプナビが片方に飛ばない）。
+  - code: u17-limoges
+    label: U-17日本代表（リモージュ国際大会）
+    age_note: 主に高校2年生相当（2009年生まれ世代）
+    event: リモージュ国際大会
+    period: 2026年9月19〜29日／フランス・リモージュ
+    source: https://www.jfa.jp/news/00036740/
+    note: 2026/9/14発表のメンバー22名。背番号はJFA未発表のため空欄。9/23 vs U-17ウクライナ代表、9/25 vs U-17オーストリア代表、9/27 vs U-17フランス代表（いずれも Stade de Beaublanc／現地時間）。国際ユースサッカーin新潟と会期が一部重なるため、U-17日本代表は2チーム同時編成。
+    players:
+      - {pos: GK, name: 高木 ザカリア, club: Cambridge United U18}
+      - {pos: GK, name: 大下 幸誠,   club: 鹿島アントラーズユース}
+      - {pos: DF, name: エゼモクェ チメヅェ海, club: セレッソ大阪}
+      - {pos: DF, name: 河原 研,     club: San Jose Earthquakes U18}
+      - {pos: DF, name: 倉橋 幸暉,   club: 鹿島アントラーズユース}
+      - {pos: DF, name: 西野 陽向,   club: ジュビロ磐田U-18}
+      - {pos: DF, name: 橋本 凜来,   club: FC東京U-18}
+      - {pos: DF, name: 竹内 悠三,   club: 名古屋グランパスU-18}
+      - {pos: DF, name: 鮫島 充輝,   club: 名古屋グランパスU-18}
+      - {pos: MF, name: 白男川 羚斗, club: 名古屋グランパスU-18}
+      - {pos: MF, name: 舘美 駿,     club: 修徳高}
+      - {pos: MF, name: 木下 晴天,   club: 東京ヴェルディユース}
+      - {pos: MF, name: 星 宗介,     club: 尚志高}
+      - {pos: MF, name: 藤本 祥輝,   club: ガンバ大阪ユース}
+      - {pos: MF, name: 井内 亮太朗, club: ヴィッセル神戸U-18}
+      - {pos: MF, name: 和田 武士,   club: 浦和レッズ}
+      - {pos: MF, name: 木村 風斗,   club: 川崎フロンターレU-18}
+      - {pos: MF, name: 五十嵐 陵,   club: 柏レイソルU-18}
+      - {pos: MF, name: 梶山 蓮翔,   club: FC東京U-18}
+      - {pos: MF, name: 迫田 凌和,   club: RB大宮アルディージャU18}
+      - {pos: FW, name: 齋藤 翔,     club: 横浜FC}
+      - {pos: FW, name: 立野 京弥,   club: 昌平高}
 
   # -------------------------------------------------------------------
   - code: u16
