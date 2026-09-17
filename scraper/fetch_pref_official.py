@@ -675,9 +675,16 @@ def read_goalnote(cfg: dict) -> tuple[dict, list[dict]]:
             home, away = r[si - 1].strip(), r[si + 1].strip()
             if not home or not away:
                 continue
+            # 会場はスコアの2つ右（[番号, 日付, 時刻, ホーム, スコア, アウェイ, **会場**, 詳細]）。
+            # ⚠️ 大会ごとに列数が違うので必ず範囲を見る（順位表側で offset を実測しているのと同じ理由）。
+            #    会場列が無い大会では次の列が「詳細」になるので、それは空に落とす。
+            venue = r[si + 2].strip() if si + 2 < len(r) else ""
+            if venue in ("詳細", "-", "−", "未定"):
+                venue = ""
             matches.append(dict(
                 date=f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}",
-                home=home, hs=int(sm.group(1)), **{"as": int(sm.group(2))}, away=away))
+                home=home, hs=int(sm.group(1)), **{"as": int(sm.group(2))}, away=away,
+                venue=venue))
     return standings, matches
 
 
@@ -743,9 +750,15 @@ def read_tecra(cfg: dict) -> tuple[dict, list[dict]]:
             home, away = r[si - 1].strip(), r[si + 1].strip()
             if not home or not away:
                 continue
+            # 会場はスコアの2つ右（[MM/DD（曜）, ホーム, スコア, アウェイ, **会場**]）。
+            # ⚠️ 範囲を必ず見る（大会によって列が足りないことがある）。
+            # ⚠️ **保存は出典の表記のまま**。滋賀の「綾⽻」は羽が異体字（U+2F7B 康熙部首）で
+            #    チーム名の「綾羽」（U+7FBD）と文字が違うが、ここで書き換えると出典と違うものを持つことになる。
+            #    突き合わせる側が unicodedata.normalize("NFKC", s) で正規化すること。
+            venue = r[si + 2].strip() if si + 2 < len(r) else ""
             matches.append(dict(date=f"{yr}-{mo:02d}-{da:02d}", home=home,
                                 hs=int(sm.group(1)), **{"as": int(sm.group(2))},
-                                away=away))
+                                away=away, venue=venue))
     return standings, matches
 
 
