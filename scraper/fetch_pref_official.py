@@ -4104,6 +4104,8 @@ def assign_legs_incrementally(pref: str, a: str, b: str, legs: list, sched: list
         raise RuntimeError(f"{a}×{b}: 新しく増えた結果が{len(rest)}件なのに、空いている枠が{len(free)}件"
                            f"（{[sched[i]['date'] for i in free]}）。どの試合の結果か決められないので人が確認すること")
     # 3-b. 残りが2件以上でスコアが違うなら、どちらがどちらか決められない
+    #      ⚠️ 同じスコアなら、どちらに当てても保存内容が変わらないので止めない。
+    if len(rest) > 1 and len(set(rest)) > 1:
         raise RuntimeError(f"{a}×{b}: 新しく増えた結果が{len(rest)}件（{rest}）あり、どちらがどの日付か決められない"
                            f"（出典のマスの並び順は当てにならない）。人が確認して割り当てること")
     for i, s in zip(free, rest):
