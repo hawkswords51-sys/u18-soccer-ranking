@@ -330,7 +330,9 @@ PREF_OFFICIAL = {
     "osaka":     {"platform": "osaka", "teams": 10,
                   "source": "https://osaka-fa.or.jp/2shu/game_information/",
                   "label": "大阪府サッカー協会 公式",
-                  "standings_gate": "okinawa"},
+                  "standings_gate": "okinawa",
+                  # ⚠️ マスの並び順に意味が無いので、増分（前回の保存内容＋新しく増えた分）で割り当てる。
+                  "leg_assign": "incremental"},
 
     # 和歌山（2026-09-17追加）。「1部リーグ 試合結果」PDF1本に順位表・星取表・前期日程・後期日程が全部入っている。
     # 順位表に勝分敗が無いので沖縄と同じ代替ゲート。ALIASは不要（10チームとも既存JSONと同じ表記）。
@@ -399,6 +401,10 @@ PREF_OFFICIAL = {
                   # 出典に実日付が無い。既存JSONの同じ対戦から date を引き継ぐ。
                   "inherit_dates": True},
 }
+
+# ⭐️ 読み手が自分の県キーを参照できるようにする（増分での巡目割り当てが既存JSONを読むため・2026-09-17）。
+for _pref_key, _cfg in PREF_OFFICIAL.items():
+    _cfg.setdefault("pref", _pref_key)
 
 # norm() で寄らない表記だけを手で書く。
 # ⚠️ norm() が吸収するもの（セカンド→2nd、B→2nd、高校の除去 等）は**書かないこと**。
@@ -2740,6 +2746,9 @@ def read_yamanashi(cfg: dict) -> tuple[dict, list[dict]]:
         examples = ", ".join("{} {}×{}".format(m["date"], m["home"], m["away"]) for m in future[:3])
         print(f"       （山梨: 版日付{version}より後の予定日に結果がある試合 {len(future)}件：{examples}。"
               f"予定より前倒しで行われた可能性）")
+    # ✅ 守り（2026-09-17）：巡目を「そのペアの何回目か」で決めているので、同じペアの2試合が入れ替わると
+    #    順位表は変わらず検算をすり抜ける。前回の保存内容と突き合わせて入れ替わりだけを捕まえる。
+    check_legs_not_swapped(cfg["pref"], matches)
     return standings, matches
 
 
@@ -2994,6 +3003,7 @@ def _osaka_links(year: str) -> tuple[str, str]:
 
 def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
     year = str(SEASON_YEAR)
+    pref_key = cfg["pref"]
     nfkc = lambda s: re.sub(r"[\s　]+", "", unicodedata.normalize("NFKC", s or ""))
     pdf_url, cgi = _osaka_links(year)
     if not cgi.startswith("http://"):
@@ -3091,7 +3101,8 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
         if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
             raise RuntimeError(f"日程PDFの{rnd}巡目に同じ組が重複または欠落")
 
-    # --- 結合：マスの1件目＝前期・2件目＝後期（規約）。守りは「予定日を過ぎた試合数」との比較 ---
+    # --- 結合：**マスの並び順には頼らない**。前回の保存内容をスコアで引き継ぎ、増えた分だけを
+    #     「版日付までに予定されていた空き枠」に当てる（assign_legs_incrementally）。 ---
     today = _jst_today().isoformat()
     by_pair = collections.defaultdict(list)
     for s in sched:
@@ -3100,13 +3111,10 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
     for key, two in by_pair.items():
         two.sort(key=lambda s: s["md"])
         a, b = sorted(key)
-        got = legs[(a, b)]
-        due = sum(1 for s in two if s["date"] <= today)
-        if len(got) > due:
-            raise RuntimeError(f"{a}×{b}: 星取表に{len(got)}試合あるのに、予定日を過ぎた試合は{due}件"
-                               f"（結果があるのに予定日が来ていない。巡目の割り当てが崩れる）")
-        for i, s in enumerate(two):
-            x = got[i] if i < len(got) else None          # 1件目＝前期・2件目＝後期
+        # ⚠️ 「1件目＝前期」という並び順には頼らない（大阪2部で、どの並べ方も偶然と変わらないと実測）。
+        #    ⚠️ 判定に使うのは**版日付**（今日ではない）。版より後の枠に結果は入りえないので空き枠が狭まる。
+        got = assign_legs_incrementally(pref_key, a, b, legs[(a, b)], two, version)
+        for s, x in zip(two, got):
             hs, as_ = (None, None) if x is None else (x if s["home"] == a else (x[1], x[0]))
             matches.append(dict(md=s["md"], date=s["date"], home=s["home"], away=s["away"],
                                 hs=hs, **{"as": as_}))
@@ -3118,6 +3126,7 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
     if future:
         raise RuntimeError(f"版日付({version})より後の予定日に結果がある試合が{len(future)}件"
                            f"（例: {future[0]['date']} {future[0]['home']}×{future[0]['away']}）")
+    check_legs_not_swapped(pref_key, matches)
     print(f"       （大阪: 出典の自己申告 {said_played}/{said_total} と一致。版 {version}）")
     return standings, matches
 
@@ -4026,6 +4035,105 @@ _EHIME_LIST = "https://efa.jp/meeting/second/?y={}"
 #        (2) 8チーム中7チームは合計が一致し、高知小津も勝分敗・勝点・失点は一致
 #        (3) 得点を22にすると Σ得点＝Σ失点＝187、Σ得失点差＝0 になる
 #   外す条件：協会が直すと差が0になり read_kochi が止まる。止まったらこの項目を消す。
+# ============================================================
+# 1つのマスに2試合が並ぶ出典で、どちらがどの試合かを決めるための共通ヘルパー（2026-09-17追加）
+# ============================================================
+# ⚠️⚠️ **マスの並び順に意味があるとは限らない。**
+#   大阪2部A/B/Cで実測したところ、節順・日付順・試合番号順のどれで並べても 26/44 しか当たらず
+#   （でたらめなら22/44）、21ペア中9ペアが「同じ2つの結果が逆の日付に付く」形で食い違った。
+#   大阪1部は 18/20 が「1件目＝前期」で当たったが、**これも偶然の可能性がある**（2部の結果から）。
+#
+# ✅ そこで、並び順に頼るのは**新しく増えた分だけ**にする。
+#   1. すでに保存済みの試合は、**スコアで突き合わせて日付を動かさない**（前回の割り当てを引き継ぐ）。
+#   2. 残ったマス＝新しく消化された試合なので、**残った予定日**（予定日を過ぎているもの）を順に当てる。
+#   3. 残りが2件以上あって、**スコアが違う**なら曖昧なので止める（人に見せる）。
+#      ⚠️ 残り2件のスコアが同じなら、どちらに当てても保存内容が変わらないので止めない。
+#   📌 既存JSONがそのまま前回のスナップショットになるので、追加の保存領域は要らない。
+#   ⚠️ **移行の時点ですでに両巡終わっているペアは、この仕組みでは守れない。**
+#      移行時に既存データで1件ずつ検証して初期値を固定すること（大阪1部の10ペアがそれ）。
+def _existing_played(pref: str) -> list[dict]:
+    """既存JSON（前回のスナップショット）の消化済み試合。読めなければ空。
+
+    ⚠️ ファイル名は `pref-{pref}-1.json` の決め打ち。**2部（pref-osaka-2a 等）に広げるときは効かない**ので、
+       そのときは slug を渡す形に変えること。
+    ⚠️ 止まったときの逃げ道：出典が誤記を正しく訂正すると check_legs_not_swapped が止まり続ける。
+       訂正が正しいと確認できたら、**その試合を pref-*-1.json から消す（または hs/as を null にする）**
+       ＝前回のスナップショットから外してコミットすれば、次の実行で割り当て直される。"""
+    try:
+        d = json.loads((DIR / f"pref-{pref}-1.json").read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    return [m for m in d.get("matches", [])
+            if m.get("status") == "played" and m.get("hs") is not None and m.get("date")]
+
+
+def assign_legs_incrementally(pref: str, a: str, b: str, legs: list, sched: list, cutoff: str) -> list:
+    """ペア (a,b) のマスの結果 legs（aから見た (gf,ga) の並び）を、日程 sched（節順）に割り当てる。
+
+    戻り値は sched と同じ長さのリストで、各要素は (hs, as) か None（その試合はまだ未消化）。
+    ⚠️ 並び順に頼るのは「前回に無かった分」だけ（上のコメント参照）。曖昧なら RuntimeError。
+    ⚠️ `cutoff` は**出典の版日付**を渡すこと（今日ではない）。版が 9/13 なら 9/14 以降の枠に結果は入りえないので、
+       空き枠がそのぶん狭まり、**曖昧さを後から検出するのではなく最初から減らせる**。
+    """
+    prev = {}
+    for m in _existing_played(pref):
+        if {m.get("home"), m.get("away")} != {a, b}:
+            continue
+        s = (m["hs"], m["as"]) if m["home"] == a else (m["as"], m["hs"])
+        prev.setdefault(m["date"], []).append(s)
+    out = [None] * len(sched)
+    rest = list(legs)
+    # 1. 前回と同じスコアの試合は、前回と同じ日付のまま動かさない
+    for i, s in enumerate(sched):
+        for cand in prev.get(s["date"], []):
+            if cand in rest:
+                out[i] = cand
+                rest.remove(cand)
+                break
+    if not rest:
+        return out
+    # 2. 残りは「予定日を過ぎていて、まだ埋まっていない」枠へ節の順に当てる
+    free = [i for i, s in enumerate(sched) if out[i] is None and s["date"] <= cutoff]
+    if len(rest) > len(free):
+        raise RuntimeError(f"{a}×{b}: 結果が{len(legs)}件あるのに、版日付までに予定されていた空き枠は{len(free)}件"
+                           f"（結果があるのに予定日が来ていない）")
+    # 3-a. 空き枠のほうが多い＝どの試合が消化されたのか決められない（zip で黙って早い枠に当てない）
+    #      例：大阪1部の節9（6/27 大阪学院×近大附属）は6/27を過ぎても未消化で、裏の節17は11/29。
+    #      12月に片方だけ結果が出ると rest=1・free=2 になる。通常進行（前期済み＋後期1件）は rest=1・free=1。
+    if len(rest) < len(free):
+        raise RuntimeError(f"{a}×{b}: 新しく増えた結果が{len(rest)}件なのに、空いている枠が{len(free)}件"
+                           f"（{[sched[i]['date'] for i in free]}）。どの試合の結果か決められないので人が確認すること")
+    # 3-b. 残りが2件以上でスコアが違うなら、どちらがどちらか決められない
+        raise RuntimeError(f"{a}×{b}: 新しく増えた結果が{len(rest)}件（{rest}）あり、どちらがどの日付か決められない"
+                           f"（出典のマスの並び順は当てにならない）。人が確認して割り当てること")
+    for i, s in zip(free, rest):
+        out[i] = s
+    return out
+
+
+def check_legs_not_swapped(pref: str, matches: list[dict]) -> None:
+    """すでに保存済みの試合の日付に、別のスコアが付いていないかを見る守り（2026-09-17追加）。
+
+    ⚠️ 巡目の割り当てを「並び順」や「ペアの何回目か」で決めている県（山梨など）向け。
+       **同じペアの2つの結果が入れ替わった**とき、順位表は変わらないので検算では捕まらない。
+       前回の保存内容と突き合わせれば、入れ替わりだけをはっきり捕まえられる。
+    """
+    prev = {}
+    for m in _existing_played(pref):
+        prev[(m["date"], frozenset((m.get("home"), m.get("away"))))] = \
+            (m["hs"], m["as"]) if m.get("home") <= m.get("away") else (m["as"], m["hs"])
+    for m in matches:
+        if m.get("hs") is None or not m.get("date"):
+            continue
+        key = (m["date"], frozenset((m["home"], m["away"])))
+        if key not in prev:
+            continue
+        now = (m["hs"], m["as"]) if m["home"] <= m["away"] else (m["as"], m["hs"])
+        if now != prev[key]:
+            raise RuntimeError(f"{m['date']} {m['home']}×{m['away']}: 前回は {prev[key]} で保存されていたのに"
+                               f"今回は {now}（同じペアの2試合が入れ替わった疑い。巡目の割り当てを確認すること）")
+
+
 KNOWN_SOURCE_ERRORS: dict[str, dict[str, dict[str, int]]] = {
     "ehime": {"大洲": {"gf": +2, "ga": -2}},
     "kochi": {"高知小津": {"gf": +3}},
