@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-17T08:35:52+09:00",
+  "updatedAt": "2026-09-17T09:44:32+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -311,8 +311,8 @@
       "last_updated": "2026-09-17"
     },
     "fukuoka": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://fukuoka-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='fukuoka-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by NameResolutionError(\"HTTPSConnection(host='fukuoka-fa-u18.com', port=443): Failed to resolve 'fukuoka-fa-u18.com' ([Errno -3] Temporary failure in name resolution)\"))))",
+      "result": "ok",
+      "result_note": "消化60試合に更新（検算一致）",
       "result_date": "2026-09-17",
       "season": "2026",
       "complete": false,
@@ -375,8 +375,8 @@
       "last_updated": "2026-09-17"
     },
     "gunma": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Max retries exceeded with url: /api/table/173 (Caused by NameResolutionError(\"HTTPSConnection(host='management.gunma-fa.com', port=443): Failed to resolve 'management.gunma-fa.com' ([Errno -3] Temporary failure in name resolution)\"))))",
+      "result": "ok",
+      "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-09-17",
       "season": "2026",
       "complete": false,
@@ -1125,7 +1125,10 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-16",
+      "result": "ok",
+      "result_note": "消化70試合に更新（検算一致）",
+      "result_date": "2026-09-17"
     },
     "yamagata": {
       "result": "ok",
