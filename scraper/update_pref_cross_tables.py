@@ -436,6 +436,23 @@ MANUAL_IMPORT_EXCLUDED = {
 }
 
 
+# 県idの日本語名（update.py の PREF_ID_TO_NAME を借りる。二重管理にしない）
+try:
+    from update import PREF_ID_TO_NAME
+except Exception:      # update.py が読めない環境でも止めない
+    PREF_ID_TO_NAME = {}
+
+
+def junior_soccer_source_name(slug: str) -> str:
+    """slug から junior-soccer の表示名を作る（**このファイルは junior-soccer 専用**）。
+
+    ⚠️ 表示名を手で持たない＝`source` と食い違う余地を作らないための関数。
+       名前のとおり **junior-soccer の表記しか作らない**（`source` の中身は見ていない）。
+    """
+    pref = slug[len("pref-"):].rsplit("-", 1)[0] if slug.startswith("pref-") else slug
+    return f"{PREF_ID_TO_NAME.get(pref, pref)}少年サッカー応援団（junior-soccer.jp）"
+
+
 def process(slug: str, region: str, lid: str, dry_run: bool = False) -> str:
     if slug in MIGRATED_TO_OFFICIAL:
         return f"[skip] {slug}: 公式ソースへ移行済み"
@@ -478,7 +495,18 @@ def process(slug: str, region: str, lid: str, dry_run: bool = False) -> str:
     data["teams"] = team_objs
     data["matches"] = fixtures
     data["official_standings"] = meta["official"]
+    # ⚠️⚠️ **`source` と `sourceName` は必ず一緒に更新すること**（2026-09-17）。
+    #    2026-06-17に県協会（sfa2.jp）から手で作った埼玉を、7月からこのスクリプトが junior-soccer で
+    #    上書きしていたが、**`source` だけ書き換えて `sourceName` は手入力の「埼玉県サッカー協会」のまま**
+    #    残っていた。結果、県ページに「出典: 埼玉県サッカー協会」と出しながらリンク先は junior-soccer という
+    #    **出典の誤表示**になっていた（全49リーグを調べて食い違いは埼玉1件だけ）。
+    #    📌 **2つの値が別々に動くと、片方だけ古くなる。**導出できるものは導出する。
+    #    ⚠️ **埼玉はここを通らない**（`MANUAL_IMPORT_EXCLUDED` で手前の行から return するため）。
+    #       いまの値は 2026-09-17 に手で直したもので、`source` も書かれないので食い違いは起きない。
+    #       除外を外せば、この仕組みがそのまま引き継ぐ。
+    #       sfa2.jp（県協会）へ移した場合は fetch_pref_official.py 側が cfg["label"] で書くので、そちらも塞がっている。
     data["source"] = f"{base}/table/{lid}"
+    data["sourceName"] = junior_soccer_source_name(slug)
     data["lastUpdated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
