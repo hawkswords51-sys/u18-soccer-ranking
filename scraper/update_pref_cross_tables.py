@@ -323,7 +323,9 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
         # グループ分けのリーグ。出典に載っている試合だけを枠にする。
         fixtures = [dict(md=m.get("md", 0) or 0, date=m["date"], home=m["home"],
                          hs=m["hs"], **{"as": m["as"]}, away=m["away"],
-                         status="played")
+                         status="played",
+                         # ⚠️ 会場は**空ならキーごと書かない**（`"venue": ""` を全枠に並べない）
+                         **({"venue": m["venue"]} if m.get("venue") else {}))
                     for m in js_matches]
         team_objs = [dict(name=t, short=short_of(t)) for t in teams]
         ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
@@ -363,7 +365,8 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
             md_max += 1
             fixtures.append(dict(md=md_max, date=m["date"], home=m["home"],
                                  hs=m["hs"], **{"as": m["as"]},
-                                 away=m["away"], status="played"))
+                                 away=m["away"], status="played",
+                                 **({"venue": m["venue"]} if m.get("venue") else {})))
             continue
         f["home"], f["away"] = m["home"], m["away"]   # 実際の対戦方向に合わせる
         f["hs"], f["as"], f["status"] = m["hs"], m["as"], "played"
@@ -373,6 +376,10 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
         # 大半の県は節を公開しておらず md が無いので、その場合は 0 のままにする。
         if m.get("md"):
             f["md"] = m["md"]
+        # [2026-09-17] 会場。出典が持っている県だけ入る（junior-soccer は会場を持たない）。
+        # ⚠️ 空のときはキーごと作らない。表示には使っていない（H/A判定②の材料）。
+        if m.get("venue"):
+            f["venue"] = m["venue"]
 
     team_objs = [dict(name=t, short=short_of(t)) for t in teams]
     ranked = sorted(teams, key=lambda x: (-st[x]["pts"],

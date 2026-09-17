@@ -883,7 +883,7 @@ def read_miyazaki(cfg: dict) -> tuple[dict, list[dict]]:
             z = z[1:]              # 以降は8セルと同じ並びにそろえる
         if len(z) != 8:
             continue
-        date_raw, _venue, _ko, home, hs, _dash, as_, away = z
+        date_raw, venue, _ko, home, hs, _dash, as_, away = z
         home, away = home.strip(), away.strip()
         if not home or not away:
             continue
@@ -902,7 +902,8 @@ def read_miyazaki(cfg: dict) -> tuple[dict, list[dict]]:
         date = (f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
                 if dm else "")
         matches.append(dict(date=date, home=home, hs=hs,
-                            **{"as": as_}, away=away, md=md))
+                            **{"as": as_}, away=away, md=md,
+                            venue=venue.strip()))
     return {}, matches            # 順位表は公式に機械可読なものが無い
 
 
@@ -1098,7 +1099,9 @@ _TOYAMA_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
 
 
 def _toyama_schedule(tid: str) -> dict:
-    """/schedule のHTMLから {match_code: (日付, 時刻, 会場)} を作る。
+    """/schedule のHTMLから {match_code: (日付, 時刻)} を作る。
+    ⚠️ 会場は取っていない（説明文が「会場」まで含んでいたが、実装は日付と時刻の2つだけ。
+       2026-09-17に説明文のほうを実物に合わせた）。
 
     行の中に M番号 と 日付が両方あるものだけを拾う。二重テキスト対策として、
     同じ match_code が複数回出てきたら最初の1件だけを採用する。
@@ -2432,7 +2435,8 @@ def read_nagano(cfg: dict) -> tuple[dict, list[dict]]:
                 raise RuntimeError(f"日程の行が読めない: {r}")
             matches.append(dict(md=0, date=day, home=home, away=away,
                                 hs=int(sm.group(1)) if sm else None,
-                                **{"as": int(sm.group(2)) if sm else None}))
+                                **{"as": int(sm.group(2)) if sm else None},
+                                venue=re.sub(r"\s+", "", r[6] or "")))
 
     # --- 星取表 ---
     content = pdf_source.fetch_pdf(hoshi[0], HEADERS, TIMEOUT, wait=SLEEP)
@@ -5108,7 +5112,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
         return f"[据え置き] {slug}: {res}"
     team_objs, fixtures, meta = res
 
-    # 未消化試合にも出典の節番号を入れる（宮崎は第15〜18節が未消化）。
+    # 未消化試合にも出典の節番号・予定日・会場を入れる（宮崎は第15〜18節が未消化）。
     # 「次節」を出すときに効くので、取れる県では入れておく。
     if upcoming:
         # ⚠️ 枠は**向きを問わず両方のキー**に登録される。同じペアの未消化枠が2つあるとき（両巡とも未消化）、
@@ -5134,6 +5138,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                 f["date"] = m["date"]
                 if m["date"] < today_iso:
                     past.append(f"{m['date']} {m['home']}×{m['away']}")
+            if m.get("venue"):           # ⚠️ 空のときはキーごと書かない
+                f["venue"] = m["venue"]
         if past:
             # ⚠️ 予定日が過ぎているのに未消化＝延期か、出典の結果反映が遅れている。止めずにログに出すだけ。
             print(f"       （{pref}: 予定日が今日({today_iso})より前なのに未消化の試合が{len(past)}件"

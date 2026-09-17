@@ -55,13 +55,23 @@ def _is_played(m: dict) -> bool:
 
 
 def _md_of(m: dict):
+    """節番号。読めなければ None。
+
+    ⚠️ **`md` は 0 が「節が分からない」の意味で入っている県が大半**（出典が節を公開していない）。
+    ここは `int()` するだけなので **0 はそのまま 0 が返る**。呼ぶ側が `if md:` のような
+    真偽で判定すると、0 の県が丸ごと落ちたり、逆に「第0節」として並んだりする。
+    いまこのモジュールを使っているリーグページ15枚は全部 `md` を持っているので実害は無いが、
+    **県リーグに広げるときは「0＝未設定」を先に除くこと。**
+    （2026-09-17 追記。同じ理由で、未消化枠の割り当て済み判定に `md` を使ってはいけない
+      ── `fetch_pref_official.py` の `upcoming` ブロックは専用の印で見ている）
+    """
     try:
         return int(m.get("md"))
     except Exception:
         return None
 
 
-def _match_row(m: dict, link_fn, played: bool) -> str:
+def _match_row(m: dict, link_fn, played: bool, show_sub: bool = True) -> str:
     home = m.get("home", "")
     away = m.get("away", "")
     hn = link_fn(home) if link_fn else _html_escape(home)
@@ -86,9 +96,12 @@ def _match_row(m: dict, link_fn, played: bool) -> str:
     # 会場・キックオフ時刻は data/league_matches/<slug>.json に入っているリーグだけ出す
     # （プレミアはJFA公式JSON由来なので有り／プリンス・県リーグは無い）。
     # 無いリーグでも壊れないよう、必ず存在チェックしてから描く。
+    # [2026-09-17] 県リーグは `show_sub=False` で呼ぶ（→ render_recent_results_by_date_html）。
+    # 県の公式から会場を取り込み始めたので、そのままだと県ページの見た目が勝手に変わる。
+    # データには入れるが**出すかどうかは別の判断**なので、いまは出さない。
     sub_bits = []
-    kickoff = str(m.get("kickoff") or "").strip()
-    venue = str(m.get("venue") or "").strip()
+    kickoff = str(m.get("kickoff") or "").strip() if show_sub else ""
+    venue = str(m.get("venue") or "").strip() if show_sub else ""
     if kickoff:
         sub_bits.append(f"{_html_escape(kickoff)} キックオフ")
     if venue:
@@ -349,7 +362,8 @@ def render_recent_results_by_date_html(
             f'〜{_fmt_date(dates[-1].isoformat(), "kanji")}'
         )
 
-    rows = [_match_row(m, link_fn, True) for _, m in rows_src]
+    # ⚠️ show_sub=False：県ページでは会場・キックオフ時刻を出さない（→ _match_row のコメント）
+    rows = [_match_row(m, link_fn, True, show_sub=False) for _, m in rows_src]
 
     nl = "\n"
     html = [
