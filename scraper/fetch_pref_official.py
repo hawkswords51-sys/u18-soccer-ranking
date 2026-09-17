@@ -4997,7 +4997,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                 m["date"] = got.pop(0)
 
     # --- 消化と未消化を分ける ---
-    # 未消化の行を返すのは宮崎だけ（節番号を活かすため）。他県は空になる。
+    # 未消化の行は、**日程ごと読む県（愛媛・京都・福島・奈良・高知・和歌山・大阪1部・三重・山梨・岐阜など）と
+    # 宮崎**が返す。節番号と**予定日**を未消化の枠に入れるために使う（2026-09-17に日付も入れるようにした）。
     upcoming = [m for m in matches if m.get("hs") is None or m.get("as") is None]
     matches = [m for m in matches if m.get("hs") is not None and m.get("as") is not None]
 
@@ -5110,20 +5111,33 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     # 未消化試合にも出典の節番号を入れる（宮崎は第15〜18節が未消化）。
     # 「次節」を出すときに効くので、取れる県では入れておく。
     if upcoming:
-        slots = {}
+        # ⚠️ 枠は**向きを問わず両方のキー**に登録される。同じペアの未消化枠が2つあるとき（両巡とも未消化）、
+        #    先頭から当てるとどちらに入るかが `generate_fixtures` の生成順まかせになる。
+        #    節だけのうちは実害が見えなかったが、**日付を入れると「第9節に11/29」のような取り違えが表に出る**。
+        #    → **向きが一致する枠を優先**し、埋まったかどうかは **`md`/`date` の有無ではなく専用の印**で見る
+        #       （`md` は 0、`date` は空が正常値としてありうる）。
+        slots, today_iso = {}, _jst_today().isoformat()
         for f in fixtures:
             if f.get("status") != "played":
                 slots.setdefault((f["home"], f["away"]), []).append(f)
                 slots.setdefault((f["away"], f["home"]), []).append(f)
+        used, past = set(), []
         for m in upcoming:
-            if not m.get("md"):
+            free = [f for f in slots.get((m["home"], m["away"]), []) if id(f) not in used]
+            if not free:
                 continue
-            got = slots.get((m["home"], m["away"]))
-            while got:
-                f = got.pop(0)
-                if not f.get("md"):
-                    f["md"] = m["md"]
-                    break
+            f = next((x for x in free if x["home"] == m["home"] and x["away"] == m["away"]), free[0])
+            used.add(id(f))
+            if m.get("md"):
+                f["md"] = m["md"]
+            if m.get("date"):            # ⚠️ 節が無い県（愛媛）でも日付は入れる
+                f["date"] = m["date"]
+                if m["date"] < today_iso:
+                    past.append(f"{m['date']} {m['home']}×{m['away']}")
+        if past:
+            # ⚠️ 予定日が過ぎているのに未消化＝延期か、出典の結果反映が遅れている。止めずにログに出すだけ。
+            print(f"       （{pref}: 予定日が今日({today_iso})より前なのに未消化の試合が{len(past)}件"
+                  f"：{', '.join(past[:3])}{' …' if len(past) > 3 else ''}）")
 
     # 書き込む内容が公式の消化数と一致しているか（試合が落ちていないかの最終確認）
     written = sum(1 for f in fixtures if f.get("status") == "played")
