@@ -120,7 +120,8 @@ def report_pref() -> None:
         total += len(un)
         empty += sum(1 for m in un if not m.get("date"))
     print(f"  未消化試合 {total} 件のうち、日付なし {empty} 件")
-    print("  ※ 埼玉(pref-saitama-1.json)は手動編集がbotに戻されるため対象外と決めてある。")
+    print("  ※ 埼玉(pref-saitama-1.json)は週1の手動取り込み（2026-09-18〜）。")
+    print("     旧「手動編集がbotに戻される」は Actions のステップを外した2026-09-15に解消済み。")
 
 
 def main() -> int:

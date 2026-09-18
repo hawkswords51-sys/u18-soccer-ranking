@@ -70,6 +70,13 @@ NATIONAL_STALE_DAYS = 32
 # 黄。個別の県の消化数がこれだけ増えていなければ停滞とみなす。
 PREF_STALE_DAYS = 14
 
+# 🟡A。手動取り込み（junior-soccer 出典の県）が何日走っていなければ鳴らすか。
+# ⚠️ **週1運用を前提にした値**（2026-09-18）。14日だと2週続けて忘れて初めて鳴るので遅い。
+#    10日＝1週飛ばして3日で鳴る。
+# ⚠️ 🟡C（PREF_STALE_DAYS＝14）とは**別の指標**なので共用しないこと。
+#    🟡A＝こちらが取り込めば直る／🟡C＝出典に結果が出ていないか取得の不具合。
+MANUAL_IMPORT_STALE_DAYS = 10
+
 # 赤①。取得失敗が何日続いたら赤にするか。
 # ⚠️ 「回数」ではなく「日数」で見る。ワークフローは1日2回（7:00/22:00）走るので、
 #    回数で3にすると1日半で赤になってしまう。
@@ -94,11 +101,23 @@ def current_season(today: date) -> str:
 
 
 def manual_excluded() -> dict:
-    """非公式県のうち、Macの手動取り込みの対象外にしている県 → 理由（update_pref_cross_tables.py が正本）。
-    見張りの対象からも外すが、**毎回の要約に1行出して黙らせない**（⚪️情報に埋めると人に届かない・4-2c）。"""
+    """非公式県のうち、**見張りの対象からも外す**県 → 理由（update_pref_cross_tables.py が正本）。
+
+    ⚠️ 2026-09-18：`MANUAL_IMPORT_EXCLUDED` は「**あのスクリプトが取りに行かない**」県の表であって、
+       「見張らない」県の表ではない。`watch: True` が付いていれば
+       **取り込みはしないが見張りは見る**（埼玉がそれ。人が手で取り込むので止まったら鳴らす）。
+       ここで返すのは `watch` が偽のものだけ。
+    見張りの対象から外した県は、**毎回の要約に1行出して黙らせない**（⚪️情報に埋めると人に届かない・4-2c）。"""
     try:
         import update_pref_cross_tables as U
-        return dict(U.MANUAL_IMPORT_EXCLUDED)
+        out = {}
+        for pref, v in U.MANUAL_IMPORT_EXCLUDED.items():
+            if isinstance(v, dict):
+                if not v.get("watch"):
+                    out[pref] = v.get("reason", "")
+            else:
+                out[pref] = v          # 旧形式（理由が文字列だけ）も読めるようにしておく
+        return out
     except Exception as e:
         print(f"  ※ update_pref_cross_tables を読めませんでした（{e}）。対象外の県は無しとして続けます。")
         return {}
@@ -344,7 +363,7 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
                 skipped.append(pref)       # 手動取り込みの対象外（埼玉）。要約に必ず1行出す
                 continue
             n_imp = days_between(r.get("last_updated", ""), today)
-            if n_imp is None or n_imp >= PREF_STALE_DAYS:
+            if n_imp is None or n_imp >= MANUAL_IMPORT_STALE_DAYS:
                 # 🟡A（打つ手があるほう）を見出しにする。🟡Bにも当たる県は末尾に添えるだけ（1リーグ1行）。
                 yellow.append(f"🟡A {pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
                               f"（lastUpdated {r.get('last_updated') or '—'}・{r['played']}/{r['total']}"
