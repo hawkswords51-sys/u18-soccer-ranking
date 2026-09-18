@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-18T20:06:33+09:00",
+  "updatedAt": "2026-09-18T20:24:18+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1202,6 +1202,11 @@
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
       "fetchFailDays": 3
+    },
+    "hokkaido": {
+      "result": "ok",
+      "result_note": "消化42試合に更新（検算一致）",
+      "result_date": "2026-09-18"
     }
   },
   "jobs": {
