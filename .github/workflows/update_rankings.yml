@@ -567,6 +567,19 @@ jobs:
             echo "scraper/audit_pref_freshness.py がまだありません。スキップ。"
           fi
 
+      # ⚠️ continue-on-error を付けないこと。付けたら赤にならず、作った意味が無くなる
+      #    （junior-soccer の403が continue-on-error で2か月気づかれなかった前例がある）。
+      # ⚠️ ページ生成とコミットより後に置いてある。赤にしてもサイトの更新は止めない。
+      - name: 順位表と試合一覧が矛盾していないか点検
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
+        run: |
+          if [ -f scraper/check_standings_vs_matches.py ]; then
+            python scraper/check_standings_vs_matches.py
+          else
+            echo "scraper/check_standings_vs_matches.py がまだありません。スキップ。"
+          fi
+
       - name: 取得元を点検（JFA以外に落ちたリーグを検出）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
                 && env.SCOPE == 'all' }}
