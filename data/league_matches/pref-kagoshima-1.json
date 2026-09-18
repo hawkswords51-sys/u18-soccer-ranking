@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kyushu/kagoshima/league/table/163821",
   "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-09-16",
+  "lastUpdated": "2026-09-18",
   "teams": [
     {
       "name": "鹿児島ユナイテッド",
@@ -49,18 +49,6 @@
   "official_standings": [
     {
       "rank": 1,
-      "team": "鹿児島ユナイテッド",
-      "points": 34,
-      "played": 14,
-      "won": 11,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 54,
-      "ga": 8,
-      "gd": 46
-    },
-    {
-      "rank": 2,
       "team": "城西EAGLE",
       "points": 34,
       "played": 13,
@@ -72,15 +60,27 @@
       "gd": 34
     },
     {
+      "rank": 2,
+      "team": "鹿児島ユナイテッド",
+      "points": 33,
+      "played": 13,
+      "won": 11,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 51,
+      "ga": 5,
+      "gd": 46
+    },
+    {
       "rank": 3,
       "team": "鹿児島実業",
-      "points": 32,
-      "played": 14,
+      "points": 31,
+      "played": 13,
       "won": 10,
-      "drawn": 2,
+      "drawn": 1,
       "lost": 2,
-      "gf": 33,
-      "ga": 16,
+      "gf": 30,
+      "ga": 13,
       "gd": 17
     },
     {
@@ -180,12 +180,12 @@
     },
     {
       "md": 0,
-      "date": "2026-09-13",
+      "date": "",
       "home": "鹿児島ユナイテッド",
-      "hs": 3,
-      "as": 3,
+      "hs": null,
+      "as": null,
       "away": "鹿児島実業",
-      "status": "played"
+      "status": "scheduled"
     },
     {
       "md": 0,
