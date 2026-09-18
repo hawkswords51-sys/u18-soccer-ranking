@@ -442,18 +442,51 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
                         f"（md={md_sc} / koko={km['score'] if fwd else flip_score(km['score'])}）"
                         f"→ 上書きせず据え置き")
             return
+        # [2026-09-18] 勝者待ちの側を確定名に直す
+        # ------------------------------------------------------------------
+        # 「- A/B vs C/D」は、まだ勝者が決まっていない枠を表す行。出典が勝者を確定させても
+        # ここは**スコアしか書いていなかった**ため、古い「A/B」の表記が残り続けていた
+        # （2026-09-18実測で6県54行）。さらに、出典が確定名で返すようになった時点で
+        # ①②の照合（2チームの照合キー）が外れ、③で「新しい試合」として追記され、
+        # **同じ1試合が2行**になっていた（5県12行）。どちらも原因はここ。
+        #
+        # ⚠️⚠️ **門に side_ok（is_abbrev_variant）を使ってはいけない。**
+        #    あれは「短いほうが長いほうの部分列なら同一校」と見るので、実在する別校まで True になる
+        #    （新潟≡新潟西／新発田≡新発田商／千里≡北千里／長岡≡長岡工。新潟3回戦には
+        #      これらが同時に並んでいる）。名前を書き換える門に使うと、
+        #    **別の試合のチーム名に静かに置き換わる**。いまは名前を書き換えないので
+        #    「正しい行に誤ったスコアが入る」で止まっており、名前が残るぶん気づける。
+        # → 書き換えてよいのは「**その側が勝者待ち（/ を含む）で、koko 名がその分割集合の要素**」
+        #   のときだけにする。`/` を含まない側は絶対に触らない（従来の挙動を完全に保つ安全弁）。
+        def _resolved(md_side, koko_name):
+            if "/" not in md_side:
+                return None                      # 勝者待ちでない → 名前は触らない
+            elems = [s for s in md_side.split("/") if s.strip()]
+            hit = [e for e in elems if match_key(e) == match_key(koko_name)]
+            # 2つ以上該当＝あいまい（同名が両側にいる等）→ 触らない
+            return display(koko_name) if len(hit) == 1 else None
+
+        kh, ka = (km["home"], km["away"]) if fwd else (km["away"], km["home"])
+        na = _resolved(ta, kh) or ta
+        nb = _resolved(tb, ka) or tb
+
         if km["finished"] and km["score"]:
             if draw_without_pk(km["score"]):
                 warnings.append(
                     f"要確認: {kkey}「{km['home']} {km['score']} {km['away']}」が"
                     f"引き分けのままPK表記なし（出典の誤記の可能性）")
-            if fwd:
-                newline = f"- {ta} {km['score']} {tb}"
-            else:
-                newline = f"- {tb} {km['score']} {ta}"
+            newline = (f"- {na} {km['score']} {nb}" if fwd
+                       else f"- {nb} {km['score']} {na}")
             if body_lines[idx].strip() != newline:
                 body_lines[idx] = newline
                 filled += 1
+                modified = True
+        elif (na, nb) != (ta, tb):
+            # 未消化のまま勝者だけ確定した枠。スコアは書かず、表記だけ確定形にそろえる。
+            newline = f"- {na} vs {nb}"
+            if body_lines[idx].strip() != newline:
+                log(f"  勝者待ちを確定名に: 「{body_lines[idx].strip()}」→「{newline}」")
+                body_lines[idx] = newline
                 modified = True
 
     def learn_alias(parsed, km):
