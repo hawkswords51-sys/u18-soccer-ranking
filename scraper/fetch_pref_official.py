@@ -5319,6 +5319,16 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     print_diff(pref, diff)
     data["teams"] = team_objs
     data["matches"] = fixtures
+    # ⚠️⚠️ **`official_standings` は「出典の順位表そのもの」ではない。**
+    #    `meta["official"]` は build_from_source が `recompute(js_matches, teams)` で
+    #    **試合から再計算した値**。出典の表と突き合わせる関門は build_from_source の中にあり、
+    #    **書き込む時点で**効いている。ここに入るのはその派生物。
+    #    📌 名前が「official」なので「出典の表」と読まれがちで、2026-09-18に実際に取り違えた
+    #       （scraper/check_standings_vs_matches.py の docstring に経緯）。
+    #    ⚠️ そのため**保存される列は50リーグすべて同じ10列**になる。出典が持っていない列も入る
+    #       （北海道は出典に得点・失点が無いのに gf/ga が入る）。
+    #    ⚠️ **出典の順位（rank）は捨てられる。** ここで付け直すので、
+    #       **出典が同着で並べていても必ず1位2位に割れる**（2026-09-15 長野で発覚・未着手）。
     data["official_standings"] = meta["official"]
     data["source"] = src
     data["sourceName"] = cfg["label"]
