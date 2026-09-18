@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-18T20:24:18+09:00",
+  "updatedAt": "2026-09-18T20:24:25+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -416,6 +416,28 @@
       "status": "ok",
       "last_updated": "2026-09-18"
     },
+    "hokkaido": {
+      "result": "ok",
+      "result_note": "消化42試合に更新（検算一致）",
+      "result_date": "2026-09-18",
+      "season": "2026",
+      "complete": false,
+      "single_round": false,
+      "dup_pairs": 28,
+      "played_without_date": 0,
+      "played": 42,
+      "total": 56,
+      "teams": 8,
+      "latest_match": "2026-09-12",
+      "source": "official",
+      "sourceName": "北海道FAリーグ 試合結果（kawakitanet・有志運営）",
+      "last_updated": "2026-09-18",
+      "last_change": "2026-09-12",
+      "last_change_note": "初回のため最終試合日で代用",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok"
+    },
     "hyogo": {
       "season": "2026",
       "complete": false,
@@ -474,7 +496,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-18"
     },
     "iwate": {
       "result": "ok",
@@ -525,17 +547,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 66,
+      "played": 65,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-12",
       "source": "junior-soccer (manual)",
       "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-16",
+      "last_change": "2026-09-18",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-18"
     },
     "kanagawa": {
       "result": "ok",
@@ -658,7 +680,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-18"
     },
     "miyazaki": {
       "result": "ok",
@@ -862,7 +884,7 @@
       "latest_match": "2026-09-13",
       "source": "junior-soccer (manual)",
       "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-18",
       "last_change": "2026-09-13",
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
@@ -881,7 +903,7 @@
       "latest_match": "2026-09-13",
       "source": "junior-soccer (manual)",
       "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-18",
       "last_change": "2026-09-13",
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
@@ -900,7 +922,7 @@
       "latest_match": "2026-09-13",
       "source": "junior-soccer (manual)",
       "sourceName": "大阪少年サッカー応援団（junior-soccer.jp）",
-      "last_updated": "2026-09-16",
+      "last_updated": "2026-09-18",
       "last_change": "2026-09-13",
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "",
@@ -934,18 +956,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 47,
+      "played": 54,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-05",
+      "latest_match": "2026-09-13",
       "source": "junior-soccer (manual)",
       "sourceName": "埼玉少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-05",
-      "last_change_note": "初回のため最終試合日で代用",
+      "last_change": "2026-09-18",
       "result_since": "",
       "result_streak": 0,
-      "status": "excluded",
-      "last_updated": "2026-09-06"
+      "status": "ok",
+      "last_updated": "2026-09-18"
     },
     "shiga": {
       "result": "ok",
@@ -1005,7 +1026,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-16"
+      "last_updated": "2026-09-18"
     },
     "tochigi": {
       "result": "ok",
@@ -1202,11 +1223,6 @@
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
       "fetchFailDays": 3
-    },
-    "hokkaido": {
-      "result": "ok",
-      "result_note": "消化42試合に更新（検算一致）",
-      "result_date": "2026-09-18"
     }
   },
   "jobs": {
