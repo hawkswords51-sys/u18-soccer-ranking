@@ -380,6 +380,12 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
         # ⚠️ 空のときはキーごと作らない。表示には使っていない（H/A判定②の材料）。
         if m.get("venue"):
             f["venue"] = m["venue"]
+        # [2026-09-18] 出典が各試合に付けている固有ID（北海道の game_num）。
+        # ⭐️ これがあると「既存の試合のスコアが黙って書き換わった」を正確に検出できる。
+        # ⚠️ 持っているのは北海道だけ。**空ならキーごと作らない**ので他県は今までどおり。
+        #    ここで引き継がないと、土台に入れた srcId が次の実行で消える（2026-09-18 実測）。
+        if m.get("srcId"):
+            f["srcId"] = m["srcId"]
 
     team_objs = [dict(name=t, short=short_of(t)) for t in teams]
     ranked = sorted(teams, key=lambda x: (-st[x]["pts"],

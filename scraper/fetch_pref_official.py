@@ -229,6 +229,16 @@ PREF_OFFICIAL = {
                   "source": "https://fa-akita.net/16943/",
                   "label": "秋田県サッカー協会 公式"},
 
+    # 北海道（2026-09-18追加・47県目）。kawakitanet の北海道FAリーグ。
+    # ⚠️⚠️ **`label` に「公式」と書かないこと。** ここは sourceName になって県ページの「出典」表示に出る。
+    #    kawakitanet は北海道サッカー協会ではなく**個人運営の有志入力サイト**（read_hokkaido のコメント参照）。
+    #    📌 埼玉で「sourceName に県協会と書いてリンク先は junior-soccer」という出典の誤表示を作った前例がある。
+    # ⚠️ 順位表に得点・失点が無い（得失点差だけ）→ pts_gd ゲート。
+    "hokkaido":  {"platform": "hokkaido", "teams": 8, "gameid": "9740",
+                  "source": "https://www.kawakitanet.com/league_soccer/main.php?pref_cd=1&gameid=9740",
+                  "label": "北海道FAリーグ 試合結果（kawakitanet・有志運営）",
+                  "standings_gate": "pts_gd"},
+
     # 兵庫（2026-09-14追加）。日程･結果PDF（1部）＋戦績表PDF（read_hyogo のコメント参照）。
     # 戦績表は勝点・得失点差・順位だけ → 勝点＋得失点差で照合する "pts_gd" ゲート。
     "hyogo":     {"platform": "hyogo", "teams": 10, "first_no": 101,
@@ -415,6 +425,14 @@ PREF_ALIAS = {
     "aichi": {
         "名古屋グランパスB": "グランパスB",
         "日本福祉大学付属": "日福大付",
+    },
+    # 北海道（2026-09-18）。**空で1回走らせて `[要確認]` に出た2件だけ**を登録した。
+    # ⚠️ 出典とサイトで表記が違うチームは8件中8件あるが、6件は norm() と teams.json の
+    #    aliases（大谷室蘭2nd・札幌大谷2nd・東海大札幌・札幌創成・札幌第一 ほか）で寄る。
+    #    先回りで8件全部書くと**二重管理になる**（norm() や aliases が改善されたとき片方が古くなる）。
+    "hokkaido": {
+        "VITA U-18": "旭実FC VITA",   # 文字列がほぼ重ならない（旭川実業高校サッカー部のクラブチーム）
+        "旭川実2nd": "旭川実業高校2nd",
     },
     "iwate": {
         "G盛岡ユース": "グルージャ",      # グルージャ盛岡ユース
@@ -1916,6 +1934,104 @@ def read_niigata(cfg: dict) -> tuple[dict, list[dict]]:
             print(f"       （新潟: {sup['date']} {m['home']} vs {m['away']} は一覧に入力済み。"
                   f"hoshitori_results から外してよい）")
     return {}, matches
+
+
+# ============================================================
+# 北海道（kawakitanet）— 北海道FAリーグ（2026-09-18追加・47県目）
+#   試合結果 select.php?pref_cd=1&gameid={gameid} ／ 順位表 main.php?pref_cd=1&gameid={gameid}
+#
+# ⚠️⚠️ **kawakitanet は北海道サッカー協会ではない。** 個人運営のリーグ戦管理サービスで、
+#    ページに「試合結果を追加する」フォームがあり編集パスは「お好きな4〜8桁の数字」＝**誰でも追加できる**。
+#    junior-soccer.jp と同じ「有志入力」の型。`label` に「公式」と書かないこと（sourceName に出る）。
+#    ⭐️ それでも使う根拠＝**公式（北海道サッカー協会の星取表PDF・7/5現在）と1件も違わなかった**。
+#       公式は7/5で止まっていて残り3か月ぶんが出ていないので、結果はこちらを使うほかない。
+#
+# ⚠️⚠️ **文字コードは HTTPヘッダの charset=UTF-8 が正。**
+#    HTML内の `<meta ... charset=EUC-JP>` は**古いまま残っている嘘**で、
+#    これを信じてデコードすると 0xe5 で落ちる（2026-09-18 実測）。
+#    → **ヘッダを優先し、メタタグは見ない**（fetch_html に encoding を渡さない）。
+#
+# ⚠️ **試合一覧に `<table>` タグが1つも無い。** 全体がほぼ1行のHTMLで、`<hr>` 区切りの直列。
+#    1試合ぶんの実体：
+#      <font size=-1>2026-09-12 忠和公園 多目的広場</font></br>VITA U-18
+#      <font color=red><b> 2-0</font></b> 札幌第一<a href="update.php?...&game_num=290076">更</a>
+#    ⚠️ `</br>`（閉じタグの書き方が逆）や `<font color=red><b>…</font></b>`（入れ子が交差）など
+#       HTMLとして壊れているので、パーサではなく**正規表現で1かたまりずつ読む**。
+#
+# ⚠️ **順位表に得点・失点が無い（得失点差だけ）。** 列は 順位・チーム・試合・勝点・勝・分・敗・得失。
+#    → 既定ゲート（全項目一致）も okinawa ゲート（勝点・得点・失点）も使えない。**pts_gd ゲート**を使う。
+#
+# ⭐️ `game_num` は**出典が各試合に付けている固有ID**。`srcId` として保存すると
+#    「既存の試合のスコアが黙って書き換わった」を正確に検出できる。
+#    ⚠️ **他県には無いキー**なので、読む側は無くても壊れない作りにすること。
+# ============================================================
+_HKD_MATCH_RE = re.compile(
+    r"<font size=-1>\s*(\d{4}-\d{2}-\d{2})\s*(.*?)</font>"      # 日付と会場
+    r".*?</br>\s*(.*?)\s*<font color=red>\s*<b>\s*"             # ホーム
+    r"(\d+)\s*[-‐−–—]\s*(\d+)\s*</font>\s*</b>\s*"              # スコア
+    r"(.*?)\s*<a href=\"update\.php\?[^\"]*game_num=(\d+)",     # アウェイと固有ID
+    re.S)
+_HKD_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _hkd_text(s: str) -> str:
+    """タグを剥がして空白（全角含む）を落とす。"""
+    return re.sub(r"[\s　]+", " ", _HKD_TAG_RE.sub("", s or "")).strip()
+
+
+def read_hokkaido(cfg: dict) -> tuple[dict, list[dict]]:
+    base = "https://www.kawakitanet.com/league_soccer"
+    q = f"pref_cd=1&gameid={cfg['gameid']}"
+
+    # --- 試合結果 ---
+    # ⚠️ encoding を渡さない＝ヘッダの charset(UTF-8) に従わせる。メタタグの EUC-JP は嘘。
+    html = fetch_html(f"{base}/select.php?{q}", must_contain="試合結果一覧")
+    time.sleep(SLEEP)
+    matches = []
+    for date, venue, home, hs, as_, away, gid in _HKD_MATCH_RE.findall(html):
+        home, away, venue = _hkd_text(home), _hkd_text(away), _hkd_text(venue)
+        if not home or not away:
+            continue
+        matches.append(dict(md=0, date=date, home=home, hs=int(hs),
+                            **{"as": int(as_)}, away=away,
+                            venue=venue, srcId=gid))
+    # ページ末尾に「42試合」と自己申告があるので、読み取り漏れをここで捕まえる
+    mm = re.search(r"(\d+)\s*試合", _hkd_text(html))
+    if mm and int(mm.group(1)) != len(matches):
+        raise RuntimeError(f"試合結果が{len(matches)}件（ページの自己申告は{mm.group(1)}件）")
+    if not matches:
+        raise RuntimeError("試合結果を1件も読めなかった（ページの作りが変わった可能性）")
+
+    # --- 順位表 ---
+    soup = BeautifulSoup(fetch_html(f"{base}/main.php?{q}"), "html.parser")
+    time.sleep(SLEEP)
+    standings = {}
+    for table in soup.find_all("table"):
+        rows = _rows(table)
+        head = next((r for r in rows if "勝点" in r and "得失" in r), None)
+        if not head:
+            continue
+        idx = {k: head.index(k) for k in ("順位", "チーム", "試合", "勝点", "勝", "分", "負", "得失")
+               if k in head}
+        if not {"順位", "チーム", "勝点", "得失"} <= set(idx):
+            continue
+        for r in rows[rows.index(head) + 1:]:
+            if len(r) <= max(idx.values()):
+                continue
+            name = r[idx["チーム"]].strip()
+            rank, pts, gd = (_to_int(r[idx["順位"]]), _to_int(r[idx["勝点"]]), _to_int(r[idx["得失"]]))
+            if not name or rank is None or pts is None or gd is None:
+                continue
+            # ⚠️ pts_gd ゲートが見るのは pts / gd / rank の3つ（得点・失点は出典に無い）
+            standings[name] = dict(pts=pts, gd=gd, rank=rank)
+        if standings:
+            break
+    n = cfg["teams"]
+    if len(standings) != n:
+        raise RuntimeError(f"順位表が{len(standings)}チーム（{n}チームのはず）")
+    if sum(v["gd"] for v in standings.values()) != 0:
+        raise RuntimeError("順位表の得失点差の合計が0でない（読み取りの誤り、または出典の誤り）")
+    return standings, matches
 
 
 # ============================================================
@@ -4965,6 +5081,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "okayama": read_okayama, "oita": read_oita,
                       "niigata": read_niigata, "akita": read_akita,
                       "hyogo": read_hyogo, "tokushima": read_tokushima,
+                      "hokkaido": read_hokkaido,
                       "aomori": read_aomori, "nagano": read_nagano,
                       "fukui": read_fukui, "yamanashi": read_yamanashi,
                       "gifu": read_gifu, "mie": read_mie,
