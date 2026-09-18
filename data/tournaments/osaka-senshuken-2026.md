@@ -126,7 +126,6 @@ scraper/update_tournament_results.py が上の source から
 - 八尾翠翔/開明 vs 浪速
 - 春日丘 vs 箕面学園/英真学園
 - 金剛/泉北 vs 八尾北/星翔
-- 東淀工/千里 vs 旭/大阪国際大和田
 - 長野/追手門学院 vs 豊島/東住吉総合
 - 桜塚/生野 vs 太成学院大高/枚方
 - OBFC/あべの翔学 vs 上宮太子/金蘭千里

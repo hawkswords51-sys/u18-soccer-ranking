@@ -34,7 +34,6 @@ scraper/update_tournament_results.py が上の source から
 
 ## Bブロック決勝（9/20）
 
-- 前橋西/新田暁 vs 玉村・藤工/市立太田
 - 新田暁 vs 市立太田
 
 ## Cブロック1回戦（9/12）
