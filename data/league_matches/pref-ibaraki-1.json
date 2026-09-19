@@ -50,14 +50,14 @@
     {
       "rank": 1,
       "team": "第一学院A",
-      "points": 29,
-      "played": 12,
-      "won": 9,
+      "points": 32,
+      "played": 13,
+      "won": 10,
       "drawn": 2,
       "lost": 1,
-      "gf": 30,
+      "gf": 37,
       "ga": 12,
-      "gd": 18
+      "gd": 25
     },
     {
       "rank": 2,
@@ -86,38 +86,38 @@
     {
       "rank": 4,
       "team": "鹿島学園B",
-      "points": 23,
-      "played": 12,
+      "points": 24,
+      "played": 13,
       "won": 7,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 3,
-      "gf": 15,
-      "ga": 11,
+      "gf": 17,
+      "ga": 13,
       "gd": 4
     },
     {
       "rank": 5,
       "team": "水戸ホーリーホックユースA",
-      "points": 19,
-      "played": 12,
+      "points": 20,
+      "played": 13,
       "won": 5,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 3,
-      "gf": 21,
-      "ga": 16,
+      "gf": 23,
+      "ga": 18,
       "gd": 5
     },
     {
       "rank": 6,
       "team": "水戸啓明A",
-      "points": 16,
-      "played": 12,
-      "won": 5,
+      "points": 19,
+      "played": 13,
+      "won": 6,
       "drawn": 1,
       "lost": 6,
-      "gf": 16,
+      "gf": 18,
       "ga": 19,
-      "gd": -3
+      "gd": -1
     },
     {
       "rank": 7,
@@ -135,25 +135,25 @@
       "rank": 8,
       "team": "牛久栄進A",
       "points": 10,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 1,
-      "lost": 8,
+      "lost": 9,
       "gf": 13,
-      "ga": 22,
-      "gd": -9
+      "ga": 29,
+      "gd": -16
     },
     {
       "rank": 9,
       "team": "水戸葵陵A",
       "points": 6,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 0,
-      "lost": 10,
+      "lost": 11,
       "gf": 11,
-      "ga": 31,
-      "gd": -20
+      "ga": 33,
+      "gd": -22
     },
     {
       "rank": 10,
@@ -228,12 +228,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "第一学院A",
-      "hs": null,
-      "as": null,
+      "hs": 7,
+      "as": 0,
       "away": "牛久栄進A",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "高浜ｽﾎﾟｰﾂ広場"
     },
     {
       "md": 0,
@@ -460,12 +461,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "鹿島学園B",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "水戸ホーリーホックユースA",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
     },
     {
       "md": 0,
@@ -916,12 +918,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "水戸葵陵A",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "水戸啓明A",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "ひたちなか地区多目的C"
     },
     {
       "md": 0,
@@ -1043,12 +1046,12 @@
   "source_standings": [
     {
       "team": "第一学院A",
-      "pts": 29,
-      "played": 12,
-      "won": 9,
+      "pts": 32,
+      "played": 13,
+      "won": 10,
       "drawn": 2,
       "lost": 1,
-      "gf": 30,
+      "gf": 37,
       "ga": 12
     },
     {
@@ -1073,32 +1076,32 @@
     },
     {
       "team": "鹿島学園B",
-      "pts": 23,
-      "played": 12,
+      "pts": 24,
+      "played": 13,
       "won": 7,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 3,
-      "gf": 15,
-      "ga": 11
+      "gf": 17,
+      "ga": 13
     },
     {
       "team": "水戸ホーリーホックユースA",
-      "pts": 19,
-      "played": 12,
+      "pts": 20,
+      "played": 13,
       "won": 5,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 3,
-      "gf": 21,
-      "ga": 16
+      "gf": 23,
+      "ga": 18
     },
     {
       "team": "水戸啓明A",
-      "pts": 16,
-      "played": 12,
-      "won": 5,
+      "pts": 19,
+      "played": 13,
+      "won": 6,
       "drawn": 1,
       "lost": 6,
-      "gf": 16,
+      "gf": 18,
       "ga": 19
     },
     {
@@ -1114,22 +1117,22 @@
     {
       "team": "牛久栄進A",
       "pts": 10,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 1,
-      "lost": 8,
+      "lost": 9,
       "gf": 13,
-      "ga": 22
+      "ga": 29
     },
     {
       "team": "水戸葵陵A",
       "pts": 6,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 0,
-      "lost": 10,
+      "lost": 11,
       "gf": 11,
-      "ga": 31
+      "ga": 33
     },
     {
       "team": "鹿島A",

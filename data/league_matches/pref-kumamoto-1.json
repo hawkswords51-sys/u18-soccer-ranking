@@ -51,13 +51,13 @@
       "rank": 1,
       "team": "熊本商業",
       "points": 39,
-      "played": 13,
+      "played": 14,
       "won": 13,
       "drawn": 0,
-      "lost": 0,
-      "gf": 30,
-      "ga": 3,
-      "gd": 27
+      "lost": 1,
+      "gf": 31,
+      "ga": 6,
+      "gd": 25
     },
     {
       "rank": 2,
@@ -74,14 +74,14 @@
     {
       "rank": 3,
       "team": "秀岳館",
-      "points": 20,
-      "played": 12,
-      "won": 6,
+      "points": 23,
+      "played": 13,
+      "won": 7,
       "drawn": 2,
       "lost": 4,
-      "gf": 24,
-      "ga": 13,
-      "gd": 11
+      "gf": 27,
+      "ga": 14,
+      "gd": 13
     },
     {
       "rank": 4,
@@ -180,13 +180,14 @@
       "venue": "COSMOS東"
     },
     {
-      "md": 0,
-      "date": "",
+      "md": 14,
+      "date": "2026-09-19",
       "home": "熊本商業",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "秀岳館",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "秀岳館"
     },
     {
       "md": 7,
@@ -1045,13 +1046,13 @@
   "source_standings": [
     {
       "team": "熊本商業",
-      "played": 13,
+      "played": 14,
       "pts": 39,
       "won": 13,
       "drawn": 0,
-      "lost": 0,
-      "gf": 30,
-      "ga": 3
+      "lost": 1,
+      "gf": 31,
+      "ga": 6
     },
     {
       "team": "熊本国府",
@@ -1065,13 +1066,13 @@
     },
     {
       "team": "秀岳館",
-      "played": 12,
-      "pts": 20,
-      "won": 6,
+      "played": 13,
+      "pts": 23,
+      "won": 7,
       "drawn": 2,
       "lost": 4,
-      "gf": 24,
-      "ga": 13
+      "gf": 27,
+      "ga": 14
     },
     {
       "team": "ルーテル",

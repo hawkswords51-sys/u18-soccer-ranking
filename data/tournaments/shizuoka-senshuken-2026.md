@@ -43,7 +43,7 @@ scraper/update_tournament_results.py が上の source から
 - 静岡商 vs 静岡城北
 - 相良 vs 沼津西
 - 常葉菊川 vs 浜松聖星
-- 浜松東 vs 清水国際
+- 浜松東 11-0 清水国際
 - 星陵 vs 浜松城北工
 - オイスカ vs 沼津東
 - 清流館 vs 静岡聖光
@@ -76,7 +76,7 @@ scraper/update_tournament_results.py が上の source から
 - 静岡商/静岡城北 vs 浜松工
 - 相良/沼津西 vs 常葉菊川/浜松聖星
 - 伊豆中央 vs 御殿場南
-- 浜松東/清水国際 vs 磐田北
+- 浜松東 vs 磐田北
 - 星陵/浜松城北工 vs オイスカ/沼津東
 - 沼津商 vs 下田
 - 清流館/静岡聖光 vs 島田商
@@ -84,3 +84,4 @@ scraper/update_tournament_results.py が上の source から
 ## 3回戦（10/3）
 
 - 沼津市立/御殿場西 vs 静岡西/焼津中央
+- 伊豆中央/御殿場南 vs 浜松東/磐田北

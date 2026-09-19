@@ -129,6 +129,18 @@
     },
     {
       "rank": 7,
+      "team": "米子北",
+      "pts": 18,
+      "played": 13,
+      "won": 5,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 26,
+      "ga": 22,
+      "gd": 4
+    },
+    {
+      "rank": 8,
       "team": "大津",
       "pts": 18,
       "played": 11,
@@ -140,7 +152,7 @@
       "gd": 3
     },
     {
-      "rank": 8,
+      "rank": 9,
       "team": "ガンバ大阪ユース",
       "pts": 17,
       "played": 12,
@@ -150,18 +162,6 @@
       "gf": 18,
       "ga": 19,
       "gd": -1
-    },
-    {
-      "rank": 9,
-      "team": "米子北",
-      "pts": 15,
-      "played": 12,
-      "won": 4,
-      "drawn": 3,
-      "lost": 5,
-      "gf": 23,
-      "ga": 20,
-      "gd": 3
     },
     {
       "rank": 10,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "ジュビロ磐田U-18",
       "pts": 8,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 2,
-      "lost": 9,
-      "gf": 27,
-      "ga": 37,
-      "gd": -10
+      "lost": 10,
+      "gf": 29,
+      "ga": 40,
+      "gd": -11
     },
     {
       "rank": 12,
@@ -2440,12 +2440,37 @@
       "md": 14,
       "date": "2026-09-19",
       "home": "ジュビロ磐田U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "米子北",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ジュビロ上大之郷グラウンド",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1407.pdf",
+      "homeScorers": [
+        {
+          "minute": "51",
+          "name": "中谷 桜太朗"
+        },
+        {
+          "minute": "61",
+          "name": "西岡 健斗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "2",
+          "name": "塚田 愛心"
+        },
+        {
+          "minute": "45+1",
+          "name": "清水 大世"
+        },
+        {
+          "minute": "90+1",
+          "name": "大原 暁"
+        }
+      ]
     },
     {
       "md": 14,

@@ -41,6 +41,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "沖縄SV",
+      "points": 19,
+      "played": 10,
+      "won": 6,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 24,
+      "ga": 10,
+      "gd": 14
+    },
+    {
+      "rank": 2,
       "team": "那覇",
       "points": 19,
       "played": 9,
@@ -52,7 +64,7 @@
       "gd": 6
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "名護",
       "points": 17,
       "played": 9,
@@ -64,7 +76,7 @@
       "gd": 5
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "興南",
       "points": 16,
       "played": 9,
@@ -74,18 +86,6 @@
       "gf": 18,
       "ga": 9,
       "gd": 9
-    },
-    {
-      "rank": 4,
-      "team": "沖縄SV",
-      "points": 16,
-      "played": 9,
-      "won": 5,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 18,
-      "ga": 10,
-      "gd": 8
     },
     {
       "rank": 5,
@@ -127,13 +127,13 @@
       "rank": 8,
       "team": "FC琉球鹿島朝日",
       "points": 2,
-      "played": 9,
+      "played": 10,
       "won": 0,
       "drawn": 2,
-      "lost": 7,
+      "lost": 8,
       "gf": 5,
-      "ga": 29,
-      "gd": -24
+      "ga": 35,
+      "gd": -30
     }
   ],
   "matches": [
@@ -616,12 +616,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "FC琉球鹿島朝日",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 6,
       "away": "沖縄SV",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -644,31 +644,31 @@
   ],
   "source_standings": [
     {
+      "team": "沖縄SV",
+      "pts": 19,
+      "gf": 24,
+      "ga": 10,
+      "rank": 1
+    },
+    {
       "team": "那覇",
       "pts": 19,
       "gf": 15,
       "ga": 9,
-      "rank": 1
+      "rank": 2
     },
     {
       "team": "名護",
       "pts": 17,
       "gf": 18,
       "ga": 13,
-      "rank": 2
+      "rank": 3
     },
     {
       "team": "興南",
       "pts": 16,
       "gf": 18,
       "ga": 9,
-      "rank": 3
-    },
-    {
-      "team": "沖縄SV",
-      "pts": 16,
-      "gf": 18,
-      "ga": 10,
       "rank": 4
     },
     {
@@ -696,7 +696,7 @@
       "team": "FC琉球鹿島朝日",
       "pts": 2,
       "gf": 5,
-      "ga": 29,
+      "ga": 35,
       "rank": 8
     }
   ]

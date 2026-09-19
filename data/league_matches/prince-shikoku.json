@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "FC今治U-18",
+      "pts": 17,
+      "played": 12,
+      "won": 5,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 21,
+      "ga": 18,
+      "gd": 3
+    },
+    {
+      "rank": 6,
       "team": "徳島市立",
       "pts": 16,
       "played": 11,
@@ -106,18 +118,6 @@
       "gf": 25,
       "ga": 17,
       "gd": 8
-    },
-    {
-      "rank": 6,
-      "team": "FC今治U-18",
-      "pts": 16,
-      "played": 11,
-      "won": 5,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 17,
-      "ga": 14,
-      "gd": 3
     },
     {
       "rank": 7,
@@ -133,6 +133,18 @@
     },
     {
       "rank": 8,
+      "team": "新田",
+      "pts": 8,
+      "played": 12,
+      "won": 1,
+      "drawn": 5,
+      "lost": 6,
+      "gf": 18,
+      "ga": 30,
+      "gd": -12
+    },
+    {
+      "rank": 9,
       "team": "徳島商",
       "pts": 8,
       "played": 12,
@@ -142,18 +154,6 @@
       "gf": 13,
       "ga": 35,
       "gd": -22
-    },
-    {
-      "rank": 9,
-      "team": "新田",
-      "pts": 7,
-      "played": 11,
-      "won": 1,
-      "drawn": 4,
-      "lost": 6,
-      "gf": 14,
-      "ga": 26,
-      "gd": -12
     },
     {
       "rank": 10,
@@ -811,10 +811,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "新田",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 4,
       "away": "FC今治U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "愛媛県総合球技場",
       "kickoff": "10:00"
     },

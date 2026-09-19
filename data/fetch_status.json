@@ -16,7 +16,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 76,
+      "matchesPlayed": 77,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -38,13 +38,13 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['東北学院.試合 日程から計算14≠順位表13', '東北学院.勝 日程から計算6≠順位表5', '東北学院.得点 日程から計算19≠順位表17'] …（据え置き）",
-      "matchesPlayed": 65,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 69,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 1,
-      "consecutiveFallbackPrev": 0,
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 1,
       "fallbackSince": "2026-09-19",
       "fallbackDays": 1
     },
@@ -136,7 +136,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 56,
+      "matchesPlayed": 58,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 58,
+      "matchesPlayed": 59,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -160,7 +160,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 55,
+      "matchesPlayed": 56,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -172,7 +172,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 54,
+      "matchesPlayed": 55,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-19T12:43:04+09:00",
+  "updatedAt": "2026-09-19T14:31:22+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -376,7 +376,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化58試合に更新（検算一致）",
+      "result_note": "消化60試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -461,7 +461,7 @@
     },
     "ibaraki": {
       "result": "ok",
-      "result_note": "消化60試合に更新（検算一致）",
+      "result_note": "消化63試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -500,7 +500,7 @@
     },
     "iwate": {
       "result": "ok",
-      "result_note": "消化49試合に更新（検算一致）",
+      "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -602,7 +602,7 @@
     },
     "kumamoto": {
       "result": "ok",
-      "result_note": "消化62試合に更新（検算一致）",
+      "result_note": "消化63試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -831,7 +831,7 @@
     },
     "okinawa": {
       "result": "ok",
-      "result_note": "消化36試合に更新（検算一致）",
+      "result_note": "消化37試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -930,7 +930,7 @@
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化38試合に更新（検算一致）",
+      "result_note": "消化40試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -969,7 +969,7 @@
     },
     "shiga": {
       "result": "ok",
-      "result_note": "消化58試合に更新（検算一致）",
+      "result_note": "消化59試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -1113,7 +1113,7 @@
     },
     "toyama": {
       "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -1176,7 +1176,7 @@
     },
     "yamaguchi": {
       "result": "ok",
-      "result_note": "消化42試合に更新（検算一致）",
+      "result_note": "消化45試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,

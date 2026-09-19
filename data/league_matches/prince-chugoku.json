@@ -50,14 +50,14 @@
     {
       "rank": 1,
       "team": "岡山学芸館",
-      "pts": 26,
-      "played": 11,
-      "won": 8,
+      "pts": 29,
+      "played": 12,
+      "won": 9,
       "drawn": 2,
       "lost": 1,
-      "gf": 28,
+      "gf": 33,
       "ga": 9,
-      "gd": 19
+      "gd": 24
     },
     {
       "rank": 2,
@@ -97,18 +97,6 @@
     },
     {
       "rank": 5,
-      "team": "レノファ山口FC U-18",
-      "pts": 14,
-      "played": 11,
-      "won": 3,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 11,
-      "ga": 12,
-      "gd": -1
-    },
-    {
-      "rank": 6,
       "team": "広島皆実",
       "pts": 14,
       "played": 12,
@@ -120,15 +108,27 @@
       "gd": -4
     },
     {
+      "rank": 6,
+      "team": "レノファ山口FC U-18",
+      "pts": 14,
+      "played": 12,
+      "won": 3,
+      "drawn": 5,
+      "lost": 4,
+      "gf": 11,
+      "ga": 17,
+      "gd": -6
+    },
+    {
       "rank": 7,
       "team": "就実",
-      "pts": 10,
-      "played": 11,
+      "pts": 11,
+      "played": 12,
       "won": 3,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 7,
-      "gf": 14,
-      "ga": 22,
+      "gf": 17,
+      "ga": 25,
       "gd": -8
     },
     {
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "玉野光南",
+      "pts": 8,
+      "played": 12,
+      "won": 2,
+      "drawn": 2,
+      "lost": 8,
+      "gf": 15,
+      "ga": 28,
+      "gd": -13
+    },
+    {
+      "rank": 10,
       "team": "大社",
       "pts": 8,
       "played": 11,
@@ -154,18 +166,6 @@
       "gf": 7,
       "ga": 28,
       "gd": -21
-    },
-    {
-      "rank": 10,
-      "team": "玉野光南",
-      "pts": 7,
-      "played": 11,
-      "won": 2,
-      "drawn": 1,
-      "lost": 8,
-      "gf": 12,
-      "ga": 25,
-      "gd": -13
     }
   ],
   "matches": [
@@ -778,10 +778,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "レノファ山口FC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 5,
       "away": "岡山学芸館",
-      "status": "scheduled",
+      "status": "played",
       "venue": "やまぐちサッカー交流広場",
       "kickoff": "10:00"
     },
@@ -800,10 +800,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "就実",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 3,
       "away": "玉野光南",
-      "status": "scheduled",
+      "status": "played",
       "venue": "就実祇園グラウンド",
       "kickoff": "10:00"
     },
