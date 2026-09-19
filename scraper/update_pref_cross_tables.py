@@ -290,6 +290,43 @@ def assign_ranks(st: dict[str, dict], teams: list[str]) -> list[dict]:
             for i, t in enumerate(ranked)]
 
 
+def apply_source_ties(official: list[dict], source_rows: list[dict] | None) -> list[str]:
+    """出典の rank が同着のチームに、同じ順位の数字を付ける（2026-09-19）。並び順は変えない。
+
+    ⚠️ **同着かどうかは出典の rank だけで決める。** 「勝点が同じなら同着」とはしない
+       （兵庫・沖縄・大阪・和歌山は勝点が同じでも得失点差で分けている。実測5件）。
+    ⚠️ rank を持たない出典（31リーグ）では何もしない。
+    ⚠️ 出典の rank とこちらの並びが**矛盾する**とき（こちらで下のチームのほうが出典では上）は
+       **何も変えずに警告を返す**。更新は止めない（順位の数字の問題で試合データを据え置かない）。
+    返り値：警告の文字列のリスト（空なら問題なし）。official をその場で書き換える。
+    """
+    if not official or not source_rows:
+        return []
+    # 1行でも rank を持たない出典は対象外（キーが無い・None のどちらも「持たない」）
+    src = {}
+    for r in source_rows:
+        if r.get("rank") is None:
+            return []
+        src[r.get("team")] = r["rank"]
+    # チームがそろっていなければ何もしない（片方にしか無い名前がある）
+    mine = [row["team"] for row in official]
+    if set(mine) != set(src):
+        only_src = sorted(set(src) - set(mine))[:3]
+        only_mine = sorted(set(mine) - set(src))[:3]
+        return [f"同着の付け直しを見送り（チーム名が出典と合わない: 出典のみ{only_src}／こちらのみ{only_mine}）"]
+    # こちらの並びに沿って出典の順位を並べ、逆転していないかを見る
+    seq = [src[t] for t in mine]
+    for i in range(1, len(seq)):
+        if seq[i] < seq[i - 1]:
+            return [f"同着の付け直しを見送り（出典の順位と並びが矛盾: "
+                    f"{mine[i - 1]}=出典{seq[i - 1]}位 → {mine[i]}=出典{seq[i]}位）"]
+    # 隣り合う2チームの出典 rank が等しいときだけ、後ろを前と同じ数字にする
+    for i in range(1, len(official)):
+        if seq[i] == seq[i - 1]:
+            official[i]["rank"] = official[i - 1]["rank"]
+    return []
+
+
 def set_source_standings(data: dict, source_table) -> None:
     """出典の順位表そのものを `source_standings` に入れる（2026-09-19 新設）。
 
@@ -571,7 +608,11 @@ def process(slug: str, region: str, lid: str, dry_run: bool = False) -> str:
     #    ⚠️ そのため**保存される列は50リーグすべて同じ10列**になる。出典が持っていない列も入る
     #       （北海道は出典に得点・失点が無いのに gf/ga が入る）。
     #    ⚠️ **出典の順位（rank）は捨てられる。** ここで付け直すので、
-    #       **出典が同着で並べていても必ず1位2位に割れる**（2026-09-15 長野で発覚・未着手）。
+    #       **出典が同着で並べていても必ず1位2位に割れる**（2026-09-15 長野で発覚）。
+    #    📌 [2026-09-20] 同着を戻す `apply_source_ties` は**この経路では呼ばない**。
+    #       junior-soccer の表を読む `parse_standings` は rank を読んでいないので、
+    #       呼んでも何も起きない（何もしない呼び出しを置かない）。県協会の公式サイト経路
+    #       （fetch_pref_official.py）だけが同着を戻す。
     data["official_standings"] = meta["official"]
     # [2026-09-19] 出典（junior-soccer）の順位表そのもの。**上とは別物**（上は再計算値）。
     #   ⚠️ `parse_standings` は**順位の列を読んでいない**ので rank は入らない。

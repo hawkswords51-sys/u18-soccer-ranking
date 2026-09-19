@@ -60,7 +60,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 # 既存の県1部スクリプトから、名寄せ・検算・JSON組み立てをそのまま流用する。
 # 同じ関数を使うことで、出力スキーマと検算の厳しさが junior-soccer 版と完全に揃う。
 from update_pref_cross_tables import (  # noqa: E402
-    SEASON_YEAR, build_from_source, norm, set_source_standings,
+    SEASON_YEAR, apply_source_ties, build_from_source, norm, set_source_standings,
 )
 import pdf_source  # noqa: E402  PDF出典の下ごしらえ（URLを辿る・取得・版日付・行/表の復元）
 
@@ -5346,13 +5346,22 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     #       （北海道は出典に得点・失点が無いのに gf/ga が入る）。
     #    ⚠️ **出典の順位（rank）は捨てられる。** ここで付け直すので、
     #       **出典が同着で並べていても必ず1位2位に割れる**（2026-09-15 長野で発覚・未着手）。
+    # [2026-09-20] 出典が**同着**と書いているチームに、同じ順位の数字を戻す。
+    #   ⚠️ 渡すのは `source_table`（名寄せ直後に捕まえた出典の表）。`standings` を渡さないこと
+    #      （self/okinawa/pts_gd ゲートでは試合からの再計算値に化けていて rank が無い）。
+    #   ⚠️ 並び順は変えない。変わるのは rank の数字だけ。
+    ties_warn = apply_source_ties(meta["official"],
+                                  [dict(r, team=t) for t, r in (source_table or [])])
+    for w in ties_warn:
+        print(f"  ⚠️ {pref}: {w}")
     data["official_standings"] = meta["official"]
     set_source_standings(data, source_table)   # [2026-09-19] 出典の表そのもの（上とは別物）
     data["source"] = src
     data["sourceName"] = cfg["label"]
     data["lastUpdated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）"
+    note = ("／" + "／".join(ties_warn)) if ties_warn else ""
+    return f"[更新] {slug}: 消化{new_played}試合に更新（検算一致）{note}"
 
 
 # ---------------------------------------------------------------------------

@@ -341,12 +341,20 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
             return ""
         return " " + " ".join(c for c in (prefix, f'zone-{z["cls"]}') if c)
 
+    # [2026-09-20] 「順」の列だけは順位表の rank を使う。
+    #   出典が同着にしているとき（奈良の2位が2校）、上の順位表は2位・2位なのに
+    #   ここだけ 1,2,3… の行番号で3と出て、同じページの中で数字が食い違っていた。
+    #   ⚠️ **並び順（order）と昇降格ゾーンの色（_zcls の i）は位置のまま**。変えるのは表示する数字だけ。
+    #   ⚠️ rank を持たない／チーム名が合わない行は、今までどおり行番号を出す。
+    off_rank = {r.get("team"): r.get("rank") for r in (data.get("official_standings") or [])
+                if r.get("rank") is not None}
+
     head_cols = "".join(f'<th class="xt-vc"><span>{_html_escape(short[t])}</span></th>' for t in order)
     body_rows = []
     for i, row in enumerate(order, 1):
         tds = "".join(cell(row, col) for col in order)
         body_rows.append(
-            f'<tr><th class="xt-rk{_zcls(i, "zone-cell")}">{i}</th>'
+            f'<tr><th class="xt-rk{_zcls(i, "zone-cell")}">{off_rank.get(row, i)}</th>'
             f'<th class="xt-tn">{_html_escape(short[row])}</th>{tds}</tr>'
         )
 
@@ -378,7 +386,7 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
             for mk, r, tip in team_form(t)
         )
         form_rows.append(
-            f'<tr class="zone-form-row{_zcls(i, "")}"><th class="xt-rk">{i}</th>'
+            f'<tr class="zone-form-row{_zcls(i, "")}"><th class="xt-rk">{off_rank.get(t, i)}</th>'
             f'<th class="xt-tn2">{_html_escape(disp[t])}</th>'
             f'<td class="xt-rec">{s["w"]}勝{s["d"]}分{s["l"]}敗</td>'
             f'<td class="xt-form">{chips}</td></tr>'
