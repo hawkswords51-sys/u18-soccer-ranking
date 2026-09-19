@@ -105,6 +105,18 @@
     },
     {
       "rank": 5,
+      "team": "神村学園",
+      "pts": 20,
+      "played": 14,
+      "won": 5,
+      "drawn": 5,
+      "lost": 4,
+      "gf": 25,
+      "ga": 26,
+      "gd": -1
+    },
+    {
+      "rank": 6,
       "team": "アビスパ福岡 U-18",
       "pts": 20,
       "played": 13,
@@ -113,18 +125,6 @@
       "lost": 5,
       "gf": 17,
       "ga": 18,
-      "gd": -1
-    },
-    {
-      "rank": 6,
-      "team": "神村学園",
-      "pts": 19,
-      "played": 13,
-      "won": 5,
-      "drawn": 4,
-      "lost": 4,
-      "gf": 25,
-      "ga": 26,
       "gd": -1
     },
     {
@@ -154,10 +154,10 @@
     {
       "rank": 9,
       "team": "ガンバ大阪ユース",
-      "pts": 17,
-      "played": 12,
+      "pts": 18,
+      "played": 13,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
       "gf": 18,
       "ga": 19,
@@ -2429,12 +2429,14 @@
       "md": 14,
       "date": "2026-09-19",
       "home": "ガンバ大阪ユース",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "神村学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "OFA万博フットボールセンター グラウンドB",
-      "kickoff": "18:00"
+      "kickoff": "18:00",
+      "homeScorers": [],
+      "awayScorers": []
     },
     {
       "md": 14,
