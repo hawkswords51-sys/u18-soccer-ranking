@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-20T01:59:42+09:00",
+  "updatedAt": "2026-09-20T01:59:53+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -192,17 +192,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 64,
+      "played": 67,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "愛知県サッカー協会 公式（GoalNote）",
-      "last_change": "2026-09-15",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "akita": {
       "season": "2026",
@@ -223,7 +223,7 @@
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "aomori": {
       "season": "2026",
@@ -245,7 +245,7 @@
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "chiba": {
       "result": "ok",
@@ -256,17 +256,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 52,
+      "played": 57,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "千葉県サッカー協会 公式（GoalNote）",
-      "last_change": "2026-09-14",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "ehime": {
       "season": "2026",
@@ -284,7 +284,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "result": "ok",
       "result_note": "消化57試合に更新（検算一致）",
       "result_date": "2026-09-20"
@@ -308,7 +308,7 @@
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "fukuoka": {
       "result": "fetch_error",
@@ -326,9 +326,9 @@
       "source": "official",
       "sourceName": "福岡県サッカー協会 公式",
       "last_change": "2026-09-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19"
     },
     "fukushima": {
@@ -344,9 +344,9 @@
       "source": "official",
       "sourceName": "福島県サッカー協会 公式",
       "last_change": "2026-09-16",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://fukushima-fa.com/match/c_match/ffa02/ の取得に失敗 (HTTPSConnectionPool(host='fukushima-fa.com', port=443): Max retries exceeded with url: /match/c_match/ffa02/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukushima-fa.com', port=443) at 0x7f8ac6716990>, 'Connection to fukushima-fa.com timed out. (connect timeout=25)'))))",
@@ -366,8 +366,8 @@
       "sourceName": "岐阜県サッカー協会 公式",
       "last_change": "2026-08-29",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "",
-      "result_streak": 0,
+      "result_since": "2026-09-20",
+      "result_streak": 1,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.gifu-fa.com/type2-category/g1/ の取得に失敗 (HTTPSConnectionPool(host='www.gifu-fa.com', port=443): Max retries exceeded with url: /type2-category/g1/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gifu-fa.com', port=443) at 0x7f8ac5ed7490>, 'Connection to www.gifu-fa.com timed out. (connect timeout=25)'))))",
@@ -390,9 +390,9 @@
       "source": "official",
       "sourceName": "群馬県サッカー協会 公式",
       "last_change": "2026-09-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19"
     },
     "hiroshima": {
@@ -414,7 +414,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "hokkaido": {
       "result": "ok",
@@ -425,15 +425,14 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 42,
+      "played": 46,
       "total": 56,
       "teams": 8,
-      "latest_match": "2026-09-12",
+      "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "北海道FAリーグ 試合結果（kawakitanet・有志運営）",
-      "last_updated": "2026-09-19",
-      "last_change": "2026-09-12",
-      "last_change_note": "初回のため最終試合日で代用",
+      "last_updated": "2026-09-20",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok"
@@ -451,9 +450,9 @@
       "source": "official",
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['公式順位表の得失点差の合計が0でない（読み取りの誤り、または出典の誤り）', '芦屋学園A: 得失点差 公式12 ≠ 試合から13'] …",
       "result_date": "2026-09-20",
@@ -478,7 +477,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "ishikawa": {
       "season": "2026",
@@ -517,7 +516,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "kagawa": {
       "result": "ok",
@@ -538,7 +537,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "kagoshima": {
       "season": "2026",
@@ -574,9 +573,9 @@
       "source": "official",
       "sourceName": "神奈川県サッカー協会 公式（2種大会部会）",
       "last_change": "2026-09-14",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19"
     },
     "kochi": {
@@ -592,9 +591,9 @@
       "source": "official",
       "sourceName": "高知県サッカー協会 公式",
       "last_change": "2026-09-16",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.kochi-fa.com/class02/class02sch/entry-305.html の取得に失敗 (HTTPSConnectionPool(host='www.kochi-fa.com', port=443): Max retries exceeded with url: /class02/class02sch/entry-305.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kochi-fa.com', port=443) at 0x7f8ac5981bd0>, 'Connection to www.kochi-fa.com timed out. (connect timeout=25)'))))",
@@ -619,7 +618,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "kyoto": {
       "season": "2026",
@@ -637,7 +636,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "result": "ok",
       "result_note": "消化60試合に更新（検算一致）",
       "result_date": "2026-09-20"
@@ -661,7 +660,7 @@
       "result": "ok",
       "result_note": "消化36試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "miyagi": {
       "season": "2026",
@@ -697,9 +696,9 @@
       "source": "official",
       "sourceName": "宮崎県サッカー協会 公式（U-18リーグ）",
       "last_change": "2026-09-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19"
     },
     "nagano": {
@@ -721,7 +720,7 @@
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "nagasaki": {
       "result": "ok",
@@ -742,7 +741,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "nara": {
       "season": "2026",
@@ -760,7 +759,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "result": "ok",
       "result_note": "消化59試合に更新（検算一致）",
       "result_date": "2026-09-20"
@@ -784,7 +783,7 @@
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "oita": {
       "season": "2026",
@@ -799,9 +798,9 @@
       "source": "official",
       "sourceName": "大分県サッカー協会 公式",
       "last_change": "2026-09-15",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.ofa.or.jp/news/tournaments/high-school/ の取得に失敗 (HTTPSConnectionPool(host='www.ofa.or.jp', port=443): Max retries exceeded with url: /news/tournaments/high-school/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ofa.or.jp', port=443) at 0x7f8ac612a910>, 'Connection to www.ofa.or.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-20",
@@ -827,7 +826,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "okinawa": {
       "result": "ok",
@@ -838,17 +837,17 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 37,
+      "played": 38,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "沖縄県サッカー協会 公式（波布リーグ）",
-      "last_change": "2026-09-19",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "osaka": {
       "season": "2026",
@@ -856,17 +855,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 54,
+      "played": 55,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "大阪府サッカー協会 公式",
-      "last_change": "2026-09-16",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-09-20"
@@ -944,9 +943,9 @@
       "source": "official",
       "sourceName": "佐賀県サッカー協会 公式",
       "last_change": "2026-09-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19"
     },
     "saitama": {
@@ -983,9 +982,9 @@
       "source": "official",
       "sourceName": "滋賀県サッカー協会 公式",
       "last_change": "2026-09-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-19"
     },
     "shimane": {
@@ -997,17 +996,17 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 38,
+      "played": 39,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "島根県サッカー協会 公式（SportsOnline）",
-      "last_change": "2026-09-19",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "shizuoka": {
       "season": "2026",
@@ -1046,7 +1045,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "tokushima": {
       "season": "2026",
@@ -1061,9 +1060,9 @@
       "source": "official",
       "sourceName": "徳島県サッカー協会 公式",
       "last_change": "2026-09-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-20",
+      "result_streak": 1,
+      "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://tokushima-fa.jp/post-414/ の取得に失敗 (HTTPSConnectionPool(host='tokushima-fa.jp', port=443): Max retries exceeded with url: /post-414/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='tokushima-fa.jp', port=443) at 0x7f8ac6749f50>, 'Connection to tokushima-fa.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-20",
@@ -1078,17 +1077,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 56,
+      "played": 57,
       "total": 90,
       "teams": 10,
       "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "東京都U-18サッカーリーグ 公式",
-      "last_change": "2026-09-19",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "tottori": {
       "result": "ok",
@@ -1109,7 +1108,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "toyama": {
       "result": "ok",
@@ -1120,17 +1119,17 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 50,
+      "played": 52,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-09-19",
       "source": "official",
       "sourceName": "富山県サッカー協会 公式（大会GO）",
-      "last_change": "2026-09-19",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "wakayama": {
       "season": "2026",
@@ -1148,7 +1147,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "result": "ok",
       "result_note": "消化70試合に更新（検算一致）",
       "result_date": "2026-09-20"
@@ -1172,7 +1171,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "yamaguchi": {
       "result": "ok",
@@ -1182,18 +1181,18 @@
       "complete": false,
       "single_round": false,
       "dup_pairs": 28,
-      "played_without_date": 12,
-      "played": 46,
+      "played_without_date": 13,
+      "played": 47,
       "total": 56,
       "teams": 8,
       "latest_match": "2026-07-18",
       "source": "official",
       "sourceName": "山口県サッカー協会 公式（SportsOnline）",
-      "last_change": "2026-09-19",
+      "last_change": "2026-09-20",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "yamanashi": {
       "season": "2026",
@@ -1214,10 +1213,10 @@
       "result": "ok",
       "result_note": "消化32試合に更新（検算一致）",
       "result_date": "2026-09-20",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-20"
     },
     "_meta": {
-      "checked": "2026-09-19",
+      "checked": "2026-09-20",
       "national_latest": "2026-09-19",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
