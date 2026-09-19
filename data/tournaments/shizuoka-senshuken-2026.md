@@ -19,7 +19,7 @@ scraper/update_tournament_results.py が上の source から
 
 - 島田樟誠 vs 天竜
 - 磐田農 vs 湖西・池新田
-- 城南静岡 vs 遠江総合
+- 城南静岡 2-0 遠江総合
 - 富士見 vs 藤枝西
 - 浜松江之島 vs 袋井
 - 知徳 vs 島田
@@ -37,7 +37,7 @@ scraper/update_tournament_results.py が上の source から
 - 静岡西 2-1 藤枝北
 - 焼津水産 vs 吉原工
 - 静岡大成 vs 富士宮北
-- 富士 vs 新居
+- 富士 0-5 新居
 - 三島北 vs 袋井商
 - 韮山 vs 静清
 - 静岡商 vs 静岡城北
@@ -52,7 +52,7 @@ scraper/update_tournament_results.py が上の source から
 
 - 島田樟誠/天竜 vs 磐田農/湖西・池新田
 - 伊豆伊東・小山 vs 島田工
-- 城南静岡/遠江総合 vs 榛原
+- 城南静岡 vs 榛原
 - 富士見/藤枝西 vs 浜松江之島/袋井
 - 富士東 vs 吉原
 - 知徳/島田 vs 浜松北
@@ -70,7 +70,7 @@ scraper/update_tournament_results.py が上の source から
 - 静岡西 vs 焼津中央
 - 焼津水産/吉原工 vs 静岡大成/富士宮北
 - 三島南 vs 田方農
-- 富士/新居 vs 浜松湖東
+- 新居 vs 浜松湖東
 - 三島北/袋井商 vs 韮山/静清
 - 静岡東 vs 浜松商
 - 静岡商/静岡城北 vs 浜松工
@@ -85,3 +85,5 @@ scraper/update_tournament_results.py が上の source から
 
 - 沼津市立/御殿場西 vs 静岡西/焼津中央
 - 伊豆中央/御殿場南 vs 浜松東/磐田北
+- 伊豆伊東・小山/島田工 vs 城南静岡/榛原
+- 三島南/田方農 vs 新居/浜松湖東

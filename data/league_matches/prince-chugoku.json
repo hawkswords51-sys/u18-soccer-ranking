@@ -61,27 +61,27 @@
     },
     {
       "rank": 2,
-      "team": "瀬戸内",
-      "pts": 25,
-      "played": 11,
-      "won": 8,
+      "team": "立正大淞南",
+      "pts": 28,
+      "played": 12,
+      "won": 9,
       "drawn": 1,
       "lost": 2,
-      "gf": 26,
-      "ga": 8,
-      "gd": 18
+      "gf": 32,
+      "ga": 12,
+      "gd": 20
     },
     {
       "rank": 3,
-      "team": "立正大淞南",
+      "team": "瀬戸内",
       "pts": 25,
-      "played": 11,
+      "played": 12,
       "won": 8,
       "drawn": 1,
-      "lost": 2,
-      "gf": 26,
-      "ga": 11,
-      "gd": 15
+      "lost": 3,
+      "gf": 27,
+      "ga": 14,
+      "gd": 13
     },
     {
       "rank": 4,
@@ -134,17 +134,29 @@
     {
       "rank": 8,
       "team": "高川学園",
-      "pts": 8,
-      "played": 11,
+      "pts": 9,
+      "played": 12,
       "won": 1,
-      "drawn": 5,
+      "drawn": 6,
       "lost": 5,
-      "gf": 9,
-      "ga": 16,
+      "gf": 11,
+      "ga": 18,
       "gd": -7
     },
     {
       "rank": 9,
+      "team": "大社",
+      "pts": 9,
+      "played": 12,
+      "won": 2,
+      "drawn": 3,
+      "lost": 7,
+      "gf": 9,
+      "ga": 30,
+      "gd": -21
+    },
+    {
+      "rank": 10,
       "team": "玉野光南",
       "pts": 8,
       "played": 12,
@@ -154,18 +166,6 @@
       "gf": 15,
       "ga": 28,
       "gd": -13
-    },
-    {
-      "rank": 10,
-      "team": "大社",
-      "pts": 8,
-      "played": 11,
-      "won": 2,
-      "drawn": 2,
-      "lost": 7,
-      "gf": 7,
-      "ga": 28,
-      "gd": -21
     }
   ],
   "matches": [
@@ -789,10 +789,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "大社",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "高川学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "長浜中央公園",
       "kickoff": "15:00"
     },
@@ -822,10 +822,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "立正大淞南",
-      "hs": null,
-      "as": null,
+      "hs": 6,
+      "as": 1,
       "away": "瀬戸内",
-      "status": "scheduled",
+      "status": "played",
       "venue": "松江市総合運動公園補助競技場",
       "kickoff": "15:00"
     },

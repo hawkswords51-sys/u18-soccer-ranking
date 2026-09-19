@@ -62,17 +62,29 @@
     {
       "rank": 2,
       "team": "鳴門",
-      "points": 24,
-      "played": 12,
-      "won": 8,
+      "points": 27,
+      "played": 13,
+      "won": 9,
       "drawn": 0,
       "lost": 4,
-      "gf": 37,
+      "gf": 40,
       "ga": 24,
-      "gd": 13
+      "gd": 16
     },
     {
       "rank": 3,
+      "team": "川島",
+      "points": 25,
+      "played": 12,
+      "won": 8,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 41,
+      "ga": 20,
+      "gd": 21
+    },
+    {
+      "rank": 4,
       "team": "徳島ヴォルティスS",
       "points": 23,
       "played": 10,
@@ -82,18 +94,6 @@
       "gf": 47,
       "ga": 12,
       "gd": 35
-    },
-    {
-      "rank": 4,
-      "team": "川島",
-      "points": 22,
-      "played": 11,
-      "won": 7,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 34,
-      "ga": 19,
-      "gd": 15
     },
     {
       "rank": 5,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "徳島商業S",
       "points": 11,
-      "played": 11,
+      "played": 12,
       "won": 3,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 23,
-      "ga": 35,
-      "gd": -12
+      "ga": 38,
+      "gd": -15
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "城南",
       "points": 1,
-      "played": 11,
+      "played": 12,
       "won": 0,
       "drawn": 1,
-      "lost": 10,
-      "gf": 9,
-      "ga": 52,
-      "gd": -43
+      "lost": 11,
+      "gf": 10,
+      "ga": 59,
+      "gd": -49
     }
   ],
   "matches": [
@@ -668,10 +668,10 @@
       "md": 0,
       "date": "2026-09-19",
       "home": "徳島商業S",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "鳴門",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -929,10 +929,10 @@
       "md": 0,
       "date": "2026-09-19",
       "home": "城南",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 7,
       "away": "川島",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,

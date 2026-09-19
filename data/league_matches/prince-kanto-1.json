@@ -75,13 +75,13 @@
       "rank": 3,
       "team": "RB大宮アルディージャU18",
       "pts": 19,
-      "played": 10,
+      "played": 11,
       "won": 5,
       "drawn": 4,
-      "lost": 1,
+      "lost": 2,
       "gf": 12,
-      "ga": 7,
-      "gd": 5
+      "ga": 9,
+      "gd": 3
     },
     {
       "rank": 4,
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "桐生第一",
+      "pts": 8,
+      "played": 12,
+      "won": 2,
+      "drawn": 2,
+      "lost": 8,
+      "gf": 13,
+      "ga": 25,
+      "gd": -12
+    },
+    {
+      "rank": 10,
       "team": "ヴァンフォーレ甲府U-18",
       "pts": 8,
       "played": 11,
@@ -153,18 +165,6 @@
       "lost": 5,
       "gf": 8,
       "ga": 22,
-      "gd": -14
-    },
-    {
-      "rank": 10,
-      "team": "桐生第一",
-      "pts": 5,
-      "played": 11,
-      "won": 1,
-      "drawn": 2,
-      "lost": 8,
-      "gf": 11,
-      "ga": 25,
       "gd": -14
     }
   ],
@@ -778,10 +778,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "RB大宮アルディージャU18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "桐生第一",
-      "status": "scheduled",
+      "status": "played",
       "venue": "西大宮アルディージャ練習場",
       "kickoff": "15:00"
     },
@@ -805,7 +805,7 @@
       "away": "帝京",
       "status": "scheduled",
       "venue": "稲毛海浜公園球技場",
-      "kickoff": "16:00"
+      "kickoff": "14:00"
     },
     {
       "md": 12,

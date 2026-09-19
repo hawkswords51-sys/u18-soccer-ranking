@@ -63,13 +63,13 @@
       "rank": 2,
       "team": "履正社",
       "pts": 23,
-      "played": 11,
+      "played": 12,
       "won": 7,
       "drawn": 2,
-      "lost": 2,
-      "gf": 26,
-      "ga": 14,
-      "gd": 12
+      "lost": 3,
+      "gf": 28,
+      "ga": 17,
+      "gd": 11
     },
     {
       "rank": 3,
@@ -133,6 +133,18 @@
     },
     {
       "rank": 8,
+      "team": "産大附属",
+      "pts": 10,
+      "played": 12,
+      "won": 2,
+      "drawn": 4,
+      "lost": 6,
+      "gf": 19,
+      "ga": 22,
+      "gd": -3
+    },
+    {
+      "rank": 9,
       "team": "三田学園",
       "pts": 9,
       "played": 12,
@@ -142,18 +154,6 @@
       "gf": 10,
       "ga": 22,
       "gd": -12
-    },
-    {
-      "rank": 9,
-      "team": "産大附属",
-      "pts": 7,
-      "played": 11,
-      "won": 1,
-      "drawn": 4,
-      "lost": 6,
-      "gf": 16,
-      "ga": 20,
-      "gd": -4
     },
     {
       "rank": 10,
@@ -811,10 +811,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "履正社",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "産大附属",
-      "status": "scheduled",
+      "status": "played",
       "venue": "履正社茨木グラウンド",
       "kickoff": "16:00"
     },

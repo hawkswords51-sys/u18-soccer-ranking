@@ -63,25 +63,25 @@
       "rank": 2,
       "team": "福大若葉",
       "points": 29,
-      "played": 12,
+      "played": 13,
       "won": 9,
       "drawn": 2,
-      "lost": 1,
-      "gf": 45,
-      "ga": 11,
-      "gd": 34
+      "lost": 2,
+      "gf": 47,
+      "ga": 14,
+      "gd": 33
     },
     {
       "rank": 3,
       "team": "アビスパ福岡B",
-      "points": 22,
-      "played": 11,
-      "won": 6,
+      "points": 25,
+      "played": 12,
+      "won": 7,
       "drawn": 4,
       "lost": 1,
-      "gf": 29,
+      "gf": 35,
       "ga": 13,
-      "gd": 16
+      "gd": 22
     },
     {
       "rank": 4,
@@ -122,14 +122,14 @@
     {
       "rank": 7,
       "team": "東海大福岡B",
-      "points": 13,
-      "played": 12,
-      "won": 4,
+      "points": 16,
+      "played": 13,
+      "won": 5,
       "drawn": 1,
       "lost": 7,
-      "gf": 21,
-      "ga": 33,
-      "gd": -12
+      "gf": 24,
+      "ga": 35,
+      "gd": -11
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "福大大濠",
       "points": 1,
-      "played": 13,
+      "played": 14,
       "won": 0,
       "drawn": 1,
-      "lost": 12,
+      "lost": 13,
       "gf": 11,
-      "ga": 57,
-      "gd": -46
+      "ga": 63,
+      "gd": -52
     }
   ],
   "matches": [
@@ -305,12 +305,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "福大若葉",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "東海大福岡B",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "福岡大学"
     },
     {
       "md": 0,
@@ -421,12 +422,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "アビスパ福岡B",
-      "hs": null,
-      "as": null,
+      "hs": 6,
+      "as": 0,
       "away": "福大大濠",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "福大大濠高校"
     },
     {
       "md": 0,
@@ -1054,21 +1056,21 @@
     {
       "team": "福大若葉",
       "pts": 29,
-      "played": 12,
+      "played": 13,
       "won": 9,
       "drawn": 2,
-      "lost": 1,
-      "gf": 45,
-      "ga": 11
+      "lost": 2,
+      "gf": 47,
+      "ga": 14
     },
     {
       "team": "アビスパ福岡B",
-      "pts": 22,
-      "played": 11,
-      "won": 6,
+      "pts": 25,
+      "played": 12,
+      "won": 7,
       "drawn": 4,
       "lost": 1,
-      "gf": 29,
+      "gf": 35,
       "ga": 13
     },
     {
@@ -1103,13 +1105,13 @@
     },
     {
       "team": "東海大福岡B",
-      "pts": 13,
-      "played": 12,
-      "won": 4,
+      "pts": 16,
+      "played": 13,
+      "won": 5,
       "drawn": 1,
       "lost": 7,
-      "gf": 21,
-      "ga": 33
+      "gf": 24,
+      "ga": 35
     },
     {
       "team": "希望が丘",
@@ -1134,12 +1136,12 @@
     {
       "team": "福大大濠",
       "pts": 1,
-      "played": 13,
+      "played": 14,
       "won": 0,
       "drawn": 1,
-      "lost": 12,
+      "lost": 13,
       "gf": 11,
-      "ga": 57
+      "ga": 63
     }
   ]
 }

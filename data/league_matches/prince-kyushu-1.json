@@ -63,13 +63,13 @@
       "rank": 2,
       "team": "鹿児島城西",
       "pts": 26,
-      "played": 11,
+      "played": 12,
       "won": 8,
       "drawn": 2,
-      "lost": 1,
+      "lost": 2,
       "gf": 23,
-      "ga": 10,
-      "gd": 13
+      "ga": 11,
+      "gd": 12
     },
     {
       "rank": 3,
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "FC琉球U-18",
+      "pts": 9,
+      "played": 12,
+      "won": 3,
+      "drawn": 0,
+      "lost": 9,
+      "gf": 9,
+      "ga": 21,
+      "gd": -12
+    },
+    {
+      "rank": 10,
       "team": "東海大熊本星翔",
       "pts": 7,
       "played": 12,
@@ -154,18 +166,6 @@
       "gf": 6,
       "ga": 20,
       "gd": -14
-    },
-    {
-      "rank": 10,
-      "team": "FC琉球U-18",
-      "pts": 6,
-      "played": 11,
-      "won": 2,
-      "drawn": 0,
-      "lost": 9,
-      "gf": 8,
-      "ga": 21,
-      "gd": -13
     }
   ],
   "matches": [
@@ -822,10 +822,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "鹿児島城西",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "FC琉球U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "半端ない人工芝サッカー場",
       "kickoff": "16:00"
     },

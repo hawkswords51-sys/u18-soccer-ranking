@@ -54,26 +54,26 @@
     {
       "rank": 2,
       "team": "益田東",
-      "points": 21,
-      "played": 9,
-      "won": 7,
+      "points": 24,
+      "played": 10,
+      "won": 8,
       "drawn": 0,
       "lost": 2,
-      "gf": 28,
-      "ga": 14,
-      "gd": 14
+      "gf": 42,
+      "ga": 15,
+      "gd": 27
     },
     {
       "rank": 3,
       "team": "明誠",
-      "points": 19,
-      "played": 9,
-      "won": 6,
+      "points": 22,
+      "played": 10,
+      "won": 7,
       "drawn": 1,
       "lost": 2,
-      "gf": 29,
+      "gf": 33,
       "ga": 18,
-      "gd": 11
+      "gd": 15
     },
     {
       "rank": 4,
@@ -115,25 +115,25 @@
       "rank": 7,
       "team": "出雲工業",
       "points": 3,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 0,
-      "lost": 8,
+      "lost": 9,
       "gf": 9,
-      "ga": 24,
-      "gd": -15
+      "ga": 28,
+      "gd": -19
     },
     {
       "rank": 8,
       "team": "松江商業",
       "points": 0,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 0,
-      "lost": 8,
-      "gf": 1,
-      "ga": 36,
-      "gd": -35
+      "lost": 9,
+      "gf": 2,
+      "ga": 50,
+      "gd": -48
     }
   ],
   "matches": [
@@ -567,12 +567,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "出雲工業",
-      "hs": null,
-      "as": null,
-      "away": "明誠",
-      "status": "scheduled"
+      "date": "2026-09-19",
+      "home": "明誠",
+      "hs": 4,
+      "as": 0,
+      "away": "出雲工業",
+      "status": "played",
+      "venue": "出雲工業"
     },
     {
       "md": 0,
@@ -621,12 +622,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "松江商業",
-      "hs": null,
-      "as": null,
-      "away": "益田東",
-      "status": "scheduled"
+      "date": "2026-09-19",
+      "home": "益田東",
+      "hs": 14,
+      "as": 1,
+      "away": "松江商業",
+      "status": "played",
+      "venue": "松江商業"
     },
     {
       "md": 0,
@@ -691,23 +693,23 @@
     },
     {
       "team": "益田東",
-      "won": 7,
+      "won": 8,
       "lost": 2,
       "drawn": 0,
-      "pts": 21,
-      "gf": 28,
-      "ga": 14,
-      "played": 9
+      "pts": 24,
+      "gf": 42,
+      "ga": 15,
+      "played": 10
     },
     {
       "team": "明誠",
-      "won": 6,
+      "won": 7,
       "lost": 2,
       "drawn": 1,
-      "pts": 19,
-      "gf": 29,
+      "pts": 22,
+      "gf": 33,
       "ga": 18,
-      "played": 9
+      "played": 10
     },
     {
       "team": "開星",
@@ -742,22 +744,22 @@
     {
       "team": "出雲工業",
       "won": 1,
-      "lost": 8,
+      "lost": 9,
       "drawn": 0,
       "pts": 3,
       "gf": 9,
-      "ga": 24,
-      "played": 9
+      "ga": 28,
+      "played": 10
     },
     {
       "team": "松江商業",
       "won": 0,
-      "lost": 8,
+      "lost": 9,
       "drawn": 0,
       "pts": 0,
-      "gf": 1,
-      "ga": 36,
-      "played": 8
+      "gf": 2,
+      "ga": 50,
+      "played": 9
     }
   ]
 }
