@@ -363,6 +363,8 @@ def process(slug, jfa_ok=frozenset()):
     out_matches = merge_with_existing(out_matches, data.get("matches"))
     out_matches.sort(key=lambda r: (r["md"], r["date"], r["home"]))
     out_standings = []
+    # ⚠️ 県リーグの同じ順位付けは update_pref_cross_tables.assign_ranks に一本化した
+    #    （2026-09-19）。ここは全国リーグなので今回は触っていない（宿題）。
     rank = 1
     for t in sorted(teams_norm, key=lambda n: (-standings[n]["pts"],
                     -(standings[n]["gf"] - standings[n]["ga"]), -standings[n]["gf"])):

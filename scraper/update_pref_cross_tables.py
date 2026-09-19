@@ -271,6 +271,25 @@ def recompute(matches: list[dict], teams: list[str]) -> dict[str, dict]:
     return st
 
 
+def assign_ranks(st: dict[str, dict], teams: list[str]) -> list[dict]:
+    """試合から計算した成績 st に順位を付けて official_standings の行にする（2026-09-19 一本化）。
+
+    並び：勝点 → 得失点差 → 得点 → 名前（名前は並びを一意にするためだけ）。
+    もとは build_from_source の中に**同じ処理が2か所**（総当たりでない枠／総当たりの枠）
+    書かれていた。片方だけ直す事故を防ぐため1本にまとめた。
+    ⚠️ ここを直すときは、全国リーグ（update_cross_tables.py）も見ること。
+       自前で 1,2,3… を振っているのはそこだけ（今回は触っていない）。
+       fetch_jfa.py（プレミア/プリンス）と bootstrap_hokkaido.py は
+       出典の順位をそのまま使っているので、ここの影響は受けない。
+    """
+    ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
+                    -(st[x]["gf"] - st[x]["ga"]), -st[x]["gf"], x))
+    return [dict(rank=i + 1, team=t, points=st[t]["pts"], played=st[t]["played"],
+                 won=st[t]["won"], drawn=st[t]["drawn"], lost=st[t]["lost"],
+                 gf=st[t]["gf"], ga=st[t]["ga"], gd=st[t]["gf"] - st[t]["ga"])
+            for i, t in enumerate(ranked)]
+
+
 def set_source_standings(data: dict, source_table) -> None:
     """出典の順位表そのものを `source_standings` に入れる（2026-09-19 新設）。
 
@@ -364,12 +383,7 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
                          **({"venue": m["venue"]} if m.get("venue") else {}))
                     for m in js_matches]
         team_objs = [dict(name=t, short=short_of(t)) for t in teams]
-        ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
-                        -(st[x]["gf"] - st[x]["ga"]), -st[x]["gf"], x))
-        official = [dict(rank=i + 1, team=t, points=st[t]["pts"], played=st[t]["played"],
-                         won=st[t]["won"], drawn=st[t]["drawn"], lost=st[t]["lost"],
-                         gf=st[t]["gf"], ga=st[t]["ga"], gd=st[t]["gf"] - st[t]["ga"])
-                    for i, t in enumerate(ranked)]
+        official = assign_ranks(st, teams)
         return team_objs, fixtures, {"official": official, "played": len(js_matches)}
 
     double = existing_total >= n * (n - 1) * 0.75 if existing_total else True
@@ -424,12 +438,7 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
             f["srcId"] = m["srcId"]
 
     team_objs = [dict(name=t, short=short_of(t)) for t in teams]
-    ranked = sorted(teams, key=lambda x: (-st[x]["pts"],
-                    -(st[x]["gf"] - st[x]["ga"]), -st[x]["gf"], x))
-    official = [dict(rank=i + 1, team=t, points=st[t]["pts"], played=st[t]["played"],
-                     won=st[t]["won"], drawn=st[t]["drawn"], lost=st[t]["lost"],
-                     gf=st[t]["gf"], ga=st[t]["ga"], gd=st[t]["gf"] - st[t]["ga"])
-                for i, t in enumerate(ranked)]
+    official = assign_ranks(st, teams)
     return team_objs, fixtures, {"official": official, "played": len(js_matches)}
 
 
