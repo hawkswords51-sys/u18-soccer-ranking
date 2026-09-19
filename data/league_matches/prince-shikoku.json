@@ -50,29 +50,41 @@
     {
       "rank": 1,
       "team": "愛媛FC U-18",
-      "pts": 30,
-      "played": 11,
-      "won": 10,
+      "pts": 33,
+      "played": 12,
+      "won": 11,
       "drawn": 0,
       "lost": 1,
-      "gf": 33,
+      "gf": 34,
       "ga": 9,
-      "gd": 24
+      "gd": 25
     },
     {
       "rank": 2,
       "team": "徳島ヴォルティスユース",
       "pts": 28,
-      "played": 11,
+      "played": 12,
       "won": 9,
       "drawn": 1,
-      "lost": 1,
-      "gf": 24,
-      "ga": 7,
-      "gd": 17
+      "lost": 2,
+      "gf": 26,
+      "ga": 10,
+      "gd": 16
     },
     {
       "rank": 3,
+      "team": "高知",
+      "pts": 17,
+      "played": 12,
+      "won": 5,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 31,
+      "ga": 22,
+      "gd": 9
+    },
+    {
+      "rank": 4,
       "team": "大手前高松",
       "pts": 17,
       "played": 11,
@@ -84,7 +96,7 @@
       "gd": 4
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "徳島市立",
       "pts": 16,
       "played": 11,
@@ -96,7 +108,7 @@
       "gd": 8
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "FC今治U-18",
       "pts": 16,
       "played": 11,
@@ -108,40 +120,28 @@
       "gd": 3
     },
     {
-      "rank": 6,
-      "team": "高知",
-      "pts": 14,
-      "played": 11,
-      "won": 4,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 26,
-      "ga": 21,
-      "gd": 5
-    },
-    {
       "rank": 7,
       "team": "今治東中等教育学校",
-      "pts": 13,
-      "played": 11,
-      "won": 3,
+      "pts": 16,
+      "played": 12,
+      "won": 4,
       "drawn": 4,
       "lost": 4,
-      "gf": 17,
-      "ga": 23,
-      "gd": -6
+      "gf": 20,
+      "ga": 25,
+      "gd": -5
     },
     {
       "rank": 8,
       "team": "徳島商",
       "pts": 8,
-      "played": 11,
+      "played": 12,
       "won": 2,
       "drawn": 2,
-      "lost": 7,
-      "gf": 12,
-      "ga": 30,
-      "gd": -18
+      "lost": 8,
+      "gf": 13,
+      "ga": 35,
+      "gd": -22
     },
     {
       "rank": 9,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "カマタマーレ讃岐U-18",
       "pts": 3,
-      "played": 11,
+      "played": 12,
       "won": 0,
       "drawn": 3,
-      "lost": 8,
+      "lost": 9,
       "gf": 7,
-      "ga": 32,
-      "gd": -25
+      "ga": 33,
+      "gd": -26
     }
   ],
   "matches": [
@@ -778,10 +778,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "カマタマーレ讃岐U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "愛媛FC U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "屋島レクザムフィールド",
       "kickoff": "10:00"
     },
@@ -789,10 +789,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "徳島ヴォルティスユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "今治東中等教育学校",
-      "status": "scheduled",
+      "status": "played",
       "venue": "徳島スポーツビレッジ：ピッチB",
       "kickoff": "10:00"
     },
@@ -822,10 +822,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "高知",
-      "hs": null,
-      "as": null,
+      "hs": 5,
+      "as": 1,
       "away": "徳島商",
-      "status": "scheduled",
+      "status": "played",
       "venue": "青少年センター",
       "kickoff": "10:00"
     },
