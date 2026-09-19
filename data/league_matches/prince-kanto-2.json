@@ -74,17 +74,29 @@
     {
       "rank": 3,
       "team": "日体大柏",
-      "pts": 15,
-      "played": 11,
-      "won": 5,
+      "pts": 18,
+      "played": 12,
+      "won": 6,
       "drawn": 0,
       "lost": 6,
-      "gf": 11,
+      "gf": 14,
       "ga": 15,
-      "gd": -4
+      "gd": -1
     },
     {
       "rank": 4,
+      "team": "西武台",
+      "pts": 17,
+      "played": 12,
+      "won": 5,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 17,
+      "ga": 19,
+      "gd": -2
+    },
+    {
+      "rank": 5,
       "team": "FC町田ゼルビアユース",
       "pts": 15,
       "played": 10,
@@ -96,7 +108,7 @@
       "gd": -5
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "鹿島アントラーズユースB",
       "pts": 14,
       "played": 11,
@@ -108,7 +120,7 @@
       "gd": 4
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "矢板中央",
       "pts": 14,
       "played": 9,
@@ -118,18 +130,6 @@
       "gf": 17,
       "ga": 14,
       "gd": 3
-    },
-    {
-      "rank": 7,
-      "team": "西武台",
-      "pts": 14,
-      "played": 11,
-      "won": 4,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 16,
-      "ga": 19,
-      "gd": -3
     },
     {
       "rank": 8,
@@ -147,25 +147,25 @@
       "rank": 9,
       "team": "栃木SC U-18",
       "pts": 10,
-      "played": 11,
+      "played": 12,
       "won": 3,
       "drawn": 1,
-      "lost": 7,
+      "lost": 8,
       "gf": 9,
-      "ga": 17,
-      "gd": -8
+      "ga": 20,
+      "gd": -11
     },
     {
       "rank": 10,
       "team": "鹿島学園",
       "pts": 7,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 4,
-      "lost": 5,
+      "lost": 6,
       "gf": 13,
-      "ga": 25,
-      "gd": -12
+      "ga": 26,
+      "gd": -13
     }
   ],
   "matches": [
@@ -777,10 +777,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "日体大柏",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "栃木SC U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日本体育大学柏高校",
       "kickoff": "17:00"
     },
@@ -788,10 +788,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "西武台",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "鹿島学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "西武台高校第二グラウンド",
       "kickoff": "17:00"
     },

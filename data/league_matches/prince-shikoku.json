@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "徳島市立",
+      "pts": 19,
+      "played": 12,
+      "won": 5,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 30,
+      "ga": 17,
+      "gd": 13
+    },
+    {
+      "rank": 4,
       "team": "高知",
       "pts": 17,
       "played": 12,
@@ -82,18 +94,6 @@
       "gf": 31,
       "ga": 22,
       "gd": 9
-    },
-    {
-      "rank": 4,
-      "team": "大手前高松",
-      "pts": 17,
-      "played": 11,
-      "won": 4,
-      "drawn": 5,
-      "lost": 2,
-      "gf": 18,
-      "ga": 14,
-      "gd": 4
     },
     {
       "rank": 5,
@@ -109,15 +109,15 @@
     },
     {
       "rank": 6,
-      "team": "徳島市立",
-      "pts": 16,
-      "played": 11,
+      "team": "大手前高松",
+      "pts": 17,
+      "played": 12,
       "won": 4,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 3,
-      "gf": 25,
-      "ga": 17,
-      "gd": 8
+      "gf": 18,
+      "ga": 19,
+      "gd": -1
     },
     {
       "rank": 7,
@@ -800,10 +800,10 @@
       "md": 12,
       "date": "2026-09-19",
       "home": "徳島市立",
-      "hs": null,
-      "as": null,
+      "hs": 5,
+      "as": 0,
       "away": "大手前高松",
-      "status": "scheduled",
+      "status": "played",
       "venue": "徳島市立高等学校",
       "kickoff": "16:30"
     },
