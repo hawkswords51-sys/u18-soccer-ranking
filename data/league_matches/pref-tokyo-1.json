@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 サッカーリーグ 東京 T1（東京都1部）",
   "season": "2026",
   "source": "https://www.tleague-u18.com/schedule.php?dy=2026&dt=1&ltno=16",
-  "lastUpdated": "2026-09-19",
+  "lastUpdated": "2026-09-20",
   "teams": [
     {
       "name": "三菱養和",
@@ -49,26 +49,26 @@
     {
       "rank": 1,
       "team": "三菱養和",
-      "points": 30,
-      "played": 11,
-      "won": 10,
+      "points": 33,
+      "played": 12,
+      "won": 11,
       "drawn": 0,
       "lost": 1,
-      "gf": 23,
+      "gf": 24,
       "ga": 5,
-      "gd": 18
+      "gd": 19
     },
     {
       "rank": 2,
       "team": "実践学園",
       "points": 22,
-      "played": 11,
+      "played": 12,
       "won": 7,
       "drawn": 1,
-      "lost": 3,
+      "lost": 4,
       "gf": 15,
-      "ga": 5,
-      "gd": 10
+      "ga": 6,
+      "gd": 9
     },
     {
       "rank": 3,
@@ -169,13 +169,14 @@
   ],
   "matches": [
     {
-      "md": 0,
-      "date": "",
+      "md": 13,
+      "date": "2026-09-19",
       "home": "三菱養和",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "実践学園",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "(公財)三菱養和会 巣鴨スポーツセンターG"
     },
     {
       "md": 0,
@@ -1039,23 +1040,23 @@
   "source_standings": [
     {
       "team": "三菱養和",
-      "pts": 30,
-      "played": 11,
-      "won": 10,
+      "pts": 33,
+      "played": 12,
+      "won": 11,
       "lost": 1,
       "drawn": 0,
-      "gf": 23,
+      "gf": 24,
       "ga": 5
     },
     {
       "team": "実践学園",
       "pts": 22,
-      "played": 11,
+      "played": 12,
       "won": 7,
-      "lost": 3,
+      "lost": 4,
       "drawn": 1,
       "gf": 15,
-      "ga": 5
+      "ga": 6
     },
     {
       "team": "堀越",

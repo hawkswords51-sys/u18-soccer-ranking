@@ -21,7 +21,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 1回戦（9/19・9/20）
 
-- 芦北 vs 鎮西
+- 芦北 0-18 鎮西
 - 矢部 vs 天草
 - 必由館 vs 熊本北
 - 北稜・菊池農・阿蘇中央・御船・八代農・八代清流 vs 八代工
@@ -43,7 +43,7 @@ scraper/update_tournament_results.py が上の source から
 - 九州学院 vs 翔陽
 - 玉名工 vs 球磨工
 - 水俣 vs 有明
-- 文徳 vs 芦北/鎮西
+- 文徳 vs 鎮西
 - 済々黌 vs 千原台
 - 八代 vs 人吉
 - 熊本高専八代 vs 専大熊本玉名
@@ -59,3 +59,4 @@ scraper/update_tournament_results.py が上の source から
 - 八代/人吉 vs 慶誠
 - 玉名工/球磨工 vs 熊本学園大学付属
 - 秀岳館 vs 熊本高専八代/専大熊本玉名
+- 文徳/鎮西 vs 熊本高専熊本/熊本第二

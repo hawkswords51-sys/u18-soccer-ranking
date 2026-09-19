@@ -181,12 +181,12 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-19T22:35:51+09:00",
+  "updatedAt": "2026-09-20T01:59:42+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
-      "result_note": "消化64試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化67試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -222,7 +222,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "aomori": {
@@ -244,13 +244,13 @@
       "status": "warn",
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "chiba": {
       "result": "ok",
-      "result_note": "消化52試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化57試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -287,7 +287,7 @@
       "last_updated": "2026-09-19",
       "result": "ok",
       "result_note": "消化57試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result_date": "2026-09-20"
     },
     "fukui": {
       "season": "2026",
@@ -307,13 +307,13 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "fukuoka": {
-      "result": "ok",
-      "result_note": "消化62試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://fukuoka-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='fukuoka-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukuoka-fa-u18.com', port=443) at 0x7f8ac5e3e250>, 'Connection to fukuoka-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -348,9 +348,9 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-19",
-      "result": "ok",
-      "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://fukushima-fa.com/match/c_match/ffa02/ の取得に失敗 (HTTPSConnectionPool(host='fukushima-fa.com', port=443): Max retries exceeded with url: /match/c_match/ffa02/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukushima-fa.com', port=443) at 0x7f8ac6716990>, 'Connection to fukushima-fa.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20"
     },
     "gifu": {
       "season": "2026",
@@ -369,15 +369,15 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.gifu-fa.com/type2-category/g1/ の取得に失敗 (HTTPSConnectionPool(host='www.gifu-fa.com', port=443): Max retries exceeded with url: /type2-category/g1/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gifu-fa.com', port=443) at 0x7f8ac5ed7490>, 'Connection to www.gifu-fa.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "gunma": {
-      "result": "ok",
-      "result_note": "消化60試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Max retries exceeded with url: /api/table/173 (Caused by ConnectTimeoutError(<HTTPSConnection(host='management.gunma-fa.com', port=443) at 0x7f8ac5c9e6d0>, 'Connection to management.gunma-fa.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -398,7 +398,7 @@
     "hiroshima": {
       "result": "ok",
       "result_note": "消化54試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -418,8 +418,8 @@
     },
     "hokkaido": {
       "result": "ok",
-      "result_note": "消化42試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化46試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -454,15 +454,15 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化60試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "verify_failed",
+      "result_note": "検算不一致 ['公式順位表の得失点差の合計が0でない（読み取りの誤り、または出典の誤り）', '芦屋学園A: 得失点差 公式12 ≠ 試合から13'] …",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "ibaraki": {
       "result": "ok",
       "result_note": "消化63試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -501,7 +501,7 @@
     "iwate": {
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -522,7 +522,7 @@
     "kagawa": {
       "result": "ok",
       "result_note": "消化60試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -559,9 +559,9 @@
       "last_updated": "2026-09-18"
     },
     "kanagawa": {
-      "result": "ok",
-      "result_note": "消化58試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "verify_failed",
+      "result_note": "検算不一致 東海大相模A.played 試合13≠表12; 東海大相模A.won 試合9≠表8 …（順位表と個別試合が未整合。待機）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -596,14 +596,14 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-19",
-      "result": "ok",
-      "result_note": "消化40試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.kochi-fa.com/class02/class02sch/entry-305.html の取得に失敗 (HTTPSConnectionPool(host='www.kochi-fa.com', port=443): Max retries exceeded with url: /class02/class02sch/entry-305.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kochi-fa.com', port=443) at 0x7f8ac5981bd0>, 'Connection to www.kochi-fa.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20"
     },
     "kumamoto": {
       "result": "ok",
       "result_note": "消化63試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -640,7 +640,7 @@
       "last_updated": "2026-09-19",
       "result": "ok",
       "result_note": "消化60試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result_date": "2026-09-20"
     },
     "mie": {
       "season": "2026",
@@ -660,7 +660,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化36試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "miyagi": {
@@ -682,9 +682,9 @@
       "last_updated": "2026-09-18"
     },
     "miyazaki": {
-      "result": "ok",
-      "result_note": "消化63試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://miyazaki-fa-u18.net/schedule/2026/U-18-1.htm の取得に失敗 (HTTPSConnectionPool(host='miyazaki-fa-u18.net', port=443): Max retries exceeded with url: /schedule/2026/U-18-1.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='miyazaki-fa-u18.net', port=443) at 0x7f8ac28f3f10>, 'Connection to miyazaki-fa-u18.net timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -720,13 +720,13 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "nagasaki": {
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -763,7 +763,7 @@
       "last_updated": "2026-09-19",
       "result": "ok",
       "result_note": "消化59試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result_date": "2026-09-20"
     },
     "niigata": {
       "season": "2026",
@@ -783,7 +783,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "oita": {
@@ -802,15 +802,15 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.ofa.or.jp/news/tournaments/high-school/ の取得に失敗 (HTTPSConnectionPool(host='www.ofa.or.jp', port=443): Max retries exceeded with url: /news/tournaments/high-school/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ofa.or.jp', port=443) at 0x7f8ac612a910>, 'Connection to www.ofa.or.jp timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "okayama": {
       "result": "ok",
       "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -831,8 +831,8 @@
     },
     "okinawa": {
       "result": "ok",
-      "result_note": "消化37試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化38試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -868,8 +868,8 @@
       "status": "ok",
       "last_updated": "2026-09-19",
       "result": "ok",
-      "result_note": "消化54試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result_note": "消化55試合に更新（検算一致）",
+      "result_date": "2026-09-20"
     },
     "osaka-2a": {
       "season": "2026",
@@ -929,9 +929,9 @@
       "status": "ok"
     },
     "saga": {
-      "result": "ok",
-      "result_note": "消化40試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://saga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='saga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='saga-fa-u18.com', port=443) at 0x7f8ac65bf690>, 'Connection to saga-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -968,9 +968,9 @@
       "last_updated": "2026-09-18"
     },
     "shiga": {
-      "result": "ok",
-      "result_note": "消化64試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://shiga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='shiga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='shiga-fa-u18.com', port=443) at 0x7f8ac5c839d0>, 'Connection to shiga-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -990,8 +990,8 @@
     },
     "shimane": {
       "result": "ok",
-      "result_note": "消化38試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化39試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1030,7 +1030,7 @@
     "tochigi": {
       "result": "ok",
       "result_note": "消化54試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1064,15 +1064,15 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化57試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://tokushima-fa.jp/post-414/ の取得に失敗 (HTTPSConnectionPool(host='tokushima-fa.jp', port=443): Max retries exceeded with url: /post-414/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='tokushima-fa.jp', port=443) at 0x7f8ac6749f50>, 'Connection to tokushima-fa.jp timed out. (connect timeout=25)'))))",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "tokyo": {
       "result": "ok",
-      "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化57試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1093,7 +1093,7 @@
     "tottori": {
       "result": "ok",
       "result_note": "消化34試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": true,
       "single_round": false,
@@ -1113,8 +1113,8 @@
     },
     "toyama": {
       "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化52試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1151,12 +1151,12 @@
       "last_updated": "2026-09-19",
       "result": "ok",
       "result_note": "消化70試合に更新（検算一致）",
-      "result_date": "2026-09-19"
+      "result_date": "2026-09-20"
     },
     "yamagata": {
       "result": "ok",
       "result_note": "消化69試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1176,8 +1176,8 @@
     },
     "yamaguchi": {
       "result": "ok",
-      "result_note": "消化46試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_note": "消化47試合に更新（検算一致）",
+      "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1213,7 +1213,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化32試合に更新（検算一致）",
-      "result_date": "2026-09-19",
+      "result_date": "2026-09-20",
       "last_updated": "2026-09-19"
     },
     "_meta": {
@@ -1228,19 +1228,19 @@
     "sync_teams_from_leagues": {
       "result": "ok",
       "note": "",
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "since": ""
     },
     "sync_teams_from_pref": {
       "result": "ok",
       "note": "",
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "since": ""
     },
     "build_tournaments": {
       "result": "ok",
       "note": "",
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "since": ""
     }
   }
