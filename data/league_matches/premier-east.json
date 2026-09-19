@@ -81,6 +81,18 @@
     },
     {
       "rank": 3,
+      "team": "FC東京U-18",
+      "pts": 26,
+      "played": 14,
+      "won": 8,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 32,
+      "ga": 18,
+      "gd": 14
+    },
+    {
+      "rank": 4,
       "team": "柏レイソルU-18",
       "pts": 24,
       "played": 13,
@@ -90,18 +102,6 @@
       "gf": 17,
       "ga": 9,
       "gd": 8
-    },
-    {
-      "rank": 4,
-      "team": "FC東京U-18",
-      "pts": 23,
-      "played": 13,
-      "won": 7,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 30,
-      "ga": 18,
-      "gd": 12
     },
     {
       "rank": 5,
@@ -131,13 +131,13 @@
       "rank": 7,
       "team": "帝京長岡",
       "pts": 21,
-      "played": 13,
+      "played": 14,
       "won": 7,
       "drawn": 0,
-      "lost": 6,
+      "lost": 7,
       "gf": 33,
-      "ga": 25,
-      "gd": 8
+      "ga": 27,
+      "gd": 6
     },
     {
       "rank": 8,
@@ -2580,12 +2580,24 @@
       "md": 14,
       "date": "2026-09-19",
       "home": "帝京長岡",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "FC東京U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "2",
+          "name": "オウンゴール",
+          "ownGoal": true
+        },
+        {
+          "minute": "51",
+          "name": "井部 結斗"
+        }
+      ]
     },
     {
       "md": 14,
@@ -2597,6 +2609,7 @@
       "status": "played",
       "venue": "ヴェルディグラウンド（人工芝）",
       "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1403.pdf",
       "homeScorers": [
         {
           "minute": "34",
@@ -2636,6 +2649,7 @@
       "status": "played",
       "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
       "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1402.pdf",
       "homeScorers": [
         {
           "minute": "36",

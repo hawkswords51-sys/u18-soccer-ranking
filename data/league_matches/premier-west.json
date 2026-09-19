@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
-      "pts": 28,
-      "played": 13,
-      "won": 9,
+      "pts": 31,
+      "played": 14,
+      "won": 10,
       "drawn": 1,
       "lost": 3,
-      "gf": 32,
+      "gf": 33,
       "ga": 18,
-      "gd": 14
+      "gd": 15
     },
     {
       "rank": 2,
@@ -143,13 +143,13 @@
       "rank": 8,
       "team": "大津",
       "pts": 18,
-      "played": 11,
+      "played": 12,
       "won": 6,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "gf": 19,
-      "ga": 16,
-      "gd": 3
+      "ga": 17,
+      "gd": 2
     },
     {
       "rank": 9,
@@ -2476,12 +2476,20 @@
       "md": 14,
       "date": "2026-09-19",
       "home": "ヴィッセル神戸U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "大津",
-      "status": "scheduled",
+      "status": "played",
       "venue": "いぶきの森球技場(人工芝)",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1408.pdf",
+      "homeScorers": [
+        {
+          "minute": "72",
+          "name": "渡部 晴太"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 14,
