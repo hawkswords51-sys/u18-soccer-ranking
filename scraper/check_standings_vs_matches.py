@@ -29,31 +29,33 @@
 
 → **この検査は `recompute(matches)` 同士を比べている場面がある。**
 
-| 経路 | この検査の意味 |
-|---|---|
-| 自動で書かれた直後（41県＋junior-soccer 7） | **無意味**（同じ計算の比較。原理的に一致する） |
-| 手書き（埼玉・2026-09-18の鹿児島の訂正） | **有効**（実測で捕まった） |
-| ⭐️ **自動で書かれたあと人が触った** | **有効。今後いちばん起きやすいのはこれ** |
+| 経路 | `official_standings` | `source_standings`（2026-09-19 新設） |
+|---|---|---|
+| 自動で書かれた直後 | **無意味**（`recompute` 同士） | 書き込み時に `build_from_source` が同じ検算を通しているので一致する |
+| ⭐️ 自動のあと人が触った | 有効 | **有効。しかも「出典と違う」と言える**（`official_standings` は派生物なので「こちらの2か所が食い違う」までしか言えない） |
+| 手書き（埼玉・鹿児島の訂正） | 有効（実測で捕まった） | 出典の表も手で入れたときだけ有効 |
 
-📌 「49リーグ・3,608項目で食い違い0」は、**原理的に0になるものを0だと言っている部分を含む**。
-   件数の大きさを守備範囲の広さと読まないこと。
+📌 項目数は**表ごとに分けて出す**。`official_standings` 側は
+   **原理的に0になるものを0だと言っている部分を含む**ので、件数の大きさを守備範囲の広さと読まないこと。
+⚠️ **両方あるリーグは両方見る。**「`source_standings` を優先」にすると、
+   `official_standings` が古いまま放置されても誰も見なくなる（＝この検査を作った理由が抜ける）。
 ⚠️ **やらないこと**：ここは `matches` と `official_standings` の整合しか見ない。
    **スコアが黙って書き換わったこと自体は見ていない**（それは出典の固有ID＝北海道の `srcId` を
    使う別の仕組みの担当。未実装）。
-⏳ `official_standings` を「出典の表そのもの」に統一すればこの検査は全経路で意味を持つ。
-   ⚠️ **ただし「同着順位の宿題と同じ1つの変更で片づく」は誤り**（2026-09-18 に一度そう書いたので訂正）。
-      同着が見つかった長野は**既定ゲートで、読み手が `rank` を返していない**。
-      ソース上で `rank` を返しているのは北海道・奈良・大阪・和歌山の4本だけで、
-      **既定27リーグの読み手は順位を捨てている**。同着を戻すには**読み手側の改修が別に要る**。
-   ⚠️ 出典ごとに持っている列も違う（2026-09-18 実測）:
-      既定27＝played/won/drawn/lost/gf/ga/pts ／ okinawa 9＝pts/gf/ga ／
-      **pts_gd 2（北海道・兵庫）＝得点・失点が無い** ／ **self 4（宮崎・新潟・岡山・徳島）＝出典に表が無い**。
-      → 「出典の表を保存する」と13リーグで列が減り、self の4リーグは比べる相手が無くなる。
-      ⭐️ その4リーグは**空の表を持つのではなく、キーごと持たない**のが正しい
-        （この検査は無いキーを飛ばすので ⚪️情報 に落ちる。「空の表がある」と「表が無い」は違う）。
-   ⚠️ 上の列の内訳は**ゲートが要求する契約＝下限**を数えたもので、
-      **読み手が実際に返している列はそれ以上のことがある**。設計する前に
-      **1回走らせて返り値のキーを実際にダンプする**こと（`--dry-run` なら書き込まない）。
+✅ 2026-09-19：**`official_standings` を統一するのではなく、別キー `source_standings` を並べて足した。**
+   統一すると13リーグで列が減り（okinawa 9＝勝分敗なし／pts_gd 2＝得点・失点なし）、
+   self の4リーグ（宮崎・新潟・岡山・徳島）は表そのものが無くなる。
+   さらに `sync_teams_from_pref` が `official_standings` の**9列を teams.json に書き戻している**ので、
+   県ページ上部の総合順位表が13リーグで列落ちする。**だから足すだけにした。**
+   ⭐️ `source_standings` は**出典の並び順のまま**入る。
+   ⚠️⚠️ **ただし「行順＝順位」ではなかった**（2026-09-19 実測。設計時の想定が外れた）。
+      38リーグ中**16リーグで行順が順位になっていない**（星取表の行順。長野は3番目が11点・4番目が30点、
+      岐阜は先頭が17点）。**`rank` 列を持つリーグでも行順とは限らない**（兵庫は先頭23点・3番目24点）。
+      → **同着を戻す材料になるのは `rank` の値だけ。並び順は使えない。**
+   ⚠️ `rank` を持つのは**7リーグ**（北海道・兵庫・三重・奈良・沖縄・大阪・和歌山）。
+      2026-09-18 にソースを読んで「4本」と数えたが、**実物は7本**だった（読むだけでは外れる）。
+      同着が見つかった長野は既定ゲートで `rank` が入らないので、**長野を直すには読み手の改修が要る**。
+      ここでやったのは材料を残すところまで。
 
 使い方
 ------
@@ -63,6 +65,7 @@
 """
 from __future__ import annotations
 import argparse
+import collections
 import json
 import sys
 from pathlib import Path
@@ -78,20 +81,34 @@ DIR = ROOT / "data" / "league_matches"
 #    さらに recompute() は `gd` を返さない（gf-ga で自分で出す）。
 #    素直に繋ぐと**勝点だけ突き合わせが効かないまま「全項目一致」と出る**ので、
 #    対応表をここ1か所に書いて、両側から同じ表を見る。
-KEYS = [("played", "played"), ("won", "won"), ("drawn", "drawn"), ("lost", "lost"),
-        ("gf", "gf"), ("ga", "ga"), ("pts", "points")]
+OFFICIAL_KEYS = [("played", "played"), ("won", "won"), ("drawn", "drawn"), ("lost", "lost"),
+                 ("gf", "gf"), ("ga", "ga"), ("pts", "points")]
+# `source_standings`（出典の表そのもの）側。⚠️ **勝点のキー名が違う**（`points` ではなく `pts`）。
+#    出典が持っていない列はそもそもキーが無いので `if off_key not in r: continue` で飛ぶ。
+#    ⚠️ `rank` は比べない。recompute() は順位を返さないので、比べる相手が無い。
+SOURCE_KEYS = [("played", "played"), ("won", "won"), ("drawn", "drawn"), ("lost", "lost"),
+               ("gf", "gf"), ("ga", "ga"), ("pts", "pts")]
+
+# ⚠️ **両方あるリーグは両方見る。**「source_standings があればそちらを優先」にしてはいけない。
+#    優先にすると `official_standings` が古いまま放置されていても誰も見なくなる。
+#    この検査を作った理由そのもの（2026-09-18 埼玉で matches だけ 47→54 に直して
+#    順位表を9/13前のまま残した件）が抜け落ちる。**あるものは全部、独立に見る。**
+TABLES = [("official_standings", OFFICIAL_KEYS, "保存した順位表"),
+          ("source_standings", SOURCE_KEYS, "出典の表")]
 
 
-def check_one(path: Path) -> tuple[list[str], list[str], int]:
-    """1ファイルを見る → (食い違い, 名寄せのずれ, 突き合わせた項目数)"""
+def check_one(path: Path) -> tuple[list[str], list[str], dict]:
+    """1ファイルを見る → (食い違い, 名寄せのずれ, {表の名前: 突き合わせた項目数})"""
     data = json.loads(path.read_text(encoding="utf-8"))
     slug = path.stem
-    rows = data.get("official_standings") or []
-    if not rows:
+    present = [(key, keymap, label) for key, keymap, label in TABLES if data.get(key)]
+    if not present:
         # 出典が機械可読な順位表を出していないリーグ（宮崎など）はここに来る。
         # **食い違いではない**ので終了コードは上げず、⚪️情報として1行出すだけ。
-        return [], [f"⚪️ {slug}: official_standings が無い（突き合わせをスキップ）"], 0
+        return [], [f"⚪️ {slug}: 突き合わせる順位表が無い（official_standings も source_standings も）"], {}
 
+    # 名寄せのずれは表ごとに出すと重複するので、official_standings（全リーグにある）を代表にして1回だけ見る
+    rows = data.get("official_standings") or data.get("source_standings") or []
     names = {t.get("name") for t in (data.get("teams") or []) if t.get("name")}
     played = [m for m in data.get("matches", [])
               if m.get("status") == "played" and m.get("hs") is not None and m.get("as") is not None]
@@ -112,23 +129,27 @@ def check_one(path: Path) -> tuple[list[str], list[str], int]:
     if len(dropped) > 5:
         misname.append(f"⚠ {slug}: 同様に計算から落ちる試合が他に {len(dropped) - 5} 件")
 
-    st = recompute(played, [r.get("team") for r in rows])
-    diffs, checked = [], 0
-    for r in rows:
-        team = r.get("team")
-        s = st.get(team)
-        if s is None:
-            continue                      # 上の misname で報告済み
-        for src_key, off_key in KEYS:
-            if off_key not in r:
-                continue
-            checked += 1
-            if r[off_key] != s[src_key]:
-                diffs.append(f"⚠ {slug}: {team}.{off_key} 順位表{r[off_key]} ≠ 試合から{s[src_key]}")
-        if "gd" in r:
-            checked += 1
-            if r["gd"] != s["gf"] - s["ga"]:
-                diffs.append(f"⚠ {slug}: {team}.gd 順位表{r['gd']} ≠ 試合から{s['gf'] - s['ga']}")
+    diffs, checked = [], {}
+    for key, keymap, label in present:
+        table = data[key]
+        st = recompute(played, [r.get("team") for r in table])
+        n = 0
+        for r in table:
+            team = r.get("team")
+            s = st.get(team)
+            if s is None:
+                continue                  # 上の misname で報告済み
+            for src_key, off_key in keymap:
+                if off_key not in r:
+                    continue              # 出典が持っていない列＝比べる相手が無い（正常）
+                n += 1
+                if r[off_key] != s[src_key]:
+                    diffs.append(f"⚠ {slug}: {team}.{off_key} {label}{r[off_key]} ≠ 試合から{s[src_key]}")
+            if "gd" in r:
+                n += 1
+                if r["gd"] != s["gf"] - s["ga"]:
+                    diffs.append(f"⚠ {slug}: {team}.gd {label}{r['gd']} ≠ 試合から{s['gf'] - s['ga']}")
+        checked[key] = n
     return diffs, misname, checked
 
 
@@ -146,7 +167,9 @@ def main() -> int:
         print("対象のJSONが見つかりません")
         return 0
 
-    all_diffs, all_misname, checked, skipped = [], [], 0, 0
+    all_diffs, all_misname, skipped = [], [], 0
+    checked = collections.Counter()
+    tables = collections.Counter()
     for p in targets:
         if not p.exists():
             all_misname.append(f"⚠ {p}: ファイルが見つかりません")
@@ -154,11 +177,16 @@ def main() -> int:
         diffs, misname, n = check_one(p)
         all_diffs += diffs
         all_misname += misname
-        checked += n
-        if n == 0 and not diffs:
+        checked.update(n)
+        for key in n:
+            tables[key] += 1
+        if not n and not diffs:
             skipped += 1
 
-    print(f"=== 順位表 ⇄ 試合一覧 の突き合わせ（{len(targets)}リーグ・{checked}項目）===")
+    # ⚠️ 表ごとに分けて出す。official_standings 側は自動更新直後だと
+    #    原理的に一致する部分を含むので、**件数の大きさを守備範囲の広さと読ませない**ため。
+    detail = "／".join(f"{k} {tables[k]}リーグ {checked[k]:,}項目" for k, _, _ in TABLES if tables[k])
+    print(f"=== 順位表 ⇄ 試合一覧 の突き合わせ（{len(targets)}リーグ・{detail}）===")
     # ⚠️ 名寄せのずれを**先に**出す。これがあると数値の食い違いはその結果でしかないことが多い。
     for line in all_misname:
         print("  " + line)
@@ -168,7 +196,7 @@ def main() -> int:
     ng = [x for x in all_misname if x.startswith("⚠")]
     if not all_diffs and not ng:
         print(f"  ✅ 食い違いなし"
-              f"{f'（うち順位表が無くスキップ {skipped} リーグ）' if skipped else ''}")
+              f"{f'（うち突き合わせる順位表が無くスキップ {skipped} リーグ）' if skipped else ''}")
         return 0
     print(f"\n--- 数値の食い違い {len(all_diffs)} 件 ／ 名寄せのずれ {len(ng)} 件 ---")
     print("  ※ JSONを手で書いたときは、保存の**前に**これを通すこと"

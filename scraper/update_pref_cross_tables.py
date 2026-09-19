@@ -271,6 +271,42 @@ def recompute(matches: list[dict], teams: list[str]) -> dict[str, dict]:
     return st
 
 
+def set_source_standings(data: dict, source_table) -> None:
+    """出典の順位表そのものを `source_standings` に入れる（2026-09-19 新設）。
+
+    ⚠️ `official_standings` とは**別物**。あちらは試合から再計算した値（全リーグ10列に揃う）、
+       こちらは**出典が持っている列だけ**をそのまま。名前が似ているので混同しないこと。
+    ⭐️ **出典の並び順のまま**のリストにする（勝手に並べ替えない）。
+    ⚠️⚠️ ただし **行順＝順位とは限らない**（2026-09-19 実測。設計時の想定が外れた）。
+       38リーグ中**16リーグで行順が順位になっていない**。星取表の行順（チーム番号順など）で、
+       長野は3番目が11点・4番目が30点、岐阜は先頭が17点。
+       **`rank` 列を持つリーグでも行順とは限らない**（兵庫は先頭が23点で3番目が24点）。
+       → **同着を戻す材料になるのは `rank` の値だけ**で、並び順は使えない。
+         `rank` を持つのは7リーグ（北海道・兵庫・三重・奈良・沖縄・大阪・和歌山）。
+       📌 `official_standings` は勝点→得失点差→得点→名前で並べ直すので同着が必ず割れる。
+          その復元は**読み手が `rank` を返しているリーグでしかできない**（＝上の7つ）。
+    ⚠️ 値が None の列は落とす（`0` は落とさない）。`check_standings_vs_matches.py` は
+       「キーが無い＝出典が持っていない」と読むので、None を残すと
+       「持っているのに合わない」という嘘の食い違いになる。
+    ⚠️ source_table が空なら**キーごと消す**。前にあった表が出典から消えたとき、
+       古い表だけが残り続けるのを防ぐ（同じ事実を2か所に持つと片方だけ古くなる）。
+    """
+    items = source_table.items() if isinstance(source_table, dict) else (source_table or [])
+    rows = []
+    for team, rec in items:
+        row = {"team": team}
+        for k, v in rec.items():
+            if v is None or k == "team":
+                continue
+            # pandas 由来の numpy 型が混ざると json.dumps が落ちるので素の値に戻す
+            row[k] = v.item() if hasattr(v, "item") else v
+        rows.append(row)
+    if rows:
+        data["source_standings"] = rows
+    else:
+        data.pop("source_standings", None)
+
+
 def fetch_dfs(url: str):
     """requests で取得し pandas.read_html で全テーブルを返す（Actions専用）。"""
     import requests
@@ -528,6 +564,15 @@ def process(slug: str, region: str, lid: str, dry_run: bool = False) -> str:
     #    ⚠️ **出典の順位（rank）は捨てられる。** ここで付け直すので、
     #       **出典が同着で並べていても必ず1位2位に割れる**（2026-09-15 長野で発覚・未着手）。
     data["official_standings"] = meta["official"]
+    # [2026-09-19] 出典（junior-soccer）の順位表そのもの。**上とは別物**（上は再計算値）。
+    #   ⚠️ `parse_standings` は**順位の列を読んでいない**ので rank は入らない。
+    #      dict の挿入順＝出典の表の行順で残るが、**行順＝順位とは限らない**
+    #      （2026-09-19 実測。公式42県では16リーグで行順が順位になっていなかった）。
+    #      → **同着の材料としては使えない。**使えるのは `rank` の値を持つリーグだけ。
+    #   ⚠️⚠️ この経路は**週1の手動取り込みでは走らない**（走らせると junior-soccer に取りに行く）。
+    #      junior-soccer 出典の8リーグに `source_standings` を入れるなら、
+    #      **手で書く手順のほうに入れる**必要がある（手順書で別途決める）。
+    set_source_standings(data, standings)
     # ⚠️⚠️ **`source` と `sourceName` は必ず一緒に更新すること**（2026-09-17）。
     #    2026-06-17に県協会（sfa2.jp）から手で作った埼玉を、7月からこのスクリプトが junior-soccer で
     #    上書きしていたが、**`source` だけ書き換えて `sourceName` は手入力の「埼玉県サッカー協会」のまま**

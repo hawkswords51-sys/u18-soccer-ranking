@@ -60,7 +60,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 # 既存の県1部スクリプトから、名寄せ・検算・JSON組み立てをそのまま流用する。
 # 同じ関数を使うことで、出力スキーマと検算の厳しさが junior-soccer 版と完全に揃う。
 from update_pref_cross_tables import (  # noqa: E402
-    SEASON_YEAR, build_from_source, norm,
+    SEASON_YEAR, build_from_source, norm, set_source_standings,
 )
 import pdf_source  # noqa: E402  PDF出典の下ごしらえ（URLを辿る・取得・版日付・行/表の復元）
 
@@ -5115,6 +5115,23 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     standings = {name_map[k]: v for k, v in standings.items()}
     matches = [dict(m, home=name_map[m["home"]], away=name_map[m["away"]]) for m in matches]
 
+    # ------------------------------------------------------------------
+    # [2026-09-19] ⭐️ ここが「出典の順位表そのもの」を持っている**最後の瞬間**。
+    #   この下の代替ゲート（self / okinawa / pts_gd）は
+    #       standings = standings_from_matches(matches, site_names)
+    #   で standings を**試合から再計算した値に置き換える**。置き換わったあとでは出典の表は取り出せない
+    #   （okinawa / pts_gd は局所変数 `official` に退避しているだけ）。
+    #   ⚠️ だから「build_from_source の第1引数＝出典の表」は**既定ゲートでしか成り立たない**。
+    #      build_from_source 側では拾わないこと（拾うと11リーグで再計算値を「出典」と称して保存する）。
+    #   ⚠️ **名寄せ済みの名前で捕まえる**（上の2行より前だと出典表記のままで teams[].name と突き合わない）。
+    # ------------------------------------------------------------------
+    if cfg.get("standings_gate") == "self":
+        # 出典に順位表が無いリーグ（宮崎・新潟・岡山・徳島）。
+        # **空の表を持つ**のではなく**キーごと持たない**のが正しい。「空の表がある」と「表が無い」は違う。
+        source_table = None
+    else:
+        source_table = list(standings.items()) or None
+
     # --- 出典に日付が無い県は、既存JSONの同じ対戦から date を引き継ぐ（山口） ---
     # 出典のダミー日付（山口は全試合 2026/04/04）は絶対に採用しない。
     # 新しく増える試合は日付なしのままになる＝県ページの「直近の試合結果」には出ない。
@@ -5330,6 +5347,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     #    ⚠️ **出典の順位（rank）は捨てられる。** ここで付け直すので、
     #       **出典が同着で並べていても必ず1位2位に割れる**（2026-09-15 長野で発覚・未着手）。
     data["official_standings"] = meta["official"]
+    set_source_standings(data, source_table)   # [2026-09-19] 出典の表そのもの（上とは別物）
     data["source"] = src
     data["sourceName"] = cfg["label"]
     data["lastUpdated"] = _jst_today().isoformat()   # UTCだと1日ずれる（jst.py参照）
