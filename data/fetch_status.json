@@ -122,8 +122,8 @@
     },
     "prince-kansai-2": {
       "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
+      "actual": "koko",
+      "reason": "JFA公式データを取得できない (https://www.jfa.jp/match_47fa/106_kansai/takamado_jfa_u18_prince2026/kansai2/match/schedule.json の取得に失敗 (Expecting ',' delimiter: line 3623 column 4 (char 84278)))",
       "matchesPlayed": 56,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-19T12:23:07+09:00",
+  "updatedAt": "2026-09-19T12:28:29+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
