@@ -34,7 +34,7 @@ scraper/update_tournament_results.py が上の source から
 - 清水西 vs 掛川西
 - 浜松修学舎 vs 掛川東
 - 加藤学園暁秀 vs 浜松学芸
-- 静岡西 vs 藤枝北
+- 静岡西 2-1 藤枝北
 - 焼津水産 vs 吉原工
 - 静岡大成 vs 富士宮北
 - 富士 vs 新居
@@ -67,7 +67,7 @@ scraper/update_tournament_results.py が上の source から
 - 清水西/掛川西 vs 加藤学園
 - 浜松修学舎/掛川東 vs 加藤学園暁秀/浜松学芸
 - 沼津市立 vs 御殿場西
-- 静岡西/藤枝北 vs 焼津中央
+- 静岡西 vs 焼津中央
 - 焼津水産/吉原工 vs 静岡大成/富士宮北
 - 三島南 vs 田方農
 - 富士/新居 vs 浜松湖東
@@ -80,3 +80,7 @@ scraper/update_tournament_results.py が上の source から
 - 星陵/浜松城北工 vs オイスカ/沼津東
 - 沼津商 vs 下田
 - 清流館/静岡聖光 vs 島田商
+
+## 3回戦（10/3）
+
+- 沼津市立/御殿場西 vs 静岡西/焼津中央

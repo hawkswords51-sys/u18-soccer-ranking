@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "創成館",
+      "points": 26,
+      "played": 12,
+      "won": 8,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 29,
+      "ga": 14,
+      "gd": 15
+    },
+    {
+      "rank": 3,
       "team": "長崎日大",
       "points": 23,
       "played": 11,
@@ -70,18 +82,6 @@
       "gf": 26,
       "ga": 8,
       "gd": 18
-    },
-    {
-      "rank": 3,
-      "team": "創成館",
-      "points": 23,
-      "played": 11,
-      "won": 7,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 23,
-      "ga": 13,
-      "gd": 10
     },
     {
       "rank": 4,
@@ -135,13 +135,13 @@
       "rank": 8,
       "team": "海星",
       "points": 7,
-      "played": 11,
+      "played": 12,
       "won": 1,
       "drawn": 4,
-      "lost": 6,
-      "gf": 13,
-      "ga": 23,
-      "gd": -10
+      "lost": 7,
+      "gf": 14,
+      "ga": 29,
+      "gd": -15
     },
     {
       "rank": 9,
@@ -313,12 +313,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "創成館",
-      "hs": null,
-      "as": null,
+      "hs": 6,
+      "as": 1,
       "away": "海星",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "創成館高等学校S-Field"
     },
     {
       "md": 0,
@@ -1033,6 +1034,108 @@
       "as": null,
       "away": "佐世保実業",
       "status": "scheduled"
+    }
+  ],
+  "source_standings": [
+    {
+      "team": "九州文化学園",
+      "pts": 28,
+      "played": 11,
+      "won": 9,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 33,
+      "ga": 19
+    },
+    {
+      "team": "創成館",
+      "pts": 26,
+      "played": 12,
+      "won": 8,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 29,
+      "ga": 14
+    },
+    {
+      "team": "長崎日大",
+      "pts": 23,
+      "played": 11,
+      "won": 7,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 26,
+      "ga": 8
+    },
+    {
+      "team": "国見2nd",
+      "pts": 22,
+      "played": 11,
+      "won": 7,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 29,
+      "ga": 17
+    },
+    {
+      "team": "鎮西学院",
+      "pts": 17,
+      "played": 11,
+      "won": 4,
+      "drawn": 5,
+      "lost": 2,
+      "gf": 16,
+      "ga": 17
+    },
+    {
+      "team": "Vファーレン長崎2nd",
+      "pts": 17,
+      "played": 11,
+      "won": 5,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 28,
+      "ga": 17
+    },
+    {
+      "team": "長崎総附2nd",
+      "pts": 12,
+      "played": 11,
+      "won": 3,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 20,
+      "ga": 21
+    },
+    {
+      "team": "海星",
+      "pts": 7,
+      "played": 12,
+      "won": 1,
+      "drawn": 4,
+      "lost": 7,
+      "gf": 14,
+      "ga": 29
+    },
+    {
+      "team": "佐世保実業",
+      "pts": 3,
+      "played": 11,
+      "won": 1,
+      "drawn": 0,
+      "lost": 10,
+      "gf": 10,
+      "ga": 26
+    },
+    {
+      "team": "長崎南山",
+      "pts": 2,
+      "played": 11,
+      "won": 0,
+      "drawn": 2,
+      "lost": 9,
+      "gf": 8,
+      "ga": 45
     }
   ]
 }

@@ -39,7 +39,7 @@
     "prince-tohoku": {
       "expected": "jfa",
       "actual": "koko",
-      "reason": "検算不一致 ['モンテディオ山形ユース.試合 日程から計算14≠順位表13', 'モンテディオ山形ユース.勝 日程から計算7≠順位表6', 'モンテディオ山形ユース.得点 日程から計算14≠順位表13'] …（据え置き）",
+      "reason": "検算不一致 ['東北学院.試合 日程から計算14≠順位表13', '東北学院.勝 日程から計算6≠順位表5', '東北学院.得点 日程から計算19≠順位表17'] …（据え置き）",
       "matchesPlayed": 65,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -122,9 +122,9 @@
     },
     "prince-kansai-2": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "JFA公式データを取得できない (https://www.jfa.jp/match_47fa/106_kansai/takamado_jfa_u18_prince2026/kansai2/match/schedule.json の取得に失敗 (Expecting ',' delimiter: line 3623 column 4 (char 84278)))",
-      "matchesPlayed": 56,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 57,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-19T12:28:29+09:00",
+  "updatedAt": "2026-09-19T12:42:53+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -376,7 +376,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result_note": "消化58試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -500,7 +500,7 @@
     },
     "iwate": {
       "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result_note": "消化49試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -522,7 +522,7 @@
     },
     "kagawa": {
       "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result_note": "消化57試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -684,7 +684,7 @@
     },
     "miyazaki": {
       "result": "ok",
-      "result_note": "消化62試合に更新（検算一致）",
+      "result_note": "消化63試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -726,7 +726,7 @@
     },
     "nagasaki": {
       "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -931,7 +931,7 @@
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化36試合に更新（検算一致）",
+      "result_note": "消化38試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
@@ -991,7 +991,7 @@
     },
     "shimane": {
       "result": "ok",
-      "result_note": "消化35試合に更新（検算一致）",
+      "result_note": "消化36試合に更新（検算一致）",
       "result_date": "2026-09-19",
       "season": "2026",
       "complete": false,
