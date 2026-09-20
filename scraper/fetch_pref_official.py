@@ -3877,8 +3877,10 @@ def read_fukushima(cfg: dict) -> tuple[dict, list[dict]]:
         pts, won, drawn, lost, gf, ga, gd, rank = (int(x) for x in v)
         if 3 * won + drawn != pts or gf - ga != gd:
             raise RuntimeError(f"順位表 {team} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・差{gd}）")
+        # [2026-09-20] rank も standings に入れる（これまでは下の検算にだけ使って捨てていた）。
+        #   同着（apply_source_ties）の材料になる。同着かどうかは出典の順位に従う（自前で判定しない）。
         standings[team] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
-                               lost=lost, gf=gf, ga=ga)
+                               lost=lost, gf=gf, ga=ga, rank=rank)
         ranks.append((rank, team))
     if len(standings) != n:
         raise RuntimeError(f"順位表が{len(standings)}チーム（{n}チームのはず）")
@@ -4390,8 +4392,10 @@ def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
         won, drawn, lost, pts, gf, ga, gd, rank = (int(x) for x in v)
         if 3 * won + drawn != pts or gf - ga != gd:
             raise RuntimeError(f"星取表 {team} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・得失点{gd}）")
+        # [2026-09-20] rank も standings に入れる（これまでは下の検算にだけ使って捨てていた）。
+        #   同着（apply_source_ties）の材料になる。同着かどうかは出典の順位に従う（自前で判定しない）。
         standings[team] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
-                               lost=lost, gf=gf, ga=ga)
+                               lost=lost, gf=gf, ga=ga, rank=rank)
         ranks.append((rank, team))
     if len(standings) != n:
         raise RuntimeError(f"星取表の順位表が{len(standings)}チーム（{n}チームのはず）")
@@ -4414,16 +4418,19 @@ def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
             s["pts"] += 3 if gf > ga else 1 if gf == ga else 0
     known = KNOWN_SOURCE_ERRORS.get("ehime", {})
     for team, off in standings.items():
-        want = {k: 0 for k in off}
+        # ⚠️ rank は試合から計算できる値ではないので、この突き合わせからは外す
+        #    （2026-09-20に rank を standings に入れたときの対応）
+        want = {k: 0 for k in off if k != "rank"}
         want.update(known.get(team, {}))
-        got = {k: off[k] - mine[team][k] for k in off}
+        got = {k: off[k] - mine[team][k] for k in off if k != "rank"}
         if got != want:
             extra = ("。協会が直したなら KNOWN_SOURCE_ERRORS から愛媛の項目を消すこと"
                      if known.get(team) else "")
             raise RuntimeError(f"星取表 {team} の順位表と日程PDFの結果が合わない（公式−計算＝"
                                f"{ {k: v for k, v in got.items() if v} }・見込みは"
                                f"{ {k: v for k, v in want.items() if v} or '差なし' }）{extra}")
-    standings = {t: dict(mine[t]) for t in standings}   # 既知の差を除いた値＝日程PDFと一致する値
+    # 既知の差を除いた値＝日程PDFと一致する値。⚠️ rank はここで作り直すと消えるので持ち越す
+    standings = {t: dict(mine[t], rank=standings[t]["rank"]) for t in standings}
     if sum(v["gf"] - v["ga"] for v in standings.values()) != 0:
         raise RuntimeError("順位表の得失点の合計が0でない（読み取りの誤り、または出典の誤り）")
     for (r1, t1), (r2, t2) in zip(sorted(ranks), sorted(ranks)[1:]):
