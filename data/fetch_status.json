@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-20T07:41:06+09:00",
+  "updatedAt": "2026-09-20T09:21:18+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -558,8 +558,8 @@
       "last_updated": "2026-09-18"
     },
     "kanagawa": {
-      "result": "ok",
-      "result_note": "消化60試合に更新（検算一致）",
+      "result": "verify_failed",
+      "result_note": "検算不一致 東海大相模A.played 試合13≠表12; 東海大相模A.won 試合9≠表8 …（順位表と個別試合が未整合。待機）",
       "result_date": "2026-09-20",
       "season": "2026",
       "complete": false,
