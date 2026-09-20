@@ -63,13 +63,13 @@
       "rank": 2,
       "team": "浦和レッズユース",
       "pts": 21,
-      "played": 11,
+      "played": 12,
       "won": 6,
       "drawn": 3,
-      "lost": 2,
+      "lost": 3,
       "gf": 16,
-      "ga": 8,
-      "gd": 8
+      "ga": 12,
+      "gd": 4
     },
     {
       "rank": 3,
@@ -111,28 +111,40 @@
       "rank": 6,
       "team": "流通経済大柏(B)",
       "pts": 18,
-      "played": 10,
+      "played": 11,
       "won": 5,
       "drawn": 3,
-      "lost": 2,
-      "gf": 9,
-      "ga": 8,
-      "gd": 1
+      "lost": 3,
+      "gf": 11,
+      "ga": 11,
+      "gd": 0
     },
     {
       "rank": 7,
       "team": "桐蔭学園",
-      "pts": 11,
-      "played": 11,
-      "won": 3,
+      "pts": 14,
+      "played": 12,
+      "won": 4,
       "drawn": 2,
       "lost": 6,
-      "gf": 12,
+      "gf": 16,
       "ga": 15,
-      "gd": -3
+      "gd": 1
     },
     {
       "rank": 8,
+      "team": "ヴァンフォーレ甲府U-18",
+      "pts": 11,
+      "played": 12,
+      "won": 2,
+      "drawn": 5,
+      "lost": 5,
+      "gf": 11,
+      "ga": 24,
+      "gd": -13
+    },
+    {
+      "rank": 9,
       "team": "帝京",
       "pts": 9,
       "played": 12,
@@ -144,7 +156,7 @@
       "gd": -4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "team": "桐生第一",
       "pts": 8,
       "played": 12,
@@ -154,18 +166,6 @@
       "gf": 13,
       "ga": 25,
       "gd": -12
-    },
-    {
-      "rank": 10,
-      "team": "ヴァンフォーレ甲府U-18",
-      "pts": 8,
-      "played": 11,
-      "won": 1,
-      "drawn": 5,
-      "lost": 5,
-      "gf": 8,
-      "ga": 22,
-      "gd": -14
     }
   ],
   "matches": [
@@ -811,10 +811,10 @@
       "md": 12,
       "date": "2026-09-20",
       "home": "桐蔭学園",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "浦和レッズユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "桐蔭学園多目的グラウンド",
       "kickoff": "16:30"
     },
@@ -822,10 +822,10 @@
       "md": 12,
       "date": "2026-09-20",
       "home": "流通経済大柏(B)",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "ヴァンフォーレ甲府U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "流通経済大学付属柏高等学校",
       "kickoff": "16:00"
     },
