@@ -344,6 +344,29 @@ PREF_OFFICIAL = {
                   # ⚠️ マスの並び順に意味が無いので、増分（前回の保存内容＋新しく増えた分）で割り当てる。
                   "leg_assign": "incremental"},
 
+    # 大阪2部A/B/C（2026-09-21追加。それまでは junior-soccer から週1の手動取り込み）。
+    # ⭐️ 出どころは1部とまったく同じ（CGI tsl=171 ＋ 府協会の日程PDF）。読み手も read_osaka を共用する。
+    # ⚠️ `pref` は "osaka" のまま（名寄せ表 PREF_ALIAS と `norm()` の参照に使う）。
+    #    保存先は `slug` で分ける。`section`＝部、`block`＝グループ。
+    "osaka-2a":  {"platform": "osaka", "pref": "osaka", "slug": "pref-osaka-2a", "teams": 8,
+                  "section": "2", "block": "A",
+                  "source": "https://osaka-fa.or.jp/2shu/game_information/",
+                  "label": "大阪府サッカー協会 公式",
+                  "standings_gate": "okinawa", "leg_assign": "incremental"},
+    "osaka-2b":  {"platform": "osaka", "pref": "osaka", "slug": "pref-osaka-2b", "teams": 8,
+                  "section": "2", "block": "B",
+                  "source": "https://osaka-fa.or.jp/2shu/game_information/",
+                  "label": "大阪府サッカー協会 公式",
+                  "standings_gate": "okinawa", "leg_assign": "incremental"},
+    # ⚠️ Cだけ、出典「セレッソ大阪U-18B」と既存JSON「セレッソ大阪U-18 B」（半角空白）が norm() で寄らない
+    #    （norm は前者を「セレッソ大阪SECOND」、後者を「セレッソ大阪b」にする）。出典側を書き換えて渡す。
+    "osaka-2c":  {"platform": "osaka", "pref": "osaka", "slug": "pref-osaka-2c", "teams": 8,
+                  "section": "2", "block": "C",
+                  "source": "https://osaka-fa.or.jp/2shu/game_information/",
+                  "label": "大阪府サッカー協会 公式",
+                  "standings_gate": "okinawa", "leg_assign": "incremental",
+                  "manual_renames": {"セレッソ大阪U-18B": "セレッソ大阪U-18 B"}},
+
     # 和歌山（2026-09-17追加）。「1部リーグ 試合結果」PDF1本に順位表・星取表・前期日程・後期日程が全部入っている。
     # 順位表に勝分敗が無いので沖縄と同じ代替ゲート。ALIASは不要（10チームとも既存JSONと同じ表記）。
     # ⚠️ home/away は「日程表の左側＝home」の格納規約で、**事実ではない**（ホーム試合数が近大和歌山10/4・桐蔭4/10、
@@ -2894,7 +2917,7 @@ def read_yamanashi(cfg: dict) -> tuple[dict, list[dict]]:
               f"予定より前倒しで行われた可能性）")
     # ✅ 守り（2026-09-17）：巡目を「そのペアの何回目か」で決めているので、同じペアの2試合が入れ替わると
     #    順位表は変わらず検算をすり抜ける。前回の保存内容と突き合わせて入れ替わりだけを捕まえる。
-    check_legs_not_swapped(cfg["pref"], matches)
+    check_legs_not_swapped(_slug_of(cfg), matches)
     return standings, matches
 
 
@@ -3114,8 +3137,22 @@ _OSAKA_LIST = "https://osaka-fa.or.jp/2shu/game_information/"
 _OSAKA_CELL_RE = re.compile(r"(\d+)([○●△])(\d+)")
 
 
-def _osaka_links(year: str) -> tuple[str, str]:
-    """記事の「1部リーグ」の見出しの直後にある (日程PDF, 星取表CGI) を返す。"""
+def renames_apply(text: str, renames: dict) -> str:
+    """出典の表記を既存JSONの表記に置き換える（対戦カードの文字列の中まで）。
+
+    ⚠️ 長い名前から順に置き換える（短い名前が先だと部分一致で壊れる）。
+    """
+    for src in sorted(renames, key=len, reverse=True):
+        text = text.replace(src, renames[src])
+    return text
+
+
+def _osaka_links(year: str, want: str = "1") -> tuple[str, str]:
+    """記事の「{want}部リーグ」の見出しの直後にある (日程PDF, 星取表CGI) を返す。
+
+    ⚠️ [2026-09-21] 2部に広げたので**部を引数にする**。`tsl=` もPDFのURLも決め打ちしない
+       （出典が版を上げるたびにPDFのURLが変わるため）。
+    """
     from urllib.parse import urljoin
     from bs4 import NavigableString
     nfkc = lambda s: re.sub(r"[\s　]+", "", unicodedata.normalize("NFKC", s or ""))
@@ -3136,22 +3173,35 @@ def _osaka_links(year: str) -> tuple[str, str]:
                 sect = t[:1]
         elif getattr(node, "name", "") == "a" and node.get("href"):
             href, label = node["href"], nfkc(node.get_text())
-            if sect != "1":
+            if sect != want:
                 continue
             if label == "試合予定" and href.lower().endswith(".pdf") and pdf is None:
                 pdf = urljoin(art_url, href)
             elif label == "試合結果" and "gmresult.cgi" in href and cgi is None:
                 cgi = urljoin(art_url, href)
     if not (pdf and cgi):
-        raise RuntimeError(f"記事の「1部リーグ」の欄に日程PDF({pdf})と試合結果CGI({cgi})がそろっていない")
+        raise RuntimeError(f"記事の「{want}部リーグ」の欄に日程PDF({pdf})と試合結果CGI({cgi})がそろっていない")
     return pdf, cgi
 
 
 def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
+    """大阪1部と2部A/B/C。出どころ（CGI＋府協会の日程PDF）は同じで、部とグループだけが違う。
+
+    ⚠️ [2026-09-21] 2部を足した。**1部の出力を1文字も変えない**のが最優先。
+       2部だけの事情は次の3つ：
+         ・CGIの1ページに8チームの表が3つ並ぶ → **表の直前の「2部◯グループ」の見出しで選ぶ**
+           （「3つのうち1つ目がA」と位置で決めない。並びが変わると静かに別グループを読む）
+         ・日程PDFがA/B/C合本 → **試合番号の頭文字（2A/2B/2C）でグループを選ぶ**
+         ・節の付け方が1部と違う（1〜13で、1節に4試合の節と8試合の節がある）
+           → 1部の「節ごとに n/2 試合」「前半=1巡目」の検算は**2部には当てない**
+    """
     year = str(SEASON_YEAR)
-    pref_key = cfg["pref"]
+    slug = _slug_of(cfg)
+    sect = str(cfg.get("section", "1"))
+    block = cfg.get("block")                      # "A"/"B"/"C"。1部は None
+    renames = cfg.get("manual_renames") or {}     # 出典の表記 → 既存JSONの表記
     nfkc = lambda s: re.sub(r"[\s　]+", "", unicodedata.normalize("NFKC", s or ""))
-    pdf_url, cgi = _osaka_links(year)
+    pdf_url, cgi = _osaka_links(year, sect)
     if not cgi.startswith("http://"):
         cgi = "http://" + cgi.split("://", 1)[1]       # ⚠️ https では繋がらない
     if "bsl=" not in cgi:
@@ -3162,14 +3212,24 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
     text = nfkc(soup.get_text(" "))
     if f"U-18サッカーリーグ{year}OSAKA" not in text:
         raise RuntimeError(f"星取表CGIの表題が{year}年のOSAKAでない（文字化けの疑い）")
-    m = re.search(r"1部リーグ\((\d+)/(\d+)試合消化", text)
+    # 出典自身の申告。1部は「1部リーグ(n/m試合消化)」、2部はグループごとに「2部Aグループ(n/m試合消化)」
+    label = f"{sect}部{block}グループ" if block else f"{sect}部リーグ"
+    m = re.search(re.escape(label) + r"\((\d+)/(\d+)試合消化", text)
     v = re.search(r"最新の更新(\d{4})/(\d{2})/(\d{2})", text)
     if not m or not v:
-        raise RuntimeError("星取表CGIから消化数または更新日が読めない")
+        raise RuntimeError(f"星取表CGIから「{label}」の消化数または更新日が読めない")
     said_played, said_total = int(m.group(1)), int(m.group(2))
     version = f"{v.group(1)}-{v.group(2)}-{v.group(3)}"
     n = cfg["teams"]
     grids = [t for t in soup.find_all("table") if len(t.find_all("tr")) == 2 + n]
+    if block:
+        # ⭐️ 表の**直前**に出てくる「2部◯グループ」の見出しで選ぶ（位置で決めない）
+        picked = [t for t in grids
+                  if nfkc(str(t.find_previous(string=re.compile("グループ")))) == label]
+        if len(picked) != 1:
+            raise RuntimeError(f"星取表CGIで「{label}」の直後の表が{len(picked)}個"
+                               f"（1個のはず・{n}チームの表は全部で{len(grids)}個）")
+        grids = picked
     if len(grids) != 1:
         raise RuntimeError(f"星取表CGIの表が{len(grids)}個（1個のはず）")
     rows = grids[0].find_all("tr")
@@ -3180,13 +3240,24 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
         return [x for x in (nfkc(p) for p in BeautifulSoup(h, "html.parser").get_text().split("\x01")) if x]
 
     head = [nfkc(td.get_text()) for td in rows[0].find_all(["td", "th"])]
-    teams = head[1:1 + n]
+    teams = [renames.get(t, t) for t in head[1:1 + n]]
     if head[1 + n:] != ["勝点", "得失差", "得点", "失点", "順位"]:
         raise RuntimeError(f"星取表CGIのヘッダが想定と違う: {head}")
+    # ✅ 守り：選んだ表のチームが、前回保存したこのリーグのチームと完全に一致すること。
+    #    （並びが変わって別グループの表を読んでいたら、ここで止まる）
+    try:
+        _prev = json.loads((DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        _prev_names = {t["name"] for t in _prev.get("teams", [])}
+    except Exception:
+        _prev_names = set()
+    if _prev_names and _prev_names != set(teams):
+        raise RuntimeError(f"星取表CGIの「{label}」のチームが既存JSONと違う: "
+                           f"出典のみ{sorted(set(teams) - _prev_names)}／"
+                           f"既存のみ{sorted(_prev_names - set(teams))}")
     standings, legs = {}, {}
     for k, tr in enumerate(rows[1:1 + n]):
         tds = tr.find_all(["td", "th"])
-        me = nfkc(tds[0].get_text())
+        me = renames.get(nfkc(tds[0].get_text()), nfkc(tds[0].get_text()))
         if me != teams[k]:
             raise RuntimeError(f"星取表CGIの{k + 1}行目 {me} が列の並び {teams[k]} と合わない")
         vals = [nfkc(td.get_text()) for td in tds[1 + n:1 + n + 5]]
@@ -3217,31 +3288,76 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
     # --- 日程表PDF（節・日付。スコアは無い） ---
     content = pdf_source.fetch_pdf(pdf_url, HEADERS, TIMEOUT, wait=SLEEP)
     time.sleep(SLEEP)
+    want_title = (f"U-18サッカーリーグ{year}OSAKA{sect}部ABCグループ試合日程表" if block
+                  else f"U-18サッカーリーグ{year}OSAKA{sect}部試合日程表")
+    # ⚠️ 2部の日程PDFは「U−18」が**全角マイナス（U+2212）**で、NFKCでもハイフンにならない
+    #    （1部のPDFはハイフン）。表題を見るときだけ、各種ダッシュをハイフンにそろえて比べる。
+    dash = lambda x: re.sub(r"[\u2010-\u2015\u2212\uFF0D\u30FC]", "-", x)
     with pdf_source.open_pdf(content) as pdf:
-        if f"U-18サッカーリーグ{year}OSAKA1部試合日程表" not in nfkc(pdf.pages[0].extract_text() or ""):
-            raise RuntimeError(f"日程PDFの表題が{year}年のOSAKA1部でない")
+        if dash(want_title) not in dash(nfkc(pdf.pages[0].extract_text() or "")):
+            raise RuntimeError(f"日程PDFの表題が想定と違う（{want_title} が無い）")
         rows_pdf = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) for r in t]
+    # 列は「節 月/日 曜日 会場 開始時間 [試合番号] 対戦カード」。
+    # ⚠️ 1部は6列・2部は7列（試合番号がある）。**列数を決め打ちにせず、対戦カードは最後の列**で読む。
+    ncol = 7 if block else 6
     alt = "|".join(sorted((re.escape(t) for t in teams), key=len, reverse=True))
     card = re.compile(rf"({alt})VS({alt})")
+    body = [[nfkc(x) for x in r] for r in rows_pdf
+            if len(r) == ncol and nfkc(r[0]) != "節"]
+    rounds = 2 * (n - 1)                           # 8チームなら14節
+    # ⚠️⚠️ [2026-09-21] **最後の節の見出しがPDFから落ちる。**
+    #    2部の合本PDFは節が結合セルで、`page_tables` は範囲の先頭行にその文字を入れるが、
+    #    第14節の分だけ入らなかった（明記されていたのは1〜13の13個。うち1つはページ跨ぎで
+    #    第5節が2回出る）。素直に引き継ぐと**第13節が24試合**になり、第14節が消える。
+    #    → 節は**行の位置**から出す（1節ぶん＝全体の行数÷節数）。明記されている見出しと
+    #      1つでも食い違ったら止める。さらに下で「各節4試合」「各巡目に28組」も確かめる。
+    blk = None
+    if block:
+        if len(body) % rounds:
+            raise RuntimeError(f"日程PDFの行数{len(body)}が節数{rounds}で割り切れない")
+        blk = len(body) // rounds
+        for i, c in enumerate(body):
+            if c[0].isdigit() and int(c[0]) != i // blk + 1:
+                raise RuntimeError(f"日程PDFの節が位置と合わない（{i + 1}行目に「{c[0]}」・"
+                                   f"位置からは{i // blk + 1}節）")
     md = None
+    date_s = None
     sched = []
-    for r in rows_pdf:
-        c = [nfkc(x) for x in r]
-        if len(c) != 6 or c[0] == "節":
-            continue
-        if c[0].isdigit():
-            md = int(c[0])
-        dm = re.fullmatch(r"(\d{1,2})/(\d{1,2})", c[1])
-        mm = card.fullmatch(c[5])
-        if not (mm and dm and md):
-            raise RuntimeError(f"日程PDFの行が読めない: {r}")
-        sched.append(dict(md=md, date=f"{year}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}",
+    for i, c in enumerate(body):
+        if blk:
+            md = i // blk + 1
+        elif c[0].isdigit():
+            md = int(c[0])                         # 節は結合セル。範囲の先頭行にだけ入る
+        if c[1] and c[1] != "〃":
+            date_s = c[1]                          # 日付も「〃」で前の行から引き継ぐ
+        if block:
+            no = c[5]
+            if not re.fullmatch(r"\d[A-C]\d{2}", no):
+                raise RuntimeError(f"日程PDFの試合番号が読めない: {r}")
+            if no[:2] != f"{sect}{block}":
+                continue                           # 別グループの行
+        raw_card = renames_apply(c[-1], renames)
+        mm = card.fullmatch(raw_card)
+        if not (mm and md and date_s):
+            raise RuntimeError(f"日程PDFの行が読めない: {c}")
+        dm = re.fullmatch(r"(\d{1,2})/(\d{1,2})", date_s)
+        if not dm and "未定" not in date_s:
+            raise RuntimeError(f"日程PDFの日付が読めない: {date_s!r}（{c}）")
+        # ⚠️ 「未定」は**落とさず、日付なしの未消化**として持つ（大阪2部に1件ある）
+        sched.append(dict(md=md, date=(f"{year}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}" if dm else ""),
                           home=mm.group(1), away=mm.group(2)))
     half = n - 1
     if len(sched) != n * (n - 1):
         raise RuntimeError(f"日程PDFから{len(sched)}試合（{n * (n - 1)}試合のはず）")
+    pairs = collections.Counter(frozenset((s["home"], s["away"])) for s in sched)
+    if len(pairs) != n * (n - 1) // 2 or set(pairs.values()) != {2}:
+        raise RuntimeError(f"日程PDFの対戦の組が{len(pairs)}組・回数{sorted(set(pairs.values()))}"
+                           f"（{n * (n - 1) // 2}組×2のはず）")
+    # ✅ 節ごとの試合数と巡目。2部でも位置から節を出したので同じ検算が効く
+    #    （節を引き継ぎで出していたときは第13節が24試合になり、この検算で止まる）。
     if any(sum(1 for s in sched if s["md"] == k) != n // 2 for k in range(1, 2 * half + 1)):
-        raise RuntimeError("日程PDFの節ごとの試合数が想定と違う")
+        got = collections.Counter(s["md"] for s in sched)
+        raise RuntimeError(f"日程PDFの節ごとの試合数が想定と違う（{dict(sorted(got.items()))}）")
     for rnd in (1, 2):
         ps = [frozenset((s["home"], s["away"])) for s in sched if (s["md"] <= half) == (rnd == 1)]
         if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
@@ -3259,7 +3375,7 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
         a, b = sorted(key)
         # ⚠️ 「1件目＝前期」という並び順には頼らない（大阪2部で、どの並べ方も偶然と変わらないと実測）。
         #    ⚠️ 判定に使うのは**版日付**（今日ではない）。版より後の枠に結果は入りえないので空き枠が狭まる。
-        got = assign_legs_incrementally(pref_key, a, b, legs[(a, b)], two, version)
+        got = assign_legs_incrementally(slug, a, b, legs[(a, b)], two, version)
         for s, x in zip(two, got):
             hs, as_ = (None, None) if x is None else (x if s["home"] == a else (x[1], x[0]))
             matches.append(dict(md=s["md"], date=s["date"], home=s["home"], away=s["away"],
@@ -3272,8 +3388,8 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
     if future:
         raise RuntimeError(f"版日付({version})より後の予定日に結果がある試合が{len(future)}件"
                            f"（例: {future[0]['date']} {future[0]['home']}×{future[0]['away']}）")
-    check_legs_not_swapped(pref_key, matches)
-    print(f"       （大阪: 出典の自己申告 {said_played}/{said_total} と一致。版 {version}）")
+    check_legs_not_swapped(slug, matches)
+    print(f"       （大阪{label}: 出典の自己申告 {said_played}/{said_total} と一致。版 {version}）")
     return standings, matches
 
 
@@ -4201,23 +4317,28 @@ _EHIME_LIST = "https://efa.jp/meeting/second/?y={}"
 #   📌 既存JSONがそのまま前回のスナップショットになるので、追加の保存領域は要らない。
 #   ⚠️ **移行の時点ですでに両巡終わっているペアは、この仕組みでは守れない。**
 #      移行時に既存データで1件ずつ検証して初期値を固定すること（大阪1部の10ペアがそれ）。
-def _existing_played(pref: str) -> list[dict]:
+def _slug_of(cfg: dict) -> str:
+    """このリーグのJSONのファイル名（拡張子なし）。2部などは cfg に slug を書く。"""
+    return cfg.get("slug", f"pref-{cfg['pref']}-1")
+
+
+def _existing_played(slug: str) -> list[dict]:
     """既存JSON（前回のスナップショット）の消化済み試合。読めなければ空。
 
-    ⚠️ ファイル名は `pref-{pref}-1.json` の決め打ち。**2部（pref-osaka-2a 等）に広げるときは効かない**ので、
-       そのときは slug を渡す形に変えること。
+    ⚠️ [2026-09-21] 引数は**slug**（`pref-osaka-2a` など）。以前は県キーを受け取って
+       `pref-{pref}-1.json` と決め打ちしていたので、2部に広げられなかった。
     ⚠️ 止まったときの逃げ道：出典が誤記を正しく訂正すると check_legs_not_swapped が止まり続ける。
-       訂正が正しいと確認できたら、**その試合を pref-*-1.json から消す（または hs/as を null にする）**
+       訂正が正しいと確認できたら、**その試合をリーグJSONから消す（または hs/as を null にする）**
        ＝前回のスナップショットから外してコミットすれば、次の実行で割り当て直される。"""
     try:
-        d = json.loads((DIR / f"pref-{pref}-1.json").read_text(encoding="utf-8"))
+        d = json.loads((DIR / f"{slug}.json").read_text(encoding="utf-8"))
     except Exception:
         return []
     return [m for m in d.get("matches", [])
             if m.get("status") == "played" and m.get("hs") is not None and m.get("date")]
 
 
-def assign_legs_incrementally(pref: str, a: str, b: str, legs: list, sched: list, cutoff: str) -> list:
+def assign_legs_incrementally(slug: str, a: str, b: str, legs: list, sched: list, cutoff: str) -> list:
     """ペア (a,b) のマスの結果 legs（aから見た (gf,ga) の並び）を、日程 sched（節順）に割り当てる。
 
     戻り値は sched と同じ長さのリストで、各要素は (hs, as) か None（その試合はまだ未消化）。
@@ -4226,7 +4347,7 @@ def assign_legs_incrementally(pref: str, a: str, b: str, legs: list, sched: list
        空き枠がそのぶん狭まり、**曖昧さを後から検出するのではなく最初から減らせる**。
     """
     prev = {}
-    for m in _existing_played(pref):
+    for m in _existing_played(slug):
         if {m.get("home"), m.get("away")} != {a, b}:
             continue
         s = (m["hs"], m["as"]) if m["home"] == a else (m["as"], m["hs"])
@@ -4243,7 +4364,10 @@ def assign_legs_incrementally(pref: str, a: str, b: str, legs: list, sched: list
     if not rest:
         return out
     # 2. 残りは「予定日を過ぎていて、まだ埋まっていない」枠へ節の順に当てる
-    free = [i for i, s in enumerate(sched) if out[i] is None and s["date"] <= cutoff]
+    # ⚠️ 日付が決まっていない枠（大阪2部の「未定」）は**空き枠に数えない**。
+    #    日付が空だと文字列比較で常に cutoff 以下になり、消化済み扱いされてしまう。
+    free = [i for i, s in enumerate(sched)
+            if out[i] is None and s["date"] and s["date"] <= cutoff]
     if len(rest) > len(free):
         raise RuntimeError(f"{a}×{b}: 結果が{len(legs)}件あるのに、版日付までに予定されていた空き枠は{len(free)}件"
                            f"（結果があるのに予定日が来ていない）")
@@ -4263,7 +4387,7 @@ def assign_legs_incrementally(pref: str, a: str, b: str, legs: list, sched: list
     return out
 
 
-def check_legs_not_swapped(pref: str, matches: list[dict]) -> None:
+def check_legs_not_swapped(slug: str, matches: list[dict]) -> None:
     """すでに保存済みの試合の日付に、別のスコアが付いていないかを見る守り（2026-09-17追加）。
 
     ⚠️ 巡目の割り当てを「並び順」や「ペアの何回目か」で決めている県（山梨など）向け。
@@ -4271,7 +4395,7 @@ def check_legs_not_swapped(pref: str, matches: list[dict]) -> None:
        前回の保存内容と突き合わせれば、入れ替わりだけをはっきり捕まえられる。
     """
     prev = {}
-    for m in _existing_played(pref):
+    for m in _existing_played(slug):
         prev[(m["date"], frozenset((m.get("home"), m.get("away"))))] = \
             (m["hs"], m["as"]) if m.get("home") <= m.get("away") else (m["as"], m["hs"])
     for m in matches:
@@ -5075,7 +5199,7 @@ def print_diff(pref: str, d: dict) -> None:
 # 1県の処理
 # ============================================================
 def process(pref: str, cfg: dict, dry_run: bool) -> str:
-    slug = f"pref-{pref}-1"
+    slug = cfg.get("slug", f"pref-{pref}-1")   # 2部などは cfg に slug を書く（2026-09-21）
     path = DIR / f"{slug}.json"
     if not path.exists():
         return f"[skip] {slug}: JSONなし"

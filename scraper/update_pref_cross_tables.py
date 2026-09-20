@@ -99,11 +99,10 @@ HEADERS = {
 # 処理・検算ロジックは県1部と完全に同じ。JSONが data/league_matches/<slug>.json に
 # 存在するリーグだけ更新される（無ければ [skip]）。
 # ----------------------------------------------------------------------------
-EXTRA_LEAGUES: dict[str, tuple[str, str]] = {
-    "pref-osaka-2a": ("kansai/osaka", "163329"),
-    "pref-osaka-2b": ("kansai/osaka", "163330"),
-    "pref-osaka-2c": ("kansai/osaka", "163331"),
-}
+# ⚠️ [2026-09-21] 大阪2部A/B/Cは**公式（ofa-tec.jp のCGI＋府協会の日程PDF）へ移行**したので、
+#    ここから外した（fetch_pref_official.py の osaka-2a/2b/2c が担当）。
+#    junior-soccer 経路に戻すと、公式が書いた値を上書きしてしまう。
+EXTRA_LEAGUES: dict[str, tuple[str, str]] = {}
 
 
 # ----------------------------------------------------------------------------
@@ -516,7 +515,10 @@ MIGRATED_TO_OFFICIAL = {
     "pref-ehime-1",      # efa.jp（県協会のE1日程PDF＋E1星取表PDF）2026-09-16追加
     "pref-kyoto-1",      # kyoto-fa.or.jp（府協会のTOPリーグ日程PDF＋リザルトPDF）2026-09-16追加
     "pref-fukushima-1",  # fukushima-fa.com（県協会の日程表PDF3本＋F1星取表＋F1順位表）2026-09-16追加
-    "pref-osaka-1",      # ofa-tec.jp のCGI＋osaka-fa.or.jp の日程PDF（大阪2部A/B/Cは未移行）2026-09-17追加
+    "pref-osaka-1",      # ofa-tec.jp のCGI＋osaka-fa.or.jp の日程PDF 2026-09-17追加
+    "pref-osaka-2a",     # 同上（2部A。1部と同じCGI tsl=171＋2部合本の日程PDF）2026-09-21追加
+    "pref-osaka-2b",     # 同上（2部B）2026-09-21追加
+    "pref-osaka-2c",     # 同上（2部C）2026-09-21追加
     "pref-wakayama-1",   # wfa.or.jp（県協会の「1部リーグ 試合結果」PDF1本）2026-09-17追加
     "pref-kochi-1",      # kochi-fa.com（県協会の星取表PDF＋日程表PDF）2026-09-17追加
     "pref-nara-1",       # narafa.or.jp（県協会の日程表PDF＋1部リーグ星取表PDF）2026-09-17追加
