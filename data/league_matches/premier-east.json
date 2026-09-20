@@ -81,6 +81,18 @@
     },
     {
       "rank": 3,
+      "team": "柏レイソルU-18",
+      "pts": 27,
+      "played": 14,
+      "won": 8,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 18,
+      "ga": 9,
+      "gd": 9
+    },
+    {
+      "rank": 4,
       "team": "FC東京U-18",
       "pts": 26,
       "played": 14,
@@ -90,18 +102,6 @@
       "gf": 32,
       "ga": 18,
       "gd": 14
-    },
-    {
-      "rank": 4,
-      "team": "柏レイソルU-18",
-      "pts": 24,
-      "played": 13,
-      "won": 7,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 17,
-      "ga": 9,
-      "gd": 8
     },
     {
       "rank": 5,
@@ -119,13 +119,13 @@
       "rank": 6,
       "team": "青森山田",
       "pts": 22,
-      "played": 13,
+      "played": 14,
       "won": 7,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 23,
-      "ga": 24,
-      "gd": -1
+      "ga": 25,
+      "gd": -2
     },
     {
       "rank": 7,
@@ -2686,12 +2686,19 @@
       "md": 14,
       "date": "2026-09-20",
       "home": "青森山田",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "柏レイソルU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "青森山田高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "61",
+          "name": "巻渕 彪悟"
+        }
+      ]
     },
     {
       "md": 15,

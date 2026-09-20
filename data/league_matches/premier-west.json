@@ -166,14 +166,14 @@
     {
       "rank": 10,
       "team": "東山",
-      "pts": 14,
-      "played": 13,
-      "won": 4,
+      "pts": 17,
+      "played": 14,
+      "won": 5,
       "drawn": 2,
       "lost": 7,
-      "gf": 10,
+      "gf": 11,
       "ga": 17,
-      "gd": -7
+      "gd": -6
     },
     {
       "rank": 11,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 5,
-      "played": 13,
+      "played": 14,
       "won": 1,
       "drawn": 2,
-      "lost": 10,
+      "lost": 11,
       "gf": 11,
-      "ga": 34,
-      "gd": -23
+      "ga": 35,
+      "gd": -24
     }
   ],
   "matches": [
@@ -2520,12 +2520,20 @@
       "md": 14,
       "date": "2026-09-20",
       "home": "東山",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "ファジアーノ岡山U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "東山高校総合グラウンド(人工芝)",
-      "kickoff": "10:00"
+      "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1410.pdf",
+      "homeScorers": [
+        {
+          "minute": "56",
+          "name": "清水 柚之介"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 15,
