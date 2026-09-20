@@ -5,7 +5,7 @@
   "league_team": "サンフレッチェ広島F.Cユース",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/team_detail/08.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/match_page/",
-  "asof": "2026-09-13",
+  "asof": "2026-09-20",
   "roster": [
     {
       "no": 16,
@@ -13,8 +13,8 @@
       "name": "林 和広",
       "grade": "1年",
       "prev": "VONDS(ボンズ)市原FC ジュニアユース",
-      "apps": 13,
-      "minutes": 1170,
+      "apps": 14,
+      "minutes": 1260,
       "goals": 0
     },
     {
@@ -53,8 +53,8 @@
       "name": "森井 莉人",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 12,
-      "minutes": 1062,
+      "apps": 13,
+      "minutes": 1152,
       "goals": 1
     },
     {
@@ -73,8 +73,8 @@
       "name": "小柳 柊",
       "grade": "3年",
       "prev": "東急ＳレイエスFC U-15",
-      "apps": 12,
-      "minutes": 983,
+      "apps": 13,
+      "minutes": 1073,
       "goals": 1
     },
     {
@@ -123,8 +123,8 @@
       "name": "太田 大翔",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 12,
-      "minutes": 1080,
+      "apps": 13,
+      "minutes": 1170,
       "goals": 4
     },
     {
@@ -133,8 +133,8 @@
       "name": "原 湊士",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 13,
-      "minutes": 1142,
+      "apps": 14,
+      "minutes": 1232,
       "goals": 2
     },
     {
@@ -143,8 +143,8 @@
       "name": "河上 颯希",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 13,
-      "minutes": 1168,
+      "apps": 14,
+      "minutes": 1258,
       "goals": 0
     },
     {
@@ -153,8 +153,8 @@
       "name": "野口 蓮斗",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 12,
-      "minutes": 1080,
+      "apps": 13,
+      "minutes": 1170,
       "goals": 2
     },
     {
@@ -163,8 +163,8 @@
       "name": "高橋 成海",
       "grade": "2年",
       "prev": "徳島ヴォルティスジュニアユース",
-      "apps": 0,
-      "minutes": 0,
+      "apps": 1,
+      "minutes": 13,
       "goals": 0
     },
     {
@@ -173,8 +173,8 @@
       "name": "野口 魁斗",
       "grade": "2年",
       "prev": "ソレッソ熊本",
-      "apps": 6,
-      "minutes": 207,
+      "apps": 7,
+      "minutes": 297,
       "goals": 0
     },
     {
@@ -183,8 +183,8 @@
       "name": "正法地 有",
       "grade": "2年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 9,
-      "minutes": 337,
+      "apps": 10,
+      "minutes": 394,
       "goals": 2
     },
     {
@@ -273,8 +273,8 @@
       "name": "信重 亮二朗",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 13,
-      "minutes": 1121,
+      "apps": 14,
+      "minutes": 1198,
       "goals": 6
     },
     {
@@ -283,8 +283,8 @@
       "name": "菊山 璃皇",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 11,
-      "minutes": 628,
+      "apps": 12,
+      "minutes": 661,
       "goals": 5
     },
     {
@@ -303,8 +303,8 @@
       "name": "佐藤 壯知",
       "grade": "2年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 6,
-      "minutes": 467,
+      "apps": 7,
+      "minutes": 557,
       "goals": 0
     },
     {
@@ -2032,6 +2032,133 @@
           "out": "15 野口 魁斗",
           "in": "24 富田 雅翔",
           "minute": "90+3分"
+        }
+      ]
+    },
+    "1412": {
+      "md": 14,
+      "starters": [
+        {
+          "no": 16,
+          "pos": "GK",
+          "name": "林 和広",
+          "captain": false
+        },
+        {
+          "no": 3,
+          "pos": "DF",
+          "name": "森井 莉人",
+          "captain": false
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "太田 大翔",
+          "captain": false
+        },
+        {
+          "no": 6,
+          "pos": "DF",
+          "name": "小柳 柊",
+          "captain": false
+        },
+        {
+          "no": 7,
+          "pos": "MF",
+          "name": "原 湊士",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "MF",
+          "name": "河上 颯希",
+          "captain": false
+        },
+        {
+          "no": 10,
+          "pos": "MF",
+          "name": "野口 蓮斗",
+          "captain": true
+        },
+        {
+          "no": 15,
+          "pos": "MF",
+          "name": "野口 魁斗",
+          "captain": false
+        },
+        {
+          "no": 18,
+          "pos": "MF",
+          "name": "佐藤 壯知",
+          "captain": false
+        },
+        {
+          "no": 9,
+          "pos": "FW",
+          "name": "信重 亮二朗",
+          "captain": false
+        },
+        {
+          "no": 17,
+          "pos": "FW",
+          "name": "正法地 有",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 21,
+          "pos": "GK",
+          "name": "関山 一颯",
+          "captain": false
+        },
+        {
+          "no": 5,
+          "pos": "DF",
+          "name": "浅沼 凌弥",
+          "captain": false
+        },
+        {
+          "no": 24,
+          "pos": "DF",
+          "name": "富田 雅翔",
+          "captain": false
+        },
+        {
+          "no": 14,
+          "pos": "MF",
+          "name": "高橋 成海",
+          "captain": false
+        },
+        {
+          "no": 20,
+          "pos": "MF",
+          "name": "田中 優翔",
+          "captain": false
+        },
+        {
+          "no": 11,
+          "pos": "FW",
+          "name": "菊山 璃皇",
+          "captain": false
+        },
+        {
+          "no": 28,
+          "pos": "FW",
+          "name": "片岡 裕清",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "17 正法地 有",
+          "in": "11 菊山 璃皇",
+          "minute": "57分"
+        },
+        {
+          "out": "9 信重 亮二朗",
+          "in": "14 高橋 成海",
+          "minute": "77分"
         }
       ]
     }

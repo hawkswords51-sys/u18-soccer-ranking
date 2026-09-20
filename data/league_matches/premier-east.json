@@ -154,14 +154,14 @@
     {
       "rank": 9,
       "team": "昌平",
-      "pts": 14,
-      "played": 13,
-      "won": 4,
+      "pts": 17,
+      "played": 14,
+      "won": 5,
       "drawn": 2,
       "lost": 7,
-      "gf": 20,
-      "ga": 28,
-      "gd": -8
+      "gf": 22,
+      "ga": 29,
+      "gd": -7
     },
     {
       "rank": 10,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "川崎フロンターレU-18",
       "pts": 9,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 3,
-      "lost": 8,
-      "gf": 22,
-      "ga": 36,
-      "gd": -14
+      "lost": 9,
+      "gf": 23,
+      "ga": 38,
+      "gd": -15
     },
     {
       "rank": 12,
@@ -2675,12 +2675,29 @@
       "md": 14,
       "date": "2026-09-20",
       "home": "昌平",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "川崎フロンターレU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "昌平高校グラウンド(人工芝)",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1406.pdf",
+      "homeScorers": [
+        {
+          "minute": "4",
+          "name": "松本 太佑"
+        },
+        {
+          "minute": "90+4",
+          "name": "飯島 碧大"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "90+2",
+          "name": "木下 勝正"
+        }
+      ]
     },
     {
       "md": 14,

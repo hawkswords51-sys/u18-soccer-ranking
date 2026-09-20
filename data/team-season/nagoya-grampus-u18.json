@@ -5,7 +5,7 @@
   "league_team": "名古屋グランパスU-18",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/team_detail/02.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/match_page/",
-  "asof": "2026-09-13",
+  "asof": "2026-09-20",
   "roster": [
     {
       "no": 1,
@@ -13,8 +13,8 @@
       "name": "加藤 直太郎",
       "grade": "3年",
       "prev": "名古屋グランパスU-15",
-      "apps": 10,
-      "minutes": 900,
+      "apps": 11,
+      "minutes": 990,
       "goals": 0
     },
     {
@@ -63,8 +63,8 @@
       "name": "成瀬 楓悟",
       "grade": "3年",
       "prev": "名古屋グランパスU-15",
-      "apps": 12,
-      "minutes": 1067,
+      "apps": 13,
+      "minutes": 1122,
       "goals": 0
     },
     {
@@ -103,8 +103,8 @@
       "name": "宮本 新",
       "grade": "2年",
       "prev": "名古屋グランパスU-15",
-      "apps": 1,
-      "minutes": 90,
+      "apps": 2,
+      "minutes": 180,
       "goals": 0
     },
     {
@@ -113,8 +113,8 @@
       "name": "足立 惺洋",
       "grade": "2年",
       "prev": "名古屋グランパスU-15",
-      "apps": 3,
-      "minutes": 42,
+      "apps": 4,
+      "minutes": 124,
       "goals": 0
     },
     {
@@ -133,8 +133,8 @@
       "name": "谷本 來侍",
       "grade": "1年",
       "prev": "名古屋グランパスU-15",
-      "apps": 1,
-      "minutes": 8,
+      "apps": 2,
+      "minutes": 43,
       "goals": 0
     },
     {
@@ -143,8 +143,8 @@
       "name": "瀧上 晄史",
       "grade": "1年",
       "prev": "名古屋グランパスU-15",
-      "apps": 1,
-      "minutes": 82,
+      "apps": 2,
+      "minutes": 172,
       "goals": 0
     },
     {
@@ -163,8 +163,8 @@
       "name": "小島 蒼斗",
       "grade": "3年",
       "prev": "FCオリベ多治見U15",
-      "apps": 12,
-      "minutes": 977,
+      "apps": 13,
+      "minutes": 1022,
       "goals": 4
     },
     {
@@ -173,8 +173,8 @@
       "name": "千賀 翔大郎",
       "grade": "3年",
       "prev": "名古屋グランパスU-15",
-      "apps": 12,
-      "minutes": 882,
+      "apps": 13,
+      "minutes": 927,
       "goals": 0
     },
     {
@@ -183,8 +183,8 @@
       "name": "中條 遼人",
       "grade": "3年",
       "prev": "名古屋グランパスU-15",
-      "apps": 13,
-      "minutes": 551,
+      "apps": 14,
+      "minutes": 641,
       "goals": 2
     },
     {
@@ -203,8 +203,8 @@
       "name": "井内 庸介",
       "grade": "2年",
       "prev": "名古屋グランパスU-15",
-      "apps": 12,
-      "minutes": 661,
+      "apps": 13,
+      "minutes": 751,
       "goals": 1
     },
     {
@@ -233,8 +233,8 @@
       "name": "中根 佳祐",
       "grade": "1年",
       "prev": "名古屋グランパスU-15",
-      "apps": 1,
-      "minutes": 28,
+      "apps": 2,
+      "minutes": 99,
       "goals": 0
     },
     {
@@ -263,8 +263,8 @@
       "name": "中嶋 晃誠",
       "grade": "1年",
       "prev": "名古屋グランパスU-15",
-      "apps": 1,
-      "minutes": 1,
+      "apps": 2,
+      "minutes": 20,
       "goals": 0
     },
     {
@@ -283,8 +283,8 @@
       "name": "水野 優人",
       "grade": "3年",
       "prev": "名古屋グランパスU-15",
-      "apps": 12,
-      "minutes": 777,
+      "apps": 13,
+      "minutes": 822,
       "goals": 4
     },
     {
@@ -303,9 +303,9 @@
       "name": "八色 隼人",
       "grade": "2年",
       "prev": "名古屋グランパスU-15",
-      "apps": 13,
-      "minutes": 1021,
-      "goals": 9
+      "apps": 14,
+      "minutes": 1111,
+      "goals": 10
     },
     {
       "no": 20,
@@ -313,8 +313,8 @@
       "name": "山口 雅貴",
       "grade": "2年",
       "prev": "名古屋グランパスU-15",
-      "apps": 3,
-      "minutes": 83,
+      "apps": 4,
+      "minutes": 128,
       "goals": 0
     },
     {
@@ -326,6 +326,16 @@
       "apps": 2,
       "minutes": 43,
       "goals": 1
+    },
+    {
+      "no": 25,
+      "pos": "MF",
+      "name": "上阪 碧都",
+      "grade": "",
+      "prev": "",
+      "apps": 2,
+      "minutes": 24,
+      "goals": 0
     }
   ],
   "matches": {
@@ -2172,6 +2182,148 @@
           "out": "17 八色 隼人",
           "in": "36 中嶋 晃誠",
           "minute": "90分"
+        }
+      ]
+    },
+    "1411": {
+      "md": 14,
+      "starters": [
+        {
+          "no": 1,
+          "pos": "GK",
+          "name": "加藤 直太郎",
+          "captain": false
+        },
+        {
+          "no": 5,
+          "pos": "DF",
+          "name": "成瀬 楓悟",
+          "captain": false
+        },
+        {
+          "no": 26,
+          "pos": "DF",
+          "name": "宮本 新",
+          "captain": false
+        },
+        {
+          "no": 42,
+          "pos": "DF",
+          "name": "瀧上 晄史",
+          "captain": false
+        },
+        {
+          "no": 2,
+          "pos": "MF",
+          "name": "水野 優人",
+          "captain": false
+        },
+        {
+          "no": 14,
+          "pos": "MF",
+          "name": "中條 遼人",
+          "captain": true
+        },
+        {
+          "no": 18,
+          "pos": "MF",
+          "name": "井内 庸介",
+          "captain": false
+        },
+        {
+          "no": 20,
+          "pos": "MF",
+          "name": "山口 雅貴",
+          "captain": false
+        },
+        {
+          "no": 27,
+          "pos": "MF",
+          "name": "足立 惺洋",
+          "captain": false
+        },
+        {
+          "no": 32,
+          "pos": "MF",
+          "name": "中根 佳祐",
+          "captain": false
+        },
+        {
+          "no": 17,
+          "pos": "FW",
+          "name": "八色 隼人",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 21,
+          "pos": "GK",
+          "name": "岡野 恭護",
+          "captain": false
+        },
+        {
+          "no": 33,
+          "pos": "DF",
+          "name": "谷本 來侍",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "MF",
+          "name": "小島 蒼斗",
+          "captain": false
+        },
+        {
+          "no": 10,
+          "pos": "MF",
+          "name": "千賀 翔大郎",
+          "captain": false
+        },
+        {
+          "no": 25,
+          "pos": "MF",
+          "name": "上阪 碧都",
+          "captain": false
+        },
+        {
+          "no": 36,
+          "pos": "MF",
+          "name": "中嶋 晃誠",
+          "captain": false
+        },
+        {
+          "no": 9,
+          "pos": "FW",
+          "name": "石田 翔琉",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "2 水野 優人",
+          "in": "10 千賀 翔大郎",
+          "minute": "ＨＴ"
+        },
+        {
+          "out": "20 山口 雅貴",
+          "in": "8 小島 蒼斗",
+          "minute": "ＨＴ"
+        },
+        {
+          "out": "5 成瀬 楓悟",
+          "in": "33 谷本 來侍",
+          "minute": "55分"
+        },
+        {
+          "out": "32 中根 佳祐",
+          "in": "36 中嶋 晃誠",
+          "minute": "71分"
+        },
+        {
+          "out": "27 足立 惺洋",
+          "in": "25 上阪 碧都",
+          "minute": "82分"
         }
       ]
     }
