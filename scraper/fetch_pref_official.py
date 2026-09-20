@@ -2592,8 +2592,21 @@ def read_nagano(cfg: dict) -> tuple[dict, list[dict]]:
         if (v["勝"] + v["分"] + v["負"] != v["試合数"] or 3 * v["勝"] + v["分"] != v["勝点"]
                 or v["得点"] - v["失点"] != v["得失点"]):
             raise RuntimeError(f"星取表の自己検算が合わない: {name} {v}")
+        # [2026-09-20] 1列目の「順位」も読む。同着（apply_source_ties）の材料になる。
+        #   ⚠️ **長野は勝点だけで順位を付け、得失点差で分けない**
+        #      （2026-09-14版で2位・5位がそれぞれ2校の同着）。
+        rank_s = (r[0] or "").strip()
+        if not re.fullmatch(r"\d+", rank_s):
+            raise RuntimeError(f"星取表 {name} の順位が読めない: {r[0]!r}")
         standings[name] = dict(pts=v["勝点"], played=v["試合数"], won=v["勝"], drawn=v["分"],
-                               lost=v["負"], gf=v["得点"], ga=v["失点"])
+                               lost=v["負"], gf=v["得点"], ga=v["失点"], rank=int(rank_s))
+
+    # ⚠️ 同着があるので「順位の昇順＝勝点の降順」は厳密不等号にしない（京都と同じ守り）
+    nagano_ranks = sorted((v["rank"], t) for t, v in standings.items())
+    for (r1, t1), (r2, t2) in zip(nagano_ranks, nagano_ranks[1:]):
+        if standings[t1]["pts"] < standings[t2]["pts"]:
+            raise RuntimeError(f"星取表の順位が勝点の降順でない: {r1}位 {t1}（勝点{standings[t1]['pts']}）→ "
+                               f"{r2}位 {t2}（勝点{standings[t2]['pts']}）")
 
     n = cfg["teams"]
     if len(matches) != n * (n - 1) or len(standings) != n:
@@ -4112,8 +4125,10 @@ def read_kyoto(cfg: dict) -> tuple[dict, list[dict]]:
         won, drawn, lost, pts, gf, ga, gd, rank = (int(x) for x in v)
         if 3 * won + drawn != pts or gf - ga != gd:
             raise RuntimeError(f"星取表 {team} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・得失差{gd}）")
+        # [2026-09-20] rank も standings に入れる（これまでは下の検算にだけ使って捨てていた）。
+        #   同着（apply_source_ties）の材料になる。大谷A・洛北A が5位で並ぶ。
         standings[team] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
-                               lost=lost, gf=gf, ga=ga)
+                               lost=lost, gf=gf, ga=ga, rank=rank)
         ranks.append((rank, team))
     if sorted(standings) != sorted({m["home"] for m in matches} | {m["away"] for m in matches}):
         raise RuntimeError(f"星取表のチームと日程PDFのチームが合わない: {sorted(standings)}")
