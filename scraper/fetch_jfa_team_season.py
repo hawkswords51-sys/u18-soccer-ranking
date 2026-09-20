@@ -76,6 +76,20 @@ HEADERS = {
 _PREMIER_BASE = "https://www.jfa.jp/match/takamado_jfa_u18_premier{season}/{side}"
 
 
+def same_team(a: str, b: str) -> bool:
+    """チーム名が同じかを、**空白と「.」を無視して**比べる（2026-09-20 追加）。
+
+    出典どうしで1文字だけ違うことがある（実測）：
+      広島 … md「サンフレッチェ広島F.C.ユース」／JFA「…F.Cユース」／リーグJSON「…F.Cユース」
+      福岡 … リーグJSONだけ「アビスパ福岡 U-18」（半角空白入り）
+    ⚠️ **保存する名前・表示する名前は変えない**。比べるときだけ無視する。
+    ⚠️ 比較は1リーグ（12チーム）の中だけ。空白と「.」を除いても24チームの名前は全部違う（実測）。
+    """
+    def norm(x: str) -> str:
+        return (x or "").replace(" ", "").replace("\u3000", "").replace(".", "").replace("．", "")
+    return norm(a) == norm(b)
+
+
 # ---------------------------------------------------------------------------
 # 取得
 # ---------------------------------------------------------------------------
@@ -201,9 +215,9 @@ def parse_match(html: str, team_name: str) -> dict:
     head = [c.get_text(" ", strip=True) for c in _cells(rows[0])]
     if len(head) != 2:
         raise RuntimeError(f"1行目がチーム名2つでない: {head}")
-    if team_name == head[0]:
+    if same_team(team_name, head[0]):
         side = 0
-    elif team_name == head[1]:
+    elif same_team(team_name, head[1]):
         side = 1
     else:
         raise RuntimeError(f"このチーム({team_name})が出ていない: {head}")
@@ -355,8 +369,9 @@ def league_team_key(name: str, aliases: list[str], league: dict) -> str:
     """
     used = {m.get("home") for m in league["matches"]} | {m.get("away") for m in league["matches"]}
     for cand in [c for c in [name] + list(aliases) if c]:
-        if cand in used:
-            return cand
+        for u in used:
+            if same_team(cand, u):
+                return u      # リーグJSONに入っている表記をそのまま返す
     raise RuntimeError(f"リーグJSONに {name}（別名 {aliases}）が出てこない")
 
 
@@ -415,7 +430,8 @@ def process(team_id: str, meta: dict, teams_json: dict, dry_run: bool) -> str:
         sched = schedule_numbers(slug)
         for x in missing:
             hit = [n for (d, h, a), n in sched.items()
-                   if d == (x.get("date") or "") and official in (h, a)]
+                   if d == (x.get("date") or "")
+                   and (same_team(official, h) or same_team(official, a))]
             if len(hit) == 1:
                 want_numbers[hit[0]] = x.get("md")
 

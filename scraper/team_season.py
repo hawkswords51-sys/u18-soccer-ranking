@@ -109,9 +109,15 @@ def load(meta: dict, base_dir: Path) -> dict | None:
     key = (season or {}).get("league_team")
     if not key:
         used = {x.get("home") for x in league["matches"]} | {x.get("away") for x in league["matches"]}
+        # ⚠️ 空白と「.」を無視して比べる（広島・福岡は出典どうしで1文字違う）
+        def _norm(x):
+            return (x or "").replace(" ", "").replace("\u3000", "").replace(".", "").replace("．", "")
         for cand in [meta.get("name", ""), meta.get("short_name", "")]:
-            if cand in used:
-                key = cand
+            for u in used:
+                if cand and _norm(cand) == _norm(u):
+                    key = u
+                    break
+            if key:
                 break
     if not key:
         return None
@@ -268,20 +274,31 @@ def _lineup_html(ctx: dict, meta: dict, warn: list[str]) -> str:
     #    上位に並ぶと読者が混乱するため（青森山田は先発11回・10回の2人が登録外だった）。
     #    ⚠️ 登録を外れた理由はどこにも書かない（編集方針）。
     #    ⚠️ 試合の先発・得点者の表示には残す（起きた事実なので消さない）。
-    names = {x["name"] for x in roster}
+    # ⚠️ [2026-09-20] 数えるキーは**名前だけ**。試合ページのポジション表記は試合ごとに
+    #    変わることがあり（広島の太田 大翔はDF6試合・MF6試合）、(背番号,名前,ポジション)で
+    #    数えると同じ人が2行に割れる（6回＋6回。正しくは12回）。
+    #    表示する背番号・ポジションは**選手一覧（roster）の値**を使う。
+    by_name = {x["name"]: x for x in roster}
     cnt, cap = {}, {}
     for m in matches.values():
         for p in m["starters"]:
-            if names and p["name"] not in names:
+            if by_name and p["name"] not in by_name:
                 continue
-            k = (p["no"], p["name"], p["pos"])
-            cnt[k] = cnt.get(k, 0) + 1
+            cnt[p["name"]] = cnt.get(p["name"], 0) + 1
             if p.get("captain"):
                 cap[p["name"]] = cap.get(p["name"], 0) + 1
-    top = sorted(cnt.items(), key=lambda kv: (-kv[1], _POS_ORDER.get(kv[0][2], 9), kv[0][0]))[:11]
-    ol = "".join(f'<li><span class="ts-pos {pos.lower()}">{pos}</span>{_e(name)}'
-                 f'<span class="ts-cnt">{c}/{total}</span></li>'
-                 for (no, name, pos), c in top)
+
+    def _rank_key(item):
+        name, c = item
+        r = by_name.get(name) or {}
+        return (-c, _POS_ORDER.get(r.get("pos"), 9), r.get("no", 999))
+    top = sorted(cnt.items(), key=_rank_key)[:11]
+    ol = ""
+    for name, c in top:
+        r = by_name.get(name) or {}
+        pos = r.get("pos", "")
+        ol += (f'<li><span class="ts-pos {pos.lower()}">{_e(pos)}</span>{_e(name)}'
+               f'<span class="ts-cnt">{c}/{total}</span></li>')
 
     # キャプテン。⚠️ 最多が消化試合の半分に満たないときは「◯試合中◯試合」と書くと
     #   誤解を生む（青森山田は登録選手の最多が3/14）。そのときは直近の試合の主将を出す。
@@ -292,14 +309,14 @@ def _lineup_html(ctx: dict, meta: dict, warn: list[str]) -> str:
             cap_html = f'<p class="ts-caveat">キャプテン：{_e(who)}（{total}試合中{n}試合）</p>'
         else:
             last_cap = next((x["name"] for x in last["starters"]
-                             if x.get("captain") and (not names or x["name"] in names)), "")
+                             if x.get("captain") and (not by_name or x["name"] in by_name)), "")
             if last_cap:
                 cap_html = (f'<p class="ts-caveat">直近の試合のキャプテン：{_e(last_cap)}'
                             f'（第{_e(last.get("md"))}節）</p>')
 
     return (f'<div class="ts-side"><h3>直近の先発（{head}）</h3><ul class="ts-xi">{xi}</ul>'
-            f'<p class="ts-caveat">※ GK/DF/MF/FW は公式記録の<b>登録ポジション</b>です。'
-            f'試合中の配置とは異なります。</p>'
+            f'<p class="ts-caveat">※ GK/DF/MF/FW は<b>公式記録のポジション表記</b>です。'
+            f'試合中の実際の配置とは異なることがあります。</p>'
             f'<h3>今季の先発回数（{total}試合中・現在の登録選手のみ）</h3>'
             f'<ol class="ts-cntlist">{ol}</ol>{cap_html}</div>')
 
