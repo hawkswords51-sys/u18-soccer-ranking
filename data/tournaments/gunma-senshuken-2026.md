@@ -25,7 +25,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Aブロック決勝（9/20）
 
-- 四ツ葉・中央中等 vs 伊勢崎商
+- 四ツ葉・中央中等 0-1 伊勢崎商
 
 ## Bブロック1回戦（9/12）
 
@@ -34,7 +34,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Bブロック決勝（9/20）
 
-- 新田暁 vs 市立太田
+- 新田暁 3-2 市立太田
 
 ## Cブロック1回戦（9/12）
 
@@ -43,7 +43,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Cブロック決勝（9/20）
 
-- 沼田 vs 渋川
+- 沼田 4-2 渋川
 
 ## Dブロック1回戦（9/12）
 
@@ -52,7 +52,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Dブロック決勝（9/20）
 
-- 前橋工 vs 渋川工
+- 前橋工 1-0 渋川工
 
 ## Eブロック1回戦（9/12）
 
@@ -61,7 +61,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Eブロック決勝（9/20）
 
-- 吉井 vs 樹徳
+- 吉井 0-1 樹徳
 
 ## Fブロック1回戦（9/5）
 
@@ -93,12 +93,12 @@ scraper/update_tournament_results.py が上の source から
 
 ## Fブロック決勝（9/20）
 
-- 西邑楽 vs 富岡
+- 西邑楽 13-0 富岡
 
 ## Gブロック決勝（9/20）
 
-- 桐生工 vs 太田
+- 桐生工 0-3 太田
 
 ## Hブロック決勝（9/20）
 
-- 太田東 vs 藤岡中央
+- 太田東 6-1 藤岡中央

@@ -77,6 +77,18 @@
     },
     {
       "rank": 4,
+      "team": "新屋",
+      "points": 17,
+      "played": 13,
+      "won": 5,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 16,
+      "ga": 43,
+      "gd": -27
+    },
+    {
+      "rank": 5,
       "team": "西目",
       "points": 16,
       "played": 13,
@@ -88,52 +100,40 @@
       "gd": -10
     },
     {
-      "rank": 5,
-      "team": "新屋",
-      "points": 14,
-      "played": 12,
-      "won": 4,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 13,
-      "ga": 41,
-      "gd": -28
-    },
-    {
       "rank": 6,
       "team": "秋田工",
-      "points": 8,
-      "played": 12,
-      "won": 2,
+      "points": 11,
+      "played": 13,
+      "won": 3,
       "drawn": 2,
       "lost": 8,
-      "gf": 12,
+      "gf": 14,
       "ga": 31,
-      "gd": -19
+      "gd": -17
     },
     {
       "rank": 7,
       "team": "秋田南",
       "points": 8,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 5,
-      "lost": 6,
+      "lost": 7,
       "gf": 11,
-      "ga": 47,
-      "gd": -36
+      "ga": 49,
+      "gd": -38
     },
     {
       "rank": 8,
       "team": "大曲工",
       "points": 7,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 1,
-      "lost": 9,
-      "gf": 11,
-      "ga": 38,
-      "gd": -27
+      "lost": 10,
+      "gf": 13,
+      "ga": 41,
+      "gd": -28
     }
   ],
   "matches": [
@@ -554,11 +554,11 @@
     {
       "md": 13,
       "date": "2026-09-20",
-      "home": "秋田工",
-      "hs": null,
-      "as": null,
-      "away": "秋田南",
-      "status": "scheduled"
+      "home": "秋田南",
+      "hs": 0,
+      "as": 2,
+      "away": "秋田工",
+      "status": "played"
     },
     {
       "md": 12,
@@ -626,11 +626,11 @@
     {
       "md": 13,
       "date": "2026-09-20",
-      "home": "大曲工",
-      "hs": null,
-      "as": null,
-      "away": "新屋",
-      "status": "scheduled"
+      "home": "新屋",
+      "hs": 3,
+      "as": 2,
+      "away": "大曲工",
+      "status": "played"
     },
     {
       "md": 14,
@@ -686,42 +686,42 @@
     {
       "team": "秋田南",
       "won": 1,
-      "lost": 6,
+      "lost": 7,
       "drawn": 5,
       "pts": 8,
       "gf": 11,
-      "ga": 47,
-      "played": 12
+      "ga": 49,
+      "played": 13
     },
     {
       "team": "新屋",
-      "won": 4,
+      "won": 5,
       "lost": 6,
       "drawn": 2,
-      "pts": 14,
-      "gf": 13,
-      "ga": 41,
-      "played": 12
+      "pts": 17,
+      "gf": 16,
+      "ga": 43,
+      "played": 13
     },
     {
       "team": "秋田工",
-      "won": 2,
+      "won": 3,
       "lost": 8,
       "drawn": 2,
-      "pts": 8,
-      "gf": 12,
+      "pts": 11,
+      "gf": 14,
       "ga": 31,
-      "played": 12
+      "played": 13
     },
     {
       "team": "大曲工",
       "won": 2,
-      "lost": 9,
+      "lost": 10,
       "drawn": 1,
       "pts": 7,
-      "gf": 11,
-      "ga": 38,
-      "played": 12
+      "gf": 13,
+      "ga": 41,
+      "played": 13
     }
   ]
 }

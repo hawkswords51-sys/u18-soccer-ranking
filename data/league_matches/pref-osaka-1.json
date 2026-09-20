@@ -50,17 +50,29 @@
     {
       "rank": 1,
       "team": "大阪学院",
-      "points": 28,
-      "played": 10,
-      "won": 9,
+      "points": 31,
+      "played": 11,
+      "won": 10,
       "drawn": 1,
       "lost": 0,
-      "gf": 33,
+      "gf": 34,
       "ga": 8,
-      "gd": 25
+      "gd": 26
     },
     {
       "rank": 2,
+      "team": "履正社B",
+      "points": 23,
+      "played": 12,
+      "won": 7,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 25,
+      "ga": 19,
+      "gd": 6
+    },
+    {
+      "rank": 3,
       "team": "近大附属",
       "points": 22,
       "played": 11,
@@ -72,28 +84,16 @@
       "gd": 13
     },
     {
-      "rank": 3,
-      "team": "履正社B",
-      "points": 20,
-      "played": 11,
-      "won": 6,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 22,
-      "ga": 18,
-      "gd": 4
-    },
-    {
       "rank": 4,
       "team": "清風",
       "points": 20,
-      "played": 11,
+      "played": 12,
       "won": 6,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 14,
-      "ga": 12,
-      "gd": 2
+      "ga": 13,
+      "gd": 1
     },
     {
       "rank": 5,
@@ -109,27 +109,27 @@
     },
     {
       "rank": 6,
-      "team": "常翔学園",
+      "team": "興國B",
       "points": 15,
-      "played": 11,
+      "played": 12,
       "won": 4,
       "drawn": 3,
-      "lost": 4,
-      "gf": 14,
-      "ga": 15,
-      "gd": -1
+      "lost": 5,
+      "gf": 26,
+      "ga": 20,
+      "gd": 6
     },
     {
       "rank": 7,
-      "team": "興國B",
-      "points": 12,
-      "played": 11,
-      "won": 3,
+      "team": "常翔学園",
+      "points": 15,
+      "played": 12,
+      "won": 4,
       "drawn": 3,
       "lost": 5,
-      "gf": 24,
-      "ga": 20,
-      "gd": 4
+      "gf": 14,
+      "ga": 17,
+      "gd": -3
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "香里ヌヴェール",
       "points": 3,
-      "played": 11,
+      "played": 12,
       "won": 1,
       "drawn": 0,
-      "lost": 10,
-      "gf": 10,
-      "ga": 36,
-      "gd": -26
+      "lost": 11,
+      "gf": 11,
+      "ga": 39,
+      "gd": -28
     }
   ],
   "matches": [
@@ -191,10 +191,10 @@
       "md": 12,
       "date": "2026-09-20",
       "home": "大阪学院",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "清風",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 4,
@@ -407,10 +407,10 @@
       "md": 12,
       "date": "2026-09-20",
       "home": "履正社B",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "香里ヌヴェール",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 3,
@@ -704,10 +704,10 @@
       "md": 12,
       "date": "2026-09-20",
       "home": "興國B",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "常翔学園",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 4,
@@ -986,42 +986,42 @@
       "pts": 22,
       "gf": 20,
       "ga": 7,
-      "rank": 2
+      "rank": 3
     },
     {
       "team": "興國B",
-      "pts": 12,
-      "gf": 24,
+      "pts": 15,
+      "gf": 26,
       "ga": 20,
-      "rank": 7
+      "rank": 6
     },
     {
       "team": "大阪学院",
-      "pts": 28,
-      "gf": 33,
+      "pts": 31,
+      "gf": 34,
       "ga": 8,
       "rank": 1
     },
     {
       "team": "履正社B",
-      "pts": 20,
-      "gf": 22,
-      "ga": 18,
-      "rank": 3
+      "pts": 23,
+      "gf": 25,
+      "ga": 19,
+      "rank": 2
     },
     {
       "team": "清風",
       "pts": 20,
       "gf": 14,
-      "ga": 12,
+      "ga": 13,
       "rank": 4
     },
     {
       "team": "常翔学園",
       "pts": 15,
       "gf": 14,
-      "ga": 15,
-      "rank": 6
+      "ga": 17,
+      "rank": 7
     },
     {
       "team": "桃山学院",
@@ -1047,8 +1047,8 @@
     {
       "team": "香里ヌヴェール",
       "pts": 3,
-      "gf": 10,
-      "ga": 36,
+      "gf": 11,
+      "ga": 39,
       "rank": 10
     }
   ]

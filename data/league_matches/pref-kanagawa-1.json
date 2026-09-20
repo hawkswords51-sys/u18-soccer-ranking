@@ -5,12 +5,12 @@
   "lastUpdated": "2026-09-20",
   "teams": [
     {
-      "name": "東海大相模A",
-      "short": "東海大相模A"
-    },
-    {
       "name": "湘南ベルマーレA",
       "short": "湘南ベルマーレ"
+    },
+    {
+      "name": "東海大相模A",
+      "short": "東海大相模A"
     },
     {
       "name": "法政二A",
@@ -48,6 +48,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "湘南ベルマーレA",
+      "points": 31,
+      "played": 12,
+      "won": 10,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 29,
+      "ga": 6,
+      "gd": 23
+    },
+    {
+      "rank": 2,
       "team": "東海大相模A",
       "points": 29,
       "played": 13,
@@ -57,18 +69,6 @@
       "gf": 27,
       "ga": 15,
       "gd": 12
-    },
-    {
-      "rank": 2,
-      "team": "湘南ベルマーレA",
-      "points": 28,
-      "played": 11,
-      "won": 9,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 26,
-      "ga": 6,
-      "gd": 20
     },
     {
       "rank": 3,
@@ -98,13 +98,13 @@
       "rank": 5,
       "team": "横浜創英A",
       "points": 17,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 16,
-      "ga": 16,
-      "gd": 0
+      "ga": 19,
+      "gd": -3
     },
     {
       "rank": 6,
@@ -168,87 +168,6 @@
     }
   ],
   "matches": [
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海大相模A",
-      "hs": null,
-      "as": null,
-      "away": "湘南ベルマーレA",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海大相模A",
-      "hs": null,
-      "as": null,
-      "away": "法政二A",
-      "status": "scheduled"
-    },
-    {
-      "md": 3,
-      "date": "2026-03-22",
-      "home": "東海大相模A",
-      "hs": 2,
-      "as": 0,
-      "away": "桐光学園B",
-      "status": "played"
-    },
-    {
-      "md": 2,
-      "date": "2026-03-15",
-      "home": "東海大相模A",
-      "hs": 0,
-      "as": 3,
-      "away": "横浜創英A",
-      "status": "played"
-    },
-    {
-      "md": 1,
-      "date": "2026-03-08",
-      "home": "東海大相模A",
-      "hs": 0,
-      "as": 0,
-      "away": "桐蔭学園B",
-      "status": "played"
-    },
-    {
-      "md": 5,
-      "date": "2026-04-12",
-      "home": "東海大相模A",
-      "hs": 2,
-      "as": 2,
-      "away": "湘南工科大附Ａ",
-      "status": "played"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-21",
-      "home": "東海大相模A",
-      "hs": 2,
-      "as": 1,
-      "away": "川崎橘A",
-      "status": "played"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-05",
-      "home": "東海大相模A",
-      "hs": 3,
-      "as": 2,
-      "away": "相洋A",
-      "status": "played"
-    },
-    {
-      "md": 6,
-      "date": "2026-04-25",
-      "home": "東海大相模A",
-      "hs": 4,
-      "as": 1,
-      "away": "日大藤沢B",
-      "status": "played"
-    },
     {
       "md": 8,
       "date": "2026-05-16",
@@ -331,12 +250,84 @@
       "status": "played"
     },
     {
-      "md": 7,
-      "date": "2026-05-09",
-      "home": "法政二A",
-      "hs": 1,
+      "md": 0,
+      "date": "",
+      "home": "東海大相模A",
+      "hs": null,
+      "as": null,
+      "away": "湘南ベルマーレA",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東海大相模A",
+      "hs": null,
+      "as": null,
+      "away": "法政二A",
+      "status": "scheduled"
+    },
+    {
+      "md": 3,
+      "date": "2026-03-22",
+      "home": "東海大相模A",
+      "hs": 2,
+      "as": 0,
+      "away": "桐光学園B",
+      "status": "played"
+    },
+    {
+      "md": 2,
+      "date": "2026-03-15",
+      "home": "東海大相模A",
+      "hs": 0,
+      "as": 3,
+      "away": "横浜創英A",
+      "status": "played"
+    },
+    {
+      "md": 1,
+      "date": "2026-03-08",
+      "home": "東海大相模A",
+      "hs": 0,
+      "as": 0,
+      "away": "桐蔭学園B",
+      "status": "played"
+    },
+    {
+      "md": 5,
+      "date": "2026-04-12",
+      "home": "東海大相模A",
+      "hs": 2,
       "as": 2,
-      "away": "東海大相模A",
+      "away": "湘南工科大附Ａ",
+      "status": "played"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-21",
+      "home": "東海大相模A",
+      "hs": 2,
+      "as": 1,
+      "away": "川崎橘A",
+      "status": "played"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-05",
+      "home": "東海大相模A",
+      "hs": 3,
+      "as": 2,
+      "away": "相洋A",
+      "status": "played"
+    },
+    {
+      "md": 6,
+      "date": "2026-04-25",
+      "home": "東海大相模A",
+      "hs": 4,
+      "as": 1,
+      "away": "日大藤沢B",
       "status": "played"
     },
     {
@@ -347,6 +338,15 @@
       "as": null,
       "away": "湘南ベルマーレA",
       "status": "scheduled"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-09",
+      "home": "法政二A",
+      "hs": 1,
+      "as": 2,
+      "away": "東海大相模A",
+      "status": "played"
     },
     {
       "md": 4,
@@ -412,15 +412,6 @@
       "status": "played"
     },
     {
-      "md": 12,
-      "date": "2026-09-12",
-      "home": "東海大相模A",
-      "hs": 4,
-      "as": 1,
-      "away": "桐光学園B",
-      "status": "played"
-    },
-    {
       "md": 0,
       "date": "",
       "home": "桐光学園B",
@@ -428,6 +419,15 @@
       "as": null,
       "away": "湘南ベルマーレA",
       "status": "scheduled"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-12",
+      "home": "東海大相模A",
+      "hs": 4,
+      "as": 1,
+      "away": "桐光学園B",
+      "status": "played"
     },
     {
       "md": 0,
@@ -493,6 +493,15 @@
       "status": "played"
     },
     {
+      "md": 13,
+      "date": "2026-09-19",
+      "home": "湘南ベルマーレA",
+      "hs": 3,
+      "as": 0,
+      "away": "横浜創英A",
+      "status": "played"
+    },
+    {
       "md": 11,
       "date": "2026-09-05",
       "home": "東海大相模A",
@@ -500,15 +509,6 @@
       "as": 2,
       "away": "横浜創英A",
       "status": "played"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "横浜創英A",
-      "hs": null,
-      "as": null,
-      "away": "湘南ベルマーレA",
-      "status": "scheduled"
     },
     {
       "md": 12,
@@ -574,19 +574,19 @@
       "status": "played"
     },
     {
-      "md": 10,
-      "date": "2026-08-30",
-      "home": "東海大相模A",
-      "hs": 3,
+      "md": 12,
+      "date": "2026-09-13",
+      "home": "湘南ベルマーレA",
+      "hs": 1,
       "as": 0,
       "away": "桐蔭学園B",
       "status": "played"
     },
     {
-      "md": 12,
-      "date": "2026-09-13",
-      "home": "湘南ベルマーレA",
-      "hs": 1,
+      "md": 10,
+      "date": "2026-08-30",
+      "home": "東海大相模A",
+      "hs": 3,
       "as": 0,
       "away": "桐蔭学園B",
       "status": "played"
@@ -660,7 +660,7 @@
       "home": "湘南工科大附Ａ",
       "hs": null,
       "as": null,
-      "away": "東海大相模A",
+      "away": "湘南ベルマーレA",
       "status": "scheduled"
     },
     {
@@ -669,7 +669,7 @@
       "home": "湘南工科大附Ａ",
       "hs": null,
       "as": null,
-      "away": "湘南ベルマーレA",
+      "away": "東海大相模A",
       "status": "scheduled"
     },
     {
@@ -741,7 +741,7 @@
       "home": "川崎橘A",
       "hs": null,
       "as": null,
-      "away": "東海大相模A",
+      "away": "湘南ベルマーレA",
       "status": "scheduled"
     },
     {
@@ -750,7 +750,7 @@
       "home": "川崎橘A",
       "hs": null,
       "as": null,
-      "away": "湘南ベルマーレA",
+      "away": "東海大相模A",
       "status": "scheduled"
     },
     {
@@ -817,15 +817,6 @@
       "status": "played"
     },
     {
-      "md": 13,
-      "date": "2026-09-19",
-      "home": "東海大相模A",
-      "hs": 2,
-      "as": 1,
-      "away": "相洋A",
-      "status": "played"
-    },
-    {
       "md": 0,
       "date": "",
       "home": "相洋A",
@@ -833,6 +824,15 @@
       "as": null,
       "away": "湘南ベルマーレA",
       "status": "scheduled"
+    },
+    {
+      "md": 13,
+      "date": "2026-09-19",
+      "home": "東海大相模A",
+      "hs": 2,
+      "as": 1,
+      "away": "相洋A",
+      "status": "played"
     },
     {
       "md": 0,
@@ -898,15 +898,6 @@
       "status": "played"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "日大藤沢B",
-      "hs": null,
-      "as": null,
-      "away": "東海大相模A",
-      "status": "scheduled"
-    },
-    {
       "md": 10,
       "date": "2026-08-29",
       "home": "湘南ベルマーレA",
@@ -914,6 +905,15 @@
       "as": 0,
       "away": "日大藤沢B",
       "status": "played"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "日大藤沢B",
+      "hs": null,
+      "as": null,
+      "away": "東海大相模A",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -982,6 +982,16 @@
   "sourceName": "神奈川県サッカー協会 公式（2種大会部会）",
   "source_standings": [
     {
+      "team": "湘南ベルマーレA",
+      "pts": 31,
+      "played": 12,
+      "won": 10,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 29,
+      "ga": 6
+    },
+    {
       "team": "東海大相模A",
       "pts": 29,
       "played": 13,
@@ -990,16 +1000,6 @@
       "lost": 2,
       "gf": 27,
       "ga": 15
-    },
-    {
-      "team": "湘南ベルマーレA",
-      "pts": 28,
-      "played": 11,
-      "won": 9,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 26,
-      "ga": 6
     },
     {
       "team": "法政二A",
@@ -1024,12 +1024,12 @@
     {
       "team": "横浜創英A",
       "pts": 17,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 16,
-      "ga": 16
+      "ga": 19
     },
     {
       "team": "桐蔭学園B",

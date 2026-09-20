@@ -62,26 +62,26 @@
     {
       "rank": 2,
       "team": "東洋大牛久A",
-      "points": 27,
-      "played": 12,
-      "won": 8,
+      "points": 30,
+      "played": 13,
+      "won": 9,
       "drawn": 3,
       "lost": 1,
-      "gf": 20,
+      "gf": 23,
       "ga": 9,
-      "gd": 11
+      "gd": 14
     },
     {
       "rank": 3,
       "team": "明秀日立A",
-      "points": 25,
-      "played": 12,
-      "won": 8,
+      "points": 28,
+      "played": 13,
+      "won": 9,
       "drawn": 1,
       "lost": 3,
-      "gf": 33,
+      "gf": 35,
       "ga": 13,
-      "gd": 20
+      "gd": 22
     },
     {
       "rank": 4,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "霞ヶ浦A",
       "points": 12,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 3,
-      "lost": 6,
+      "lost": 7,
       "gf": 13,
-      "ga": 14,
-      "gd": -1
+      "ga": 16,
+      "gd": -3
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "鹿島A",
       "points": 4,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 1,
-      "lost": 10,
+      "lost": 11,
       "gf": 9,
-      "ga": 34,
-      "gd": -25
+      "ga": 37,
+      "gd": -28
     }
   ],
   "matches": [
@@ -336,12 +336,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-20",
       "home": "東洋大牛久A",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "鹿島A",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
     },
     {
       "md": 0,
@@ -393,12 +394,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-20",
       "home": "明秀日立A",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "霞ヶ浦A",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "明秀日立ﾌｯﾄﾎﾞｰﾙﾌｨｰﾙﾄﾞ高萩"
     },
     {
       "md": 0,
@@ -1056,22 +1058,22 @@
     },
     {
       "team": "東洋大牛久A",
-      "pts": 27,
-      "played": 12,
-      "won": 8,
+      "pts": 30,
+      "played": 13,
+      "won": 9,
       "drawn": 3,
       "lost": 1,
-      "gf": 20,
+      "gf": 23,
       "ga": 9
     },
     {
       "team": "明秀日立A",
-      "pts": 25,
-      "played": 12,
-      "won": 8,
+      "pts": 28,
+      "played": 13,
+      "won": 9,
       "drawn": 1,
       "lost": 3,
-      "gf": 33,
+      "gf": 35,
       "ga": 13
     },
     {
@@ -1107,12 +1109,12 @@
     {
       "team": "霞ヶ浦A",
       "pts": 12,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 3,
-      "lost": 6,
+      "lost": 7,
       "gf": 13,
-      "ga": 14
+      "ga": 16
     },
     {
       "team": "牛久栄進A",
@@ -1137,12 +1139,12 @@
     {
       "team": "鹿島A",
       "pts": 4,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 1,
-      "lost": 10,
+      "lost": 11,
       "gf": 9,
-      "ga": 34
+      "ga": 37
     }
   ]
 }
