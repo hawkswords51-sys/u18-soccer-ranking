@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-21T02:01:46+09:00",
+  "updatedAt": "2026-09-21T08:55:10+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -451,7 +451,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 5,
+      "result_streak": 6,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['公式順位表の得失点差の合計が0でない（読み取りの誤り、または出典の誤り）', '芦屋学園A: 得失点差 公式12 ≠ 試合から13'] …",
@@ -481,21 +481,21 @@
     },
     "ishikawa": {
       "season": "2026",
-      "complete": false,
+      "complete": true,
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 8,
-      "played": 52,
+      "played": 56,
       "total": 56,
       "teams": 8,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-20",
       "source": "junior-soccer (manual)",
       "sourceName": "石川少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-16",
+      "last_change": "2026-09-21",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-18"
+      "last_updated": "2026-09-21"
     },
     "iwate": {
       "result": "ok",
@@ -545,17 +545,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 65,
+      "played": 66,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-12",
+      "latest_match": "2026-09-19",
       "source": "junior-soccer (manual)",
       "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-18",
+      "last_change": "2026-09-21",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-18"
+      "last_updated": "2026-09-21"
     },
     "kanagawa": {
       "result": "ok",
@@ -678,7 +678,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-18"
+      "last_updated": "2026-09-21"
     },
     "miyazaki": {
       "result": "ok",
@@ -963,17 +963,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 54,
+      "played": 59,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-19",
       "source": "junior-soccer (manual)",
       "sourceName": "埼玉少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-18",
+      "last_change": "2026-09-21",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-18"
+      "last_updated": "2026-09-21"
     },
     "shiga": {
       "result": "ok",
@@ -1023,17 +1023,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 55,
+      "played": 60,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-13",
+      "latest_match": "2026-09-19",
       "source": "junior-soccer (manual)",
       "sourceName": "静岡少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-16",
+      "last_change": "2026-09-21",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-18"
+      "last_updated": "2026-09-21"
     },
     "tochigi": {
       "result": "ok",

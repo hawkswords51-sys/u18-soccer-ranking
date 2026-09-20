@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kanto/saitama/league/table/163779",
   "sourceName": "埼玉少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-09-18",
+  "lastUpdated": "2026-09-21",
   "teams": [
     {
       "name": "武南",
@@ -50,34 +50,34 @@
     {
       "rank": 1,
       "team": "武南",
-      "points": 23,
-      "played": 11,
-      "won": 6,
+      "points": 26,
+      "played": 12,
+      "won": 7,
       "drawn": 5,
       "lost": 0,
-      "gf": 28,
-      "ga": 10,
-      "gd": 18
+      "gf": 30,
+      "ga": 11,
+      "gd": 19
     },
     {
       "rank": 2,
       "team": "昌平II",
-      "points": 22,
-      "played": 11,
-      "won": 6,
+      "points": 25,
+      "played": 12,
+      "won": 7,
       "drawn": 4,
       "lost": 1,
-      "gf": 21,
+      "gf": 23,
       "ga": 10,
-      "gd": 11
+      "gd": 13
     },
     {
       "rank": 3,
       "team": "聖望学園",
-      "points": 18,
-      "played": 11,
+      "points": 19,
+      "played": 12,
       "won": 5,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 3,
       "gf": 17,
       "ga": 12,
@@ -86,10 +86,10 @@
     {
       "rank": 4,
       "team": "成徳深谷",
-      "points": 17,
-      "played": 10,
+      "points": 18,
+      "played": 11,
       "won": 4,
-      "drawn": 5,
+      "drawn": 6,
       "lost": 1,
       "gf": 9,
       "ga": 3,
@@ -97,75 +97,75 @@
     },
     {
       "rank": 5,
-      "team": "正智深谷",
-      "points": 15,
-      "played": 11,
-      "won": 4,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 24,
-      "ga": 14,
-      "gd": 10
+      "team": "西武台II",
+      "points": 18,
+      "played": 12,
+      "won": 6,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 13,
+      "ga": 22,
+      "gd": -9
     },
     {
       "rank": 6,
-      "team": "西武台II",
+      "team": "正智深谷",
       "points": 15,
-      "played": 11,
-      "won": 5,
-      "drawn": 0,
-      "lost": 6,
-      "gf": 11,
-      "ga": 22,
-      "gd": -11
+      "played": 12,
+      "won": 4,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 24,
+      "ga": 16,
+      "gd": 8
     },
     {
       "rank": 7,
-      "team": "武蔵越生",
-      "points": 13,
-      "played": 11,
-      "won": 3,
-      "drawn": 4,
-      "lost": 4,
-      "gf": 14,
-      "ga": 14,
-      "gd": 0
+      "team": "浦和学院",
+      "points": 15,
+      "played": 12,
+      "won": 4,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 15,
+      "ga": 19,
+      "gd": -4
     },
     {
       "rank": 8,
-      "team": "浦和学院",
-      "points": 12,
-      "played": 11,
+      "team": "武蔵越生",
+      "points": 13,
+      "played": 12,
       "won": 3,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 5,
-      "gf": 13,
-      "ga": 19,
-      "gd": -6
+      "gf": 15,
+      "ga": 16,
+      "gd": -1
     },
     {
       "rank": 9,
       "team": "狭山ヶ丘",
       "points": 8,
-      "played": 11,
+      "played": 12,
       "won": 2,
       "drawn": 2,
-      "lost": 7,
+      "lost": 8,
       "gf": 8,
-      "ga": 22,
-      "gd": -14
+      "ga": 24,
+      "gd": -16
     },
     {
       "rank": 10,
       "team": "埼玉栄",
       "points": 4,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 1,
-      "lost": 8,
+      "lost": 9,
       "gf": 5,
-      "ga": 24,
-      "gd": -19
+      "ga": 26,
+      "gd": -21
     }
   ],
   "matches": [
@@ -315,12 +315,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "昌平II",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "狭山ヶ丘",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -513,12 +513,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-19",
       "home": "成徳深谷",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "聖望学園",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -576,12 +576,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "武蔵越生",
-      "hs": null,
-      "as": null,
-      "away": "武南",
-      "status": "scheduled"
+      "date": "2026-09-19",
+      "home": "武南",
+      "hs": 2,
+      "as": 1,
+      "away": "武蔵越生",
+      "status": "played"
     },
     {
       "md": 0,
@@ -765,12 +765,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "浦和学院",
-      "hs": null,
-      "as": null,
-      "away": "正智深谷",
-      "status": "scheduled"
+      "date": "2026-09-19",
+      "home": "正智深谷",
+      "hs": 0,
+      "as": 2,
+      "away": "浦和学院",
+      "status": "played"
     },
     {
       "md": 0,
@@ -954,12 +954,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "埼玉栄",
-      "hs": null,
-      "as": null,
-      "away": "西武台II",
-      "status": "scheduled"
+      "date": "2026-09-19",
+      "home": "西武台II",
+      "hs": 2,
+      "as": 0,
+      "away": "埼玉栄",
+      "status": "played"
     },
     {
       "md": 0,
