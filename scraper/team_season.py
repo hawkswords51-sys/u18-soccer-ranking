@@ -27,14 +27,21 @@ from pathlib import Path
 
 _WEEK = ("月", "火", "水", "木", "金", "土", "日")
 
-# 4-4-2（中盤ダイヤモンド）の枠。上＝相手ゴール側。
+# 図のひな形。上＝相手ゴール側。
 # (枠の名前, 図に出す役割名) の行。`wide` の行は左右に広げる。
+# frontmatter の formation.shape でどれを使うかを選ぶ。新しい形が要るときはここに足す。
 _SHAPES = {
     "4-4-2d": [
         ("", [("FW1", "FW"), ("FW2", "FW")]),
         ("", [("AM", "トップ下")]),
         ("wide", [("LSH", "左SH"), ("RSH", "右SH")]),
         ("", [("DM", "アンカー")]),
+        ("", [("LB", "SB"), ("CB1", "CB"), ("CB2", "CB"), ("RB", "SB")]),
+        ("", [("GK", "GK")]),
+    ],
+    "4-4-2": [
+        ("", [("FW1", "FW"), ("FW2", "FW")]),
+        ("", [("LSH", "左SH"), ("CM1", "ボランチ"), ("CM2", "ボランチ"), ("RSH", "右SH")]),
         ("", [("LB", "SB"), ("CB1", "CB"), ("CB2", "CB"), ("RB", "SB")]),
         ("", [("GK", "GK")]),
     ],
@@ -234,10 +241,14 @@ def _lineup_html(ctx: dict, meta: dict, warn: list[str]) -> str:
     last = matches[last_no]
 
     # 直近の試合の相手とスコア（リーグJSONから）
+    # ⚠️ reportUrl で突き合わせるだけでは足りない。終わった試合でもJFAが記録PDFを出すまで
+    #    reportUrl が空のことがある（2026-09-20の第14節 青森山田×柏）。節番号でも拾う。
     head = f'第{_e(last.get("md"))}節'
     for m in ctx["league"]["matches"]:
-        if (m.get("status") == "played"
-                and re.search(rf"/m{last_no}\.pdf$", m.get("reportUrl") or "")):
+        if m.get("status") != "played" or ctx["key"] not in (m.get("home"), m.get("away")):
+            continue
+        if (re.search(rf"/m{last_no}\.pdf$", m.get("reportUrl") or "")
+                or m.get("md") == last.get("md")):
             home = m.get("home") == ctx["key"]
             gf, ga = (m.get("hs"), m.get("as")) if home else (m.get("as"), m.get("hs"))
             head = (f'第{_e(m.get("md"))}節 vs {_e(m.get("away") if home else m.get("home"))}'
@@ -253,9 +264,16 @@ def _lineup_html(ctx: dict, meta: dict, warn: list[str]) -> str:
         for k, v in sorted(by.items(), key=lambda kv: _POS_ORDER.get(kv[0], 9)) if v)
 
     # 先発回数。同数は登録ポジション順（GK→DF→MF→FW）→背番号順
+    # ⚠️ [2026-09-20] **いまの登録選手だけ**で数える。シーズン途中で登録を外れた選手が
+    #    上位に並ぶと読者が混乱するため（青森山田は先発11回・10回の2人が登録外だった）。
+    #    ⚠️ 登録を外れた理由はどこにも書かない（編集方針）。
+    #    ⚠️ 試合の先発・得点者の表示には残す（起きた事実なので消さない）。
+    names = {x["name"] for x in roster}
     cnt, cap = {}, {}
     for m in matches.values():
         for p in m["starters"]:
+            if names and p["name"] not in names:
+                continue
             k = (p["no"], p["name"], p["pos"])
             cnt[k] = cnt.get(k, 0) + 1
             if p.get("captain"):
@@ -264,15 +282,26 @@ def _lineup_html(ctx: dict, meta: dict, warn: list[str]) -> str:
     ol = "".join(f'<li><span class="ts-pos {pos.lower()}">{pos}</span>{_e(name)}'
                  f'<span class="ts-cnt">{c}/{total}</span></li>'
                  for (no, name, pos), c in top)
+
+    # キャプテン。⚠️ 最多が消化試合の半分に満たないときは「◯試合中◯試合」と書くと
+    #   誤解を生む（青森山田は登録選手の最多が3/14）。そのときは直近の試合の主将を出す。
     cap_html = ""
     if cap:
-        who, n = max(cap.items(), key=lambda kv: kv[1])
-        cap_html = f'<p class="ts-caveat">キャプテン：{_e(who)}（{total}試合中{n}試合）</p>'
+        who, n = max(cap.items(), key=lambda kv: (kv[1], kv[0]))
+        if n * 2 >= total:
+            cap_html = f'<p class="ts-caveat">キャプテン：{_e(who)}（{total}試合中{n}試合）</p>'
+        else:
+            last_cap = next((x["name"] for x in last["starters"]
+                             if x.get("captain") and (not names or x["name"] in names)), "")
+            if last_cap:
+                cap_html = (f'<p class="ts-caveat">直近の試合のキャプテン：{_e(last_cap)}'
+                            f'（第{_e(last.get("md"))}節）</p>')
 
     return (f'<div class="ts-side"><h3>直近の先発（{head}）</h3><ul class="ts-xi">{xi}</ul>'
             f'<p class="ts-caveat">※ GK/DF/MF/FW は公式記録の<b>登録ポジション</b>です。'
             f'試合中の配置とは異なります。</p>'
-            f'<h3>今季の先発回数（{total}試合中）</h3><ol class="ts-cntlist">{ol}</ol>{cap_html}</div>')
+            f'<h3>今季の先発回数（{total}試合中・現在の登録選手のみ）</h3>'
+            f'<ol class="ts-cntlist">{ol}</ol>{cap_html}</div>')
 
 
 def _formation_html(ctx: dict, meta: dict, warn: list[str]) -> str:
@@ -283,7 +312,9 @@ def _formation_html(ctx: dict, meta: dict, warn: list[str]) -> str:
         return ""
     f = meta.get("formation") or {}
     title = f'基本布陣：{f.get("label")}' if pitch and f.get("label") else "先発の記録"
-    return (f'<h2>{_e(title)}</h2><div class="ts-lineup">{pitch}{side}</div>')
+    # ピッチ図が無いチーム（formation 未設定）は2列にすると右半分が空くので1列にする
+    cls = "ts-lineup" if pitch else "ts-lineup one"
+    return (f'<h2>{_e(title)}</h2><div class="{cls}">{pitch}{side}</div>')
 
 
 # ---------------------------------------------------------------------------

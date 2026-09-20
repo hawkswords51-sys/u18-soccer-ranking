@@ -105,6 +105,30 @@ def base_url(slug: str) -> str:
     raise RuntimeError(f"{slug} はまだ対応していない（今はプレミアだけ）")
 
 
+_SCHEDULE_CACHE: dict[str, dict] = {}
+
+
+def schedule_numbers(slug: str) -> dict[tuple[str, str, str], str]:
+    """`schedule.json` から {(日付, ホーム, アウェイ): 試合番号} を作る（1リーグ1回だけ取る）。
+
+    ⚠️ reportUrl がまだ出ていない試合の番号を引くためだけに使う。
+       試合結果そのものは既存の league_matches JSON が正本（ここでは読まない）。
+    """
+    if slug in _SCHEDULE_CACHE:
+        return _SCHEDULE_CACHE[slug]
+    url = base_url(slug).replace("/east", "/east/match").replace("/west", "/west/match") + "/schedule.json"
+    data = json.loads(fetch_html(url))
+    out = {}
+    for m in data["matchScheduleList"]["matchSchedule"]:
+        num = m.get("matchNumber")
+        date = (m.get("matchDate") or "").replace("/", "-")
+        if num and date:
+            out[(date, m.get("homeTeamName"), m.get("awayTeamName"))] = num
+    _SCHEDULE_CACHE[slug] = out
+    time.sleep(SLEEP)
+    return out
+
+
 # ---------------------------------------------------------------------------
 # 選手一覧
 # ---------------------------------------------------------------------------
@@ -323,9 +347,14 @@ def team_name_in_league(meta: dict, teams_json: dict) -> str:
 
 
 def league_team_key(name: str, aliases: list[str], league: dict) -> str:
-    """リーグJSONの中で実際に使われている表記を返す。"""
+    """リーグJSONの中で実際に使われている表記を返す。
+
+    ⚠️ md の `name`（青森山田高校）とリーグJSON上の表記（青森山田）は違うことがある。
+       teams.json の aliases が空のチームもあるので、**short_name も候補に入れる**
+       （2026-09-20：青森山田・前橋育英・昌平・帝京長岡の4チームがこれ）。
+    """
     used = {m.get("home") for m in league["matches"]} | {m.get("away") for m in league["matches"]}
-    for cand in [name] + list(aliases):
+    for cand in [c for c in [name] + list(aliases) if c]:
         if cand in used:
             return cand
     raise RuntimeError(f"リーグJSONに {name}（別名 {aliases}）が出てこない")
@@ -354,7 +383,8 @@ def process(team_id: str, meta: dict, teams_json: dict, dry_run: bool) -> str:
     league = json.loads(league_file.read_text(encoding="utf-8"))
 
     name = team_name_in_league(meta, teams_json)
-    key = league_team_key(name, aliases_of(meta, teams_json), league)
+    key = league_team_key(name, aliases_of(meta, teams_json) + [meta.get("short_name") or ""],
+                          league)
     standing = next((r for r in league.get("official_standings", []) if r.get("team") == key), None)
     if standing is None:
         return f"[要確認] {team_id}: 順位表に {key} が無い"
@@ -367,14 +397,28 @@ def process(team_id: str, meta: dict, teams_json: dict, dry_run: bool) -> str:
     played = [x for x in league["matches"]
               if x.get("status") == "played" and key in (x.get("home"), x.get("away"))]
     base = base_url(slug)
+    # JFA公式の正式名（試合ページの1行目と schedule.json に出る名前）。md の name をそのまま使う。
+    official = meta.get("name", "")
     want_numbers = {}
+    missing = []
     for x in played:
         mm = re.search(r"/m(\d+)\.pdf$", x.get("reportUrl") or "")
         if mm:
             want_numbers[mm.group(1)] = x.get("md")
+        else:
+            missing.append(x)
+    if missing:
+        # ⚠️ [2026-09-20] 終わった試合でも JFA が記録PDFを出すまで reportUrl が空のことがある
+        #    （9/20の第14節 青森山田×柏）。そのままだと試合番号が分からず、G4（消化数の一致）で
+        #    据え置きになりチーム全体のデータが入らない。試合番号は schedule.json にあるので、
+        #    **足りない試合のときだけ**そこから引く（1リーグ1回）。
+        sched = schedule_numbers(slug)
+        for x in missing:
+            hit = [n for (d, h, a), n in sched.items()
+                   if d == (x.get("date") or "") and official in (h, a)]
+            if len(hit) == 1:
+                want_numbers[hit[0]] = x.get("md")
 
-    # JFA公式の正式名（試合ページの1行目に出る名前）。md の name をそのまま使う。
-    official = meta.get("name", "")
     fetched = skipped = 0
     for n, md_no in sorted(want_numbers.items(), key=lambda kv: int(kv[0])):
         if n in matches:

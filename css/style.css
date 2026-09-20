@@ -5819,6 +5819,8 @@ tr.zone-row > td:first-child {
     gap: 18px;
     align-items: start;
 }
+/* ピッチ図が無いチームは1列（右半分を空けない） */
+.ts-lineup.one { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 760px) {
     .ts-lineup { grid-template-columns: minmax(0, 1fr); }
 }
