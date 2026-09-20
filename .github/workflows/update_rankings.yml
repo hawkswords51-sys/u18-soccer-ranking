@@ -135,6 +135,24 @@ jobs:
             echo "scraper/fetch_jfa.py がまだありません。スキップ。"
           fi
 
+      # ★ チームごとのシーズンデータ（登録選手・試合ごとの先発）をJFA公式から取る（2026-09-20新設）
+      #   frontmatter に jfa_team を書いたチームだけが対象。終わった試合は取り直さないので、
+      #   1日のリクエストは「チーム数 ×（選手一覧1＋新しく終わった試合の数）」で済む。
+      #   ⚠️ 上の fetch_jfa.py より**後**に置くこと（試合結果が入った league_matches を見て、
+      #      どの試合を読むかを決めるため）。
+      #   ⚠️ continue-on-error は外さない（コミットより前なので、赤くするとその日の更新が丸ごと止まる）。
+      #      握りつぶすかわりに fetch_status.json の jobs に必ず記録が残る。
+      - name: チームのシーズンデータをJFA公式から更新
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE != 'pref' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_jfa_team_season.py ]; then
+            python scraper/fetch_jfa_team_season.py
+          else
+            echo "scraper/fetch_jfa_team_season.py がまだありません。スキップ。"
+          fi
+
       - name: 順位データを更新
         if: ${{ github.event_name != 'push' }}
         run: |

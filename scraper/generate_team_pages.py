@@ -27,6 +27,7 @@ import yaml
 import markdown
 import national_team as nt  # 日本代表選出バッジ用（同 scraper/ に national_team.py）
 import pro_signings as ps  # プロ内定・2種登録バッジ用（同 scraper/ に pro_signings.py）
+import team_season as ts  # シーズンデータ3欄（jfa_team を書いたチームだけ）
 
 
 # =========================================================================
@@ -666,6 +667,18 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
     body_html = _fix_prince_league_links(body_html)
     # h1はページに1つだけ（hero内のチーム名）。md本文の「# 見出し」がh1になっても自動でh2へ降格する
     body_html = re.sub(r"<h1(\s[^>]*)?>", "<h2>", body_html).replace("</h1>", "</h2>")
+
+    # [2026-09-20] frontmatter に jfa_team があるチームだけ、シーズンデータ3欄を
+    #   「## 関連リンク」の直前に差し込む（無ければ本文の末尾）。
+    #   ⚠️ jfa_team が無いチームでは render_sections_html が空文字を返すので、
+    #      他の159ページは1バイトも変わらない。
+    season_html = ts.render_sections_html(meta, BASE_DIR)
+    if season_html:
+        anchor = "<h2>関連リンク</h2>"
+        if anchor in body_html:
+            body_html = body_html.replace(anchor, season_html + anchor, 1)
+        else:
+            body_html += season_html
 
     title = f"{meta.get('name', '')} | 高校サッカー部 順位・OB・育成"
     description = meta.get("description") or build_lead(meta)
