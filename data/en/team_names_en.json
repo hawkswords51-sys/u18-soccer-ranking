@@ -9,105 +9,913 @@
       "Ohzu": "大津高校サッカー部公式Xのアカウント名 kumamoto_ohzu と英語版Wikipediaの表記に合わせる",
       "others": "英語版Wikipedia『2025 Prince Takamado U-18 Premier League』・JFA英語ニュースの表記"
     },
-    "prefecture_rule": "都道府県名は teams.json のキー（例 kumamoto）の先頭を大文字にして使う（Kumamoto）。別表は持たない。"
+    "prefecture_rule": "都道府県名は teams.json のキー（例 kumamoto）の先頭を大文字にして使う（Kumamoto）。別表は持たない。",
+    "updated": "2026-09-21",
+    "key": "キーは data/teams.json のチーム名（日本語）そのまま。以前はチームidだったが、idは96チームで未設定・1件重複（ni010）だったため名前キーに変更した。",
+    "naming_rule": "Jクラブ＝クラブ公式の英語名＋日本語に合わせた Youth / U-18。高校＝学校自身の英語表記があればそれ（大学附属は Senior High School などの揺れもそのまま）、無ければ長音記号なしのヘボン式＋High School。語順は日本語のまま。2nd/3rdは親チームの英語名＋\" 2nd\"/\" 3rd\"。",
+    "checked_by_kei": "2026-09-21：市立船橋=Ichiritsu Funabashi／流経大柏=Ryutsu Keizai University Kashiwa（学校の自称 RKU Kashiwa ではなくJ.LEAGUE英語版の長い表記で統一）／日大藤沢=Nihon University Fujisawa Senior High School をKeiが確認。"
   },
   "teams": {
-    "a001": {
-      "en": "Aomori Yamada High School",
-      "jp_page": "/teams/aomori-yamada/"
+    "AC長野パルセイロU-18": {
+      "en": "AC Nagano Parceiro U-18",
+      "jp_page": "/teams/ac-nagano-parceiro-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
     },
-    "m001": {
-      "en": "Vegalta Sendai Youth",
-      "jp_page": "/teams/vegalta-sendai-youth/"
+    "FC今治 U-18": {
+      "en": "FC Imabari U-18",
+      "jp_page": "/teams/fc-imabari-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
     },
-    "ib001": {
-      "en": "Kashima Antlers Youth",
-      "jp_page": "/teams/kashima-youth/"
-    },
-    "g001": {
-      "en": "Maebashi Ikuei High School",
-      "jp_page": "/teams/maebashi-ikuei/"
-    },
-    "sa001": {
-      "en": "Shohei High School",
-      "jp_page": "/teams/shohei/"
-    },
-    "c001": {
-      "en": "Ryutsu Keizai University Kashiwa High School",
-      "short": "RKU Kashiwa",
-      "jp_page": "/teams/ryukei-kashiwa/"
-    },
-    "c002": {
-      "en": "Kashiwa Reysol U-18",
-      "jp_page": "/teams/kashiwa-reysol-u18/"
-    },
-    "t001": {
+    "FC東京U-18": {
       "en": "FC Tokyo U-18",
-      "jp_page": "/teams/fc-tokyo-u18/"
+      "jp_page": "/teams/fc-tokyo-u18/",
+      "source": "premier2026",
+      "confidence": "high"
     },
-    "t002": {
-      "en": "Tokyo Verdy Youth",
-      "jp_page": "/teams/tokyo-verdy-youth/"
+    "FC琉球U-18": {
+      "en": "FC Ryukyu U-18",
+      "jp_page": "/teams/fc-ryukyu-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
     },
-    "k001": {
-      "en": "Kawasaki Frontale U-18",
-      "jp_page": "/teams/kawasaki-frontale-u18/"
+    "RB大宮アルディージャU18": {
+      "en": "RB Omiya Ardija U-18",
+      "jp_page": "/teams/rb-omiya-ardija-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
     },
-    "k002": {
-      "en": "Yokohama FC Youth",
-      "jp_page": "/teams/yokohama-fc-youth/"
+    "V・ファーレン長崎U-18": {
+      "en": "V-Varen Nagasaki U-18",
+      "jp_page": "/teams/v-varen-nagasaki-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
     },
-    "ni001": {
-      "en": "Teikyo Nagaoka High School",
-      "jp_page": "/teams/teikyo-nagaoka/"
-    },
-    "s003": {
-      "en": "Jubilo Iwata U-18",
-      "jp_page": "/teams/jubilo-iwata-u18/"
-    },
-    "ai001": {
-      "en": "Nagoya Grampus U-18",
-      "jp_page": "/teams/nagoya-grampus-u18/"
-    },
-    "ky001": {
-      "en": "Higashiyama High School",
-      "jp_page": "/teams/higashiyama/"
-    },
-    "o001": {
-      "en": "Gamba Osaka Youth",
-      "jp_page": "/teams/gamba-osaka-youth/"
-    },
-    "hy001": {
-      "en": "Vissel Kobe U-18",
-      "jp_page": "/teams/vissel-kobe-u18/"
-    },
-    "tt001": {
-      "en": "Yonago Kita High School",
-      "jp_page": "/teams/yonago-kita/"
-    },
-    "oka001": {
-      "en": "Fagiano Okayama U-18",
-      "jp_page": "/teams/fagiano-okayama-u18/"
-    },
-    "hr001": {
-      "en": "Sanfrecce Hiroshima F.C Youth",
-      "jp_page": "/teams/sanfrecce-hiroshima-youth/"
-    },
-    "fk001": {
+    "アビスパ福岡U-18": {
       "en": "Avispa Fukuoka U-18",
-      "jp_page": "/teams/avispa-fukuoka-u18/"
+      "jp_page": "/teams/avispa-fukuoka-u18/",
+      "source": "premier2026",
+      "confidence": "high"
     },
-    "sg001": {
+    "アルビレックス新潟U-18": {
+      "en": "Albirex Niigata U-18",
+      "jp_page": "/teams/albirex-niigata-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "カターレ富山U-18": {
+      "en": "Kataller Toyama U-18",
+      "jp_page": "/teams/kataller-toyama-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "カマタマーレ讃岐U-18": {
+      "en": "Kamatamare Sanuki U-18",
+      "jp_page": "/teams/kamatamare-sanuki-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ガンバ大阪ユース": {
+      "en": "Gamba Osaka Youth",
+      "jp_page": "/teams/gamba-osaka-youth/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "サガン鳥栖U-18": {
       "en": "Sagan Tosu U-18",
-      "jp_page": "/teams/sagan-tosu-u18/"
+      "jp_page": "/teams/sagan-tosu-u18/",
+      "source": "premier2026",
+      "confidence": "high"
     },
-    "km001": {
+    "サガン鳥栖U-18 2nd": {
+      "en": "Sagan Tosu U-18 2nd",
+      "jp_page": "/teams/sagan-tosu-u18/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "サンフレッチェ広島F.C.ユース": {
+      "en": "Sanfrecce Hiroshima F.C Youth",
+      "jp_page": "/teams/sanfrecce-hiroshima-youth/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "ジェフユナイテッド市原・千葉U-18": {
+      "en": "JEF United Chiba U-18",
+      "jp_page": "/teams/jef-united-chiba-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ジュビロ磐田U-18": {
+      "en": "Jubilo Iwata U-18",
+      "jp_page": "/teams/jubilo-iwata-u18/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "セレッソ大阪U-18": {
+      "en": "Cerezo Osaka U-18",
+      "jp_page": "/teams/cerezo-osaka-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ツエーゲン金沢U-18": {
+      "en": "Zweigen Kanazawa U-18",
+      "jp_page": "/teams/zweigen-kanazawa-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ファジアーノ岡山U-18": {
+      "en": "Fagiano Okayama U-18",
+      "jp_page": "/teams/fagiano-okayama-u18/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "ブラウブリッツ秋田U-18": {
+      "en": "Blaublitz Akita U-18",
+      "jp_page": "/teams/blaublitz-akita-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ベガルタ仙台ユース": {
+      "en": "Vegalta Sendai Youth",
+      "jp_page": "/teams/vegalta-sendai-youth/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "モンテディオ山形ユース": {
+      "en": "Montedio Yamagata Youth",
+      "jp_page": "/teams/montedio-yamagata-youth/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "レノファ山口FC U-18": {
+      "en": "Renofa Yamaguchi FC U-18",
+      "jp_page": "/teams/renofa-yamaguchi-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ロアッソ熊本U-18": {
+      "en": "Roasso Kumamoto U-18",
+      "jp_page": "/teams/roasso-kumamoto-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ヴァンフォーレ甲府U-18": {
+      "en": "Ventforet Kofu U-18",
+      "jp_page": "/teams/ventforet-kofu-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "ヴィッセル神戸U-18": {
+      "en": "Vissel Kobe U-18",
+      "jp_page": "/teams/vissel-kobe-u18/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "ヴィッセル神戸U-18 2nd": {
+      "en": "Vissel Kobe U-18 2nd",
+      "jp_page": "/teams/vissel-kobe-u18/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "三田学園高校": {
+      "en": "Sanda Gakuen High School",
+      "jp_page": "/teams/sanda-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "三重高校": {
+      "en": "Mie High School",
+      "jp_page": "/teams/mie/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "上越高校": {
+      "en": "Joetsu High School",
+      "jp_page": "/teams/joetsu/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "丸岡高校": {
+      "en": "Maruoka High School",
+      "jp_page": "/teams/maruoka/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "九州国際大付属高校": {
+      "en": "Kyushu International University Affiliated High School",
+      "jp_page": "",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "京都サンガF.C. U-18": {
+      "en": "Kyoto Sanga F.C. U-18",
+      "jp_page": "/teams/kyoto-sanga-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "京都共栄学園高校": {
+      "en": "Kyoto Kyoei High School",
+      "jp_page": "/teams/kyoto-kyoei/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "京都橘高校": {
+      "en": "Kyoto Tachibana High School",
+      "jp_page": "/teams/kyoto-tachibana/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "京都橘高校2nd": {
+      "en": "Kyoto Tachibana High School 2nd",
+      "jp_page": "/teams/kyoto-tachibana/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "佐賀東高校": {
+      "en": "Saga Higashi High School",
+      "jp_page": "/teams/saga-higashi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "作陽学園高校": {
+      "en": "Sakuyo Gakuen High School",
+      "jp_page": "/teams/sakuyo-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "前橋育英高校": {
+      "en": "Maebashi Ikuei High School",
+      "jp_page": "/teams/maebashi-ikuei/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "北海道コンサドーレ札幌U-18": {
+      "en": "Hokkaido Consadole Sapporo U-18",
+      "jp_page": "/teams/consadole-sapporo-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "北海道大谷室蘭高校": {
+      "en": "Hokkaido Otani Muroran High School",
+      "jp_page": "/teams/hokkaido-otani-muroran/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "北海高校": {
+      "en": "Hokkai High School",
+      "jp_page": "/teams/hokkai/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "北照高校": {
+      "en": "Hokusho High School",
+      "jp_page": "/teams/hokusho/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "北越高校": {
+      "en": "Hokuetsu High School",
+      "jp_page": "/teams/hokuetsu/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "名古屋グランパスU-18": {
+      "en": "Nagoya Grampus U-18",
+      "jp_page": "/teams/nagoya-grampus-u18/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "国見高校": {
+      "en": "Kunimi High School",
+      "jp_page": "/teams/kunimi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "大分トリニータU-18": {
+      "en": "Oita Trinita U-18",
+      "jp_page": "/teams/oita-trinita-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "大手前高松高校": {
+      "en": "Otemae Takamatsu High School",
+      "jp_page": "/teams/otemae-takamatsu/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "大津高校": {
       "en": "Ohzu High School",
-      "jp_page": "/teams/ohtsu/"
+      "jp_page": "/teams/ohtsu/",
+      "source": "premier2026",
+      "confidence": "high"
     },
-    "ks001": {
+    "大津高校2nd": {
+      "en": "Ohzu High School 2nd",
+      "jp_page": "/teams/ohtsu/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "大津高校3rd": {
+      "en": "Ohzu High School 3rd",
+      "jp_page": "/teams/ohtsu/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "大社高校": {
+      "en": "Taisha High School",
+      "jp_page": "/teams/taisha/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "大阪桐蔭高校": {
+      "en": "Osaka Toin High School",
+      "jp_page": "/teams/osaka-toin/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "大阪産業大学附属高校": {
+      "en": "Osaka Sangyo University High School",
+      "jp_page": "/teams/osaka-sandai-fuzoku/",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "学法石川高校": {
+      "en": "Gakuho Ishikawa High School",
+      "jp_page": "/teams/gakuho-ishikawa/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "富士市立高校": {
+      "en": "Fuji Ichiritsu High School",
+      "jp_page": "/teams/fuji-ichiritsu/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "富山第一高校": {
+      "en": "Toyama Daiichi High School",
+      "jp_page": "/teams/toyama-daiichi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "専修大学北上高校": {
+      "en": "Senshu University Kitakami Senior High School",
+      "jp_page": "/teams/senshu-kitakami/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "尚志高校": {
+      "en": "Shoshi High School",
+      "jp_page": "/teams/shoshi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "就実高校": {
+      "en": "Shujitsu High School",
+      "jp_page": "/teams/shujitsu/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "履正社高校": {
+      "en": "Riseisha High School",
+      "jp_page": "/teams/riseisha/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "山梨学院高校": {
+      "en": "Yamanashi Gakuin High School",
+      "jp_page": "/teams/yamanashi-gakuin/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "岡山学芸館高校": {
+      "en": "Okayama Gakugeikan High School",
+      "jp_page": "/teams/okayama-gakugeikan/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "川崎フロンターレU-18": {
+      "en": "Kawasaki Frontale U-18",
+      "jp_page": "/teams/kawasaki-frontale-u18/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "市立船橋高校": {
+      "en": "Ichiritsu Funabashi High School",
+      "jp_page": "/teams/ichiritsu-funabashi/",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "帝京大学可児高校": {
+      "en": "Teikyo University Kani High School",
+      "jp_page": "/teams/teikyo-kani/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "帝京安積高校": {
+      "en": "Teikyo Asaka High School",
+      "jp_page": "/teams/teikyo-asaka/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "帝京長岡高校": {
+      "en": "Teikyo Nagaoka High School",
+      "jp_page": "/teams/teikyo-nagaoka/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "帝京長岡高校2nd": {
+      "en": "Teikyo Nagaoka High School 2nd",
+      "jp_page": "/teams/teikyo-nagaoka/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "帝京高校": {
+      "en": "Teikyo High School",
+      "jp_page": "/teams/teikyo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "帯広北高校": {
+      "en": "Obihiro Kita High School",
+      "jp_page": "/teams/obihiro-kita/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "広島皆実高校": {
+      "en": "Hiroshima Minami High School",
+      "jp_page": "/teams/hiroshima-minami/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "徳島ヴォルティスユース": {
+      "en": "Tokushima Vortis Youth",
+      "jp_page": "/teams/tokushima-vortis-youth/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "徳島市立高校": {
+      "en": "Tokushima Shiritsu High School",
+      "jp_page": "/teams/tokushima-shiritsu/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "愛媛FC U-18": {
+      "en": "Ehime FC U-18",
+      "jp_page": "/teams/ehime-fc-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "愛工大名電高校": {
+      "en": "Aikodai Meiden High School",
+      "jp_page": "/teams/aikodai-meiden/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "新潟明訓高校": {
+      "en": "Niigata Meikun High School",
+      "jp_page": "/teams/niigata-meikun/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "新田高校": {
+      "en": "Nitta High School",
+      "jp_page": "/teams/nitta/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "日本体育大学柏高校": {
+      "en": "Nippon Sport Science University Kashiwa High School",
+      "jp_page": "/teams/nittaidai-kashiwa/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "日本大学藤沢高校": {
+      "en": "Nihon University Fujisawa Senior High School",
+      "jp_page": "/teams/nichidai-fujisawa/",
+      "source": "school-official (Kei確認 2026-09-21)",
+      "confidence": "high"
+    },
+    "日本文理高校": {
+      "en": "Nihon Bunri High School",
+      "jp_page": "/teams/nihon-bunri/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "日本文理高校2nd": {
+      "en": "Nihon Bunri High School 2nd",
+      "jp_page": "/teams/nihon-bunri/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "日章学園高校": {
+      "en": "Nissho Gakuen High School",
+      "jp_page": "/teams/nissho-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "日章学園高校2nd": {
+      "en": "Nissho Gakuen High School 2nd",
+      "jp_page": "/teams/nissho-gakuen/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "旭川実業高校": {
+      "en": "Asahikawa Jitsugyo High School",
+      "jp_page": "/teams/asahikawa-jitsugyo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "昌平高校": {
+      "en": "Shohei High School",
+      "jp_page": "/teams/shohei/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "星稜高校": {
+      "en": "Seiryo High School",
+      "jp_page": "/teams/seiryo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "札幌光星高校": {
+      "en": "Sapporo Kosei High School",
+      "jp_page": "/teams/sapporo-kosei/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "札幌大谷高校": {
+      "en": "Sapporo Otani High School",
+      "jp_page": "",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "東京ヴェルディユース": {
+      "en": "Tokyo Verdy Youth",
+      "jp_page": "/teams/tokyo-verdy-youth/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "東北学院高校": {
+      "en": "Tohoku Gakuin High School",
+      "jp_page": "/teams/tohoku-gakuin/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "東山高校": {
+      "en": "Higashiyama High School",
+      "jp_page": "/teams/higashiyama/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "東海大仰星高校": {
+      "en": "Tokai University Osaka Gyosei High School",
+      "jp_page": "/teams/tokai-gyosei/",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "東海大学付属熊本星翔高校": {
+      "en": "Tokai University Kumamoto Seisho Senior High School",
+      "jp_page": "/teams/tokai-kumamoto-seisho/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "東海大学付属福岡高校": {
+      "en": "Tokai University Fukuoka Senior High School",
+      "jp_page": "/teams/tokai-fukuoka/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "東海大翔洋高校": {
+      "en": "Tokai University Shizuoka Shoyo High School",
+      "jp_page": "/teams/tokai-shizuoka-shoyo/",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "東福岡高校": {
+      "en": "Higashi Fukuoka High School",
+      "jp_page": "/teams/higashi-fukuoka/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "松本国際高校": {
+      "en": "Matsumoto Kokusai High School",
+      "jp_page": "/teams/matsumoto-kokusai/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "松本山雅FC U-18": {
+      "en": "Matsumoto Yamaga F.C. U-18",
+      "jp_page": "/teams/matsumoto-yamaga-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "柏レイソルU-18": {
+      "en": "Kashiwa Reysol U-18",
+      "jp_page": "/teams/kashiwa-reysol-u18/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "栃木SC U-18": {
+      "en": "Tochigi SC U-18",
+      "jp_page": "/teams/tochigi-sc-u18/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "桐光学園高校": {
+      "en": "Toko Gakuen High School",
+      "jp_page": "/teams/toko-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "桐生第一高校": {
+      "en": "Kiryu Daiichi High School",
+      "jp_page": "/teams/kiryu-daiichi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "桐蔭学園高校": {
+      "en": "Toin Gakuen High School",
+      "jp_page": "/teams/toin-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "横浜FCユース": {
+      "en": "Yokohama FC Youth",
+      "jp_page": "/teams/yokohama-fc-youth/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "横浜F・マリノスユース": {
+      "en": "Yokohama F. Marinos Youth",
+      "jp_page": "/teams/yokohama-fm-youth/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "流通経済大学付属柏高校": {
+      "en": "Ryutsu Keizai University Kashiwa High School",
+      "jp_page": "/teams/ryukei-kashiwa/",
+      "source": "premier2026",
+      "confidence": "high",
+      "short": "RKU Kashiwa"
+    },
+    "流通経済大学付属柏高校2nd": {
+      "en": "Ryutsu Keizai University Kashiwa High School 2nd",
+      "jp_page": "/teams/ryukei-kashiwa/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "浜松開誠館高校": {
+      "en": "Hamamatsu Kaiseikan High School",
+      "jp_page": "/teams/hamamatsu-kaiseikan/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "浦和レッズユース": {
+      "en": "Urawa Red Diamonds Youth",
+      "jp_page": "",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "清水エスパルスユース": {
+      "en": "Shimizu S-Pulse Youth",
+      "jp_page": "/teams/shimizu-s-pulse-youth/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "滝川第二高校": {
+      "en": "Takigawa Daini High School",
+      "jp_page": "/teams/takigawa-daini/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "瀬戸内高校": {
+      "en": "Setouchi High School",
+      "jp_page": "/teams/setouchi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "玉野光南高校": {
+      "en": "Tamano Konan High School",
+      "jp_page": "/teams/tamano-konan/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "町田ゼルビアユース": {
+      "en": "FC Machida Zelvia Youth",
+      "jp_page": "/teams/machida-zelvia-youth/",
+      "source": "club-official/jleague-en",
+      "confidence": "high"
+    },
+    "盛岡商業高校": {
+      "en": "Morioka Shogyo High School",
+      "jp_page": "/teams/morioka-shogyo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "県立今治東中等教育学校": {
+      "en": "Imabari Higashi Secondary School",
+      "jp_page": "",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "県立徳島商業高校": {
+      "en": "Tokushima Shogyo High School",
+      "jp_page": "/teams/tokushima-shogyo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "矢板中央高校": {
+      "en": "Yaita Chuo High School",
+      "jp_page": "/teams/yaita-chuo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "神戸弘陵学園高校": {
+      "en": "Kobe Koryo High School",
+      "jp_page": "/teams/kobe-koryo/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "神村学園高等部": {
       "en": "Kamimura Gakuen High School",
-      "jp_page": "/teams/kamimura-gakuen/"
+      "jp_page": "/teams/kamimura-gakuen/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "立正大学淞南高校": {
+      "en": "Rissho Shonan High School",
+      "jp_page": "/teams/rissho-shonan/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "米子北高校": {
+      "en": "Yonago Kita High School",
+      "jp_page": "/teams/yonago-kita/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "聖和学園高校": {
+      "en": "Seiwa Gakuen High School",
+      "jp_page": "/teams/seiwa-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "興國高校": {
+      "en": "Kokoku High School",
+      "jp_page": "/teams/kokoku/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "藤枝明誠高校": {
+      "en": "Fujieda Meisei High School",
+      "jp_page": "/teams/fujieda-meisei/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "藤枝東高校": {
+      "en": "Fujieda Higashi High School",
+      "jp_page": "/teams/fujieda-higashi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "西武台高校": {
+      "en": "Seibudai High School",
+      "jp_page": "/teams/seibudai/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "近江高校": {
+      "en": "Omi High School",
+      "jp_page": "/teams/omi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "近江高校2nd": {
+      "en": "Omi High School 2nd",
+      "jp_page": "/teams/omi/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "金光大阪高校": {
+      "en": "Konko Osaka High School",
+      "jp_page": "/teams/konko-osaka/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "金沢学院大学附属高校": {
+      "en": "Kanazawa Gakuin High School",
+      "jp_page": "/teams/kanazawa-gakuin/",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "長崎総合科学大学附属高校": {
+      "en": "Nagasaki Institute of Applied Science High School",
+      "jp_page": "/teams/nagasaki-sokadai/",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "開志学園JSC高等部": {
+      "en": "Kaishi Gakuen JSC High School",
+      "jp_page": "/teams/kaishi-gakuen-jsc/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "関西大学北陽高校": {
+      "en": "Kansai University Hokuyo Senior High School",
+      "jp_page": "/teams/kandai-hokuyo/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "関西学院高校": {
+      "en": "Kwansei Gakuin High School",
+      "jp_page": "/teams/kwansei-gakuin/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "阪南大高校": {
+      "en": "Hannan University Senior High School",
+      "jp_page": "/teams/hannan-daiko/",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "青森山田高校": {
+      "en": "Aomori Yamada High School",
+      "jp_page": "/teams/aomori-yamada/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "青森山田高校2nd": {
+      "en": "Aomori Yamada High School 2nd",
+      "jp_page": "/teams/aomori-yamada/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "静岡学園高校": {
+      "en": "Shizuoka Gakuen High School",
+      "jp_page": "/teams/shizuoka-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "飯塚高校": {
+      "en": "Iizuka High School",
+      "jp_page": "/teams/iizuka/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "高川学園高校": {
+      "en": "Takagawa Gakuen High School",
+      "jp_page": "/teams/takagawa-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "高知高校": {
+      "en": "Kochi High School",
+      "jp_page": "/teams/kochi/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "鵬学園高校": {
+      "en": "Ohtori Gakuen High School",
+      "jp_page": "/teams/ohtori-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "鵬翔高校": {
+      "en": "Hosho High School",
+      "jp_page": "/teams/hosho/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "鹿児島城西高校": {
+      "en": "Kagoshima Josei High School",
+      "jp_page": "/teams/kagoshima-josei/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "鹿児島高校": {
+      "en": "Kagoshima High School",
+      "jp_page": "/teams/kagoshima/",
+      "source": "school-official/romaji",
+      "confidence": "high"
+    },
+    "鹿島アントラーズユース": {
+      "en": "Kashima Antlers Youth",
+      "jp_page": "/teams/kashima-youth/",
+      "source": "premier2026",
+      "confidence": "high"
+    },
+    "鹿島アントラーズユース2nd": {
+      "en": "Kashima Antlers Youth 2nd",
+      "jp_page": "/teams/kashima-youth/",
+      "source": "derived-from-parent",
+      "confidence": "high"
+    },
+    "鹿島学園高校": {
+      "en": "Kashima Gakuen High School",
+      "jp_page": "/teams/kashima-gakuen/",
+      "source": "school-official/romaji",
+      "confidence": "high"
     }
   }
 }

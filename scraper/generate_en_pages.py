@@ -4,7 +4,8 @@
 
 - 順位の正本: data/teams.json（プレミアEAST/WESTの leagueRank・勝点など。毎朝の自動更新で入る値）
 - 英語名の正本: data/en/team_names_en.json（Coworkが公式表記を確認して置く。自動ローマ字化はしない）
-- 出力: en/premier-league/index.html （全体を毎回書き直す）
+  ⚠️ キーは「data/teams.json のチーム名（日本語）」。2026-09-21にチームidから変更した（idは96チームで未設定・ni010が重複していたため）。
+- 出力: en/premier-league/index.html と en/prince-leagues/index.html （どちらも全体を毎回書き直す）
 - 検算（1つでも合わないリーグがあれば、ページを書き換えずに [要確認] を出して終わる＝誤データを載せない）:
     12チームそろっている / 英語名が全員分ある / 順位が1..12で重複なし /
     勝点=勝×3+分 / 試合数=勝+分+敗 / 順位順で勝点が増えない /
@@ -23,13 +24,33 @@ NAMES = ROOT / "data" / "en" / "team_names_en.json"
 DOMAIN = "https://u18-soccer.com"
 LEAGUES = [("プレミアリーグEAST", "EAST"), ("プレミアリーグWEST", "WEST")]
 
+# プリンスリーグ：地域ごとに（日本語リーグ名, 英語見出し, 日本語ページのslug）
+PRINCE_REGIONS = [
+    ("Hokkaido", [("プリンスリーグ北海道", "Prince League Hokkaido", "prince-hokkaido")]),
+    ("Tohoku", [("プリンスリーグ東北", "Prince League Tohoku", "prince-tohoku")]),
+    ("Kanto", [("プリンスリーグ関東1部", "Prince League Kanto Division 1", "prince-kanto-1"),
+                ("プリンスリーグ関東2部", "Prince League Kanto Division 2", "prince-kanto-2")]),
+    ("Hokushinetsu", [("プリンスリーグ北信越1部", "Prince League Hokushinetsu Division 1", "prince-hokushinetsu-1"),
+                       ("プリンスリーグ北信越2部", "Prince League Hokushinetsu Division 2", "prince-hokushinetsu-2")]),
+    ("Tokai", [("プリンスリーグ東海", "Prince League Tokai", "prince-tokai")]),
+    ("Kansai", [("プリンスリーグ関西1部", "Prince League Kansai Division 1", "prince-kansai-1"),
+                 ("プリンスリーグ関西2部", "Prince League Kansai Division 2", "prince-kansai-2")]),
+    ("Chugoku", [("プリンスリーグ中国", "Prince League Chugoku", "prince-chugoku")]),
+    ("Shikoku", [("プリンスリーグ四国", "Prince League Shikoku", "prince-shikoku")]),
+    ("Kyushu", [("プリンスリーグ九州1部", "Prince League Kyushu Division 1", "prince-kyushu-1"),
+                 ("プリンスリーグ九州2部", "Prince League Kyushu Division 2", "prince-kyushu-2")]),
+]
+
 
 def esc(s):
     return html.escape(str(s), quote=True)
 
 
-def collect(teams_data):
-    out = {jp: [] for jp, _ in LEAGUES}
+def collect(teams_data, league_names=None):
+    """リーグ名 → そのリーグのチーム（leagueRank順）"""
+    if league_names is None:
+        league_names = [jp for jp, _ in LEAGUES]
+    out = {jp: [] for jp in league_names}
     for pref_id, pref in teams_data.items():
         if not isinstance(pref, dict):
             continue
@@ -41,11 +62,13 @@ def collect(teams_data):
     return out
 
 
-def validate(ts, names):
+def validate(ts, names, expect=None):
     errs = []
-    if len(ts) != 12:
-        errs.append(f"チーム数が12ではない（{len(ts)}）")
-    missing = [t["name"] for t in ts if t["id"] not in names]
+    if expect is not None and len(ts) != expect:
+        errs.append(f"チーム数が{expect}ではない（{len(ts)}）")
+    if len(ts) < 6:
+        errs.append(f"チーム数が少なすぎる（{len(ts)}）")
+    missing = [t["name"] for t in ts if t["name"] not in names]
     if missing:
         errs.append("英語名が未登録: " + "、".join(missing))
     ranks = [t.get("leagueRank") for t in ts]
@@ -69,12 +92,14 @@ def validate(ts, names):
     return errs
 
 
-def row(t, names):
-    n = names[t["id"]]
+def row(t, names, zones=True):
+    n = names[t["name"]]
     r = t["leagueRank"]
     gd = t["goalsFor"] - t["goalsAgainst"]
     gd_s = f"+{gd}" if gd > 0 else str(gd)
-    cls = ' class="en-final"' if r == 1 else (' class="en-releg"' if r >= 11 else "")
+    cls = ""
+    if zones:
+        cls = ' class="en-final"' if r == 1 else (' class="en-releg"' if r >= 11 else "")
     name = f'<a href="{esc(n["jp_page"])}">{esc(n["en"])}</a>' if n.get("jp_page") else esc(n["en"])
     return (f'<tr{cls}><td class="en-c">{r}</td><td class="en-name">{name}</td>'
             f'<td>{esc(t["_pref"].capitalize())}</td><td class="en-c"><strong>{t["points"]}</strong></td>'
@@ -83,11 +108,12 @@ def row(t, names):
             f'<td class="en-c">{gd_s}</td></tr>')
 
 
-def table(label, ts, names, jp_slug):
-    rows = "\n".join(row(t, names) for t in ts)
+def table(heading, ts, names, jp_slug, jp_label, anchor, level="h2"):
+    """順位表1つ分のHTML。heading=英語見出し、jp_label=日本語ページのリンク文字、anchor=id"""
+    rows = "\n".join(row(t, names, zones=(level == "h2")) for t in ts)
     return f"""
-      <section class="lp-section" id="{label.lower()}">
-        <h2>Premier League {label}</h2>
+      <section class="lp-section" id="{anchor}">
+        <{level}>{heading}</{level}>
         <div class="en-scroll">
         <table class="en-table">
           <thead><tr><th>Pos</th><th class="en-name">Team</th><th>Pref.</th><th>Pts</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th></tr></thead>
@@ -96,7 +122,7 @@ def table(label, ts, names, jp_slug):
           </tbody>
         </table>
         </div>
-        <p class="en-note">Japanese version with fixtures, results and top scorers: <a href="/leagues/{jp_slug}/">プレミアリーグ{label}</a></p>
+        <p class="en-note">Japanese version with fixtures, results and top scorers: <a href="/leagues/{jp_slug}/">{jp_label}</a></p>
       </section>"""
 
 
@@ -165,7 +191,8 @@ PAGE = """<!DOCTYPE html>
         </div>
         <nav class="nav">
           <a href="/en/" class="nav-link"><i class="fas fa-book-open"></i> Guide</a>
-          <a href="/en/premier-league/" class="nav-link"><i class="fas fa-trophy"></i> Premier League</a>
+          <a href="/en/premier-league/" class="nav-link"><i class="fas fa-trophy"></i> Premier</a>
+          <a href="/en/prince-leagues/" class="nav-link"><i class="fas fa-list-ol"></i> Prince</a>
           <a href="/" class="nav-link" lang="ja"><i class="fas fa-language"></i> 日本語</a>
         </nav>
       </div>
@@ -177,28 +204,20 @@ PAGE = """<!DOCTYPE html>
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/en/">English Guide</a>
         <span class="breadcrumb__sep">›</span>
-        <span>Premier League {season}</span>
+        <span>{crumb}</span>
       </nav>
 
-      <h1 class="lp-title">Japan U-18 Premier League {season} Standings</h1>
+      <h1 class="lp-title">{h1}</h1>
 
       <p class="blog-article__summary" style="margin:0 0 20px;padding:14px 18px;background:var(--bg-light,#f1f5fb);border-left:4px solid var(--primary-color,#1e3a8a);border-radius:0 8px 8px 0;font-size:0.97rem;line-height:1.85;">
-        The Prince Takamado Trophy JFA U-18 Football Premier League is the top league for under-18 football in Japan.
-        24 teams — high-school clubs and J.League club academies — play in two divisions of 12 (EAST and WEST),
-        home and away, from April to December. The standings below are updated daily from official JFA data.
+{intro}
       </p>
-
-      <div class="en-legend">
-        <div><span style="background:#d4a017"></span>1st place: plays the Premier League Final (EAST winner vs WEST winner) in December to decide the national champion.</div>
-        <div><span style="background:var(--danger-color,#dc2626)"></span>11th–12th: relegated to the regional Prince Leagues.</div>
-      </div>
-{tables}
+{legend}{tables}
       <section class="lp-section">
-        <h2>How to read this table</h2>
+        <h2>How to read these tables</h2>
         <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
         Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
-        <p>New to Japanese youth football? Start with our <a href="/en/">guide to the U-18 system in Japan</a> — high schools vs club academies, the league pyramid, and the major national tournaments.</p>
-        <p>Why do high schools and professional academies play in the same league? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>
+{tail}
       </section>
     </div>
   </main>
@@ -219,33 +238,100 @@ PAGE = """<!DOCTYPE html>
 """
 
 
+def render_premier(out_root, teams, names, season):
+    by = collect(teams)
+    for jp, label in LEAGUES:
+        errs = validate(by[jp], names, expect=12)
+        if errs:
+            print(f"[要確認] {label}: 検算NGのため英語ページを書き換えません → " + "; ".join(errs))
+            return
+    tables = "".join(
+        table(f"Premier League {label}", by[jp], names, "premier-" + label.lower(), f"プレミアリーグ{label}", label.lower())
+        for jp, label in LEAGUES)
+    url = f"{DOMAIN}/en/premier-league/"
+    title = f"Japan U-18 Premier League {season} Standings (EAST & WEST)"
+    desc = (f"Live standings of the {season} Prince Takamado Trophy JFA U-18 Premier League in English: "
+            "EAST and WEST tables, updated daily from official JFA data, with links to team profiles.")
+    intro = ("        The Prince Takamado Trophy JFA U-18 Football Premier League is the top league for under-18 football in Japan.\n"
+             "        24 teams — high-school clubs and J.League club academies — play in two divisions of 12 (EAST and WEST),\n"
+             "        home and away, from April to December. The standings below are updated daily from official JFA data.")
+    legend = ('      <div class="en-legend">\n'
+              '        <div><span style="background:#d4a017"></span>1st place: plays the Premier League Final (EAST winner vs WEST winner) in December to decide the national champion.</div>\n'
+              '        <div><span style="background:var(--danger-color,#dc2626)"></span>11th–12th: relegated to the regional Prince Leagues.</div>\n'
+              '      </div>\n')
+    tail = ('        <p>One level below: <a href="/en/prince-leagues/">Prince League standings</a> — the 13 regional leagues that feed into this one.</p>\n'
+            '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": f"Premier League {season}", "item": url}]}, ensure_ascii=False)
+    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+                       crumb=f"Premier League {season}", h1=f"Japan U-18 Premier League {season} Standings",
+                       intro=intro, legend=legend, tables=tables, tail=tail)
+    dest = out_root / "en" / "premier-league" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    print(f"OK: {dest} を書きました（EAST {len(by['プレミアリーグEAST'])}・WEST {len(by['プレミアリーグWEST'])}チーム）")
+
+
+def render_prince(out_root, teams, names, season):
+    jp_names = [jp for _, lgs in PRINCE_REGIONS for jp, _, _ in lgs]
+    by = collect(teams, jp_names)
+    blocks, jump, skipped, shown = [], [], [], 0
+    for region, lgs in PRINCE_REGIONS:
+        parts = []
+        for jp, label, slug in lgs:
+            ts = by.get(jp, [])
+            errs = validate(ts, names)
+            if errs:
+                skipped.append(label)
+                print(f"[要確認] {label}: 検算NGのためこのリーグだけ描画しません → " + "; ".join(errs))
+                continue
+            parts.append(table(label, ts, names, slug, jp, slug, level="h3"))
+            shown += 1
+        if not parts:
+            continue
+        anchor = region.lower()
+        jump.append(f'        <a href="#{anchor}" style="display:inline-block;padding:7px 14px;border-radius:999px;'
+                    f'background:var(--primary-color,#1e3a8a);color:#fff;text-decoration:none;font-size:0.9rem;font-weight:600;">{region}</a>')
+        blocks.append(f'      <div id="{anchor}">\n        <h2 style="margin:26px 0 6px;">{region}</h2>\n' + "".join(parts) + "      </div>")
+    if shown == 0:
+        print("[要確認] プリンスリーグは1つも描画できませんでした。ページは書き換えません。")
+        return
+    tables = ('      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px;">\n'
+              + "\n".join(jump) + "\n      </div>\n" + "\n".join(blocks))
+    url = f"{DOMAIN}/en/prince-leagues/"
+    title = f"Japan U-18 Prince Leagues {season} Standings (all 13 regional leagues)"
+    desc = (f"Standings of the {season} Prince Takamado Trophy JFA U-18 Prince Leagues in English — all 13 leagues "
+            "in 9 regions, the second tier of Japanese youth football, updated daily from official JFA data.")
+    intro = ("        The Prince Leagues are the second tier of under-18 football in Japan: 13 leagues across 9 regions,\n"
+             "        played from April to December by high-school clubs and J.League academies alike.\n"
+             "        Most of the schools that reach the winter All Japan High School Soccer Tournament play here,\n"
+             "        so these tables are the best guide to how strong those teams are. Updated daily from official JFA data.")
+    legend = ('      <p class="en-note" style="margin:0 0 10px;">In December the leading Prince League teams enter a play-off for four places in the\n'
+              '        <a href="/en/premier-league/">Premier League</a>, and the bottom teams are relegated to their prefectural leagues. The number of places\n'
+              '        changes from year to year, so no promotion or relegation zones are marked here.</p>\n')
+    tail = ('        <p>One level above: <a href="/en/premier-league/">Premier League standings</a> (EAST and WEST).</p>\n'
+            '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": f"Prince Leagues {season}", "item": url}]}, ensure_ascii=False)
+    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+                       crumb=f"Prince Leagues {season}", h1=f"Japan U-18 Prince Leagues {season} Standings",
+                       intro=intro, legend=legend, tables=tables, tail=tail)
+    dest = out_root / "en" / "prince-leagues" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    n = sum(len(by[jp]) for _, lgs in PRINCE_REGIONS for jp, _, _ in lgs)
+    print(f"OK: {dest} を書きました（{shown}リーグ・{n}チーム" + (f"／スキップ {', '.join(skipped)}" if skipped else "") + "）")
+
+
 def main():
     out_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT
     teams = json.loads(TEAMS.read_text(encoding="utf-8"))
     names = json.loads(NAMES.read_text(encoding="utf-8"))["teams"]
     season = str(teams["_meta"]["year"])  # teams.json の _meta.year（年度切替で自動追従）
-    by = collect(teams)
-    ok = True
-    for jp, label in LEAGUES:
-        errs = validate(by[jp], names)
-        if errs:
-            ok = False
-            print(f"[要確認] {label}: 検算NGのため英語ページを書き換えません → " + "; ".join(errs))
-    if not ok:
-        return
-    tables = "".join(table(label, by[jp], names, "premier-" + label.lower()) for jp, label in LEAGUES)
-    url = f"{DOMAIN}/en/premier-league/"
-    title = f"Japan U-18 Premier League {season} Standings (EAST & WEST)"
-    desc = (f"Live standings of the {season} Prince Takamado Trophy JFA U-18 Premier League in English: "
-            "EAST and WEST tables, updated daily from official JFA data, with links to team profiles.")
-    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
-        {"@type": "ListItem", "position": 2, "name": f"Premier League {season}", "item": url}]}, ensure_ascii=False)
-    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb, season=season, tables=tables)
-    dest = out_root / "en" / "premier-league" / "index.html"
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(page, encoding="utf-8")
-    print(f"OK: {dest} を書きました（EAST {len(by['プレミアリーグEAST'])}・WEST {len(by['プレミアリーグWEST'])}チーム）")
+    render_premier(out_root, teams, names, season)
+    render_prince(out_root, teams, names, season)
 
 
 if __name__ == "__main__":
