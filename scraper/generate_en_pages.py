@@ -198,6 +198,7 @@ PAGE = """<!DOCTYPE html>
         <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
         Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
         <p>New to Japanese youth football? Start with our <a href="/en/">guide to the U-18 system in Japan</a> — high schools vs club academies, the league pyramid, and the major national tournaments.</p>
+        <p>Why do high schools and professional academies play in the same league? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>
       </section>
     </div>
   </main>

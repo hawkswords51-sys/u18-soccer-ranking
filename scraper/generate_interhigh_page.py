@@ -1656,6 +1656,7 @@ def main():
             # 英語ページ（2026-09-20 追加。海外向けの実験。測定は12月20日前後）
             (f"{DOMAIN}/en/", "monthly", "0.6"),
             (f"{DOMAIN}/en/premier-league/", "daily", "0.6"),
+            (f"{DOMAIN}/en/japan-youth-football-system/", "monthly", "0.7"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
