@@ -8,7 +8,7 @@ prefecture_name: 熊本県
 founded: 1972
 school_founded: 1923
 location: 熊本県菊池郡大津町
-website: https://sh.higo.ed.jp/ohtsu/
+website: https://sh.higo.ed.jp/oozu/
 official_x:
 nickname: 大津
 head_coach: 山城 朋大（U-17日本代表アシスタントコーチ兼任）

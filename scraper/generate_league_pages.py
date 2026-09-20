@@ -1651,9 +1651,17 @@ def generate_league_page(league_name, slug, label, category, description, season
     # 出てしまう（2026-08-16に九州2部で発覚）。県ページは長大なJSONを持つので既定のまま。
     scorer_ranking_html = render_scorer_ranking_html(slug, limit=60)
     
+    # [2026-09-20] プレミアEAST/WESTだけ、英語の順位表ページへの案内を1行。
+    #   ⚠️ hreflang は付けない。英語ページは2リーグを1ページにまとめ、日程・得点者を
+    #      持たないので、日本語ページと1対1の翻訳ではない（同じページの別言語版ではない）。
+    en_link = ""
+    if slug in ("premier-east", "premier-west"):
+        en_link = ('\n      <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: '
+                   '<a href="/en/premier-league/">Japan U-18 Premier League standings in English</a></p>\n')
+
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":
-        final_path_section = """
+        final_path_section = en_link + """
       <section class="lp-section lp-final-path" style="background:linear-gradient(135deg, #fef3c7, #fbbf24); border-radius:12px; padding:24px; margin:24px 0; border:2px solid #f59e0b;">
         <h2 style="color:#92400e; margin-top:0;"><i class="fas fa-trophy"></i> プレミアファイナルへの道</h2>
         <p style="color:#78350f; line-height:1.8;">
@@ -1673,7 +1681,7 @@ def generate_league_page(league_name, slug, label, category, description, season
       </section>
 """
     elif slug == "premier-west":
-        final_path_section = """
+        final_path_section = en_link + """
       <section class="lp-section lp-final-path" style="background:linear-gradient(135deg, #fef3c7, #fbbf24); border-radius:12px; padding:24px; margin:24px 0; border:2px solid #f59e0b;">
         <h2 style="color:#92400e; margin-top:0;"><i class="fas fa-trophy"></i> プレミアファイナルへの道</h2>
         <p style="color:#78350f; line-height:1.8;">

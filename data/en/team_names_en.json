@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "purpose": "英語ページ（/en/）で使うチーム名の英語表記。キーは data/teams.json のチームid。",
+    "created": "2026-09-20",
+    "rule": "ここに無いidのチームが英語ページの対象リーグに入ったら、生成スクリプトはその表を書き換えずに警告を出す（日本語名やローマ字の自動生成で埋めない）。",
+    "sources": {
+      "clubs": "各Jクラブの公式英語名＋日本語チーム名の区分（ユース／U-18）をそのまま英訳",
+      "RKU Kashiwa": "J.LEAGUE公式英語サイトの表記 Ryutsu Keizai University Kashiwa High School",
+      "Ohzu": "大津高校サッカー部公式Xのアカウント名 kumamoto_ohzu と英語版Wikipediaの表記に合わせる",
+      "others": "英語版Wikipedia『2025 Prince Takamado U-18 Premier League』・JFA英語ニュースの表記"
+    },
+    "prefecture_rule": "都道府県名は teams.json のキー（例 kumamoto）の先頭を大文字にして使う（Kumamoto）。別表は持たない。"
+  },
+  "teams": {
+    "a001": {
+      "en": "Aomori Yamada High School",
+      "jp_page": "/teams/aomori-yamada/"
+    },
+    "m001": {
+      "en": "Vegalta Sendai Youth",
+      "jp_page": "/teams/vegalta-sendai-youth/"
+    },
+    "ib001": {
+      "en": "Kashima Antlers Youth",
+      "jp_page": "/teams/kashima-youth/"
+    },
+    "g001": {
+      "en": "Maebashi Ikuei High School",
+      "jp_page": "/teams/maebashi-ikuei/"
+    },
+    "sa001": {
+      "en": "Shohei High School",
+      "jp_page": "/teams/shohei/"
+    },
+    "c001": {
+      "en": "Ryutsu Keizai University Kashiwa High School",
+      "short": "RKU Kashiwa",
+      "jp_page": "/teams/ryukei-kashiwa/"
+    },
+    "c002": {
+      "en": "Kashiwa Reysol U-18",
+      "jp_page": "/teams/kashiwa-reysol-u18/"
+    },
+    "t001": {
+      "en": "FC Tokyo U-18",
+      "jp_page": "/teams/fc-tokyo-u18/"
+    },
+    "t002": {
+      "en": "Tokyo Verdy Youth",
+      "jp_page": "/teams/tokyo-verdy-youth/"
+    },
+    "k001": {
+      "en": "Kawasaki Frontale U-18",
+      "jp_page": "/teams/kawasaki-frontale-u18/"
+    },
+    "k002": {
+      "en": "Yokohama FC Youth",
+      "jp_page": "/teams/yokohama-fc-youth/"
+    },
+    "ni001": {
+      "en": "Teikyo Nagaoka High School",
+      "jp_page": "/teams/teikyo-nagaoka/"
+    },
+    "s003": {
+      "en": "Jubilo Iwata U-18",
+      "jp_page": "/teams/jubilo-iwata-u18/"
+    },
+    "ai001": {
+      "en": "Nagoya Grampus U-18",
+      "jp_page": "/teams/nagoya-grampus-u18/"
+    },
+    "ky001": {
+      "en": "Higashiyama High School",
+      "jp_page": "/teams/higashiyama/"
+    },
+    "o001": {
+      "en": "Gamba Osaka Youth",
+      "jp_page": "/teams/gamba-osaka-youth/"
+    },
+    "hy001": {
+      "en": "Vissel Kobe U-18",
+      "jp_page": "/teams/vissel-kobe-u18/"
+    },
+    "tt001": {
+      "en": "Yonago Kita High School",
+      "jp_page": "/teams/yonago-kita/"
+    },
+    "oka001": {
+      "en": "Fagiano Okayama U-18",
+      "jp_page": "/teams/fagiano-okayama-u18/"
+    },
+    "hr001": {
+      "en": "Sanfrecce Hiroshima F.C Youth",
+      "jp_page": "/teams/sanfrecce-hiroshima-youth/"
+    },
+    "fk001": {
+      "en": "Avispa Fukuoka U-18",
+      "jp_page": "/teams/avispa-fukuoka-u18/"
+    },
+    "sg001": {
+      "en": "Sagan Tosu U-18",
+      "jp_page": "/teams/sagan-tosu-u18/"
+    },
+    "km001": {
+      "en": "Ohzu High School",
+      "jp_page": "/teams/ohtsu/"
+    },
+    "ks001": {
+      "en": "Kamimura Gakuen High School",
+      "jp_page": "/teams/kamimura-gakuen/"
+    }
+  }
+}

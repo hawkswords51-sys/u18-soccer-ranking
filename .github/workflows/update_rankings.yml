@@ -53,6 +53,7 @@ on:
       - 'data/team-profiles/**'
       - 'data/tournaments/**'
       - 'data/university/**'
+      - 'data/en/**'
       - 'data/scorers/**'
       - 'data/u15/**'
       - 'data/league_matches/**'
@@ -456,6 +457,17 @@ jobs:
           fi
           if [ -f scraper/generate_university_signings.py ]; then
             python scraper/generate_university_signings.py
+          fi
+
+      # ★ 英語ページ（/en/premier-league/）。順位は teams.json、英語名は data/en/team_names_en.json。
+      #   検算が1つでも崩れたらページを書き換えずに [要確認] を出して終わる（古いページが残る）。
+      #   ⚠️ 英語名が辞書に無いチームが入ると止まる。**わざとそうしている**（自動ローマ字化はしない）。
+      - name: 英語ページ（/en/premier-league/）を再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/generate_en_pages.py ]; then
+            python scraper/generate_en_pages.py
           fi
 
       # ★ Jユースカップ ページを生成
