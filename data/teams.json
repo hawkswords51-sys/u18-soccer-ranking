@@ -703,10 +703,26 @@
         "leagueRank": 10
       },
       {
+        "id": "m002",
+        "name": "聖和学園高校",
+        "league": "プリンスリーグ東北",
+        "rank": 2,
+        "points": 23,
+        "played": 14,
+        "won": 6,
+        "drawn": 5,
+        "lost": 3,
+        "goalsFor": 24,
+        "goalsAgainst": 17,
+        "prefectureRank": 2,
+        "leagueRank": 3,
+        "goalDiff": 7
+      },
+      {
         "id": "m006",
         "name": "東北学院高校",
         "league": "プリンスリーグ東北",
-        "rank": 2,
+        "rank": 3,
         "points": 21,
         "played": 14,
         "won": 6,
@@ -714,25 +730,9 @@
         "lost": 5,
         "goalsFor": 20,
         "goalsAgainst": 22,
-        "prefectureRank": 2,
-        "leagueRank": 4,
-        "goalDiff": -2
-      },
-      {
-        "id": "m002",
-        "name": "聖和学園高校",
-        "league": "プリンスリーグ東北",
-        "rank": 3,
-        "points": 20,
-        "played": 13,
-        "won": 5,
-        "drawn": 5,
-        "lost": 3,
-        "goalsFor": 21,
-        "goalsAgainst": 15,
         "prefectureRank": 3,
         "leagueRank": 5,
-        "goalDiff": 6
+        "goalDiff": -2
       },
       {
         "id": "m007",
@@ -1094,7 +1094,7 @@
         "goalsFor": 14,
         "goalsAgainst": 14,
         "prefectureRank": 1,
-        "leagueRank": 3,
+        "leagueRank": 4,
         "goalDiff": 0
       },
       {
@@ -1287,15 +1287,15 @@
         "league": "プリンスリーグ東北",
         "rank": 2,
         "points": 13,
-        "played": 13,
+        "played": 14,
         "won": 4,
         "drawn": 1,
-        "lost": 8,
-        "goalsFor": 11,
-        "goalsAgainst": 25,
+        "lost": 9,
+        "goalsFor": 13,
+        "goalsAgainst": 28,
         "prefectureRank": 2,
         "leagueRank": 8,
-        "goalDiff": -14
+        "goalDiff": -15
       },
       {
         "id": "f002",
@@ -1538,7 +1538,7 @@
         "goalsAgainst": 12,
         "prefectureRank": 2,
         "goalDiff": 7,
-        "leagueRank": 4,
+        "leagueRank": 5,
         "aliases": [
           "鹿島アントラーズユースB"
         ]
@@ -2257,7 +2257,7 @@
         "goalsAgainst": 9,
         "prefectureRank": 3,
         "goalDiff": 3,
-        "leagueRank": 3,
+        "leagueRank": 4,
         "aliases": [
           "大宮アルディージャU18",
           "大宮アルディージャユース"
@@ -2277,7 +2277,7 @@
         "goalsAgainst": 19,
         "prefectureRank": 4,
         "goalDiff": -2,
-        "leagueRank": 5
+        "leagueRank": 6
       },
       {
         "id": "sa007",
@@ -2531,10 +2531,26 @@
         "leagueRank": 1
       },
       {
+        "id": "c004",
+        "name": "ジェフユナイテッド市原・千葉U-18",
+        "league": "プリンスリーグ関東1部",
+        "rank": 4,
+        "points": 19,
+        "played": 11,
+        "won": 6,
+        "drawn": 1,
+        "lost": 4,
+        "goalsFor": 23,
+        "goalsAgainst": 14,
+        "prefectureRank": 4,
+        "goalDiff": 9,
+        "leagueRank": 3
+      },
+      {
         "id": "c005",
         "name": "流通経済大学付属柏高校2nd",
         "league": "プリンスリーグ関東1部",
-        "rank": 4,
+        "rank": 5,
         "points": 18,
         "played": 10,
         "won": 5,
@@ -2542,31 +2558,15 @@
         "lost": 2,
         "goalsFor": 9,
         "goalsAgainst": 8,
-        "prefectureRank": 4,
+        "prefectureRank": 5,
         "goalDiff": 1,
-        "leagueRank": 5,
+        "leagueRank": 6,
         "aliases": [
           "流通経済大学付属柏高校B",
           "流経大柏B",
           "流経大柏2nd",
           "流通経済大学付属柏Ｂ"
         ]
-      },
-      {
-        "id": "c004",
-        "name": "ジェフユナイテッド市原・千葉U-18",
-        "league": "プリンスリーグ関東1部",
-        "rank": 5,
-        "points": 16,
-        "played": 10,
-        "won": 5,
-        "drawn": 1,
-        "lost": 4,
-        "goalsFor": 21,
-        "goalsAgainst": 13,
-        "prefectureRank": 5,
-        "goalDiff": 8,
-        "leagueRank": 6
       },
       {
         "id": "c006",
@@ -2838,14 +2838,14 @@
         "league": "プリンスリーグ関東1部",
         "rank": 3,
         "points": 9,
-        "played": 11,
+        "played": 12,
         "won": 3,
         "drawn": 0,
-        "lost": 8,
-        "goalsFor": 16,
-        "goalsAgainst": 19,
+        "lost": 9,
+        "goalsFor": 17,
+        "goalsAgainst": 21,
         "prefectureRank": 3,
-        "goalDiff": -3,
+        "goalDiff": -4,
         "leagueRank": 8
       },
       {
@@ -2853,16 +2853,16 @@
         "name": "町田ゼルビアユース",
         "league": "プリンスリーグ関東2部",
         "rank": 4,
-        "points": 15,
-        "played": 10,
-        "won": 5,
+        "points": 18,
+        "played": 11,
+        "won": 6,
         "drawn": 0,
         "lost": 5,
-        "goalsFor": 13,
+        "goalsFor": 15,
         "goalsAgainst": 18,
         "prefectureRank": 4,
-        "goalDiff": -5,
-        "leagueRank": 6,
+        "goalDiff": -3,
+        "leagueRank": 4,
         "aliases": [
           "FC町田ゼルビアユース"
         ]
@@ -3314,13 +3314,13 @@
         "league": "プリンスリーグ関東2部",
         "rank": 6,
         "points": 11,
-        "played": 9,
+        "played": 10,
         "won": 3,
         "drawn": 2,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 10,
-        "goalsAgainst": 9,
-        "goalDiff": 1,
+        "goalsAgainst": 11,
+        "goalDiff": -1,
         "prefectureRank": 6,
         "leagueRank": 8,
         "aliases": [
@@ -4523,7 +4523,7 @@
         "goalsAgainst": 16,
         "prefectureRank": 1,
         "goalDiff": 2,
-        "leagueRank": 4
+        "leagueRank": 5
       },
       {
         "id": "ym002",
@@ -9457,16 +9457,16 @@
         "name": "九州国際大付属高校",
         "league": "プリンスリーグ九州2部",
         "rank": 4,
-        "points": 15,
-        "played": 11,
-        "won": 4,
+        "points": 18,
+        "played": 12,
+        "won": 5,
         "drawn": 3,
         "lost": 4,
-        "goalsFor": 15,
+        "goalsFor": 16,
         "goalsAgainst": 10,
         "prefectureRank": 4,
-        "goalDiff": 5,
-        "leagueRank": 5,
+        "goalDiff": 6,
+        "leagueRank": 3,
         "aliases": [
           "九州国際大附属高校",
           "九州国際大付"
@@ -9723,16 +9723,16 @@
         "name": "佐賀東高校",
         "league": "プリンスリーグ九州2部",
         "rank": 2,
-        "points": 20,
-        "played": 11,
-        "won": 6,
+        "points": 23,
+        "played": 12,
+        "won": 7,
         "drawn": 2,
         "lost": 3,
-        "goalsFor": 17,
-        "goalsAgainst": 12,
+        "goalsFor": 19,
+        "goalsAgainst": 13,
         "prefectureRank": 2,
-        "goalDiff": 5,
-        "leagueRank": 2
+        "goalDiff": 6,
+        "leagueRank": 1
       },
       {
         "id": "sg002",
@@ -9740,14 +9740,14 @@
         "league": "プリンスリーグ九州2部",
         "rank": 3,
         "points": 12,
-        "played": 10,
+        "played": 11,
         "won": 3,
         "drawn": 3,
-        "lost": 4,
+        "lost": 5,
         "goalsFor": 22,
-        "goalsAgainst": 19,
+        "goalsAgainst": 20,
         "prefectureRank": 3,
-        "goalDiff": 3,
+        "goalDiff": 2,
         "leagueRank": 10
       },
       {
@@ -10225,7 +10225,7 @@
         "goalsAgainst": 30,
         "prefectureRank": 5,
         "goalDiff": -5,
-        "leagueRank": 4
+        "leagueRank": 5
       },
       {
         "id": "km010",
@@ -10457,7 +10457,7 @@
         "goalsAgainst": 17,
         "prefectureRank": 1,
         "goalDiff": 7,
-        "leagueRank": 1
+        "leagueRank": 2
       },
       {
         "id": "oi003",
@@ -10673,15 +10673,15 @@
         "league": "プリンスリーグ九州2部",
         "rank": 2,
         "points": 18,
-        "played": 11,
+        "played": 12,
         "won": 5,
         "drawn": 3,
-        "lost": 3,
-        "goalsFor": 17,
-        "goalsAgainst": 16,
+        "lost": 4,
+        "goalsFor": 18,
+        "goalsAgainst": 18,
         "prefectureRank": 2,
-        "goalDiff": 1,
-        "leagueRank": 3
+        "goalDiff": 0,
+        "leagueRank": 4
       },
       {
         "id": "mz004",
@@ -11304,7 +11304,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-09-20 17:29",
+    "lastUpdated": "2026-09-20 17:32",
     "year": 2026,
     "updatedCount": 0
   }

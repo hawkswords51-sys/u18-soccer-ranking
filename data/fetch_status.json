@@ -38,9 +38,9 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['聖和学園.試合 日程から計算14≠順位表13', '聖和学園.勝 日程から計算6≠順位表5', '聖和学園.得点 日程から計算23≠順位表21'] …（据え置き）",
-      "matchesPlayed": 69,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 70,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 55,
+      "matchesPlayed": 56,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -64,7 +64,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 54,
+      "matchesPlayed": 55,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -172,7 +172,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 57,
+      "matchesPlayed": 59,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-20T17:29:33+09:00",
+  "updatedAt": "2026-09-20T17:32:03+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
