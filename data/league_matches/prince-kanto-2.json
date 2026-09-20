@@ -85,6 +85,18 @@
     },
     {
       "rank": 4,
+      "team": "鹿島アントラーズユースB",
+      "pts": 17,
+      "played": 12,
+      "won": 5,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 19,
+      "ga": 12,
+      "gd": 7
+    },
+    {
+      "rank": 5,
       "team": "西武台",
       "pts": 17,
       "played": 12,
@@ -96,7 +108,7 @@
       "gd": -2
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "FC町田ゼルビアユース",
       "pts": 15,
       "played": 10,
@@ -108,28 +120,16 @@
       "gd": -5
     },
     {
-      "rank": 6,
-      "team": "鹿島アントラーズユースB",
-      "pts": 14,
-      "played": 11,
-      "won": 4,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 16,
-      "ga": 12,
-      "gd": 4
-    },
-    {
       "rank": 7,
       "team": "矢板中央",
       "pts": 14,
-      "played": 9,
+      "played": 10,
       "won": 4,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 17,
-      "ga": 14,
-      "gd": 3
+      "ga": 17,
+      "gd": 0
     },
     {
       "rank": 8,
@@ -804,16 +804,16 @@
       "away": "日大藤沢",
       "status": "scheduled",
       "venue": "拓殖大学八王子キャンパスサッカー場",
-      "kickoff": "18:00"
+      "kickoff": "15:00"
     },
     {
       "md": 12,
       "date": "2026-09-20",
       "home": "鹿島アントラーズユースB",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "矢板中央",
-      "status": "scheduled",
+      "status": "played",
       "venue": "アントラーズアカデミーフィールド",
       "kickoff": "09:00"
     },
