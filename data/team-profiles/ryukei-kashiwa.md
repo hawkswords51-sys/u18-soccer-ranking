@@ -21,9 +21,13 @@ formation:
   source_name: J SPORTS「流通経済大柏×鹿島アントラーズユース マッチプレビュー」（土屋雅史）
   source_url: https://news.jsports.co.jp/football/article/20190310239769/
   note: 試合によってはDF登録の選手が中盤に入ることがある
+  caption: 中盤・2トップ・GK・CBのメンディー サイモン友は同記事によります。最終ラインの大徳 剛矢・山本 頼斗・櫻井 亮太の配置は、今季の出場記録をもとにした編集部の判断です。
   players:
     GK: 大泉 未来
+    LB: 山本 頼斗
     CB1: メンディー サイモン友
+    CB2: 大徳 剛矢
+    RB: 櫻井 亮太
     DM: 内田 煌生
     LSH: 加島 宏樹
     RSH: 千葉 友翔

@@ -214,9 +214,13 @@ def _pitch_html(meta: dict, roster: list[dict], warn: list[str]) -> str:
         when = f"（{_e(asof)}時点）" if asof else ""
         src = (f'出典：<a href="{_e(f["source_url"])}" target="_blank" rel="noopener">'
                f'{_e(f.get("source_name") or "出典")}</a>{when}。')
+    # [2026-09-20] 出典の記事に無い枠を編集部の判断で埋めることがある（流経大柏の最終ライン3人）。
+    #   そのとき既定の一文は事実と合わなくなるので、frontmatter の caption で差し替える。
+    #   caption が無いチームはこれまでどおりの一文（横展開の既定値）。
+    caption = f.get("caption")
+    body = _e(caption) if caption else "記事で名前が挙がった選手だけを配置しています（空欄は記事に記載がありません）。"
     return (f'<div><div class="ts-pitch">{"".join(lines)}</div>'
-            f'<p class="ts-caveat">{src}記事で名前が挙がった選手だけを配置しています'
-            f'（空欄は記事に記載がありません）。{_e(note)}</p></div>')
+            f'<p class="ts-caveat">{src}{body}{_e(note)}</p></div>')
 
 
 def _lineup_html(ctx: dict, meta: dict, warn: list[str]) -> str:
