@@ -22,12 +22,12 @@
       "short": "米子松蔭"
     },
     {
-      "name": "鳥取東",
-      "short": "鳥取東"
-    },
-    {
       "name": "境",
       "short": "境"
+    },
+    {
+      "name": "鳥取東",
+      "short": "鳥取東"
     },
     {
       "name": "倉吉北",
@@ -77,6 +77,18 @@
     },
     {
       "rank": 4,
+      "team": "境",
+      "points": 10,
+      "played": 9,
+      "won": 2,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 11,
+      "ga": 14,
+      "gd": -3
+    },
+    {
+      "rank": 5,
       "team": "米子松蔭",
       "points": 10,
       "played": 9,
@@ -88,7 +100,7 @@
       "gd": -17
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "鳥取東",
       "points": 8,
       "played": 8,
@@ -98,18 +110,6 @@
       "gf": 14,
       "ga": 22,
       "gd": -8
-    },
-    {
-      "rank": 6,
-      "team": "境",
-      "points": 7,
-      "played": 8,
-      "won": 1,
-      "drawn": 4,
-      "lost": 3,
-      "gf": 7,
-      "ga": 13,
-      "gd": -6
     },
     {
       "rank": 7,
@@ -127,13 +127,13 @@
       "rank": 8,
       "team": "八頭",
       "points": 2,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 2,
-      "lost": 6,
-      "gf": 7,
-      "ga": 41,
-      "gd": -34
+      "lost": 7,
+      "gf": 8,
+      "ga": 45,
+      "gd": -37
     }
   ],
   "matches": [
@@ -196,6 +196,16 @@
       "away": "米子松蔭",
       "status": "played",
       "venue": "ヤマタ球技場"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-21",
+      "home": "境",
+      "hs": 4,
+      "as": 1,
+      "away": "八頭",
+      "status": "played",
+      "venue": "大山FBC"
     },
     {
       "md": 0,
@@ -520,6 +530,16 @@
       "ga": 34
     },
     {
+      "team": "境",
+      "pts": 10,
+      "played": 9,
+      "won": 2,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 11,
+      "ga": 14
+    },
+    {
       "team": "鳥取東",
       "pts": 8,
       "played": 8,
@@ -528,16 +548,6 @@
       "lost": 2,
       "gf": 14,
       "ga": 22
-    },
-    {
-      "team": "境",
-      "pts": 7,
-      "played": 8,
-      "won": 1,
-      "drawn": 4,
-      "lost": 3,
-      "gf": 7,
-      "ga": 13
     },
     {
       "team": "倉吉北",
@@ -552,12 +562,12 @@
     {
       "team": "八頭",
       "pts": 2,
-      "played": 8,
+      "played": 9,
       "won": 0,
       "drawn": 2,
-      "lost": 6,
-      "gf": 7,
-      "ga": 41
+      "lost": 7,
+      "gf": 8,
+      "ga": 45
     }
   ]
 }
