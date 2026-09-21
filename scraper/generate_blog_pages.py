@@ -1158,6 +1158,7 @@ MEDICAL_HUB_THEMES = [
             "hamstring-strain-2026",
             "osgood-schlatter-2026",
             "shin-splints-2026",
+            "acl-injury-2026",
         ],
     ),
     (
