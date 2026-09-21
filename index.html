@@ -470,34 +470,12 @@
                     </div>
                 </div>
 
-                <!-- 大会成績バッジの凡例 (チーム名横の小ドットの色説明) -->
-                <div class="badge-legend">
-                    <div class="badge-legend-title">
-                        <i class="fas fa-trophy" style="margin-right:4px; color:#c89200;"></i>
-                        大会成績バッジ (チーム名横の小ドット / 過去5年の最高成績)
-                    </div>
-                    <div class="badge-legend-items">
-                        <span class="badge-legend-item">
-                            <span class="badge-legend-dot result-champion"></span>優勝
-                        </span>
-                        <span class="badge-legend-item">
-                            <span class="badge-legend-dot result-runner-up"></span>準優勝
-                        </span>
-                        <span class="badge-legend-item">
-                            <span class="badge-legend-dot result-best4"></span>ベスト4
-                        </span>
-                        <span class="badge-legend-item">
-                            <span class="badge-legend-dot result-best8"></span>ベスト8
-                        </span>
-                        <span class="badge-legend-item">
-                            <span class="badge-legend-dot result-representative"></span>都道府県代表
-                        </span>
-                    </div>
-                </div>
-
                 <div id="japanMap" class="japan-map-list">
-                    <!-- 静的フォールバック：JS読み込み後は map-simple.js が対話版（モーダル起動ボタン）に置き換える。
-                         JS無効環境・クローラーにはこのリンク版が見える（リンク先は県ページ） -->
+                    <!-- 静的フォールバック：JS読み込み後は map-simple.js が同じ内容を描き直す
+                         （2026-09-21に「モーダル起動ボタン」から「県ページへのリンク」に変更済み。
+                         JS版はボタンの色でその県の最上位リーグを示す点だけが違う）。
+                         JS無効環境・クローラーにはこのリンク版が見える。
+                         ★リンク先を変えるときは、ここと js/map-simple.js の両方を直すこと。 -->
                     <div class="region-group"><h3 class="region-title">北海道</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/hokkaido/" style="text-decoration:none;color:inherit;">北海道</a></div></div>
                     <div class="region-group"><h3 class="region-title">東北</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/aomori/" style="text-decoration:none;color:inherit;">青森県</a><a class="pref-button" href="/prefectures/iwate/" style="text-decoration:none;color:inherit;">岩手県</a><a class="pref-button" href="/prefectures/miyagi/" style="text-decoration:none;color:inherit;">宮城県</a><a class="pref-button" href="/prefectures/akita/" style="text-decoration:none;color:inherit;">秋田県</a><a class="pref-button" href="/prefectures/yamagata/" style="text-decoration:none;color:inherit;">山形県</a><a class="pref-button" href="/prefectures/fukushima/" style="text-decoration:none;color:inherit;">福島県</a></div></div>
                     <div class="region-group"><h3 class="region-title">関東</h3><div class="pref-grid"><a class="pref-button" href="/prefectures/ibaraki/" style="text-decoration:none;color:inherit;">茨城県</a><a class="pref-button" href="/prefectures/tochigi/" style="text-decoration:none;color:inherit;">栃木県</a><a class="pref-button" href="/prefectures/gunma/" style="text-decoration:none;color:inherit;">群馬県</a><a class="pref-button" href="/prefectures/saitama/" style="text-decoration:none;color:inherit;">埼玉県</a><a class="pref-button" href="/prefectures/chiba/" style="text-decoration:none;color:inherit;">千葉県</a><a class="pref-button" href="/prefectures/tokyo/" style="text-decoration:none;color:inherit;">東京都</a><a class="pref-button" href="/prefectures/kanagawa/" style="text-decoration:none;color:inherit;">神奈川県</a><a class="pref-button" href="/prefectures/yamanashi/" style="text-decoration:none;color:inherit;">山梨県</a></div></div>
