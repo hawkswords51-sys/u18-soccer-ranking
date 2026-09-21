@@ -91,10 +91,11 @@ class RegionListGenerator {
                 const leagueLevel = dataManager.getHighestLeagueLevel(prefId);
                 const levelClass = `level-${leagueLevel}`;
                 
+                // ★2026-09-21：モーダルを開くボタンから「県ページへのリンク」に変更した。
+                //   以前はクリックしてもポップアップが出るだけで、県ページ（インターハイ予選・
+                //   選手権予選のトーナメント表がある場所）には一切つながらない行き止まりだった。
                 return `
-                    <button class="pref-button ${levelClass}" data-pref-id="${prefId}" data-pref-name="${prefData.name}">
-                        ${prefData.name}
-                    </button>
+                    <a class="pref-button ${levelClass}" href="/prefectures/${prefId}/">${prefData.name}</a>
                 `;
             }).join('');
 
@@ -109,23 +110,8 @@ class RegionListGenerator {
         }).join('');
 
         this.container.innerHTML = html;
-
-        // クリックイベントを設定
-        this.container.querySelectorAll('.pref-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const prefId = button.dataset.prefId;
-                const prefName = button.dataset.prefName;
-                console.log(`Button clicked: ${prefId} (${prefName})`);
-                this.onPrefectureClick(prefId, prefName);
-            });
-        });
-    }
-
-    onPrefectureClick(prefId, prefName) {
-        // モーダル表示イベントを発火
-        const event = new CustomEvent('prefectureSelected', {
-            detail: { prefId, prefName }
-        });
-        document.dispatchEvent(event);
+        // ★リンクになったのでクリックイベントは不要（そのまま県ページへ遷移する）。
+        //   検索結果からのモーダル表示は main.js の showPrefectureDetail が担当しており、
+        //   そちらは今までどおり動く。
     }
 }

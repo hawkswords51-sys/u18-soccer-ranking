@@ -983,6 +983,11 @@ h1, h2, h3,
 }
 
 .pref-button {
+    /* ★2026-09-21：<button> から <a>（県ページへのリンク）に変わったので、
+       リンクの下線と青文字を打ち消し、ブロック要素として並ぶようにしている。 */
+    display: block;
+    text-decoration: none;
+    color: inherit;
     padding: 15px 20px;
     border: 2px solid var(--border-color);
     background: white;
