@@ -56,6 +56,7 @@ on:
       - 'data/en/**'
       - 'data/scorers/**'
       - 'data/u15/**'
+      - 'data/u16/**'
       - 'data/league_matches/**'
       # ⚠️ teams.json は県ページ上部の順位表とAI要約一文を作っている。
       #    league_matches と同格なのにここから漏れており、2026-09-07に
@@ -320,6 +321,20 @@ jobs:
             echo "scraper/fetch_u15_leagues.py がまだありません。スキップ。"
           fi
 
+      # ★ U-16ルーキーリーグ（高校1年生年代）9地域の順位表を自動更新
+      #   出典: 大会公式サイト u16-rookie-league.com の星取表（集計欄が無いので自前で計算する）
+      #   検算NG・取得失敗のリーグは既存データを維持する（誤データを載せない安全設計）
+      - name: U-16ルーキーリーグ順位表を更新
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_u16_rookie.py ]; then
+            python scraper/fetch_u16_rookie.py
+          else
+            echo "scraper/fetch_u16_rookie.py がまだありません。スキップ。"
+          fi
+
       # ★ 県予選トーナメント（選手権・インターハイ等）の組み合わせ・結果を自動更新
       #   対象: data/tournaments/*.md のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
       #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）
@@ -489,6 +504,15 @@ jobs:
             echo "scraper/generate_u15_page.py がまだありません。スキップ。"
           fi
 
+      - name: U-16ルーキーリーグ ハブページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_u16_page.py ]; then
+            python scraper/generate_u16_page.py
+          else
+            echo "scraper/generate_u16_page.py がまだありません。スキップ。"
+          fi
+
       - name: 地域大会まとめページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
@@ -530,6 +554,8 @@ jobs:
           if [ -d data/tournaments ]; then git add data/tournaments; fi
           if [ -d u15 ]; then git add u15; fi
           if [ -d data/u15 ]; then git add data/u15; fi
+          if [ -d u16 ]; then git add u16; fi
+          if [ -d data/u16 ]; then git add data/u16; fi
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
           if [ -f index.html ]; then git add index.html; fi
 
