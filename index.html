@@ -220,6 +220,10 @@
       padding:10px 14px; cursor:pointer; font-weight:600; font-size:0.93rem; color:var(--n-fg);
       opacity:0.58; border-bottom:3px solid transparent; margin-bottom:-1px; }
     .hp-nav__bar label:hover { opacity:0.88; }
+    /* ★新設ページの告知バッジ。2026-09-21にU-16へ付けた。
+       ★10月中旬をめどに <span class="hp-nav__new">NEW</span> の1行を消すこと（付けっぱなしにしない）。 */
+    .hp-nav__new { display:inline-block; padding:1px 6px; border-radius:4px; background:#dc2626;
+      color:#fff; font-size:0.66em; font-weight:800; letter-spacing:.04em; line-height:1.6; }
     .hp-nav__n { display:inline-block; min-width:17px; text-align:center; padding:1px 6px;
       border-radius:999px; background:var(--n-chip); color:var(--n-chipfg);
       font-size:0.74em; font-weight:700; }
@@ -262,7 +266,9 @@
       .hp-nav__grid { grid-template-columns:1fr; }
       .hp-nav__bar { padding:0 6px; gap:0; }
       .hp-nav__bar label { padding:10px 7px; font-size:0.85rem; gap:5px; }
-      .hp-nav__n { padding:1px 5px; min-width:15px; }
+      /* 狭い画面では件数バッジを隠す。NEWバッジを付けてもタブ4つが収まるようにするため
+         （実測：件数を出したまま NEW を足すと 382px > 349px で溢れる）。 */
+      .hp-nav__n { display:none; }
       .hp-nav__h { padding:12px 14px 10px; font-size:0.98rem; }
       .hp-nav__panels { padding:12px 10px; }
     }
@@ -274,23 +280,23 @@
               <input class="hp-nav__r" type="radio" name="hpnav" id="hpnav-univ" aria-label="大学の大会・順位表を表示">
               <div class="hp-nav__bar">
                 <label for="hpnav-u18">⚽ U-18<span class="hp-nav__sub">（高校年代）</span><span class="hp-nav__n">11</span></label>
-                <label for="hpnav-u16">🔰 U-16<span class="hp-nav__sub">（高校1年）</span><span class="hp-nav__n">2</span></label>
+                <label for="hpnav-u16">🔰 U-16<span class="hp-nav__sub">（高校1年）</span><span class="hp-nav__new">NEW</span><span class="hp-nav__n">2</span></label>
                 <label for="hpnav-u15">🧒 U-15<span class="hp-nav__sub">（中学年代）</span><span class="hp-nav__n">3</span></label>
                 <label for="hpnav-univ">🎓 大学<span class="hp-nav__n">4</span></label>
               </div>
               <div class="hp-nav__panels">
                 <div class="hp-nav__p hp-nav__p--u18">
                   <div class="hp-nav__grid">
-                  <a class="hp-nav__card" href="/tournaments/interhigh-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">インターハイ2026</span><span class="hp-nav__d">優勝は静岡学園。全試合結果とトーナメント表</span></span></a>
                   <a class="hp-nav__card" href="/tournaments/senshuken-2026/"><span class="hp-nav__ico" aria-hidden="true">❄️</span><span class="hp-nav__tx"><span class="hp-nav__t">全国高校サッカー選手権2026</span><span class="hp-nav__d">第105回。県予選の日程・結果と出場48代表を随時更新</span></span></a>
                   <a class="hp-nav__card" href="/leagues/"><span class="hp-nav__ico" aria-hidden="true">📊</span><span class="hp-nav__tx"><span class="hp-nav__t">プレミア・プリンスリーグ 順位表</span><span class="hp-nav__d">高円宮杯U-18の全15リーグを毎日自動更新</span></span></a>
                   <a class="hp-nav__card" href="/tournaments/j-youth-cup-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">Jユースカップ2026</span><span class="hp-nav__d">第32回Jリーグユース選手権。組み合わせと結果</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/club-youth-2026/"><span class="hp-nav__ico" aria-hidden="true">🔰</span><span class="hp-nav__tx"><span class="hp-nav__t">クラブユース選手権U-18 2026</span><span class="hp-nav__d">12/23〜29に広島・山口で冬季開催</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/regional-2026/"><span class="hp-nav__ico" aria-hidden="true">⚽</span><span class="hp-nav__tx"><span class="hp-nav__t">地域大会2026</span><span class="hp-nav__d">東北・北信越・東海・中国・四国・九州のまとめ</span></span></a>
                   <a class="hp-nav__card" href="/tournaments/premier-final-2026/"><span class="hp-nav__ico" aria-hidden="true">🥇</span><span class="hp-nav__tx"><span class="hp-nav__t">プレミアリーグ ファイナル2026</span><span class="hp-nav__d">EAST王者×WEST王者。歴代優勝一覧つき</span></span></a>
                   <a class="hp-nav__card" href="/tournaments/promotion-playoff-2026/"><span class="hp-nav__ico" aria-hidden="true">🔁</span><span class="hp-nav__tx"><span class="hp-nav__t">プレミア参入戦・プリンス参入戦</span><span class="hp-nav__d">12月の昇降格決戦まとめ</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/wakura-youth-2026/"><span class="hp-nav__ico" aria-hidden="true">🌊</span><span class="hp-nav__tx"><span class="hp-nav__t">和倉ユース2026</span><span class="hp-nav__d">優勝は前橋育英。第14回の全順位と全結果</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/club-youth-2026/"><span class="hp-nav__ico" aria-hidden="true">🔰</span><span class="hp-nav__tx"><span class="hp-nav__t">クラブユース選手権U-18 2026</span><span class="hp-nav__d">12/23〜29に広島・山口で冬季開催</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/regional-2026/"><span class="hp-nav__ico" aria-hidden="true">⚽</span><span class="hp-nav__tx"><span class="hp-nav__t">地域大会2026</span><span class="hp-nav__d">東北・北信越・東海・中国・四国・九州のまとめ</span></span></a>
                   <a class="hp-nav__card" href="/tournaments/shinjinsen-2026-27/"><span class="hp-nav__ico" aria-hidden="true">🌱</span><span class="hp-nav__tx"><span class="hp-nav__t">新人戦2026-27</span><span class="hp-nav__d">都道府県大会と9地域大会のまとめ</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/interhigh-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">インターハイ2026</span><span class="hp-nav__d">優勝は静岡学園。全試合結果とトーナメント表</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/wakura-youth-2026/"><span class="hp-nav__ico" aria-hidden="true">🌊</span><span class="hp-nav__tx"><span class="hp-nav__t">和倉ユース2026</span><span class="hp-nav__d">優勝は前橋育英。第14回の全順位と全結果</span></span></a>
                   <a class="hp-nav__card" href="/tournaments/u18-calendar-2026/"><span class="hp-nav__ico" aria-hidden="true">📅</span><span class="hp-nav__tx"><span class="hp-nav__t">U-18 年間スケジュール2026</span><span class="hp-nav__d">主要大会をひと続きで見る年間カレンダー</span></span></a>
                   </div>
                 </div>
