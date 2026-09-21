@@ -1061,12 +1061,35 @@ HOME_LATEST_START = "<!-- LATEST_BLOG_START -->"
 HOME_LATEST_END = "<!-- LATEST_BLOG_END -->"
 HOME_LATEST_COUNT = 6
 
+# 公開から何日間「NEW」を出すか（2026-09-22 追加）
+#   毎朝の自動更新でトップが作り直されるので、日が経てば自動で消える。手で外す作業は不要。
+#   日付の比較は必ず JST で行う（UTCだと日本の朝9時までは前日扱いになり1日ずれる。jst.py 参照）。
+HOME_LATEST_NEW_DAYS = 7
+
 # カテゴリバッジの色 (それ以外は青)
 HOME_LATEST_CATEGORY_COLORS = {
     "医学コラム": "#0f766e",
     "リーグ解説": "#7c2d12",
     "育成コラム": "#6d28d9",
 }
+
+
+def _is_recent(d, today):
+    """公開日 d が today から HOME_LATEST_NEW_DAYS 日以内なら True。
+
+    d は文字列 "YYYY-MM-DD" / date / datetime のいずれも来る（frontmatter の書き方次第）。
+    読めない日付のときは False（NEW を付けない）側に倒す。
+    """
+    if isinstance(d, str):
+        try:
+            d = datetime.strptime(d, "%Y-%m-%d").date()
+        except ValueError:
+            return False
+    if isinstance(d, datetime):
+        d = d.date()
+    if not isinstance(d, date):
+        return False
+    return (today - d).days < HOME_LATEST_NEW_DAYS
 
 
 def update_home_latest_blog(articles):
@@ -1080,15 +1103,28 @@ def update_home_latest_blog(articles):
         return
 
     latest = sorted(articles, key=lambda a: str(a["date"]), reverse=True)[:HOME_LATEST_COUNT]
+    today = _jst_today()   # UTCだと1日ずれる（jst.py参照）
+    new_count = 0
     items = []
     for a in latest:
         cat = a.get("category", "コラム")
         color = HOME_LATEST_CATEGORY_COLORS.get(cat, "#1e40af")
+        # ★NEWバッジ。背景も文字色も固定色（テーマ変数にしない）。
+        #   白地に白・黒地に黒になるのを避けるため（手順書4-19b）。
+        if _is_recent(a["date"], today):
+            new_count += 1
+            new_badge = (
+                '<span style="flex-shrink:0;font-size:0.66em;font-weight:800;color:#fff;'
+                'background:#dc2626;padding:2px 6px;border-radius:4px;letter-spacing:0.04em;'
+                'white-space:nowrap;">NEW</span>\n        '
+            )
+        else:
+            new_badge = ""
         items.append(
             f'    <li style="margin:0;">\n'
             f'      <a href="/blog/posts/{a["slug"]}/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);">\n'
             f'        <span style="flex-shrink:0;font-size:0.72em;font-weight:700;color:#fff;background:{color};padding:3px 9px;border-radius:999px;white-space:nowrap;">{html_escape(cat)}</span>\n'
-            f'        <span style="font-size:0.92em;line-height:1.5;">{html_escape(a["title"])}</span>\n'
+            f'        {new_badge}<span style="font-size:0.92em;line-height:1.5;">{html_escape(a["title"])}</span>\n'
             f'        <time style="margin-left:auto;flex-shrink:0;font-size:0.78em;color:var(--text-light,#666);" datetime="{a["date"]}">{format_date(a["date"])}</time>\n'
             f'      </a>\n'
             f'    </li>'
@@ -1114,7 +1150,8 @@ def update_home_latest_blog(articles):
     )
     new_content = pattern.sub(lambda m: section, content, count=1)
     HOME_FILE.write_text(new_content, encoding="utf-8")
-    print(f"[OK] トップページの新着コラム欄を更新: {len(latest)} 記事")
+    print(f"[OK] トップページの新着コラム欄を更新: {len(latest)} 記事"
+          f"（うち NEW {new_count} 本・公開から{HOME_LATEST_NEW_DAYS}日以内）")
 
 
 # ============================================================
