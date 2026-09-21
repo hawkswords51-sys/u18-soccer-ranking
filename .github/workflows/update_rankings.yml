@@ -491,6 +491,7 @@ jobs:
         run: |
           if [ -f scraper/generate_jyouth_page.py ]; then
             python scraper/generate_jyouth_page.py
+            python scraper/generate_jyouth_page.py --season 2026-27
           else
             echo "scraper/generate_jyouth_page.py がまだありません。スキップ。"
           fi

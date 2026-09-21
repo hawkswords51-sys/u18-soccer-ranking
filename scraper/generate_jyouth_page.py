@@ -20,6 +20,7 @@ data/tournaments/j-youth-cup-2026.md を読み込み、
 
 依存：標準ライブラリ + PyYAML
 """
+import argparse
 import re
 import unicodedata
 import yaml
@@ -43,9 +44,20 @@ DOMAIN = "https://u18-soccer.com"
 GA_ID = "G-KTPR94SPYS"
 ADSENSE_CLIENT = "ca-pub-6953440022497606"
 
+# ★このモジュール直下の3つは「第32回（2026）」の既定値。
+#   2026-09-22 に --season を足したが、ここは残す。
+#   generate_u18_calendar.py / generate_regional_page.py / generate_prefecture_pages.py の
+#   3本がこのモジュールを import しており（BASE_DIR・DOMAIN・render_bracket_svg 等を利用）、
+#   定数を消すと import 側が壊れうるため。実際の出力先は main() のローカル変数で切り替える。
 SOURCE = BASE_DIR / "data" / "tournaments" / "j-youth-cup-2026.md"
 OUT_DIR = BASE_DIR / "tournaments" / "j-youth-cup-2026"
 CANONICAL = f"{DOMAIN}/tournaments/j-youth-cup-2026/"
+
+# --season で選べるシーズン。slug がそのまま md 名・出力先・得点ランキングのキーになる。
+SEASONS = {
+    "2026": "j-youth-cup-2026",        # 第32回（2026/5/9〜7/5・全ラウンドがノックアウト）
+    "2026-27": "j-youth-cup-2026-27",  # 第33回（2026/10/2〜2027/6/13・2回戦がグループリーグ）
+}
 
 # ---- チーム詳細リンク用マップ ----
 def load_team_profile_map() -> dict:
@@ -150,8 +162,12 @@ def linkify_match(match_str):
         b_html = f'<span class="match-winner">{b_html}</span>'
     return f'{a_html} <strong style="color:var(--accent-color,#2563eb);">{html_escape(score)}</strong> {b_html}'
 
-def parse_source():
-    text = SOURCE.read_text(encoding="utf-8")
+def parse_source(source=None):
+    """md を読んで (frontmatter, 見出しごとの本文) に分ける。
+
+    source を省略すると既定の第32回を読む（import 元との互換のため）。
+    """
+    text = (source or SOURCE).read_text(encoding="utf-8")
     parts = text.split("---", 2)
     meta = yaml.safe_load(parts[1]) or {}
     body = parts[2]
@@ -838,13 +854,37 @@ def build_ai_summary(meta, sections):
     body += "開催。"
     if slots:
         body += f"{html_escape(slots)}。"
-    body += f"Jクラブのユース（U-18）が日本一を争うノックアウト方式。{tail}"
+    # 大会方式の一言。md に summary_format があればそれを使う（第33回は2回戦がグループリーグで
+    # 「ノックアウト方式」が事実として誤りになるため）。無ければ従来どおり。
+    _fmt = meta.get("summary_format") or "ノックアウト方式"
+    body += f"Jクラブのユース（U-18）が日本一を争う{html_escape(_fmt)}。{tail}"
     return _summary_p(body)
 
 
 def main():
-    meta, sections = parse_source()
+    ap = argparse.ArgumentParser(description="Jユースカップのページを生成する")
+    ap.add_argument("--season", choices=sorted(SEASONS), default="2026",
+                    help="生成するシーズン（既定: 2026＝第32回）")
+    args = ap.parse_args()
+    season = args.season
+    slug = SEASONS[season]
+
+    # ★ここで同名のローカル変数を作り、モジュール直下の定数を main() の中だけで上書きする。
+    #   （import 元の3本は SOURCE / OUT_DIR / CANONICAL を使っていないので影響しない）
+    SOURCE = BASE_DIR / "data" / "tournaments" / f"{slug}.md"
+    OUT_DIR = BASE_DIR / "tournaments" / slug
+    CANONICAL = f"{DOMAIN}/tournaments/{slug}/"
+    scorer_key = slug
+
+    meta, sections = parse_source(SOURCE)
     title_main = meta.get("title", "Jユースカップ Jリーグユース選手権大会")
+    # ★大会の「表示名」はここ1か所で決める（手順書：同じ事実を2か所に持つと片方だけ古くなる）。
+    #   md に season_label が無ければ year をそのまま使う＝第32回の出力は変わらない。
+    season_label = str(meta.get("season_label") or meta.get("year", date.today().year))
+    # ★大会方式の一言。md の summary_format を、器ごとの既存文字列をフォールバックにして使う。
+    #   フォールバックを現状の文字に合わせてあるので、キーが無い第32回の出力は1バイトも変わらない。
+    summary_format = html_escape(str(meta.get("summary_format") or "ノックアウト方式"))
+    intro_format = html_escape(str(meta.get("summary_format") or "ノックアウトトーナメント"))
     year = meta.get("year", date.today().year)
     venue = meta.get("venue", "")
     host = meta.get("host", "")
@@ -862,13 +902,13 @@ def main():
     else:
         schedule_html = ""
 
-    seo_title = f"Jユースカップ{year} 結果・組み合わせ・トーナメント表【最新】｜Jリーグユース選手権 速報"
-    description = (f"Jユースカップ（Jリーグユース選手権大会）{year}の組み合わせ・試合結果・トーナメント表を毎日自動更新。"
-                  f"Jクラブのユース（U-18）64チームが日本一を懸けて争うノックアウト方式。"
+    seo_title = f"Jユースカップ{season_label} 結果・組み合わせ・トーナメント表【最新】｜Jリーグユース選手権 速報"
+    description = (f"Jユースカップ（Jリーグユース選手権大会）{season_label}の組み合わせ・試合結果・トーナメント表を毎日自動更新。"
+                  f"Jクラブのユース（U-18）64チームが日本一を懸けて争う{summary_format}。"
                   f"ラウンド16〜準々決勝・準決勝・決勝の勝ち上がりを一目で確認できます。{html_escape(period)}開催。")
-    keywords = (f"Jユースカップ{year},Jユースカップ 結果,Jユースカップ トーナメント表,Jユースカップ 組み合わせ,"
+    keywords = (f"Jユースカップ{season_label},Jユースカップ 結果,Jユースカップ トーナメント表,Jユースカップ 組み合わせ,"
                 f"Jリーグユース選手権,Jユースカップ 速報,Jユースカップ 準々決勝,Jユースカップ 日程,"
-                f"クラブユース,U-18,高校サッカー,{year}")
+                f"クラブユース,U-18,高校サッカー,{season_label}")
 
     # ① SVGトーナメント表（「## トーナメント表（組み合わせ）」が無ければ空）
     bracket_html = render_bracket_svg(sections)
@@ -900,7 +940,7 @@ def main():
 
     # ③-2 得点ランキング（Jリーグ公式・3得点以上を表示。data/scorers/j-youth-cup-2026.json）
     try:
-        scorer_html = render_scorer_ranking_html("j-youth-cup-2026", limit=300, min_goals=3)
+        scorer_html = render_scorer_ranking_html(scorer_key, limit=300, min_goals=3)
     except Exception:
         scorer_html = ""
 
@@ -931,13 +971,13 @@ def main():
     breadcrumb_schema = (
         '{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
         '{"@type":"ListItem","position":1,"name":"ホーム","item":"' + DOMAIN + '/"},'
-        '{"@type":"ListItem","position":2,"name":"Jユースカップ' + str(year) + '","item":"' + CANONICAL + '"}]}'
+        '{"@type":"ListItem","position":2,"name":"Jユースカップ' + season_label + '","item":"' + CANONICAL + '"}]}'
     )
 
     # --- FAQ と大会構造化データ（SportsEvent / FAQPage） ---
     import json as _json
     faq_items = [
-        (f"Jユースカップ{year}はいつ開催されますか？",
+        (f"Jユースカップ{season_label}はいつ開催されますか？",
          f"{period} に開催されます。" if period else "日程は確定後に掲載します。"),
         ("出場チームは？", slots or "Jリーグ各クラブのユース（U-18）チームなどが出場します。"),
         ("大会方式は？", fmt or "ノックアウト方式で行われます。"),
@@ -1052,13 +1092,13 @@ def main():
       <nav class="breadcrumb" aria-label="パンくずリスト">
         <a href="/">ホーム</a>
         <span class="breadcrumb__sep">›</span>
-        <span aria-current="page">Jユースカップ{year}</span>
+        <span aria-current="page">Jユースカップ{season_label}</span>
       </nav>
       <h1 class="lp-title">{html_escape(title_main)}</h1>
 {ai_summary_html}      {updated_html}
       <p class="lp-intro">
-        <strong>Jユースカップ（Jリーグユース選手権大会）</strong>{year} の組み合わせ・試合結果をまとめています。
-        Jクラブのユースチームが日本一を懸けて戦うノックアウトトーナメント。各チームの普段のリーグ戦成績は
+        <strong>Jユースカップ（Jリーグユース選手権大会）</strong>{season_label} の組み合わせ・試合結果をまとめています。
+        Jクラブのユースチームが日本一を懸けて戦う{intro_format}。各チームの普段のリーグ戦成績は
         <a href="/leagues/">リーグ一覧</a>・<a href="/">都道府県別ページ</a>からご確認いただけます。
       </p>
 

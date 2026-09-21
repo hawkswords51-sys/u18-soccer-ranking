@@ -8,6 +8,8 @@ period: 2026年10月2日(金)〜2027年6月13日(日)
 start_date: 2026-10-02
 end_date: 2027-06-13
 status: 開催前
+season_label: 2026/27
+summary_format: 2回戦がグループリーグの3ラウンド制トーナメント
 slots: J1・J2・J3の58チーム＋予備予選を勝ち上がった6クラブの計64チーム
 format: 1回戦・2回戦・ノックアウトラウンドの3ラウンド制。2回戦はA〜Hの8グループによるリーグ戦で、各組上位2チームがノックアウトラウンドへ進出。
 source: https://koko-soccer.com/news/5-koukousoccer/56060-202003036
