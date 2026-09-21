@@ -881,8 +881,10 @@ def main():
     # ★大会の「表示名」はここ1か所で決める（手順書：同じ事実を2か所に持つと片方だけ古くなる）。
     #   md に season_label が無ければ year をそのまま使う＝第32回の出力は変わらない。
     season_label = str(meta.get("season_label") or meta.get("year", date.today().year))
-    # ★大会方式の一言。md に summary_format が無ければ従来の「ノックアウト方式」。
+    # ★大会方式の一言。md の summary_format を、器ごとの既存文字列をフォールバックにして使う。
+    #   フォールバックを現状の文字に合わせてあるので、キーが無い第32回の出力は1バイトも変わらない。
     summary_format = html_escape(str(meta.get("summary_format") or "ノックアウト方式"))
+    intro_format = html_escape(str(meta.get("summary_format") or "ノックアウトトーナメント"))
     year = meta.get("year", date.today().year)
     venue = meta.get("venue", "")
     host = meta.get("host", "")
@@ -1096,7 +1098,7 @@ def main():
 {ai_summary_html}      {updated_html}
       <p class="lp-intro">
         <strong>Jユースカップ（Jリーグユース選手権大会）</strong>{season_label} の組み合わせ・試合結果をまとめています。
-        Jクラブのユースチームが日本一を懸けて戦うノックアウトトーナメント。各チームの普段のリーグ戦成績は
+        Jクラブのユースチームが日本一を懸けて戦う{intro_format}。各チームの普段のリーグ戦成績は
         <a href="/leagues/">リーグ一覧</a>・<a href="/">都道府県別ページ</a>からご確認いただけます。
       </p>
 
