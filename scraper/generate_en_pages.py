@@ -5,7 +5,8 @@
 - 順位の正本: data/teams.json（プレミアEAST/WESTの leagueRank・勝点など。毎朝の自動更新で入る値）
 - 英語名の正本: data/en/team_names_en.json（Coworkが公式表記を確認して置く。自動ローマ字化はしない）
   ⚠️ キーは「data/teams.json のチーム名（日本語）」。2026-09-21にチームidから変更した（idは96チームで未設定・ni010が重複していたため）。
-- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/・en/inter-high/ （すべて毎回全体を書き直す）
+- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/・en/inter-high/
+        ＋ data/en/teams/*.md があればその英語チームページ en/teams/<slug>/ （すべて毎回全体を書き直す）
 - 選手名の正本: data/en/player_names_en.json（JFA英語版・J.LEAGUE英語版の表記のみ。無い選手は日本語のまま出す）
 - 検算（1つでも合わないリーグがあれば、ページを書き換えずに [要確認] を出して終わる＝誤データを載せない）:
     12チームそろっている / 英語名が全員分ある / 順位が1..12で重複なし /
@@ -29,6 +30,7 @@ PLAYERS = ROOT / "data" / "en" / "player_names_en.json"
 NT_YML = ROOT / "data" / "national-team-players.yml"
 IH_MD = ROOT / "data" / "tournaments" / "interhigh-final-2026.md"       # YEARLY: 年度が変わったらファイル名を差し替える
 IH_EN = ROOT / "data" / "en" / "inter-high-notes.md"
+TEAMS_EN_DIR = ROOT / "data" / "en" / "teams"      # 英語チームページの本文（1チーム1ファイル）
 PS_YML = ROOT / "data" / "pro-signings.yml"
 DOMAIN = "https://u18-soccer.com"
 LEAGUES = [("プレミアリーグEAST", "EAST"), ("プレミアリーグWEST", "WEST")]
@@ -101,6 +103,9 @@ def validate(ts, names, expect=None):
     return errs
 
 
+EN_TEAM_PAGES = {}   # 日本語チーム名 -> /en/teams/<slug>/
+
+
 def row(t, names, zones=True):
     n = names[t["name"]]
     r = t["leagueRank"]
@@ -109,7 +114,8 @@ def row(t, names, zones=True):
     cls = ""
     if zones:
         cls = ' class="en-final"' if r == 1 else (' class="en-releg"' if r >= 11 else "")
-    name = f'<a href="{esc(n["jp_page"])}">{esc(n["en"])}</a>' if n.get("jp_page") else esc(n["en"])
+    link = EN_TEAM_PAGES.get(t["name"]) or n.get("jp_page")
+    name = f'<a href="{esc(link)}">{esc(n["en"])}</a>' if link else esc(n["en"])
     return (f'<tr{cls}><td class="en-c">{r}</td><td class="en-name">{name}</td>'
             f'<td>{esc(t["_pref"].capitalize())}</td><td class="en-c"><strong>{t["points"]}</strong></td>'
             f'<td class="en-c">{t["played"]}</td><td class="en-c">{t["won"]}</td><td class="en-c">{t["drawn"]}</td>'
@@ -556,24 +562,43 @@ def appearance_en(note):
 
 
 def md_to_html(text):
-    """英語メモの簡易Markdown（段落・「- 」箇条書き・**太字**）をHTMLに。"""
-    out, bullets = [], []
-    def flush():
+    """英語メモの簡易Markdown（段落・「- 」箇条書き・表・**太字**）をHTMLに。"""
+    out, bullets, rows = [], [], []
+
+    def inline(t):
+        t = esc(t).replace("&amp;", "&")
+        return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+
+    def flush_bullets():
         if bullets:
             out.append('<ul style="padding-left:1.5em;">' + "".join(f"<li>{b}</li>" for b in bullets) + "</ul>")
             bullets.clear()
+
+    def flush_table():
+        if not rows:
+            return
+        head, body = rows[0], [r for r in rows[1:] if not re.fullmatch(r"[\s|:-]+", "|".join(r))]
+        th = "".join(f"<th>{inline(c)}</th>" for c in head)
+        tb = "".join("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>" for r in body)
+        out.append('<div class="en-scroll"><table class="en-table"><thead><tr>' + th
+                   + "</tr></thead><tbody>" + tb + "</tbody></table></div>")
+        rows.clear()
+
     for raw in text.strip().splitlines():
         line = raw.strip()
         if not line:
-            flush()
+            flush_bullets(); flush_table(); continue
+        if line.startswith("|") and line.endswith("|"):
+            flush_bullets()
+            rows.append([c.strip() for c in line.strip("|").split("|")])
             continue
-        line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc(line).replace("&amp;", "&"))
-        if raw.strip().startswith("- "):
-            bullets.append(line[2:])
+        flush_table()
+        if line.startswith("- "):
+            bullets.append(inline(line[2:]))
         else:
-            flush()
-            out.append(f"<p>{line}</p>")
-    flush()
+            flush_bullets()
+            out.append(f"<p>{inline(line)}</p>")
+    flush_bullets(); flush_table()
     return "\n        ".join(out)
 
 
@@ -698,6 +723,87 @@ def render_interhigh(out_root, names, extra, season):
     print(f"OK: {dest} を書きました（{len(reps)}校・{sum(len(r) for _, r in rounds)}試合）")
 
 
+def render_team_pages(out_root, teams, names, extra, season):
+    """data/en/teams/*.md から英語のチーム紹介ページを作る。"""
+    if not TEAMS_EN_DIR.exists():
+        return
+    live = {}
+    for pref_id, pref in teams.items():
+        if not isinstance(pref, dict):
+            continue
+        for t in pref.get("teams", []):
+            live[t["name"]] = {**t, "_pref": pref_id}
+    done = 0
+    for md_path in sorted(TEAMS_EN_DIR.glob("*.md")):
+        raw = md_path.read_text(encoding="utf-8")
+        fm = yaml.safe_load(raw.split("---")[1])
+        jp = fm["jp_name"]
+        rec = names.get(jp) or extra.get(jp)
+        if not rec:
+            print(f"[要確認] 英語チームページ: 英語名が辞書にない -> {jp}（{md_path.name} は作りません）")
+            continue
+        slug = fm.get("slug") or md_path.stem
+        t = live.get(jp)
+        facts = [fm.get("prefecture_en", ""),
+                 f"founded {fm['founded']}" if fm.get("founded") else "",
+                 f"{fm['squad_size']} players" if fm.get("squad_size") else "",
+                 f"head coach {fm['head_coach_en']}" if fm.get("head_coach_en") else ""]
+        facts = " &middot; ".join(esc(x) for x in facts if x)
+        legend = f'      <p class="en-note">{facts}</p>\n' if facts else ""
+        standing = ""
+        if t and t.get("leagueRank"):
+            lg = t.get("league", "")
+            lg_en = ("Premier League EAST" if lg == "プレミアリーグEAST" else
+                     "Premier League WEST" if lg == "プレミアリーグWEST" else
+                     "Prince League" if "プリンス" in lg else lg)
+            lg_link = ("/en/premier-league/" if "プレミア" in lg else
+                       "/en/prince-leagues/" if "プリンス" in lg else "")
+            where = f'<a href="{lg_link}">{esc(lg_en)}</a>' if lg_link else esc(lg_en)
+            r = t["leagueRank"]
+            suf = "st" if r == 1 else "nd" if r == 2 else "rd" if r == 3 else "th"
+            standing = f"""
+      <section class="lp-section">
+        <h2>{season} season</h2>
+        <p>Currently <strong>{r}{suf}</strong> in the {where} with <strong>{t.get('points', 0)} points</strong>
+        from {t.get('played', 0)} matches ({t.get('won', 0)}W {t.get('drawn', 0)}D {t.get('lost', 0)}L,
+        {t.get('goalsFor', 0)}-{t.get('goalsAgainst', 0)}). Updated daily.</p>
+      </section>"""
+        blocks = [("style", "Playing style"), ("honours", "Honours"), ("history", "History"),
+                  ("model", "The Ryukei model" if slug == "ryukei-kashiwa" else "Development pathway"),
+                  ("alumni", "Former players"), ("squad", f"Players to watch in {season}")]
+        body = standing
+        for key, head in blocks:
+            sec = _section(raw, key)
+            if not sec.strip():
+                continue
+            body += f"""
+      <section class="lp-section" id="{key}">
+        <h2>{head}</h2>
+        {md_to_html(sec)}
+      </section>"""
+        url = f"{DOMAIN}/en/teams/{slug}/"
+        jp_link = rec.get("jp_page") or f"/teams/{slug}/"
+        tail = ('      <section class="lp-section">\n        <h2>Notes</h2>\n'
+                f'        <p>Full profile in Japanese, with the current squad list and every result: '
+                f'<a href="{esc(jp_link)}" lang="ja">{esc(jp)}</a>.</p>\n'
+                '        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
+                '        <p>See also: <a href="/en/premier-league/">Premier League standings</a> and '
+                '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n'
+                '      </section>')
+        breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+            {"@type": "ListItem", "position": 2, "name": rec["en"], "item": url}]}, ensure_ascii=False)
+        intro = "        " + re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", md_to_html(_section(raw, "intro")))).strip()
+        page = PAGE.format(title=esc(fm.get("title") or rec["en"]), desc=esc(fm.get("description", "")),
+                           url=url, breadcrumb=breadcrumb, crumb=esc(rec["en"]), h1=esc(rec["en"]),
+                           intro=intro, legend=legend, tables=body, tail=tail)
+        dest = out_root / "en" / "teams" / slug / "index.html"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(page, encoding="utf-8")
+        done += 1
+        print(f"OK: {dest} を書きました")
+
+
 def main():
     out_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT
     teams = json.loads(TEAMS.read_text(encoding="utf-8"))
@@ -706,11 +812,16 @@ def main():
     extra = names_all.get("clubs_extra", {})
     players = json.loads(PLAYERS.read_text(encoding="utf-8"))["players"]
     season = str(teams["_meta"]["year"])  # teams.json の _meta.year（年度切替で自動追従）
+    if TEAMS_EN_DIR.exists():
+        for md_path in TEAMS_EN_DIR.glob("*.md"):
+            fm0 = yaml.safe_load(md_path.read_text(encoding="utf-8").split("---")[1])
+            EN_TEAM_PAGES[fm0["jp_name"]] = f"/en/teams/{fm0.get('slug') or md_path.stem}/"
     render_premier(out_root, teams, names, season)
     render_prince(out_root, teams, names, season)
     render_national_team(out_root, names, extra, players, season)
     render_pro_signings(out_root, names, extra, players, season)
     render_interhigh(out_root, names, extra, season)
+    render_team_pages(out_root, teams, names, extra, season)
 
 
 if __name__ == "__main__":
