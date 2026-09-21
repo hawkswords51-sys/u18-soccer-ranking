@@ -79,7 +79,7 @@ def render_region_section(idx, meta, sections):
     return (
         f'      <section class="lp-section" id="region-{idx}">\n'
         f'        <h2><i class="fas fa-trophy"></i> {html_escape(region)}大会{status_badge}</h2>\n'
-        f'        <p style="color:var(--text-secondary,#6b7280);margin:-4px 0 10px;font-size:0.92em;">{meta_line}</p>\n'
+        f'        <p style="color:var(--text-light,#6b7280);margin:-4px 0 10px;font-size:0.92em;">{meta_line}</p>\n'
         f"{body_html}\n"
         f"      </section>"
     )
@@ -127,7 +127,7 @@ def main():
     _wd = "月火水木金土日"[today.weekday()]
     updated_str = f"{today.year}年{today.month}月{today.day}日（{_wd}）"
     updated_html = (
-        f'<p style="text-align:right;color:var(--text-secondary,#6b7280);font-size:0.85em;margin:4px 0 0;">'
+        f'<p style="text-align:right;color:var(--text-light,#6b7280);font-size:0.85em;margin:4px 0 0;">'
         f'<i class="fas fa-clock"></i> 最終更新：{updated_str}</p>'
     )
 

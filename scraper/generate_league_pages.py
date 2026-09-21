@@ -831,7 +831,7 @@ def render_past_champions_html(slug):
             team_html = html_escape(team)
         rows_html += f"""
         <li style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid var(--border-color, #e5e7eb);">
-          <span style="display:inline-block; width:70px; font-weight:600; color:var(--text-secondary, #6b7280);">{year}年</span>
+          <span style="display:inline-block; width:70px; font-weight:600; color:var(--text-light, #6b7280);">{year}年</span>
           <span style="margin-right:8px; font-size:1.2em;">{medal}</span>
           <span style="flex:1;">{team_html}</span>
         </li>"""
@@ -840,7 +840,7 @@ def render_past_champions_html(slug):
       <ul style="list-style:none; padding:0; margin:0;">
         {rows_html}
       </ul>
-      <p style="font-size:0.85em; color:var(--text-secondary, #6b7280); margin:16px 0 0 0;">
+      <p style="font-size:0.85em; color:var(--text-light, #6b7280); margin:16px 0 0 0;">
         ※ 高円宮杯JFA U-18 サッカープレミアリーグ／プリンスリーグ 公式記録に基づく
       </p>
     </section>
@@ -851,7 +851,7 @@ def _chronicle_team_cell(team):
     """全史テーブルの1セル分のHTMLを返す"""
     name = html_escape(str(team.get("name", "")))
     if not name or name == "---":
-        return '<td style="text-align:center; color:var(--text-secondary,#6b7280);">—</td>'
+        return '<td style="text-align:center; color:var(--text-light,#6b7280);">—</td>'
 
     slug = team.get("link")
     if slug:
@@ -866,7 +866,7 @@ def _chronicle_team_cell(team):
     sub = team.get("sub")
     if sub:
         inner += (
-            f'<span style="font-size:.85em; color:var(--text-secondary,#6b7280);">'
+            f'<span style="font-size:.85em; color:var(--text-light,#6b7280);">'
             f'（{html_escape(str(sub))}）</span>'
         )
 
@@ -907,7 +907,7 @@ def render_league_chronicle_html(slug, label):
     if not data:
         return ""
 
-    muted = "var(--text-secondary,#6b7280)"
+    muted = "var(--text-light,#6b7280)"
     border = "var(--border-color,#e5e7eb)"
     parts = [CHRONICLE_STYLE_BLOCK]
 
@@ -1801,13 +1801,13 @@ def render_premier_final_card(final):
         else:
             champion_html = ""
 
-    note_html = f'<p style="margin-top:12px; font-size:0.95em; color:var(--text-secondary, #6b7280);">{html_escape(note)}</p>' if note else ""
+    note_html = f'<p style="margin-top:12px; font-size:0.95em; color:var(--text-light, #6b7280);">{html_escape(note)}</p>' if note else ""
 
     return f"""
     <article class="premier-final-card" style="background:var(--bg-card, #ffffff); border-radius:12px; padding:24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.08);">
       <header style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px; border-bottom:2px solid var(--accent-color, #2563eb); padding-bottom:12px;">
         <h2 style="margin:0; font-size:1.5em; color:var(--accent-color, #2563eb);">{year}年大会</h2>
-        <span style="font-size:0.9em; color:var(--text-secondary, #6b7280);">📅 {html_escape(date_str)}　📍 {html_escape(venue)}</span>
+        <span style="font-size:0.9em; color:var(--text-light, #6b7280);">📅 {html_escape(date_str)}　📍 {html_escape(venue)}</span>
       </header>
       {match_section}
       {champion_html}

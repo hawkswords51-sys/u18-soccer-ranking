@@ -324,7 +324,7 @@ def build_html(data, links):
   <style>
     .u16-jump {{ display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 18px; }}
     .u16-jump a {{ display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:999px;
-      background:var(--bg-light,#f1f5fb); color:var(--text-primary,#1f2937); text-decoration:none;
+      background:var(--bg-white,#f1f5fb); color:var(--text-dark,#1f2937); text-decoration:none;
       font-weight:600; font-size:0.92em; border:1px solid var(--border-color,#e2e8f0); }}
     .u16-cnt {{ display:inline-block; min-width:18px; text-align:center; padding:1px 6px; border-radius:999px;
       background:var(--primary-color,#1e40af); color:#fff; font-size:0.78em; }}

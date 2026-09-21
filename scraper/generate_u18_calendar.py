@@ -115,7 +115,7 @@ def render_timeline():
             '<strong style="color:var(--primary-color);">💡 このサイトの使い方</strong>'
             '<p style="margin:6px 0 0;line-height:1.8;">夏のインターハイ、冬の選手権、そして Jユースカップ・クラブユース選手権 など、'
             '各大会の本戦を勝ち上がるチームを、<a href="/">順位表</a>やチーム詳細ページで各チームの実力を見ながら予想するのにご活用ください。</p></div>'
-            '<p style="color:var(--text-secondary,#6b7280);font-size:0.85em;margin-top:8px;">'
+            '<p style="color:var(--text-light,#6b7280);font-size:0.85em;margin-top:8px;">'
             '※ 横軸は4月〜翌3月。バーは大まかな開催時期の目安です（7〜8月のリーグ中断＝サマーブレイク）。</p>')
 
 
@@ -183,7 +183,7 @@ def main():
     today = date.today()
     _wd = "月火水木金土日"[today.weekday()]
     updated_str = f"{today.year}年{today.month}月{today.day}日（{_wd}）"
-    updated_html = (f'<p style="text-align:right;color:var(--text-secondary,#6b7280);font-size:0.85em;margin:4px 0 0;">'
+    updated_html = (f'<p style="text-align:right;color:var(--text-light,#6b7280);font-size:0.85em;margin:4px 0 0;">'
                     f'<i class="fas fa-clock"></i> 最終更新：{updated_str}</p>')
 
     breadcrumb_schema = (
@@ -278,7 +278,7 @@ def main():
 
       <section class="lp-section">
         <h2><i class="fas fa-stream"></i> 年間スケジュール早見表</h2>
-        <p style="color:var(--text-secondary,#6b7280);margin:-4px 0 12px;font-size:0.95rem;">
+        <p style="color:var(--text-light,#6b7280);margin:-4px 0 12px;font-size:0.95rem;">
           高円宮杯リーグ（プレミア等）が年間を通して横に広がり、その合間にインターハイ・選手権・Jユースなどのトーナメントが入る——という全体像を一目で。
         </p>
         {render_timeline()}
@@ -297,7 +297,7 @@ def main():
       <section class="lp-section">
         <h2><i class="fas fa-scale-balanced"></i> 主要トーナメントの規約比較</h2>
         {render_rules_table()}
-        <p style="color:var(--text-secondary,#6b7280);font-size:0.88em;margin-top:8px;">
+        <p style="color:var(--text-light,#6b7280);font-size:0.88em;margin-top:8px;">
           ※ 12月のプレミアファイナル・各参入戦などの具体的な日付は年度ごとに前後します。最終的な日程は各主催（JFA・JCY・各都道府県高体連）の公式情報をご確認ください。
         </p>
       </section>

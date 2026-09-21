@@ -200,22 +200,22 @@ def render_reps(lines):
                 name, record = token, ""
             if not name:
                 continue
-            badge = (f'<span style="font-size:0.82em;color:var(--text-secondary,#6b7280);">（{html_escape(record)}）</span>' if record else "")
+            badge = (f'<span style="font-size:0.82em;color:var(--text-light,#6b7280);">（{html_escape(record)}）</span>' if record else "")
             rendered.append(f'<span style="white-space:nowrap;font-weight:600;">{team_link(name)}</span>{badge}')
             school_count += 1
         if not rendered:
             continue
         items.append(
             '<div style="padding:10px 4px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-            f'<div style="color:var(--text-secondary,#6b7280);font-size:0.82em;margin-bottom:2px;">{html_escape(pref)}</div>'
+            f'<div style="color:var(--text-light,#6b7280);font-size:0.82em;margin-bottom:2px;">{html_escape(pref)}</div>'
             f'<div style="line-height:1.6;">{"、".join(rendered)}</div>'
             '</div>'
         )
     if not items:
-        return '<p style="color:var(--text-secondary,#6b7280);">各県予選の終了後、代表校を順次掲載します。</p>'
+        return '<p style="color:var(--text-light,#6b7280);">各県予選の終了後、代表校を順次掲載します。</p>'
     return ('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 28px;">'
             + "\n".join(items) + '</div>'
-            + f'<p style="margin-top:10px;color:var(--text-secondary,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
+            + f'<p style="margin-top:10px;color:var(--text-light,#6b7280);font-size:0.9em;">出場校 {school_count} 校</p>')
 
 def render_rounds(sections):
     blocks = []
@@ -231,7 +231,7 @@ def render_rounds(sections):
             blocks.append(f'<h3 style="margin-top:24px;color:var(--accent-color,#2563eb);">{html_escape(name)}</h3>'
                           f'<ul style="list-style:none;padding:0;">' + "\n".join(rows) + '</ul>')
     if not blocks:
-        return '<p style="color:var(--text-secondary,#6b7280);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します（決勝まで随時更新）。</p>'
+        return '<p style="color:var(--text-light,#6b7280);">組み合わせ抽選後、トーナメント表と試合結果をここに掲載します（決勝まで随時更新）。</p>'
     return "\n".join(blocks)
 
 
@@ -442,8 +442,8 @@ def render_bracket_svg(sections):
     GRAY = "#94a3b8"
     RED = "var(--danger-color,#dc2626)"  # ダークでは #f87171（柔らかい赤）に自動切替
     # 文字はテーマ変数で自動追従（ライト=濃色／ダーク=淡色）
-    TXT = "var(--text-primary,#1f2937)"
-    SUB = "var(--text-secondary,#6b7280)"
+    TXT = "var(--text-dark,#1f2937)"
+    SUB = "var(--text-light,#6b7280)"
     ACC = "var(--accent-color,#2563eb)"
 
     S = []
@@ -594,7 +594,7 @@ def render_bracket_svg(sections):
     )
     return (
         bracket_style +
-        '<p style="margin:0 0 8px;color:var(--text-secondary,#6b7280);font-size:0.88em;">'
+        '<p style="margin:0 0 8px;color:var(--text-light,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
         '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
         '<div class="jy-bracket" style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
@@ -633,7 +633,7 @@ def render_next_match(sections):
                 '<i class="fas fa-bolt"></i> NEXT MATCH ／ 次の試合</div>'
                 f'<div style="font-size:1.25em;font-weight:700;margin-bottom:10px;">{html_escape(name)}</div>'
                 '<ul style="list-style:none;padding:0;margin:0;background:rgba(255,255,255,0.96);'
-                'border-radius:8px;color:var(--text-primary,#1f2937);">'
+                'border-radius:8px;color:#1f2937;">'   # ★背景が常に白なので、テーマ変数にせず濃色で固定する
                 f'{cards}</ul>'
                 '<p style="margin:8px 2px 4px;font-size:0.82em;opacity:0.9;">'
                 '※ 試合終了後、スコアと勝ち上がり（赤線）が自動で反映されます。</p>'
@@ -686,8 +686,8 @@ def render_stats(sections):
             '<div style="flex:1 1 120px;min-width:120px;text-align:center;padding:12px 8px;'
             'background:var(--bg-white,#fff);border:1px solid var(--border-color,#e5e7eb);border-radius:10px;">'
             f'<div style="font-size:1.7em;font-weight:800;color:var(--accent-color,#2563eb);line-height:1.1;">{value}</div>'
-            f'<div style="font-size:0.82em;color:var(--text-secondary,#6b7280);margin-top:4px;">{html_escape(label)}</div>'
-            + (f'<div style="font-size:0.74em;color:var(--text-secondary,#9ca3af);margin-top:2px;">{html_escape(sub)}</div>' if sub else "")
+            f'<div style="font-size:0.82em;color:var(--text-light,#6b7280);margin-top:4px;">{html_escape(label)}</div>'
+            + (f'<div style="font-size:0.74em;color:var(--text-light,#9ca3af);margin-top:2px;">{html_escape(sub)}</div>' if sub else "")
             + '</div>'
         )
 
@@ -706,7 +706,7 @@ def render_stats(sections):
         a, ga, gb, pk, b, rnd = g
         win, lose, ws, ls = (a, b, ga, gb) if ga > gb else (b, a, gb, ga)
         return (f'<li style="padding:9px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-                f'<span style="display:inline-block;min-width:84px;font-size:0.8em;color:var(--text-secondary,#6b7280);">{html_escape(rnd.split("（")[0])}</span>'
+                f'<span style="display:inline-block;min-width:84px;font-size:0.8em;color:var(--text-light,#6b7280);">{html_escape(rnd.split("（")[0])}</span>'
                 f'{team_link(win)} <strong style="color:var(--accent-color,#2563eb);">{ws}-{ls}</strong> {team_link(lose)}</li>')
     for g in big:
         rows.append(big_winner_str(g))
@@ -722,7 +722,7 @@ def render_stats(sections):
                       '<i class="fas fa-bullseye"></i> 死闘のPK戦</h3>'
                       '<ul style="list-style:none;padding:0;">'
                       f'<li style="padding:9px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">'
-                      f'<span style="display:inline-block;min-width:84px;font-size:0.8em;color:var(--text-secondary,#6b7280);">{html_escape(rnd.split("（")[0])}</span>'
+                      f'<span style="display:inline-block;min-width:84px;font-size:0.8em;color:var(--text-light,#6b7280);">{html_escape(rnd.split("（")[0])}</span>'
                       f'{team_link(a)} <strong style="color:var(--accent-color,#2563eb);">{ga}-{gb}（PK{pk[0]}-{pk[1]}）</strong> {team_link(b)}'
                       f'</li></ul>')
 
@@ -925,7 +925,7 @@ def main():
     today = date.today()
     _wd = "月火水木金土日"[today.weekday()]
     updated_str = f"{today.year}年{today.month}月{today.day}日（{_wd}）"
-    updated_html = (f'<p style="text-align:right;color:var(--text-secondary,#6b7280);font-size:0.85em;margin:4px 0 0;">'
+    updated_html = (f'<p style="text-align:right;color:var(--text-light,#6b7280);font-size:0.85em;margin:4px 0 0;">'
                     f'<i class="fas fa-clock"></i> 最終更新：{updated_str}</p>')
 
     breadcrumb_schema = (
