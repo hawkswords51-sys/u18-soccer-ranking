@@ -13,7 +13,8 @@
     "updated": "2026-09-21",
     "key": "キーは data/teams.json のチーム名（日本語）そのまま。以前はチームidだったが、idは96チームで未設定・1件重複（ni010）だったため名前キーに変更した。",
     "naming_rule": "Jクラブ＝クラブ公式の英語名＋日本語に合わせた Youth / U-18。高校＝学校自身の英語表記があればそれ（大学附属は Senior High School などの揺れもそのまま）、無ければ長音記号なしのヘボン式＋High School。語順は日本語のまま。2nd/3rdは親チームの英語名＋\" 2nd\"/\" 3rd\"。",
-    "checked_by_kei": "2026-09-21：市立船橋=Ichiritsu Funabashi／流経大柏=Ryutsu Keizai University Kashiwa（学校の自称 RKU Kashiwa ではなくJ.LEAGUE英語版の長い表記で統一）／日大藤沢=Nihon University Fujisawa Senior High School をKeiが確認。"
+    "checked_by_kei": "2026-09-21：市立船橋=Ichiritsu Funabashi／流経大柏=Ryutsu Keizai University Kashiwa（学校の自称 RKU Kashiwa ではなくJ.LEAGUE英語版の長い表記で統一）／日大藤沢=Nihon University Fujisawa Senior High School をKeiが確認。",
+    "jp_page_note": "jp_page は data/team-profiles の id から引いた日本語チームページ。teams.json の名前と team-profiles の name: が違うチーム（札幌大谷・浦和レッズユース・今治東・九国大付）は 2026-09-21 に手で補った。"
   },
   "teams": {
     "AC長野パルセイロU-18": {
@@ -204,7 +205,7 @@
     },
     "九州国際大付属高校": {
       "en": "Kyushu International University Affiliated High School",
-      "jp_page": "",
+      "jp_page": "/teams/kyukoku-fu/",
       "source": "school-official",
       "confidence": "high"
     },
@@ -546,7 +547,7 @@
     },
     "札幌大谷高校": {
       "en": "Sapporo Otani High School",
-      "jp_page": "",
+      "jp_page": "/teams/sapporo-otani/",
       "source": "school-official",
       "confidence": "medium"
     },
@@ -673,7 +674,7 @@
     },
     "浦和レッズユース": {
       "en": "Urawa Red Diamonds Youth",
-      "jp_page": "",
+      "jp_page": "/teams/urawa-reds-youth/",
       "source": "club-official/jleague-en",
       "confidence": "high"
     },
@@ -715,7 +716,7 @@
     },
     "県立今治東中等教育学校": {
       "en": "Imabari Higashi Secondary School",
-      "jp_page": "",
+      "jp_page": "/teams/imabari-higashi/",
       "source": "school-official",
       "confidence": "medium"
     },
