@@ -1,0 +1,559 @@
+{
+  "_meta": {
+    "purpose": "英語ページで使う選手名の英語表記。キーは各ymlの name そのまま。",
+    "rule": "JFA公式英語（代表招集メンバー）とJ.LEAGUE公式英語（クラブのPlayersページ・英語ニュース）の表記のみ。形は SURNAME Given。見つからない選手はこの表に入れず、ページでは日本語名のまま出す（ローマ字を推測しない）。",
+    "created": "2026-09-21",
+    "sources": [
+      "https://www.jfa.jp/eng/ の各代表招集メンバー",
+      "https://www.jleague.jp/en/ の各クラブ Players ページ・英語ニュース"
+    ],
+    "jp_only_note": "2026-09-21時点で、英語表記が未確定の選手は0人。"
+  },
+  "players": {
+    "エジケ 唯吹ヴィンセントジュニア": {
+      "en": "EJIKE Ibuki Vincent Jr",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "エゼモクェ チメヅェ海": {
+      "en": "EZEMUOKWE Chimezie Kai",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "エドワード 真秀": {
+      "en": "EDWARD Mattew",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "オツコロ 海桜": {
+      "en": "OTUKOLO Kaiou",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "オディケ チソン太地": {
+      "en": "ODIKE Chisom Taichi",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "シュルツ 建斗": {
+      "en": "SCHULDT Kento",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "ゼイダム小田 孟武": {
+      "en": "ZEIDAM ODA Harim",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "マギー ジェラニー蓮": {
+      "en": "MCGHEE Jelani Ren",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "マギージェラニー 蓮": {
+      "en": "MCGHEE Jelani Ren",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "メンディー サイモン友": {
+      "en": "MENDY Simon Yu",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "三井寺 眞": {
+      "en": "MIIDERA Shin",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "上野 煌士郎": {
+      "en": "UENO Koshiro",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "中山 柊斗": {
+      "en": "NAKAYAMA Shuto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "中川 款斗": {
+      "en": "NAKAGAWA Masato",
+      "source": "Kei確認 2026-09-21（クラブ公式発表）",
+      "confidence": "high"
+    },
+    "中村 龍": {
+      "en": "NAKAMURA Ryu",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "五十嵐 陵": {
+      "en": "IGARASHI Ryo",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "井内 亮太朗": {
+      "en": "INOUCHI Ryotaro",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "今村 涼弥": {
+      "en": "IMAMURA Ryoya",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "伊澤 璃来": {
+      "en": "IZAWA Riku",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "伊藤 航": {
+      "en": "ITO Kou",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "倉橋 幸暉": {
+      "en": "KURAHASHI Koki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "元砂 晏翔仁ウデンバ": {
+      "en": "MOTOSUNA Anthony Udemba",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "児山 雅稀": {
+      "en": "KOYAMA Masaki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "八色 隼人": {
+      "en": "YAIRO Hayato",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "内田 煌生": {
+      "en": "UCHIDA Kosei",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "前田 陽輝": {
+      "en": "MAEDA Hikaru",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "加藤 海輝": {
+      "en": "KATO Kaiki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "吉田 湊海": {
+      "en": "YOSHIDA Minato",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "和田 武士": {
+      "en": "WADA Takeshi",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "増田 大空": {
+      "en": "MASUDA Sora",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "大下 幸誠": {
+      "en": "OSHITA Kosei",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "大下 蒼生": {
+      "en": "OSHITA Aoi",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "大垣 徹平": {
+      "en": "OGAKI Teppei",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "大徳 剛矢": {
+      "en": "DAITOKU Goshi",
+      "source": "カターレ富山 公式加入発表の画像（GOSHI DAITOKU）／Kei確認 2026-09-21",
+      "confidence": "high"
+    },
+    "大空 星那": {
+      "en": "OZORA Sena",
+      "source": "Kei確認 2026-09-21（クラブ公式発表）",
+      "confidence": "high"
+    },
+    "大貫 琉偉": {
+      "en": "ONUKI Rui",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "大野 隆斗": {
+      "en": "ONO Ryuto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "姫野 誠": {
+      "en": "HIMENO Makoto",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "對馬 羽琉": {
+      "en": "TSUSHIMA Haru",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "小川 尋斗": {
+      "en": "OGAWA Hiroto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "小林 志紋": {
+      "en": "KOBAYASHI Shimon",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "小林 柚希": {
+      "en": "KOBAYASHI Yuzuki",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "山川 弘飛": {
+      "en": "YAMAKAWA Hiroto",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "山本 将吾": {
+      "en": "YAMAMOTO Shogo",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "岡本 新大": {
+      "en": "OKAMOTO Arata",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "岩下 雄飛": {
+      "en": "IWASHITA Yuto",
+      "source": "Kei確認 2026-09-21（クラブ公式発表）",
+      "confidence": "high"
+    },
+    "平井 一輝": {
+      "en": "HIRAI Kazuki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "平岡 貴敬": {
+      "en": "HIRAOKA Takayuki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "平野 遼": {
+      "en": "HIRANO Kanata",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "恒吉 良真": {
+      "en": "TSUNEYOSHI Ryoma",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "新堀 恵太": {
+      "en": "NIIBORI Keita",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "新村 和史": {
+      "en": "NIIMURA Kazushi",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "星 宗介": {
+      "en": "HOSHI Sosuke",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "木下 晴天": {
+      "en": "KINOSHITA Haruma",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "木寺 優直": {
+      "en": "KIDERA Sunao",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "木村 風斗": {
+      "en": "KIMURA Kazato",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "木田 蓮人": {
+      "en": "KIDA Rento",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "松村 秀明": {
+      "en": "MATSUMURA Hideaki",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "松浦 大翔": {
+      "en": "MATSUURA Hiroto",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "松浦 迅ビエラ": {
+      "en": "MATSUURA Jin Biera",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "林 奏汰": {
+      "en": "HAYASHI Kanata",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "梶山 蓮翔": {
+      "en": "KAJIYAMA Rento",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "横井 佑弥": {
+      "en": "YOKOI Yuya",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "横川 天馬": {
+      "en": "YOKOGAWA Tenma",
+      "source": "Kei確認 2026-09-21（クラブ公式発表）",
+      "confidence": "high"
+    },
+    "橋本 凜来": {
+      "en": "HASHIMOTO Riku",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "武本 匠平": {
+      "en": "TAKEMOTO Shohei",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "永添 功樹": {
+      "en": "NAGASOE Kouki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "河原 研": {
+      "en": "KAWAHARA Ken",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "浅田 連": {
+      "en": "ASADA Ren",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "深江 龍明": {
+      "en": "FUKAE Ryumei",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "深谷 朔共": {
+      "en": "FUKAYA Sakuto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "渡辺 莉太": {
+      "en": "WATANABE Rita",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "渡邊 麻舟": {
+      "en": "WATANABE Matthew",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "渡部 直宏": {
+      "en": "WATANABE Naohiro",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "濵名 元希": {
+      "en": "HAMANA Genki",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "瀬口 大翔": {
+      "en": "SEGUCHI Taiga",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "瀬賀 結臣": {
+      "en": "SEGA Yujin",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "熊田 佳斗": {
+      "en": "KUMADA Yoshito",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "田中 義峯": {
+      "en": "TANAKA Yoshitaka",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "白男川 羚斗": {
+      "en": "SHIRAOGAWA Rekuto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "相馬 陸人": {
+      "en": "SOMA Rikuto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "神田 泰斗": {
+      "en": "KANDA Taito",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "秋元 大樹": {
+      "en": "AKIMOTO Taiki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "立野 京弥": {
+      "en": "TATSUNO Kyoya",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "竹内 悠三": {
+      "en": "TAKEUCHI Yuzo",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "舘美 駿": {
+      "en": "TATEMI Shun",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "花元 誉絆": {
+      "en": "HANAMOTO Yohan",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "萩原 慶": {
+      "en": "HAGIHARA Kei",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "落合 哉太": {
+      "en": "OCHIAI Kanata",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "葛西 夢吹": {
+      "en": "KASAI Mibuki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "藤井 翔大": {
+      "en": "FUJII Shota",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "藤川 虎三": {
+      "en": "FUJIKAWA Takezo",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "藤本 祥輝": {
+      "en": "FUJIMOTO Yoshiki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "藤田 勇雅": {
+      "en": "FUJITA Yuga",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "藤田 明日翔": {
+      "en": "FUJITA Asuto",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "西岡 健斗": {
+      "en": "NISHIOKA Kento",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "西本 瑛司": {
+      "en": "NISHIMOTO Eiji",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "西村 朋倭": {
+      "en": "NISHIMURA Towa",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "西野 陽向": {
+      "en": "NISHINO Hinata",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "迫田 凌和": {
+      "en": "SAKODA Ryowa",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "進藤 新大": {
+      "en": "SHINDO Arata",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "野口 蓮斗": {
+      "en": "NOGUCHI Rento",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "長南 開史": {
+      "en": "CHONAN Kaiji",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "高岸 縁": {
+      "en": "TAKAGISHI Enishi",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "高木 ザカリア": {
+      "en": "TAKAGI Zakariah",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "高田 憲慎": {
+      "en": "TAKADA Kenshin",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "鮫島 充輝": {
+      "en": "SAMESHIMA Atsuki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "齋藤 太陽": {
+      "en": "SAITO Taiyo",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "齋藤 翔": {
+      "en": "SAITO Kakeru",
+      "source": "jfa-eng",
+      "confidence": "high"
+    }
+  }
+}

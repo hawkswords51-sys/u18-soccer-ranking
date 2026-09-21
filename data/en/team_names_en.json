@@ -14,7 +14,8 @@
     "key": "キーは data/teams.json のチーム名（日本語）そのまま。以前はチームidだったが、idは96チームで未設定・1件重複（ni010）だったため名前キーに変更した。",
     "naming_rule": "Jクラブ＝クラブ公式の英語名＋日本語に合わせた Youth / U-18。高校＝学校自身の英語表記があればそれ（大学附属は Senior High School などの揺れもそのまま）、無ければ長音記号なしのヘボン式＋High School。語順は日本語のまま。2nd/3rdは親チームの英語名＋\" 2nd\"/\" 3rd\"。",
     "checked_by_kei": "2026-09-21：市立船橋=Ichiritsu Funabashi／流経大柏=Ryutsu Keizai University Kashiwa（学校の自称 RKU Kashiwa ではなくJ.LEAGUE英語版の長い表記で統一）／日大藤沢=Nihon University Fujisawa Senior High School をKeiが確認。",
-    "jp_page_note": "jp_page は data/team-profiles の id から引いた日本語チームページ。teams.json の名前と team-profiles の name: が違うチーム（札幌大谷・浦和レッズユース・今治東・九国大付）は 2026-09-21 に手で補った。"
+    "jp_page_note": "jp_page は data/team-profiles の id から引いた日本語チームページ。teams.json の名前と team-profiles の name: が違うチーム（札幌大谷・浦和レッズユース・今治東・九国大付）は 2026-09-21 に手で補った。",
+    "clubs_extra_note": "teams（＝プレミア・プリンス所属チーム）に無いクラブ・学校の英語名。代表／プロ内定ページで使う。Jクラブ＝J.LEAGUE英語版、学校＝学校公式。alias-of: は表記違い（「○○高」など）。"
   },
   "teams": {
     "AC長野パルセイロU-18": {
@@ -916,6 +917,285 @@
       "en": "Kashima Gakuen High School",
       "jp_page": "/teams/kashima-gakuen/",
       "source": "school-official/romaji",
+      "confidence": "high"
+    }
+  },
+  "clubs_extra": {
+    "AIE国際高": {
+      "en": "AIE International High School",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "Cambridge United U18": {
+      "en": "Cambridge United U18 (England)",
+      "source": "thefa.com",
+      "confidence": "medium"
+    },
+    "FC今治": {
+      "en": "FC Imabari",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "FC岐阜": {
+      "en": "FC Gifu",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "FC岐阜U-18": {
+      "en": "FC Gifu U-18",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "FC東京": {
+      "en": "FC Tokyo",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "RB大宮アルディージャ": {
+      "en": "RB Omiya Ardija",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "San Jose Earthquakes U18": {
+      "en": "San Jose Earthquakes U18 (USA)",
+      "source": "sjearthquakes.com",
+      "confidence": "medium"
+    },
+    "アビスパ福岡": {
+      "en": "Avispa Fukuoka",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "アルビレックス新潟": {
+      "en": "Albirex Niigata",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "カターレ富山": {
+      "en": "Kataller Toyama",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "ガンバ大阪": {
+      "en": "Gamba Osaka",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "サガン鳥栖": {
+      "en": "Sagan Tosu",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "サンフレッチェ広島": {
+      "en": "Sanfrecce Hiroshima",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "サンフレッチェ広島F.Cユース": {
+      "en": "Sanfrecce Hiroshima F.C Youth",
+      "jp_page": "/teams/sanfrecce-hiroshima-youth/",
+      "source": "alias-of:サンフレッチェ広島F.C.ユース",
+      "confidence": "high"
+    },
+    "ジェフユナイテッド市原・千葉": {
+      "en": "JEF United Chiba",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "ジュビロ磐田": {
+      "en": "Jubilo Iwata",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "セレッソ大阪": {
+      "en": "Cerezo Osaka",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "ツエーゲン金沢": {
+      "en": "Zweigen Kanazawa",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "テゲバジャーロ宮崎": {
+      "en": "Tegevajaro Miyazaki",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "モンテディオ山形": {
+      "en": "Montedio Yamagata",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "ロアッソ熊本ユース": {
+      "en": "Roasso Kumamoto Youth",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "ヴィッセル神戸": {
+      "en": "Vissel Kobe",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "修徳高": {
+      "en": "Shutoku High School",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "修徳高校": {
+      "en": "Shutoku High School",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "名古屋グランパス": {
+      "en": "Nagoya Grampus",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "大津高": {
+      "en": "Ohzu High School",
+      "jp_page": "/teams/ohtsu/",
+      "source": "alias-of:大津高校",
+      "confidence": "high"
+    },
+    "奈良クラブ": {
+      "en": "Nara Club",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "奈良クラブユース": {
+      "en": "Nara Club Youth",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "尚志高": {
+      "en": "Shoshi High School",
+      "jp_page": "/teams/shoshi/",
+      "source": "alias-of:尚志高校",
+      "confidence": "high"
+    },
+    "山形明正高校": {
+      "en": "Yamagata Meisei High School",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "川崎フロンターレ": {
+      "en": "Kawasaki Frontale",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "川崎フロンターレU-15生田": {
+      "en": "Kawasaki Frontale U-15 Ikuta",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "市立船橋高": {
+      "en": "Ichiritsu Funabashi High School",
+      "jp_page": "/teams/ichiritsu-funabashi/",
+      "source": "alias-of:市立船橋高校",
+      "confidence": "medium"
+    },
+    "希望が丘高": {
+      "en": "Kibogaoka High School",
+      "source": "school-official",
+      "confidence": "medium"
+    },
+    "帝京大学可児高": {
+      "en": "Teikyo University Kani High School",
+      "jp_page": "/teams/teikyo-kani/",
+      "source": "alias-of:帝京大学可児高校",
+      "confidence": "high"
+    },
+    "帝京長岡高": {
+      "en": "Teikyo Nagaoka High School",
+      "jp_page": "/teams/teikyo-nagaoka/",
+      "source": "alias-of:帝京長岡高校",
+      "confidence": "high"
+    },
+    "日章学園高": {
+      "en": "Nissho Gakuen High School",
+      "jp_page": "/teams/nissho-gakuen/",
+      "source": "alias-of:日章学園高校",
+      "confidence": "high"
+    },
+    "昌平高": {
+      "en": "Shohei High School",
+      "jp_page": "/teams/shohei/",
+      "source": "alias-of:昌平高校",
+      "confidence": "high"
+    },
+    "柏レイソル": {
+      "en": "Kashiwa Reysol",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "栃木シティ": {
+      "en": "Tochigi City",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "桐生第一高": {
+      "en": "Kiryu Daiichi High School",
+      "jp_page": "/teams/kiryu-daiichi/",
+      "source": "alias-of:桐生第一高校",
+      "confidence": "high"
+    },
+    "横浜FC": {
+      "en": "Yokohama FC",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "横浜F・マリノス": {
+      "en": "Yokohama F. Marinos",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "流通経済大学付属柏高": {
+      "en": "Ryutsu Keizai University Kashiwa High School",
+      "jp_page": "/teams/ryukei-kashiwa/",
+      "source": "alias-of:流通経済大学付属柏高校",
+      "confidence": "high"
+    },
+    "浦和レッズ": {
+      "en": "Urawa Red Diamonds",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "清水エスパルス": {
+      "en": "Shimizu S-Pulse",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "湘南ベルマーレ": {
+      "en": "Shonan Bellmare",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "湘南ベルマーレU-18": {
+      "en": "Shonan Bellmare U-18",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "豊川高校": {
+      "en": "Toyokawa High School",
+      "source": "school-official",
+      "confidence": "high"
+    },
+    "阪南大学高": {
+      "en": "Hannan University Senior High School",
+      "jp_page": "/teams/hannan-daiko/",
+      "source": "alias-of:阪南大高校",
+      "confidence": "high"
+    },
+    "静岡学園高": {
+      "en": "Shizuoka Gakuen High School",
+      "jp_page": "/teams/shizuoka-gakuen/",
+      "source": "alias-of:静岡学園高校",
+      "confidence": "high"
+    },
+    "鹿島アントラーズ": {
+      "en": "Kashima Antlers",
+      "source": "jleague-en",
       "confidence": "high"
     }
   }

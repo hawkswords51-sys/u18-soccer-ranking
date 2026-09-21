@@ -5,7 +5,8 @@
 - 順位の正本: data/teams.json（プレミアEAST/WESTの leagueRank・勝点など。毎朝の自動更新で入る値）
 - 英語名の正本: data/en/team_names_en.json（Coworkが公式表記を確認して置く。自動ローマ字化はしない）
   ⚠️ キーは「data/teams.json のチーム名（日本語）」。2026-09-21にチームidから変更した（idは96チームで未設定・ni010が重複していたため）。
-- 出力: en/premier-league/index.html と en/prince-leagues/index.html （どちらも全体を毎回書き直す）
+- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/ （すべて毎回全体を書き直す）
+- 選手名の正本: data/en/player_names_en.json（JFA英語版・J.LEAGUE英語版の表記のみ。無い選手は日本語のまま出す）
 - 検算（1つでも合わないリーグがあれば、ページを書き換えずに [要確認] を出して終わる＝誤データを載せない）:
     12チームそろっている / 英語名が全員分ある / 順位が1..12で重複なし /
     勝点=勝×3+分 / 試合数=勝+分+敗 / 順位順で勝点が増えない /
@@ -15,12 +16,18 @@
 """
 import html
 import json
+import re
 import sys
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 TEAMS = ROOT / "data" / "teams.json"
 NAMES = ROOT / "data" / "en" / "team_names_en.json"
+PLAYERS = ROOT / "data" / "en" / "player_names_en.json"
+NT_YML = ROOT / "data" / "national-team-players.yml"
+PS_YML = ROOT / "data" / "pro-signings.yml"
 DOMAIN = "https://u18-soccer.com"
 LEAGUES = [("プレミアリーグEAST", "EAST"), ("プレミアリーグWEST", "WEST")]
 
@@ -190,9 +197,10 @@ PAGE = """<!DOCTYPE html>
           </a>
         </div>
         <nav class="nav">
-          <a href="/en/" class="nav-link"><i class="fas fa-book-open"></i> Guide</a>
           <a href="/en/premier-league/" class="nav-link"><i class="fas fa-trophy"></i> Premier</a>
           <a href="/en/prince-leagues/" class="nav-link"><i class="fas fa-list-ol"></i> Prince</a>
+          <a href="/en/national-team/" class="nav-link"><i class="fas fa-flag"></i> Japan squads</a>
+          <a href="/en/pro-signings/" class="nav-link"><i class="fas fa-arrow-up-right-dots"></i> Turning pro</a>
           <a href="/" class="nav-link" lang="ja"><i class="fas fa-language"></i> 日本語</a>
         </nav>
       </div>
@@ -325,13 +333,196 @@ def render_prince(out_root, teams, names, season):
     print(f"OK: {dest} を書きました（{shown}リーグ・{n}チーム" + (f"／スキップ {', '.join(skipped)}" if skipped else "") + "）")
 
 
+# ---------------------------------------------------------------------
+# 代表・プロ内定ページ（YAML → 英語ページ）
+# ---------------------------------------------------------------------
+MONTHS = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"]
+
+
+def club_html(jp_name, names, extra):
+    """クラブ名（日本語表記）→ 英語名のHTML。英語名が無ければ None を返す（＝ページを作らない）。"""
+    rec = names.get(jp_name) or extra.get(jp_name)
+    if not rec:
+        return None
+    en = esc(rec["en"])
+    page = rec.get("jp_page")
+    return f'<a href="{esc(page)}">{en}</a>' if page else en
+
+
+def player_html(jp_name, players):
+    rec = players.get(jp_name)
+    if rec:
+        return esc(rec["en"]), False
+    return f'<span lang="ja">{esc(jp_name)}</span>', True
+
+
+def timing_en(s):
+    """加入時期の日本語表記を英語に。想定外の書き方は空欄にする（推測しない）。"""
+    if not s:
+        return ""
+    m = re.fullmatch(r"(\d{4})年(\d{1,2})月プロ契約", s)
+    if m:
+        return f"Signed pro contract in {MONTHS[int(m.group(2)) - 1]} {m.group(1)}"
+    m = re.fullmatch(r"(\d{4})年(\d{1,2})月", s)
+    if m:
+        return f"{MONTHS[int(m.group(2)) - 1]} {m.group(1)}"
+    m = re.fullmatch(r"(\d{4})/(\d{2})シーズン(昇格|加入)?", s)
+    if m:
+        base = f"{m.group(1)}/{m.group(2)} season"
+        return base + (" (promoted from the academy)" if m.group(3) == "昇格" else "")
+    m = re.fullmatch(r"(\d{4})シーズン加入", s)
+    if m:
+        return f"{m.group(1)} season"
+    if s == "時期未発表":
+        return "Not announced"
+    if re.fullmatch(r"(\d{4})年", s):
+        return s[:4]
+    return ""
+
+
+def render_national_team(out_root, names, extra, players, season):
+    data = yaml.safe_load(NT_YML.read_text(encoding="utf-8"))
+    blocks, jump, jp_only = [], [], 0
+    for cat in data["categories"]:
+        label = cat.get("label_en") or cat["code"].upper()
+        rows = []
+        for pl in cat["players"]:
+            club = club_html(pl["club"], names, extra)
+            if club is None:
+                print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {pl['club']}（ページは書き換えません）")
+                return
+            if pl.get("origin"):
+                org = club_html(pl["origin"], names, extra)
+                if org is None:
+                    print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {pl['origin']}（ページは書き換えません）")
+                    return
+                club = f"{club} <span class=\"en-note\">← {org}</span>"
+            name, is_jp = player_html(pl["name"], players)
+            jp_only += 1 if is_jp else 0
+            no = pl.get("no", "")
+            rows.append(f'<tr><td class="en-c">{esc(no) if no != "" else "&ndash;"}</td>'
+                        f'<td class="en-c">{esc(pl["pos"])}</td><td class="en-name">{name}</td><td>{club}</td></tr>')
+        anchor = cat["code"]
+        jump.append(f'        <a href="#{anchor}" style="display:inline-block;padding:7px 14px;border-radius:999px;'
+                    f'background:var(--primary-color,#1e3a8a);color:#fff;text-decoration:none;font-size:0.9rem;font-weight:600;">{esc(label)}</a>')
+        meta = " &middot; ".join(x for x in [esc(cat.get("event_en", "")), esc(cat.get("period_en", ""))] if x)
+        note = f'<p class="en-note">{esc(cat["age_note_en"])}</p>' if cat.get("age_note_en") else ""
+        src = f'<p class="en-note">Source: <a href="{esc(cat["source"])}" target="_blank" rel="noopener">JFA official announcement (in Japanese)</a></p>'
+        blocks.append(f"""
+      <section class="lp-section" id="{anchor}">
+        <h2>{esc(label)}</h2>
+        <p class="en-note">{meta}</p>
+        {note}
+        <div class="en-scroll">
+        <table class="en-table">
+          <thead><tr><th>No.</th><th>Pos</th><th class="en-name">Player</th><th>Club / school</th></tr></thead>
+          <tbody>
+{chr(10).join("            " + r for r in rows)}
+          </tbody>
+        </table>
+        </div>
+        {src}
+      </section>""")
+    url = f"{DOMAIN}/en/national-team/"
+    title = f"Japan U-16 / U-17 / U-18 National Team Squads {season}"
+    desc = ("The latest Japan youth national team squads (U-16, U-17, U-18) in English, with each player's club or high school "
+            "and links to team profiles. Compiled from JFA official announcements.")
+    intro = ("        These are the most recent call-ups for Japan's U-16, U-17 and U-18 national teams, with the club or high school\n"
+             "        each player comes from. Squads are taken from the JFA's official announcements; a player listed with a professional club\n"
+             "        and an arrow (&larr;) came through the youth team shown after the arrow.")
+    legend = ""
+    tail = ('        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
+            '        <p>See also: <a href="/en/pro-signings/">players turning professional</a>, <a href="/en/premier-league/">Premier League standings</a> and '
+            '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": "Japan youth national team squads", "item": url}]}, ensure_ascii=False)
+    tables = ('      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px;">\n'
+              + "\n".join(jump) + "\n      </div>" + "".join(blocks))
+    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+                       crumb="Japan youth national teams", h1=f"Japan U-16 / U-17 / U-18 National Team Squads",
+                       intro=intro, legend=legend, tables=tables, tail=tail)
+    dest = out_root / "en" / "national-team" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    n = sum(len(c["players"]) for c in data["categories"])
+    print(f"OK: {dest} を書きました（{len(data['categories'])}カテゴリ・{n}人／うち日本語表記のまま {jp_only}人）")
+
+
+def render_pro_signings(out_root, names, extra, players, season):
+    data = yaml.safe_load(PS_YML.read_text(encoding="utf-8"))
+    groups = [("naitei", "Provisional signings (joining after graduation)",
+               "These players are still at their high school or club academy. Their professional clubs have announced that they will join."),
+              ("pro", "Already under professional contract",
+               "These players have already signed professional contracts while still in the U-18 age group. Most are registered as type-2 players, "
+               "which lets them play for the first team while remaining with the academy.")]
+    blocks, jp_only = [], 0
+    for status, heading, lead in groups:
+        rows = []
+        for pl in [p for p in data["signings"] if p["status"] == status]:
+            team = club_html(pl["team"], names, extra)
+            dest_club = club_html(pl["dest"], names, extra)
+            if team is None or dest_club is None:
+                print(f"[要確認] プロ内定ページ: クラブの英語名が未登録 → {pl['team'] if team is None else pl['dest']}（ページは書き換えません）")
+                return
+            name, is_jp = player_html(pl["name"], players)
+            jp_only += 1 if is_jp else 0
+            cat = "High school" if pl.get("cat") == "高体連" else "Club academy"
+            num = f'#{pl["num"]}' if pl.get("num") else ""
+            extra_mark = ' <span class="en-note">type-2</span>' if pl.get("type2") else ""
+            rows.append(f'<tr><td class="en-c">{esc(pl["pos"])}</td><td class="en-name">{name}{extra_mark}</td>'
+                        f'<td>{team}</td><td class="en-c">{cat}</td><td>{dest_club} {esc(num)}</td>'
+                        f'<td>{esc(timing_en(pl.get("timing", "")))}</td></tr>')
+        blocks.append(f"""
+      <section class="lp-section" id="{status}">
+        <h2>{heading} <span class="en-note">({len(rows)})</span></h2>
+        <p>{lead}</p>
+        <div class="en-scroll">
+        <table class="en-table">
+          <thead><tr><th>Pos</th><th class="en-name">Player</th><th>Current team</th><th>Route</th><th>Joining</th><th>When</th></tr></thead>
+          <tbody>
+{chr(10).join("            " + r for r in rows)}
+          </tbody>
+        </table>
+        </div>
+      </section>""")
+    url = f"{DOMAIN}/en/pro-signings/"
+    title = f"Japanese Youth Players Turning Professional ({data.get('season', season)})"
+    desc = (f"Players from Japanese high schools and J.League academies joining professional clubs for {data.get('season', season)}, in English: "
+            "provisional signings and those already under contract, each checked against the clubs' own announcements.")
+    intro = ("        Every year dozens of players sign for professional clubs straight out of the U-18 age group in Japan.\n"
+             "        The list below separates players who will join after graduating from those who have already signed a professional contract\n"
+             "        while still playing for their high school or academy. Each entry has been checked against the club's own announcement.")
+    legend = ""
+    tail = ('        <p>&ldquo;type-2&rdquo; marks a player registered to play J.League matches for the first team while remaining in the academy. '
+            'That list is not complete: clubs announce type-2 registrations in batches.</p>\n'
+            '        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
+            '        <p>See also: <a href="/en/national-team/">Japan youth national team squads</a> and <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": "Players turning professional", "item": url}]}, ensure_ascii=False)
+    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+                       crumb="Players turning professional", h1=f"Japanese Youth Players Turning Professional ({data.get('season', season)})",
+                       intro=intro, legend=legend, tables="".join(blocks), tail=tail)
+    dest = out_root / "en" / "pro-signings" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    print(f"OK: {dest} を書きました（{len(data['signings'])}人／うち日本語表記のまま {jp_only}人）")
+
+
 def main():
     out_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT
     teams = json.loads(TEAMS.read_text(encoding="utf-8"))
-    names = json.loads(NAMES.read_text(encoding="utf-8"))["teams"]
+    names_all = json.loads(NAMES.read_text(encoding="utf-8"))
+    names = names_all["teams"]
+    extra = names_all.get("clubs_extra", {})
+    players = json.loads(PLAYERS.read_text(encoding="utf-8"))["players"]
     season = str(teams["_meta"]["year"])  # teams.json の _meta.year（年度切替で自動追従）
     render_premier(out_root, teams, names, season)
     render_prince(out_root, teams, names, season)
+    render_national_team(out_root, names, extra, players, season)
+    render_pro_signings(out_root, names, extra, players, season)
 
 
 if __name__ == "__main__":
