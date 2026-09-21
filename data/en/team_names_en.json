@@ -14,8 +14,9 @@
     "key": "キーは data/teams.json のチーム名（日本語）そのまま。以前はチームidだったが、idは96チームで未設定・1件重複（ni010）だったため名前キーに変更した。",
     "naming_rule": "Jクラブ＝クラブ公式の英語名＋日本語に合わせた Youth / U-18。高校＝学校自身の英語表記があればそれ（大学附属は Senior High School などの揺れもそのまま）、無ければ長音記号なしのヘボン式＋High School。語順は日本語のまま。2nd/3rdは親チームの英語名＋\" 2nd\"/\" 3rd\"。",
     "checked_by_kei": "2026-09-21：市立船橋=Ichiritsu Funabashi／流経大柏=Ryutsu Keizai University Kashiwa（学校の自称 RKU Kashiwa ではなくJ.LEAGUE英語版の長い表記で統一）／日大藤沢=Nihon University Fujisawa Senior High School をKeiが確認。",
-    "jp_page_note": "jp_page は data/team-profiles の id から引いた日本語チームページ。teams.json の名前と team-profiles の name: が違うチーム（札幌大谷・浦和レッズユース・今治東・九国大付）は 2026-09-21 に手で補った。",
-    "clubs_extra_note": "teams（＝プレミア・プリンス所属チーム）に無いクラブ・学校の英語名。代表／プロ内定ページで使う。Jクラブ＝J.LEAGUE英語版、学校＝学校公式。alias-of: は表記違い（「○○高」など）。"
+    "jp_page_note": "jp_page は data/team-profiles の id から引いた日本語チームページ。teams.json の名前と team-profiles の name: が違うチーム（札幌大谷・浦和レッズユース・今治東・九国大付）は 2026-09-21 に手で補った。 2026-09-21：チームページがあるのにリンクが付いていなかった21件を追加（team-profiles の name と teams.json の表記が違うのが原因）。",
+    "clubs_extra_note": "teams（＝プレミア・プリンス所属チーム）に無いクラブ・学校の英語名。代表／プロ内定ページで使う。Jクラブ＝J.LEAGUE英語版、学校＝学校公式。alias-of: は表記違い（「○○高」など）。",
+    "top_club_note": "Jクラブのトップチーム名には jp_page を付けない（当サイトのチームページはU-18チームのページのため）。2026-09-21にFC今治・カターレ富山の誤リンクを取り消した。"
   },
   "teams": {
     "AC長野パルセイロU-18": {
@@ -924,7 +925,8 @@
     "AIE国際高": {
       "en": "AIE International High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/aie-kokusai/"
     },
     "Cambridge United U18": {
       "en": "Cambridge United U18 (England)",
@@ -954,7 +956,8 @@
     "KBC高等学院": {
       "en": "KBC High School",
       "source": "ユネスコスクール公式データベース（文部科学省）の登録英語名。学校法人KBC学園 KBC高等学院＝KBC High School（Kei確認 2026-09-21）",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/kbc/"
     },
     "RB大宮アルディージャ": {
       "en": "RB Omiya Ardija",
@@ -1035,7 +1038,8 @@
     "ロアッソ熊本ユース": {
       "en": "Roasso Kumamoto Youth",
       "source": "jleague-en",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/roasso-kumamoto-u18/"
     },
     "ヴィッセル神戸": {
       "en": "Vissel Kobe",
@@ -1057,17 +1061,20 @@
     "修徳高": {
       "en": "Shutoku High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/shutoku/"
     },
     "修徳高校": {
       "en": "Shutoku High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/shutoku/"
     },
     "初芝橋本高校": {
       "en": "Hatsushiba Hashimoto High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/hatsushiba-hashimoto/"
     },
     "名古屋グランパス": {
       "en": "Nagoya Grampus",
@@ -1077,22 +1084,26 @@
     "四国学院大学香川西高校": {
       "en": "Shikoku Gakuin University Kagawa Nishi High School",
       "source": "大学公式英語名＋ヘボン式",
-      "confidence": "medium"
+      "confidence": "medium",
+      "jp_page": "/teams/kagawa-nishi/"
     },
     "四日市中央工業高校": {
       "en": "Yokkaichi Chuo Technical High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/yokkaichi-chuo-kogyo/"
     },
     "国士舘高校": {
       "en": "Kokushikan Senior High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/kokushikan/"
     },
     "大分高校": {
       "en": "Oita High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/oita/"
     },
     "大津高": {
       "en": "Ohzu High School",
@@ -1125,7 +1136,8 @@
     "山形明正高校": {
       "en": "Yamagata Meisei High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/yamagata-meisei/"
     },
     "川崎フロンターレ": {
       "en": "Kawasaki Frontale",
@@ -1163,7 +1175,8 @@
     "成立学園高校": {
       "en": "Seiritsu Gakuen High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/seiritsu-gakuen/"
     },
     "日章学園高": {
       "en": "Nissho Gakuen High School",
@@ -1180,7 +1193,8 @@
     "明桜高校": {
       "en": "Meioh High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/meio/"
     },
     "柏レイソル": {
       "en": "Kashiwa Reysol",
@@ -1232,27 +1246,32 @@
     "湘南ベルマーレU-18": {
       "en": "Shonan Bellmare U-18",
       "source": "jleague-en",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/shonan-bellmare-u18/"
     },
     "畝傍高校": {
       "en": "Unebi High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/unebi/"
     },
     "西京高校": {
       "en": "Saikyo High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/saikyo/"
     },
     "豊川高校": {
       "en": "Toyokawa High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/toyokawa/"
     },
     "近畿大学附属高校": {
       "en": "Kindai University High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/kindai-fuzoku/"
     },
     "阪南大学高": {
       "en": "Hannan University Senior High School",
@@ -1269,12 +1288,14 @@
     "高知中央高校": {
       "en": "Kochi Chuo High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/kochi-chuo/"
     },
     "鳴門高校": {
       "en": "Naruto Senior High School",
       "source": "school-official",
-      "confidence": "high"
+      "confidence": "high",
+      "jp_page": "/teams/naruto/"
     },
     "鹿島アントラーズ": {
       "en": "Kashima Antlers",
