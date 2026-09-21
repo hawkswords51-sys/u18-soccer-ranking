@@ -1534,7 +1534,8 @@ def main():
         <span aria-current="page">インターハイ{year}</span>
       </nav>
       <h1 class="lp-title">{html_escape(title_main)}</h1>
-{ai_summary_html}      <p class="lp-intro">
+{ai_summary_html}      <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: <a href="/en/inter-high/">Inter-High 2026 in English</a></p>
+      <p class="lp-intro">
         高校総体(<strong>インターハイ</strong>)サッカー競技 男子 {year} の<strong>全国大会(本選)</strong>の
         組み合わせ・試合結果・各県代表校をまとめています。各県予選の結果は
         <a href="/">都道府県別ページ</a>からご確認いただけます。
@@ -1660,6 +1661,7 @@ def main():
             (f"{DOMAIN}/en/prince-leagues/", "daily", "0.6"),
             (f"{DOMAIN}/en/national-team/", "weekly", "0.7"),
             (f"{DOMAIN}/en/pro-signings/", "weekly", "0.7"),
+            (f"{DOMAIN}/en/inter-high/", "monthly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False

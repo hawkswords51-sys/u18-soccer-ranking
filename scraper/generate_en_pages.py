@@ -5,7 +5,7 @@
 - 順位の正本: data/teams.json（プレミアEAST/WESTの leagueRank・勝点など。毎朝の自動更新で入る値）
 - 英語名の正本: data/en/team_names_en.json（Coworkが公式表記を確認して置く。自動ローマ字化はしない）
   ⚠️ キーは「data/teams.json のチーム名（日本語）」。2026-09-21にチームidから変更した（idは96チームで未設定・ni010が重複していたため）。
-- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/ （すべて毎回全体を書き直す）
+- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/・en/inter-high/ （すべて毎回全体を書き直す）
 - 選手名の正本: data/en/player_names_en.json（JFA英語版・J.LEAGUE英語版の表記のみ。無い選手は日本語のまま出す）
 - 検算（1つでも合わないリーグがあれば、ページを書き換えずに [要確認] を出して終わる＝誤データを載せない）:
     12チームそろっている / 英語名が全員分ある / 順位が1..12で重複なし /
@@ -27,6 +27,8 @@ TEAMS = ROOT / "data" / "teams.json"
 NAMES = ROOT / "data" / "en" / "team_names_en.json"
 PLAYERS = ROOT / "data" / "en" / "player_names_en.json"
 NT_YML = ROOT / "data" / "national-team-players.yml"
+IH_MD = ROOT / "data" / "tournaments" / "interhigh-final-2026.md"       # YEARLY: 年度が変わったらファイル名を差し替える
+IH_EN = ROOT / "data" / "en" / "inter-high-notes.md"
 PS_YML = ROOT / "data" / "pro-signings.yml"
 DOMAIN = "https://u18-soccer.com"
 LEAGUES = [("プレミアリーグEAST", "EAST"), ("プレミアリーグWEST", "WEST")]
@@ -221,12 +223,7 @@ PAGE = """<!DOCTYPE html>
 {intro}
       </p>
 {legend}{tables}
-      <section class="lp-section">
-        <h2>How to read these tables</h2>
-        <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
-        Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
 {tail}
-      </section>
     </div>
   </main>
 
@@ -267,8 +264,14 @@ def render_premier(out_root, teams, names, season):
               '        <div><span style="background:#d4a017"></span>1st place: plays the Premier League Final (EAST winner vs WEST winner) in December to decide the national champion.</div>\n'
               '        <div><span style="background:var(--danger-color,#dc2626)"></span>11th–12th: relegated to the regional Prince Leagues.</div>\n'
               '      </div>\n')
-    tail = ('        <p>One level below: <a href="/en/prince-leagues/">Prince League standings</a> — the 13 regional leagues that feed into this one.</p>\n'
-            '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>')
+    tail = ('''      <section class="lp-section">
+        <h2>How to read these tables</h2>
+        <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
+        Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
+'''
+            '        <p>One level below: <a href="/en/prince-leagues/">Prince League standings</a> — the 13 regional leagues that feed into this one.</p>\n'
+            '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>\n'
+            '      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": f"Premier League {season}", "item": url}]}, ensure_ascii=False)
@@ -318,8 +321,14 @@ def render_prince(out_root, teams, names, season):
     legend = ('      <p class="en-note" style="margin:0 0 10px;">In December the leading Prince League teams enter a play-off for four places in the\n'
               '        <a href="/en/premier-league/">Premier League</a>, and the bottom teams are relegated to their prefectural leagues. The number of places\n'
               '        changes from year to year, so no promotion or relegation zones are marked here.</p>\n')
-    tail = ('        <p>One level above: <a href="/en/premier-league/">Premier League standings</a> (EAST and WEST).</p>\n'
-            '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>')
+    tail = ('''      <section class="lp-section">
+        <h2>How to read these tables</h2>
+        <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
+        Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
+'''
+            '        <p>One level above: <a href="/en/premier-league/">Premier League standings</a> (EAST and WEST).</p>\n'
+            '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>\n'
+            '      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": f"Prince Leagues {season}", "item": url}]}, ensure_ascii=False)
@@ -432,9 +441,12 @@ def render_national_team(out_root, names, extra, players, season):
              "        each player comes from. Squads are taken from the JFA's official announcements; a player listed with a professional club\n"
              "        and an arrow (&larr;) came through the youth team shown after the arrow.")
     legend = ""
-    tail = ('        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
+    tail = ('''      <section class="lp-section">
+        <h2>Notes</h2>
+'''
+            '        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
             '        <p>See also: <a href="/en/pro-signings/">players turning professional</a>, <a href="/en/premier-league/">Premier League standings</a> and '
-            '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>')
+            '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": "Japan youth national team squads", "item": url}]}, ensure_ascii=False)
@@ -495,10 +507,14 @@ def render_pro_signings(out_root, names, extra, players, season):
              "        The list below separates players who will join after graduating from those who have already signed a professional contract\n"
              "        while still playing for their high school or academy. Each entry has been checked against the club's own announcement.")
     legend = ""
-    tail = ('        <p>&ldquo;type-2&rdquo; marks a player registered to play J.League matches for the first team while remaining in the academy. '
+    tail = ('''      <section class="lp-section">
+        <h2>Notes</h2>
+'''
+            '        <p>&ldquo;type-2&rdquo; marks a player registered to play J.League matches for the first team while remaining in the academy. '
             'That list is not complete: clubs announce type-2 registrations in batches.</p>\n'
             '        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
-            '        <p>See also: <a href="/en/national-team/">Japan youth national team squads</a> and <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>')
+            '        <p>See also: <a href="/en/national-team/">Japan youth national team squads</a> and <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n'
+            '      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": "Players turning professional", "item": url}]}, ensure_ascii=False)
@@ -509,6 +525,177 @@ def render_pro_signings(out_root, names, extra, players, season):
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(page, encoding="utf-8")
     print(f"OK: {dest} を書きました（{len(data['signings'])}人／うち日本語表記のまま {jp_only}人）")
+
+
+PREFS_EN = {
+    "北海道": "Hokkaido", "青森": "Aomori", "岩手": "Iwate", "宮城": "Miyagi", "秋田": "Akita", "山形": "Yamagata",
+    "福島": "Fukushima", "茨城": "Ibaraki", "栃木": "Tochigi", "群馬": "Gunma", "埼玉": "Saitama", "千葉": "Chiba",
+    "東京": "Tokyo", "神奈川": "Kanagawa", "新潟": "Niigata", "富山": "Toyama", "石川": "Ishikawa", "福井": "Fukui",
+    "山梨": "Yamanashi", "長野": "Nagano", "岐阜": "Gifu", "静岡": "Shizuoka", "愛知": "Aichi", "三重": "Mie",
+    "滋賀": "Shiga", "京都": "Kyoto", "大阪": "Osaka", "兵庫": "Hyogo", "奈良": "Nara", "和歌山": "Wakayama",
+    "鳥取": "Tottori", "島根": "Shimane", "岡山": "Okayama", "広島": "Hiroshima", "山口": "Yamaguchi",
+    "徳島": "Tokushima", "香川": "Kagawa", "愛媛": "Ehime", "高知": "Kochi", "福岡": "Fukuoka", "佐賀": "Saga",
+    "長崎": "Nagasaki", "熊本": "Kumamoto", "大分": "Oita", "宮崎": "Miyazaki", "鹿児島": "Kagoshima", "沖縄": "Okinawa",
+}
+
+
+def _ordinal(n):
+    if 10 <= n % 100 <= 20:
+        return f"{n}th"
+    return f"{n}{ {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th') }"
+
+
+def appearance_en(note):
+    """「(4大会連続10回目)」→「10th appearance」／「(初出場)」→「First appearance」。読めない書き方は空欄。"""
+    if not note:
+        return ""
+    if "初出場" in note:
+        return "First appearance"
+    m = re.search(r"(\d+)(?:回目|度目)", note)
+    return f"{_ordinal(int(m.group(1)))} appearance" if m else ""
+
+
+def md_to_html(text):
+    """英語メモの簡易Markdown（段落・「- 」箇条書き・**太字**）をHTMLに。"""
+    out, bullets = [], []
+    def flush():
+        if bullets:
+            out.append('<ul style="padding-left:1.5em;">' + "".join(f"<li>{b}</li>" for b in bullets) + "</ul>")
+            bullets.clear()
+    for raw in text.strip().splitlines():
+        line = raw.strip()
+        if not line:
+            flush()
+            continue
+        line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc(line).replace("&amp;", "&"))
+        if raw.strip().startswith("- "):
+            bullets.append(line[2:])
+        else:
+            flush()
+            out.append(f"<p>{line}</p>")
+    flush()
+    return "\n        ".join(out)
+
+
+def _section(md, heading):
+    m = re.search(r"^##\s*" + re.escape(heading) + r".*?$(.*?)(?=^##\s|\Z)", md, re.M | re.S)
+    return m.group(1) if m else ""
+
+
+def render_interhigh(out_root, names, extra, season):
+    src = IH_MD.read_text(encoding="utf-8")
+    fm = yaml.safe_load(src.split("---")[1])
+    body = src
+    en_src = IH_EN.read_text(encoding="utf-8")
+    en_fm = yaml.safe_load(en_src.split("---")[1])
+    year = en_fm.get("title_year", season)
+
+    def team(jp):
+        h = club_html(jp, names, extra)
+        if h is None:
+            print(f"[要確認] インターハイ英語ページ: 学校の英語名が未登録 → {jp}（ページは書き換えません）")
+        return h
+
+    # 各県代表
+    reps = []
+    for line in _section(body, "各県代表").splitlines():
+        m = re.match(r"-\s*([^:：]+)[:：]\s*(.+)", line.strip())
+        if not m:
+            continue
+        pref = PREFS_EN.get(m.group(1).strip(), m.group(1).strip())
+        for chunk in m.group(2).split("、"):
+            note = re.search(r"[(（](.+?)[)）]\s*$", chunk)
+            jp = re.sub(r"[(（].*?[)）]\s*$", "", chunk).strip()
+            h = team(jp)
+            if h is None:
+                return
+            reps.append((pref, h, appearance_en(note.group(1) if note else "")))
+
+    # ラウンド（準々決勝以降）
+    rounds = []
+    for jp_head, en_head in [("準々決勝", "Quarter-finals"), ("準決勝", "Semi-finals"), ("決勝", "Final")]:
+        rows = []
+        for line in _section(body, jp_head).splitlines():
+            m = re.match(r"-\s*(.+?)\s+([0-9]+-[0-9]+(?:\(PK[0-9]+-[0-9]+\))?)\s+(.+)", line.strip())
+            if not m:
+                continue
+            a, sc, b = team(m.group(1).strip()), m.group(2), team(m.group(3).strip())
+            if a is None or b is None:
+                return
+            sc = sc.replace("(PK", " (pens ")
+            rows.append(f'<tr><td class="en-name" style="text-align:right;">{a}</td>'
+                        f'<td class="en-c"><strong>{esc(sc)}</strong></td><td class="en-name">{b}</td></tr>')
+        if rows:
+            rounds.append((en_head, rows))
+
+    results_html = ""
+    for head, rows in rounds:
+        results_html += f"""
+      <section class="lp-section">
+        <h2>{head}</h2>
+        <div class="en-scroll">
+        <table class="en-table">
+          <tbody>
+{chr(10).join("            " + r for r in rows)}
+          </tbody>
+        </table>
+        </div>
+      </section>"""
+
+    rep_rows = "\n".join(
+        f'            <tr><td>{esc(p)}</td><td class="en-name">{h}</td><td class="en-note">{esc(a)}</td></tr>'
+        for p, h, a in reps)
+    reps_html = f"""
+      <section class="lp-section" id="teams">
+        <h2>The {len(reps)} qualified schools</h2>
+        <p>One school per prefecture, with a second place for Tokyo, Kanagawa, Osaka and the host prefecture.</p>
+        <div class="en-scroll">
+        <table class="en-table">
+          <thead><tr><th>Prefecture</th><th class="en-name">School</th><th>Appearances</th></tr></thead>
+          <tbody>
+{rep_rows}
+          </tbody>
+        </table>
+        </div>
+      </section>"""
+
+    origins_html = f"""
+      <section class="lp-section" id="where-players-come-from">
+        <h2>Where the players come from</h2>
+        {md_to_html(_section(en_src, "origins"))}
+      </section>"""
+
+    url = f"{DOMAIN}/en/inter-high/"
+    title = f"Inter-High {year}: Japan's Summer High School Football Championship"
+    desc = (f"The {year} Inter-High School Championships in English: how Japan's summer high-school tournament works, "
+            "the results from the quarter-finals on, all qualified schools, and where their players were developed.")
+    intro = "        " + re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", md_to_html(_section(en_src, "intro")))).strip()
+    facts = ""
+    if en_fm.get("period_en"):
+        facts = (f'      <p class="en-note">{esc(en_fm["period_en"])} &middot; {esc(en_fm.get("venue_en", ""))} &middot; '
+                 f'{len(reps)} schools, knockout, 70-minute matches</p>\n')
+    result_html = f"""
+      <section class="lp-section" id="result">
+        <h2>The {year} final</h2>
+        {md_to_html(_section(en_src, "result"))}
+      </section>"""
+    tail = ('''      <section class="lp-section">
+        <h2>Notes</h2>
+'''
+            '        <p>Full bracket, every round and the top scorers (in Japanese): '
+            f'<a href="/tournaments/interhigh-{year}/" lang="ja">インターハイ{year}</a>.</p>\n'
+            '        <p>See also: <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> and '
+            '<a href="/en/premier-league/">Premier League standings</a>.</p>\n      </section>')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": f"Inter-High {year}", "item": url}]}, ensure_ascii=False)
+    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+                       crumb=f"Inter-High {year}", h1=f"Inter-High {year}: Japan's Summer High School Championship",
+                       intro=intro, legend=facts, tables=result_html + results_html + origins_html + reps_html, tail=tail)
+    dest = out_root / "en" / "inter-high" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    print(f"OK: {dest} を書きました（{len(reps)}校・{sum(len(r) for _, r in rounds)}試合）")
 
 
 def main():
@@ -523,6 +710,7 @@ def main():
     render_prince(out_root, teams, names, season)
     render_national_team(out_root, names, extra, players, season)
     render_pro_signings(out_root, names, extra, players, season)
+    render_interhigh(out_root, names, extra, season)
 
 
 if __name__ == "__main__":
