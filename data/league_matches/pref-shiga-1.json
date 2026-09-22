@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://shiga-fa-u18.com/order/1/2026/all",
   "sourceName": "滋賀県サッカー協会 公式",
-  "lastUpdated": "2026-09-22",
+  "lastUpdated": "2026-09-23",
   "teams": [
     {
       "name": "草津東",
@@ -110,14 +110,14 @@
     {
       "rank": 6,
       "team": "立命館守山",
-      "points": 18,
-      "played": 12,
-      "won": 6,
+      "points": 21,
+      "played": 13,
+      "won": 7,
       "drawn": 0,
       "lost": 6,
-      "gf": 28,
+      "gf": 35,
       "ga": 16,
-      "gd": 12
+      "gd": 19
     },
     {
       "rank": 7,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "伊吹",
       "points": 1,
-      "played": 12,
+      "played": 13,
       "won": 0,
       "drawn": 1,
-      "lost": 11,
+      "lost": 12,
       "gf": 10,
-      "ga": 36,
-      "gd": -26
+      "ga": 43,
+      "gd": -33
     }
   ],
   "matches": [
@@ -687,12 +687,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "立命館守山",
-      "hs": null,
-      "as": null,
-      "away": "伊吹",
-      "status": "scheduled"
+      "date": "2026-09-22",
+      "home": "伊吹",
+      "hs": 0,
+      "as": 7,
+      "away": "立命館守山",
+      "status": "played",
+      "venue": "⽴命館守⼭"
     },
     {
       "md": 0,
@@ -1097,12 +1098,12 @@
     },
     {
       "team": "立命館守山",
-      "pts": 18,
-      "played": 12,
-      "won": 6,
+      "pts": 21,
+      "played": 13,
+      "won": 7,
       "drawn": 0,
       "lost": 6,
-      "gf": 28,
+      "gf": 35,
       "ga": 16
     },
     {
@@ -1138,12 +1139,12 @@
     {
       "team": "伊吹",
       "pts": 1,
-      "played": 12,
+      "played": 13,
       "won": 0,
       "drawn": 1,
-      "lost": 11,
+      "lost": 12,
       "gf": 10,
-      "ga": 36
+      "ga": 43
     }
   ]
 }

@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E",
   "sourceName": "島根県サッカー協会 公式（SportsOnline）",
-  "lastUpdated": "2026-09-22",
+  "lastUpdated": "2026-09-23",
   "teams": [
     {
       "name": "立正大淞南B",
@@ -78,14 +78,14 @@
     {
       "rank": 4,
       "team": "開星",
-      "points": 17,
-      "played": 9,
-      "won": 5,
+      "points": 20,
+      "played": 10,
+      "won": 6,
       "drawn": 2,
       "lost": 2,
-      "gf": 23,
+      "gf": 26,
       "ga": 13,
-      "gd": 10
+      "gd": 13
     },
     {
       "rank": 5,
@@ -127,13 +127,13 @@
       "rank": 8,
       "team": "松江商業",
       "points": 0,
-      "played": 9,
+      "played": 10,
       "won": 0,
       "drawn": 0,
-      "lost": 9,
+      "lost": 10,
       "gf": 2,
-      "ga": 50,
-      "gd": -48
+      "ga": 53,
+      "gd": -51
     }
   ],
   "matches": [
@@ -644,12 +644,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "松江商業",
-      "hs": null,
-      "as": null,
-      "away": "開星",
-      "status": "scheduled"
+      "date": "2026-09-22",
+      "home": "開星",
+      "hs": 3,
+      "as": 0,
+      "away": "松江商業",
+      "status": "played",
+      "venue": "中海"
     },
     {
       "md": 0,
@@ -715,13 +716,13 @@
     },
     {
       "team": "開星",
-      "won": 5,
+      "won": 6,
       "lost": 2,
       "drawn": 2,
-      "pts": 17,
-      "gf": 23,
+      "pts": 20,
+      "gf": 26,
       "ga": 13,
-      "played": 9
+      "played": 10
     },
     {
       "team": "出雲",
@@ -756,12 +757,12 @@
     {
       "team": "松江商業",
       "won": 0,
-      "lost": 9,
+      "lost": 10,
       "drawn": 0,
       "pts": 0,
       "gf": 2,
-      "ga": 50,
-      "played": 9
+      "ga": 53,
+      "played": 10
     }
   ]
 }
