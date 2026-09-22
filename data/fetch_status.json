@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-22T10:05:08+09:00",
+  "updatedAt": "2026-09-22T10:05:20+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -451,7 +451,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 9,
+      "result_streak": 10,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['公式順位表の得失点差の合計が0でない（読み取りの誤り、または出典の誤り）', '芦屋学園A: 得失点差 公式12 ≠ 試合から13'] …",
@@ -777,9 +777,9 @@
       "source": "official",
       "sourceName": "新潟県サッカー協会 公式",
       "last_change": "2026-09-15",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-22",
+      "result_streak": 1,
+      "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (スコア欄が読めない: '試合中')",
       "result_date": "2026-09-22",
@@ -1050,9 +1050,9 @@
       "source": "official",
       "sourceName": "栃木県サッカー協会 公式（LSIN cloud）",
       "last_change": "2026-09-13",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-09-22",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-09-22"
     },
     "tokushima": {
