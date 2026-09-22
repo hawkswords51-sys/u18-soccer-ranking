@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-22T08:36:58+09:00",
+  "updatedAt": "2026-09-22T10:05:08+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -780,8 +780,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (スコア欄が読めない: '試合中')",
       "result_date": "2026-09-22",
       "last_updated": "2026-09-22"
     },
@@ -1035,8 +1035,8 @@
       "last_updated": "2026-09-21"
     },
     "tochigi": {
-      "result": "ok",
-      "result_note": "消化54試合に更新（検算一致）",
+      "result": "verify_failed",
+      "result_note": "検算不一致 矢板中央B.played 試合12≠表11; 矢板中央B.won 試合10≠表9 …（順位表と個別試合が未整合。待機）",
       "result_date": "2026-09-22",
       "season": "2026",
       "complete": false,
