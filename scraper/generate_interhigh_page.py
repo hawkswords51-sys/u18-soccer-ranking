@@ -1665,6 +1665,7 @@ def main():
             (f"{DOMAIN}/en/pro-signings/", "weekly", "0.7"),
             (f"{DOMAIN}/en/inter-high/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/ryukei-kashiwa/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/kashima-youth/", "monthly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
