@@ -624,6 +624,21 @@ jobs:
             echo "scraper/audit_pref_freshness.py がまだありません。スキップ。"
           fi
 
+      # ★ 参入戦の出場権が確定したチームを見張る（2026-09-23 新設）
+      #   参入戦ページの「出場決定チーム」の表は手書きで、12月まで1チームずつ埋まる。
+      #   ニュース頼みだと記事にならないリーグの確定を取りこぼすので、毎朝データから数える。
+      #   ⚠️ 赤にしない（常に exit 0）。表の更新が遅れているのはデータの不具合ではなく、
+      #      人が1行直せば済むため。ログの🟡で気づければよい。
+      - name: 参入戦の出場権が確定したチームを点検
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
+        run: |
+          if [ -f scraper/audit_premier_playoff.py ]; then
+            python scraper/audit_premier_playoff.py
+          else
+            echo "scraper/audit_premier_playoff.py がまだありません。スキップ。"
+          fi
+
       # ⚠️ continue-on-error を付けないこと。付けたら赤にならず、作った意味が無くなる
       #    （junior-soccer の403が continue-on-error で2か月気づかれなかった前例がある）。
       # ⚠️ ページ生成とコミットより後に置いてある。赤にしてもサイトの更新は止めない。
