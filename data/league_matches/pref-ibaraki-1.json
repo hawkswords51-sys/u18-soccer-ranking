@@ -3,31 +3,31 @@
   "season": "2026",
   "source": "https://www.goalnote.net/detail-standings.php?tid=18463",
   "sourceName": "茨城県サッカー協会 公式（GoalNote）",
-  "lastUpdated": "2026-09-23",
+  "lastUpdated": "2026-09-24",
   "teams": [
     {
       "name": "第一学院A",
       "short": "第一学院A"
     },
     {
-      "name": "東洋大牛久A",
-      "short": "東洋大牛久A"
-    },
-    {
       "name": "明秀日立A",
       "short": "明秀日立A"
+    },
+    {
+      "name": "東洋大牛久A",
+      "short": "東洋大牛久A"
     },
     {
       "name": "鹿島学園B",
       "short": "鹿島学園B"
     },
     {
-      "name": "水戸ホーリーホックユースA",
-      "short": "水戸ホーリーホ"
-    },
-    {
       "name": "水戸啓明A",
       "short": "水戸啓明A"
+    },
+    {
+      "name": "水戸ホーリーホックユースA",
+      "short": "水戸ホーリーホ"
     },
     {
       "name": "霞ヶ浦A",
@@ -50,10 +50,10 @@
     {
       "rank": 1,
       "team": "第一学院A",
-      "points": 32,
-      "played": 13,
+      "points": 33,
+      "played": 14,
       "won": 10,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 1,
       "gf": 37,
       "ga": 12,
@@ -61,111 +61,111 @@
     },
     {
       "rank": 2,
+      "team": "明秀日立A",
+      "points": 31,
+      "played": 14,
+      "won": 10,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 37,
+      "ga": 13,
+      "gd": 24
+    },
+    {
+      "rank": 3,
       "team": "東洋大牛久A",
-      "points": 30,
-      "played": 13,
+      "points": 31,
+      "played": 14,
       "won": 9,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 1,
       "gf": 23,
       "ga": 9,
       "gd": 14
     },
     {
-      "rank": 3,
-      "team": "明秀日立A",
-      "points": 28,
-      "played": 13,
-      "won": 9,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 35,
-      "ga": 13,
-      "gd": 22
-    },
-    {
       "rank": 4,
       "team": "鹿島学園B",
-      "points": 24,
-      "played": 13,
-      "won": 7,
+      "points": 27,
+      "played": 14,
+      "won": 8,
       "drawn": 3,
       "lost": 3,
-      "gf": 17,
+      "gf": 19,
       "ga": 13,
-      "gd": 4
+      "gd": 6
     },
     {
       "rank": 5,
-      "team": "水戸ホーリーホックユースA",
-      "points": 20,
-      "played": 13,
-      "won": 5,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 23,
-      "ga": 18,
-      "gd": 5
+      "team": "水戸啓明A",
+      "points": 22,
+      "played": 14,
+      "won": 7,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 22,
+      "ga": 19,
+      "gd": 3
     },
     {
       "rank": 6,
-      "team": "水戸啓明A",
-      "points": 19,
-      "played": 13,
-      "won": 6,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 18,
-      "ga": 19,
-      "gd": -1
+      "team": "水戸ホーリーホックユースA",
+      "points": 20,
+      "played": 14,
+      "won": 5,
+      "drawn": 5,
+      "lost": 4,
+      "gf": 23,
+      "ga": 20,
+      "gd": 3
     },
     {
       "rank": 7,
       "team": "霞ヶ浦A",
       "points": 12,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 3,
-      "lost": 7,
+      "lost": 8,
       "gf": 13,
-      "ga": 16,
-      "gd": -3
+      "ga": 20,
+      "gd": -7
     },
     {
       "rank": 8,
       "team": "牛久栄進A",
       "points": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
+      "lost": 10,
       "gf": 13,
-      "ga": 29,
-      "gd": -16
+      "ga": 30,
+      "gd": -17
     },
     {
       "rank": 9,
       "team": "水戸葵陵A",
-      "points": 6,
-      "played": 13,
-      "won": 2,
+      "points": 9,
+      "played": 14,
+      "won": 3,
       "drawn": 0,
       "lost": 11,
-      "gf": 11,
+      "gf": 12,
       "ga": 33,
-      "gd": -22
+      "gd": -21
     },
     {
       "rank": 10,
       "team": "鹿島A",
       "points": 4,
-      "played": 13,
+      "played": 14,
       "won": 1,
       "drawn": 1,
-      "lost": 11,
+      "lost": 12,
       "gf": 9,
-      "ga": 37,
-      "gd": -28
+      "ga": 39,
+      "gd": -30
     }
   ],
   "matches": [
@@ -175,17 +175,18 @@
       "home": "第一学院A",
       "hs": null,
       "as": null,
-      "away": "東洋大牛久A",
+      "away": "明秀日立A",
       "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-23",
       "home": "第一学院A",
-      "hs": null,
-      "as": null,
-      "away": "明秀日立A",
-      "status": "scheduled"
+      "hs": 0,
+      "as": 0,
+      "away": "東洋大牛久A",
+      "status": "played",
+      "venue": "高浜ｽﾎﾟｰﾂ広場"
     },
     {
       "md": 0,
@@ -198,21 +199,21 @@
     },
     {
       "md": 0,
-      "date": "2026-04-25",
-      "home": "第一学院A",
-      "hs": 0,
-      "as": 0,
-      "away": "水戸ホーリーホックユースA",
-      "status": "played",
-      "venue": "高浜ｽﾎﾟｰﾂ広場"
-    },
-    {
-      "md": 0,
       "date": "2026-09-06",
       "home": "第一学院A",
       "hs": 2,
       "as": 1,
       "away": "水戸啓明A",
+      "status": "played",
+      "venue": "高浜ｽﾎﾟｰﾂ広場"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "第一学院A",
+      "hs": 0,
+      "as": 0,
+      "away": "水戸ホーリーホックユースA",
       "status": "played",
       "venue": "高浜ｽﾎﾟｰﾂ広場"
     },
@@ -258,94 +259,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-19",
-      "home": "東洋大牛久A",
-      "hs": 2,
-      "as": 3,
-      "away": "第一学院A",
-      "status": "played",
-      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東洋大牛久A",
-      "hs": null,
-      "as": null,
-      "away": "明秀日立A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "東洋大牛久A",
-      "hs": 2,
-      "as": 1,
-      "away": "鹿島学園B",
-      "status": "played",
-      "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "東洋大牛久A",
-      "hs": 1,
-      "as": 1,
-      "away": "水戸ホーリーホックユースA",
-      "status": "played",
-      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東洋大牛久A",
-      "hs": null,
-      "as": null,
-      "away": "水戸啓明A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-22",
-      "home": "東洋大牛久A",
-      "hs": 4,
-      "as": 0,
-      "away": "霞ヶ浦A",
-      "status": "played",
-      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-06",
-      "home": "東洋大牛久A",
-      "hs": 1,
-      "as": 0,
-      "away": "牛久栄進A",
-      "status": "played",
-      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-03",
-      "home": "東洋大牛久A",
-      "hs": 1,
-      "as": 0,
-      "away": "水戸葵陵A",
-      "status": "played",
-      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-20",
-      "home": "東洋大牛久A",
-      "hs": 3,
-      "as": 0,
-      "away": "鹿島A",
-      "status": "played",
-      "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
       "date": "2026-05-09",
       "home": "明秀日立A",
       "hs": 0,
@@ -375,20 +288,21 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "明秀日立A",
-      "hs": null,
-      "as": null,
-      "away": "水戸ホーリーホックユースA",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-04",
       "home": "明秀日立A",
       "hs": 2,
       "as": 0,
       "away": "水戸啓明A",
+      "status": "played",
+      "venue": "明秀日立ﾌｯﾄﾎﾞｰﾙﾌｨｰﾙﾄﾞ高萩"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-23",
+      "home": "明秀日立A",
+      "hs": 2,
+      "as": 0,
+      "away": "水戸ホーリーホックユースA",
       "status": "played",
       "venue": "明秀日立ﾌｯﾄﾎﾞｰﾙﾌｨｰﾙﾄﾞ高萩"
     },
@@ -434,11 +348,109 @@
     },
     {
       "md": 0,
+      "date": "2026-04-19",
+      "home": "東洋大牛久A",
+      "hs": 2,
+      "as": 3,
+      "away": "第一学院A",
+      "status": "played",
+      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東洋大牛久A",
+      "hs": null,
+      "as": null,
+      "away": "明秀日立A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "東洋大牛久A",
+      "hs": 2,
+      "as": 1,
+      "away": "鹿島学園B",
+      "status": "played",
+      "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東洋大牛久A",
+      "hs": null,
+      "as": null,
+      "away": "水戸啓明A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "東洋大牛久A",
+      "hs": 1,
+      "as": 1,
+      "away": "水戸ホーリーホックユースA",
+      "status": "played",
+      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-22",
+      "home": "東洋大牛久A",
+      "hs": 4,
+      "as": 0,
+      "away": "霞ヶ浦A",
+      "status": "played",
+      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "東洋大牛久A",
+      "hs": 1,
+      "as": 0,
+      "away": "牛久栄進A",
+      "status": "played",
+      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-03",
+      "home": "東洋大牛久A",
+      "hs": 1,
+      "as": 0,
+      "away": "水戸葵陵A",
+      "status": "played",
+      "venue": "東洋大牛久高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-20",
+      "home": "東洋大牛久A",
+      "hs": 3,
+      "as": 0,
+      "away": "鹿島A",
+      "status": "played",
+      "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
       "date": "2026-04-29",
       "home": "鹿島学園B",
       "hs": 2,
       "as": 1,
       "away": "第一学院A",
+      "status": "played",
+      "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-04",
+      "home": "鹿島学園B",
+      "hs": 0,
+      "as": 1,
+      "away": "明秀日立A",
       "status": "played",
       "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -453,11 +465,11 @@
     },
     {
       "md": 0,
-      "date": "2026-05-04",
+      "date": "2026-03-21",
       "home": "鹿島学園B",
-      "hs": 0,
+      "hs": 2,
       "as": 1,
-      "away": "明秀日立A",
+      "away": "水戸啓明A",
       "status": "played",
       "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -468,16 +480,6 @@
       "hs": 2,
       "as": 2,
       "away": "水戸ホーリーホックユースA",
-      "status": "played",
-      "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-21",
-      "home": "鹿島学園B",
-      "hs": 2,
-      "as": 1,
-      "away": "水戸啓明A",
       "status": "played",
       "venue": "鹿島学園高校ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -522,22 +524,100 @@
     },
     {
       "md": 0,
+      "date": "2026-03-28",
+      "home": "水戸啓明A",
+      "hs": 0,
+      "as": 2,
+      "away": "第一学院A",
+      "status": "played",
+      "venue": "IFAﾌｯﾄﾎﾞｰﾙｾﾝﾀｰA"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "水戸啓明A",
+      "hs": 3,
+      "as": 2,
+      "away": "明秀日立A",
+      "status": "played",
+      "venue": "ひたちなか地区多目的A"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-09",
+      "home": "水戸啓明A",
+      "hs": 1,
+      "as": 1,
+      "away": "東洋大牛久A",
+      "status": "played",
+      "venue": "ひたちなか地区多目的A"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "水戸啓明A",
+      "hs": 3,
+      "as": 1,
+      "away": "鹿島学園B",
+      "status": "played",
+      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ人工芝"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "水戸啓明A",
+      "hs": null,
+      "as": null,
+      "away": "水戸ホーリーホックユースA",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "水戸啓明A",
+      "hs": 1,
+      "as": 0,
+      "away": "霞ヶ浦A",
+      "status": "played",
+      "venue": "SISファシリティ"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "水戸啓明A",
+      "hs": 3,
+      "as": 2,
+      "away": "牛久栄進A",
+      "status": "played",
+      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ天然芝"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "水戸啓明A",
+      "hs": 0,
+      "as": 1,
+      "away": "水戸葵陵A",
+      "status": "played",
+      "venue": "ひたちなか地区多目的B"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "水戸啓明A",
+      "hs": null,
+      "as": null,
+      "away": "鹿島A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "水戸ホーリーホックユースA",
       "hs": null,
       "as": null,
       "away": "第一学院A",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-12",
-      "home": "水戸ホーリーホックユースA",
-      "hs": 1,
-      "as": 2,
-      "away": "東洋大牛久A",
-      "status": "played",
-      "venue": "soccer junkey field〜葵〜"
     },
     {
       "md": 0,
@@ -548,6 +628,16 @@
       "away": "明秀日立A",
       "status": "played",
       "venue": "SISファシリティ"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "水戸ホーリーホックユースA",
+      "hs": 1,
+      "as": 2,
+      "away": "東洋大牛久A",
+      "status": "played",
+      "venue": "soccer junkey field〜葵〜"
     },
     {
       "md": 0,
@@ -609,109 +699,11 @@
     },
     {
       "md": 0,
-      "date": "2026-03-28",
-      "home": "水戸啓明A",
-      "hs": 0,
-      "as": 2,
-      "away": "第一学院A",
-      "status": "played",
-      "venue": "IFAﾌｯﾄﾎﾞｰﾙｾﾝﾀｰA"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "水戸啓明A",
-      "hs": 1,
-      "as": 1,
-      "away": "東洋大牛久A",
-      "status": "played",
-      "venue": "ひたちなか地区多目的A"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-12",
-      "home": "水戸啓明A",
-      "hs": 3,
-      "as": 2,
-      "away": "明秀日立A",
-      "status": "played",
-      "venue": "ひたちなか地区多目的A"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "水戸啓明A",
-      "hs": 3,
-      "as": 1,
-      "away": "鹿島学園B",
-      "status": "played",
-      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ人工芝"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "水戸啓明A",
-      "hs": null,
-      "as": null,
-      "away": "水戸ホーリーホックユースA",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "水戸啓明A",
-      "hs": 1,
-      "as": 0,
-      "away": "霞ヶ浦A",
-      "status": "played",
-      "venue": "SISファシリティ"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "水戸啓明A",
-      "hs": 3,
-      "as": 2,
-      "away": "牛久栄進A",
-      "status": "played",
-      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ天然芝"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "水戸啓明A",
-      "hs": 0,
-      "as": 1,
-      "away": "水戸葵陵A",
-      "status": "played",
-      "venue": "ひたちなか地区多目的B"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "水戸啓明A",
-      "hs": null,
-      "as": null,
-      "away": "鹿島A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-09-13",
       "home": "霞ヶ浦A",
       "hs": 1,
       "as": 2,
       "away": "第一学院A",
-      "status": "played",
-      "venue": "霞ヶ浦高校大室ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-21",
-      "home": "霞ヶ浦A",
-      "hs": 0,
-      "as": 0,
-      "away": "東洋大牛久A",
       "status": "played",
       "venue": "霞ヶ浦高校大室ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -727,11 +719,31 @@
     },
     {
       "md": 0,
+      "date": "2026-06-21",
+      "home": "霞ヶ浦A",
+      "hs": 0,
+      "as": 0,
+      "away": "東洋大牛久A",
+      "status": "played",
+      "venue": "霞ヶ浦高校大室ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
       "date": "2026-03-29",
       "home": "霞ヶ浦A",
       "hs": 0,
       "as": 1,
       "away": "鹿島学園B",
+      "status": "played",
+      "venue": "霞ヶ浦高校大室ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-23",
+      "home": "霞ヶ浦A",
+      "hs": 0,
+      "as": 4,
+      "away": "水戸啓明A",
       "status": "played",
       "venue": "霞ヶ浦高校大室ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -744,15 +756,6 @@
       "away": "水戸ホーリーホックユースA",
       "status": "played",
       "venue": "霞ヶ浦高校大室ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "霞ヶ浦A",
-      "hs": null,
-      "as": null,
-      "away": "水戸啓明A",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -794,6 +797,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "牛久栄進A",
+      "hs": null,
+      "as": null,
+      "away": "明秀日立A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-03-29",
       "home": "牛久栄進A",
       "hs": 0,
@@ -801,15 +813,6 @@
       "away": "東洋大牛久A",
       "status": "played",
       "venue": "ｾｷｼｮｳﾁｬﾚﾝｼﾞｽﾀｼﾞｱﾑ"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "牛久栄進A",
-      "hs": null,
-      "as": null,
-      "away": "明秀日立A",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -823,6 +826,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "牛久栄進A",
+      "hs": null,
+      "as": null,
+      "away": "水戸啓明A",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-06-20",
       "home": "牛久栄進A",
       "hs": 0,
@@ -830,15 +842,6 @@
       "away": "水戸ホーリーホックユースA",
       "status": "played",
       "venue": "ｾｷｼｮｳﾁｬﾚﾝｼﾞｽﾀｼﾞｱﾑ"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "牛久栄進A",
-      "hs": null,
-      "as": null,
-      "away": "水戸啓明A",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -881,15 +884,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "水戸葵陵A",
-      "hs": null,
-      "as": null,
-      "away": "東洋大牛久A",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-03-28",
       "home": "水戸葵陵A",
       "hs": 1,
@@ -897,6 +891,15 @@
       "away": "明秀日立A",
       "status": "played",
       "venue": "IFAﾌｯﾄﾎﾞｰﾙｾﾝﾀｰB"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "水戸葵陵A",
+      "hs": null,
+      "as": null,
+      "away": "東洋大牛久A",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -910,16 +913,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "水戸葵陵A",
-      "hs": 2,
-      "as": 3,
-      "away": "水戸ホーリーホックユースA",
-      "status": "played",
-      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ人工芝"
-    },
-    {
-      "md": 0,
       "date": "2026-09-19",
       "home": "水戸葵陵A",
       "hs": 0,
@@ -927,6 +920,16 @@
       "away": "水戸啓明A",
       "status": "played",
       "venue": "ひたちなか地区多目的C"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "水戸葵陵A",
+      "hs": 2,
+      "as": 3,
+      "away": "水戸ホーリーホックユースA",
+      "status": "played",
+      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ人工芝"
     },
     {
       "md": 0,
@@ -940,12 +943,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-23",
       "home": "水戸葵陵A",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "牛久栄進A",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "水戸ﾂｲﾝﾌｨｰﾙﾄﾞ人工芝"
     },
     {
       "md": 0,
@@ -968,16 +972,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "鹿島A",
-      "hs": 1,
-      "as": 3,
-      "away": "東洋大牛久A",
-      "status": "played",
-      "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
-    },
-    {
-      "md": 0,
       "date": "2026-06-21",
       "home": "鹿島A",
       "hs": 1,
@@ -988,20 +982,21 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-04-11",
       "home": "鹿島A",
-      "hs": null,
-      "as": null,
-      "away": "鹿島学園B",
-      "status": "scheduled"
+      "hs": 1,
+      "as": 3,
+      "away": "東洋大牛久A",
+      "status": "played",
+      "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
     },
     {
       "md": 0,
-      "date": "2026-03-28",
+      "date": "2026-09-23",
       "home": "鹿島A",
       "hs": 0,
-      "as": 3,
-      "away": "水戸ホーリーホックユースA",
+      "as": 2,
+      "away": "鹿島学園B",
       "status": "played",
       "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -1012,6 +1007,16 @@
       "hs": 1,
       "as": 2,
       "away": "水戸啓明A",
+      "status": "played",
+      "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-28",
+      "home": "鹿島A",
+      "hs": 0,
+      "as": 3,
+      "away": "水戸ホーリーホックユースA",
       "status": "played",
       "venue": "鹿島高校ｸﾞﾗｳﾝﾄﾞ"
     },
@@ -1048,103 +1053,103 @@
   "source_standings": [
     {
       "team": "第一学院A",
-      "pts": 32,
-      "played": 13,
+      "pts": 33,
+      "played": 14,
       "won": 10,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 1,
       "gf": 37,
       "ga": 12
     },
     {
+      "team": "明秀日立A",
+      "pts": 31,
+      "played": 14,
+      "won": 10,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 37,
+      "ga": 13
+    },
+    {
       "team": "東洋大牛久A",
-      "pts": 30,
-      "played": 13,
+      "pts": 31,
+      "played": 14,
       "won": 9,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 1,
       "gf": 23,
       "ga": 9
     },
     {
-      "team": "明秀日立A",
-      "pts": 28,
-      "played": 13,
-      "won": 9,
-      "drawn": 1,
+      "team": "鹿島学園B",
+      "pts": 27,
+      "played": 14,
+      "won": 8,
+      "drawn": 3,
       "lost": 3,
-      "gf": 35,
+      "gf": 19,
       "ga": 13
     },
     {
-      "team": "鹿島学園B",
-      "pts": 24,
-      "played": 13,
+      "team": "水戸啓明A",
+      "pts": 22,
+      "played": 14,
       "won": 7,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 17,
-      "ga": 13
+      "drawn": 1,
+      "lost": 6,
+      "gf": 22,
+      "ga": 19
     },
     {
       "team": "水戸ホーリーホックユースA",
       "pts": 20,
-      "played": 13,
+      "played": 14,
       "won": 5,
       "drawn": 5,
-      "lost": 3,
+      "lost": 4,
       "gf": 23,
-      "ga": 18
-    },
-    {
-      "team": "水戸啓明A",
-      "pts": 19,
-      "played": 13,
-      "won": 6,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 18,
-      "ga": 19
+      "ga": 20
     },
     {
       "team": "霞ヶ浦A",
       "pts": 12,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 3,
-      "lost": 7,
+      "lost": 8,
       "gf": 13,
-      "ga": 16
+      "ga": 20
     },
     {
       "team": "牛久栄進A",
       "pts": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
+      "lost": 10,
       "gf": 13,
-      "ga": 29
+      "ga": 30
     },
     {
       "team": "水戸葵陵A",
-      "pts": 6,
-      "played": 13,
-      "won": 2,
+      "pts": 9,
+      "played": 14,
+      "won": 3,
       "drawn": 0,
       "lost": 11,
-      "gf": 11,
+      "gf": 12,
       "ga": 33
     },
     {
       "team": "鹿島A",
       "pts": 4,
-      "played": 13,
+      "played": 14,
       "won": 1,
       "drawn": 1,
-      "lost": 11,
+      "lost": 12,
       "gf": 9,
-      "ga": 37
+      "ga": 39
     }
   ]
 }

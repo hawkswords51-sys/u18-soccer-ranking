@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "http://www.okinawa-soccer-habu.com/scores/table/161",
   "sourceName": "沖縄県サッカー協会 公式（波布リーグ）",
-  "lastUpdated": "2026-09-23",
+  "lastUpdated": "2026-09-24",
   "teams": [
     {
       "name": "那覇",
@@ -42,29 +42,53 @@
     {
       "rank": 1,
       "team": "沖縄SV",
-      "points": 19,
-      "played": 10,
-      "won": 6,
+      "points": 22,
+      "played": 11,
+      "won": 7,
       "drawn": 1,
       "lost": 3,
-      "gf": 24,
-      "ga": 10,
-      "gd": 14
+      "gf": 28,
+      "ga": 12,
+      "gd": 16
     },
     {
       "rank": 2,
-      "team": "那覇",
+      "team": "名護",
+      "points": 20,
+      "played": 10,
+      "won": 6,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 23,
+      "ga": 14,
+      "gd": 9
+    },
+    {
+      "rank": 3,
+      "team": "興南",
       "points": 19,
       "played": 10,
       "won": 6,
       "drawn": 1,
       "lost": 3,
-      "gf": 15,
-      "ga": 11,
-      "gd": 4
+      "gf": 28,
+      "ga": 9,
+      "gd": 19
     },
     {
-      "rank": 3,
+      "rank": 4,
+      "team": "那覇",
+      "points": 19,
+      "played": 11,
+      "won": 6,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 16,
+      "ga": 16,
+      "gd": 0
+    },
+    {
+      "rank": 5,
       "team": "那覇西",
       "points": 18,
       "played": 10,
@@ -74,30 +98,6 @@
       "gf": 25,
       "ga": 8,
       "gd": 17
-    },
-    {
-      "rank": 4,
-      "team": "名護",
-      "points": 17,
-      "played": 9,
-      "won": 5,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 18,
-      "ga": 13,
-      "gd": 5
-    },
-    {
-      "rank": 5,
-      "team": "興南",
-      "points": 16,
-      "played": 9,
-      "won": 5,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 18,
-      "ga": 9,
-      "gd": 9
     },
     {
       "rank": 6,
@@ -115,25 +115,25 @@
       "rank": 7,
       "team": "FC琉球OKINAWA 2nd",
       "points": 9,
-      "played": 10,
+      "played": 11,
       "won": 3,
       "drawn": 0,
-      "lost": 7,
-      "gf": 26,
-      "ga": 32,
-      "gd": -6
+      "lost": 8,
+      "gf": 28,
+      "ga": 36,
+      "gd": -8
     },
     {
       "rank": 8,
       "team": "FC琉球鹿島朝日",
       "points": 2,
-      "played": 10,
+      "played": 11,
       "won": 0,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 5,
-      "ga": 35,
-      "gd": -30
+      "ga": 45,
+      "gd": -40
     }
   ],
   "matches": [
@@ -157,12 +157,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-23",
       "home": "那覇",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 5,
       "away": "名護",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -553,12 +553,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-23",
       "home": "FC琉球OKINAWA 2nd",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 4,
       "away": "沖縄SV",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -589,12 +589,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-23",
       "home": "FC琉球鹿島朝日",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 10,
       "away": "興南",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -645,37 +645,37 @@
   "source_standings": [
     {
       "team": "沖縄SV",
-      "pts": 19,
-      "gf": 24,
-      "ga": 10,
+      "pts": 22,
+      "gf": 28,
+      "ga": 12,
       "rank": 1
+    },
+    {
+      "team": "名護",
+      "pts": 20,
+      "gf": 23,
+      "ga": 14,
+      "rank": 2
+    },
+    {
+      "team": "興南",
+      "pts": 19,
+      "gf": 28,
+      "ga": 9,
+      "rank": 3
     },
     {
       "team": "那覇",
       "pts": 19,
-      "gf": 15,
-      "ga": 11,
-      "rank": 2
+      "gf": 16,
+      "ga": 16,
+      "rank": 4
     },
     {
       "team": "那覇西",
       "pts": 18,
       "gf": 25,
       "ga": 8,
-      "rank": 3
-    },
-    {
-      "team": "名護",
-      "pts": 17,
-      "gf": 18,
-      "ga": 13,
-      "rank": 4
-    },
-    {
-      "team": "興南",
-      "pts": 16,
-      "gf": 18,
-      "ga": 9,
       "rank": 5
     },
     {
@@ -688,15 +688,15 @@
     {
       "team": "FC琉球OKINAWA 2nd",
       "pts": 9,
-      "gf": 26,
-      "ga": 32,
+      "gf": 28,
+      "ga": 36,
       "rank": 7
     },
     {
       "team": "FC琉球鹿島朝日",
       "pts": 2,
       "gf": 5,
-      "ga": 35,
+      "ga": 45,
       "rank": 8
     }
   ]

@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.ofa.or.jp/news/tournaments/high-school/",
   "sourceName": "大分県サッカー協会 公式",
-  "lastUpdated": "2026-09-23",
+  "lastUpdated": "2026-09-24",
   "teams": [
     {
       "name": "大分鶴崎",
@@ -50,70 +50,70 @@
     {
       "rank": 1,
       "team": "大分鶴崎",
-      "points": 24,
-      "played": 10,
-      "won": 8,
+      "points": 27,
+      "played": 11,
+      "won": 9,
       "drawn": 0,
       "lost": 2,
-      "gf": 41,
-      "ga": 18,
-      "gd": 23
+      "gf": 46,
+      "ga": 20,
+      "gd": 26
     },
     {
       "rank": 2,
       "team": "トリニータ2nd",
-      "points": 22,
-      "played": 10,
+      "points": 23,
+      "played": 11,
       "won": 6,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 0,
-      "gf": 26,
-      "ga": 13,
+      "gf": 30,
+      "ga": 17,
       "gd": 13
     },
     {
       "rank": 3,
       "team": "大分",
       "points": 20,
-      "played": 10,
+      "played": 11,
       "won": 6,
       "drawn": 2,
-      "lost": 2,
-      "gf": 24,
-      "ga": 9,
-      "gd": 15
+      "lost": 3,
+      "gf": 26,
+      "ga": 14,
+      "gd": 12
     },
     {
       "rank": 4,
       "team": "鶴崎工業",
-      "points": 14,
-      "played": 10,
+      "points": 15,
+      "played": 11,
       "won": 4,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 4,
-      "gf": 24,
-      "ga": 24,
+      "gf": 28,
+      "ga": 28,
       "gd": 0
     },
     {
       "rank": 5,
       "team": "柳ヶ浦",
-      "points": 13,
-      "played": 10,
+      "points": 14,
+      "played": 11,
       "won": 3,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 3,
-      "gf": 19,
-      "ga": 16,
+      "gf": 20,
+      "ga": 17,
       "gd": 3
     },
     {
       "rank": 6,
       "team": "大分西",
-      "points": 12,
-      "played": 10,
+      "points": 13,
+      "played": 11,
       "won": 4,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 6,
       "gf": 15,
       "ga": 31,
@@ -122,50 +122,50 @@
     {
       "rank": 7,
       "team": "中津東",
-      "points": 11,
-      "played": 10,
+      "points": 12,
+      "played": 11,
       "won": 3,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 16,
-      "ga": 17,
+      "gf": 17,
+      "ga": 18,
       "gd": -1
     },
     {
       "rank": 8,
       "team": "大分工業",
-      "points": 9,
-      "played": 10,
-      "won": 2,
+      "points": 12,
+      "played": 11,
+      "won": 3,
       "drawn": 3,
       "lost": 5,
-      "gf": 24,
-      "ga": 31,
-      "gd": -7
+      "gf": 28,
+      "ga": 32,
+      "gd": -4
     },
     {
       "rank": 9,
-      "team": "大分上野丘",
+      "team": "ヴェルスパ大分",
       "points": 8,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 2,
-      "lost": 6,
-      "gf": 18,
-      "ga": 32,
-      "gd": -14
-    },
-    {
-      "rank": 10,
-      "team": "ヴェルスパ大分",
-      "points": 7,
-      "played": 10,
-      "won": 2,
-      "drawn": 1,
       "lost": 7,
       "gf": 14,
       "ga": 30,
       "gd": -16
+    },
+    {
+      "rank": 10,
+      "team": "大分上野丘",
+      "points": 8,
+      "played": 11,
+      "won": 2,
+      "drawn": 2,
+      "lost": 7,
+      "gf": 19,
+      "ga": 36,
+      "gd": -17
     }
   ],
   "matches": [
@@ -289,11 +289,11 @@
     {
       "md": 12,
       "date": "2026-09-19",
-      "home": "トリニータ2nd",
-      "hs": null,
-      "as": null,
-      "away": "鶴崎工業",
-      "status": "scheduled"
+      "home": "鶴崎工業",
+      "hs": 4,
+      "as": 4,
+      "away": "トリニータ2nd",
+      "status": "played"
     },
     {
       "md": 17,
@@ -334,11 +334,11 @@
     {
       "md": 12,
       "date": "2026-09-19",
-      "home": "大分",
-      "hs": null,
-      "as": null,
-      "away": "大分鶴崎",
-      "status": "scheduled"
+      "home": "大分鶴崎",
+      "hs": 5,
+      "as": 2,
+      "away": "大分",
+      "status": "played"
     },
     {
       "md": 9,
@@ -523,11 +523,11 @@
     {
       "md": 12,
       "date": "2026-09-19",
-      "home": "中津東",
-      "hs": null,
-      "as": null,
-      "away": "柳ヶ浦",
-      "status": "scheduled"
+      "home": "柳ヶ浦",
+      "hs": 1,
+      "as": 1,
+      "away": "中津東",
+      "status": "played"
     },
     {
       "md": 9,
@@ -874,11 +874,11 @@
     {
       "md": 12,
       "date": "2026-09-20",
-      "home": "大分上野丘",
-      "hs": null,
-      "as": null,
-      "away": "大分工業",
-      "status": "scheduled"
+      "home": "大分工業",
+      "hs": 4,
+      "as": 1,
+      "away": "大分上野丘",
+      "status": "played"
     },
     {
       "md": 18,
@@ -964,11 +964,11 @@
     {
       "md": 12,
       "date": "2026-09-19",
-      "home": "ヴェルスパ大分",
-      "hs": null,
-      "as": null,
-      "away": "大分西",
-      "status": "scheduled"
+      "home": "大分西",
+      "hs": 0,
+      "as": 0,
+      "away": "ヴェルスパ大分",
+      "status": "played"
     },
     {
       "md": 15,
@@ -983,61 +983,61 @@
   "source_standings": [
     {
       "team": "柳ヶ浦",
-      "pts": 13,
-      "gf": 19,
-      "ga": 16
+      "pts": 14,
+      "gf": 20,
+      "ga": 17
     },
     {
       "team": "大分鶴崎",
-      "pts": 24,
-      "gf": 41,
-      "ga": 18
+      "pts": 27,
+      "gf": 46,
+      "ga": 20
     },
     {
       "team": "大分西",
-      "pts": 12,
+      "pts": 13,
       "gf": 15,
       "ga": 31
     },
     {
       "team": "大分",
       "pts": 20,
-      "gf": 24,
-      "ga": 9
+      "gf": 26,
+      "ga": 14
     },
     {
       "team": "中津東",
-      "pts": 11,
-      "gf": 16,
-      "ga": 17
+      "pts": 12,
+      "gf": 17,
+      "ga": 18
     },
     {
       "team": "大分工業",
-      "pts": 9,
-      "gf": 24,
-      "ga": 31
+      "pts": 12,
+      "gf": 28,
+      "ga": 32
     },
     {
       "team": "鶴崎工業",
-      "pts": 14,
-      "gf": 24,
-      "ga": 24
+      "pts": 15,
+      "gf": 28,
+      "ga": 28
     },
     {
       "team": "トリニータ2nd",
-      "pts": 22,
-      "gf": 26,
-      "ga": 13
+      "pts": 23,
+      "gf": 30,
+      "ga": 17
     },
     {
       "team": "大分上野丘",
       "pts": 8,
-      "gf": 18,
-      "ga": 32
+      "gf": 19,
+      "ga": 36
     },
     {
       "team": "ヴェルスパ大分",
-      "pts": 7,
+      "pts": 8,
       "gf": 14,
       "ga": 30
     }
