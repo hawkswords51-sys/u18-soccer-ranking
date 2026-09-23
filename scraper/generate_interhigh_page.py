@@ -1669,6 +1669,9 @@ def main():
             (f"{DOMAIN}/en/teams/aomori-yamada/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/maebashi-ikuei/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/kamimura-gakuen/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/ohtsu/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/shohei/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/teikyo-nagaoka/", "monthly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False

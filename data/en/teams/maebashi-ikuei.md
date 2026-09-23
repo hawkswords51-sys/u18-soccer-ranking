@@ -22,11 +22,11 @@ The club's slogan translates roughly as **"outrun them, win the second ball, win
 
 | Competition | Year | Notes |
 |---|---|---|
-| All Japan High School Soccer Tournament | 2017, 2024 | The winter championship. 2017 was a first, beating RKU Kashiwa 1-0; 2024 came seven years later |
-| Inter-High School Championships | 2009, 2022 | The summer national tournament — the school's first national title came here |
-| All Japan High School Soccer Tournament, runners-up | 2014, 2016 | Beaten by Seiryo and then by Aomori Yamada |
+| All Japan High School Soccer Tournament | 2017, 2024 | The winter championship — a first, then a second seven years later |
+| Inter-High School Championships | 2009, 2022 | The summer tournament — the school's first national title |
+| All Japan High School Soccer Tournament, runners-up | 2014, 2016 | Beaten by Seiryo, then by Aomori Yamada |
 
-Between 1997 and 2008 the club reached the national semi-finals four times without winning, a period Japanese reporters called its "silver collector" years. What followed is the point: the titles of 2017 and 2024 came from two completely different generations.
+The 2017 final was won 1-0 against RKU Kashiwa; the 2024 final, played in January 2025, went to penalties. Between 1997 and 2008 the club reached the national semi-finals four times without winning, a period Japanese reporters called its "silver collector" years. What followed is the point: the titles of 2017 and 2024 came from two completely different generations.
 
 ## history
 
