@@ -75,6 +75,24 @@
       :root:not([data-theme="light"]) .u16-table tr.u16-top .u16-rank { color:#fbbf24; }
     }
     .u16-src { margin:8px 0 0; font-size:0.76rem; opacity:0.72; line-height:1.7; }
+    /* 各リーグの得点ランキング（scorer_table.render_scorer_compact_html）。
+       ★色はテーマ変数だけで書く。--text-primary / --text-secondary は未定義で、
+         使うとダークモードで文字が消える（手順書 4-19b）。 */
+    .xsc-box { margin:14px 0 0; padding:12px 12px 8px; border:1px solid var(--border-color,#e2e8f0);
+      border-radius:10px; background:var(--bg-white,#fff); }
+    .xsc-h { margin:0 0 4px; font-size:0.95rem; color:var(--text-dark,#1a1a1a); }
+    .xsc-meta { margin:0 0 8px; font-size:0.76rem; color:var(--text-light,#666); line-height:1.7; }
+    .xsc-note { margin:8px 0 0; font-size:0.74rem; color:var(--text-light,#666); line-height:1.6; }
+    .xsc-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .xsc-table { width:100%; border-collapse:collapse; font-size:0.84rem;
+      color:var(--text-dark,#1a1a1a); }
+    .xsc-table th, .xsc-table td { border-bottom:1px solid var(--border-color,#e2e8f0);
+      padding:6px 6px; text-align:left; }
+    .xsc-table th { font-weight:600; opacity:0.85; white-space:nowrap; }
+    .xsc-table .xsc-rk { width:2.4em; text-align:center; opacity:0.75; }
+    .xsc-table .xsc-go { width:3.2em; text-align:center; font-weight:700; }
+    .xsc-table .xsc-tm { color:var(--text-light,#666); }
+    .xsc-table .xsc-nm { white-space:nowrap; }
     .u16-region-note { margin:0 0 14px; line-height:1.85; }
     .u16-pills { display:flex; flex-wrap:wrap; gap:10px; margin:4px 0 18px; }
     .u16-pills a { display:inline-block; padding:9px 18px; border-radius:999px; color:#fff;
@@ -187,6 +205,35 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/hokkaido/table/groups/15" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-21　出典：<a href="https://u16-rookie-league.com/hokkaido/ranking/groups/15/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">荒木勇人</td><td class="xsc-tm">北海</td><td class="xsc-go">9</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">藤野琉加</td><td class="xsc-tm">札幌光星</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">土井斗真</td><td class="xsc-tm">北海</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">寺戸迅</td><td class="xsc-tm">札幌創成</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">藤井洸太朗</td><td class="xsc-tm">札幌大谷</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">金谷海音</td><td class="xsc-tm">札幌大谷</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">小林明飛</td><td class="xsc-tm">北海道大谷室蘭</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">小川仁義</td><td class="xsc-tm">札幌大谷</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">小田島唯人</td><td class="xsc-tm">札幌光星</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">鈴木絢太</td><td class="xsc-tm">北海道大谷室蘭</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">竹内貴都</td><td class="xsc-tm">北海</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">小林凜音</td><td class="xsc-tm">北海</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">佐藤晄士</td><td class="xsc-tm">旭川実業</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">野木心偉</td><td class="xsc-tm">北海</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">善志優玄</td><td class="xsc-tm">札幌創成</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">七條颯太</td><td class="xsc-tm">札幌大谷</td><td class="xsc-go">2</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -206,6 +253,30 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/hokkaido/table/groups/16" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/hokkaido/ranking/groups/16/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">田村海斗</td><td class="xsc-tm">帯広大谷</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">鈴木隼斗</td><td class="xsc-tm">とわの森三愛</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">髙岡航希</td><td class="xsc-tm">帯広大谷</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">今維希</td><td class="xsc-tm">東海大札幌</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">佐竹希羅</td><td class="xsc-tm">帯広大谷</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">高瀬心温</td><td class="xsc-tm">北星学園大附</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">谷口陽</td><td class="xsc-tm">とわの森三愛</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">菅原優空</td><td class="xsc-tm">東海大札幌</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">佐藤颯太</td><td class="xsc-tm">北照</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">草野晄絆</td><td class="xsc-tm">北星学園大附</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">三井遥央</td><td class="xsc-tm">東海大札幌</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -226,6 +297,34 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/hokkaido/table/groups/83" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-14　出典：<a href="https://u16-rookie-league.com/hokkaido/ranking/groups/83/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">南出時生</td><td class="xsc-tm">クラーク</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">前田旺亮</td><td class="xsc-tm">北海道科学大学</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">野口蒼翔</td><td class="xsc-tm">北海道文教大附</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">二本栁希心</td><td class="xsc-tm">函館大学付属有斗</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">北垣志穏</td><td class="xsc-tm">クラーク</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">伊藤漣大</td><td class="xsc-tm">クラーク</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">長尾春万</td><td class="xsc-tm">クラーク</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">清水泰斗</td><td class="xsc-tm">札幌第一</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">栃﨑蒼斗</td><td class="xsc-tm">札幌第一</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">小竹湊人</td><td class="xsc-tm">札幌第一</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">織田寿祝</td><td class="xsc-tm">帯広北</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">伊藤颯</td><td class="xsc-tm">北海道文教大附</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">渡辺陸斗</td><td class="xsc-tm">北海道科学大学</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">小田陽太</td><td class="xsc-tm">北海道文教大附</td><td class="xsc-go">2</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">伊藤櫂</td><td class="xsc-tm">札幌第一</td><td class="xsc-go">2</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -257,6 +356,38 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/tohoku/table/groups/17" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-23　出典：<a href="https://u16-rookie-league.com/tohoku/ranking/groups/17/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">久和蒼真</td><td class="xsc-tm">尚志</td><td class="xsc-go">16</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">千田翔夢</td><td class="xsc-tm">聖和学園</td><td class="xsc-go">13</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">児玉樹吹</td><td class="xsc-tm">尚志</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">齋藤陽太</td><td class="xsc-tm">尚志</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">髙越遼平</td><td class="xsc-tm">尚志</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">髙橋虎太郎</td><td class="xsc-tm">東北学院</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">千葉純大</td><td class="xsc-tm">専大北上</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">長谷川蓮</td><td class="xsc-tm">仙台育英</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">高田悠志</td><td class="xsc-tm">学法石川</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">菅原遼瑠</td><td class="xsc-tm">山形明正</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">大知里風雅</td><td class="xsc-tm">帝京安積</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">渡部遥翔</td><td class="xsc-tm">東北学院</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">本田一紗</td><td class="xsc-tm">帝京安積</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">大原一真</td><td class="xsc-tm">東北学院</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">オガー悠仁</td><td class="xsc-tm">尚志</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">鈴木彪悟</td><td class="xsc-tm">八戸学院光星</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">保坂柊弥</td><td class="xsc-tm">八戸学院野辺地西</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">中原莉央</td><td class="xsc-tm">八戸学院野辺地西</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">齋藤蓮</td><td class="xsc-tm">聖和学園</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -282,6 +413,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/tohoku/table/groups/18" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/tohoku/ranking/groups/18/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">下山健志</td><td class="xsc-tm">盛岡商業</td><td class="xsc-go">10</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">佐藤颯海</td><td class="xsc-tm">花巻東</td><td class="xsc-go">9</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">木村蒼空</td><td class="xsc-tm">花巻東</td><td class="xsc-go">9</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">高橋優心</td><td class="xsc-tm">盛岡大附属</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">草皆謙信</td><td class="xsc-tm">秋田商業</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">齊藤将真</td><td class="xsc-tm">秋田商業</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">黒木宗平</td><td class="xsc-tm">ふたば未来学園</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">河原圭登</td><td class="xsc-tm">聖光学院</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">米田悠幸</td><td class="xsc-tm">秋田商業</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">小熊悠</td><td class="xsc-tm">ふたば未来学園</td><td class="xsc-go">5</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -311,6 +465,35 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kanto/table/groups/23" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-13　出典：<a href="https://u16-rookie-league.com/kanto/ranking/groups/23/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">北村岬輝</td><td class="xsc-tm">静岡学園</td><td class="xsc-go">10</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">吉澤心</td><td class="xsc-tm">静岡学園</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">安藤伶王</td><td class="xsc-tm">山梨学院</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">山口泰成</td><td class="xsc-tm">前橋育英</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">鈴木栄太朗</td><td class="xsc-tm">山梨学院</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">大川颯太</td><td class="xsc-tm">流経大柏</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">高橋一斗</td><td class="xsc-tm">日大藤沢</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">下澤一輝</td><td class="xsc-tm">西武台</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">大野悠斗</td><td class="xsc-tm">市立船橋</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">関田理人</td><td class="xsc-tm">市立船橋</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">髙野寛太郎</td><td class="xsc-tm">市立船橋</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">北林翔</td><td class="xsc-tm">西武台</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">青木悠</td><td class="xsc-tm">西武台</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">安居寛稀</td><td class="xsc-tm">流経大柏</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">塩崎猛琉</td><td class="xsc-tm">前橋育英</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">川端隼</td><td class="xsc-tm">日大藤沢</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -334,6 +517,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kanto/table/groups/24" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-13　出典：<a href="https://u16-rookie-league.com/kanto/ranking/groups/24/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">髙橋蕾我</td><td class="xsc-tm">成立学園</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">石倉翔愛</td><td class="xsc-tm">帝京</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">古澤怜眞</td><td class="xsc-tm">横浜創英</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">大蝶士竜</td><td class="xsc-tm">東海大相模</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">今井翔晴</td><td class="xsc-tm">東海大相模</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">岸惟空都</td><td class="xsc-tm">横浜創英</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">野口翔</td><td class="xsc-tm">昌平</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">相原粋斗</td><td class="xsc-tm">東海大高輪台</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">内野永聖</td><td class="xsc-tm">昌平</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">野本翼</td><td class="xsc-tm">東海大高輪台</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -357,6 +563,38 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kanto/table/groups/25" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-12　出典：<a href="https://u16-rookie-league.com/kanto/ranking/groups/25/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">矢島丈太郎</td><td class="xsc-tm">桐生第一</td><td class="xsc-go">12</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">佐々木佑悟</td><td class="xsc-tm">中央学院</td><td class="xsc-go">11</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">吉田育夢</td><td class="xsc-tm">中央学院</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">鍜治英虎</td><td class="xsc-tm">習志野</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">為清碧</td><td class="xsc-tm">中央学院</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">下村昇</td><td class="xsc-tm">清水桜が丘</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">幸島大地</td><td class="xsc-tm">清水桜が丘</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">門村音翔</td><td class="xsc-tm">中央学院</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">杉田嵩</td><td class="xsc-tm">成徳深谷</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">務台直希</td><td class="xsc-tm">習志野</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">松原琥輝</td><td class="xsc-tm">明秀日立</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">青木悠利</td><td class="xsc-tm">関東第一</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">飯塚進也</td><td class="xsc-tm">清水桜が丘</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">出羽智輝</td><td class="xsc-tm">関東第一</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">沼田陸斗</td><td class="xsc-tm">帝京第三</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">森勇翔</td><td class="xsc-tm">関東第一</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">岩崎絃希</td><td class="xsc-tm">佐野日大</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">橋本奏人</td><td class="xsc-tm">桐生第一</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">小栗虎太郎</td><td class="xsc-tm">桐生第一</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -388,6 +626,36 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/hokushinetsu/table/groups/19" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-23　出典：<a href="https://u16-rookie-league.com/hokushinetsu/ranking/groups/19/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">宮﨑央典</td><td class="xsc-tm">星稜</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">新井友翔</td><td class="xsc-tm">開志学園JSC</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">黒川懐斗</td><td class="xsc-tm">帝京長岡</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">余湖海来</td><td class="xsc-tm">日本文理</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">馬場園羚矢</td><td class="xsc-tm">日本文理</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">鎮守隆之介</td><td class="xsc-tm">丸岡</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">若山光来</td><td class="xsc-tm">金沢学院</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">倉持海碧</td><td class="xsc-tm">帝京長岡</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">木ノ下飛鷺</td><td class="xsc-tm">金沢学院</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">伊藤翔海</td><td class="xsc-tm">新潟明訓</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">生田目虎雅</td><td class="xsc-tm">金沢学院</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">福原尚都</td><td class="xsc-tm">鵬学園</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">篠崎爽佑</td><td class="xsc-tm">金沢学院</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">森川颯太</td><td class="xsc-tm">星稜</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">久本直人</td><td class="xsc-tm">星稜</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">鈴木湊士</td><td class="xsc-tm">都市大塩尻</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">野崎透暉</td><td class="xsc-tm">富山第一</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -413,6 +681,32 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/hokushinetsu/table/groups/20" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-23　出典：<a href="https://u16-rookie-league.com/hokushinetsu/ranking/groups/20/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">田中雅人</td><td class="xsc-tm">東京学館新潟</td><td class="xsc-go">9</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">荒居健</td><td class="xsc-tm">上田西</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">捧夢音</td><td class="xsc-tm">東京学館新潟</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">宮本晄太朗</td><td class="xsc-tm">日本航空石川</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">水持友羽</td><td class="xsc-tm">富山北部</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">阿部奏介</td><td class="xsc-tm">中越</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">金田英一郎</td><td class="xsc-tm">金沢</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">水野青波</td><td class="xsc-tm">東京学館新潟</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">和田知優</td><td class="xsc-tm">松本国際</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">二神榮則</td><td class="xsc-tm">開志国際</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">梅原陸斗</td><td class="xsc-tm">加茂暁星</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">石田怜大</td><td class="xsc-tm">上田西</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">村山剛虎</td><td class="xsc-tm">松本国際</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -442,6 +736,35 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/toukai/table/groups/21" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-21　出典：<a href="https://u16-rookie-league.com/toukai/ranking/groups/21/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">河原悠真</td><td class="xsc-tm">豊川高校</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">平田樹汰</td><td class="xsc-tm">東海大翔洋</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">高橋亮</td><td class="xsc-tm">東海大翔洋</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">磯西紘澄</td><td class="xsc-tm">帝京大可児</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">志賀一斗</td><td class="xsc-tm">帝京大可児</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">酢谷啓人</td><td class="xsc-tm">浜松開誠館</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">堀田剛史</td><td class="xsc-tm">藤枝東</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">寺本春</td><td class="xsc-tm">藤枝東</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">前川大樹</td><td class="xsc-tm">浜松開誠館</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">鈴木章太</td><td class="xsc-tm">常葉大橘</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">渡邊大河</td><td class="xsc-tm">清水東</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">村松陸羽</td><td class="xsc-tm">常葉大橘</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">横田陽斗</td><td class="xsc-tm">豊川高校</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">宇田心羽</td><td class="xsc-tm">東海大翔洋</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">松本優誠</td><td class="xsc-tm">藤枝明誠</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">田邊一成</td><td class="xsc-tm">磐田東</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -465,6 +788,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/toukai/table/groups/22" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/toukai/ranking/groups/22/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">藤田瑛士</td><td class="xsc-tm">三重</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">堀部雄太</td><td class="xsc-tm">名古屋</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">岩見楓太</td><td class="xsc-tm">岐阜工業</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">正木彩汰</td><td class="xsc-tm">三重</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">片山蒼真</td><td class="xsc-tm">長良</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">奥津悠吾</td><td class="xsc-tm">名古屋</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">伊藤真大</td><td class="xsc-tm">三重</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">神山拳図</td><td class="xsc-tm">三重</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">伊藤理人</td><td class="xsc-tm">海星</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">岩花瑛士</td><td class="xsc-tm">海星</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -494,6 +840,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kansai/table/groups/26" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/kansai/ranking/groups/26/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">松岡十和</td><td class="xsc-tm">東山</td><td class="xsc-go">13</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">中山蒼仁</td><td class="xsc-tm">京都橘</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">伊東雅葵</td><td class="xsc-tm">履正社</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">若狭郁斗</td><td class="xsc-tm">金光大阪</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">松原悠月</td><td class="xsc-tm">阪南大高</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">国谷亮汰</td><td class="xsc-tm">東海大仰星</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">佐藤海斗</td><td class="xsc-tm">東山</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">権藤永大</td><td class="xsc-tm">京都橘</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">島川虎士</td><td class="xsc-tm">東山</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">古島虎太朗</td><td class="xsc-tm">東山</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -517,6 +886,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kansai/table/groups/27" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/kansai/ranking/groups/27/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">亀田琥珀</td><td class="xsc-tm">神戸弘陵</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">久木山大河</td><td class="xsc-tm">桃山学院</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">福嶋隼都</td><td class="xsc-tm">立命館守山</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">矢野夏輝</td><td class="xsc-tm">近大和歌山</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">内藤佑斗</td><td class="xsc-tm">関西大学北陽</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">李昊亮</td><td class="xsc-tm">桃山学院</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">石田迅</td><td class="xsc-tm">立命館守山</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">永石真翔</td><td class="xsc-tm">近江</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">宮本侑波</td><td class="xsc-tm">滝川第二</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">前田直弘</td><td class="xsc-tm">大谷</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -546,6 +938,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/chugoku/table/groups/29" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-08-09　出典：<a href="https://u16-rookie-league.com/chugoku/ranking/groups/29/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">髙橋璃央</td><td class="xsc-tm">作陽学園</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">小籔樹希哉</td><td class="xsc-tm">就実</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">坂﨑怜和</td><td class="xsc-tm">高川学園</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">科野兼伸</td><td class="xsc-tm">岡山学芸館</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">梶原崇臣</td><td class="xsc-tm">瀬戸内</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">狩野十和</td><td class="xsc-tm">岡山学芸館</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">岩﨑竹杜</td><td class="xsc-tm">瀬戸内</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">大橋龍成</td><td class="xsc-tm">玉野光南</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">神尾碧登</td><td class="xsc-tm">玉野光南</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">實光謙心</td><td class="xsc-tm">広島皆実</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -568,6 +983,36 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/chugoku/table/groups/30" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-08-04　出典：<a href="https://u16-rookie-league.com/chugoku/ranking/groups/30/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">桒畑柊</td><td class="xsc-tm">沼田</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">宮脇煌毅</td><td class="xsc-tm">明誠</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">金澤龍絆</td><td class="xsc-tm">明誠</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">徳本悠眞</td><td class="xsc-tm">聖光</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">中原駿</td><td class="xsc-tm">大社</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">冨川颯斗</td><td class="xsc-tm">広島工大</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">石川司</td><td class="xsc-tm">広島新庄</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">今岡聖人</td><td class="xsc-tm">如水館</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">長谷川志輝</td><td class="xsc-tm">明誠</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">西田迅汰</td><td class="xsc-tm">明誠</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">中野暖己</td><td class="xsc-tm">如水館</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">脇本凌聖</td><td class="xsc-tm">広島工大</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">中村隆太</td><td class="xsc-tm">明誠</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">矢野翼</td><td class="xsc-tm">沼田</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">二瀬悠月</td><td class="xsc-tm">大社</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">山崎夢偉</td><td class="xsc-tm">沼田</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">達川絆太</td><td class="xsc-tm">広島新庄</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -591,6 +1036,31 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/shikoku/table/groups/31" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-07-17　出典：<a href="https://u16-rookie-league.com/shikoku/ranking/groups/31/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">平間奏丞</td><td class="xsc-tm">今治東</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">川上琥暉</td><td class="xsc-tm">今治東</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">宮地亜漣</td><td class="xsc-tm">帝京第五</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">寺山倖太</td><td class="xsc-tm">高知</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">市川海音</td><td class="xsc-tm">高知</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">北添樹</td><td class="xsc-tm">高知</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">黒木穂希</td><td class="xsc-tm">高知</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">坪平崇汰</td><td class="xsc-tm">徳島市立</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">蔵井亮介</td><td class="xsc-tm">徳島市立</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">中山誠凰</td><td class="xsc-tm">済美</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">大原快里</td><td class="xsc-tm">今治東</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">由良柊人</td><td class="xsc-tm">四学香川西</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -614,6 +1084,31 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/shikoku/table/groups/32" target="_blank" rel="noopener">大会公式 星取表</a><br>PK決着の試合を含みます（勝点は引き分け扱い）：高知中央(PK 1勝0敗)、徳島北(PK 1勝0敗)、高松北(PK 1勝0敗)、新田(PK 0勝1敗)、高知商業(PK 0勝1敗)、松山工業(PK 0勝1敗)、小津(PK 1勝1敗)、岡豊(PK 1勝1敗)、徳島科技(PK 1勝0敗)、高知工業(PK 0勝1敗)</p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/shikoku/ranking/groups/32/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">大住拓真</td><td class="xsc-tm">徳島北</td><td class="xsc-go">15</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">福川岳虎</td><td class="xsc-tm">高松北</td><td class="xsc-go">14</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">水田奏音</td><td class="xsc-tm">高知商業</td><td class="xsc-go">11</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">小林唯人</td><td class="xsc-tm">高知中央</td><td class="xsc-go">11</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">喜安凌平</td><td class="xsc-tm">新田</td><td class="xsc-go">10</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">竹中大遥</td><td class="xsc-tm">徳島北</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">岡崎遼太</td><td class="xsc-tm">松山工業</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">6</td><td class="xsc-nm">井口正宗</td><td class="xsc-tm">徳島北</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">7</td><td class="xsc-nm">三部虎太郎</td><td class="xsc-tm">岡豊</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">7</td><td class="xsc-nm">田村希</td><td class="xsc-tm">徳島北</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">7</td><td class="xsc-nm">加藤大翔</td><td class="xsc-tm">高知中央</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">7</td><td class="xsc-nm">関谷愛希</td><td class="xsc-tm">新田</td><td class="xsc-go">6</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -643,6 +1138,33 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kyushudanji/table/groups/33" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-21　出典：<a href="https://u16-rookie-league.com/kyushudanji/ranking/groups/33/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">長野瑛斗</td><td class="xsc-tm">国見</td><td class="xsc-go">8</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">辻凰士郎</td><td class="xsc-tm">佐賀東</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">玉城陽</td><td class="xsc-tm">日章学園</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">伊藤凛人</td><td class="xsc-tm">福大若葉</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">渕上太雅</td><td class="xsc-tm">佐賀東</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">犬束亮介</td><td class="xsc-tm">大津</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">福田翔大</td><td class="xsc-tm">神村学園</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">瀨戸口樹</td><td class="xsc-tm">鹿児島城西</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">飯野結喜</td><td class="xsc-tm">日章学園</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">田淵丈道</td><td class="xsc-tm">東福岡</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">入江魁生</td><td class="xsc-tm">鹿児島城西</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">神崎樹</td><td class="xsc-tm">福大若葉</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">濵本拓宏</td><td class="xsc-tm">大津</td><td class="xsc-go">3</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">池田涼真</td><td class="xsc-tm">大津</td><td class="xsc-go">3</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
 
           <div class="u16-div">
@@ -666,6 +1188,29 @@
             </table>
             </div>
             <p class="u16-src">出典：<a href="https://u16-rookie-league.com/kyushudanji/table/groups/34" target="_blank" rel="noopener">大会公式 星取表</a></p>
+
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 2026-09-22　出典：<a href="https://u16-rookie-league.com/kyushudanji/ranking/groups/34/2026" rel="nofollow noopener" target="_blank">大会公式 得点ランキング</a></p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+<tr><td class="xsc-rk">1</td><td class="xsc-nm">岩﨑遥月</td><td class="xsc-tm">宮崎日大</td><td class="xsc-go">12</td></tr>
+<tr><td class="xsc-rk">2</td><td class="xsc-nm">鞍掛颯海</td><td class="xsc-tm">鹿児島</td><td class="xsc-go">7</td></tr>
+<tr><td class="xsc-rk">3</td><td class="xsc-nm">西鍋海心</td><td class="xsc-tm">東海大福岡</td><td class="xsc-go">6</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">田澤陸人</td><td class="xsc-tm">筑紫台</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">塩田伊織</td><td class="xsc-tm">東海大星翔</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">4</td><td class="xsc-nm">淵上大雅</td><td class="xsc-tm">熊本国府</td><td class="xsc-go">5</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">立野新</td><td class="xsc-tm">鵬翔</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">泉田優真</td><td class="xsc-tm">東海大福岡</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">永井颯</td><td class="xsc-tm">熊本国府</td><td class="xsc-go">4</td></tr>
+<tr><td class="xsc-rk">5</td><td class="xsc-nm">山元天翔</td><td class="xsc-tm">東海大星翔</td><td class="xsc-go">4</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、入替戦・プレーオフは含みません。</p>
+            </div>
           </div>
         </div>
       </section>
