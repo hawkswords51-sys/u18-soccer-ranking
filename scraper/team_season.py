@@ -25,6 +25,10 @@ from datetime import date
 from html import escape as html_escape
 from pathlib import Path
 
+# ★「今日」は必ず日本時間で取る。date.today() は Actions（UTC）で前日になる（scraper/jst.py 参照）。
+#   上の `from datetime import date` は 66行目の曜日計算で使っているので消さないこと。
+from jst import today as _jst_today
+
 _WEEK = ("月", "火", "水", "木", "金", "土", "日")
 
 # 図のひな形。上＝相手ゴール側。
@@ -164,7 +168,15 @@ def _results_html(ctx: dict, short: str, league_label: str) -> str:
             f'<td class="c"><span class="ts-res {cls}">{mark}</span> <b>{_e(gf)}-{_e(ga)}</b></td>'
             f'<td class="ts-sc">{sc}</td><td class="c">{link}</td></tr>')
 
-    nxt = [m for m in mine if m.get("status") != "played" and m.get("date") and not m.get("dateTbd")]
+    # [2026-09-23] 日付が過ぎた未消化試合は「次の試合」に出さない。
+    # 延期なのか結果が未反映なのかに関わらず、過去の日付は「次の試合」ではない。
+    # 出典（JFA）が延期試合の日付を古いまま持っていることがあり、
+    # データ側に dateTbd を手で書いても fetch_jfa.py が毎回作り直すため残らない。
+    # 日付は "YYYY-MM-DD" 固定なので文字列比較で足りる。
+    _today = _jst_today().isoformat()
+    nxt = [m for m in mine
+           if m.get("status") != "played" and m.get("date")
+           and not m.get("dateTbd") and m["date"] >= _today]
     nxt.sort(key=lambda m: m["date"])
     next_html = ""
     if nxt:
