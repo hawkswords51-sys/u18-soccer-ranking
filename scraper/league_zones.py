@@ -20,6 +20,7 @@
     python scraper/league_zones.py premier-east
 """
 from pathlib import Path
+import json
 import re
 
 try:
@@ -78,6 +79,39 @@ def _premier_team_names(all_teams):
         if "プレミア" in lg:
             out.add((t.get("name") or "").strip())
     return out
+
+
+def premier_teams_from_league_matches(base_dir=None):
+    """data/league_matches/premier-{east,west}.json に出てくるチーム名を
+    resolve_zones(all_teams=...) に渡せる形で返す。
+
+    [2026-09-23] league_matches の名前（例「流通経済大柏(B)」）と teams.json の名前
+    （例「流通経済大学付属柏高校2nd」）は世界が違う。
+      teams.json どうし     … 「流通経済大学付属柏高校2nd」→「流通経済大学付属柏高校」で一致する
+      league_matches どうし … 「流通経済大柏(B)」→「流通経済大柏」で一致する
+      混ぜると             … 「流通経済大柏」≠「流通経済大学付属柏高校」で一致しない
+    cross_table.py は league_matches の名前で順位を作るので、比べる相手も
+    league_matches から取る。そうすれば変換表なしで済む。
+    """
+    root = Path(base_dir) if base_dir else ZONES_PATH.parent.parent
+    names = set()
+    for lg in ("premier-east", "premier-west"):
+        p = root / "data" / "league_matches" / f"{lg}.json"
+        if not p.exists():
+            continue
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for t in d.get("teams") or []:
+            n = t if isinstance(t, str) else (t or {}).get("name")
+            if n:
+                names.add(str(n).strip())
+        for m in d.get("matches") or []:
+            for n in ((m or {}).get("home"), (m or {}).get("away")):
+                if n:
+                    names.add(str(n).strip())
+    return [{"name": n, "league": "プレミアリーグ"} for n in sorted(names)]
 
 
 def resolve_zones(slug, sorted_teams, all_teams=None):

@@ -327,8 +327,14 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
     # 昇格圏（地域プリンス参入戦の出場圏）の色分け。
     # data/league_zones.yml にこの slug の定義が無ければ空＝従来どおり色は付かない。
     try:
-        from league_zones import resolve_zones, render_zone_legend_html
-        zmap = resolve_zones(slug, [{"name": n} for n in order])
+        from league_zones import (resolve_zones, render_zone_legend_html,
+                                  premier_teams_from_league_matches)
+        # [2026-09-23] all_teams を渡さないと「プレミア所属チームのセカンドチームは
+        # 参入戦に出られない」判定が働かず、順位表と戦績表で色が食い違っていた
+        # （プリンス東北で順位表＝3位 聖和学園／戦績表＝2位 青森山田セカンド）。
+        # order は league_matches の名前なので、比べる相手も league_matches から取る。
+        zmap = resolve_zones(slug, [{"name": n} for n in order],
+                             premier_teams_from_league_matches(_MATCH_DIR.parent.parent))
         # 15リーグページは順位表の直下に既に凡例があるので、ここでは出さない
         # （県ページはこの戦績表が唯一の順位表なので出す）
         zone_legend = render_zone_legend_html(slug, zmap) if is_pref else ""
