@@ -22,6 +22,10 @@ from html import escape as html_escape
 from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
 
+# 各リーグの順位表の直下に置く得点ランキング（1ページに20枚並ぶので compact 版）。
+# 既存の render_scorer_ranking_html() は id と <style> を吐くので使えない。
+from scorer_table import render_scorer_compact_html
+
 
 def jst_today():
     return _dt.now(_tz(_td(hours=9))).date()
@@ -164,6 +168,7 @@ def render_table(div, links):
             </table>
             </div>
             <p class="u16-src">出典：{src}{note}</p>
+{render_scorer_compact_html("u16-" + div["id"])}
           </div>'''
 
 
@@ -349,6 +354,24 @@ def build_html(data, links):
       :root:not([data-theme="light"]) .u16-table tr.u16-top .u16-rank {{ color:#fbbf24; }}
     }}
     .u16-src {{ margin:8px 0 0; font-size:0.76rem; opacity:0.72; line-height:1.7; }}
+    /* 各リーグの得点ランキング（scorer_table.render_scorer_compact_html）。
+       ★色はテーマ変数だけで書く。--text-primary / --text-secondary は未定義で、
+         使うとダークモードで文字が消える（手順書 4-19b）。 */
+    .xsc-box {{ margin:14px 0 0; padding:12px 12px 8px; border:1px solid var(--border-color,#e2e8f0);
+      border-radius:10px; background:var(--bg-white,#fff); }}
+    .xsc-h {{ margin:0 0 4px; font-size:0.95rem; color:var(--text-dark,#1a1a1a); }}
+    .xsc-meta {{ margin:0 0 8px; font-size:0.76rem; color:var(--text-light,#666); line-height:1.7; }}
+    .xsc-note {{ margin:8px 0 0; font-size:0.74rem; color:var(--text-light,#666); line-height:1.6; }}
+    .xsc-scroll {{ overflow-x:auto; -webkit-overflow-scrolling:touch; }}
+    .xsc-table {{ width:100%; border-collapse:collapse; font-size:0.84rem;
+      color:var(--text-dark,#1a1a1a); }}
+    .xsc-table th, .xsc-table td {{ border-bottom:1px solid var(--border-color,#e2e8f0);
+      padding:6px 6px; text-align:left; }}
+    .xsc-table th {{ font-weight:600; opacity:0.85; white-space:nowrap; }}
+    .xsc-table .xsc-rk {{ width:2.4em; text-align:center; opacity:0.75; }}
+    .xsc-table .xsc-go {{ width:3.2em; text-align:center; font-weight:700; }}
+    .xsc-table .xsc-tm {{ color:var(--text-light,#666); }}
+    .xsc-table .xsc-nm {{ white-space:nowrap; }}
     .u16-region-note {{ margin:0 0 14px; line-height:1.85; }}
     .u16-pills {{ display:flex; flex-wrap:wrap; gap:10px; margin:4px 0 18px; }}
     .u16-pills a {{ display:inline-block; padding:9px 18px; border-radius:999px; color:#fff;

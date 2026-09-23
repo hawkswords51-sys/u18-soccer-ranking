@@ -335,6 +335,21 @@ jobs:
             echo "scraper/fetch_u16_rookie.py がまだありません。スキップ。"
           fi
 
+      # ★ U-16ルーキーリーグ 得点ランキング（2026-09-23 新設）
+      #   大会公式が20リーグそれぞれに持っているので、/u16/ の各順位表の直下に載せる。
+      #   ⚠️ URLは /{地域}/ranking/groups/{ID}/{年}。index 版は ID を無視して
+      #      別リーグを返す（関東でAのつもりがBになる）。詳細は fetch_u16_scorers.py の冒頭。
+      - name: U-16ルーキーリーグ 得点ランキングを更新
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_u16_scorers.py ]; then
+            python scraper/fetch_u16_scorers.py
+          else
+            echo "scraper/fetch_u16_scorers.py がまだありません。スキップ。"
+          fi
+
       # ★ 県予選トーナメント（選手権・インターハイ等）の組み合わせ・結果を自動更新
       #   対象: data/tournaments/*.md のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
       #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）

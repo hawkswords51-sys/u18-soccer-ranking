@@ -163,6 +163,65 @@ def render_assist_ranking_html(slug: str, limit: int = 300, min_assists: int = N
 """
 
 
+def render_scorer_compact_html(slug: str, top_n: int = 10) -> str:
+    """1ページに何枚も並べる用の小さい得点ランキング（2026-09-23 新設）。
+
+    既存の render_scorer_ranking_html() は「1ページに1つ」の前提で、
+    <style> と id="scorer-ranking" と <h2> を吐く。/u16/ のように20枚並べると
+    id が20回重複してしまうので、こちらを使う。
+
+      - <style> も <h2> も id も出さない（スタイルは呼び出し側が1回だけ置く）
+      - 上位 top_n 人＋同点は全員（dense rank なので rank<=N では切らない）
+      - データが無ければ "" を返すので、揃っていないリーグがあってもページは壊れない
+
+    ★色は必ずテーマ変数で書く（手順書 4-19b）。--text-primary / --text-secondary は
+      **存在しない**変数で、使うとダークモードで文字が消える。
+    """
+    path = _DIR / f"{slug}.json"
+    if not path.exists():
+        return ""
+    try:
+        d = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    scorers = d.get("scorers", [])
+    if not scorers:
+        return ""
+
+    # 上位 top_n 人＋同点は全員（出典側で既に切ってあっても、ここでも同じ規則で守る）
+    cut = min(top_n, len(scorers))
+    while cut < len(scorers) and scorers[cut].get("rank") == scorers[cut - 1].get("rank"):
+        cut += 1
+
+    rows = "\n".join(
+        f'<tr><td class="xsc-rk">{s["rank"]}</td>'
+        f'<td class="xsc-nm">{_esc(s["name"])}</td>'
+        f'<td class="xsc-tm">{_esc(s.get("team", ""))}</td>'
+        f'<td class="xsc-go">{s["goals"]}</td></tr>'
+        for s in scorers[:cut]
+    )
+    src = d.get("source", "")
+    src_label = d.get("sourceLabel") or "出典"
+    src_html = (f'　出典：<a href="{_esc(src)}" rel="nofollow noopener" target="_blank">'
+                f'{_esc(src_label)}</a>') if src else ""
+    note = _esc(d.get("note", ""))
+
+    return f"""
+            <div class="xsc-box">
+              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <p class="xsc-meta">最終更新 {_esc(d.get('lastUpdated', ''))}{src_html}</p>
+              <div class="xsc-scroll">
+              <table class="xsc-table">
+                <thead><tr><th class="xsc-rk">順</th><th>選手</th><th>チーム</th><th class="xsc-go">得点</th></tr></thead>
+                <tbody>
+{rows}
+                </tbody>
+              </table>
+              </div>
+              <p class="xsc-note">{note}</p>
+            </div>"""
+
+
 if __name__ == "__main__":
     import sys
     print(render_scorer_ranking_html(sys.argv[1] if len(sys.argv) > 1 else "prince-hokkaido"))
