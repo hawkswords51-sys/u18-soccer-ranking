@@ -9,9 +9,11 @@ data/u16/leagues-2026.json を読み込み、/u16/ ページを生成する。
 - チーム名は data/team-profiles にページがあれば自動で内部リンク
 - sitemap.xml への登録（idempotent）
 
-★安全装置：順位表は「勝点=勝×3+分」「試合数=勝+分+敗」「得点合計=失点合計」
+★安全装置：順位表は「勝点が勝敗数と合うか」「試合数=勝+分+敗」「得点合計=失点合計」
   「勝数合計=敗数合計」「順位順で勝点が単調非増加」を生成時に検算し、
   合わないリーグは**そのリーグだけ描画しない**（誤データを載せない）。
+  ★勝点の式はリーグで違う（div["ptsRule"]）。18リーグは 3/1/0、四国4表は 4/2/1。
+    四国の 2nd stage は前期の勝点を持ち越すので、リーグ内合計の検算は免除する。
 
 ★JSONの divisions の並び順が、そのまま地域内の表示順になる（1部を先に置く）。
 依存：標準ライブラリのみ
@@ -55,7 +57,7 @@ REGION_NOTES = {
     "東海": "1部・2部各10チーム。全国大会の出場枠の決め方は大会概要に記載がありません（2025年度は2枠）。",
     "関西": "G1・G2各10チーム。「G1リーグの1位は関西代表として全国大会の出場権を獲得する」＝1枠です。下部に登竜門U-16リーグがあります。",
     "中国": "N1が10チーム、N2が9チーム。「N-1の1位＋プレーオフ勝者」が全国大会へ進む2枠です。",
-    "四国": "S1・S2の2層。「S1の1位チームが全国大会の出場権を得る」＝1枠。S2はPK決着の試合があり、当サイトでは勝点上は引き分けとして扱っています。",
+    "四国": "S1・S2の2層。「S1の1位チームが全国大会の出場権を得る」＝1枠。S1は前期に8チームで1回戦総当たりを行い、後期は上位4チーム・下位4チームに分かれてリーグ戦をします（後期の順位表は前期の勝点を持ち越します）。四国だけ勝点の計算が他地域と違い、勝4・PK勝2・PK負1・敗0です。",
     "九州": "球蹴男児U-16リーグ。D1・D2各10チーム。「D1リーグの1位、2位が自動的に九州第一・第二代表として全国大会の出場権を獲得する」＝2枠です。",
 }
 
@@ -111,20 +113,36 @@ def verify(div):
     teams = div.get("teams", [])
     if not teams:
         return ["チームが0件"]
-    gf = sum(t["gf"] for t in teams)
-    ga = sum(t["ga"] for t in teams)
-    if gf != ga:
-        problems.append(f"得点合計{gf} != 失点合計{ga}")
-    w = sum(t["w"] for t in teams)
-    l = sum(t["l"] for t in teams)
-    if w != l:
-        problems.append(f"勝数合計{w} != 敗数合計{l}")
+    # ★勝点の計算式はリーグで違う（2026-09-23）。
+    #   18リーグ … 勝3・分1・敗0（ptsRule "3/1/0"）
+    #   四国4表 … 勝4・PK勝2・PK負1・敗0（ptsRule "4/2/1"）。引分の欄が無く PK勝/PK負を持つ。
+    #   ptsRule が無い古いJSONは 3/1/0 とみなす（後方互換）。
+    rule = div.get("ptsRule", "3/1/0")
+    # 四国の 2nd stage は前期からの持ち越しがあるので、リーグ内合計の検算は成り立たない
+    carry = any("pts1st" in t for t in teams)
+    if not carry:
+        gf = sum(t["gf"] for t in teams)
+        ga = sum(t["ga"] for t in teams)
+        if gf != ga:
+            problems.append(f"得点合計{gf} != 失点合計{ga}")
+        w = sum(t["w"] for t in teams)
+        l = sum(t["l"] for t in teams)
+        if w != l:
+            problems.append(f"勝数合計{w} != 敗数合計{l}")
     prev_pts = None
     for t in teams:
-        if t["pts"] != t["w"] * 3 + t["d"]:
-            problems.append(f"{t['name']}: 勝点が勝×3+分と不一致")
-        if t["p"] != t["w"] + t["d"] + t["l"]:
-            problems.append(f"{t['name']}: 試合数が勝分敗の合計と不一致")
+        if rule == "4/2/1":
+            earned = t["w"] * 4 + t.get("pkw", 0) * 2 + t.get("pkl", 0)
+            expect = t.get("pts1st", 0) + earned if carry else earned
+            if t["pts"] != expect:
+                problems.append(f"{t['name']}: 勝点が勝×4+PK勝×2+PK負と不一致")
+            if t["p"] != t["w"] + t["l"] + t.get("pkw", 0) + t.get("pkl", 0):
+                problems.append(f"{t['name']}: 試合数が勝敗PKの合計と不一致")
+        else:
+            if t["pts"] != t["w"] * 3 + t["d"]:
+                problems.append(f"{t['name']}: 勝点が勝×3+分と不一致")
+            if t["p"] != t["w"] + t["d"] + t["l"]:
+                problems.append(f"{t['name']}: 試合数が勝分敗の合計と不一致")
         if prev_pts is not None and t["pts"] > prev_pts:
             problems.append(f"{t['name']}: 順位の並びで勝点が増えている")
         prev_pts = t["pts"]
@@ -135,7 +153,10 @@ def render_table(div, links):
     rows = []
     n = len(div["teams"])
     for t in div["teams"]:
-        gd = t["gf"] - t["ga"]
+        # ★得失点差は公式の列をそのまま持っている場合はそれを使う（2026-09-23）。
+        #   四国の 2nd stage は「得失点差は前期からの合計・得点/失点は後期のみ」なので
+        #   gf-ga とは一致しない。持っていない古いJSONのために引き算も残す。
+        gd = t["gd"] if "gd" in t else t["gf"] - t["ga"]
         gd_s = f"+{gd}" if gd > 0 else str(gd)
         cls = ""
         if t["rank"] == 1:
@@ -248,10 +269,11 @@ def build_html(data, links):
          "枠数は固定ではなく、「過去5年間の成績をポイント制にして各地域の出場枠を決定する」仕組みです（北信越の大会概要より）。"
          "2026年度の枠の全体内訳は、現時点で大会公式サイトに掲載されていません。"),
         ("順位表の数字はどこから取っていますか？",
-         "大会公式サイト（u16-rookie-league.com）の各リーグの星取表です。"
-         "公式の星取表には勝点や勝敗数の集計欄がないため、当サイトでは星取表の全セルから勝点・勝敗数・得失点を自前で計算しています。"
-         "掲載前に「星取表の上下でスコアが裏返しになっているか」「勝点＝勝×3＋分」「リーグ内の得点合計＝失点合計」などを"
-         "機械的に検算し、一致したデータだけを掲載しています。"),
+         "大会公式サイト（u16-rookie-league.com）の各地域の順位表ページです。"
+         "順位・勝点・試合数・勝敗数・得点・失点・得失点差は、公式の数字をそのまま載せています。"
+         "掲載前に「勝点が勝敗数と合うか」「試合数＝勝＋分＋敗」「リーグ内の得点合計＝失点合計」を機械的に検算し、"
+         "合わないリーグは更新せず前回の内容を残します。"
+         "なお四国だけ勝点の計算が違い（勝4・PK勝2・PK負1・敗0）、検算もそれに合わせています。"),
         ("U-18（高校年代トップ）との関係は？",
          "ルーキーリーグで結果を残した1年生は、2年目以降にプレミアリーグ・プリンスリーグ・都道府県リーグといった"
          "高円宮杯 JFA U-18サッカーリーグのトップチームへ上がっていきます。"
@@ -411,7 +433,7 @@ def build_html(data, links):
 
       <p class="blog-article__summary" style="margin:0 0 20px;padding:14px 18px;background:var(--bg-light,#f1f5fb);border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;font-size:0.97rem;line-height:1.85;">
         <strong>高校1年生年代（U-16）</strong>の通年リーグ戦をまとめたページです。全国9地域の
-        <strong>{total_divs}リーグ・{total_teams}チーム</strong>の順位表を、大会公式サイトの星取表から毎日自動で集計して掲載しています。
+        <strong>{total_divs}リーグ・{total_teams}チーム</strong>の順位表を、大会公式サイトの順位表ページから毎日自動で取り込んで掲載しています。
         各地域の上位チームは12月の全国大会
         <a href="{CS_PAGE}"><strong>MIZUNO CHAMPIONSHIP U-16ルーキーリーグ</strong></a>に進みます。
         2・3年生を含むトップチームの戦いは<a href="/leagues/">高円宮杯 U-18リーグ（プレミア・プリンス）</a>をご覧ください。
@@ -442,12 +464,12 @@ def build_html(data, links):
       <section class="lp-section">
         <h2><i class="fas fa-table-list"></i> 地域リーグ順位表（9地域{total_divs}リーグ）</h2>
         <p class="u16-note">
-          ※大会公式サイトの<strong>星取表から毎日自動で集計</strong>しています（各表の日付は反映時点）。消化試合数がチームによって異なります。<br>
-          ※<strong>順位は公式サイトの「暫定順位」をそのまま採用</strong>し、勝点・勝敗数・得失点は星取表の全セルから計算しています。
-          公式の星取表には集計欄がないためです。<br>
-          ※掲載前に「星取表の上下でスコアが裏返しか」「勝点＝勝×3＋分」「試合数＝勝＋分＋敗」「リーグ内の得点合計＝失点合計」を
+          ※大会公式サイトの<strong>順位表ページから毎日自動で取り込んで</strong>います（各表の日付は公式の最終更新日）。消化試合数がチームによって異なります。<br>
+          ※<strong>順位・勝点・勝敗数・得点・失点・得失点差は、すべて公式の順位表の数字をそのまま採用</strong>しています。<br>
+          ※掲載前に「勝点が勝敗数と合うか」「試合数＝勝＋分＋敗」「リーグ内の得点合計＝失点合計」を
           機械的に検算し、<strong>合わないリーグは更新せず前回の内容を残します</strong>（誤った順位を載せないための仕組みです）。<br>
-          ※PK決着の試合は<strong>勝点上は引き分け</strong>として扱っています（四国S2など）。<br>
+          ※<strong>四国だけ勝点の計算が違います</strong>。勝4・PK勝2・PK負1・敗0です（他の8地域は勝3・分1・敗0）。
+          四国の表の「分」欄には、PK決着の試合数（PK勝＋PK負）を入れています。<br>
           ※最終更新：{html_escape(str(updated))}
         </p>
         <div class="u16-jump">

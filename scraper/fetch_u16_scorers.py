@@ -59,11 +59,12 @@ TOP_N = 10
 NOTE = ("上位10人（同点は全員）を掲載。公式の集計は総当たりリーグ戦のみで、"
         "入替戦・プレーオフは含みません。")
 
-# ★四国S1だけ、得点ランキングに星取表に居ないチームが出る。
-#   大会概要は「S-1 8チーム 1回戦制 7節+2nd stage 3節」で、星取表が返すのは
-#   2nd stage に残った上位4チームだけ。得点ランキングは8チーム分あるのが正しい。
-#   （2026-09-23 時点。星取表側をどう扱うかは別途判断する）
-ALLOW_EXTRA_TEAMS = {"shikoku-s1"}
+# 順位表に居ないチームが得点ランキングに出ることを許すリーグ（ID）。
+# ★2026-09-23：いったん shikoku-s1 を入れていたが、順位表の出典を
+#   /{地域}/order/15 へ移行して shikoku-s1 が「前期8チームの表」になったため不要になり、
+#   空に戻した（得点ランキングの顔ぶれ8チームと一致することを実測で確認）。
+#   仕組みは残してあるので、同じことが起きたらIDを入れて理由をここに書く。
+ALLOW_EXTRA_TEAMS = set()
 
 _DATE_RE = re.compile(r"最終更新日\s*[:：]\s*(\d{4})-(\d{2})-(\d{2})")
 
@@ -152,8 +153,13 @@ def main():
     ap.add_argument("--debug", action="store_true", help="取得結果を詳しく出力する")
     args = ap.parse_args()
 
+    # ★gid を持たないリーグは公式に得点ランキングのページが無い
+    #   （2026-09-23 に足した四国の 2nd stage 2表）。失敗ではないので静かに飛ばす。
+    #   ページ側は render_scorer_compact_html が "" を返すので何も出ない。
     targets = [d for d in DIVISIONS
-               if not args.only or d["id"] in {x.strip() for x in args.only.split(",")}]
+               if d.get("gid")
+               and (not args.only or d["id"] in {x.strip() for x in args.only.split(",")})]
+    skipped = [d["id"] for d in DIVISIONS if not d.get("gid")]
     roster = load_roster()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -207,6 +213,9 @@ def main():
         print(f"— 取得できず既存維持: {len(failed)}リーグ")
         for f in failed:
             print("   - " + f)
+    if skipped:
+        print(f"ℹ️ 公式に得点ランキングが無いので対象外: {len(skipped)}リーグ "
+              + "、".join(skipped))
     print(f"📊 掲載人数の合計: {total}人 / {len(targets)}リーグ")
     if args.dry_run:
         print("（--dry-run のため書き込みはしていません）")
