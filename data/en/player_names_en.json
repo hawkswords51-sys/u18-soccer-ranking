@@ -12,7 +12,7 @@
     "updated": "2026-09-24",
     "conflict_note": "英語表記が出典間で割れた場合は、J.LEAGUE日本語ページのふりがなで裏を取る。2026-09-23 の実例：下田 栄祐 は J.LEAGUE 英語ページが SHIMODA Yoshihiro だが、同じ選手ページの日本語ふりがなは「しもだ えいすけ」、鹿島公式英語も Eisuke Shimoda のため SHIMODA Eisuke を採用。鹿島公式英語の昇格選手一覧には誤記（町田 浩樹→Hiroki Machida 等）があるため、現役選手は JFA／J.LEAGUE を優先する。／三國 ケネディエブス：JFA英語の旧U-20招集は Kenedeiebusu（カタカナ直訳）だが、J.LEAGUE公式英語は Kennedy Egbus MIKUNI。現行のJ.LEAGUE表記を採用。／渡邊 凌磨：JFAの旧記事 Watanabe Ryouma より、ふりがな（ワタナベ リョウマ）と一致する WATANABE Ryoma を採用。／青山 直晃は Naoki ではなく Naoaki（なおあき／清水エスパルス公式英語）。",
     "added_2026-09-23": "鹿島アントラーズユース関連 26名（OB・2026年ユース選手・スタッフ）／青森山田・前橋育英・神村学園 関連56名。高校の現役選手はJFA英語版に代表招集メンバーしか載らず、プレミア・選手権・インターハイの英語ページに選手名簿が無いため公式からは取れない。23名は Kei が読みを確認（source=Kei確認 2026-09-23）。",
-    "added_2026-09-24": "大津・昌平・帝京長岡 関連。26名は Kei が読みを確認（source=Kei確認 2026-09-24）。同姓同名に注意：山本 翼は前橋育英と大津に1人ずついるが読みは同じ（Kei確認）。松本 泰志（昌平OB）と松本 太佑（昌平・現役）は別人。"
+    "added_2026-09-24": "大津・昌平・帝京長岡 関連。26名は Kei が読みを確認（source=Kei確認 2026-09-24）。同姓同名に注意：山本 翼は前橋育英と大津に1人ずついるが読みは同じ（Kei確認）。松本 泰志（昌平OB）と松本 太佑（昌平・現役）は別人。／米子北・東山 関連。**大原 暁（米子北FW）と岡本 明己（東山FW）は読みが確定できず辞書に入れていない**（英語ページでも名前を出していない）。異体字に注意：黒﨑 煌・宮﨑 結士はJFA登録の「﨑」をキーにする（サイト本文も統一済み）。"
   },
   "players": {
     "エジケ 唯吹ヴィンセントジュニア": {
@@ -115,6 +115,11 @@
       "source": "Kei確認 2026-09-21（クラブ公式発表）",
       "confidence": "high"
     },
+    "中村 真吾": {
+      "en": "NAKAMURA Shingo",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "中村 龍": {
       "en": "NAKAMURA Ryu",
       "source": "jfa-eng",
@@ -170,9 +175,24 @@
       "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
+    "伴 朔寿": {
+      "en": "BAN Sakutoshi",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "佐相 壱明": {
       "en": "SASO Kazuaki",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "佐野 海舟": {
+      "en": "SANO Kaishu",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "佐野 航大": {
+      "en": "SANO Kodai",
+      "source": "jfa-eng（2026-09-17 招集メンバー表／PSV Eindhoven）",
       "confidence": "high"
     },
     "倉橋 幸暉": {
@@ -225,6 +245,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "原 達輝": {
+      "en": "HARA Tatsuki",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "古川 蒼真": {
       "en": "FURUKAWA Soma",
       "source": "Kei確認 2026-09-21",
@@ -273,6 +298,11 @@
     "土居 聖真": {
       "en": "DOI Shoma",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "城市 徳之": {
+      "en": "JOICHI Noriyuki",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "堀田 宙吾": {
@@ -350,6 +380,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "奈良 碧士": {
+      "en": "NARA Aoshi",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "姫野 誠": {
       "en": "HIMENO Makoto",
       "source": "jleague-en",
@@ -373,6 +408,11 @@
     "室屋 成": {
       "en": "MUROYA Sei",
       "source": "jfa-eng＋jleague-en",
+      "confidence": "high"
+    },
+    "宮﨑 結士": {
+      "en": "MIYAZAKI Yushi",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "對馬 羽琉": {
@@ -455,6 +495,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "山田 陽介": {
+      "en": "YAMADA Yosuke",
+      "source": "jleague-en（GK）",
+      "confidence": "high"
+    },
     "岡中 舜": {
       "en": "OKANAKA Shun",
       "source": "Kei確認 2026-09-24",
@@ -463,6 +508,11 @@
     "岡本 新大": {
       "en": "OKAMOTO Arata",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "岡田 大和": {
+      "en": "OKADA Yamato",
+      "source": "jleague-en",
       "confidence": "high"
     },
     "岡野 綱人": {
@@ -540,6 +590,11 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "成田 天夢": {
+      "en": "NARITA Tenmu",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "斉藤 雅人": {
       "en": "SAITO Masato",
       "source": "Kei確認 2026-09-23",
@@ -560,8 +615,18 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "新谷 陸斗": {
+      "en": "SHINTANI Rikuto",
+      "source": "jfa-eng（第101回選手権）",
+      "confidence": "high"
+    },
     "日髙 元": {
       "en": "HIDAKA Hajime",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "昌子 源": {
+      "en": "SHOJI Gen",
       "source": "jleague-en",
       "confidence": "high"
     },
@@ -625,6 +690,11 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "李 良麻": {
+      "en": "LI Ryoma",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "東 輝明": {
       "en": "AZUMA Teruaki",
       "source": "Kei確認 2026-09-23",
@@ -658,6 +728,11 @@
     "松浦 迅ビエラ": {
       "en": "MATSUURA Jin Biera",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "松田 拓士": {
+      "en": "MATSUDA Takuto",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "松田 直樹": {
@@ -750,6 +825,11 @@
       "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
+    "池田 昌生": {
+      "en": "IKEDA Masaki",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "河原 創": {
       "en": "KAWAHARA So",
       "source": "jleague-en",
@@ -758,6 +838,11 @@
     "河原 研": {
       "en": "KAWAHARA Ken",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "洞 琉斗": {
+      "en": "HORA Ryuto",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "浅田 連": {
@@ -778,6 +863,16 @@
     "深谷 朔共": {
       "en": "FUKAYA Sakuto",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "清水 大世": {
+      "en": "SHIMIZU Taisei",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
+    "清水 柚之介": {
+      "en": "SHIMIZU Yunosuke",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "渡辺 瞳也": {
@@ -838,6 +933,11 @@
     "熊田 佳斗": {
       "en": "KUMADA Yoshito",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "熊野 俊典": {
+      "en": "KUMANO Shunsuke",
+      "source": "Kei確認 2026-09-24／JFA日本語の選抜合宿メンバー表のふりがな「ｸﾏﾉ ｼｭﾝｽｹ」",
       "confidence": "high"
     },
     "物井 慈元": {
@@ -928,6 +1028,11 @@
     "福田 師王": {
       "en": "FUKUDA Shio",
       "source": "jfa-eng＋borussia-mg-en",
+      "confidence": "high"
+    },
+    "福重 良一": {
+      "en": "FUKUSHIGE Ryoichi",
+      "source": "jfa-eng（第101回選手権決勝の記事 Coach FUKUSHIGE Ryoichi）",
       "confidence": "high"
     },
     "秋元 大樹": {
@@ -1120,6 +1225,11 @@
       "source": "jfa-eng（W杯2026招集メンバー）",
       "confidence": "high"
     },
+    "谷尾 昂也": {
+      "en": "TANIO Koya",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "豊川 雄太": {
       "en": "TOYOKAWA Yuta",
       "source": "jleague-en",
@@ -1160,6 +1270,11 @@
       "source": "jleague-en（登録はDF）",
       "confidence": "high"
     },
+    "金定 秀芽": {
+      "en": "KANESADA Shuga",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "針谷 岳晃": {
       "en": "HARIGAYA Takeaki",
       "source": "jleague-en",
@@ -1173,6 +1288,16 @@
     "鈴木 徳真": {
       "en": "SUZUKI Tokuma",
       "source": "jleague-en＋jfa-eng",
+      "confidence": "high"
+    },
+    "鈴木 慎之介": {
+      "en": "SUZUKI Shinnosuke",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "鎌田 大地": {
+      "en": "KAMADA Daichi",
+      "source": "jfa-eng（W杯2026招集メンバー）",
       "confidence": "high"
     },
     "鎌田 大夢": {
@@ -1200,6 +1325,11 @@
       "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
+    "阪田 澪哉": {
+      "en": "SAKATA Reiya",
+      "source": "jleague-en＋jfa-eng",
+      "confidence": "high"
+    },
     "霧生 海伊": {
       "en": "KIRIU Kai",
       "source": "Kei確認 2026-09-24",
@@ -1220,6 +1350,11 @@
       "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
+    "馬場 琢未": {
+      "en": "BABA Takumi",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "高岸 縁": {
       "en": "TAKAGISHI Enishi",
       "source": "jfa-eng",
@@ -1233,6 +1368,16 @@
     "高橋 大悟": {
       "en": "TAKAHASHI Daigo",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "高橋 祐翔": {
+      "en": "TAKAHASHI Yusho",
+      "source": "J.LEAGUEデータサイト",
+      "confidence": "medium"
+    },
+    "高瀬 壮太": {
+      "en": "TAKASE Sota",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "高田 憲慎": {
@@ -1250,9 +1395,19 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "麻生 太朗": {
+      "en": "ASO Taro",
+      "source": "Kei確認 2026-09-24",
+      "confidence": "high"
+    },
     "黒田 剛": {
       "en": "KURODA Go",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "黒﨑 煌": {
+      "en": "KUROSAKI Ko",
+      "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
     "齋藤 太陽": {
