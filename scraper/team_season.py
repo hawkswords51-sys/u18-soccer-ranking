@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from datetime import date
 from html import escape as html_escape
 from pathlib import Path
@@ -347,14 +348,114 @@ def _formation_html(ctx: dict, meta: dict, warn: list[str]) -> str:
 
 
 # ---------------------------------------------------------------------------
+# 登録選手一覧の「学年・前所属が空欄」を別の公式資料で補う（2026-09-23 新設）
+#   JFAのチーム情報には学年・前所属が空欄の選手がいる（東山は14試合920分の主力を含む6人）。
+#   ★JFAから取ったデータ（data/team-season/{id}.json）は書き換えない。**表示のときだけ**補う。
+#   ★JFAに値が入ったらJFAを優先する（補完は空欄の項目だけ）。
+#   ★valid_until を過ぎたらファイルごと使わない（翌シーズンに古い学年を出さないため）。
+# ---------------------------------------------------------------------------
+_SUP_FILE = "roster_supplement.json"
+_sup_cache: dict | None = None
+
+
+def _load_supplement(base_dir: Path) -> dict:
+    """{team_id: {正規化した名前: レコード}} と sources。期限切れ・不正なら空。"""
+    global _sup_cache
+    if _sup_cache is not None:
+        return _sup_cache
+    _sup_cache = {"by_team": {}, "sources": {}}
+    f = base_dir / "data" / "team-season" / _SUP_FILE
+    if not f.exists():
+        return _sup_cache
+    try:
+        d = json.loads(f.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"  [要確認] {_SUP_FILE} が読めません: {e}")
+        return _sup_cache
+    until = d.get("valid_until") or ""
+    if until and str(_jst_today()) > until:
+        print(f"  [情報] {_SUP_FILE} は {until} で期限切れのため使いません")
+        return _sup_cache
+    for rec in d.get("players") or []:
+        _sup_cache["by_team"].setdefault(rec.get("team_id"), {})[_norm_name(rec.get("name"))] = rec
+    _sup_cache["sources"] = d.get("sources") or {}
+    return _sup_cache
+
+
+def _norm_name(s) -> str:
+    """名前の比較用。NFKC＋空白を除く。"""
+    return re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+
+
+def _apply_supplement(roster: list, team_id: str, base_dir: Path) -> tuple[list, set]:
+    """(補った roster のコピー, 使った source キーの集合) を返す。"""
+    sup = _load_supplement(base_dir)
+    recs = dict(sup["by_team"].get(team_id) or {})
+    if not recs:
+        return roster, set()
+    used, out, filled = set(), [], 0
+    for p in roster:
+        rec = recs.pop(_norm_name(p.get("name")), None)
+        if not rec:
+            out.append(p)
+            continue
+        q = dict(p)
+        hit = False
+        for key in ("grade", "prev"):
+            if q.get(key):
+                # JFA側に値が入った＝もう補う必要がない
+                print(f"  [情報] JFAに値が入ったので補完不要: {team_id} {p.get('name')}（{key}）")
+                continue
+            if rec.get(key):
+                q[key] = f'{rec[key]}※'
+                hit = True
+        if hit:
+            used.add(rec.get("source"))
+            filled += 1
+        out.append(q)
+    for left in recs.values():
+        print(f"  [要確認] 補完対象が登録一覧に居ない: {team_id} {left.get('name')}")
+    if filled:
+        _SUP_COUNT[team_id] = filled
+    return out, used
+
+
+_SUP_COUNT: dict = {}
+
+
+def supplement_summary() -> str:
+    """生成の最後に1行で出す集計（generate_team_pages.py から呼ぶ）。"""
+    if not _SUP_COUNT:
+        return ""
+    return "[補完] " + "・".join(f"{k} {v}人" for k, v in _SUP_COUNT.items()) + " を補った"
+
+
+def _supplement_note(used: set, base_dir: Path) -> str:
+    """補った行がある表にだけ足す1行。色は既存の注記と同じCSS変数を使う。"""
+    if not used:
+        return ""
+    sources = _load_supplement(base_dir)["sources"]
+    labels = []
+    for k in sorted(used):
+        s = sources.get(k) or {}
+        lab = s.get("label") or k
+        asof = s.get("asof")
+        labels.append(f'{lab}（{_jp_day(asof)}時点）' if asof else lab)
+    return (f'<p class="ts-src">※印は、JFAの登録一覧で空欄の学年・前所属を'
+            f'{"・".join(labels)}で補ったものです。</p>')
+
+
+# ---------------------------------------------------------------------------
 # ③ 登録選手一覧
 # ---------------------------------------------------------------------------
-def _roster_html(ctx: dict) -> str:
+def _roster_html(ctx: dict, meta: dict, base_dir: Path) -> str:
     season = ctx["season"]
     if not season or not season.get("roster"):
         return ""
+    # ★JFAが空欄にしている学年・前所属を、別の公式資料で表示のときだけ補う
+    roster, sup_used = _apply_supplement(season["roster"], str(meta.get("id") or ""), base_dir)
     rows = []
-    for p in season["roster"]:
+    for p in roster:
         goals = f'<b>{p["goals"]}</b>' if p["goals"] else "0"
         rows.append(
             f'<tr><td class="c">{p["no"]}</td>'
@@ -370,7 +471,8 @@ def _roster_html(ctx: dict) -> str:
     return (f'<h2>{ctx["league"].get("season", "")} 登録選手一覧</h2>'
             f'<div class="ts-tbl"><table><thead><tr><th>No.</th><th>Pos.</th><th>選手名</th>'
             f'<th>学年</th><th>前所属チーム</th><th>試合</th><th>出場時間</th><th>得点</th>'
-            f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>{src}')
+            f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>{src}'
+            f'{_supplement_note(sup_used, base_dir)}')
 
 
 # ---------------------------------------------------------------------------
@@ -386,7 +488,7 @@ def render_sections_html(meta: dict, base_dir: Path) -> str:
     label = meta.get("league") or ctx["league"].get("league", "")
     html = (_results_html(ctx, short, label)
             + _formation_html(ctx, meta, warn)
-            + _roster_html(ctx))
+            + _roster_html(ctx, meta, base_dir))
     for w in warn:
         # ⚠️ 卒業・登録変更で formation が古くなったことに気づくため。ページは止めない。
         print(f"  [WARN] {meta.get('id')}: {w}")

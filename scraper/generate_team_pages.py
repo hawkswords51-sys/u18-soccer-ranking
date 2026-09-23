@@ -790,6 +790,12 @@ def main() -> int:
 
     update_sitemap(profiles)
 
+    # ★JFAが空欄にしている学年・前所属を補った件数（2026-09-23）。
+    #   件数が減ったら「JFA側に値が入った」か「補完対象が居なくなった」合図。
+    summary = ts.supplement_summary()
+    if summary:
+        print(summary)
+
     print(f"[Teams] 完了")
     return 0
 

@@ -1,0 +1,19 @@
+{
+ "note": "JFAの登録一覧で学年・前所属が空欄の選手を、別の公式資料で補う。表示のときだけ使い、JFAに値が入ったらJFAを優先する。",
+ "valid_until": "2027-03-31",
+ "sources": {
+  "rookie": {"label": "U-16ルーキーリーグ公式サイトの登録名簿", "asof": "2026-09-22"},
+  "jfa_change": {"label": "JFA「選手変更一覧」", "asof": "2026-08-25"}
+ },
+ "players": [
+  {"team_id": "higashiyama", "name": "草野 泰虎", "grade": "1年", "prev": "MIOびわこ滋賀", "source": "rookie", "url": "https://u16-rookie-league.com/kansai/team/9"},
+  {"team_id": "higashiyama", "name": "松ノ尾 大和", "grade": "1年", "prev": "宇治FC", "source": "rookie", "url": "https://u16-rookie-league.com/kansai/team/9"},
+  {"team_id": "higashiyama", "name": "池田 惇羽", "grade": "1年", "prev": "ヴィッセル伊丹", "source": "rookie", "url": "https://u16-rookie-league.com/kansai/team/9"},
+  {"team_id": "higashiyama", "name": "松岡 十和", "grade": "1年", "prev": "SCインテルナシオナル", "source": "rookie", "url": "https://u16-rookie-league.com/kansai/team/9"},
+  {"team_id": "higashiyama", "name": "上田 直史", "grade": "1年", "prev": "MIOびわこ滋賀", "source": "rookie", "url": "https://u16-rookie-league.com/kansai/team/9"},
+  {"team_id": "higashiyama", "name": "辻 愛楼", "grade": "1年", "prev": "宇治FC", "source": "rookie", "url": "https://u16-rookie-league.com/kansai/team/9"},
+  {"team_id": "shohei", "name": "大橋 晴一郎", "grade": "1年", "prev": "JFAアカデミー福島", "source": "rookie", "url": "https://u16-rookie-league.com/kanto/team/146"},
+  {"team_id": "ohtsu", "name": "原武 大和", "grade": "1年", "prev": "ロアッソ熊本ジュニアユース", "source": "rookie", "url": "https://u16-rookie-league.com/kyushudanji/team/174"},
+  {"team_id": "ryukei-kashiwa", "name": "細沼 大輝", "grade": "3年", "prev": "GRANDE(グランデ) FC", "source": "jfa_change", "url": ""}
+ ]
+}
