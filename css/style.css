@@ -5966,3 +5966,46 @@ tr.zone-row > td:first-child {
     font-size: 0.6rem !important; line-height: 1 !important;
   }
 }
+
+/* ★2026-09-23 「リーグから探す」とリーグへのリンクを県ボタン（案A 紺ベタ＋金縁）と同じ配色に揃える */
+.home-nav-card { border: 2px solid transparent; }
+.home-nav-card--premier {
+    background: linear-gradient(135deg, #1e3a8a, #16295f);
+    color: #ffffff;
+    border-color: #b8912f;
+    box-shadow: inset 0 0 0 1px rgba(212, 178, 90, 0.35), var(--shadow);
+}
+.home-nav-card--prince {
+    background: var(--bg-white);
+    color: #1e3a8a;
+    border-color: #1e3a8a;
+}
+.home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) {
+    background: var(--bg-white);
+    color: var(--text-dark);
+    border-color: var(--border-color);
+}
+.home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) .home-nav-card__title { color: #1e3a8a; }
+.home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) .home-nav-card__desc { color: var(--text-light); opacity: 1; }
+
+.league-link--premier {
+    background: linear-gradient(135deg, #1e3a8a, #16295f);
+    color: #ffffff;
+    border-color: #b8912f;
+}
+.league-link--premier:hover {
+    background: linear-gradient(135deg, #16295f, #1e3a8a);
+}
+
+[data-theme="dark"] .home-nav-card--premier { background: linear-gradient(135deg, #1e3a8a, #172554); border-color: #d4b25a; }
+[data-theme="dark"] .home-nav-card--prince { background: rgba(255,255,255,0.03); color: #bfdbfe; border-color: #3b82f6; }
+[data-theme="dark"] .home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) { border-color: #334155; }
+[data-theme="dark"] .home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) .home-nav-card__title { color: #bfdbfe; }
+[data-theme="dark"] .league-link--premier { background: linear-gradient(135deg, #1e3a8a, #172554); border-color: #d4b25a; }
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .home-nav-card--premier { background: linear-gradient(135deg, #1e3a8a, #172554); border-color: #d4b25a; }
+    :root:not([data-theme="light"]) .home-nav-card--prince { background: rgba(255,255,255,0.03); color: #bfdbfe; border-color: #3b82f6; }
+    :root:not([data-theme="light"]) .home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) { border-color: #334155; }
+    :root:not([data-theme="light"]) .home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) .home-nav-card__title { color: #bfdbfe; }
+    :root:not([data-theme="light"]) .league-link--premier { background: linear-gradient(135deg, #1e3a8a, #172554); border-color: #d4b25a; }
+}
