@@ -5930,3 +5930,39 @@ tr.zone-row > td:first-child {
 .ts-pos.df { background: #1d4ed8; }
 .ts-pos.mf { background: #15803d; }
 .ts-pos.fw { background: #b91c1c; }
+
+/* ★2026-09-23 スマホでトップのヘッダーが横にはみ出す件の修正。
+   ナビが6項目以上のヘッダー（現状トップのみ・9項目）だけ、768px以下で
+   「1段目=サイト名／2段目=横スクロールのナビ」に組み替える。
+   上の方にある「ラベル完全に隠す」の !important 群に勝つため、一部 !important を付けている。 */
+@media (max-width: 768px) {
+  .header-content:has(.nav > :nth-child(6)) { flex-wrap: wrap !important; row-gap: 4px; }
+  .header-content:has(.nav > :nth-child(6)) .site-title {
+    flex: 1 1 100% !important; max-width: none !important; font-size: 1rem !important;
+  }
+  .header-content:has(.nav > :nth-child(6)) .nav {
+    flex: 1 1 100%; min-width: 0; flex-wrap: nowrap; justify-content: flex-start;
+    overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    gap: 2px !important;
+    padding-right: 64px; /* 末尾の「お気に入り」を右端フェード（箱の85%〜）の外へ出す */
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+            mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  .header-content:has(.nav > :nth-child(6)) .nav::-webkit-scrollbar { display: none; }
+  .header-content:has(.nav > :nth-child(6)) .nav-link {
+    flex: 0 0 auto; flex-direction: column !important; align-items: center !important;
+    justify-content: center;
+    font-size: 0.68rem !important; line-height: 1.2 !important;
+    padding: 4px 8px !important; min-width: 52px; min-height: 44px; gap: 2px;
+  }
+  .header-content:has(.nav > :nth-child(6)) .nav-link i { font-size: 1.05rem !important; }
+  .header-content:has(.nav > :nth-child(6)) .theme-toggle { flex: 0 0 auto; min-height: 44px !important; }
+  /* 「お気に入り」のラベルは JS が span で作るため、480px以下の .header .nav-link span{font-size:0} に負ける。ここで戻す */
+  .header-content:has(.nav > :nth-child(6)) .nav-link .nav-link__label {
+    font-size: inherit !important; line-height: inherit !important;
+  }
+  /* お気に入り件数のバッジの数字も同じ理由で見えていなかった */
+  .header-content:has(.nav > :nth-child(6)) .nav-badge {
+    font-size: 0.6rem !important; line-height: 1 !important;
+  }
+}
