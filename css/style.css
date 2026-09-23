@@ -6009,3 +6009,18 @@ tr.zone-row > td:first-child {
     :root:not([data-theme="light"]) .home-nav-card:not(.home-nav-card--premier):not(.home-nav-card--prince) .home-nav-card__title { color: #bfdbfe; }
     :root:not([data-theme="light"]) .league-link--premier { background: linear-gradient(135deg, #1e3a8a, #172554); border-color: #d4b25a; }
 }
+
+/* ★2026-09-23 スマホでトップの新着コラムの見出しが細い縦長になる件。
+   600px以下では「1段目=カテゴリ札・NEW・日付（右寄せ）／2段目=見出し（全幅）」に組み替える。
+   カードは generate_blog_pages.py がインライン style で書いているので !important が要る。
+   見出しは NEW の有無で2番目/3番目のspanになるため nth-of-type ではなく last-of-type で指す。 */
+@media (max-width: 600px) {
+  .home-news-list > li > a {
+    flex-wrap: wrap !important; row-gap: 4px !important; column-gap: 6px !important;
+    padding: 10px 12px !important;
+  }
+  .home-news-list > li > a > span:last-of-type {
+    order: 3; flex: 1 1 100% !important; font-size: 0.95em !important;
+  }
+  .home-news-list > li > a > time { margin-left: auto !important; }
+}

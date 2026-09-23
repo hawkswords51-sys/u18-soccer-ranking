@@ -1137,7 +1137,7 @@ def update_home_latest_blog(articles):
         '    <h2 style="font-size:1.15rem;margin:0;">📝 新着コラム — 医学・戦術・特集</h2>\n'
         '    <a href="/blog/" style="margin-left:auto;font-size:0.88em;color:#2563eb;text-decoration:none;font-weight:600;">記事一覧へ →</a>\n'
         '  </div>\n'
-        '  <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">\n'
+        '  <ul class="home-news-list" style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">\n'
         + "\n".join(items) + "\n"
         '  </ul>\n'
         '</section>\n'
