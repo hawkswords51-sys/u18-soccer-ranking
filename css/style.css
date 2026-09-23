@@ -960,6 +960,35 @@ h1, h2, h3,
     background-color: #f0f0f0;
 }
 
+/* ★2026-09-23：トップの「47都道府県から探す」の凡例だけ、県ボタンの新しい見た目に合わせる。
+   #mapSection で限定しているので、他ページの .premier-color 等（リーグ名ラベル等）は変わらない。 */
+#mapSection .legend-color.premier-color {
+    background: #1e3a8a;
+    border: 2px solid #b8912f;
+}
+#mapSection .legend-color.prince-color {
+    background: var(--bg-white);
+    border: 2px solid #1e3a8a;
+}
+#mapSection .legend-color.prefecture-color {
+    background: #eef1f6;
+    border: 2px solid var(--border-color);
+}
+[data-theme="dark"] #mapSection .legend-color.premier-color { border-color: #d4b25a; }
+[data-theme="dark"] #mapSection .legend-color.prince-color { border-color: #3b82f6; }
+[data-theme="dark"] #mapSection .legend-color.prefecture-color {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: #334155;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) #mapSection .legend-color.premier-color { border-color: #d4b25a; }
+    :root:not([data-theme="light"]) #mapSection .legend-color.prince-color { border-color: #3b82f6; }
+    :root:not([data-theme="light"]) #mapSection .legend-color.prefecture-color {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: #334155;
+    }
+}
+
 /* =========================
    地域別リスト表示
    ========================= */
@@ -1005,34 +1034,43 @@ h1, h2, h3,
     box-shadow: var(--shadow-lg);
 }
 
+/* ★2026-09-23 案A「紺ベタ＋金縁」：ヘッダーの紺（手順書4-19）に揃え、プレミアだけ金で縁取る。
+   色の意味（プレミア／プリンス／県リーグのみの3段階）は今までと同じ。
+   ⚠️ --premier-color / --prince-color / --prefecture-color の値は変えないこと。
+      .info-icon・.league-badge・.prefecture.has-premier など他の部品も使っており、
+      変えると他ページの色まで変わる。
+   ⚠️ --primary-color は使わないこと。ダークでは #3b82f6（明るい青）になり、
+      ヘッダーの紺と揃わなくなる。紺は固定値で書く。 */
 .pref-button.level-premier {
-    background: linear-gradient(135deg, var(--premier-color), #B8941E);
-    color: white;
-    border-color: var(--premier-color);
+    background: linear-gradient(135deg, #1e3a8a, #16295f);
+    color: #ffffff;
+    border-color: #b8912f;
+    box-shadow: inset 0 0 0 1px rgba(212, 178, 90, 0.35);
 }
 
 .pref-button.level-premier:hover {
-    background: linear-gradient(135deg, #B8941E, var(--premier-color));
+    background: linear-gradient(135deg, #16295f, #1e3a8a);
 }
 
 .pref-button.level-prince {
-    background: linear-gradient(135deg, var(--prince-color), #2E6FAD);
-    color: white;
-    border-color: var(--prince-color);
+    background: var(--bg-white);
+    color: #1e3a8a;
+    border-color: #1e3a8a;
 }
 
 .pref-button.level-prince:hover {
-    background: linear-gradient(135deg, #2E6FAD, var(--prince-color));
+    background: #1e3a8a;
+    color: #ffffff;
 }
 
 .pref-button.level-prefecture {
-    background: linear-gradient(135deg, var(--prefecture-color), #5A93B9);
-    color: white;
-    border-color: var(--prefecture-color);
+    background: #eef1f6;
+    color: var(--text-light);
+    border-color: var(--border-color);
 }
 
 .pref-button.level-prefecture:hover {
-    background: linear-gradient(135deg, #5A93B9, var(--prefecture-color));
+    background: #e2e7ef;
 }
 
 .pref-button.level-no-data {
@@ -2717,16 +2755,23 @@ details[open] > summary > .league-accordion__chevron {
     background: rgba(255, 255, 255, 0.03);
 }
 [data-theme="dark"] .pref-button.level-premier {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.20), rgba(184, 148, 30, 0.10));
-    color: #fde68a;
+    background: linear-gradient(135deg, #1e3a8a, #172554);
+    color: #ffffff;
+    border-color: #d4b25a;
 }
 [data-theme="dark"] .pref-button.level-prince {
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(46, 111, 173, 0.10));
+    background: rgba(255, 255, 255, 0.03);
     color: #bfdbfe;
+    border-color: #3b82f6;
+}
+[data-theme="dark"] .pref-button.level-prince:hover {
+    background: #1e3a8a;
+    color: #ffffff;
 }
 [data-theme="dark"] .pref-button.level-prefecture {
-    background: linear-gradient(135deg, rgba(148, 163, 184, 0.18), rgba(90, 147, 185, 0.08));
-    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.04);
+    color: #94a3b8;
+    border-color: #334155;
 }
 [data-theme="dark"] .pref-button.level-no-data {
     background: rgba(255, 255, 255, 0.02);
@@ -2738,16 +2783,23 @@ details[open] > summary > .league-accordion__chevron {
         background: rgba(255, 255, 255, 0.03);
     }
     :root:not([data-theme="light"]) .pref-button.level-premier {
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.20), rgba(184, 148, 30, 0.10));
-        color: #fde68a;
+        background: linear-gradient(135deg, #1e3a8a, #172554);
+        color: #ffffff;
+        border-color: #d4b25a;
     }
     :root:not([data-theme="light"]) .pref-button.level-prince {
-        background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(46, 111, 173, 0.10));
+        background: rgba(255, 255, 255, 0.03);
         color: #bfdbfe;
+        border-color: #3b82f6;
+    }
+    :root:not([data-theme="light"]) .pref-button.level-prince:hover {
+        background: #1e3a8a;
+        color: #ffffff;
     }
     :root:not([data-theme="light"]) .pref-button.level-prefecture {
-        background: linear-gradient(135deg, rgba(148, 163, 184, 0.18), rgba(90, 147, 185, 0.08));
-        color: #cbd5e1;
+        background: rgba(255, 255, 255, 0.04);
+        color: #94a3b8;
+        border-color: #334155;
     }
     :root:not([data-theme="light"]) .pref-button.level-no-data {
         background: rgba(255, 255, 255, 0.02);
