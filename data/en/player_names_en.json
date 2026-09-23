@@ -10,8 +10,8 @@
     ],
     "jp_only_note": "2026-09-21時点で、英語表記が未確定の選手は0人。",
     "updated": "2026-09-23",
-    "conflict_note": "英語表記が出典間で割れた場合は、J.LEAGUE日本語ページのふりがなで裏を取る。2026-09-23 の実例：下田 栄祐 は J.LEAGUE 英語ページが SHIMODA Yoshihiro だが、同じ選手ページの日本語ふりがなは「しもだ えいすけ」、鹿島公式英語も Eisuke Shimoda のため SHIMODA Eisuke を採用。鹿島公式英語の昇格選手一覧には誤記（町田 浩樹→Hiroki Machida 等）があるため、現役選手は JFA／J.LEAGUE を優先する。",
-    "added_2026-09-23": "鹿島アントラーズユース関連 26名（OB・2026年ユース選手・スタッフ）"
+    "conflict_note": "英語表記が出典間で割れた場合は、J.LEAGUE日本語ページのふりがなで裏を取る。2026-09-23 の実例：下田 栄祐 は J.LEAGUE 英語ページが SHIMODA Yoshihiro だが、同じ選手ページの日本語ふりがなは「しもだ えいすけ」、鹿島公式英語も Eisuke Shimoda のため SHIMODA Eisuke を採用。鹿島公式英語の昇格選手一覧には誤記（町田 浩樹→Hiroki Machida 等）があるため、現役選手は JFA／J.LEAGUE を優先する。／三國 ケネディエブス：JFA英語の旧U-20招集は Kenedeiebusu（カタカナ直訳）だが、J.LEAGUE公式英語は Kennedy Egbus MIKUNI。現行のJ.LEAGUE表記を採用。／渡邊 凌磨：JFAの旧記事 Watanabe Ryouma より、ふりがな（ワタナベ リョウマ）と一致する WATANABE Ryoma を採用。／青山 直晃は Naoki ではなく Naoaki（なおあき／清水エスパルス公式英語）。",
+    "added_2026-09-23": "鹿島アントラーズユース関連 26名（OB・2026年ユース選手・スタッフ）／青森山田・前橋育英・神村学園 関連56名。高校の現役選手はJFA英語版に代表招集メンバーしか載らず、プレミア・選手権・インターハイの英語ページに選手名簿が無いため公式からは取れない。23名は Kei が読みを確認（source=Kei確認 2026-09-23）。"
   },
   "players": {
     "エジケ 唯吹ヴィンセントジュニア": {
@@ -69,9 +69,19 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "三國 ケネディエブス": {
+      "en": "MIKUNI Kennedy Egbus",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "上野 煌士郎": {
       "en": "UENO Koshiro",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "上野 琉生": {
+      "en": "UENO Rui",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "下田 栄祐": {
@@ -94,9 +104,24 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "中江 銀次": {
+      "en": "NAKAE Ginji",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "中野 洋司": {
       "en": "NAKANO Yoji",
       "source": "antlers-en",
+      "confidence": "high"
+    },
+    "中野 陽斗": {
+      "en": "NAKANO Haruto",
+      "source": "jleague-en＋jfa-eng",
+      "confidence": "high"
+    },
+    "久保 侑工": {
+      "en": "KUBO Tasuku",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "五十嵐 陵": {
@@ -124,6 +149,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "伏原 俐空": {
+      "en": "FUSHIHARA Riku",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "倉橋 幸暉": {
       "en": "KURAHASHI Koki",
       "source": "jfa-eng",
@@ -137,6 +167,11 @@
     "児山 雅稀": {
       "en": "KOYAMA Masaki",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "児玉 称": {
+      "en": "KODAMA Tona",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "八色 隼人": {
@@ -174,9 +209,19 @@
       "source": "Kei確認 2026-09-21",
       "confidence": "high"
     },
+    "吉永 夢希": {
+      "en": "YOSHINAGA Yumeki",
+      "source": "jfa-eng＋krc-genk-en",
+      "confidence": "high"
+    },
     "吉田 湊海": {
       "en": "YOSHIDA Minato",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "名和田 我空": {
+      "en": "NAWATA Gaku",
+      "source": "jleague-en＋jfa-eng",
       "confidence": "high"
     },
     "和田 武士": {
@@ -197,6 +242,11 @@
     "増田 大空": {
       "en": "MASUDA Sora",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "増田 宗一郎": {
+      "en": "MASUDA Soichiro",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "大下 幸誠": {
@@ -239,6 +289,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "大迫 塁": {
+      "en": "OSAKO Rui",
+      "source": "セレッソ大阪公式英語＋jfa-eng",
+      "confidence": "high"
+    },
     "大野 隆斗": {
       "en": "ONO Ryuto",
       "source": "jfa-eng",
@@ -247,6 +302,26 @@
     "姫野 誠": {
       "en": "HIMENO Makoto",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "宇野 禅斗": {
+      "en": "UNO Zento",
+      "source": "borussia-mg-en（クラブ公式英語）",
+      "confidence": "high"
+    },
+    "安 瑞潤": {
+      "en": "AN Soyun",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "安藤 大地": {
+      "en": "ANDO Daichi",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "室屋 成": {
+      "en": "MUROYA Sei",
+      "source": "jfa-eng＋jleague-en",
       "confidence": "high"
     },
     "對馬 羽琉": {
@@ -269,9 +344,19 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "小澤 丈": {
+      "en": "OZAWA Jo",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "小笠原 満男": {
       "en": "OGASAWARA Mitsuo",
       "source": "antlers-en",
+      "confidence": "high"
+    },
+    "山口 素弘": {
+      "en": "YAMAGUCHI Motohiro",
+      "source": "jfa-eng",
       "confidence": "high"
     },
     "山川 弘飛": {
@@ -284,9 +369,24 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "山本 翼": {
+      "en": "YAMAMOTO Tsubasa",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "山田 耕介": {
+      "en": "YAMADA Kosuke",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
     "岡本 新大": {
       "en": "OKAMOTO Arata",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "岡野 綱人": {
+      "en": "OKANO Tsunato",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "岩下 雄飛": {
@@ -329,9 +429,19 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "徳村 楓大": {
+      "en": "TOKUMURA Futa",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "恒吉 良真": {
       "en": "TSUNEYOSHI Ryoma",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "斉藤 雅人": {
+      "en": "SAITO Masato",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "新垣 祥大": {
@@ -349,6 +459,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "日髙 元": {
+      "en": "HIDAKA Hajime",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "星 宗介": {
       "en": "HOSHI Sosuke",
       "source": "jfa-eng",
@@ -357,6 +472,11 @@
     "曽ケ端 準": {
       "en": "SOGAHATA Hitoshi",
       "source": "antlers-en",
+      "confidence": "high"
+    },
+    "有村 圭一郎": {
+      "en": "ARIMURA Keiichiro",
+      "source": "jfa-eng",
       "confidence": "high"
     },
     "木下 晴天": {
@@ -389,6 +509,16 @@
       "source": "antlers-en",
       "confidence": "high"
     },
+    "東 輝明": {
+      "en": "AZUMA Teruaki",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "松木 玖生": {
+      "en": "MATSUKI Kuryu",
+      "source": "jfa-eng（Southampton FC）",
+      "confidence": "high"
+    },
     "松村 秀明": {
       "en": "MATSUMURA Hideaki",
       "source": "jleague-en",
@@ -404,6 +534,16 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "松田 直樹": {
+      "en": "MATSUDA Naoki",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "松田 駿": {
+      "en": "MATSUDA Shun",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "林 勘太": {
       "en": "HAYASHI Kanta",
       "source": "antlers-en",
@@ -412,6 +552,16 @@
     "林 奏汰": {
       "en": "HAYASHI Kanata",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "柴崎 岳": {
+      "en": "SHIBASAKI Gaku",
+      "source": "jfa-eng＋jleague-en",
+      "confidence": "high"
+    },
+    "根岸 彗也": {
+      "en": "NEGISHI Seiya",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "根本 裕一": {
@@ -439,8 +589,23 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "橘田 健人": {
+      "en": "TACHIBANADA Kento",
+      "source": "jleague-en（ふりがな たちばなだ けんと）",
+      "confidence": "high"
+    },
+    "正木 昌宣": {
+      "en": "MASAKI Masanori",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "武本 匠平": {
       "en": "TAKEMOTO Shohei",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "武田 英寿": {
+      "en": "TAKEDA Hidetoshi",
       "source": "jleague-en",
       "confidence": "high"
     },
@@ -464,6 +629,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "深見 翔太": {
+      "en": "FUKAMI Shota",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "深谷 朔共": {
       "en": "FUKAYA Sakuto",
       "source": "jfa-eng",
@@ -477,6 +647,11 @@
     "渡辺 莉太": {
       "en": "WATANABE Rita",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "渡邊 凌磨": {
+      "en": "WATANABE Ryoma",
+      "source": "jleague-en＋jfa-eng",
       "confidence": "high"
     },
     "渡邊 麻舟": {
@@ -524,6 +699,11 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "田口 光久": {
+      "en": "TAGUCHI Mitsuhisa",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "町田 浩樹": {
       "en": "MACHIDA Koki",
       "source": "jfa-eng",
@@ -537,6 +717,11 @@
     "相馬 陸人": {
       "en": "SOMA Rikuto",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "石井 珂那汰": {
+      "en": "ISHII Kanata",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "石渡 智也": {
@@ -554,9 +739,24 @@
       "source": "jleague-en＋antlers-en",
       "confidence": "high"
     },
+    "福島 和毅": {
+      "en": "FUKUSHIMA Kazuki",
+      "source": "jleague-en＋jfa-eng",
+      "confidence": "high"
+    },
+    "福田 師王": {
+      "en": "FUKUDA Shio",
+      "source": "jfa-eng＋borussia-mg-en",
+      "confidence": "high"
+    },
     "秋元 大樹": {
       "en": "AKIMOTO Taiki",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "立石 陽向": {
+      "en": "TATEISHI Hinata",
+      "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
     "立野 京弥": {
@@ -564,8 +764,33 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "竹ノ谷 優駕スベディ": {
+      "en": "TAKENOYA Yugasubedi",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
+    "竹元 真樹": {
+      "en": "TAKEMOTO Masaki",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
     "竹内 悠三": {
       "en": "TAKEUCHI Yuzo",
+      "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "竹野 楓太": {
+      "en": "TAKENO Futa",
+      "source": "jfa-eng（U-17 FIFA World Cup 2025）",
+      "confidence": "high"
+    },
+    "細山田 怜真": {
+      "en": "HOSOYAMADA Ryoma",
+      "source": "UEサン・アンドレウ公式（カナ表記 ホソヤマダ リョウマ）",
+      "confidence": "medium"
+    },
+    "細貝 萌": {
+      "en": "HOSOGAI Hajime",
       "source": "jfa-eng",
       "confidence": "high"
     },
@@ -582,6 +807,16 @@
     "花元 誉絆": {
       "en": "HANAMOTO Yohan",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "花城 瑛汰": {
+      "en": "HANASHIRO Eita",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "荒木 仁翔": {
+      "en": "ARAKI Masato",
+      "source": "jleague-en＋いわきFC公式",
       "confidence": "high"
     },
     "萩原 慶": {
@@ -604,6 +839,16 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "藤原 優人": {
+      "en": "FUJIWARA Yuto",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "藤原 優大": {
+      "en": "FUJIWARA Yudai",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "藤川 虎三": {
       "en": "FUJIKAWA Takezo",
       "source": "jfa-eng",
@@ -622,6 +867,11 @@
     "藤田 明日翔": {
       "en": "FUJITA Asuto",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "西丸 道人": {
+      "en": "NISHIMARU Minto",
+      "source": "jleague-en",
       "confidence": "high"
     },
     "西岡 健斗": {
@@ -654,6 +904,11 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "郷家 友太": {
+      "en": "GOKE Yuta",
+      "source": "jleague-en",
+      "confidence": "high"
+    },
     "野口 蓮斗": {
       "en": "NOGUCHI Rento",
       "source": "jleague-en",
@@ -669,9 +924,24 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "鈴木 徳真": {
+      "en": "SUZUKI Tokuma",
+      "source": "jleague-en＋jfa-eng",
+      "confidence": "high"
+    },
     "長南 開史": {
       "en": "CHONAN Kaiji",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "関 蒼葉": {
+      "en": "SEKI Aoba",
+      "source": "Kei確認 2026-09-23",
+      "confidence": "high"
+    },
+    "青山 直晃": {
+      "en": "AOYAMA Naoaki",
+      "source": "清水エスパルス公式英語",
       "confidence": "high"
     },
     "高岸 縁": {
@@ -682,6 +952,11 @@
     "高木 ザカリア": {
       "en": "TAKAGI Zakariah",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "高橋 大悟": {
+      "en": "TAKAHASHI Daigo",
+      "source": "jleague-en",
       "confidence": "high"
     },
     "高田 憲慎": {
@@ -697,6 +972,11 @@
     "鮫島 充輝": {
       "en": "SAMESHIMA Atsuki",
       "source": "jfa-eng",
+      "confidence": "high"
+    },
+    "黒田 剛": {
+      "en": "KURODA Go",
+      "source": "jleague-en",
       "confidence": "high"
     },
     "齋藤 太陽": {
