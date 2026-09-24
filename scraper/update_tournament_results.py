@@ -63,6 +63,13 @@ ROUND_ORDER = [
 ]
 
 
+# 「## 2回戦（9/13・9/19）」の見出し。括弧が無い見出しも通る（ds=None）。
+# 括弧の中に日付以外の文字があると一致しない＝見出し日付の自動同期で触らない。
+_DATE = r"\d{1,2}/\d{1,2}"
+HEADING_DATES_RE = re.compile(
+    rf"^## (?P<key>[^（(]+?)(?:（(?P<ds>{_DATE}(?:・{_DATE})*)）)?\s*$")
+
+
 def log(msg):
     print(msg, flush=True)
 
@@ -688,6 +695,60 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
             body_lines.insert(insert_idx, newline)
             added += 1
             modified = True
+
+    # --- ラウンド見出しの日付を出典に合わせる（2026-09-25） ---
+    # ensure_round() は見出しを最初の1回しか作らないため、あとから出典の日付が増えても
+    # 減っても見出しが固定されたままだった（9/22〜24で手直し4回、日付なしの見出し14件）。
+    # ルール（Cowork が全県で試作して決めたもの）:
+    #   ・対象は koko にも存在するラウンドの見出しだけ。md にしか無いラウンドは触らない
+    #   ・そのラウンドの koko の試合が全部消化済み → koko の日付どおり（台風で流れた日は消える）
+    #   ・未消化が残る → 足すだけ（県公式の組み合わせ表から先に入れた日付を消さない）
+    #   ・「足すだけ」のとき、前の回戦のいちばん早い日より前の koko 日付は足さない（仮の日付）。
+    #     ⚠️ 消化済みのラウンドには掛けないこと。広島は12ブロックの「2回戦」を束ねており、
+    #        あるブロックの2回戦が別のブロックの1回戦より前に行われる（試作で踏んだ）
+    #   ・見出しの括弧に日付以外の文字がある（「5/17・シード登場」）→ 触らずログ1行
+    #   ・大会の日付が年をまたぐ（8月以降と3月以前が混ざる）→ そのファイルは何もしない
+    def _md(d):
+        return [int(x) for x in d.split("/")]
+
+    all_dates = [m["date"] for kr in koko_rounds for m in kr["matches"] if m["date"]]
+    months = {_md(d)[0] for d in all_dates}
+    crosses_year = any(mo <= 3 for mo in months) and any(mo >= 8 for mo in months)
+    if not crosses_year:
+        kr_by_key = {}
+        for kr in koko_rounds:
+            kr_by_key.setdefault(round_key(kr["name"]), kr)
+        for i, line in enumerate(body_lines):
+            s = line.strip()
+            if not s.startswith("## "):
+                continue
+            key = round_key(s[3:])
+            kr = kr_by_key.get(key)
+            if not kr:
+                continue
+            mh = HEADING_DATES_RE.match(s)
+            if not mh:
+                log(f"  ℹ 見出し日付: 括弧内に日付以外の文字があるため触らない「{s}」")
+                continue
+            md_dates = sorted(set(mh.group("ds").split("・")) if mh.group("ds") else set(),
+                              key=_md)
+            kd = sorted({m["date"] for m in kr["matches"] if m["date"]}, key=_md)
+            complete = bool(kr["matches"]) and all(m["finished"] for m in kr["matches"])
+            pos = round_sort_pos(key)
+            if not complete and pos < 50:
+                prev = [m["date"] for r in koko_rounds if round_sort_pos(r["name"]) < pos
+                        for m in r["matches"] if m["date"]]
+                if prev:
+                    earliest = min(prev, key=_md)
+                    kd = [d for d in kd if _md(d) >= _md(earliest)]
+            if not kd:
+                continue
+            new_dates = kd if complete else sorted(set(md_dates) | set(kd), key=_md)
+            if new_dates != md_dates:
+                newline = f"## {mh.group('key').strip()}（{'・'.join(new_dates)}）"
+                log(f"  見出し日付（{'完了' if complete else '進行中'}）: 「{s}」→「{newline}」")
+                body_lines[i] = newline
+                modified = True
 
     # --- status 自動前進（決勝が終わったら「終了」） ---
     meta = parse_meta(fm)
