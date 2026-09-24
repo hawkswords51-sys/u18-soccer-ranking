@@ -53,6 +53,18 @@
     },
     {
       "rank": 2,
+      "team": "那覇西",
+      "points": 21,
+      "played": 11,
+      "won": 6,
+      "drawn": 3,
+      "lost": 2,
+      "gf": 31,
+      "ga": 8,
+      "gd": 23
+    },
+    {
+      "rank": 3,
       "team": "名護",
       "points": 20,
       "played": 10,
@@ -64,7 +76,7 @@
       "gd": 9
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "興南",
       "points": 19,
       "played": 10,
@@ -76,7 +88,7 @@
       "gd": 19
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "那覇",
       "points": 19,
       "played": 11,
@@ -88,28 +100,16 @@
       "gd": 0
     },
     {
-      "rank": 5,
-      "team": "那覇西",
-      "points": 18,
-      "played": 10,
-      "won": 5,
-      "drawn": 3,
-      "lost": 2,
-      "gf": 25,
-      "ga": 8,
-      "gd": 17
-    },
-    {
       "rank": 6,
       "team": "西原",
       "points": 12,
-      "played": 10,
+      "played": 11,
       "won": 4,
       "drawn": 0,
-      "lost": 6,
+      "lost": 7,
       "gf": 19,
-      "ga": 32,
-      "gd": -13
+      "ga": 38,
+      "gd": -19
     },
     {
       "rank": 7,
@@ -472,12 +472,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-23",
       "home": "西原",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 6,
       "away": "那覇西",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -651,38 +651,38 @@
       "rank": 1
     },
     {
+      "team": "那覇西",
+      "pts": 21,
+      "gf": 31,
+      "ga": 8,
+      "rank": 2
+    },
+    {
       "team": "名護",
       "pts": 20,
       "gf": 23,
       "ga": 14,
-      "rank": 2
+      "rank": 3
     },
     {
       "team": "興南",
       "pts": 19,
       "gf": 28,
       "ga": 9,
-      "rank": 3
+      "rank": 4
     },
     {
       "team": "那覇",
       "pts": 19,
       "gf": 16,
       "ga": 16,
-      "rank": 4
-    },
-    {
-      "team": "那覇西",
-      "pts": 18,
-      "gf": 25,
-      "ga": 8,
       "rank": 5
     },
     {
       "team": "西原",
       "pts": 12,
       "gf": 19,
-      "ga": 32,
+      "ga": 38,
       "rank": 6
     },
     {
