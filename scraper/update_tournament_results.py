@@ -424,6 +424,20 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
         return (match_key(md_name) == match_key(koko_name)
                 or is_abbrev_variant(md_name, koko_name))
 
+    def _slot_ok(md_side, koko_name):
+        """md の片側が koko 名と同じチームを指すか（厳密）。
+        ・完全一致（match_key）なら True
+        ・md 側が勝者待ち（"/" を含む）なら、"/" で分けた要素のうち
+          match_key が koko 名と一致するものが「ちょうど1つ」のときだけ True
+        部分列（is_abbrev_variant）は使わない。別校を同一視する恐れがあるため
+        （fill_line 内 _resolved の ⚠️ コメント参照）。"""
+        if match_key(md_side) == match_key(koko_name):
+            return True
+        if "/" not in md_side:
+            return False
+        elems = [s for s in md_side.split("/") if s.strip()]
+        return sum(1 for e in elems if match_key(e) == match_key(koko_name)) == 1
+
     def fill_line(idx, km, kkey):
         """スコア未記入の行に結果を記入。スコア付き行は上書きせず、不一致なら警告。"""
         nonlocal filled, modified
@@ -431,7 +445,10 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
         if not parsed:
             return
         ta, tb, has_score = parsed
-        fwd = side_ok(ta, km["home"])
+        # [2026-09-25] 厳密な判定を先に見る。side_ok だけだと、合同チーム入りの勝者待ち
+        #   （「新居浜商・土居/今治工」）が koko の「今治工」と一致せず、逆向きと誤判定して
+        #   スコアを左右反対に書き、名前も確定しなかった。
+        fwd = _slot_ok(ta, km["home"]) or side_ok(ta, km["home"])
         if has_score:
             # 既存スコアは絶対に上書きしない。ただしkokoと食い違うなら警告。
             if km["finished"] and km["score"]:
@@ -564,6 +581,40 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
                 fill_line(hit, km, kkey)
             else:
                 pending.append(km)
+
+        # ①' 勝者待ち照合（2026-09-25）
+        # ------------------------------------------------------------------
+        # 「- 吉田 vs 新居浜商・土居/今治工」の勝者が決まり、koko が「吉田 vs 今治工」と返すと、
+        # ①（2チームの照合キーの一致）には当然かからず、②の is_abbrev_variant も
+        # 「・」の区切り数が違う／1文字校名（巻）で False になるため、③で新しい試合として
+        # 追記され、同じ試合が2行になっていた（2026-09-24実測で10県14組）。
+        # ここでは _slot_ok（完全一致か、「/」要素のちょうど1つと一致）だけで照合する。
+        # 部分列は使わない＝門を②より広げない。
+        pending2 = []
+        for km in pending:
+            candidates = []
+            for idx in (target["match_idxs"] if target else []):
+                if idx in consumed:
+                    continue
+                parsed = parse_md_line(body_lines[idx])
+                if not parsed:
+                    continue
+                ta, tb, has_score = parsed
+                if has_score or ("/" not in ta and "/" not in tb):
+                    continue
+                if ((_slot_ok(ta, km["home"]) and _slot_ok(tb, km["away"]))
+                        or (_slot_ok(ta, km["away"]) and _slot_ok(tb, km["home"]))):
+                    candidates.append(idx)
+            if len(candidates) == 1:
+                consumed.add(candidates[0])
+                fill_line(candidates[0], km, kkey)
+            elif len(candidates) > 1:
+                warnings.append(
+                    f"要確認: {kkey} の「{km['home']} vs {km['away']}」に対応しうる勝者待ち行が複数"
+                    f"（あいまいなため据え置き）")
+            else:
+                pending2.append(km)
+        pending = pending2
 
         # ② 略記ゆれ吸収（同名ラウンド内のみ・1対1対応が一意に決まるときだけ）
         still_pending = []
