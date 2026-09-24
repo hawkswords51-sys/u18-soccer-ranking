@@ -7,7 +7,7 @@ prefecture_en: Tottori
 founded: 1965
 head_coach_en: NAKAMURA Shingo
 title: "Yonago Kita High School"
-description: "Yonago Kita in English: the school from Japan's least populated prefecture that trains on sand and clay and produced the Sano brothers and Shoji Gen, its 'climb up' philosophy, and the players to watch in 2026."
+description: "Yonago Kita in English: the school from Japan's least populated prefecture that trains on sand and clay and produced the Sano brothers and SHOJI Gen, its 'climb up' philosophy, and the players to watch in 2026."
 ---
 
 ## intro

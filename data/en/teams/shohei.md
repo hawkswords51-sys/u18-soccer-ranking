@@ -57,7 +57,7 @@ The school has produced a J.League professional every year for seven years.
 
 - **MATSUMOTO Taishi** (midfielder, Sanfrecce Hiroshima) — the senior figure among the graduates, back at Hiroshima in 2026.
 - **OSA Ryuki** (Kawasaki Frontale) and **YAMAGUCHI Gota** (Shonan Bellmare) — both joined professional clubs in 2026. OSA scored twice and set up another in the 2024 Inter-High final; YAMAGUCHI wore the number 10 and made five assists in the same tournament.
-- **KAMADA Hiromu** (midfielder, Vegalta Sendai) — wears the number 10 there; younger brother of the Japan international Kamada Daichi.
+- **KAMADA Hiromu** (midfielder, Vegalta Sendai) — wears the number 10 there; younger brother of the Japan international KAMADA Daichi.
 - **HARIGAYA Takeaki**, **SASO Kazuaki** and **YAGI Kazuma** — J.League professionals; YAGI took the less common route through university first.
 - **OTANI Minato** — a Japan under-18 international while at the school, now at the University of Tsukuba.
 

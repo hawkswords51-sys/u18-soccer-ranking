@@ -6,7 +6,7 @@ short_en: Higashiyama
 prefecture_en: Kyoto
 head_coach_en: FUKUSHIGE Ryoichi
 title: "Higashiyama High School"
-description: "Higashiyama High School in English: the Kyoto school that turned Kamada Daichi's academy rejection into a career at the top of European football, its six-year pathway, the 2022 winter final, and the players to watch in 2026."
+description: "Higashiyama High School in English: the Kyoto school that turned KAMADA Daichi's academy rejection into a career at the top of European football, its six-year pathway, the 2022 winter final, and the players to watch in 2026."
 ---
 
 ## intro
