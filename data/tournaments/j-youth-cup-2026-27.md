@@ -16,12 +16,13 @@ source: https://koko-soccer.com/news/5-koukousoccer/56060-202003036
 ---
 
 <!--
-2026-09-18 作成（Phase 1）。**まだ generator には繋がっていません。**
-`scraper/generate_jyouth_page.py` は SOURCE / OUT_DIR / CANONICAL / 得点ランキングのキーが
-"j-youth-cup-2026"（＝第32回）に固定されており、しかも
-generate_prefecture_pages.py / generate_regional_page.py / generate_u18_calendar.py の
-3つから共有ライブラリとして import されています。雑に書き換えると同時に壊れます。
-→ このファイルは**情報の置き場所を先に確保しただけ**で、ページは出ません。
+2026-09-18 作成（Phase 1）→ 2026-09-22 に Phase 2 完了・公開済み。
+`generate_jyouth_page.py --season 2026-27` がこのファイルを読んで /tournaments/j-youth-cup-2026-27/ を作る
+（定期実行 update_rankings.yml に組み込み済み）。年度表記と大会方式は下の2キーだけで決まる：
+  season_label / summary_format（書かない第32回の出力は1バイトも変わらない）
+■ 残り（Phase 3）
+・2回戦（A〜Hのグループリーグ）の表示はまだ無い
+・得点ランキング（fetch_pref_scorers.py の JYOUTH_OUT）は第32回のまま。第33回のJリーグ公式URLは未確認
 
 ■ 第32回（j-youth-cup-2026.md）は触らないこと
 URL /tournaments/j-youth-cup-2026/ には index.html と複数のチームページから
@@ -31,12 +32,6 @@ URL /tournaments/j-youth-cup-2026/ には index.html と複数のチームペー
 `generate_jyouth_page.py` の `_round_names()` は「ラウンド16(=3回戦)始まりの山」を
 前提にしています。第33回は**2回戦がリーグ戦**なので前提が崩れます。
 このセクションを書かなければ `render_bracket_svg()` は空文字を返すだけで何も壊れません。
-
-■ Phase 2（抽選日が発表されてから）
-SOURCE / OUT_DIR / CANONICAL / 得点ランキングのキーをファイル冒頭の定数1か所
-（または --season 引数）に切り出し、2シーズンを回せるようにする。
-上記3つの import 互換を壊さないこと（変更後は3つとも実行して落ちないことを確認）。
-fetch_pref_scorers.py の JYOUTH_OUT も同様。
 
 ■ 未確認のもの（2026-09-18 時点）
 ・組み合わせ抽選の日程 … 出典の記事に記載なし
