@@ -70,11 +70,11 @@ Players worth knowing in the 2026 season:
 
 - **TAKENO Futa** (defender, third year) — the captain, and a Japan international at the 2025 U-17 World Cup in Qatar.
 - **OZORA Sena** (defender, third year) — joined from Kamatamare Sanuki's junior youth team in Shikoku, named in the Japan High School Select squad, and has signed for Shimizu S-Pulse from January 2027.
-- **HANASHIRO Eita** (forward, third year) — also in the Japan High School Select squad, and a scorer at the 2026 Inter-High.
+- **HANASHIRO Eita** (midfielder, third year) — also in the Japan High School Select squad, and a scorer at the 2026 Inter-High.
 - **KUBO Tasuku** (goalkeeper, third year) — first choice, and one of the junior high graduates.
-- **FUSHIHARA Riku** (forward, third year) — three goals in the early rounds of the 2026 Premier League WEST.
+- **FUSHIHARA Riku** (midfielder, third year) — three goals in the early rounds of the 2026 Premier League WEST.
 - **OKANO Tsunato** (forward, third year) — level with him on three, and a product of a small Kyushu club rather than an academy.
 - **NAKAE Ginji** (midfielder, third year) — scored at the 2026 Inter-High.
-- **KODAMA Tona** (midfielder, second year), **UENO Rui** (midfielder, second year) and **MASUDA Soichiro** (midfielder, second year) — the second-year group already in the side.
+- **KODAMA Tona** (midfielder, second year), **UENO Rui** (midfielder, second year) and **MASUDA Soichiro** (midfielder, second year) — second-years in the registered squad; Kodama and Masuda have both played in the 2026 Premier League WEST.
 
 The split is deliberate: players from the junior high form what the club calls the tactical spine, and players recruited nationally bring the individual technique.

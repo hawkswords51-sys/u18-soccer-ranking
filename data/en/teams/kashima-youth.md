@@ -80,7 +80,7 @@ Players worth knowing in the 2026 season:
 - **MONOI Jigen** (forward, third year, no. 8) — from Kashima Norte JY.
 - **MOTOSUNA Anthony Udemba** (defender, third year, no. 3) — joined from FC Fresca Kobe, played at the 2025 U-17 World Cup and has already been named on a J1 bench.
 - **KATO Tsukamu** (forward, third year, no. 18) — another Kashima Norte JY product.
-- **YOSHIDA Minato** (forward, third year, no. 40) — from FC Tama JY in Kanagawa, and a key figure in the 2025 treble side.
+- **YOSHIDA Minato** (forward, third year, no. 40) — from FC Tama JY (a Tokyo club), originally from Kanagawa, and a key figure in the 2025 treble side.
 - **TAKISAWA Shu** (forward, second year, no. 11) — Kashima JY, originally from Iwate in the north.
 - **TAKAKI Eito** (forward, second year, no. 13) — Kashima JY.
 - **ISHIWATARI Tomoya** (forward, second year, no. 17) — Kashima JY.
