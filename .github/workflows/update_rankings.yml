@@ -364,6 +364,22 @@ jobs:
             echo "scraper/update_tournament_results.py がまだありません。スキップ。"
           fi
 
+      # ★ 県予選md × 出典（koko）の突き合わせ見張り（2026-09-25 新設）
+      #   「md にあるのに出典のどの試合とも対応しない行」・別ラウンドで照合した行・
+      #   ボットの「要確認」を毎回まとめて出す（埼玉で20行が警告なしに表示されていたため）。
+      #   照合はボット（update_tournament_results.update_md）をそのまま使う。読み取りのみ。
+      #   ⚠️ 必ず上のボットの**後**に置く（ボットが書いたあとの状態を見る）。赤にしない（常に exit 0）。
+      - name: 県予選mdと出典の突き合わせを点検
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/audit_tournament_md.py ]; then
+            python scraper/audit_tournament_md.py
+          else
+            echo "scraper/audit_tournament_md.py がまだありません。スキップ。"
+          fi
+
       # ★ 県ページの上下で数字が食い違わないようにする（2026-09-07新設）
       #   県ページは上部(所属チーム順位表・AI要約)が data/teams.json、
       #   下部(戦績表・直近の試合結果)が data/league_matches/pref-*-1.json を読む。
