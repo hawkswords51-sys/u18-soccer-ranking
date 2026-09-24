@@ -373,8 +373,11 @@ def round_sort_pos(name: str) -> int:
     return 50  # 不明ラウンドは末尾寄り（決勝より前には入れない）
 
 
-def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
-    """mdへ結果を反映。(変更あり?, 記入数, 追加数, 警告リスト) を返す"""
+def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
+    """mdへ結果を反映。(変更あり?, 記入数, 追加数, 警告リスト) を返す
+
+    report に dict を渡すと、見張り（audit_tournament_md.py）用に照合の結果を詰める
+    （unconsumed / cross_round / would_add）。照合・書き換えの挙動は report の有無で変わらない。"""
     content = md_path.read_text(encoding="utf-8")
     fm, body = split_frontmatter(content)
     if fm is None:
@@ -423,6 +426,10 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
     added = 0
     modified = False
     consumed = set()  # 対応づいたmd行（行の中身で管理すると挿入でずれるためidxはその都度再計算）
+    # ↓ 見張り用の記録だけ（照合には使わない）。added_idxs は consumed と同じずれ補正をする
+    added_idxs = set()
+    cross_round = []
+    would_add = []
 
     def rounds_now():
         return _rescan_rounds(body_lines)
@@ -523,7 +530,7 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
 
     def ensure_round(kkey, kr):
         """ラウンド見出しを（無ければ）作って target を返す"""
-        nonlocal modified, consumed
+        nonlocal modified, consumed, added_idxs
         target = next((r for r in rounds_now() if r["key"] == kkey), None)
         if target:
             return target
@@ -543,6 +550,7 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
         else:
             body_lines[pos:pos] = [heading, "", ""]
             consumed = {i + 3 if i >= pos else i for i in consumed}
+            added_idxs = {i + 3 if i >= pos else i for i in added_idxs}
         modified = True
         return next(r for r in rounds_now() if r["key"] == kkey)
 
@@ -586,6 +594,9 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
             if hit is not None:
                 consumed.add(hit)
                 fill_line(hit, km, kkey)
+                if not target or hit not in target["match_idxs"]:
+                    md_round = next((r["key"] for r in rounds_now() if hit in r["match_idxs"]), "")
+                    cross_round.append((kkey, md_round, body_lines[hit].strip()))
             else:
                 pending.append(km)
 
@@ -692,7 +703,10 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
                           if target["match_idxs"] else target["heading_idx"] + 2)
             # 挿入で後続のconsumed idxがずれるため補正
             consumed = {i + 1 if i >= insert_idx else i for i in consumed}
+            added_idxs = {i + 1 if i >= insert_idx else i for i in added_idxs}
             body_lines.insert(insert_idx, newline)
+            added_idxs.add(insert_idx)
+            would_add.append((kkey, newline))
             added += 1
             modified = True
 
@@ -768,6 +782,14 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False):
     if modified and not dry_run:
         md_path.write_text(f"---{new_fm}---{chr(10).join(body_lines)}",
                            encoding="utf-8")
+    if report is not None:
+        koko_keys = {round_key(kr["name"]) for kr in koko_rounds}
+        report["unconsumed"] = [
+            (r["key"], body_lines[i].strip())
+            for r in _rescan_rounds(body_lines) if r["key"] in koko_keys
+            for i in r["match_idxs"] if i not in consumed and i not in added_idxs]
+        report["cross_round"] = cross_round
+        report["would_add"] = would_add
     return modified, filled, added, warnings
 
 
