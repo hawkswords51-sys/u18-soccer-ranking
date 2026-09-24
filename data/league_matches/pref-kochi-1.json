@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.kochi-fa.com/class02/class02sch/entry-305.html",
   "sourceName": "高知県サッカー協会 公式",
-  "lastUpdated": "2026-09-24",
+  "lastUpdated": "2026-09-25",
   "teams": [
     {
       "name": "高知中央",
@@ -43,97 +43,97 @@
       "rank": 1,
       "team": "高知中央",
       "points": 27,
-      "played": 10,
+      "played": 11,
       "won": 9,
       "drawn": 0,
-      "lost": 1,
-      "gf": 49,
-      "ga": 12,
-      "gd": 37
+      "lost": 2,
+      "gf": 51,
+      "ga": 15,
+      "gd": 36
     },
     {
       "rank": 2,
       "team": "高知S",
-      "points": 21,
-      "played": 10,
-      "won": 6,
+      "points": 24,
+      "played": 11,
+      "won": 7,
       "drawn": 3,
       "lost": 1,
-      "gf": 28,
+      "gf": 35,
       "ga": 12,
-      "gd": 16
+      "gd": 23
     },
     {
       "rank": 3,
       "team": "高知小津",
-      "points": 20,
-      "played": 10,
-      "won": 6,
+      "points": 23,
+      "played": 11,
+      "won": 7,
       "drawn": 2,
       "lost": 2,
-      "gf": 22,
-      "ga": 7,
-      "gd": 15
+      "gf": 25,
+      "ga": 9,
+      "gd": 16
     },
     {
       "rank": 4,
       "team": "明徳義塾",
-      "points": 16,
-      "played": 10,
-      "won": 5,
+      "points": 19,
+      "played": 11,
+      "won": 6,
       "drawn": 1,
       "lost": 4,
-      "gf": 29,
+      "gf": 32,
       "ga": 16,
-      "gd": 13
+      "gd": 16
     },
     {
       "rank": 5,
-      "team": "土佐",
-      "points": 13,
-      "played": 10,
+      "team": "岡豊",
+      "points": 14,
+      "played": 11,
       "won": 4,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 5,
-      "gf": 21,
-      "ga": 24,
-      "gd": -3
+      "gf": 20,
+      "ga": 26,
+      "gd": -6
     },
     {
       "rank": 6,
-      "team": "岡豊",
+      "team": "土佐",
       "points": 13,
-      "played": 10,
+      "played": 11,
       "won": 4,
       "drawn": 1,
-      "lost": 5,
-      "gf": 19,
-      "ga": 25,
-      "gd": -6
+      "lost": 6,
+      "gf": 21,
+      "ga": 31,
+      "gd": -10
     },
     {
       "rank": 7,
       "team": "高知国際",
-      "points": 3,
-      "played": 10,
+      "points": 4,
+      "played": 11,
       "won": 1,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 9,
-      "gf": 7,
-      "ga": 41,
+      "gf": 8,
+      "ga": 42,
       "gd": -34
     },
     {
       "rank": 8,
       "team": "宿毛工業",
       "points": 3,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 0,
-      "lost": 9,
+      "lost": 10,
       "gf": 12,
-      "ga": 50,
-      "gd": -38
+      "ga": 53,
+      "gd": -41
     }
   ],
   "matches": [
@@ -393,10 +393,10 @@
       "md": 11,
       "date": "2026-09-19",
       "home": "高知小津",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "高知中央",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,
@@ -483,10 +483,10 @@
       "md": 11,
       "date": "2026-09-19",
       "home": "岡豊",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "高知国際",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 14,
@@ -537,10 +537,10 @@
       "md": 11,
       "date": "2026-09-19",
       "home": "土佐",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 7,
       "away": "高知S",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 14,
@@ -591,10 +591,10 @@
       "md": 11,
       "date": "2026-09-19",
       "home": "宿毛工業",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "明徳義塾",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 14,
@@ -646,82 +646,82 @@
     {
       "team": "高知中央",
       "pts": 27,
-      "played": 10,
+      "played": 11,
       "won": 9,
       "drawn": 0,
-      "lost": 1,
-      "gf": 49,
-      "ga": 12
+      "lost": 2,
+      "gf": 51,
+      "ga": 15
     },
     {
       "team": "明徳義塾",
-      "pts": 16,
-      "played": 10,
-      "won": 5,
+      "pts": 19,
+      "played": 11,
+      "won": 6,
       "drawn": 1,
       "lost": 4,
-      "gf": 29,
+      "gf": 32,
       "ga": 16
     },
     {
       "team": "高知S",
-      "pts": 21,
-      "played": 10,
-      "won": 6,
+      "pts": 24,
+      "played": 11,
+      "won": 7,
       "drawn": 3,
       "lost": 1,
-      "gf": 28,
+      "gf": 35,
       "ga": 12
     },
     {
       "team": "高知国際",
-      "pts": 3,
-      "played": 10,
+      "pts": 4,
+      "played": 11,
       "won": 1,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 9,
-      "gf": 7,
-      "ga": 41
+      "gf": 8,
+      "ga": 42
     },
     {
       "team": "高知小津",
-      "pts": 20,
-      "played": 10,
-      "won": 6,
+      "pts": 23,
+      "played": 11,
+      "won": 7,
       "drawn": 2,
       "lost": 2,
-      "gf": 22,
-      "ga": 7
+      "gf": 25,
+      "ga": 9
     },
     {
       "team": "岡豊",
-      "pts": 13,
-      "played": 10,
+      "pts": 14,
+      "played": 11,
       "won": 4,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 5,
-      "gf": 19,
-      "ga": 25
+      "gf": 20,
+      "ga": 26
     },
     {
       "team": "土佐",
       "pts": 13,
-      "played": 10,
+      "played": 11,
       "won": 4,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 21,
-      "ga": 24
+      "ga": 31
     },
     {
       "team": "宿毛工業",
       "pts": 3,
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 0,
-      "lost": 9,
+      "lost": 10,
       "gf": 12,
-      "ga": 50
+      "ga": 53
     }
   ]
 }

@@ -7,7 +7,7 @@ category: 選手権予選
 status: 開催前
 source: https://koko-soccer.com/score/4468
 ---
-## 1回戦
+## 1回戦（10/3）
 
 - 山形東 vs 惺山
 - 山形工 vs 鶴岡高専
@@ -19,7 +19,7 @@ source: https://koko-soccer.com/score/4468
 - 新庄東 vs 酒田南
 - 山形学院 vs 新庄志誠館・神室産・村山産
 
-## 2回戦
+## 2回戦（10/4）
 
 - 山形東/惺山 vs 酒田東
 - 米沢東 vs 山形工/鶴岡高専

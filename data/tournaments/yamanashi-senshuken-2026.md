@@ -15,7 +15,7 @@ scraper/update_tournament_results.py が上の source から
 決勝の結果が入ると status は自動で「終了」になる。詳細は運営マスター手順書 4-11。
 -->
 
-## 1回戦
+## 1回戦（10/17）
 
 - 塩山 vs 甲府南
 - 都留興譲館 vs 巨摩
@@ -25,7 +25,7 @@ scraper/update_tournament_results.py が上の source から
 - 吉田 vs 甲斐清和
 - 富士河口湖 vs 農林
 
-## 2回戦
+## 2回戦（10/17・10/18）
 
 - 甲府昭和 vs 日川
 - 青洲 vs 塩山/甲府南
@@ -38,7 +38,7 @@ scraper/update_tournament_results.py が上の source から
 <!-- 無視: 甲府東 vs 甲府一 -->
 - 都留興譲館/巨摩 vs 甲府東
 
-## 3回戦
+## 3回戦（10/24）
 
 - 山梨学院 vs 甲府昭和/日川
 - 甲府西/甲府一 vs 日大明誠

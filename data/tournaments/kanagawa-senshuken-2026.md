@@ -155,7 +155,7 @@ scraper/update_tournament_results.py が上の source から
 - 市立幸 0-1 山手学院
 - 海老名 0-1 横須賀総合
 
-## 2次予選1回戦
+## 2次予選1回戦（9/26・9/27）
 
 - 湘南 vs 川和
 - サレジオ学院 vs 平塚学園
@@ -178,7 +178,7 @@ scraper/update_tournament_results.py が上の source から
 - 東海大相模 vs 大磯
 - 秦野総合 vs 横浜創学館
 
-## 2次予選2回戦
+## 2次予選2回戦（10/3・10/4）
 
 - 湘南/川和 vs サレジオ学院/平塚学園
 - 三浦学苑 vs 金井/鎌倉学園
