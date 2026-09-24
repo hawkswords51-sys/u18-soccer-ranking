@@ -69,7 +69,6 @@ scraper/update_tournament_results.py が上の source から
 
 ## Fブロック2回戦（9/12）
 
-- 渋川青翠 vs 館商工・板倉・太工/西邑楽
 - 富岡 4-0 前橋南
 - 渋川青翠 0-3 西邑楽
 

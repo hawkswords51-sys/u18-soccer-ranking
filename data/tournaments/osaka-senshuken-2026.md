@@ -170,7 +170,6 @@ scraper/update_tournament_results.py が上の source から
 - 東住吉 vs 浪速
 - 春日丘 vs 大阪学芸
 - 関西大倉 vs 関大一
-- 羽衣学園/城工・みらい vs 藤井寺/四條畷
 - 箕面 vs 金光藤蔭
 - 羽衣学園 vs 四條畷
 - 東百舌鳥 vs 大体大浪商

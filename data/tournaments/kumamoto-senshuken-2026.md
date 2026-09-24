@@ -39,7 +39,6 @@ scraper/update_tournament_results.py が上の source から
 - 開新 vs 真和
 - 熊本高専熊本 vs 熊本第二
 - 矢部 vs 天草工
-- 熊本 vs 北稜・菊池農・阿蘇中央・御船・八代農・八代清流/八代工
 - 九州学院 vs 翔陽
 - 玉名工 vs 球磨工
 - 水俣 vs 有明

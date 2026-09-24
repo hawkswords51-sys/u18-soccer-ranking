@@ -39,7 +39,6 @@ scraper/update_tournament_results.py が上の source から
 - 佐渡/新津工 0-2 新発田中央
 - 新潟 3-0 合同C/新発田商
 - 加茂 vs 新発田商
-- 巻/新潟青陵 vs 万代
 - 長岡工 0-12 長岡向陵/長岡大手
 - 柏崎 0-3 高田/新潟産大附
 - 新井 0-6 六日町/新潟南
@@ -57,7 +56,6 @@ scraper/update_tournament_results.py が上の source から
 - 新潟西 vs 五泉
 - 新潟商 vs 中越
 - 新潟明訓 vs 新発田
-- 開志学園JSC vs 巻/万代
 - 長岡向陵 vs 北越
 - 新潟 vs 東京学館新潟
 - 新潟産大附 vs 新潟東

@@ -50,7 +50,6 @@ scraper/update_tournament_results.py が上の source から
 
 ## 2回戦（9/26）
 
-- 島田樟誠/天竜 vs 磐田農/湖西・池新田
 - 伊豆伊東・小山 vs 島田工
 - 城南静岡 vs 榛原
 - 富士見 vs 袋井
