@@ -1677,6 +1677,9 @@ def main():
             (f"{DOMAIN}/en/teams/kashiwa-reysol-u18/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/fc-tokyo-u18/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/vissel-kobe-u18/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/tokyo-verdy-youth/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/kawasaki-frontale-u18/", "monthly", "0.6"),
+            (f"{DOMAIN}/en/teams/sanfrecce-hiroshima-youth/", "monthly", "0.6"),
         ]
         s = sm.read_text(encoding="utf-8")
         changed = False
