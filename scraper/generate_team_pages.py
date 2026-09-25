@@ -386,7 +386,7 @@ __SCHEMA_BREADCRUMB__
     <section class="team-hero">
       <h1>__TEAM_NAME__ U-18 高校サッカー</h1>
 __AI_SUMMARY__
-__NT_BADGE__
+__NT_BADGE____NT_ALUMNI_BADGE__
 __PS_BADGE__
       <p class="team-lead">__LEAD__</p>
     </section>
@@ -653,7 +653,8 @@ def build_team_ai_summary(meta: dict) -> str:
     return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
 
 def render_team_page(profile: dict, badge_map: dict | None = None,
-                     ps_badge_map: dict | None = None) -> str:
+                     ps_badge_map: dict | None = None,
+                     alumni_map: dict | None = None) -> str:
     """1チームのプロフィールから HTML を生成"""
     meta = profile["meta"]
     body_md = profile["body_md"]
@@ -661,6 +662,8 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
         badge_map = nt.badges_by_team_id(BASE_DIR)
     if ps_badge_map is None:
         ps_badge_map = ps.badges_by_team_id(BASE_DIR)
+    if alumni_map is None:
+        alumni_map = nt.alumni_badges_by_team_id(BASE_DIR)
 
     md = markdown.Markdown(extensions=["tables", "fenced_code", "nl2br", "sane_lists"])
     body_html = md.convert(body_md)
@@ -704,6 +707,8 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
         .replace("__TEAM_NAME__", html_escape(meta.get("name", "")))
         .replace("__AI_SUMMARY__", build_team_ai_summary(meta))
         .replace("__NT_BADGE__", nt.render_team_badge_html(meta.get("id", ""), badge_map))
+        # 出身バッジ（2026-09-25）。__NT_BADGE__ と同じ行に置いてあるので、該当が無いチームは1バイトも変わらない
+        .replace("__NT_ALUMNI_BADGE__", nt.render_alumni_badge_html(meta.get("id", ""), alumni_map))
         .replace("__PS_BADGE__", ps.render_team_badge_html(meta.get("id", ""), ps_badge_map))
         .replace("__LEAD__", html_escape(lead))
         .replace("__STAT_CARDS__", build_stat_cards(meta))
@@ -779,10 +784,11 @@ def main() -> int:
 
     badge_map = nt.badges_by_team_id(BASE_DIR)  # 日本代表選出バッジ表（全チーム分を1回だけ計算）
     ps_badge_map = ps.badges_by_team_id(BASE_DIR)  # プロ内定・2種登録バッジ表（全チーム分を1回だけ計算）
+    alumni_map = nt.alumni_badges_by_team_id(BASE_DIR)  # 日本代表の出身選手バッジ表（同上）
 
     for profile in profiles:
         team_id = profile["meta"]["id"]
-        html = render_team_page(profile, badge_map, ps_badge_map)
+        html = render_team_page(profile, badge_map, ps_badge_map, alumni_map)
         out_dir = OUTPUT_ROOT / team_id
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(html, encoding="utf-8")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-日本代表（U-16/U-17/U-18）選出選手一覧ページ生成スクリプト
-==========================================================
+日本代表（SAMURAI BLUE・U-21・U-19・U-18・U-17・U-16）選出選手一覧ページ生成スクリプト
+=======================================================================================
 data/national-team-players.yml から /national-team/index.html を生成。
 所属チームは national_team.resolve_club で3段階フォールバック（詳細ページ>県ページ>無リンク）。
 sitemap.xml に /national-team/ を登録（idempotent）。
@@ -28,8 +28,14 @@ ADSENSE_CLIENT = "ca-pub-6953440022497606"
 DOMAIN = "https://u18-soccer.com"
 JST = timezone(timedelta(hours=9))
 
-POS_ORDER = {"GK": 0, "DF": 1, "MF": 2, "FW": 3}
-POS_LABEL = {"GK": "GK", "DF": "DF", "MF": "MF", "FW": "FW"}
+# SAMURAI BLUE は JFA が MF と FW を分けず「MF/FW」で発表する（2026-09-25）
+POS_ORDER = {"GK": 0, "DF": 1, "MF": 2, "MF/FW": 2, "FW": 3}
+POS_LABEL = {"GK": "GK", "DF": "DF", "MF": "MF", "MF/FW": "MF/FW", "FW": "FW"}
+
+
+def _pos_class(pos: str) -> str:
+    """クラス名に「/」を入れない（MF/FW → nt-pos-MFFW）"""
+    return "nt-pos-" + html_escape((pos or "").replace("/", ""))
 
 
 def _club_cell(player: dict) -> str:
@@ -71,10 +77,44 @@ def _club_cell(player: dict) -> str:
     return _linkify(r, nt.canonical_club(player.get("club", "")))
 
 
+def _u18_cell(player: dict) -> str:
+    """U-18（高校・ユース）列。u18 があればそれを（詳細ページがあれば正式名でリンク、
+    県ページ止まりなら「名前＋（◯◯県の順位 ›）」）。u18 が無い選手＝いま U-18 チームに
+    在籍中なので、所属チームをそのまま（リンク付き）出し、後ろに小さく「在籍中」。"""
+    r = player.get("_resolved") or {}
+    name = player.get("u18") or player.get("club", "")
+    if r.get("tier") == "team":
+        cell = (f'<a href="{r["url"]}">{html_escape(r.get("label") or name)} '
+                f'<i class="fas fa-arrow-right" style="font-size:.7em"></i></a>')
+    elif r.get("tier") == "pref":
+        pref = html_escape(r.get("label", "県ページ"))
+        cell = f'{html_escape(name)} <a href="{r["url"]}" style="font-size:.85em">（{pref}の順位 ›）</a>'
+    else:
+        cell = html_escape(name)
+    if not player.get("u18"):
+        cell += ' <span class="nt-current">在籍中</span>'
+    return cell
+
+
 def _category_section(cat: dict) -> str:
     players = sorted(cat.get("players", []), key=lambda p: (POS_ORDER.get(p.get("pos"), 9), p.get("no", 99)))
+    # u18 / u15 を持つ選手が1人でもいるカテゴリだけ6列（既存の4列カテゴリは見た目を変えない）
+    wide = any(p.get("u18") or p.get("u15") for p in players)
     rows = []
     for p in players:
+        if wide:
+            rows.append(
+                "<tr>"
+                f'<td class="nt-no">{html_escape(str(p.get("no","")))}</td>'
+                f'<td class="nt-pos {_pos_class(p.get("pos",""))}">{POS_LABEL.get(p.get("pos"),"")}</td>'
+                f'<td class="nt-name">{html_escape(p.get("name",""))}</td>'
+                # 所属は JFA 原文のまま（U-18 名へ寄せない。熊坂光希は「柏レイソル」が正しい）
+                f'<td class="nt-club">{html_escape(p.get("club",""))}</td>'
+                f'<td class="nt-club nt-u18">{_u18_cell(p)}</td>'
+                f'<td class="nt-u15">{html_escape(p.get("u15") or "—")}</td>'
+                "</tr>"
+            )
+            continue
         rows.append(
             "<tr>"
             f'<td class="nt-no">{html_escape(str(p.get("no","")))}</td>'
@@ -85,6 +125,28 @@ def _category_section(cat: dict) -> str:
         )
     linked = sum(1 for p in players if (p.get("_resolved") or {}).get("tier"))
     note = f'<p class="nt-note">{html_escape(cat["note"])}</p>' if cat.get("note") else ""
+    if wide:
+        head = ("<thead><tr><th>背番号</th><th>Pos</th><th>氏名</th><th>所属</th>"
+                "<th>U-18（高校・ユース）</th><th>U-15（中学年代）</th></tr></thead>")
+        table = f"""<div class="nt-scroll"><table class="nt-table nt-table--wide">
+        {head}
+        <tbody>
+          {''.join(rows)}
+        </tbody>
+      </table></div>"""
+        age = (f'\n        <span class="nt-age">{html_escape(cat.get("age_note",""))}</span>'
+               if cat.get("age_note") else "")
+        return f"""
+    <section class="nt-cat" id="{html_escape(cat.get('code',''))}">
+      <h2>{html_escape(cat.get('label',''))}</h2>
+      <p class="nt-meta">
+        <span class="nt-event">{html_escape(cat.get('event',''))}</span>
+        <span class="nt-period">{html_escape(cat.get('period',''))}</span>{age}
+      </p>
+      {table}
+      {note}
+      <p class="nt-source">出典：<a href="{html_escape(cat.get('source',''))}" rel="nofollow noopener" target="_blank">JFA公式 招集メンバー</a>（{html_escape(cat.get('label',''))}）</p>
+    </section>"""
     return f"""
     <section class="nt-cat" id="{html_escape(cat.get('code',''))}">
       <h2>{html_escape(cat.get('label',''))}</h2>
@@ -106,17 +168,17 @@ def _category_section(cat: dict) -> str:
 
 def build_ai_summary(data: dict) -> str:
     cats = data.get("categories", [])
-    total = sum(len(c.get("players", [])) for c in cats)
-    labels = "・".join(c.get("label", "").replace("日本代表", "") for c in cats)
-    linked = 0
-    for c in cats:
-        for p in c.get("players", []):
-            if (p.get("_resolved") or {}).get("tier") == "team":
-                linked += 1
+    # カテゴリは短い名前で数える（U-17 は新潟とリモージュの2活動だが1カテゴリ）。
+    # 人数は同じ選手を2度数えない（U-19 と U-18 の両方にいる選手がいる）。
+    n_cats = len({nt._short_cat_label(c.get("label", "")) for c in cats})
+    total = len({p.get("name") for c in cats for p in c.get("players", [])})
+    teams = {(p.get("_resolved") or {}).get("team_id") for c in cats for p in c.get("players", [])
+             if (p.get("_resolved") or {}).get("tier") == "team"}
     body = (
-        f"このページは、サッカー{labels}日本代表に選出された高校生・ユース年代の選手計{total}名を、"
-        f"ポジション・背番号・所属チームつきで一覧できるまとめです。"
-        f"所属チームのうち当サイトに詳細ページがある{linked}名はチームページへ直接リンクしています。"
+        f"このページは、サッカー日本代表の最新招集メンバーを、SAMURAI BLUE から U-16 まで"
+        f"{n_cats}カテゴリ・計{total}名まとめた一覧です。U-19以上の選手は出身の高校・ユース（U-18）と"
+        f"中学年代（U-15）のチームも掲載しています。当サイトに詳細ページがある{len(teams)}チームへ"
+        f"直接リンクしています。"
     )
     style = (
         "margin:0 0 14px;padding:12px 16px;background:rgba(255,255,255,0.95);"
@@ -149,7 +211,7 @@ TEMPLATE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>__TITLE__</title>
   <meta name="description" content="__DESC__">
-  <meta name="keywords" content="U-16日本代表,U-17日本代表,U-18日本代表,メンバー,招集,高校サッカー,ユース,所属チーム">
+  <meta name="keywords" content="SAMURAI BLUE,日本代表,U-21日本代表,U-19日本代表,U-18日本代表,U-17日本代表,U-16日本代表,メンバー,招集,出身高校,ユース,所属チーム">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="__CANON__">
   <meta property="og:type" content="website">
@@ -201,6 +263,11 @@ __SCHEMA__
     .nt-note{margin:12px 0 0;font-size:.82rem;color:var(--text-light);background:var(--bg-light);padding:10px 12px;border-radius:8px;}
     .nt-source{margin:8px 0 0;font-size:.8rem;color:var(--text-light);}
     .nt-source a{color:var(--text-light);}
+    .nt-pos-MFFW{background:#7c3aed;font-size:.8em;}
+    .nt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .nt-table--wide{min-width:640px;}
+    .nt-u15{font-size:.85em;color:var(--text-light);}
+    .nt-current{display:inline-block;font-size:.75em;color:var(--text-light);border:1px solid var(--border-color);border-radius:999px;padding:0 6px;margin-left:2px;white-space:nowrap;}
     @media(max-width:768px){.team-hero h1{font-size:1.25rem;}.nt-cat{padding:16px 14px;}.nt-table{font-size:.82rem;}.nt-table td,.nt-table th{padding:6px 6px;}.nt-name{white-space:normal;}}
   </style>
 </head>
@@ -217,7 +284,7 @@ __SCHEMA__
   <main class="container">
     <nav class="breadcrumb"><a href="/">ホーム</a><span class="breadcrumb__sep">›</span><span>日本代表選出選手</span></nav>
     <section class="team-hero">
-      <h1>U-16・U-17・U-18 日本代表 選出選手一覧</h1>
+      <h1>日本代表 選出選手一覧（SAMURAI BLUE〜U-16）</h1>
       __AI_SUMMARY__
       <p class="team-lead">JFA公式発表の最新招集メンバーを、ポジション・背番号・所属チームつきで掲載。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。</p>
     </section>
@@ -225,6 +292,9 @@ __SCHEMA__
     __SECTIONS__
     <section class="nt-cat">
       <h2><i class="fas fa-circle-info"></i> 年代別日本代表の仕組みと、このページの見方</h2>
+      <p style="line-height:1.9;margin:0 0 12px;">
+        SAMURAI BLUE（日本代表）・U-21・U-19 の選手は、プロや大学でプレーしながら招集されています。そこで、このページでは U-19 以上の選手について「U-18（高校・ユース）」と「U-15（中学年代）」の所属チームも載せています。どの高校・ユースから日本代表が育っているのかを、年代をさかのぼって確認できます。出身チームのチームページには「このチーム出身の日本代表選手」バッジを表示しています。
+      </p>
       <p style="line-height:1.9;margin:0 0 12px;">
         U-16・U-17・U-18日本代表は、日本サッカー協会（JFA）が編成する年代別の代表チームです。フル代表と違って固定のメンバーは存在せず、国際大会・海外遠征・国内合宿といった活動ごとに招集メンバーが発表され、そのたびに顔ぶれが入れ替わります。つまりこのページの一覧は「最新の活動で招集された選手」であり、今回名前がない選手が次の招集で選ばれることも珍しくありません。年代はおおむね U-18＝高校3年生相当・U-17＝高校2年生相当・U-16＝高校1年生相当です（学年はJFA非公表のため個別には記載していません）。
       </p>
@@ -238,6 +308,7 @@ __SCHEMA__
     <section class="nt-cat">
       <h2><i class="fas fa-book-open"></i> あわせて読みたい特集</h2>
       <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">
+        <li><a href="/blog/posts/samurai-blue-2026-09-youth-roots/" style="display:block;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);line-height:1.6;"><strong>【日本代表9月招集】31人は中学・高校でどこにいたか｜ユースに上がれず高校へ進んだ6人と、初招集4人の育成ルート</strong><br><span style="font-size:.85em;color:var(--text-light,#666);">このページの SAMURAI BLUE と同じ招集メンバーの、中学年代・高校年代の所属を1人ずつたどった特集です。</span></a></li>
         <li><a href="/blog/posts/worldcup-2026-japan-roots/" style="display:block;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);line-height:1.6;"><strong>【2026W杯】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース完全ガイド</strong><br><span style="font-size:.85em;color:var(--text-light,#666);">年代別代表のその先──フル代表26人が高校・ユース時代をどう過ごしたかを全員分たどった特集です。</span></a></li>
         <li><a href="/blog/posts/ito-junya-rise-2026/" style="display:block;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);line-height:1.6;"><strong>伊東純也の出身高校は県立逗葉高校｜中学・大学〜日本代表までの経歴</strong><br><span style="font-size:.85em;color:var(--text-light,#666);">年代別代表とは無縁だった選手がW杯の主力になるまで。「選ばれなかった側」から見た育成の物語です。</span></a></li>
       </ul>
@@ -283,9 +354,9 @@ def main() -> int:
         print("[national-team] データが無いのでスキップ")
         return 0
 
-    title = "U-16・U-17・U-18日本代表 選出選手一覧【2026最新】｜所属チーム・ポジション"
-    desc = ("サッカーU-16・U-17・U-18日本代表の最新招集メンバーを、背番号・ポジション・所属チームつきで一覧。"
-            "所属チームの詳細ページ（順位・OB）へも移動できます。JFA公式発表に準拠。")
+    title = "日本代表 選出選手一覧【2026最新】SAMURAI BLUE・U-21・U-19・U-18・U-17・U-16｜出身高校・ユース"
+    desc = ("SAMURAI BLUE（日本代表）・U-21・U-19・U-18・U-17・U-16日本代表の最新招集メンバーを一覧。"
+            "全員の出身高校・ユース（U-18）と中学年代（U-15）のチームつきで、どのチームから代表が育ったかを追えます。")
     jump = "".join(f'<a href="#{html_escape(c.get("code",""))}">{html_escape(c.get("label",""))}</a>' for c in cats)
     sections = "".join(_category_section(c) for c in cats)
 
