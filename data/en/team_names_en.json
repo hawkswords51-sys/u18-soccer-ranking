@@ -928,10 +928,25 @@
       "confidence": "high",
       "jp_page": "/teams/aie-kokusai/"
     },
+    "AZアルクマール／オランダ": {
+      "en": "AZ Alkmaar (Netherlands)",
+      "source": "https://www.az.nl/en",
+      "confidence": "high"
+    },
     "Cambridge United U18": {
       "en": "Cambridge United U18 (England)",
       "source": "thefa.com",
       "confidence": "medium"
+    },
+    "FCコペンハーゲン／デンマーク": {
+      "en": "FC Copenhagen (Denmark)",
+      "source": "https://www.fck.dk/en",
+      "confidence": "high"
+    },
+    "FCザンクトパウリ／ドイツ": {
+      "en": "FC St. Pauli (Germany)",
+      "source": "https://www.fcstpauli.com/en/",
+      "confidence": "high"
     },
     "FC今治": {
       "en": "FC Imabari",
@@ -953,20 +968,80 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "FC町田ゼルビア": {
+      "en": "FC Machida Zelvia",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
+    },
     "KBC高等学院": {
       "en": "KBC High School",
       "source": "ユネスコスクール公式データベース（文部科学省）の登録英語名。学校法人KBC学園 KBC高等学院＝KBC High School（Kei確認 2026-09-21）",
       "confidence": "high",
       "jp_page": "/teams/kbc/"
     },
+    "KRCゲンク／ベルギー": {
+      "en": "KRC Genk (Belgium)",
+      "source": "https://www.krcgenk.be/en",
+      "confidence": "high"
+    },
+    "KVCウェステルロー／ベルギー": {
+      "en": "KVC Westerlo (Belgium)",
+      "source": "https://www.kvcwesterlo.be/",
+      "confidence": "high"
+    },
+    "LOSCリール／フランス": {
+      "en": "LOSC Lille (France)",
+      "source": "https://www.losc.fr/en",
+      "confidence": "high"
+    },
+    "PSVアイントホーフェン／オランダ": {
+      "en": "PSV Eindhoven (Netherlands)",
+      "source": "https://www.psv.nl/en",
+      "confidence": "high"
+    },
     "RB大宮アルディージャ": {
       "en": "RB Omiya Ardija",
       "source": "jleague-en",
       "confidence": "high"
     },
+    "SCフライブルク／ドイツ": {
+      "en": "SC Freiburg (Germany)",
+      "source": "https://www.scfreiburg.com/en/",
+      "confidence": "high"
+    },
     "San Jose Earthquakes U18": {
       "en": "San Jose Earthquakes U18 (USA)",
       "source": "sjearthquakes.com",
+      "confidence": "medium"
+    },
+    "VfLヴォルフスブルク／ドイツ": {
+      "en": "VfL Wolfsburg (Germany)",
+      "source": "https://www.vfl-wolfsburg.de/en/",
+      "confidence": "high"
+    },
+    "V・ファーレン長崎": {
+      "en": "V-Varen Nagasaki",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
+    },
+    "いわきFC": {
+      "en": "Iwaki FC",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
+    },
+    "アイントラハト・フランクフルト／ドイツ": {
+      "en": "Eintracht Frankfurt (Germany)",
+      "source": "https://www.eintracht.de/en/",
+      "confidence": "high"
+    },
+    "アストン・ビラ／イングランド": {
+      "en": "Aston Villa (England)",
+      "source": "https://www.avfc.co.uk/",
+      "confidence": "high"
+    },
+    "アスルクラロ沼津U18": {
+      "en": "Azul Claro Numazu U-18",
+      "source": "https://www.azulclaro.jp/",
       "confidence": "medium"
     },
     "アビスパ福岡": {
@@ -979,6 +1054,21 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "イプスウィッチ・タウン／イングランド": {
+      "en": "Ipswich Town (England)",
+      "source": "https://www.itfc.co.uk/",
+      "confidence": "high"
+    },
+    "オリンピック・リヨン／フランス": {
+      "en": "Olympique Lyonnais (France)",
+      "source": "https://www.ol.fr/en",
+      "confidence": "high"
+    },
+    "オールボーBK／デンマーク": {
+      "en": "AaB Fodbold (Denmark)",
+      "source": "https://www.jfa.jp/eng/news/00036585/",
+      "confidence": "high"
+    },
     "カターレ富山": {
       "en": "Kataller Toyama",
       "source": "jleague-en",
@@ -987,6 +1077,16 @@
     "ガンバ大阪": {
       "en": "Gamba Osaka",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "クリスタル・パレス／イングランド": {
+      "en": "Crystal Palace (England)",
+      "source": "https://www.cpfc.co.uk/",
+      "confidence": "high"
+    },
+    "サウサンプトンFC／イングランド": {
+      "en": "Southampton FC (England)",
+      "source": "https://www.southamptonfc.com/",
       "confidence": "high"
     },
     "サガン鳥栖": {
@@ -1003,6 +1103,16 @@
       "en": "Sanfrecce Hiroshima F.C Youth",
       "jp_page": "/teams/sanfrecce-hiroshima-youth/",
       "source": "alias-of:サンフレッチェ広島F.C.ユース",
+      "confidence": "high"
+    },
+    "シャルケ04／ドイツ": {
+      "en": "FC Schalke 04 (Germany)",
+      "source": "https://schalke04.de/en/",
+      "confidence": "high"
+    },
+    "シントトロイデンVV／ベルギー": {
+      "en": "Sint-Truidense VV (Belgium)",
+      "source": "https://www.jfa.jp/eng/news/00036585/",
       "confidence": "high"
     },
     "ジェフユナイテッド市原・千葉": {
@@ -1030,9 +1140,59 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "バイエルン・ミュンヘン／ドイツ": {
+      "en": "FC Bayern Munich (Germany)",
+      "source": "https://fcbayern.com/en",
+      "confidence": "high"
+    },
+    "バレンシアCF／スペイン": {
+      "en": "Valencia CF (Spain)",
+      "source": "https://www.valenciacf.com/en",
+      "confidence": "high"
+    },
+    "パトロ・アイスデン・マースメヘレン／ベルギー": {
+      "en": "Patro Eisden Maasmechelen (Belgium)",
+      "source": "https://www.uefa.com/nationalassociations/teams/2606790--patro-eisden-maasmechelen/",
+      "confidence": "high"
+    },
+    "ファジアーノ岡山": {
+      "en": "Fagiano Okayama",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
+    },
+    "フェイエノールト／オランダ": {
+      "en": "Feyenoord (Netherlands)",
+      "source": "https://www.feyenoord.com/en",
+      "confidence": "high"
+    },
+    "ボルシア・メンヘングラートバッハ／ドイツ": {
+      "en": "Borussia Mönchengladbach (Germany)",
+      "source": "https://www.borussia.de/en",
+      "confidence": "high"
+    },
+    "マインツ05／ドイツ": {
+      "en": "1. FSV Mainz 05 (Germany)",
+      "source": "https://www.mainz05.de/en/",
+      "confidence": "high"
+    },
     "モンテディオ山形": {
       "en": "Montedio Yamagata",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "リーズ・ユナイテッド／イングランド": {
+      "en": "Leeds United (England)",
+      "source": "https://www.leedsunited.com/",
+      "confidence": "high"
+    },
+    "ル・アーヴルAC／フランス": {
+      "en": "Le Havre AC (France)",
+      "source": "https://www.hac-foot.com/",
+      "confidence": "high"
+    },
+    "レアル・ソシエダ／スペイン": {
+      "en": "Real Sociedad (Spain)",
+      "source": "https://www.realsociedad.eus/en",
       "confidence": "high"
     },
     "ロアッソ熊本ユース": {
@@ -1046,10 +1206,25 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "三菱養和SCユース": {
+      "en": "Mitsubishi Yowa SC Youth",
+      "source": "https://www.facebook.com/Mitsubishi.Yowa.Soccer.Club/",
+      "confidence": "medium"
+    },
+    "中央大": {
+      "en": "Chuo University",
+      "source": "https://www.chuo-u.ac.jp/english/",
+      "confidence": "high"
+    },
     "九州国際大学付属高等学校": {
       "en": "Kyushu International University Affiliated High School",
       "jp_page": "/teams/kyukoku-fu/",
       "source": "alias-of:九州国際大付属高校",
+      "confidence": "high"
+    },
+    "京都産業大": {
+      "en": "Kyoto Sangyo University",
+      "source": "https://www.kyoto-su.ac.jp/english/",
       "confidence": "high"
     },
     "今治東中等教育学校": {
@@ -1093,17 +1268,32 @@
       "confidence": "high",
       "jp_page": "/teams/yokkaichi-chuo-kogyo/"
     },
+    "国士舘大": {
+      "en": "Kokushikan University",
+      "source": "https://www.kokushikan.ac.jp/english/",
+      "confidence": "high"
+    },
     "国士舘高校": {
       "en": "Kokushikan Senior High School",
       "source": "school-official",
       "confidence": "high",
       "jp_page": "/teams/kokushikan/"
     },
+    "國學院大學久我山高校": {
+      "en": "Kokugakuin University Kugayama High School",
+      "source": "https://www.kugayama-h.ed.jp/",
+      "confidence": "high"
+    },
     "大分高校": {
       "en": "Oita High School",
       "source": "school-official",
       "confidence": "high",
       "jp_page": "/teams/oita/"
+    },
+    "大宮アルディージャU18": {
+      "en": "Omiya Ardija U-18",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
     },
     "大津高": {
       "en": "Ohzu High School",
@@ -1139,6 +1329,11 @@
       "confidence": "high",
       "jp_page": "/teams/yamagata-meisei/"
     },
+    "岡崎城西高校": {
+      "en": "Okazaki Johsei High School",
+      "source": "https://www.johsei.jp/",
+      "confidence": "medium"
+    },
     "川崎フロンターレ": {
       "en": "Kawasaki Frontale",
       "source": "jleague-en",
@@ -1172,16 +1367,37 @@
       "source": "alias-of:帝京長岡高校",
       "confidence": "high"
     },
+    "愛知学院大": {
+      "en": "Aichi Gakuin University",
+      "source": "https://www.agu.ac.jp/english/",
+      "confidence": "high"
+    },
+    "慶應義塾大": {
+      "en": "Keio University",
+      "source": "https://www.keio.ac.jp/en/",
+      "confidence": "high"
+    },
     "成立学園高校": {
       "en": "Seiritsu Gakuen High School",
       "source": "school-official",
       "confidence": "high",
       "jp_page": "/teams/seiritsu-gakuen/"
     },
+    "日体大柏高校": {
+      "en": "Nippon Sport Science University Kashiwa High School",
+      "jp_page": "/teams/nittaidai-kashiwa/",
+      "source": "alias-of:日本体育大学柏高校",
+      "confidence": "high"
+    },
     "日章学園高": {
       "en": "Nissho Gakuen High School",
       "jp_page": "/teams/nissho-gakuen/",
       "source": "alias-of:日章学園高校",
+      "confidence": "high"
+    },
+    "早稲田大": {
+      "en": "Waseda University",
+      "source": "https://www.waseda.jp/top/en/",
       "confidence": "high"
     },
     "昌平高": {
@@ -1195,6 +1411,26 @@
       "source": "school-official",
       "confidence": "high",
       "jp_page": "/teams/meio/"
+    },
+    "明治大": {
+      "en": "Meiji University",
+      "source": "https://www.meiji.ac.jp/cip/english/",
+      "confidence": "high"
+    },
+    "東京国際大": {
+      "en": "Tokyo International University",
+      "source": "https://www.tiu.ac.jp/english/",
+      "confidence": "high"
+    },
+    "東洋大": {
+      "en": "Toyo University",
+      "source": "https://www.toyo.ac.jp/en/",
+      "confidence": "high"
+    },
+    "松本山雅FC": {
+      "en": "Matsumoto Yamaga F.C.",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
     },
     "柏レイソル": {
       "en": "Kashiwa Reysol",
@@ -1212,6 +1448,11 @@
       "source": "alias-of:桐生第一高校",
       "confidence": "high"
     },
+    "桐蔭横浜大": {
+      "en": "Toin University of Yokohama",
+      "source": "https://toin.ac.jp/univ/en/",
+      "confidence": "high"
+    },
     "横浜FC": {
       "en": "Yokohama FC",
       "source": "jleague-en",
@@ -1220,6 +1461,11 @@
     "横浜F・マリノス": {
       "en": "Yokohama F. Marinos",
       "source": "jleague-en",
+      "confidence": "high"
+    },
+    "法政大": {
+      "en": "Hosei University",
+      "source": "https://www.hosei.ac.jp/english/",
       "confidence": "high"
     },
     "流通経済大学付属柏高": {
@@ -1255,6 +1501,26 @@
       "confidence": "high",
       "jp_page": "/teams/unebi/"
     },
+    "神奈川大": {
+      "en": "Kanagawa University",
+      "source": "https://www.kanagawa-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "福島ユナイテッドFC": {
+      "en": "Fukushima United FC",
+      "source": "https://www.jleague.jp/en/",
+      "confidence": "high"
+    },
+    "筑波大": {
+      "en": "University of Tsukuba",
+      "source": "https://www.tsukuba.ac.jp/en/",
+      "confidence": "high"
+    },
+    "花巻東高校": {
+      "en": "Hanamaki Higashi High School",
+      "source": "https://www.hanamakihigashi-h.jp/",
+      "confidence": "medium"
+    },
     "西京高校": {
       "en": "Saikyo High School",
       "source": "school-official",
@@ -1272,6 +1538,11 @@
       "source": "school-official",
       "confidence": "high",
       "jp_page": "/teams/kindai-fuzoku/"
+    },
+    "逗葉高校": {
+      "en": "Zuyo High School",
+      "source": "https://zuyo-h.pen-kanagawa.ed.jp/",
+      "confidence": "medium"
     },
     "阪南大学高": {
       "en": "Hannan University Senior High School",
