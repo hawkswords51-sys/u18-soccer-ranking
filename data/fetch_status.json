@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-25T11:06:17+09:00",
+  "updatedAt": "2026-09-25T11:06:25+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -282,7 +282,7 @@
       "sourceName": "愛媛県サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "2026-09-25",
-      "result_streak": 2,
+      "result_streak": 3,
       "status": "warn",
       "last_updated": "2026-09-24",
       "result": "fetch_error",
@@ -451,8 +451,8 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 16,
-      "status": "alert",
+      "result_streak": 17,
+      "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田松聖A: 勝点 公式21 ≠ 試合から22'] …",
       "result_date": "2026-09-25",
@@ -478,7 +478,8 @@
           "team": "滝川第二B",
           "item": "滝川第二B: 順位 公式3 ≠ 試合から4"
         }
-      ]
+      ],
+      "status_note": "既知の出典の誤り（data/fetch_watch_exceptions.json の台帳による🟡）"
     },
     "ibaraki": {
       "result": "ok",
@@ -656,7 +657,7 @@
       "sourceName": "京都府サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "2026-09-25",
-      "result_streak": 2,
+      "result_streak": 3,
       "status": "warn",
       "last_updated": "2026-09-24",
       "result": "fetch_error",
@@ -1073,8 +1074,8 @@
       "sourceName": "栃木県サッカー協会 公式（LSIN cloud）",
       "last_change": "2026-09-13",
       "result_since": "2026-09-22",
-      "result_streak": 7,
-      "status": "alert",
+      "result_streak": 8,
+      "status": "warn",
       "last_updated": "2026-09-22",
       "verify_items": [
         {
@@ -1097,7 +1098,8 @@
           "team": "佐野日大",
           "item": "佐野日大.lost 試合2≠表1"
         }
-      ]
+      ],
+      "status_note": "既知の出典の誤り（data/fetch_watch_exceptions.json の台帳による🟡）"
     },
     "tokushima": {
       "season": "2026",
