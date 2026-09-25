@@ -463,16 +463,6 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
         #   （「新居浜商・土居/今治工」）が koko の「今治工」と一致せず、逆向きと誤判定して
         #   スコアを左右反対に書き、名前も確定しなかった。
         fwd = _slot_ok(ta, km["home"]) or side_ok(ta, km["home"])
-        if has_score:
-            # 既存スコアは絶対に上書きしない。ただしkokoと食い違うなら警告。
-            if km["finished"] and km["score"]:
-                md_sc = md_score_norm(body_lines[idx])
-                if md_sc and not rev_matches_score(md_sc, km["score"], fwd):
-                    warnings.append(
-                        f"要確認: {kkey} の「{ta} / {tb}」のスコアが出典と不一致"
-                        f"（md={md_sc} / koko={km['score'] if fwd else flip_score(km['score'])}）"
-                        f"→ 上書きせず据え置き")
-            return
         # [2026-09-18] 勝者待ちの側を確定名に直す
         # ------------------------------------------------------------------
         # 「- A/B vs C/D」は、まだ勝者が決まっていない枠を表す行。出典が勝者を確定させても
@@ -496,6 +486,35 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
             hit = [e for e in elems if match_key(e) == match_key(koko_name)]
             # 2つ以上該当＝あいまい（同名が両側にいる等）→ 触らない
             return display(koko_name) if len(hit) == 1 else None
+
+        if has_score:
+            # 既存スコアは絶対に上書きしない。ただしkokoと食い違うなら警告。
+            if km["finished"] and km["score"]:
+                md_sc = md_score_norm(body_lines[idx])
+                if md_sc and not rev_matches_score(md_sc, km["score"], fwd):
+                    warnings.append(
+                        f"要確認: {kkey} の「{ta} / {tb}」のスコアが出典と不一致"
+                        f"（md={md_sc} / koko={km['score'] if fwd else flip_score(km['score'])}）"
+                        f"→ 上書きせず据え置き")
+                elif md_sc:
+                    # [2026-09-25] スコアはもう入っているが名前が「A/B」のまま、の行を確定名に直す
+                    #   （全mdで84行。例「新潟 3-0 合同C/新発田商」）。**スコアの文字列は一字も変えない。**
+                    #   直すのは、スコアが出典と一致し、両側とも _slot_ok（厳密）で一致し、
+                    #   少なくとも片側で _resolved が名前を返すときだけ。filled は増やさない。
+                    kh, ka = (km["home"], km["away"]) if fwd else (km["away"], km["home"])
+                    if _slot_ok(ta, kh) and _slot_ok(tb, ka):
+                        ra, rb = _resolved(ta, kh), _resolved(tb, ka)
+                        cur = body_lines[idx].strip()
+                        head, tail = f"- {ta} ", f" {tb}"
+                        if ((ra or rb) and cur.startswith(head) and cur.endswith(tail)
+                                and len(cur) > len(head) + len(tail)):
+                            mid = cur[len(head):len(cur) - len(tail)]
+                            newline = f"- {ra or ta} {mid} {rb or tb}"
+                            if newline != cur:
+                                log(f"  勝者待ちを確定名に: 「{cur}」→「{newline}」")
+                                body_lines[idx] = newline
+                                modified = True
+            return
 
         kh, ka = (km["home"], km["away"]) if fwd else (km["away"], km["home"])
         na = _resolved(ta, kh) or ta
