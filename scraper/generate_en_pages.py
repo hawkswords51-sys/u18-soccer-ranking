@@ -399,7 +399,15 @@ def timing_en(s):
 def render_national_team(out_root, names, extra, players, season):
     data = yaml.safe_load(NT_YML.read_text(encoding="utf-8"))
     blocks, jump, jp_only = [], [], 0
+    # [2026-09-25] label_en の無いカテゴリ（SAMURAI BLUE・U-21・U-19）は英語ページに出さない。
+    #   所属が海外クラブ・大学で英語名が未登録のため、そのまま回すと下の「未登録なら書き換えない」で
+    #   英語の代表ページ全体が更新されなくなる。英語名をそろえたら label_en を足せば出る。
+    skipped = [c["code"] for c in data["categories"] if not c.get("label_en")]
+    if skipped:
+        print(f"[en] 代表ページ: 英語名未設定のため飛ばした: {', '.join(skipped)}")
     for cat in data["categories"]:
+        if not cat.get("label_en"):
+            continue
         label = cat.get("label_en") or cat["code"].upper()
         rows = []
         for pl in cat["players"]:
@@ -464,8 +472,9 @@ def render_national_team(out_root, names, extra, players, season):
     dest = out_root / "en" / "national-team" / "index.html"
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(page, encoding="utf-8")
-    n = sum(len(c["players"]) for c in data["categories"])
-    print(f"OK: {dest} を書きました（{len(data['categories'])}カテゴリ・{n}人／うち日本語表記のまま {jp_only}人）")
+    shown = [c for c in data["categories"] if c.get("label_en")]
+    n = sum(len(c["players"]) for c in shown)
+    print(f"OK: {dest} を書きました（{len(shown)}カテゴリ・{n}人／うち日本語表記のまま {jp_only}人）")
 
 
 def render_pro_signings(out_root, names, extra, players, season):
