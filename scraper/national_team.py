@@ -197,10 +197,15 @@ def load_categories(base_dir: Path = BASE_DIR) -> dict:
     tidx = build_teams_index(base_dir)
     for cat in data.get("categories", []):
         for p in cat.get("players", []):
-            # origin（出身U-18チーム）があればそれをリンク先にする。
+            # u18（出身のU-18年代チーム・2026-09-25追加）> origin > club の順でリンク先を決める。
             # これによりバッジも出身チーム側に付く（例: 増田大空→流経大柏、ジュビロ磐田U-18には付かない）
-            link_name = p.get("origin") or p.get("club", "")
+            link_name = p.get("u18") or p.get("origin") or p.get("club", "")
             p["_resolved"] = resolve_club(link_name, pidx, tidx)
+            # 種別: u18 を書いた選手＝そのチームの「出身選手」、それ以外＝「在籍中」（従来どおり）。
+            # ⚠️ 「現所属と出身が同じなら在籍中」という判定はしない。CLUB_ALIASES が
+            #    「柏レイソル→柏レイソルU-18」と寄せるので、熊坂光希（柏レイソル／出身 柏U-18）が
+            #    在籍中に化ける。**u18 キーの有無だけで決める。**
+            p["_kind"] = "alumni" if p.get("u18") else "current"
     return data
 
 
@@ -209,17 +214,79 @@ def load_categories(base_dir: Path = BASE_DIR) -> dict:
 # ---------------------------------------------------------------------
 
 def badges_by_team_id(base_dir: Path = BASE_DIR) -> dict:
-    """{team_id: [ {cat_label, no, pos, name}... ]} を返す（チームページのバッジ用）"""
+    """{team_id: [ {cat_label, no, pos, name}... ]} を返す（チームページの在籍中バッジ用）。
+    出身選手（u18 を書いた選手）は含めない → alumni_badges_by_team_id()。"""
     data = load_categories(base_dir)
     out = {}
     for cat in data.get("categories", []):
         for p in cat.get("players", []):
             r = p.get("_resolved") or {}
-            if r.get("tier") == "team":
+            if r.get("tier") == "team" and p.get("_kind") != "alumni":
                 out.setdefault(r["team_id"], []).append(
                     {"cat": cat.get("label", ""), "no": p.get("no"), "pos": p.get("pos"), "name": p.get("name")}
                 )
     return out
+
+
+def _short_cat_label(label: str) -> str:
+    """「U-21日本代表（アジア競技大会）」→「U-21日本代表」。「SAMURAI BLUE（日本代表）」→「SAMURAI BLUE」"""
+    return label.split("（")[0].strip()
+
+
+def alumni_badges_by_team_id(base_dir: Path = BASE_DIR) -> dict:
+    """{team_id: [ {name, cats:[短いカテゴリ名…]} … ]}（チームページの出身バッジ用）。
+    u18 を書いた選手だけ。同じ選手が複数カテゴリにいたら1人にまとめる（キーは氏名）。
+    選手の並びは、最初に出てくるカテゴリ（SAMURAI BLUE → U-21 → …）の順。"""
+    data = load_categories(base_dir)
+    out = {}
+    for cat in data.get("categories", []):
+        short = _short_cat_label(cat.get("label", ""))
+        for p in cat.get("players", []):
+            r = p.get("_resolved") or {}
+            if r.get("tier") != "team" or p.get("_kind") != "alumni":
+                continue
+            lst = out.setdefault(r["team_id"], [])
+            hit = next((x for x in lst if x["name"] == p.get("name")), None)
+            if hit:
+                if short not in hit["cats"]:
+                    hit["cats"].append(short)
+            else:
+                lst.append({"name": p.get("name"), "cats": [short]})
+    return out
+
+
+def render_alumni_badge_html(team_id: str, alumni_map: dict) -> str:
+    """チーム詳細ページに置く「このチーム出身の日本代表選手」バッジHTML（在籍中バッジの下）。
+    該当が無ければ空文字。「OB」とは書かない（長南開史のように在籍中にプロ契約した
+    卒業前の出身選手がいるため）。カテゴリの上から順に並べ、複数カテゴリの選手は
+    いちばん上のカテゴリの行に「名前（U-19・U-18）」とまとめて出す。"""
+    players = alumni_map.get(team_id)
+    if not players:
+        return ""
+    by_cat = {}
+    for p in players:
+        by_cat.setdefault(p["cats"][0], []).append(p)
+    lines = []
+    for cat, ps in by_cat.items():
+        names = "、".join(
+            html_escape(p["name"]) + (f'（{"・".join(html_escape(c) for c in p["cats"])}）'
+                                      if len(p["cats"]) > 1 else "")
+            for p in ps)
+        lines.append(f'<strong>{html_escape(cat)}</strong>：{names}')
+    inner = "<br>".join(lines)
+    # 在籍中バッジ（金の左線）と並べて違いが分かるよう、左線は濃紺・アイコンは卒業帽。
+    # 背景・文字色は固定色（テーマ変数にしない）＝ダークモードでも白地に濃紺の文字で読める。
+    style = (
+        "margin:0 0 14px;padding:12px 16px;background:rgba(255,255,255,0.95);"
+        "color:#16264a;border-left:4px solid #1e3a8a;border-radius:0 8px 8px 0;"
+        "font-size:0.92rem;line-height:1.8;"
+    )
+    return (
+        f'      <p class="nt-badge nt-badge--alumni" style="{style}">'
+        f'<i class="fas fa-user-graduate" style="color:#1e3a8a"></i> '
+        f'<a href="/national-team/" style="color:#16264a;font-weight:700;text-decoration:underline">'
+        f'このチーム出身の日本代表選手</a>　{inner}</p>\n'
+    )
 
 
 def render_team_badge_html(team_id: str, badge_map: dict) -> str:
@@ -254,9 +321,19 @@ if __name__ == "__main__":
     # 単体テスト: 対応付け結果を一覧表示（repoルートで実行）
     data = load_categories()
     print(f"updated: {data.get('updated')}")
+    import collections
+    tiers = collections.Counter()
     for cat in data.get("categories", []):
         print(f"\n=== {cat['label']} ({cat.get('event')}) ===")
         for p in cat.get("players", []):
             r = p["_resolved"]
             tier = r["tier"] or "—(無リンク)"
-            print(f"  {p['pos']:<2} {p['name']:<16} {p['club']:<28} → {tier} {r['url'] or ''}")
+            kind = "出身" if p.get("_kind") == "alumni" else "在籍"
+            if p.get("u18") or p.get("u15"):
+                tiers[r["tier"]] += 1
+            print(f"  {p['pos']:<5} {p['name']:<16} {p['club']:<28} "
+                  f"U-18:{p.get('u18') or '—':<20} U-15:{p.get('u15') or '—':<22} [{kind}] → {tier} {r['url'] or ''}")
+    alumni = alumni_badges_by_team_id()
+    print(f"\n出身チーム（u18/u15）を持つ選手の対応づけ: チームページ {tiers['team']}／県ページ {tiers['pref']}／無リンク {tiers[None]}")
+    print(f"出身バッジが付くチーム: {len(alumni)}")
+    print("  " + ", ".join(sorted(alumni)))
