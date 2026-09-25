@@ -79,7 +79,7 @@ scraper/update_tournament_results.py が上の source から
 ## Gブロック2回戦（9/12）
 
 - 太田 1-0 館林
-- 桐生工 1-0 高崎北/関東学園大附
+- 桐生工 1-0 関東学園大附
 
 ## Hブロック1回戦（9/5）
 
@@ -87,7 +87,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## Hブロック2回戦（9/12）
 
-- 太田東 2-1 桐生/高崎商大附
+- 太田東 2-1 桐生
 - 伊勢崎清明 0-1 藤岡中央
 
 ## Fブロック決勝（9/20）
