@@ -96,10 +96,24 @@ def _u18_cell(player: dict) -> str:
     return cell
 
 
+def _univ_cell(player: dict) -> str:
+    """大学列（2026-09-25）。univ（在籍したことのある大学）があればその文字。
+    univ と所属（club）が同じ（NFKC・空白除去で比較）なら後ろに小さく「在学中」。無ければ「—」。リンクは付けない。"""
+    univ = player.get("univ")
+    if not univ:
+        return "—"
+    cell = html_escape(univ)
+    if nt._norm(univ) == nt._norm(player.get("club", "")):
+        cell += ' <span class="nt-current">在学中</span>'
+    return cell
+
+
 def _category_section(cat: dict) -> str:
     players = sorted(cat.get("players", []), key=lambda p: (POS_ORDER.get(p.get("pos"), 9), p.get("no", 99)))
     # u18 / u15 を持つ選手が1人でもいるカテゴリだけ6列（既存の4列カテゴリは見た目を変えない）
     wide = any(p.get("u18") or p.get("u15") for p in players)
+    # 大学列は、カテゴリ内に univ を持つ選手が1人でもいるときだけ出す
+    has_univ = any(p.get("univ") for p in players)
     rows = []
     for p in players:
         if wide:
@@ -110,7 +124,8 @@ def _category_section(cat: dict) -> str:
                 f'<td class="nt-name">{html_escape(p.get("name",""))}</td>'
                 # 所属は JFA 原文のまま（U-18 名へ寄せない。熊坂光希は「柏レイソル」が正しい）
                 f'<td class="nt-club">{html_escape(p.get("club",""))}</td>'
-                f'<td class="nt-club nt-u18">{_u18_cell(p)}</td>'
+                + (f'<td class="nt-univ">{_univ_cell(p)}</td>' if has_univ else "")
+                + f'<td class="nt-club nt-u18">{_u18_cell(p)}</td>'
                 f'<td class="nt-u15">{html_escape(p.get("u15") or "—")}</td>'
                 "</tr>"
             )
@@ -127,7 +142,8 @@ def _category_section(cat: dict) -> str:
     note = f'<p class="nt-note">{html_escape(cat["note"])}</p>' if cat.get("note") else ""
     if wide:
         head = ("<thead><tr><th>背番号</th><th>Pos</th><th>氏名</th><th>所属</th>"
-                "<th>U-18（高校・ユース）</th><th>U-15（中学年代）</th></tr></thead>")
+                + ("<th>大学</th>" if has_univ else "")
+                + "<th>U-18（高校・ユース）</th><th>U-15（中学年代）</th></tr></thead>")
         table = f"""<div class="nt-scroll"><table class="nt-table nt-table--wide">
         {head}
         <tbody>
@@ -174,10 +190,11 @@ def build_ai_summary(data: dict) -> str:
     total = len({p.get("name") for c in cats for p in c.get("players", [])})
     teams = {(p.get("_resolved") or {}).get("team_id") for c in cats for p in c.get("players", [])
              if (p.get("_resolved") or {}).get("tier") == "team"}
+    n_univ = len({p.get("name") for c in cats for p in c.get("players", []) if p.get("univ")})
     body = (
         f"このページは、サッカー日本代表の最新招集メンバーを、SAMURAI BLUE から U-16 まで"
-        f"{n_cats}カテゴリ・計{total}名まとめた一覧です。U-19以上の選手は出身の高校・ユース（U-18）と"
-        f"中学年代（U-15）のチームも掲載しています。当サイトに詳細ページがある{len(teams)}チームへ"
+        f"{n_cats}カテゴリ・計{total}名（うち大学経由{n_univ}名）まとめた一覧です。U-19以上の選手は"
+        f"出身の高校・ユース（U-18）と中学年代（U-15）のチームも掲載しています。当サイトに詳細ページがある{len(teams)}チームへ"
         f"直接リンクしています。"
     )
     style = (
@@ -266,6 +283,7 @@ __SCHEMA__
     .nt-pos-MFFW{background:#7c3aed;font-size:.8em;}
     .nt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
     .nt-table--wide{min-width:640px;}
+    .nt-univ{white-space:nowrap;}
     .nt-u15{font-size:.85em;color:var(--text-light);}
     .nt-current{display:inline-block;font-size:.75em;color:var(--text-light);border:1px solid var(--border-color);border-radius:999px;padding:0 6px;margin-left:2px;white-space:nowrap;}
     @media(max-width:768px){.team-hero h1{font-size:1.25rem;}.nt-cat{padding:16px 14px;}.nt-table{font-size:.82rem;}.nt-table td,.nt-table th{padding:6px 6px;}.nt-name{white-space:normal;}}
@@ -293,7 +311,7 @@ __SCHEMA__
     <section class="nt-cat">
       <h2><i class="fas fa-circle-info"></i> 年代別日本代表の仕組みと、このページの見方</h2>
       <p style="line-height:1.9;margin:0 0 12px;">
-        SAMURAI BLUE（日本代表）・U-21・U-19 の選手は、プロや大学でプレーしながら招集されています。そこで、このページでは U-19 以上の選手について「U-18（高校・ユース）」と「U-15（中学年代）」の所属チームも載せています。どの高校・ユースから日本代表が育っているのかを、年代をさかのぼって確認できます。出身チームのチームページには「このチーム出身の日本代表選手」バッジを表示しています。
+        SAMURAI BLUE（日本代表）・U-21・U-19 の選手は、プロや大学でプレーしながら招集されています。そこで、このページでは U-19 以上の選手について「U-18（高校・ユース）」と「U-15（中学年代）」の所属チームも載せています。どの高校・ユースから日本代表が育っているのかを、年代をさかのぼって確認できます。出身チームのチームページには「このチーム出身の日本代表選手」バッジを表示しています。大学を経てプロになった選手・大学在学中に招集された選手は『大学』欄に大学名を載せています。
       </p>
       <p style="line-height:1.9;margin:0 0 12px;">
         U-16・U-17・U-18日本代表は、日本サッカー協会（JFA）が編成する年代別の代表チームです。フル代表と違って固定のメンバーは存在せず、国際大会・海外遠征・国内合宿といった活動ごとに招集メンバーが発表され、そのたびに顔ぶれが入れ替わります。つまりこのページの一覧は「最新の活動で招集された選手」であり、今回名前がない選手が次の招集で選ばれることも珍しくありません。年代はおおむね U-18＝高校3年生相当・U-17＝高校2年生相当・U-16＝高校1年生相当です（学年はJFA非公表のため個別には記載していません）。
