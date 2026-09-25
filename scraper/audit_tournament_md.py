@@ -36,6 +36,13 @@ Actions のログに毎回出ているのに、人には届いていなかった
 ------
   python scraper/audit_tournament_md.py          # 未終了の大会だけ（定期実行）
   python scraper/audit_tournament_md.py --all    # 「終了」も含める（年1回の点検用）
+  python scraper/audit_tournament_md.py --verbose  # 無視指定で手直し済みの行も一覧で出す
+
+無視指定で手直し済みの行（2026-09-25）
+--------------------------------------
+出典の誤記を人が直した行は、直下の <!-- 無視: koko表記 --> でボットに取り込ませていない。
+ボットから見ると「どのカードとも対応しない」ので、そのままでは毎日「出典に無い行」に出てしまう。
+→ 同じラウンドの無視指定とチームが共通する行は「出典に無い行」から外し、件数だけ出す。
 """
 import argparse
 import contextlib
@@ -113,6 +120,7 @@ def audit_file(md_path, urls):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true", help="status が「終了」の大会も含める")
+    ap.add_argument("--verbose", action="store_true", help="無視指定で手直し済みの行も一覧で出す")
     args = ap.parse_args()
 
     ts = _jst_now().strftime("%Y-%m-%d %H:%M")
@@ -134,6 +142,7 @@ def main():
     n_cross = sum(len(r["cross_round"]) for _, r in results)
     n_add = sum(len(r["would_add"]) for _, r in results)
     n_warn = sum(len(r["warnings"]) for _, r in results)
+    n_cov = sum(len(r.get("covered_by_ignore", [])) for _, r in results)
 
     print(f"=== 県予選md × 出典の突き合わせ（{ts} JST）===")
     print(f"  照合 {n_checked} ファイル／出典取得失敗 {n_failed}")
@@ -141,12 +150,16 @@ def main():
     print(f"  ⚠ 別ラウンドで照合     {n_cross}")
     print(f"  ⚠ 出典にあって md に無い {n_add}   ← 定期実行のあとは原則0。0でなければボットが「保留」した試合")
     print(f"  ⚠ ボットの要確認       {n_warn}   ← スコア不一致・片チームのみ一致・あいまい など")
+    print(f"  ✓ 無視指定で手直し済みの行  {n_cov}   ← 表示だけ。対応不要")
 
     for md_path, r in results:
-        if not (r["unconsumed"] or r["cross_round"] or r["would_add"] or r["warnings"]):
+        cov = r.get("covered_by_ignore", []) if args.verbose else []
+        if not (r["unconsumed"] or r["cross_round"] or r["would_add"] or r["warnings"] or cov):
             continue  # 何も出ないファイルは出さない（狼少年にしない）
         print()
         print(f"[{md_path.name}]")
+        for rk, line in cov:
+            print(f"  ✓ 無視指定で手直し済み   {rk} 「{line}」")
         for rk, line in r["unconsumed"]:
             print(f"  出典に無い行   {rk} 「{line}」{hint(md_path, rk, line)}")
         for kk, mk, line in r["cross_round"]:

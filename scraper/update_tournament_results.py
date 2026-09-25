@@ -803,10 +803,31 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
                            encoding="utf-8")
     if report is not None:
         koko_keys = {round_key(kr["name"]) for kr in koko_rounds}
-        report["unconsumed"] = [
-            (r["key"], body_lines[i].strip())
-            for r in _rescan_rounds(body_lines) if r["key"] in koko_keys
-            for i in r["match_idxs"] if i not in consumed and i not in added_idxs]
+        # [2026-09-25] 出典の誤記を人が直した行（同じラウンドに <!-- 無視: X vs Y --> がある）は、
+        #   ボットから見ると「どのカードとも対応しない」ので、見張りが毎日同じ行を出す狼少年になる。
+        #   無視指定のチーム（/ で分けた各チーム）と、その行の両側のチームに1つでも共通があれば
+        #   unconsumed ではなく covered_by_ignore に入れる（見張りは件数だけ出す）。
+        def _teams_of(names):
+            return {match_key(e) for n in names for e in n.split("/") if e.strip()}
+        rounds = _rescan_rounds(body_lines)
+        unconsumed, covered = [], []
+        for ri, r in enumerate(rounds):
+            if r["key"] not in koko_keys:
+                continue
+            end = rounds[ri + 1]["heading_idx"] if ri + 1 < len(rounds) else len(body_lines)
+            ign = [_teams_of(m.groups()) for ln in body_lines[r["heading_idx"]:end]
+                   for m in [IGNORE_RE.search(ln)] if m]
+            for i in r["match_idxs"]:
+                if i in consumed or i in added_idxs:
+                    continue
+                parsed = parse_md_line(body_lines[i])
+                mine = _teams_of(parsed[:2]) if parsed else set()
+                if mine and any(mine & t for t in ign):
+                    covered.append((r["key"], body_lines[i].strip()))
+                else:
+                    unconsumed.append((r["key"], body_lines[i].strip()))
+        report["unconsumed"] = unconsumed
+        report["covered_by_ignore"] = covered
         report["cross_round"] = cross_round
         report["would_add"] = would_add
     return modified, filled, added, warnings
