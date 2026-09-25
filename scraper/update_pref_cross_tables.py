@@ -377,6 +377,10 @@ def fetch_dfs(url: str):
 # ----------------------------------------------------------------------------
 # 1県の処理
 # ----------------------------------------------------------------------------
+# build_from_source() の直近の検算不一致の全件 [{"team", "item"}]（2026-09-25・見張り用）
+LAST_MISMATCH: list[dict] = []
+
+
 def build_from_source(standings: dict[str, dict], js_matches: list[dict],
                       existing_total: int,
                       round_robin: bool = True) -> tuple[list[dict], list[dict], dict] | str:
@@ -398,13 +402,19 @@ def build_from_source(standings: dict[str, dict], js_matches: list[dict],
     # 検算：試合一覧から順位を再計算し、掲載順位表と完全一致するか
     st = recompute(js_matches, teams)
     mismatch = []
+    # [2026-09-25] 見張りの台帳照合用に、不一致の**全件**をチームつきで残す。
+    #   戻り値のメッセージは従来どおり先頭2件だけ（表示用）。呼び出し側が LAST_MISMATCH を読む。
+    global LAST_MISMATCH
+    LAST_MISMATCH = []
     for t in teams:
         o, s = standings[t], st[t]
         for k in ("played", "won", "drawn", "lost", "gf", "ga"):
             if s[k] != o[k]:
                 mismatch.append(f"{t}.{k} 試合{s[k]}≠表{o[k]}")
+                LAST_MISMATCH.append({"team": t, "item": mismatch[-1]})
         if st[t]["pts"] != o["pts"]:
             mismatch.append(f"{t}.pts 試合{st[t]['pts']}≠表{o['pts']}")
+            LAST_MISMATCH.append({"team": t, "item": mismatch[-1]})
     if mismatch:
         return ("検算不一致 " + "; ".join(mismatch[:2])
                 + " …（順位表と個別試合が未整合。待機）")

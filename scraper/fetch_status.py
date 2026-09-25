@@ -161,12 +161,21 @@ def count_played(matches) -> int:
 RESULTS = ("ok", "fetch_error", "parse_empty", "verify_failed", "alias_failed")
 
 
-def set_pref_result(pref: str, result: str, note: str = "") -> None:
-    """1県分の取得結果を記録する。result は RESULTS のいずれか。"""
+def set_pref_result(pref: str, result: str, note: str = "",
+                    verify_items: list | None = None) -> None:
+    """1県分の取得結果を記録する。result は RESULTS のいずれか。
+
+    verify_items（2026-09-25）: 検算不一致の全件 [{"team", "item"}]。result_note は先頭2件しか
+    持たないので、見張りが台帳（fetch_watch_exceptions.json）と突き合わせるために別に残す。
+    渡されなければ消す（前回の不一致が残って、今回の判定に混ざらないように）。"""
     d = load()
     entry = d.setdefault("pref_leagues", {}).setdefault(pref, {})
     entry["result"] = result
     entry["result_note"] = note
+    if verify_items:
+        entry["verify_items"] = verify_items
+    else:
+        entry.pop("verify_items", None)
     # いつ記録したか。これが古いままなら「スクリプトが走っていない」と分かる。
     entry["result_date"] = datetime.now(JST).date().isoformat()
     save(d)

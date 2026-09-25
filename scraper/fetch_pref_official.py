@@ -5198,8 +5198,32 @@ def print_diff(pref: str, d: dict) -> None:
 # ============================================================
 # 1県の処理
 # ============================================================
+# ---------------------------------------------------------------------------
+# 検算不一致の全件（2026-09-25・見張りの台帳照合用）
+# ---------------------------------------------------------------------------
+# process() の戻り値は表示用に先頭2件（ng[:2]）しか持たない。3件目以降に**別のチームの
+# 不一致**が混じっても見張りから見えないので、全件をここに置き、main() が fetch_status に残す。
+# audit_pref_freshness.py は、data/fetch_watch_exceptions.json（台帳）のチームだけの
+# 不一致なら🟡に下げる。**データの受け入れ（検算ゲート）には一切使わない。**
+LAST_VERIFY_ITEMS: list[dict] | None = None
+
+
+def _keep_verify_items(ng: list[str], site_names) -> None:
+    """ng（"{チーム}: …" 形式の文字列）を [{"team", "item"}] にして残す。
+    チーム名で始まらない項目（リーグ全体の不一致）は team=None＝台帳では黙らせられない。"""
+    global LAST_VERIFY_ITEMS
+    names = set(site_names or [])
+    out = []
+    for x in ng:
+        head = x.split(": ", 1)[0] if ": " in x else None
+        out.append({"team": head if head in names else None, "item": x})
+    LAST_VERIFY_ITEMS = out
+
+
 def process(pref: str, cfg: dict, dry_run: bool) -> str:
     slug = cfg.get("slug", f"pref-{pref}-1")   # 2部などは cfg に slug を書く（2026-09-21）
+    global LAST_VERIFY_ITEMS
+    LAST_VERIFY_ITEMS = None
     path = DIR / f"{slug}.json"
     if not path.exists():
         return f"[skip] {slug}: JSONなし"
@@ -5320,6 +5344,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
         ng = self_check_gate(data, standings, matches, site_names,
                              cfg.get("known_bad_existing"))
         if ng:
+            _keep_verify_items(ng, site_names)
             return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
 
     # --- 沖縄は星取表が勝点・得点・失点・順位しか持たない（勝分敗が無い）ので、
@@ -5350,6 +5375,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                     if len(same) < 2:
                         ng.append(f"{team}: 順位 公式{off['rank']} ≠ 試合から{mine_i}")
         if ng:
+            _keep_verify_items(ng, site_names)
             return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
 
     # --- 公式順位表が「勝点・得失点差・順位」しか持たない県（兵庫 2026-09-14〜）。
@@ -5385,6 +5411,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                 if len(tied) < 2:
                     ng.append(f"{team}: 順位 公式{off['rank']} ≠ 試合から{mine.index(team) + 1}")
         if ng:
+            _keep_verify_items(ng, site_names)
             return f"[据え置き] {slug}: 検算不一致 {ng[:2]} …"
 
     # --- 検算とJSON組み立て（junior-soccer版と同じ関数を使う） ---
@@ -5402,6 +5429,9 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     res = build_from_source(standings, matches, total_hint,
                             round_robin=cfg.get("round_robin", True))
     if isinstance(res, str):
+        if res.startswith("検算不一致"):
+            import update_pref_cross_tables as _U
+            LAST_VERIFY_ITEMS = [dict(x) for x in _U.LAST_MISMATCH]
         return f"[据え置き] {slug}: {res}"
     team_objs, fixtures, meta = res
 
@@ -5553,8 +5583,13 @@ def main() -> int:
         except Exception as e:      # 想定外でも他県は止めない
             msg = f"[要確認] pref-{pref}-1: 例外 {e}"
         print(" ", msg)
+        code, note = classify(msg)
+        items = LAST_VERIFY_ITEMS if code == "verify_failed" else None
+        if items:
+            print(f"    検算不一致の全件 {len(items)}件: "
+                  + " ／ ".join(x["item"] for x in items))
         if not args.dry_run:
-            fetch_status.set_pref_result(pref, *classify(msg))
+            fetch_status.set_pref_result(pref, code, note, verify_items=items)
         if msg.startswith("[更新]"):
             updated += 1
         elif msg.startswith("[据え置き]"):
