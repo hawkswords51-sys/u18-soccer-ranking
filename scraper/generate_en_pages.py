@@ -396,6 +396,12 @@ def timing_en(s):
     return ""
 
 
+def _same_name(a, b):
+    """日本語版（generate_national_team_page._same）と同じ比較：NFKC・空白除去で同じ名前か"""
+    import national_team as nt
+    return bool(a) and nt._norm(a) == nt._norm(b or "")
+
+
 def render_national_team(out_root, names, extra, players, season):
     data = yaml.safe_load(NT_YML.read_text(encoding="utf-8"))
     blocks, jump, jp_only = [], [], 0
@@ -409,12 +415,49 @@ def render_national_team(out_root, names, extra, players, season):
         if not cat.get("label_en"):
             continue
         label = cat.get("label_en") or cat["code"].upper()
+        # [2026-09-25] 経歴型（table: career＝SAMURAI BLUE・U-21・U-19）は日本語版と同じく
+        #   Club／University／U-18 の列にする。U-15 列は英語版では出さない（Kei決定：町クラブ・市立中学は
+        #   公式の英語表記がほぼ無い）。ユース型（U-18・U-17・U-16）の表は従来のまま。
+        career = cat.get("table") == "career"
+        has_univ = career and any(pl.get("univ") for pl in cat["players"])
         rows = []
         for pl in cat["players"]:
             club = club_html(pl["club"], names, extra)
             if club is None:
                 print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {pl['club']}（ページは書き換えません）")
                 return
+            if career:
+                cells = [club]
+                if has_univ:
+                    uv = pl.get("univ")
+                    if uv:
+                        rec = names.get(uv) or extra.get(uv)
+                        if not rec:
+                            print(f"[要確認] 代表ページ: 大学の英語名が未登録 → {uv}（ページは書き換えません）")
+                            return
+                        cell = esc(rec["en"])            # 大学はリンクしない
+                        if _same_name(uv, pl["club"]):
+                            cell += ' <span class="en-note">(current)</span>'
+                    else:
+                        cell = "&ndash;"
+                    cells.append(cell)
+                if pl.get("u18"):
+                    u18 = club_html(pl["u18"], names, extra)
+                    if u18 is None:
+                        print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {pl['u18']}（ページは書き換えません）")
+                        return
+                elif _same_name(pl.get("u15"), pl["club"]):
+                    u18 = "&ndash;"                      # いま U-15 在籍＝U-18 の所属は無い
+                else:
+                    u18 = f'{club} <span class="en-note">(current)</span>'
+                cells.append(u18)
+                name, is_jp = player_html(pl["name"], players)
+                jp_only += 1 if is_jp else 0
+                no = pl.get("no", "")
+                rows.append(f'<tr><td class="en-c">{esc(no) if no != "" else "&ndash;"}</td>'
+                            f'<td class="en-c">{esc(pl["pos"])}</td><td class="en-name">{name}</td>'
+                            + "".join(f"<td>{c}</td>" for c in cells) + "</tr>")
+                continue
             # 2026-09-25 以降は u18 に書く（origin は互換のため読むだけ）
             origin = pl.get("u18") or pl.get("origin")
             if origin:
@@ -434,6 +477,8 @@ def render_national_team(out_root, names, extra, players, season):
         meta = " &middot; ".join(x for x in [esc(cat.get("event_en", "")), esc(cat.get("period_en", ""))] if x)
         note = f'<p class="en-note">{esc(cat["age_note_en"])}</p>' if cat.get("age_note_en") else ""
         src = f'<p class="en-note">Source: <a href="{esc(cat["source"])}" target="_blank" rel="noopener">JFA official announcement (in Japanese)</a></p>'
+        head = ("<th>Club</th>" + ("<th>University</th>" if has_univ else "")
+                + "<th>U-18 (high school / academy)</th>") if career else "<th>Club / school</th>"
         blocks.append(f"""
       <section class="lp-section" id="{anchor}">
         <h2>{esc(label)}</h2>
@@ -441,7 +486,7 @@ def render_national_team(out_root, names, extra, players, season):
         {note}
         <div class="en-scroll">
         <table class="en-table">
-          <thead><tr><th>No.</th><th>Pos</th><th class="en-name">Player</th><th>Club / school</th></tr></thead>
+          <thead><tr><th>No.</th><th>Pos</th><th class="en-name">Player</th>{head}</tr></thead>
           <tbody>
 {chr(10).join("            " + r for r in rows)}
           </tbody>
