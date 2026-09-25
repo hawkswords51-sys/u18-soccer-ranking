@@ -495,12 +495,12 @@ def render_national_team(out_root, names, extra, players, season):
         {src}
       </section>""")
     url = f"{DOMAIN}/en/national-team/"
-    title = f"Japan U-16 / U-17 / U-18 National Team Squads {season}"
-    desc = ("The latest Japan youth national team squads (U-16, U-17, U-18) in English, with each player's club or high school "
-            "and links to team profiles. Compiled from JFA official announcements.")
-    intro = ("        These are the most recent call-ups for Japan's U-16, U-17 and U-18 national teams, with the club or high school\n"
-             "        each player comes from. Squads are taken from the JFA's official announcements; a player listed with a professional club\n"
-             "        and an arrow (&larr;) came through the youth team shown after the arrow.")
+    title = f"Japan National Team Squads {season}: SAMURAI BLUE, U-21, U-19, U-18, U-17 and U-16"
+    desc = ("The latest Japan national team squads from SAMURAI BLUE down to U-16, in English — with each player's current club, "
+            "university and the high school or J.League academy he came through. Compiled from JFA official announcements.")
+    intro = ("        These are the most recent call-ups for every Japan men's national team, from SAMURAI BLUE down to the U-16s, compiled from the JFA's official announcements.\n"
+             "        For SAMURAI BLUE, the U-21s and the U-19s, the table also shows the university (if any) and the U-18 team — a high school club or a J.League academy — each player came through, so you can trace which schools and academies produce Japan internationals.\n"
+             "        For the U-18 and younger squads, a player listed with a professional club and an arrow (&larr;) came through the youth team shown after the arrow.")
     legend = ""
     tail = ('''      <section class="lp-section">
         <h2>Notes</h2>
@@ -510,11 +510,11 @@ def render_national_team(out_root, names, extra, players, season):
             '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
-        {"@type": "ListItem", "position": 2, "name": "Japan youth national team squads", "item": url}]}, ensure_ascii=False)
+        {"@type": "ListItem", "position": 2, "name": "Japan national team squads", "item": url}]}, ensure_ascii=False)
     tables = ('      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px;">\n'
               + "\n".join(jump) + "\n      </div>" + "".join(blocks))
     page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
-                       crumb="Japan youth national teams", h1=f"Japan U-16 / U-17 / U-18 National Team Squads",
+                       crumb="Japan national teams", h1="Japan National Team Squads — SAMURAI BLUE to U-16",
                        intro=intro, legend=legend, tables=tables, tail=tail)
     dest = out_root / "en" / "national-team" / "index.html"
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -575,7 +575,7 @@ def render_pro_signings(out_root, names, extra, players, season):
             '        <p>&ldquo;type-2&rdquo; marks a player registered to play J.League matches for the first team while remaining in the academy. '
             'That list is not complete: clubs announce type-2 registrations in batches.</p>\n'
             '        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
-            '        <p>See also: <a href="/en/national-team/">Japan youth national team squads</a> and <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n'
+            '        <p>See also: <a href="/en/national-team/">Japan national team squads (SAMURAI BLUE to U-16)</a> and <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n'
             '      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
