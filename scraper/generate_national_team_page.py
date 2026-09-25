@@ -47,7 +47,8 @@ def _club_cell(player: dict) -> str:
        - 県ページのみヒット＝JFA表記＋県ページ誘導 ／ どれも無ければテキストのみ"""
     r = player.get("_resolved") or {}
     club = html_escape(player.get("club", ""))
-    origin = player.get("origin")
+    # 2026-09-25 以降は u18 に書く（origin は互換のため読むだけ）
+    origin = player.get("u18") or player.get("origin")
 
     def _linkify(res: dict, fallback_text: str) -> str:
         if res.get("tier") == "team":
@@ -77,12 +78,32 @@ def _club_cell(player: dict) -> str:
     return _linkify(r, nt.canonical_club(player.get("club", "")))
 
 
+def _same(a: str, b: str) -> bool:
+    """NFKC・空白除去で同じ名前か"""
+    return bool(a) and nt._norm(a) == nt._norm(b or "")
+
+
+def _u15_cell(player: dict) -> str:
+    """U-15（中学年代）列。u15 の文字（リンクなし）。所属と同じ＝いま U-15 チームに在籍中
+    （飛び級で招集された中学3年生など）なら後ろに小さく「在籍中」。無ければ「—」。"""
+    u15 = player.get("u15")
+    if not u15:
+        return "—"
+    cell = html_escape(u15)
+    if _same(u15, player.get("club", "")):
+        cell += ' <span class="nt-current">在籍中</span>'
+    return cell
+
+
 def _u18_cell(player: dict) -> str:
     """U-18（高校・ユース）列。u18 があればそれを（詳細ページがあれば正式名でリンク、
     県ページ止まりなら「名前＋（◯◯県の順位 ›）」）。u18 が無い選手＝いま U-18 チームに
     在籍中なので、所属チームをそのまま（リンク付き）出し、後ろに小さく「在籍中」。"""
     r = player.get("_resolved") or {}
     name = player.get("u18") or player.get("club", "")
+    # 所属が U-15 チーム（いま中学年代）の選手には U-18 の所属は無い
+    if not player.get("u18") and _same(player.get("u15"), player.get("club", "")):
+        return "—"
     if r.get("tier") == "team":
         cell = (f'<a href="{r["url"]}">{html_escape(r.get("label") or name)} '
                 f'<i class="fas fa-arrow-right" style="font-size:.7em"></i></a>')
@@ -110,8 +131,10 @@ def _univ_cell(player: dict) -> str:
 
 def _category_section(cat: dict) -> str:
     players = sorted(cat.get("players", []), key=lambda p: (POS_ORDER.get(p.get("pos"), 9), p.get("no", 99)))
-    # u18 / u15 を持つ選手が1人でもいるカテゴリだけ6列（既存の4列カテゴリは見た目を変えない）
-    wide = any(p.get("u18") or p.get("u15") for p in players)
+    # 表の型はデータで明示する（table: career＝経歴型。書かないカテゴリ＝ユース型）。
+    #   人数などで自動判定しない（U-18以下にも u18/u15 が入ったため、自動判定だと
+    #   ユース型のカテゴリまで経歴型になり「所属」と「U-18」に同じチームが2回並ぶ）。
+    wide = cat.get("table") == "career"
     # 大学列は、カテゴリ内に univ を持つ選手が1人でもいるときだけ出す
     has_univ = any(p.get("univ") for p in players)
     rows = []
@@ -126,7 +149,7 @@ def _category_section(cat: dict) -> str:
                 f'<td class="nt-club">{html_escape(p.get("club",""))}</td>'
                 + (f'<td class="nt-univ">{_univ_cell(p)}</td>' if has_univ else "")
                 + f'<td class="nt-club nt-u18">{_u18_cell(p)}</td>'
-                f'<td class="nt-u15">{html_escape(p.get("u15") or "—")}</td>'
+                f'<td class="nt-u15">{_u15_cell(p)}</td>'
                 "</tr>"
             )
             continue
@@ -136,6 +159,7 @@ def _category_section(cat: dict) -> str:
             f'<td class="nt-pos nt-pos-{html_escape(p.get("pos",""))}">{POS_LABEL.get(p.get("pos"),"")}</td>'
             f'<td class="nt-name">{html_escape(p.get("name",""))}</td>'
             f'<td class="nt-club">{_club_cell(p)}</td>'
+            f'<td class="nt-u15">{_u15_cell(p)}</td>'
             "</tr>"
         )
     linked = sum(1 for p in players if (p.get("_resolved") or {}).get("tier"))
@@ -171,12 +195,12 @@ def _category_section(cat: dict) -> str:
         <span class="nt-period">{html_escape(cat.get('period',''))}</span>
         <span class="nt-age">{html_escape(cat.get('age_note',''))}</span>
       </p>
-      <table class="nt-table">
-        <thead><tr><th>背番号</th><th>Pos</th><th>氏名</th><th>所属チーム</th></tr></thead>
+      <div class="nt-scroll"><table class="nt-table">
+        <thead><tr><th>背番号</th><th>Pos</th><th>氏名</th><th>所属チーム</th><th>U-15（中学年代）</th></tr></thead>
         <tbody>
           {''.join(rows)}
         </tbody>
-      </table>
+      </table></div>
       {note}
       <p class="nt-source">出典：<a href="{html_escape(cat.get('source',''))}" rel="nofollow noopener" target="_blank">JFA公式 招集メンバー</a>（{html_escape(cat.get('label',''))}）</p>
     </section>"""
@@ -191,10 +215,11 @@ def build_ai_summary(data: dict) -> str:
     teams = {(p.get("_resolved") or {}).get("team_id") for c in cats for p in c.get("players", [])
              if (p.get("_resolved") or {}).get("tier") == "team"}
     n_univ = len({p.get("name") for c in cats for p in c.get("players", []) if p.get("univ")})
+    n_u15 = len({p.get("name") for c in cats for p in c.get("players", []) if p.get("u15")})
     body = (
         f"このページは、サッカー日本代表の最新招集メンバーを、SAMURAI BLUE から U-16 まで"
-        f"{n_cats}カテゴリ・計{total}名（うち大学経由{n_univ}名）まとめた一覧です。U-19以上の選手は"
-        f"出身の高校・ユース（U-18）と中学年代（U-15）のチームも掲載しています。当サイトに詳細ページがある{len(teams)}チームへ"
+        f"{n_cats}カテゴリ・計{total}名（うち大学経由{n_univ}名）まとめた一覧です。全カテゴリで"
+        f"中学年代（U-15）の所属チームも掲載しています（{n_u15}名）。当サイトに詳細ページがある{len(teams)}チームへ"
         f"直接リンクしています。"
     )
     style = (
@@ -311,7 +336,7 @@ __SCHEMA__
     <section class="nt-cat">
       <h2><i class="fas fa-circle-info"></i> 年代別日本代表の仕組みと、このページの見方</h2>
       <p style="line-height:1.9;margin:0 0 12px;">
-        SAMURAI BLUE（日本代表）・U-21・U-19 の選手は、プロや大学でプレーしながら招集されています。そこで、このページでは U-19 以上の選手について「U-18（高校・ユース）」と「U-15（中学年代）」の所属チームも載せています。どの高校・ユースから日本代表が育っているのかを、年代をさかのぼって確認できます。出身チームのチームページには「このチーム出身の日本代表選手」バッジを表示しています。大学を経てプロになった選手・大学在学中に招集された選手は『大学』欄に大学名を載せています。
+        SAMURAI BLUE（日本代表）・U-21・U-19 の選手は、プロや大学でプレーしながら招集されています。そこで、このページでは U-19 以上は大学・U-18（高校・ユース）・U-15（中学年代）の所属を、U-18 以下は中学年代（U-15）の所属チームも載せています。どの高校・ユースから日本代表が育っているのかを、年代をさかのぼって確認できます。出身チームのチームページには「このチーム出身の日本代表選手」バッジを表示しています。大学を経てプロになった選手・大学在学中に招集された選手は『大学』欄に大学名を載せています。
       </p>
       <p style="line-height:1.9;margin:0 0 12px;">
         U-16・U-17・U-18日本代表は、日本サッカー協会（JFA）が編成する年代別の代表チームです。フル代表と違って固定のメンバーは存在せず、国際大会・海外遠征・国内合宿といった活動ごとに招集メンバーが発表され、そのたびに顔ぶれが入れ替わります。つまりこのページの一覧は「最新の活動で招集された選手」であり、今回名前がない選手が次の招集で選ばれることも珍しくありません。年代はおおむね U-18＝高校3年生相当・U-17＝高校2年生相当・U-16＝高校1年生相当です（学年はJFA非公表のため個別には記載していません）。

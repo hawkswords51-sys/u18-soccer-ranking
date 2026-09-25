@@ -415,10 +415,12 @@ def render_national_team(out_root, names, extra, players, season):
             if club is None:
                 print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {pl['club']}（ページは書き換えません）")
                 return
-            if pl.get("origin"):
-                org = club_html(pl["origin"], names, extra)
+            # 2026-09-25 以降は u18 に書く（origin は互換のため読むだけ）
+            origin = pl.get("u18") or pl.get("origin")
+            if origin:
+                org = club_html(origin, names, extra)
                 if org is None:
-                    print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {pl['origin']}（ページは書き換えません）")
+                    print(f"[要確認] 代表ページ: クラブの英語名が未登録 → {origin}（ページは書き換えません）")
                     return
                 club = f"{club} <span class=\"en-note\">← {org}</span>"
             name, is_jp = player_html(pl["name"], players)
