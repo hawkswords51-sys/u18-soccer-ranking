@@ -213,15 +213,28 @@ def load_categories(base_dir: Path = BASE_DIR) -> dict:
 # チーム詳細ページ用バッジ
 # ---------------------------------------------------------------------
 
+def _alumni_names(data: dict) -> set:
+    """{(team_id, 氏名)}：出身バッジに載る選手（u18 を書いた選手）"""
+    return {((p.get("_resolved") or {}).get("team_id"), p.get("name"))
+            for cat in data.get("categories", []) for p in cat.get("players", [])
+            if (p.get("_resolved") or {}).get("tier") == "team" and p.get("_kind") == "alumni"}
+
+
 def badges_by_team_id(base_dir: Path = BASE_DIR) -> dict:
     """{team_id: [ {cat_label, no, pos, name}... ]} を返す（チームページの在籍中バッジ用）。
-    出身選手（u18 を書いた選手）は含めない → alumni_badges_by_team_id()。"""
+    出身選手（u18 を書いた選手）は含めない → alumni_badges_by_team_id()。
+    [2026-09-25] 同じチームの出身バッジに**同じ氏名**の選手がいれば、在籍中バッジからは外す
+      （例：増田大空＝U-18招集は在籍中・U-19招集は出身。出身バッジに「増田 大空（U-19・U-18）」とまとめる）。
+      判定は「氏名の完全一致」かつ「同じ team_id」のときだけ。"""
     data = load_categories(base_dir)
+    alumni = _alumni_names(data)
     out = {}
     for cat in data.get("categories", []):
         for p in cat.get("players", []):
             r = p.get("_resolved") or {}
             if r.get("tier") == "team" and p.get("_kind") != "alumni":
+                if (r["team_id"], p.get("name")) in alumni:
+                    continue
                 out.setdefault(r["team_id"], []).append(
                     {"cat": cat.get("label", ""), "no": p.get("no"), "pos": p.get("pos"), "name": p.get("name")}
                 )
@@ -238,12 +251,16 @@ def alumni_badges_by_team_id(base_dir: Path = BASE_DIR) -> dict:
     u18 を書いた選手だけ。同じ選手が複数カテゴリにいたら1人にまとめる（キーは氏名）。
     選手の並びは、最初に出てくるカテゴリ（SAMURAI BLUE → U-21 → …）の順。"""
     data = load_categories(base_dir)
+    alumni = _alumni_names(data)
     out = {}
     for cat in data.get("categories", []):
         short = _short_cat_label(cat.get("label", ""))
         for p in cat.get("players", []):
             r = p.get("_resolved") or {}
-            if r.get("tier") != "team" or p.get("_kind") != "alumni":
+            if r.get("tier") != "team":
+                continue
+            # 出身選手に加えて、同じチームで出身バッジにいる同名の在籍中の招集もここへまとめる
+            if p.get("_kind") != "alumni" and (r["team_id"], p.get("name")) not in alumni:
                 continue
             lst = out.setdefault(r["team_id"], [])
             hit = next((x for x in lst if x["name"] == p.get("name")), None)
