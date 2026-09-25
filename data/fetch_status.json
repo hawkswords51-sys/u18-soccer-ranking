@@ -138,7 +138,7 @@
       "reason": "",
       "matchesPlayed": 65,
       "venueCount": 89,
-      "venueCountPrev": 90,
+      "venueCountPrev": 89,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0,
       "fallbackSince": "",
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-25T10:42:29+09:00",
+  "updatedAt": "2026-09-25T11:06:17+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -456,7 +456,29 @@
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田松聖A: 勝点 公式21 ≠ 試合から22'] …",
       "result_date": "2026-09-25",
-      "last_updated": "2026-09-19"
+      "last_updated": "2026-09-19",
+      "verify_items": [
+        {
+          "team": "芦屋学園A",
+          "item": "芦屋学園A: 得失点差 公式12 ≠ 試合から13"
+        },
+        {
+          "team": "三田松聖A",
+          "item": "三田松聖A: 勝点 公式21 ≠ 試合から22"
+        },
+        {
+          "team": "三田学園B",
+          "item": "三田学園B: 得失点差 公式-9 ≠ 試合から-10"
+        },
+        {
+          "team": "三田松聖A",
+          "item": "三田松聖A: 順位 公式4 ≠ 試合から3"
+        },
+        {
+          "team": "滝川第二B",
+          "item": "滝川第二B: 順位 公式3 ≠ 試合から4"
+        }
+      ]
     },
     "ibaraki": {
       "result": "ok",
@@ -1053,7 +1075,29 @@
       "result_since": "2026-09-22",
       "result_streak": 7,
       "status": "alert",
-      "last_updated": "2026-09-22"
+      "last_updated": "2026-09-22",
+      "verify_items": [
+        {
+          "team": "矢板中央B",
+          "item": "矢板中央B.played 試合12≠表11"
+        },
+        {
+          "team": "矢板中央B",
+          "item": "矢板中央B.won 試合10≠表9"
+        },
+        {
+          "team": "矢板中央B",
+          "item": "矢板中央B.pts 試合31≠表28"
+        },
+        {
+          "team": "佐野日大",
+          "item": "佐野日大.played 試合12≠表11"
+        },
+        {
+          "team": "佐野日大",
+          "item": "佐野日大.lost 試合2≠表1"
+        }
+      ]
     },
     "tokushima": {
       "season": "2026",
