@@ -361,7 +361,14 @@ def club_html(jp_name, names, extra):
     if not rec:
         return None
     en = esc(rec["en"])
-    page = rec.get("jp_page")
+    # [2026-09-25] リンク先は ①英語チームページ → ②日本語チームページ（jp_page）→ ③リンクなし。
+    #   順位表の row() と同じ考え方。別名（source: "alias-of:◯◯"）は別名の先の名前でも英語ページを引く
+    #   （例: 大津高 → 大津高校、流通経済大学付属柏高 → 流通経済大学付属柏高校）。
+    page = EN_TEAM_PAGES.get(jp_name)
+    src = rec.get("source") or ""
+    if not page and isinstance(src, str) and src.startswith("alias-of:"):
+        page = EN_TEAM_PAGES.get(src[len("alias-of:"):])
+    page = page or rec.get("jp_page")
     return f'<a href="{esc(page)}">{en}</a>' if page else en
 
 
