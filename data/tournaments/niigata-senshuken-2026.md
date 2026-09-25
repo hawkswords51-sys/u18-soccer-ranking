@@ -38,7 +38,6 @@ scraper/update_tournament_results.py が上の source から
 - 小千谷 1-2 新津/三条
 - 佐渡/新津工 0-2 新発田中央
 - 新潟 3-0 合同C/新発田商
-- 加茂 vs 新発田商
 - 長岡工 0-12 長岡向陵/長岡大手
 - 柏崎 0-3 高田/新潟産大附
 - 新井 0-6 六日町/新潟南
@@ -52,7 +51,6 @@ scraper/update_tournament_results.py が上の source から
 
 ## 3回戦（10/17・10/18）
 
-- 新潟工業 vs 加茂/新発田商
 - 新潟西 vs 五泉
 - 新潟商 vs 中越
 - 新潟明訓 vs 新発田
