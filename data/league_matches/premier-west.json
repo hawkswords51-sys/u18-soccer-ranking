@@ -69,6 +69,18 @@
     },
     {
       "rank": 2,
+      "team": "名古屋グランパスU-18",
+      "pts": 28,
+      "played": 15,
+      "won": 8,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 36,
+      "ga": 23,
+      "gd": 13
+    },
+    {
+      "rank": 3,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 27,
       "played": 14,
@@ -78,18 +90,6 @@
       "gf": 24,
       "ga": 18,
       "gd": 6
-    },
-    {
-      "rank": 3,
-      "team": "名古屋グランパスU-18",
-      "pts": 25,
-      "played": 14,
-      "won": 7,
-      "drawn": 4,
-      "lost": 3,
-      "gf": 32,
-      "ga": 21,
-      "gd": 11
     },
     {
       "rank": 4,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 5,
-      "played": 14,
+      "played": 15,
       "won": 1,
       "drawn": 2,
-      "lost": 11,
-      "gf": 11,
-      "ga": 35,
-      "gd": -24
+      "lost": 12,
+      "gf": 13,
+      "ga": 39,
+      "gd": -26
     }
   ],
   "matches": [
@@ -2575,6 +2575,7 @@
       "status": "played",
       "venue": "佐賀市健康運動センター(天然芝)",
       "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1508.pdf",
       "homeScorers": [],
       "awayScorers": [
         {
@@ -2587,12 +2588,40 @@
       "md": 15,
       "date": "2026-09-26",
       "home": "ファジアーノ岡山U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 4,
       "away": "名古屋グランパスU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "スチールハブフィールド寄島",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "80",
+          "name": "元野 蒼空"
+        },
+        {
+          "minute": "83",
+          "name": "西村 惇希"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "13",
+          "name": "小島 蒼斗"
+        },
+        {
+          "minute": "32",
+          "name": "八色 隼人"
+        },
+        {
+          "minute": "51",
+          "name": "水野 優人"
+        },
+        {
+          "minute": "82",
+          "name": "池田 歩弘"
+        }
+      ]
     },
     {
       "md": 15,
@@ -2604,6 +2633,7 @@
       "status": "played",
       "venue": "どらドラパーク米子陸上競技場",
       "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1507.pdf",
       "homeScorers": [
         {
           "minute": "30",

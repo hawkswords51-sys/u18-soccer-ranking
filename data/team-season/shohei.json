@@ -5,7 +5,7 @@
   "league_team": "昌平",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/team_detail/05.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/match_page/",
-  "asof": "2026-09-20",
+  "asof": "2026-09-26",
   "roster": [
     {
       "no": 1,
@@ -13,8 +13,8 @@
       "name": "土渕 璃久",
       "grade": "3年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 12,
-      "minutes": 1080,
+      "apps": 13,
+      "minutes": 1170,
       "goals": 0
     },
     {
@@ -63,9 +63,9 @@
       "name": "髙見澤 光",
       "grade": "3年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 14,
-      "minutes": 1198,
-      "goals": 0
+      "apps": 15,
+      "minutes": 1288,
+      "goals": 1
     },
     {
       "no": 3,
@@ -73,8 +73,8 @@
       "name": "大野 隆斗",
       "grade": "2年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 11,
-      "minutes": 990,
+      "apps": 12,
+      "minutes": 1080,
       "goals": 0
     },
     {
@@ -93,8 +93,8 @@
       "name": "笠原 慶多",
       "grade": "2年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 14,
-      "minutes": 1259,
+      "apps": 15,
+      "minutes": 1349,
       "goals": 0
     },
     {
@@ -103,8 +103,8 @@
       "name": "松本 太佑",
       "grade": "2年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 14,
-      "minutes": 1248,
+      "apps": 15,
+      "minutes": 1338,
       "goals": 2
     },
     {
@@ -163,8 +163,8 @@
       "name": "飯島 碧大",
       "grade": "3年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 14,
-      "minutes": 1260,
+      "apps": 15,
+      "minutes": 1350,
       "goals": 3
     },
     {
@@ -173,8 +173,8 @@
       "name": "根津 優羽",
       "grade": "3年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 2,
-      "minutes": 108,
+      "apps": 3,
+      "minutes": 112,
       "goals": 0
     },
     {
@@ -213,8 +213,8 @@
       "name": "加々美 郁哉",
       "grade": "2年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 10,
-      "minutes": 775,
+      "apps": 11,
+      "minutes": 865,
       "goals": 0
     },
     {
@@ -253,8 +253,8 @@
       "name": "長谷川 昂星",
       "grade": "2年",
       "prev": "アメージングアカデミー",
-      "apps": 11,
-      "minutes": 513,
+      "apps": 12,
+      "minutes": 603,
       "goals": 1
     },
     {
@@ -263,8 +263,8 @@
       "name": "大橋 晴一郎",
       "grade": "",
       "prev": "",
-      "apps": 1,
-      "minutes": 90,
+      "apps": 2,
+      "minutes": 176,
       "goals": 0
     },
     {
@@ -303,8 +303,8 @@
       "name": "白須 裕基",
       "grade": "3年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 9,
-      "minutes": 147,
+      "apps": 10,
+      "minutes": 159,
       "goals": 1
     },
     {
@@ -313,8 +313,8 @@
       "name": "オツコロ 海桜",
       "grade": "1年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 8,
-      "minutes": 431,
+      "apps": 9,
+      "minutes": 521,
       "goals": 1
     },
     {
@@ -323,9 +323,9 @@
       "name": "藤松 碧士",
       "grade": "1年",
       "prev": "FC LAVIDA(ラヴィーダ)",
-      "apps": 4,
-      "minutes": 106,
-      "goals": 0
+      "apps": 5,
+      "minutes": 184,
+      "goals": 1
     }
   ],
   "matches": {
@@ -2169,6 +2169,133 @@
           "out": "5 笠原 慶多",
           "in": "29 岩堀 匠隼",
           "minute": "90+2分"
+        }
+      ]
+    },
+    "1501": {
+      "md": 15,
+      "starters": [
+        {
+          "no": 1,
+          "pos": "GK",
+          "name": "土渕 璃久",
+          "captain": false
+        },
+        {
+          "no": 2,
+          "pos": "DF",
+          "name": "髙見澤 光",
+          "captain": false
+        },
+        {
+          "no": 3,
+          "pos": "DF",
+          "name": "大野 隆斗",
+          "captain": false
+        },
+        {
+          "no": 5,
+          "pos": "DF",
+          "name": "笠原 慶多",
+          "captain": false
+        },
+        {
+          "no": 6,
+          "pos": "DF",
+          "name": "松本 太佑",
+          "captain": false
+        },
+        {
+          "no": 10,
+          "pos": "MF",
+          "name": "飯島 碧大",
+          "captain": true
+        },
+        {
+          "no": 22,
+          "pos": "MF",
+          "name": "加々美 郁哉",
+          "captain": false
+        },
+        {
+          "no": 28,
+          "pos": "MF",
+          "name": "長谷川 昂星",
+          "captain": false
+        },
+        {
+          "no": 31,
+          "pos": "MF",
+          "name": "大橋 晴一郎",
+          "captain": false
+        },
+        {
+          "no": 18,
+          "pos": "FW",
+          "name": "オツコロ 海桜",
+          "captain": false
+        },
+        {
+          "no": 19,
+          "pos": "FW",
+          "name": "藤松 碧士",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 16,
+          "pos": "GK",
+          "name": "服部 瑞希",
+          "captain": false
+        },
+        {
+          "no": 26,
+          "pos": "DF",
+          "name": "田﨑 蒼人",
+          "captain": false
+        },
+        {
+          "no": 29,
+          "pos": "DF",
+          "name": "岩堀 匠隼",
+          "captain": false
+        },
+        {
+          "no": 13,
+          "pos": "MF",
+          "name": "根津 優羽",
+          "captain": false
+        },
+        {
+          "no": 14,
+          "pos": "MF",
+          "name": "押江 颯人",
+          "captain": false
+        },
+        {
+          "no": 15,
+          "pos": "MF",
+          "name": "屋宜 葵",
+          "captain": false
+        },
+        {
+          "no": 12,
+          "pos": "FW",
+          "name": "白須 裕基",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "19 藤松 碧士",
+          "in": "12 白須 裕基",
+          "minute": "78分"
+        },
+        {
+          "out": "31 大橋 晴一郎",
+          "in": "13 根津 優羽",
+          "minute": "86分"
         }
       ]
     }

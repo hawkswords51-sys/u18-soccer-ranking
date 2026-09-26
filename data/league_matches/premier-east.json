@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "流通経済大柏",
-      "pts": 31,
-      "played": 14,
-      "won": 10,
+      "pts": 34,
+      "played": 15,
+      "won": 11,
       "drawn": 1,
       "lost": 3,
-      "gf": 32,
-      "ga": 14,
-      "gd": 18
+      "gf": 35,
+      "ga": 16,
+      "gd": 19
     },
     {
       "rank": 2,
@@ -83,13 +83,13 @@
       "rank": 3,
       "team": "柏レイソルU-18",
       "pts": 27,
-      "played": 14,
+      "played": 15,
       "won": 8,
       "drawn": 3,
-      "lost": 3,
-      "gf": 18,
-      "ga": 9,
-      "gd": 9
+      "lost": 4,
+      "gf": 20,
+      "ga": 12,
+      "gd": 8
     },
     {
       "rank": 4,
@@ -154,13 +154,13 @@
     {
       "rank": 9,
       "team": "昌平",
-      "pts": 17,
-      "played": 14,
+      "pts": 18,
+      "played": 15,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 7,
-      "gf": 22,
-      "ga": 29,
+      "gf": 24,
+      "ga": 31,
       "gd": -7
     },
     {
@@ -190,13 +190,13 @@
     {
       "rank": 12,
       "team": "横浜FCユース",
-      "pts": 6,
-      "played": 14,
+      "pts": 7,
+      "played": 15,
       "won": 1,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 10,
-      "gf": 15,
-      "ga": 30,
+      "gf": 17,
+      "ga": 32,
       "gd": -15
     }
   ],
@@ -2744,12 +2744,32 @@
       "md": 15,
       "date": "2026-09-26",
       "home": "昌平",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "横浜FCユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "昌平高校グラウンド(人工芝)",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "5",
+          "name": "藤松 碧士"
+        },
+        {
+          "minute": "11",
+          "name": "髙見澤 光"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "20",
+          "name": "椿 渥裕"
+        },
+        {
+          "minute": "66",
+          "name": "髙原 由翔"
+        }
+      ]
     },
     {
       "md": 15,
@@ -2766,12 +2786,36 @@
       "md": 15,
       "date": "2026-09-26",
       "home": "流通経済大柏",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "柏レイソルU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [
+        {
+          "minute": "21",
+          "name": "メンディー サイモン友"
+        },
+        {
+          "minute": "39",
+          "name": "古川 蒼真"
+        },
+        {
+          "minute": "90",
+          "name": "黒田 和希"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "23",
+          "name": "丸山 寿貴斗"
+        },
+        {
+          "minute": "89",
+          "name": "加茂 結斗"
+        }
+      ]
     },
     {
       "md": 15,
