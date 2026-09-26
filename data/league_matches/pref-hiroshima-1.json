@@ -50,26 +50,26 @@
     {
       "rank": 1,
       "team": "瀬戸内セカンド",
-      "points": 30,
-      "played": 12,
-      "won": 9,
+      "points": 33,
+      "played": 13,
+      "won": 10,
       "drawn": 3,
       "lost": 0,
-      "gf": 31,
-      "ga": 5,
-      "gd": 26
+      "gf": 34,
+      "ga": 6,
+      "gd": 28
     },
     {
       "rank": 2,
       "team": "サンフレセカンド",
-      "points": 26,
-      "played": 11,
-      "won": 8,
+      "points": 29,
+      "played": 12,
+      "won": 9,
       "drawn": 2,
       "lost": 1,
-      "gf": 35,
-      "ga": 18,
-      "gd": 17
+      "gf": 39,
+      "ga": 19,
+      "gd": 20
     },
     {
       "rank": 3,
@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "広工大高",
       "points": 18,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 3,
-      "lost": 4,
-      "gf": 20,
-      "ga": 14,
-      "gd": 6
+      "lost": 5,
+      "gf": 21,
+      "ga": 18,
+      "gd": 3
     },
     {
       "rank": 6,
@@ -135,13 +135,13 @@
       "rank": 8,
       "team": "広島翔洋",
       "points": 10,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 1,
-      "lost": 8,
-      "gf": 6,
-      "ga": 17,
-      "gd": -11
+      "lost": 9,
+      "gf": 7,
+      "ga": 20,
+      "gd": -13
     },
     {
       "rank": 9,
@@ -534,12 +534,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "広工大高",
-      "hs": null,
-      "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "サンフレセカンド",
+      "hs": 4,
+      "as": 1,
+      "away": "広工大高",
+      "status": "played",
+      "venue": "吉田サッカー公園"
     },
     {
       "md": 0,
@@ -786,12 +787,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "広島翔洋",
-      "hs": null,
-      "as": null,
-      "away": "瀬戸内セカンド",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "瀬戸内セカンド",
+      "hs": 3,
+      "as": 1,
+      "away": "広島翔洋",
+      "status": "played",
+      "venue": "吉田サッカー公園"
     },
     {
       "md": 0,
@@ -1042,23 +1044,23 @@
   "source_standings": [
     {
       "team": "瀬戸内セカンド",
-      "won": 9,
+      "won": 10,
       "lost": 0,
       "drawn": 3,
-      "pts": 30,
-      "gf": 31,
-      "ga": 5,
-      "played": 12
+      "pts": 33,
+      "gf": 34,
+      "ga": 6,
+      "played": 13
     },
     {
       "team": "サンフレセカンド",
-      "won": 8,
+      "won": 9,
       "lost": 1,
       "drawn": 2,
-      "pts": 26,
-      "gf": 35,
-      "ga": 18,
-      "played": 11
+      "pts": 29,
+      "gf": 39,
+      "ga": 19,
+      "played": 12
     },
     {
       "team": "如水館",
@@ -1083,12 +1085,12 @@
     {
       "team": "広工大高",
       "won": 5,
-      "lost": 4,
+      "lost": 5,
       "drawn": 3,
       "pts": 18,
-      "gf": 20,
-      "ga": 14,
-      "played": 12
+      "gf": 21,
+      "ga": 18,
+      "played": 13
     },
     {
       "team": "広島新庄",
@@ -1113,12 +1115,12 @@
     {
       "team": "広島翔洋",
       "won": 3,
-      "lost": 8,
+      "lost": 9,
       "drawn": 1,
       "pts": 10,
-      "gf": 6,
-      "ga": 17,
-      "played": 12
+      "gf": 7,
+      "ga": 20,
+      "played": 13
     },
     {
       "team": "銀河学院",

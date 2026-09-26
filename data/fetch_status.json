@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 60,
+      "matchesPlayed": 61,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -181,11 +181,11 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-26T20:14:45+09:00",
+  "updatedAt": "2026-09-26T20:55:54+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result_note": "消化72試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -221,7 +221,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化52試合に更新（検算一致）",
+      "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "last_updated": "2026-09-26"
     },
@@ -249,7 +249,7 @@
     },
     "chiba": {
       "result": "ok",
-      "result_note": "消化61試合に更新（検算一致）",
+      "result_note": "消化62試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -312,7 +312,7 @@
     },
     "fukuoka": {
       "result": "ok",
-      "result_note": "消化65試合に更新（検算一致）",
+      "result_note": "消化66試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -376,7 +376,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化65試合に更新（検算一致）",
+      "result_note": "消化70試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -397,7 +397,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化59試合に更新（検算一致）",
+      "result_note": "消化61試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -454,7 +454,7 @@
       "result_streak": 19,
       "status": "warn",
       "result": "verify_failed",
-      "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田松聖A: 勝点 公式21 ≠ 試合から22'] …",
+      "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田松聖A: 勝点 公式24 ≠ 試合から25'] …",
       "result_date": "2026-09-26",
       "last_updated": "2026-09-19",
       "verify_items": [
@@ -464,26 +464,18 @@
         },
         {
           "team": "三田松聖A",
-          "item": "三田松聖A: 勝点 公式21 ≠ 試合から22"
+          "item": "三田松聖A: 勝点 公式24 ≠ 試合から25"
         },
         {
           "team": "三田学園B",
           "item": "三田学園B: 得失点差 公式-9 ≠ 試合から-10"
-        },
-        {
-          "team": "三田松聖A",
-          "item": "三田松聖A: 順位 公式4 ≠ 試合から3"
-        },
-        {
-          "team": "滝川第二B",
-          "item": "滝川第二B: 順位 公式3 ≠ 試合から4"
         }
       ],
       "status_note": "既知の出典の誤り（data/fetch_watch_exceptions.json の台帳による🟡）"
     },
     "ibaraki": {
       "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result_note": "消化75試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -543,7 +535,7 @@
     },
     "kagawa": {
       "result": "ok",
-      "result_note": "消化60試合に更新（検算一致）",
+      "result_note": "消化65試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -705,7 +697,7 @@
     },
     "miyazaki": {
       "result": "ok",
-      "result_note": "消化71試合に更新（検算一致）",
+      "result_note": "消化74試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -747,7 +739,7 @@
     },
     "nagasaki": {
       "result": "ok",
-      "result_note": "消化59試合に更新（検算一致）",
+      "result_note": "消化61試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -853,7 +845,7 @@
     },
     "okinawa": {
       "result": "ok",
-      "result_note": "消化43試合に更新（検算一致）",
+      "result_note": "消化44試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -1020,7 +1012,7 @@
     },
     "shimane": {
       "result": "ok",
-      "result_note": "消化41試合に更新（検算一致）",
+      "result_note": "消化43試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -1058,8 +1050,8 @@
       "last_updated": "2026-09-21"
     },
     "tochigi": {
-      "result": "verify_failed",
-      "result_note": "検算不一致 矢板中央B.played 試合12≠表11; 矢板中央B.won 試合10≠表9 …（順位表と個別試合が未整合。待機）",
+      "result": "ok",
+      "result_note": "消化59試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -1077,28 +1069,6 @@
       "result_streak": 10,
       "status": "warn",
       "last_updated": "2026-09-22",
-      "verify_items": [
-        {
-          "team": "矢板中央B",
-          "item": "矢板中央B.played 試合12≠表11"
-        },
-        {
-          "team": "矢板中央B",
-          "item": "矢板中央B.won 試合10≠表9"
-        },
-        {
-          "team": "矢板中央B",
-          "item": "矢板中央B.pts 試合31≠表28"
-        },
-        {
-          "team": "佐野日大",
-          "item": "佐野日大.played 試合12≠表11"
-        },
-        {
-          "team": "佐野日大",
-          "item": "佐野日大.lost 試合2≠表1"
-        }
-      ],
       "status_note": "既知の出典の誤り（data/fetch_watch_exceptions.json の台帳による🟡）"
     },
     "tokushima": {
@@ -1145,7 +1115,7 @@
     },
     "tottori": {
       "result": "ok",
-      "result_note": "消化35試合に更新（検算一致）",
+      "result_note": "消化37試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": true,
@@ -1208,7 +1178,7 @@
     },
     "yamagata": {
       "result": "ok",
-      "result_note": "消化74試合に更新（検算一致）",
+      "result_note": "消化79試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,
@@ -1229,7 +1199,7 @@
     },
     "yamaguchi": {
       "result": "ok",
-      "result_note": "消化51試合に更新（検算一致）",
+      "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-09-26",
       "season": "2026",
       "complete": false,

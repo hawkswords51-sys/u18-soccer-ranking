@@ -50,122 +50,122 @@
     {
       "rank": 1,
       "team": "高松商業",
-      "points": 32,
-      "played": 12,
+      "points": 33,
+      "played": 13,
       "won": 10,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 0,
-      "gf": 32,
-      "ga": 10,
+      "gf": 33,
+      "ga": 11,
       "gd": 22
     },
     {
       "rank": 2,
       "team": "香川西",
-      "points": 28,
-      "played": 12,
-      "won": 9,
+      "points": 31,
+      "played": 13,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 52,
+      "gf": 56,
       "ga": 8,
-      "gd": 44
+      "gd": 48
     },
     {
       "rank": 3,
       "team": "寒川",
-      "points": 27,
-      "played": 12,
-      "won": 8,
+      "points": 30,
+      "played": 13,
+      "won": 9,
       "drawn": 3,
       "lost": 1,
-      "gf": 32,
+      "gf": 35,
       "ga": 7,
-      "gd": 25
+      "gd": 28
     },
     {
       "rank": 4,
       "team": "尽誠学園",
-      "points": 27,
-      "played": 12,
-      "won": 9,
+      "points": 30,
+      "played": 13,
+      "won": 10,
       "drawn": 0,
       "lost": 3,
-      "gf": 27,
-      "ga": 6,
-      "gd": 21
+      "gf": 31,
+      "ga": 8,
+      "gd": 23
     },
     {
       "rank": 5,
       "team": "高松東",
-      "points": 26,
-      "played": 12,
-      "won": 8,
+      "points": 29,
+      "played": 13,
+      "won": 9,
       "drawn": 2,
       "lost": 2,
-      "gf": 30,
+      "gf": 33,
       "ga": 9,
-      "gd": 21
+      "gd": 24
     },
     {
       "rank": 6,
       "team": "高松北",
-      "points": 12,
-      "played": 12,
+      "points": 13,
+      "played": 13,
       "won": 4,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 8,
-      "gf": 13,
-      "ga": 28,
+      "gf": 14,
+      "ga": 29,
       "gd": -15
     },
     {
       "rank": 7,
       "team": "高松工芸",
       "points": 12,
-      "played": 12,
+      "played": 13,
       "won": 4,
       "drawn": 0,
-      "lost": 8,
-      "gf": 13,
-      "ga": 34,
-      "gd": -21
-    },
-    {
-      "rank": 8,
-      "team": "大手前高松S",
-      "points": 6,
-      "played": 12,
-      "won": 2,
-      "drawn": 0,
-      "lost": 10,
+      "lost": 9,
       "gf": 13,
       "ga": 37,
       "gd": -24
     },
     {
+      "rank": 8,
+      "team": "大手前高松S",
+      "points": 6,
+      "played": 13,
+      "won": 2,
+      "drawn": 0,
+      "lost": 11,
+      "gf": 13,
+      "ga": 41,
+      "gd": -28
+    },
+    {
       "rank": 9,
       "team": "カマタマーレ讃岐S",
       "points": 4,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 1,
-      "lost": 10,
-      "gf": 7,
-      "ga": 44,
-      "gd": -37
+      "lost": 11,
+      "gf": 9,
+      "ga": 48,
+      "gd": -39
     },
     {
       "rank": 10,
       "team": "蓬莱",
       "points": 1,
-      "played": 12,
+      "played": 13,
       "won": 0,
       "drawn": 1,
-      "lost": 11,
+      "lost": 12,
       "gf": 3,
-      "ga": 39,
-      "gd": -36
+      "ga": 42,
+      "gd": -39
     }
   ],
   "matches": [
@@ -612,12 +612,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "高松北",
-      "hs": null,
-      "as": null,
-      "away": "高松商業",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "高松商業",
+      "hs": 1,
+      "as": 1,
+      "away": "高松北",
+      "status": "played",
+      "venue": "瀬戸3"
     },
     {
       "md": 0,
@@ -719,12 +720,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "高松工芸",
-      "hs": null,
-      "as": null,
-      "away": "寒川",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "寒川",
+      "hs": 3,
+      "as": 0,
+      "away": "高松工芸",
+      "status": "played",
+      "venue": "瀬戸3"
     },
     {
       "md": 0,
@@ -795,12 +797,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "大手前高松S",
-      "hs": null,
-      "as": null,
-      "away": "香川西",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "香川西",
+      "hs": 4,
+      "as": 0,
+      "away": "大手前高松S",
+      "status": "played",
+      "venue": "四国学院v"
     },
     {
       "md": 0,
@@ -901,12 +904,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "カマタマーレ讃岐S",
-      "hs": null,
-      "as": null,
-      "away": "尽誠学園",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "尽誠学園",
+      "hs": 4,
+      "as": 2,
+      "away": "カマタマーレ讃岐S",
+      "status": "played",
+      "venue": "瀬戸4"
     },
     {
       "md": 0,
@@ -996,12 +1000,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "蓬莱",
-      "hs": null,
-      "as": null,
-      "away": "高松東",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "高松東",
+      "hs": 3,
+      "as": 0,
+      "away": "蓬莱",
+      "status": "played",
+      "venue": "瀬戸4"
     },
     {
       "md": 0,
@@ -1043,103 +1048,103 @@
   "source_standings": [
     {
       "team": "高松商業",
-      "pts": 32,
-      "played": 12,
+      "pts": 33,
+      "played": 13,
       "won": 10,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 0,
-      "gf": 32,
-      "ga": 10
+      "gf": 33,
+      "ga": 11
     },
     {
       "team": "香川西",
-      "pts": 28,
-      "played": 12,
-      "won": 9,
+      "pts": 31,
+      "played": 13,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 52,
+      "gf": 56,
       "ga": 8
     },
     {
       "team": "寒川",
-      "pts": 27,
-      "played": 12,
-      "won": 8,
+      "pts": 30,
+      "played": 13,
+      "won": 9,
       "drawn": 3,
       "lost": 1,
-      "gf": 32,
+      "gf": 35,
       "ga": 7
     },
     {
       "team": "尽誠学園",
-      "pts": 27,
-      "played": 12,
-      "won": 9,
+      "pts": 30,
+      "played": 13,
+      "won": 10,
       "drawn": 0,
       "lost": 3,
-      "gf": 27,
-      "ga": 6
+      "gf": 31,
+      "ga": 8
     },
     {
       "team": "高松東",
-      "pts": 26,
-      "played": 12,
-      "won": 8,
+      "pts": 29,
+      "played": 13,
+      "won": 9,
       "drawn": 2,
       "lost": 2,
-      "gf": 30,
+      "gf": 33,
       "ga": 9
     },
     {
       "team": "高松北",
-      "pts": 12,
-      "played": 12,
+      "pts": 13,
+      "played": 13,
       "won": 4,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 8,
-      "gf": 13,
-      "ga": 28
+      "gf": 14,
+      "ga": 29
     },
     {
       "team": "高松工芸",
       "pts": 12,
-      "played": 12,
+      "played": 13,
       "won": 4,
       "drawn": 0,
-      "lost": 8,
-      "gf": 13,
-      "ga": 34
-    },
-    {
-      "team": "大手前高松S",
-      "pts": 6,
-      "played": 12,
-      "won": 2,
-      "drawn": 0,
-      "lost": 10,
+      "lost": 9,
       "gf": 13,
       "ga": 37
     },
     {
+      "team": "大手前高松S",
+      "pts": 6,
+      "played": 13,
+      "won": 2,
+      "drawn": 0,
+      "lost": 11,
+      "gf": 13,
+      "ga": 41
+    },
+    {
       "team": "カマタマーレ讃岐S",
       "pts": 4,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 1,
-      "lost": 10,
-      "gf": 7,
-      "ga": 44
+      "lost": 11,
+      "gf": 9,
+      "ga": 48
     },
     {
       "team": "蓬莱",
       "pts": 1,
-      "played": 12,
+      "played": 13,
       "won": 0,
       "drawn": 1,
-      "lost": 11,
+      "lost": 12,
       "gf": 3,
-      "ga": 39
+      "ga": 42
     }
   ]
 }

@@ -50,41 +50,53 @@
     {
       "rank": 1,
       "team": "宮崎日大",
-      "points": 42,
-      "played": 14,
-      "won": 14,
+      "points": 45,
+      "played": 15,
+      "won": 15,
       "drawn": 0,
       "lost": 0,
-      "gf": 90,
-      "ga": 8,
-      "gd": 82
+      "gf": 98,
+      "ga": 12,
+      "gd": 86
     },
     {
       "rank": 2,
       "team": "日章学園3rd",
-      "points": 39,
-      "played": 14,
-      "won": 13,
+      "points": 42,
+      "played": 15,
+      "won": 14,
       "drawn": 0,
       "lost": 1,
-      "gf": 57,
+      "gf": 60,
       "ga": 20,
-      "gd": 37
+      "gd": 40
     },
     {
       "rank": 3,
       "team": "宮崎工業",
       "points": 24,
-      "played": 14,
+      "played": 15,
       "won": 8,
       "drawn": 0,
-      "lost": 6,
-      "gf": 36,
-      "ga": 26,
-      "gd": 10
+      "lost": 7,
+      "gf": 39,
+      "ga": 30,
+      "gd": 9
     },
     {
       "rank": 4,
+      "team": "宮崎第一",
+      "points": 23,
+      "played": 15,
+      "won": 7,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 38,
+      "ga": 43,
+      "gd": -5
+    },
+    {
+      "rank": 5,
       "team": "延岡学園",
       "points": 22,
       "played": 14,
@@ -96,28 +108,16 @@
       "gd": -4
     },
     {
-      "rank": 5,
-      "team": "宮崎第一",
-      "points": 20,
-      "played": 14,
-      "won": 6,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 34,
-      "ga": 40,
-      "gd": -6
-    },
-    {
       "rank": 6,
       "team": "鵬翔 2nd",
       "points": 18,
-      "played": 15,
+      "played": 16,
       "won": 5,
       "drawn": 3,
-      "lost": 7,
-      "gf": 28,
-      "ga": 34,
-      "gd": -6
+      "lost": 8,
+      "gf": 32,
+      "ga": 42,
+      "gd": -10
     },
     {
       "rank": 7,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "ヴェロスクロノス",
       "points": 6,
-      "played": 14,
+      "played": 15,
       "won": 2,
       "drawn": 0,
-      "lost": 12,
+      "lost": 13,
       "gf": 16,
-      "ga": 60,
-      "gd": -44
+      "ga": 63,
+      "gd": -47
     }
   ],
   "matches": [
@@ -562,10 +562,10 @@
       "md": 16,
       "date": "2026-09-26",
       "home": "宮崎第一",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 3,
       "away": "宮崎工業",
-      "status": "scheduled",
+      "status": "played",
       "venue": "県総合運動公園補助球技場"
     },
     {
@@ -711,10 +711,10 @@
       "md": 16,
       "date": "2026-09-26",
       "home": "鵬翔 2nd",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 8,
       "away": "宮崎日大",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鵬翔高校人工芝グラウンド"
     },
     {
@@ -989,10 +989,10 @@
       "md": 16,
       "date": "2026-09-26",
       "home": "ヴェロスクロノス",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "日章学園3rd",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ミヤチク藤見公園西側多目的広場"
     },
     {

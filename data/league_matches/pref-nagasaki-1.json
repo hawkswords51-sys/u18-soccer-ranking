@@ -10,16 +10,16 @@
       "short": "九州文化学園"
     },
     {
+      "name": "国見2nd",
+      "short": "国見2nd"
+    },
+    {
       "name": "創成館",
       "short": "創成館"
     },
     {
       "name": "長崎日大",
       "short": "長崎日大"
-    },
-    {
-      "name": "国見2nd",
-      "short": "国見2nd"
     },
     {
       "name": "Vファーレン長崎2nd",
@@ -50,13 +50,13 @@
     {
       "rank": 1,
       "team": "九州文化学園",
-      "points": 28,
-      "played": 11,
+      "points": 29,
+      "played": 12,
       "won": 9,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 1,
-      "gf": 33,
-      "ga": 19,
+      "gf": 37,
+      "ga": 23,
       "gd": 14
     },
     {
@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "国見2nd",
+      "points": 26,
+      "played": 13,
+      "won": 8,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 34,
+      "ga": 19,
+      "gd": 15
+    },
+    {
+      "rank": 4,
       "team": "創成館",
       "points": 26,
       "played": 12,
@@ -82,18 +94,6 @@
       "gf": 29,
       "ga": 14,
       "gd": 15
-    },
-    {
-      "rank": 4,
-      "team": "国見2nd",
-      "points": 23,
-      "played": 12,
-      "won": 7,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 31,
-      "ga": 19,
-      "gd": 12
     },
     {
       "rank": 5,
@@ -123,24 +123,24 @@
       "rank": 7,
       "team": "長崎総附2nd",
       "points": 12,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 3,
-      "lost": 6,
+      "lost": 7,
       "gf": 22,
-      "ga": 24,
-      "gd": -2
+      "ga": 27,
+      "gd": -5
     },
     {
       "rank": 8,
       "team": "海星",
-      "points": 7,
-      "played": 12,
+      "points": 8,
+      "played": 13,
       "won": 1,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 7,
-      "gf": 14,
-      "ga": 29,
+      "gf": 18,
+      "ga": 33,
       "gd": -15
     },
     {
@@ -171,6 +171,16 @@
   "matches": [
     {
       "md": 0,
+      "date": "2026-05-09",
+      "home": "九州文化学園",
+      "hs": 4,
+      "as": 2,
+      "away": "国見2nd",
+      "status": "played",
+      "venue": "スポーツパークいさはや"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "九州文化学園",
       "hs": null,
@@ -186,16 +196,6 @@
       "as": null,
       "away": "長崎日大",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-09",
-      "home": "九州文化学園",
-      "hs": 4,
-      "as": 2,
-      "away": "国見2nd",
-      "status": "played",
-      "venue": "スポーツパークいさはや"
     },
     {
       "md": 0,
@@ -229,12 +229,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-26",
       "home": "九州文化学園",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 4,
       "away": "海星",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "長崎市営ラグビー・サッカー場"
     },
     {
       "md": 0,
@@ -256,6 +257,94 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "国見2nd",
+      "hs": null,
+      "as": null,
+      "away": "九州文化学園",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-27",
+      "home": "国見2nd",
+      "hs": 1,
+      "as": 0,
+      "away": "創成館",
+      "status": "played",
+      "venue": "佐世保市総合グラウンド陸上競技場"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-05",
+      "home": "国見2nd",
+      "hs": 4,
+      "as": 0,
+      "away": "長崎日大",
+      "status": "played",
+      "venue": "島原市営平成町人工芝グラウンド(山側)"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "国見2nd",
+      "hs": null,
+      "as": null,
+      "away": "Vファーレン長崎2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "国見2nd",
+      "hs": 1,
+      "as": 2,
+      "away": "鎮西学院",
+      "status": "played",
+      "venue": "長崎県立百花台公園サッカー場"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-26",
+      "home": "国見2nd",
+      "hs": 3,
+      "as": 0,
+      "away": "長崎総附2nd",
+      "status": "played",
+      "venue": "創成館高等学校S-Field"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-12",
+      "home": "国見2nd",
+      "hs": 3,
+      "as": 2,
+      "away": "海星",
+      "status": "played",
+      "venue": "長﨑国際大サッカーG"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-21",
+      "home": "国見2nd",
+      "hs": 2,
+      "as": 2,
+      "away": "佐世保実業",
+      "status": "played",
+      "venue": "長崎県立百花台公園サッカー場"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-05",
+      "home": "国見2nd",
+      "hs": 5,
+      "as": 1,
+      "away": "長崎南山",
+      "status": "played",
+      "venue": "長崎県立百花台公園サッカー場"
+    },
+    {
+      "md": 0,
       "date": "2026-05-05",
       "home": "創成館",
       "hs": 0,
@@ -270,7 +359,7 @@
       "home": "創成館",
       "hs": null,
       "as": null,
-      "away": "長崎日大",
+      "away": "国見2nd",
       "status": "scheduled"
     },
     {
@@ -279,7 +368,7 @@
       "home": "創成館",
       "hs": null,
       "as": null,
-      "away": "国見2nd",
+      "away": "長崎日大",
       "status": "scheduled"
     },
     {
@@ -352,6 +441,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "長崎日大",
+      "hs": null,
+      "as": null,
+      "away": "国見2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-05-17",
       "home": "長崎日大",
       "hs": 0,
@@ -359,15 +457,6 @@
       "away": "創成館",
       "status": "played",
       "venue": "創成館高等学校S-Field"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "長崎日大",
-      "hs": null,
-      "as": null,
-      "away": "国見2nd",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -428,93 +517,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "国見2nd",
-      "hs": null,
-      "as": null,
-      "away": "九州文化学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-27",
-      "home": "国見2nd",
-      "hs": 1,
-      "as": 0,
-      "away": "創成館",
-      "status": "played",
-      "venue": "佐世保市総合グラウンド陸上競技場"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-05",
-      "home": "国見2nd",
-      "hs": 4,
-      "as": 0,
-      "away": "長崎日大",
-      "status": "played",
-      "venue": "島原市営平成町人工芝グラウンド(山側)"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "国見2nd",
-      "hs": null,
-      "as": null,
-      "away": "Vファーレン長崎2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "国見2nd",
-      "hs": 1,
-      "as": 2,
-      "away": "鎮西学院",
-      "status": "played",
-      "venue": "長崎県立百花台公園サッカー場"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "国見2nd",
-      "hs": null,
-      "as": null,
-      "away": "長崎総附2nd",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-12",
-      "home": "国見2nd",
-      "hs": 3,
-      "as": 2,
-      "away": "海星",
-      "status": "played",
-      "venue": "長﨑国際大サッカーG"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-21",
-      "home": "国見2nd",
-      "hs": 2,
-      "as": 2,
-      "away": "佐世保実業",
-      "status": "played",
-      "venue": "長崎県立百花台公園サッカー場"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "国見2nd",
-      "hs": 5,
-      "as": 1,
-      "away": "長崎南山",
-      "status": "played",
-      "venue": "長崎県立百花台公園サッカー場"
-    },
-    {
-      "md": 0,
       "date": "2026-09-12",
       "home": "Vファーレン長崎2nd",
       "hs": 2,
@@ -522,6 +524,16 @@
       "away": "九州文化学園",
       "status": "played",
       "venue": "佐世保市総合グラウンド陸上競技場"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "Vファーレン長崎2nd",
+      "hs": 4,
+      "as": 2,
+      "away": "国見2nd",
+      "status": "played",
+      "venue": "創成館高等学校S-Field"
     },
     {
       "md": 0,
@@ -542,16 +554,6 @@
       "away": "長崎日大",
       "status": "played",
       "venue": "長崎県立百花台公園サッカー場"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "Vファーレン長崎2nd",
-      "hs": 4,
-      "as": 2,
-      "away": "国見2nd",
-      "status": "played",
-      "venue": "創成館高等学校S-Field"
     },
     {
       "md": 0,
@@ -612,6 +614,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "鎮西学院",
+      "hs": null,
+      "as": null,
+      "away": "国見2nd",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-05-09",
       "home": "鎮西学院",
       "hs": 1,
@@ -629,15 +640,6 @@
       "away": "長崎日大",
       "status": "played",
       "venue": "南島原市多目的運動広場"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "鎮西学院",
-      "hs": null,
-      "as": null,
-      "away": "国見2nd",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -700,6 +702,16 @@
     },
     {
       "md": 0,
+      "date": "2026-04-25",
+      "home": "長崎総附2nd",
+      "hs": 1,
+      "as": 1,
+      "away": "国見2nd",
+      "status": "played",
+      "venue": "創成館高等学校S-Field"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "長崎総附2nd",
       "hs": null,
@@ -716,16 +728,6 @@
       "away": "長崎日大",
       "status": "played",
       "venue": "佐世保市総合グラウンド陸上競技場"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "長崎総附2nd",
-      "hs": 1,
-      "as": 1,
-      "away": "国見2nd",
-      "status": "played",
-      "venue": "創成館高等学校S-Field"
     },
     {
       "md": 0,
@@ -788,6 +790,16 @@
     },
     {
       "md": 0,
+      "date": "2026-09-12",
+      "home": "海星",
+      "hs": 2,
+      "as": 3,
+      "away": "国見2nd",
+      "status": "played",
+      "venue": "佐世保市総合グラウンド陸上競技場"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "海星",
       "hs": 1,
@@ -805,16 +817,6 @@
       "away": "長崎日大",
       "status": "played",
       "venue": "スポーツパークいさはや"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-12",
-      "home": "海星",
-      "hs": 2,
-      "as": 3,
-      "away": "国見2nd",
-      "status": "played",
-      "venue": "佐世保市総合グラウンド陸上競技場"
     },
     {
       "md": 0,
@@ -876,6 +878,16 @@
     },
     {
       "md": 0,
+      "date": "2026-04-18",
+      "home": "佐世保実業",
+      "hs": 1,
+      "as": 2,
+      "away": "国見2nd",
+      "status": "played",
+      "venue": "佐世保市総合グラウンド陸上競技場"
+    },
+    {
+      "md": 0,
       "date": "2026-04-25",
       "home": "佐世保実業",
       "hs": 2,
@@ -893,16 +905,6 @@
       "away": "長崎日大",
       "status": "played",
       "venue": "創成館高等学校S-Field"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "佐世保実業",
-      "hs": 1,
-      "as": 2,
-      "away": "国見2nd",
-      "status": "played",
-      "venue": "佐世保市総合グラウンド陸上競技場"
     },
     {
       "md": 0,
@@ -963,6 +965,16 @@
     },
     {
       "md": 0,
+      "date": "2026-09-05",
+      "home": "長崎南山",
+      "hs": 0,
+      "as": 5,
+      "away": "国見2nd",
+      "status": "played",
+      "venue": "創成館高等学校S-Field"
+    },
+    {
+      "md": 0,
       "date": "2026-09-12",
       "home": "長崎南山",
       "hs": 0,
@@ -980,16 +992,6 @@
       "away": "長崎日大",
       "status": "played",
       "venue": "スポーツパークいさはや"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "長崎南山",
-      "hs": 0,
-      "as": 5,
-      "away": "国見2nd",
-      "status": "played",
-      "venue": "創成館高等学校S-Field"
     },
     {
       "md": 0,
@@ -1042,12 +1044,22 @@
   "source_standings": [
     {
       "team": "九州文化学園",
-      "pts": 28,
-      "played": 11,
+      "pts": 29,
+      "played": 12,
       "won": 9,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 1,
-      "gf": 33,
+      "gf": 37,
+      "ga": 23
+    },
+    {
+      "team": "国見2nd",
+      "pts": 26,
+      "played": 13,
+      "won": 8,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 34,
       "ga": 19
     },
     {
@@ -1069,16 +1081,6 @@
       "lost": 2,
       "gf": 29,
       "ga": 10
-    },
-    {
-      "team": "国見2nd",
-      "pts": 23,
-      "played": 12,
-      "won": 7,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 31,
-      "ga": 19
     },
     {
       "team": "Vファーレン長崎2nd",
@@ -1103,22 +1105,22 @@
     {
       "team": "長崎総附2nd",
       "pts": 12,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 3,
-      "lost": 6,
+      "lost": 7,
       "gf": 22,
-      "ga": 24
+      "ga": 27
     },
     {
       "team": "海星",
-      "pts": 7,
-      "played": 12,
+      "pts": 8,
+      "played": 13,
       "won": 1,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 7,
-      "gf": 14,
-      "ga": 29
+      "gf": 18,
+      "ga": 33
     },
     {
       "team": "佐世保実業",

@@ -51,25 +51,25 @@
       "rank": 1,
       "team": "名古屋",
       "points": 34,
-      "played": 14,
+      "played": 15,
       "won": 10,
       "drawn": 4,
-      "lost": 0,
+      "lost": 1,
       "gf": 30,
-      "ga": 12,
-      "gd": 18
+      "ga": 14,
+      "gd": 16
     },
     {
       "rank": 2,
       "team": "豊川",
-      "points": 25,
-      "played": 14,
-      "won": 7,
+      "points": 28,
+      "played": 15,
+      "won": 8,
       "drawn": 4,
       "lost": 3,
-      "gf": 33,
-      "ga": 17,
-      "gd": 16
+      "gf": 37,
+      "ga": 18,
+      "gd": 19
     },
     {
       "rank": 3,
@@ -110,14 +110,14 @@
     {
       "rank": 6,
       "team": "名経大高蔵",
-      "points": 16,
-      "played": 14,
-      "won": 4,
+      "points": 19,
+      "played": 15,
+      "won": 5,
       "drawn": 4,
       "lost": 6,
-      "gf": 19,
+      "gf": 21,
       "ga": 25,
-      "gd": -6
+      "gd": -4
     },
     {
       "rank": 7,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "至学館",
       "points": 8,
-      "played": 14,
+      "played": 15,
       "won": 1,
       "drawn": 5,
-      "lost": 8,
-      "gf": 14,
-      "ga": 27,
-      "gd": -13
+      "lost": 9,
+      "gf": 15,
+      "ga": 31,
+      "gd": -16
     }
   ],
   "matches": [
@@ -337,12 +337,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-26",
       "home": "豊川",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "至学館",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "豊川"
     },
     {
       "md": 0,
@@ -611,12 +612,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-26",
       "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "名古屋",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "大同"
     },
     {
       "md": 0,
@@ -1054,22 +1056,22 @@
     {
       "team": "名古屋",
       "pts": 34,
-      "played": 14,
+      "played": 15,
       "won": 10,
       "drawn": 4,
-      "lost": 0,
+      "lost": 1,
       "gf": 30,
-      "ga": 12
+      "ga": 14
     },
     {
       "team": "豊川",
-      "pts": 25,
-      "played": 14,
-      "won": 7,
+      "pts": 28,
+      "played": 15,
+      "won": 8,
       "drawn": 4,
       "lost": 3,
-      "gf": 33,
-      "ga": 17
+      "gf": 37,
+      "ga": 18
     },
     {
       "team": "岡崎城西",
@@ -1103,12 +1105,12 @@
     },
     {
       "team": "名経大高蔵",
-      "pts": 16,
-      "played": 14,
-      "won": 4,
+      "pts": 19,
+      "played": 15,
+      "won": 5,
       "drawn": 4,
       "lost": 6,
-      "gf": 19,
+      "gf": 21,
       "ga": 25
     },
     {
@@ -1144,12 +1146,12 @@
     {
       "team": "至学館",
       "pts": 8,
-      "played": 14,
+      "played": 15,
       "won": 1,
       "drawn": 5,
-      "lost": 8,
-      "gf": 14,
-      "ga": 27
+      "lost": 9,
+      "gf": 15,
+      "ga": 31
     }
   ]
 }
