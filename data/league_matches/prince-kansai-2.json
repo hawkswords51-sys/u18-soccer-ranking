@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "滝川第二",
+      "pts": 29,
+      "played": 14,
+      "won": 9,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 34,
+      "ga": 23,
+      "gd": 11
+    },
+    {
+      "rank": 2,
       "team": "東海大仰星",
       "pts": 27,
       "played": 13,
@@ -60,7 +72,7 @@
       "gd": 22
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "大阪桐蔭",
       "pts": 27,
       "played": 13,
@@ -70,18 +82,6 @@
       "gf": 25,
       "ga": 10,
       "gd": 15
-    },
-    {
-      "rank": 3,
-      "team": "滝川第二",
-      "pts": 26,
-      "played": 13,
-      "won": 8,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 32,
-      "ga": 22,
-      "gd": 10
     },
     {
       "rank": 4,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "関西学院",
       "pts": 3,
-      "played": 13,
+      "played": 14,
       "won": 1,
       "drawn": 0,
-      "lost": 12,
-      "gf": 14,
-      "ga": 36,
-      "gd": -22
+      "lost": 13,
+      "gf": 15,
+      "ga": 38,
+      "gd": -23
     }
   ],
   "matches": [
@@ -899,10 +899,10 @@
       "md": 14,
       "date": "2026-09-26",
       "home": "滝川第二",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "関西学院",
-      "status": "scheduled",
+      "status": "played",
       "venue": "神戸弘陵グラウンド",
       "kickoff": "15:30"
     },
