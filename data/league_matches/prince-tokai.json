@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "浜松開誠館",
+      "pts": 23,
+      "played": 13,
+      "won": 6,
+      "drawn": 5,
+      "lost": 2,
+      "gf": 30,
+      "ga": 13,
+      "gd": 17
+    },
+    {
+      "rank": 4,
       "team": "東海大翔洋",
       "pts": 21,
       "played": 13,
@@ -82,18 +94,6 @@
       "gf": 23,
       "ga": 19,
       "gd": 4
-    },
-    {
-      "rank": 4,
-      "team": "浜松開誠館",
-      "pts": 20,
-      "played": 12,
-      "won": 5,
-      "drawn": 5,
-      "lost": 2,
-      "gf": 26,
-      "ga": 12,
-      "gd": 14
     },
     {
       "rank": 5,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "愛工大名電",
       "pts": 6,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 0,
-      "lost": 10,
-      "gf": 12,
-      "ga": 41,
-      "gd": -29
+      "lost": 11,
+      "gf": 13,
+      "ga": 45,
+      "gd": -32
     }
   ],
   "matches": [
@@ -844,10 +844,10 @@
       "md": 13,
       "date": "2026-09-26",
       "home": "愛工大名電",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 4,
       "away": "浜松開誠館",
-      "status": "scheduled",
+      "status": "played",
       "venue": "浜松開誠館総合G",
       "kickoff": "16:00"
     },

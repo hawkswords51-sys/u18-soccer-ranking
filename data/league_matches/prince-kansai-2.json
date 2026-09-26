@@ -75,16 +75,28 @@
       "rank": 3,
       "team": "大阪桐蔭",
       "pts": 27,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 3,
-      "lost": 2,
-      "gf": 25,
-      "ga": 10,
-      "gd": 15
+      "lost": 3,
+      "gf": 27,
+      "ga": 13,
+      "gd": 14
     },
     {
       "rank": 4,
+      "team": "金光大阪",
+      "pts": 27,
+      "played": 14,
+      "won": 9,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 31,
+      "ga": 22,
+      "gd": 9
+    },
+    {
+      "rank": 5,
       "team": "京都橘(B)",
       "pts": 25,
       "played": 13,
@@ -94,18 +106,6 @@
       "gf": 25,
       "ga": 18,
       "gd": 7
-    },
-    {
-      "rank": 5,
-      "team": "金光大阪",
-      "pts": 24,
-      "played": 13,
-      "won": 8,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 28,
-      "ga": 20,
-      "gd": 8
     },
     {
       "rank": 6,
@@ -888,10 +888,10 @@
       "md": 14,
       "date": "2026-09-26",
       "home": "大阪桐蔭",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "金光大阪",
-      "status": "scheduled",
+      "status": "played",
       "venue": "大阪桐蔭生駒グラウンド",
       "kickoff": "16:30"
     },
