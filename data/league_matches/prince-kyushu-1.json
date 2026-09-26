@@ -85,6 +85,18 @@
     },
     {
       "rank": 4,
+      "team": "日章学園",
+      "pts": 20,
+      "played": 13,
+      "won": 6,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 29,
+      "ga": 21,
+      "gd": 8
+    },
+    {
+      "rank": 5,
       "team": "ロアッソ熊本U-18",
       "pts": 20,
       "played": 12,
@@ -94,18 +106,6 @@
       "gf": 19,
       "ga": 16,
       "gd": 3
-    },
-    {
-      "rank": 5,
-      "team": "日章学園",
-      "pts": 17,
-      "played": 12,
-      "won": 5,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 27,
-      "ga": 20,
-      "gd": 7
     },
     {
       "rank": 6,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "FC琉球U-18",
       "pts": 9,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 0,
-      "lost": 9,
-      "gf": 9,
-      "ga": 21,
-      "gd": -12
+      "lost": 10,
+      "gf": 10,
+      "ga": 23,
+      "gd": -13
     },
     {
       "rank": 10,
@@ -844,10 +844,10 @@
       "md": 13,
       "date": "2026-09-26",
       "home": "日章学園",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "FC琉球U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日章学園人工芝サッカー場",
       "kickoff": "11:00"
     },

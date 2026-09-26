@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "アルビレックス新潟U-18",
+      "pts": 25,
+      "played": 15,
+      "won": 6,
+      "drawn": 7,
+      "lost": 2,
+      "gf": 23,
+      "ga": 12,
+      "gd": 11
+    },
+    {
+      "rank": 2,
       "team": "松本山雅FC U-18",
       "pts": 25,
       "played": 14,
@@ -58,18 +70,6 @@
       "gf": 29,
       "ga": 22,
       "gd": 7
-    },
-    {
-      "rank": 2,
-      "team": "アルビレックス新潟U-18",
-      "pts": 24,
-      "played": 14,
-      "won": 6,
-      "drawn": 6,
-      "lost": 2,
-      "gf": 22,
-      "ga": 11,
-      "gd": 11
     },
     {
       "rank": 3,
@@ -86,26 +86,26 @@
     {
       "rank": 4,
       "team": "日本文理",
-      "pts": 20,
-      "played": 14,
-      "won": 6,
+      "pts": 23,
+      "played": 15,
+      "won": 7,
       "drawn": 2,
       "lost": 6,
-      "gf": 25,
+      "gf": 27,
       "ga": 16,
-      "gd": 9
+      "gd": 11
     },
     {
       "rank": 5,
       "team": "星稜",
-      "pts": 19,
-      "played": 14,
-      "won": 4,
+      "pts": 22,
+      "played": 15,
+      "won": 5,
       "drawn": 7,
       "lost": 3,
-      "gf": 20,
-      "ga": 20,
-      "gd": 0
+      "gf": 22,
+      "ga": 21,
+      "gd": 1
     },
     {
       "rank": 6,
@@ -135,36 +135,36 @@
       "rank": 8,
       "team": "鵬学園",
       "pts": 12,
-      "played": 14,
+      "played": 15,
       "won": 2,
       "drawn": 6,
-      "lost": 6,
+      "lost": 7,
       "gf": 14,
-      "ga": 20,
-      "gd": -6
+      "ga": 22,
+      "gd": -8
     },
     {
       "rank": 9,
       "team": "帝京長岡2nd",
       "pts": 12,
-      "played": 14,
+      "played": 15,
       "won": 2,
       "drawn": 6,
-      "lost": 6,
-      "gf": 22,
-      "ga": 30,
-      "gd": -8
+      "lost": 7,
+      "gf": 23,
+      "ga": 32,
+      "gd": -9
     },
     {
       "rank": 10,
       "team": "カターレ富山U-18",
-      "pts": 10,
-      "played": 14,
+      "pts": 11,
+      "played": 15,
       "won": 2,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 8,
-      "gf": 8,
-      "ga": 27,
+      "gf": 9,
+      "ga": 28,
       "gd": -19
     }
   ],
@@ -943,10 +943,10 @@
       "md": 15,
       "date": "2026-09-26",
       "home": "アルビレックス新潟U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "カターレ富山U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "アルビレッジ",
       "kickoff": "10:30"
     },
@@ -965,10 +965,10 @@
       "md": 15,
       "date": "2026-09-26",
       "home": "帝京長岡2nd",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "星稜",
-      "status": "scheduled",
+      "status": "played",
       "venue": "帝京長岡",
       "kickoff": "11:00"
     },
@@ -976,10 +976,10 @@
       "md": 15,
       "date": "2026-09-26",
       "home": "日本文理",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "鵬学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日本文理",
       "kickoff": "10:30"
     },

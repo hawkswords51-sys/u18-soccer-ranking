@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "鹿島アントラーズユースB",
+      "pts": 20,
+      "played": 13,
+      "won": 6,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 23,
+      "ga": 15,
+      "gd": 8
+    },
+    {
+      "rank": 3,
       "team": "桐光学園",
       "pts": 19,
       "played": 10,
@@ -70,18 +82,6 @@
       "gf": 13,
       "ga": 8,
       "gd": 5
-    },
-    {
-      "rank": 3,
-      "team": "日体大柏",
-      "pts": 18,
-      "played": 12,
-      "won": 6,
-      "drawn": 0,
-      "lost": 6,
-      "gf": 14,
-      "ga": 15,
-      "gd": -1
     },
     {
       "rank": 4,
@@ -97,18 +97,30 @@
     },
     {
       "rank": 5,
-      "team": "鹿島アントラーズユースB",
-      "pts": 17,
-      "played": 12,
-      "won": 5,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 19,
-      "ga": 12,
-      "gd": 7
+      "team": "日体大柏",
+      "pts": 18,
+      "played": 13,
+      "won": 6,
+      "drawn": 0,
+      "lost": 7,
+      "gf": 15,
+      "ga": 19,
+      "gd": -4
     },
     {
       "rank": 6,
+      "team": "矢板中央",
+      "pts": 17,
+      "played": 11,
+      "won": 5,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 21,
+      "ga": 18,
+      "gd": 3
+    },
+    {
+      "rank": 7,
       "team": "西武台",
       "pts": 17,
       "played": 12,
@@ -118,18 +130,6 @@
       "gf": 17,
       "ga": 19,
       "gd": -2
-    },
-    {
-      "rank": 7,
-      "team": "矢板中央",
-      "pts": 14,
-      "played": 10,
-      "won": 4,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 17,
-      "ga": 17,
-      "gd": 0
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "鹿島学園",
       "pts": 7,
-      "played": 11,
+      "played": 12,
       "won": 1,
       "drawn": 4,
-      "lost": 6,
-      "gf": 13,
-      "ga": 26,
-      "gd": -13
+      "lost": 7,
+      "gf": 16,
+      "ga": 30,
+      "gd": -14
     }
   ],
   "matches": [
@@ -843,10 +843,10 @@
       "md": 13,
       "date": "2026-09-26",
       "home": "矢板中央",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "日体大柏",
-      "status": "scheduled",
+      "status": "played",
       "venue": "矢板中央高校東泉グランド",
       "kickoff": "11:00"
     },
@@ -854,10 +854,10 @@
       "md": 13,
       "date": "2026-09-26",
       "home": "鹿島学園",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 4,
       "away": "鹿島アントラーズユースB",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿島学園高校グラウンド",
       "kickoff": "10:30"
     },
