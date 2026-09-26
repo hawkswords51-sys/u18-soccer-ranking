@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-26T20:56:06+09:00",
+  "updatedAt": "2026-09-26T23:40:57+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -240,7 +240,7 @@
       "last_change": "2026-09-05",
       "last_change_note": "初回のため最終試合日で代用",
       "result_since": "2026-09-26",
-      "result_streak": 3,
+      "result_streak": 4,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (星取表の1部が9チームでない、または得点計≠失点計)",
@@ -282,7 +282,7 @@
       "sourceName": "愛媛県サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "2026-09-25",
-      "result_streak": 6,
+      "result_streak": 7,
       "status": "warn",
       "last_updated": "2026-09-24",
       "result": "fetch_error",
@@ -451,7 +451,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 20,
+      "result_streak": 21,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田松聖A: 勝点 公式24 ≠ 試合から25'] …",
@@ -560,17 +560,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 66,
+      "played": 73,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-19",
+      "latest_match": "2026-09-26",
       "source": "junior-soccer (manual)",
       "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-      "last_change": "2026-09-21",
+      "last_change": "2026-09-26",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-09-21"
+      "last_updated": "2026-09-26"
     },
     "kanagawa": {
       "result": "ok",
@@ -649,7 +649,7 @@
       "sourceName": "京都府サッカー協会 公式",
       "last_change": "2026-09-16",
       "result_since": "2026-09-25",
-      "result_streak": 6,
+      "result_streak": 7,
       "status": "warn",
       "last_updated": "2026-09-24",
       "result": "fetch_error",
