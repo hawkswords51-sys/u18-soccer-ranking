@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-27T00:44:16+09:00",
+  "updatedAt": "2026-09-27T02:53:12+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -311,8 +311,8 @@
       "last_updated": "2026-09-26"
     },
     "fukuoka": {
-      "result": "ok",
-      "result_note": "消化66試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://fukuoka-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='fukuoka-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukuoka-fa-u18.com', port=443) at 0x7f980c4e84d0>, 'Connection to fukuoka-fa-u18.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -348,8 +348,8 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-26",
-      "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://fukushima-fa.com/match/c_match/ffa02/ の取得に失敗 (HTTPSConnectionPool(host='fukushima-fa.com', port=443): Max retries exceeded with url: /match/c_match/ffa02/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukushima-fa.com', port=443) at 0x7f980a58fc90>, 'Connection to fukushima-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27"
     },
     "gifu": {
@@ -369,14 +369,14 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.gifu-fa.com/type2-category/g1/ の取得に失敗 (HTTPSConnectionPool(host='www.gifu-fa.com', port=443): Max retries exceeded with url: /type2-category/g1/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gifu-fa.com', port=443) at 0x7f980aa51a10>, 'Connection to www.gifu-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-26"
     },
     "gunma": {
-      "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Max retries exceeded with url: /api/table/173 (Caused by ConnectTimeoutError(<HTTPSConnection(host='management.gunma-fa.com', port=443) at 0x7f980bc0d050>, 'Connection to management.gunma-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -610,8 +610,8 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-26",
-      "result": "ok",
-      "result_note": "消化44試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.kochi-fa.com/class02/class02sch/entry-305.html の取得に失敗 (HTTPSConnectionPool(host='www.kochi-fa.com', port=443): Max retries exceeded with url: /class02/class02sch/entry-305.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kochi-fa.com', port=443) at 0x7f980c52c350>, 'Connection to www.kochi-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27"
     },
     "kumamoto": {
@@ -696,8 +696,8 @@
       "last_updated": "2026-09-21"
     },
     "miyazaki": {
-      "result": "ok",
-      "result_note": "消化74試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://miyazaki-fa-u18.net/schedule/2026/U-18-1.htm の取得に失敗 (HTTPSConnectionPool(host='miyazaki-fa-u18.net', port=443): Max retries exceeded with url: /schedule/2026/U-18-1.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='miyazaki-fa-u18.net', port=443) at 0x7f980852ee50>, 'Connection to miyazaki-fa-u18.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -816,8 +816,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.ofa.or.jp/news/tournaments/high-school/ の取得に失敗 (HTTPSConnectionPool(host='www.ofa.or.jp', port=443): Max retries exceeded with url: /news/tournaments/high-school/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ofa.or.jp', port=443) at 0x7f980c3d3c50>, 'Connection to www.ofa.or.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-26"
     },
@@ -951,8 +951,8 @@
       "result_date": "2026-09-27"
     },
     "saga": {
-      "result": "ok",
-      "result_note": "消化40試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://saga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='saga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='saga-fa-u18.com', port=443) at 0x7f980bc0dbd0>, 'Connection to saga-fa-u18.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -993,8 +993,8 @@
       "result_date": "2026-09-27"
     },
     "shiga": {
-      "result": "ok",
-      "result_note": "消化65試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://shiga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='shiga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='shiga-fa-u18.com', port=443) at 0x7f980bc08190>, 'Connection to shiga-fa-u18.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -1089,8 +1089,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化66試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://tokushima-fa.jp/post-414/ の取得に失敗 (HTTPSConnectionPool(host='tokushima-fa.jp', port=443): Max retries exceeded with url: /post-414/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='tokushima-fa.jp', port=443) at 0x7f980cdaf710>, 'Connection to tokushima-fa.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-26"
     },
@@ -1271,145 +1271,145 @@
     "team_season:aomori-yamada": {
       "result": "ok",
       "note": "試合14・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
       "note": "試合15・選手31（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
       "note": "試合15・選手34（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
       "note": "試合15・選手34（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
       "note": "試合14・選手36（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:higashiyama": {
       "result": "ok",
       "note": "試合14・選手31（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:jubilo-iwata-u18": {
       "result": "ok",
       "note": "試合14・選手33（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:kamimura-gakuen": {
       "result": "ok",
       "note": "試合14・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:kashima-youth": {
       "result": "ok",
       "note": "試合15・選手32（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:kashiwa-reysol-u18": {
       "result": "ok",
       "note": "試合15・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:kawasaki-frontale-u18": {
       "result": "ok",
       "note": "試合15・選手31（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:maebashi-ikuei": {
       "result": "ok",
       "note": "試合15・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:nagoya-grampus-u18": {
       "result": "ok",
       "note": "試合15・選手34（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:ohtsu": {
       "result": "ok",
       "note": "試合12・選手31（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:ryukei-kashiwa": {
       "result": "ok",
       "note": "試合15・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
       "note": "試合15・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
       "note": "試合14・選手31（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:shohei": {
       "result": "ok",
       "note": "試合15・選手32（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
       "note": "試合14・選手32（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:tokyo-verdy-youth": {
       "result": "ok",
       "note": "試合15・選手29（新規取得0）／選手一覧を据え置き（出場試合数が合わない 2件：23 渡部 直宏: 一覧3 ≠ 出場記録2）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:vegalta-sendai-youth": {
       "result": "ok",
       "note": "試合15・選手35（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
       "note": "試合14・選手33（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:yokohama-fc-youth": {
       "result": "ok",
       "note": "試合15・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     },
     "team_season:yonago-kita": {
       "result": "ok",
       "note": "試合14・選手30（新規取得0）",
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "since": ""
     }
   }
