@@ -28,7 +28,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 48,
+      "matchesPlayed": 50,
       "venueCount": 56,
       "venueCountPrev": 56,
       "consecutiveFallback": 0,
@@ -38,8 +38,8 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
+      "actual": "koko",
+      "reason": "検算不一致 ['尚志.試合 日程から計算15≠順位表14', '尚志.勝 日程から計算13≠順位表12', '尚志.得点 日程から計算45≠順位表42'] …（据え置き）",
       "matchesPlayed": 70,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 65,
+      "matchesPlayed": 66,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 60,
+      "matchesPlayed": 61,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-26T12:03:43+09:00",
+  "updatedAt": "2026-09-26T12:05:49+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1304,7 +1304,7 @@
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
-      "note": "試合15・選手31（新規取得1）",
+      "note": "試合15・選手31（新規取得0）",
       "date": "2026-09-26",
       "since": ""
     },
@@ -1322,7 +1322,7 @@
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
-      "note": "試合14・選手36（新規取得1）",
+      "note": "試合14・選手36（新規取得0）",
       "date": "2026-09-26",
       "since": ""
     },
@@ -1388,7 +1388,7 @@
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
-      "note": "試合15・選手30（新規取得1）",
+      "note": "試合15・選手30（新規取得0）",
       "date": "2026-09-26",
       "since": ""
     },
@@ -1436,7 +1436,7 @@
     },
     "team_season:yonago-kita": {
       "result": "ok",
-      "note": "試合14・選手30（新規取得1）",
+      "note": "試合14・選手30（新規取得0）",
       "date": "2026-09-26",
       "since": ""
     }

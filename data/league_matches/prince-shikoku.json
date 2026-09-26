@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "大手前高松",
+      "pts": 20,
+      "played": 13,
+      "won": 5,
+      "drawn": 5,
+      "lost": 3,
+      "gf": 20,
+      "ga": 20,
+      "gd": 0
+    },
+    {
+      "rank": 4,
       "team": "徳島市立",
       "pts": 19,
       "played": 12,
@@ -84,7 +96,7 @@
       "gd": 13
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "高知",
       "pts": 17,
       "played": 12,
@@ -96,7 +108,7 @@
       "gd": 9
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "FC今治U-18",
       "pts": 17,
       "played": 12,
@@ -106,18 +118,6 @@
       "gf": 21,
       "ga": 18,
       "gd": 3
-    },
-    {
-      "rank": 6,
-      "team": "大手前高松",
-      "pts": 17,
-      "played": 12,
-      "won": 4,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 18,
-      "ga": 19,
-      "gd": -1
     },
     {
       "rank": 7,
@@ -135,13 +135,13 @@
       "rank": 8,
       "team": "新田",
       "pts": 8,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 5,
-      "lost": 6,
-      "gf": 18,
-      "ga": 30,
-      "gd": -12
+      "lost": 7,
+      "gf": 19,
+      "ga": 32,
+      "gd": -13
     },
     {
       "rank": 9,
@@ -855,10 +855,10 @@
       "md": 13,
       "date": "2026-09-26",
       "home": "大手前高松",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "新田",
-      "status": "scheduled",
+      "status": "played",
       "venue": "瀬戸大橋記念公園第二",
       "kickoff": "10:00"
     },
