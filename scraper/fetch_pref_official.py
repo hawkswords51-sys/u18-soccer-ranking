@@ -101,6 +101,9 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "niigata": ("2026-09-14 追加：一覧ページで「試合予定」のままの 7/18 の2試合を星取表PDFの結果で補完"
                 "（PREF_OFFICIAL の hoshitori_results）→ 外す条件＝一覧ページに 07.18 の2件のスコアが"
                 "入力されたら（期限ではなくイベント待ち。協会が2か月未入力のため2週間ルールの意図的な例外）"),
+    "saitama": ("2026-09-27 追加：日程・結果PDFの 9/23 浦和学院 3-0 成徳深谷 を 0-3 に置き換え（SAITAMA_SCHEDULE_FIXES。"
+                "星取表と試合中の速報が 成徳深谷 3-0）→ 外す条件＝日程・結果PDFがこの試合を 0-3 に直したら"
+                "（直ると read_saitama が止まって知らせる）"),
 }
 
 
@@ -402,6 +405,12 @@ PREF_OFFICIAL = {
     # ⚠️ home/away は「日程表のHOME列＝home」の格納規約で、**事実ではない**（ホーム試合数が均等でない・
     #    30ペアが両巡目とも同じ側・会場の持ち主はHOME側23/AWAY側13/どちらでもない54）。
     #    表示は cross_table.NO_HOME_AWAY_SLUGS で H/A を出さない。「向きが逆だ」と直さないこと。
+    # 埼玉（2026-09-27追加）。高体連サッカー専門部 sfa2.jp の「前・後期日程・結果」PDF（主資料・H/Aあり）＋
+    # 「S1リーグ 途中結果」＝星取表PDF（勝分敗・得失点・順位がそろう＝既定ゲート）。read_saitama のコメント参照。
+    # ALIASは不要（「昌平Ⅱ」「西武台Ⅱ」は NFKC で「II」になり既存表記と一致）。
+    "saitama":   {"platform": "saitama", "teams": 10, "double_round": True,
+                  "source": "https://www.sfa2.jp/2449/",
+                  "label": "埼玉県高体連サッカー専門部 公式"},
     "fukushima": {"platform": "fukushima", "teams": 10,
                   "source": "https://fukushima-fa.com/match/c_match/ffa02/",
                   "label": "福島県サッカー協会 公式"},
@@ -4986,6 +4995,264 @@ def read_lsin(cfg: dict) -> tuple[dict, list[dict]]:
     return standings, matches
 
 
+# ============================================================
+# 埼玉（sfa2.jp ＝ 埼玉県高体連サッカー専門部）— S1リーグ（2026-09-27追加）
+#   入口: https://www.sfa2.jp/2449/（毎年同じ記事を更新している。記事の h1 に年が入る）
+#   記事本文の <p> ごとに「■前・後期日程・結果」「■S1リーグ 途中結果」「■S2…」「■S3…」の見出し文字と
+#   PDFへのリンク（リンク文字なし・title 属性だけ）が1つずつ並ぶ。
+#   ⚠️ PDFのファイル名は毎回変わる（日程＝ハッシュ名／星取表＝`924S1.pdf` のように月日入り）。必ず見出しから辿る。
+#   ⚠️ 見出し文字は <meta name="description"> にも出るので、**本文の <p> の中だけ**を探す。
+#
+# 日程・結果PDF（主資料）: A4縦1枚。S1・S2・S3が左右に3列、上半分＝前期（第1〜9節）・下半分＝後期（第10〜18節）。
+#   S1の列（x≒120〜247）に「ホーム 得点 - 得点 アウェイ 会場 時間」。**列見出しに「ホーム」「アウェイ」がある**
+#   ＝左右は格納規約ではなく**事実**（会場もホーム校のグラウンドが大半）。→ NO_HOME_AWAY_SLUGS から外す。
+#   ⚠️ 名前の両脇に**文字サイズ2前後の極小の数字**（チーム番号・試合番号）が埋まっている。size で落とす。
+#   ⚠️ 日付は結合セル。日付欄を横切る細い横線（page_hrules）でブロックを切り、ブロックの中の文字で日付を決める。
+#      「6/28 ※国ス」は「6/」「※」「国」「28」「ス」に割れて出る → 数字と / だけを行ごとに拾って繋ぐ。
+# 星取表PDF（検算用）: A4横1枚。勝・分・負・勝点・得点・失点・差・順位がそろう＝**既定ゲート（全項目一致）**。
+#   各マスは上段＝前期・下段＝後期（自チームから見た「得点 ○●△ 失点」）。→ 日程PDFの結果と**マスごとに鏡照合**する。
+#   本文右上の「2026/9/24 更新」＝版日付。
+# ⚠️ 出典どうしの食い違い（SAITAMA_SCHEDULE_FIXES）を参照。
+# 年度切り替え: 入口URLは固定。記事の h1・両PDFの表題の年（SEASON_YEAR）で前年度を読む事故を止める。
+# ============================================================
+_SAITAMA_ENTRY = "https://www.sfa2.jp/2449/"
+_SAITAMA_S1_X = (120.0, 247.0)          # S1の列（ホーム〜時間）。S2は x≒248 から
+_SAITAMA_DATE_X = (98.0, 115.0)         # S1の「月日」欄（罫線は x=97.7〜115.3。11/28と11/29の境の線は x=97.7 から始まる）
+_SAITAMA_MD_X = (76.0, 96.0)           # S1の「節」欄（「第N節」の文字は x≒79〜）
+_SAITAMA_TINY = 2.6                     # これより小さい文字は埋め込みのチーム番号・試合番号
+
+# ⭐️ 日程・結果PDFの既知の誤り（2026-09-27 Kei判断）。**「PDFの値」と「正しい値」を両方書く。**
+#    PDFがまだ誤りのまま → 正しい値に置き換える。PDFが正しい値になった → 止まって「この行を消せ」と言う。
+#    どちらでもない → 止まる（別の変化が起きている）。= 愛媛の「差の形」と同じ考え方を試合単位でやる。
+SAITAMA_SCHEDULE_FIXES = [
+    {"date": "2026-09-23", "home": "浦和学院", "away": "成徳深谷", "pdf": (3, 0), "fixed": (0, 3),
+     "reason": ("9/24版の日程・結果PDFは 浦和学院 3-0 成徳深谷。同じ9/24版の星取表は 成徳深谷 3○0 浦和学院、"
+                "試合中の速報（PLAYER! web.playerapp.tokyo/live/187221・成徳深谷の公式アカウント）も 0-3。"
+                "junior-soccer は日程PDFと同じ 3-0 だが、日程PDFを写したものと見て独立の根拠に数えない")},
+]
+
+
+def _saitama_links(year: str) -> tuple[dict, str]:
+    soup = BeautifulSoup(fetch_html(_SAITAMA_ENTRY, encoding="utf-8"), "html.parser")
+    time.sleep(SLEEP)
+    h1 = soup.find("h1", class_="entry-title")
+    if not h1 or year not in h1.get_text():
+        raise RuntimeError(f"入口の記事の表題が{year}年でない: {h1.get_text(strip=True) if h1 else '(h1なし)'}")
+    want = {"日程": "■前・後期日程・結果", "星取表": "■S1リーグ途中結果"}
+    found = {k: [] for k in want}
+    for p in soup.find_all("p"):
+        label = re.sub(r"\s+", "", unicodedata.normalize("NFKC", p.get_text()))
+        for k, head in want.items():
+            if label.startswith(unicodedata.normalize("NFKC", head)):
+                found[k] += [(a.get("title", ""), a["href"]) for a in p.find_all("a", href=True)
+                             if a["href"].lower().endswith(".pdf")]
+    for k in want:
+        if len(found[k]) != 1:
+            raise RuntimeError(f"入口に「{want[k]}」のPDFが{len(found[k])}本（1本のはず）")
+    # 版の食い違い：リンクの title の先頭の数字（924対戦表 / 924S1）が同じであること。
+    tag = {k: re.match(r"\d*", found[k][0][0]).group() for k in want}
+    if not tag["日程"] or tag["日程"] != tag["星取表"]:
+        raise RuntimeError(f"日程PDF（{found['日程'][0][0]}）と星取表PDF（{found['星取表'][0][0]}）の版が違う"
+                           f"（片方だけ更新されている。突き合わせが誤って落ちるので止める）")
+    return {k: v[0][1] for k, v in found.items()}, tag["日程"]
+
+
+def _saitama_schedule(content: bytes, year: str) -> list[dict]:
+    nfkc = lambda s: unicodedata.normalize("NFKC", s or "")
+    with pdf_source.open_pdf(content) as pdf:
+        if len(pdf.pages) != 1:
+            raise RuntimeError(f"日程PDFが{len(pdf.pages)}ページ（1ページのはず）")
+        pg = pdf.pages[0]
+        head = re.sub(r"\s+", "", nfkc(pg.extract_text() or ""))
+        for seg in ("前期", "後期"):
+            if f"{year}埼玉S1リーグ{seg}日程・結果" not in head:
+                raise RuntimeError(f"日程PDFに「{year} 埼玉 S1リーグ {seg}日程・結果」の表題が無い")
+        words = pg.extract_words(extra_attrs=["size"])
+        chars = pg.chars
+        rules = pdf_source.page_hrules(pg, *_SAITAMA_DATE_X)
+        md_rules = pdf_source.page_hrules(pg, *_SAITAMA_MD_X)
+    split = [w["top"] for w in words if "後期日程" in nfkc(w["text"])]
+    if len(split) != 1:
+        raise RuntimeError("日程PDFの前期と後期の境目（後期日程・結果の表題）が見つからない")
+    split = split[0]
+
+    def block(y, rs=None):
+        rs = rules if rs is None else rs
+        lo = max((r for r in rs if r <= y), default=None)
+        hi = min((r for r in rs if r > y), default=None)
+        return lo, hi
+
+    # 節欄：節の結合セル（横線で区切る）ごとに「第N節」を拾う
+    mds = {}
+    for w in words:
+        t = nfkc(w["text"])
+        mm = re.fullmatch(r"第(\d+)節", t)
+        if mm and _SAITAMA_MD_X[0] - 6 <= w["x0"] < _SAITAMA_MD_X[1]:
+            b = block((w["top"] + w["bottom"]) / 2, md_rules)
+            if b in mds:
+                raise RuntimeError(f"節欄の1つの枠に節が2つ: 第{mds[b]}節・{t}")
+            mds[b] = int(mm.group(1))
+
+    # 日付欄：ブロックごとに、数字と / だけを行（top）ごとに繋いで「M/D」を拾う
+    dates = {}
+    for b, rows in _group_chars(chars, _SAITAMA_DATE_X, block).items():
+        got = [s for s in rows if re.fullmatch(r"\d{1,2}/\d{1,2}", s)]
+        if len(got) > 1:
+            raise RuntimeError(f"日付欄の1つの枠に日付が{len(got)}個: {got}")
+        if got:
+            m, d = got[0].split("/")
+            dates[b] = f"{year}-{int(m):02d}-{int(d):02d}"
+
+    lo_x, hi_x = _SAITAMA_S1_X
+    matches = []
+    for dash in words:
+        if dash["text"] not in ("-", "－") or not (155 <= dash["x0"] <= 168):
+            continue
+        y = (dash["top"] + dash["bottom"]) / 2
+        line = sorted([w for w in words if abs((w["top"] + w["bottom"]) / 2 - y) < 3.5
+                       and lo_x <= w["x0"] < hi_x and w["size"] >= _SAITAMA_TINY], key=lambda w: w["x0"])
+        home = "".join(nfkc(w["text"]) for w in line if w["x0"] < 150 and not w["text"].isdigit())
+        hs = [w["text"] for w in line if 150 <= w["x0"] < 160 and w["text"].isdigit()]
+        as_ = [w["text"] for w in line if 166 <= w["x0"] < 177 and w["text"].isdigit()]
+        away = "".join(nfkc(w["text"]) for w in line if 177 <= w["x0"] < 200)
+        venue = "".join(nfkc(w["text"]) for w in line if 200 <= w["x0"] < 228)
+        if venue == "延期":            # 会場欄に「延期」と書かれる（9/6 成徳深谷×埼玉栄）。会場ではないので入れない
+            venue = ""
+        ko = "".join(w["text"] for w in line if 228 <= w["x0"] < hi_x)
+        if not home or not away or len(hs) > 1 or len(as_) > 1 or (len(hs) != len(as_)):
+            raise RuntimeError(f"日程PDFの行が読めない（y={round(y)}）: {[w['text'] for w in line]}")
+        date = dates.get(block(y))
+        if not date:
+            raise RuntimeError(f"日程PDF {home}×{away}（y={round(y)}）に日付を割り当てられない")
+        md = mds.get(block(y, md_rules))
+        if not md:
+            raise RuntimeError(f"日程PDF {home}×{away}（y={round(y)}）に節を割り当てられない")
+        matches.append(dict(seg="前期" if y < split else "後期", md=md, date=date, home=home, away=away,
+                            hs=int(hs[0]) if hs else None, **{"as": int(as_[0]) if as_ else None},
+                            venue=venue, kickoff=ko))
+    return matches
+
+
+def _group_chars(chars, xr, block) -> dict:
+    """xr の範囲の文字（数字と /）を、ブロックごと・行（top）ごとに x 順で繋いだ文字列のリストにする。"""
+    out = collections.defaultdict(lambda: collections.defaultdict(list))
+    for c in chars:
+        if xr[0] <= c["x0"] < xr[1] and re.fullmatch(r"[0-9/]", c["text"]):
+            out[block((c["top"] + c["bottom"]) / 2)][round(c["top"])].append(c)
+    return {b: ["".join(c["text"] for c in sorted(v, key=lambda c: c["x0"])) for _, v in sorted(rows.items())]
+            for b, rows in out.items()}
+
+
+def _saitama_hoshitori(content: bytes, year: str) -> tuple[dict, dict, str]:
+    """星取表 → (順位表 {team: {...}}, マス {(自, 相手, 前期/後期): (得, 失)}, 版日付)"""
+    nfkc = lambda s: re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+    with pdf_source.open_pdf(content) as pdf:
+        text = "".join(pg.extract_text() or "" for pg in pdf.pages)
+        tables = [t for pg in pdf.pages for t in pdf_source.page_tables(pg)]
+    if f"{year}埼玉県S1リーグ" not in nfkc(text):
+        raise RuntimeError(f"星取表PDFの表題が{year}年の埼玉S1リーグでない")
+    version = pdf_source.version_date(text)
+    if not version or not version.startswith(f"{year}-"):
+        raise RuntimeError(f"星取表PDFの版日付（YYYY/M/D 更新）が{year}年として読めない")
+    want = ["勝", "分", "負", "勝点", "得点", "失点", "差", "順位"]
+    grids = [t for t in tables if t and [nfkc(c) for c in t[0][-8:]] == want]
+    if len(grids) != 1:
+        raise RuntimeError(f"星取表PDFの順位表が{len(grids)}個")
+    g = grids[0]
+    cols = [nfkc(c) for c in g[0][1:-8]]
+    standings, cells, team = {}, {}, None
+    for r in g[1:]:
+        if r[0]:                                   # 上段（前期）＝チーム名と順位表の数値がある行
+            team, seg = nfkc(r[0]), "前期"
+            v = [nfkc(x) for x in r[-8:]]
+            if not all(re.fullmatch(r"-?\d+", x) for x in v):
+                raise RuntimeError(f"星取表 {team} の順位表の数値が読めない: {v}")
+            won, drawn, lost, pts, gf, ga, gd, rank = (int(x) for x in v)
+            if 3 * won + drawn != pts or gf - ga != gd:
+                raise RuntimeError(f"星取表 {team} の自己検算が合わない（{won}勝{drawn}分{lost}敗・勝点{pts}・{gf}-{ga}・差{gd}）")
+            standings[team] = dict(pts=pts, played=won + drawn + lost, won=won, drawn=drawn,
+                                   lost=lost, gf=gf, ga=ga, rank=rank)
+        else:                                      # 下段（後期）
+            if team is None:
+                raise RuntimeError("星取表の先頭がチーム名の無い行")
+            seg = "後期"
+        for opp, cell in zip(cols, r[1:1 + len(cols)]):
+            s = nfkc(cell)
+            if not s:
+                continue
+            m = re.fullmatch(r"(\d+)([○●△])(\d+)", s)
+            if not m:
+                raise RuntimeError(f"星取表 {team}×{opp}（{seg}）のマスが読めない: {cell!r}")
+            a, mark, b = int(m.group(1)), m.group(2), int(m.group(3))
+            if mark != ("○" if a > b else "●" if a < b else "△"):
+                raise RuntimeError(f"星取表 {team}×{opp}（{seg}）の記号とスコアが合わない: {s}")
+            cells[(team, opp, seg)] = (a, b)
+    return standings, cells, version
+
+
+def read_saitama(cfg: dict) -> tuple[dict, list[dict]]:
+    year = str(SEASON_YEAR)
+    urls, _tag = _saitama_links(year)
+    content = pdf_source.fetch_pdf(urls["日程"], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    matches = _saitama_schedule(content, year)
+    content = pdf_source.fetch_pdf(urls["星取表"], HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    standings, cells, version = _saitama_hoshitori(content, year)
+
+    n = cfg["teams"]
+    if len(matches) != n * (n - 1):
+        raise RuntimeError(f"日程PDFから{len(matches)}試合（{n * (n - 1)}試合のはず）")
+    per_md = collections.Counter(m["md"] for m in matches)
+    if sorted(per_md) != list(range(1, 2 * (n - 1) + 1)) or set(per_md.values()) != {n // 2}:
+        raise RuntimeError(f"節ごとの試合数が{n // 2}試合×{2 * (n - 1)}節になっていない: {dict(sorted(per_md.items()))}")
+    for m in matches:
+        if (m["md"] <= n - 1) != (m["seg"] == "前期"):
+            raise RuntimeError(f"第{m['md']}節の {m['home']}×{m['away']} が{m['seg']}の表にある")
+    for s in ("前期", "後期"):
+        ps = [frozenset((m["home"], m["away"])) for m in matches if m["seg"] == s]
+        if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
+            raise RuntimeError(f"日程PDFの{s}が{len(ps)}試合・重複{len(ps) - len(set(ps))}件（同じ組が1回ずつのはず）")
+    teams = {m["home"] for m in matches} | {m["away"] for m in matches}
+    if sorted(teams) != sorted(standings):
+        raise RuntimeError(f"星取表のチームと日程PDFのチームが合わない: {sorted(teams ^ set(standings))}")
+
+    # --- 既知の誤りの置き換え（PDFがまだ誤りのときだけ） ---
+    for fx in SAITAMA_SCHEDULE_FIXES:
+        hit = [m for m in matches if m["date"] == fx["date"] and m["home"] == fx["home"] and m["away"] == fx["away"]]
+        if len(hit) != 1:
+            raise RuntimeError(f"SAITAMA_SCHEDULE_FIXES の {fx['date']} {fx['home']}×{fx['away']} が日程PDFに{len(hit)}件")
+        got = (hit[0]["hs"], hit[0]["as"])
+        if got == tuple(fx["fixed"]):
+            raise RuntimeError(f"日程PDFの {fx['date']} {fx['home']}×{fx['away']} が {got} に直った。"
+                               f"SAITAMA_SCHEDULE_FIXES のこの行と TEMP_EXCEPTIONS の埼玉を消すこと")
+        if got != tuple(fx["pdf"]):
+            raise RuntimeError(f"日程PDFの {fx['date']} {fx['home']}×{fx['away']} が {got}"
+                               f"（誤りとして登録した {fx['pdf']} でも正しい値 {fx['fixed']} でもない）")
+        hit[0]["hs"], hit[0]["as"] = fx["fixed"]
+
+    played = [m for m in matches if m["hs"] is not None]
+    future = [m for m in played if m["date"] > version]
+    if future:
+        raise RuntimeError(f"版日付({version})より後の予定日に結果がある試合が{len(future)}件（例: {future[0]['date']} "
+                           f"{future[0]['home']}×{future[0]['away']}）")
+
+    # --- 星取表のマスと日程PDFの結果を1試合ずつ鏡照合（向きを問わず・前期/後期ごと） ---
+    seen = set()
+    for m in played:
+        for me, op, gf, ga in ((m["home"], m["away"], m["hs"], m["as"]), (m["away"], m["home"], m["as"], m["hs"])):
+            got = cells.get((me, op, m["seg"]))
+            if got != (gf, ga):
+                raise RuntimeError(f"星取表 {me}×{op}（{m['seg']}）が {got}、日程PDF（{m['date']}）は {(gf, ga)}")
+            seen.add((me, op, m["seg"]))
+    extra = sorted(set(cells) - seen)
+    if extra:
+        raise RuntimeError(f"星取表にだけ結果があるマスが{len(extra)}件（例: {extra[0]}）＝日程PDFが遅れている")
+
+    return standings, [dict(md=m["md"], date=m["date"], home=m["home"], away=m["away"], hs=m["hs"],
+                            venue=m["venue"], **{"as": m["as"]}) for m in matches]
+
+
 def build_name_map(official_names, site_names, pref) -> tuple[dict, list]:
     """1対1（全単射）が取れたら (対応表, []) を、取れなければ (部分表, 未対応リスト) を返す。"""
     alias = PREF_ALIAS.get(pref, {})
@@ -5258,7 +5525,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "ehime": read_ehime, "kyoto": read_kyoto,
                       "fukushima": read_fukushima, "nara": read_nara,
                       "kochi": read_kochi, "wakayama": read_wakayama,
-                      "osaka": read_osaka}[cfg["platform"]]
+                      "osaka": read_osaka, "saitama": read_saitama}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
