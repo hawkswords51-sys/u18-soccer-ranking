@@ -85,6 +85,18 @@
     },
     {
       "rank": 4,
+      "team": "ロアッソ熊本U-18",
+      "pts": 21,
+      "played": 13,
+      "won": 6,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 20,
+      "ga": 17,
+      "gd": 3
+    },
+    {
+      "rank": 5,
       "team": "日章学園",
       "pts": 20,
       "played": 13,
@@ -96,27 +108,15 @@
       "gd": 8
     },
     {
-      "rank": 5,
-      "team": "ロアッソ熊本U-18",
-      "pts": 20,
-      "played": 12,
-      "won": 6,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 19,
-      "ga": 16,
-      "gd": 3
-    },
-    {
       "rank": 6,
       "team": "飯塚",
-      "pts": 17,
-      "played": 12,
+      "pts": 18,
+      "played": 13,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 16,
-      "ga": 18,
+      "gf": 17,
+      "ga": 19,
       "gd": -2
     },
     {
@@ -866,10 +866,10 @@
       "md": 13,
       "date": "2026-09-26",
       "home": "飯塚",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "ロアッソ熊本U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "飯塚高校G",
       "kickoff": "16:00"
     },
