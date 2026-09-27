@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-28T01:55:35+09:00",
+  "updatedAt": "2026-09-28T02:59:51+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -285,8 +285,8 @@
       "result_streak": 13,
       "status": "alert",
       "last_updated": "2026-09-24",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (日程PDFから89試合（90試合のはず）)",
+      "result": "ok",
+      "result_note": "消化67試合に更新（検算一致）",
       "result_date": "2026-09-28"
     },
     "fukui": {
@@ -649,7 +649,7 @@
       "status": "alert",
       "last_updated": "2026-09-24",
       "result": "fetch_error",
-      "result_note": "取得失敗 (星取表 京都橘C の順位表の数値が読めない: ['4', '4', '5', '16', '17', '17', '±0', '8'])",
+      "result_note": "取得失敗 (順位表の得失差の合計が0でない（読み取りの誤り、または出典の誤り）)",
       "result_date": "2026-09-28"
     },
     "mie": {
