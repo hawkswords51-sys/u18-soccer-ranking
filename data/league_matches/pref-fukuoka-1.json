@@ -74,26 +74,26 @@
     {
       "rank": 3,
       "team": "アビスパ福岡B",
-      "points": 25,
-      "played": 12,
-      "won": 7,
+      "points": 28,
+      "played": 13,
+      "won": 8,
       "drawn": 4,
       "lost": 1,
-      "gf": 35,
-      "ga": 13,
-      "gd": 22
+      "gf": 39,
+      "ga": 14,
+      "gd": 25
     },
     {
       "rank": 4,
       "team": "飯塚B",
-      "points": 23,
-      "played": 14,
-      "won": 7,
+      "points": 26,
+      "played": 15,
+      "won": 8,
       "drawn": 2,
       "lost": 5,
-      "gf": 33,
-      "ga": 25,
-      "gd": 8
+      "gf": 36,
+      "ga": 27,
+      "gd": 9
     },
     {
       "rank": 5,
@@ -111,13 +111,13 @@
       "rank": 6,
       "team": "筑陽学園",
       "points": 20,
-      "played": 13,
+      "played": 14,
       "won": 6,
       "drawn": 2,
-      "lost": 5,
-      "gf": 17,
-      "ga": 18,
-      "gd": -1
+      "lost": 6,
+      "gf": 18,
+      "ga": 22,
+      "gd": -4
     },
     {
       "rank": 7,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "博多",
       "points": 7,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 1,
-      "lost": 10,
-      "gf": 22,
-      "ga": 57,
-      "gd": -35
+      "lost": 11,
+      "gf": 24,
+      "ga": 60,
+      "gd": -36
     },
     {
       "rank": 10,
@@ -385,12 +385,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "アビスパ福岡B",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "筑陽学園",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "福大大濠高校"
     },
     {
       "md": 0,
@@ -904,12 +905,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "博多",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "飯塚B",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "飯塚高校"
     },
     {
       "md": 0,
@@ -1071,23 +1073,23 @@
     },
     {
       "team": "アビスパ福岡B",
-      "pts": 25,
-      "played": 12,
-      "won": 7,
+      "pts": 28,
+      "played": 13,
+      "won": 8,
       "drawn": 4,
       "lost": 1,
-      "gf": 35,
-      "ga": 13
+      "gf": 39,
+      "ga": 14
     },
     {
       "team": "飯塚B",
-      "pts": 23,
-      "played": 14,
-      "won": 7,
+      "pts": 26,
+      "played": 15,
+      "won": 8,
       "drawn": 2,
       "lost": 5,
-      "gf": 33,
-      "ga": 25
+      "gf": 36,
+      "ga": 27
     },
     {
       "team": "東福岡B",
@@ -1102,12 +1104,12 @@
     {
       "team": "筑陽学園",
       "pts": 20,
-      "played": 13,
+      "played": 14,
       "won": 6,
       "drawn": 2,
-      "lost": 5,
-      "gf": 17,
-      "ga": 18
+      "lost": 6,
+      "gf": 18,
+      "ga": 22
     },
     {
       "team": "東海大福岡B",
@@ -1132,12 +1134,12 @@
     {
       "team": "博多",
       "pts": 7,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 1,
-      "lost": 10,
-      "gf": 22,
-      "ga": 57
+      "lost": 11,
+      "gf": 24,
+      "ga": 60
     },
     {
       "team": "福大大濠",
