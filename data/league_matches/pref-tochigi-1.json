@@ -50,38 +50,38 @@
     {
       "rank": 1,
       "team": "矢板中央B",
+      "points": 34,
+      "played": 13,
+      "won": 11,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 44,
+      "ga": 15,
+      "gd": 29
+    },
+    {
+      "rank": 2,
+      "team": "國學院栃木",
       "points": 31,
       "played": 12,
       "won": 10,
       "drawn": 1,
       "lost": 1,
-      "gf": 39,
-      "ga": 14,
-      "gd": 25
-    },
-    {
-      "rank": 2,
-      "team": "國學院栃木",
-      "points": 28,
-      "played": 11,
-      "won": 9,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 33,
+      "gf": 35,
       "ga": 7,
-      "gd": 26
+      "gd": 28
     },
     {
       "rank": 3,
       "team": "佐野日大",
-      "points": 28,
-      "played": 12,
-      "won": 9,
+      "points": 31,
+      "played": 13,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 26,
+      "gf": 31,
       "ga": 8,
-      "gd": 18
+      "gd": 23
     },
     {
       "rank": 4,
@@ -111,13 +111,13 @@
       "rank": 6,
       "team": "足利大附",
       "points": 12,
-      "played": 11,
+      "played": 12,
       "won": 4,
       "drawn": 0,
-      "lost": 7,
+      "lost": 8,
       "gf": 13,
-      "ga": 21,
-      "gd": -8
+      "ga": 23,
+      "gd": -10
     },
     {
       "rank": 7,
@@ -135,13 +135,13 @@
       "rank": 8,
       "team": "文星芸大附",
       "points": 10,
-      "played": 11,
+      "played": 12,
       "won": 2,
       "drawn": 4,
-      "lost": 5,
-      "gf": 11,
-      "ga": 30,
-      "gd": -19
+      "lost": 6,
+      "gf": 12,
+      "ga": 35,
+      "gd": -23
     },
     {
       "rank": 9,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "青藍泰斗",
       "points": 4,
-      "played": 12,
+      "played": 13,
       "won": 1,
       "drawn": 1,
-      "lost": 10,
+      "lost": 11,
       "gf": 10,
-      "ga": 33,
-      "gd": -23
+      "ga": 38,
+      "gd": -28
     }
   ],
   "matches": [
@@ -622,12 +622,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "足利大附",
-      "hs": null,
-      "as": null,
-      "away": "國學院栃木",
-      "status": "scheduled"
+      "date": "2026-09-27",
+      "home": "國學院栃木",
+      "hs": 2,
+      "as": 0,
+      "away": "足利大附",
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
     },
     {
       "md": 0,
@@ -785,12 +786,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "文星芸大附",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央B",
-      "status": "scheduled"
+      "date": "2026-09-27",
+      "home": "矢板中央B",
+      "hs": 5,
+      "as": 1,
+      "away": "文星芸大附",
+      "status": "played",
+      "venue": "矢板中央高等学校東泉グラウンド"
     },
     {
       "md": 0,
@@ -974,12 +976,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "青藍泰斗",
-      "hs": null,
-      "as": null,
-      "away": "佐野日大",
-      "status": "scheduled"
+      "date": "2026-09-27",
+      "home": "佐野日大",
+      "hs": 5,
+      "as": 0,
+      "away": "青藍泰斗",
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
     },
     {
       "md": 0,
@@ -1041,33 +1044,33 @@
   "source_standings": [
     {
       "team": "矢板中央B",
+      "pts": 34,
+      "won": 11,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 44,
+      "ga": 15,
+      "played": 13
+    },
+    {
+      "team": "國學院栃木",
       "pts": 31,
       "won": 10,
       "drawn": 1,
       "lost": 1,
-      "gf": 39,
-      "ga": 14,
-      "played": 12
-    },
-    {
-      "team": "國學院栃木",
-      "pts": 28,
-      "won": 9,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 33,
+      "gf": 35,
       "ga": 7,
-      "played": 11
+      "played": 12
     },
     {
       "team": "佐野日大",
-      "pts": 28,
-      "won": 9,
+      "pts": 31,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 26,
+      "gf": 31,
       "ga": 8,
-      "played": 12
+      "played": 13
     },
     {
       "team": "宇短大附",
@@ -1094,10 +1097,10 @@
       "pts": 12,
       "won": 4,
       "drawn": 0,
-      "lost": 7,
+      "lost": 8,
       "gf": 13,
-      "ga": 21,
-      "played": 11
+      "ga": 23,
+      "played": 12
     },
     {
       "team": "栃木SC B",
@@ -1114,10 +1117,10 @@
       "pts": 10,
       "won": 2,
       "drawn": 4,
-      "lost": 5,
-      "gf": 11,
-      "ga": 30,
-      "played": 11
+      "lost": 6,
+      "gf": 12,
+      "ga": 35,
+      "played": 12
     },
     {
       "team": "栃木シティFC",
@@ -1134,10 +1137,10 @@
       "pts": 4,
       "won": 1,
       "drawn": 1,
-      "lost": 10,
+      "lost": 11,
       "gf": 10,
-      "ga": 33,
-      "played": 12
+      "ga": 38,
+      "played": 13
     }
   ]
 }
