@@ -10,6 +10,10 @@
       "short": "草津東"
     },
     {
+      "name": "綾羽",
+      "short": "綾羽"
+    },
+    {
       "name": "水口",
       "short": "水口"
     },
@@ -20,10 +24,6 @@
     {
       "name": "立命館守山",
       "short": "立命館守山"
-    },
-    {
-      "name": "綾羽",
-      "short": "綾羽"
     },
     {
       "name": "八幡商業",
@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "綾羽",
+      "points": 27,
+      "played": 14,
+      "won": 9,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 23,
+      "ga": 15,
+      "gd": 8
+    },
+    {
+      "rank": 3,
       "team": "水口",
       "points": 27,
       "played": 14,
@@ -72,19 +84,19 @@
       "gd": 5
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "比叡山",
       "points": 26,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 12,
-      "ga": 10,
-      "gd": 2
+      "ga": 11,
+      "gd": 1
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "立命館守山",
       "points": 24,
       "played": 14,
@@ -94,18 +106,6 @@
       "gf": 38,
       "ga": 17,
       "gd": 21
-    },
-    {
-      "rank": 5,
-      "team": "綾羽",
-      "points": 24,
-      "played": 13,
-      "won": 8,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 22,
-      "ga": 15,
-      "gd": 7
     },
     {
       "rank": 6,
@@ -171,6 +171,16 @@
   "matches": [
     {
       "md": 0,
+      "date": "2026-05-02",
+      "home": "草津東",
+      "hs": 3,
+      "as": 0,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "ＢＬC"
+    },
+    {
+      "md": 0,
       "date": "2026-04-18",
       "home": "草津東",
       "hs": 3,
@@ -197,16 +207,6 @@
       "as": null,
       "away": "立命館守山",
       "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "草津東",
-      "hs": 3,
-      "as": 0,
-      "away": "綾羽",
-      "status": "played",
-      "venue": "ＢＬC"
     },
     {
       "md": 0,
@@ -258,6 +258,94 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "綾羽",
+      "hs": null,
+      "as": null,
+      "away": "草津東",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "綾羽",
+      "hs": 2,
+      "as": 3,
+      "away": "水口",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-27",
+      "home": "綾羽",
+      "hs": 1,
+      "as": 0,
+      "away": "比叡山",
+      "status": "played",
+      "venue": "ＢＬA"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "綾羽",
+      "hs": 1,
+      "as": 0,
+      "away": "立命館守山",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-25",
+      "home": "綾羽",
+      "hs": 0,
+      "as": 3,
+      "away": "八幡商業",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "綾羽",
+      "hs": 2,
+      "as": 1,
+      "away": "近江C",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "綾羽",
+      "hs": 0,
+      "as": 2,
+      "away": "彦根総合",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-05",
+      "home": "綾羽",
+      "hs": 3,
+      "as": 0,
+      "away": "野洲",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "綾羽",
+      "hs": null,
+      "as": null,
+      "away": "伊吹",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-09-27",
       "home": "水口",
       "hs": 1,
@@ -265,6 +353,16 @@
       "away": "草津東",
       "status": "played",
       "venue": "ＢＬA"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "水口",
+      "hs": 0,
+      "as": 2,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "綾⽻"
     },
     {
       "md": 0,
@@ -285,16 +383,6 @@
       "away": "立命館守山",
       "status": "played",
       "venue": "彦根総合"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "水口",
-      "hs": 0,
-      "as": 2,
-      "away": "綾羽",
-      "status": "played",
-      "venue": "綾⽻"
     },
     {
       "md": 0,
@@ -358,6 +446,16 @@
     },
     {
       "md": 0,
+      "date": "2026-04-18",
+      "home": "比叡山",
+      "hs": 1,
+      "as": 0,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "スポ森A"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "比叡山",
       "hs": null,
@@ -374,16 +472,6 @@
       "away": "立命館守山",
       "status": "played",
       "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "比叡山",
-      "hs": 1,
-      "as": 0,
-      "away": "綾羽",
-      "status": "played",
-      "venue": "スポ森A"
     },
     {
       "md": 0,
@@ -450,6 +538,15 @@
       "home": "立命館守山",
       "hs": null,
       "as": null,
+      "away": "綾羽",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "立命館守山",
+      "hs": null,
+      "as": null,
       "away": "水口",
       "status": "scheduled"
     },
@@ -462,15 +559,6 @@
       "away": "比叡山",
       "status": "played",
       "venue": "ＢＬC"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "立命館守山",
-      "hs": null,
-      "as": null,
-      "away": "綾羽",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -523,93 +611,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "綾羽",
-      "hs": null,
-      "as": null,
-      "away": "草津東",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "綾羽",
-      "hs": 2,
-      "as": 3,
-      "away": "水口",
-      "status": "played",
-      "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "綾羽",
-      "hs": null,
-      "as": null,
-      "away": "比叡山",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-29",
-      "home": "綾羽",
-      "hs": 1,
-      "as": 0,
-      "away": "立命館守山",
-      "status": "played",
-      "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-25",
-      "home": "綾羽",
-      "hs": 0,
-      "as": 3,
-      "away": "八幡商業",
-      "status": "played",
-      "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "綾羽",
-      "hs": 2,
-      "as": 1,
-      "away": "近江C",
-      "status": "played",
-      "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-12",
-      "home": "綾羽",
-      "hs": 0,
-      "as": 2,
-      "away": "彦根総合",
-      "status": "played",
-      "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-05",
-      "home": "綾羽",
-      "hs": 3,
-      "as": 0,
-      "away": "野洲",
-      "status": "played",
-      "venue": "綾⽻"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "綾羽",
-      "hs": null,
-      "as": null,
-      "away": "伊吹",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-04-29",
       "home": "八幡商業",
       "hs": 0,
@@ -617,6 +618,15 @@
       "away": "草津東",
       "status": "played",
       "venue": "ふれあい"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "八幡商業",
+      "hs": null,
+      "as": null,
+      "away": "綾羽",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -647,15 +657,6 @@
       "away": "立命館守山",
       "status": "played",
       "venue": "ＢＬC"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "八幡商業",
-      "hs": null,
-      "as": null,
-      "away": "綾羽",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -709,6 +710,16 @@
     },
     {
       "md": 0,
+      "date": "2026-09-19",
+      "home": "近江C",
+      "hs": 0,
+      "as": 2,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "ＢＬC"
+    },
+    {
+      "md": 0,
       "date": "2026-04-04",
       "home": "近江C",
       "hs": 1,
@@ -735,16 +746,6 @@
       "away": "立命館守山",
       "status": "played",
       "venue": "彦根総合"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-19",
-      "home": "近江C",
-      "hs": 0,
-      "as": 2,
-      "away": "綾羽",
-      "status": "played",
-      "venue": "ＢＬC"
     },
     {
       "md": 0,
@@ -796,6 +797,16 @@
     },
     {
       "md": 0,
+      "date": "2026-04-04",
+      "home": "彦根総合",
+      "hs": 0,
+      "as": 2,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "彦根総合"
+    },
+    {
+      "md": 0,
       "date": "2026-03-20",
       "home": "彦根総合",
       "hs": 1,
@@ -821,16 +832,6 @@
       "hs": 1,
       "as": 3,
       "away": "立命館守山",
-      "status": "played",
-      "venue": "彦根総合"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-04",
-      "home": "彦根総合",
-      "hs": 0,
-      "as": 2,
-      "away": "綾羽",
       "status": "played",
       "venue": "彦根総合"
     },
@@ -884,6 +885,16 @@
     },
     {
       "md": 0,
+      "date": "2026-03-20",
+      "home": "野洲",
+      "hs": 1,
+      "as": 3,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "綾⽻"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "野洲",
       "hs": null,
@@ -910,16 +921,6 @@
       "away": "野洲",
       "status": "played",
       "venue": "⽴命館守⼭"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "野洲",
-      "hs": 1,
-      "as": 3,
-      "away": "綾羽",
-      "status": "played",
-      "venue": "綾⽻"
     },
     {
       "md": 0,
@@ -972,6 +973,16 @@
     },
     {
       "md": 0,
+      "date": "2026-06-13",
+      "home": "伊吹",
+      "hs": 1,
+      "as": 5,
+      "away": "綾羽",
+      "status": "played",
+      "venue": "彦根総合"
+    },
+    {
+      "md": 0,
       "date": "",
       "home": "伊吹",
       "hs": null,
@@ -997,16 +1008,6 @@
       "away": "立命館守山",
       "status": "played",
       "venue": "スポ森A"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-13",
-      "home": "伊吹",
-      "hs": 1,
-      "as": 5,
-      "away": "綾羽",
-      "status": "played",
-      "venue": "彦根総合"
     },
     {
       "md": 0,
@@ -1061,6 +1062,16 @@
       "ga": 11
     },
     {
+      "team": "綾羽",
+      "pts": 27,
+      "played": 14,
+      "won": 9,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 23,
+      "ga": 15
+    },
+    {
       "team": "水口",
       "pts": 27,
       "played": 14,
@@ -1073,12 +1084,12 @@
     {
       "team": "比叡山",
       "pts": 26,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 12,
-      "ga": 10
+      "ga": 11
     },
     {
       "team": "立命館守山",
@@ -1089,16 +1100,6 @@
       "lost": 6,
       "gf": 38,
       "ga": 17
-    },
-    {
-      "team": "綾羽",
-      "pts": 24,
-      "played": 13,
-      "won": 8,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 22,
-      "ga": 15
     },
     {
       "team": "八幡商業",

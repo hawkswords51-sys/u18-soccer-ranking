@@ -30,12 +30,12 @@
       "short": "名経大高蔵"
     },
     {
-      "name": "東海学園",
-      "short": "東海学園"
-    },
-    {
       "name": "日福大付",
       "short": "日福大付"
+    },
+    {
+      "name": "東海学園",
+      "short": "東海学園"
     },
     {
       "name": "刈谷",
@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "グランパスB",
       "points": 20,
-      "played": 14,
+      "played": 15,
       "won": 5,
       "drawn": 5,
-      "lost": 4,
-      "gf": 26,
-      "ga": 23,
-      "gd": 3
+      "lost": 5,
+      "gf": 27,
+      "ga": 26,
+      "gd": 1
     },
     {
       "rank": 6,
@@ -121,6 +121,18 @@
     },
     {
       "rank": 7,
+      "team": "日福大付",
+      "points": 18,
+      "played": 15,
+      "won": 5,
+      "drawn": 3,
+      "lost": 7,
+      "gf": 18,
+      "ga": 26,
+      "gd": -8
+    },
+    {
+      "rank": 8,
       "team": "東海学園",
       "points": 15,
       "played": 15,
@@ -130,18 +142,6 @@
       "gf": 15,
       "ga": 22,
       "gd": -7
-    },
-    {
-      "rank": 8,
-      "team": "日福大付",
-      "points": 15,
-      "played": 14,
-      "won": 4,
-      "drawn": 3,
-      "lost": 7,
-      "gf": 15,
-      "ga": 25,
-      "gd": -10
     },
     {
       "rank": 9,
@@ -219,21 +219,21 @@
     },
     {
       "md": 0,
-      "date": "2026-09-13",
-      "home": "名古屋",
-      "hs": 1,
-      "as": 0,
-      "away": "東海学園",
-      "status": "played",
-      "venue": "名古屋"
-    },
-    {
-      "md": 0,
       "date": "2026-03-14",
       "home": "名古屋",
       "hs": 3,
       "as": 0,
       "away": "日福大付",
+      "status": "played",
+      "venue": "名古屋"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-13",
+      "home": "名古屋",
+      "hs": 1,
+      "as": 0,
+      "away": "東海学園",
       "status": "played",
       "venue": "名古屋"
     },
@@ -307,21 +307,21 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "豊川",
-      "hs": 0,
-      "as": 0,
-      "away": "東海学園",
-      "status": "played",
-      "venue": "豊川"
-    },
-    {
-      "md": 0,
       "date": "2026-09-12",
       "home": "豊川",
       "hs": 3,
       "as": 1,
       "away": "日福大付",
+      "status": "played",
+      "venue": "豊川"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "豊川",
+      "hs": 0,
+      "as": 0,
+      "away": "東海学園",
       "status": "played",
       "venue": "豊川"
     },
@@ -396,21 +396,21 @@
     },
     {
       "md": 0,
-      "date": "2026-03-07",
-      "home": "岡崎城西",
-      "hs": 2,
-      "as": 1,
-      "away": "東海学園",
-      "status": "played",
-      "venue": "岡崎城西"
-    },
-    {
-      "md": 0,
       "date": "2026-06-14",
       "home": "岡崎城西",
       "hs": 2,
       "as": 2,
       "away": "日福大付",
+      "status": "played",
+      "venue": "岡崎城西"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-07",
+      "home": "岡崎城西",
+      "hs": 2,
+      "as": 1,
+      "away": "東海学園",
       "status": "played",
       "venue": "岡崎城西"
     },
@@ -485,16 +485,6 @@
     },
     {
       "md": 0,
-      "date": "2026-09-06",
-      "home": "東邦",
-      "hs": 6,
-      "as": 2,
-      "away": "東海学園",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
       "date": "2026-07-04",
       "home": "東邦",
       "hs": 1,
@@ -502,6 +492,16 @@
       "away": "日福大付",
       "status": "played",
       "venue": "日本福祉大学"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "東邦",
+      "hs": 6,
+      "as": 2,
+      "away": "東海学園",
+      "status": "played",
+      "venue": "東海学園大"
     },
     {
       "md": 0,
@@ -574,6 +574,16 @@
     },
     {
       "md": 0,
+      "date": "2026-09-26",
+      "home": "グランパスB",
+      "hs": 1,
+      "as": 3,
+      "away": "日福大付",
+      "status": "played",
+      "venue": "刈谷北"
+    },
+    {
+      "md": 0,
       "date": "2026-05-02",
       "home": "グランパスB",
       "hs": 0,
@@ -581,15 +591,6 @@
       "away": "東海学園",
       "status": "played",
       "venue": "TSC多目的"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "グランパスB",
-      "hs": null,
-      "as": null,
-      "away": "日福大付",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -663,6 +664,15 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "名経大高蔵",
+      "hs": null,
+      "as": null,
+      "away": "日福大付",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
       "date": "2026-06-13",
       "home": "名経大高蔵",
       "hs": 1,
@@ -670,15 +680,6 @@
       "away": "東海学園",
       "status": "played",
       "venue": "春日丘"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "名経大高蔵",
-      "hs": null,
-      "as": null,
-      "away": "日福大付",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -699,94 +700,6 @@
       "away": "至学館",
       "status": "played",
       "venue": "春日丘"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-05",
-      "home": "東海学園",
-      "hs": 0,
-      "as": 2,
-      "away": "名古屋",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-20",
-      "home": "東海学園",
-      "hs": 3,
-      "as": 3,
-      "away": "豊川",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "東海学園",
-      "hs": 1,
-      "as": 0,
-      "away": "岡崎城西",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-15",
-      "home": "東海学園",
-      "hs": 0,
-      "as": 1,
-      "away": "東邦",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海学園",
-      "hs": null,
-      "as": null,
-      "away": "グランパスB",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-01",
-      "home": "東海学園",
-      "hs": 1,
-      "as": 2,
-      "away": "名経大高蔵",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "東海学園",
-      "hs": null,
-      "as": null,
-      "away": "日福大付",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-19",
-      "home": "東海学園",
-      "hs": 1,
-      "as": 1,
-      "away": "刈谷",
-      "status": "played",
-      "venue": "東海学園大"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "東海学園",
-      "hs": 2,
-      "as": 2,
-      "away": "至学館",
-      "status": "played",
-      "venue": "東海学園大"
     },
     {
       "md": 0,
@@ -879,6 +792,94 @@
     },
     {
       "md": 0,
+      "date": "2026-04-05",
+      "home": "東海学園",
+      "hs": 0,
+      "as": 2,
+      "away": "名古屋",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-20",
+      "home": "東海学園",
+      "hs": 3,
+      "as": 3,
+      "away": "豊川",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "東海学園",
+      "hs": 1,
+      "as": 0,
+      "away": "岡崎城西",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-15",
+      "home": "東海学園",
+      "hs": 0,
+      "as": 1,
+      "away": "東邦",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東海学園",
+      "hs": null,
+      "as": null,
+      "away": "グランパスB",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-01",
+      "home": "東海学園",
+      "hs": 1,
+      "as": 2,
+      "away": "名経大高蔵",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "東海学園",
+      "hs": null,
+      "as": null,
+      "away": "日福大付",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-19",
+      "home": "東海学園",
+      "hs": 1,
+      "as": 1,
+      "away": "刈谷",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "東海学園",
+      "hs": 2,
+      "as": 2,
+      "away": "至学館",
+      "status": "played",
+      "venue": "東海学園大"
+    },
+    {
+      "md": 0,
       "date": "2026-03-08",
       "home": "刈谷",
       "hs": 0,
@@ -937,16 +938,6 @@
     },
     {
       "md": 0,
-      "date": "2026-09-27",
-      "home": "刈谷",
-      "hs": 1,
-      "as": 1,
-      "away": "東海学園",
-      "status": "played",
-      "venue": "名古屋B"
-    },
-    {
-      "md": 0,
       "date": "2026-04-11",
       "home": "刈谷",
       "hs": 3,
@@ -954,6 +945,16 @@
       "away": "日福大付",
       "status": "played",
       "venue": "春日丘"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-27",
+      "home": "刈谷",
+      "hs": 1,
+      "as": 1,
+      "away": "東海学園",
+      "status": "played",
+      "venue": "名古屋B"
     },
     {
       "md": 0,
@@ -1027,15 +1028,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "至学館",
-      "hs": null,
-      "as": null,
-      "away": "東海学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-05-02",
       "home": "至学館",
       "hs": 0,
@@ -1043,6 +1035,15 @@
       "away": "日福大付",
       "status": "played",
       "venue": "名商大"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "至学館",
+      "hs": null,
+      "as": null,
+      "away": "東海学園",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -1098,12 +1099,12 @@
     {
       "team": "グランパスB",
       "pts": 20,
-      "played": 14,
+      "played": 15,
       "won": 5,
       "drawn": 5,
-      "lost": 4,
-      "gf": 26,
-      "ga": 23
+      "lost": 5,
+      "gf": 27,
+      "ga": 26
     },
     {
       "team": "名経大高蔵",
@@ -1116,6 +1117,16 @@
       "ga": 25
     },
     {
+      "team": "日福大付",
+      "pts": 18,
+      "played": 15,
+      "won": 5,
+      "drawn": 3,
+      "lost": 7,
+      "gf": 18,
+      "ga": 26
+    },
+    {
       "team": "東海学園",
       "pts": 15,
       "played": 15,
@@ -1124,16 +1135,6 @@
       "lost": 6,
       "gf": 15,
       "ga": 22
-    },
-    {
-      "team": "日福大付",
-      "pts": 15,
-      "played": 14,
-      "won": 4,
-      "drawn": 3,
-      "lost": 7,
-      "gf": 15,
-      "ga": 25
     },
     {
       "team": "刈谷",

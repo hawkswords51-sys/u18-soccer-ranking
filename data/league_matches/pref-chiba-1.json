@@ -50,122 +50,122 @@
     {
       "rank": 1,
       "team": "市立船橋B",
-      "points": 28,
-      "played": 12,
-      "won": 9,
+      "points": 31,
+      "played": 13,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 20,
-      "ga": 14,
-      "gd": 6
+      "gf": 30,
+      "ga": 15,
+      "gd": 15
     },
     {
       "rank": 2,
       "team": "流経大柏C",
-      "points": 25,
-      "played": 12,
-      "won": 7,
+      "points": 28,
+      "played": 13,
+      "won": 8,
       "drawn": 4,
       "lost": 1,
-      "gf": 28,
+      "gf": 29,
       "ga": 14,
-      "gd": 14
+      "gd": 15
     },
     {
       "rank": 3,
       "team": "中央学院",
-      "points": 24,
-      "played": 12,
-      "won": 8,
+      "points": 27,
+      "played": 13,
+      "won": 9,
       "drawn": 0,
       "lost": 4,
-      "gf": 40,
+      "gf": 44,
       "ga": 16,
-      "gd": 24
+      "gd": 28
     },
     {
       "rank": 4,
       "team": "八千代",
-      "points": 23,
-      "played": 12,
-      "won": 7,
+      "points": 26,
+      "played": 13,
+      "won": 8,
       "drawn": 2,
       "lost": 3,
-      "gf": 26,
-      "ga": 15,
-      "gd": 11
+      "gf": 30,
+      "ga": 16,
+      "gd": 14
     },
     {
       "rank": 5,
       "team": "専修大松戸",
-      "points": 21,
-      "played": 13,
+      "points": 22,
+      "played": 14,
       "won": 6,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 4,
-      "gf": 24,
-      "ga": 19,
+      "gf": 26,
+      "ga": 21,
       "gd": 5
     },
     {
       "rank": 6,
       "team": "習志野",
-      "points": 17,
-      "played": 12,
+      "points": 18,
+      "played": 13,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 21,
-      "ga": 14,
+      "gf": 23,
+      "ga": 16,
       "gd": 7
     },
     {
       "rank": 7,
       "team": "ジェフU-18B",
       "points": 16,
-      "played": 13,
+      "played": 14,
       "won": 5,
       "drawn": 1,
-      "lost": 7,
-      "gf": 22,
-      "ga": 25,
-      "gd": -3
+      "lost": 8,
+      "gf": 23,
+      "ga": 29,
+      "gd": -6
     },
     {
       "rank": 8,
       "team": "レイソルU-18B",
       "points": 13,
-      "played": 12,
+      "played": 13,
       "won": 4,
       "drawn": 1,
-      "lost": 7,
+      "lost": 8,
       "gf": 18,
-      "ga": 33,
-      "gd": -15
+      "ga": 34,
+      "gd": -16
     },
     {
       "rank": 9,
       "team": "東京学館浦安",
       "points": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
-      "gf": 15,
-      "ga": 26,
-      "gd": -11
+      "lost": 10,
+      "gf": 16,
+      "ga": 36,
+      "gd": -20
     },
     {
       "rank": 10,
       "team": "拓大紅陵",
       "points": 1,
-      "played": 13,
+      "played": 14,
       "won": 0,
       "drawn": 1,
-      "lost": 12,
+      "lost": 13,
       "gf": 5,
-      "ga": 43,
-      "gd": -38
+      "ga": 47,
+      "gd": -42
     }
   ],
   "matches": [
@@ -316,12 +316,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "流経大柏C",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "レイソルU-18B",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "流経大柏高校"
     },
     {
       "md": 0,
@@ -558,12 +559,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "専修大松戸",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "習志野",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "専修大松戸高校"
     },
     {
       "md": 0,
@@ -722,12 +724,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "ジェフU-18B",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 4,
       "away": "八千代",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "フクダ電子フィールド"
     },
     {
       "md": 0,
@@ -868,12 +871,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "東京学館浦安",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 10,
       "away": "市立船橋B",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "東京学館浦安高校"
     },
     {
       "md": 0,
@@ -975,12 +979,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-09-27",
       "home": "拓大紅陵",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "中央学院",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "江川総合運動場"
     },
     {
       "md": 0,
@@ -1045,103 +1050,103 @@
   "source_standings": [
     {
       "team": "市立船橋B",
-      "pts": 28,
-      "played": 12,
-      "won": 9,
+      "pts": 31,
+      "played": 13,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 20,
-      "ga": 14
+      "gf": 30,
+      "ga": 15
     },
     {
       "team": "流経大柏C",
-      "pts": 25,
-      "played": 12,
-      "won": 7,
+      "pts": 28,
+      "played": 13,
+      "won": 8,
       "drawn": 4,
       "lost": 1,
-      "gf": 28,
+      "gf": 29,
       "ga": 14
     },
     {
       "team": "中央学院",
-      "pts": 24,
-      "played": 12,
-      "won": 8,
+      "pts": 27,
+      "played": 13,
+      "won": 9,
       "drawn": 0,
       "lost": 4,
-      "gf": 40,
+      "gf": 44,
       "ga": 16
     },
     {
       "team": "八千代",
-      "pts": 23,
-      "played": 12,
-      "won": 7,
+      "pts": 26,
+      "played": 13,
+      "won": 8,
       "drawn": 2,
       "lost": 3,
-      "gf": 26,
-      "ga": 15
+      "gf": 30,
+      "ga": 16
     },
     {
       "team": "専修大松戸",
-      "pts": 21,
-      "played": 13,
+      "pts": 22,
+      "played": 14,
       "won": 6,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 4,
-      "gf": 24,
-      "ga": 19
+      "gf": 26,
+      "ga": 21
     },
     {
       "team": "習志野",
-      "pts": 17,
-      "played": 12,
+      "pts": 18,
+      "played": 13,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 21,
-      "ga": 14
+      "gf": 23,
+      "ga": 16
     },
     {
       "team": "ジェフU-18B",
       "pts": 16,
-      "played": 13,
+      "played": 14,
       "won": 5,
       "drawn": 1,
-      "lost": 7,
-      "gf": 22,
-      "ga": 25
+      "lost": 8,
+      "gf": 23,
+      "ga": 29
     },
     {
       "team": "レイソルU-18B",
       "pts": 13,
-      "played": 12,
+      "played": 13,
       "won": 4,
       "drawn": 1,
-      "lost": 7,
+      "lost": 8,
       "gf": 18,
-      "ga": 33
+      "ga": 34
     },
     {
       "team": "東京学館浦安",
       "pts": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
-      "gf": 15,
-      "ga": 26
+      "lost": 10,
+      "gf": 16,
+      "ga": 36
     },
     {
       "team": "拓大紅陵",
       "pts": 1,
-      "played": 13,
+      "played": 14,
       "won": 0,
       "drawn": 1,
-      "lost": 12,
+      "lost": 13,
       "gf": 5,
-      "ga": 43
+      "ga": 47
     }
   ]
 }
