@@ -62,6 +62,18 @@ ROUND_TO_RANK = {
     "ベスト8": ("ベスト8", 8),
 }
 
+# ===== 県不明（pref null）を許す学校（2026-09-27 新設） =====
+# pref が null の学校はどの県ページにも出ない。以前は警告1行だけで緑のまま通り、
+# 38件近くが気づかれずに残っていた（福岡2024IH 福大若葉 が県ページから抜けていた）。
+# → ここに無い県不明が1件でもあれば失敗として記録し、audit_pref_freshness.py が赤にする
+#   （NO_RETRY_JOBS＝初回から赤）。tournaments.json は保存するのでサイトの更新は止めない。
+# 直し方は、YAML の該当行を { name: "...", pref: xxx } 形式にして県を明示する。
+# キー＝(大会ID, 年, 学校名)。理由を必ず書く。
+PREF_UNKNOWN_ALLOWED = {
+    ("club_youth_u18", "2016", "JFAアカデミー福島"):
+        "拠点が静岡と福島で移っているため、どちらの県にも入れず意図的に据え置き（2026-09-27）",
+}
+
 
 # ===== ユーティリティ =====
 def normalize_name(name: str) -> str:
@@ -70,6 +82,14 @@ def normalize_name(name: str) -> str:
         return ""
     n = unicodedata.normalize('NFKC', name)
     n = n.replace(' ', '').replace('\u3000', '')
+    return n
+
+
+def _strip_hs(n: str) -> str:
+    """末尾の「高等学校」「高校」を1つだけ外す（別名の照合用）"""
+    for suffix in ("高等学校", "高校"):
+        if n.endswith(suffix) and len(n) > len(suffix):
+            return n[:-len(suffix)]
     return n
 
 
@@ -88,12 +108,16 @@ def find_team(team_name: str, teams_data: dict) -> tuple[str | None, str | None]
             if normalize_name(t.get("name", "")) == target:
                 return t.get("name"), pref_id
     # 2. aliases 完全一致 (新)
+    #    [2026-09-27] 両方の末尾の「高校」「高等学校」を外して比べる
+    #    （YAML「福大若葉高校」が別名「福大若葉」に一致せず pref null になっていた）。
+    #    「高等部」は対象外。部分一致（3.）には入れない。
+    target_core = _strip_hs(target)
     for pref_id, pref_data in teams_data.items():
         if pref_id == "_meta":
             continue
         for t in pref_data.get("teams", []):
             for alias in (t.get("aliases") or []):
-                if normalize_name(alias) == target:
+                if _strip_hs(normalize_name(alias)) == target_core:
                     return t.get("name"), pref_id
     # 3. 部分一致 (例: "前橋育英" → "前橋育英高校")
     #    ただし "○○高校2nd" のような控えチームへの誤マッチを避ける
@@ -188,6 +212,7 @@ def build() -> int:
     }
 
     warnings: list[str] = []
+    unknown_pref: list[tuple[str, str, str]] = []   # (大会ID, 年, 学校名)
     summary: list[tuple[str, int, int]] = []
 
     for tid, meta in TOURNAMENT_META.items():
@@ -232,6 +257,7 @@ def build() -> int:
                         continue
                     seen_names.add(key)
                     if norm["pref"] is None:
+                        unknown_pref.append((tid, year_str, norm["name"]))
                         warnings.append(
                             f"⚠ [{tid} {year_str}] {norm['name']} の都道府県不明 "
                             f"(teams.json 未登録 / pref 未指定)"
@@ -265,6 +291,7 @@ def build() -> int:
                             continue   # ベスト8以上で記録済み
                         seen_names.add(key)
                         if norm["pref"] is None:
+                            unknown_pref.append((tid, year_str, norm["name"]))
                             warnings.append(
                                 f"⚠ [{tid} {year_str}] 代表校 {norm['name']} の "
                                 f"都道府県不明"
@@ -305,7 +332,24 @@ def build() -> int:
     else:
         print("⚠ 警告なし (全チームの都道府県を解決)")
 
+    # 県不明の判定（PREF_UNKNOWN_ALLOWED 参照）。保存は済んでいるのでサイトは更新される
+    global _fail_note
+    for key in PREF_UNKNOWN_ALLOWED:
+        if key not in unknown_pref:
+            print(f"⚪ PREF_UNKNOWN_ALLOWED の {key} は県が解決できるようになりました。この行はもう不要です。消してください")
+    bad = [u for u in unknown_pref if u not in PREF_UNKNOWN_ALLOWED]
+    if bad:
+        _fail_note = f"県不明 {len(bad)}件: " + "、".join(f"{n}（{t} {y}）" for t, y, n in bad)
+        print()
+        print(f"❌ {_fail_note}")
+        print("   → tournaments_data.yml の該当行を { name: \"...\", pref: xxx } 形式にして県を明示する"
+              "（意図的な例外なら PREF_UNKNOWN_ALLOWED に理由つきで足す）")
+        return 2
+
     return 0
+
+
+_fail_note = ""   # build() が失敗の中身を入れる（fetch_status の note 用）
 
 
 def _run_and_record(job: str = "build_tournaments") -> int:
@@ -328,7 +372,7 @@ def _run_and_record(job: str = "build_tournaments") -> int:
         fetch_status.set_job_result(job, type(e).__name__, str(e))
         raise
     fetch_status.set_job_result(job, "ok" if rc == 0 else "nonzero_exit",
-                                "" if rc == 0 else f"終了コード {rc}")
+                                "" if rc == 0 else (_fail_note or f"終了コード {rc}"))
     return rc
 
 
