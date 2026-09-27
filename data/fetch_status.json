@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-28T06:45:20+09:00",
+  "updatedAt": "2026-09-28T07:16:40+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -648,8 +648,8 @@
       "result_streak": 14,
       "status": "alert",
       "last_updated": "2026-09-24",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (順位表の得失差の合計が0でない（読み取りの誤り、または出典の誤り）)",
+      "result": "ok",
+      "result_note": "消化70試合に更新（検算一致）",
       "result_date": "2026-09-28"
     },
     "mie": {
