@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-28T08:21:38+09:00",
+  "updatedAt": "2026-09-28T08:39:49+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -242,8 +242,8 @@
       "result_since": "2026-09-26",
       "result_streak": 12,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (星取表の1部が9チームでない、または得点計≠失点計)",
+      "result": "ok",
+      "result_note": "消化64試合に更新（検算一致）",
       "result_date": "2026-09-28",
       "last_updated": "2026-09-25"
     },
@@ -812,8 +812,8 @@
       "result_since": "2026-09-27",
       "result_streak": 5,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (結果欄が読めない: '雷雨の為延期'（中津東 vs トリニータ2nd）)",
+      "result": "ok",
+      "result_note": "消化58試合に更新（検算一致）",
       "result_date": "2026-09-28",
       "last_updated": "2026-09-27"
     },
