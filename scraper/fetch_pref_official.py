@@ -107,6 +107,9 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "ehime": ("2026-09-28 追加：9/24版の E1日程PDF から後期の 松山工業×済美（日程未定）の行が消えたので、"
               "保存済みの日付なし・未消化の枠で補う（EHIME_MISSING_FIXTURES）→ 外す条件＝日程PDFにこの行が戻ったら"
               "（日付が決まって載ったら read_ehime が止まって知らせる）"),
+    "kyoto": ("2026-09-28 追加：9/24版の協会PDFの食い違い2か所を名指しで補正。①日程PDFの 9/20 大谷A 2-0 京都橘C を 0-2 に"
+              "（KYOTO_SCHEDULE_FIXES。星取表と京都橘の公式サイトが 京都橘 2-0）②星取表の京都橘Cの行に 9/23 東山B 1-0 京都橘C の"
+              "負けを足す（KYOTO_HOSHITORI_FIXES。記入漏れ）→ 外す条件＝協会がそれぞれのPDFを直したら（直ると read_kyoto が止まって知らせる）"),
 }
 
 
@@ -4150,6 +4153,72 @@ def read_fukushima(cfg: dict) -> tuple[dict, list[dict]]:
 _KYOTO_LIST = "https://www.kyoto-fa.or.jp/archives.php?category=13"
 
 
+# 京都：日程PDFの結果が誤っている試合を名指しで直す（2026-09-28）
+KYOTO_SCHEDULE_FIXES = [
+    {"md": 13, "date": "2026-09-20", "home": "大谷A", "away": "京都橘C", "pdf": (2, 0), "fixed": (0, 2),
+     "reason": ("9/24版の日程PDFは 大谷A 2-0 京都橘C。同じ9/24版の星取表は両チームの行とも 京都橘C 2-0 勝ち、"
+                "京都橘高校サッカー部の公式サイト（9/21掲載）も 京都橘 2(1-0 1-0)0 大谷・得点者 西岡功大/児玉智大")},
+]
+
+# 京都：星取表の記入漏れを名指しで補う（2026-09-28）。「公式に足りない分」を足す
+KYOTO_HOSHITORI_FIXES = {
+    "京都橘C": {"match": {"md": 14, "date": "2026-09-23", "home": "東山B", "away": "京都橘C", "score": (1, 0)},
+               "add": {"played": 1, "lost": 1, "ga": 1},
+               "reason": ("9/24版の星取表で、9/23 東山B 1-0 京都橘C が東山Bの行には入っているのに京都橘Cの行が未記入"
+                          "（京都橘Cだけ13試合）。日程PDFと京都橘高校サッカー部の公式サイト（9/24掲載・0(0-0 0-1)1）は 1-0")},
+}
+
+
+def _kyoto_fix_schedule(matches: list[dict]) -> None:
+    """KYOTO_SCHEDULE_FIXES を日程PDFの行に当てる（SAITAMA_SCHEDULE_FIXES と同じ当て方）。
+    左右は日程PDFのまま、スコアだけ置き換える。協会が直したら止めて「台帳から消せ」と知らせる。"""
+    for fx in KYOTO_SCHEDULE_FIXES:
+        hit = [m for m in matches if m["md"] == fx["md"] and m["date"] == fx["date"]
+               and m["home"] == fx["home"] and m["away"] == fx["away"]]
+        if len(hit) != 1:
+            raise RuntimeError(f"KYOTO_SCHEDULE_FIXES の {fx['date']} {fx['home']}×{fx['away']} が日程PDFに{len(hit)}件")
+        got = (hit[0]["hs"], hit[0]["as"])
+        if got == tuple(fx["fixed"]):
+            raise RuntimeError(f"協会が日程PDFを直した（{fx['date']} {fx['home']}×{fx['away']} が {got}）。"
+                               f"KYOTO_SCHEDULE_FIXES のこの行と TEMP_EXCEPTIONS の京都を消すこと")
+        if got != tuple(fx["pdf"]):
+            raise RuntimeError(f"日程PDFの {fx['date']} {fx['home']}×{fx['away']} が {got}"
+                               f"（誤りとして登録した {fx['pdf']} でも正しい値 {fx['fixed']} でもない）")
+        hit[0]["hs"], hit[0]["as"] = fx["fixed"]
+        print(f"       （京都: 日程PDFの {fx['date']} {fx['home']}×{fx['away']} を {fx['pdf']} → {fx['fixed']} に補正"
+              f"（KYOTO_SCHEDULE_FIXES））")
+
+
+def _kyoto_fix_hoshitori(standings: dict, played: list[dict]) -> None:
+    """KYOTO_HOSHITORI_FIXES を星取表の順位表に当てる。記入漏れが名指しのチーム側だけ・ちょうど1試合のときだけ足す。
+    協会が直したら止めて「台帳から消せ」と知らせる。勝点・順位は動かさない。"""
+    def n_played(team):
+        return sum(1 for m in played if team in (m["home"], m["away"]))
+    for team, fx in KYOTO_HOSHITORI_FIXES.items():
+        mt = fx["match"]
+        hit = [m for m in played if m["md"] == mt["md"] and m["date"] == mt["date"]
+               and m["home"] == mt["home"] and m["away"] == mt["away"] and (m["hs"], m["as"]) == tuple(mt["score"])]
+        if len(hit) != 1:
+            raise RuntimeError(f"KYOTO_HOSHITORI_FIXES の {mt['date']} {mt['home']} {mt['score']} {mt['away']} が"
+                               f"日程PDFの消化済みに{len(hit)}件（1件のはず）")
+        other = mt["home"] if mt["away"] == team else mt["away"]
+        if team not in standings or other not in standings:
+            raise RuntimeError(f"KYOTO_HOSHITORI_FIXES の {team}／{other} が星取表に無い")
+        if standings[other]["played"] != n_played(other):
+            raise RuntimeError(f"星取表の {other} が{standings[other]['played']}試合・日程PDFは{n_played(other)}試合"
+                               f"（記入漏れが {team} 側だけという前提が崩れた）")
+        have, want = standings[team]["played"], n_played(team)
+        if have == want:
+            raise RuntimeError(f"協会が星取表を直した（{team} が{have}試合で日程PDFと一致）。"
+                               f"KYOTO_HOSHITORI_FIXES の{team}と TEMP_EXCEPTIONS の京都を消すこと")
+        if have != want - 1:
+            raise RuntimeError(f"星取表の {team} が{have}試合・日程PDFは{want}試合（差が1でない）")
+        for k, v in fx["add"].items():
+            standings[team][k] += v
+        print(f"       （京都: 星取表の {team} に {mt['date']} {mt['home']} {mt['score'][0]}-{mt['score'][1]} {mt['away']} を"
+              f"足した（記入漏れ・KYOTO_HOSHITORI_FIXES））")
+
+
 def read_kyoto(cfg: dict) -> tuple[dict, list[dict]]:
     from urllib.parse import urljoin
     year = str(SEASON_YEAR)
@@ -4220,6 +4289,7 @@ def read_kyoto(cfg: dict) -> tuple[dict, list[dict]]:
         ps = [frozenset((m["home"], m["away"])) for m in matches if (m["md"] <= half) == (rnd == 1)]
         if len(set(ps)) != len(ps) or len(ps) != n * (n - 1) // 2:
             raise RuntimeError(f"日程PDFの{rnd}巡目（第{'1-9' if rnd == 1 else '10-18'}節）に同じ組が重複または欠落")
+    _kyoto_fix_schedule(matches)
     played = [m for m in matches if m["hs"] is not None]
     # 守り：1巡目が未消化なのに2巡目だけ結果がある組（巡目の前提が崩れた形）
     done = {frozenset((m["home"], m["away"])) for m in played if m["md"] <= half}
@@ -4266,6 +4336,7 @@ def read_kyoto(cfg: dict) -> tuple[dict, list[dict]]:
         ranks.append((rank, team))
     if sorted(standings) != sorted({m["home"] for m in matches} | {m["away"] for m in matches}):
         raise RuntimeError(f"星取表のチームと日程PDFのチームが合わない: {sorted(standings)}")
+    _kyoto_fix_hoshitori(standings, played)
     if sum(v["gf"] - v["ga"] for v in standings.values()) != 0:
         raise RuntimeError("順位表の得失差の合計が0でない（読み取りの誤り、または出典の誤り）")
     if sum(v["played"] for v in standings.values()) != 2 * len(played):
