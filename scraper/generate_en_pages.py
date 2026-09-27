@@ -123,7 +123,7 @@ def row(t, names, zones=True):
             f'<td class="en-c">{gd_s}</td></tr>')
 
 
-def table(heading, ts, names, jp_slug, jp_label, anchor, level="h2"):
+def table(heading, ts, names, jp_slug, jp_label, anchor, level="h2", extra=""):
     """順位表1つ分のHTML。heading=英語見出し、jp_label=日本語ページのリンク文字、anchor=id"""
     rows = "\n".join(row(t, names, zones=(level == "h2")) for t in ts)
     return f"""
@@ -137,7 +137,7 @@ def table(heading, ts, names, jp_slug, jp_label, anchor, level="h2"):
           </tbody>
         </table>
         </div>
-        <p class="en-note">Japanese version with fixtures, results and top scorers: <a href="/leagues/{jp_slug}/">{jp_label}</a></p>
+{extra}        <p class="en-note">Japanese version with fixtures, results and top scorers: <a href="/leagues/{jp_slug}/">{jp_label}</a></p>
       </section>"""
 
 
@@ -192,7 +192,7 @@ PAGE = """<!DOCTYPE html>
     .en-table tr.en-releg td:first-child {{ box-shadow:inset 4px 0 0 var(--danger-color,#dc2626); }}
     .en-note {{ font-size:0.85rem; opacity:0.8; margin-top:8px; }}
     .en-legend {{ font-size:0.85rem; line-height:1.9; }}
-    .en-legend span {{ display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }}
+    .en-legend span {{ display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }}{rr_style}
   </style>
 </head>
 <body>
@@ -257,7 +257,8 @@ def render_premier(out_root, teams, names, season):
             print(f"[要確認] {label}: 検算NGのため英語ページを書き換えません → " + "; ".join(errs))
             return
     tables = "".join(
-        table(f"Premier League {label}", by[jp], names, "premier-" + label.lower(), f"プレミアリーグ{label}", label.lower())
+        table(f"Premier League {label}", by[jp], names, "premier-" + label.lower(), f"プレミアリーグ{label}", label.lower(),
+              extra=results_html("premier-" + label.lower(), jp, f"Premier {label}", teams, names, show_next=True))
         for jp, label in LEAGUES)
     url = f"{DOMAIN}/en/premier-league/"
     title = f"Japan U-18 Premier League {season} Standings (EAST & WEST)"
@@ -265,7 +266,7 @@ def render_premier(out_root, teams, names, season):
             "EAST and WEST tables, updated daily from official JFA data, with links to team profiles.")
     intro = ("        The Prince Takamado Trophy JFA U-18 Football Premier League is the top league for under-18 football in Japan.\n"
              "        24 teams — high-school clubs and J.League club academies — play in two divisions of 12 (EAST and WEST),\n"
-             "        home and away, from April to December. The standings below are updated daily from official JFA data.")
+             "        home and away, from April to December. The standings, latest results and next fixtures below are updated daily from official JFA data.")
     legend = ('      <div class="en-legend">\n'
               '        <div><span style="background:#d4a017"></span>1st place: plays the Premier League Final (EAST winner vs WEST winner) in December to decide the national champion.</div>\n'
               '        <div><span style="background:var(--danger-color,#dc2626)"></span>11th–12th: relegated to the regional Prince Leagues.</div>\n'
@@ -281,7 +282,7 @@ def render_premier(out_root, teams, names, season):
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": f"Premier League {season}", "item": url}]}, ensure_ascii=False)
-    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+    page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
                        crumb=f"Premier League {season}", h1=f"Japan U-18 Premier League {season} Standings",
                        intro=intro, legend=legend, tables=tables, tail=tail)
     dest = out_root / "en" / "premier-league" / "index.html"
@@ -303,7 +304,8 @@ def render_prince(out_root, teams, names, season):
                 skipped.append(label)
                 print(f"[要確認] {label}: 検算NGのためこのリーグだけ描画しません → " + "; ".join(errs))
                 continue
-            parts.append(table(label, ts, names, slug, jp, slug, level="h3"))
+            parts.append(table(label, ts, names, slug, jp, slug, level="h3",
+                               extra=results_html(slug, jp, label, teams, names, show_next=False, htag="h4")))
             shown += 1
         if not parts:
             continue
@@ -323,7 +325,7 @@ def render_prince(out_root, teams, names, season):
     intro = ("        The Prince Leagues are the second tier of under-18 football in Japan: 13 leagues across 9 regions,\n"
              "        played from April to December by high-school clubs and J.League academies alike.\n"
              "        Most of the schools that reach the winter All Japan High School Soccer Tournament play here,\n"
-             "        so these tables are the best guide to how strong those teams are. Updated daily from official JFA data.")
+             "        so these tables are the best guide to how strong those teams are. Standings and the latest results are updated daily from official JFA data.")
     legend = ('      <p class="en-note" style="margin:0 0 10px;">In December the leading Prince League teams enter a play-off for four places in the\n'
               '        <a href="/en/premier-league/">Premier League</a>, and the bottom teams are relegated to their prefectural leagues. The number of places\n'
               '        changes from year to year, so no promotion or relegation zones are marked here.</p>\n')
@@ -338,7 +340,7 @@ def render_prince(out_root, teams, names, season):
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": f"Prince Leagues {season}", "item": url}]}, ensure_ascii=False)
-    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+    page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
                        crumb=f"Prince Leagues {season}", h1=f"Japan U-18 Prince Leagues {season} Standings",
                        intro=intro, legend=legend, tables=tables, tail=tail)
     dest = out_root / "en" / "prince-leagues" / "index.html"
@@ -353,6 +355,185 @@ def render_prince(out_root, teams, names, season):
 # ---------------------------------------------------------------------
 MONTHS = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"]
+
+
+# ---------------------------------------------------------------------
+# 直近の試合結果（英語）  2026-09-27 追加（Kei依頼：プレミア・プリンスの英語ページにも出す）
+# ---------------------------------------------------------------------
+# - どの節を出すかは日本語リーグページと同じ部品（recent_results.pick_rounds）で決める
+#   ＝日本語ページと英語ページで「直近の節」が食い違わない。
+# - 試合データ（data/league_matches/<slug>.json）のチーム名は JFA の短い表記（「流通経済大柏」
+#   「近江(B)」など）で、teams.json の名前（英語名辞書のキー）と違う。そこで
+#   そのリーグのチームの name＋aliases を正規化して突き合わせる（_resolver）。
+# - ⚠️ 1チームでも英語名に解決できなければ、そのリーグの試合結果ブロックだけ出さない
+#   （[要確認] を出す）。順位表は今まで通り出る＝日本語が英語ページに混ざらない。
+# - プリンスは直近節のみ（13リーグあるので次節まで出すとページが長くなりすぎる／
+#   延期分の再試合だけの節が「次節」に選ばれることがあり英語だと説明しにくい）。
+# - 会場名は日本語しか無いので出さない。キックオフ時刻は次節にだけ「JST」付きで出す。
+import unicodedata                                    # noqa: E402
+from datetime import date as _date                    # noqa: E402
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from recent_results import pick_rounds, _is_played    # noqa: E402
+
+# 正規化だけでは届かない略称（試合データ側の表記 → teams.json の名前）
+MATCH_NAME_FIX = {
+    "旭川実": "旭川実業高校",
+    "ジェフユナイテッド千葉U-18": "ジェフユナイテッド市原・千葉U-18",
+}
+_WD_EN = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+
+def _nk(s):
+    """チーム名の正規化キー。2nd/3rd/(B) は別チームなので落とさず「2nd」にそろえる。"""
+    s = unicodedata.normalize("NFKC", str(s))
+    s = re.sub(r"[\s・．\.]", "", s)
+    s = s.replace("(B)", "2nd").replace("セカンド", "2nd")
+    return re.sub(r"(高等学校|高等部|高校|学校)(?=(2nd|3rd)?$)", "", s)
+
+
+def _resolver(teams_data, league_jp):
+    """試合データのチーム名 → teams.json の名前（解決できなければ None）を返す関数を作る。"""
+    in_league, anywhere = {}, {}
+    for pref in teams_data.values():
+        if not isinstance(pref, dict):
+            continue
+        for t in pref.get("teams", []):
+            for k in [t["name"]] + list(t.get("aliases") or []):
+                anywhere.setdefault(_nk(k), t["name"])
+                if t.get("league") == league_jp:
+                    in_league.setdefault(_nk(k), t["name"])
+
+    def resolve(name):
+        k = _nk(MATCH_NAME_FIX.get(name, name))
+        if k in in_league:
+            return in_league[k]
+        m = re.fullmatch(r"(.+?)(2nd|3rd)", k)
+        if m and m.group(1) in anywhere:          # 例: 流通経済大柏(B) → 流通経済大学付属柏高校 + 2nd
+            return in_league.get(_nk(anywhere[m.group(1)]) + m.group(2))
+        return None
+    return resolve
+
+
+def _en_day(iso):
+    try:
+        y, mo, d = (int(x) for x in str(iso).split("-")[:3])
+        return _date(y, mo, d)
+    except Exception:
+        return None
+
+
+def _en_range(isos):
+    ds = sorted({d for d in (_en_day(x) for x in isos) if d})
+    if not ds:
+        return ""
+    a, b = ds[0], ds[-1]
+    if a == b:
+        return f"{_WD_EN[a.weekday()]} {a.day} {MONTHS[a.month - 1]} {a.year}"
+    if a.month == b.month:
+        return f"{a.day}&ndash;{b.day} {MONTHS[a.month - 1]} {a.year}"
+    return f"{a.day} {MONTHS[a.month - 1]} &ndash; {b.day} {MONTHS[b.month - 1]} {b.year}"
+
+
+def _en_short(iso):
+    d = _en_day(iso)
+    return f"{_WD_EN[d.weekday()]} {d.day} {MONTHS[d.month - 1][:3]}" if d else "Date TBC"
+
+
+def _en_team(jp, names):
+    n = names[jp]
+    link = EN_TEAM_PAGES.get(jp) or n.get("jp_page")
+    # 「U-18」の途中（ハイフン）でスマホ改行されないよう、U-18 だけ改行禁止で包む
+    txt = re.sub(r"(U-\d+)", r'<span class="en-nw">\1</span>', esc(n["en"]))
+    return f'<a href="{esc(link)}">{txt}</a>' if link else txt
+
+
+def _en_match_row(m, names, resolve, with_ko=False):
+    h, a = _en_team(resolve(m["home"]), names), _en_team(resolve(m["away"]), names)
+    if _is_played(m):
+        hs, as_ = int(m["hs"]), int(m["as"])
+        hc = " en-rr-win" if hs > as_ else ""
+        ac = " en-rr-win" if as_ > hs else ""
+        mid = f'<span class="en-rr-score">{hs}<span class="en-rr-dash">-</span>{as_}</span>'
+        sub = ""
+    else:
+        hc = ac = ""
+        mid = '<span class="en-rr-vs">vs</span>'
+        ko = str(m.get("kickoff") or "").strip() if with_ko else ""
+        sub = (f'<span class="en-rr-sub">Kick-off {esc(ko)} JST</span>'
+               if re.fullmatch(r"\d{1,2}:\d{2}", ko) else "")
+    return (f'<li class="en-rr-row"><span class="en-rr-date">{_en_short(m.get("date"))}</span>'
+            f'<span class="en-rr-team en-rr-home{hc}">{h}</span>{mid}'
+            f'<span class="en-rr-team en-rr-away{ac}">{a}</span>{sub}</li>')
+
+
+def results_html(slug, league_jp, label, teams_data, names, show_next, htag="h3"):
+    """リーグ1つ分の「Latest results（＋Next fixtures）」。出せないときは ''。"""
+    r = pick_rounds(slug)
+    if r is None:
+        return ""
+    resolve = _resolver(teams_data, league_jp)
+    shown = r["last_matches"] + (r["next_matches"] if show_next and r["next_md"] is not None else [])
+    bad = sorted({n for m in shown for n in (m["home"], m["away"])
+                  if not resolve(n) or resolve(n) not in names})
+    if bad:
+        print(f"[要確認] {label}: 試合結果のチーム名を英語名に解決できないため、試合結果だけ出しません → " + "、".join(bad))
+        return ""
+    played, pending = r["last_played"], r["pending"]
+    rows = [_en_match_row(m, names, resolve) for m in played]
+    rows += [_en_match_row(m, names, resolve) for m in pending]
+    meta = [_en_range([m.get("date") for m in played]),
+            f"{len(played)} match" + ("es" if len(played) != 1 else "")]
+    if pending:
+        meta.append(f"{len(pending)} not yet played")
+    out = [f'        <{htag} class="en-rr-h">Latest results &mdash; Matchday {r["last_md"]}</{htag}>',
+           f'        <p class="en-note" style="margin:0 0 8px;">{" &middot; ".join(x for x in meta if x)}</p>',
+           '        <ul class="en-rr-list">', "\n".join("          " + x for x in rows), "        </ul>"]
+    if show_next and r["next_md"] is not None:
+        nxt = [m for m in r["next_matches"] if not _is_played(m)]
+        if nxt:
+            rng = _en_range([m.get("date") for m in nxt]) or "dates to be confirmed"
+            out += [f'        <{htag} class="en-rr-h">Next fixtures &mdash; Matchday {r["next_md"]} <span class="en-note">({rng})</span></{htag}>',
+                    '        <ul class="en-rr-list">',
+                    "\n".join("          " + _en_match_row(m, names, resolve, with_ko=True) for m in nxt),
+                    "        </ul>"]
+    upd = r["data"].get("lastUpdated", "")
+    src = r["data"].get("source", "")
+    host = str(src).split("//")[-1].split("/")[0].removeprefix("www.") if src else ""
+    bits = []
+    if host:
+        bits.append(f'Source: <a href="{esc(src)}" target="_blank" rel="nofollow noopener">{esc(host)}</a>'
+                    + (" (official JFA data)" if host == "jfa.jp" else ""))
+    if upd:
+        bits.append(f"updated {esc(str(upd)[:10])}")
+    if bits:
+        out.append(f'        <p class="en-note">{" &middot; ".join(bits)}</p>')
+    return "\n".join(out) + "\n"
+
+
+RR_STYLE = """
+    .en-rr-h {{ font-size:1.02rem; margin:22px 0 4px; }}
+    .en-rr-list {{ list-style:none; margin:0 0 6px; padding:0; border:1px solid var(--border-color,#e2e8f0); border-radius:10px; overflow:hidden; background:var(--bg-white,#fff); }}
+    .en-rr-row {{ display:grid; grid-template-columns:92px 1fr auto 1fr; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--border-color,#e2e8f0); }}
+    .en-rr-list .en-rr-row:last-child {{ border-bottom:none; }}
+    .en-rr-date {{ font-size:0.82rem; opacity:0.75; white-space:nowrap; }}
+    .en-rr-team {{ font-size:0.95rem; line-height:1.35; }}
+    .en-rr-home {{ text-align:right; }}
+    .en-rr-away {{ text-align:left; }}
+    .en-rr-team a {{ color:inherit; text-decoration:none; border-bottom:1px dotted var(--border-color,#cbd5e1); }}
+    .en-rr-win {{ font-weight:700; }}
+    .en-rr-score {{ font-weight:700; font-size:1.08rem; color:var(--accent-color,#2563eb); white-space:nowrap; min-width:58px; text-align:center; }}
+    .en-rr-dash {{ margin:0 5px; opacity:0.6; font-weight:400; }}
+    .en-rr-vs {{ font-size:0.85rem; opacity:0.7; min-width:58px; text-align:center; }}
+    .en-rr-sub {{ grid-column:1 / -1; font-size:0.78rem; opacity:0.7; text-align:center; }}
+    .en-nw {{ white-space:nowrap; }}
+    @media (max-width:600px) {{
+      .en-rr-row {{ grid-template-columns:1fr auto 1fr; gap:6px; padding:9px 10px; row-gap:2px; }}
+      .en-rr-date {{ grid-column:1 / -1; order:-1; }}
+      .en-rr-team {{ font-size:0.9rem; }}
+    }}"""
+PAGE_RR = PAGE.replace("{rr_style}", RR_STYLE)   # 試合結果を載せるページ（プレミア・プリンス）だけCSSを足す
+PAGE = PAGE.replace("{rr_style}", "")           # それ以外の英語ページは今までと1文字も変えない
 
 
 def club_html(jp_name, names, extra):

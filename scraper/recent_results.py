@@ -160,28 +160,31 @@ _STYLE = """<style>
 </style>"""
 
 
-def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
-    """リーグ slug の「直近の試合結果＋次節」セクションHTMLを返す。
-    データが無い / 1試合も消化していない場合は ''（空文字）。
+def pick_rounds(slug: str):
+    """リーグ slug の「直近節」と「次節」を選ぶ（日本語リーグページと英語ページの共通部品）。
 
-    link_fn: チーム名 -> 表示用HTML（チーム詳細ページへのリンク付き）に変換する関数。
-             省略時はエスケープしたテキストのみ。
+    [2026-09-27] 英語ページ（generate_en_pages.py）でも同じ試合を出すため、
+    render_recent_results_html の中にあった「節の選び方」をそのまま切り出した。
+    日本語ページの出力は切り出し前と1文字も変わらないことを15リーグで確認済み。
+
+    戻り値: dict（data, last_md, last_matches, last_played, pending, next_md, next_matches）
+            データが無い／1試合も消化していないときは None。
     """
     path = _MATCH_DIR / f"{slug}.json"
     if not path.exists():
-        return ""
+        return None
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except Exception:
-        return ""
+        return None
 
     matches = [m for m in data.get("matches", []) if _md_of(m) is not None]
     if not matches:
-        return ""
+        return None
 
     played = [m for m in matches if _is_played(m)]
     if not played:
-        return ""
+        return None
 
     # --- 直近節の決め方（ここが肝） ---
     # ① 節番号(md)の大きさでは決められない。プリンス東北のように「延期分を第18節として
@@ -206,7 +209,56 @@ def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
     )
     last_played = [m for m in last_matches if _is_played(m)]
     if not last_played:
+        return None
+    pending = [m for m in last_matches if not _is_played(m)]
+
+    # --- 次節 = 直近節より後に予定されていて、まだ結果が入っていない最も早い節 ---
+    # 直近節と同じく、各節の代表日（未消化試合の日付の中央値）で比較する。
+    nmd_dates = {}
+    for m in matches:
+        if _is_played(m) or _md_of(m) == last_md:
+            continue
+        nmd_dates.setdefault(_md_of(m), []).append(str(m.get("date") or ""))
+
+    def _nrep(md):
+        ds = sorted(nmd_dates[md])
+        return ds[len(ds) // 2]
+
+    cands = [md for md in nmd_dates if _nrep(md) > last_rep_date]
+    next_md = min(cands, key=lambda md: (_nrep(md), md)) if cands else None
+    next_matches = []
+    if next_md is not None:
+        next_matches = sorted(
+            [m for m in matches if _md_of(m) == next_md],
+            key=lambda m: (str(m.get("date") or ""), str(m.get("home") or "")),
+        )
+    return {
+        "data": data,
+        "last_md": last_md,
+        "last_matches": last_matches,
+        "last_played": last_played,
+        "pending": pending,
+        "next_md": next_md,
+        "next_matches": next_matches,
+    }
+
+
+def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
+    """リーグ slug の「直近の試合結果＋次節」セクションHTMLを返す。
+    データが無い / 1試合も消化していない場合は ''（空文字）。
+
+    link_fn: チーム名 -> 表示用HTML（チーム詳細ページへのリンク付き）に変換する関数。
+             省略時はエスケープしたテキストのみ。
+    """
+    r = pick_rounds(slug)
+    if r is None:
         return ""
+    data = r["data"]
+    last_md = r["last_md"]
+    last_played = r["last_played"]
+    pending = r["pending"]
+    next_md = r["next_md"]
+    next_matches = r["next_matches"]
 
     dates = sorted({str(m.get("date")) for m in last_played if m.get("date")})
     if len(dates) == 1:
@@ -217,7 +269,6 @@ def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
         date_label = ""
 
     rows = [_match_row(m, link_fn, True) for m in last_played]
-    pending = [m for m in last_matches if not _is_played(m)]
     for m in pending:
         rows.append(_match_row(m, link_fn, False))
 
@@ -242,25 +293,7 @@ def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
         "        </ul>",
     ]
 
-    # --- 次節 = 直近節より後に予定されていて、まだ結果が入っていない最も早い節 ---
-    # 直近節と同じく、各節の代表日（未消化試合の日付の中央値）で比較する。
-    nmd_dates = {}
-    for m in matches:
-        if _is_played(m) or _md_of(m) == last_md:
-            continue
-        nmd_dates.setdefault(_md_of(m), []).append(str(m.get("date") or ""))
-
-    def _nrep(md):
-        ds = sorted(nmd_dates[md])
-        return ds[len(ds) // 2]
-
-    cands = [md for md in nmd_dates if _nrep(md) > last_rep_date]
-    next_md = min(cands, key=lambda md: (_nrep(md), md)) if cands else None
     if next_md is not None:
-        next_matches = sorted(
-            [m for m in matches if _md_of(m) == next_md],
-            key=lambda m: (str(m.get("date") or ""), str(m.get("home") or "")),
-        )
         ndates = sorted({str(m.get("date")) for m in next_matches if m.get("date")})
         if len(ndates) == 1:
             nlabel = _fmt_date(ndates[0], "kanji", with_year=True)
