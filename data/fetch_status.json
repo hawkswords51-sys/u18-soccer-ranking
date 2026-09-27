@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-27T02:53:25+09:00",
+  "updatedAt": "2026-09-27T10:21:33+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -312,7 +312,7 @@
     },
     "fukuoka": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://fukuoka-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='fukuoka-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukuoka-fa-u18.com', port=443) at 0x7f980c4e84d0>, 'Connection to fukuoka-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://fukuoka-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='fukuoka-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukuoka-fa-u18.com', port=443) at 0x7fbe0b252990>, 'Connection to fukuoka-fa-u18.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -349,7 +349,7 @@
       "status": "warn",
       "last_updated": "2026-09-27",
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://fukushima-fa.com/match/c_match/ffa02/ の取得に失敗 (HTTPSConnectionPool(host='fukushima-fa.com', port=443): Max retries exceeded with url: /match/c_match/ffa02/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukushima-fa.com', port=443) at 0x7f980a58fc90>, 'Connection to fukushima-fa.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://fukushima-fa.com/match/c_match/ffa02/ の取得に失敗 (HTTPSConnectionPool(host='fukushima-fa.com', port=443): Max retries exceeded with url: /match/c_match/ffa02/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='fukushima-fa.com', port=443) at 0x7fbe09ceca50>, 'Connection to fukushima-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27"
     },
     "gifu": {
@@ -370,13 +370,13 @@
       "result_streak": 1,
       "status": "warn",
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://www.gifu-fa.com/type2-category/g1/ の取得に失敗 (HTTPSConnectionPool(host='www.gifu-fa.com', port=443): Max retries exceeded with url: /type2-category/g1/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gifu-fa.com', port=443) at 0x7f980aa51a10>, 'Connection to www.gifu-fa.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://www.gifu-fa.com/type2-category/g1/ の取得に失敗 (HTTPSConnectionPool(host='www.gifu-fa.com', port=443): Max retries exceeded with url: /type2-category/g1/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gifu-fa.com', port=443) at 0x7fbe0a0c7a50>, 'Connection to www.gifu-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-27"
     },
     "gunma": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Max retries exceeded with url: /api/table/173 (Caused by ConnectTimeoutError(<HTTPSConnection(host='management.gunma-fa.com', port=443) at 0x7f980bc0d050>, 'Connection to management.gunma-fa.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Max retries exceeded with url: /api/table/173 (Caused by ConnectTimeoutError(<HTTPSConnection(host='management.gunma-fa.com', port=443) at 0x7fbe0af291d0>, 'Connection to management.gunma-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -611,7 +611,7 @@
       "status": "warn",
       "last_updated": "2026-09-27",
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://www.kochi-fa.com/class02/class02sch/entry-305.html の取得に失敗 (HTTPSConnectionPool(host='www.kochi-fa.com', port=443): Max retries exceeded with url: /class02/class02sch/entry-305.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kochi-fa.com', port=443) at 0x7f980c52c350>, 'Connection to www.kochi-fa.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://www.kochi-fa.com/class02/class02sch/entry-305.html の取得に失敗 (HTTPSConnectionPool(host='www.kochi-fa.com', port=443): Max retries exceeded with url: /class02/class02sch/entry-305.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.kochi-fa.com', port=443) at 0x7fbe0aeae5d0>, 'Connection to www.kochi-fa.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27"
     },
     "kumamoto": {
@@ -697,7 +697,7 @@
     },
     "miyazaki": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://miyazaki-fa-u18.net/schedule/2026/U-18-1.htm の取得に失敗 (HTTPSConnectionPool(host='miyazaki-fa-u18.net', port=443): Max retries exceeded with url: /schedule/2026/U-18-1.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='miyazaki-fa-u18.net', port=443) at 0x7f980852ee50>, 'Connection to miyazaki-fa-u18.net timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://miyazaki-fa-u18.net/schedule/2026/U-18-1.htm の取得に失敗 (HTTPSConnectionPool(host='miyazaki-fa-u18.net', port=443): Max retries exceeded with url: /schedule/2026/U-18-1.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='miyazaki-fa-u18.net', port=443) at 0x7fbe07c73f50>, 'Connection to miyazaki-fa-u18.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -817,7 +817,7 @@
       "result_streak": 1,
       "status": "warn",
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://www.ofa.or.jp/news/tournaments/high-school/ の取得に失敗 (HTTPSConnectionPool(host='www.ofa.or.jp', port=443): Max retries exceeded with url: /news/tournaments/high-school/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ofa.or.jp', port=443) at 0x7f980c3d3c50>, 'Connection to www.ofa.or.jp timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://www.ofa.or.jp/news/tournaments/high-school/ の取得に失敗 (HTTPSConnectionPool(host='www.ofa.or.jp', port=443): Max retries exceeded with url: /news/tournaments/high-school/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ofa.or.jp', port=443) at 0x7fbe0c351350>, 'Connection to www.ofa.or.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-27"
     },
@@ -952,7 +952,7 @@
     },
     "saga": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://saga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='saga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='saga-fa-u18.com', port=443) at 0x7f980bc0dbd0>, 'Connection to saga-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://saga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='saga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='saga-fa-u18.com', port=443) at 0x7fbe0b10ad10>, 'Connection to saga-fa-u18.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -994,7 +994,7 @@
     },
     "shiga": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://shiga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='shiga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='shiga-fa-u18.com', port=443) at 0x7f980bc08190>, 'Connection to shiga-fa-u18.com timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://shiga-fa-u18.com/order/1/2026/all の取得に失敗 (HTTPSConnectionPool(host='shiga-fa-u18.com', port=443): Max retries exceeded with url: /order/1/2026/all (Caused by ConnectTimeoutError(<HTTPSConnection(host='shiga-fa-u18.com', port=443) at 0x7fbe0af1d990>, 'Connection to shiga-fa-u18.com timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "season": "2026",
       "complete": false,
@@ -1090,7 +1090,7 @@
       "result_streak": 1,
       "status": "warn",
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://tokushima-fa.jp/post-414/ の取得に失敗 (HTTPSConnectionPool(host='tokushima-fa.jp', port=443): Max retries exceeded with url: /post-414/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='tokushima-fa.jp', port=443) at 0x7f980cdaf710>, 'Connection to tokushima-fa.jp timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://tokushima-fa.jp/post-414/ の取得に失敗 (HTTPSConnectionPool(host='tokushima-fa.jp', port=443): Max retries exceeded with url: /post-414/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='tokushima-fa.jp', port=443) at 0x7fbe0adb4cd0>, 'Connection to tokushima-fa.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-27"
     },
@@ -1237,7 +1237,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化36試合に更新（検算一致）",
+      "result_note": "消化40試合に更新（検算一致）",
       "result_date": "2026-09-27",
       "last_updated": "2026-09-27"
     },
