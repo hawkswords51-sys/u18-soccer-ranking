@@ -104,6 +104,9 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "saitama": ("2026-09-27 追加：日程・結果PDFの 9/23 浦和学院 3-0 成徳深谷 を 0-3 に置き換え（SAITAMA_SCHEDULE_FIXES。"
                 "星取表と試合中の速報が 成徳深谷 3-0）→ 外す条件＝日程・結果PDFがこの試合を 0-3 に直したら"
                 "（直ると read_saitama が止まって知らせる）"),
+    "ehime": ("2026-09-28 追加：9/24版の E1日程PDF から後期の 松山工業×済美（日程未定）の行が消えたので、"
+              "保存済みの日付なし・未消化の枠で補う（EHIME_MISSING_FIXTURES）→ 外す条件＝日程PDFにこの行が戻ったら"
+              "（日付が決まって載ったら read_ehime が止まって知らせる）"),
 }
 
 
@@ -4429,6 +4432,41 @@ KNOWN_SOURCE_ERRORS: dict[str, dict[str, dict[str, int]]] = {
 }
 
 
+# 愛媛：日程PDFから消えた「日程未定」の試合を、日付なしの未消化として補う（2026-09-28）
+# ⚠️ 補うのは**未消化の枠だけ**。結果は絶対に作らない。
+EHIME_MISSING_FIXTURES = [
+    {"seg": "後期", "home": "松山工業", "away": "済美",
+     "reason": ("9/24版の E1日程PDF で、それまで日程未定（赤地・日付なし）として載っていた後期の"
+                "松山工業×済美 の行が消えた。星取表では未消化のまま（両校13試合）。"
+                "保存済みJSONには日付なし・未消化の枠として残っている")},
+]
+
+
+def _ehime_fill_missing(matches: list[dict], slug: str) -> None:
+    """EHIME_MISSING_FIXTURES の試合を、日程PDFに無いときだけ日付なしの未消化として matches に足す。
+    PDFに戻っていたら止めて「台帳から消せ」と知らせる（例外を放置させない）。
+    ⚠️ 後に続く検査（90試合・前後期45組ずつ・星取表との照合）は1つも緩めない。"""
+    try:
+        saved = json.loads((DIR / f"{slug}.json").read_text(encoding="utf-8")).get("matches", [])
+    except Exception:
+        saved = []
+    for fx in EHIME_MISSING_FIXTURES:
+        pair = frozenset((fx["home"], fx["away"]))
+        got = [m for m in matches if m["seg"] == fx["seg"] and frozenset((m["home"], m["away"])) == pair]
+        if got:
+            raise RuntimeError(f"協会が {fx['home']}×{fx['away']} の行を日程PDFに戻した"
+                               f"（日付：{got[0]['date'] or 'なし'}）。EHIME_MISSING_FIXTURES のこの行と"
+                               f" TEMP_EXCEPTIONS の愛媛を消すこと")
+        slot = [m for m in saved if m.get("home") == fx["home"] and m.get("away") == fx["away"]
+                and not m.get("date") and m.get("hs") is None and m.get("as") is None]
+        if len(slot) != 1:
+            raise RuntimeError(f"保存済みの {slug}.json に {fx['home']}×{fx['away']} の日付なし・未消化の枠が"
+                               f"{len(slot)}件（1件のはず）。補わずに止める")
+        matches.append(dict(seg=fx["seg"], date="", home=fx["home"], away=fx["away"], hs=None, **{"as": None}))
+        print(f"       （愛媛: 日程PDFから消えた{fx['seg']}の {fx['home']}×{fx['away']} を、"
+              f"日付なしの未消化として補った（EHIME_MISSING_FIXTURES））")
+
+
 def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
     from urllib.parse import urljoin
     year = str(SEASON_YEAR)
@@ -4491,6 +4529,7 @@ def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
             raise RuntimeError(f"日程PDFの結果が片側だけ入っている: {r}")
         matches.append(dict(seg=seg, date=date, home=home, away=away, hs=hs, **{"as": as_}))
     n = cfg["teams"]
+    _ehime_fill_missing(matches, _slug_of(cfg))
     if len(matches) != n * (n - 1):
         raise RuntimeError(f"日程PDFから{len(matches)}試合（{n * (n - 1)}試合のはず）")
     for s in ("前期", "後期"):
