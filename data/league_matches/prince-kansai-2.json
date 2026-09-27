@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "東海大仰星",
+      "pts": 30,
+      "played": 14,
+      "won": 8,
+      "drawn": 6,
+      "lost": 0,
+      "gf": 34,
+      "ga": 10,
+      "gd": 24
+    },
+    {
+      "rank": 2,
       "team": "滝川第二",
       "pts": 29,
       "played": 14,
@@ -60,19 +72,19 @@
       "gd": 11
     },
     {
-      "rank": 2,
-      "team": "東海大仰星",
-      "pts": 27,
-      "played": 13,
-      "won": 7,
-      "drawn": 6,
-      "lost": 0,
-      "gf": 32,
-      "ga": 10,
-      "gd": 22
+      "rank": 3,
+      "team": "京都橘(B)",
+      "pts": 28,
+      "played": 14,
+      "won": 8,
+      "drawn": 4,
+      "lost": 2,
+      "gf": 31,
+      "ga": 18,
+      "gd": 13
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "大阪桐蔭",
       "pts": 27,
       "played": 14,
@@ -84,7 +96,7 @@
       "gd": 14
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "金光大阪",
       "pts": 27,
       "played": 14,
@@ -96,28 +108,16 @@
       "gd": 9
     },
     {
-      "rank": 5,
-      "team": "京都橘(B)",
-      "pts": 25,
-      "played": 13,
-      "won": 7,
-      "drawn": 4,
-      "lost": 2,
-      "gf": 25,
-      "ga": 18,
-      "gd": 7
-    },
-    {
       "rank": 6,
       "team": "関大北陽",
       "pts": 20,
-      "played": 13,
+      "played": 14,
       "won": 6,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 19,
-      "ga": 23,
-      "gd": -4
+      "ga": 29,
+      "gd": -10
     },
     {
       "rank": 7,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "ヴィッセル神戸U-18(B)",
       "pts": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
+      "lost": 10,
       "gf": 18,
-      "ga": 41,
-      "gd": -23
+      "ga": 43,
+      "gd": -25
     },
     {
       "rank": 10,
@@ -921,10 +921,10 @@
       "md": 14,
       "date": "2026-09-27",
       "home": "京都橘(B)",
-      "hs": null,
-      "as": null,
+      "hs": 6,
+      "as": 0,
       "away": "関大北陽",
-      "status": "scheduled",
+      "status": "played",
       "venue": "KYOTO  TACHIBANA STADIUM",
       "kickoff": "09:45"
     },
@@ -932,10 +932,10 @@
       "md": 14,
       "date": "2026-09-27",
       "home": "東海大仰星",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "ヴィッセル神戸U-18(B)",
-      "status": "scheduled",
+      "status": "played",
       "venue": "東海大仰星",
       "kickoff": "10:00"
     },

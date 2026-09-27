@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "FC町田ゼルビアユース",
+      "pts": 21,
+      "played": 12,
+      "won": 7,
+      "drawn": 0,
+      "lost": 5,
+      "gf": 17,
+      "ga": 18,
+      "gd": -1
+    },
+    {
+      "rank": 3,
       "team": "鹿島アントラーズユースB",
       "pts": 20,
       "played": 13,
@@ -72,7 +84,7 @@
       "gd": 8
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "桐光学園",
       "pts": 19,
       "played": 10,
@@ -82,18 +94,6 @@
       "gf": 13,
       "ga": 8,
       "gd": 5
-    },
-    {
-      "rank": 4,
-      "team": "FC町田ゼルビアユース",
-      "pts": 18,
-      "played": 11,
-      "won": 6,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 15,
-      "ga": 18,
-      "gd": -3
     },
     {
       "rank": 5,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "栃木SC U-18",
       "pts": 10,
-      "played": 12,
+      "played": 13,
       "won": 3,
       "drawn": 1,
-      "lost": 8,
+      "lost": 9,
       "gf": 9,
-      "ga": 20,
-      "gd": -11
+      "ga": 22,
+      "gd": -13
     },
     {
       "rank": 10,
@@ -876,10 +876,10 @@
       "md": 13,
       "date": "2026-09-27",
       "home": "栃木SC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "壬生総合公園 陸上競技場",
       "kickoff": "10:30"
     },
