@@ -1817,7 +1817,7 @@ def _oita_schedule(content: bytes) -> list[dict]:
 
     with pdfplumber.open(io.BytesIO(content)) as pdf:
         rows = [r for pg in pdf.pages for t in pg.extract_tables() for r in t]
-    out, md, day = [], None, ""
+    out, md, day, postponed = [], None, "", 0
     for r in rows:
         if len(r) < 6:
             continue
@@ -1832,12 +1832,19 @@ def _oita_schedule(content: bytes) -> list[dict]:
             continue
         home, away = card.split("vs", 1)
         sm = _OITA_SCORE_RE.match((r[5] or "").strip())
-        if (r[5] or "").strip() and not sm:
+        # [2026-09-28] 結果欄に「延期」を含む行（9/26 の「雷雨の為延期」2件）は未消化として持つ。
+        #   日付は行の日付のまま（空にしない。過ぎた日付の未消化は「次の試合」に出ない＝team_season.py）。
+        #   ほかの読めない書き方は従来どおり止める。振替日が決まって同じ組の行が増えたら、45試合の検査で止まる。
+        if (r[5] or "").strip() and not sm and "延期" in (r[5] or ""):
+            postponed += 1
+        elif (r[5] or "").strip() and not sm:
             raise RuntimeError(f"結果欄が読めない: {r[5]!r}（{home} vs {away}）")
         out.append(dict(md=md, date=day, home=home, away=away,
                         hs=int(sm.group(1)) if sm else None,
                         **{"as": int(sm.group(2)) if sm else None},
                         kickoff=(r[3] or "").strip()))
+    if postponed:
+        print(f"       （大分: 結果欄が「延期」の試合が{postponed}件。未消化として持つ）")
     return out
 
 
