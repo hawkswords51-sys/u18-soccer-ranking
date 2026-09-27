@@ -110,6 +110,8 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "kyoto": ("2026-09-28 追加：9/24版の協会PDFの食い違い2か所を名指しで補正。①日程PDFの 9/20 大谷A 2-0 京都橘C を 0-2 に"
               "（KYOTO_SCHEDULE_FIXES。星取表と京都橘の公式サイトが 京都橘 2-0）②星取表の京都橘Cの行に 9/23 東山B 1-0 京都橘C の"
               "負けを足す（KYOTO_HOSHITORI_FIXES。記入漏れ）→ 外す条件＝協会がそれぞれのPDFを直したら（直ると read_kyoto が止まって知らせる）"),
+    "aomori": ("2026-09-28 追加：星取表0924の合計欄で ヴァンラーレ八戸U-18 の失点が15（マスの合計と日程PDFは16）。"
+               "KNOWN_SOURCE_ERRORS で差を明示 → 外す条件＝協会が星取表の合計欄を直したら（直ると read_aomori が止まって知らせる）"),
 }
 
 
@@ -2530,6 +2532,24 @@ def read_aomori(cfg: dict) -> tuple[dict, list[dict]]:
         if gf - ga != gd:
             raise RuntimeError(f"星取表 {name}: 得点{gf}−失点{ga}≠得失点差{gd}（読み取りの誤り）")
         standings[name] = dict(pts=pts, gf=gf, ga=ga)
+    # [2026-09-28] 星取表の合計欄の既知の足し間違い（KNOWN_SOURCE_ERRORS["aomori"]＝公式 − 正しい値）を打ち消してから
+    #   Σ得点＝Σ失点を確かめる。打ち消すのは、打ち消す前のずれが既知の差ちょうどのときだけ。
+    #   打ち消す前から Σ得点＝Σ失点なら協会が直したので止める（例外を消させるため）。
+    known = KNOWN_SOURCE_ERRORS.get("aomori", {})
+    if known and len(standings) == n:
+        for team in known:
+            if team not in standings:
+                raise RuntimeError(f"KNOWN_SOURCE_ERRORS の青森 {team} が星取表に無い: {sorted(standings)}")
+        diff = sum(v["gf"] for v in standings.values()) - sum(v["ga"] for v in standings.values())
+        expect = sum(d.get("gf", 0) for d in known.values()) - sum(d.get("ga", 0) for d in known.values())
+        if diff == 0:
+            raise RuntimeError("協会が星取表を直した（得点計＝失点計）。KNOWN_SOURCE_ERRORS の青森と"
+                               " TEMP_EXCEPTIONS の青森を消すこと")
+        if diff == expect:
+            for team, d in known.items():
+                for k, v in d.items():
+                    standings[team][k] -= v
+            print(f"       （青森: 星取表の合計欄の既知の誤り {known} を打ち消した（KNOWN_SOURCE_ERRORS））")
     if len(standings) != n or sum(v["gf"] for v in standings.values()) != sum(v["ga"] for v in standings.values()):
         raise RuntimeError("星取表の1部が9チームでない、または得点計≠失点計")
 
@@ -4500,6 +4520,7 @@ def check_legs_not_swapped(slug: str, matches: list[dict]) -> None:
 KNOWN_SOURCE_ERRORS: dict[str, dict[str, dict[str, int]]] = {
     "ehime": {"大洲": {"gf": +2, "ga": -2}},
     "kochi": {"高知小津": {"gf": +3}},
+    "aomori": {"ヴァンラーレU-18": {"ga": -1}},   # 2026-09-28 星取表0924の合計欄の足し間違い（マスの合計は16）
 }
 
 
