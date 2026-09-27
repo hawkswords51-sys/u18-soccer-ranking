@@ -28,7 +28,7 @@ from pathlib import Path
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
 from cross_table import render_cross_table_html, display_pref_team_name
 from recent_results import render_recent_results_by_date_html
-from scorer_table import render_scorer_ranking_html
+from scorer_table import SCORER_RULE_NOTE, render_scorer_ranking_html
 from prefecture_intro import render_prefecture_intro_html, render_ranking_method_html
 import generate_jyouth_page as _bracket  # トーナメント表(SVG)描画を再利用
 from pref_order import league_category, pref_sort_key  # 県内総合順位の並べ替えルール（正本）
@@ -2347,7 +2347,10 @@ def generate_page(pref, all_prefs):
         .replace("__RANKING_METHOD__", render_ranking_method_html(pref_name))
         .replace("__PREF_RECENT_RESULTS__", render_pref_recent_results(pref_id, pref_name))
         .replace("__PREF_CROSS_TABLE__", render_cross_table_html(f"pref-{pref_id}-1"))
-        .replace("__PREF_SCORER_RANKING__", render_scorer_ranking_html(f"pref-{pref_id}-1"))
+        # [2026-09-28] 県ページもリーグページと同じ「3得点以上のうち上位20名」。注記は表示側で先頭に足す
+        #   （県のJSONの note は出典の説明だけで、書き手もバラバラなのでJSON側では直さない）
+        .replace("__PREF_SCORER_RANKING__", render_scorer_ranking_html(
+            f"pref-{pref_id}-1", limit=20, min_goals=3, rule_note=SCORER_RULE_NOTE))
         .replace("__LOWER_DIVISIONS__", lower_divisions_html)
         .replace("__PREFECTURE_INTRO__", render_prefecture_intro_html(pref_id, pref_name))
         .replace("__NEIGHBOR_LINKS__", neighbor_links)

@@ -9,12 +9,19 @@ from pathlib import Path
 
 _DIR = Path(__file__).resolve().parent.parent / "data" / "scorers"
 
+# [2026-09-28 Kei決定] リーグページ・県ページの得点ランキングの表示ルール（3得点以上のうち上位20名）の注記。
+# 使う側：fetch_jfa.py（プレミアのJSONの note の先頭）・generate_prefecture_pages.py（表示側で先頭に足す）。
+# プリンス13本の data/scorers/prince-*.json の note の先頭もこの文にそろえてある（週次タスクが引き継ぐ）。
+SCORER_RULE_NOTE = "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。"
+
 
 def _esc(s):
     return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None) -> str:
+def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None, rule_note: str = "") -> str:
+    """rule_note を渡すと、注記の段落の先頭にその文を置く（県ページ用。JSONの note は出典の説明だけなので）。
+    既定は空＝ほかの呼び出し元の出力は変わらない。"""
     path = _DIR / f"{slug}.json"
     if not path.exists():
         return ""
@@ -77,7 +84,7 @@ def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None
         </style>
         <h2>⚽ 得点ランキング</h2>
         <p class="xs-meta">最終更新 {_esc(d.get('lastUpdated',''))}{src_html}</p>
-        <p class="xs-note">{_esc(d.get('note',''))}</p>
+        <p class="xs-note">{_esc(rule_note + d.get('note',''))}</p>
         {cov}
         <div class="xs-wrap">
           <table class="xs-table">
