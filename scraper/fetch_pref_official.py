@@ -4247,6 +4247,10 @@ def read_kyoto(cfg: dict) -> tuple[dict, list[dict]]:
     for r in grids[0][1:]:
         team = rename.get(nfkc(r[0]), nfkc(r[0]))
         v = [nfkc(x) for x in r[-8:]]
+        # [2026-09-28] 得失差がちょうど0のチームは「±0」と書かれる（京都橘C で初出・9/25から取得失敗）。
+        #   得失差の欄の「±0」だけを 0 と読む。ほかの書き方は従来どおり止める。
+        if v[6] == "±0":
+            v[6] = "0"
         if not all(re.fullmatch(r"[+-]?\d+", x) for x in v):
             raise RuntimeError(f"星取表 {team} の順位表の数値が読めない: {v}")
         won, drawn, lost, pts, gf, ga, gd, rank = (int(x) for x in v)
