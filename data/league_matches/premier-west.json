@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
-      "pts": 31,
-      "played": 14,
-      "won": 10,
+      "pts": 34,
+      "played": 15,
+      "won": 11,
       "drawn": 1,
       "lost": 3,
-      "gf": 33,
-      "ga": 18,
-      "gd": 15
+      "gf": 38,
+      "ga": 21,
+      "gd": 17
     },
     {
       "rank": 2,
@@ -131,13 +131,13 @@
       "rank": 7,
       "team": "神村学園",
       "pts": 20,
-      "played": 14,
+      "played": 15,
       "won": 5,
       "drawn": 5,
-      "lost": 4,
-      "gf": 25,
-      "ga": 26,
-      "gd": -1
+      "lost": 5,
+      "gf": 28,
+      "ga": 31,
+      "gd": -3
     },
     {
       "rank": 8,
@@ -2702,12 +2702,48 @@
       "md": 15,
       "date": "2026-09-27",
       "home": "神村学園",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 5,
       "away": "ヴィッセル神戸U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿児島県立サッカー・ラグビー場",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "51",
+          "name": "伏原 俐空"
+        },
+        {
+          "minute": "82",
+          "name": "長友 奏大"
+        },
+        {
+          "minute": "90+4",
+          "name": "大空 星那"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "3",
+          "name": "上野 颯太"
+        },
+        {
+          "minute": "18",
+          "name": "川端 彪英"
+        },
+        {
+          "minute": "28",
+          "name": "菊池 謙剛"
+        },
+        {
+          "minute": "57",
+          "name": "渡部 晴太"
+        },
+        {
+          "minute": "84",
+          "name": "武井 賢輔"
+        }
+      ]
     },
     {
       "md": 16,
