@@ -448,7 +448,7 @@ def _en_team(jp, names):
     return f'<a href="{esc(link)}">{txt}</a>' if link else txt
 
 
-def _en_match_row(m, names, resolve, with_ko=False):
+def _en_match_row(m, names, resolve, with_ko=False, note=""):
     h, a = _en_team(resolve(m["home"]), names), _en_team(resolve(m["away"]), names)
     if _is_played(m):
         hs, as_ = int(m["hs"]), int(m["as"])
@@ -460,8 +460,10 @@ def _en_match_row(m, names, resolve, with_ko=False):
         hc = ac = ""
         mid = '<span class="en-rr-vs">vs</span>'
         ko = str(m.get("kickoff") or "").strip() if with_ko else ""
-        sub = (f'<span class="en-rr-sub">Kick-off {esc(ko)} JST</span>'
-               if re.fullmatch(r"\d{1,2}:\d{2}", ko) else "")
+        bits = [esc(note)] if note else []
+        if re.fullmatch(r"\d{1,2}:\d{2}", ko):
+            bits.append(f"Kick-off {esc(ko)} JST")
+        sub = f'<span class="en-rr-sub">{" &middot; ".join(bits)}</span>' if bits else ""
     return (f'<li class="en-rr-row"><span class="en-rr-date">{_en_short(m.get("date"))}</span>'
             f'<span class="en-rr-team en-rr-home{hc}">{h}</span>{mid}'
             f'<span class="en-rr-team en-rr-away{ac}">{a}</span>{sub}</li>')
@@ -473,7 +475,8 @@ def results_html(slug, league_jp, label, teams_data, names, show_next, htag="h3"
     if r is None:
         return ""
     resolve = _resolver(teams_data, league_jp)
-    shown = r["last_matches"] + (r["next_matches"] if show_next and r["next_md"] is not None else [])
+    shown = r["last_matches"] + (r["next_matches"] if show_next and r["next_md"] is not None else []) \
+        + ((r.get("makeups") or []) if show_next else [])
     bad = sorted({n for m in shown for n in (m["home"], m["away"])
                   if not resolve(n) or resolve(n) not in names})
     if bad:
@@ -497,6 +500,12 @@ def results_html(slug, league_jp, label, teams_data, names, show_next, htag="h3"
                     '        <ul class="en-rr-list">',
                     "\n".join("          " + _en_match_row(m, names, resolve, with_ko=True) for m in nxt),
                     "        </ul>"]
+    mk = (r.get("makeups") or []) if show_next else []
+    if mk:
+        out += [f'        <{htag} class="en-rr-h">Rescheduled matches <span class="en-note">(played before the next matchday)</span></{htag}>',
+                '        <ul class="en-rr-list">',
+                "\n".join("          " + _en_match_row(m, names, resolve, with_ko=True, note=f"Matchday {m['md']}, rescheduled") for m in mk),
+                "        </ul>"]
     upd = r["data"].get("lastUpdated", "")
     src = r["data"].get("source", "")
     host = str(src).split("//")[-1].split("/")[0].removeprefix("www.") if src else ""

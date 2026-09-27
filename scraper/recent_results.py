@@ -71,7 +71,7 @@ def _md_of(m: dict):
         return None
 
 
-def _match_row(m: dict, link_fn, played: bool, show_sub: bool = True) -> str:
+def _match_row(m: dict, link_fn, played: bool, show_sub: bool = True, note: str = "") -> str:
     home = m.get("home", "")
     away = m.get("away", "")
     hn = link_fn(home) if link_fn else _html_escape(home)
@@ -99,7 +99,7 @@ def _match_row(m: dict, link_fn, played: bool, show_sub: bool = True) -> str:
     # [2026-09-17] 県リーグは `show_sub=False` で呼ぶ（→ render_recent_results_by_date_html）。
     # 県の公式から会場を取り込み始めたので、そのままだと県ページの見た目が勝手に変わる。
     # データには入れるが**出すかどうかは別の判断**なので、いまは出さない。
-    sub_bits = []
+    sub_bits = [_html_escape(note)] if note else []
     kickoff = str(m.get("kickoff") or "").strip() if show_sub else ""
     venue = str(m.get("venue") or "").strip() if show_sub else ""
     if kickoff:
@@ -213,25 +213,46 @@ def pick_rounds(slug: str):
     pending = [m for m in last_matches if not _is_played(m)]
 
     # --- 次節 = 直近節より後に予定されていて、まだ結果が入っていない最も早い節 ---
-    # 直近節と同じく、各節の代表日（未消化試合の日付の中央値）で比較する。
-    nmd_dates = {}
+    # [2026-09-27 修正] 節の代表日は「その節の全試合（消化済み＋未消化）の日付の中央値」で比べる。
+    #   以前は「未消化試合だけの中央値」だったため、延期分だけが残った古い節（例：プリンス関東2部の
+    #   第10節＝本来9/5〜6、延期分が9/30と10/18）の代表日が未来の日付になり、「次節 第10節」と
+    #   表示されていた。全試合で見れば第10節の代表日は9/6＝直近節より前なので候補から外れる。
+    #   日付の無い試合（日程未定）は代表日の計算に入れない。
+    #   実例：第10節の日付は 9/5・9/6・9/30・10/18（＋未定1）→ 代表日 9/6。未消化が1試合も無い節は候補にしない。
+    all_dates, has_unplayed = {}, set()
     for m in matches:
-        if _is_played(m) or _md_of(m) == last_md:
+        md = _md_of(m)
+        if md == last_md:
             continue
-        nmd_dates.setdefault(_md_of(m), []).append(str(m.get("date") or ""))
+        if not _is_played(m):
+            has_unplayed.add(md)
+        if m.get("date"):
+            all_dates.setdefault(md, []).append(str(m.get("date")))
 
     def _nrep(md):
-        ds = sorted(nmd_dates[md])
-        return ds[len(ds) // 2]
+        # 試合数が偶数のときは「真ん中2つのうち早いほう」を代表日にする（延期分に引っぱられにくくする）
+        ds = sorted(all_dates[md])
+        return ds[(len(ds) - 1) // 2]
 
-    cands = [md for md in nmd_dates if _nrep(md) > last_rep_date]
+    cands = [md for md in has_unplayed if md in all_dates and _nrep(md) > last_rep_date]
     next_md = min(cands, key=lambda md: (_nrep(md), md)) if cands else None
     next_matches = []
+    makeups = []
     if next_md is not None:
         next_matches = sorted(
             [m for m in matches if _md_of(m) == next_md],
             key=lambda m: (str(m.get("date") or ""), str(m.get("home") or "")),
         )
+        # [2026-09-27 追加] 延期分の試合＝直近節・次節以外の節の未消化試合のうち、
+        #   直近節より後・次節の最初の試合日より前に日付が入っているもの（次節より先に行われる再試合）。
+        nd = sorted(str(m.get("date")) for m in next_matches if m.get("date") and not _is_played(m))
+        if nd:
+            makeups = sorted(
+                [m for m in matches
+                 if not _is_played(m) and _md_of(m) not in (last_md, next_md)
+                 and m.get("date") and last_rep_date < str(m.get("date")) < nd[0]],
+                key=lambda m: (str(m.get("date")), str(m.get("home") or "")),
+            )
     return {
         "data": data,
         "last_md": last_md,
@@ -240,6 +261,7 @@ def pick_rounds(slug: str):
         "pending": pending,
         "next_md": next_md,
         "next_matches": next_matches,
+        "makeups": makeups,
     }
 
 
@@ -309,6 +331,15 @@ def render_recent_results_html(slug: str, label: str = "", link_fn=None) -> str:
             nl.join("          " + r for r in nrows),
             "        </ul>",
         ]
+        makeups = r.get("makeups") or []
+        if makeups:
+            mrows = [_match_row(m, link_fn, False, note=f"第{_md_of(m)}節の延期分") for m in makeups]
+            html += [
+                '        <h3 class="rr-next-h rr-makeup-h">延期分の試合（次節より前に開催）</h3>',
+                '        <ul class="rr-list">',
+                nl.join("          " + r for r in mrows),
+                "        </ul>",
+            ]
     else:
         html.append(
             '        <p class="rr-done">全日程が終了しました。最終順位は下の順位表をご覧ください。</p>'
