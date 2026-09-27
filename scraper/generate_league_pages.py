@@ -1646,10 +1646,13 @@ def generate_league_page(league_name, slug, label, category, description, season
     recent_results_html = render_recent_results_html(
         slug, link_fn=render_team_name_with_link
     )
-    # リーグページは「2得点以上」を全員載せる（JSON側が2得点以上で作られているため）。
-    # 既定の limit=20 だと同点の集団の途中で切れ、同じ2得点でも載る選手と載らない選手が
-    # 出てしまう（2026-08-16に九州2部で発覚）。県ページは長大なJSONを持つので既定のまま。
-    scorer_ranking_html = render_scorer_ranking_html(slug, limit=60)
+    # [2026-09-28 Kei決定] リーグページは「3得点以上のうち上位20名」を載せる。
+    # 2得点以上を全員（limit=60）だと人数が多くなりすぎるため。JSON側は2得点以上のまま作る
+    # （home_pickup.py など他の読み手があるので、データの基準は動かさない＝表示のルールだけここで決める）。
+    # 20位の同点の途中で切れることは了承済み。その代わり注記（JSONの note の先頭1文）で明示する
+    # （プレミアは fetch_jfa.py の write_scorers、プリンスは data/scorers/prince-*.json の note）。
+    # 県ページは長大なJSONを持つので既定のまま。
+    scorer_ranking_html = render_scorer_ranking_html(slug, limit=20, min_goals=3)
     
     # [2026-09-20] プレミアEAST/WESTだけ、英語の順位表ページへの案内を1行。
     #   ⚠️ hreflang は付けない。英語ページは2リーグを1ページにまとめ、日程・得点者を

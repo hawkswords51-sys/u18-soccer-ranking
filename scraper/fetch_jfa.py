@@ -824,7 +824,9 @@ def write_league_matches(res: dict, existing: dict) -> None:
 
 def write_scorers(res: dict, league_label: str) -> None:
     """data/scorers/<slug>.json を更新する（**プレミアだけ**呼ばれる）"""
-    note = (f"{SCORER_MIN_GOALS}得点以上の選手を掲載。"
+    # 注記の先頭1文はリーグページの表示ルール（generate_league_pages.py の limit=20・min_goals=3）に合わせる。
+    # SCORER_MIN_GOALS（=2）はJSONに入れる基準で、表示の基準とは別（2026-09-28）。
+    note = ("3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。"
             "JFA公式の試合記録に載っている得点者を全試合ぶん集計したもの。"
             "オウンゴールは個人の得点に数えていません。")
     out = {
