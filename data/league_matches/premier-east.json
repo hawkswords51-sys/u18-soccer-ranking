@@ -105,6 +105,18 @@
     },
     {
       "rank": 5,
+      "team": "青森山田",
+      "pts": 25,
+      "played": 15,
+      "won": 8,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 26,
+      "ga": 26,
+      "gd": 0
+    },
+    {
+      "rank": 6,
       "team": "前橋育英",
       "pts": 22,
       "played": 15,
@@ -116,28 +128,16 @@
       "gd": 5
     },
     {
-      "rank": 6,
-      "team": "青森山田",
-      "pts": 22,
-      "played": 14,
-      "won": 7,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 23,
-      "ga": 25,
-      "gd": -2
-    },
-    {
       "rank": 7,
       "team": "帝京長岡",
       "pts": 21,
-      "played": 14,
+      "played": 15,
       "won": 7,
       "drawn": 0,
-      "lost": 7,
-      "gf": 33,
-      "ga": 27,
-      "gd": 6
+      "lost": 8,
+      "gf": 34,
+      "ga": 30,
+      "gd": 4
     },
     {
       "rank": 8,
@@ -2859,12 +2859,32 @@
       "md": 15,
       "date": "2026-09-27",
       "home": "青森山田",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "帝京長岡",
-      "status": "scheduled",
+      "status": "played",
       "venue": "青森山田高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "59",
+          "name": "藤原 優人"
+        },
+        {
+          "minute": "63",
+          "name": "照後 大翔"
+        },
+        {
+          "minute": "82",
+          "name": "森明 陽磨"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "47",
+          "name": "和食 陽向"
+        }
+      ]
     },
     {
       "md": 16,
