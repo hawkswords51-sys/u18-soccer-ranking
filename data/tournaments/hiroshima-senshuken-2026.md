@@ -18,6 +18,7 @@ sources:
   - https://koko-soccer.com/score/4546
   - https://koko-soccer.com/score/4545
   - https://koko-soccer.com/score/4544
+  - https://koko-soccer.com/score/4439
 ---
 ## 1回戦（9/5・9/6・9/12・9/13）
 
