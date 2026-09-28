@@ -524,6 +524,11 @@ def main() -> int:
             continue
         if not meta.get("jfa_team") or not meta.get("id"):
             continue
+        # [2026-09-28] プリンス（jfa_team: prince-hokkaido・番号なし）は対象外。
+        #   プリンスにはJFAの試合ごとの公式記録・登録一覧が無く、得点者は fetch_prince_scorers.py が取る。
+        #   ここで拾うと「jfa_team の書式が違う」の要確認が毎日記録されてしまう。
+        if re.fullmatch(r"prince-[a-z0-9-]+", str(meta["jfa_team"])):
+            continue
         if only and meta["id"] not in only:
             continue
         targets.append((meta["id"], meta))

@@ -10,6 +10,10 @@
 **frontmatter に `jfa_team:` があるチームだけ**に出る。無いチームは空文字を返すので、
 160ページのうち書いたチームだけが変わる。
 
+[2026-09-28] プリンスにも①だけ出す。`jfa_team: prince-hokkaido`（**番号なし**）で有効になる。
+  得点者は data/prince-scorers/{slug}.json（fetch_prince_scorers.py がゲキサカから作る）。
+  ②③は出さない（プリンスには試合ごとの公式記録・登録一覧が無い）。
+
 分類は「導出」なので push 起動でも走る（取得は fetch_jfa_team_season.py の担当）。
 
 ⚠️ ①は team-season が無くても出せる（リーグJSONだけで作れる）。
@@ -92,6 +96,31 @@ def _scorers(rows) -> str:
     return ", ".join(out)
 
 
+def _prince_scorers(rows, status: str) -> str:
+    """プリンスの得点者（ゲキサカ）。時間が空の得点は名前だけ、同じ選手が続けば「×3」にまとめる。
+    status: complete / partial（→「、ほか不明」）/ none（得点しているのに記載なし）"""
+    if status == "none" and not rows:
+        return '<span class="ts-muted">記載なし</span>'
+    items: list[list] = []
+    for s in (rows or []):
+        name = (s.get("name") or "").strip()
+        minute = (s.get("minute") or "").strip()
+        if "OG" in name or "オウン" in name:
+            name = "OG"
+        if not minute and items and items[-1][0] == "" and items[-1][1] == name:
+            items[-1][2] += 1
+            continue
+        items.append([minute, name, 1])
+    out = []
+    for minute, name, n in items:
+        txt = f"{_e(minute)}&#x27; {_e(name)}" if minute else _e(name)
+        out.append(txt + (f" ×{n}" if n > 1 else ""))
+    html = ", ".join(out)
+    if status == "partial":
+        html += "、ほか不明"
+    return html
+
+
 # ---------------------------------------------------------------------------
 # 読み込み
 # ---------------------------------------------------------------------------
@@ -99,19 +128,28 @@ def load(meta: dict, base_dir: Path) -> dict | None:
     """このチームのシーズンデータ一式。jfa_team が無ければ None。"""
     jfa = str(meta.get("jfa_team") or "")
     m = re.fullmatch(r"([a-z0-9-]+)/(\d{2})", jfa)
-    if not m:
+    # [2026-09-28] プリンスは番号なし（jfa_team: prince-hokkaido）。プレミアは今までどおり番号必須。
+    pm = re.fullmatch(r"(prince-[a-z0-9-]+)", jfa)
+    if not m and not pm:
         return None
-    slug = m.group(1)
+    slug = m.group(1) if m else pm.group(1)
+    prince = bool(pm)
     league_file = base_dir / "data" / "league_matches" / f"{slug}.json"
     if not league_file.exists():
         return None
     league = json.loads(league_file.read_text(encoding="utf-8"))
 
     season_file = base_dir / "data" / "team-season" / f"{meta.get('id')}.json"
-    season = json.loads(season_file.read_text(encoding="utf-8")) if season_file.exists() else None
+    season = (json.loads(season_file.read_text(encoding="utf-8"))
+              if season_file.exists() and not prince else None)
+    scorers = None
+    if prince:
+        sf = base_dir / "data" / "prince-scorers" / f"{slug}.json"
+        scorers = json.loads(sf.read_text(encoding="utf-8")) if sf.exists() else None
 
     # リーグJSON上の表記を決める（md の name と違うことがある：流通経済大学付属柏高校／流通経済大柏）
-    key = (season or {}).get("league_team")
+    # [2026-09-28] frontmatter の league_team を最優先（プリンスの旭川実・北海道大谷室蘭など）
+    key = meta.get("league_team") or (season or {}).get("league_team")
     if not key:
         used = {x.get("home") for x in league["matches"]} | {x.get("away") for x in league["matches"]}
         # ⚠️ 空白と「.」を無視して比べる（広島・福岡は出典どうしで1文字違う）
@@ -127,7 +165,7 @@ def load(meta: dict, base_dir: Path) -> dict | None:
     if not key:
         return None
     return dict(slug=slug, league=league, season=season, key=key,
-                jfa_num=m.group(2))
+                jfa_num=m.group(2) if m else "", prince=prince, scorers=scorers)
 
 
 # ---------------------------------------------------------------------------
@@ -149,11 +187,27 @@ def _results_html(ctx: dict, short: str, league_label: str) -> str:
                 + "".join(f"<div><b>{_e(v)}</b><span>{_e(l)}</span></div>" for v, l in cells)
                 + "</div>")
 
+    prince = ctx.get("prince")
+    ps = {(x["home"], x["away"]): x for x in ((ctx.get("scorers") or {}).get("matches") or [])}
     rows = []
     for m in played:
         home = m.get("home") == key
         gf, ga = (m.get("hs"), m.get("as")) if home else (m.get("as"), m.get("hs"))
         mark, cls = ("○", "w") if gf > ga else (("●", "l") if gf < ga else ("△", "d"))
+        if prince:
+            x = ps.get((m.get("home"), m.get("away")))
+            sc = ""
+            if x and gf:
+                sc = _prince_scorers(x["homeScorers"] if home else x["awayScorers"],
+                                     x["homeStatus"] if home else x["awayStatus"])
+            rows.append(
+                f'<tr><td class="c">{_e(m.get("md"))}</td>'
+                f'<td class="c">{_e(_md(m["date"])) if m.get("date") else ""}</td>'
+                f'<td class="c"><span class="ts-ha">{"ホーム" if home else "アウェイ"}</span></td>'
+                f'<td>{_e(m.get("away") if home else m.get("home"))}</td>'
+                f'<td class="c"><span class="ts-res {cls}">{mark}</span> <b>{_e(gf)}-{_e(ga)}</b></td>'
+                f'<td class="ts-sc">{sc}</td></tr>')
+            continue
         sc = _scorers(m.get("homeScorers") if home else m.get("awayScorers"))
         num = re.search(r"/m(\d+)\.pdf$", m.get("reportUrl") or "")
         link = ""
@@ -195,14 +249,28 @@ def _results_html(ctx: dict, short: str, league_label: str) -> str:
     src_html = (f'<p class="ts-src">出典：<a href="{_e(src)}" target="_blank" rel="noopener">'
                 f'JFA公式 {_e(league.get("league", ""))}</a>'
                 f'{f"（{_jp_day(asof)}終了分まで）" if asof else ""}</p>')
+    if prince:
+        sd = ctx.get("scorers") or {}
+        gk = ""
+        if sd.get("source"):
+            title = re.sub(r"^.*プリンスリーグ\s*[0-9]*\s*", "", sd.get("league", ""))
+            gk = (f'／得点者＝<a href="{_e(sd["source"])}" target="_blank" rel="noopener">'
+                  f'{_e(sd.get("sourceName") or "ゲキサカ")}「[プリンスリーグ{_e(title)}]'
+                  f'{_e(league.get("season", ""))}シーズン日程」</a>。得点者は出典の記載に基づき、'
+                  f'表記はJFA公式記録に合わせて補正しています。「ほか不明」「記載なし」は出典に得点者の記載がない分です。')
+        src_html = (f'<p class="ts-src">出典：試合結果＝<a href="{_e(src)}" target="_blank" rel="noopener">'
+                    f'JFA公式 {_e(league.get("league", ""))}</a>'
+                    f'{f"（{_jp_day(asof)}終了分まで）" if asof else ""}{gk}</p>')
 
     # 見出しは frontmatter の league（プレミアリーグEAST）を使う。
     # ⚠️ リーグJSONの league は「高円宮杯 JFA U-18 プレミアリーグ 2026 EAST」で年が入っており、
     #    season と並べると「2026 …2026 EAST」と2回出る。
+    # プリンスは「公式」列を出さない（試合ごとの公式記録が無い）
+    official_th = "" if prince else "<th>公式</th>"
     return (f'<h2>{_e(league.get("season", ""))} {_e(league_label)} 試合結果</h2>'
             + card
             + '<div class="ts-tbl"><table><thead><tr><th>節</th><th>日付</th><th></th>'
-            + f'<th>対戦相手</th><th>結果</th><th>{_e(short)}の得点者</th><th>公式</th></tr></thead>'
+            + f'<th>対戦相手</th><th>結果</th><th>{_e(short)}の得点者</th>{official_th}</tr></thead>'
             + f'<tbody>{"".join(rows)}</tbody></table></div>'
             + next_html + src_html)
 
@@ -486,9 +554,10 @@ def render_sections_html(meta: dict, base_dir: Path) -> str:
     warn: list[str] = []
     short = meta.get("short_name") or meta.get("name") or ""
     label = meta.get("league") or ctx["league"].get("league", "")
-    html = (_results_html(ctx, short, label)
-            + _formation_html(ctx, meta, warn)
-            + _roster_html(ctx, meta, base_dir))
+    html = _results_html(ctx, short, label)
+    if not ctx.get("prince"):
+        # ②③はプレミアだけ（プリンスには公式の試合記録・登録一覧が無い）
+        html += _formation_html(ctx, meta, warn) + _roster_html(ctx, meta, base_dir)
     for w in warn:
         # ⚠️ 卒業・登録変更で formation が古くなったことに気づくため。ページは止めない。
         print(f"  [WARN] {meta.get('id')}: {w}")

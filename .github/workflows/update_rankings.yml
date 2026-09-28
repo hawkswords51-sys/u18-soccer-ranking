@@ -55,6 +55,9 @@ on:
       - 'data/university/**'
       - 'data/en/**'
       - 'data/scorers/**'
+      # [2026-09-28] プリンスのチームページの得点者（fetch_prince_scorers.py の出力）とその設定
+      - 'data/prince-scorers/**'
+      - 'data/prince_gekisaka.json'
       - 'data/u15/**'
       - 'data/u16/**'
       - 'data/league_matches/**'
@@ -135,6 +138,21 @@ jobs:
             python scraper/fetch_jfa.py $ARGS
           else
             echo "scraper/fetch_jfa.py がまだありません。スキップ。"
+          fi
+
+      # ★ プリンスの得点者をゲキサカから取る（2026-09-28新設・分類＝取得）
+      #   出力＝data/prince-scorers/{slug}.json（チームページの①）と data/scorers/{slug}.json（プリンスの得点ランキング）。
+      #   ⚠️ 上の fetch_jfa.py より**後**に置くこと（スコアを league_matches＝JFA公式と突き合わせて、食い違う試合は使わない）。
+      #   ⚠️ continue-on-error は外さない（コミットより前）。fetch_status.json の jobs に prince_scorers:{slug} が残る。赤にはしない（補助情報）。
+      - name: プリンス得点者を取得（ゲキサカ）
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE != 'pref' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_prince_scorers.py ]; then
+            python scraper/fetch_prince_scorers.py
+          else
+            echo "scraper/fetch_prince_scorers.py がまだありません。スキップ。"
           fi
 
       # ★ チームごとのシーズンデータ（登録選手・試合ごとの先発）をJFA公式から取る（2026-09-20新設）
