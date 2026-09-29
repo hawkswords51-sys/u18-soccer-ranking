@@ -33,7 +33,7 @@ scraper/update_tournament_results.py が上の source から
 - 伊那弥生ケ丘 2-0 駒ヶ根工
 - 須坂創成 12-0 丸子修学館
 - 軽井沢・ウェルネス・東御 0-4 松本蟻ヶ崎
-- 諏訪二葉 vs 長野高専
+- 諏訪二葉 2-0 長野高専
 - 下諏訪向陽・茅野 1-2 中野立志館
 - 野沢南 5-1 中野西
 - 塩尻志学館 0-2 諏訪清陵
@@ -59,7 +59,7 @@ scraper/update_tournament_results.py が上の source から
 - 上田千曲 vs 更級農
 - 須坂創成 vs 野沢北
 - 須坂東 vs 赤穂
-- 諏訪二葉/長野高専 vs 諏訪清陵
+- 諏訪二葉 vs 諏訪清陵
 - 上田 vs 岡谷東
 - 長野東 vs 松本蟻ヶ崎
 - 長野日大 vs 野沢南
@@ -73,3 +73,4 @@ scraper/update_tournament_results.py が上の source から
 - 長野吉田/上田染谷丘 vs 飯田OIDE長姫/伊那北
 - 小諸義塾/須坂 vs 伊那弥生ケ丘/飯田
 - 上田千曲/更級農 vs 須坂創成/野沢北
+- 諏訪二葉/諏訪清陵 vs 長野/上田東
