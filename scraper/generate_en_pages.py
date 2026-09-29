@@ -1332,12 +1332,17 @@ def render_short_team_pages(out_root, teams, names, season):
         title = f"{en} — {season} season, results and national record"
         desc = (f"{en} ({pref_en}) in English: {season} {lg_en} position and every league result, updated daily, "
                 "plus the team's record in Japan's national youth tournaments.")
+        # パンくず：画面の表示と検索エンジン向け（JSON-LD）を同じ3段にそろえる（2026-09-30 Kei指示）
+        mid_name = f"Prince Leagues {season}" if tier == "prince" else f"Premier League {season}"
+        mid_path = "/en/prince-leagues/" if tier == "prince" else "/en/premier-league/"
         breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
-            {"@type": "ListItem", "position": 2, "name": f"Prince Leagues {season}" if tier == "prince" else f"Premier League {season}",
-             "item": f"{DOMAIN}/en/prince-leagues/" if tier == "prince" else f"{DOMAIN}/en/premier-league/"},
+            {"@type": "ListItem", "position": 2, "name": mid_name, "item": f"{DOMAIN}{mid_path}"},
             {"@type": "ListItem", "position": 3, "name": en, "item": url}]}, ensure_ascii=False)
-        page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb, crumb=esc(en),
+        # テンプレートは「English Guide › <span>{crumb}</span>」なので、真ん中の段をここで差し込む
+        crumb = (f'<a href="{mid_path}">{esc(mid_name)}</a></span>\n'
+                 f'        <span class="breadcrumb__sep">›</span>\n        <span>{esc(en)}')
+        page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb, crumb=crumb,
                               h1=esc(en), intro="        " + intro, legend=legend, tables=body, tail=tail)
         dest = out_root / "en" / "teams" / slug / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
