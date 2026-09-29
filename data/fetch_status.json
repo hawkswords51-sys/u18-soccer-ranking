@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-29T05:22:13+09:00",
+  "updatedAt": "2026-09-29T11:15:02+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -305,7 +305,7 @@
       "result_streak": 0,
       "status": "warn",
       "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-09-29",
       "last_updated": "2026-09-29"
     },
@@ -605,8 +605,8 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-29",
-      "result": "ok",
-      "result_note": "消化44試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (日程表から8試合（56試合のはず）)",
       "result_date": "2026-09-29"
     },
     "kumamoto": {
@@ -647,8 +647,8 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-09-29",
-      "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (入口に2026年のU-18リーグの記事が0件（1件のはず）)",
       "result_date": "2026-09-29"
     },
     "mie": {
