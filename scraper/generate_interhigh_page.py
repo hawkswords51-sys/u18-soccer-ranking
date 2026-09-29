@@ -1690,6 +1690,11 @@ def main():
             (f"{DOMAIN}/en/teams/jubilo-iwata-u18/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/fagiano-okayama-u18/", "monthly", "0.6"),
         ]
+        # 2026-09-29 英語チームページは枚数が多いので、出力済みの en/teams/*/ をまとめて登録（手書き・短いページとも）
+        for p in sorted((BASE_DIR / "en" / "teams").glob("*/index.html")):
+            u = f"{DOMAIN}/en/teams/{p.parent.name}/"
+            if all(u != x[0] for x in static_pages):
+                static_pages.append((u, "weekly", "0.5"))
         s = sm.read_text(encoding="utf-8")
         changed = False
         for url, freq, prio in static_pages:

@@ -2,6 +2,8 @@
 id: setouchi
 name: 瀬戸内高校
 short_name: 瀬戸内
+aliases:
+  - 広島瀬戸内高校   # tournaments_data.yml（インターハイ2022・2023）の表記
 league: プリンスリーグ中国
 jfa_team: prince-chugoku
 prefecture: hiroshima

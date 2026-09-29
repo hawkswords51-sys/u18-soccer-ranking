@@ -274,7 +274,7 @@ def render_premier(out_root, teams, names, season):
     tail = ('''      <section class="lp-section">
         <h2>How to read these tables</h2>
         <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
-        Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
+        Team names link to our English team profiles; the Japanese profiles linked from each of them add history, notable alumni and current squads.</p>
 '''
             '        <p>One level below: <a href="/en/prince-leagues/">Prince League standings</a> — the 13 regional leagues that feed into this one.</p>\n'
             '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>\n'
@@ -332,7 +332,7 @@ def render_prince(out_root, teams, names, season):
     tail = ('''      <section class="lp-section">
         <h2>How to read these tables</h2>
         <p>Pos = position, Pts = points (3 for a win, 1 for a draw), P = played, W/D/L = won/drawn/lost, GF/GA = goals for/against, GD = goal difference. Pref. is the prefecture where the team is based.
-        Team names link to our team profiles (in Japanese), which include history, notable alumni and current squads.</p>
+        Team names link to our English team profiles; the Japanese profiles linked from each of them add history, notable alumni and current squads.</p>
 '''
             '        <p>One level above: <a href="/en/premier-league/">Premier League standings</a> (EAST and WEST).</p>\n'
             '        <p>New to Japanese youth football? See <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> — school clubs, J.League academies, the league pyramid and the national tournaments.</p>\n'
@@ -1057,6 +1057,295 @@ def render_team_pages(out_root, teams, names, extra, season):
         print(f"OK: {dest} を書きました")
 
 
+# ---------------------------------------------------------------------
+# プリンスリーグ所属チームの「短い英語チームページ」  2026-09-29 追加（Kei依頼・二段構えの1段目）
+# ---------------------------------------------------------------------
+# - data/en/teams/<slug>.md（手書きの詳しいページ）が無いプリンス所属チームについて、
+#   データだけから自動で1枚作る。手書きの文章は一切ない＝事実の誤りが入り込む余地を作らない。
+# - 載せるもの：①定型の紹介2文 ②今季の順位 ③今季のリーグ戦の全試合（英語名に引けないチームが
+#   1つでもあればこのブロックだけ出さない） ④全国大会の記録（tournaments_data.yml・
+#   premier_final_history.yml・league_history_full.yml から自動抽出。記録が0件なら節ごと出さない）
+# - 人名は1つも出さない（Kei決定 2026-09-29：公式英語表記がある人だけ＝短いページには人名の欄が無い）。
+# - slug は日本語チームページと同じ（英語名辞書の jp_page の末尾）。
+# - 2nd/3rd は作らない。英語ページ内のリンクは親チームの英語ページへ向ける（Kei決定 2026-09-29）。
+# - あとで data/en/teams/<slug>.md を置けば、そのチームはこの短いページではなく詳しいページになる（2段目）。
+TOURN_YML = ROOT / "data" / "tournaments_data.yml"
+PFINAL_YML = ROOT / "data" / "premier_final_history.yml"
+LHIST_YML = ROOT / "data" / "league_history_full.yml"
+PROFILES_DIR = ROOT / "data" / "team-profiles"
+
+TOURN_EN = {
+    "all_japan_highschool": "All Japan High School Soccer Tournament",
+    "interhigh": "Inter-High School Championships",
+    "club_youth_u18": "Japan Club Youth (U-18) Championship",
+    "j_youth_cup": "J.League Youth Cup",
+}
+STAGE_EN = [("優勝", "Winners"), ("準優勝", "Runners-up"), ("ベスト4", "Semi-finals"),
+            ("ベスト8", "Quarter-finals"), ("都道府県代表", "Qualified")]
+SHORT_PAGES = {}   # 日本語チーム名 -> slug（短いページを作るチーム）
+
+
+def _league_info():
+    """日本語リーグ名 -> (英語名, 試合データのslug, 英語順位表のリンク, 段の説明)。
+    プレミアも入れておく＝12月の参入戦でプリンスから上がったチームに手書きページが無くても、
+    翌年そのURLが消えない（短いページのまま Premier League として出続ける）。"""
+    info = {"プレミアリーグEAST": ("Premier League EAST", "premier-east", "/en/premier-league/#east", "premier"),
+            "プレミアリーグWEST": ("Premier League WEST", "premier-west", "/en/premier-league/#west", "premier")}
+    for region, lgs in PRINCE_REGIONS:
+        for jp, label, slug in lgs:
+            info[jp] = (label, slug, f"/en/prince-leagues/#{region.lower()}", "prince")
+    return info
+
+
+def _jp_slug(rec):
+    return str(rec.get("jp_page") or "").strip("/").split("/")[-1]
+
+
+def _is_second(jp):
+    return bool(re.search(r"(2nd|3rd)$", jp.replace(" ", "")))
+
+
+def _parent_of(jp):
+    return re.sub(r"\s*(2nd|3rd)$", "", jp)
+
+
+def plan_short_pages(teams, names, hand_written):
+    """短いページを作るチームと、2nd/3rd のリンク先を EN_TEAM_PAGES に登録する（main の最初で呼ぶ）。"""
+    for pref in teams.values():
+        if not isinstance(pref, dict):
+            continue
+        for t in pref.get("teams", []):
+            jp = t["name"]
+            if t.get("league") not in _league_info() or jp in hand_written or _is_second(jp):
+                continue
+            rec = names.get(jp)
+            slug = _jp_slug(rec or {})
+            if not rec or not slug:
+                print(f"[要確認] 短い英語チームページ: 英語名または日本語ページが辞書にない -> {jp}（作りません）")
+                continue
+            SHORT_PAGES[jp] = slug
+            EN_TEAM_PAGES[jp] = f"/en/teams/{slug}/"
+    # 2nd/3rd は親チームの英語ページへ（親に英語ページが無ければ今まで通り日本語ページ）
+    for pref in teams.values():
+        if not isinstance(pref, dict):
+            continue
+        for t in pref.get("teams", []):
+            jp = t["name"]
+            if _is_second(jp) and _parent_of(jp) in EN_TEAM_PAGES:
+                EN_TEAM_PAGES[jp] = EN_TEAM_PAGES[_parent_of(jp)]
+
+
+def _team_keys(jp, teams_rec, slug):
+    """全国大会データと突き合わせるための名前キー（teams.json の名前・aliases＋日本語ページの name/short_name/aliases）。"""
+    ks = {jp} | set((teams_rec or {}).get("aliases") or [])
+    p = PROFILES_DIR / f"{slug}.md"
+    if p.exists():
+        try:
+            fm = yaml.safe_load(p.read_text(encoding="utf-8").split("---")[1]) or {}
+            for k in ("name", "short_name"):
+                if fm.get(k):
+                    ks.add(str(fm[k]))
+            ks |= {str(a) for a in (fm.get("aliases") or [])}
+        except Exception:
+            pass
+    keys = {_nk(k) for k in ks if k}
+    # 「県立徳島商業高校」⇔「徳島商業高校」のように、設置者の冠だけ違う表記も同じ学校として拾う
+    return keys | {re.sub(r"^(県立|府立|都立|道立|市立|私立)", "", k) for k in keys}
+
+
+def _ranges(years):
+    ys, out = sorted(set(years)), []
+    for y in ys:
+        if out and y == out[-1][1] + 1:
+            out[-1][1] = y
+        else:
+            out.append([y, y])
+    return ", ".join(str(a) if a == b else f"{a}&ndash;{b}" for a, b in out)
+
+
+def national_record(slug, keys, tourn, pfinal, lhist):
+    """(year, 大会, 成績) のリストと、Premier League の在籍年、プリンス優勝年を返す。"""
+    rows = []
+    for tk, label in TOURN_EN.items():
+        for year, res in (tourn.get(tk) or {}).items():
+            if not isinstance(res, dict):
+                continue
+            for stage, st_en in STAGE_EN:
+                v = res.get(stage)
+                vs = v if isinstance(v, list) else [v] if v else []
+                if any(_nk(x["name"] if isinstance(x, dict) else x) in keys for x in vs):
+                    rows.append((int(year), label, st_en))
+                    break          # 1大会1年につき最上位の成績だけ
+    for f in (pfinal or {}).get("finals", []):
+        ch = (f.get("champion") or {}).get("team")
+        for side in ("east_winner", "west_winner"):
+            tm = (f.get(side) or {}).get("team")
+            if tm and _nk(tm) in keys:
+                rows.append((int(f["year"]), "U-18 Premier League Final (national play-off)",
+                             "Winners" if ch and _nk(ch) in keys else "Runners-up"))
+    premier, prince_titles = [], []
+    for key, lg in (lhist or {}).items():
+        for era in lg.get("eras", []):
+            cols = era.get("cols") or []
+            for s in era.get("seasons", []):
+                blocks = s.get("rows") or []
+                for bi, blk in enumerate(blocks):
+                    for pos, tm in enumerate(blk.get("teams", [])):
+                        hit = tm.get("link") == slug or _nk(tm.get("name", "")) in keys
+                        if not hit or _is_second(str(tm.get("name", ""))):
+                            continue
+                        if key.startswith("premier"):
+                            premier.append(int(s["year"]))
+                        # 優勝＝最上位の部（rows[0]）の1番目。A/Bブロック制・2020年の特別大会は
+                        # 見出しが「1位」なので対象外（どちらが優勝か表から決められない）。
+                        elif (pos == 0 and bi == 0 and cols and cols[0] == "優勝"
+                              and (len(blocks) == 1 or "部" in str(era.get("title", "")))):
+                            prince_titles.append((int(s["year"]), lg.get("label", "")))
+    rows.sort(key=lambda r: (-r[0], r[1]))
+    return rows, sorted(set(premier)), sorted(set(prince_titles))
+
+
+def season_results_html(jp, league_jp, league_slug, teams_data, names):
+    """そのチームの今季リーグ戦を新しい順に全部。英語名に引けない相手が1チームでもあれば ''。"""
+    path = ROOT / "data" / "league_matches" / f"{league_slug}.json"
+    if not path.exists():
+        return ""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    resolve = _resolver(teams_data, league_jp)
+    mine = [m for m in data.get("matches", []) if jp in (resolve(m.get("home")), resolve(m.get("away")))]
+    if not mine:
+        return ""
+    bad = sorted({n for m in mine for n in (m["home"], m["away"]) if not resolve(n) or resolve(n) not in names})
+    if bad:
+        print(f"[要確認] 短い英語チームページ {jp}: 試合のチーム名を英語名に解決できないため試合一覧を出しません → " + "、".join(bad))
+        return ""
+    played = sorted([m for m in mine if _is_played(m)], key=lambda m: (str(m.get("date") or ""), m.get("md") or 0), reverse=True)
+    upcoming = sorted([m for m in mine if not _is_played(m)], key=lambda m: (str(m.get("date") or "9999"), m.get("md") or 0))
+    w = d = l = 0
+    for m in played:
+        mine_s, opp_s = (int(m["hs"]), int(m["as"])) if resolve(m["home"]) == jp else (int(m["as"]), int(m["hs"]))
+        w += mine_s > opp_s; d += mine_s == opp_s; l += mine_s < opp_s
+    out = []
+    if played:
+        out += [f'        <h3 class="en-rr-h">Results</h3>',
+                f'        <p class="en-note" style="margin:0 0 8px;">{len(played)} played &middot; {w}W {d}D {l}L &middot; newest first</p>',
+                '        <ul class="en-rr-list">',
+                "\n".join("          " + _en_match_row(m, names, resolve, note="") .replace(
+                    '<span class="en-rr-date">', f'<span class="en-rr-date">MD{m.get("md")} &middot; ', 1) for m in played),
+                "        </ul>"]
+    if upcoming:
+        out += ['        <h3 class="en-rr-h">Remaining fixtures</h3>',
+                '        <ul class="en-rr-list">',
+                "\n".join("          " + _en_match_row(m, names, resolve, with_ko=True).replace(
+                    '<span class="en-rr-date">', f'<span class="en-rr-date">MD{m.get("md")} &middot; ', 1) for m in upcoming),
+                "        </ul>"]
+    src = data.get("source", "")
+    host = str(src).split("//")[-1].split("/")[0].removeprefix("www.") if src else ""
+    if host:
+        out.append(f'        <p class="en-note">Source: <a href="{esc(src)}" target="_blank" rel="nofollow noopener">{esc(host)}</a>'
+                   + (" (official JFA data)" if host == "jfa.jp" else "")
+                   + (f' &middot; updated {esc(str(data.get("lastUpdated"))[:10])}' if data.get("lastUpdated") else "") + "</p>")
+    return "\n".join(out) + "\n"
+
+
+def render_short_team_pages(out_root, teams, names, season):
+    if not SHORT_PAGES:
+        return
+    tourn = yaml.safe_load(TOURN_YML.read_text(encoding="utf-8")) if TOURN_YML.exists() else {}
+    pfinal = yaml.safe_load(PFINAL_YML.read_text(encoding="utf-8")) if PFINAL_YML.exists() else {}
+    lhist = yaml.safe_load(LHIST_YML.read_text(encoding="utf-8")) if LHIST_YML.exists() else {}
+    league_info = _league_info()
+    live = {}
+    for pref_id, pref in teams.items():
+        if isinstance(pref, dict):
+            for t in pref.get("teams", []):
+                live[t["name"]] = {**t, "_pref": pref_id}
+    done = 0
+    for jp, slug in sorted(SHORT_PAGES.items(), key=lambda x: x[1]):
+        rec, t = names[jp], live.get(jp) or {}
+        en = rec["en"]
+        lg_jp = t.get("league", "")
+        if lg_jp not in league_info:
+            print(f"[要確認] 短い英語チームページ {jp}: リーグ {lg_jp} が PRINCE_REGIONS にない（作りません）")
+            continue
+        lg_en, lg_slug, lg_link, tier = league_info[lg_jp]
+        pref_en = t["_pref"].capitalize()            # 辞書 _meta.prefecture_rule と同じ
+        pref_where = pref_en if t["_pref"] in ("hokkaido", "tokyo") else f"{pref_en} Prefecture"
+        is_club = bool(re.search(r"U-1\d|U1\d|Youth", en)) and "School" not in en
+        kind = "J.League club academy" if is_club else "High school team"
+        if is_club:
+            intro = (f"{esc(en)} (<span lang=\"ja\">{esc(jp)}</span>) is the under-18 academy team of a professional club "
+                     f"based in {esc(pref_where)}, Japan.")
+        else:
+            intro = (f"{esc(en)} (<span lang=\"ja\">{esc(jp)}</span>) is a high school football team "
+                     f"from {esc(pref_where)}, Japan.")
+        if tier == "prince":
+            intro += (f" In {season} it plays in the <a href=\"{lg_link}\">{esc(lg_en)}</a>, "
+                      "one of the regional Prince Leagues that form the second tier of under-18 league football in Japan, "
+                      "directly below the national <a href=\"/en/premier-league/\">Premier League</a>.")
+        else:
+            intro += (f" In {season} it plays in the <a href=\"{lg_link}\">{esc(lg_en)}</a>, "
+                      "the top tier of under-18 league football in Japan.")
+        legend = f'      <p class="en-note">{esc(pref_en)} &middot; {esc(lg_en)} &middot; {kind}</p>\n'
+        body = ""
+        if t.get("leagueRank"):
+            r = t["leagueRank"]
+            suf = "st" if r == 1 else "nd" if r == 2 else "rd" if r == 3 else "th"
+            body += f"""
+      <section class="lp-section">
+        <h2>{season} season</h2>
+        <p>Currently <strong>{r}{suf}</strong> in the <a href="{lg_link}">{esc(lg_en)}</a> with <strong>{t.get('points', 0)} points</strong>
+        from {t.get('played', 0)} matches ({t.get('won', 0)}W {t.get('drawn', 0)}D {t.get('lost', 0)}L,
+        {t.get('goalsFor', 0)}-{t.get('goalsAgainst', 0)}). Updated daily.</p>
+{season_results_html(jp, lg_jp, lg_slug, teams, names)}      </section>"""
+        keys = _team_keys(jp, t, slug)
+        rows, premier, titles = national_record(slug, keys, tourn, pfinal, lhist)
+        if rows or premier or titles:
+            parts = []
+            if premier:
+                parts.append(f"<p><strong>Premier League (top tier):</strong> {_ranges(premier)}.</p>")
+            if titles:
+                parts.append("<p><strong>Prince League champions:</strong> " + ", ".join(str(y) for y, _ in titles) + ".</p>")
+            if rows:
+                tb = "".join(f"<tr><td>{y}</td><td class=\"en-name\">{esc(c)}</td><td>{esc(s)}</td></tr>" for y, c, s in rows)
+                parts.append('<div class="en-scroll"><table class="en-table"><thead><tr><th>Year</th><th>Competition</th>'
+                             f'<th>Result</th></tr></thead><tbody>{tb}</tbody></table></div>')
+            parts.append('<p class="en-note">National tournaments are listed from 2016 (the years recorded on this site); '
+                         '&ldquo;Qualified&rdquo; means the team won its prefectural qualifying tournament. '
+                         'Premier League seasons are listed from the league&rsquo;s start in 2011, Prince League titles from 2003.</p>')
+            body += f"""
+      <section class="lp-section" id="record">
+        <h2>National record</h2>
+        {chr(10).join('        ' + p for p in parts).strip()}
+      </section>"""
+        url = f"{DOMAIN}/en/teams/{slug}/"
+        jp_link = rec.get("jp_page")
+        tail = ('      <section class="lp-section">\n        <h2>Notes</h2>\n'
+                f'        <p>This is a short English profile built from the data on this site. The full profile in Japanese — history, playing style, notable alumni and the current squad — is here: '
+                f'<a href="{esc(jp_link)}" lang="ja">{esc(jp)}</a>.</p>\n'
+                f'        <p>See also: <a href="{lg_link}">all {"Prince League" if tier == "prince" else "Premier League"} standings</a> and '
+                '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n'
+                '      </section>')
+        title = f"{en} — {season} season, results and national record"
+        desc = (f"{en} ({pref_en}) in English: {season} {lg_en} position and every league result, updated daily, "
+                "plus the team's record in Japan's national youth tournaments.")
+        breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+            {"@type": "ListItem", "position": 2, "name": f"Prince Leagues {season}" if tier == "prince" else f"Premier League {season}",
+             "item": f"{DOMAIN}/en/prince-leagues/" if tier == "prince" else f"{DOMAIN}/en/premier-league/"},
+            {"@type": "ListItem", "position": 3, "name": en, "item": url}]}, ensure_ascii=False)
+        page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb, crumb=esc(en),
+                              h1=esc(en), intro="        " + intro, legend=legend, tables=body, tail=tail)
+        dest = out_root / "en" / "teams" / slug / "index.html"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(page, encoding="utf-8")
+        done += 1
+    print(f"OK: 短い英語チームページ {done} 枚を書きました（en/teams/<slug>/）")
+
+
 def main():
     out_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT
     teams = json.loads(TEAMS.read_text(encoding="utf-8"))
@@ -1069,12 +1358,14 @@ def main():
         for md_path in TEAMS_EN_DIR.glob("*.md"):
             fm0 = yaml.safe_load(md_path.read_text(encoding="utf-8").split("---")[1])
             EN_TEAM_PAGES[fm0["jp_name"]] = f"/en/teams/{fm0.get('slug') or md_path.stem}/"
+    plan_short_pages(teams, names, hand_written=set(EN_TEAM_PAGES))   # 2026-09-29 プリンスの短いページ（先にリンク先を登録）
     render_premier(out_root, teams, names, season)
     render_prince(out_root, teams, names, season)
     render_national_team(out_root, names, extra, players, season)
     render_pro_signings(out_root, names, extra, players, season)
     render_interhigh(out_root, names, extra, season)
     render_team_pages(out_root, teams, names, extra, season)
+    render_short_team_pages(out_root, teams, names, season)
 
 
 if __name__ == "__main__":
