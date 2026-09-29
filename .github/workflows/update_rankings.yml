@@ -287,7 +287,9 @@ jobs:
             echo "scraper/backfill_venues.py がまだありません。スキップ。"
           fi
 
-      # ★ 県1部の一部は県協会公式（GoalNote / tecra ほか）から更新（2026-09-06〜）
+      # ★ 県1部の一部は県協会公式（tecra ほか）から更新（2026-09-06〜）
+      #   ⛔ GoalNote（8県）は 2026-09-30 から自動取得しない（robots.txt で全ロボット拒否）。
+      #      週1の手動取り込み（Kei が保存したHTMLを読む）に切り替えた。fetch_pref_official.py の BLOCKED_HOSTS 参照
       #   対象県は増えていく。実数は scraper/fetch_pref_official.py の PREF_OFFICIAL を数えること
       #   （2026-09-07時点で14県。残り32県は junior-soccer・北海道はJSONなし）。
       #   junior-soccer.jp は Actions から403で弾かれるようになり、7/15以降ずっと
@@ -314,7 +316,7 @@ jobs:
       #     取り込みが止まったことは audit_pref_freshness.py が非公式県の lastUpdated からの日数で🟡にする。
       #   ❌ このステップを戻さないこと（戻しても 403 で何も取れず、失敗が緑に隠れるだけ）。
 
-      - name: 県別得点ランキングを更新（県協会公式 / GoalNote）
+      - name: 県別得点ランキングを更新（県協会公式。GoalNote は2026-09-30から手動）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
                 && (env.SCOPE == 'all' || env.SCOPE == 'pref') }}
         continue-on-error: true

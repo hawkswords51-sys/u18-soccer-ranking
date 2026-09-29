@@ -18,6 +18,7 @@ import argparse
 import unicodedata
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
 try:
     import requests
@@ -424,9 +425,21 @@ def _find_standings_tables(soup: BeautifulSoup) -> list:
     return result
 
 
+# ⛔ 取りに行かないホスト（2026-09-30・robots.txt で全拒否）。requests でも Selenium でも通信する前に止める
+BLOCKED_HOSTS = {"goalnote.net", "www.goalnote.net"}
+
+
+def _is_blocked(url: str) -> bool:
+    host = (urlsplit(url).hostname or "").lower()
+    if host in BLOCKED_HOSTS:
+        print(f"    → {host} は robots.txt で拒否されているため取得しない（2026-09-30 決定）")
+        return True
+    return False
+
+
 def _fetch_with_selenium(url: str) -> BeautifulSoup | None:
     """Seleniumを使ってJS描画後のページを取得する（シンプル版: 1ページ分のみ）"""
-    if not SELENIUM_AVAILABLE:
+    if not SELENIUM_AVAILABLE or _is_blocked(url):
         return None
     print("  → Selenium (ヘッドレス Chrome) で再試行...")
     opts = Options()
@@ -463,6 +476,8 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
     - 関東・関西・九州・北信越 (REGIONS_WITH_DIVISIONS): 1部/2部を分離する
     - その他 (東海・中国・四国・北海道・東北): 単一リーグ扱い
     """
+    if _is_blocked(url):
+        return []
     region_name = REGION_DISPLAY_NAMES.get(region_key, region_key)
     results = []
 
@@ -583,6 +598,8 @@ def fetch_prince_divisions(url: str, region_key: str) -> list[tuple]:
 
 def fetch_page(url: str, retries: int = 3) -> BeautifulSoup | None:
     """JFAサイトのページを取得する（requests → Selenium フォールバック）"""
+    if _is_blocked(url):
+        return None
     for attempt in range(retries):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=15)
@@ -1049,24 +1066,22 @@ def recalculate_ranks(data: dict) -> None:
         pref_data["teams"] = sorted_teams
 
 
+# ⛔ 2026-09-30：GoalNote の2本目URL（岩手・山形・茨城・千葉・愛知）を外した（robots.txt で全拒否）。
+#    この5県の上部順位表は、他の県と同じく1本目（junior-soccer）→ヘッドレスChrome の経路になる。
 PREF_LEAGUE_URLS: dict[str, list[str]] = {
     "hokkaido":  ["https://junior-soccer.jp/hokkaido/hokkaido/league/order/163368"],
     "aomori":    ["https://junior-soccer.jp/tohoku/aomori/league/order/163886"],
-    "iwate":     ["https://junior-soccer.jp/tohoku/iwate/league/order/164020",
-                  "https://www.goalnote.net/detail-standings.php?tid=18702"],
+    "iwate":     ["https://junior-soccer.jp/tohoku/iwate/league/order/164020"],
     "akita":     ["https://junior-soccer.jp/tohoku/akita/league/order/163671"],
-    "yamagata":  ["https://junior-soccer.jp/tohoku/yamagata/league/order/163965",
-                  "https://www.goalnote.net/detail-standings.php?tid=18649"],
+    "yamagata":  ["https://junior-soccer.jp/tohoku/yamagata/league/order/163965"],
     "miyagi":    ["https://junior-soccer.jp/tohoku/miyagi/league/order/163782"],
     "fukushima": ["https://junior-soccer.jp/tohoku/fukushima/league/order/163405"],
-    "ibaraki":   ["https://junior-soccer.jp/kanto/ibaraki/league/order/163357",
-                  "https://www.goalnote.net/detail-standings.php?tid=18463"],
+    "ibaraki":   ["https://junior-soccer.jp/kanto/ibaraki/league/order/163357"],
     "tochigi":   ["https://junior-soccer.jp/kanto/tochigi/league/order/163569",
                   "https://api.lsin.jp/?m=r&e=1059&c=3"],
     "gunma":     ["https://junior-soccer.jp/kanto/gunma/league/order/163348",
                   "https://management.gunma-fa.com/api/table/173#439"],
-    "chiba":     ["https://junior-soccer.jp/kanto/chiba/league/order/163436",
-                  "https://www.goalnote.net/detail-standings.php?tid=18441"],
+    "chiba":     ["https://junior-soccer.jp/kanto/chiba/league/order/163436"],
     "saitama":   ["https://junior-soccer.jp/kanto/saitama/league/order/163779"],
     "tokyo":     ["https://junior-soccer.jp/kanto/tokyo/league/order/163371",
                   "https://www.tleague-u18.com/rank.php?dy=2026&dt=1&ltno=16"],
@@ -1081,7 +1096,7 @@ PREF_LEAGUE_URLS: dict[str, list[str]] = {
     "nagano":    ["https://junior-soccer.jp/hokushinetsu/nagano/league/order/163461"],
     "gifu":      ["https://junior-soccer.jp/tokai/gifu/league/order/163412"],
     "shizuoka":  ["https://junior-soccer.jp/tokai/shizuoka/league/order/163487"],
-    "aichi":     ["https://junior-soccer.jp/tokai/aichi/league/order/162912", "https://www.goalnote.net/detail-standings.php?tid=18269"],
+    "aichi":     ["https://junior-soccer.jp/tokai/aichi/league/order/162912"],
     "mie":       ["https://junior-soccer.jp/tokai/mie/league/order/163696"],
     "shiga":     ["https://junior-soccer.jp/kansai/shiga/league/order/163309", "https://shiga-fa-u18.com/order/1"],
     "kyoto":     ["https://junior-soccer.jp/kansai/kyoto/league/order/163399"],
@@ -1132,6 +1147,8 @@ def scrape_pref_second_divisions(data: dict) -> int:
         print(f"\n  [{pref_name}] 県リーグ2部 取得中... {url}")
         soup = None
         try:
+            if _is_blocked(url):
+                raise RuntimeError("取得しないホスト")
             resp = requests.get(url, headers=HEADERS, timeout=12)
             resp.raise_for_status()
             resp.encoding = resp.apparent_encoding
@@ -1195,6 +1212,8 @@ def scrape_pref_leagues(data: dict, already_updated: set[str]) -> int:
         soup = None
         for url in urls:
             print(f"    URL: {url}")
+            if _is_blocked(url):
+                continue
             try:
                 resp = requests.get(url, headers=HEADERS, timeout=12)
                 resp.raise_for_status()

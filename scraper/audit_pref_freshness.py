@@ -130,13 +130,26 @@ def official_prefs() -> dict:
 
     担当外（junior-soccer・Mac実行）の県は赤①の対象にしない。Actionsでは走らないので
     書き込む人がおらず、対象にすると全県が「記録なし＝赤」になってしまう。
+    ⚠️ 2026-09-30：platform が "goalnote_saved"（GoalNote 8県・週1の手動取り込み）の県は**ここに入れない**。
+       Actionsでは取りに行かない（robots.txt で拒否）ので、入れると「取得記録なし」になる。
+       手動取り込みの県として lastUpdated の古さで🟡Aにする（saved_html_prefs 参照）。
     """
     try:
         import fetch_pref_official as F
-        return {p: c.get("label", "") for p, c in F.PREF_OFFICIAL.items()}
+        return {p: c.get("label", "") for p, c in F.PREF_OFFICIAL.items()
+                if c.get("platform") != "goalnote_saved"}
     except Exception as e:
         print(f"  ※ fetch_pref_official を読めませんでした（{e}）。赤①は判定しません。")
         return {}
+
+
+def saved_html_prefs() -> set:
+    """GoalNote の週1手動取り込み（Kei が保存したHTMLを読む）の県（2026-09-30）。"""
+    try:
+        import fetch_pref_official as F
+        return {p for p, c in F.PREF_OFFICIAL.items() if c.get("platform") == "goalnote_saved"}
+    except Exception:
+        return set()
 
 
 def load_known_source_errors() -> dict:
@@ -261,14 +274,15 @@ def days_between(a: str, b: date) -> int | None:
 # ---------------------------------------------------------------------------
 # 記録の更新（played が変わった日＝last_change を保つのが肝）
 # ---------------------------------------------------------------------------
-def update_record(rec: dict, cur: dict, today: date, is_official: bool) -> dict:
+def update_record(rec: dict, cur: dict, today: date, is_official: bool,
+                  manual_label: str = "junior-soccer (manual)") -> dict:
     """前回の記録 rec を、今回の実測 cur で更新して返す。"""
     out = dict(rec)
     prev_played = rec.get("played")
     out.update({
         "played": cur["played"], "total": cur["total"], "teams": cur["teams"],
         "latest_match": cur["latest_match"],
-        "source": "official" if is_official else "junior-soccer (manual)",
+        "source": "official" if is_official else manual_label,
         "sourceName": cur["sourceName"],
         "last_updated": cur["last_updated"],
     })
@@ -308,7 +322,7 @@ def update_record(rec: dict, cur: dict, today: date, is_official: bool) -> dict:
 # ---------------------------------------------------------------------------
 def judge(records: dict, today: date, official: dict, jobs: dict,
           temp_exceptions: dict, excluded: dict | None = None,
-          known_errors: dict | None = None) -> dict:
+          known_errors: dict | None = None, saved: set | None = None) -> dict:
     """赤・黄・情報・正常などをまとめて返す。"""
     offseason = today.month in OFFSEASON_MONTHS
     known_errors = known_errors or {}
@@ -437,7 +451,9 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
                 yellow.append(f"🟡A {pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
                               f"（lastUpdated {r.get('last_updated') or '—'}・{r['played']}/{r['total']}"
                               f"・最終試合 {r.get('latest_match') or '—'}"
-                              f"）→ Macで update_pref_cross_tables.py を実行")
+                              + ("）→ GoalNote の週1取り込み（ブラウザで保存したHTMLを読む）"
+                                 if pref in (saved or set()) else
+                                 "）→ Macで update_pref_cross_tables.py を実行"))
                 continue
         if r.get("complete"):
             # ⚠️ 「全試合消化済み」は「シーズン終了」とは限らない。
@@ -510,6 +526,7 @@ def main() -> int:
 
     today = jst_today()
     official = official_prefs()
+    saved = saved_html_prefs()
 
     # ⚠️ 2026-09-16：対象を `pref-*-1.json`（46ファイル）から `pref-*.json`（＋大阪2部A/B/C＝49）へ広げた。
     #    大阪2部が2か月どの見張りにも入っていなかったのは、対象が「入れたものだけ」だったため。
@@ -530,7 +547,9 @@ def main() -> int:
         rec.update({"season": cur["season"], "complete": cur["complete"],
                     "single_round": cur["single_round"], "dup_pairs": cur["dup_pairs"],
                     "played_without_date": cur["played_without_date"]})
-        records[pref] = update_record(rec, cur, today, pref in official)
+        records[pref] = update_record(rec, cur, today, pref in official,
+                                      "goalnote (saved HTML・manual)" if pref in saved
+                                      else "junior-soccer (manual)")
 
     excluded = manual_excluded()
     known_errors = load_known_source_errors()
@@ -541,7 +560,7 @@ def main() -> int:
             f"[既知の出典の誤り {'・'.join(e.get('teams') or [])} 期限{e.get('expires')}"
             f"・外す条件: {e.get('remove_when')}]")
     j = judge(records, today, official, status.get("jobs", {}),
-              temp_ex, excluded, known_errors)
+              temp_ex, excluded, known_errors, saved)
     red, yellow, info, ok = j["red"], j["yellow"], j["info"], j["ok"]
 
     national = max((r.get("latest_match", "") for r in records.values()), default="")

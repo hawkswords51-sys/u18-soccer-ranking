@@ -20,12 +20,21 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import requests
 from bs4 import BeautifulSoup
 
 DIR = Path(__file__).resolve().parent.parent / "data" / "scorers"
 HEAD = {"User-Agent": "Mozilla/5.0 (compatible; u18-soccer-bot/1.0; +https://u18-soccer.com)"}
+# ⛔ 取りに行かないホスト（2026-09-30・robots.txt で全拒否）。通信する前に止める
+BLOCKED_HOSTS = {"goalnote.net", "www.goalnote.net"}
+
+
+def _check_blocked(url: str) -> None:
+    host = (urlsplit(url).hostname or "").lower()
+    if host in BLOCKED_HOSTS:
+        raise RuntimeError(f"{host} は robots.txt で拒否されているため取得しない（2026-09-30 決定）: {url}")
 TIMEOUT = 25
 
 # NFKC で直らない CJK 部首・互換漢字の補正
@@ -101,37 +110,10 @@ SOURCES = {
         label="滋賀県サッカー協会 公式",
         league="高円宮杯 JFA U-18 サッカーリーグ2026 滋賀 1部 得点ランキング",
         note="滋賀県サッカー協会公式サイトの得点ランキングをそのまま掲載しています。"),
-    "pref-aichi-1": dict(
-        url="https://www.goalnote.net/detail-ranking.php?tid=18269",
-        label="GoalNote（愛知県1部 公式）",
-        league="高円宮杯 JFA U-18 サッカーリーグ2026 愛知県1部 得点ランキング",
-        note="愛知県1部リーグ公式（GoalNote）掲載の得点ランキングです。"),
-    "pref-iwate-1": dict(
-        url="https://www.goalnote.net/detail-ranking.php?tid=18702",
-        label="GoalNote（岩手 i.LEAGUE DIVISION I 公式）",
-        league="高円宮杯 JFA U-18 サッカーリーグ2026 岩手 i.LEAGUE DIVISION I 得点ランキング",
-        note="岩手県1部（i.LEAGUE DIVISION I）公式（GoalNote）掲載の得点ランキングです。"),
-    "pref-nagasaki-1": dict(
-        url="https://www.goalnote.net/detail-ranking.php?tid=18526",
-        label="GoalNote（長崎県1部 公式）",
-        league="高円宮杯 JFA U-18 サッカーリーグ2026 長崎県リーグ1部 得点ランキング",
-        note="長崎県1部リーグ公式（GoalNote）掲載の得点ランキングです。"),
-    "pref-tottori-1": dict(
-        url="https://www.goalnote.net/detail-ranking.php?tid=18541",
-        label="GoalNote（わかとりリーグ1部 公式）",
-        league="高円宮杯 JFA U-18 サッカーリーグ2026 わかとりリーグ1部 得点ランキング",
-        note="鳥取県1部（わかとりリーグ1部前期）公式（GoalNote）掲載の得点ランキングです。"),
-    # 以下は現時点で得点者データが未入力の「枠だけ」県。入力されたら自動で埋まる。
-    "pref-chiba-1": dict(
-        url="https://www.goalnote.net/detail-ranking.php?tid=18441",
-        label="GoalNote（千葉県1部 公式）",
-        league="高円宮杯 JFA U-18 サッカーリーグ2026 千葉県1部 得点ランキング",
-        note="千葉県1部リーグ公式（GoalNote）掲載の得点ランキングです。"),
-    "pref-kagawa-1": dict(
-        url="https://www.goalnote.net/detail-ranking.php?tid=18633",
-        label="GoalNote（香川県1部 公式）",
-        league="高円宮杯 JFA U-18 サッカーリーグ2026 香川県1部 得点ランキング",
-        note="香川県1部リーグ公式（GoalNote）掲載の得点ランキングです。"),
+    # ⛔ 2026-09-30：GoalNote の6件（愛知・岩手・長崎・鳥取・千葉・香川の detail-ranking.php）を外した。
+    #    goalnote.net は robots.txt で全ロボットを拒否しているため自動取得しない（Kei決定）。
+    #    既存の data/scorers/pref-*-1.json は残す（ページには JSON の「最終更新」日付が出る）。
+    #    週1の半手動（保存HTML）で取り込む予定。許可が出たら戻す。
 }
 
 MAX_ROWS = 200  # 表示は20件だが、データは全件保持しておく
@@ -140,6 +122,7 @@ MAX_ROWS = 200  # 表示は20件だが、データは全件保持しておく
 def update_one(slug: str, cfg: dict, today: str) -> str:
     path = DIR / f"{slug}.json"
     try:
+        _check_blocked(cfg["url"])
         r = requests.get(cfg["url"], headers=HEAD, timeout=TIMEOUT)
         r.raise_for_status()
         r.encoding = r.apparent_encoding or r.encoding
@@ -290,6 +273,7 @@ def parse_okinawa_html(html):
 
 def fetch_okinawa(today):
     try:
+        _check_blocked(OKINAWA_URL)
         r = requests.get(OKINAWA_URL, headers=HEAD, timeout=TIMEOUT)
         r.raise_for_status()
         r.encoding = r.apparent_encoding or r.encoding
@@ -378,6 +362,7 @@ def _jyouth_last_updated(html: str, default: str) -> str:
 
 def fetch_jyouth(today: str) -> str:
     try:
+        _check_blocked(JYOUTH_URL)
         r = requests.get(JYOUTH_URL, headers=HEAD, timeout=TIMEOUT)
         r.raise_for_status()
         r.encoding = r.apparent_encoding or r.encoding

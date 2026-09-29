@@ -21,8 +21,10 @@
 
 データ源は2系統
 ---------------
-  GoalNote (6県) https://www.goalnote.net/detail-standings.php?tid={tid}
+  GoalNote (8県) https://www.goalnote.net/detail-standings.php?tid={tid}
                  https://www.goalnote.net/detail-schedule.php?tid={tid}
+                 ⛔ 2026-09-30 から**自動取得しない**（robots.txt が User-Agent:* Disallow: /）。
+                    platform を "goalnote_saved"（週1・Kei が保存したHTMLを読む）にした。BLOCKED_HOSTS 参照
   tecra    (3県) https://{host}/order/1/{season}/all   （順位表）
                  https://{host}/match/1/{season}/all   （試合結果）
                  ※ 2026-09-06に3ドメイン×パスを実測。`/all` の有無で結果は変わらない
@@ -51,6 +53,7 @@ from datetime import date as _date
 from jst import today as _jst_today
 import fetch_status
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -115,21 +118,26 @@ TEMP_EXCEPTIONS: dict[str, str] = {
 }
 
 
+# ⛔ 2026-09-30（Kei決定）：GoalNote（goalnote.net）は robots.txt が `User-Agent:*` / `Disallow: /`。
+#    「相手が断っているなら回避しない」ので、下の8県は **"goalnote_saved"＝毎日の自動取得から外した**。
+#    既存の pref-*-1.json は消さない・上書きしない（最終取得時点のまま表示）。
+#    設定（tid など）は消さない：週1の半手動（保存HTMLを read_goalnote に通す）と、許可が出たときの自動復帰に使う。
+#    茨城・山形は県協会PDFへ移す予定（そのとき platform を差し替える）。
 PREF_OFFICIAL = {
-    "chiba":    {"platform": "goalnote", "tid": "18441", "label": "千葉県サッカー協会 公式（GoalNote）"},
-    "aichi":    {"platform": "goalnote", "tid": "18269", "label": "愛知県サッカー協会 公式（GoalNote）"},
-    "iwate":    {"platform": "goalnote", "tid": "18702", "label": "岩手県サッカー協会 公式（GoalNote）"},
-    "nagasaki": {"platform": "goalnote", "tid": "18526", "label": "長崎県サッカー協会 公式（GoalNote）"},
+    "chiba":    {"platform": "goalnote_saved", "tid": "18441", "label": "千葉県サッカー協会 公式（GoalNote）"},
+    "aichi":    {"platform": "goalnote_saved", "tid": "18269", "label": "愛知県サッカー協会 公式（GoalNote）"},
+    "iwate":    {"platform": "goalnote_saved", "tid": "18702", "label": "岩手県サッカー協会 公式（GoalNote）"},
+    "nagasaki": {"platform": "goalnote_saved", "tid": "18526", "label": "長崎県サッカー協会 公式（GoalNote）"},
     # 鳥取は前期(18541・8チーム1回戦総当たり・7/24完了)と後期(19293・上位4/下位4の
     # グループ分け・9/5開幕)が**別大会として登録**されている。試合は両方から集め、
     # 順位表は後期のもの（＝通年通算になっている）を使う。
     # 後期はグループ分けなので総当たり枠を作らない（round_robin: False）。
-    "tottori":  {"platform": "goalnote", "tid": "19293", "extra_tids": ["18541"],
+    "tottori":  {"platform": "goalnote_saved", "tid": "19293", "extra_tids": ["18541"],
                  "standings_from": "19293", "round_robin": False,
                  "label": "鳥取県サッカー協会 公式（GoalNote）"},
-    "kagawa":   {"platform": "goalnote", "tid": "18633", "label": "香川県サッカー協会 公式（GoalNote）"},
-    "yamagata": {"platform": "goalnote", "tid": "18649", "label": "山形県サッカー協会 公式（GoalNote）"},
-    "ibaraki":  {"platform": "goalnote", "tid": "18463", "label": "茨城県サッカー協会 公式（GoalNote）"},
+    "kagawa":   {"platform": "goalnote_saved", "tid": "18633", "label": "香川県サッカー協会 公式（GoalNote）"},
+    "yamagata": {"platform": "goalnote_saved", "tid": "18649", "label": "山形県サッカー協会 公式（GoalNote）"},
+    "ibaraki":  {"platform": "goalnote_saved", "tid": "18463", "label": "茨城県サッカー協会 公式（GoalNote）"},
     "shiga":    {"platform": "tecra", "host": "shiga-fa-u18.com", "label": "滋賀県サッカー協会 公式"},
     "fukuoka":  {"platform": "tecra", "host": "fukuoka-fa-u18.com", "label": "福岡県サッカー協会 公式"},
     "saga":     {"platform": "tecra", "host": "saga-fa-u18.com", "label": "佐賀県サッカー協会 公式"},
@@ -587,6 +595,17 @@ _TECRA_DATE_RE = re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
 # ============================================================
 # 取得
 # ============================================================
+# ⛔ 取りに行かないホスト（2026-09-30）。robots.txt で全ロボットを拒否している出典。
+#    設定の書き忘れや年度替わりの tid 差し替えで復活しないよう、**通信する前に**止める安全装置。
+BLOCKED_HOSTS = {"goalnote.net", "www.goalnote.net"}
+
+
+def _check_blocked(url: str) -> None:
+    host = (urlsplit(url).hostname or "").lower()
+    if host in BLOCKED_HOSTS:
+        raise RuntimeError(f"{host} は robots.txt で拒否されているため取得しない（2026-09-30 決定）: {url}")
+
+
 def fetch_html(url: str, encoding: str | None = None,
                retries: int = RETRIES, wait: float = SLEEP,
                timeout: int = TIMEOUT, must_contain: str = "") -> str:
@@ -601,6 +620,7 @@ def fetch_html(url: str, encoding: str | None = None,
     must_contain  … デコード結果にこの文字列が無ければ失敗扱いにする。
                     文字化けを黙って通さないためのガード
     """
+    _check_blocked(url)
     last = None
     for _ in range(retries):
         try:
@@ -621,6 +641,7 @@ def fetch_html(url: str, encoding: str | None = None,
 def fetch_json(url: str, retries: int = RETRIES, wait: float = SLEEP):
     """JSONを取得する。パースもリトライの中で行う
     （途中で切れたレスポンスを1回で諦めないため）。"""
+    _check_blocked(url)
     last = None
     for _ in range(retries):
         try:
@@ -5631,6 +5652,9 @@ def _keep_verify_items(ng: list[str], site_names) -> None:
 
 def process(pref: str, cfg: dict, dry_run: bool) -> str:
     slug = cfg.get("slug", f"pref-{pref}-1")   # 2部などは cfg に slug を書く（2026-09-21）
+    if cfg["platform"] == "goalnote_saved":
+        return (f"[手動] {slug}: GoalNote は自動取得しない（robots.txt で拒否・2026-09-30）。"
+                f"週1の手動取り込みで更新する。既存JSONはそのまま")
     global LAST_VERIFY_ITEMS
     LAST_VERIFY_ITEMS = None
     path = DIR / f"{slug}.json"
@@ -5975,14 +5999,14 @@ def classify(msg: str) -> tuple[str, str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="県1部を県協会公式（GoalNote / tecra ほか）から更新する")
+        description="県1部を県協会公式（tecra ほか。GoalNote は2026-09-30から手動）から更新する")
     parser.add_argument("--dry-run", action="store_true",
                         help="書き込まず、既存との差分だけ出す")
     parser.add_argument("--only", default="", help="県idをカンマ区切りで指定")
     args = parser.parse_args()
     only = {s.strip() for s in args.only.split(",") if s.strip()}
 
-    print("=== 県1部 戦績表 自動更新（県協会公式：GoalNote / tecra）===")
+    print("=== 県1部 戦績表 自動更新（県協会公式：tecra ほか。GoalNote 8県は週1の手動）===")
     updated = held = warn = 0
     for pref, cfg in PREF_OFFICIAL.items():
         if only and pref not in only:
@@ -5992,6 +6016,8 @@ def main() -> int:
         except Exception as e:      # 想定外でも他県は止めない
             msg = f"[要確認] pref-{pref}-1: 例外 {e}"
         print(" ", msg)
+        if msg.startswith("[手動]"):
+            continue                # 取得していないので記録も残さない（見張りは手動取り込みの県として見る）
         code, note = classify(msg)
         items = LAST_VERIFY_ITEMS if code == "verify_failed" else None
         if items:
