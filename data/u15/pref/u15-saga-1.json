@@ -1,0 +1,702 @@
+{
+ "league": "2026高円宮杯 佐賀県U-15サッカーリーグ（サガんリーグU-15） 1部",
+ "season": "2026",
+ "pref": "saga",
+ "prefName": "佐賀県",
+ "region": "九州",
+ "source": "https://gc-model.com/front/saga/convention/order/223",
+ "sourceName": "佐賀県サッカー協会 3種（gc-model）",
+ "lastUpdated": "2026-09-30",
+ "teams": [
+  {
+   "name": "FCソレイユ2008",
+   "short": "FCソレイユ2008"
+  },
+  {
+   "name": "アヴァンス",
+   "short": "アヴァンス"
+  },
+  {
+   "name": "プレジャーSC",
+   "short": "プレジャーSC"
+  },
+  {
+   "name": "FCレヴォーナ",
+   "short": "FCレヴォーナ"
+  },
+  {
+   "name": "エストレーベ",
+   "short": "エストレーベ"
+  },
+  {
+   "name": "FC GIRASOL",
+   "short": "FC GIRASOL"
+  },
+  {
+   "name": "デサフィオーラ",
+   "short": "デサフィオーラ"
+  },
+  {
+   "name": "VALENTIA",
+   "short": "VALENTIA"
+  }
+ ],
+ "official_standings": [
+  {
+   "rank": 1,
+   "team": "FCソレイユ2008",
+   "points": 31,
+   "played": 14,
+   "won": 10,
+   "drawn": 1,
+   "lost": 3,
+   "gf": 31,
+   "ga": 14,
+   "gd": 17
+  },
+  {
+   "rank": 2,
+   "team": "アヴァンス",
+   "points": 27,
+   "played": 14,
+   "won": 8,
+   "drawn": 3,
+   "lost": 3,
+   "gf": 31,
+   "ga": 20,
+   "gd": 11
+  },
+  {
+   "rank": 3,
+   "team": "プレジャーSC",
+   "points": 21,
+   "played": 14,
+   "won": 6,
+   "drawn": 3,
+   "lost": 5,
+   "gf": 20,
+   "ga": 21,
+   "gd": -1
+  },
+  {
+   "rank": 4,
+   "team": "FCレヴォーナ",
+   "points": 19,
+   "played": 14,
+   "won": 6,
+   "drawn": 1,
+   "lost": 7,
+   "gf": 24,
+   "ga": 20,
+   "gd": 4
+  },
+  {
+   "rank": 5,
+   "team": "エストレーベ",
+   "points": 19,
+   "played": 14,
+   "won": 6,
+   "drawn": 1,
+   "lost": 7,
+   "gf": 27,
+   "ga": 25,
+   "gd": 2
+  },
+  {
+   "rank": 6,
+   "team": "FC GIRASOL",
+   "points": 19,
+   "played": 14,
+   "won": 5,
+   "drawn": 4,
+   "lost": 5,
+   "gf": 10,
+   "ga": 12,
+   "gd": -2
+  },
+  {
+   "rank": 7,
+   "team": "デサフィオーラ",
+   "points": 18,
+   "played": 14,
+   "won": 5,
+   "drawn": 3,
+   "lost": 6,
+   "gf": 11,
+   "ga": 18,
+   "gd": -7
+  },
+  {
+   "rank": 8,
+   "team": "VALENTIA",
+   "points": 6,
+   "played": 14,
+   "won": 2,
+   "drawn": 0,
+   "lost": 12,
+   "gf": 11,
+   "ga": 35,
+   "gd": -24
+  }
+ ],
+ "matches": [
+  {
+   "md": 0,
+   "date": "2026-02-08",
+   "home": "デサフィオーラ",
+   "hs": 0,
+   "as": 3,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場北"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-11",
+   "home": "FCソレイユ2008",
+   "hs": 1,
+   "as": 3,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場北"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-11",
+   "home": "VALENTIA",
+   "hs": 0,
+   "as": 5,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場北"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-11",
+   "home": "プレジャーSC",
+   "hs": 0,
+   "as": 0,
+   "away": "デサフィオーラ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場北"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-22",
+   "home": "FCソレイユ2008",
+   "hs": 0,
+   "as": 1,
+   "away": "FC GIRASOL",
+   "status": "played",
+   "venue": "みやき中央公園"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-22",
+   "home": "アヴァンス",
+   "hs": 3,
+   "as": 2,
+   "away": "プレジャーSC",
+   "status": "played",
+   "venue": "みやき中央公園"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-23",
+   "home": "VALENTIA",
+   "hs": 3,
+   "as": 2,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "唐津フットボールセンター"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-23",
+   "home": "デサフィオーラ",
+   "hs": 1,
+   "as": 0,
+   "away": "FC GIRASOL",
+   "status": "played",
+   "venue": "唐津フットボールセンター"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-28",
+   "home": "FCレヴォーナ",
+   "hs": 2,
+   "as": 1,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-28",
+   "home": "デサフィオーラ",
+   "hs": 1,
+   "as": 3,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-02-28",
+   "home": "プレジャーSC",
+   "hs": 2,
+   "as": 1,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-01",
+   "home": "FC GIRASOL",
+   "hs": 2,
+   "as": 1,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "みやき中央公園"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-01",
+   "home": "FCレヴォーナ",
+   "hs": 0,
+   "as": 1,
+   "away": "プレジャーSC",
+   "status": "played",
+   "venue": "みやき中央公園"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-01",
+   "home": "アヴァンス",
+   "hs": 2,
+   "as": 2,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "みやき中央公園"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-07",
+   "home": "FC GIRASOL",
+   "hs": 1,
+   "as": 0,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-07",
+   "home": "エストレーベ",
+   "hs": 2,
+   "as": 1,
+   "away": "プレジャーSC",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-07",
+   "home": "デサフィオーラ",
+   "hs": 1,
+   "as": 2,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-14",
+   "home": "アヴァンス",
+   "hs": 0,
+   "as": 2,
+   "away": "FC GIRASOL",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-14",
+   "home": "エストレーベ",
+   "hs": 4,
+   "as": 1,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-15",
+   "home": "VALENTIA",
+   "hs": 0,
+   "as": 5,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場北"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-15",
+   "home": "アヴァンス",
+   "hs": 5,
+   "as": 2,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場北"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-20",
+   "home": "FCソレイユ2008",
+   "hs": 1,
+   "as": 2,
+   "away": "プレジャーSC",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 北"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-20",
+   "home": "FCレヴォーナ",
+   "hs": 0,
+   "as": 2,
+   "away": "FC GIRASOL",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-20",
+   "home": "アヴァンス",
+   "hs": 4,
+   "as": 1,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-20",
+   "home": "エストレーベ",
+   "hs": 4,
+   "as": 0,
+   "away": "デサフィオーラ",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 北"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-22",
+   "home": "デサフィオーラ",
+   "hs": 1,
+   "as": 0,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-22",
+   "home": "プレジャーSC",
+   "hs": 1,
+   "as": 0,
+   "away": "FC GIRASOL",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-03-29",
+   "home": "FCソレイユ2008",
+   "hs": 3,
+   "as": 2,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-05-31",
+   "home": "FC GIRASOL",
+   "hs": 0,
+   "as": 3,
+   "away": "VALENTIA",
+   "status": "played"
+  },
+  {
+   "md": 0,
+   "date": "2026-06-06",
+   "home": "エストレーベ",
+   "hs": 3,
+   "as": 1,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-06-06",
+   "home": "プレジャーSC",
+   "hs": 1,
+   "as": 5,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-06-13",
+   "home": "FC GIRASOL",
+   "hs": 0,
+   "as": 2,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-06-13",
+   "home": "FCレヴォーナ",
+   "hs": 0,
+   "as": 2,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-07-18",
+   "home": "FC GIRASOL",
+   "hs": 1,
+   "as": 1,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-07-18",
+   "home": "デサフィオーラ",
+   "hs": 2,
+   "as": 2,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-07-18",
+   "home": "プレジャーSC",
+   "hs": 1,
+   "as": 3,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-07-20",
+   "home": "アヴァンス",
+   "hs": 1,
+   "as": 3,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-07-20",
+   "home": "デサフィオーラ",
+   "hs": 2,
+   "as": 1,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-05",
+   "home": "FCレヴォーナ",
+   "hs": 0,
+   "as": 1,
+   "away": "デサフィオーラ",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-05",
+   "home": "エストレーベ",
+   "hs": 1,
+   "as": 3,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "SAGAサンライズパーク球技場南"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-06",
+   "home": "FC GIRASOL",
+   "hs": 0,
+   "as": 0,
+   "away": "プレジャーSC",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-06",
+   "home": "FCソレイユ2008",
+   "hs": 1,
+   "as": 0,
+   "away": "デサフィオーラ",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-06",
+   "home": "VALENTIA",
+   "hs": 0,
+   "as": 3,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-12",
+   "home": "FC GIRASOL",
+   "hs": 1,
+   "as": 1,
+   "away": "デサフィオーラ",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-12",
+   "home": "FCソレイユ2008",
+   "hs": 2,
+   "as": 0,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 北"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-12",
+   "home": "FCレヴォーナ",
+   "hs": 2,
+   "as": 1,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 北"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-12",
+   "home": "プレジャーSC",
+   "hs": 3,
+   "as": 3,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-19",
+   "home": "FC GIRASOL",
+   "hs": 0,
+   "as": 2,
+   "away": "FCソレイユ2008",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-19",
+   "home": "FCレヴォーナ",
+   "hs": 3,
+   "as": 2,
+   "away": "VALENTIA",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-19",
+   "home": "エストレーベ",
+   "hs": 0,
+   "as": 2,
+   "away": "アヴァンス",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-19",
+   "home": "プレジャーSC",
+   "hs": 1,
+   "as": 0,
+   "away": "デサフィオーラ",
+   "status": "played"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-21",
+   "home": "VALENTIA",
+   "hs": 0,
+   "as": 1,
+   "away": "デサフィオーラ",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-21",
+   "home": "プレジャーSC",
+   "hs": 2,
+   "as": 3,
+   "away": "エストレーベ",
+   "status": "played",
+   "venue": "ブラックモンブランフットボールセンター 南"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-22",
+   "home": "VALENTIA",
+   "hs": 0,
+   "as": 3,
+   "away": "プレジャーSC",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-22",
+   "home": "アヴァンス",
+   "hs": 1,
+   "as": 0,
+   "away": "FCレヴォーナ",
+   "status": "played",
+   "venue": "嬉野総合運動公園（みゆき公園）"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-22",
+   "home": "エストレーベ",
+   "hs": 0,
+   "as": 0,
+   "away": "FC GIRASOL",
+   "status": "played",
+   "venue": "龍谷高校サッカーグランド"
+  }
+ ]
+}

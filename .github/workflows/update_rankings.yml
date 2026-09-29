@@ -339,6 +339,20 @@ jobs:
             echo "scraper/fetch_u15_leagues.py がまだありません。スキップ。"
           fi
 
+      # ★ U-15（3種）県リーグ1部（試作7県）を更新（2026-09-30新設）
+      #   出典: gc-model（栃木・群馬・佐賀・長崎）／神奈川県協会3種／SportsOnline（広島）／新潟県協会
+      #   検算NG・取得失敗の県は既存の data/u15/pref/*.json を残す。GoalNote は使わない（robots.txt で全拒否）
+      - name: U-15県1部を更新
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
+                && env.SCOPE == 'all' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/fetch_u15_pref.py ]; then
+            python scraper/fetch_u15_pref.py
+          else
+            echo "scraper/fetch_u15_pref.py がまだありません。スキップ。"
+          fi
+
       # ★ U-16ルーキーリーグ（高校1年生年代）9地域の順位表を自動更新
       #   出典: 大会公式サイト u16-rookie-league.com の星取表（集計欄が無いので自前で計算する）
       #   検算NG・取得失敗のリーグは既存データを維持する（誤データを載せない安全設計）
@@ -552,6 +566,16 @@ jobs:
             python scraper/generate_u15_page.py
           else
             echo "scraper/generate_u15_page.py がまだありません。スキップ。"
+          fi
+
+      # ★ U-15県1部ページ（/u15/{県}/）。導出なので push でも走らせる（JSONを手で直して push しただけで反映）
+      - name: U-15県1部ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_u15_pref_pages.py ]; then
+            python scraper/generate_u15_pref_pages.py
+          else
+            echo "scraper/generate_u15_pref_pages.py がまだありません。スキップ。"
           fi
 
       - name: U-16ルーキーリーグ ハブページを再生成

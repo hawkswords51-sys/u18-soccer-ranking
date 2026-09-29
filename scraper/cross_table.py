@@ -164,6 +164,10 @@ NO_HOME_AWAY_SLUGS: set[str] = {
     #    「左100%は会場欄がホーム欄のコピーでは」という疑いは、同じ goalnote の愛知が右7・
     #    茨城が右1 であることで潰れている（この出典は相手のグラウンドの試合を右で記録する）。
     # ------------------------------------------------------------------
+    # ↓ 2026-09-30 U-15県1部（試作7県・data/u15/pref/）。gc-model・神奈川3種・SportsOnline・新潟の
+    #   どれも、左右が本当のホーム/アウェイだと確かめていない（「H/Aは証明されたときだけ出す」）。
+    "u15-tochigi-1", "u15-gunma-1", "u15-saga-1", "u15-nagasaki-1",
+    "u15-kanagawa-1", "u15-hiroshima-1", "u15-niigata-1",
 }
 
 
@@ -203,10 +207,12 @@ def display_pref_team_name(s):
 
 
 def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り表）",
-                            form_heading: str = "各チームの戦績") -> str:
+                            form_heading: str = "各チームの戦績", match_dir: Path | None = None) -> str:
     """リーグ slug の戦績表セクションHTMLを返す。データが無ければ ''（空）。
-    heading/form_heading で見出しを差し替え可能（大阪2部A〜C等、同一ページに複数表を置く場合用）。"""
-    path = _MATCH_DIR / f"{slug}.json"
+    heading/form_heading で見出しを差し替え可能（大阪2部A〜C等、同一ページに複数表を置く場合用）。
+    match_dir を渡すと data/league_matches/ 以外から読む（2026-09-30・U-15県1部の data/u15/pref/ 用）。
+    省略時は従来どおり＝U-18 の出力は変わらない。"""
+    path = (match_dir or _MATCH_DIR) / f"{slug}.json"
     if not path.exists():
         return ""
     try:

@@ -151,6 +151,36 @@ def render_regions(data):
     return "\n".join(blocks), by_region
 
 
+# [2026-09-30] 都道府県1部リーグ（試作7県）。data/u15/pref/*.json（fetch_u15_pref.py）から首位・消化数を自動で出す。
+PREF_DIR = BASE_DIR / "data" / "u15" / "pref"
+PREF_ORDER = ["niigata", "tochigi", "gunma", "kanagawa", "hiroshima", "saga", "nagasaki"]
+
+
+def render_pref_section():
+    cards = []
+    for key in PREF_ORDER:
+        p = PREF_DIR / f"u15-{key}-1.json"
+        if not p.exists():
+            continue
+        d = json.loads(p.read_text(encoding="utf-8"))
+        played = sum(1 for m in d["matches"] if m.get("status") == "played")
+        top = d["official_standings"][0]
+        cards.append(
+            f'<li><a href="/u15/{key}/"><strong>{html_escape(d["prefName"])}</strong></a>'
+            f'　{html_escape(d["league"])}<br><span class="u15-note">首位 {html_escape(top["team"])}'
+            f'（勝点{top["points"]}）・消化 {played}／{len(d["matches"])}試合</span></li>')
+    if not cards:
+        return ""
+    return f'''
+      <section class="lp-section" id="prefectures">
+        <h2><i class="fas fa-map"></i> 都道府県1部リーグ（第3種）</h2>
+        <p class="u15-note">※公式サイトで結果が公開され、機械的に検算できる県から順に掲載しています（{len(cards)}県）。</p>
+        <ul style="line-height:1.9;">
+          {(chr(10) + "          ").join(cards)}
+        </ul>
+      </section>'''
+
+
 def render_nav(by_region):
     pills = []
     for region in REGION_ORDER:
@@ -362,6 +392,7 @@ def build_html(data):
         </div>
       </section>
 {regions_html}
+{render_pref_section()}
 
       <section class="lp-section">
         <h2><i class="fas fa-link"></i> U-15からU-18へ：この年代の選手はどこへ進むのか</h2>
