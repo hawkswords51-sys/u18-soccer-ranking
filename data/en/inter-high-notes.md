@@ -13,7 +13,7 @@ The Inter-High School Championships (全国高等学校総合体育大会, commo
 
 ## result
 
-**Shizuoka Gakuen won the 2026 title, beating Kindai University High School 2-1 in the final at J-Village Stadium on 1 August.** The winning goal came in the sixth minute of added time. It is Shizuoka Gakuen's first Inter-High title, fifteen years after they last reached the final, and the first time a school from Shizuoka has won the tournament since 1996. Kindai University High School, back at the tournament for the first time in twelve editions, won all five of their earlier matches by a single goal or on penalties.
+**Shizuoka Gakuen won the 2026 title, beating Kindai University High School 2-1 in the final at J-Village Stadium on 1 August.** The winning goal came in the fifth minute of added time. It is Shizuoka Gakuen's first Inter-High title, fifteen years after they last reached the final, and the first time a school from Shizuoka has won the tournament since 1996. Kindai University High School, back at the tournament for the first time in twelve editions, won all five of their earlier matches by a single goal or on penalties.
 
 ## origins
 

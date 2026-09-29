@@ -1009,8 +1009,19 @@ def render_team_pages(out_root, teams, names, extra, season):
             lg_en = ("Premier League EAST" if lg == "プレミアリーグEAST" else
                      "Premier League WEST" if lg == "プレミアリーグWEST" else
                      "Prince League" if "プリンス" in lg else lg)
+            # 2026-09-30：都道府県リーグ所属のチーム（例：近畿大学附属＝大阪府1部）に手書きページを作ったため、
+            # 「大阪府1部」のような日本語が英語ページに出ないよう英語にする。読めない書き方は出さない。
+            m = re.fullmatch(r".+?[都道府県](\d)部", lg)
+            if m:
+                pref_en = t.get("_pref", "").capitalize()
+                lg_en = f"{pref_en} Prefectural League Division {m.group(1)}"
+            elif re.search(r"[\u3040-\u30ff\u4e00-\u9fff]", lg_en):
+                print(f"[要確認] 英語チームページ {jp}: リーグ名 {lg} を英語にできないので、リーグ名を出さずに順位だけ書きます")
+                lg_en = "league"
             lg_link = ("/en/premier-league/" if "プレミア" in lg else
                        "/en/prince-leagues/" if "プリンス" in lg else "")
+            if "プリンス" in lg and lg in _league_info():      # 2026-09-30：プリンスは「Prince League Tokai」まで書き、地域の表へ飛ばす
+                lg_en, _, lg_link, _ = _league_info()[lg]
             where = f'<a href="{lg_link}">{esc(lg_en)}</a>' if lg_link else esc(lg_en)
             r = t["leagueRank"]
             suf = "st" if r == 1 else "nd" if r == 2 else "rd" if r == 3 else "th"
