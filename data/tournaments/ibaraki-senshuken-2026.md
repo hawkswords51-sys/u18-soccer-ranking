@@ -73,8 +73,8 @@ scraper/update_tournament_results.py が上の source から
 - 守谷 4-1 鉾田二
 - 波崎 3-1 土浦日大
 - 茨城キリスト 2-0 水海道一
-- 茗溪学園 vs 緑岡
-- 石岡一 vs 勝田工
+- 茗溪学園 2-2(PK4-5) 緑岡
+- 石岡一 1-2 勝田工
 
 ## 3回戦（10/2・10/3）
 
@@ -85,11 +85,11 @@ scraper/update_tournament_results.py が上の source から
 - 茨城キリスト vs 東洋大牛久
 - 水城 vs 日立一
 - 霞ヶ浦 vs 波崎
-- 石岡一/勝田工 vs 水戸商
+- 勝田工 vs 水戸商
 - 境 vs 常磐大高
 - 常総学院 vs 古河二
 - 竜ヶ崎一 vs 第一学院
-- 那珂 vs 茗溪学園/緑岡
+- 那珂 vs 緑岡
 - 水戸桜ノ牧 vs 牛久
 - 水戸啓明 vs 佐和
 - 鉾田一 vs 牛久栄進
@@ -102,3 +102,5 @@ scraper/update_tournament_results.py が上の source から
 - 常総学院/古河二 vs 水戸桜ノ牧/牛久
 - 境/常磐大高 vs 鉾田一/牛久栄進
 - 水城/日立一 vs 竜ヶ崎一/第一学院
+- 鹿島学園 vs 那珂/緑岡
+- 水戸啓明/佐和 vs 勝田工/水戸商
