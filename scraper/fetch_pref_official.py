@@ -673,7 +673,133 @@ def _to_int(v):
 #           [番号, YYYY/MM/DD, HH:MM, ホーム, "1-2 [試合終了]", アウェイ, 会場, 詳細]
 #           未消化の行は [試合終了] を持たない
 # ============================================================
-def read_goalnote_all(cfg: dict) -> tuple[dict, list[dict]]:
+# ============================================================
+# GoalNote の保存HTML（週1の半手動・2026-09-30）
+#   Kei が自分のブラウザで順位表・日程ページを開き ⌘S（HTMLのみ）で manual_inputs/goalnote/ に保存したものを読む。
+#   ⚠️ **ここから GoalNote へは一切通信しない**（ファイルを読むだけ。BLOCKED_HOSTS も効いている）。
+#   ⭐️ どの大会（tid）・どのページ（順位表／日程）かは**ファイル名ではなく中身で決める**
+#      （保存時の元URLの記録 → canonical/og:url → 本文中の既知の tid の出現回数、の順）。
+#      知らない tid・同じ tid の同じ種類が2ファイル・判定できないファイルは使わずに理由を出す。
+#   ⚠️ 鳥取は前期(18541)と後期(19293)の両方の保存が要る（read_goalnote_all は両方を合算して検算する）。
+#      前期は完了済みなので**一度保存すれば済む**（フォルダの中身は消さない）。
+# ============================================================
+class SavedGoalNote:
+    def __init__(self, folder: Path, known_tids: set):
+        self.files: dict = {}          # (tid, kind) -> Path
+        self.notes: list[str] = []     # ファイルごとの判定結果（使った／使わない理由）
+        self.status: list[tuple[str, bool, str]] = []   # (ファイル名, 使える判定か, 説明)
+        self.used: set = set()
+        dup = set()
+        for f in sorted(list(folder.glob("*.html")) + list(folder.glob("*.htm"))):
+            raw = f.read_bytes()
+            text = None
+            for enc in ("utf-8", "cp932", "euc-jp"):
+                try:
+                    text = raw.decode(enc)
+                    break
+                except UnicodeDecodeError:
+                    continue
+            if text is None:
+                self._note(f.name, False, "文字コードが読めない")
+                continue
+            tid, how = self._tid_of(text, known_tids)
+            kind = self._kind_of(text)
+            if not tid:
+                self._note(f.name, False, f"大会（tid）を判定できない（{how}）")
+                continue
+            if kind not in ("standings", "schedule"):
+                self._note(f.name, False, f"tid={tid}・ページの種類を判定できない（{kind}）")
+                continue
+            if (tid, kind) in self.files:
+                dup.add((tid, kind))
+                self._note(f.name, False, f"tid={tid}・{kind} が2ファイルある（{self.files[(tid, kind)].name} と重複）")
+                continue
+            self.files[(tid, kind)] = f
+            self._note(f.name, True, f"tid={tid}・{kind}（{how}）")
+        for k in dup:
+            self.files.pop(k, None)           # どちらが正しいか決められないので両方使わない
+
+    def _note(self, name: str, ok: bool, text: str) -> None:
+        self.status.append((name, ok, text))
+        self.notes.append(f"{'・' if ok else '✗'} {name}: {text}")
+
+    @staticmethod
+    def _tid_of(text: str, known: set) -> tuple[str, str]:
+        for label, pat in (("保存元URL", r"saved from url=\(\d+\)\S*?[?&]tid=(\d+)"),
+                           ("canonical", r'rel=["\']canonical["\'][^>]*href=["\'][^"\']*[?&]tid=(\d+)'),
+                           ("og:url", r'og:url["\'][^>]*content=["\'][^"\']*[?&]tid=(\d+)')):
+            m = re.search(pat, text, re.I)
+            if m and m.group(1) in known:
+                return m.group(1), label
+        cnt = collections.Counter(t for t in re.findall(r"[?&]tid=(\d+)", text) if t in known)
+        if not cnt:
+            return "", "既知の tid が本文に無い"
+        top = cnt.most_common(2)
+        if len(top) == 1 or top[0][1] >= 2 * top[1][1]:
+            return top[0][0], f"本文の tid 出現 {dict(cnt)}"
+        return "", f"本文の tid が拮抗 {dict(cnt)}"
+
+    @staticmethod
+    def _kind_of(text: str) -> str:
+        soup = BeautifulSoup(text, "html.parser")
+        standings = any("勝点" in "".join(r[0]) for r in (_rows(t)[:1] for t in soup.find_all("table")) if r)
+        schedule = "試合終了" in text
+        if standings and not schedule:
+            return "standings"
+        if schedule and not standings:
+            return "schedule"
+        return "両方の特徴がある" if standings else "どちらの特徴も無い"
+
+    def has(self, tid: str) -> list[str]:
+        return [k for k in ("standings", "schedule") if (tid, k) not in self.files]
+
+    def __call__(self, url: str) -> str:
+        m = re.search(r"detail-(standings|schedule)\.php\?tid=(\d+)", url)
+        if not m or (m.group(2), m.group(1)) not in self.files:
+            raise RuntimeError(f"保存HTMLが無い: {url}")
+        f = self.files[(m.group(2), m.group(1))]
+        self.used.add(f.name)
+        raw = f.read_bytes()
+        for enc in ("utf-8", "cp932", "euc-jp"):
+            try:
+                return raw.decode(enc)
+            except UnicodeDecodeError:
+                continue
+        raise RuntimeError(f"文字コードが読めない: {f.name}")
+
+
+_SAVED: "SavedGoalNote | None" = None      # --goalnote-saved のときだけ入る
+
+
+def write_goalnote_links(path: Path) -> None:
+    """Kei が順にクリック→⌘S するための保存用リンク集（tid は PREF_OFFICIAL から作るので年度替わりに追従）。"""
+    items = []
+    for pref, cfg in PREF_OFFICIAL.items():
+        if cfg.get("platform") != "goalnote_saved":
+            continue
+        name = cfg.get("label", pref).split("サッカー協会")[0]
+        rows = []
+        for tid in [cfg["tid"]] + list(cfg.get("extra_tids") or []):
+            note = "（前期・完了済み。一度保存すれば毎週は不要）" if tid != cfg["tid"] else ""
+            rows.append(f'<li>tid {tid}{note}：'
+                        f'<a href="https://www.goalnote.net/detail-standings.php?tid={tid}" target="_blank">順位表</a>'
+                        f' ／ <a href="https://www.goalnote.net/detail-schedule.php?tid={tid}" target="_blank">日程・結果</a></li>')
+        items.append(f"<h2>{name}（{pref}）</h2><ul>{''.join(rows)}</ul>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"""<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><title>GoalNote 週1取り込み用リンク集</title>
+<style>body{{font-family:sans-serif;max-width:720px;margin:24px auto;line-height:1.8;padding:0 16px}}li{{margin:4px 0}}</style></head>
+<body><h1>GoalNote 週1取り込み用リンク集</h1>
+<p>各リンクを自分のブラウザで開き、⌘S →「ウェブページ、HTMLのみ」で
+<code>manual_inputs/goalnote/</code> に保存してください（ファイル名は何でもよい）。
+保存が終わったら Claude Code に「GoalNoteの週1取り込みをして」と頼んでください。</p>
+<p>※ このページは <code>python scraper/fetch_pref_official.py --goalnote-links</code> で作り直せます（tid は設定から自動）。</p>
+{"".join(items)}
+</body></html>
+""", encoding="utf-8")
+
+
+def read_goalnote_all(cfg: dict, get=None) -> tuple[dict, list[dict]]:
     """1県ぶんを読む。extra_tids があれば試合を合算する。
 
     鳥取のように**前期と後期が別大会として登録**されている県がある。
@@ -684,18 +810,21 @@ def read_goalnote_all(cfg: dict) -> tuple[dict, list[dict]]:
     st_tid = cfg.get("standings_from", main_tid)
     standings, matches = {}, []
     for tid in [main_tid] + list(cfg.get("extra_tids") or []):
-        st, ms = read_goalnote({"tid": tid})
+        st, ms = read_goalnote({"tid": tid}, get)
         matches += ms
         if tid == st_tid:
             standings = st
     return standings, matches
 
 
-def read_goalnote(cfg: dict) -> tuple[dict, list[dict]]:
+def read_goalnote(cfg: dict, get=None) -> tuple[dict, list[dict]]:
+    """get を渡すと、取りに行く代わりにそれで HTML を得る（保存HTMLモード）。パースは同じ。"""
     tid = cfg["tid"]
+    get = get or fetch_html
     soup = BeautifulSoup(
-        fetch_html(f"https://www.goalnote.net/detail-standings.php?tid={tid}"), "html.parser")
-    time.sleep(SLEEP)
+        get(f"https://www.goalnote.net/detail-standings.php?tid={tid}"), "html.parser")
+    if get is fetch_html:
+        time.sleep(SLEEP)
     standings = {}
     for table in soup.find_all("table"):
         rows = _rows(table)
@@ -731,8 +860,9 @@ def read_goalnote(cfg: dict) -> tuple[dict, list[dict]]:
         #    見つかった順位表をすべて合算して1つのロスターとして扱う。
 
     soup2 = BeautifulSoup(
-        fetch_html(f"https://www.goalnote.net/detail-schedule.php?tid={tid}"), "html.parser")
-    time.sleep(SLEEP)
+        get(f"https://www.goalnote.net/detail-schedule.php?tid={tid}"), "html.parser")
+    if get is fetch_html:
+        time.sleep(SLEEP)
     matches = []
     for table in soup2.find_all("table"):
         for r in _rows(table):
@@ -5653,8 +5783,14 @@ def _keep_verify_items(ng: list[str], site_names) -> None:
 def process(pref: str, cfg: dict, dry_run: bool) -> str:
     slug = cfg.get("slug", f"pref-{pref}-1")   # 2部などは cfg に slug を書く（2026-09-21）
     if cfg["platform"] == "goalnote_saved":
-        return (f"[手動] {slug}: GoalNote は自動取得しない（robots.txt で拒否・2026-09-30）。"
-                f"週1の手動取り込みで更新する。既存JSONはそのまま")
+        if _SAVED is None:
+            return (f"[手動] {slug}: GoalNote は自動取得しない（robots.txt で拒否・2026-09-30）。"
+                    f"週1の手動取り込みで更新する。既存JSONはそのまま")
+        lack = {t: _SAVED.has(t) for t in [cfg["tid"]] + list(cfg.get("extra_tids") or [])}
+        lack = {t: v for t, v in lack.items() if v}
+        if lack:
+            return (f"[手動] {slug}: 保存HTMLが足りないのでスキップ（無い: "
+                    + "・".join(f"tid {t} の{'／'.join(v)}" for t, v in lack.items()) + "）")
     global LAST_VERIFY_ITEMS
     LAST_VERIFY_ITEMS = None
     path = DIR / f"{slug}.json"
@@ -5666,8 +5802,9 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       if m.get("status") == "played" and m.get("hs") is not None])
 
     try:
-        if cfg["platform"] == "goalnote":
-            standings, matches = read_goalnote_all(cfg)
+        if cfg["platform"] in ("goalnote", "goalnote_saved"):
+            # goalnote_saved は _SAVED（保存HTML）から読む。ここで通信はしない
+            standings, matches = read_goalnote_all(cfg, get=_SAVED if cfg["platform"] == "goalnote_saved" else None)
             src = ("https://www.goalnote.net/detail-standings.php?tid="
                    f"{cfg.get('standings_from', cfg['tid'])}")
         elif cfg["platform"] == "tecra":
@@ -6003,21 +6140,51 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true",
                         help="書き込まず、既存との差分だけ出す")
     parser.add_argument("--only", default="", help="県idをカンマ区切りで指定")
+    parser.add_argument("--goalnote-saved", default="",
+                        help="GoalNote の保存HTMLのフォルダ（例 manual_inputs/goalnote）。GoalNote 8県だけを取り込む")
+    parser.add_argument("--goalnote-links", action="store_true",
+                        help="保存用リンク集 manual_inputs/goalnote_links.html を作って終わる")
     args = parser.parse_args()
     only = {s.strip() for s in args.only.split(",") if s.strip()}
+    global _SAVED
+    if args.goalnote_links:
+        out = ROOT / "manual_inputs" / "goalnote_links.html"
+        write_goalnote_links(out)
+        print(f"保存用リンク集を作りました: {out}")
+        return 0
+    if args.goalnote_saved:
+        folder = Path(args.goalnote_saved)
+        if not folder.is_absolute():
+            folder = ROOT / folder
+        known = {t for c in PREF_OFFICIAL.values() if c.get("platform") == "goalnote_saved"
+                 for t in [c["tid"]] + list(c.get("extra_tids") or [])}
+        _SAVED = SavedGoalNote(folder, known)
+        print(f"=== GoalNote 週1取り込み（保存HTML: {folder}）===")
+        for n in _SAVED.notes:
+            print("  " + n)
 
     print("=== 県1部 戦績表 自動更新（県協会公式：tecra ほか。GoalNote 8県は週1の手動）===")
     updated = held = warn = 0
     for pref, cfg in PREF_OFFICIAL.items():
         if only and pref not in only:
             continue
+        if _SAVED is not None and cfg.get("platform") != "goalnote_saved":
+            continue            # 保存HTMLの取り込みでは GoalNote 8県だけを扱う
         try:
             msg = process(pref, cfg, args.dry_run)
         except Exception as e:      # 想定外でも他県は止めない
             msg = f"[要確認] pref-{pref}-1: 例外 {e}"
         print(" ", msg)
-        if msg.startswith("[手動]"):
-            continue                # 取得していないので記録も残さない（見張りは手動取り込みの県として見る）
+        if msg.startswith("[手動]") or cfg.get("platform") == "goalnote_saved":
+            # 取得していない／保存HTMLの手動取り込み。fetch_status の取得記録には残さない
+            # （見張りは手動取り込みの県として lastUpdated で見る）
+            if msg.startswith("[更新]"):
+                updated += 1
+            elif msg.startswith("[据え置き]"):
+                held += 1
+            elif msg.startswith("[要確認]"):
+                warn += 1
+            continue
         code, note = classify(msg)
         items = LAST_VERIFY_ITEMS if code == "verify_failed" else None
         if items:
@@ -6032,6 +6199,11 @@ def main() -> int:
         elif msg.startswith("[要確認]"):
             warn += 1
     print(f"--- 完了: 更新{updated} / 据え置き{held} / 要確認{warn} ---")
+    if _SAVED is not None:
+        print("--- 保存HTMLの使い道 ---")
+        for name, ok, text in _SAVED.status:
+            state = "使った" if name in _SAVED.used else ("使わなかった（その県をスキップ）" if ok else "スキップ")
+            print(f"  [{state}] {name}: {text}")
     return 0
 
 

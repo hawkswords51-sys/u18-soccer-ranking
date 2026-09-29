@@ -19,3 +19,7 @@ note-headers/
 # JFA公式JSONの取得結果メモ（fetch_jfa_premier.py が作る作業用ファイル）
 # 「今日どのリーグをJFAから更新できたか」を後続スクリプトへ伝えるだけのもの。
 .jfa_premier_status.json
+
+# GoalNote の保存HTML（週1の半手動取り込み・2026-09-30）。GoalNote のページそのものを公開リポジトリに載せない
+# 保存用リンク集 manual_inputs/goalnote_links.html はコミットしてよい
+manual_inputs/goalnote/
