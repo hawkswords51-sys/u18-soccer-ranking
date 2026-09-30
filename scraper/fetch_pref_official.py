@@ -136,7 +136,17 @@ PREF_OFFICIAL = {
                  "standings_from": "19293", "round_robin": False,
                  "label": "鳥取県サッカー協会 公式（GoalNote）"},
     "kagawa":   {"platform": "goalnote_saved", "tid": "18633", "label": "香川県サッカー協会 公式（GoalNote）"},
-    "yamagata": {"platform": "goalnote_saved", "tid": "18649", "label": "山形県サッカー協会 公式（GoalNote）"},
+    # 山形（2026-09-30 GoalNote から県協会PDFへ移行）。read_yamagata のコメント参照。
+    "yamagata": {"platform": "yamagata_pdf", "teams": 10,
+                 "entry": "https://www.yfa.jp/archives/4320",
+                 "source": "https://www.yfa.jp/archives/4320",
+                 "label": "山形県サッカー協会 公式（PDF）",
+                 "double_round": True,
+                 # 星取表（p2）は 勝ち点・得点・失点・差・順位 だけ（勝分敗が無い）→ 沖縄と同じ代替ゲート
+                 "standings_gate": "okinawa",
+                 # PDFの会場は3列の上に略称で並ぶが、列が欠ける節がある（第2節は2つしか無い）＝試合に割り当てられない。
+                 # → 既存JSONの会場を同じ試合（home/away/日付）から引き継ぐ。新しい試合は会場なし
+                 "inherit_venues": True},
     # 茨城（2026-09-30 GoalNote から県協会PDFへ移行）。read_ibaraki のコメント参照。
     #   ⚠️ 入口の記事URLは年度ごと（c2-20260213）。年度切り替えで差し替える。
     "ibaraki":  {"platform": "ibaraki_pdf", "teams": 10,
@@ -772,6 +782,120 @@ def read_ibaraki(cfg: dict) -> tuple[dict, list[dict]]:
     if future:
         raise RuntimeError(f"版日付({version})より後の日付の消化済み試合が{len(future)}件（例: {future[0]}）")
     return {}, matches
+
+
+# ============================================================
+# 山形（yfa.jp）— 県協会の「Y1結果報告」PDF（2026-09-30 GoalNote から移行）
+#   入口: /archives/4320 。見出し「1部リーグ」の直後の PDF（「途中結果（PDF）」）。**ファイル名は節・訂正で毎回変わる**
+#   （Y１結果報告第16節9.26-訂正版.pdf）ので見出しから辿る。2部・3部のPDFも同じ記事に並ぶ。
+# ⭐️ p1 日程・結果：会場3列の横並び。1試合＝「時刻 略称 X - Y 略称」（延期は「時刻 略称 延期 略称」）。
+#    帯同審判の略称が同じ行の右（約1pt下）に並ぶので、**時刻の語を錨にして列ごとに先頭の5語だけ**を読む。
+#    列の x は時刻の位置（≈87/249/411）。節・日付は左端の「M/D(曜)」の語を錨にし、次の錨までの行をその節にする。
+#    第17・18節は時刻が無く「略称 - 略称」だけ（16節終了後に決定）→ 未消化・日付は節の日付。
+# ⭐️ p2 星取表：チーム名の行の末尾に 勝ち点 得点 失点 差 順位 → okinawa ゲート（勝点・得点・失点の一致）。
+# ⚠️ 会場は列の上に略称で並ぶが、列が欠ける節がある（第2節は2つ）＝試合に割り当てられない → inherit_venues。
+# ⚠️ H/A：山形は NO_HOME_AWAY_SLUGS（PDFの左右も根拠にしない）。
+# 年度切り替え: entry（記事URL）を差し替える。PDF表題の「{年}年度」を必須にしている。
+# ============================================================
+_YAMAGATA_ABBR = {"日大": "日大山形", "城北": "山形城北", "山中": "山形中央", "山南": "山形南",
+                  "米中": "米沢中央", "東海": "東海大山形", "明正": "山形明正", "鶴東": "鶴岡東",
+                  "羽黒": "羽黒", "長井": "長井"}
+
+
+def read_yamagata(cfg: dict) -> tuple[dict, list[dict]]:
+    from urllib.parse import urljoin
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8", must_contain="1部リーグ"), "html.parser")
+    time.sleep(SLEEP)
+    heads = [t for t in soup.find_all(string=True) if t.strip() == "1部リーグ"]
+    if len(heads) != 1:
+        raise RuntimeError(f"記事に見出し「1部リーグ」が{len(heads)}個（1個のはず）")
+    a = heads[0].find_next("a", href=lambda h: h and h.lower().endswith(".pdf"))
+    if a is None:
+        raise RuntimeError("見出し「1部リーグ」の後にPDFが無い")
+    url = urljoin(cfg["entry"], a["href"])
+    if not re.search(r"Y\s*[1１]", unicodedata.normalize("NFKC", url.rsplit("/", 1)[-1])):
+        raise RuntimeError(f"「1部リーグ」の直後のPDFが Y1 のファイルでない: {url}")
+    content = pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    n = cfg["teams"]
+    with pdf_source.open_pdf(content) as pdf:
+        p1 = pdf.pages[0]
+        head = re.sub(r"\s+", "", p1.extract_text() or "")[:40]
+        ws = p1.extract_words()
+        p2 = pdf.pages[1].extract_text() or ""
+    if f"Yリーグ1部日程表{SEASON_YEAR}年度" not in head:
+        raise RuntimeError(f"PDFの表題が「Yリーグ1部日程表 {SEASON_YEAR}年度」でない: {head}")
+
+    cen = lambda w: (w["top"] + w["bottom"]) / 2          # noqa: E731
+    dates = sorted((w for w in ws if w["x0"] < 80 and re.match(r"^\d{1,2}/\d{1,2}[(（]", w["text"])),
+                   key=lambda w: w["top"])
+    anchors = []
+    for d in dates:
+        num = [w for w in ws if w["x0"] < 50 and re.fullmatch(r"\d{1,2}", w["text"]) and abs(cen(w) - cen(d)) <= 3]
+        if len(num) != 1:
+            raise RuntimeError(f"日付 {d['text']} の節番号が読めない")
+        mo, da = re.match(r"(\d{1,2})/(\d{1,2})", d["text"]).groups()
+        anchors.append((d["top"] - 2, int(num[0]["text"]), f"{SEASON_YEAR}-{int(mo):02d}-{int(da):02d}"))
+    note = min((w["top"] for w in ws if w["text"].startswith("㊟") or w["text"].startswith("予備")), default=10 ** 6)
+    matches = []
+    for i, (top, md, date) in enumerate(anchors):
+        bottom = anchors[i + 1][0] if i + 1 < len(anchors) else note
+        block = [w for w in ws if top <= w["top"] < bottom]
+        times = [w for w in block if re.fullmatch(r"\d{1,2}:\d{2}", w["text"]) and w["x0"] > 80]
+        got = []
+        for t in times:
+            row = sorted((w for w in block if abs(cen(w) - cen(t)) <= 2.2 and t["x0"] <= w["x0"] < t["x0"] + 150),
+                         key=lambda w: w["x0"])
+            tok = [w["text"] for w in row]
+            if len(tok) >= 4 and tok[2] == "延期":
+                h, aw, hs, as_ = tok[1], tok[3], None, None
+            elif len(tok) >= 6 and tok[3] == "-" and tok[2].isdigit() and tok[4].isdigit():
+                h, aw, hs, as_ = tok[1], tok[5], int(tok[2]), int(tok[4])
+            else:
+                raise RuntimeError(f"第{md}節の試合が読めない: {tok}")
+            got.append(dict(md=md, date=date, home=h, away=aw, hs=hs, **{"as": as_}, kickoff=t["text"]))
+        if not times:
+            # 第17・18節：「略称 - 略称」だけ
+            rows = {}
+            for w in block:
+                rows.setdefault(round(cen(w)), []).append(w)
+            for _k, r in sorted(rows.items()):
+                tok = [w["text"] for w in sorted(r, key=lambda w: w["x0"])]
+                for j in range(len(tok) - 2):
+                    if tok[j + 1] == "-" and tok[j] in _YAMAGATA_ABBR and tok[j + 2] in _YAMAGATA_ABBR:
+                        got.append(dict(md=md, date=date, home=tok[j], away=tok[j + 2], hs=None,
+                                        **{"as": None}, kickoff=""))
+        if len(got) != n // 2:
+            raise RuntimeError(f"第{md}節の試合が{len(got)}件（{n // 2}のはず）")
+        matches += got
+    bad = sorted({x for m in matches for x in (m["home"], m["away"]) if x not in _YAMAGATA_ABBR})
+    if bad:
+        raise RuntimeError(f"知らない略称 {bad}（_YAMAGATA_ABBR に足す）")
+    for m in matches:
+        m["home"], m["away"] = _YAMAGATA_ABBR[m["home"]], _YAMAGATA_ABBR[m["away"]]
+    if sorted(m["md"] for m in matches) != sorted(k for k in range(1, 2 * (n - 1) + 1) for _ in range(n // 2)):
+        raise RuntimeError("節番号が1〜18で各5試合になっていない")
+    pairs = collections.Counter(frozenset((m["home"], m["away"])) for m in matches)
+    if len(pairs) != n * (n - 1) // 2 or set(pairs.values()) != {2}:
+        raise RuntimeError(f"対戦の組が{len(pairs)}（{n * (n - 1) // 2}組・各2試合のはず）")
+
+    # --- p2 星取表：チーム名で始まる行の末尾 勝ち点 得点 失点 差 順位 ---
+    standings = {}
+    p2_names = {"山形城北": ("山形城北", "城北")}     # 星取表では「城北」と書かれている（2026-09-26版）
+    for full in _YAMAGATA_ABBR.values():
+        rows = [l for l in p2.split("\n") if any(l.startswith(x + " ") for x in p2_names.get(full, (full,)))]
+        vals = None
+        for l in rows:
+            nums = re.findall(r"-?\d+", l)
+            if len(nums) >= 5:
+                pts, gf, ga, gd, rank = (int(x) for x in nums[-5:])
+                if gf - ga == gd:
+                    vals = dict(pts=pts, gf=gf, ga=ga, rank=rank)
+                    break
+        if vals is None:
+            raise RuntimeError(f"星取表（p2）で {full} の 勝ち点・得点・失点・差・順位 が読めない")
+        standings[full] = vals
+    return standings, matches
 
 
 # ============================================================
@@ -5930,7 +6054,7 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "fukushima": read_fukushima, "nara": read_nara,
                       "kochi": read_kochi, "wakayama": read_wakayama,
                       "osaka": read_osaka, "saitama": read_saitama,
-                      "ibaraki_pdf": read_ibaraki}[cfg["platform"]]
+                      "ibaraki_pdf": read_ibaraki, "yamagata_pdf": read_yamagata}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
@@ -5988,6 +6112,14 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
             got = prev.get((m["home"], m["away"]))
             if got:
                 m["date"] = got.pop(0)
+
+    # --- 出典の会場を試合に割り当てられない県は、既存JSONの同じ試合（home/away/日付）の会場を引き継ぐ（山形） ---
+    if cfg.get("inherit_venues"):
+        prev_v = {(m.get("home"), m.get("away"), m.get("date")): m.get("venue")
+                  for m in data.get("matches", []) if m.get("venue")}
+        for m in matches:
+            if not m.get("venue") and prev_v.get((m["home"], m["away"], m.get("date"))):
+                m["venue"] = prev_v[(m["home"], m["away"], m.get("date"))]
 
     # --- 消化と未消化を分ける ---
     # 未消化の行は、**日程ごと読む県（愛媛・京都・福島・奈良・高知・和歌山・大阪1部・三重・山梨・岐阜など）と
