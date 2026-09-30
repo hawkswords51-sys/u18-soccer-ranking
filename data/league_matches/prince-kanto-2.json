@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.jfa.jp/match/takamado_jfa_u18_prince2026/kanto/#league2",
   "sourceName": "JFA公式",
-  "lastUpdated": "2026-09-30",
+  "lastUpdated": "2026-10-01",
   "teams": [
     {
       "name": "横浜F・マリノスユース",
@@ -85,18 +85,30 @@
     },
     {
       "rank": 4,
-      "team": "桐光学園",
+      "team": "矢板中央",
       "pts": 20,
-      "played": 11,
-      "won": 5,
-      "drawn": 5,
-      "lost": 1,
-      "gf": 14,
-      "ga": 9,
-      "gd": 5
+      "played": 12,
+      "won": 6,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 22,
+      "ga": 18,
+      "gd": 4
     },
     {
       "rank": 5,
+      "team": "桐光学園",
+      "pts": 20,
+      "played": 12,
+      "won": 5,
+      "drawn": 5,
+      "lost": 2,
+      "gf": 14,
+      "ga": 10,
+      "gd": 4
+    },
+    {
+      "rank": 6,
       "team": "日体大柏",
       "pts": 18,
       "played": 13,
@@ -106,18 +118,6 @@
       "gf": 15,
       "ga": 19,
       "gd": -4
-    },
-    {
-      "rank": 6,
-      "team": "矢板中央",
-      "pts": 17,
-      "played": 11,
-      "won": 5,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 21,
-      "ga": 18,
-      "gd": 3
     },
     {
       "rank": 7,
@@ -700,10 +700,10 @@
       "md": 10,
       "date": "2026-09-30",
       "home": "桐光学園",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "矢板中央",
-      "status": "scheduled",
+      "status": "played",
       "venue": "桐光学園サッカー場",
       "kickoff": "11:00"
     },
