@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-09-30T09:03:44+09:00",
+  "updatedAt": "2026-09-30T10:35:24+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1229,8 +1229,8 @@
       "last_updated": "2026-09-30"
     },
     "yamaguchi": {
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5eS%5d&rallyid=U%5eZ%5b%5b の取得に失敗 (404 Client Error: Not Found for url: https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ES%5D&rallyid=U%5EZ%5B%5B))",
       "result_date": "2026-09-30",
       "season": "2026",
       "complete": false,
