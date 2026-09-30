@@ -134,6 +134,9 @@ PREF_OFFICIAL = {
     # 後期はグループ分けなので総当たり枠を作らない（round_robin: False）。
     "tottori":  {"platform": "goalnote_saved", "tid": "19293", "extra_tids": ["18541"],
                  "standings_from": "19293", "round_robin": False,
+                 # [2026-09-30] 後期のグループ分けは総当たり枠を作らないので、日程ページの未消化の行（スコア空・日付あり）を
+                 #   そのまま未消化の枠として入れる（Bグループの残り3試合）。鳥取だけ。検算・勝点には含めない
+                 "goalnote_unplayed": True,
                  "label": "鳥取県サッカー協会 公式（GoalNote）"},
     "kagawa":   {"platform": "goalnote_saved", "tid": "18633", "label": "香川県サッカー協会 公式（GoalNote）"},
     # 山形（2026-09-30 GoalNote から県協会PDFへ移行）。read_yamagata のコメント参照。
@@ -1035,7 +1038,7 @@ def read_goalnote_all(cfg: dict, get=None) -> tuple[dict, list[dict]]:
     st_tid = cfg.get("standings_from", main_tid)
     standings, matches = {}, []
     for tid in [main_tid] + list(cfg.get("extra_tids") or []):
-        st, ms = read_goalnote({"tid": tid}, get)
+        st, ms = read_goalnote({"tid": tid, "unplayed": cfg.get("goalnote_unplayed", False)}, get)
         matches += ms
         if tid == st_tid:
             standings = st
@@ -1095,7 +1098,20 @@ def read_goalnote(cfg: dict, get=None) -> tuple[dict, list[dict]]:
                 continue
             joined = " ".join(r)
             if "試合終了" not in joined:
-                continue      # 未消化の行はスコアが確定していないので取らない
+                # 未消化の行（[組, 日付, 時刻, ホーム, 空, アウェイ, 会場, …]）。既定では取らない。
+                # ⚠️ 取るのは cfg["unplayed"]（鳥取の後期＝グループ分けで総当たり枠を作らない県）だけ（2026-09-30）
+                if cfg.get("unplayed"):
+                    di = next((i for i, c in enumerate(r) if _GN_DATE_RE.fullmatch(c.strip())), None)
+                    if di is not None and di + 4 < len(r) and not r[di + 3].strip() \
+                            and r[di + 2].strip() and r[di + 4].strip():
+                        dm = _GN_DATE_RE.fullmatch(r[di].strip())
+                        venue = r[di + 5].strip() if di + 5 < len(r) else ""
+                        matches.append(dict(
+                            date=f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}",
+                            home=r[di + 2].strip(), hs=None, **{"as": None}, away=r[di + 4].strip(),
+                            venue="" if venue in ("詳細", "-", "−", "未定") else venue,
+                            kickoff=r[di + 1].strip()))
+                continue      # 未消化の行はスコアが確定していないので取らない（既定）
             dm = _GN_DATE_RE.search(joined)
             if not dm:
                 continue
@@ -6238,6 +6254,16 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
             LAST_VERIFY_ITEMS = [dict(x) for x in _U.LAST_MISMATCH]
         return f"[据え置き] {slug}: {res}"
     team_objs, fixtures, meta = res
+
+    # [2026-09-30] グループ分けで総当たり枠を作らない県（鳥取の後期）は、出典の未消化の行をそのまま未消化の枠にする。
+    #   検算・勝点は build_from_source が消化済みだけで済ませている（ここで足すのは枠だけ）。
+    #   ⚠️ 未消化の日付を捨てずに使う全県共通の課題（手順書4-2）はここでは扱わない。鳥取（goalnote_unplayed）だけ。
+    if upcoming and not cfg.get("round_robin", True) and cfg.get("goalnote_unplayed"):
+        for m in upcoming:
+            fixtures.append(dict(md=m.get("md", 0) or 0, date=m.get("date") or "", home=m["home"],
+                                 hs=None, **{"as": None}, away=m["away"], status="scheduled",
+                                 **({"venue": m["venue"]} if m.get("venue") else {})))
+        upcoming = []
 
     # 未消化試合にも出典の節番号・予定日・会場を入れる（宮崎は第15〜18節が未消化）。
     # 「次節」を出すときに効くので、取れる県では入れておく。
