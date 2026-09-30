@@ -20,7 +20,9 @@ DATA_DIR = BASE_DIR / "data" / "u15" / "pref"
 OUT_ROOT = BASE_DIR / "u15"
 
 # 表示順（北から）。JSON が無い県は飛ばす
-PREF_ORDER = ["niigata", "tochigi", "gunma", "kanagawa", "shimane", "hiroshima", "saga", "nagasaki"]
+# 2026-10-01 第3弾で秋田・長野・石川・愛媛を追加（既存8県の並びは変えず、地域の近くに差し込む）
+PREF_ORDER = ["akita", "niigata", "nagano", "ishikawa", "tochigi", "gunma", "kanagawa",
+              "shimane", "hiroshima", "ehime", "saga", "nagasaki"]
 
 
 def _jp_date(iso: str) -> str:
@@ -56,8 +58,12 @@ def standings_html(d: dict) -> str:
                     f'<td>{t["played"]}</td><td>{t["won"]}</td><td>{t["drawn"]}</td><td>{t["lost"]}</td>'
                     f'<td>{t["gf"]}</td><td>{t["ga"]}</td><td>{"+" if gd > 0 else ""}{gd}</td>'
                     f'<td class="u15-pts">{t["points"]}</td></tr>')
+    src = d.get("standings_source")
     note = ("※公式の順位表が公開されていないため、全試合の結果から当サイトが計算した順位です"
-            "（勝点→得失点差→得点の順）。" if d.get("standings_source") == "self" else
+            "（勝点→得失点差→得点の順）。" if src == "self" else
+            # 長野（2026-10-01）：星取表の得点・失点が試合結果と合わない＝勝点だけ一致を確かめ、順位は自前で計算
+            "※全試合の結果から当サイトが計算した順位です（勝点→得失点差→得点の順）。"
+            "勝点は出典の星取表と一致することを確かめて更新しています。" if src == "self_pts" else
             "※出典の順位表の値です（全試合の結果から計算し直した値と一致したときだけ更新）。")
     return f'''
       <section class="lp-section" id="standings">

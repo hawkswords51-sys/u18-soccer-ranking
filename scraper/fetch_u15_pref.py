@@ -39,9 +39,12 @@ import sys
 import time
 import unicodedata
 from pathlib import Path
+from urllib.parse import unquote, urljoin
 
 import requests
 from bs4 import BeautifulSoup
+
+import pdf_source   # PDFの4県（秋田・長野・石川・愛媛）の取得と行への復元（U-18と共用）
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 OUT_DIR = BASE_DIR / "data" / "u15" / "pref"
@@ -109,6 +112,43 @@ PREFS = {
         # 表記ゆれ（16通り→10チーム）。表示名はCoworkの仮決め（2026-09-30）。どちらが正式かは未確認
         aliases={"AC United": "AC UNITED", "FCLAZO": "FC LAZO", "ROUSE 新潟FC": "ROUSE新潟FC",
                  "ROUSE新潟": "ROUSE新潟FC", "エボルブfc": "エボルブFC", "グランセナ2nd": "グランセナ新潟2nd"}),
+    # ---- 第3弾：県協会のPDF（2026-10-01）。url は入口ページ（PDFのURLは更新のたびに変わるので毎回ここから拾う）----
+    # 秋田：日程表＝試合の正本・星取表＝検算（既定＝全項目一致）。表示名は星取表の表記
+    "akita": dict(
+        kind="akita_pdf", url="https://fa-akita.net/17086/",
+        teams=8, prefName="秋田県", region="東北",
+        league=f"高円宮杯JFA U-15サッカーリーグ{SEASON}秋田県すぎっちリーグ（1部）",
+        sourceName="秋田県サッカー協会 3種（PDF）"),
+    # 長野：試合結果PDF＝正本。星取表は得点・失点に誤りがある（合計342≠339）→ 勝点だけ照合・順位は自前計算
+    "nagano": dict(
+        kind="nagano_pdf", url="https://www.nagano-fa.or.jp/cat_3",
+        teams=10, prefName="長野県", region="北信越",
+        league=f"高円宮杯 JFA U-15サッカーリーグ{SEASON} 長野県1部リーグ（県TOP1部）",
+        sourceName="長野県サッカー協会 3種（PDF）",
+        check_keys=("pts",), info_keys=("gf", "ga"), rank_from="self",
+        per_md=5, x_date=(205, 243), x_venue=364,
+        # 星取表の表記（照合キー）→ 試合結果PDFの表記（照合キー）。LEGARE は星取表の綴り誤りと思われる
+        hoshi_aliases={"アルティスタ浅間": "アルティスタ浅間U-15", "松本山雅FC上伊那": "松本山雅上伊那",
+                       "松本山雅FCB": "松本山雅FCU-15B", "LEGARE上田": "LIGARE上田"}),
+    # 石川：星取表1枚。順位表は勝点・得点・失点・順位だけ。行と列の左右一致も検算に使う
+    "ishikawa": dict(
+        kind="ishikawa_pdf", url=f"https://www.ishikawa-fa.or.jp/category-3-{SEASON}",
+        teams=8, prefName="石川県", region="北信越",
+        league=f"高円宮杯 JFA U-15サッカーリーグ{SEASON} 第19回石川県リーグ（1部）",
+        sourceName="石川県サッカー協会 3種（PDF）",
+        check_keys=("pts", "gf", "ga"),
+        # 行の並び順（＝列の並び順）。見出しは略称・2行割れなので、名前ではなく順番で対応させる
+        names=["セブン能登1st", "FC北陸U15 1st", "ツエーゲン金沢2nd", "PateoFC金沢2nd",
+               "SOLTILO SEIRYO 1st", "エスポワール白山2nd", "金沢学院大附属中学校", "星稜中学校1st"]),
+    # 愛媛：1ページ目＝前期・2ページ目＝後期。左半分＝日程表（正本）・右半分＝星取表（年間成績で検算）
+    "ehime": dict(
+        kind="ehime_pdf", url="https://efa.jp/meeting/43721.html",
+        teams=10, prefName="愛媛県", region="四国",
+        league=f"高円宮杯JFA U-15サッカーリーグ{SEASON} 愛媛県プレミアリーグU-15（EPリーグ）Div.1",
+        sourceName="愛媛県サッカー協会（PDF）",
+        check_keys=("pts", "gf", "ga"), md_per_page=9,
+        x=dict(split=510, label=(515, 551), annual=905, md=(66, 82), date=(82, 130), venue=(130, 182),
+               home=(205, 253), dash=(285, 297), away=(333, 420))),
 }
 
 
@@ -388,8 +428,443 @@ def read_niigata15(cfg: dict) -> tuple[dict, list[dict]]:
     return {}, matches
 
 
+# ---------------------------------------------------------------------------
+# PDFの4県（秋田・長野・石川・愛媛）2026-10-01 第3弾
+#   PDFの取得と行への復元は pdf_source（U-18と共用）。**読み取りは県ごとに書く**（U-18と同じ方針）。
+#   URLは毎回入口ページから拾う（ファイル名がハッシュ・版番号・日付で更新のたびに変わる）。
+# ---------------------------------------------------------------------------
+def _nk(s: str) -> str:
+    """照合用：NFKC＋空白をすべて除く（表示には使わない）。"""
+    return re.sub(r"\s+", "", unicodedata.normalize("NFKC", s or ""))
+
+
+def _entry_pdf_links(cfg: dict, pred) -> list[str]:
+    """入口ページのPDFリンクのうち pred(リンク文字NFKC空白なし, 絶対URL) を満たすもの（重複URLは1つ）。"""
+    soup = BeautifulSoup(fetch(cfg["url"]), "html.parser")
+    out = []
+    for a in soup.find_all("a", href=True):
+        url = urljoin(cfg["url"], a["href"].strip())
+        if url.lower().endswith(".pdf") and url not in out and pred(_nk(a.get_text()), unquote(url)):
+            out.append(url)
+    return out
+
+
+def _one_link(cfg: dict, pred, label: str) -> str:
+    hits = _entry_pdf_links(cfg, pred)
+    if len(hits) != 1:
+        raise ReadError(f"入口ページに{label}のPDFリンクが{len(hits)}件（1件のはず）", [unquote(u) for u in hits])
+    time.sleep(SLEEP)
+    print(f"    {label}: {unquote(hits[0])}")
+    return hits[0]
+
+
+def _open(url: str):
+    return pdf_source.open_pdf(pdf_source.fetch_pdf(url, HEADERS, TIMEOUT, RETRIES, SLEEP))
+
+
+def _team_prefix(text: str, names: dict) -> tuple[str, str] | None:
+    """text の先頭にあるチーム名（照合キー nk → 表示名 の names から一番長く一致するもの）と残りの文字。"""
+    t = _nk(text)
+    best = max((k for k in names if t.startswith(k)), key=len, default=None)
+    return (names[best], t[len(best):]) if best else None
+
+
+def _after_name(text: str, name: str) -> str:
+    """text の先頭からチーム名（照合キーの文字数ぶん）を読み飛ばした残り（会場など）。"""
+    key, k, i = _nk(name), 0, 0
+    while i < len(text) and k < len(key):
+        k += len(_nk(text[i]))
+        i += 1
+    return text[i:].strip()
+
+
+def _lines(chars: list[dict], tol: float = 1.6, gap: float = 2.0) -> list[dict]:
+    """文字を top の近さで行にまとめる（x順・隙間が gap を超えたら空白を入れる）。
+    返り値 [{y(文字の縦中央), text, chars}]"""
+    chars = sorted(chars, key=lambda c: c["top"])
+    rows, cur, base = [], [], None
+    for c in chars:
+        if base is None or abs(c["top"] - base) <= tol:
+            cur.append(c)
+            base = c["top"] if base is None else base
+        else:
+            rows.append(cur)
+            cur, base = [c], c["top"]
+    if cur:
+        rows.append(cur)
+    out = []
+    for r in rows:
+        r.sort(key=lambda c: c["x0"])
+        s, prev = "", None
+        for c in r:
+            if prev is not None and c["x0"] - prev["x1"] > gap:
+                s += " "
+            s += c["text"]
+            prev = c
+        out.append(dict(y=sum((c["top"] + c["bottom"]) / 2 for c in r) / len(r), text=s.strip(), chars=r))
+    return out
+
+
+def _in_x(chars: list[dict], x0: float, x1: float) -> list[dict]:
+    return [c for c in chars if x0 <= c["x0"] < x1]
+
+
+def _merged_cell(chars: list[dict], rules: list[float], y: float, x0: float, x1: float, pat: str) -> str | None:
+    """結合セル：y を含む罫線の区間の中、x0〜x1 にある行のうち pat に合うものを返す。
+    区間の中に複数あれば y に一番近い行（1つのセルに日付が2つ書かれた枠がある＝長野・愛媛）。無ければ None。"""
+    lo = max((r for r in rules if r <= y), default=None)
+    hi = min((r for r in rules if r > y), default=None)
+    if lo is None or hi is None:
+        return None
+    cs = [c for c in _in_x(chars, x0, x1) if lo < (c["top"] + c["bottom"]) / 2 < hi]
+    cand = [ln for ln in _lines(cs) if re.search(pat, ln["text"])]
+    return min(cand, key=lambda ln: abs(ln["y"] - y))["text"] if cand else None
+
+
+def _dedup_chars(page) -> list[dict]:
+    """同じ文字が同じ位置に2回描かれているPDF（長野）の重複を落とす。"""
+    kept = []
+    for c in sorted(page.chars, key=lambda c: (round(c["top"]), c["x0"])):
+        if any(k["text"] == c["text"] and abs(k["x0"] - c["x0"]) < 1.2 and abs(k["top"] - c["top"]) < 1.2
+               for k in kept[-40:]):
+            continue
+        kept.append(c)
+    return kept
+
+
+def _date_from(text: str | None, pat: str = r"(\d{1,2})\s*月\s*(\d{1,2})\s*日") -> str | None:
+    m = re.search(pat, unicodedata.normalize("NFKC", text or ""))
+    return _md_date(int(m.group(1)), int(m.group(2))) if m else None
+
+
+# ---- 秋田（日程表PDF＝試合の正本・星取表PDF＝検算） --------------------------------
+_AK_MARK = r"[〇○●△]"
+
+
+def read_akita15(cfg: dict) -> tuple[dict, list[dict]]:
+    sched_url = _one_link(cfg, lambda t, u: "U-15すぎっちリーグ日程表" in t, "日程表")
+    hoshi_url = _one_link(cfg, lambda t, u: "U-15すぎっちリーグ星取表" in t, "星取表")
+
+    with _open(hoshi_url) as pdf:
+        rows = pdf_source.page_row_texts(pdf.pages[0], 2.5)
+    if not any("（1部）" in r for r in rows[:3]):
+        raise ReadError("星取表の1ページ目が1部ではない", rows[:3])
+    standings, names = {}, {}
+    for r in rows:
+        m = re.fullmatch(r"(\d+) (.+?) (\d+) (\d+) (\d+) (\d+) (\d+) (\d+) (-?\d+) (\d+)", r)
+        if not m:
+            continue
+        name = _clean(m.group(2))
+        w, d, l, pts, gf, ga, gd, rank = (int(m.group(i)) for i in range(3, 11))
+        if gf - ga != gd or w * 3 + d != pts:
+            raise ReadError(f"星取表の行が自己矛盾: {r}")
+        standings[name] = dict(pts=pts, played=w + d + l, won=w, drawn=d, lost=l, gf=gf, ga=ga, rank=rank)
+        names[_nk(name)] = name
+    time.sleep(SLEEP)
+
+    with _open(sched_url) as pdf:
+        rows = pdf_source.page_row_texts(pdf.pages[0], 2.5)
+    if not any("（1部）" in r for r in rows[:3]):
+        raise ReadError("日程表の1ページ目が1部ではない", rows[:3])
+    matches, labels = [], []
+    for r in rows:
+        lab = re.fullmatch(r"第(\d+)節", r)
+        if lab:
+            labels.append((int(lab.group(1)), len(matches)))
+            continue
+        m = re.match(r"(\d{1,2})月(\d{1,2})日 (\S+) (.+)$", r)
+        if not m or " vs " not in m.group(4):
+            continue
+        left, right = m.group(4).split(" vs ", 1)
+        ls = re.fullmatch(rf"(.+?)(?: {_AK_MARK})? (\d+)", left)       # 勝敗の印は使わない（数字で決める）
+        rs = re.match(rf"(\d+)(?: {_AK_MARK})? (.+)$", right)
+        if bool(ls) != bool(rs):
+            raise ReadError(f"日程表の行でスコアが片側だけ: {r}")
+        home = names.get(_nk(ls.group(1) if ls else left))
+        tail = _team_prefix(rs.group(2) if rs else right, names)
+        if not home or not tail:
+            raise ReadError(f"日程表のチーム名が星取表と対応しない: {r}", [f"星取表のチーム: {list(names.values())}"])
+        venue = _after_name(rs.group(2) if rs else right, tail[0])
+        matches.append(dict(md=0, date=_md_date(int(m.group(1)), int(m.group(2))), home=home, away=tail[0],
+                            hs=int(ls.group(2)) if ls else None, **{"as": int(rs.group(1)) if rs else None},
+                            venue="" if venue == "未定" else venue))
+    # 節：4試合ごとのかたまりの2試合目の後ろに「第N節」が出る。位置が合わなければ読み違い
+    n_md = len(matches) // 4
+    if len(matches) % 4 or [x[0] for x in labels] != list(range(1, n_md + 1)) \
+            or any(pos != 4 * (md - 1) + 2 for md, pos in labels):
+        raise ReadError("日程表の節の並びが想定（4試合ずつ・2試合目の後ろに節の見出し）と違う",
+                        [f"試合{len(matches)}件・見出し {labels[:6]}"])
+    for i, mt in enumerate(matches):
+        mt["md"] = i // 4 + 1
+    return standings, matches
+
+
+# ---- 長野（試合結果PDF＝正本・星取表PDF＝勝点だけ照合） ------------------------------
+#   ⚠️ どちらのPDFも同じ文字が同じ位置に2回描かれている → _dedup_chars で落としてから読む
+#   ⚠️ 日付・会場は結合セル（グループの真ん中あたりに1回だけ）→ 罫線の区間で割り当てる（U-18奈良と同じ型）
+_NG_RE = re.compile(r"(\d{1,2}:\d{2}|未定) (.+?) (?:(\d+) - (\d+)|-|(延期)) (.+)")
+
+
+def read_nagano15(cfg: dict) -> tuple[dict, list[dict]]:
+    res_url = _one_link(cfg, lambda t, u: re.search(r"/\d{4}_U15_ken1(-\d+)?\.pdf$", u), "試合結果")
+    hoshi_url = _one_link(cfg, lambda t, u: re.search(r"/\d{4}_U15_ken1_hoshi(-\d+)?\.pdf$", u), "星取表")
+
+    # 星取表：見出しの文字の x で列を決める。行見出し（チーム名）は2〜3行に割れるので縦の帯でまとめる
+    with _open(hoshi_url) as pdf:
+        pg = pdf.pages[0]
+        chars = _dedup_chars(pg)
+    lines = _lines(chars)
+    if not any("１部" in ln["text"] or "1部" in ln["text"] for ln in lines[:3]):
+        raise ReadError("星取表の見出しに「1部」が無い", [ln["text"] for ln in lines[:3]])
+    head = {}
+    words = [w for ln in lines for w in _words(ln["chars"])]
+    for w in words:
+        if w["text"] in ("勝点", "得点", "失点", "順位") and w["text"] not in head:
+            head[w["text"]] = w["x0"]
+    if len(head) != 4:
+        raise ReadError("星取表の見出し（勝点・得点・失点・順位）が揃わない", [str(head)])
+    col = lambda w, h: abs(w["x0"] - head[h]) < 10 and re.fullmatch(r"\d+", w["text"])   # noqa: E731
+    top = min(w["top"] for w in words if w["text"] == "勝点")
+    prow = sorted((w for w in words if w["top"] > top + 5 and col(w, "勝点")), key=lambda w: w["top"])
+    ys = [w["top"] for w in prow]
+    standings = {}
+    alias = cfg.get("hoshi_aliases") or {}
+    for i, pw in enumerate(prow):
+        lo = (ys[i - 1] + ys[i]) / 2 if i else ys[i] - 25
+        hi = (ys[i] + ys[i + 1]) / 2 if i + 1 < len(ys) else ys[i] + 25
+        label = "".join(w["text"] for w in sorted((w for w in words if w["x1"] < 135 and lo <= w["top"] < hi),
+                                                   key=lambda w: w["top"]))
+        same = lambda h: [w for w in words if col(w, h) and abs(w["top"] - pw["top"]) < 3]   # noqa: E731
+        vals = {h: same(h) for h in ("得点", "失点", "順位")}
+        if not label or any(len(v) != 1 for v in vals.values()):
+            raise ReadError(f"星取表の{i + 1}行目が読めない（{label!r}）")
+        standings[alias.get(_nk(label), _nk(label))] = dict(
+            pts=int(pw["text"]), gf=int(vals["得点"][0]["text"]), ga=int(vals["失点"][0]["text"]),
+            rank=int(vals["順位"][0]["text"]))
+    time.sleep(SLEEP)
+
+    with _open(res_url) as pdf:
+        pg = pdf.pages[0]
+        chars = _dedup_chars(pg)
+        date_rules = pdf_source.page_hrules(pg, cfg["x_date"][0] + 2, cfg["x_date"][1] - 3)
+        venue_rules = pdf_source.page_hrules(pg, cfg["x_venue"] + 1, cfg["x_venue"] + 7)
+    lines = _lines(chars)
+    if not any("1部" in _nk(ln["text"]) for ln in lines[:3]):
+        raise ReadError("試合結果PDFの見出しに「1部」が無い", [ln["text"] for ln in lines[:3]])
+    matches, disp = [], {}
+    for ln in lines:
+        body = " ".join(ln2["text"] for ln2 in _lines(_in_x(ln["chars"], cfg["x_date"][1], cfg["x_venue"])))
+        m = _NG_RE.fullmatch(body)
+        if not m:
+            continue
+        home, away = _clean(m.group(2)), _clean(m.group(6))
+        for t in (home, away):
+            if disp.setdefault(_nk(t), t) != t:
+                raise ReadError(f"同じチームの表記が行ごとに違う: {disp[_nk(t)]!r} / {t!r}")
+        date = None if m.group(1) == "未定" and m.group(5) else \
+            _date_from(_merged_cell(chars, date_rules, ln["y"], *cfg["x_date"], r"\d+月\d+日"))
+        venue = _merged_cell(chars, venue_rules, ln["y"], cfg["x_venue"], 9999, r"\S")
+        matches.append(dict(md=len(matches) // cfg["per_md"] + 1, date=date, home=home, away=away,
+                            hs=int(m.group(3)) if m.group(3) else None,
+                            **{"as": int(m.group(4)) if m.group(4) else None},
+                            venue="" if not venue or venue == "未定" else venue))
+    # 照合キーを試合結果PDFの表記にそろえる
+    by_nk = {_nk(t): t for t in disp.values()}
+    if set(standings) != set(by_nk):
+        raise ReadError("星取表と試合結果のチーム名が対応しない",
+                        [f"星取表だけ {sorted(set(standings) - set(by_nk))}", f"試合結果だけ {sorted(set(by_nk) - set(standings))}"])
+    return {by_nk[k]: v for k, v in standings.items()}, matches
+
+
+def _words(chars: list[dict], gap: float = 2.0) -> list[dict]:
+    """1行ぶんの文字を、隙間が gap を超えるところで単語に割る（x0, x1, top, text）。"""
+    out = []
+    for c in sorted(chars, key=lambda c: c["x0"]):
+        if out and c["x0"] - out[-1]["x1"] <= gap and abs(c["top"] - out[-1]["top"]) < 2:
+            out[-1]["text"] += c["text"]
+            out[-1]["x1"] = c["x1"]
+        else:
+            out.append(dict(text=c["text"], x0=c["x0"], x1=c["x1"], top=c["top"]))
+    for w in out:
+        w["text"] = w["text"].strip()
+    return [w for w in out if w["text"]]
+
+
+# ---- 石川（星取表1枚がすべて。座標で読む） ------------------------------------------
+#   チーム1行＝1巡目・2巡目の2段。各段は「スコア（○△●つき）」「前半」「後半」「日付」「会場」の5行。
+#   段の位置は「日付の行」（M/D が並ぶ行）を錨にして決める。列（対戦相手）は前半・後半の「-」の x で決める。
+#   ⚠️ 列見出しは略称・行見出しは2行に割れる → 名前ではなく「行・列とも並び順が同じ」ことで対応させる
+def read_ishikawa15(cfg: dict) -> tuple[dict, list[dict], list[str]]:
+    url = _one_link(cfg, lambda t, u: "【1部】" in u.rsplit("/", 1)[-1], "1部の星取表")
+    with _open(url) as pdf:
+        if len(pdf.pages) != 1:
+            raise ReadError(f"ページ数が{len(pdf.pages)}（1のはず）")
+        pg = pdf.pages[0]
+        words = pg.extract_words(x_tolerance=1.5)
+    names, n = cfg["names"], cfg["teams"]
+    if not any(w["text"] == "１部" for w in words if w["top"] < 80):
+        raise ReadError("見出しに「１部」が無い")
+    head = {w["text"]: w for w in words if w["text"] in ("勝点", "得点", "失点", "順位") and w["top"] < 80}
+    if len(head) != 4:
+        raise ReadError("順位表の見出し（勝点・得点・失点・順位）が揃わない", [str(sorted(head))])
+    x_grid = head["勝点"]["x0"] - 5                      # ここより右は順位表
+    anchors = []
+    for w in sorted((w for w in words if re.fullmatch(r"\d{1,2}/\d{1,2}", w["text"]) and 90 < w["x0"] < x_grid),
+                    key=lambda w: w["top"]):
+        if anchors and abs(w["top"] - anchors[-1]) < 3:
+            continue
+        anchors.append(w["top"])
+    if len(anchors) != 2 * n:
+        raise ReadError(f"日付の行が{len(anchors)}本（{2 * n}本のはず）")
+    dash = []
+    for w in sorted((w for w in words if w["text"] == "-" and 90 < w["x0"] < x_grid), key=lambda w: w["x0"]):
+        if not dash or w["x0"] - dash[-1][-1] > 10:
+            dash.append([w["x0"]])
+        else:
+            dash[-1].append(w["x0"])
+    cx = [sum(d) / len(d) + 2 for d in dash]              # 列の中心
+    if len(cx) != n:
+        raise ReadError(f"対戦相手の列が{len(cx)}本（{n}本のはず）")
+    half = (cx[1] - cx[0]) / 2
+
+    def cell(y0, y1, j, pat=r"\S+"):
+        ws = [w for w in words if y0 <= w["top"] < y1 and abs((w["x0"] + w["x1"]) / 2 - cx[j]) < half
+              and re.fullmatch(pat, w["text"])]
+        return sorted(ws, key=lambda w: w["x0"])
+
+    grid = {}                  # (行i, 列j, 巡r) -> dict(s=(a,b)|None, date, venue)
+    errors = []
+    for k, ya in enumerate(anchors):
+        i, r = divmod(k, 2)
+        for j in range(n):
+            sc = [int(w["text"]) for w in cell(ya - 32, ya - 21, j, r"\d+")]
+            h1 = [int(w["text"]) for w in cell(ya - 21, ya - 12, j, r"\d+")]
+            h2 = [int(w["text"]) for w in cell(ya - 12, ya - 3, j, r"\d+")]
+            dt = cell(ya - 3, ya + 3, j, r"\d{1,2}/\d{1,2}")
+            vn = " ".join(w["text"] for w in cell(ya + 3, ya + 15, j))
+            if j == i:
+                if sc or dt:
+                    raise ReadError(f"{names[i]} の自分自身の枠に文字がある")
+                continue
+            if len(sc) not in (0, 2) or len(dt) != 1:
+                raise ReadError(f"{names[i]} 対 {names[j]}（{r + 1}巡目）の枠が読めない: スコア{sc} 日付{[w['text'] for w in dt]}")
+            if sc and len(h1) == 2 and len(h2) == 2 and (h1[0] + h2[0], h1[1] + h2[1]) != tuple(sc):
+                errors.append(f"{names[i]}対{names[j]}（{r + 1}巡目）前半{h1}＋後半{h2}≠{sc}")
+            mo, da = dt[0]["text"].split("/")
+            grid[(i, j, r)] = dict(s=tuple(sc) if sc else None, date=_md_date(int(mo), int(da)), venue=vn)
+    # 石川独自の検算：同じ試合が行（A対B）と列（B対A）の2か所にある → 左右反転で一致すること
+    matches = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            for r in range(2):
+                a, b = grid[(i, j, r)], grid[(j, i, r)]
+                same = (a["s"] is None and b["s"] is None) or (a["s"] and b["s"] and a["s"] == b["s"][::-1])
+                if not same or a["date"] != b["date"]:
+                    errors.append(f"左右不一致 {names[i]}対{names[j]}（{r + 1}巡目）"
+                                  f"{a['s']}・{a['date']} ／ 反対側 {b['s']}・{b['date']}")
+                    continue
+                matches.append(dict(md=0, date=a["date"], home=names[i], away=names[j],
+                                    hs=a["s"][0] if a["s"] else None, **{"as": a["s"][1] if a["s"] else None},
+                                    venue=a["venue"]))
+    # 順位表（勝点・得点・失点・順位だけ。勝分敗の列は無い）：勝点の列の数字を上から n 行
+    col = lambda h: sorted((w for w in words if abs(w["x0"] - head[h]["x0"]) < 10 and w["top"] > head[h]["bottom"]  # noqa: E731
+                            and re.fullmatch(r"\d+", w["text"])), key=lambda w: w["top"])
+    pts = col("勝点")
+    if len(pts) != n:
+        raise ReadError(f"順位表の勝点が{len(pts)}行（{n}のはず）")
+    standings = {}
+    for i, pw in enumerate(pts):
+        if not anchors[2 * i] - 45 < pw["top"] < anchors[2 * i + 1]:
+            raise ReadError(f"順位表の{i + 1}行目が {names[i]} の段の高さに無い")
+        get = lambda h: [int(w["text"]) for w in col(h) if abs(w["top"] - pw["top"]) < 6]   # noqa: E731
+        gf, ga, rk = get("得点"), get("失点"), get("順位")
+        if len(gf) != 1 or len(ga) != 1 or len(rk) != 1:
+            raise ReadError(f"順位表の{i + 1}行目（{names[i]}）が読めない")
+        standings[names[i]] = dict(pts=int(pw["text"]), gf=gf[0], ga=ga[0], rank=rk[0])
+    return standings, matches, errors
+
+
+# ---- 愛媛（1ページ目＝前期・2ページ目＝後期。左半分が日程表・右半分が星取表） ------------
+#   ⚠️ 同じ高さの行に日程表と星取表の文字が混ざる → x でページを左右に分けてから読む
+#   日程表の1試合：ホーム 前半 後半 計 － 計 前半 後半 アウェイ 主審 副審… 「計」の2つがスコア。
+#   ⚠️ 主審・副審の欄にもチーム名（審判担当）が入る → アウェイは「チーム名が先頭から一致する」で切る
+def read_ehime15(cfg: dict) -> tuple[dict, list[dict], list[str]]:
+    url = _one_link(cfg, lambda t, u: t.startswith("Div.1"), "Div.1")
+    X = cfg["x"]
+    with _open(url) as pdf:
+        if len(pdf.pages) != 2:
+            raise ReadError(f"ページ数が{len(pdf.pages)}（2のはず）")
+        pages = []
+        for pg in pdf.pages:
+            pages.append(dict(chars=list(pg.chars), words=pg.extract_words(x_tolerance=1.5),
+                              blocks=pdf_source.page_hrules(pg, X["home"][0], X["away"][1] - 10),
+                              date_rules=pdf_source.page_hrules(pg, X["date"][0] + 6, X["date"][1] - 2),
+                              venue_rules=pdf_source.page_hrules(pg, X["venue"][0] + 5, X["venue"][1] - 6)))
+    # チーム名：2ページ目の星取表の行見出し（右半分の左端）。年間成績は同じ高さの右端
+    p2 = pages[1]
+    lab = [ln for ln in _lines(_in_x(p2["chars"], *X["label"]), tol=3) if ln["y"] > 90]
+    names = {_nk(ln["text"]): _clean(ln["text"]) for ln in lab}
+    if len(names) != cfg["teams"]:
+        raise ReadError(f"星取表の行見出しが{len(names)}個（{cfg['teams']}のはず）", [ln["text"] for ln in lab])
+    heads = [w for w in p2["words"] if w["x0"] > X["annual"] and w["top"] < 90]
+    head = {h: [w for w in heads if w["text"] == h] for h in ("勝ち点", "得点", "失点", "順位")}
+    if any(len(v) != 1 for v in head.values()):
+        raise ReadError("年間成績の見出し（勝ち点・得点・失点・順位）が揃わない")
+    col = lambda h: [w for w in p2["words"] if abs(w["x0"] - head[h][0]["x0"]) < 5 and w["top"] > 90  # noqa: E731
+                     and re.fullmatch(r"\d+", w["text"])]
+    standings = {}
+    for pw in col("勝ち点"):
+        row = [ln for ln in lab if abs(ln["y"] - (pw["top"] + pw["bottom"]) / 2) < 10]
+        get = lambda h: [int(w["text"]) for w in col(h) if abs(w["top"] - pw["top"]) < 4]   # noqa: E731
+        gf, ga, rk = get("得点"), get("失点"), get("順位")
+        if len(row) != 1 or len(gf) != 1 or len(ga) != 1 or len(rk) != 1:
+            print(f"    （愛媛: 年間成績の {pw['top']:.0f} の行が読めないので照合から外す）")
+            continue
+        standings[_clean(row[0]["text"])] = dict(pts=int(pw["text"]), gf=gf[0], ga=ga[0], rank=rk[0])
+
+    matches, errors = [], []
+    for pi, p in enumerate(pages):
+        left = _in_x(p["chars"], 0, X["split"])
+        title = " ".join(ln["text"] for ln in _lines(left)[:2])
+        if "Div.1" not in title or "日程表" not in title:
+            raise ReadError(f"{pi + 1}ページ目の見出しが Div.1 の日程表ではない", [title])
+        dashes = sorted((c for c in left if c["text"] == "－" and X["dash"][0] <= c["x0"] < X["dash"][1]),
+                        key=lambda c: c["top"])
+        blocks = p["blocks"]
+        if len(blocks) != cfg["md_per_page"] + 1:
+            raise ReadError(f"{pi + 1}ページ目の節の区切りが{len(blocks) - 1}個（{cfg['md_per_page']}のはず）")
+        for d in dashes:
+            y = (d["top"] + d["bottom"]) / 2
+            if y < blocks[0]:
+                continue                                      # 見出しの「（40－10－40）」
+            row = [c for c in left if abs((c["top"] + c["bottom"]) / 2 - y) < 3]
+            home_t = "".join(c["text"] for c in _in_x(row, *X["home"]))
+            nums = [w for w in _words(_in_x(row, X["home"][1], X["away"][0])) if w["text"] != "－"]
+            away = _team_prefix("".join(c["text"] for c in _in_x(row, *X["away"])), names)
+            home = names.get(_nk(home_t))
+            if not home or not away:
+                raise ReadError(f"{pi + 1}ページ目 y={y:.0f} のチーム名が読めない: {home_t!r}")
+            if len(nums) not in (0, 6) or not all(w["text"].isdigit() for w in nums):
+                raise ReadError(f"{home} 対 {away[0]} のスコアの欄が読めない: {[w['text'] for w in nums]}")
+            v = [int(w["text"]) for w in nums]
+            if v and (v[0] + v[1] != v[2] or v[4] + v[5] != v[3]):
+                errors.append(f"{home}対{away[0]} 前半＋後半≠計 {v}")
+            md = pi * cfg["md_per_page"] + sum(1 for b in blocks if b < y)
+            label = _merged_cell(left, blocks, y, *X["md"], r"^\d+$")
+            if label and int(label) != md:
+                raise ReadError(f"{home}対{away[0]} の節の見出し {label} が位置からの計算 {md} と違う")
+            venue = _merged_cell(left, p["venue_rules"], y, *X["venue"], r"\S")
+            matches.append(dict(md=md, home=home, away=away[0], hs=v[2] if v else None, **{"as": v[3] if v else None},
+                                date=_date_from(_merged_cell(left, p["date_rules"], y, *X["date"], r"月.*日")),
+                                venue="" if (venue or "").replace(" ", "") in ("", "未定", "調整中")
+                                else venue.replace(" ", "")))
+    return standings, matches, errors
+
+
 READERS = {"gcmodel": read_gcmodel, "kanagawa": read_kanagawa15,
-           "sportsonline": read_sportsonline15, "niigata": read_niigata15}
+           "sportsonline": read_sportsonline15, "niigata": read_niigata15,
+           "akita_pdf": read_akita15, "nagano_pdf": read_nagano15,
+           "ishikawa_pdf": read_ishikawa15, "ehime_pdf": read_ehime15}
 
 
 # ---------------------------------------------------------------------------
@@ -412,8 +887,14 @@ def tally(teams: set, matches: list[dict]) -> dict:
     return t
 
 
-def build(key: str, cfg: dict, standings: dict, matches: list[dict], old: dict | None) -> dict:
-    """検算を通れば書き込むJSONを返す。通らなければ ValueError（理由つき）。"""
+def build(key: str, cfg: dict, standings: dict, matches: list[dict], old: dict | None,
+          pre_errors: list[str] | None = None, info: list[str] | None = None) -> dict:
+    """検算を通れば書き込むJSONを返す。通らなければ ValueError（理由つき）。
+    pre_errors … 読み取り側の検算（石川の左右一致・前半＋後半＝計）の不一致。1件でもあればNG
+    info       … ⚪情報（NGにはしない）を書き足すリスト"""
+    if pre_errors:
+        raise ValueError(f"出典の中の検算が不一致 {len(pre_errors)}件: " + "; ".join(pre_errors[:3])
+                         + (" …" if len(pre_errors) > 3 else ""))
     n = cfg["teams"]
     alias = cfg.get("aliases") or {}
     for m in matches:
@@ -433,14 +914,22 @@ def build(key: str, cfg: dict, standings: dict, matches: list[dict], old: dict |
         raise ValueError(f"対戦の組が{len(pairs)}（{n * (n - 1) // 2}のはず）・2試合でない組 {bad[:3]}")
 
     mine = tally(teams, matches)
+    check = cfg.get("check_keys") or tuple(next(iter(mine.values())))    # 既定＝全項目
     if standings:
-        if set(standings) != teams:
+        # 愛媛は年間成績の行が読めないチームを照合から外すことがある＝順位表側は部分集合でよい設定
+        if set(standings) != teams and not (cfg["kind"] == "ehime_pdf" and set(standings) <= teams):
             raise ValueError(f"順位表と試合のチーム名が合わない: 順位表だけ {sorted(set(standings) - teams)}"
                              f"／試合だけ {sorted(teams - set(standings))}")
         diff = [f"{t}.{k} 表{standings[t][k]}≠試合{mine[t][k]}"
-                for t in sorted(teams) for k in mine[t] if standings[t][k] != mine[t][k]]
+                for t in sorted(standings) for k in check if standings[t][k] != mine[t][k]]
         if diff:
             raise ValueError("検算不一致 " + "; ".join(diff[:4]) + (" …" if len(diff) > 4 else ""))
+        # ⚪情報：照合しない項目の食い違い（長野の星取表の得点・失点）。更新は止めない
+        for t in sorted(standings):
+            d = [f"{k} 表{standings[t][k]}≠試合{mine[t][k]}" for k in cfg.get("info_keys", ())
+                 if standings[t][k] != mine[t][k]]
+            if d and info is not None:
+                info.append(f"{t}（{'・'.join(d)}）")
 
     disp = cfg.get("display") or {}
     dn = lambda x: disp.get(x, x)          # noqa: E731  表示名（照合は済んでいる）
@@ -454,10 +943,11 @@ def build(key: str, cfg: dict, standings: dict, matches: list[dict], old: dict |
     if played_now < played_old:
         raise ValueError(f"消化試合数が減る（既存{played_old}→今回{played_now}）")
 
-    if standings:
+    own_rank = not standings or cfg.get("rank_from") == "self" or set(standings) != teams
+    if not own_rank:
         order = sorted(teams, key=lambda t: (standings[t]["rank"], t))
         rank = {t: standings[t]["rank"] for t in teams}
-    else:   # 自前計算：勝点→得失点差→得点（新潟）
+    else:   # 自前計算：勝点→得失点差→得点（新潟・長野）
         kf = lambda t: (-mine[t]["pts"], -(mine[t]["gf"] - mine[t]["ga"]), -mine[t]["gf"])   # noqa: E731
         order = sorted(teams, key=lambda t: (kf(t), t))
         rank, prev = {}, None
@@ -480,6 +970,8 @@ def build(key: str, cfg: dict, standings: dict, matches: list[dict], old: dict |
                official_standings=official, matches=out_matches)
     if not standings:
         out["standings_source"] = "self"
+    elif own_rank:
+        out["standings_source"] = "self_pts"      # 出典の順位表とは勝点だけ一致を確かめた自前計算（長野）
     return out
 
 
@@ -498,13 +990,13 @@ def _same(a: dict, b: dict) -> bool:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="U-15県リーグ1部（試作7県）を取り込む")
+    ap = argparse.ArgumentParser(description="U-15県リーグ1部を取り込む")
     ap.add_argument("--dry-run", action="store_true", help="取得と検算だけ行い書き込まない")
     ap.add_argument("--only", default="", help="県（tochigi など）をカンマ区切りで指定")
     args = ap.parse_args()
     only = {s.strip() for s in args.only.split(",") if s.strip()}
 
-    print(f"=== U-15県1部（試作{len(PREFS)}県）{'【DRY RUN】' if args.dry_run else ''} ===")
+    print(f"=== U-15県1部（{len(PREFS)}県）{'【DRY RUN】' if args.dry_run else ''} ===")
     summary = []
     for key, cfg in PREFS.items():
         if only and key not in only:
@@ -514,7 +1006,7 @@ def main() -> int:
         old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
         print(f"■ {cfg['prefName']}（{slug}）")
         try:
-            standings, matches = READERS[cfg["kind"]](cfg)
+            standings, matches, *rest = READERS[cfg["kind"]](cfg)
         except Exception as e:          # noqa: BLE001
             print(f"    読めなかった: {e}")
             for d in getattr(e, "diag", []):
@@ -523,11 +1015,17 @@ def main() -> int:
             continue
         finally:
             time.sleep(SLEEP)
+        info = []
         try:
-            out = build(key, cfg, standings, matches, old)
+            out = build(key, cfg, standings, matches, old, rest[0] if rest else None, info)
         except Exception as e:          # noqa: BLE001
             summary.append(f"⏸ {cfg['prefName']}: 検証NG（{e}）")
             continue
+        if info:
+            msg = (f"⚪ {cfg['prefName']}: 出典の順位表の {'・'.join(cfg.get('info_keys', ()))} が試合結果からの計算と"
+                   f"{len(info)}チームで違う（照合対象外・更新は続ける）: " + "; ".join(info))
+            print(f"    {msg}")
+            summary.append(msg)
         played = sum(1 for m in out["matches"] if m["status"] == "played")
         top = out["official_standings"][0]
         info = f"消化{played}／{len(out['matches'])}・首位 {top['team']}（{top['points']}）"

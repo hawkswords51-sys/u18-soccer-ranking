@@ -1,0 +1,703 @@
+{
+ "league": "高円宮杯JFA U-15サッカーリーグ2026秋田県すぎっちリーグ（1部）",
+ "season": "2026",
+ "pref": "akita",
+ "prefName": "秋田県",
+ "region": "東北",
+ "source": "https://fa-akita.net/17086/",
+ "sourceName": "秋田県サッカー協会 3種（PDF）",
+ "lastUpdated": "2026-10-01",
+ "teams": [
+  {
+   "name": "FCあきた",
+   "short": "FCあきた"
+  },
+  {
+   "name": "FC Estrella A",
+   "short": "FC Estrella A"
+  },
+  {
+   "name": "YFCセレジェスタA",
+   "short": "YFCセレジェスタA"
+  },
+  {
+   "name": "スポルティフ秋田B",
+   "short": "スポルティフ秋田B"
+  },
+  {
+   "name": "神岡FC",
+   "short": "神岡FC"
+  },
+  {
+   "name": "ASP U-15 2nd",
+   "short": "ASP U-15 2nd"
+  },
+  {
+   "name": "十文字ＦＣ",
+   "short": "十文字ＦＣ"
+  },
+  {
+   "name": "グロースＦＣ",
+   "short": "グロースＦＣ"
+  }
+ ],
+ "official_standings": [
+  {
+   "rank": 1,
+   "team": "FCあきた",
+   "points": 37,
+   "played": 13,
+   "won": 12,
+   "drawn": 1,
+   "lost": 0,
+   "gf": 88,
+   "ga": 7,
+   "gd": 81
+  },
+  {
+   "rank": 2,
+   "team": "FC Estrella A",
+   "points": 32,
+   "played": 12,
+   "won": 10,
+   "drawn": 2,
+   "lost": 0,
+   "gf": 83,
+   "ga": 7,
+   "gd": 76
+  },
+  {
+   "rank": 3,
+   "team": "YFCセレジェスタA",
+   "points": 25,
+   "played": 13,
+   "won": 8,
+   "drawn": 1,
+   "lost": 4,
+   "gf": 43,
+   "ga": 20,
+   "gd": 23
+  },
+  {
+   "rank": 4,
+   "team": "スポルティフ秋田B",
+   "points": 21,
+   "played": 12,
+   "won": 7,
+   "drawn": 0,
+   "lost": 5,
+   "gf": 37,
+   "ga": 14,
+   "gd": 23
+  },
+  {
+   "rank": 5,
+   "team": "神岡FC",
+   "points": 17,
+   "played": 12,
+   "won": 5,
+   "drawn": 2,
+   "lost": 5,
+   "gf": 34,
+   "ga": 24,
+   "gd": 10
+  },
+  {
+   "rank": 6,
+   "team": "ASP U-15 2nd",
+   "points": 10,
+   "played": 14,
+   "won": 3,
+   "drawn": 1,
+   "lost": 10,
+   "gf": 24,
+   "ga": 62,
+   "gd": -38
+  },
+  {
+   "rank": 7,
+   "team": "十文字ＦＣ",
+   "points": 7,
+   "played": 13,
+   "won": 2,
+   "drawn": 1,
+   "lost": 10,
+   "gf": 15,
+   "ga": 51,
+   "gd": -36
+  },
+  {
+   "rank": 8,
+   "team": "グロースＦＣ",
+   "points": 0,
+   "played": 13,
+   "won": 0,
+   "drawn": 0,
+   "lost": 13,
+   "gf": 6,
+   "ga": 145,
+   "gd": -139
+  }
+ ],
+ "matches": [
+  {
+   "md": 1,
+   "date": "2026-04-11",
+   "home": "グロースＦＣ",
+   "hs": 1,
+   "as": 10,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "男鹿球技場"
+  },
+  {
+   "md": 1,
+   "date": "2026-04-11",
+   "home": "スポルティフ秋田B",
+   "hs": 3,
+   "as": 1,
+   "away": "十文字ＦＣ",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 1,
+   "date": "2026-04-12",
+   "home": "FC Estrella A",
+   "hs": 3,
+   "as": 0,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "西目カントリーパーク"
+  },
+  {
+   "md": 2,
+   "date": "2026-04-18",
+   "home": "グロースＦＣ",
+   "hs": 0,
+   "as": 9,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "男鹿球技場"
+  },
+  {
+   "md": 2,
+   "date": "2026-04-18",
+   "home": "十文字ＦＣ",
+   "hs": 0,
+   "as": 10,
+   "away": "FC Estrella A",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 2,
+   "date": "2026-04-19",
+   "home": "スポルティフ秋田B",
+   "hs": 2,
+   "as": 1,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 2,
+   "date": "2026-04-25",
+   "home": "ASP U-15 2nd",
+   "hs": 2,
+   "as": 9,
+   "away": "FCあきた",
+   "status": "played",
+   "venue": "潟上フットボールセンター"
+  },
+  {
+   "md": 4,
+   "date": "2026-04-29",
+   "home": "十文字ＦＣ",
+   "hs": 6,
+   "as": 1,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 5,
+   "date": "2026-05-02",
+   "home": "FCあきた",
+   "hs": 3,
+   "as": 1,
+   "away": "スポルティフ秋田B",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 5,
+   "date": "2026-05-02",
+   "home": "グロースＦＣ",
+   "hs": 1,
+   "as": 19,
+   "away": "FC Estrella A",
+   "status": "played",
+   "venue": "男鹿球技場"
+  },
+  {
+   "md": 6,
+   "date": "2026-05-02",
+   "home": "神岡FC",
+   "hs": 0,
+   "as": 2,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "ソラーレ"
+  },
+  {
+   "md": 6,
+   "date": "2026-05-09",
+   "home": "グロースＦＣ",
+   "hs": 0,
+   "as": 30,
+   "away": "FCあきた",
+   "status": "played",
+   "venue": "男鹿球技場"
+  },
+  {
+   "md": 6,
+   "date": "2026-05-10",
+   "home": "スポルティフ秋田B",
+   "hs": 0,
+   "as": 2,
+   "away": "FC Estrella A",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 4,
+   "date": "2026-05-16",
+   "home": "ASP U-15 2nd",
+   "hs": 1,
+   "as": 3,
+   "away": "スポルティフ秋田B",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 7,
+   "date": "2026-05-30",
+   "home": "スポルティフ秋田B",
+   "hs": 9,
+   "as": 0,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "男鹿球技場"
+  },
+  {
+   "md": 6,
+   "date": "2026-05-31",
+   "home": "十文字ＦＣ",
+   "hs": 3,
+   "as": 4,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 7,
+   "date": "2026-06-06",
+   "home": "FCあきた",
+   "hs": 2,
+   "as": 2,
+   "away": "FC Estrella A",
+   "status": "played",
+   "venue": "県立中央公園球技場A"
+  },
+  {
+   "md": 7,
+   "date": "2026-06-06",
+   "home": "YFCセレジェスタA",
+   "hs": 3,
+   "as": 0,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "玉川河川敷グラウンド"
+  },
+  {
+   "md": 7,
+   "date": "2026-06-06",
+   "home": "十文字ＦＣ",
+   "hs": 0,
+   "as": 3,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 1,
+   "date": "2026-06-27",
+   "home": "FCあきた",
+   "hs": 2,
+   "as": 0,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "県立中央公園球技場A"
+  },
+  {
+   "md": 5,
+   "date": "2026-06-27",
+   "home": "ASP U-15 2nd",
+   "hs": 1,
+   "as": 5,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "県立中央公園球技場B"
+  },
+  {
+   "md": 3,
+   "date": "2026-07-04",
+   "home": "グロースＦＣ",
+   "hs": 1,
+   "as": 9,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "男鹿総合運動公園陸上競技場"
+  },
+  {
+   "md": 5,
+   "date": "2026-07-04",
+   "home": "YFCセレジェスタA",
+   "hs": 2,
+   "as": 1,
+   "away": "十文字ＦＣ",
+   "status": "played",
+   "venue": "玉川河川敷グラウンド"
+  },
+  {
+   "md": 3,
+   "date": "2026-07-05",
+   "home": "FC Estrella A",
+   "hs": 2,
+   "as": 2,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "水林陸上競技場"
+  },
+  {
+   "md": 8,
+   "date": "2026-07-11",
+   "home": "ASP U-15 2nd",
+   "hs": 0,
+   "as": 11,
+   "away": "FC Estrella A",
+   "status": "played",
+   "venue": "スポパークかわべ"
+  },
+  {
+   "md": 8,
+   "date": "2026-07-11",
+   "home": "YFCセレジェスタA",
+   "hs": 1,
+   "as": 2,
+   "away": "FCあきた",
+   "status": "played",
+   "venue": "玉川河川敷グラウンド"
+  },
+  {
+   "md": 8,
+   "date": "2026-07-11",
+   "home": "神岡FC",
+   "hs": 8,
+   "as": 1,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "中川原グラウンド"
+  },
+  {
+   "md": 3,
+   "date": "2026-07-18",
+   "home": "スポルティフ秋田B",
+   "hs": 3,
+   "as": 0,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 9,
+   "date": "2026-07-18",
+   "home": "FCあきた",
+   "hs": 7,
+   "as": 0,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "県立中央公園球技場"
+  },
+  {
+   "md": 8,
+   "date": "2026-08-01",
+   "home": "十文字ＦＣ",
+   "hs": 1,
+   "as": 6,
+   "away": "スポルティフ秋田B",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 10,
+   "date": "2026-08-08",
+   "home": "十文字ＦＣ",
+   "hs": 0,
+   "as": 11,
+   "away": "FCあきた",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 3,
+   "date": "2026-08-23",
+   "home": "FCあきた",
+   "hs": 3,
+   "as": 0,
+   "away": "十文字ＦＣ",
+   "status": "played",
+   "venue": "ソラーレ"
+  },
+  {
+   "md": 11,
+   "date": "2026-08-23",
+   "home": "FC Estrella A",
+   "hs": 8,
+   "as": 2,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "西目カントリーパーク"
+  },
+  {
+   "md": 9,
+   "date": "2026-08-29",
+   "home": "FC Estrella A",
+   "hs": 2,
+   "as": 0,
+   "away": "十文字ＦＣ",
+   "status": "played",
+   "venue": "水林陸上競技場"
+  },
+  {
+   "md": 9,
+   "date": "2026-08-29",
+   "home": "YFCセレジェスタA",
+   "hs": 11,
+   "as": 0,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "玉川河川敷グラウンド"
+  },
+  {
+   "md": 4,
+   "date": "2026-09-06",
+   "home": "神岡FC",
+   "hs": 0,
+   "as": 5,
+   "away": "FCあきた",
+   "status": "played",
+   "venue": "ソラーレ"
+  },
+  {
+   "md": 10,
+   "date": "2026-09-06",
+   "home": "ASP U-15 2nd",
+   "hs": 5,
+   "as": 0,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "スポパークかわべ"
+  },
+  {
+   "md": 10,
+   "date": "2026-09-06",
+   "home": "YFCセレジェスタA",
+   "hs": 2,
+   "as": 1,
+   "away": "スポルティフ秋田B",
+   "status": "played",
+   "venue": "玉川河川敷グラウンド"
+  },
+  {
+   "md": 11,
+   "date": "2026-09-13",
+   "home": "スポルティフ秋田B",
+   "hs": 9,
+   "as": 0,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 12,
+   "date": "2026-09-19",
+   "home": "スポルティフ秋田B",
+   "hs": 0,
+   "as": 1,
+   "away": "FCあきた",
+   "status": "played",
+   "venue": "スポルティフタウン"
+  },
+  {
+   "md": 12,
+   "date": "2026-09-19",
+   "home": "十文字ＦＣ",
+   "hs": 0,
+   "as": 5,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "十文字河川敷グラウンド"
+  },
+  {
+   "md": 12,
+   "date": "2026-09-19",
+   "home": "神岡FC",
+   "hs": 3,
+   "as": 0,
+   "away": "ASP U-15 2nd",
+   "status": "played",
+   "venue": "中川原グラウンド"
+  },
+  {
+   "md": 10,
+   "date": "2026-09-21",
+   "home": "神岡FC",
+   "hs": 0,
+   "as": 5,
+   "away": "FC Estrella A",
+   "status": "played",
+   "venue": "中川原グラウンド"
+  },
+  {
+   "md": 11,
+   "date": "2026-09-21",
+   "home": "グロースＦＣ",
+   "hs": 0,
+   "as": 2,
+   "away": "十文字ＦＣ",
+   "status": "played",
+   "venue": "男鹿市総合運動公園球技場"
+  },
+  {
+   "md": 14,
+   "date": "2026-09-21",
+   "home": "ASP U-15 2nd",
+   "hs": 1,
+   "as": 4,
+   "away": "YFCセレジェスタA",
+   "status": "played",
+   "venue": "スポパークかわべ"
+  },
+  {
+   "md": 11,
+   "date": "2026-09-23",
+   "home": "FCあきた",
+   "hs": 3,
+   "as": 0,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "ソラーレ"
+  },
+  {
+   "md": 12,
+   "date": "2026-09-23",
+   "home": "FC Estrella A",
+   "hs": 17,
+   "as": 0,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "西目カントリーパーク"
+  },
+  {
+   "md": 13,
+   "date": "2026-09-23",
+   "home": "ASP U-15 2nd",
+   "hs": 1,
+   "as": 1,
+   "away": "十文字ＦＣ",
+   "status": "played",
+   "venue": "スポパークかわべ"
+  },
+  {
+   "md": 13,
+   "date": "2026-09-26",
+   "home": "FCあきた",
+   "hs": 10,
+   "as": 1,
+   "away": "グロースＦＣ",
+   "status": "played",
+   "venue": "SPDF"
+  },
+  {
+   "md": 13,
+   "date": "2026-09-26",
+   "home": "YFCセレジェスタA",
+   "hs": 2,
+   "as": 2,
+   "away": "神岡FC",
+   "status": "played",
+   "venue": "玉川河川敷グラウンド"
+  },
+  {
+   "md": 13,
+   "date": "2026-09-27",
+   "home": "FC Estrella A",
+   "hs": 2,
+   "as": 0,
+   "away": "スポルティフ秋田B",
+   "status": "played",
+   "venue": "西目カントリーパーク"
+  },
+  {
+   "md": 4,
+   "date": "2026-09-29",
+   "home": "YFCセレジェスタA",
+   "hs": null,
+   "as": null,
+   "away": "FC Estrella A",
+   "status": "scheduled",
+   "venue": "ソラーレ"
+  },
+  {
+   "md": 14,
+   "date": "2026-10-03",
+   "home": "グロースＦＣ",
+   "hs": null,
+   "as": null,
+   "away": "スポルティフ秋田B",
+   "status": "scheduled",
+   "venue": "男鹿球技場"
+  },
+  {
+   "md": 14,
+   "date": "2026-10-04",
+   "home": "FC Estrella A",
+   "hs": null,
+   "as": null,
+   "away": "FCあきた",
+   "status": "scheduled",
+   "venue": "西目カントリーパーク"
+  },
+  {
+   "md": 9,
+   "date": "2026-10-12",
+   "home": "神岡FC",
+   "hs": null,
+   "as": null,
+   "away": "スポルティフ秋田B",
+   "status": "scheduled"
+  },
+  {
+   "md": 14,
+   "date": "2026-10-17",
+   "home": "神岡FC",
+   "hs": null,
+   "as": null,
+   "away": "十文字ＦＣ",
+   "status": "scheduled",
+   "venue": "中川原グラウンド"
+  }
+ ]
+}

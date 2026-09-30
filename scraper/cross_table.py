@@ -169,6 +169,8 @@ NO_HOME_AWAY_SLUGS: set[str] = {
     "u15-tochigi-1", "u15-gunma-1", "u15-saga-1", "u15-nagasaki-1",
     "u15-kanagawa-1", "u15-hiroshima-1", "u15-niigata-1",
     "u15-shimane-1",   # 2026-09-30 追補。一覧の上段と「Away」の下段で左右が同じ＝「Away」は入れ替わりの証拠にならない
+    # 2026-10-01 第3弾（PDFの4県）。どのPDFにも左右が本当のホーム/アウェイだという根拠が無い
+    "u15-akita-1", "u15-nagano-1", "u15-ishikawa-1", "u15-ehime-1",
 }
 
 
