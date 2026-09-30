@@ -137,7 +137,15 @@ PREF_OFFICIAL = {
                  "label": "鳥取県サッカー協会 公式（GoalNote）"},
     "kagawa":   {"platform": "goalnote_saved", "tid": "18633", "label": "香川県サッカー協会 公式（GoalNote）"},
     "yamagata": {"platform": "goalnote_saved", "tid": "18649", "label": "山形県サッカー協会 公式（GoalNote）"},
-    "ibaraki":  {"platform": "goalnote_saved", "tid": "18463", "label": "茨城県サッカー協会 公式（GoalNote）"},
+    # 茨城（2026-09-30 GoalNote から県協会PDFへ移行）。read_ibaraki のコメント参照。
+    #   ⚠️ 入口の記事URLは年度ごと（c2-20260213）。年度切り替えで差し替える。
+    "ibaraki":  {"platform": "ibaraki_pdf", "teams": 10,
+                 "entry": "https://www.ibaraki-fa.jp/info/c2-20260213/",
+                 "source": "https://www.ibaraki-fa.jp/info/c2-20260213/",
+                 "label": "茨城県サッカー協会 公式（PDF）",
+                 "double_round": True,
+                 # 戦績表PDFは結果PDFより遅れる（9/28 に第14節時点）＋文字抽出が崩れる → 既定ゲートは使えない
+                 "standings_gate": "self"},
     "shiga":    {"platform": "tecra", "host": "shiga-fa-u18.com", "label": "滋賀県サッカー協会 公式"},
     "fukuoka":  {"platform": "tecra", "host": "fukuoka-fa-u18.com", "label": "福岡県サッカー協会 公式"},
     "saga":     {"platform": "tecra", "host": "saga-fa-u18.com", "label": "佐賀県サッカー協会 公式"},
@@ -673,6 +681,99 @@ def _to_int(v):
 #           [番号, YYYY/MM/DD, HH:MM, ホーム, "1-2 [試合終了]", アウェイ, 会場, 詳細]
 #           未消化の行は [試合終了] を持たない
 # ============================================================
+# ============================================================
+# 茨城（ibaraki-fa.jp）— 県協会の結果PDF（前期・後期の2本）（2026-09-30 GoalNote から移行）
+#   入口: /info/c2-{年度の記事}/ のPDFリンク。**ファイル名は更新日で毎回変わる**（…_1koki_result0928.pdf）ので
+#   記事から「_1zenki_result」「_1koki_result」（1部の前期・後期）を1本ずつ拾う。リンク文字（前期/後期）は2部と同じなので使わない。
+# ⭐️ 1試合＝「節 1部 月日 (曜) 時刻 HOME 合計 ( 前半 ) 合計 AWAY 会場」＋すぐ下の行に後半スコア。
+#    **( ) の中は前半のスコア**（PKではない）。前半は本行より約3.5pt上、後半は約5pt下に置かれている。
+#    行でまとめると前半の数字が1つ上の行に、後半が次の行に落ちる（pdf.js でも page_row_texts でも同じ）。
+#    → **「1部」の語を錨にして座標で読む**：本行＝中心の差2pt以内、前半＝上2〜6pt、後半＝下2〜8pt（括弧の x 範囲）。
+# ⭐️ **前半＋後半＝合計**を全試合で検算する（公式順位表が使えない self ゲートの主な守り）。合わなければ止める。
+# ⚠️ 未消化は「HOME ( ) AWAY」。日付・時刻・会場が空の行がある（第18節 牛久栄進A vs 鹿島A）。
+# ⚠️ チーム名は半角カナ（水戸ﾎｰﾘｰﾎｯｸﾕｰｽA）→ build_name_map の NFKC で既存名に寄る。
+# ⚠️ 戦績表PDF（…_1_league0924.pdf）は結果より遅れ、文字抽出も崩れるので使わない（standings_gate: self）。
+# 年度切り替え: entry（記事URL）を差し替える。PDFの表題に SEASON_YEAR を必須にしている。
+# ============================================================
+_IBARAKI_MAIN = re.compile(
+    r"^(\d+) 1部 (?:(\d{1,2})月(\d{1,2})日 \((.)\) (\d{1,2}:\d{2}) )?(\S+) (?:(\d+) )?\( \) (?:(\d+) )?(\S+)(?: (.+))?$")
+
+
+def _ibaraki_pdf(content: bytes, seg: str) -> tuple[list[dict], str]:
+    with pdf_source.open_pdf(content) as pdf:
+        if len(pdf.pages) != 1:
+            raise RuntimeError(f"{seg}の結果PDFが{len(pdf.pages)}ページ（1ページのはず）")
+        pg = pdf.pages[0]
+        head = re.sub(r"\s+", "", unicodedata.normalize("NFKC", pg.extract_text() or ""))[:80]
+        ws = pg.extract_words()
+    if f"サッカーリーグ{SEASON_YEAR}IFAリーグ1部{seg}" not in head:
+        raise RuntimeError(f"{seg}の結果PDFの表題が「…サッカーリーグ{SEASON_YEAR} IFAリーグ1部 {seg}」でない: {head[:50]}")
+    vm = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日現在", head)
+    version = f"{vm.group(1)}-{int(vm.group(2)):02d}-{int(vm.group(3)):02d}" if vm else ""
+    cen = lambda w: (w["top"] + w["bottom"]) / 2          # noqa: E731
+    anchors = sorted((w for w in ws if w["text"] == "1部" and w["x0"] < 70), key=lambda w: w["top"])
+    out = []
+    for a in anchors:
+        c = cen(a)
+        main = sorted((w for w in ws if abs(cen(w) - c) <= 2.0), key=lambda w: w["x0"])
+        line = " ".join(w["text"] for w in main)
+        m = _IBARAKI_MAIN.match(line)
+        if not m:
+            raise RuntimeError(f"{seg}の結果PDFの行が読めない: {line!r}")
+        lp = next(w for w in main if w["text"] == "(")
+        rp = next(w for w in main if w["text"] == ")")
+        band = lambda lo, hi: [w["text"] for w in sorted(ws, key=lambda w: w["x0"])     # noqa: E731
+                               if lp["x0"] < w["x0"] < rp["x0"] and lo <= cen(w) - c <= hi]
+        md = int(m.group(1))
+        date = f"{SEASON_YEAR}-{int(m.group(2)):02d}-{int(m.group(3)):02d}" if m.group(2) else ""
+        hs = int(m.group(7)) if m.group(7) else None
+        as_ = int(m.group(8)) if m.group(8) else None
+        if (hs is None) != (as_ is None):
+            raise RuntimeError(f"{seg}の結果PDF: スコアが片側だけ: {line!r}")
+        if hs is not None:
+            fh = re.fullmatch(r"(\d+) - (\d+)", " ".join(band(-6, -2)))
+            sh = re.fullmatch(r"(\d+) - (\d+)", " ".join(band(2, 8)))
+            if not fh or not sh:
+                raise RuntimeError(f"{seg}の結果PDF: 前半/後半のスコアが読めない（第{md}節 {m.group(6)} vs {m.group(9)}）")
+            if (int(fh.group(1)) + int(sh.group(1)), int(fh.group(2)) + int(sh.group(2))) != (hs, as_):
+                raise RuntimeError(f"{seg}の結果PDF: 前半{fh.group(0)}＋後半{sh.group(0)}が合計{hs}-{as_}と合わない"
+                                   f"（第{md}節 {m.group(6)} vs {m.group(9)}）")
+        out.append(dict(md=md, date=date, home=m.group(6), away=m.group(9), hs=hs, **{"as": as_},
+                        kickoff=m.group(5) or "", venue=(m.group(10) or "").strip()))
+    return out, version
+
+
+def read_ibaraki(cfg: dict) -> tuple[dict, list[dict]]:
+    soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8", must_contain="IFAリーグ"), "html.parser")
+    time.sleep(SLEEP)
+    links = {}
+    for seg, key in (("前期", "zenki"), ("後期", "koki")):
+        hits = sorted({a["href"] for a in soup.find_all("a", href=True)
+                       if re.search(rf"_1{key}_result\d{{4}}\.pdf$", a["href"])})
+        if len(hits) != 1:
+            raise RuntimeError(f"記事に1部{seg}の結果PDFが{len(hits)}本（1本のはず）: {hits[:3]}")
+        links[seg] = hits[0]
+    matches, versions = [], {}
+    n = cfg["teams"]
+    for seg, lo in (("前期", 1), ("後期", n)):
+        content = pdf_source.fetch_pdf(links[seg], HEADERS, TIMEOUT, wait=SLEEP)
+        time.sleep(SLEEP)
+        rows, versions[seg] = _ibaraki_pdf(content, seg)
+        cnt = collections.Counter(r["md"] for r in rows)
+        want = {k: n // 2 for k in range(lo, lo + n - 1)}
+        if dict(cnt) != want:
+            raise RuntimeError(f"{seg}の結果PDFの節ごとの試合数が想定と違う: {dict(sorted(cnt.items()))}")
+        matches += rows
+    pairs = collections.Counter(frozenset((m["home"], m["away"])) for m in matches)
+    if len(matches) != n * (n - 1) or len(pairs) != n * (n - 1) // 2 or set(pairs.values()) != {2}:
+        raise RuntimeError(f"1部が{len(matches)}試合・{len(pairs)}組（2回戦総当たりの{n * (n - 1)}試合・各組2試合のはず）")
+    version = versions["後期"] or versions["前期"]
+    future = [m for m in matches if m["hs"] is not None and m["date"] and version and m["date"] > version]
+    if future:
+        raise RuntimeError(f"版日付({version})より後の日付の消化済み試合が{len(future)}件（例: {future[0]}）")
+    return {}, matches
+
+
 # ============================================================
 # GoalNote の保存HTML（週1の半手動・2026-09-30）
 #   Kei が自分のブラウザで順位表・日程ページを開き ⌘S（HTMLのみ）で manual_inputs/goalnote/ に保存したものを読む。
@@ -5828,7 +5929,8 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
                       "ehime": read_ehime, "kyoto": read_kyoto,
                       "fukushima": read_fukushima, "nara": read_nara,
                       "kochi": read_kochi, "wakayama": read_wakayama,
-                      "osaka": read_osaka, "saitama": read_saitama}[cfg["platform"]]
+                      "osaka": read_osaka, "saitama": read_saitama,
+                      "ibaraki_pdf": read_ibaraki}[cfg["platform"]]
             standings, matches = reader(cfg)
             src = cfg["source"]
     except Exception as e:
