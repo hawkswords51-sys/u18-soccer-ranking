@@ -20,7 +20,7 @@ DATA_DIR = BASE_DIR / "data" / "u15" / "pref"
 OUT_ROOT = BASE_DIR / "u15"
 
 # 表示順（北から）。JSON が無い県は飛ばす
-PREF_ORDER = ["niigata", "tochigi", "gunma", "kanagawa", "hiroshima", "saga", "nagasaki"]
+PREF_ORDER = ["niigata", "tochigi", "gunma", "kanagawa", "shimane", "hiroshima", "saga", "nagasaki"]
 
 
 def _jp_date(iso: str) -> str:

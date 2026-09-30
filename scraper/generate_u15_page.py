@@ -153,7 +153,7 @@ def render_regions(data):
 
 # [2026-09-30] 都道府県1部リーグ（試作7県）。data/u15/pref/*.json（fetch_u15_pref.py）から首位・消化数を自動で出す。
 PREF_DIR = BASE_DIR / "data" / "u15" / "pref"
-PREF_ORDER = ["niigata", "tochigi", "gunma", "kanagawa", "hiroshima", "saga", "nagasaki"]
+PREF_ORDER = ["niigata", "tochigi", "gunma", "kanagawa", "shimane", "hiroshima", "saga", "nagasaki"]
 
 
 def render_pref_section():

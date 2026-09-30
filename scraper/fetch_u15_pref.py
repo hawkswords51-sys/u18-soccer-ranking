@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-U-15（3種）県リーグ1部の試合と順位表を取り込む（2026-09-30 新設・試作7県）
+U-15（3種）県リーグ1部の試合と順位表を取り込む（2026-09-30 新設・試作7県＋島根）
 =====================================================================
 出力：data/u15/pref/u15-{県}-1.json（U-18 の data/league_matches/pref-*.json と同じキー構成）
       → generate_u15_pref_pages.py が /u15/{県}/ を作る。戦績表は cross_table.py を共用する。
@@ -93,6 +93,14 @@ PREFS = {
         teams=10, prefName="広島県", region="中国",
         league=f"高円宮杯 JFA U-15サッカーリーグ {SEASON} HiFAユースリーグ 1部リーグ",
         sourceName="広島県サッカー協会（SportsOnline）"),
+    # 島根（2026-09-30 追補・8県目）。広島と同じ SportsOnline。運営者名がサイト上で確認できないので団体名は書かない
+    #   rallyid は Rally.aspx の GameEdit 番号（66300）から計算できる（追補 §3・手順書7章）
+    "shimane": dict(
+        kind="sportsonline",
+        url="http://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_UX&rallyid=U%5E%5CS_",
+        teams=8, prefName="島根県", region="中国",
+        league=f"高円宮杯 JFA U-15サッカーリーグ{SEASON}島根 1部リーグ",
+        sourceName="SportsOnline（島根U-15リーグ）"),
     "niigata": dict(
         kind="niigata", tid=582, must_contain=f"U-15サッカーリーグ {SEASON}",   # 「リーグ」と年の間に空白
         teams=10, prefName="新潟県", region="北信越",
@@ -321,6 +329,8 @@ def read_sportsonline15(cfg: dict) -> tuple[dict, list[dict]]:
             dm = _SO_DATE.search(r[1])
             date = f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}" if dm else ""
             venue = (r[4] if len(r) > 4 else "").replace("??芝", "人工芝")    # 文字化け（元は「人工芝」）
+            if venue == "未定":
+                venue = ""                           # 仮の値（島根で9試合）。会場名としては出さない
             if "試合終了" in r[3]:
                 m = _SO_PLAYED.match(r[0])
                 if not m:
