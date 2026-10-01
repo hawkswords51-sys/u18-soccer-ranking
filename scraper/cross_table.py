@@ -303,6 +303,15 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
         names,
         key=lambda n: (-st[n]["pts"], -(st[n]["gf"] - st[n]["ga"]), -st[n]["gf"], n),
     )
+    # [2026-10-01] U-15県1部（match_dir を渡すページ）だけは、上の順位表と同じ並びにする。
+    #   石川は出典の順位が「勝点→得失差」ではない（同勝点15で得失差の悪い PateoFC金沢2nd が4位）ため、
+    #   順位表は 4→5 なのに戦績表だけ 5→4 と逆になっていた。
+    #   ⚠️ U-18 は変えない（並びの位置で昇降格ゾーンの色を決めている＝_zcls の i）。
+    #   ⚠️ 全チームに順位があるときだけ。同順位は上の計算順のまま。
+    if match_dir is not None:
+        _rk = {r.get("team"): r.get("rank") for r in (data.get("official_standings") or [])}
+        if all(_rk.get(n) is not None for n in names):
+            order = sorted(order, key=lambda n: _rk[n])
 
     # --- クロス表の各セル ---
     def cell(row, col):
