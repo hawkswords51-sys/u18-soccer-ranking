@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-01T07:02:34+09:00",
+  "updatedAt": "2026-10-01T10:35:35+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1265,8 +1265,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化40試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.yamanashi-football.com/files/libs/17660/202604091135587131.pdf の取得に失敗 (502 Server Error: Bad Gateway for url: https://www.yamanashi-football.com/files/libs/17660/202604091135587131.pdf))",
       "result_date": "2026-10-01",
       "last_updated": "2026-10-01"
     },
