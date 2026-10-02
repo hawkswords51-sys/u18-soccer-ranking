@@ -979,6 +979,8 @@ def render_interhigh(out_root, names, extra, season):
 # teams.json のリーグ名が「◯◯県1部」の形でない県リーグ（英語チームページの順位の文で使う）
 PREF_LEAGUE_EN = {
     "山形U-18Yリーグ": "Yamagata Prefectural League Division 1 (the Y League)",
+    "秋田U-18リーグ": "Akita Prefectural League Division 1",          # 2026-10-02 v9
+    "大分県OFAリーグ1部": "Oita Prefectural League Division 1 (the OFA League)",  # 2026-10-02 v9
 }
 
 

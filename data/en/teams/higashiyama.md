@@ -22,8 +22,8 @@ The team wants the ball. It builds from the goalkeeper, rotates positions throug
 | Competition | Year | Notes |
 |---|---|---|
 | All Japan High School Soccer Tournament | 2022 | Runners-up in the 101st edition; the captain read the oath at the National Stadium |
-| Prince League Kansai Division 1 | 2023 | Second place, which took them to the promotion play-off |
-| U-18 Premier League promotion play-off | 2023 | Won it, beating Teikyo and Shoshi, for a first return to the top tier since 2014 |
+| Prince League Kansai Division 1 | 2025 | Second place, which took them to the promotion play-off |
+| U-18 Premier League promotion play-off | 2025 | Won it, beating Teikyo and Shoshi, for a first return to the top tier since 2014 |
 | U-18 Premier League WEST | 2014, 2026 | Two spells in the top division — the Kamada generation, and this one |
 
 ## history
@@ -31,7 +31,7 @@ The team wants the ball. It builds from the goalkeeper, rotates positions throug
 - **1868** — The school is founded. Football arrives much later, and for years the team's identity is the underdog's: organisation and running against opponents with better players.
 - **2014** — A first season in the Premier League WEST, with KAMADA Daichi in the side. Competing with J.League academies for a season convinces the programme that a school team can do this.
 - **2022** — The 101st winter championship. SHINTANI Rikuto reads the oath at the opening ceremony at the National Stadium; SAKATA Reiya's pace carries the team to the final, where they are beaten.
-- **2023** — Second in the Prince League Kansai, then through the promotion play-off.
+- **2025** — Second in the Prince League Kansai, then through the promotion play-off in December, beating Shoshi 2-1 in the deciding match.
 - **2026** — Back in the Premier League WEST, under FUKUSHIGE Ryoichi, who was also Kamada's coach.
 
 ## model
