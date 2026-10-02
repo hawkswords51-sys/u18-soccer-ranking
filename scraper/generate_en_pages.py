@@ -976,6 +976,12 @@ def render_interhigh(out_root, names, extra, season):
     print(f"OK: {dest} を書きました（{len(reps)}校・{sum(len(r) for _, r in rounds)}試合）")
 
 
+# teams.json のリーグ名が「◯◯県1部」の形でない県リーグ（英語チームページの順位の文で使う）
+PREF_LEAGUE_EN = {
+    "山形U-18Yリーグ": "Yamagata Prefectural League Division 1 (the Y League)",
+}
+
+
 def render_team_pages(out_root, teams, names, extra, season):
     """data/en/teams/*.md から英語のチーム紹介ページを作る。"""
     if not TEAMS_EN_DIR.exists():
@@ -1012,7 +1018,9 @@ def render_team_pages(out_root, teams, names, extra, season):
             # 2026-09-30：都道府県リーグ所属のチーム（例：近畿大学附属＝大阪府1部）に手書きページを作ったため、
             # 「大阪府1部」のような日本語が英語ページに出ないよう英語にする。読めない書き方は出さない。
             m = re.fullmatch(r".+?[都道府県](\d)部", lg)
-            if m:
+            if lg in PREF_LEAGUE_EN:                        # 2026-10-02：「1部」と書かない県リーグの名前
+                lg_en = PREF_LEAGUE_EN[lg]
+            elif m:
                 pref_en = t.get("_pref", "").capitalize()
                 lg_en = f"{pref_en} Prefectural League Division {m.group(1)}"
             elif re.search(r"[\u3040-\u30ff\u4e00-\u9fff]", lg_en):
