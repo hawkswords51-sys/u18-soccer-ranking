@@ -26,7 +26,7 @@ On the pitch it shows as possession with an unusual vocabulary. Group patterns t
 |---|---|---|
 | All Japan U-18 Futsal Championship | 2016, 2018 | Two national titles; the JFA described 2018 as their second in three years |
 | All Japan High School Soccer Tournament, semi-finals | 2019, 2020 | Beaten 2-1 by Aomori Yamada, then on penalties by Yamanashi Gakuin |
-| Inter-High School Championships, semi-finals | 2019, 2024 | |
+| Inter-High School Championships, semi-finals | 2024 | |
 
 The futsal titles are not a side project. They are the evidence for the method: the same technical base, tested in the format it came from.
 
@@ -37,7 +37,7 @@ The futsal titles are not a side project. They are the evidence for the method: 
 - **The club structure** — TANIGUCHI Tetsuro, now director of football, sets up Nagaoka JYFC as a non-profit junior-youth club, and with it a pathway that starts at 12 rather than 15.
 - **2016** — A first national futsal title.
 - **2018** — A second futsal title, won 5-1 in the final.
-- **2019 and 2020** — Back-to-back semi-finals at the winter championship, with a style Japanese reporters described as closer to a professional team's than a school's. That generation included KOZUKA Kazuki, YACHIDA Teppei and TANAKA Katsuyuki.
+- **2019 and 2020** — Back-to-back semi-finals at the winter championship, with a style Japanese reporters described as closer to a professional team's than a school's. That generation included YACHIDA Teppei and TANAKA Katsuyuki.
 - **2026** — In the Premier League EAST, playing possession football against J.League academies week after week.
 
 ## model
