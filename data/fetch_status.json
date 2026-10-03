@@ -4,7 +4,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 90,
+      "matchesPlayed": 92,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-03T12:58:18+09:00",
+  "updatedAt": "2026-10-03T13:00:29+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1299,7 +1299,7 @@
     },
     "team_season:aomori-yamada": {
       "result": "ok",
-      "note": "試合15・選手30（新規取得0）",
+      "note": "試合16・選手30（新規取得1）",
       "date": "2026-10-03",
       "since": ""
     },
@@ -1310,10 +1310,10 @@
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
-      "result": "ok",
-      "note": "試合15・選手34（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧14＋一覧外0＋OG1＝15 ≠ 順位表13）",
       "date": "2026-10-03",
-      "since": ""
+      "since": "2026-10-03"
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
@@ -1346,10 +1346,10 @@
       "since": ""
     },
     "team_season:kashima-youth": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧45＋一覧外0＋OG0＝45 ≠ 順位表40）",
+      "result": "ok",
+      "note": "試合16・選手32（新規取得1）",
       "date": "2026-10-03",
-      "since": "2026-10-03"
+      "since": ""
     },
     "team_season:kashiwa-reysol-u18": {
       "result": "ok",
@@ -1365,7 +1365,7 @@
     },
     "team_season:maebashi-ikuei": {
       "result": "ok",
-      "note": "試合15・選手30（新規取得0）",
+      "note": "試合16・選手30（新規取得1）",
       "date": "2026-10-03",
       "since": ""
     },
@@ -1388,10 +1388,10 @@
       "since": ""
     },
     "team_season:sagan-tosu-u18": {
-      "result": "ok",
-      "note": "試合15・選手30（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧26＋一覧外0＋OG0＝26 ≠ 順位表21）",
       "date": "2026-10-03",
-      "since": ""
+      "since": "2026-10-03"
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
@@ -1400,10 +1400,10 @@
       "since": ""
     },
     "team_season:shohei": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧25＋一覧外0＋OG1＝26 ≠ 順位表24）",
+      "result": "ok",
+      "note": "試合16・選手32（新規取得1）",
       "date": "2026-10-03",
-      "since": "2026-10-03"
+      "since": ""
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
