@@ -70,13 +70,13 @@
     {
       "rank": 2,
       "team": "サンフレッチェ広島F.Cユース",
-      "pts": 30,
-      "played": 15,
+      "pts": 31,
+      "played": 16,
       "won": 9,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 3,
-      "gf": 27,
-      "ga": 19,
+      "gf": 29,
+      "ga": 21,
       "gd": 8
     },
     {
@@ -154,13 +154,13 @@
     {
       "rank": 9,
       "team": "ガンバ大阪ユース",
-      "pts": 18,
-      "played": 14,
+      "pts": 19,
+      "played": 15,
       "won": 5,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 6,
-      "gf": 19,
-      "ga": 22,
+      "gf": 21,
+      "ga": 24,
       "gd": -3
     },
     {
@@ -2791,12 +2791,32 @@
       "md": 16,
       "date": "2026-10-03",
       "home": "ガンバ大阪ユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "サンフレッチェ広島F.Cユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "OFA万博フットボールセンター グラウンドB",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "homeScorers": [
+        {
+          "minute": "13",
+          "name": "城阪 光喜"
+        },
+        {
+          "minute": "22",
+          "name": "深江 龍明"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "72",
+          "name": "菊山 璃皇"
+        },
+        {
+          "minute": "77",
+          "name": "林 和広"
+        }
+      ]
     },
     {
       "md": 16,
