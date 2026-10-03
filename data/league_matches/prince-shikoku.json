@@ -50,14 +50,14 @@
     {
       "rank": 1,
       "team": "愛媛FC U-18",
-      "pts": 36,
-      "played": 13,
-      "won": 12,
+      "pts": 39,
+      "played": 14,
+      "won": 13,
       "drawn": 0,
       "lost": 1,
-      "gf": 35,
+      "gf": 39,
       "ga": 9,
-      "gd": 26
+      "gd": 30
     },
     {
       "rank": 2,
@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "大手前高松",
+      "pts": 21,
+      "played": 14,
+      "won": 5,
+      "drawn": 6,
+      "lost": 3,
+      "gf": 22,
+      "ga": 22,
+      "gd": 0
+    },
+    {
+      "rank": 4,
       "team": "高知",
       "pts": 20,
       "played": 13,
@@ -84,7 +96,7 @@
       "gd": 13
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "徳島市立",
       "pts": 20,
       "played": 13,
@@ -96,28 +108,16 @@
       "gd": 13
     },
     {
-      "rank": 5,
-      "team": "大手前高松",
-      "pts": 20,
-      "played": 13,
-      "won": 5,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 20,
-      "ga": 20,
-      "gd": 0
-    },
-    {
       "rank": 6,
       "team": "FC今治U-18",
       "pts": 17,
-      "played": 13,
+      "played": 14,
       "won": 5,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 22,
-      "ga": 23,
-      "gd": -1
+      "ga": 27,
+      "gd": -5
     },
     {
       "rank": 7,
@@ -134,13 +134,13 @@
     {
       "rank": 8,
       "team": "徳島商",
-      "pts": 9,
-      "played": 13,
+      "pts": 10,
+      "played": 14,
       "won": 2,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 8,
-      "gf": 15,
-      "ga": 37,
+      "gf": 17,
+      "ga": 39,
       "gd": -22
     },
     {
@@ -910,10 +910,10 @@
       "md": 14,
       "date": "2026-10-03",
       "home": "大手前高松",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "徳島商",
-      "status": "scheduled",
+      "status": "played",
       "venue": "屋島レクザムフィールド",
       "kickoff": "11:00"
     },
@@ -921,10 +921,10 @@
       "md": 14,
       "date": "2026-10-03",
       "home": "愛媛FC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "FC今治U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "愛フィールド梅津寺",
       "kickoff": "11:00"
     },
