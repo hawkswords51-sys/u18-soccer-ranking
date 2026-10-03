@@ -32,16 +32,16 @@
 #     ★2種登録はシーズン前後にクラブが一括発表する運用のため、当データは網羅していない。
 #       ページ側に「一部のみ掲載」と注記すること。
 # =====================================================================
-updated: 2026-09-22
+updated: 2026-10-03
 season: 2027
 source_hub: https://koko-soccer.com/news/42-jleague2015/56048-2026jleaguenaitei
-source_asof: 2026-09-22  # 掲載分の最新追加日（各選手はクラブ公式で照合して追加）
+source_asof: 2026-10-02  # 掲載分の最新追加日（各選手はクラブ公式で照合して追加）
 
 # ---------------------------------------------------------------------
 # 内定者・プロ契約済みの統合リスト（status で仕分け）
 # ---------------------------------------------------------------------
 signings:
-  # =========== ① これから加入する内定者（status: naitei・20名） ===========
+  # =========== ① これから加入する内定者（status: naitei・22名） ===========
 
   # ---- 高体連（高校）12名 ----
   - {team: 東海大翔洋高校, cat: 高体連, pos: DF, name: 岩下 雄飛, dest: ジュビロ磐田, status: naitei, timing: 2027年1月, note: "公式表記は「2026/27シーズン(2027年1月)より」。U-17日本代表"}
@@ -57,7 +57,7 @@ signings:
   - {team: 山形明正高校, cat: 高体連, pos: MF, name: 山本 将吾, dest: モンテディオ山形, status: naitei, timing: 2027年1月, note: "★山形明正発の初のJリーガー。千葉県出身、トリプレッタSC(4種)-(3種)から越境入学。2026年インターハイ本選出場（山形代表）。2026年9月15日付でJFA・Jリーグ特別指定選手に認定（認定期間中はモンテディオ山形のJリーグ公式戦に出場可能、背番号35）"}
   - {team: 浜松開誠館高校, cat: 高体連, pos: GK, name: 松浦 迅ビエラ, dest: 清水エスパルス, status: naitei, timing: 2027年1月, note: "193cm/80kgの大型GK。静岡県磐田市出身、バディFC-浜松開誠館中-浜松開誠館高。U-15日本代表(2023)・U-16日本代表(2024)。浜松開誠館から清水への高卒直加入は竹内涼(2009年)・松原后(2015年)に続き12年ぶり3人目"}
 
-  # ---- Jクラブユース 8名 ----
+  # ---- Jクラブユース 10名 ----
   - {team: 川崎フロンターレU-18, cat: Jユース, pos: DF, name: 藤田 明日翔, dest: 川崎フロンターレ, status: naitei, timing: 2027年1月}
   - {team: 川崎フロンターレU-18, cat: Jユース, pos: MF, name: 小川 尋斗, dest: 川崎フロンターレ, status: naitei, timing: 2027年1月}
   - {team: 湘南ベルマーレU-18, cat: Jユース, pos: DF, name: 松村 秀明, dest: 湘南ベルマーレ, status: naitei, timing: 2027年1月, type2: true, note: "2026年4月に2種登録（背番号36）"}
@@ -66,8 +66,10 @@ signings:
   - {team: 名古屋グランパスU-18, cat: Jユース, pos: DF, name: 白男川 羚斗, dest: 名古屋グランパス, status: naitei, timing: 2027年2月, type2: true, note: "読みは「しらおがわ れくと」。U-17日本代表。2026年7月に2種登録"}
   - {team: 名古屋グランパスU-18, cat: Jユース, pos: MF, name: 恒吉 良真, dest: 名古屋グランパス, status: naitei, timing: 2027年2月, note: "U-17日本代表"}
   - {team: ツエーゲン金沢U-18, cat: Jユース, pos: DF, name: 横川 天馬, dest: ツエーゲン金沢, status: naitei, timing: 時期未発表, note: "クラブのスクール出身者として史上初のトップ昇格。加入時期はクラブ公式に明記なし"}
+  - {team: 柏レイソルU-18, cat: Jユース, pos: DF, name: 佐藤 桜久, dest: 柏レイソル, status: naitei, timing: 2027年, type2: true, note: "日体大柏高在学。2026年8月に2種登録（背番号45）"}
+  - {team: 柏レイソルU-18, cat: Jユース, pos: MF, name: 加茂 結斗, dest: 柏レイソル, status: naitei, timing: 2027年, type2: true, note: "日体大柏高在学。2025年5〜12月と2026年8月から2種登録（背番号43）"}
 
-  # =========== ② すでにプロ契約済み（status: pro・27名） ===========
+  # =========== ② すでにプロ契約済み（status: pro・28名） ===========
   # ユース所属のまま、または在学中にプロ契約を締結し、トップチームに登録済みの選手。
   # 「内定者」ではないが、U-18年代からプロへ進んだ選手として当ページで追跡する。
 
@@ -78,6 +80,7 @@ signings:
   - {team: RB大宮アルディージャU18, cat: Jユース, pos: MF, name: 神田 泰斗, dest: RB大宮アルディージャ, status: pro, timing: 2025年7月プロ契約, num: 17, type2: true, note: "RBライプツィヒU19（ドイツ）へ期限付き移籍中（2027年6月30日まで）"}
   - {team: RB大宮アルディージャU18, cat: Jユース, pos: MF, name: エドワード 真秀, dest: RB大宮アルディージャ, status: pro, timing: 2026年1月プロ契約, num: 47, type2: true}
   - {team: RB大宮アルディージャU18, cat: Jユース, pos: MF, name: 小林 柚希, dest: RB大宮アルディージャ, status: pro, timing: 2026年6月プロ契約, num: 77, type2: true}
+  - {team: RB大宮アルディージャU18, cat: Jユース, pos: DF, name: 井芹 響輔, dest: RB大宮アルディージャ, status: pro, timing: 2026年10月プロ契約, note: "2009年生まれ＝卒業は2028年3月予定。大宮ジャックSC→大宮U12→U15→U18"}
   - {team: 浦和レッズユース, cat: Jユース, pos: DF, name: 田中 義峯, dest: 浦和レッズ, status: pro, timing: 2026年1月プロ契約, num: 28, type2: true}
   - {team: 浦和レッズユース, cat: Jユース, pos: MF, name: 和田 武士, dest: 浦和レッズ, status: pro, timing: 2026年1月プロ契約, num: 43, type2: true, note: "2009年生まれ＝卒業は2028年3月予定"}
   - {team: 柏レイソルU-18, cat: Jユース, pos: MF, name: 長南 開史, dest: 柏レイソル, status: pro, timing: 2025年4月プロ契約, num: 23, type2: true, note: "クラブ史上最年少プロ契約。2009年生まれ＝卒業は2028年3月予定"}
@@ -92,7 +95,7 @@ signings:
   - {team: ガンバ大阪ユース, cat: Jユース, pos: DF, name: 横井 佑弥, dest: ガンバ大阪, status: pro, timing: 2026シーズン加入, num: 34, type2: true, note: "186cm。秋春制移行前の発表のため公式表記は「2026シーズンから」"}
   - {team: セレッソ大阪U-18, cat: Jユース, pos: DF, name: エゼモクェ チメヅェ海, dest: セレッソ大阪, status: pro, timing: 2026年6月プロ契約, num: 43, type2: true, note: "185cm。高校2年生での飛び級プロ契約"}
   - {team: 奈良クラブユース, cat: Jユース, pos: MF, name: 濵名 元希, dest: 奈良クラブ, status: pro, timing: 2026年7月プロ契約, num: 37, type2: true, note: "「濱」ではなく「濵」名が公式表記"}
-  - {team: サンフレッチェ広島F.Cユース, cat: Jユース, pos: MF, name: 野口 蓮斗, dest: サンフレッチェ広島, status: pro, timing: 2026/27シーズン昇格, num: 46}
+  - {team: サンフレッチェ広島F.Cユース, cat: Jユース, pos: MF, name: 野口 蓮斗, dest: サンフレッチェ広島, status: pro, timing: 2026年10月プロ契約, num: 46}
   - {team: アビスパ福岡U-18, cat: Jユース, pos: MF, name: 武本 匠平, dest: アビスパ福岡, status: pro, timing: 2025年4月プロ契約, num: 52, type2: true, note: "当時クラブ最年少プロ契約"}
   - {team: アビスパ福岡U-18, cat: Jユース, pos: FW, name: 前田 陽輝, dest: アビスパ福岡, status: pro, timing: 2025年9月プロ契約, num: 53, type2: true}
   - {team: アビスパ福岡U-18, cat: Jユース, pos: DF, name: 藤川 虎三, dest: アビスパ福岡, status: pro, timing: 2026年6月プロ契約, num: 58, type2: true, note: "183cm。U-19日本代表"}
