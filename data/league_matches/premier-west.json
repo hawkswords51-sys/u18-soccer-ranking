@@ -106,14 +106,14 @@
     {
       "rank": 5,
       "team": "アビスパ福岡 U-18",
-      "pts": 23,
-      "played": 15,
-      "won": 7,
+      "pts": 26,
+      "played": 16,
+      "won": 8,
       "drawn": 2,
       "lost": 6,
-      "gf": 18,
-      "ga": 19,
-      "gd": -1
+      "gf": 20,
+      "ga": 20,
+      "gd": 0
     },
     {
       "rank": 6,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "ジュビロ磐田U-18",
       "pts": 8,
-      "played": 15,
+      "played": 16,
       "won": 2,
       "drawn": 2,
-      "lost": 11,
-      "gf": 30,
-      "ga": 43,
-      "gd": -13
+      "lost": 12,
+      "gf": 31,
+      "ga": 45,
+      "gd": -14
     },
     {
       "rank": 12,
@@ -2763,12 +2763,29 @@
       "md": 16,
       "date": "2026-10-03",
       "home": "アビスパ福岡 U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "ジュビロ磐田U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "福岡フットボールセンターAピッチ（人工芝）",
-      "kickoff": "14:00"
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1609.pdf",
+      "homeScorers": [
+        {
+          "minute": "44",
+          "name": "前田 陽輝"
+        },
+        {
+          "minute": "64",
+          "name": "前田 陽輝"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "51",
+          "name": "藤井 竜太"
+        }
+      ]
     },
     {
       "md": 16,
@@ -2835,6 +2852,7 @@
       "status": "played",
       "venue": "いぶきの森球技場(人工芝)",
       "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1608.pdf",
       "homeScorers": [
         {
           "minute": "19",
