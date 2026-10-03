@@ -5616,10 +5616,18 @@ def read_lsin(cfg: dict) -> tuple[dict, list[dict]]:
 # 年度切り替え: 入口URLは固定。記事の h1・両PDFの表題の年（SEASON_YEAR）で前年度を読む事故を止める。
 # ============================================================
 _SAITAMA_ENTRY = "https://www.sfa2.jp/2449/"
+# ⚠️ 下の x 座標は **A4縦（幅595.2）の版で測った値**。2026-10-03版から Excel の出し直しでページが約2.13倍
+#    （1266.6×1791.3）になった。→ 読むときに「ページ幅÷595.2」を掛けて換算する（_saitama_scale）。
+#    換算の前に、S1の列見出し（節・月日・ホーム・アウェイ・会場・時間）が換算後の位置にあることを確かめる。
+#    見出しの位置がずれていたら（レイアウト自体が変わったら）止める。
+_SAITAMA_REF_W = 595.2
+_SAITAMA_REF_HEAD = {"節": 83.6, "月日": 101.8, "ホーム": 132.1, "アウェイ": 183.4, "会場": 208.0, "時間": 231.4}
 _SAITAMA_S1_X = (120.0, 247.0)          # S1の列（ホーム〜時間）。S2は x≒248 から
 _SAITAMA_DATE_X = (98.0, 115.0)         # S1の「月日」欄（罫線は x=97.7〜115.3。11/28と11/29の境の線は x=97.7 から始まる）
 _SAITAMA_MD_X = (76.0, 96.0)           # S1の「節」欄（「第N節」の文字は x≒79〜）
-_SAITAMA_TINY = 2.6                     # これより小さい文字は埋め込みのチーム番号・試合番号
+# 埋め込みのチーム番号・試合番号（極小の文字）の判定：いちばん多い文字の大きさに対する比。
+#   A4版は 2.6÷5.6＝0.46（極小は1.0〜2.2・普通は3.5以上）。10/3版は 極小1.3〜2.3・普通7.4以上・最多12.0。
+_SAITAMA_TINY_RATIO = 0.46
 
 # ⭐️ 日程・結果PDFの既知の誤り（2026-09-27 Kei判断）。**「PDFの値」と「正しい値」を両方書く。**
 #    PDFがまだ誤りのまま → 正しい値に置き換える。PDFが正しい値になった → 止まって「この行を消せ」と言う。
@@ -5640,21 +5648,44 @@ def _saitama_links(year: str) -> tuple[dict, str]:
         raise RuntimeError(f"入口の記事の表題が{year}年でない: {h1.get_text(strip=True) if h1 else '(h1なし)'}")
     want = {"日程": "■前・後期日程・結果", "星取表": "■S1リーグ途中結果"}
     found = {k: [] for k in want}
+    pdfs = lambda p: [(a.get("title", ""), a["href"]) for a in p.find_all("a", href=True)   # noqa: E731
+                      if a["href"].lower().endswith(".pdf")]
     for p in soup.find_all("p"):
         label = re.sub(r"\s+", "", unicodedata.normalize("NFKC", p.get_text()))
         for k, head in want.items():
             if label.startswith(unicodedata.normalize("NFKC", head)):
-                found[k] += [(a.get("title", ""), a["href"]) for a in p.find_all("a", href=True)
-                             if a["href"].lower().endswith(".pdf")]
+                got = pdfs(p)
+                # [2026-10-03] 10/3版から「■前・後期日程・結果」の段落にリンクが無く、**直後の文字なしの段落**に
+                #   リンクだけが置かれるようになった。見出しの段落にPDFが無いときだけ、次の段落を見る。
+                #   次の段落に見出し（■）があれば別の見出しのPDFなので採らない。PDFがちょうど1本のときだけ。
+                if not got:
+                    nxt = p.find_next_sibling("p")
+                    if nxt is not None and "■" not in nxt.get_text() and len(pdfs(nxt)) == 1:
+                        got = pdfs(nxt)
+                found[k] += got
     for k in want:
         if len(found[k]) != 1:
             raise RuntimeError(f"入口に「{want[k]}」のPDFが{len(found[k])}本（1本のはず）")
-    # 版の食い違い：リンクの title の先頭の数字（924対戦表 / 924S1）が同じであること。
+    # 版の札：リンクの title の先頭の数字（924対戦表 / 924S1）。
+    # [2026-10-03] 札が違うだけでは止めない（10/3版は日程だけ日程変更で 104・星取表は 927 のまま）。
+    #   版が合っているかは read_saitama で「日程PDFの結果と星取表のマスが過不足なく一致するか」で決める。
     tag = {k: re.match(r"\d*", found[k][0][0]).group() for k in want}
-    if not tag["日程"] or tag["日程"] != tag["星取表"]:
-        raise RuntimeError(f"日程PDF（{found['日程'][0][0]}）と星取表PDF（{found['星取表'][0][0]}）の版が違う"
-                           f"（片方だけ更新されている。突き合わせが誤って落ちるので止める）")
-    return {k: v[0][1] for k, v in found.items()}, tag["日程"]
+    if not tag["日程"] or not tag["星取表"]:
+        raise RuntimeError(f"日程PDF（{found['日程'][0][0]}）か星取表PDF（{found['星取表'][0][0]}）の札（title 先頭の数字）が無い")
+    return {k: v[0][1] for k, v in found.items()}, tag
+
+
+def _saitama_scale(width: float, words: list[dict]) -> float:
+    """ページ幅÷A4幅。S1の列見出しが換算後の位置（±3%）にあることを確かめてから返す。"""
+    k = width / _SAITAMA_REF_W
+    nfkc = lambda s: unicodedata.normalize("NFKC", s or "")   # noqa: E731
+    top_band = [w for w in words if w["top"] < 0.06 * width * 1.414]   # ページ上部（見出しの帯）
+    for name, ref in _SAITAMA_REF_HEAD.items():
+        xs = [w["x0"] for w in top_band if nfkc(w["text"]) == name]
+        if not xs or abs(min(xs) - ref * k) > 0.03 * ref * k:
+            raise RuntimeError(f"日程PDFの列見出し「{name}」の位置が想定と違う（x={[round(x, 1) for x in xs]}・"
+                               f"想定 {ref * k:.1f}＝A4の{ref}×{k:.3f}）。レイアウトが変わったので止める")
+    return k
 
 
 def _saitama_schedule(content: bytes, year: str) -> list[dict]:
@@ -5669,8 +5700,15 @@ def _saitama_schedule(content: bytes, year: str) -> list[dict]:
                 raise RuntimeError(f"日程PDFに「{year} 埼玉 S1リーグ {seg}日程・結果」の表題が無い")
         words = pg.extract_words(extra_attrs=["size"])
         chars = pg.chars
-        rules = pdf_source.page_hrules(pg, *_SAITAMA_DATE_X)
-        md_rules = pdf_source.page_hrules(pg, *_SAITAMA_MD_X)
+        # [2026-10-03] 座標はA4版の値×ページ幅の比で使う（10/3版はページが約2.13倍になった）
+        k = _saitama_scale(pg.width, words)
+        X = lambda v: v * k          # noqa: E731
+        date_x = (X(_SAITAMA_DATE_X[0]), X(_SAITAMA_DATE_X[1]))
+        md_x = (X(_SAITAMA_MD_X[0]), X(_SAITAMA_MD_X[1]))
+        rules = pdf_source.page_hrules(pg, *date_x)
+        md_rules = pdf_source.page_hrules(pg, *md_x)
+    usual = collections.Counter(round(w["size"], 1) for w in words).most_common(1)[0][0]
+    tiny = _SAITAMA_TINY_RATIO * usual
     split = [w["top"] for w in words if "後期日程" in nfkc(w["text"])]
     if len(split) != 1:
         raise RuntimeError("日程PDFの前期と後期の境目（後期日程・結果の表題）が見つからない")
@@ -5687,7 +5725,7 @@ def _saitama_schedule(content: bytes, year: str) -> list[dict]:
     for w in words:
         t = nfkc(w["text"])
         mm = re.fullmatch(r"第(\d+)節", t)
-        if mm and _SAITAMA_MD_X[0] - 6 <= w["x0"] < _SAITAMA_MD_X[1]:
+        if mm and md_x[0] - X(6) <= w["x0"] < md_x[1]:
             b = block((w["top"] + w["bottom"]) / 2, md_rules)
             if b in mds:
                 raise RuntimeError(f"節欄の1つの枠に節が2つ: 第{mds[b]}節・{t}")
@@ -5695,34 +5733,48 @@ def _saitama_schedule(content: bytes, year: str) -> list[dict]:
 
     # 日付欄：ブロックごとに、数字と / だけを行（top）ごとに繋いで「M/D」を拾う
     dates = {}
-    for b, rows in _group_chars(chars, _SAITAMA_DATE_X, block).items():
+    for b, rows in _group_chars(chars, date_x, block).items():
         got = [s for s in rows if re.fullmatch(r"\d{1,2}/\d{1,2}", s)]
         if len(got) > 1:
             raise RuntimeError(f"日付欄の1つの枠に日付が{len(got)}個: {got}")
         if got:
             m, d = got[0].split("/")
             dates[b] = f"{year}-{int(m):02d}-{int(d):02d}"
+    # [2026-10-03] 日付欄に「未定」と書かれた枠（10/3版の第15節：「10/3 土」「未定」「10/4 日」の3段）。
+    #   その枠の試合は**日付なし・未消化**として持つ（結果は作らない。振替日が載ったら日付が入る）。
+    undecided = set()
+    for c in chars:
+        if date_x[0] <= c["x0"] < date_x[1] and c["text"] in ("未", "定"):
+            b = block((c["top"] + c["bottom"]) / 2)
+            if b not in dates:
+                undecided.add(b)
 
-    lo_x, hi_x = _SAITAMA_S1_X
+    lo_x, hi_x = X(_SAITAMA_S1_X[0]), X(_SAITAMA_S1_X[1])
     matches = []
     for dash in words:
-        if dash["text"] not in ("-", "－") or not (155 <= dash["x0"] <= 168):
+        if dash["text"] not in ("-", "－") or not (X(155) <= dash["x0"] <= X(168)):
             continue
         y = (dash["top"] + dash["bottom"]) / 2
-        line = sorted([w for w in words if abs((w["top"] + w["bottom"]) / 2 - y) < 3.5
-                       and lo_x <= w["x0"] < hi_x and w["size"] >= _SAITAMA_TINY], key=lambda w: w["x0"])
-        home = "".join(nfkc(w["text"]) for w in line if w["x0"] < 150 and not w["text"].isdigit())
-        hs = [w["text"] for w in line if 150 <= w["x0"] < 160 and w["text"].isdigit()]
-        as_ = [w["text"] for w in line if 166 <= w["x0"] < 177 and w["text"].isdigit()]
-        away = "".join(nfkc(w["text"]) for w in line if 177 <= w["x0"] < 200)
-        venue = "".join(nfkc(w["text"]) for w in line if 200 <= w["x0"] < 228)
+        line = sorted([w for w in words if abs((w["top"] + w["bottom"]) / 2 - y) < X(3.5)
+                       and lo_x <= w["x0"] < hi_x and w["size"] >= tiny], key=lambda w: w["x0"])
+        home = "".join(nfkc(w["text"]) for w in line if w["x0"] < X(150) and not w["text"].isdigit())
+        hs = [w["text"] for w in line if X(150) <= w["x0"] < X(160) and w["text"].isdigit()]
+        as_ = [w["text"] for w in line if X(166) <= w["x0"] < X(177) and w["text"].isdigit()]
+        away = "".join(nfkc(w["text"]) for w in line if X(177) <= w["x0"] < X(200))
+        venue = "".join(nfkc(w["text"]) for w in line if X(200) <= w["x0"] < X(228))
         if venue == "延期":            # 会場欄に「延期」と書かれる（9/6 成徳深谷×埼玉栄）。会場ではないので入れない
             venue = ""
-        ko = "".join(w["text"] for w in line if 228 <= w["x0"] < hi_x)
+        ko = "".join(w["text"] for w in line if X(228) <= w["x0"] < hi_x)
+        if ko == "延期":               # 10/3版：時間欄に「延期」（第15節 正智深谷×埼玉栄）。時刻ではないので入れない
+            ko = ""
         if not home or not away or len(hs) > 1 or len(as_) > 1 or (len(hs) != len(as_)):
             raise RuntimeError(f"日程PDFの行が読めない（y={round(y)}）: {[w['text'] for w in line]}")
         date = dates.get(block(y))
-        if not date:
+        if not date and block(y) in undecided:
+            if hs or as_:
+                raise RuntimeError(f"日程PDF {home}×{away}（y={round(y)}）は日付「未定」なのに結果がある")
+            date = ""
+        elif not date:
             raise RuntimeError(f"日程PDF {home}×{away}（y={round(y)}）に日付を割り当てられない")
         md = mds.get(block(y, md_rules))
         if not md:
@@ -5792,7 +5844,7 @@ def _saitama_hoshitori(content: bytes, year: str) -> tuple[dict, dict, str]:
 
 def read_saitama(cfg: dict) -> tuple[dict, list[dict]]:
     year = str(SEASON_YEAR)
-    urls, _tag = _saitama_links(year)
+    urls, tags = _saitama_links(year)
     content = pdf_source.fetch_pdf(urls["日程"], HEADERS, TIMEOUT, wait=SLEEP)
     time.sleep(SLEEP)
     matches = _saitama_schedule(content, year)
@@ -5838,16 +5890,27 @@ def read_saitama(cfg: dict) -> tuple[dict, list[dict]]:
                            f"{future[0]['home']}×{future[0]['away']}）")
 
     # --- 星取表のマスと日程PDFの結果を1試合ずつ鏡照合（向きを問わず・前期/後期ごと） ---
-    seen = set()
-    for m in played:
-        for me, op, gf, ga in ((m["home"], m["away"], m["hs"], m["as"]), (m["away"], m["home"], m["as"], m["hs"])):
-            got = cells.get((me, op, m["seg"]))
-            if got != (gf, ga):
-                raise RuntimeError(f"星取表 {me}×{op}（{m['seg']}）が {got}、日程PDF（{m['date']}）は {(gf, ga)}")
-            seen.add((me, op, m["seg"]))
-    extra = sorted(set(cells) - seen)
-    if extra:
-        raise RuntimeError(f"星取表にだけ結果があるマスが{len(extra)}件（例: {extra[0]}）＝日程PDFが遅れている")
+    # [2026-10-03] ここが「2本のPDFが同じ版か」の判定を兼ねる。札（title の数字）が違っても、
+    #   結果が過不足なく一致すれば通す（10/3版：日程だけ日程変更で 104・星取表は 927）。一致しなければ止める。
+    split = tags["日程"] != tags["星取表"]
+    try:
+        seen = set()
+        for m in played:
+            for me, op, gf, ga in ((m["home"], m["away"], m["hs"], m["as"]), (m["away"], m["home"], m["as"], m["hs"])):
+                got = cells.get((me, op, m["seg"]))
+                if got != (gf, ga):
+                    raise RuntimeError(f"星取表 {me}×{op}（{m['seg']}）が {got}、日程PDF（{m['date']}）は {(gf, ga)}")
+                seen.add((me, op, m["seg"]))
+        extra = sorted(set(cells) - seen)
+        if extra:
+            raise RuntimeError(f"星取表にだけ結果があるマスが{len(extra)}件（例: {extra[0]}）＝日程PDFが遅れている")
+    except RuntimeError as e:
+        if split:
+            raise RuntimeError(f"日程PDF（札 {tags['日程']}）と星取表PDF（札 {tags['星取表']}）の版が違い、結果も一致しない"
+                               f"（片方だけ更新されている）: {e}") from None
+        raise
+    if split:
+        print(f"       （埼玉: 版の札が 日程 {tags['日程']}・星取表 {tags['星取表']} と違うが、結果は一致）")
 
     return standings, [dict(md=m["md"], date=m["date"], home=m["home"], away=m["away"], hs=m["hs"],
                             venue=m["venue"], **{"as": m["as"]}) for m in matches]
