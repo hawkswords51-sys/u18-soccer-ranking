@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "就実",
+      "pts": 17,
+      "played": 15,
+      "won": 5,
+      "drawn": 2,
+      "lost": 8,
+      "gf": 21,
+      "ga": 27,
+      "gd": -6
+    },
+    {
+      "rank": 6,
       "team": "レノファ山口FC U-18",
       "pts": 17,
       "played": 14,
@@ -108,7 +120,7 @@
       "gd": -8
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "高川学園",
       "pts": 15,
       "played": 14,
@@ -120,27 +132,15 @@
       "gd": 0
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "広島皆実",
       "pts": 14,
-      "played": 14,
+      "played": 15,
       "won": 3,
       "drawn": 5,
-      "lost": 6,
+      "lost": 7,
       "gf": 8,
-      "ga": 14,
-      "gd": -6
-    },
-    {
-      "rank": 8,
-      "team": "就実",
-      "pts": 14,
-      "played": 14,
-      "won": 4,
-      "drawn": 2,
-      "lost": 8,
-      "gf": 19,
-      "ga": 27,
+      "ga": 16,
       "gd": -8
     },
     {
@@ -965,10 +965,10 @@
       "md": 15,
       "date": "2026-10-03",
       "home": "広島皆実",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "就実",
-      "status": "scheduled",
+      "status": "played",
       "venue": "広島皆実サッカー場",
       "kickoff": "12:00"
     },

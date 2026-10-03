@@ -50,26 +50,26 @@
     {
       "rank": 1,
       "team": "草津東",
-      "points": 39,
-      "played": 14,
-      "won": 13,
+      "points": 42,
+      "played": 15,
+      "won": 14,
       "drawn": 0,
       "lost": 1,
-      "gf": 45,
-      "ga": 11,
-      "gd": 34
+      "gf": 48,
+      "ga": 12,
+      "gd": 36
     },
     {
       "rank": 2,
       "team": "綾羽",
-      "points": 27,
-      "played": 14,
-      "won": 9,
+      "points": 30,
+      "played": 15,
+      "won": 10,
       "drawn": 0,
       "lost": 5,
-      "gf": 23,
+      "gf": 25,
       "ga": 15,
-      "gd": 8
+      "gd": 10
     },
     {
       "rank": 3,
@@ -111,13 +111,13 @@
       "rank": 6,
       "team": "八幡商業",
       "points": 23,
-      "played": 14,
+      "played": 15,
       "won": 7,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 22,
-      "ga": 15,
-      "gd": 7
+      "ga": 17,
+      "gd": 5
     },
     {
       "rank": 7,
@@ -135,13 +135,13 @@
       "rank": 8,
       "team": "彦根総合",
       "points": 10,
-      "played": 14,
+      "played": 15,
       "won": 3,
       "drawn": 1,
-      "lost": 10,
-      "gf": 16,
-      "ga": 24,
-      "gd": -8
+      "lost": 11,
+      "gf": 17,
+      "ga": 27,
+      "gd": -10
     },
     {
       "rank": 9,
@@ -229,12 +229,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "草津東",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "彦根総合",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "綾⽻"
     },
     {
       "md": 0,
@@ -621,12 +622,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "八幡商業",
-      "hs": null,
-      "as": null,
-      "away": "綾羽",
-      "status": "scheduled"
+      "date": "2026-10-03",
+      "home": "綾羽",
+      "hs": 2,
+      "as": 0,
+      "away": "八幡商業",
+      "status": "played",
+      "venue": "綾⽻"
     },
     {
       "md": 0,
@@ -1053,22 +1055,22 @@
   "source_standings": [
     {
       "team": "草津東",
-      "pts": 39,
-      "played": 14,
-      "won": 13,
+      "pts": 42,
+      "played": 15,
+      "won": 14,
       "drawn": 0,
       "lost": 1,
-      "gf": 45,
-      "ga": 11
+      "gf": 48,
+      "ga": 12
     },
     {
       "team": "綾羽",
-      "pts": 27,
-      "played": 14,
-      "won": 9,
+      "pts": 30,
+      "played": 15,
+      "won": 10,
       "drawn": 0,
       "lost": 5,
-      "gf": 23,
+      "gf": 25,
       "ga": 15
     },
     {
@@ -1104,12 +1106,12 @@
     {
       "team": "八幡商業",
       "pts": 23,
-      "played": 14,
+      "played": 15,
       "won": 7,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 22,
-      "ga": 15
+      "ga": 17
     },
     {
       "team": "近江C",
@@ -1124,12 +1126,12 @@
     {
       "team": "彦根総合",
       "pts": 10,
-      "played": 14,
+      "played": 15,
       "won": 3,
       "drawn": 1,
-      "lost": 10,
-      "gf": 16,
-      "ga": 24
+      "lost": 11,
+      "gf": 17,
+      "ga": 27
     },
     {
       "team": "野洲",

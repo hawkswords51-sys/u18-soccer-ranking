@@ -16,7 +16,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 88,
+      "matchesPlayed": 89,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -39,8 +39,8 @@
     "prince-tohoku": {
       "expected": "jfa",
       "actual": "koko",
-      "reason": "検算不一致 ['東北学院.試合 日程から計算16≠順位表15', '東北学院.分 日程から計算4≠順位表3', '東北学院.勝点 日程から計算22≠順位表21'] …（据え置き）",
-      "matchesPlayed": 75,
+      "reason": "検算不一致 ['東北学院.試合 日程から計算16≠順位表15', '東北学院.敗 日程から計算7≠順位表6', '東北学院.失点 日程から計算29≠順位表26'] …（据え置き）",
+      "matchesPlayed": 76,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 68,
+      "matchesPlayed": 69,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -136,7 +136,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 70,
+      "matchesPlayed": 71,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-03T13:12:58+09:00",
+  "updatedAt": "2026-10-03T14:52:30+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -311,7 +311,7 @@
     },
     "fukuoka": {
       "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result_note": "消化71試合に更新（検算一致）",
       "result_date": "2026-10-03",
       "season": "2026",
       "complete": false,
@@ -375,7 +375,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result_note": "消化74試合に更新（検算一致）",
       "result_date": "2026-10-03",
       "season": "2026",
       "complete": false,
@@ -396,7 +396,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化64試合に更新（検算一致）",
+      "result_note": "消化65試合に更新（検算一致）",
       "result_date": "2026-10-03",
       "season": "2026",
       "complete": false,
@@ -1017,13 +1017,13 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-10-03",
-      "result": "ok",
-      "result_note": "消化69試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (入口に「■前・後期日程・結果」のPDFが0本（1本のはず）)",
       "result_date": "2026-10-03"
     },
     "shiga": {
       "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result_note": "消化72試合に更新（検算一致）",
       "result_date": "2026-10-03",
       "season": "2026",
       "complete": false,
@@ -1083,7 +1083,7 @@
     },
     "tochigi": {
       "result": "ok",
-      "result_note": "消化63試合に更新（検算一致）",
+      "result_note": "消化65試合に更新（検算一致）",
       "result_date": "2026-10-03",
       "season": "2026",
       "complete": false,
@@ -1310,10 +1310,10 @@
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧14＋一覧外0＋OG1＝15 ≠ 順位表13）",
+      "result": "ok",
+      "note": "試合16・選手34（新規取得1）",
       "date": "2026-10-03",
-      "since": "2026-10-03"
+      "since": ""
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
@@ -1365,7 +1365,7 @@
     },
     "team_season:maebashi-ikuei": {
       "result": "ok",
-      "note": "試合16・選手30（新規取得0）",
+      "note": "試合16・選手30（新規取得0）／選手一覧を据え置き（出場試合数が合わない 1件：6 山本 颯吾: 一覧12 ≠ 出場記録11）",
       "date": "2026-10-03",
       "since": ""
     },
@@ -1388,10 +1388,10 @@
       "since": ""
     },
     "team_season:sagan-tosu-u18": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧26＋一覧外0＋OG0＝26 ≠ 順位表21）",
+      "result": "ok",
+      "note": "試合16・選手30（新規取得1）",
       "date": "2026-10-03",
-      "since": "2026-10-03"
+      "since": ""
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
