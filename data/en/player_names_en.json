@@ -25,7 +25,8 @@
     "added_2026-10-02_interhigh_best32": "インターハイ2026ベスト32の14校用。source=jleague-data は J.LEAGUE公式データサイト（data.j-league.or.jp）の英字表記（引退選手で jleague.jp/en にページが無いもの）。オニエ・オゴチュクウはガンバ大阪公式英語の試合レポート表記。仲村浩二は尚志サッカー部公式スタッフページのローマ字。染野唯月＝Itsuki。",
     "added_2026-10-03_prince_top_hs_batch1": "プリンス上位の高校7校（岡山学芸館・立正大淞南・鹿児島城西・国見・履正社・京都橘・浜松開誠館）用。中島大嘉＝NAKASHIMA（J.LEAGUEふりがな なかしま）。山田剛綺＝Gouki（J.LEAGUE英語の表記どおり）。山村和也はウーロンゴン・ウルブズ公式（Kazuya Yamamura を姓名順に）。三浦淳宏は現在の表記は淳寛。",
     "added_2026-10-03_prince_top_jyouth_batch1": "プリンス上位のJユース7チーム（札幌U-18・愛媛FC U-18・V長崎U-18・松本山雅U-18・C大阪U-18・清水ユース・ジェフ千葉U-18）用。現役U-18の選手はJ.LEAGUE英語のトップ登録（2種登録）ページの表記。櫻川ソロモン＝SAKURAGAWA、出間思努＝IZUMA。丸山良明・市川大祐・柿本倫明・萩原正太郎はクラブ公式のローマ字。",
-    "added_2026-10-03_prince_top_hs_batch2": "プリンス上位の高校第2弾（瀬戸内・日本文理・星稜・札幌大谷・高知・東北学院・徳島市立）用。鈴木大輔は星稜高OB（市立船橋OBではない）。木村太哉＝Takaya。佐藤未勇はFC琉球公式の表記。浜下瑛はJ.LEAGUE英語ページを確認できず未登録。"
+    "added_2026-10-03_prince_top_hs_batch2": "プリンス上位の高校第2弾（瀬戸内・日本文理・星稜・札幌大谷・高知・東北学院・徳島市立）用。鈴木大輔は星稜高OB（市立船橋OBではない）。木村太哉＝Takaya。佐藤未勇はFC琉球公式の表記。浜下瑛はJ.LEAGUE英語ページを確認できず未登録。",
+    "added_2026-10-03_prince_top_jyouth_batch2": "プリンス上位のJユース第2弾（徳島・京都・浦和・山形・RB大宮・横浜FM・町田）用。茂木力也＝MOTEGI、汰木康也＝YURUKI、平野遼＝Kanata、真也加チュイ大夢＝MAYAKA。伊藤尊寛（徳島）・樋口堅・真也加（町田）はクラブ公式のローマ字。"
   },
   "players": {
     "イサカ ゼイン": {
@@ -113,6 +114,12 @@
       "source": "jleague-en＋東京ヴェルディ公式ユース選手一覧（日本語ページにローマ字併記）",
       "confidence": "high"
     },
+    "チョン カンミン": {
+      "en": "JUNG Kangmin",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "バングーナガンデ 佳史扶": {
       "en": "BANGNAGANDE Kashif",
       "source": "jfa-eng＋jleague-en（Uは入らない）",
@@ -143,6 +150,12 @@
       "en": "MCGHEE Jelani Ren",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "マルコム アレックス恵太": {
+      "en": "MALCOLM Alex Keita",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "メンディー サイモン友": {
       "en": "MENDY Simon Yu",
@@ -250,6 +263,18 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/iwata/player/"
     },
+    "上月 壮一郎": {
+      "en": "KOZUKI Soichiro",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/shonan/player/"
+    },
+    "上林 大誠": {
+      "en": "KAMBAYASHI Taisei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yamagata/player/"
+    },
     "上田 綺世": {
       "en": "UEDA Ayase",
       "source": "jfa-eng",
@@ -305,6 +330,12 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/gunma/player/"
+    },
+    "中島 大翔": {
+      "en": "NAKAJIMA Haruto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1646957/"
     },
     "中島 大芽": {
       "en": "NAKAJIMA Taiga",
@@ -380,6 +411,12 @@
       "source": "jleague-en＋セレッソ大阪公式英語",
       "confidence": "high"
     },
+    "中村 虎太郎": {
+      "en": "NAKAMURA Kotaro",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "中村 龍": {
       "en": "NAKAMURA Ryu",
       "source": "jfa-eng",
@@ -394,6 +431,12 @@
       "en": "NAKAE Ginji",
       "source": "Kei確認 2026-09-23",
       "confidence": "high"
+    },
+    "中澤 凜": {
+      "en": "NAKAZAWA Rin",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1646942/"
     },
     "中田 舜貴": {
       "en": "NAKATA Shunki",
@@ -438,6 +481,12 @@
       "source": "FC東京公式 英語アカデミーページ",
       "confidence": "high"
     },
+    "中野 小次郎": {
+      "en": "NAKANO Kojiro",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/nagano/player/"
+    },
     "中野 就斗": {
       "en": "NAKANO Shuto",
       "source": "jfa-eng",
@@ -447,6 +496,12 @@
       "en": "NAKANO Yoji",
       "source": "antlers-en",
       "confidence": "high"
+    },
+    "中野 瑠馬": {
+      "en": "NAKANO Ryuma",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
     },
     "中野 遥翔": {
       "en": "NAKANO Haruto",
@@ -478,6 +533,12 @@
       "en": "KUBO Takefusa",
       "source": "jfa-eng（W杯2026）",
       "confidence": "high"
+    },
+    "久保 裕也": {
+      "en": "KUBO Yuya",
+      "source": "jfa",
+      "confidence": "high",
+      "url": "https://www.jfa.jp/samuraiblue/member/kubo_yuya.html"
     },
     "久保 遥夢": {
       "en": "KUBO Harumu",
@@ -527,6 +588,18 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "井澤 春輝": {
+      "en": "IZAWA Haruki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kitakyushu/player/"
+    },
+    "井芹 響輔": {
+      "en": "ISERI Kyosuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656022/"
+    },
     "井部 結斗": {
       "en": "IBE Yuito",
       "source": "FC東京公式 英語アカデミーページ",
@@ -575,10 +648,22 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "伊藤 尊寛": {
+      "en": "ITO Takehiro",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://www.vortis.jp/academy/player/"
+    },
     "伊藤 心音": {
       "en": "ITO Kokoro",
       "source": "jleague-en",
       "confidence": "high"
+    },
+    "伊藤 敦樹": {
+      "en": "ITO Atsuki",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/samuraiblue/news/00032813/"
     },
     "伊藤 暖": {
       "en": "ITO Haru",
@@ -674,6 +759,12 @@
       "source": "サンフレッチェ広島公式ユース選手一覧（日本語ページにローマ字併記）",
       "confidence": "high"
     },
+    "佐藤 大翔": {
+      "en": "SATO Hiroto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "佐藤 寿人": {
       "en": "SATO Hisato",
       "source": "jfa-eng",
@@ -700,6 +791,12 @@
       "en": "SATO Soki",
       "source": "FC東京公式 英語アカデミーページ",
       "confidence": "high"
+    },
+    "佐藤 陸斗": {
+      "en": "SATO Rikuto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yamagata/player/"
     },
     "佐藤 陽成": {
       "en": "SATO Yosei",
@@ -784,6 +881,12 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "兼頭 晴宗": {
+      "en": "KANETO Harumune",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/omiya/player/"
+    },
     "内村 圭宏": {
       "en": "UCHIMURA Yoshihiro",
       "source": "jleague-data",
@@ -805,6 +908,12 @@
       "en": "TOMIYASU Takehiro",
       "source": "jfa-eng（SAMURAI BLUE 2025-26 招集メンバー）",
       "confidence": "high"
+    },
+    "冨樫 剛一": {
+      "en": "TOGASHI Koichi",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "https://www.jfa.jp/eng/national_team/u20_2023/news/00032078/"
     },
     "冨永 虹七": {
       "en": "TOMINAGA Niina",
@@ -919,6 +1028,12 @@
       "source": "jleague-en（クラブ公式は Kato Koh。J.LEAGUE優先）",
       "confidence": "high"
     },
+    "加藤 有輝": {
+      "en": "KATO Yuki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1600156/"
+    },
     "加藤 望": {
       "en": "KATO Nozomu",
       "source": "ベガルタ仙台公式ユース選手・スタッフ一覧のカタカナ（カトウ ノゾム）／Kei確認 2026-09-24",
@@ -982,10 +1097,22 @@
       "source": "東京ヴェルディ公式ユース選手一覧（日本語ページにローマ字併記）",
       "confidence": "high"
     },
+    "千葉 虎士": {
+      "en": "CHIBA Toraji",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/fukushima/player/"
+    },
     "千賀 翔大郎": {
       "en": "SENGA Shotaro",
       "source": "jleague-en＋名古屋グランパス公式アカデミー選手・スタッフ（ローマ字併記）",
       "confidence": "high"
+    },
+    "半田 陸": {
+      "en": "HANDA Riku",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/national_team_2024/news/00033820/"
     },
     "南 創太": {
       "en": "MINAMI Sota",
@@ -1019,6 +1146,18 @@
       "en": "HARA Tatsuki",
       "source": "Kei確認 2026-09-24",
       "confidence": "high"
+    },
+    "原口 元気": {
+      "en": "HARAGUCHI Genki",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/samuraiblue/worldcup_2022/2nd_q/20210528/member.html"
+    },
+    "原川 力": {
+      "en": "HARAKAWA Riki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kashiwa/player/"
     },
     "原田 亘": {
       "en": "HARADA Wataru",
@@ -1197,6 +1336,24 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/sapporo/player/"
     },
+    "喜多 壱也": {
+      "en": "KITA Kazunari",
+      "source": "jfa",
+      "confidence": "high",
+      "url": "https://www.jfa.jp/national_team/u20_2025/member/kita_kazunari.html"
+    },
+    "喜田 拓也": {
+      "en": "KIDA Takuya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafm/player/"
+    },
+    "四宮 悠成": {
+      "en": "SHINOMIYA Yusei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kanazawa/player/"
+    },
     "圍 謙太朗": {
       "en": "KAKOI Kentaro",
       "source": "jleague-en",
@@ -1267,6 +1424,12 @@
       "source": "jleague-en",
       "confidence": "high"
     },
+    "堀内 陽太": {
+      "en": "HORIUCHI Yota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "堀田 大暉": {
       "en": "HOTTA Daiki",
       "source": "jleague-en",
@@ -1303,6 +1466,12 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/player/1656065/"
+    },
+    "塩谷 司": {
+      "en": "SHIOTANI Tsukasa",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/hiroshima/player/"
     },
     "塩貝 健人": {
       "en": "SHIOGAI Kento",
@@ -1355,6 +1524,12 @@
       "en": "OGAKI Teppei",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "大山 啓輔": {
+      "en": "OYAMA Keisuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1201189/"
     },
     "大山 武蔵": {
       "en": "OYAMA Musashi",
@@ -1489,6 +1664,12 @@
       "source": "jfa-eng＋jleague-en",
       "confidence": "high"
     },
+    "天野 純": {
+      "en": "AMANO Jun",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafm/player/"
+    },
     "太田 大翔": {
       "en": "OTA Hiroto",
       "source": "jleague-en＋サンフレッチェ広島公式ユース選手一覧（日本語ページにローマ字併記）",
@@ -1509,6 +1690,18 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/player/1631671/"
+    },
+    "奥川 雅也": {
+      "en": "OKUGAWA Masaya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
+    },
+    "奥抜 侃志": {
+      "en": "OKUNUKI Kanji",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1613553/"
     },
     "奥田 悠真": {
       "en": "OKUDA Yuma",
@@ -1632,6 +1825,12 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/sapporo/player/"
     },
+    "宮﨑 叶": {
+      "en": "MIYAZAKI Kanata",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "宮﨑 結士": {
       "en": "MIYAZAKI Yushi",
       "source": "Kei確認 2026-09-24",
@@ -1704,6 +1903,12 @@
       "en": "OGAWA Hiroto",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "小川 直澄": {
+      "en": "OGAWA Naoto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "小川 翔太": {
       "en": "OGAWA Shota",
@@ -1834,6 +2039,24 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/shimizu/player/"
     },
+    "小野口 政心": {
+      "en": "ONOGUCHI Masamune",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
+    "尹 星俊": {
+      "en": "YOON Sungjun",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
+    },
+    "尾上 瑠聖": {
+      "en": "ONOE Yusei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/tokushima/player/"
+    },
     "屋宜 和真": {
       "en": "YAGI Kazuma",
       "source": "jleague-en",
@@ -1931,6 +2154,12 @@
       "confidence": "high",
       "url": "https://wollongongwolves.com.au/football/senior/senior-squad/"
     },
+    "山根 陸": {
+      "en": "YAMANE Riku",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafm/player/"
+    },
     "山田 凌也": {
       "en": "YAMADA Ryoya",
       "source": "jleague-en（登録はMF）",
@@ -1946,6 +2175,12 @@
       "en": "YAMADA Shin",
       "source": "jfa-eng（EAFF E-1 2025）＋川崎フロンターレ公式アカデミー「トップチーム昇格選手」（ローマ字併記）",
       "confidence": "high"
+    },
+    "山田 楓喜": {
+      "en": "YAMADA Fuki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/ftokyo/player/"
     },
     "山田 竜之介": {
       "en": "YAMADA Ryunosuke",
@@ -1985,6 +2220,12 @@
       "source": "jleague-en（読みは たいち）",
       "confidence": "high"
     },
+    "山﨑 歩": {
+      "en": "YAMAZAKI Ayumu",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "岡 健太": {
       "en": "OKA Kenta",
       "source": "jleague-en",
@@ -2006,6 +2247,12 @@
       "en": "OKAZAKI Aoi",
       "source": "ファジアーノ岡山アカデミー育成部公式（U-18選手・スタッフ一覧にローマ字併記）。クラブ表記は岡﨑、JFA登録は岡崎",
       "confidence": "high"
+    },
+    "岡本 拓也": {
+      "en": "OKAMOTO Takuya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/fujieda/player/"
     },
     "岡本 新大": {
       "en": "OKAMOTO Arata",
@@ -2097,6 +2344,12 @@
       "confidence": "high",
       "url": "http://www.jfa.jp/eng/national_team/u17_2024/news/00034486/"
     },
+    "島村 拓弥": {
+      "en": "SHIMAMURA Takuya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafc/player/"
+    },
     "島田 大雅": {
       "en": "SHIMADA Taiga",
       "source": "Kei確認 2026-09-24",
@@ -2117,6 +2370,12 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/sapporo/"
+    },
+    "川内 太良": {
+      "en": "KAWAUCHI Tyler",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "川原 颯斗": {
       "en": "KAWAHARA Hayato",
@@ -2167,10 +2426,22 @@
       "source": "jfa-eng＋jleague-en",
       "confidence": "high"
     },
+    "川﨑 颯太": {
+      "en": "KAWASAKI Sota",
+      "source": "jfa",
+      "confidence": "high",
+      "url": "https://www.jfa.jp/samuraiblue/member/kawasaki_sota.html"
+    },
     "工藤 壮人": {
       "en": "KUDO Masato",
       "source": "バンクーバー・ホワイトキャップス公式英語",
       "confidence": "high"
+    },
+    "工藤 孝太": {
+      "en": "KUDO Kota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "工藤 蒼生": {
       "en": "KUDO Aoi",
@@ -2246,6 +2517,12 @@
       "confidence": "high",
       "url": "https://www.jfa.jp/eng/national_team/u23_2024/member/hirakawa_yu.html"
     },
+    "平賀 大空": {
+      "en": "HIRAGA Sora",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
+    },
     "平野 万緑": {
       "en": "HIRANO Banri",
       "source": "Kei確認 2026-09-21",
@@ -2282,6 +2559,12 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/kashiwa/player/"
+    },
+    "後藤 卓磨": {
+      "en": "GOTO Takuma",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/nara/player/"
     },
     "後藤 啓介": {
       "en": "GOTO Keisuke",
@@ -2374,6 +2657,12 @@
       "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
+    "新井 瑞希": {
+      "en": "ARAI Mizuki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/mito/player/"
+    },
     "新垣 祥大": {
       "en": "ARAKAKI Shota",
       "source": "antlers-en",
@@ -2429,6 +2718,12 @@
       "en": "HAYAKAWA Tomoki",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "早川 隼平": {
+      "en": "HAYAKAWA Jumpei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "早﨑 雅哉アレキサンダー": {
       "en": "HAYASAKI Masaya Alexander",
@@ -2530,6 +2825,12 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/sapporo/player/"
     },
+    "木村 卓斗": {
+      "en": "KIMURA Takuto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafm/player/"
+    },
     "木村 太哉": {
       "en": "KIMURA Takaya",
       "source": "jleague-en",
@@ -2597,6 +2898,12 @@
       "en": "HOMMA Justin",
       "source": "jleague-en",
       "confidence": "high"
+    },
+    "本間 海翔": {
+      "en": "HOMMA Kaito",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yamagata/player/"
     },
     "杉山 琥二郎": {
       "en": "SUGIYAMA Kojiro",
@@ -2700,6 +3007,12 @@
       "en": "MATSUMIYA Sei",
       "source": "東京ヴェルディ公式ユース選手一覧（日本語ページにローマ字併記）",
       "confidence": "high"
+    },
+    "松尾 佑介": {
+      "en": "MATSUO Yusuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/machida/player/"
     },
     "松山 健太": {
       "en": "MATSUYAMA Kenta",
@@ -2868,6 +3181,12 @@
       "confidence": "high",
       "url": "https://www.antlers.co.jp/en-world/pages/staff"
     },
+    "柴山 昌也": {
+      "en": "SHIBAYAMA Masaya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1631738/"
+    },
     "柴崎 岳": {
       "en": "SHIBASAKI Gaku",
       "source": "jfa-eng＋jleague-en",
@@ -2970,6 +3289,24 @@
       "confidence": "high",
       "url": "https://www.s-pulse.co.jp/english/result/1996102605"
     },
+    "森泉 迅": {
+      "en": "MORIIZUMI Jin",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
+    "森田 一輝": {
+      "en": "MORITA Itsuki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
+    "森田 凜": {
+      "en": "MORITA Rin",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/nara/player/"
+    },
     "森田 晃樹": {
       "en": "MORITA Koki",
       "source": "jleague-en",
@@ -2979,6 +3316,12 @@
       "en": "UETSUKI Eita",
       "source": "jleague-en＋東京ヴェルディ公式ユース選手一覧（日本語ページにローマ字併記）",
       "confidence": "high"
+    },
+    "植田 悠太": {
+      "en": "UEDA Yuta",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/chiba/player/"
     },
     "植田 直通": {
       "en": "UEDA Naomichi",
@@ -3015,6 +3358,12 @@
       "en": "HIGUCHI Kenshi",
       "source": "jleague-en",
       "confidence": "high"
+    },
+    "樋口 堅": {
+      "en": "HIGUCHI Ken",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://www.zelvia.co.jp/club/clubteam/307968/"
     },
     "樋口 大輝": {
       "en": "HIGUCHI Daiki",
@@ -3058,6 +3407,12 @@
       "source": "ガンバ大阪公式「アカデミー ユース」（ローマ字併記）・ユース監督就任のお知らせ（YOKOTANI SHIGERU）",
       "confidence": "high"
     },
+    "橋岡 大樹": {
+      "en": "HASHIOKA Daiki",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/samuraiblue/worldcup_2022/2nd_q/20210528/member.html"
+    },
     "橋本 凜来": {
       "en": "HASHIMOTO Riku",
       "source": "jfa-eng",
@@ -3073,6 +3428,12 @@
       "source": "jleague-data",
       "confidence": "high",
       "url": "https://data.j-league.or.jp/SFIX04/?player_id=7642"
+    },
+    "橋村 龍ジョセフ": {
+      "en": "HASHIMURA Ryu Joseph",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/national_team/u17_2017/20170322/member.html"
     },
     "橘田 健人": {
       "en": "TACHIBANADA Kento",
@@ -3158,6 +3519,12 @@
       "source": "アビスパ福岡公式アカデミーU-18選手紹介・指導者紹介（ローマ字併記）",
       "confidence": "high"
     },
+    "水谷 アルトゥール": {
+      "en": "MIZUTANI Arthur",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/omiya/player/"
+    },
     "水野 優人": {
       "en": "MIZUNO Masato",
       "source": "jleague-en＋名古屋グランパス公式アカデミー選手・スタッフ（ローマ字併記）",
@@ -3231,6 +3598,12 @@
       "en": "IKEDA Ayumu",
       "source": "jleague-en＋名古屋グランパス公式アカデミー選手・スタッフ（ローマ字併記）",
       "confidence": "high"
+    },
+    "汰木 康也": {
+      "en": "YURUKI Koya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kashiwa/player/"
     },
     "沢田 謙太郎": {
       "en": "SAWADA Kentaro",
@@ -3414,6 +3787,12 @@
       "source": "jleague-en＋antlers-en",
       "confidence": "high"
     },
+    "澤崎 凌大": {
+      "en": "SAWAZAKI Ryota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/matsumoto/player/"
+    },
     "澤田 卓磨": {
       "en": "SAWADA Takuma",
       "source": "jleague-en",
@@ -3449,6 +3828,12 @@
       "en": "SEKO Ayumu",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "瀬戸 駿": {
+      "en": "SETO Shun",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "瀬賀 結臣": {
       "en": "SEGA Yujin",
@@ -3524,6 +3909,12 @@
       "en": "KANO Kenta",
       "source": "川崎フロンターレ公式アカデミー コーチ・スタッフ紹介（ローマ字併記）",
       "confidence": "high"
+    },
+    "狩野 海晟": {
+      "en": "KANO Kaisei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/fukushima/player/"
     },
     "猪越 優惟": {
       "en": "INOKOSHI Yui",
@@ -3707,6 +4098,12 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/player/1632207/"
     },
+    "相馬 丞": {
+      "en": "SOMA Jo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/gunma/player/"
+    },
     "相馬 勇紀": {
       "en": "SOMA Yuki",
       "source": "jfa-eng",
@@ -3717,15 +4114,33 @@
       "source": "jfa-eng",
       "confidence": "high"
     },
+    "真也加 チュイ大夢": {
+      "en": "MAYAKA Chui Hiromu",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://www.zelvia.co.jp/club/clubteam/307969/"
+    },
     "真殿 京佑": {
       "en": "MADONO Kyosuke",
       "source": "サガン鳥栖公式U-18選手一覧のひらがな（まどの きょうすけ）／Kei確認 2026-09-24",
       "confidence": "high"
     },
+    "矢島 慎也": {
+      "en": "YAJIMA Shinya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/tottori/player/"
+    },
     "石井 久継": {
       "en": "ISHII Hisatsugu",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "石井 僚": {
+      "en": "ISHII Ryo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafc/player/"
     },
     "石井 珂那汰": {
       "en": "ISHII Kanata",
@@ -3741,6 +4156,12 @@
       "en": "ISHIYAMA Haru",
       "source": "ベガルタ仙台公式ユース選手・スタッフ一覧のカタカナ（イシヤマ ハル）／Kei確認 2026-09-24",
       "confidence": "high"
+    },
+    "石川 匠": {
+      "en": "ISHIKAWA Takumi",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/omiya/player/"
     },
     "石川 慧": {
       "en": "ISHIKAWA Kei",
@@ -3762,6 +4183,18 @@
       "en": "ISHIWATARI Tomoya",
       "source": "antlers-en",
       "confidence": "high"
+    },
+    "石田 侑資": {
+      "en": "ISHIDA Yusuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
+    },
+    "石田 大翔": {
+      "en": "ISHIDA Haruto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "神田 奏真": {
       "en": "KANDA Soma",
@@ -3795,6 +4228,12 @@
       "source": "jleague-en＋antlers-en",
       "confidence": "high"
     },
+    "福岡 慎平": {
+      "en": "FUKUOKA Shimpei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
+    },
     "福岡 湧大": {
       "en": "FUKUOKA Yudai",
       "source": "jleague-en",
@@ -3821,6 +4260,12 @@
       "source": "jfa-eng＋borussia-mg-en",
       "confidence": "high"
     },
+    "福田 武玖": {
+      "en": "FUKUTA Muku",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/tokushima/player/"
+    },
     "福重 良一": {
       "en": "FUKUSHIGE Ryoichi",
       "source": "jfa-eng（第101回選手権決勝の記事 Coach FUKUSHIGE Ryoichi）",
@@ -3840,6 +4285,12 @@
       "en": "HATA Jui",
       "source": "jleague-en＋横浜FC公式「アカデミー実績・昇格選手紹介」（ローマ字併記）",
       "confidence": "high"
+    },
+    "稲垣 篤志": {
+      "en": "INAGAKI Atsushi",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "稲本 理仁": {
       "en": "INAMOTO Rihito",
@@ -3869,6 +4320,12 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/yokohamafc/player/"
+    },
+    "立川 遼翔": {
+      "en": "TATSUKAWA Haruto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
     },
     "立田 悠悟": {
       "en": "TATSUTA Yugo",
@@ -4046,10 +4503,22 @@
       "source": "Kei確認 2026-09-23",
       "confidence": "high"
     },
+    "若原 智哉": {
+      "en": "WAKAHARA Tomoya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kashiwa/player/"
+    },
     "若月 蓮": {
       "en": "WAKATSUKI Ren",
       "source": "jleague-en＋東京ヴェルディ公式ユース選手一覧（日本語ページにローマ字併記）",
       "confidence": "high"
+    },
+    "茂木 力也": {
+      "en": "MOTEGI Rikiya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/omiya/player/"
     },
     "茂木 勇人 チュクソム": {
       "en": "MOGI Yuto Chukwusomu",
@@ -4129,6 +4598,12 @@
       "source": "ベガルタ仙台公式ユース選手・スタッフ一覧のカタカナ（キクチ コウセイ）／Kei確認 2026-09-24",
       "confidence": "high"
     },
+    "菊池 大河": {
+      "en": "KIKUCHI Taiga",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "萩原 慶": {
       "en": "HAGIHARA Kei",
       "source": "jleague-en",
@@ -4149,6 +4624,12 @@
       "en": "KASAI Mibuki",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "蔦澤 洋紀": {
+      "en": "TSUTAZAWA Hironori",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
     },
     "藤井 翔大": {
       "en": "FUJII Shota",
@@ -4295,6 +4776,12 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/player/1622193/"
     },
+    "西川 碧斗": {
+      "en": "NISHIKAWA Aoto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
     "西川 颯亮": {
       "en": "NISHIKAWA Sosuke",
       "source": "jleague-en",
@@ -4370,6 +4857,12 @@
       "en": "NISHINO Hinata",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "諏訪間 幸成": {
+      "en": "SUWAMA Kosei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafm/player/"
     },
     "谷 大地": {
       "en": "TANI Daichi",
@@ -4465,6 +4958,12 @@
       "confidence": "high",
       "url": "https://www.jleague.jp/en/player/1658191/"
     },
+    "遠藤 渓太": {
+      "en": "ENDO Keita",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kashiwa/player/"
+    },
     "郡司 璃来": {
       "en": "GUNJI Riku",
       "source": "jleague-en",
@@ -4480,6 +4979,12 @@
       "en": "SAKAI Hiroki",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "酒井 滉生": {
+      "en": "SAKAI Kou",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kyoto/player/"
     },
     "里見 汰福": {
       "en": "SATOMI Tafuku",
@@ -4752,6 +5257,12 @@
       "source": "清水エスパルス公式英語",
       "confidence": "high"
     },
+    "青木 義孝": {
+      "en": "AOKI Yoshitaka",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kagoshima/player/"
+    },
     "青木 馨": {
       "en": "AOKI Kaoru",
       "source": "jleague-en＋川崎フロンターレ公式アカデミー選手プロフィール（ローマ字・ふりがな併記）",
@@ -4762,6 +5273,12 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/shimizu/player/"
+    },
+    "飯倉 大樹": {
+      "en": "IIKURA Hiroki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yokohamafm/player/"
     },
     "飯島 碧大": {
       "en": "IIJIMA Aoi",
@@ -4789,6 +5306,12 @@
       "en": "BABA Takumi",
       "source": "Kei確認 2026-09-24",
       "confidence": "high"
+    },
+    "駒井 善成": {
+      "en": "KOMAI Yoshiaki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/imabari/player/"
     },
     "高井 幸大": {
       "en": "TAKAI Kota",
@@ -4842,6 +5365,24 @@
       "source": "jleague-en＋サンフレッチェ広島公式ユース選手一覧（日本語ページにローマ字併記）（クラブ公式・J.LEAGUEは「髙橋」。JFA登録の「高橋」をキーにする）",
       "confidence": "high"
     },
+    "高橋 温郎": {
+      "en": "TAKAHASHI Atsuro",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/urawa/player/"
+    },
+    "高橋 潤哉": {
+      "en": "TAKAHASHI Junya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/yamagata/player/"
+    },
+    "高橋 祐治": {
+      "en": "TAKAHASHI Yuji",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/shimizu/player/"
+    },
     "高橋 祐翔": {
       "en": "TAKAHASHI Yusho",
       "source": "J.LEAGUEデータサイト",
@@ -4856,6 +5397,12 @@
       "en": "TAKADA Kenshin",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "高田 颯也": {
+      "en": "TAKADA Soya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1629602/"
     },
     "髙木 瑛人": {
       "en": "TAKAKI Eito",
@@ -4899,11 +5446,23 @@
       "source": "Kei確認 2026-09-24",
       "confidence": "high"
     },
+    "麻田 将吾": {
+      "en": "ASADA Shogo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/club/kashiwa/player/"
+    },
     "黒川 偉心": {
       "en": "KUROKAWA Issa",
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/club/nagasaki/player/"
+    },
+    "黒川 淳史": {
+      "en": "KUROKAWA Atsushi",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1501609/"
     },
     "黒田 剛": {
       "en": "KURODA Go",
@@ -4929,6 +5488,12 @@
       "en": "SAITO Taiyo",
       "source": "jfa-eng",
       "confidence": "high"
+    },
+    "齋藤 学": {
+      "en": "SAITO Manabu",
+      "source": "jfa-eng",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/samuraiblue/20140527/news/00000784/"
     },
     "齋藤 翔": {
       "en": "SAITO Kakeru",
