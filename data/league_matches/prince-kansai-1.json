@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "京都橘",
+      "pts": 29,
+      "played": 15,
+      "won": 9,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 24,
+      "ga": 14,
+      "gd": 10
+    },
+    {
+      "rank": 4,
       "team": "履正社",
       "pts": 26,
       "played": 15,
@@ -82,18 +94,6 @@
       "gf": 34,
       "ga": 22,
       "gd": 12
-    },
-    {
-      "rank": 4,
-      "team": "京都橘",
-      "pts": 26,
-      "played": 14,
-      "won": 8,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 21,
-      "ga": 14,
-      "gd": 7
     },
     {
       "rank": 5,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "阪南大高",
       "pts": 16,
-      "played": 14,
+      "played": 15,
       "won": 4,
       "drawn": 4,
-      "lost": 6,
+      "lost": 7,
       "gf": 22,
-      "ga": 38,
-      "gd": -16
+      "ga": 41,
+      "gd": -19
     },
     {
       "rank": 8,
@@ -954,10 +954,10 @@
       "md": 15,
       "date": "2026-10-03",
       "home": "京都橘",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "阪南大高",
-      "status": "scheduled",
+      "status": "played",
       "venue": "京都サンガF.C.東城陽G(人工芝)",
       "kickoff": "13:00"
     },

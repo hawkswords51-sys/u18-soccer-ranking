@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "徳島市立",
+      "pts": 23,
+      "played": 14,
+      "won": 6,
+      "drawn": 5,
+      "lost": 3,
+      "gf": 34,
+      "ga": 19,
+      "gd": 15
+    },
+    {
+      "rank": 4,
       "team": "大手前高松",
       "pts": 21,
       "played": 14,
@@ -84,7 +96,7 @@
       "gd": 0
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "高知",
       "pts": 20,
       "played": 13,
@@ -93,18 +105,6 @@
       "lost": 5,
       "gf": 36,
       "ga": 23,
-      "gd": 13
-    },
-    {
-      "rank": 5,
-      "team": "徳島市立",
-      "pts": 20,
-      "played": 13,
-      "won": 5,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 32,
-      "ga": 19,
       "gd": 13
     },
     {
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "今治東中等教育学校",
       "pts": 16,
-      "played": 13,
+      "played": 14,
       "won": 4,
       "drawn": 4,
-      "lost": 5,
+      "lost": 6,
       "gf": 20,
-      "ga": 26,
-      "gd": -6
+      "ga": 28,
+      "gd": -8
     },
     {
       "rank": 8,
@@ -899,10 +899,10 @@
       "md": 14,
       "date": "2026-10-03",
       "home": "今治東中等教育学校",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "徳島市立",
-      "status": "scheduled",
+      "status": "played",
       "venue": "SAKURAフィールド",
       "kickoff": "13:00"
     },

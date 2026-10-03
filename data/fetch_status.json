@@ -39,8 +39,8 @@
     "prince-tohoku": {
       "expected": "jfa",
       "actual": "koko",
-      "reason": "検算不一致 ['東北学院.試合 日程から計算16≠順位表15', '東北学院.敗 日程から計算7≠順位表6', '東北学院.失点 日程から計算29≠順位表26'] …（据え置き）",
-      "matchesPlayed": 76,
+      "reason": "検算不一致 ['モンテディオ山形ユース.試合 日程から計算16≠順位表15', 'モンテディオ山形ユース.分 日程から計算3≠順位表2', 'モンテディオ山形ユース.勝点 日程から計算24≠順位表23'] …（据え置き）",
+      "matchesPlayed": 79,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 72,
+      "matchesPlayed": 73,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -124,7 +124,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 71,
+      "matchesPlayed": 72,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 67,
+      "matchesPlayed": 68,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -160,7 +160,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 68,
+      "matchesPlayed": 69,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-03T15:03:40+09:00",
+  "updatedAt": "2026-10-03T15:14:00+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1425,7 +1425,7 @@
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
-      "note": "試合16・選手33（新規取得1）",
+      "note": "試合16・選手33（新規取得0）",
       "date": "2026-10-03",
       "since": ""
     },
@@ -1437,7 +1437,7 @@
     },
     "team_season:yonago-kita": {
       "result": "ok",
-      "note": "試合15・選手30（新規取得1）",
+      "note": "試合15・選手30（新規取得0）",
       "date": "2026-10-03",
       "since": ""
     },
