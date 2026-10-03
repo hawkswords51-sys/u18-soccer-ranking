@@ -4155,7 +4155,11 @@ def read_kochi(cfg: dict) -> tuple[dict, list[dict]]:
             raise RuntimeError(f"日程表PDFの表題が{year}年の高知県リーグ1部でない")
         rows = [r for pg in pdf.pages for t in pdf_source.page_tables(pg) if len(t[0]) == 6 for r in t]
     alt = "|".join(sorted((re.escape(t) for t in teams), key=len, reverse=True))
-    card = re.compile(rf"({alt})(\d+)\((\d*)vs(\d*)\)(\d+)({alt})")
+    # [2026-10-03] 9/28版から、結果の入った行の対戦欄の前後に前半・後半の得点の数字が付くようになった
+    #   （例「20高知中央5(vs)0宿毛工業30」）。対戦欄の先頭がチーム名でなくなり、未消化の8行しか読めなかった。
+    #   → 前後の数字は読み飛ばす（チーム名に数字は無い）。スコアは今までどおり星取表から取る。
+    #   ⚠️ 欄全体が合うことを求める（fullmatch）。56件ちょうど・節と丸数字の一致などの守りはそのまま。
+    card = re.compile(rf"\d*({alt})(\d+)\((\d*)vs(\d*)\)(\d+)({alt})\d*")
     md = None
     dates = {}
     for r in rows:
@@ -4166,7 +4170,7 @@ def read_kochi(cfg: dict) -> tuple[dict, list[dict]]:
         if mm:
             md = int(mm.group(1))
         dm = re.match(r"(\d{1,2})/(\d{1,2})", c[1])
-        m = card.match(c[3])
+        m = card.fullmatch(c[3])
         if not m:
             continue
         if not (dm and md):
