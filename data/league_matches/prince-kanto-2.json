@@ -99,16 +99,28 @@
       "rank": 5,
       "team": "桐光学園",
       "pts": 20,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 5,
-      "lost": 2,
-      "gf": 14,
-      "ga": 10,
-      "gd": 4
+      "lost": 3,
+      "gf": 17,
+      "ga": 14,
+      "gd": 3
     },
     {
       "rank": 6,
+      "team": "西武台",
+      "pts": 20,
+      "played": 14,
+      "won": 6,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 21,
+      "ga": 24,
+      "gd": -3
+    },
+    {
+      "rank": 7,
       "team": "日体大柏",
       "pts": 18,
       "played": 13,
@@ -117,18 +129,6 @@
       "lost": 7,
       "gf": 15,
       "ga": 19,
-      "gd": -4
-    },
-    {
-      "rank": 7,
-      "team": "西武台",
-      "pts": 17,
-      "played": 13,
-      "won": 5,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 17,
-      "ga": 21,
       "gd": -4
     },
     {
@@ -898,10 +898,10 @@
       "md": 14,
       "date": "2026-10-03",
       "home": "西武台",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 3,
       "away": "桐光学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "西武台高校第二グラウンド",
       "kickoff": "13:00"
     },

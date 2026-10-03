@@ -38,9 +38,9 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['モンテディオ山形ユース.試合 日程から計算16≠順位表15', 'モンテディオ山形ユース.分 日程から計算3≠順位表2', 'モンテディオ山形ユース.勝点 日程から計算24≠順位表23'] …（据え置き）",
-      "matchesPlayed": 79,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 80,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 65,
+      "matchesPlayed": 66,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -64,7 +64,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 61,
+      "matchesPlayed": 62,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 69,
+      "matchesPlayed": 70,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -136,7 +136,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 71,
+      "matchesPlayed": 74,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 68,
+      "matchesPlayed": 69,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-03T16:45:41+09:00",
+  "updatedAt": "2026-10-03T16:49:40+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1271,7 +1271,7 @@
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
-      "note": "試合16・選手31（新規取得1）",
+      "note": "試合16・選手31（新規取得0）",
       "date": "2026-10-03",
       "since": ""
     },
@@ -1301,7 +1301,7 @@
     },
     "team_season:jubilo-iwata-u18": {
       "result": "ok",
-      "note": "試合16・選手33（新規取得1）",
+      "note": "試合16・選手33（新規取得0）",
       "date": "2026-10-03",
       "since": ""
     },

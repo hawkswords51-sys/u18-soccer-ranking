@@ -73,18 +73,6 @@
     },
     {
       "rank": 3,
-      "team": "浦和レッズユース",
-      "pts": 21,
-      "played": 13,
-      "won": 6,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 17,
-      "ga": 15,
-      "gd": 2
-    },
-    {
-      "rank": 4,
       "team": "流通経済大柏(B)",
       "pts": 21,
       "played": 13,
@@ -94,6 +82,18 @@
       "gf": 13,
       "ga": 13,
       "gd": 0
+    },
+    {
+      "rank": 4,
+      "team": "浦和レッズユース",
+      "pts": 21,
+      "played": 14,
+      "won": 6,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 17,
+      "ga": 18,
+      "gd": -1
     },
     {
       "rank": 5,
@@ -158,14 +158,14 @@
     {
       "rank": 10,
       "team": "桐生第一",
-      "pts": 8,
-      "played": 13,
-      "won": 2,
+      "pts": 11,
+      "played": 14,
+      "won": 3,
       "drawn": 2,
       "lost": 9,
-      "gf": 13,
+      "gf": 16,
       "ga": 26,
-      "gd": -13
+      "gd": -10
     }
   ],
   "matches": [
@@ -910,10 +910,10 @@
       "md": 14,
       "date": "2026-10-03",
       "home": "浦和レッズユース",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "桐生第一",
-      "status": "scheduled",
+      "status": "played",
       "venue": "レッズランド",
       "kickoff": "14:00"
     },
