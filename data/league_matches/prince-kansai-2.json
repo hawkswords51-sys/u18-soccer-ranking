@@ -61,18 +61,30 @@
     },
     {
       "rank": 2,
-      "team": "滝川第二",
-      "pts": 29,
-      "played": 14,
-      "won": 9,
-      "drawn": 2,
-      "lost": 3,
+      "team": "金光大阪",
+      "pts": 30,
+      "played": 15,
+      "won": 10,
+      "drawn": 0,
+      "lost": 5,
       "gf": 34,
-      "ga": 23,
-      "gd": 11
+      "ga": 24,
+      "gd": 10
     },
     {
       "rank": 3,
+      "team": "滝川第二",
+      "pts": 29,
+      "played": 15,
+      "won": 9,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 36,
+      "ga": 26,
+      "gd": 10
+    },
+    {
+      "rank": 4,
       "team": "京都橘(B)",
       "pts": 28,
       "played": 14,
@@ -84,7 +96,7 @@
       "gd": 13
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "大阪桐蔭",
       "pts": 27,
       "played": 14,
@@ -94,18 +106,6 @@
       "gf": 27,
       "ga": 13,
       "gd": 14
-    },
-    {
-      "rank": 5,
-      "team": "金光大阪",
-      "pts": 27,
-      "played": 14,
-      "won": 9,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 31,
-      "ga": 22,
-      "gd": 9
     },
     {
       "rank": 6,
@@ -943,10 +943,10 @@
       "md": 15,
       "date": "2026-10-03",
       "home": "金光大阪",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "滝川第二",
-      "status": "scheduled",
+      "status": "played",
       "venue": "金光大阪G",
       "kickoff": "10:30"
     },

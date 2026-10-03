@@ -28,7 +28,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 52,
+      "matchesPlayed": 56,
       "venueCount": 56,
       "venueCountPrev": 56,
       "consecutiveFallback": 0,
@@ -38,8 +38,8 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
+      "actual": "koko",
+      "reason": "検算不一致 ['東北学院.試合 日程から計算16≠順位表15', '東北学院.分 日程から計算4≠順位表3', '東北学院.勝点 日程から計算22≠順位表21'] …（据え置き）",
       "matchesPlayed": 75,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 63,
+      "matchesPlayed": 64,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -76,7 +76,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 80,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 65,
+      "matchesPlayed": 68,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 70,
+      "matchesPlayed": 72,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -124,7 +124,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 70,
+      "matchesPlayed": 71,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -162,7 +162,7 @@
       "reason": "",
       "matchesPlayed": 65,
       "venueCount": 90,
-      "venueCountPrev": 89,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0,
       "fallbackSince": "",
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-03T11:43:03+09:00",
+  "updatedAt": "2026-10-03T12:58:18+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1346,10 +1346,10 @@
       "since": ""
     },
     "team_season:kashima-youth": {
-      "result": "ok",
-      "note": "試合15・選手32（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧45＋一覧外0＋OG0＝45 ≠ 順位表40）",
       "date": "2026-10-03",
-      "since": ""
+      "since": "2026-10-03"
     },
     "team_season:kashiwa-reysol-u18": {
       "result": "ok",
@@ -1400,10 +1400,10 @@
       "since": ""
     },
     "team_season:shohei": {
-      "result": "ok",
-      "note": "試合15・選手32（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧25＋一覧外0＋OG1＝26 ≠ 順位表24）",
       "date": "2026-10-03",
-      "since": ""
+      "since": "2026-10-03"
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
