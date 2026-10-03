@@ -110,6 +110,10 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "kyoto": ("2026-09-28 追加：9/24版の協会PDFの食い違い2か所を名指しで補正。①日程PDFの 9/20 大谷A 2-0 京都橘C を 0-2 に"
               "（KYOTO_SCHEDULE_FIXES。星取表と京都橘の公式サイトが 京都橘 2-0）②星取表の京都橘Cの行に 9/23 東山B 1-0 京都橘C の"
               "負けを足す（KYOTO_HOSHITORI_FIXES。記入漏れ）→ 外す条件＝協会がそれぞれのPDFを直したら（直ると read_kyoto が止まって知らせる）"),
+    "nara": ("2026-10-03 追加：9/28版の1部リーグ星取表で、第15節 9/26 生駒×畝傍 の合計欄が第6節（生駒 0-4 畝傍）の"
+             "コピーになっている（日程表と奈良新聞 https://www.nara-np.co.jp/sports/soccer/summary1550.html は 生駒 4-0 畝傍）。"
+             "NARA_HOSHITORI_FIXES で勝点・得点・失点・順位の差を名指しで打ち消す → 外す条件＝星取表のこの試合が 生駒4-0 に"
+             "直ったら（直ると read_nara が止まって知らせる）"),
     "aomori": ("2026-09-28 追加：星取表0924の合計欄で ヴァンラーレ八戸U-18 の失点が15（マスの合計と日程PDFは16）。"
                "KNOWN_SOURCE_ERRORS で差を明示 → 外す条件＝協会が星取表の合計欄を直したら（直ると read_aomori が止まって知らせる）"),
 }
@@ -4225,6 +4229,68 @@ _NARA_SCORE_RE = re.compile(r"(\d+)\s*[-−ー―–]\s*(\d+)")
 _NARA_VER_RE = re.compile(r"\((\d{4}-\d{2}-\d{2})・")
 
 
+# 奈良：星取表（合計列）の既知の誤りを、試合を名指しして打ち消す（2026-10-03）
+#   9/28版で第15節 9/26 生駒×畝傍 の結果が、第6節 5/3 の 生駒 0-4 畝傍 のコピーになっていた（日程表と奈良新聞は 生駒 4-0）。
+#   ⚠️ 直すのは星取表の合計列（と順位）だけ。日程表（主資料）のスコアは一切変えない。
+#   ⚠️ 当てるのは「公式−日程表から数えた値」が下の差ちょうどのときだけ。差が0＝協会が直した → 止めて知らせる。
+NARA_HOSHITORI_FIXES = [
+    {"md": 15, "home": "生駒", "away": "畝傍", "correct": (4, 0), "wrong": (0, 4),
+     # 星取表の順位（誤り）→ 正しい順位
+     "ranks": {"生駒": (4, 3), "畝傍": (3, 4)},
+     "source": "https://www.nara-np.co.jp/sports/soccer/summary1550.html"},
+]
+
+
+def _nara_apply_hoshitori_fixes(standings: dict, matches: list[dict]) -> None:
+    def tally(team):
+        s = dict(pts=0, gf=0, ga=0)
+        for m in matches:
+            if m["hs"] is None or team not in (m["home"], m["away"]):
+                continue
+            gf, ga = (m["hs"], m["as"]) if m["home"] == team else (m["as"], m["hs"])
+            s["gf"] += gf
+            s["ga"] += ga
+            s["pts"] += 3 if gf > ga else 1 if gf == ga else 0
+        return s
+
+    def pts(gf, ga):
+        return 3 if gf > ga else 1 if gf == ga else 0
+
+    for fx in NARA_HOSHITORI_FIXES:
+        h, a = fx["home"], fx["away"]
+        got = [m for m in matches if m["md"] == fx["md"] and m["home"] == h and m["away"] == a]
+        if len(got) != 1 or (got[0]["hs"], got[0]["as"]) != fx["correct"]:
+            raise RuntimeError(f"NARA_HOSHITORI_FIXES の第{fx['md']}節 {h}×{a} が日程表に"
+                               f" {fx['correct'][0]}-{fx['correct'][1]} で無い: {got}。補正せずに止める")
+        (cw_h, cw_a), (ww_h, ww_a) = fx["correct"], fx["wrong"]
+        # 公式（誤り）−正しい値 の差（チームの視点）
+        expect = {h: dict(pts=pts(ww_h, ww_a) - pts(cw_h, cw_a), gf=ww_h - cw_h, ga=ww_a - cw_a),
+                  a: dict(pts=pts(ww_a, ww_h) - pts(cw_a, cw_h), gf=ww_a - cw_a, ga=ww_h - cw_h)}
+        diff = {}
+        for team in (h, a):
+            if team not in standings:
+                raise RuntimeError(f"NARA_HOSHITORI_FIXES の {team} が星取表に無い: {sorted(standings)}")
+            mine = tally(team)
+            diff[team] = {k: standings[team][k] - mine[k] for k in ("pts", "gf", "ga")}
+        if all(v == 0 for d in diff.values() for v in d.values()):
+            raise RuntimeError(f"協会が星取表の第{fx['md']}節 {h}×{a} を直した（合計列が日程表と一致）。"
+                               f"NARA_HOSHITORI_FIXES のこの行と TEMP_EXCEPTIONS の奈良を消すこと")
+        if diff != expect:
+            raise RuntimeError(f"星取表と日程表の差が既知の誤り（第{fx['md']}節 {h}×{a} の逆転）と違う: 実際 {diff}／"
+                               f"既知 {expect}。補正せずに止める")
+        for team, (r_wrong, r_ok) in fx["ranks"].items():
+            if standings[team]["rank"] != r_wrong:
+                raise RuntimeError(f"NARA_HOSHITORI_FIXES の {team} の順位が星取表で {standings[team]['rank']}"
+                                   f"（{r_wrong} のはず）。補正せずに止める")
+        for team in (h, a):
+            for k, v in expect[team].items():
+                standings[team][k] -= v
+        for team, (_r_wrong, r_ok) in fx["ranks"].items():
+            standings[team]["rank"] = r_ok
+        print(f"       （奈良: 星取表の第{fx['md']}節 {h}×{a} の合計列の誤り（{ww_h}-{ww_a}のコピー）を、日程表の"
+              f" {cw_h}-{cw_a} に合わせて打ち消した（NARA_HOSHITORI_FIXES））")
+
+
 def read_nara(cfg: dict) -> tuple[dict, list[dict]]:
     from urllib.parse import urljoin
     year = str(SEASON_YEAR)
@@ -4316,6 +4382,7 @@ def read_nara(cfg: dict) -> tuple[dict, list[dict]]:
             raise RuntimeError(f"日程表の{rnd}巡目に同じ組が2回以上ある（延期行の捨て漏れの疑い）")
     if any(sum(1 for m in matches if m["md"] == k) != n // 2 for k in sorted({m["md"] for m in matches})):
         raise RuntimeError("日程表の節ごとの試合数が5でない節がある")
+    _nara_apply_hoshitori_fixes(standings, matches)
     # ✅ 2本のPDFをまたぐ裏づけ：日程表の総得点＝星取表の総得点の合計
     goals = sum(m["hs"] + m["as"] for m in played)
     if goals != sum(v["gf"] for v in standings.values()):
