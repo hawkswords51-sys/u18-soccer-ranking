@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://osaka-fa.or.jp/2shu/game_information/",
   "sourceName": "大阪府サッカー協会 公式",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-04",
   "teams": [
     {
       "name": "大阪桐蔭B",
@@ -65,6 +65,18 @@
     },
     {
       "rank": 3,
+      "team": "大体大浪商",
+      "points": 16,
+      "played": 10,
+      "won": 5,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 16,
+      "ga": 18,
+      "gd": -2
+    },
+    {
+      "rank": 4,
       "team": "関大一",
       "points": 14,
       "played": 9,
@@ -76,7 +88,7 @@
       "gd": 7
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "近大附属B",
       "points": 14,
       "played": 9,
@@ -88,28 +100,16 @@
       "gd": 4
     },
     {
-      "rank": 5,
-      "team": "大体大浪商",
-      "points": 13,
-      "played": 9,
-      "won": 4,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 13,
-      "ga": 18,
-      "gd": -5
-    },
-    {
       "rank": 6,
       "team": "履正社C",
       "points": 10,
-      "played": 9,
+      "played": 10,
       "won": 3,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 21,
-      "ga": 21,
-      "gd": 0
+      "ga": 24,
+      "gd": -3
     },
     {
       "rank": 7,
@@ -492,10 +492,10 @@
       "md": 10,
       "date": "2026-10-03",
       "home": "履正社C",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "大体大浪商",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 6,
@@ -655,7 +655,7 @@
       "pts": 14,
       "gf": 14,
       "ga": 10,
-      "rank": 4
+      "rank": 5
     },
     {
       "team": "大阪桐蔭B",
@@ -669,13 +669,13 @@
       "pts": 14,
       "gf": 16,
       "ga": 9,
-      "rank": 3
+      "rank": 4
     },
     {
       "team": "履正社C",
       "pts": 10,
       "gf": 21,
-      "ga": 21,
+      "ga": 24,
       "rank": 6
     },
     {
@@ -687,10 +687,10 @@
     },
     {
       "team": "大体大浪商",
-      "pts": 13,
-      "gf": 13,
+      "pts": 16,
+      "gf": 16,
       "ga": 18,
-      "rank": 5
+      "rank": 3
     },
     {
       "team": "大塚",

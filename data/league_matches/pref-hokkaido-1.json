@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.kawakitanet.com/league_soccer/main.php?pref_cd=1&gameid=9740",
   "sourceName": "北海道FAリーグ 試合結果（kawakitanet・有志運営）",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-04",
   "teams": [
     {
       "name": "東海大札幌高校",
@@ -42,97 +42,97 @@
     {
       "rank": 1,
       "team": "東海大札幌高校",
-      "points": 30,
-      "played": 13,
+      "points": 31,
+      "played": 14,
       "won": 9,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 1,
-      "gf": 38,
-      "ga": 11,
+      "gf": 39,
+      "ga": 12,
       "gd": 27
     },
     {
       "rank": 2,
       "team": "札幌創成高校",
-      "points": 28,
-      "played": 13,
-      "won": 8,
+      "points": 31,
+      "played": 14,
+      "won": 9,
       "drawn": 4,
       "lost": 1,
-      "gf": 27,
+      "gf": 31,
       "ga": 10,
-      "gd": 17
+      "gd": 21
     },
     {
       "rank": 3,
-      "team": "とわの森三愛高校",
-      "points": 24,
-      "played": 13,
-      "won": 7,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 28,
-      "ga": 16,
-      "gd": 12
+      "team": "旭川実業高校2nd",
+      "points": 26,
+      "played": 14,
+      "won": 8,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 29,
+      "ga": 20,
+      "gd": 9
     },
     {
       "rank": 4,
-      "team": "旭川実業高校2nd",
-      "points": 23,
-      "played": 13,
+      "team": "とわの森三愛高校",
+      "points": 25,
+      "played": 14,
       "won": 7,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 26,
-      "ga": 20,
-      "gd": 6
+      "drawn": 4,
+      "lost": 3,
+      "gf": 29,
+      "ga": 17,
+      "gd": 12
     },
     {
       "rank": 5,
       "team": "旭実FC VITA",
-      "points": 13,
-      "played": 13,
+      "points": 14,
+      "played": 14,
       "won": 3,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 6,
-      "gf": 16,
-      "ga": 21,
+      "gf": 17,
+      "ga": 22,
       "gd": -5
     },
     {
       "rank": 6,
       "team": "札幌大谷高校2nd",
       "points": 13,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 4,
-      "lost": 6,
+      "lost": 7,
       "gf": 22,
-      "ga": 32,
-      "gd": -10
+      "ga": 35,
+      "gd": -13
     },
     {
       "rank": 7,
       "team": "札幌第一高校",
       "points": 8,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 2,
-      "lost": 9,
+      "lost": 10,
       "gf": 8,
-      "ga": 34,
-      "gd": -26
+      "ga": 38,
+      "gd": -30
     },
     {
       "rank": 8,
       "team": "北海道大谷室蘭高校2nd",
-      "points": 6,
-      "played": 13,
+      "points": 7,
+      "played": 14,
       "won": 2,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 11,
-      "gf": 14,
-      "ga": 35,
+      "gf": 15,
+      "ga": 36,
       "gd": -21
     }
   ],
@@ -271,12 +271,14 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "札幌創成高校",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "札幌第一高校",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "札幌創成高校 石狩Ｇ",
+      "srcId": "291222"
     },
     {
       "md": 0,
@@ -368,12 +370,14 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "とわの森三愛高校",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "東海大札幌高校",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "とわの森三愛高校",
+      "srcId": "291173"
     },
     {
       "md": 0,
@@ -542,12 +546,14 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "札幌大谷高校2nd",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "旭川実業高校2nd",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "札幌大谷高校 丘珠Ｇ",
+      "srcId": "291172"
     },
     {
       "md": 0,
@@ -716,12 +722,14 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "北海道大谷室蘭高校2nd",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "旭実FC VITA",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "ポロモイスタジアム",
+      "srcId": "291174"
     },
     {
       "md": 0,
@@ -749,49 +757,49 @@
   "source_standings": [
     {
       "team": "東海大札幌高校",
-      "pts": 30,
+      "pts": 31,
       "gd": 27,
       "rank": 1
     },
     {
       "team": "札幌創成高校",
-      "pts": 28,
-      "gd": 17,
+      "pts": 31,
+      "gd": 21,
       "rank": 2
     },
     {
-      "team": "とわの森三愛高校",
-      "pts": 24,
-      "gd": 12,
+      "team": "旭川実業高校2nd",
+      "pts": 26,
+      "gd": 9,
       "rank": 3
     },
     {
-      "team": "旭川実業高校2nd",
-      "pts": 23,
-      "gd": 6,
+      "team": "とわの森三愛高校",
+      "pts": 25,
+      "gd": 12,
       "rank": 4
     },
     {
       "team": "旭実FC VITA",
-      "pts": 13,
+      "pts": 14,
       "gd": -5,
       "rank": 5
     },
     {
       "team": "札幌大谷高校2nd",
       "pts": 13,
-      "gd": -10,
+      "gd": -13,
       "rank": 6
     },
     {
       "team": "札幌第一高校",
       "pts": 8,
-      "gd": -26,
+      "gd": -30,
       "rank": 7
     },
     {
       "team": "北海道大谷室蘭高校2nd",
-      "pts": 6,
+      "pts": 7,
       "gd": -21,
       "rank": 8
     }

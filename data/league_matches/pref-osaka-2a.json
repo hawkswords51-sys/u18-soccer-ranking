@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://osaka-fa.or.jp/2shu/game_information/",
   "sourceName": "大阪府サッカー協会 公式",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-04",
   "teams": [
     {
       "name": "金光大阪B",
@@ -53,6 +53,18 @@
     },
     {
       "rank": 2,
+      "team": "ガンバ大阪B",
+      "points": 20,
+      "played": 10,
+      "won": 6,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 27,
+      "ga": 12,
+      "gd": 15
+    },
+    {
+      "rank": 3,
       "team": "金光大阪B",
       "points": 19,
       "played": 9,
@@ -62,18 +74,6 @@
       "gf": 20,
       "ga": 7,
       "gd": 13
-    },
-    {
-      "rank": 3,
-      "team": "ガンバ大阪B",
-      "points": 17,
-      "played": 9,
-      "won": 5,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 23,
-      "ga": 12,
-      "gd": 11
     },
     {
       "rank": 4,
@@ -91,13 +91,13 @@
       "rank": 5,
       "team": "大阪偕星",
       "points": 10,
-      "played": 9,
+      "played": 10,
       "won": 3,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 15,
-      "ga": 28,
-      "gd": -13
+      "ga": 32,
+      "gd": -17
     },
     {
       "rank": 6,
@@ -294,10 +294,10 @@
       "md": 10,
       "date": "2026-10-03",
       "home": "ガンバ大阪B",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "大阪偕星",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
@@ -648,21 +648,21 @@
       "pts": 19,
       "gf": 20,
       "ga": 7,
-      "rank": 2
+      "rank": 3
     },
     {
       "team": "大阪偕星",
       "pts": 10,
       "gf": 15,
-      "ga": 28,
+      "ga": 32,
       "rank": 5
     },
     {
       "team": "ガンバ大阪B",
-      "pts": 17,
-      "gf": 23,
+      "pts": 20,
+      "gf": 27,
       "ga": 12,
-      "rank": 3
+      "rank": 2
     },
     {
       "team": "興國C",

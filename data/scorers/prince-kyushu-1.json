@@ -2,14 +2,14 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州1部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448182-448182-fl",
-  "lastUpdated": "2026-09-28",
+  "lastUpdated": "2026-10-04",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
       "name": "宮口裕多",
       "team": "V・ファーレン長崎U-18",
-      "goals": 12
+      "goals": 14
     },
     {
       "rank": 2,
@@ -27,16 +27,16 @@
       "rank": 4,
       "name": "平井一輝",
       "team": "ロアッソ熊本U-18",
-      "goals": 6
+      "goals": 7
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "村田壮優",
       "team": "V・ファーレン長崎U-18",
       "goals": 6
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "玉置大翔",
       "team": "飯塚",
       "goals": 6
@@ -54,77 +54,90 @@
       "goals": 5
     },
     {
-      "rank": 9,
+      "rank": 7,
+      "name": "岩永大翔",
+      "team": "V・ファーレン長崎U-18",
+      "goals": 5
+    },
+    {
+      "rank": 10,
       "name": "金澤桜雅",
       "team": "国見",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "島村陽斗",
       "team": "日章学園",
       "goals": 4
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "大竹蒼助",
       "team": "大津2nd",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "江上虎伯",
       "team": "大津2nd",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "牧礼桜",
       "team": "大津2nd",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "吉崎太珠",
       "team": "日章学園",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "大平陽稀",
       "team": "日章学園",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
+      "name": "田邊雄大",
+      "team": "東福岡",
+      "goals": 3
+    },
+    {
+      "rank": 12,
       "name": "成田響輝",
       "team": "ロアッソ熊本U-18",
       "goals": 3
     },
     {
-      "rank": 11,
-      "name": "岩永大翔",
-      "team": "V・ファーレン長崎U-18",
-      "goals": 3
-    },
-    {
-      "rank": 11,
+      "rank": 12,
       "name": "鳥越朔太郎",
       "team": "V・ファーレン長崎U-18",
       "goals": 3
     },
     {
-      "rank": 11,
+      "rank": 12,
       "name": "石黒聡",
       "team": "飯塚",
       "goals": 3
-    },
-    {
-      "rank": 11,
-      "name": "長渕禅",
-      "team": "鹿児島城西",
-      "goals": 3
     }
   ],
-  "coverage": []
+  "coverage": [
+    {
+      "team": "東福岡",
+      "attributed": 15,
+      "gf": 16,
+      "missing": 1
+    },
+    {
+      "team": "FC琉球U-18",
+      "attributed": 10,
+      "gf": 11,
+      "missing": 1
+    }
+  ]
 }
