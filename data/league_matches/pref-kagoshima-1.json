@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kyushu/kagoshima/league/table/163821",
   "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-09-26T14:40:57+00:00",
+  "lastUpdated": "2026-10-04T11:37:39+00:00",
   "teams": [
     {
       "name": "鹿児島ユナイテッド",
@@ -50,29 +50,41 @@
     {
       "rank": 1,
       "team": "鹿児島ユナイテッド",
-      "points": 39,
-      "played": 15,
-      "won": 13,
+      "points": 42,
+      "played": 16,
+      "won": 14,
       "drawn": 0,
       "lost": 2,
-      "gf": 60,
+      "gf": 64,
       "ga": 6,
-      "gd": 54
+      "gd": 58
     },
     {
       "rank": 2,
       "team": "城西EAGLE",
-      "points": 37,
-      "played": 14,
-      "won": 12,
+      "points": 40,
+      "played": 16,
+      "won": 13,
       "drawn": 1,
-      "lost": 1,
-      "gf": 46,
-      "ga": 10,
-      "gd": 36
+      "lost": 2,
+      "gf": 47,
+      "ga": 14,
+      "gd": 33
     },
     {
       "rank": 3,
+      "team": "神村学園2nd",
+      "points": 31,
+      "played": 16,
+      "won": 9,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 52,
+      "ga": 19,
+      "gd": 33
+    },
+    {
+      "rank": 4,
       "team": "鹿児島実業",
       "points": 31,
       "played": 15,
@@ -84,31 +96,31 @@
       "gd": 11
     },
     {
-      "rank": 4,
-      "team": "神村学園2nd",
-      "points": 28,
-      "played": 15,
-      "won": 8,
-      "drawn": 4,
-      "lost": 3,
-      "gf": 49,
-      "ga": 18,
-      "gd": 31
-    },
-    {
       "rank": 5,
       "team": "鹿児島情報",
       "points": 24,
-      "played": 15,
+      "played": 16,
       "won": 8,
       "drawn": 0,
-      "lost": 7,
-      "gf": 20,
-      "ga": 33,
-      "gd": -13
+      "lost": 8,
+      "gf": 22,
+      "ga": 38,
+      "gd": -16
     },
     {
       "rank": 6,
+      "team": "鹿屋中央",
+      "points": 19,
+      "played": 15,
+      "won": 6,
+      "drawn": 1,
+      "lost": 8,
+      "gf": 21,
+      "ga": 44,
+      "gd": -23
+    },
+    {
+      "rank": 7,
       "team": "樟南",
       "points": 16,
       "played": 15,
@@ -120,52 +132,40 @@
       "gd": -1
     },
     {
-      "rank": 7,
-      "team": "鹿屋中央",
-      "points": 16,
-      "played": 14,
-      "won": 5,
-      "drawn": 1,
-      "lost": 8,
-      "gf": 17,
-      "ga": 43,
-      "gd": -26
-    },
-    {
       "rank": 8,
       "team": "出水中央",
-      "points": 12,
-      "played": 13,
-      "won": 4,
+      "points": 15,
+      "played": 15,
+      "won": 5,
       "drawn": 0,
-      "lost": 9,
-      "gf": 15,
-      "ga": 23,
-      "gd": -8
+      "lost": 10,
+      "gf": 20,
+      "ga": 26,
+      "gd": -6
     },
     {
       "rank": 9,
       "team": "鹿児島2nd",
       "points": 11,
-      "played": 15,
+      "played": 16,
       "won": 3,
       "drawn": 2,
-      "lost": 10,
-      "gf": 12,
-      "ga": 24,
-      "gd": -12
+      "lost": 11,
+      "gf": 13,
+      "ga": 27,
+      "gd": -14
     },
     {
       "rank": 10,
       "team": "松陽",
       "points": 0,
-      "played": 15,
+      "played": 16,
       "won": 0,
       "drawn": 0,
-      "lost": 15,
-      "gf": 4,
-      "ga": 76,
-      "gd": -72
+      "lost": 16,
+      "gf": 5,
+      "ga": 80,
+      "gd": -75
     }
   ],
   "matches": [
@@ -252,12 +252,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "城西EAGLE",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "鹿児島ユナイテッド",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -477,12 +477,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "神村学園2nd",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島2nd",
-      "status": "scheduled"
+      "date": "2026-10-03",
+      "home": "鹿児島2nd",
+      "hs": 1,
+      "as": 3,
+      "away": "神村学園2nd",
+      "status": "played"
     },
     {
       "md": 0,
@@ -747,12 +747,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "出水中央",
-      "hs": null,
-      "as": null,
-      "away": "城西EAGLE",
-      "status": "scheduled"
+      "date": "2026-09-26",
+      "home": "城西EAGLE",
+      "hs": 1,
+      "as": 0,
+      "away": "出水中央",
+      "status": "played"
     },
     {
       "md": 0,
@@ -774,12 +774,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "出水中央",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島情報",
-      "status": "scheduled"
+      "date": "2026-10-03",
+      "home": "鹿児島情報",
+      "hs": 2,
+      "as": 5,
+      "away": "出水中央",
+      "status": "played"
     },
     {
       "md": 0,
@@ -945,12 +945,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-03",
       "home": "松陽",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 4,
       "away": "鹿屋中央",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
