@@ -163,6 +163,49 @@ COMMON_FEATURED_ARTICLES = [
     },
 ]
 # ============================================================
+# 県ページ → 医学コラムへの常設リンク（2026-10-04 追加・9/11週次SEOの課題③）
+# 背景：47県ページから医学コラムへのリンクが0本だった。医学コラムはBing AIでは引用が伸びている
+#       （10/4時点の累計：試合前の食事212・足首捻挫169・脳震盪57）が、Google検索はほぼゼロ。
+#       サイトで最も見られている県ページから内部リンクを張り、Googleの評価を後押しする。
+# ★季節で入れ替える：秋〜冬（選手権予選・新人戦）は脳震盪・試合前の食事・睡眠。
+#   春〜夏は熱中症・水分補給などへ差し替える。**slug は blog/posts/ のディレクトリ名**（ファイル名ではない）。
+#   公開前の記事を入れると404になるので、公開済みのものだけ書く。
+# ============================================================
+MEDICAL_COLUMN_LINKS = [
+    {"title": "サッカーで頭を打ったら｜脳震盪の危険なサインと復帰までの手順",
+     "url": "/blog/posts/concussion-return-to-play-2026/"},
+    {"title": "試合前日に何を食べる？｜前日・当日・連戦の食事戦略",
+     "url": "/blog/posts/pre-match-meal-strategy-2026/"},
+    {"title": "試合前日に眠れない時の対処法｜サッカー選手の睡眠戦略",
+     "url": "/blog/posts/2026-05-22-pre-match-sleep-strategy/"},
+]
+# ⚠️ 一時的に出さない県（効果測定中の県ページを動かさないため）。
+#    香川（title変更）・神奈川（強豪校節）の測定が10/12ごろに終わったら、この集合を空にする。
+MEDICAL_COLUMN_SKIP_PREFS = {"kagawa", "kanagawa"}
+
+
+def render_medical_columns(pref_id, pref_name):
+    """県ページ下部（FAQの直後）に置く医学コラムへの導線。リンクは全県共通。"""
+    if pref_id in MEDICAL_COLUMN_SKIP_PREFS or not MEDICAL_COLUMN_LINKS:
+        return ""
+    items = "\n".join(
+        f'          <li><a href="{a["url"]}">【医学コラム】{a["title"]}</a></li>'
+        for a in MEDICAL_COLUMN_LINKS
+    )
+    return (
+        '      <section class="lp-section">\n'
+        '        <h2><i class="fas fa-heart-pulse"></i> 選手権予選・冬の連戦に備える医学コラム</h2>\n'
+        f'        <p class="lp-section-desc">{pref_name}で予選・リーグ戦を戦う選手と、支える保護者・指導者の皆さんへ。'
+        '救急科専門医が医学的根拠に基づいて解説しています。</p>\n'
+        '        <ul class="lp-related-links">\n'
+        f'{items}\n'
+        '          <li><a href="/blog/medical/">医学コラムの一覧（熱中症・栄養・けが予防など）</a></li>\n'
+        '        </ul>\n'
+        '      </section>\n'
+    )
+
+
+# ============================================================
 # 都道府県別の特集記事マッピング
 # 今後、他県の特集記事を書いたらここに追加していく
 # ============================================================
@@ -1844,7 +1887,7 @@ __PREFECTURE_INTRO__
         <h2><i class="fas fa-question-circle"></i> よくある質問</h2>
 __FAQ_HTML__
       </section>
-
+__MEDICAL_COLUMNS__
       <!-- ★ Phase 9-C: 所属リーグ詳細ページへのリンク -->
       <section class="lp-section">
         <h2><i class="fas fa-trophy"></i> __PREF_NAME__のチームが所属するリーグ詳細</h2>
@@ -2334,6 +2377,7 @@ def generate_page(pref, all_prefs):
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__PREF_NAME__", html_escape(pref_name))
         .replace("__FEATURED_ARTICLES__", render_featured_articles(pref_id))
+        .replace("__MEDICAL_COLUMNS__", render_medical_columns(pref_id, pref_name))
         .replace("__STRONG_SCHOOLS__\n", (lambda h: h + "\n" if h else "")(render_strong_schools(pref_id, pref_name, teams)))
         .replace("__TOURNAMENT_RESULTS__", render_tournament_results(pref_id))
         .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams, pref.get("division2")))
