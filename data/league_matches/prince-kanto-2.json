@@ -62,14 +62,14 @@
     {
       "rank": 2,
       "team": "FC町田ゼルビアユース",
-      "pts": 21,
-      "played": 12,
-      "won": 7,
+      "pts": 24,
+      "played": 13,
+      "won": 8,
       "drawn": 0,
       "lost": 5,
-      "gf": 17,
-      "ga": 18,
-      "gd": -1
+      "gf": 20,
+      "ga": 19,
+      "gd": 1
     },
     {
       "rank": 3,
@@ -85,18 +85,6 @@
     },
     {
       "rank": 4,
-      "team": "矢板中央",
-      "pts": 20,
-      "played": 12,
-      "won": 6,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 22,
-      "ga": 18,
-      "gd": 4
-    },
-    {
-      "rank": 5,
       "team": "桐光学園",
       "pts": 20,
       "played": 13,
@@ -106,6 +94,18 @@
       "gf": 17,
       "ga": 14,
       "gd": 3
+    },
+    {
+      "rank": 5,
+      "team": "矢板中央",
+      "pts": 20,
+      "played": 13,
+      "won": 6,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 23,
+      "ga": 21,
+      "gd": 2
     },
     {
       "rank": 6,
@@ -145,26 +145,26 @@
     },
     {
       "rank": 9,
-      "team": "栃木SC U-18",
+      "team": "鹿島学園",
       "pts": 10,
       "played": 13,
-      "won": 3,
-      "drawn": 1,
-      "lost": 9,
-      "gf": 9,
-      "ga": 22,
+      "won": 2,
+      "drawn": 4,
+      "lost": 7,
+      "gf": 17,
+      "ga": 30,
       "gd": -13
     },
     {
       "rank": 10,
-      "team": "鹿島学園",
-      "pts": 7,
-      "played": 12,
-      "won": 1,
-      "drawn": 4,
-      "lost": 7,
-      "gf": 16,
-      "ga": 30,
+      "team": "栃木SC U-18",
+      "pts": 10,
+      "played": 14,
+      "won": 3,
+      "drawn": 1,
+      "lost": 10,
+      "gf": 9,
+      "ga": 23,
       "gd": -14
     }
   ],
@@ -611,16 +611,6 @@
     },
     {
       "md": 9,
-      "date": "",
-      "dateTbd": true,
-      "home": "日大藤沢",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央",
-      "status": "scheduled"
-    },
-    {
-      "md": 9,
       "date": "2026-06-28",
       "home": "FC町田ゼルビアユース",
       "hs": 2,
@@ -664,15 +654,15 @@
       "kickoff": "17:00"
     },
     {
-      "md": 10,
-      "date": "",
-      "dateTbd": true,
+      "md": 9,
+      "date": "2026-11-18",
       "home": "日大藤沢",
       "hs": null,
       "as": null,
-      "away": "鹿島学園",
+      "away": "矢板中央",
       "status": "scheduled",
-      "venue": "日本大学藤沢高校NFグラウンド"
+      "venue": "日本大学藤沢高校NFグラウンド",
+      "kickoff": "17:30"
     },
     {
       "md": 10,
@@ -717,6 +707,17 @@
       "status": "scheduled",
       "venue": "拓殖大学八王子キャンパスサッカー場",
       "kickoff": "15:00"
+    },
+    {
+      "md": 10,
+      "date": "2026-11-14",
+      "home": "日大藤沢",
+      "hs": null,
+      "as": null,
+      "away": "鹿島学園",
+      "status": "scheduled",
+      "venue": "日本大学生物資源科学部グラウンド",
+      "kickoff": "10:30"
     },
     {
       "md": 11,
@@ -909,10 +910,10 @@
       "md": 14,
       "date": "2026-10-04",
       "home": "FC町田ゼルビアユース",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "矢板中央",
-      "status": "scheduled",
+      "status": "played",
       "venue": "拓殖大学八王子キャンパスサッカー場",
       "kickoff": "15:00"
     },
@@ -931,10 +932,10 @@
       "md": 14,
       "date": "2026-10-04",
       "home": "鹿島学園",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "栃木SC U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿島学園高校グラウンド",
       "kickoff": "16:00"
     },
