@@ -6623,14 +6623,14 @@
         "league": "大阪府1部",
         "rank": 14,
         "prefectureRank": 14,
-        "points": 20,
-        "played": 12,
-        "won": 6,
+        "points": 23,
+        "played": 13,
+        "won": 7,
         "drawn": 2,
         "lost": 4,
-        "goalsFor": 14,
-        "goalsAgainst": 13,
-        "goalDiff": 1,
+        "goalsFor": 16,
+        "goalsAgainst": 14,
+        "goalDiff": 2,
         "leagueRank": 4
       },
       {
@@ -6669,12 +6669,12 @@
         "name": "興國高校2nd",
         "league": "大阪府1部",
         "points": 15,
-        "played": 12,
+        "played": 13,
         "won": 4,
         "drawn": 3,
-        "lost": 5,
-        "goalsFor": 26,
-        "goalsAgainst": 20,
+        "lost": 6,
+        "goalsFor": 27,
+        "goalsAgainst": 22,
         "leagueRank": 7,
         "rank": 17,
         "prefectureRank": 17,
@@ -9511,6 +9511,23 @@
         ]
       },
       {
+        "name": "アビスパ福岡U-18 2nd",
+        "league": "福岡県1部",
+        "points": 31,
+        "played": 14,
+        "won": 9,
+        "drawn": 4,
+        "lost": 1,
+        "goalsFor": 43,
+        "goalsAgainst": 15,
+        "leagueRank": 2,
+        "rank": 7,
+        "prefectureRank": 7,
+        "aliases": [
+          "アビスパ福岡B"
+        ]
+      },
+      {
         "name": "福岡大学附属若葉高校",
         "league": "福岡県1部",
         "points": 29,
@@ -9520,28 +9537,11 @@
         "lost": 3,
         "goalsFor": 48,
         "goalsAgainst": 16,
-        "leagueRank": 2,
-        "rank": 7,
-        "prefectureRank": 7,
-        "aliases": [
-          "福大若葉"
-        ]
-      },
-      {
-        "name": "アビスパ福岡U-18 2nd",
-        "league": "福岡県1部",
-        "points": 28,
-        "played": 13,
-        "won": 8,
-        "drawn": 4,
-        "lost": 1,
-        "goalsFor": 39,
-        "goalsAgainst": 14,
         "leagueRank": 3,
         "rank": 8,
         "prefectureRank": 8,
         "aliases": [
-          "アビスパ福岡B"
+          "福大若葉"
         ]
       },
       {
@@ -9595,12 +9595,12 @@
         "name": "東海大学付属福岡高校2nd",
         "league": "福岡県1部",
         "points": 17,
-        "played": 14,
+        "played": 15,
         "won": 5,
         "drawn": 2,
-        "lost": 7,
-        "goalsFor": 25,
-        "goalsAgainst": 36,
+        "lost": 8,
+        "goalsFor": 26,
+        "goalsAgainst": 40,
         "leagueRank": 7,
         "rank": 12,
         "prefectureRank": 12,
@@ -9739,13 +9739,13 @@
         "name": "サガン鳥栖U-18 2nd",
         "league": "プリンスリーグ九州2部",
         "rank": 3,
-        "points": 12,
-        "played": 12,
+        "points": 13,
+        "played": 13,
         "won": 3,
-        "drawn": 3,
+        "drawn": 4,
         "lost": 6,
-        "goalsFor": 23,
-        "goalsAgainst": 22,
+        "goalsFor": 25,
+        "goalsAgainst": 24,
         "prefectureRank": 3,
         "goalDiff": 1,
         "leagueRank": 10
@@ -9947,13 +9947,13 @@
         "name": "長崎総合科学大学附属高校",
         "league": "プリンスリーグ九州2部",
         "rank": 3,
-        "points": 13,
-        "played": 12,
+        "points": 14,
+        "played": 13,
         "won": 3,
-        "drawn": 4,
+        "drawn": 5,
         "lost": 5,
-        "goalsFor": 22,
-        "goalsAgainst": 16,
+        "goalsFor": 24,
+        "goalsAgainst": 18,
         "prefectureRank": 3,
         "goalDiff": 6,
         "leagueRank": 9,
@@ -11304,8 +11304,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-10-04 13:13",
+    "lastUpdated": "2026-10-04 13:51",
     "year": 2026,
-    "updatedCount": 0
+    "updatedCount": 397
   }
 }
