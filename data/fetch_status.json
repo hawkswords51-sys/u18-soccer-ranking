@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-04T09:55:52+09:00",
+  "updatedAt": "2026-10-04T09:56:06+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -325,10 +325,10 @@
       "source": "official",
       "sourceName": "福岡県サッカー協会 公式",
       "last_change": "2026-10-03",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03"
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04"
     },
     "fukushima": {
       "season": "2026",
@@ -343,10 +343,10 @@
       "source": "official",
       "sourceName": "福島県サッカー協会 公式",
       "last_change": "2026-09-29",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04",
       "result": "ok",
       "result_note": "消化85試合に更新（検算一致）",
       "result_date": "2026-10-04"
@@ -365,13 +365,13 @@
       "sourceName": "岐阜県サッカー協会 公式",
       "last_change": "2026-08-29",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
+      "result_since": "",
+      "result_streak": 0,
       "status": "warn",
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-10-04",
-      "last_updated": "2026-10-03"
+      "last_updated": "2026-10-04"
     },
     "gunma": {
       "result": "ok",
@@ -389,10 +389,10 @@
       "source": "official",
       "sourceName": "群馬県サッカー協会 公式",
       "last_change": "2026-10-04",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03"
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04"
     },
     "hiroshima": {
       "result": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 45,
+      "result_streak": 46,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -601,10 +601,10 @@
       "source": "official",
       "sourceName": "高知県サッカー協会 公式",
       "last_change": "2026-10-04",
-      "result_since": "2026-09-29",
-      "result_streak": 12,
-      "status": "alert",
-      "last_updated": "2026-10-03",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-10-04"
@@ -699,17 +699,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 75,
+      "played": 76,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-27",
+      "latest_match": "2026-10-03",
       "source": "official",
       "sourceName": "宮崎県サッカー協会 公式（U-18リーグ）",
-      "last_change": "2026-09-27",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03"
+      "last_change": "2026-10-04",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04"
     },
     "nagano": {
       "season": "2026",
@@ -759,10 +759,10 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 74,
+      "played": 75,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-26",
+      "latest_match": "2026-10-02",
       "source": "official",
       "sourceName": "奈良県サッカー協会 公式",
       "last_change": "2026-10-04",
@@ -808,13 +808,13 @@
       "source": "official",
       "sourceName": "大分県サッカー協会 公式",
       "last_change": "2026-09-28",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
       "result": "ok",
       "result_note": "消化58試合に更新（検算一致）",
       "result_date": "2026-10-04",
-      "last_updated": "2026-10-03"
+      "last_updated": "2026-10-04"
     },
     "okayama": {
       "result": "ok",
@@ -960,10 +960,10 @@
       "source": "official",
       "sourceName": "佐賀県サッカー協会 公式",
       "last_change": "2026-09-27",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03"
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04"
     },
     "saitama": {
       "season": "2026",
@@ -995,17 +995,17 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 72,
+      "played": 75,
       "total": 90,
       "teams": 10,
       "latest_match": "2026-10-03",
       "source": "official",
       "sourceName": "滋賀県サッカー協会 公式",
-      "last_change": "2026-10-03",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03"
+      "last_change": "2026-10-04",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04"
     },
     "shimane": {
       "result": "ok",
@@ -1073,20 +1073,20 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 68,
+      "played": 70,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-27",
+      "latest_match": "2026-10-03",
       "source": "official",
       "sourceName": "徳島県サッカー協会 公式",
-      "last_change": "2026-09-27",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
+      "last_change": "2026-10-04",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
       "result": "ok",
       "result_note": "消化70試合に更新（検算一致）",
       "result_date": "2026-10-04",
-      "last_updated": "2026-10-03"
+      "last_updated": "2026-10-04"
     },
     "tokyo": {
       "result": "ok",
@@ -1188,10 +1188,10 @@
       "source": "official",
       "sourceName": "山形県サッカー協会 公式（PDF）",
       "last_change": "2026-09-26",
-      "result_since": "2026-10-04",
-      "result_streak": 1,
-      "status": "warn",
-      "last_updated": "2026-10-03"
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
+      "last_updated": "2026-10-04"
     },
     "yamaguchi": {
       "result": "ok",
