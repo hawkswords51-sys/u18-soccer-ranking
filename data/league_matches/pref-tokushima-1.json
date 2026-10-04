@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://tokushima-fa.jp/post-414/",
   "sourceName": "徳島県サッカー協会 公式",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-04",
   "teams": [
     {
       "name": "徳島市立S",
@@ -74,17 +74,29 @@
     {
       "rank": 3,
       "team": "鳴門",
-      "points": 27,
-      "played": 14,
-      "won": 9,
+      "points": 30,
+      "played": 15,
+      "won": 10,
       "drawn": 0,
       "lost": 5,
-      "gf": 40,
-      "ga": 29,
-      "gd": 11
+      "gf": 44,
+      "ga": 32,
+      "gd": 12
     },
     {
       "rank": 4,
+      "team": "徳島北",
+      "points": 27,
+      "played": 14,
+      "won": 8,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 46,
+      "ga": 18,
+      "gd": 28
+    },
+    {
+      "rank": 5,
       "team": "川島",
       "points": 25,
       "played": 13,
@@ -94,18 +106,6 @@
       "gf": 41,
       "ga": 21,
       "gd": 20
-    },
-    {
-      "rank": 5,
-      "team": "徳島北",
-      "points": 24,
-      "played": 13,
-      "won": 7,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 44,
-      "ga": 18,
-      "gd": 26
     },
     {
       "rank": 6,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "徳島商業S",
       "points": 11,
-      "played": 14,
+      "played": 15,
       "won": 3,
       "drawn": 2,
-      "lost": 9,
+      "lost": 10,
       "gf": 25,
-      "ga": 42,
-      "gd": -17
+      "ga": 44,
+      "gd": -19
     },
     {
       "rank": 8,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "生光学園",
       "points": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
-      "gf": 12,
-      "ga": 82,
-      "gd": -70
+      "lost": 10,
+      "gf": 15,
+      "ga": 86,
+      "gd": -71
     },
     {
       "rank": 10,
@@ -695,10 +695,10 @@
       "md": 0,
       "date": "2026-10-03",
       "home": "徳島商業S",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "徳島北",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -830,10 +830,10 @@
       "md": 0,
       "date": "2026-10-03",
       "home": "生光学園",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 4,
       "away": "鳴門",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,

@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-09-30",
+ "lastUpdated": "2026-10-04",
  "teams": [
   {
    "name": "FC Kanaloa A",
@@ -37,12 +37,12 @@
    "short": "足柄FC"
   },
   {
-   "name": "FC川崎CHAMP JY",
-   "short": "FC川崎CHAMP JY"
-  },
-  {
    "name": "JFC FUTURO",
    "short": "JFC FUTURO"
+  },
+  {
+   "name": "FC川崎CHAMP JY",
+   "short": "FC川崎CHAMP JY"
   },
   {
    "name": "カルペソール湘南",
@@ -114,13 +114,13 @@
    "rank": 6,
    "team": "横須賀シーガルズFC",
    "points": 19,
-   "played": 13,
+   "played": 14,
    "won": 6,
    "drawn": 1,
-   "lost": 6,
-   "gf": 21,
-   "ga": 26,
-   "gd": -5
+   "lost": 7,
+   "gf": 23,
+   "ga": 29,
+   "gd": -6
   },
   {
    "rank": 7,
@@ -136,6 +136,18 @@
   },
   {
    "rank": 8,
+   "team": "JFC FUTURO",
+   "points": 10,
+   "played": 14,
+   "won": 3,
+   "drawn": 1,
+   "lost": 10,
+   "gf": 17,
+   "ga": 31,
+   "gd": -14
+  },
+  {
+   "rank": 9,
    "team": "FC川崎CHAMP JY",
    "points": 8,
    "played": 12,
@@ -145,18 +157,6 @@
    "gf": 10,
    "ga": 27,
    "gd": -17
-  },
-  {
-   "rank": 9,
-   "team": "JFC FUTURO",
-   "points": 7,
-   "played": 13,
-   "won": 2,
-   "drawn": 1,
-   "lost": 10,
-   "gf": 14,
-   "ga": 29,
-   "gd": -15
   },
   {
    "rank": 10,
@@ -741,6 +741,15 @@
   },
   {
    "md": 0,
+   "date": "2026-10-03",
+   "home": "JFC FUTURO",
+   "hs": 3,
+   "as": 2,
+   "away": "横須賀シーガルズFC",
+   "status": "played"
+  },
+  {
+   "md": 0,
    "date": "",
    "home": "FCヴィアージャ",
    "hs": null,
@@ -800,15 +809,6 @@
    "hs": null,
    "as": null,
    "away": "FCヴィアージャ",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "JFC FUTURO",
-   "hs": null,
-   "as": null,
-   "away": "横須賀シーガルズFC",
    "status": "scheduled"
   },
   {
