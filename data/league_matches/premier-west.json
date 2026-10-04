@@ -69,6 +69,18 @@
     },
     {
       "rank": 2,
+      "team": "名古屋グランパスU-18",
+      "pts": 31,
+      "played": 16,
+      "won": 9,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 38,
+      "ga": 24,
+      "gd": 14
+    },
+    {
+      "rank": 3,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 31,
       "played": 16,
@@ -78,18 +90,6 @@
       "gf": 29,
       "ga": 21,
       "gd": 8
-    },
-    {
-      "rank": 3,
-      "team": "名古屋グランパスU-18",
-      "pts": 28,
-      "played": 15,
-      "won": 8,
-      "drawn": 4,
-      "lost": 3,
-      "gf": 36,
-      "ga": 23,
-      "gd": 13
     },
     {
       "rank": 4,
@@ -143,13 +143,13 @@
       "rank": 8,
       "team": "大津",
       "pts": 21,
-      "played": 13,
+      "played": 14,
       "won": 7,
       "drawn": 0,
-      "lost": 6,
-      "gf": 21,
-      "ga": 17,
-      "gd": 4
+      "lost": 7,
+      "gf": 22,
+      "ga": 19,
+      "gd": 3
     },
     {
       "rank": 9,
@@ -2886,12 +2886,28 @@
       "md": 16,
       "date": "2026-10-04",
       "home": "名古屋グランパスU-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "大津",
-      "status": "scheduled",
+      "status": "played",
       "venue": "トヨタスポーツセンター(天然芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "35",
+          "name": "八色 隼人"
+        },
+        {
+          "minute": "82",
+          "name": "八色 隼人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "32",
+          "name": "山本 翼"
+        }
+      ]
     },
     {
       "md": 16,
