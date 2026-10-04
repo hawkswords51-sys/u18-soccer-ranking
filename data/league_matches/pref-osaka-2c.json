@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://osaka-fa.or.jp/2shu/game_information/",
   "sourceName": "大阪府サッカー協会 公式",
-  "lastUpdated": "2026-10-04",
+  "lastUpdated": "2026-10-05",
   "teams": [
     {
       "name": "東海大仰星B",
@@ -101,6 +101,18 @@
     },
     {
       "rank": 6,
+      "team": "産大附属B",
+      "points": 10,
+      "played": 10,
+      "won": 2,
+      "drawn": 4,
+      "lost": 4,
+      "gf": 11,
+      "ga": 17,
+      "gd": -6
+    },
+    {
+      "rank": 7,
       "team": "東大阪大柏原",
       "points": 9,
       "played": 9,
@@ -112,28 +124,16 @@
       "gd": -16
     },
     {
-      "rank": 7,
-      "team": "産大附属B",
-      "points": 7,
-      "played": 9,
-      "won": 1,
-      "drawn": 4,
-      "lost": 4,
-      "gf": 8,
-      "ga": 16,
-      "gd": -8
-    },
-    {
       "rank": 8,
       "team": "帝塚山泉ヶ丘",
       "points": 2,
-      "played": 9,
+      "played": 10,
       "won": 0,
       "drawn": 2,
-      "lost": 7,
-      "gf": 11,
-      "ga": 27,
-      "gd": -16
+      "lost": 8,
+      "gf": 12,
+      "ga": 30,
+      "gd": -18
     }
   ],
   "matches": [
@@ -636,10 +636,10 @@
       "md": 10,
       "date": "2026-10-04",
       "home": "帝塚山泉ヶ丘",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "産大附属B",
-      "status": "scheduled"
+      "status": "played"
     }
   ],
   "source_standings": [
@@ -674,8 +674,8 @@
     {
       "team": "帝塚山泉ヶ丘",
       "pts": 2,
-      "gf": 11,
-      "ga": 27,
+      "gf": 12,
+      "ga": 30,
       "rank": 8
     },
     {
@@ -683,14 +683,14 @@
       "pts": 9,
       "gf": 9,
       "ga": 25,
-      "rank": 6
+      "rank": 7
     },
     {
       "team": "産大附属B",
-      "pts": 7,
-      "gf": 8,
-      "ga": 16,
-      "rank": 7
+      "pts": 10,
+      "gf": 11,
+      "ga": 17,
+      "rank": 6
     },
     {
       "team": "枚方FC",

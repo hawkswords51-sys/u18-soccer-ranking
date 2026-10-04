@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関東1部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448172-448172-fl",
-  "lastUpdated": "2026-10-03",
+  "lastUpdated": "2026-10-05",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
@@ -55,6 +55,12 @@
     },
     {
       "rank": 9,
+      "name": "近藤悠貴",
+      "team": "山梨学院",
+      "goals": 4
+    },
+    {
+      "rank": 9,
       "name": "毛利貴大",
       "team": "市船",
       "goals": 4
@@ -96,37 +102,37 @@
       "goals": 4
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "秋葉映潤",
       "team": "千葉",
       "goals": 3
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "明石琉聖",
       "team": "山梨学院",
       "goals": 3
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "市川大登",
       "team": "山梨学院",
       "goals": 3
     },
     {
-      "rank": 16,
-      "name": "近藤悠貴",
-      "team": "山梨学院",
-      "goals": 3
-    },
-    {
-      "rank": 16,
+      "rank": 17,
       "name": "篠崎健人",
       "team": "市船",
       "goals": 3
     }
   ],
   "coverage": [
+    {
+      "team": "市船",
+      "attributed": 21,
+      "gf": 22,
+      "missing": 1
+    },
     {
       "team": "帝京",
       "attributed": 19,
