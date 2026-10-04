@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "山梨学院高等学校",
+      "pts": 21,
+      "played": 14,
+      "won": 6,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 20,
+      "ga": 18,
+      "gd": 2
+    },
+    {
+      "rank": 4,
       "team": "流通経済大柏(B)",
       "pts": 21,
       "played": 13,
@@ -84,7 +96,7 @@
       "gd": 0
     },
     {
-      "rank": 4,
+      "rank": 5,
       "team": "浦和レッズユース",
       "pts": 21,
       "played": 14,
@@ -96,7 +108,7 @@
       "gd": -1
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "RB大宮アルディージャU18",
       "pts": 19,
       "played": 13,
@@ -106,18 +118,6 @@
       "gf": 13,
       "ga": 12,
       "gd": 1
-    },
-    {
-      "rank": 6,
-      "team": "山梨学院高等学校",
-      "pts": 18,
-      "played": 13,
-      "won": 5,
-      "drawn": 3,
-      "lost": 5,
-      "gf": 18,
-      "ga": 18,
-      "gd": 0
     },
     {
       "rank": 7,
@@ -147,13 +147,13 @@
       "rank": 9,
       "team": "桐蔭学園",
       "pts": 14,
-      "played": 13,
+      "played": 14,
       "won": 4,
       "drawn": 2,
-      "lost": 7,
+      "lost": 8,
       "gf": 17,
-      "ga": 18,
-      "gd": -1
+      "ga": 20,
+      "gd": -3
     },
     {
       "rank": 10,
@@ -932,10 +932,10 @@
       "md": 14,
       "date": "2026-10-04",
       "home": "桐蔭学園",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "山梨学院高等学校",
-      "status": "scheduled",
+      "status": "played",
       "venue": "桐蔭学園多目的グラウンド",
       "kickoff": "13:00"
     },

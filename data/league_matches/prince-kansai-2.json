@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "東海大仰星",
+      "pts": 33,
+      "played": 15,
+      "won": 9,
+      "drawn": 6,
+      "lost": 0,
+      "gf": 35,
+      "ga": 10,
+      "gd": 25
+    },
+    {
+      "rank": 2,
       "team": "京都橘(B)",
       "pts": 31,
       "played": 15,
@@ -58,18 +70,6 @@
       "gf": 36,
       "ga": 20,
       "gd": 16
-    },
-    {
-      "rank": 2,
-      "team": "東海大仰星",
-      "pts": 30,
-      "played": 14,
-      "won": 8,
-      "drawn": 6,
-      "lost": 0,
-      "gf": 34,
-      "ga": 10,
-      "gd": 24
     },
     {
       "rank": 3,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "関西学院",
       "pts": 3,
-      "played": 14,
+      "played": 15,
       "won": 1,
       "drawn": 0,
-      "lost": 13,
+      "lost": 14,
       "gf": 15,
-      "ga": 38,
-      "gd": -23
+      "ga": 39,
+      "gd": -24
     }
   ],
   "matches": [
@@ -987,10 +987,10 @@
       "md": 15,
       "date": "2026-10-04",
       "home": "関西学院",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "東海大仰星",
-      "status": "scheduled",
+      "status": "played",
       "venue": "三田学園",
       "kickoff": "13:00"
     },
