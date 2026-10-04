@@ -179,25 +179,25 @@
       "rank": 11,
       "team": "川崎フロンターレU-18",
       "pts": 12,
-      "played": 15,
+      "played": 16,
       "won": 3,
       "drawn": 3,
-      "lost": 9,
-      "gf": 24,
-      "ga": 38,
-      "gd": -14
+      "lost": 10,
+      "gf": 26,
+      "ga": 41,
+      "gd": -15
     },
     {
       "rank": 12,
       "team": "横浜FCユース",
-      "pts": 7,
-      "played": 15,
-      "won": 1,
+      "pts": 10,
+      "played": 16,
+      "won": 2,
       "drawn": 4,
       "lost": 10,
-      "gf": 17,
-      "ga": 32,
-      "gd": -15
+      "gf": 20,
+      "ga": 34,
+      "gd": -14
     }
   ],
   "matches": [
@@ -3000,12 +3000,36 @@
       "md": 16,
       "date": "2026-10-04",
       "home": "横浜FCユース",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "川崎フロンターレU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
-      "kickoff": "12:00"
+      "kickoff": "12:00",
+      "homeScorers": [
+        {
+          "minute": "28",
+          "name": "齋藤 翔"
+        },
+        {
+          "minute": "41",
+          "name": "齋藤 翔"
+        },
+        {
+          "minute": "85",
+          "name": "福岡 湧大"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "52",
+          "name": "菊池 京"
+        },
+        {
+          "minute": "77",
+          "name": "十河 晟央"
+        }
+      ]
     },
     {
       "md": 17,
