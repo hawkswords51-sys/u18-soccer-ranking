@@ -249,7 +249,7 @@ PAGE = """<!DOCTYPE html>
 """
 
 
-def render_premier(out_root, teams, names, season):
+def render_premier(out_root, teams, names, season, players=None):
     by = collect(teams)
     for jp, label in LEAGUES:
         errs = validate(by[jp], names, expect=12)
@@ -258,7 +258,8 @@ def render_premier(out_root, teams, names, season):
             return
     tables = "".join(
         table(f"Premier League {label}", by[jp], names, "premier-" + label.lower(), f"プレミアリーグ{label}", label.lower(),
-              extra=results_html("premier-" + label.lower(), jp, f"Premier {label}", teams, names, show_next=True))
+              extra=results_html("premier-" + label.lower(), jp, f"Premier {label}", teams, names, show_next=True)
+              + scorers_html("premier-" + label.lower(), jp, f"Premier {label}", teams, names, players))
         for jp, label in LEAGUES)
     url = f"{DOMAIN}/en/premier-league/"
     title = f"Japan U-18 Premier League {season} Standings (EAST & WEST)"
@@ -282,7 +283,7 @@ def render_premier(out_root, teams, names, season):
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": f"Premier League {season}", "item": url}]}, ensure_ascii=False)
-    page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+    page = PAGE_RR_SC.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
                        crumb=f"Premier League {season}", h1=f"Japan U-18 Premier League {season} Standings",
                        intro=intro, legend=legend, tables=tables, tail=tail)
     dest = out_root / "en" / "premier-league" / "index.html"
@@ -291,7 +292,7 @@ def render_premier(out_root, teams, names, season):
     print(f"OK: {dest} を書きました（EAST {len(by['プレミアリーグEAST'])}・WEST {len(by['プレミアリーグWEST'])}チーム）")
 
 
-def render_prince(out_root, teams, names, season):
+def render_prince(out_root, teams, names, season, players=None):
     jp_names = [jp for _, lgs in PRINCE_REGIONS for jp, _, _ in lgs]
     by = collect(teams, jp_names)
     blocks, jump, skipped, shown = [], [], [], 0
@@ -305,7 +306,8 @@ def render_prince(out_root, teams, names, season):
                 print(f"[要確認] {label}: 検算NGのためこのリーグだけ描画しません → " + "; ".join(errs))
                 continue
             parts.append(table(label, ts, names, slug, jp, slug, level="h3",
-                               extra=results_html(slug, jp, label, teams, names, show_next=False, htag="h4")))
+                               extra=results_html(slug, jp, label, teams, names, show_next=False, htag="h4")
+                               + scorers_html(slug, jp, label, teams, names, players, htag="h4", collapsible=True)))
             shown += 1
         if not parts:
             continue
@@ -340,7 +342,7 @@ def render_prince(out_root, teams, names, season):
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
         {"@type": "ListItem", "position": 2, "name": f"Prince Leagues {season}", "item": url}]}, ensure_ascii=False)
-    page = PAGE_RR.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+    page = PAGE_RR_SC.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
                        crumb=f"Prince Leagues {season}", h1=f"Japan U-18 Prince Leagues {season} Standings",
                        intro=intro, legend=legend, tables=tables, tail=tail)
     dest = out_root / "en" / "prince-leagues" / "index.html"
@@ -520,6 +522,103 @@ def results_html(slug, league_jp, label, teams_data, names, show_next, htag="h3"
     return "\n".join(out) + "\n"
 
 
+# ---------------------------------------------------------------------
+# 得点ランキング（2026-10-04 Kei依頼）
+# - データは日本語リーグページと同じ data/scorers/<slug>.json（毎朝自動更新）
+# - 表示も日本語と同じ「3得点以上・上位20名」
+# - 選手名：player_names_en.json にある選手だけ英語（SURNAME Given）。無い選手は
+#   ローマ字化せず日本語のまま <span lang="ja"> で出す（Kei決定 2026-10-04・代表ページと同じルール）
+# - チーム名：1人でも英語名に引けなければ、そのリーグの得点ランキングだけ出さない（[要確認]）
+# ---------------------------------------------------------------------
+SCORERS_DIR = ROOT / "data" / "scorers"
+LM_DIR = ROOT / "data" / "league_matches"
+GEKISAKA_CFG = ROOT / "data" / "prince_gekisaka.json"
+SCORER_MIN_GOALS, SCORER_LIMIT = 3, 20       # 日本語リーグページ（generate_league_pages.py）と同じ
+_VS = re.compile("[\U000E0100-\U000E01EF︀-️]")
+
+
+def _pk(s):
+    """選手名の照合キー：異体字セレクタと空白を落とす（「吉田 湊海」と「吉田湊海」を同じにする）"""
+    return re.sub(r"[\s　]", "", _VS.sub("", unicodedata.normalize("NFC", str(s))))
+
+
+def _scorer_team_resolver(slug, league_jp, teams_data):
+    """得点ランキングのチーム表記（略称）→ teams.json の名前。"""
+    base = _resolver(teams_data, league_jp)
+    alias = {}
+    try:   # プレミア等：league_matches の teams[].short → name
+        for t in json.loads((LM_DIR / f"{slug}.json").read_text(encoding="utf-8")).get("teams") or []:
+            if t.get("short") and t.get("name"):
+                alias.setdefault(t["short"], t["name"])
+    except Exception:
+        pass
+    try:   # プリンス：prince_gekisaka.json の display（ゲキサカ表記→表示略称）を逆引き
+        cfg = json.loads(GEKISAKA_CFG.read_text(encoding="utf-8"))["leagues"].get(slug) or {}
+        for gek, disp in (cfg.get("display") or {}).items():
+            alias.setdefault(disp, (cfg.get("teams") or {}).get(gek, gek))
+    except Exception:
+        pass
+
+    def resolve(label):
+        return base(label) or (base(alias[label]) if label in alias else None)
+    return resolve
+
+
+def scorers_html(slug, league_jp, label, teams_data, names, players, htag="h3", collapsible=False):
+    """リーグ1つ分の「Top scorers」。出せないときは ''。"""
+    path = SCORERS_DIR / f"{slug}.json"
+    if not path.exists():
+        return ""
+    try:
+        d = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        print(f"[要確認] {label}: 得点ランキングのJSONが読めないため、得点ランキングだけ出しません")
+        return ""
+    rows = [s for s in d.get("scorers") or [] if s.get("goals", 0) >= SCORER_MIN_GOALS][:SCORER_LIMIT]
+    if not rows:
+        return ""
+    resolve = _scorer_team_resolver(slug, league_jp, teams_data)
+    bad = sorted({s.get("team", "") for s in rows if not resolve(s.get("team", "")) or resolve(s.get("team", "")) not in names})
+    if bad:
+        print(f"[要確認] {label}: 得点ランキングのチーム名を英語名に解決できないため、得点ランキングだけ出しません → " + "、".join(bad))
+        return ""
+    pmap = {_pk(k): v["en"] for k, v in (players or {}).items() if isinstance(v, dict) and v.get("en")}
+    trs, n_ja = [], 0
+    for s in rows:
+        en = pmap.get(_pk(s["name"]))
+        if en:
+            nm = esc(en)
+        else:
+            nm = f'<span lang="ja">{esc(s["name"])}</span>'
+            n_ja += 1
+        trs.append(f'<tr><td class="en-c">{int(s["rank"])}</td><td class="en-name">{nm}</td>'
+                   f'<td class="en-name">{_en_team(resolve(s["team"]), names)}</td>'
+                   f'<td class="en-c"><strong>{int(s["goals"])}</strong></td></tr>')
+    notes = [f"Players with {SCORER_MIN_GOALS} or more goals (top {SCORER_LIMIT}); own goals are not counted."]
+    if n_ja:
+        notes.append("Names are given in English only where an official English spelling exists (JFA, J.League or club); "
+                     "the others are shown in Japanese.")
+    if any(c.get("missing", 0) > 0 for c in d.get("coverage") or []):
+        notes.append("The source does not list every scorer, so a few goals are missing from these totals.")
+    src = d.get("source", "")
+    host = str(src).split("//")[-1].split("/")[0].removeprefix("www.") if src else ""
+    bits = []
+    if host:
+        bits.append(f'Source: <a href="{esc(src)}" target="_blank" rel="nofollow noopener">{esc(host)}</a>'
+                    + (" (official JFA match records)" if host == "jfa.jp" else " (match reports)"))
+    if d.get("lastUpdated"):
+        bits.append(f"updated {esc(str(d['lastUpdated'])[:10])}")
+    tbl = ('        <div class="en-scroll">\n        <table class="en-table en-sc-table">\n'
+           '          <thead><tr><th>Rank</th><th class="en-name">Player</th><th class="en-name">Team</th><th>Goals</th></tr></thead>\n'
+           '          <tbody>\n' + "\n".join("          " + x for x in trs) + '\n          </tbody>\n        </table>\n        </div>\n'
+           f'        <p class="en-note" style="margin:6px 0 0;">{" ".join(notes)}</p>\n'
+           + (f'        <p class="en-note">{" &middot; ".join(bits)}</p>\n' if bits else ""))
+    if collapsible:
+        return (f'        <details class="en-sc">\n          <summary class="en-rr-h">Top scorers</summary>\n'
+                + tbl + '        </details>\n')
+    return f'        <{htag} class="en-rr-h">Top scorers</{htag}>\n' + tbl
+
+
 RR_STYLE = """
     .en-rr-h {{ font-size:1.02rem; margin:22px 0 4px; }}
     .en-rr-list {{ list-style:none; margin:0 0 6px; padding:0; border:1px solid var(--border-color,#e2e8f0); border-radius:10px; overflow:hidden; background:var(--bg-white,#fff); }}
@@ -541,6 +640,15 @@ RR_STYLE = """
       .en-rr-date {{ grid-column:1 / -1; order:-1; }}
       .en-rr-team {{ font-size:0.9rem; }}
     }}"""
+SC_STYLE = """
+    .en-sc-table {{ max-width:560px; }}
+    .en-sc-table td.en-name {{ min-width:0; }}
+    @media (max-width:600px) {{
+      .en-sc-table th, .en-sc-table td {{ padding:7px 4px; }}
+    }}
+    details.en-sc {{ margin:14px 0 6px; }}
+    details.en-sc > summary {{ cursor:pointer; font-weight:700; margin:8px 0; }}"""
+PAGE_RR_SC = PAGE.replace("{rr_style}", RR_STYLE + SC_STYLE)   # 得点ランキングも載せる2ページ（プレミア・プリンス）だけ
 PAGE_RR = PAGE.replace("{rr_style}", RR_STYLE)   # 試合結果を載せるページ（プレミア・プリンス）だけCSSを足す
 PAGE = PAGE.replace("{rr_style}", "")           # それ以外の英語ページは今までと1文字も変えない
 
@@ -1390,8 +1498,8 @@ def main():
             fm0 = yaml.safe_load(md_path.read_text(encoding="utf-8").split("---")[1])
             EN_TEAM_PAGES[fm0["jp_name"]] = f"/en/teams/{fm0.get('slug') or md_path.stem}/"
     plan_short_pages(teams, names, hand_written=set(EN_TEAM_PAGES))   # 2026-09-29 プリンスの短いページ（先にリンク先を登録）
-    render_premier(out_root, teams, names, season)
-    render_prince(out_root, teams, names, season)
+    render_premier(out_root, teams, names, season, players)
+    render_prince(out_root, teams, names, season, players)
     render_national_team(out_root, names, extra, players, season)
     render_pro_signings(out_root, names, extra, players, season)
     render_interhigh(out_root, names, extra, season)
