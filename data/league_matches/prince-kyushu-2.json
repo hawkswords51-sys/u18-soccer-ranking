@@ -85,6 +85,18 @@
     },
     {
       "rank": 4,
+      "team": "鹿児島",
+      "pts": 19,
+      "played": 14,
+      "won": 5,
+      "drawn": 4,
+      "lost": 5,
+      "gf": 22,
+      "ga": 28,
+      "gd": -6
+    },
+    {
+      "rank": 5,
       "team": "九州国際大付",
       "pts": 18,
       "played": 13,
@@ -96,7 +108,7 @@
       "gd": 5
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "日章学園2nd",
       "pts": 17,
       "played": 12,
@@ -108,28 +120,16 @@
       "gd": 0
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "大津3rd",
       "pts": 16,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 1,
-      "lost": 6,
-      "gf": 25,
-      "ga": 30,
-      "gd": -5
-    },
-    {
-      "rank": 7,
-      "team": "鹿児島",
-      "pts": 16,
-      "played": 13,
-      "won": 4,
-      "drawn": 4,
-      "lost": 5,
-      "gf": 19,
-      "ga": 27,
-      "gd": -8
+      "lost": 7,
+      "gf": 26,
+      "ga": 33,
+      "gd": -7
     },
     {
       "rank": 8,
@@ -910,10 +910,10 @@
       "md": 14,
       "date": "2026-10-04",
       "home": "大津3rd",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "鹿児島",
-      "status": "scheduled",
+      "status": "played",
       "venue": "大津町運動公園陸上競技場",
       "kickoff": "11:00"
     },
