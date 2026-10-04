@@ -42,98 +42,98 @@
     {
       "rank": 1,
       "team": "海星",
-      "points": 31,
-      "played": 11,
-      "won": 10,
+      "points": 34,
+      "played": 12,
+      "won": 11,
       "drawn": 1,
       "lost": 0,
-      "gf": 44,
-      "ga": 7,
-      "gd": 37
+      "gf": 47,
+      "ga": 8,
+      "gd": 39
     },
     {
       "rank": 2,
       "team": "宇治山田商",
-      "points": 27,
-      "played": 11,
-      "won": 9,
+      "points": 30,
+      "played": 12,
+      "won": 10,
       "drawn": 0,
       "lost": 2,
-      "gf": 48,
+      "gf": 50,
       "ga": 10,
-      "gd": 38
+      "gd": 40
     },
     {
       "rank": 3,
       "team": "四中工",
       "points": 25,
-      "played": 11,
+      "played": 12,
       "won": 8,
       "drawn": 1,
-      "lost": 2,
+      "lost": 3,
       "gf": 53,
-      "ga": 14,
-      "gd": 39
+      "ga": 16,
+      "gd": 37
     },
     {
       "rank": 4,
       "team": "津工業",
       "points": 21,
-      "played": 11,
+      "played": 12,
       "won": 7,
       "drawn": 0,
-      "lost": 4,
-      "gf": 26,
-      "ga": 15,
-      "gd": 11
+      "lost": 5,
+      "gf": 27,
+      "ga": 18,
+      "gd": 9
     },
     {
       "rank": 5,
-      "team": "三重②",
-      "points": 10,
-      "played": 11,
-      "won": 3,
+      "team": "四日市工",
+      "points": 13,
+      "played": 12,
+      "won": 4,
       "drawn": 1,
       "lost": 7,
-      "gf": 20,
-      "ga": 33,
-      "gd": -13
+      "gf": 13,
+      "ga": 24,
+      "gd": -11
     },
     {
       "rank": 6,
-      "team": "四日市工",
-      "points": 10,
-      "played": 11,
-      "won": 3,
+      "team": "三重②",
+      "points": 13,
+      "played": 12,
+      "won": 4,
       "drawn": 1,
       "lost": 7,
-      "gf": 10,
-      "ga": 23,
-      "gd": -13
+      "gf": 21,
+      "ga": 33,
+      "gd": -12
     },
     {
       "rank": 7,
       "team": "近大高専",
       "points": 3,
-      "played": 11,
+      "played": 12,
       "won": 0,
       "drawn": 3,
-      "lost": 8,
+      "lost": 9,
       "gf": 8,
-      "ga": 52,
-      "gd": -44
+      "ga": 53,
+      "gd": -45
     },
     {
       "rank": 8,
       "team": "伊賀白鳳",
       "points": 1,
-      "played": 11,
+      "played": 12,
       "won": 0,
       "drawn": 1,
-      "lost": 10,
-      "gf": 5,
-      "ga": 60,
-      "gd": -55
+      "lost": 11,
+      "gf": 6,
+      "ga": 63,
+      "gd": -57
     }
   ],
   "matches": [
@@ -213,10 +213,10 @@
       "md": 12,
       "date": "2026-10-03",
       "home": "宇治山田商",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "四中工",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 14,
@@ -330,10 +330,10 @@
       "md": 12,
       "date": "2026-10-03",
       "home": "津工業",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "海星",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 7,
@@ -501,10 +501,10 @@
       "md": 12,
       "date": "2026-10-03",
       "home": "三重②",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "近大高専",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 7,
@@ -618,10 +618,10 @@
       "md": 12,
       "date": "2026-10-03",
       "home": "伊賀白鳳",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "四日市工",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 14,
@@ -647,56 +647,56 @@
       "team": "四中工",
       "pts": 25,
       "gf": 53,
-      "ga": 14,
+      "ga": 16,
       "rank": 3
     },
     {
       "team": "海星",
-      "pts": 31,
-      "gf": 44,
-      "ga": 7,
+      "pts": 34,
+      "gf": 47,
+      "ga": 8,
       "rank": 1
     },
     {
       "team": "津工業",
       "pts": 21,
-      "gf": 26,
-      "ga": 15,
+      "gf": 27,
+      "ga": 18,
       "rank": 4
     },
     {
       "team": "宇治山田商",
-      "pts": 27,
-      "gf": 48,
+      "pts": 30,
+      "gf": 50,
       "ga": 10,
       "rank": 2
     },
     {
       "team": "四日市工",
-      "pts": 10,
-      "gf": 10,
-      "ga": 23,
-      "rank": 6
+      "pts": 13,
+      "gf": 13,
+      "ga": 24,
+      "rank": 5
     },
     {
       "team": "近大高専",
       "pts": 3,
       "gf": 8,
-      "ga": 52,
+      "ga": 53,
       "rank": 7
     },
     {
       "team": "三重②",
-      "pts": 10,
-      "gf": 20,
+      "pts": 13,
+      "gf": 21,
       "ga": 33,
-      "rank": 5
+      "rank": 6
     },
     {
       "team": "伊賀白鳳",
       "pts": 1,
-      "gf": 5,
-      "ga": 60,
+      "gf": 6,
+      "ga": 63,
       "rank": 8
     }
   ]

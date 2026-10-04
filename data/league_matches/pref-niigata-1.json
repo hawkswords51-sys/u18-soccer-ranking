@@ -42,109 +42,109 @@
     {
       "rank": 1,
       "team": "上越2nd",
-      "points": 30,
-      "played": 13,
+      "points": 31,
+      "played": 14,
       "won": 9,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 1,
-      "gf": 36,
-      "ga": 10,
+      "gf": 38,
+      "ga": 12,
       "gd": 26
     },
     {
       "rank": 2,
-      "team": "帝京長岡3rd",
-      "points": 21,
-      "played": 13,
-      "won": 6,
+      "team": "新潟明訓2nd",
+      "points": 24,
+      "played": 14,
+      "won": 7,
       "drawn": 3,
       "lost": 4,
-      "gf": 40,
-      "ga": 27,
-      "gd": 13
+      "gf": 27,
+      "ga": 17,
+      "gd": 10
     },
     {
       "rank": 3,
-      "team": "新潟明訓2nd",
-      "points": 21,
-      "played": 13,
+      "team": "帝京長岡3rd",
+      "points": 22,
+      "played": 14,
       "won": 6,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 4,
-      "gf": 25,
-      "ga": 17,
-      "gd": 8
+      "gf": 42,
+      "ga": 29,
+      "gd": 13
     },
     {
       "rank": 4,
-      "team": "日本文理3rd",
-      "points": 19,
-      "played": 13,
-      "won": 6,
+      "team": "開志学園JSC 2nd",
+      "points": 22,
+      "played": 14,
+      "won": 7,
       "drawn": 1,
       "lost": 6,
-      "gf": 25,
-      "ga": 22,
-      "gd": 3
+      "gf": 23,
+      "ga": 29,
+      "gd": -6
     },
     {
       "rank": 5,
-      "team": "東京学館新潟",
+      "team": "日本文理3rd",
       "points": 19,
-      "played": 13,
-      "won": 5,
-      "drawn": 4,
-      "lost": 4,
-      "gf": 15,
-      "ga": 14,
-      "gd": 1
+      "played": 14,
+      "won": 6,
+      "drawn": 1,
+      "lost": 7,
+      "gf": 25,
+      "ga": 25,
+      "gd": 0
     },
     {
       "rank": 6,
-      "team": "開志学園JSC 2nd",
+      "team": "東京学館新潟",
       "points": 19,
-      "played": 13,
-      "won": 6,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 20,
-      "ga": 27,
-      "gd": -7
+      "played": 14,
+      "won": 5,
+      "drawn": 4,
+      "lost": 5,
+      "gf": 17,
+      "ga": 17,
+      "gd": 0
     },
     {
       "rank": 7,
       "team": "北越2nd",
-      "points": 15,
-      "played": 13,
-      "won": 4,
+      "points": 18,
+      "played": 14,
+      "won": 5,
       "drawn": 3,
       "lost": 6,
-      "gf": 23,
+      "gf": 26,
       "ga": 24,
-      "gd": -1
+      "gd": 2
     },
     {
       "rank": 8,
       "team": "新潟工業",
       "points": 2,
-      "played": 13,
+      "played": 14,
       "won": 0,
       "drawn": 2,
-      "lost": 11,
+      "lost": 12,
       "gf": 7,
-      "ga": 50,
-      "gd": -43
+      "ga": 52,
+      "gd": -45
     }
   ],
   "matches": [
     {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "上越2nd",
-      "hs": null,
-      "as": null,
-      "away": "帝京長岡3rd",
-      "status": "scheduled"
+      "md": 7,
+      "date": "2026-05-24",
+      "home": "帝京長岡3rd",
+      "hs": 2,
+      "as": 5,
+      "away": "上越2nd",
+      "status": "played"
     },
     {
       "md": 8,
@@ -201,11 +201,11 @@
       "status": "played"
     },
     {
-      "md": 7,
-      "date": "2026-05-24",
+      "md": 14,
+      "date": "2026-10-04",
       "home": "帝京長岡3rd",
       "hs": 2,
-      "as": 5,
+      "as": 2,
       "away": "上越2nd",
       "status": "played"
     },
@@ -318,10 +318,10 @@
       "status": "played"
     },
     {
-      "md": 7,
-      "date": "2026-05-24",
+      "md": 14,
+      "date": "2026-10-04",
       "home": "新潟明訓2nd",
-      "hs": 5,
+      "hs": 2,
       "as": 0,
       "away": "新潟工業",
       "status": "played"
@@ -372,11 +372,11 @@
       "status": "played"
     },
     {
-      "md": 7,
-      "date": "2026-05-24",
+      "md": 14,
+      "date": "2026-10-04",
       "home": "日本文理3rd",
-      "hs": 2,
-      "as": 1,
+      "hs": 0,
+      "as": 3,
       "away": "北越2nd",
       "status": "played"
     },
@@ -426,11 +426,11 @@
       "status": "played"
     },
     {
-      "md": 7,
-      "date": "2026-05-24",
+      "md": 14,
+      "date": "2026-10-04",
       "home": "東京学館新潟",
       "hs": 2,
-      "as": 2,
+      "as": 3,
       "away": "開志学園JSC 2nd",
       "status": "played"
     },
@@ -489,13 +489,13 @@
       "status": "played"
     },
     {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "開志学園JSC 2nd",
-      "hs": null,
-      "as": null,
-      "away": "東京学館新潟",
-      "status": "scheduled"
+      "md": 7,
+      "date": "2026-05-24",
+      "home": "東京学館新潟",
+      "hs": 2,
+      "as": 2,
+      "away": "開志学園JSC 2nd",
+      "status": "played"
     },
     {
       "md": 8,
@@ -543,13 +543,13 @@
       "status": "played"
     },
     {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "北越2nd",
-      "hs": null,
-      "as": null,
-      "away": "日本文理3rd",
-      "status": "scheduled"
+      "md": 7,
+      "date": "2026-05-24",
+      "home": "日本文理3rd",
+      "hs": 2,
+      "as": 1,
+      "away": "北越2nd",
+      "status": "played"
     },
     {
       "md": 10,
@@ -597,13 +597,13 @@
       "status": "played"
     },
     {
-      "md": 14,
-      "date": "2026-10-04",
-      "home": "新潟工業",
-      "hs": null,
-      "as": null,
-      "away": "新潟明訓2nd",
-      "status": "scheduled"
+      "md": 7,
+      "date": "2026-05-24",
+      "home": "新潟明訓2nd",
+      "hs": 5,
+      "as": 0,
+      "away": "新潟工業",
+      "status": "played"
     },
     {
       "md": 2,

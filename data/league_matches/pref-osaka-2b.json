@@ -43,28 +43,52 @@
       "rank": 1,
       "team": "大阪桐蔭B",
       "points": 21,
-      "played": 9,
+      "played": 10,
       "won": 6,
       "drawn": 3,
-      "lost": 0,
+      "lost": 1,
       "gf": 19,
-      "ga": 6,
-      "gd": 13
+      "ga": 8,
+      "gd": 11
     },
     {
       "rank": 2,
-      "team": "阪南大高B",
-      "points": 16,
-      "played": 9,
+      "team": "関大一",
+      "points": 17,
+      "played": 10,
       "won": 4,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 1,
-      "gf": 22,
-      "ga": 7,
-      "gd": 15
+      "gf": 17,
+      "ga": 9,
+      "gd": 8
     },
     {
       "rank": 3,
+      "team": "近大附属B",
+      "points": 17,
+      "played": 10,
+      "won": 5,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 16,
+      "ga": 10,
+      "gd": 6
+    },
+    {
+      "rank": 4,
+      "team": "阪南大高B",
+      "points": 16,
+      "played": 10,
+      "won": 4,
+      "drawn": 4,
+      "lost": 2,
+      "gf": 23,
+      "ga": 9,
+      "gd": 14
+    },
+    {
+      "rank": 5,
       "team": "大体大浪商",
       "points": 16,
       "played": 10,
@@ -74,30 +98,6 @@
       "gf": 16,
       "ga": 18,
       "gd": -2
-    },
-    {
-      "rank": 4,
-      "team": "関大一",
-      "points": 14,
-      "played": 9,
-      "won": 3,
-      "drawn": 5,
-      "lost": 1,
-      "gf": 16,
-      "ga": 9,
-      "gd": 7
-    },
-    {
-      "rank": 5,
-      "team": "近大附属B",
-      "points": 14,
-      "played": 9,
-      "won": 4,
-      "drawn": 2,
-      "lost": 3,
-      "gf": 14,
-      "ga": 10,
-      "gd": 4
     },
     {
       "rank": 6,
@@ -114,26 +114,26 @@
     {
       "rank": 7,
       "team": "賢明学院",
-      "points": 7,
-      "played": 9,
-      "won": 2,
+      "points": 10,
+      "played": 10,
+      "won": 3,
       "drawn": 1,
       "lost": 6,
-      "gf": 8,
-      "ga": 18,
-      "gd": -10
+      "gf": 10,
+      "ga": 19,
+      "gd": -9
     },
     {
       "rank": 8,
       "team": "大塚",
       "points": 4,
-      "played": 9,
+      "played": 10,
       "won": 1,
       "drawn": 1,
-      "lost": 7,
+      "lost": 8,
       "gf": 5,
-      "ga": 29,
-      "gd": -24
+      "ga": 30,
+      "gd": -25
     }
   ],
   "matches": [
@@ -159,10 +159,10 @@
       "md": 10,
       "date": "2026-10-04",
       "home": "大阪桐蔭B",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "近大附属B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
@@ -321,10 +321,10 @@
       "md": 10,
       "date": "2026-10-04",
       "home": "関大一",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "大塚",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 3,
@@ -528,10 +528,10 @@
       "md": 10,
       "date": "2026-10-04",
       "home": "賢明学院",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "阪南大高B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
@@ -646,30 +646,30 @@
     {
       "team": "阪南大高B",
       "pts": 16,
-      "gf": 22,
-      "ga": 7,
-      "rank": 2
+      "gf": 23,
+      "ga": 9,
+      "rank": 4
     },
     {
       "team": "近大附属B",
-      "pts": 14,
-      "gf": 14,
+      "pts": 17,
+      "gf": 16,
       "ga": 10,
-      "rank": 5
+      "rank": 3
     },
     {
       "team": "大阪桐蔭B",
       "pts": 21,
       "gf": 19,
-      "ga": 6,
+      "ga": 8,
       "rank": 1
     },
     {
       "team": "関大一",
-      "pts": 14,
-      "gf": 16,
+      "pts": 17,
+      "gf": 17,
       "ga": 9,
-      "rank": 4
+      "rank": 2
     },
     {
       "team": "履正社C",
@@ -680,9 +680,9 @@
     },
     {
       "team": "賢明学院",
-      "pts": 7,
-      "gf": 8,
-      "ga": 18,
+      "pts": 10,
+      "gf": 10,
+      "ga": 19,
       "rank": 7
     },
     {
@@ -690,13 +690,13 @@
       "pts": 16,
       "gf": 16,
       "ga": 18,
-      "rank": 3
+      "rank": 5
     },
     {
       "team": "大塚",
       "pts": 4,
       "gf": 5,
-      "ga": 29,
+      "ga": 30,
       "rank": 8
     }
   ]

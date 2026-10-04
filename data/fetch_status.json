@@ -66,7 +66,7 @@
       "reason": "",
       "matchesPlayed": 65,
       "venueCount": 90,
-      "venueCountPrev": 89,
+      "venueCountPrev": 90,
       "consecutiveFallback": 0,
       "consecutiveFallbackPrev": 0,
       "fallbackSince": "",
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-04T18:05:12+09:00",
+  "updatedAt": "2026-10-04T18:51:10+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -396,7 +396,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化65試合に更新（検算一致）",
+      "result_note": "消化69試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "season": "2026",
       "complete": false,
@@ -668,7 +668,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化44試合に更新（検算一致）",
+      "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "last_updated": "2026-10-04"
     },
@@ -692,7 +692,7 @@
     },
     "miyazaki": {
       "result": "ok",
-      "result_note": "消化76試合に更新（検算一致）",
+      "result_note": "消化77試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "season": "2026",
       "complete": false,
@@ -790,8 +790,8 @@
       "result_since": "2026-10-04",
       "result_streak": 1,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (スコア欄が読めない: '試合中')",
+      "result": "ok",
+      "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "last_updated": "2026-10-04"
     },
@@ -811,8 +811,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化58試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (結果欄が読めない: '平成令和の森'（中津東 vs トリニータ2nd）)",
       "result_date": "2026-10-04",
       "last_updated": "2026-10-04"
     },
@@ -877,7 +877,7 @@
       "status": "warn",
       "last_updated": "2026-10-04",
       "result": "ok",
-      "result_note": "消化64試合に更新（検算一致）",
+      "result_note": "消化65試合に更新（検算一致）",
       "result_date": "2026-10-04"
     },
     "osaka-2a": {
@@ -898,7 +898,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化37試合に更新（検算一致）",
+      "result_note": "消化40試合に更新（検算一致）",
       "result_date": "2026-10-04"
     },
     "osaka-2b": {
@@ -919,7 +919,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化37試合に更新（検算一致）",
+      "result_note": "消化40試合に更新（検算一致）",
       "result_date": "2026-10-04"
     },
     "osaka-2c": {
@@ -941,7 +941,7 @@
       "result_streak": 0,
       "status": "warn",
       "result": "ok",
-      "result_note": "消化35試合に更新（検算一致）",
+      "result_note": "消化38試合に更新（検算一致）",
       "result_date": "2026-10-04"
     },
     "saga": {
@@ -1009,7 +1009,7 @@
     },
     "shimane": {
       "result": "ok",
-      "result_note": "消化43試合に更新（検算一致）",
+      "result_note": "消化44試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "season": "2026",
       "complete": false,
@@ -1048,7 +1048,7 @@
     },
     "tochigi": {
       "result": "ok",
-      "result_note": "消化65試合に更新（検算一致）",
+      "result_note": "消化68試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "season": "2026",
       "complete": false,
@@ -1084,7 +1084,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化70試合に更新（検算一致）",
+      "result_note": "消化73試合に更新（検算一致）",
       "result_date": "2026-10-04",
       "last_updated": "2026-10-04"
     },

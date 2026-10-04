@@ -50,62 +50,62 @@
     {
       "rank": 1,
       "team": "瀬戸内セカンド",
-      "points": 33,
-      "played": 13,
-      "won": 10,
+      "points": 36,
+      "played": 14,
+      "won": 11,
       "drawn": 3,
       "lost": 0,
-      "gf": 34,
+      "gf": 36,
       "ga": 6,
-      "gd": 28
+      "gd": 30
     },
     {
       "rank": 2,
       "team": "サンフレセカンド",
-      "points": 29,
-      "played": 12,
-      "won": 9,
+      "points": 32,
+      "played": 13,
+      "won": 10,
       "drawn": 2,
       "lost": 1,
-      "gf": 39,
-      "ga": 19,
-      "gd": 20
+      "gf": 42,
+      "ga": 20,
+      "gd": 22
     },
     {
       "rank": 3,
       "team": "如水館",
-      "points": 28,
-      "played": 13,
-      "won": 9,
+      "points": 31,
+      "played": 14,
+      "won": 10,
       "drawn": 1,
       "lost": 3,
-      "gf": 41,
-      "ga": 20,
-      "gd": 21
+      "gf": 44,
+      "ga": 21,
+      "gd": 23
     },
     {
       "rank": 4,
       "team": "沼田",
       "points": 25,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 1,
-      "lost": 4,
+      "lost": 5,
       "gf": 29,
-      "ga": 18,
-      "gd": 11
+      "ga": 20,
+      "gd": 9
     },
     {
       "rank": 5,
       "team": "広工大高",
-      "points": 18,
-      "played": 13,
-      "won": 5,
+      "points": 21,
+      "played": 14,
+      "won": 6,
       "drawn": 3,
       "lost": 5,
-      "gf": 21,
-      "ga": 18,
-      "gd": 3
+      "gf": 23,
+      "ga": 19,
+      "gd": 4
     },
     {
       "rank": 6,
@@ -123,37 +123,37 @@
       "rank": 7,
       "team": "広島国際学院",
       "points": 12,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 3,
-      "lost": 7,
-      "gf": 12,
-      "ga": 27,
-      "gd": -15
+      "lost": 8,
+      "gf": 13,
+      "ga": 30,
+      "gd": -17
     },
     {
       "rank": 8,
       "team": "広島翔洋",
       "points": 10,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 1,
-      "lost": 9,
-      "gf": 7,
-      "ga": 20,
-      "gd": -13
+      "lost": 10,
+      "gf": 8,
+      "ga": 23,
+      "gd": -15
     },
     {
       "rank": 9,
       "team": "銀河学院",
       "points": 7,
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 1,
-      "lost": 9,
-      "gf": 12,
-      "ga": 27,
-      "gd": -15
+      "lost": 10,
+      "gf": 13,
+      "ga": 29,
+      "gd": -16
     },
     {
       "rank": 10,
@@ -437,12 +437,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "沼田",
-      "hs": null,
-      "as": null,
-      "away": "瀬戸内セカンド",
-      "status": "scheduled"
+      "date": "2026-10-04",
+      "home": "瀬戸内セカンド",
+      "hs": 2,
+      "as": 0,
+      "away": "沼田",
+      "status": "played",
+      "venue": "広島皆実"
     },
     {
       "md": 0,
@@ -709,12 +710,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "広島国際学院",
-      "hs": null,
-      "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
+      "date": "2026-10-04",
+      "home": "サンフレセカンド",
+      "hs": 3,
+      "as": 1,
+      "away": "広島国際学院",
+      "status": "played",
+      "venue": "広島国際学院"
     },
     {
       "md": 0,
@@ -808,12 +810,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "広島翔洋",
-      "hs": null,
-      "as": null,
-      "away": "如水館",
-      "status": "scheduled"
+      "date": "2026-10-04",
+      "home": "如水館",
+      "hs": 3,
+      "as": 1,
+      "away": "広島翔洋",
+      "status": "played",
+      "venue": "広島国際学院"
     },
     {
       "md": 0,
@@ -911,12 +914,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "広工大高",
-      "status": "scheduled"
+      "date": "2026-10-04",
+      "home": "広工大高",
+      "hs": 2,
+      "as": 1,
+      "away": "銀河学院",
+      "status": "played",
+      "venue": "エヴォルヴィン"
     },
     {
       "md": 0,
@@ -1048,53 +1052,53 @@
   "source_standings": [
     {
       "team": "瀬戸内セカンド",
-      "won": 10,
+      "won": 11,
       "lost": 0,
       "drawn": 3,
-      "pts": 33,
-      "gf": 34,
+      "pts": 36,
+      "gf": 36,
       "ga": 6,
-      "played": 13
+      "played": 14
     },
     {
       "team": "サンフレセカンド",
-      "won": 9,
+      "won": 10,
       "lost": 1,
       "drawn": 2,
-      "pts": 29,
-      "gf": 39,
-      "ga": 19,
-      "played": 12
-    },
-    {
-      "team": "如水館",
-      "won": 9,
-      "lost": 3,
-      "drawn": 1,
-      "pts": 28,
-      "gf": 41,
+      "pts": 32,
+      "gf": 42,
       "ga": 20,
       "played": 13
     },
     {
+      "team": "如水館",
+      "won": 10,
+      "lost": 3,
+      "drawn": 1,
+      "pts": 31,
+      "gf": 44,
+      "ga": 21,
+      "played": 14
+    },
+    {
       "team": "沼田",
       "won": 8,
-      "lost": 4,
+      "lost": 5,
       "drawn": 1,
       "pts": 25,
       "gf": 29,
-      "ga": 18,
-      "played": 13
+      "ga": 20,
+      "played": 14
     },
     {
       "team": "広工大高",
-      "won": 5,
+      "won": 6,
       "lost": 5,
       "drawn": 3,
-      "pts": 18,
-      "gf": 21,
-      "ga": 18,
-      "played": 13
+      "pts": 21,
+      "gf": 23,
+      "ga": 19,
+      "played": 14
     },
     {
       "team": "広島新庄",
@@ -1109,32 +1113,32 @@
     {
       "team": "広島国際学院",
       "won": 3,
-      "lost": 7,
+      "lost": 8,
       "drawn": 3,
       "pts": 12,
-      "gf": 12,
-      "ga": 27,
-      "played": 13
+      "gf": 13,
+      "ga": 30,
+      "played": 14
     },
     {
       "team": "広島翔洋",
       "won": 3,
-      "lost": 9,
+      "lost": 10,
       "drawn": 1,
       "pts": 10,
-      "gf": 7,
-      "ga": 20,
-      "played": 13
+      "gf": 8,
+      "ga": 23,
+      "played": 14
     },
     {
       "team": "銀河学院",
       "won": 2,
-      "lost": 9,
+      "lost": 10,
       "drawn": 1,
       "pts": 7,
-      "gf": 12,
-      "ga": 27,
-      "played": 12
+      "gf": 13,
+      "ga": 29,
+      "played": 13
     },
     {
       "team": "広島観音",
