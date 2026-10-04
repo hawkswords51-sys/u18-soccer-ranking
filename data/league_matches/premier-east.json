@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "流通経済大柏",
-      "pts": 34,
-      "played": 15,
-      "won": 11,
+      "pts": 37,
+      "played": 16,
+      "won": 12,
       "drawn": 1,
       "lost": 3,
-      "gf": 35,
-      "ga": 16,
-      "gd": 19
+      "gf": 38,
+      "ga": 17,
+      "gd": 21
     },
     {
       "rank": 2,
@@ -131,13 +131,13 @@
       "rank": 7,
       "team": "帝京長岡",
       "pts": 21,
-      "played": 15,
+      "played": 16,
       "won": 7,
       "drawn": 0,
-      "lost": 8,
-      "gf": 34,
-      "ga": 30,
-      "gd": 4
+      "lost": 9,
+      "gf": 35,
+      "ga": 33,
+      "gd": 2
     },
     {
       "rank": 8,
@@ -2966,12 +2966,32 @@
       "md": 16,
       "date": "2026-10-04",
       "home": "帝京長岡",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "流通経済大柏",
-      "status": "scheduled",
+      "status": "played",
       "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
-      "kickoff": "13:00"
+      "kickoff": "13:00",
+      "homeScorers": [
+        {
+          "minute": "90+1",
+          "name": "秋山 陽登"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "60",
+          "name": "メンディー サイモン友"
+        },
+        {
+          "minute": "70",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "74",
+          "name": "メンディー サイモン友"
+        }
+      ]
     },
     {
       "md": 16,
@@ -3006,6 +3026,7 @@
       "status": "played",
       "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
       "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1604.pdf",
       "homeScorers": [
         {
           "minute": "28",
