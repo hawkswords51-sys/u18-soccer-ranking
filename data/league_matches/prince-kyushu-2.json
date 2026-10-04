@@ -62,29 +62,41 @@
     {
       "rank": 2,
       "team": "鵬翔",
-      "pts": 21,
-      "played": 13,
+      "pts": 22,
+      "played": 14,
       "won": 6,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 4,
-      "gf": 20,
-      "ga": 19,
+      "gf": 21,
+      "ga": 20,
       "gd": 1
     },
     {
       "rank": 3,
       "team": "大分トリニータU-18",
       "pts": 20,
-      "played": 12,
+      "played": 13,
       "won": 6,
       "drawn": 2,
-      "lost": 4,
-      "gf": 24,
-      "ga": 17,
-      "gd": 7
+      "lost": 5,
+      "gf": 25,
+      "ga": 20,
+      "gd": 5
     },
     {
       "rank": 4,
+      "team": "日章学園2nd",
+      "pts": 20,
+      "played": 13,
+      "won": 5,
+      "drawn": 5,
+      "lost": 3,
+      "gf": 27,
+      "ga": 25,
+      "gd": 2
+    },
+    {
+      "rank": 5,
       "team": "鹿児島",
       "pts": 19,
       "played": 14,
@@ -96,7 +108,7 @@
       "gd": -6
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "九州国際大付",
       "pts": 18,
       "played": 13,
@@ -106,18 +118,6 @@
       "gf": 17,
       "ga": 12,
       "gd": 5
-    },
-    {
-      "rank": 6,
-      "team": "日章学園2nd",
-      "pts": 17,
-      "played": 12,
-      "won": 4,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 24,
-      "ga": 24,
-      "gd": 0
     },
     {
       "rank": 7,
@@ -134,13 +134,13 @@
     {
       "rank": 8,
       "team": "東海大福岡",
-      "pts": 15,
-      "played": 13,
+      "pts": 16,
+      "played": 14,
       "won": 4,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 6,
-      "gf": 25,
-      "ga": 38,
+      "gf": 26,
+      "ga": 39,
       "gd": -13
     },
     {
@@ -921,10 +921,10 @@
       "md": 14,
       "date": "2026-10-04",
       "home": "日章学園2nd",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "大分トリニータU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日章学園人工芝サッカー場",
       "kickoff": "11:00"
     },
@@ -932,10 +932,10 @@
       "md": 14,
       "date": "2026-10-04",
       "home": "鵬翔",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "東海大福岡",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鵬翔高校人工芝",
       "kickoff": "11:00"
     },
