@@ -6024,3 +6024,28 @@ tr.zone-row > td:first-child {
   }
   .home-news-list > li > a > time { margin-left: auto !important; }
 }
+
+/* =====================================================================
+   2026-10-04 県ページ「県内総合順位表」のリーグバッジをリンクに（#teamsTableLP の中だけ）
+   - バッジ（.league-badge）の見た目はそのまま。外側の <a> は下線・文字色を付けない。
+   - .league-badge はトップページ #teamsTable・モーダルでも共用なので、共通ルールは触らない。
+   ===================================================================== */
+#teamsTableLP a.league-badge-link {
+    /* ⚠️ inline のままにする（inline-block にしない）。inline-block で包むと、リンクの幅がバッジの1行分（114px）に
+       広がってセル（92px）からはみ出し、スマホで「順位」列に重なった。inline なら中のバッジは包む前と同じく
+       セル幅で2行に折り返す（「プリンス／九州1部」）。 */
+    display: inline;
+    text-decoration: none;
+    color: inherit;
+}
+#teamsTableLP a.league-badge-link .league-badge {
+    transition: filter 0.15s ease;
+}
+#teamsTableLP a.league-badge-link:hover .league-badge,
+#teamsTableLP a.league-badge-link:focus-visible .league-badge {
+    filter: brightness(1.12);
+}
+#teamsTableLP a.league-badge-link:focus-visible {
+    outline: 2px solid var(--primary-color, #1e40af);
+    outline-offset: 2px;
+}

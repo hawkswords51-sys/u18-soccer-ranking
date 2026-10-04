@@ -1178,6 +1178,20 @@ def format_league_badge(league):
         )
     return escaped
     
+def league_badge_href(league, category):
+    """県内総合順位表のリーグバッジの行き先（2026-10-04）。決まらないときは None＝リンクにしない。
+    プレミア/プリンス → /leagues/<slug>/（LEAGUE_TO_SLUG にあるものだけ）、県1部 → 同じページの戦績表 #cross-table。
+    ⚠️ リンク切れを作らない：対応表に無いリーグ名・空のリーグ名はリンクにしない。"""
+    if not league or league == "—":
+        return None
+    if category in ("premier", "prince"):
+        hit = LEAGUE_TO_SLUG.get(league)
+        return f"/leagues/{hit[0]}/" if hit else None
+    if category == "prefecture":
+        return "#cross-table"
+    return None
+
+
 def render_team_row(team, pref_rank):
     league = team.get("league", "—")
     badge_class = league_category(league)
@@ -1198,10 +1212,16 @@ def render_team_row(team, pref_rank):
         else "goal-diff-negative" if goal_diff < 0
         else "goal-diff-zero"
     )
+    badge_html = f'<span class="league-badge {badge_class}">{format_league_badge(league)}</span>'
+    href = league_badge_href(league, badge_class)
+    if href:
+        what = "戦績表" if href.startswith("#") else "順位表"
+        badge_html = (f'<a class="league-badge-link" href="{href}" '
+                      f'title="{html_escape(league)}の{what}へ">{badge_html}</a>')
     return f"""        <tr>
           <td><span class="rank-badge {rank_class}">{pref_rank}</span></td>
           <td><strong>{render_team_name_with_link(team.get('name', '—'))}</strong></td>
-          <td><span class="league-badge {badge_class}">{format_league_badge(league)}</span></td>
+          <td>{badge_html}</td>
           <td>{league_rank_str}</td>
           <td><strong>{points}</strong></td>
           <td>{played}</td>
@@ -1440,7 +1460,10 @@ LEAGUE_TO_SLUG = {
     "プリンスリーグ東北": ("prince-tohoku", "プリンスリーグ 東北"),
     "プリンスリーグ関東1部": ("prince-kanto-1", "プリンスリーグ 関東 1部"),
     "プリンスリーグ関東2部": ("prince-kanto-2", "プリンスリーグ 関東 2部"),
-    "プリンスリーグ北信越": ("prince-hokushinetsu", "プリンスリーグ 北信越"),
+    # 2026-10-04 修正：実データの名前は「北信越1部／2部」で、/leagues/prince-hokushinetsu/ は存在しない
+    #   （1行だけだったため、新潟・富山などの県ページの「所属リーグへのリンク」から北信越プリンスが抜けていた）
+    "プリンスリーグ北信越1部": ("prince-hokushinetsu-1", "プリンスリーグ 北信越 1部"),
+    "プリンスリーグ北信越2部": ("prince-hokushinetsu-2", "プリンスリーグ 北信越 2部"),
     "プリンスリーグ東海": ("prince-tokai", "プリンスリーグ 東海"),
     "プリンスリーグ関西1部": ("prince-kansai-1", "プリンスリーグ 関西 1部"),
     "プリンスリーグ関西2部": ("prince-kansai-2", "プリンスリーグ 関西 2部"),
