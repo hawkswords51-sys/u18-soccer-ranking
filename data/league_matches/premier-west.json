@@ -117,6 +117,18 @@
     },
     {
       "rank": 6,
+      "team": "神村学園",
+      "pts": 23,
+      "played": 16,
+      "won": 6,
+      "drawn": 5,
+      "lost": 5,
+      "gf": 30,
+      "ga": 32,
+      "gd": -2
+    },
+    {
+      "rank": 7,
       "team": "米子北",
       "pts": 21,
       "played": 15,
@@ -128,7 +140,7 @@
       "gd": 5
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "大津",
       "pts": 21,
       "played": 13,
@@ -138,18 +150,6 @@
       "gf": 21,
       "ga": 17,
       "gd": 4
-    },
-    {
-      "rank": 8,
-      "team": "神村学園",
-      "pts": 20,
-      "played": 15,
-      "won": 5,
-      "drawn": 5,
-      "lost": 5,
-      "gf": 28,
-      "ga": 31,
-      "gd": -3
     },
     {
       "rank": 9,
@@ -167,13 +167,13 @@
       "rank": 10,
       "team": "東山",
       "pts": 17,
-      "played": 15,
+      "played": 16,
       "won": 5,
       "drawn": 2,
-      "lost": 8,
-      "gf": 11,
-      "ga": 19,
-      "gd": -8
+      "lost": 9,
+      "gf": 12,
+      "ga": 21,
+      "gd": -9
     },
     {
       "rank": 11,
@@ -2897,12 +2897,30 @@
       "md": 16,
       "date": "2026-10-04",
       "home": "東山",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "神村学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "東山高校総合グラウンド(人工芝)",
-      "kickoff": "10:00"
+      "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1611.pdf",
+      "homeScorers": [
+        {
+          "minute": "70",
+          "name": "野上 陽汰"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "12",
+          "name": "オウンゴール",
+          "ownGoal": true
+        },
+        {
+          "minute": "86",
+          "name": "岡野 綱人"
+        }
+      ]
     },
     {
       "md": 17,

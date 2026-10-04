@@ -81,6 +81,18 @@
     },
     {
       "rank": 3,
+      "team": "柏レイソルU-18",
+      "pts": 30,
+      "played": 16,
+      "won": 9,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 22,
+      "ga": 12,
+      "gd": 10
+    },
+    {
+      "rank": 4,
       "team": "FC東京U-18",
       "pts": 29,
       "played": 15,
@@ -90,18 +102,6 @@
       "gf": 33,
       "ga": 18,
       "gd": 15
-    },
-    {
-      "rank": 4,
-      "team": "柏レイソルU-18",
-      "pts": 27,
-      "played": 15,
-      "won": 8,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 20,
-      "ga": 12,
-      "gd": 8
     },
     {
       "rank": 5,
@@ -167,13 +167,13 @@
       "rank": 10,
       "team": "ベガルタ仙台ユース",
       "pts": 13,
-      "played": 15,
+      "played": 16,
       "won": 3,
       "drawn": 4,
-      "lost": 8,
+      "lost": 9,
       "gf": 14,
-      "ga": 38,
-      "gd": -24
+      "ga": 40,
+      "gd": -26
     },
     {
       "rank": 11,
@@ -2977,12 +2977,23 @@
       "md": 16,
       "date": "2026-10-04",
       "home": "柏レイソルU-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ゼロワットパワーフィールド柏",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "32",
+          "name": "茂木 勇人 チュクソム"
+        },
+        {
+          "minute": "43",
+          "name": "上野 暉晏"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 16,
