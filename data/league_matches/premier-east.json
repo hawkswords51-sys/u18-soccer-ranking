@@ -95,13 +95,13 @@
       "rank": 4,
       "team": "FC東京U-18",
       "pts": 29,
-      "played": 15,
+      "played": 16,
       "won": 9,
       "drawn": 2,
-      "lost": 4,
+      "lost": 5,
       "gf": 33,
-      "ga": 18,
-      "gd": 15
+      "ga": 19,
+      "gd": 14
     },
     {
       "rank": 5,
@@ -129,6 +129,18 @@
     },
     {
       "rank": 7,
+      "team": "東京ヴェルディユース",
+      "pts": 22,
+      "played": 16,
+      "won": 6,
+      "drawn": 4,
+      "lost": 6,
+      "gf": 30,
+      "ga": 34,
+      "gd": -4
+    },
+    {
+      "rank": 8,
       "team": "帝京長岡",
       "pts": 21,
       "played": 16,
@@ -138,18 +150,6 @@
       "gf": 35,
       "ga": 33,
       "gd": 2
-    },
-    {
-      "rank": 8,
-      "team": "東京ヴェルディユース",
-      "pts": 19,
-      "played": 15,
-      "won": 5,
-      "drawn": 4,
-      "lost": 6,
-      "gf": 29,
-      "ga": 34,
-      "gd": -5
     },
     {
       "rank": 9,
@@ -2955,12 +2955,19 @@
       "md": 16,
       "date": "2026-10-04",
       "home": "FC東京U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "東京ヴェルディユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "60",
+          "name": "中山 太輝"
+        }
+      ]
     },
     {
       "md": 16,
@@ -2972,6 +2979,7 @@
       "status": "played",
       "venue": "長岡市ニュータウン運動公園サッカー場Ｂ(人工芝)",
       "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1605.pdf",
       "homeScorers": [
         {
           "minute": "90+1",
