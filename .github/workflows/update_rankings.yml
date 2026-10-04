@@ -539,6 +539,16 @@ jobs:
             python scraper/generate_university_signings.py
           fi
 
+      # ★ 選手権2026特設ページ（/tournaments/senshuken-2026/）の「要約」と「47県の進行状況・代表校」を再生成
+      #   正本は data/tournaments/*-senshuken-2026.md（botが毎日更新）。マーカー区間以外は手書きのまま。
+      - name: 選手権2026特設ページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
+        run: |
+          if [ -f scraper/generate_senshuken_page.py ]; then
+            python scraper/generate_senshuken_page.py
+          fi
+
       # ★ 英語ページ（/en/premier-league/）。順位は teams.json、英語名は data/en/team_names_en.json。
       #   検算が1つでも崩れたらページを書き換えずに [要確認] を出して終わる（古いページが残る）。
       #   ⚠️ 英語名が辞書に無いチームが入ると止まる。**わざとそうしている**（自動ローマ字化はしない）。
