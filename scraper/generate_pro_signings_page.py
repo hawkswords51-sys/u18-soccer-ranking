@@ -85,9 +85,14 @@ def _section(title: str, subtitle: str, players: list, show_dest: bool, empty_ms
         for g in groups:
             cat = g["players"][0].get("cat", "")
             cat_badge = f'<span class="ps-cat">{html_escape(cat)}</span>' if cat else ""
+            # [2026-10-04] 特例「海外」＝海外の高校からの高卒内定。対象外の世代ではないが日本のU-18ではないので説明書きを付ける
+            special = ('<p class="ps-special">特例として掲載：このページは日本のU-18年代（高体連・Jクラブユース）が対象ですが、'
+                       '海外の高校からJリーグクラブへ高卒で加入が内定した選手も、同じ世代のプロ入りとして参考に載せています。</p>'
+                       if cat == "海外" else "")
             blocks.append(
                 '<div class="ps-team">'
                 f'<h3 class="ps-team-name">{_team_link(g)} {cat_badge}</h3>'
+                f'{special}'
                 '<table class="ps-table"><tbody>'
                 f'{_player_rows(g["players"], show_dest)}'
                 '</tbody></table></div>'
@@ -106,11 +111,13 @@ def build_ai_summary(data: dict) -> str:
     naitei = [p for p in sign if p.get("status") != "pro"]
     pro = [p for p in sign if p.get("status") == "pro"]
     hs = sum(1 for p in naitei if p.get("cat") == "高体連")
-    yth = len(naitei) - hs
+    ov = sum(1 for p in naitei if p.get("cat") == "海外")
+    yth = len(naitei) - hs - ov
+    ov_txt = f"・海外の高校{ov}名（特例）" if ov else ""
     season = html_escape(str(data.get("season", "")))
     body = (
         f"このページは、U-18年代（高校・Jクラブユース）からJリーグへ進む選手を、"
-        f"「①これから加入する内定者{len(naitei)}名（高体連{hs}名・Jクラブユース{yth}名）」と"
+        f"「①これから加入する内定者{len(naitei)}名（高体連{hs}名・Jクラブユース{yth}名{ov_txt}）」と"
         f"「②すでにプロ契約を結びトップチームに登録済みの選手{len(pro)}名」に分けて、"
         f"現所属チーム別に一覧できるまとめです。"
         f"近年のJクラブ育成組織では「高校在学中にプロ契約を結び、2種登録でユースにも所属する」形が一般的になり、"
@@ -200,6 +207,7 @@ __SCHEMA__
     .ps-dest{color:var(--text-dark);}
     .ps-arrow{color:var(--text-light);margin-right:4px;}
     .ps-club{font-weight:700;color:#15803d;}
+    .ps-special{margin:4px 0 8px;padding:8px 12px;font-size:.82rem;line-height:1.7;color:var(--text-dark,#1a1a1a);background:var(--bg-light,#f8f9fa);border-left:3px solid #f59e0b;border-radius:0 6px 6px 0;}
     .ps-note-inline{display:inline-block;font-size:.78rem;color:var(--text-light);margin-left:6px;}
     .ps-timing{width:132px;text-align:right;white-space:nowrap;font-size:.82rem;color:var(--text-light);}
     .ps-no{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;background:#475569;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:middle;}

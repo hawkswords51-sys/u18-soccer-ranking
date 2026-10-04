@@ -739,7 +739,7 @@ def render_pro_signings(out_root, names, extra, players, season):
                 return
             name, is_jp = player_html(pl["name"], players)
             jp_only += 1 if is_jp else 0
-            cat = "High school" if pl.get("cat") == "高体連" else "Club academy"
+            cat = {"高体連": "High school", "海外": "High school (outside Japan)*"}.get(pl.get("cat"), "Club academy")
             num = f'#{pl["num"]}' if pl.get("num") else ""
             extra_mark = ' <span class="en-note">type-2</span>' if pl.get("type2") else ""
             rows.append(f'<tr><td class="en-c">{esc(pl["pos"])}</td><td class="en-name">{name}{extra_mark}</td>'
@@ -766,11 +766,16 @@ def render_pro_signings(out_root, names, extra, players, season):
              "        The list below separates players who will join after graduating from those who have already signed a professional contract\n"
              "        while still playing for their high school or academy. Each entry has been checked against the club's own announcement.")
     legend = ""
+    # [2026-10-04] 特例「海外」の説明は、海外の高校の選手が1人以上いるときだけ出す（日本語版の説明書きと同じ考え方）
+    overseas_note = ('        <p>* Listed as an exception: this page covers Japan&rsquo;s U-18 age group, but players joining a J.League club '
+                     'straight from a high school outside Japan are included for reference.</p>\n'
+                     if any(p.get("cat") == "海外" for p in data["signings"]) else "")
     tail = ('''      <section class="lp-section">
         <h2>Notes</h2>
 '''
             '        <p>&ldquo;type-2&rdquo; marks a player registered to play J.League matches for the first team while remaining in the academy. '
             'That list is not complete: clubs announce type-2 registrations in batches.</p>\n'
+            f'{overseas_note}'
             '        <p>Where a player has no official English spelling published by the JFA or the J.League, the name is shown in Japanese.</p>\n'
             '        <p>See also: <a href="/en/national-team/">Japan national team squads (SAMURAI BLUE to U-16)</a> and <a href="/en/japan-youth-football-system/">how youth football works in Japan</a>.</p>\n'
             '      </section>')
