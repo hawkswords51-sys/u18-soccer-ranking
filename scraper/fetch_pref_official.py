@@ -2798,6 +2798,9 @@ def read_tokushima(cfg: dict) -> tuple[dict, list[dict]]:
 #    テキストリンク「前期」「後期」は4月版（古い）、隣の文字なしPDFアイコンが現行版。
 #    → セルの全リンクから**ファイル名の版日付が最新のもの**を選ぶ（pdf_source.newest_by_label_version）。
 #    ⚠️ フォルダの年月は使わない（0907版が /2026/08/ にある）。
+# ⚠️ 2026-10-05：シーズン終了で星取表のファイル名が「星取表【全日程終了】.pdf」になり、版日付が消えた。
+#    星取表の版日付はガードに使っていない（version は日程PDFから取る）ので、
+#    星取表は「1本ならそれを使う／複数なら版日付で選ぶ／複数で版日付が無ければ止める」にした。
 # ⚠️⚠️ **日程PDFは表として読めない。** セルの背景の塗りつぶしの境目を pdfplumber が罫線と誤認し、
 #    結合された月日セルを途中で切る（4/29 の最初の2試合に 4/25 が付いた）。
 #    → 単語の座標で読む。月日・カテゴリーは**その列を横切る細い横線で区切ったブロック**の中の文字を、
@@ -2894,8 +2897,8 @@ def read_aomori(cfg: dict) -> tuple[dict, list[dict]]:
     hoshi_cells = pdf_source.pdf_links_in_table_row(soup, lambda t: t.startswith("星取表") and "1部" in t)
     sched = [pdf_source.newest_by_label_version([u for _t, u in cell], SEASON_YEAR)
              for cell in sched_cells if cell]
-    hoshi = [pdf_source.newest_by_label_version([u for _t, u in cell], SEASON_YEAR)
-             for cell in hoshi_cells if cell]
+    hoshi = [pdf_source.only_or_newest_by_label_version([u for _t, u in cell], SEASON_YEAR)
+             for cell in hoshi_cells if cell]      # 版日付は使わない（ガードは日程PDFの版日付）
     if len(sched) != 2 or len(hoshi) != 1:
         raise RuntimeError(f"日程PDFが{len(sched)}本（前期・後期の2本のはず）・星取表PDFが{len(hoshi)}本")
 
@@ -2923,10 +2926,18 @@ def read_aomori(cfg: dict) -> tuple[dict, list[dict]]:
     t_one = [t for t in tables if unicodedata.normalize("NFKC", re.sub(r"\s+", "", t[0][0] or "")) == "1部リーグ"]
     if len(t_one) != 1:
         raise RuntimeError(f"星取表に1部の表が{len(t_one)}個")
+    # [2026-10-05] 最終版（星取表【全日程終了】.pdf）で表の右端に「順位」の列が増えた。
+    #   右から4列を決め打ちすると 得点・失点・得失点差・順位 を読んでしまうので、**見出しの文字で列を決める**。
+    #   見出しが揃わなければ止める（列の意味が分からないまま読まない）。
+    head = [unicodedata.normalize("NFKC", re.sub(r"\s+", "", c or "")) for c in t_one[0][0]]
+    want = ["勝点", "得点", "失点", "得失点差"]
+    if not all(head.count(w) == 1 for w in want):
+        raise RuntimeError(f"星取表の1部の見出しに {want} が1つずつ無い: {head}")
+    cols = [head.index(w) for w in want]
     standings = {}
     for r in t_one[0][1:]:
         name = unicodedata.normalize("NFKC", re.sub(r"\s+", "", r[0] or ""))
-        vals = [(c or "").strip() for c in r[-4:]]
+        vals = [(r[i] or "").strip() for i in cols]
         if not name or not all(re.fullmatch(r"-?\d+", v) for v in vals):
             raise RuntimeError(f"星取表の1部の行が読めない: {r}")
         pts, gf, ga, gd = (int(v) for v in vals)

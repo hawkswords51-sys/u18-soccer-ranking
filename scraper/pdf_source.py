@@ -126,6 +126,18 @@ def newest_by_label_version(urls, season_year) -> tuple[str, str]:
     return dated[-1][1], dated[-1][0]
 
 
+def only_or_newest_by_label_version(urls, season_year) -> tuple[str, str | None]:
+    """リンクが1本だけならそれを（版日付は要求しない）、2本以上なら newest_by_label_version で選ぶ
+    （2026-10-05追加・青森）。返り値 (URL, 版日付 or None)。
+    ⚠️ 2本以上で版日付が読めないものがあれば、newest_by_label_version と同じく止まる（どれが現行版か決められない）。
+    ⚠️ 版日付をガードに使う資料には使わないこと（1本のとき None が返る）。"""
+    urls = list(urls)
+    if len(urls) == 1:
+        from urllib.parse import unquote
+        return urls[0], version_from_label(unquote(urls[0]).rsplit("/", 1)[-1], season_year)
+    return newest_by_label_version(urls, season_year)
+
+
 # ---------------------------------------------------------------------------
 # 2. 取得
 # ---------------------------------------------------------------------------
