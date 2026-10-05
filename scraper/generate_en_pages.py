@@ -5,7 +5,7 @@
 - 順位の正本: data/teams.json（プレミアEAST/WESTの leagueRank・勝点など。毎朝の自動更新で入る値）
 - 英語名の正本: data/en/team_names_en.json（Coworkが公式表記を確認して置く。自動ローマ字化はしない）
   ⚠️ キーは「data/teams.json のチーム名（日本語）」。2026-09-21にチームidから変更した（idは96チームで未設定・ni010が重複していたため）。
-- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/・en/inter-high/
+- 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/・en/inter-high/・en/all-japan-high-school-tournament/（2026-10-05）
         ＋ data/en/teams/*.md があればその英語チームページ en/teams/<slug>/ （すべて毎回全体を書き直す）
 - 選手名の正本: data/en/player_names_en.json（JFA英語版・J.LEAGUE英語版の表記のみ。無い選手は日本語のまま出す）
 - 検算（1つでも合わないリーグがあれば、ページを書き換えずに [要確認] を出して終わる＝誤データを載せない）:
@@ -1075,6 +1075,7 @@ def render_interhigh(out_root, names, extra, season):
 '''
             '        <p>Full bracket, every round and the top scorers (in Japanese): '
             f'<a href="/tournaments/interhigh-{year}/" lang="ja">インターハイ{year}</a>.</p>\n'
+            '        <p>Next up: the winter <a href="/en/all-japan-high-school-tournament/">All Japan High School Soccer Tournament</a>, with qualifying in all 47 prefectures.</p>\n'
             '        <p>See also: <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> and '
             '<a href="/en/premier-league/">Premier League standings</a>.</p>\n      </section>')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -1485,6 +1486,222 @@ def render_short_team_pages(out_root, teams, names, season):
     print(f"OK: 短い英語チームページ {done} 枚を書きました（en/teams/<slug>/）")
 
 
+
+# ===================== 選手権（冬）の英語ページ（2026-10-05 Cowork・参考実装v11） =====================
+# - データ: 日本語の 47県 data/tournaments/{pref}-senshuken-{SENSHUKEN_YEAR}.md（botが毎朝更新）を
+#   scraper/generate_senshuken_page.py の analyze() でそのまま読む＝日本語の特設ページと判定が食い違わない。
+#   英語の文章は data/en/senshuken-notes.md、歴代優勝は data/tournaments_data.yml の all_japan_highschool。
+# - Kei決定（2026-10-05）: 代表校に公式の英語名が無い学校は、ページを止めずに漢字のまま出す（得点ランキングの選手名と同じ）。
+#   ログに [英語名待ち] を出すので、Cowork が team_names_en.json の clubs_extra に足すと翌朝から英語になる。
+# - 安全装置（ページを書き換えない）: 47県のmdが揃わない／代表が48を超える／notes が無い。
+SENSHUKEN_YEAR = 2026                                   # YEARLY
+SS_EN = ROOT / "data" / "en" / "senshuken-notes.md"
+SS_SLUG = "all-japan-high-school-tournament"
+REGIONS_EN = {"北海道": "Hokkaido", "東北": "Tohoku", "関東": "Kanto", "北信越": "Hokushinetsu", "東海": "Tokai",
+              "関西": "Kansai", "中国": "Chugoku", "四国": "Shikoku", "九州": "Kyushu"}
+
+
+def _strip_owner(k):
+    return re.sub(r"^(県立|府立|都立|道立|市立|私立)", "", k)
+
+
+def _school_index(teams, names, extra):
+    """県slug -> {正規化キー: 辞書のキー}。koko の略称（「東福岡」「九州国際大付」）を英語名辞書に引く。
+    同名の学校が別の県にある（海星＝長崎・三重）ので、必ず同じ県の中だけで引く。"""
+    by_pref = {}
+    for slug, pref in teams.items():
+        if not isinstance(pref, dict):
+            continue
+        idx = by_pref.setdefault(slug, {})
+        for t in pref.get("teams", []):
+            if t["name"] not in names and t["name"] not in extra:
+                continue
+            for a in [t["name"]] + list(t.get("aliases") or []):
+                for k in (_nk(a), _strip_owner(_nk(a))):
+                    idx.setdefault(k, t["name"])
+    flat = {}
+    for jp in list(names) + list(extra):
+        for k in (_nk(jp), _strip_owner(_nk(jp))):
+            flat.setdefault(k, jp)
+    return by_pref, flat
+
+
+def _school_html(jp, pref_slug, names, extra, by_pref, flat, missing):
+    k = _nk(jp)
+    key = (by_pref.get(pref_slug, {}).get(k) or by_pref.get(pref_slug, {}).get(_strip_owner(k))
+           or (jp if (jp in names or jp in extra) else None))
+    h = club_html(key, names, extra) if key else None
+    if h is None:
+        missing.append(f"{jp}（{pref_slug}）")
+        return f'<span lang="ja">{esc(jp)}</span>'
+    return h
+
+
+def _md_en(md, year):
+    """(月, 日) -> 'Sun 8 Nov'。6〜12月は予選の年、1〜5月は翌年。"""
+    from datetime import date as _d
+    m, d = md
+    try:
+        dt = _d(year + (1 if m <= 5 else 0), m, d)
+    except ValueError:
+        return f"{d} {MONTHS[m - 1][:3]}"
+    return f"{_WD_EN[dt.weekday()]} {dt.day} {MONTHS[m - 1][:3]}"
+
+
+def render_senshuken(out_root, teams, names, extra, season):
+    import generate_senshuken_page as gs
+    from jst import today
+    if not SS_EN.exists():
+        print("[要確認] 選手権英語ページ: data/en/senshuken-notes.md が無い（ページは書き換えません）")
+        return
+    gs.TDIR = ROOT / "data" / "tournaments"
+    en_src = SS_EN.read_text(encoding="utf-8")
+    fm = yaml.safe_load(en_src.split("---")[1]) or {}
+    by_pref, flat = _school_index(teams, names, extra)
+    missing = []
+
+    infos = {}
+    for _, prefs in gs.REGIONS:
+        for slug, _jp in prefs:
+            path = ROOT / "data" / "tournaments" / f"{slug}-senshuken-{SENSHUKEN_YEAR}.md"
+            if not path.exists():
+                print(f"[要確認] 選手権英語ページ: {path.name} が無い（ページは書き換えません）")
+                return
+            info = gs.analyze(slug)
+            info["tokyo"] = slug == "tokyo"
+            infos[slug] = info
+
+    rows, n_reps, n_started, rep_names = [], 0, 0, []
+    for region, prefs in gs.REGIONS:
+        first = True
+        for slug, jp_pref in prefs:
+            info = infos[slug]
+            pref_en = PREFS_EN[jp_pref]
+            if info["n_played"] > 0:
+                n_started += 1
+            decided = [(lb, w) for lb, w in info["reps"] if w and w != "確認中"]
+            n_reps += len(decided)
+            need = 2 if info["tokyo"] else 1
+            if len(decided) >= need:
+                status, cls = "Qualified", "ss-done"
+            elif info["n_played"] > 0:
+                status, cls = f'{info["n_played"]} matches played', "ss-live"
+            elif info["first_date"]:
+                fd = _md_en(info["first_date"], SENSHUKEN_YEAR).split(" ", 1)[1]   # 曜日は省く（列を狭く）
+                td = today()
+                started = gs.season_key(info["first_date"]) <= gs.season_key((td.month, td.day))
+                status, cls = (f"Results pending (from {fd})" if started else f"Starts {fd}"), "ss-pre"
+            else:
+                status, cls = "Not started", "ss-pre"
+            if info["reps"]:
+                parts = []
+                for lb, w in info["reps"]:
+                    if not w:
+                        continue
+                    blk = re.sub(r"[^A-Za-zＡ-Ｚ]", "", lb or "")       # 東京「Aブロック」→「A」
+                    lab = f"Block {blk}: " if blk else ""
+                    if w == "確認中":
+                        parts.append(lab + "to be confirmed")
+                    else:
+                        h = _school_html(w, slug, names, extra, by_pref, flat, missing)
+                        parts.append(lab + h)
+                        rep_names.append(re.sub(r"<[^>]+>", "", h))
+                rep = " / ".join(parts)
+            elif info["final_dates"]:
+                rep = '<span class="en-note">Final: ' + ", ".join(_md_en(d, SENSHUKEN_YEAR) for d in info["final_dates"]) + "</span>"
+            else:
+                rep = '<span class="en-note">Final date TBC</span>'
+            if first:   # スマホで代表校の列が画面外に出ないよう、地域は列ではなく見出し行にする
+                rows.append(f'            <tr class="ss-regrow"><th colspan="3">{REGIONS_EN[region]}</th></tr>')
+            first = False
+            rows.append(f'            <tr><td><a href="/prefectures/{slug}/">{pref_en}</a></td>'
+                        f'<td class="ss-st"><span class="ss-badge {cls}">{status}</span></td><td class="en-name">{rep}</td></tr>')
+    if n_reps > gs.TOTAL_REPS:
+        print(f"[要確認] 選手権英語ページ: 代表が{n_reps}校と48を超えた（ページは書き換えません）")
+        return
+
+    # 歴代（直近10大会）
+    hist = (yaml.safe_load(TOURN_YML.read_text(encoding="utf-8")) or {}).get("all_japan_highschool") or {}
+    hrows = []
+    for y in sorted((int(k) for k in hist), reverse=True)[:10]:
+        r = hist.get(y) or hist.get(str(y)) or {}
+        win, ru = r.get("優勝"), r.get("準優勝")
+        if not win:
+            continue
+        w_h = _school_html(win, "", names, extra, {}, flat, missing)
+        r_h = _school_html(ru, "", names, extra, {}, flat, missing) if ru else ""
+        hrows.append(f'            <tr><td>{_ordinal(y - 1921)}</td><td>{y}&ndash;{str(y + 1)[2:]}</td>'
+                     f'<td class="en-name">{w_h}</td><td class="en-name">{r_h}</td></tr>')
+
+    for m in sorted(set(missing)):
+        print(f"[英語名待ち] 選手権英語ページ: 英語名が辞書に無いので漢字のまま表示 → {m}")
+
+    t = today()
+    stamp = f"As of {t.day} {MONTHS[t.month - 1]} {t.year}"
+    if n_reps == 0:
+        status_txt = (f"{stamp}, results are in from {n_started} of the 47 prefectures and none of the 48 places "
+                      "has been decided yet.")
+    else:
+        shown = ", ".join(rep_names[:4]) + (" and others" if len(rep_names) > 4 else "")
+        status_txt = f"{stamp}, {n_reps} of the 48 places have been decided ({esc(shown)})."
+    intro_static = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", md_to_html(_section(en_src, "intro")))).strip()
+    intro = f"        {intro_static} <strong>{status_txt}</strong>"
+
+    season_en = fm.get("season_en", f"{SENSHUKEN_YEAR}–{str(SENSHUKEN_YEAR + 1)[2:]}")
+    edition = int(fm.get("edition", SENSHUKEN_YEAR - 1921))
+    facts = (f'      <p class="en-note">{esc(fm.get("period_en", ""))} &middot; {esc(fm.get("venue_en", ""))} &middot; '
+             '48 schools, knockout</p>\n')
+    sec = lambda sid, h, body: (f'\n      <section class="lp-section" id="{sid}">\n        <h2>{h}</h2>\n'
+                                f'        {body}\n      </section>')
+    table_html = ("\n".join([
+        '        <div class="en-scroll">',
+        '        <table class="en-table ss-table">',
+        '          <thead><tr><th>Prefecture</th><th>Status</th><th class="en-name">Qualified school / final</th></tr></thead>',
+        '          <tbody>'] + rows + ['          </tbody>', '        </table>', '        </div>']))
+    hist_html = "\n".join([
+        '        <div class="en-scroll">',
+        '        <table class="en-table">',
+        '          <thead><tr><th>Edition</th><th>Season</th><th class="en-name">Winners</th><th class="en-name">Runners-up</th></tr></thead>',
+        '          <tbody>'] + hrows + ['          </tbody>', '        </table>', '        </div>',
+        f'        <p class="en-note">Every winner since 2008–09, in Japanese: <a href="{esc(fm.get("jp_history", "/tournaments/senshuken-history/"))}" lang="ja">選手権 歴代優勝校一覧</a>.</p>'])
+    style = """
+      <style>
+        .ss-table tr.ss-regrow th { padding-top:18px; font-size:0.95rem; opacity:1; }
+        .ss-table td.en-name { min-width:150px; }
+        .ss-table td.ss-st { white-space:normal; width:8.5em; }
+        .ss-badge { display:inline-block; font-size:0.8em; padding:2px 9px; border-radius:8px; line-height:1.45; color:#fff; }
+        .ss-done { background:#16a34a; } .ss-live { background:#b45309; } .ss-pre { background:#64748b; }
+      </style>"""
+    tables = (style
+              + sec("about", "What the tournament is", md_to_html(_section(en_src, "about")))
+              + sec("format", f"The {season_en} tournament", md_to_html(_section(en_src, "format")))
+              + sec("storylines", "Storylines", md_to_html(_section(en_src, "storylines")))
+              + sec("qualifying", "Qualifying in all 47 prefectures", md_to_html(_section(en_src, "qualifying")) + "\n" + table_html)
+              + sec("winners", "Recent winners", hist_html))
+    tail = ('      <section class="lp-section">\n        <h2>Notes</h2>\n'
+            '        <p>Status and qualified schools are read every morning from the prefectural brackets on our Japanese pages. '
+            'School names appear in Japanese until we have confirmed the school&rsquo;s own English spelling.</p>\n'
+            f'        <p>The same page in Japanese, with every prefectural bracket: <a href="{esc(fm.get("jp_page", ""))}" lang="ja">選手権{SENSHUKEN_YEAR}（第{edition}回）</a>.</p>\n'
+            '        <p>See also: <a href="/en/inter-high/">Inter-High 2026</a> (the summer tournament), '
+            '<a href="/en/japan-youth-football-system/">how youth football works in Japan</a> and '
+            '<a href="/en/premier-league/">Premier League standings</a>.</p>\n      </section>')
+    url = f"{DOMAIN}/en/{SS_SLUG}/"
+    title = f"All Japan High School Soccer Tournament {season_en}: Qualifiers & Results"
+    desc = (f"The {_ordinal(edition)} All Japan High School Soccer Tournament ({season_en}) in English: dates and format, "
+            "the qualifying status of all 47 prefectures updated daily, the 48 qualified schools and recent winners.")
+    crumb = f"High School Tournament {season_en}"
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": crumb, "item": url}]}, ensure_ascii=False)
+    page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb, crumb=crumb,
+                       h1=f"All Japan High School Soccer Tournament {season_en}", intro=intro, legend=facts,
+                       tables=tables, tail=tail)
+    dest = out_root / "en" / SS_SLUG / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    print(f"OK: {dest} を書きました（結果あり{n_started}都道府県・代表{n_reps}/48・英語名待ち{len(set(missing))}校）")
+
+
 def main():
     out_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT
     teams = json.loads(TEAMS.read_text(encoding="utf-8"))
@@ -1503,6 +1720,7 @@ def main():
     render_national_team(out_root, names, extra, players, season)
     render_pro_signings(out_root, names, extra, players, season)
     render_interhigh(out_root, names, extra, season)
+    render_senshuken(out_root, teams, names, extra, season)   # 2026-10-05 選手権（冬）の英語ページ
     render_team_pages(out_root, teams, names, extra, season)
     render_short_team_pages(out_root, teams, names, season)
 
