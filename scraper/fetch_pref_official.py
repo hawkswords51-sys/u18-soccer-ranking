@@ -2203,14 +2203,14 @@ def _oita_pdf(article_url: str, link_text: str, title_word: str) -> bytes:
     raise RuntimeError(f"記事に1部の{link_text}PDFが無い（{article_url}）")
 
 
-def _oita_schedule(content: bytes) -> list[dict]:
-    """対戦表PDF → 試合のリスト（未消化も含む）"""
+def _oita_schedule(content: bytes, asof: str | None = None) -> list[dict]:
+    """対戦表PDF → 試合のリスト（未消化も含む）。asof＝記事タイトルの「(M/D現在)」の日付（版日付）"""
     import io
     import pdfplumber
 
     with pdfplumber.open(io.BytesIO(content)) as pdf:
         rows = [r for pg in pdf.pages for t in pg.extract_tables() for r in t]
-    out, md, day, postponed = [], None, "", 0
+    out, md, day, postponed, rescheduled = [], None, "", 0, 0
     for r in rows:
         if len(r) < 6:
             continue
@@ -2228,8 +2228,14 @@ def _oita_schedule(content: bytes) -> list[dict]:
         # [2026-09-28] 結果欄に「延期」を含む行（9/26 の「雷雨の為延期」2件）は未消化として持つ。
         #   日付は行の日付のまま（空にしない。過ぎた日付の未消化は「次の試合」に出ない＝team_season.py）。
         #   ほかの読めない書き方は従来どおり止める。振替日が決まって同じ組の行が増えたら、45試合の検査で止まる。
+        # [2026-10-05] 振替日が決まった試合は、元の行（9/26・延期）が消えて新しい日付の行に置き換わり、
+        #   **結果欄に会場名**（「平成令和の森」「西部G」）が入る（列ずれではない。10/4版で実物を確認）。
+        #   → 行の日付が版日付より後のときだけ、未消化（振替日の試合）として持つ。節番号は元の節のまま。
+        #   ⚠️ 版日付以前の行や、版日付が分からない記事で読めない文字列が出たら、読み取りの壊れなので従来どおり止める。
         if (r[5] or "").strip() and not sm and "延期" in (r[5] or ""):
             postponed += 1
+        elif (r[5] or "").strip() and not sm and asof and day and day > asof:
+            rescheduled += 1
         elif (r[5] or "").strip() and not sm:
             raise RuntimeError(f"結果欄が読めない: {r[5]!r}（{home} vs {away}）")
         out.append(dict(md=md, date=day, home=home, away=away,
@@ -2238,6 +2244,8 @@ def _oita_schedule(content: bytes) -> list[dict]:
                         kickoff=(r[3] or "").strip()))
     if postponed:
         print(f"       （大分: 結果欄が「延期」の試合が{postponed}件。未消化として持つ）")
+    if rescheduled:
+        print(f"       （大分: 振替日が決まった未消化の試合が{rescheduled}件。会場名が結果欄に入っている）")
     return out
 
 
@@ -2275,14 +2283,15 @@ def read_oita(cfg: dict) -> tuple[dict, list[dict]]:
         if phase not in arts:
             continue
         title, url = arts[phase]
-        got = _oita_schedule(_oita_pdf(url, "対戦表", "OFA1部リーグ"))
+        am = _OITA_ASOF_RE.search(title)
+        asof = f"{SEASON_YEAR}-{int(am.group(1)):02d}-{int(am.group(2)):02d}" if am else None
+        got = _oita_schedule(_oita_pdf(url, "対戦表", "OFA1部リーグ"), asof)
         if len(got) != cfg["teams"] * (cfg["teams"] - 1) // 2:
             raise RuntimeError(f"{phase}の対戦表が{len(got)}試合（1回戦総当たりの"
                                f"{cfg['teams'] * (cfg['teams'] - 1) // 2}試合と違う）")
         matches += got
-        am = _OITA_ASOF_RE.search(title)
-        if am:
-            versions.append(f"{SEASON_YEAR}-{int(am.group(1)):02d}-{int(am.group(2)):02d}")
+        if asof:
+            versions.append(asof)
 
     # 公式順位表の代わり＝最新の記事（後期があれば後期）の星取表の「通算」段
     latest = arts.get("後期") or arts["前期"]
