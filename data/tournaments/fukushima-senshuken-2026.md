@@ -50,7 +50,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 3回戦（10/17）
 
-- いわき光洋 vs 小高産業技術/磐城
+- 相馬 vs 磐城
 - 福島成蹊 vs 勿来工
 - 会津工 vs 福島東
 - 日大東北 vs 学法石川
@@ -62,7 +62,6 @@ scraper/update_tournament_results.py が上の source から
 - 福島西 vs 白河旭
 - 平工 vs 福島工
 - 郡山東 vs 安達
-- 相馬 vs 磐城
 
 ## 4回戦（10/19）
 
