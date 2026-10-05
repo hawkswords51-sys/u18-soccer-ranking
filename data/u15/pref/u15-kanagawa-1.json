@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-10-04",
+ "lastUpdated": "2026-10-06",
  "teams": [
   {
    "name": "FC Kanaloa A",
@@ -37,12 +37,12 @@
    "short": "足柄FC"
   },
   {
-   "name": "JFC FUTURO",
-   "short": "JFC FUTURO"
-  },
-  {
    "name": "FC川崎CHAMP JY",
    "short": "FC川崎CHAMP JY"
+  },
+  {
+   "name": "JFC FUTURO",
+   "short": "JFC FUTURO"
   },
   {
    "name": "カルペソール湘南",
@@ -136,6 +136,18 @@
   },
   {
    "rank": 8,
+   "team": "FC川崎CHAMP JY",
+   "points": 11,
+   "played": 13,
+   "won": 3,
+   "drawn": 2,
+   "lost": 8,
+   "gf": 13,
+   "ga": 27,
+   "gd": -14
+  },
+  {
+   "rank": 9,
    "team": "JFC FUTURO",
    "points": 10,
    "played": 14,
@@ -147,28 +159,16 @@
    "gd": -14
   },
   {
-   "rank": 9,
-   "team": "FC川崎CHAMP JY",
-   "points": 8,
-   "played": 12,
-   "won": 2,
-   "drawn": 2,
-   "lost": 8,
-   "gf": 10,
-   "ga": 27,
-   "gd": -17
-  },
-  {
    "rank": 10,
    "team": "カルペソール湘南",
    "points": 3,
-   "played": 13,
+   "played": 14,
    "won": 1,
    "drawn": 0,
-   "lost": 12,
+   "lost": 13,
    "gf": 10,
-   "ga": 35,
-   "gd": -25
+   "ga": 38,
+   "gd": -28
   }
  ],
  "matches": [
@@ -750,6 +750,177 @@
   },
   {
    "md": 0,
+   "date": "2026-10-04",
+   "home": "カルペソール湘南",
+   "hs": 0,
+   "as": 3,
+   "away": "FC川崎CHAMP JY",
+   "status": "played"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-10",
+   "home": "FC川崎CHAMP JY",
+   "hs": null,
+   "as": null,
+   "away": "シュートJrユースFC",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-10",
+   "home": "横須賀シーガルズFC",
+   "hs": null,
+   "as": null,
+   "away": "FC Kanaloa A",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-11",
+   "home": "シュートJrユースFC",
+   "hs": null,
+   "as": null,
+   "away": "FC Kanaloa A",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-12",
+   "home": "川崎フロンターレU-15等々力",
+   "hs": null,
+   "as": null,
+   "away": "足柄FC",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-12",
+   "home": "瀬谷インターナショナル フットボール",
+   "hs": null,
+   "as": null,
+   "away": "FC川崎CHAMP JY",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-17",
+   "home": "JFC FUTURO",
+   "hs": null,
+   "as": null,
+   "away": "FCヴィアージャ",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-17",
+   "home": "シュートJrユースFC",
+   "hs": null,
+   "as": null,
+   "away": "足柄FC",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-17",
+   "home": "瀬谷インターナショナル フットボール",
+   "hs": null,
+   "as": null,
+   "away": "川崎フロンターレU-15等々力",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-18",
+   "home": "カルペソール湘南",
+   "hs": null,
+   "as": null,
+   "away": "FC Kanaloa A",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-24",
+   "home": "川崎フロンターレU-15等々力",
+   "hs": null,
+   "as": null,
+   "away": "FC Kanaloa A",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-24",
+   "home": "瀬谷インターナショナル フットボール",
+   "hs": null,
+   "as": null,
+   "away": "カルペソール湘南",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-24",
+   "home": "足柄FC",
+   "hs": null,
+   "as": null,
+   "away": "横須賀シーガルズFC",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-31",
+   "home": "FCヴィアージャ",
+   "hs": null,
+   "as": null,
+   "away": "FC Kanaloa A",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-31",
+   "home": "FC川崎CHAMP JY",
+   "hs": null,
+   "as": null,
+   "away": "足柄FC",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-31",
+   "home": "JFC FUTURO",
+   "hs": null,
+   "as": null,
+   "away": "瀬谷インターナショナル フットボール",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-10-31",
+   "home": "カルペソール湘南",
+   "hs": null,
+   "as": null,
+   "away": "川崎フロンターレU-15等々力",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-11-01",
+   "home": "横須賀シーガルズFC",
+   "hs": null,
+   "as": null,
+   "away": "シュートJrユースFC",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
+   "date": "2026-11-01",
+   "home": "瀬谷インターナショナル フットボール",
+   "hs": null,
+   "as": null,
+   "away": "FCヴィアージャ",
+   "status": "scheduled"
+  },
+  {
+   "md": 0,
    "date": "",
    "home": "FCヴィアージャ",
    "hs": null,
@@ -760,52 +931,7 @@
   {
    "md": 0,
    "date": "",
-   "home": "FCヴィアージャ",
-   "hs": null,
-   "as": null,
-   "away": "FC Kanaloa A",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
    "home": "FC川崎CHAMP JY",
-   "hs": null,
-   "as": null,
-   "away": "FCヴィアージャ",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "FC川崎CHAMP JY",
-   "hs": null,
-   "as": null,
-   "away": "シュートJrユースFC",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "FC川崎CHAMP JY",
-   "hs": null,
-   "as": null,
-   "away": "足柄FC",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "JFC FUTURO",
-   "hs": null,
-   "as": null,
-   "away": "瀬谷インターナショナル フットボール",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "JFC FUTURO",
    "hs": null,
    "as": null,
    "away": "FCヴィアージャ",
@@ -832,33 +958,6 @@
   {
    "md": 0,
    "date": "",
-   "home": "カルペソール湘南",
-   "hs": null,
-   "as": null,
-   "away": "川崎フロンターレU-15等々力",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "カルペソール湘南",
-   "hs": null,
-   "as": null,
-   "away": "FC川崎CHAMP JY",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "カルペソール湘南",
-   "hs": null,
-   "as": null,
-   "away": "FC Kanaloa A",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
    "home": "シュートJrユースFC",
    "hs": null,
    "as": null,
@@ -868,24 +967,6 @@
   {
    "md": 0,
    "date": "",
-   "home": "シュートJrユースFC",
-   "hs": null,
-   "as": null,
-   "away": "足柄FC",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "シュートJrユースFC",
-   "hs": null,
-   "as": null,
-   "away": "FC Kanaloa A",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
    "home": "川崎フロンターレU-15等々力",
    "hs": null,
    "as": null,
@@ -895,88 +976,7 @@
   {
    "md": 0,
    "date": "",
-   "home": "川崎フロンターレU-15等々力",
-   "hs": null,
-   "as": null,
-   "away": "足柄FC",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "川崎フロンターレU-15等々力",
-   "hs": null,
-   "as": null,
-   "away": "FC Kanaloa A",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "横須賀シーガルズFC",
-   "hs": null,
-   "as": null,
-   "away": "シュートJrユースFC",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "横須賀シーガルズFC",
-   "hs": null,
-   "as": null,
-   "away": "FC Kanaloa A",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
    "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
-   "away": "カルペソール湘南",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
-   "away": "川崎フロンターレU-15等々力",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
-   "away": "FC川崎CHAMP JY",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
-   "away": "FCヴィアージャ",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
-   "away": "横須賀シーガルズFC",
-   "status": "scheduled"
-  },
-  {
-   "md": 0,
-   "date": "",
-   "home": "足柄FC",
    "hs": null,
    "as": null,
    "away": "横須賀シーガルズFC",

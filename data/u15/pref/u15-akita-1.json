@@ -6,15 +6,15 @@
  "region": "東北",
  "source": "https://fa-akita.net/17086/",
  "sourceName": "秋田県サッカー協会 3種（PDF）",
- "lastUpdated": "2026-10-01",
+ "lastUpdated": "2026-10-06",
  "teams": [
-  {
-   "name": "FCあきた",
-   "short": "FCあきた"
-  },
   {
    "name": "FC Estrella A",
    "short": "FC Estrella A"
+  },
+  {
+   "name": "FCあきた",
+   "short": "FCあきた"
   },
   {
    "name": "YFCセレジェスタA",
@@ -44,11 +44,11 @@
  "official_standings": [
   {
    "rank": 1,
-   "team": "FCあきた",
-   "points": 37,
-   "played": 13,
+   "team": "FC Estrella A",
+   "points": 38,
+   "played": 14,
    "won": 12,
-   "drawn": 1,
+   "drawn": 2,
    "lost": 0,
    "gf": 88,
    "ga": 7,
@@ -56,39 +56,39 @@
   },
   {
    "rank": 2,
-   "team": "FC Estrella A",
-   "points": 32,
-   "played": 12,
-   "won": 10,
-   "drawn": 2,
-   "lost": 0,
-   "gf": 83,
-   "ga": 7,
-   "gd": 76
+   "team": "FCあきた",
+   "points": 37,
+   "played": 14,
+   "won": 12,
+   "drawn": 1,
+   "lost": 1,
+   "gf": 88,
+   "ga": 8,
+   "gd": 80
   },
   {
    "rank": 3,
    "team": "YFCセレジェスタA",
    "points": 25,
-   "played": 13,
+   "played": 14,
    "won": 8,
    "drawn": 1,
-   "lost": 4,
+   "lost": 5,
    "gf": 43,
-   "ga": 20,
-   "gd": 23
+   "ga": 24,
+   "gd": 19
   },
   {
    "rank": 4,
    "team": "スポルティフ秋田B",
-   "points": 21,
-   "played": 12,
-   "won": 7,
+   "points": 24,
+   "played": 13,
+   "won": 8,
    "drawn": 0,
    "lost": 5,
-   "gf": 37,
+   "gf": 50,
    "ga": 14,
-   "gd": 23
+   "gd": 36
   },
   {
    "rank": 5,
@@ -130,13 +130,13 @@
    "rank": 8,
    "team": "グロースＦＣ",
    "points": 0,
-   "played": 13,
+   "played": 14,
    "won": 0,
    "drawn": 0,
-   "lost": 13,
+   "lost": 14,
    "gf": 6,
-   "ga": 145,
-   "gd": -139
+   "ga": 158,
+   "gd": -152
   }
  ],
  "matches": [
@@ -654,30 +654,30 @@
    "md": 4,
    "date": "2026-09-29",
    "home": "YFCセレジェスタA",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 4,
    "away": "FC Estrella A",
-   "status": "scheduled",
+   "status": "played",
    "venue": "ソラーレ"
   },
   {
    "md": 14,
    "date": "2026-10-03",
    "home": "グロースＦＣ",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 13,
    "away": "スポルティフ秋田B",
-   "status": "scheduled",
-   "venue": "男鹿球技場"
+   "status": "played",
+   "venue": "男鹿市総合運動公園球技場"
   },
   {
    "md": 14,
    "date": "2026-10-04",
    "home": "FC Estrella A",
-   "hs": null,
-   "as": null,
+   "hs": 1,
+   "as": 0,
    "away": "FCあきた",
-   "status": "scheduled",
+   "status": "played",
    "venue": "西目カントリーパーク"
   },
   {
