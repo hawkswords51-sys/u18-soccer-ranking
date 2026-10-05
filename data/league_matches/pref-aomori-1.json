@@ -46,50 +46,50 @@
     {
       "rank": 1,
       "team": "青森山田3rd",
-      "points": 38,
-      "played": 15,
-      "won": 12,
+      "points": 41,
+      "played": 16,
+      "won": 13,
       "drawn": 2,
       "lost": 1,
-      "gf": 77,
-      "ga": 10,
-      "gd": 67
+      "gf": 84,
+      "ga": 11,
+      "gd": 73
     },
     {
       "rank": 2,
       "team": "八戸学院野辺地西",
-      "points": 36,
-      "played": 15,
-      "won": 11,
+      "points": 39,
+      "played": 16,
+      "won": 12,
       "drawn": 3,
       "lost": 1,
-      "gf": 64,
-      "ga": 10,
-      "gd": 54
+      "gf": 67,
+      "ga": 11,
+      "gd": 56
     },
     {
       "rank": 3,
       "team": "ヴァンラーレ八戸U18",
       "points": 35,
-      "played": 15,
+      "played": 16,
       "won": 11,
       "drawn": 2,
-      "lost": 2,
+      "lost": 3,
       "gf": 34,
-      "ga": 17,
-      "gd": 17
+      "ga": 18,
+      "gd": 16
     },
     {
       "rank": 4,
       "team": "八戸学院光星",
-      "points": 30,
-      "played": 15,
-      "won": 9,
+      "points": 33,
+      "played": 16,
+      "won": 10,
       "drawn": 3,
       "lost": 3,
-      "gf": 34,
+      "gf": 35,
       "ga": 13,
-      "gd": 21
+      "gd": 22
     },
     {
       "rank": 5,
@@ -107,49 +107,49 @@
       "rank": 6,
       "team": "八戸西",
       "points": 17,
-      "played": 15,
+      "played": 16,
       "won": 5,
       "drawn": 2,
-      "lost": 8,
-      "gf": 20,
-      "ga": 44,
-      "gd": -24
+      "lost": 9,
+      "gf": 21,
+      "ga": 51,
+      "gd": -30
     },
     {
       "rank": 7,
-      "team": "八戸工大一",
-      "points": 11,
-      "played": 15,
-      "won": 3,
-      "drawn": 2,
-      "lost": 10,
-      "gf": 12,
-      "ga": 43,
-      "gd": -31
+      "team": "東奥義塾",
+      "points": 12,
+      "played": 16,
+      "won": 4,
+      "drawn": 0,
+      "lost": 12,
+      "gf": 13,
+      "ga": 53,
+      "gd": -40
     },
     {
       "rank": 8,
-      "team": "東奥義塾",
-      "points": 9,
-      "played": 15,
+      "team": "八戸工大一",
+      "points": 11,
+      "played": 16,
       "won": 3,
-      "drawn": 0,
-      "lost": 12,
+      "drawn": 2,
+      "lost": 11,
       "gf": 12,
-      "ga": 53,
-      "gd": -41
+      "ga": 44,
+      "gd": -32
     },
     {
       "rank": 9,
       "team": "三本木農業恵拓",
       "points": 3,
-      "played": 15,
+      "played": 16,
       "won": 1,
       "drawn": 0,
-      "lost": 14,
-      "gf": 5,
-      "ga": 48,
-      "gd": -43
+      "lost": 15,
+      "gf": 6,
+      "ga": 51,
+      "gd": -45
     }
   ],
   "matches": [
@@ -319,10 +319,10 @@
       "md": 0,
       "date": "2026-10-03",
       "home": "ヴァンラーレ八戸U18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "八戸学院光星",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -445,10 +445,10 @@
       "md": 0,
       "date": "2026-10-03",
       "home": "八戸西",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 7,
       "away": "青森山田3rd",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -715,10 +715,10 @@
       "md": 0,
       "date": "2026-10-03",
       "home": "東奥義塾",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "八戸工大一",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -742,10 +742,10 @@
       "md": 0,
       "date": "2026-10-03",
       "home": "三本木農業恵拓",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "八戸学院野辺地西",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -805,26 +805,26 @@
   "source_standings": [
     {
       "team": "青森山田3rd",
-      "pts": 38,
-      "gf": 77,
-      "ga": 10
+      "pts": 41,
+      "gf": 84,
+      "ga": 11
     },
     {
       "team": "八戸学院野辺地西",
-      "pts": 36,
-      "gf": 64,
-      "ga": 10
+      "pts": 39,
+      "gf": 67,
+      "ga": 11
     },
     {
       "team": "ヴァンラーレ八戸U18",
       "pts": 35,
       "gf": 34,
-      "ga": 17
+      "ga": 18
     },
     {
       "team": "八戸学院光星",
-      "pts": 30,
-      "gf": 34,
+      "pts": 33,
+      "gf": 35,
       "ga": 13
     },
     {
@@ -836,26 +836,26 @@
     {
       "team": "八戸西",
       "pts": 17,
-      "gf": 20,
-      "ga": 44
+      "gf": 21,
+      "ga": 51
+    },
+    {
+      "team": "東奥義塾",
+      "pts": 12,
+      "gf": 13,
+      "ga": 53
     },
     {
       "team": "八戸工大一",
       "pts": 11,
       "gf": 12,
-      "ga": 43
-    },
-    {
-      "team": "東奥義塾",
-      "pts": 9,
-      "gf": 12,
-      "ga": 53
+      "ga": 44
     },
     {
       "team": "三本木農業恵拓",
       "pts": 3,
-      "gf": 5,
-      "ga": 48
+      "gf": 6,
+      "ga": 51
     }
   ]
 }
