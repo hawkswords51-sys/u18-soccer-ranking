@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-05T12:07:53+09:00",
+  "updatedAt": "2026-10-05T12:18:36+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -241,8 +241,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化68試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (ファイル名から版日付が読めない: https://www.aomori-fa.jp/wp/wp-content/uploads/2026/09/星取表【全日程終了】.pdf)",
       "result_date": "2026-10-05",
       "last_updated": "2026-10-05"
     },
@@ -348,7 +348,7 @@
       "status": "ok",
       "last_updated": "2026-10-05",
       "result": "ok",
-      "result_note": "消化85試合に更新（検算一致）",
+      "result_note": "消化90試合に更新（検算一致）",
       "result_date": "2026-10-05"
     },
     "gifu": {
@@ -811,8 +811,8 @@
       "result_since": "2026-10-04",
       "result_streak": 3,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (結果欄が読めない: '平成令和の森'（中津東 vs トリニータ2nd）)",
+      "result": "ok",
+      "result_note": "消化63試合に更新（検算一致）",
       "result_date": "2026-10-05",
       "last_updated": "2026-10-04"
     },
