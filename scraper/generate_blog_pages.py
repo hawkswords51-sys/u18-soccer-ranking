@@ -1185,6 +1185,7 @@ MEDICAL_HUB_THEMES = [
             "commotio-cordis-aed-2026",
             "2026-06-25-ankle-sprain-treatment",
             "muscle-cramps-2026",
+            "nsaids-before-match-2026",
         ],
     ),
     (
