@@ -1661,6 +1661,7 @@ def main():
             (f"{DOMAIN}/en/", "monthly", "0.6"),
             (f"{DOMAIN}/en/premier-league/", "daily", "0.6"),
             (f"{DOMAIN}/en/japan-youth-football-system/", "monthly", "0.7"),
+            (f"{DOMAIN}/en/medical/concussion-return-to-play/", "monthly", "0.6"),
             (f"{DOMAIN}/en/prince-leagues/", "daily", "0.6"),
             (f"{DOMAIN}/en/national-team/", "weekly", "0.7"),
             (f"{DOMAIN}/en/pro-signings/", "weekly", "0.7"),
