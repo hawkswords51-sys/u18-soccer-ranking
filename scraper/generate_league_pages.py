@@ -1314,6 +1314,7 @@ __SCHEMA_FAQ__
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
           <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ一覧</a>
           <a href="/blog/" class="nav-link"><i class="fas fa-newspaper"></i> ブログ</a>
+          <a href="/en/" class="nav-link" lang="en" aria-label="English"><i class="fas fa-globe"></i> English</a>
         </nav>
       </div>
     </div>
@@ -1974,6 +1975,7 @@ def generate_premier_final_page():
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
           <a href="/leagues/" class="nav-link"><i class="fas fa-trophy"></i> リーグ一覧</a>
           <a href="/blog/" class="nav-link"><i class="fas fa-newspaper"></i> ブログ</a>
+          <a href="/en/" class="nav-link" lang="en" aria-label="English"><i class="fas fa-globe"></i> English</a>
         </nav>
       </div>
     </div>
@@ -2135,6 +2137,7 @@ __SCHEMA_BREADCRUMB__
         <nav class="nav">
           <a href="/" class="nav-link"><i class="fas fa-home"></i> ホーム</a>
           <a href="/blog/" class="nav-link"><i class="fas fa-newspaper"></i> ブログ</a>
+          <a href="/en/" class="nav-link" lang="en" aria-label="English"><i class="fas fa-globe"></i> English</a>
         </nav>
       </div>
     </div>

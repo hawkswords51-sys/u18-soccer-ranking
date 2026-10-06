@@ -364,6 +364,10 @@ __SCHEMA_BREADCRUMB__
             <i class="fas fa-newspaper"></i>
             ブログ
           </a>
+          <a href="/en/" class="nav-link" lang="en" aria-label="English">
+            <i class="fas fa-globe"></i>
+            English
+          </a>
           <button class="theme-toggle" id="themeToggleBtn"
                   aria-label="ダークモード切替"
                   title="ダークモード切替">
