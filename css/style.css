@@ -6050,3 +6050,21 @@ tr.zone-row > td:first-child {
     outline: 2px solid var(--primary-color, #1e40af);
     outline-offset: 2px;
 }
+
+/* 2026-10-06 リーグページ「戦術的な見どころ」の表がスマホで860px固定になり、
+   ページごと横にはみ出していた。順位表用の860px固定（Phase 9-D v6）を、
+   lp-section 直下の文章系の表だけ解除して画面幅に収める。 */
+@media (max-width: 768px) {
+    .lp-section > table.data-table {
+        min-width: 0 !important;
+        width: 100% !important;
+        table-layout: auto !important;
+    }
+    .lp-section > table.data-table th,
+    .lp-section > table.data-table td {
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        white-space: normal !important;
+    }
+}
