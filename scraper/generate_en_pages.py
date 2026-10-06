@@ -1244,6 +1244,23 @@ def _parent_of(jp):
     return re.sub(r"\s*(2nd|3rd)$", "", jp)
 
 
+def english_team_urls() -> set:
+    """英語チームページのURLの集合（2026-10-06・日本語チームページの「English」1行リンク用）。
+    main() と同じデータ源（data/en/teams/*.md の手書き＋plan_short_pages の短いページ）で決める。
+    出力フォルダの状態は見ない（/tmp で生成しても結果が変わらないように）。ファイルは書かない。"""
+    import contextlib
+    import io
+    teams = json.loads(TEAMS.read_text(encoding="utf-8"))
+    names = json.loads(NAMES.read_text(encoding="utf-8"))["teams"]
+    if TEAMS_EN_DIR.exists():
+        for md_path in TEAMS_EN_DIR.glob("*.md"):
+            fm0 = yaml.safe_load(md_path.read_text(encoding="utf-8").split("---")[1])
+            EN_TEAM_PAGES[fm0["jp_name"]] = f"/en/teams/{fm0.get('slug') or md_path.stem}/"
+    with contextlib.redirect_stdout(io.StringIO()):          # [要確認] の行はここでは出さない（英語ページ生成時に出る）
+        plan_short_pages(teams, names, hand_written=set(EN_TEAM_PAGES))
+    return set(EN_TEAM_PAGES.values())
+
+
 def plan_short_pages(teams, names, hand_written):
     """短いページを作るチームと、2nd/3rd のリンク先を EN_TEAM_PAGES に登録する（main の最初で呼ぶ）。"""
     for pref in teams.values():

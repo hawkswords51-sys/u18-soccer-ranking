@@ -1334,7 +1334,7 @@ __AI_SUMMARY__
       <p class="lp-intro">
         __DESCRIPTION_LONG__
       </p>
-
+__EN_LINK_TOP__
       <div class="stats-summary">
         <div class="stat-item">
           <div class="stat-label">所属チーム数</div>
@@ -1451,7 +1451,8 @@ __RELATED_LEAGUES__
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
       <p class="footer-note" style="margin-top:12px;">
         <i class="fas fa-info-circle"></i>
@@ -1662,6 +1663,13 @@ def generate_league_page(league_name, slug, label, category, description, season
         en_link = ('\n      <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: '
                    '<a href="/en/premier-league/">Japan U-18 Premier League standings in English</a></p>\n')
 
+    # [2026-10-06] プリンス13リーグは、リード文の直後に英語のプリンス順位表（同じ slug のアンカー）への1行。
+    #   プレミアの en_link は従来どおり「ファイナルへの道」の前（位置は動かさない）。旧 prince-kansai は対象外。
+    en_link_top = ""
+    if slug.startswith("prince-") and slug != "prince-kansai":
+        en_link_top = ('      <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: '
+                       f'<a href="/en/prince-leagues/#{slug}">Prince League standings in English</a></p>\n')
+
     # プレミアEAST/WESTのみ「プレミアファイナルへの道」セクション
     if slug == "premier-east":
         final_path_section = en_link + """
@@ -1749,6 +1757,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__PAST_CHAMPIONS_SECTION__", past_champions_section)
         .replace("__LEAGUE_CHRONICLE_SECTION__", chronicle_section)
         .replace("__FINAL_PATH_SECTION__", final_path_section)
+        .replace("__EN_LINK_TOP__", en_link_top)
         .replace("__SEASON_OVERVIEW__", html_escape(season_overview))
         .replace("__PROFILE_NOTICE__", profile_notice)
         .replace("__TACTICAL_POINTS__", tactical_points) 
@@ -2034,7 +2043,8 @@ def generate_premier_final_page():
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
       <p class="footer-note" style="margin-top:12px;">
         <i class="fas fa-info-circle"></i>
@@ -2183,7 +2193,8 @@ __PRINCE_CARDS__
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
     </div>
   </footer>

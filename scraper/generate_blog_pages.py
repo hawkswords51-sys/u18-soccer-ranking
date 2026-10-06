@@ -322,7 +322,8 @@ __RELATED_HTML__
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
     </div>
   </footer>
@@ -845,7 +846,8 @@ __ARTICLES_HTML__
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
     </div>
   </footer>
@@ -1471,7 +1473,8 @@ __THEME_SECTIONS__
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
     </div>
   </footer>

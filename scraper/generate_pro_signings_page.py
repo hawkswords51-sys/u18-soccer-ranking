@@ -235,6 +235,7 @@ __SCHEMA__
       __AI_SUMMARY__
       <p class="team-lead">U-18年代からJリーグへ進む選手を、<strong>①これから加入する内定者</strong>と<strong>②すでにプロ契約済みの選手</strong>に分けて、現所属チーム別に掲載しています。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。</p>
     </section>
+    <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: <a href="/en/pro-signings/">Pro signings in English</a></p>
     __SECTIONS__
     <section class="ps-cat-sec">
       <h2><i class="fas fa-circle-info"></i> 「内定」と「プロ契約済み」はどう違うのか</h2>
@@ -270,7 +271,7 @@ __SCHEMA__
   </main>
   <footer class="footer"><div class="container">
     <p>&copy; 2025-2026 高校サッカー順位確認システム</p>
-    <nav class="footer-nav" style="margin-top:12px;"><a href="/about.html">運営者情報</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/contact.html">お問い合わせ</a></nav>
+    <nav class="footer-nav" style="margin-top:12px;"><a href="/about.html">運営者情報</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/contact.html">お問い合わせ</a> ・ <a href="/en/" lang="en">English</a></nav>
     <p class="footer-note" style="margin-top:10px;"><i class="fas fa-database"></i> 順位データは毎日自動更新 ・ X: <a href="https://x.com/DrKazuSoccer" style="color:#93c5fd;">@DrKazuSoccer</a></p>
   </div></footer>
   <script>

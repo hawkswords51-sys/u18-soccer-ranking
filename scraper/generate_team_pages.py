@@ -390,7 +390,7 @@ __NT_BADGE____NT_ALUMNI_BADGE__
 __PS_BADGE__
       <p class="team-lead">__LEAD__</p>
     </section>
-
+__EN_LINK__
     <section class="team-stats">
 __STAT_CARDS__
     </section>
@@ -406,7 +406,8 @@ __BODY_HTML__
       <nav class="footer-nav" style="margin-top:12px;">
         <a href="/about.html">運営者情報</a> ・
         <a href="/privacy.html">プライバシーポリシー</a> ・
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="/contact.html">お問い合わせ</a> ・
+        <a href="/en/" lang="en">English</a>
       </nav>
       <p class="footer-note" style="margin-top:10px;"><i class="fas fa-database"></i> 順位データは毎日自動更新 ・ X: <a href="https://x.com/DrKazuSoccer" style="color:#93c5fd;">@DrKazuSoccer</a></p>
     </div>
@@ -652,6 +653,27 @@ def build_team_ai_summary(meta: dict) -> str:
     )
     return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
 
+_EN_TEAM_URLS = None
+
+
+def _en_link_html(team_id: str) -> str:
+    """英語版のチームページがあるときだけ、1行の案内（2026-10-06）。⚠️ hreflang は付けない。
+    英語版の有無は generate_en_pages.english_team_urls()（英語ページを作るときと同じデータ源）で決める。"""
+    global _EN_TEAM_URLS
+    if _EN_TEAM_URLS is None:
+        try:
+            import generate_en_pages
+            _EN_TEAM_URLS = generate_en_pages.english_team_urls()
+        except Exception as e:                     # 英語側の不具合で日本語ページを止めない
+            print(f"  [WARN] 英語チームページの一覧が作れない（Englishリンクは出しません）: {e}")
+            _EN_TEAM_URLS = set()
+    url = f"/en/teams/{team_id}/"
+    if url not in _EN_TEAM_URLS:
+        return ""
+    return (f'    <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: '
+            f'<a href="{url}">Read this team\'s profile in English</a></p>\n')
+
+
 def render_team_page(profile: dict, badge_map: dict | None = None,
                      ps_badge_map: dict | None = None,
                      alumni_map: dict | None = None) -> str:
@@ -711,6 +733,7 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
         .replace("__NT_ALUMNI_BADGE__", nt.render_alumni_badge_html(meta.get("id", ""), alumni_map))
         .replace("__PS_BADGE__", ps.render_team_badge_html(meta.get("id", ""), ps_badge_map))
         .replace("__LEAD__", html_escape(lead))
+        .replace("__EN_LINK__", _en_link_html(meta.get("id", "")))
         .replace("__STAT_CARDS__", build_stat_cards(meta))
         .replace("__BODY_HTML__", body_html)
     )

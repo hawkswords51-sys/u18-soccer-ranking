@@ -331,6 +331,7 @@ __SCHEMA__
       __AI_SUMMARY__
       <p class="team-lead">JFA公式発表の最新招集メンバーを、ポジション・背番号・所属チームつきで掲載。所属チームに当サイトの詳細ページがある選手は、そのチームページへ直接移動できます。</p>
     </section>
+    <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: <a href="/en/national-team/">Japan national team call-ups in English</a></p>
     <div class="nt-jump">__JUMP__</div>
     __SECTIONS__
     <section class="nt-cat">
@@ -362,7 +363,7 @@ __SCHEMA__
   </main>
   <footer class="footer"><div class="container">
     <p>&copy; 2025-2026 高校サッカー順位確認システム</p>
-    <nav class="footer-nav" style="margin-top:12px;"><a href="/about.html">運営者情報</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/contact.html">お問い合わせ</a></nav>
+    <nav class="footer-nav" style="margin-top:12px;"><a href="/about.html">運営者情報</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/contact.html">お問い合わせ</a> ・ <a href="/en/" lang="en">English</a></nav>
     <p class="footer-note" style="margin-top:10px;"><i class="fas fa-database"></i> 順位データは毎日自動更新 ・ X: <a href="https://x.com/DrKazuSoccer" style="color:#93c5fd;">@DrKazuSoccer</a></p>
   </div></footer>
   <script>
