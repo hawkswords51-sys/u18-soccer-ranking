@@ -1590,7 +1590,7 @@ def render_senshuken(out_root, teams, names, extra, season):
                 fd = _md_en(info["first_date"], SENSHUKEN_YEAR).split(" ", 1)[1]   # 曜日は省く（列を狭く）
                 td = today()
                 started = gs.season_key(info["first_date"]) <= gs.season_key((td.month, td.day))
-                status, cls = (f"Results pending (from {fd})" if started else f"Starts {fd}"), "ss-pre"
+                status, cls = (f"Started {fd}" if started else f"Starts {fd}"), "ss-pre"
             else:
                 status, cls = "Not started", "ss-pre"
             if info["reps"]:
@@ -1667,6 +1667,7 @@ def render_senshuken(out_root, teams, names, extra, season):
     style = """
       <style>
         .ss-table tr.ss-regrow th { padding-top:18px; font-size:0.95rem; opacity:1; }
+        .ss-table th { white-space:normal; }       /* 見出しは折り返す（「Qualified school / final」が1行で186pxになりスマホで表が9pxはみ出した） */
         .ss-table td.en-name { min-width:150px; }
         .ss-table td.ss-st { white-space:normal; width:8.5em; }
         .ss-badge { display:inline-block; font-size:0.8em; padding:2px 9px; border-radius:8px; line-height:1.45; color:#fff; }
