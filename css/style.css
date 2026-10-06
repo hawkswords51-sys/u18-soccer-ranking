@@ -1348,6 +1348,7 @@ h1, h2, h3,
     color: #93c5fd;
     text-decoration: none;
     margin: 0 4px;
+    white-space: nowrap; /* 「お問い合 / わせ」のように語の途中で折り返さない（2026-10-06） */
     transition: color 0.2s;
 }
 
