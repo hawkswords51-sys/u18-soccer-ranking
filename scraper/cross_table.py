@@ -384,7 +384,8 @@ def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り
     # --- 各チームの戦績（節順の星取り） ---
     def team_form(team):
         seq = []
-        for m in sorted(played, key=lambda x: (x.get("md", 0), x.get("date", ""))):
+        # 日付「未定」のまま結果だけ入った試合は date=None（長野U-15 第3節・2026-10-06）。None と文字列は比べられないので "" に
+        for m in sorted(played, key=lambda x: (x.get("md") or 0, x.get("date") or "")):
             if m["home"] == team:
                 gf, ga, opp, ha = m["hs"], m["as"], m["away"], "H"
             elif m["away"] == team:
