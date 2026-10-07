@@ -6,7 +6,7 @@
  "region": "中国",
  "source": "http://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_UX&rallyid=U%5E%5CS_",
  "sourceName": "SportsOnline（島根U-15リーグ）",
- "lastUpdated": "2026-10-01",
+ "lastUpdated": "2026-10-07",
  "teams": [
   {
    "name": "ヴィッセル神有",
@@ -45,14 +45,14 @@
   {
    "rank": 1,
    "team": "ヴィッセル神有",
-   "points": 37,
-   "played": 13,
-   "won": 12,
+   "points": 40,
+   "played": 14,
+   "won": 13,
    "drawn": 1,
    "lost": 0,
-   "gf": 47,
-   "ga": 4,
-   "gd": 43
+   "gf": 49,
+   "ga": 5,
+   "gd": 44
   },
   {
    "rank": 2,
@@ -82,13 +82,13 @@
    "rank": 4,
    "team": "出雲三中",
    "points": 21,
-   "played": 13,
+   "played": 14,
    "won": 7,
    "drawn": 0,
-   "lost": 6,
-   "gf": 25,
-   "ga": 26,
-   "gd": -1
+   "lost": 7,
+   "gf": 26,
+   "ga": 28,
+   "gd": -2
   },
   {
    "rank": 5,
@@ -686,10 +686,10 @@
    "md": 0,
    "date": "2026-10-04",
    "home": "ヴィッセル神有",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 1,
    "away": "出雲三中",
-   "status": "scheduled"
+   "status": "played"
   }
  ]
 }

@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-07T12:49:32+09:00",
+  "updatedAt": "2026-10-07T13:07:24+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -395,8 +395,8 @@
       "last_updated": "2026-10-06"
     },
     "hiroshima": {
-      "result": "ok",
-      "result_note": "消化69試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E の取得に失敗 (HTTPSConnectionPool(host='www.sportsonline.jp', port=443): Max retries exceeded with url: /reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-10-07",
       "season": "2026",
       "complete": false,
@@ -1006,8 +1006,8 @@
       "last_updated": "2026-10-06"
     },
     "shimane": {
-      "result": "ok",
-      "result_note": "消化46試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E の取得に失敗 (HTTPSConnectionPool(host='www.sportsonline.jp', port=443): Max retries exceeded with url: /reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-10-07",
       "season": "2026",
       "complete": false,
@@ -1192,8 +1192,8 @@
       "last_updated": "2026-10-06"
     },
     "yamaguchi": {
-      "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5eS%5d&rallyid=U%5eZ%5b%5b の取得に失敗 (HTTPSConnectionPool(host='www.sportsonline.jp', port=443): Max retries exceeded with url: /reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ES%5D&rallyid=U%5EZ%5B%5B (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
       "result_date": "2026-10-07",
       "season": "2026",
       "complete": false,

@@ -1,28 +1,28 @@
 {
  "season": 2026,
- "updated": "2026-10-05",
+ "updated": "2026-10-07",
  "note": "大会公式サイト（u16-rookie-league.com）の星取表から自動集計。公式の星取表に集計欄が無いため、勝点・勝敗数・得失点は全セルから計算しています。順位は公式の「暫定順位」。",
  "divisions": [
   {
    "id": "hokkaido-1",
    "region": "北海道",
    "name": "ルーキーリーグU-16 HOKKAIDO 1部",
-   "asof": "2026-09-29 時点（公式の順位表より）",
+   "asof": "2026-10-06 時点（公式の順位表より）",
    "sourceLabel": "大会公式 順位表",
    "sourceUrl": "https://u16-rookie-league.com/hokkaido/order/15",
    "note": "",
    "teams": [
     {
      "name": "北海",
-     "pts": 19,
-     "gf": 25,
+     "pts": 22,
+     "gf": 28,
      "ga": 10,
      "rank": 1,
-     "w": 6,
+     "w": 7,
      "d": 1,
      "l": 1,
-     "p": 8,
-     "gd": 15
+     "p": 9,
+     "gd": 18
     },
     {
      "name": "札幌大谷",
@@ -76,13 +76,13 @@
      "name": "札幌光星",
      "pts": 3,
      "gf": 7,
-     "ga": 11,
+     "ga": 14,
      "rank": 6,
      "w": 1,
      "d": 0,
-     "l": 5,
-     "p": 6,
-     "gd": -4
+     "l": 6,
+     "p": 7,
+     "gd": -7
     }
    ],
    "ptsRule": "3/1/0"

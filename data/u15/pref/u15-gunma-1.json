@@ -6,31 +6,31 @@
  "region": "関東",
  "source": "https://gc-model.com/01/gunma-fa/convention/order/224",
  "sourceName": "群馬県サッカー協会（gc-model）",
- "lastUpdated": "2026-09-30",
+ "lastUpdated": "2026-10-07",
  "teams": [
+  {
+   "name": "ザスパ群馬",
+   "short": "ザスパ群馬"
+  },
   {
    "name": "前橋Jr",
    "short": "前橋Jr"
   },
   {
-   "name": "ザスパ群馬",
-   "short": "ザスパ群馬"
+   "name": "PALAISTRA",
+   "short": "PALAISTRA"
   },
   {
    "name": "アスブロンサ高崎FC",
    "short": "アスブロンサ高崎FC"
   },
   {
-   "name": "tonan群馬",
-   "short": "tonan群馬"
-  },
-  {
    "name": "藤岡キッカーズ",
    "short": "藤岡キッカーズ"
   },
   {
-   "name": "PALAISTRA",
-   "short": "PALAISTRA"
+   "name": "tonan群馬",
+   "short": "tonan群馬"
   },
   {
    "name": "FC KRILO",
@@ -52,30 +52,42 @@
  "official_standings": [
   {
    "rank": 1,
-   "team": "前橋Jr",
-   "points": 29,
-   "played": 12,
-   "won": 9,
-   "drawn": 2,
-   "lost": 1,
-   "gf": 35,
-   "ga": 7,
-   "gd": 28
+   "team": "ザスパ群馬",
+   "points": 37,
+   "played": 15,
+   "won": 12,
+   "drawn": 1,
+   "lost": 2,
+   "gf": 57,
+   "ga": 16,
+   "gd": 41
   },
   {
    "rank": 2,
-   "team": "ザスパ群馬",
-   "points": 27,
-   "played": 10,
-   "won": 9,
-   "drawn": 0,
+   "team": "前橋Jr",
+   "points": 36,
+   "played": 15,
+   "won": 11,
+   "drawn": 3,
    "lost": 1,
-   "gf": 37,
-   "ga": 10,
-   "gd": 27
+   "gf": 43,
+   "ga": 9,
+   "gd": 34
   },
   {
    "rank": 3,
+   "team": "PALAISTRA",
+   "points": 25,
+   "played": 15,
+   "won": 7,
+   "drawn": 4,
+   "lost": 4,
+   "gf": 28,
+   "ga": 15,
+   "gd": 13
+  },
+  {
+   "rank": 4,
    "team": "アスブロンサ高崎FC",
    "points": 22,
    "played": 15,
@@ -83,11 +95,23 @@
    "drawn": 4,
    "lost": 5,
    "gf": 26,
-   "ga": 24,
-   "gd": 2
+   "ga": 25,
+   "gd": 1
   },
   {
-   "rank": 4,
+   "rank": 5,
+   "team": "藤岡キッカーズ",
+   "points": 21,
+   "played": 15,
+   "won": 5,
+   "drawn": 6,
+   "lost": 4,
+   "gf": 25,
+   "ga": 20,
+   "gd": 5
+  },
+  {
+   "rank": 6,
    "team": "tonan群馬",
    "points": 21,
    "played": 15,
@@ -97,30 +121,6 @@
    "gf": 21,
    "ga": 26,
    "gd": -5
-  },
-  {
-   "rank": 5,
-   "team": "藤岡キッカーズ",
-   "points": 18,
-   "played": 12,
-   "won": 4,
-   "drawn": 6,
-   "lost": 2,
-   "gf": 25,
-   "ga": 17,
-   "gd": 8
-  },
-  {
-   "rank": 6,
-   "team": "PALAISTRA",
-   "points": 15,
-   "played": 13,
-   "won": 3,
-   "drawn": 6,
-   "lost": 4,
-   "gf": 19,
-   "ga": 18,
-   "gd": 1
   },
   {
    "rank": 7,
@@ -137,38 +137,38 @@
   {
    "rank": 8,
    "team": "ルーヴェン高崎",
-   "points": 8,
-   "played": 11,
-   "won": 1,
+   "points": 11,
+   "played": 15,
+   "won": 2,
    "drawn": 5,
-   "lost": 5,
-   "gf": 7,
-   "ga": 11,
-   "gd": -4
+   "lost": 8,
+   "gf": 12,
+   "ga": 24,
+   "gd": -12
   },
   {
    "rank": 9,
    "team": "フェルボーレ富岡",
-   "points": 7,
-   "played": 12,
+   "points": 8,
+   "played": 15,
    "won": 1,
-   "drawn": 4,
-   "lost": 7,
-   "gf": 3,
-   "ga": 32,
-   "gd": -29
+   "drawn": 5,
+   "lost": 9,
+   "gf": 7,
+   "ga": 49,
+   "gd": -42
   },
   {
    "rank": 10,
    "team": "桐生大学附属中",
-   "points": 6,
-   "played": 10,
+   "points": 7,
+   "played": 14,
    "won": 1,
-   "drawn": 3,
-   "lost": 6,
-   "gf": 6,
-   "ga": 19,
-   "gd": -13
+   "drawn": 4,
+   "lost": 9,
+   "gf": 11,
+   "ga": 31,
+   "gd": -20
   }
  ],
  "matches": [
@@ -574,10 +574,10 @@
    "md": 0,
    "date": "2026-05-23",
    "home": "ザスパ群馬",
-   "hs": null,
-   "as": null,
+   "hs": 6,
+   "as": 1,
    "away": "ルーヴェン高崎",
-   "status": "scheduled",
+   "status": "played",
    "venue": "GCCザスパーク（人工芝）"
   },
   {
@@ -602,30 +602,30 @@
    "md": 0,
    "date": "2026-06-06",
    "home": "ルーヴェン高崎",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 0,
    "away": "桐生大学附属中",
-   "status": "scheduled",
+   "status": "played",
    "venue": "FFP フォーレンフットボールパーク"
   },
   {
    "md": 0,
    "date": "2026-06-13",
    "home": "ルーヴェン高崎",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 4,
    "away": "前橋Jr",
-   "status": "scheduled",
+   "status": "played",
    "venue": "FFP フォーレンフットボールパーク"
   },
   {
    "md": 0,
    "date": "2026-06-27",
    "home": "PALAISTRA",
-   "hs": null,
-   "as": null,
+   "hs": 8,
+   "as": 1,
    "away": "フェルボーレ富岡",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
@@ -640,10 +640,10 @@
    "md": 0,
    "date": "2026-06-27",
    "home": "桐生大学附属中",
-   "hs": null,
-   "as": null,
+   "hs": 1,
+   "as": 5,
    "away": "ザスパ群馬",
-   "status": "scheduled",
+   "status": "played",
    "venue": "GCCザスパーク（人工芝）"
   },
   {
@@ -689,27 +689,27 @@
    "md": 0,
    "date": "2026-07-04",
    "home": "フェルボーレ富岡",
-   "hs": null,
-   "as": null,
+   "hs": 1,
+   "as": 1,
    "away": "藤岡キッカーズ",
-   "status": "scheduled",
+   "status": "played",
    "venue": "高崎健康福祉大学高崎高校グラウンド"
   },
   {
    "md": 0,
    "date": "2026-07-04",
    "home": "前橋Jr",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 2,
    "away": "ザスパ群馬",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
    "date": "2026-08-29",
    "home": "PALAISTRA",
    "hs": 3,
-   "as": 3,
+   "as": 1,
    "away": "藤岡キッカーズ",
    "status": "played",
    "venue": "前橋商業高校グラウンド"
@@ -729,7 +729,7 @@
    "date": "2026-08-29",
    "home": "アスブロンサ高崎FC",
    "hs": 4,
-   "as": 0,
+   "as": 1,
    "away": "桐生大学附属中",
    "status": "played",
    "venue": "高崎経済大学附属高校第二グラウンド"
@@ -738,10 +738,10 @@
    "md": 0,
    "date": "2026-08-29",
    "home": "フェルボーレ富岡",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 8,
    "away": "ザスパ群馬",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
@@ -757,7 +757,7 @@
    "date": "2026-09-05",
    "home": "PALAISTRA",
    "hs": 1,
-   "as": 1,
+   "as": 0,
    "away": "ルーヴェン高崎",
    "status": "played",
    "venue": "前橋市立前橋高校"
@@ -785,10 +785,10 @@
    "md": 0,
    "date": "2026-09-05",
    "home": "藤岡キッカーズ",
-   "hs": null,
-   "as": null,
+   "hs": 1,
+   "as": 0,
    "away": "ザスパ群馬",
-   "status": "scheduled",
+   "status": "played",
    "venue": "前橋商業高校グラウンド"
   },
   {
@@ -834,8 +834,8 @@
    "md": 0,
    "date": "2026-09-13",
    "home": "PALAISTRA",
-   "hs": 1,
-   "as": 2,
+   "hs": 0,
+   "as": 1,
    "away": "ザスパ群馬",
    "status": "played",
    "venue": "前橋商業高校グラウンド"
@@ -844,20 +844,20 @@
    "md": 0,
    "date": "2026-09-13",
    "home": "ルーヴェン高崎",
-   "hs": null,
-   "as": null,
+   "hs": 5,
+   "as": 3,
    "away": "桐生大学附属中",
-   "status": "scheduled",
+   "status": "played",
    "venue": "FFP フォーレンフットボールパーク"
   },
   {
    "md": 0,
    "date": "2026-09-19",
    "home": "PALAISTRA",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 0,
    "away": "桐生大学附属中",
-   "status": "scheduled",
+   "status": "played",
    "venue": "前橋育英高校高崎グラウンド"
   },
   {
@@ -903,10 +903,10 @@
    "md": 0,
    "date": "2026-09-22",
    "home": "前橋Jr",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 0,
    "away": "藤岡キッカーズ",
-   "status": "scheduled",
+   "status": "played",
    "venue": "前橋商業高校グラウンド"
   },
   {

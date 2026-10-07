@@ -72,6 +72,7 @@ scraper/update_tournament_results.py が上の source から
 - 山城 vs 立命館宇治
 - 京都外大西 vs 龍谷大平安
 - 大谷 vs 京都廣学館
+- 京都精華 vs 綾部
 
 ## 4回戦（10/25）
 
@@ -83,3 +84,4 @@ scraper/update_tournament_results.py が上の source から
 - 大谷/京都廣学館 vs 京都精華/洛星
 - 京都外大西/龍谷大平安 vs 山城/立命館宇治
 - 向陽/鴨沂 vs 立命館/福知山成美
+- 大谷/京都廣学館 vs 京都精華/綾部
