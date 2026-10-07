@@ -94,7 +94,7 @@ OFFSEASON_MONTHS = (12, 1, 2)
 #   吸収するものが無いところに待ち時間を置くと、発見が遅れるだけなので初回から赤にする。
 #   時間をかけて直したい事情ができたときは、しきい値ではなく
 #   data/fetch_watch_exceptions.json（期限つき例外）で扱うこと。理由が記録に残る。
-NO_RETRY_JOBS = ("build_tournaments",)
+NO_RETRY_JOBS = ("build_tournaments", "u15_hub_page", "u15_pref_pages")
 
 
 def current_season(today: date) -> str:
@@ -389,7 +389,12 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
     # [2026-09-08] build_tournaments を追加。これも continue-on-error: true が付いた
     #   コミットより前のステップで、失敗しても data/tournaments.json は前回の内容が
     #   残るため、大会実績が古いまま静かに公開され続ける（見張りが無かった）。
-    for job in ("sync_teams_from_leagues", "sync_teams_from_pref", "build_tournaments"):
+    # [2026-10-07] U-15のページ生成2本（u15_hub_page / u15_pref_pages）を追加。
+    #   generate_u15_pref_pages.py が長野の「日付未定のまま結果が入った試合」で落ち、
+    #   後ろのコミットまで止まって U-18 の更新が3回連続で止まった。continue-on-error を付けて
+    #   U-18 の更新は止めないかわりに、ここで赤にする。外部通信をしないので初回から赤。
+    for job in ("sync_teams_from_leagues", "sync_teams_from_pref", "build_tournaments",
+                "u15_hub_page", "u15_pref_pages"):
         e = jobs.get(job)
         if not e:
             info.append(f"{job:12s} まだ一度も記録されていません（初回実行前）")

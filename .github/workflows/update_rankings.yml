@@ -571,8 +571,12 @@ jobs:
             echo "scraper/generate_jyouth_page.py がまだありません。スキップ。"
           fi
 
+      #   ⚠️ continue-on-error は外さない（コミットより前。2026-10-06〜07 にここが落ちて
+      #      U-18 を含む更新のコミットが3回連続で止まった）。失敗は fetch_status.json の
+      #      jobs に記録され、最後の audit_pref_freshness.py が赤にする（握りつぶさない）。
       - name: U-15ハブページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
         run: |
           if [ -f scraper/generate_u15_page.py ]; then
             python scraper/generate_u15_page.py
@@ -581,8 +585,12 @@ jobs:
           fi
 
       # ★ U-15県1部ページ（/u15/{県}/）。導出なので push でも走らせる（JSONを手で直して push しただけで反映）
+      #   ⚠️ continue-on-error は外さない（コミットより前。2026-10-06〜07 にここが落ちて
+      #      U-18 を含む更新のコミットが3回連続で止まった）。失敗は fetch_status.json の
+      #      jobs に記録され、最後の audit_pref_freshness.py が赤にする（握りつぶさない）。
       - name: U-15県1部ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
         run: |
           if [ -f scraper/generate_u15_pref_pages.py ]; then
             python scraper/generate_u15_pref_pages.py

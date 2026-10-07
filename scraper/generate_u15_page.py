@@ -21,6 +21,7 @@ data/u15/leagues-2026.json を読み込み、/u15/ ページを生成する。
 import json
 from html import escape as html_escape
 from pathlib import Path
+import fetch_status
 from datetime import datetime as _dt, timedelta as _td, timezone as _tz
 
 
@@ -498,5 +499,22 @@ def main():
     register_sitemap()
 
 
+def _run_and_record(job: str = "u15_hub_page") -> None:
+    """main() を走らせ、成否を fetch_status.json の jobs に記録する（2026-10-07追加）。
+
+    ⚠️ ワークフローではこのステップに continue-on-error: true が付いている。
+       **外してはいけない**（コミットより前のステップなので、赤くすると U-15 の失敗1つで
+       U-18 を含むその日のサイト更新が丸ごと止まる。2026-10-06〜07 に3回連続で実際に起きた）。
+       → **握りつぶすが、必ず表に出す。** ここで成否を記録し、コミット・デプロイより
+         後にいる audit_pref_freshness.py が赤にする（build_tournaments と同じ形）。
+    """
+    try:
+        main()
+    except Exception as e:
+        fetch_status.set_job_result(job, type(e).__name__, str(e))
+        raise
+    fetch_status.set_job_result(job, "ok")
+
+
 if __name__ == "__main__":
-    main()
+    _run_and_record()
