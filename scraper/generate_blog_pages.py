@@ -105,8 +105,11 @@ def parse_markdown_file(path):
 
 
 def md_to_html(body):
-    """Markdown を HTML に変換 (拡張機能付き)"""
-    return md.markdown(
+    """Markdown を HTML に変換 (拡張機能付き)
+
+    表は横スクロールの箱（.table-scroll）で包む（2026-10-07）。列の多い表が
+    スマホで画面の外へはみ出し、ページごと横に揺れていたため。"""
+    html = md.markdown(
         body,
         extensions=[
             "extra",       # テーブル・脚注・etc
@@ -121,6 +124,7 @@ def md_to_html(body):
             }
         },
     )
+    return html.replace("<table>", '<div class="table-scroll"><table>').replace("</table>", "</table></div>")
 
 
 def slugify(text):
@@ -203,7 +207,7 @@ __SCHEMA_ARTICLE__
 __SCHEMA_EXTRA__
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
 
@@ -757,7 +761,7 @@ __SCHEMA_BLOG__
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
 
@@ -1375,7 +1379,7 @@ __SCHEMA_COLLECTION__
   <meta name="theme-color" content="#1e40af">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script>

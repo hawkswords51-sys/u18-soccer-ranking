@@ -277,7 +277,7 @@ def build_html(data):
   <script type="application/ld+json">{faq_json}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script>
@@ -295,7 +295,7 @@ def build_html(data):
       font-weight:600; font-size:0.92em; border:1px solid var(--border-color,#e2e8f0); }}
     .u15-cnt {{ display:inline-block; min-width:18px; text-align:center; padding:1px 6px; border-radius:999px;
       background:var(--primary-color,#1e40af); color:#fff; font-size:0.78em; }}
-    .u15-divs {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }}
+    .u15-divs {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr)); gap:18px; }}
     .u15-div {{ border:1px solid var(--border-color,#d8dde8); border-radius:10px; padding:14px 14px 10px;
       background:var(--bg-card,transparent); }}
     .u15-div h3 {{ margin:0 0 2px; font-size:1.02rem; }}

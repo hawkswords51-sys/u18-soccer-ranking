@@ -105,7 +105,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -157,6 +157,10 @@
         color: #1e3a8a;
         font-weight: 600;
         width: 30%;
+      }
+      /* 2026-10-07 320px幅で表が16pxはみ出していたので、狭い画面だけ余白を詰める */
+      @media (max-width: 400px) {
+        .info-table th, .info-table td { padding: 10px 8px; }
       }
       .feature-grid {
         display: grid;

@@ -6068,3 +6068,24 @@ tr.zone-row > td:first-child {
     max-width: none !important;
     white-space: normal !important;
 }
+
+/* 2026-10-07 スマホ幅（320〜375px）で画面の外へはみ出していた箇所の修正。
+   ・ブログ本文の長いURL（出典欄）は、収まらないときだけ途中で折り返す。
+   ・ブログの表は生成スクリプトが .table-scroll で包む。列が多い表は箱の中で横スクロール。
+   ・チームのフォーメーション図（.ts-pl）は、狭い画面で最小幅を外して4人を1行に収める。
+   ・折り返し禁止のチーム名リンクは、1行に収まらない長い名前のときだけ折り返す
+     （行に収まる名前はこれまでどおり1行。インライン指定に勝つため !important）。 */
+.blog-article__body { overflow-wrap: break-word; }
+.blog-article__body .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+}
+.blog-article__body .table-scroll > table { margin: 0; }
+@media (max-width: 360px) {
+    .ts-line { gap: 4px; }
+    .ts-pl { min-width: 0; padding: 5px 4px; }
+}
+@media (max-width: 480px) {
+    .team-profile-link[style*="white-space:nowrap"] { white-space: normal !important; }
+}

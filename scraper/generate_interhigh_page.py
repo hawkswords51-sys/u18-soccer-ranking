@@ -611,7 +611,9 @@ def league_suffix(name, pref=None):
     else:
         lg_html = html_escape(short_lg)
     inner = f'{html_escape(p)}・{lg_html}' if p else lg_html
-    return (f'<span style="font-size:0.82em;color:var(--text-light,#666);'
+    # <wbr>：校名（折り返し禁止）と（県・リーグ）の間で必ず改行できるように。無いと
+    #   スマホで「（福岡・プリンス九州2部）」が画面の外へはみ出していた（2026-10-07）
+    return (f'<wbr><span style="font-size:0.82em;color:var(--text-light,#666);'
             f'white-space:nowrap;">（{inner}）</span>')
 
 
@@ -1494,7 +1496,7 @@ def main():
   <meta name="theme-color" content="#1e40af">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script type="application/ld+json">{breadcrumb_schema}</script>
