@@ -6,6 +6,11 @@
 - tournaments/senshuken-2026/index.html の次の2区間だけを書き換える（それ以外は手書きのまま）:
     <!-- SENSHUKEN_SUMMARY_START --> 〜 <!-- SENSHUKEN_SUMMARY_END -->  H1直下のAI引用向け一文要約
     <!-- SENSHUKEN_PREFS_START -->   〜 <!-- SENSHUKEN_PREFS_END -->    47都道府県の予選状況・代表校の一覧
+    <!-- SENSHUKEN_BRACKET_START --> 〜 <!-- SENSHUKEN_BRACKET_END -->  本大会のトーナメント表（2026-10-07 追加）
+- 本大会のトーナメント表: data/tournaments/senshuken-final-2026.md の「## トーナメント表（組み合わせ）」が
+  ちょうど32行（48代表＝1回戦16試合＋シード16校）のときだけ、インハイと同じ描画関数で SVG を出す。
+  0行（抽選前）・md無しは区間を空に。1〜31行／33行以上は書きかけとみなして描かずに [要確認]。
+  表の区間は上の2区間と独立して更新する（47県のmdが揃わない等で2区間を止めても、表は止めない。逆も同じ）。
 - 背景: 9/11の週次SEOで「8月時点の内容のまま・県ページへのリンク0本・AI要約なし」が見つかった。
   Googleで選手権予選の検索が増える10〜11月に、47県ページへの入口と「どこまで決まったか」を毎日自動で出す。
 - 安全装置: 47県のmdが揃わない／マーカーが1組ずつ無い場合はページを書き換えずに [要確認] を出して終わる。
@@ -26,6 +31,9 @@ TDIR = ROOT / "data" / "tournaments"
 PAGE = ROOT / "tournaments" / "senshuken-2026" / "index.html"
 S_START, S_END = "<!-- SENSHUKEN_SUMMARY_START -->", "<!-- SENSHUKEN_SUMMARY_END -->"
 P_START, P_END = "<!-- SENSHUKEN_PREFS_START -->", "<!-- SENSHUKEN_PREFS_END -->"
+B_START, B_END = "<!-- SENSHUKEN_BRACKET_START -->", "<!-- SENSHUKEN_BRACKET_END -->"
+FINAL_MD = TDIR / "senshuken-final-2026.md"
+BRACKET_ROWS = 32  # 48代表＝1回戦16試合（開幕戦を含む）＋シード16校
 
 # 地域順（9地域）。(地域, [(slug, 表示名), ...])
 REGIONS = [
@@ -226,7 +234,49 @@ def replace_between(html, start, end, inner):
     return html[:a] + "\n" + inner + "\n      " + html[b:]
 
 
-def main():
+def parse_sections(path):
+    """md を「## 見出し」ごとの行リストにする（generate_interhigh_page.parse_source と同じ分け方）。"""
+    text = path.read_text(encoding="utf-8")
+    parts = text.split("---", 2)
+    body = parts[2] if len(parts) == 3 and text.startswith("---") else text
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+    sections, cur = {}, None
+    for line in body.splitlines():
+        h = re.match(r"^##\s+(.*)$", line)
+        if h:
+            cur = h.group(1).strip()
+            sections[cur] = []
+        elif cur is not None:
+            sections[cur].append(line)
+    return sections
+
+
+def render_bracket():
+    """本大会トーナメント表の区間の中身。描かない（抽選前・書きかけ）ときは空文字。"""
+    if not FINAL_MD.exists():
+        return ""
+    sections = parse_sections(FINAL_MD)
+    key = next((k for k in sections if k.startswith("トーナメント表")), None)
+    rows = [l for l in sections.get(key, []) if l.strip().startswith("- ")] if key else []
+    if not rows:
+        return ""
+    if len(rows) != BRACKET_ROWS:
+        print(f"[要確認] 選手権2026本大会: トーナメント表が{len(rows)}行（{BRACKET_ROWS}行のときだけ描く）。表は出さない。")
+        return ""
+    # 描くときだけ読み込む（import 時に team-profiles 等を読むが、書き込みはしない）
+    from generate_interhigh_page import render_bracket_svg  # noqa: E402
+    svg = render_bracket_svg(sections, sections.get("各県代表", []))
+    if not svg:
+        print("[要確認] 選手権2026本大会: トーナメント表を描けなかった。表は出さない。")
+        return ""
+    return ('      <section class="lp-section" id="bracket">\n'
+            '        <h2><i class="fas fa-network-wired"></i> 本大会トーナメント表（組み合わせ）</h2>\n'
+            f'        {svg}\n'
+            '      </section>')
+
+
+def update_prefs(html):
+    """要約・47県一覧の2区間を書き換えた html を返す。安全装置で止めるときは None。"""
     all_info = {}
     missing = []
     for _, prefs in REGIONS:
@@ -238,8 +288,8 @@ def main():
             info["tokyo"] = slug == "tokyo"
             all_info[slug] = info
     if missing or len(all_info) != 47:
-        print(f"[要確認] 選手権2026: mdが揃っていない（不足: {', '.join(missing)}）。ページは書き換えない。")
-        return 0
+        print(f"[要確認] 選手権2026: mdが揃っていない（不足: {', '.join(missing)}）。要約・47県一覧は書き換えない。")
+        return None
     n_reps = 0
     rep_list = []
     for _, prefs in REGIONS:
@@ -250,20 +300,39 @@ def main():
                     rep_list.append(f"{name}{lb}・{w}" if lb else f"{name}・{w}")
     n_started = sum(1 for i in all_info.values() if i["n_played"] > 0)
     if n_reps > TOTAL_REPS:
-        print(f"[要確認] 選手権2026: 代表が{n_reps}校と48を超えた。ページは書き換えない。")
-        return 0
+        print(f"[要確認] 選手権2026: 代表が{n_reps}校と48を超えた。要約・47県一覧は書き換えない。")
+        return None
 
-    html = PAGE.read_text(encoding="utf-8")
     new = replace_between(html, S_START, S_END, render_summary(all_info, n_reps, n_started, rep_list))
     new = replace_between(new, P_START, P_END, render_prefs(all_info)) if new else None
     if new is None:
-        print("[要確認] 選手権2026: マーカーが1組ずつ見つからない。ページは書き換えない。")
-        return 0
+        print("[要確認] 選手権2026: 要約・47県一覧のマーカーが1組ずつ見つからない。この2区間は書き換えない。")
+        return None
     for w in warnings:
         print(f"[要確認] {w}")
+    print(f"選手権2026: 結果あり{n_started}都道府県・代表{n_reps}/{TOTAL_REPS}")
+    return new
+
+
+def main():
+    html = PAGE.read_text(encoding="utf-8")
+    new = html
+    # 本大会トーナメント表（独立。失敗しても下の2区間は止めない）
+    try:
+        b = replace_between(new, B_START, B_END, render_bracket())
+    except Exception as e:  # 表の不具合で毎日の更新全体を止めない
+        print(f"[要確認] 選手権2026本大会: トーナメント表の生成で例外 {type(e).__name__}: {e}。表は出さない。")
+        b = replace_between(new, B_START, B_END, "")
+    if b is None:
+        print("[要確認] 選手権2026: トーナメント表のマーカーが1組ずつ見つからない。表の区間は書き換えない。")
+    else:
+        new = b
+    p = update_prefs(new)
+    if p is not None:
+        new = p
     if new != html:
         PAGE.write_text(new, encoding="utf-8")
-        print(f"選手権2026特設ページを更新: 結果あり{n_started}都道府県・代表{n_reps}/{TOTAL_REPS}")
+        print("選手権2026特設ページを更新")
     else:
         print("選手権2026特設ページ: 変更なし")
     return 0
