@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-08T00:38:01+09:00",
+  "updatedAt": "2026-10-08T04:37:38+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -222,7 +222,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "aomori": {
@@ -243,7 +243,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化72試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "chiba": {
@@ -286,7 +286,7 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化71試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "fukui": {
       "season": "2026",
@@ -306,13 +306,13 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "fukuoka": {
       "result": "ok",
       "result_note": "消化72試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -349,7 +349,7 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化90試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "gifu": {
       "season": "2026",
@@ -370,13 +370,13 @@
       "status": "warn",
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "gunma": {
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -397,7 +397,7 @@
     "hiroshima": {
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E の取得に失敗 (HTTPSConnectionPool(host='www.sportsonline.jp', port=443): Max retries exceeded with url: /reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -418,7 +418,7 @@
     "hokkaido": {
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": true,
       "single_round": false,
@@ -454,7 +454,7 @@
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-09-19",
       "verify_items": [
         {
@@ -471,7 +471,7 @@
     "ibaraki": {
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -570,7 +570,7 @@
     "kanagawa": {
       "result": "ok",
       "result_note": "消化62試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -607,12 +607,12 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "kumamoto": {
       "result": "ok",
       "result_note": "消化68試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -649,7 +649,7 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "mie": {
       "season": "2026",
@@ -669,7 +669,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "miyagi": {
@@ -693,7 +693,7 @@
     "miyazaki": {
       "result": "ok",
       "result_note": "消化77試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -729,7 +729,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "nagasaki": {
@@ -772,7 +772,7 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "niigata": {
       "season": "2026",
@@ -792,7 +792,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "oita": {
@@ -813,13 +813,13 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化63試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "okayama": {
       "result": "ok",
       "result_note": "消化65試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -838,9 +838,9 @@
       "last_updated": "2026-10-07"
     },
     "okinawa": {
-      "result": "ok",
-      "result_note": "消化47試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result": "verify_failed",
+      "result_note": "検算不一致 ['既存にあって公式に無い試合が1件（例: FC琉球鹿島朝日 0-14 名護）'] …",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -856,7 +856,13 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-07"
+      "last_updated": "2026-10-07",
+      "verify_items": [
+        {
+          "team": null,
+          "item": "既存にあって公式に無い試合が1件（例: FC琉球鹿島朝日 0-14 名護）"
+        }
+      ]
     },
     "osaka": {
       "season": "2026",
@@ -877,7 +883,7 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化65試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "osaka-2a": {
       "season": "2026",
@@ -898,7 +904,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化40試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "osaka-2b": {
       "season": "2026",
@@ -919,7 +925,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化40試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "osaka-2c": {
       "season": "2026",
@@ -940,12 +946,12 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化39試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "saga": {
       "result": "ok",
       "result_note": "消化44試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -982,12 +988,12 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化73試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "shiga": {
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1008,7 +1014,7 @@
     "shimane": {
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E の取得に失敗 (HTTPSConnectionPool(host='www.sportsonline.jp', port=443): Max retries exceeded with url: /reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ER%5B&rallyid=U%5EYQ%5E (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1047,7 +1053,7 @@
     "tochigi": {
       "result": "ok",
       "result_note": "消化68試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1083,13 +1089,13 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化73試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "tokyo": {
       "result": "ok",
       "result_note": "消化71試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1131,7 +1137,7 @@
     "toyama": {
       "result": "ok",
       "result_note": "消化52試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1168,12 +1174,12 @@
       "last_updated": "2026-10-07",
       "result": "ok",
       "result_note": "消化79試合に更新（検算一致）",
-      "result_date": "2026-10-07"
+      "result_date": "2026-10-08"
     },
     "yamagata": {
       "result": "ok",
       "result_note": "消化79試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1194,7 +1200,7 @@
     "yamaguchi": {
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX%5eS%5d&rallyid=U%5eZ%5b%5b の取得に失敗 (HTTPSConnectionPool(host='www.sportsonline.jp', port=443): Max retries exceeded with url: /reportv2/PublisherFull/viewdata.aspx?parentid=RX%5ES%5D&rallyid=U%5EZ%5B%5B (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1016)')))))",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "season": "2026",
       "complete": false,
       "single_round": false,
@@ -1230,7 +1236,7 @@
       "status": "ok",
       "result": "ok",
       "result_note": "消化44試合に更新（検算一致）",
-      "result_date": "2026-10-07",
+      "result_date": "2026-10-08",
       "last_updated": "2026-10-07"
     },
     "_meta": {
@@ -1263,223 +1269,223 @@
     "team_season:aomori-yamada": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
       "note": "試合16・選手31（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
       "note": "試合16・選手34（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
       "note": "試合16・選手35（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
       "note": "試合15・選手36（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:higashiyama": {
       "result": "ok",
       "note": "試合16・選手31（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:jubilo-iwata-u18": {
       "result": "ok",
       "note": "試合16・選手33（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:kamimura-gakuen": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:kashima-youth": {
       "result": "ok",
       "note": "試合16・選手32（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:kashiwa-reysol-u18": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:kawasaki-frontale-u18": {
       "result": "ok",
       "note": "試合16・選手31（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:maebashi-ikuei": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）／選手一覧を据え置き（出場試合数が合わない 1件：6 山本 颯吾: 一覧12 ≠ 出場記録11）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:nagoya-grampus-u18": {
       "result": "ok",
       "note": "試合16・選手34（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:ohtsu": {
       "result": "ok",
       "note": "試合14・選手31（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:ryukei-kashiwa": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
       "note": "試合16・選手31（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:shohei": {
       "result": "ok",
       "note": "試合16・選手32（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
       "note": "試合16・選手32（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:tokyo-verdy-youth": {
       "result": "ok",
       "note": "試合16・選手29（新規取得0）／選手一覧を据え置き（出場試合数が合わない 2件：23 渡部 直宏: 一覧4 ≠ 出場記録3）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:vegalta-sendai-youth": {
       "result": "ok",
       "note": "試合16・選手35（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
       "note": "試合16・選手33（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:yokohama-fc-youth": {
       "result": "ok",
       "note": "試合16・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "team_season:yonago-kita": {
       "result": "ok",
       "note": "試合15・選手30（新規取得0）",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-hokkaido": {
       "result": "ok",
       "note": "試合56・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-tohoku": {
       "result": "ok",
       "note": "試合80・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-kanto-1": {
       "result": "ok",
       "note": "試合68・partial0・none5・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-kanto-2": {
       "result": "ok",
       "note": "試合66・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-hokushinetsu-1": {
       "result": "ok",
       "note": "試合80・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-hokushinetsu-2": {
       "result": "ok",
       "note": "試合56・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-tokai": {
       "result": "ok",
       "note": "試合70・partial1・none1・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-kansai-1": {
       "result": "ok",
       "note": "試合75・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-kansai-2": {
       "result": "ok",
       "note": "試合75・partial1・none3・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-chugoku": {
       "result": "ok",
       "note": "試合75・partial1・none4・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-shikoku": {
       "result": "ok",
       "note": "試合70・partial0・none0・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-kyushu-1": {
       "result": "ok",
       "note": "試合70・partial1・none1・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "prince_scorers:prince-kyushu-2": {
       "result": "ok",
       "note": "試合67・partial0・none8・スコア不一致0",
-      "date": "2026-10-07",
+      "date": "2026-10-08",
       "since": ""
     },
     "u15_hub_page": {
