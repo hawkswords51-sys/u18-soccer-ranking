@@ -443,13 +443,49 @@ def render_bracket_svg(sections):
                 y += 2 * ROW_H
         return y
 
-    bottom = max(assign_base_y(wings["L"]), assign_base_y(wings["R"]))
-    height = bottom + 28
+    endL = assign_base_y(wings["L"])
+    endR = assign_base_y(wings["R"])
 
     for li in range(1, num_levels):
         for ni, nd in enumerate(levels[li]):
             c1, c2 = levels[li - 1][2 * ni], levels[li - 1][2 * ni + 1]
             nd["yj"] = (c1["yj"] + c2["yj"]) / 2
+
+    # シード（不戦勝）で左右の山の行数が違うと、準決勝の高さがずれて決勝に段差が出る。
+    # 短い側の山を丸ごと上下にずらし、左右の準決勝の高さをそろえる。
+    def wing_nodes_all(side):
+        out = []
+        for li in range(num_levels - 1):
+            cnt = len(levels[li]) // 2
+            out.extend(levels[li][:cnt] if side == "L" else levels[li][cnt:])
+        return out
+
+    if num_levels >= 2:
+        delta = levels[-2][1]["yj"] - levels[-2][0]["yj"]
+        if delta:
+            side, d = ("L", delta) if (endL - TOP) <= (endR - TOP) else ("R", -delta)
+            for nd in wing_nodes_all(side):
+                for k in ("ya", "yb", "yj"):
+                    if k in nd:
+                        nd[k] += d
+            if side == "L":
+                endL += d
+            else:
+                endR += d
+            # 上にはみ出したら全体を下げる
+            top_y = min(nd["ya"] for nd in base) - ROW_H / 2
+            if top_y < TOP:
+                shift = TOP - top_y
+                for lvl in levels:
+                    for nd in lvl:
+                        for k in ("ya", "yb", "yj"):
+                            if k in nd:
+                                nd[k] += shift
+                endL += shift
+                endR += shift
+
+    bottom = max(endL, endR)
+    height = bottom + 28
 
     xsL = [LABEL_W + (k + 1) * LVL_W for k in range(wing_levels)]
     xsR = [width - x for x in xsL]
