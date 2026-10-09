@@ -26,6 +26,12 @@ END = "<!-- UNIV_SIGNINGS_END -->"
 #   150行目=見出しの文字そのもの（「{lg}リーグの大学」）。
 #   130行目がループの駆動元なので、ここに無いリーグは（検証を通れば）黙ってページから消える。
 LEAGUE_ORDER = ["関東1部", "関東2部", "関東3部", "神奈川県", "北信越", "東海", "関西", "中国", "九州"]
+# よくある質問（画面）と構造化データ（FAQPage）の差し替え範囲。人数は毎回計算して入れる＝手で書かない
+FAQ_START = "<!-- UNIV_FAQ_START -->"
+FAQ_END = "<!-- UNIV_FAQ_END -->"
+FAQLD_START = "<!-- UNIV_FAQLD_START -->"
+FAQLD_END = "<!-- UNIV_FAQLD_END -->"
+HS_SIGNINGS = ROOT / "data" / "pro-signings.yml"  # 高校・ユース年代の内定（/pro-signings/ と同じデータ）
 
 
 def esc(s):
@@ -103,6 +109,53 @@ def validate(players):
     return errs
 
 
+def replace_between(src, start, end, body):
+    if start not in src or end not in src:
+        print(f"[エラー] マーカーが見つかりません: {start}")
+        sys.exit(1)
+    pre, rest = src.split(start, 1)
+    _, post = rest.split(end, 1)
+    return pre + start + "\n" + body + end + post
+
+
+def hs_signing_counts():
+    """/pro-signings/ と同じ数え方（status: pro 以外＝内定者、pro＝プロ契約済み）で人数を返す。
+    2種登録だけの選手は pro-signings.yml に載せない運用なので、数にも入らない。"""
+    import yaml
+    data = yaml.safe_load(HS_SIGNINGS.read_text(encoding="utf-8")) or {}
+    sign = data.get("signings") or []
+    pro = sum(1 for p in sign if p.get("status") == "pro")
+    return len(sign) - pro, pro
+
+
+def build_faq(data, total, koutairen, youth, home):
+    """[(質問, 答えのHTML), ...]。画面とFAQPageの両方にこのまま使う。"""
+    y, m = data["updated"].split("-")[:2]
+    asof = f"{int(y)}年{int(m)}月時点"
+    hs_naitei, hs_pro = hs_signing_counts()
+    scale = "それを上回る規模で" if total > hs_naitei + hs_pro else "それに並ぶ規模で"
+    return [
+        ("大学からJリーグに内定した選手はどのくらいいますか？",
+         f"2027年シーズン加入の内定発表は年間を通じて続きます。当ページでは{asof}で{total}人を掲載しており、"
+         f"うち高体連（高校サッカー部）出身が{koutairen}人、Jクラブなどのクラブユース出身が{youth}人です。"),
+        ("ユースから昇格できなかった選手も大学からプロになれますか？",
+         f"なれます。今回の一覧にはユースからトップ昇格できずに大学へ進み、育ったクラブへ「復帰内定」を勝ち取った選手が{home}人います。"
+         "大学サッカーは高校年代で夢が途切れた選手にとっての敗者復活の舞台になっています。"),
+        ("高卒でプロになる選手との違いは？",
+         f"高校・ユースから直接プロ入りする選手は、2027年加入の内定者{hs_naitei}人・すでにプロ契約済み{hs_pro}人"
+         f'（<a href="/pro-signings/">高校・ユース年代の内定ページ</a>）。'
+         f"大学経由は{scale}、22歳前後で心身が完成してから加入するため即戦力として期待されます。"),
+        ("内定＝すぐプロ入りですか？",
+         "多くは卒業後の2027年シーズンからの加入ですが、在学中に「特別指定選手」としてJリーグの試合に出場する選手もいます。"
+         "また「28年加入」注記の選手は大学3年以下での早期内定です。"),
+        ("経歴の情報は何で確認していますか？",
+         "各Jクラブ公式サイトの加入内定リリース（経歴欄）を第一の出典とし、確認できない場合は大学サッカー部・高校の公式発表で補っています。"
+         "公式に確認できない項目は「—」として推測では掲載していません。"),
+        ("この一覧は更新されますか？",
+         "内定発表は秋から冬にかけて増え続けるため、随時追加していきます。"),
+    ]
+
+
 def main():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     players = data["players"]
@@ -171,6 +224,21 @@ def main():
     pre, rest = src.split(START, 1)
     _, post = rest.split(END, 1)
     src = pre + START + "\n" + html + END + post
+    # よくある質問：画面の表示と構造化データ（FAQPage）を同じ質問・答えから作る
+    faq = build_faq(data, total, koutairen, youth, home)
+    faq_html = "".join(
+        f'        <h3 style="margin:14px 0 6px;">Q. {esc(q)}</h3>\n'
+        f'        <p style="line-height:1.9;">{a}</p>\n'
+        for q, a in faq
+    )
+    faq_ld = json.dumps({
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": q,
+                        "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq],
+    }, ensure_ascii=False)
+    src = replace_between(src, FAQ_START, FAQ_END, faq_html)
+    src = replace_between(src, FAQLD_START, FAQLD_END,
+                          f'  <script type="application/ld+json">{faq_ld}</script>\n  ')
     # 掲載人数などの本文中の数字も更新
     src = re.sub(r"<!--COUNT-->\d+<!--/COUNT-->", f"<!--COUNT-->{total}<!--/COUNT-->", src)
     src = re.sub(r"<!--KTR-->\d+<!--/KTR-->", f"<!--KTR-->{koutairen}<!--/KTR-->", src)
