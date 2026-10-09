@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-09T10:27:46+09:00",
+  "updatedAt": "2026-10-09T11:27:37+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -812,7 +812,7 @@
       "result_streak": 1,
       "status": "warn",
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://www.ofa.or.jp/news/tournaments/high-school/ の取得に失敗 (HTTPSConnectionPool(host='www.ofa.or.jp', port=443): Max retries exceeded with url: /news/tournaments/high-school/ (Caused by NameResolutionError(\"HTTPSConnection(host='www.ofa.or.jp', port=443): Failed to resolve 'www.ofa.or.jp' ([Errno -3] Temporary failure in name resolution)\"))))",
+      "result_note": "取得失敗 (版日付(2026-10-04)より後の日付を持つ消化済み試合が1件ある（例: 2026-10-06 大分鶴崎 vs ヴェルスパ大分）)",
       "result_date": "2026-10-09",
       "last_updated": "2026-10-08"
     },
