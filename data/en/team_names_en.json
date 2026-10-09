@@ -16,7 +16,8 @@
     "checked_by_kei": "2026-09-21：市立船橋=Ichiritsu Funabashi／流経大柏=Ryutsu Keizai University Kashiwa（学校の自称 RKU Kashiwa ではなくJ.LEAGUE英語版の長い表記で統一）／日大藤沢=Nihon University Fujisawa Senior High School をKeiが確認。",
     "jp_page_note": "jp_page は data/team-profiles の id から引いた日本語チームページ。teams.json の名前と team-profiles の name: が違うチーム（札幌大谷・浦和レッズユース・今治東・九国大付）は 2026-09-21 に手で補った。 2026-09-21：チームページがあるのにリンクが付いていなかった21件を追加（team-profiles の name と teams.json の表記が違うのが原因）。",
     "clubs_extra_note": "teams（＝プレミア・プリンス所属チーム）に無いクラブ・学校の英語名。代表／プロ内定ページで使う。Jクラブ＝J.LEAGUE英語版、学校＝学校公式。alias-of: は表記違い（「○○高」など）。",
-    "top_club_note": "Jクラブのトップチーム名には jp_page を付けない（当サイトのチームページはU-18チームのページのため）。2026-09-21にFC今治・カターレ富山の誤リンクを取り消した。"
+    "top_club_note": "Jクラブのトップチーム名には jp_page を付けない（当サイトのチームページはU-18チームのページのため）。2026-09-21にFC今治・カターレ富山の誤リンクを取り消した。",
+    "university_note": "2026-10-09 追加：大学名＝大学自身の英語表記（英語サイト・フッター等）。自己表記が無い/読めない大学だけ NIC-Japan（大学改革支援・学位授与機構）等。Kei決定：桃山学院大学＝St. Andrew's University (Momoyama Gakuin)／富士大学＝Fuji University（2027年4月の改称後に Iwate Fuji University へ直す）。東北工業大学・鹿屋体育大学は英語で University と名乗らない。北海道教育大学岩見沢校＝大学は IWAMIZAWA としか書かないので括弧書き。キーは正式名（◯◯大学）と pro-signings-2027.json の略称（◯◯大＝alias-of）の両方。同日、大学内定選手のU-18出身校10校も追加（佐賀北高校は公式英語表記が無いので漢字のまま）。"
   },
   "teams": {
     "AC長野パルセイロU-18": {
@@ -1578,6 +1579,1076 @@
       "en": "Sinpyeong High School (South Korea)",
       "source": "https://www.urawa-reds.co.jp/topteamtopics/245807/ （校名は韓国語「신평」の文化観光部式ローマ字）",
       "confidence": "medium"
+    },
+    "IPU・環太平洋大学": {
+      "en": "International Pacific University",
+      "source": "https://www.ipu-japan.ac.jp/",
+      "confidence": "high"
+    },
+    "IPU・環太平洋大": {
+      "en": "International Pacific University",
+      "source": "alias-of:IPU・環太平洋大学",
+      "confidence": "high"
+    },
+    "びわこ成蹊スポーツ大学": {
+      "en": "Biwako Seikei Sport College",
+      "source": "https://www.nicjp.niad.ac.jp/en/institute/daigaku000562.html",
+      "confidence": "high"
+    },
+    "びわこ成蹊スポーツ大": {
+      "en": "Biwako Seikei Sport College",
+      "source": "alias-of:びわこ成蹊スポーツ大学",
+      "confidence": "high"
+    },
+    "ノースアジア大学": {
+      "en": "North Asia University",
+      "source": "https://www.nau.ac.jp/bekka",
+      "confidence": "high"
+    },
+    "ノースアジア大": {
+      "en": "North Asia University",
+      "source": "alias-of:ノースアジア大学",
+      "confidence": "high"
+    },
+    "中京大学": {
+      "en": "Chukyo University",
+      "source": "https://www.chukyo-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "中京大": {
+      "en": "Chukyo University",
+      "source": "alias-of:中京大学",
+      "confidence": "high"
+    },
+    "中部大学": {
+      "en": "Chubu University",
+      "source": "https://www.chubu.ac.jp/english/",
+      "confidence": "high"
+    },
+    "中部大": {
+      "en": "Chubu University",
+      "source": "alias-of:中部大学",
+      "confidence": "high"
+    },
+    "九州共立大学": {
+      "en": "Kyushu Kyoritsu University",
+      "source": "https://www.kyukyo-u.ac.jp/",
+      "confidence": "high"
+    },
+    "九州共立大": {
+      "en": "Kyushu Kyoritsu University",
+      "source": "alias-of:九州共立大学",
+      "confidence": "high"
+    },
+    "九州国際大学": {
+      "en": "Kyushu International University",
+      "source": "https://www.kiu.ac.jp/",
+      "confidence": "high"
+    },
+    "九州国際大": {
+      "en": "Kyushu International University",
+      "source": "alias-of:九州国際大学",
+      "confidence": "high"
+    },
+    "九州産業大学": {
+      "en": "Kyushu Sangyo University",
+      "source": "https://www.kyusan-u.ac.jp/",
+      "confidence": "high"
+    },
+    "九州産業大": {
+      "en": "Kyushu Sangyo University",
+      "source": "alias-of:九州産業大学",
+      "confidence": "high"
+    },
+    "仙台大学": {
+      "en": "Sendai University",
+      "source": "https://www.sendaidaigaku.jp/english/",
+      "confidence": "high"
+    },
+    "仙台大": {
+      "en": "Sendai University",
+      "source": "alias-of:仙台大学",
+      "confidence": "high"
+    },
+    "八戸学院大学": {
+      "en": "Hachinohe Gakuin University",
+      "source": "https://kosei.hachinohe-u.ac.jp/eng/university-jc/",
+      "confidence": "high"
+    },
+    "八戸学院大": {
+      "en": "Hachinohe Gakuin University",
+      "source": "alias-of:八戸学院大学",
+      "confidence": "high"
+    },
+    "北海学園大学": {
+      "en": "Hokkai-Gakuen University",
+      "source": "https://www.hgu.jp/en/about/history.html",
+      "confidence": "high"
+    },
+    "北海学園大": {
+      "en": "Hokkai-Gakuen University",
+      "source": "alias-of:北海学園大学",
+      "confidence": "high"
+    },
+    "北海道大学": {
+      "en": "Hokkaido University",
+      "source": "https://www.global.hokudai.ac.jp/",
+      "confidence": "high"
+    },
+    "北海道大": {
+      "en": "Hokkaido University",
+      "source": "alias-of:北海道大学",
+      "confidence": "high"
+    },
+    "北海道教育大学岩見沢校": {
+      "en": "Hokkaido University of Education (Iwamizawa)",
+      "source": "https://www.hokkyodai.ac.jp/eng/index.html",
+      "confidence": "high"
+    },
+    "北翔大学": {
+      "en": "Hokusho University",
+      "source": "https://www.hokusho-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "北翔大": {
+      "en": "Hokusho University",
+      "source": "alias-of:北翔大学",
+      "confidence": "high"
+    },
+    "北陸大学": {
+      "en": "Hokuriku University",
+      "source": "https://iec.hokuriku-u.ac.jp/en/",
+      "confidence": "high"
+    },
+    "北陸大": {
+      "en": "Hokuriku University",
+      "source": "alias-of:北陸大学",
+      "confidence": "high"
+    },
+    "同志社大学": {
+      "en": "Doshisha University",
+      "source": "https://www.doshisha.ac.jp/en/",
+      "confidence": "high"
+    },
+    "同志社大": {
+      "en": "Doshisha University",
+      "source": "alias-of:同志社大学",
+      "confidence": "high"
+    },
+    "名古屋産業大学": {
+      "en": "Nagoya Sangyo University",
+      "source": "https://www.nagoya-su.ac.jp/",
+      "confidence": "high"
+    },
+    "名古屋産業大": {
+      "en": "Nagoya Sangyo University",
+      "source": "alias-of:名古屋産業大学",
+      "confidence": "high"
+    },
+    "名城大学": {
+      "en": "Meijo University",
+      "source": "https://www.meijo-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "名城大": {
+      "en": "Meijo University",
+      "source": "alias-of:名城大学",
+      "confidence": "high"
+    },
+    "周南公立大学": {
+      "en": "Shunan University",
+      "source": "https://www.shunan-u.ac.jp/en/",
+      "confidence": "high"
+    },
+    "周南公立大": {
+      "en": "Shunan University",
+      "source": "alias-of:周南公立大学",
+      "confidence": "high"
+    },
+    "四国学院大学": {
+      "en": "Shikoku Gakuin University",
+      "source": "https://www.sg-u.ac.jp/",
+      "confidence": "high"
+    },
+    "四国学院大": {
+      "en": "Shikoku Gakuin University",
+      "source": "alias-of:四国学院大学",
+      "confidence": "high"
+    },
+    "四日市大学": {
+      "en": "Yokkaichi University",
+      "source": "https://www.yokkaichi-u.ac.jp/issc/main/english.html",
+      "confidence": "high"
+    },
+    "四日市大": {
+      "en": "Yokkaichi University",
+      "source": "alias-of:四日市大学",
+      "confidence": "high"
+    },
+    "國學院大學": {
+      "en": "Kokugakuin University",
+      "source": "https://www.kokugakuin.ac.jp/en/",
+      "confidence": "high"
+    },
+    "國學院大": {
+      "en": "Kokugakuin University",
+      "source": "alias-of:國學院大學",
+      "confidence": "high"
+    },
+    "大阪体育大学": {
+      "en": "Osaka University of Health and Sport Sciences",
+      "source": "https://www.ouhs.jp/",
+      "confidence": "high"
+    },
+    "大阪体育大": {
+      "en": "Osaka University of Health and Sport Sciences",
+      "source": "alias-of:大阪体育大学",
+      "confidence": "high"
+    },
+    "大阪商業大学": {
+      "en": "Osaka University of Commerce",
+      "source": "https://ouc.daishodai.ac.jp/english/",
+      "confidence": "high"
+    },
+    "大阪商業大": {
+      "en": "Osaka University of Commerce",
+      "source": "alias-of:大阪商業大学",
+      "confidence": "high"
+    },
+    "大阪学院大学": {
+      "en": "Osaka Gakuin University",
+      "source": "https://www.ogu.ac.jp/english/",
+      "confidence": "high"
+    },
+    "大阪学院大": {
+      "en": "Osaka Gakuin University",
+      "source": "alias-of:大阪学院大学",
+      "confidence": "high"
+    },
+    "大阪経済大学": {
+      "en": "Osaka University of Economics",
+      "source": "https://www.osaka-ue.ac.jp/english/index.html",
+      "confidence": "high"
+    },
+    "大阪経済大": {
+      "en": "Osaka University of Economics",
+      "source": "alias-of:大阪経済大学",
+      "confidence": "high"
+    },
+    "宮崎産業経営大学": {
+      "en": "Miyazaki Sangyo-Keiei University",
+      "source": "https://www.miyasankei-u.ac.jp/",
+      "confidence": "high"
+    },
+    "宮崎産業経営大": {
+      "en": "Miyazaki Sangyo-Keiei University",
+      "source": "alias-of:宮崎産業経営大学",
+      "confidence": "high"
+    },
+    "富士大学": {
+      "en": "Fuji University",
+      "source": "https://www.nicjp.niad.ac.jp/en/institute/daigaku000213.html",
+      "confidence": "high"
+    },
+    "富士大": {
+      "en": "Fuji University",
+      "source": "alias-of:富士大学",
+      "confidence": "high"
+    },
+    "専修大学": {
+      "en": "Senshu University",
+      "source": "https://www.senshu-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "専修大": {
+      "en": "Senshu University",
+      "source": "alias-of:専修大学",
+      "confidence": "high"
+    },
+    "山口大学": {
+      "en": "Yamaguchi University",
+      "source": "https://www.yamaguchi-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "山口大": {
+      "en": "Yamaguchi University",
+      "source": "alias-of:山口大学",
+      "confidence": "high"
+    },
+    "岐阜協立大学": {
+      "en": "Gifu Kyoritsu University",
+      "source": "https://www.gku.ac.jp/english/index.html",
+      "confidence": "high"
+    },
+    "岐阜協立大": {
+      "en": "Gifu Kyoritsu University",
+      "source": "alias-of:岐阜協立大学",
+      "confidence": "high"
+    },
+    "川崎医療福祉大学": {
+      "en": "Kawasaki University of Medical Welfare",
+      "source": "https://w.kawasaki-m.ac.jp/language/english/",
+      "confidence": "high"
+    },
+    "川崎医療福祉大": {
+      "en": "Kawasaki University of Medical Welfare",
+      "source": "alias-of:川崎医療福祉大学",
+      "confidence": "high"
+    },
+    "常葉大学": {
+      "en": "Tokoha University",
+      "source": "https://www.nicjp.niad.ac.jp/en/institute/daigaku000507.html",
+      "confidence": "high"
+    },
+    "常葉大": {
+      "en": "Tokoha University",
+      "source": "alias-of:常葉大学",
+      "confidence": "high"
+    },
+    "広島大学": {
+      "en": "Hiroshima University",
+      "source": "https://www.hiroshima-u.ac.jp/en",
+      "confidence": "high"
+    },
+    "広島大": {
+      "en": "Hiroshima University",
+      "source": "alias-of:広島大学",
+      "confidence": "high"
+    },
+    "広島修道大学": {
+      "en": "Hiroshima Shudo University",
+      "source": "https://www.shudo-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "広島修道大": {
+      "en": "Hiroshima Shudo University",
+      "source": "alias-of:広島修道大学",
+      "confidence": "high"
+    },
+    "広島文化学園大学": {
+      "en": "Hiroshima Bunka Gakuen University",
+      "source": "https://www.nicjp.niad.ac.jp/en/institute/daigaku000705.html",
+      "confidence": "high"
+    },
+    "広島文化学園大": {
+      "en": "Hiroshima Bunka Gakuen University",
+      "source": "alias-of:広島文化学園大学",
+      "confidence": "high"
+    },
+    "広島経済大学": {
+      "en": "Hiroshima University of Economics",
+      "source": "https://www.hue.ac.jp/english/index.html",
+      "confidence": "high"
+    },
+    "広島経済大": {
+      "en": "Hiroshima University of Economics",
+      "source": "alias-of:広島経済大学",
+      "confidence": "high"
+    },
+    "愛媛大学": {
+      "en": "Ehime University",
+      "source": "https://www.ehime-u.ac.jp/en/",
+      "confidence": "high"
+    },
+    "愛媛大": {
+      "en": "Ehime University",
+      "source": "alias-of:愛媛大学",
+      "confidence": "high"
+    },
+    "愛知東邦大学": {
+      "en": "Aichi Toho University",
+      "source": "https://www.aichi-toho.ac.jp/",
+      "confidence": "high"
+    },
+    "愛知東邦大": {
+      "en": "Aichi Toho University",
+      "source": "alias-of:愛知東邦大学",
+      "confidence": "high"
+    },
+    "新潟大学": {
+      "en": "Niigata University",
+      "source": "https://www.niigata-u.ac.jp/en/",
+      "confidence": "high"
+    },
+    "新潟大": {
+      "en": "Niigata University",
+      "source": "alias-of:新潟大学",
+      "confidence": "high"
+    },
+    "新潟医療福祉大学": {
+      "en": "Niigata University of Health and Welfare",
+      "source": "https://en.nuhw.ac.jp/",
+      "confidence": "high"
+    },
+    "新潟医療福祉大": {
+      "en": "Niigata University of Health and Welfare",
+      "source": "alias-of:新潟医療福祉大学",
+      "confidence": "high"
+    },
+    "新潟産業大学": {
+      "en": "Niigata Sangyo University",
+      "source": "https://www.nsu.ac.jp/",
+      "confidence": "high"
+    },
+    "新潟産業大": {
+      "en": "Niigata Sangyo University",
+      "source": "alias-of:新潟産業大学",
+      "confidence": "high"
+    },
+    "新潟経営大学": {
+      "en": "Niigata University of Management",
+      "source": "https://www.niigataum.ac.jp/english/",
+      "confidence": "high"
+    },
+    "新潟経営大": {
+      "en": "Niigata University of Management",
+      "source": "alias-of:新潟経営大学",
+      "confidence": "high"
+    },
+    "日本大学": {
+      "en": "Nihon University",
+      "source": "https://www.nihon-u.ac.jp/en/",
+      "confidence": "high"
+    },
+    "日本大": {
+      "en": "Nihon University",
+      "source": "alias-of:日本大学",
+      "confidence": "high"
+    },
+    "日本体育大学": {
+      "en": "Nippon Sport Science University",
+      "source": "https://www.nittai.ac.jp/eng/",
+      "confidence": "high"
+    },
+    "日本体育大": {
+      "en": "Nippon Sport Science University",
+      "source": "alias-of:日本体育大学",
+      "confidence": "high"
+    },
+    "日本文理大学": {
+      "en": "Nippon Bunri University",
+      "source": "https://www.nbu.ac.jp/",
+      "confidence": "high"
+    },
+    "日本文理大": {
+      "en": "Nippon Bunri University",
+      "source": "alias-of:日本文理大学",
+      "confidence": "high"
+    },
+    "日本福祉大学": {
+      "en": "Nihon Fukushi University",
+      "source": "https://www.n-fukushi.ac.jp/english/",
+      "confidence": "high"
+    },
+    "日本福祉大": {
+      "en": "Nihon Fukushi University",
+      "source": "alias-of:日本福祉大学",
+      "confidence": "high"
+    },
+    "日本経済大学": {
+      "en": "Japan University of Economics",
+      "source": "https://www.jue.ac.jp/en/ABOUT_JUE/Message_from_the_President.html",
+      "confidence": "high"
+    },
+    "日本経済大": {
+      "en": "Japan University of Economics",
+      "source": "alias-of:日本経済大学",
+      "confidence": "high"
+    },
+    "明治学院大学": {
+      "en": "Meiji Gakuin University",
+      "source": "https://www.meijigakuin.ac.jp/en/",
+      "confidence": "high"
+    },
+    "明治学院大": {
+      "en": "Meiji Gakuin University",
+      "source": "alias-of:明治学院大学",
+      "confidence": "high"
+    },
+    "星槎道都大学": {
+      "en": "Seisa Dohto University",
+      "source": "https://www.seisadohto.ac.jp/english/",
+      "confidence": "high"
+    },
+    "星槎道都大": {
+      "en": "Seisa Dohto University",
+      "source": "alias-of:星槎道都大学",
+      "confidence": "high"
+    },
+    "札幌大学": {
+      "en": "Sapporo University",
+      "source": "https://www.sapporo-u.ac.jp/",
+      "confidence": "high"
+    },
+    "札幌大": {
+      "en": "Sapporo University",
+      "source": "alias-of:札幌大学",
+      "confidence": "high"
+    },
+    "札幌大谷大学": {
+      "en": "Sapporo Otani University",
+      "source": "https://www.sapporo-otani.ac.jp/",
+      "confidence": "high"
+    },
+    "札幌大谷大": {
+      "en": "Sapporo Otani University",
+      "source": "alias-of:札幌大谷大学",
+      "confidence": "high"
+    },
+    "東北大学": {
+      "en": "Tohoku University",
+      "source": "https://www.tohoku.ac.jp/en/",
+      "confidence": "high"
+    },
+    "東北大": {
+      "en": "Tohoku University",
+      "source": "alias-of:東北大学",
+      "confidence": "high"
+    },
+    "東北学院大学": {
+      "en": "Tohoku Gakuin University",
+      "source": "https://www.tohoku-gakuin.ac.jp/en/numbers/",
+      "confidence": "high"
+    },
+    "東北学院大": {
+      "en": "Tohoku Gakuin University",
+      "source": "alias-of:東北学院大学",
+      "confidence": "high"
+    },
+    "東北工業大学": {
+      "en": "Tohoku Institute of Technology",
+      "source": "https://www.tohtech.ac.jp/english/",
+      "confidence": "high"
+    },
+    "東北工業大": {
+      "en": "Tohoku Institute of Technology",
+      "source": "alias-of:東北工業大学",
+      "confidence": "high"
+    },
+    "東日本国際大学": {
+      "en": "Higashi Nippon International University",
+      "source": "https://www.shk-ac.jp/eng/",
+      "confidence": "high"
+    },
+    "東日本国際大": {
+      "en": "Higashi Nippon International University",
+      "source": "alias-of:東日本国際大学",
+      "confidence": "high"
+    },
+    "東海大学": {
+      "en": "Tokai University",
+      "source": "https://www.u-tokai.ac.jp/uploads/2021/03/Guidebook_for_International_Students_2021.pdf",
+      "confidence": "high"
+    },
+    "東海大": {
+      "en": "Tokai University",
+      "source": "alias-of:東海大学",
+      "confidence": "high"
+    },
+    "東海大学（札幌）": {
+      "en": "Tokai University (Sapporo Campus)",
+      "source": "https://www.u-tokai.ac.jp/uploads/2021/03/Guidebook_for_International_Students_2021.pdf",
+      "confidence": "high"
+    },
+    "東海学園大学": {
+      "en": "Tokai Gakuen University",
+      "source": "https://www.tokaigakuen-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "東海学園大": {
+      "en": "Tokai Gakuen University",
+      "source": "alias-of:東海学園大学",
+      "confidence": "high"
+    },
+    "松山大学": {
+      "en": "Matsuyama University",
+      "source": "https://www.matsuyama-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "松山大": {
+      "en": "Matsuyama University",
+      "source": "alias-of:松山大学",
+      "confidence": "high"
+    },
+    "松本大学": {
+      "en": "Matsumoto University",
+      "source": "https://www.matsumoto-u.ac.jp/",
+      "confidence": "high"
+    },
+    "松本大": {
+      "en": "Matsumoto University",
+      "source": "alias-of:松本大学",
+      "confidence": "high"
+    },
+    "桃山学院大学": {
+      "en": "St. Andrew's University (Momoyama Gakuin)",
+      "source": "https://www.andrew.ac.jp/",
+      "confidence": "high"
+    },
+    "桃山学院大": {
+      "en": "St. Andrew's University (Momoyama Gakuin)",
+      "source": "alias-of:桃山学院大学",
+      "confidence": "high"
+    },
+    "流通経済大学": {
+      "en": "Ryutsu Keizai University",
+      "source": "https://www.jpss.jp/en/univ/225/",
+      "confidence": "high"
+    },
+    "流通経済大": {
+      "en": "Ryutsu Keizai University",
+      "source": "alias-of:流通経済大学",
+      "confidence": "high"
+    },
+    "熊本学園大学": {
+      "en": "Kumamoto Gakuen University",
+      "source": "https://www.kumagaku.ac.jp/",
+      "confidence": "high"
+    },
+    "熊本学園大": {
+      "en": "Kumamoto Gakuen University",
+      "source": "alias-of:熊本学園大学",
+      "confidence": "high"
+    },
+    "産業能率大学": {
+      "en": "SANNO University",
+      "source": "https://www.sanno.ac.jp/english/",
+      "confidence": "high"
+    },
+    "産業能率大": {
+      "en": "SANNO University",
+      "source": "alias-of:産業能率大学",
+      "confidence": "high"
+    },
+    "甲南大学": {
+      "en": "Konan University",
+      "source": "https://www.konan-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "甲南大": {
+      "en": "Konan University",
+      "source": "alias-of:甲南大学",
+      "confidence": "high"
+    },
+    "福山大学": {
+      "en": "Fukuyama University",
+      "source": "https://www.fukuyama-u.ac.jp/",
+      "confidence": "high"
+    },
+    "福山大": {
+      "en": "Fukuyama University",
+      "source": "alias-of:福山大学",
+      "confidence": "high"
+    },
+    "福山平成大学": {
+      "en": "Fukuyama Heisei University",
+      "source": "https://www.int-students-hiroshima.jp/en/school/detail.php?UID=41",
+      "confidence": "high"
+    },
+    "福山平成大": {
+      "en": "Fukuyama Heisei University",
+      "source": "alias-of:福山平成大学",
+      "confidence": "high"
+    },
+    "福岡大学": {
+      "en": "Fukuoka University",
+      "source": "https://www.fukuoka-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "福岡大": {
+      "en": "Fukuoka University",
+      "source": "alias-of:福岡大学",
+      "confidence": "high"
+    },
+    "立命館大学": {
+      "en": "Ritsumeikan University",
+      "source": "https://en.ritsumei.ac.jp/",
+      "confidence": "high"
+    },
+    "立命館大": {
+      "en": "Ritsumeikan University",
+      "source": "alias-of:立命館大学",
+      "confidence": "high"
+    },
+    "立正大学": {
+      "en": "Rissho University",
+      "source": "https://www.ris.ac.jp/en/",
+      "confidence": "high"
+    },
+    "立正大": {
+      "en": "Rissho University",
+      "source": "alias-of:立正大学",
+      "confidence": "high"
+    },
+    "聖カタリナ大学": {
+      "en": "St. Catherine University",
+      "source": "https://www.catherine.ac.jp/en/",
+      "confidence": "high"
+    },
+    "聖カタリナ大": {
+      "en": "St. Catherine University",
+      "source": "alias-of:聖カタリナ大学",
+      "confidence": "high"
+    },
+    "西南学院大学": {
+      "en": "Seinan Gakuin University",
+      "source": "https://www.seinan-gu.ac.jp/eng/",
+      "confidence": "high"
+    },
+    "西南学院大": {
+      "en": "Seinan Gakuin University",
+      "source": "alias-of:西南学院大学",
+      "confidence": "high"
+    },
+    "金沢大学": {
+      "en": "Kanazawa University",
+      "source": "https://www.kanazawa-u.ac.jp/en/",
+      "confidence": "high"
+    },
+    "金沢大": {
+      "en": "Kanazawa University",
+      "source": "alias-of:金沢大学",
+      "confidence": "high"
+    },
+    "金沢学院大学": {
+      "en": "Kanazawa Gakuin University",
+      "source": "https://www.nicjp.niad.ac.jp/en/institute/daigaku000476.html",
+      "confidence": "high"
+    },
+    "金沢学院大": {
+      "en": "Kanazawa Gakuin University",
+      "source": "alias-of:金沢学院大学",
+      "confidence": "high"
+    },
+    "関西大学": {
+      "en": "Kansai University",
+      "source": "https://www.kansai-u.ac.jp/English/",
+      "confidence": "high"
+    },
+    "関西大": {
+      "en": "Kansai University",
+      "source": "alias-of:関西大学",
+      "confidence": "high"
+    },
+    "関西国際大学": {
+      "en": "Kansai University of International Studies",
+      "source": "https://www.kuins.ac.jp/eng/",
+      "confidence": "high"
+    },
+    "関西国際大": {
+      "en": "Kansai University of International Studies",
+      "source": "alias-of:関西国際大学",
+      "confidence": "high"
+    },
+    "関西学院大学": {
+      "en": "Kwansei Gakuin University",
+      "source": "https://www.kwansei.ac.jp/en/",
+      "confidence": "high"
+    },
+    "関西学院大": {
+      "en": "Kwansei Gakuin University",
+      "source": "alias-of:関西学院大学",
+      "confidence": "high"
+    },
+    "阪南大学": {
+      "en": "Hannan University",
+      "source": "https://www.hannan-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "阪南大": {
+      "en": "Hannan University",
+      "source": "alias-of:阪南大学",
+      "confidence": "high"
+    },
+    "青山学院大学": {
+      "en": "Aoyama Gakuin University",
+      "source": "https://www.aoyama.ac.jp/en/",
+      "confidence": "high"
+    },
+    "青山学院大": {
+      "en": "Aoyama Gakuin University",
+      "source": "alias-of:青山学院大学",
+      "confidence": "high"
+    },
+    "静岡産業大学": {
+      "en": "Shizuoka Sangyo University",
+      "source": "https://www.ssu.ac.jp/media/2026english.pdf",
+      "confidence": "high"
+    },
+    "静岡産業大": {
+      "en": "Shizuoka Sangyo University",
+      "source": "alias-of:静岡産業大学",
+      "confidence": "high"
+    },
+    "順天堂大学": {
+      "en": "Juntendo University",
+      "source": "https://en.juntendo.ac.jp/",
+      "confidence": "high"
+    },
+    "順天堂大": {
+      "en": "Juntendo University",
+      "source": "alias-of:順天堂大学",
+      "confidence": "high"
+    },
+    "駒澤大学": {
+      "en": "Komazawa University",
+      "source": "https://www.komazawa-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "駒澤大": {
+      "en": "Komazawa University",
+      "source": "alias-of:駒澤大学",
+      "confidence": "high"
+    },
+    "高松大学": {
+      "en": "Takamatsu University",
+      "source": "https://www.takamatsu-u.ac.jp/",
+      "confidence": "high"
+    },
+    "高松大": {
+      "en": "Takamatsu University",
+      "source": "alias-of:高松大学",
+      "confidence": "high"
+    },
+    "高知大学": {
+      "en": "Kochi University",
+      "source": "https://www.kochi-u.ac.jp/english/",
+      "confidence": "high"
+    },
+    "高知大": {
+      "en": "Kochi University",
+      "source": "alias-of:高知大学",
+      "confidence": "high"
+    },
+    "鹿屋体育大学": {
+      "en": "National Institute of Fitness and Sports in Kanoya",
+      "source": "https://www.nifs-k.ac.jp/en/aboutus/overview/organization/",
+      "confidence": "high"
+    },
+    "鹿屋体育大": {
+      "en": "National Institute of Fitness and Sports in Kanoya",
+      "source": "alias-of:鹿屋体育大学",
+      "confidence": "high"
+    },
+    "中央大学": {
+      "en": "Chuo University",
+      "source": "alias-of:中央大",
+      "confidence": "high"
+    },
+    "京都産業大学": {
+      "en": "Kyoto Sangyo University",
+      "source": "alias-of:京都産業大",
+      "confidence": "high"
+    },
+    "国士舘大学": {
+      "en": "Kokushikan University",
+      "source": "alias-of:国士舘大",
+      "confidence": "high"
+    },
+    "愛知学院大学": {
+      "en": "Aichi Gakuin University",
+      "source": "alias-of:愛知学院大",
+      "confidence": "high"
+    },
+    "慶應義塾大学": {
+      "en": "Keio University",
+      "source": "alias-of:慶應義塾大",
+      "confidence": "high"
+    },
+    "早稲田大学": {
+      "en": "Waseda University",
+      "source": "alias-of:早稲田大",
+      "confidence": "high"
+    },
+    "明治大学": {
+      "en": "Meiji University",
+      "source": "alias-of:明治大",
+      "confidence": "high"
+    },
+    "東京国際大学": {
+      "en": "Tokyo International University",
+      "source": "alias-of:東京国際大",
+      "confidence": "high"
+    },
+    "東洋大学": {
+      "en": "Toyo University",
+      "source": "alias-of:東洋大",
+      "confidence": "high"
+    },
+    "桐蔭横浜大学": {
+      "en": "Toin University of Yokohama",
+      "source": "alias-of:桐蔭横浜大",
+      "confidence": "high"
+    },
+    "法政大学": {
+      "en": "Hosei University",
+      "source": "alias-of:法政大",
+      "confidence": "high"
+    },
+    "神奈川大学": {
+      "en": "Kanagawa University",
+      "source": "alias-of:神奈川大",
+      "confidence": "high"
+    },
+    "筑波大学": {
+      "en": "University of Tsukuba",
+      "source": "alias-of:筑波大",
+      "confidence": "high"
+    },
+    "FC大阪": {
+      "en": "FC Osaka",
+      "source": "https://www.jleague.jp/en/club/fosaka/",
+      "confidence": "high"
+    },
+    "SC相模原": {
+      "en": "S.C. Sagamihara",
+      "source": "https://www.jleague.jp/en/club/sagamihara/",
+      "confidence": "high"
+    },
+    "オールボーBK（デンマーク）": {
+      "en": "AaB (Denmark)",
+      "source": "https://aabsport.dk/",
+      "confidence": "high"
+    },
+    "カマタマーレ讃岐": {
+      "en": "Kamatamare Sanuki",
+      "source": "https://www.jleague.jp/en/club/sanuki/",
+      "confidence": "high"
+    },
+    "ガイナーレ鳥取": {
+      "en": "Gainare Tottori",
+      "source": "https://www.jleague.jp/en/club/tottori/",
+      "confidence": "high"
+    },
+    "ブラウブリッツ秋田": {
+      "en": "Blaublitz Akita",
+      "source": "https://www.jleague.jp/en/club/akita/",
+      "confidence": "high"
+    },
+    "ベガルタ仙台": {
+      "en": "Vegalta Sendai",
+      "source": "https://www.jleague.jp/en/club/sendai/",
+      "confidence": "high"
+    },
+    "レノファ山口FC": {
+      "en": "Renofa Yamaguchi FC",
+      "source": "https://www.jleague.jp/en/club/yamaguchi/",
+      "confidence": "high"
+    },
+    "ロアッソ熊本": {
+      "en": "Roasso Kumamoto",
+      "source": "https://www.jleague.jp/en/club/kumamoto/",
+      "confidence": "high"
+    },
+    "ヴァンフォーレ甲府": {
+      "en": "Ventforet Kofu",
+      "source": "https://www.jleague.jp/en/club/kofu/",
+      "confidence": "high"
+    },
+    "京都サンガF.C.": {
+      "en": "Kyoto Sanga F.C.",
+      "source": "https://www.jleague.jp/en/club/kyoto/",
+      "confidence": "high"
+    },
+    "北海道コンサドーレ札幌": {
+      "en": "Hokkaido Consadole Sapporo",
+      "source": "https://www.jleague.jp/en/club/sapporo/",
+      "confidence": "high"
+    },
+    "大分トリニータ": {
+      "en": "Oita Trinita",
+      "source": "https://www.jleague.jp/en/club/oita/",
+      "confidence": "high"
+    },
+    "徳島ヴォルティス": {
+      "en": "Tokushima Vortis",
+      "source": "https://www.jleague.jp/en/club/tokushima/",
+      "confidence": "high"
+    },
+    "愛媛FC": {
+      "en": "Ehime FC",
+      "source": "https://www.jleague.jp/en/club/ehime/",
+      "confidence": "high"
+    },
+    "東京ヴェルディ": {
+      "en": "Tokyo Verdy",
+      "source": "https://www.jleague.jp/en/club/tokyov/",
+      "confidence": "high"
+    },
+    "栃木SC": {
+      "en": "Tochigi SC",
+      "source": "https://www.jleague.jp/en/club/tochigi/",
+      "confidence": "high"
+    },
+    "水戸ホーリーホック": {
+      "en": "Mito Hollyhock",
+      "source": "https://www.jleague.jp/en/club/mito/",
+      "confidence": "high"
+    },
+    "藤枝MYFC": {
+      "en": "Fujieda MYFC",
+      "source": "https://www.jleague.jp/en/club/fujieda/",
+      "confidence": "high"
+    },
+    "鹿児島ユナイテッドFC": {
+      "en": "Kagoshima United FC",
+      "source": "https://www.jleague.jp/en/club/kagoshima/",
+      "confidence": "high"
+    },
+    "國學院大学": {
+      "en": "Kokugakuin University",
+      "source": "alias-of:國學院大",
+      "confidence": "high"
+    },
+    "中央学院高校": {
+      "en": "Chuogakuin High School",
+      "source": "https://www.chuogakuin-h.ed.jp/",
+      "confidence": "high"
+    },
+    "佐野日本大学高校": {
+      "en": "Sano Nihon University Senior High School",
+      "source": "https://high.sano-nichidai.jp/",
+      "confidence": "high"
+    },
+    "多摩大目黒高校": {
+      "en": "Tama University Meguro Junior and Senior High School",
+      "source": "https://www.tmh.ac.jp/soccer/",
+      "confidence": "high"
+    },
+    "帝京第三高校": {
+      "en": "Teikyo Daisan High School",
+      "source": "https://www.teikyo3.ed.jp/",
+      "confidence": "high"
+    },
+    "東海大大阪仰星高校": {
+      "en": "Tokai University Osaka Gyosei High School",
+      "source": "https://www.jfa.jp/eng/match/takamado_jfa_u18_super2020/news/00025440/",
+      "confidence": "high"
+    },
+    "東海大甲府高校": {
+      "en": "Tokai University Kofu Senior High School",
+      "source": "https://www.kofu.tokai.ed.jp/",
+      "confidence": "high"
+    },
+    "法政大学第二高校": {
+      "en": "Hosei University Daini Junior and Senior High School",
+      "source": "https://www.hosei2.ed.jp/english",
+      "confidence": "high"
+    },
+    "清水東高校": {
+      "en": "Shimizu Higashi High School",
+      "source": "https://www.jfa.jp/eng/social_action_programme/news/00005923/",
+      "confidence": "high"
+    },
+    "福岡大学附属若葉高校": {
+      "en": "Wakaba High School",
+      "source": "https://www.f-wakaba.ed.jp/",
+      "confidence": "high"
+    },
+    "関東第一高校": {
+      "en": "Kanto Daiichi High School",
+      "source": "https://www.kanto-ichiko.ac.jp/",
+      "confidence": "high"
     }
   }
 }

@@ -1671,6 +1671,8 @@ def main():
             (f"{DOMAIN}/en/pro-signings/", "weekly", "0.7"),
             (f"{DOMAIN}/en/inter-high/", "monthly", "0.6"),
             (f"{DOMAIN}/en/all-japan-high-school-tournament/", "daily", "0.6"),
+            (f"{DOMAIN}/en/university/", "weekly", "0.6"),
+            (f"{DOMAIN}/en/university/pro-signings-2027/", "weekly", "0.5"),
             (f"{DOMAIN}/en/teams/ryukei-kashiwa/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/kashima-youth/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/aomori-yamada/", "monthly", "0.6"),

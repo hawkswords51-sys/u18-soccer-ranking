@@ -6,6 +6,7 @@
 - 英語名の正本: data/en/team_names_en.json（Coworkが公式表記を確認して置く。自動ローマ字化はしない）
   ⚠️ キーは「data/teams.json のチーム名（日本語）」。2026-09-21にチームidから変更した（idは96チームで未設定・ni010が重複していたため）。
 - 出力: en/premier-league/・en/prince-leagues/・en/national-team/・en/pro-signings/・en/inter-high/・en/all-japan-high-school-tournament/（2026-10-05）
+        ・en/university/・en/university/pro-signings-2027/（2026-10-09）
         ＋ data/en/teams/*.md があればその英語チームページ en/teams/<slug>/ （すべて毎回全体を書き直す）
 - 選手名の正本: data/en/player_names_en.json（JFA英語版・J.LEAGUE英語版の表記のみ。無い選手は日本語のまま出す）
 - 検算（1つでも合わないリーグがあれば、ページを書き換えずに [要確認] を出して終わる＝誤データを載せない）:
@@ -1720,6 +1721,350 @@ def render_senshuken(out_root, teams, names, extra, season):
     print(f"OK: {dest} を書きました（結果あり{n_started}都道府県・代表{n_reps}/48・英語名待ち{len(set(missing))}校）")
 
 
+# ============================================================================
+# [2026-10-09] 大学サッカーの英語ページ（Kei依頼）
+#   /en/university/                    … 仕組みの解説＋全国大会＋9地域の1部リーグ順位表（data/university/leagues-2026.json）
+#   /en/university/pro-signings-2027/  … 大学からのJ内定選手（data/university/pro-signings-2027.json）
+#   文章は data/en/university-notes.md。大学・クラブの英語名は team_names_en.json の clubs_extra、選手名は player_names_en.json。
+#   安全装置：
+#     - 順位表は「リーグごと」に検算（勝点=勝×3+分・試合数=勝+分+敗・得失点差=得点-失点）と英語名の有無を見る。
+#       合わないリーグだけ出さずに [要確認]（プリンスと同じ考え方）。1部が1つも出せなければハブは書き換えない。
+#     - 内定ページは「大学」「内定先クラブ」の英語名が1つでも無ければ書き換えない（[要確認]）。
+#       選手名が辞書に無ければ日本語のまま（既存ルール）。U-18の出身チームが辞書に無ければ漢字のまま出して
+#       [英語名待ち] をログに出す（選手権ページと同じ扱い＝ページは止めない）。
+# ============================================================================
+UNIV_LEAGUES = ROOT / "data" / "university" / "leagues-2026.json"      # YEARLY: 年度が変わったらファイル名
+UNIV_SIGN = ROOT / "data" / "university" / "pro-signings-2027.json"    # YEARLY
+UNIV_EN = ROOT / "data" / "en" / "university-notes.md"
+UNIV_REGION_EN = {"hokkaido": "Hokkaido", "tohoku": "Tohoku", "kanto": "Kanto", "hokushinetsu": "Hokushinetsu",
+                  "tokai": "Tokai", "kansai": "Kansai", "chugoku": "Chugoku", "shikoku": "Shikoku", "kyushu": "Kyushu"}
+UNIV_LEAGUE_EN = {  # pro-signings-2027.json の league 欄 → 英語
+    "関東1部": "Kanto Division 1", "関東2部": "Kanto Division 2", "関東3部": "Kanto Division 3",
+    "神奈川県": "Kanagawa Prefectural League", "北信越": "Hokushinetsu", "東海": "Tokai", "関西": "Kansai",
+    "中国": "Chugoku", "九州": "Kyushu", "北海道": "Hokkaido", "東北": "Tohoku", "四国": "Shikoku"}
+UNIV_STYLE = """
+    .uv-route {{ font-size:0.82rem; opacity:0.75; }}
+    .uv-home {{ font-size:0.78rem; white-space:nowrap; }}
+    .uv-stats {{ display:flex; flex-wrap:wrap; gap:8px 18px; margin:6px 0 4px; font-size:0.92rem; }}
+    .uv-src {{ font-size:0.78rem; opacity:0.72; margin:6px 0 0; }}"""
+PAGE_UV = None   # main() の前に PAGE から作る（下の _page_uv）
+
+
+def _page_uv():
+    global PAGE_UV
+    if PAGE_UV is None:
+        # PAGE は "{rr_style}" を空にした後の文字列なので、<style> の最後に足す
+        PAGE_UV = PAGE.replace("{{ display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }}",
+                               "{{ display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }}" + UNIV_STYLE, 1)
+    return PAGE_UV
+
+
+def _univ_md():
+    raw = UNIV_EN.read_text(encoding="utf-8")
+    parts = raw.split("---", 2)
+    return yaml.safe_load(parts[1]), parts[2]
+
+
+def _plain_en(jp, names, extra):
+    """英語名（リンクなしの文字列）。無ければ None。"""
+    rec = names.get(jp) or extra.get(jp)
+    return rec["en"] if rec else None
+
+
+def _asof_en(s):
+    """'10月3日現在（公式記録）' → 'as of 3 October'。'前期終了…' → 'end of the first half'。読めなければ空。"""
+    m = re.search(r"(\d{1,2})月(\d{1,2})日", s or "")
+    if m:
+        return f"as of {int(m.group(2))} {MONTHS[int(m.group(1)) - 1]}"
+    if "前期終了" in (s or ""):
+        return "end of the first half of the season"
+    return ""
+
+
+def _univ_ok(lg):
+    """検算：試合数=勝+分+敗・勝点=勝×3+分・得失点差=得点-失点・順位が1から並ぶ。"""
+    errs = []
+    for t in lg["teams"]:
+        if t["g"] != t["w"] + t["d"] + t["l"]:
+            errs.append(f"{t['name']} 試合数")
+        if t["p"] != t["w"] * 3 + t["d"]:
+            errs.append(f"{t['name']} 勝点")
+        if t["gd"] != t["gf"] - t["ga"]:
+            errs.append(f"{t['name']} 得失点差")
+    ranks = [t["rank"] for t in lg["teams"]]
+    if ranks != sorted(ranks) or ranks[0] != 1:
+        errs.append("順位の並び")
+    if sum(t["gf"] for t in lg["teams"]) != sum(t["ga"] for t in lg["teams"]):
+        errs.append("得点合計≠失点合計")
+    return errs
+
+
+def _univ_table(lg, names, extra):
+    rows = []
+    for t in lg["teams"]:
+        en = _plain_en(t["name"], names, extra)
+        if en is None:
+            return None, t["name"]
+        rows.append(f'<tr><td class="en-c">{t["rank"]}</td><td class="en-name">{esc(en)}</td>'
+                    f'<td class="en-c">{t["g"]}</td><td class="en-c">{t["w"]}</td><td class="en-c">{t["d"]}</td><td class="en-c">{t["l"]}</td>'
+                    f'<td class="en-c">{t["gf"]}</td><td class="en-c">{t["ga"]}</td><td class="en-c">{t["gd"]:+d}</td>'
+                    f'<td class="en-c"><strong>{t["p"]}</strong></td></tr>')
+    return rows, None
+
+
+def render_university(out_root, names, extra, players, season):
+    if not (UNIV_EN.exists() and UNIV_LEAGUES.exists() and UNIV_SIGN.exists()):
+        print("[要確認] 大学の英語ページ: data/en/university-notes.md か大学データが無いので作りません")
+        return
+    fm, md = _univ_md()
+    data = json.loads(UNIV_LEAGUES.read_text(encoding="utf-8"))
+    sign = json.loads(UNIV_SIGN.read_text(encoding="utf-8"))
+
+    # ---- 1部リーグの順位表（9地域） ----
+    blocks, shown, skipped = [], 0, []
+    for lg in data["leagues"]:
+        if not lg["id"].endswith("-1"):
+            continue
+        region = UNIV_REGION_EN.get(lg["id"].rsplit("-", 1)[0], lg["region"])
+        errs = _univ_ok(lg)
+        rows, missing = _univ_table(lg, names, extra) if not errs else (None, None)
+        if errs or rows is None:
+            why = "検算NG " + "・".join(errs) if errs else f"英語名が未登録 → {missing}"
+            print(f"[要確認] 大学ハブ（英語）: {lg['name']} を出しません（{why}）")
+            skipped.append(region)
+            continue
+        shown += 1
+        asof = _asof_en(lg.get("asof"))
+        computed = ("<br>Positions calculated by u18-soccer.com from the federation&rsquo;s match results "
+                    "(points, then goal difference, then goals scored; the federation&rsquo;s own tie-breakers may differ)."
+                    if lg["id"].startswith("kansai") else "")
+        blocks.append(f"""
+        <h3 id="{esc(lg['id'])}" style="margin:22px 0 8px;">{esc(region)} &mdash; Division 1 <span class="en-note">({len(rows)} teams{', ' + esc(asof) if asof else ''})</span></h3>
+        <div class="en-scroll">
+        <table class="en-table">
+          <thead><tr><th class="en-c">Pos</th><th class="en-name">University</th><th class="en-c">P</th><th class="en-c">W</th><th class="en-c">D</th><th class="en-c">L</th><th class="en-c">GF</th><th class="en-c">GA</th><th class="en-c">GD</th><th class="en-c">Pts</th></tr></thead>
+          <tbody>
+{chr(10).join("            " + r for r in rows)}
+          </tbody>
+        </table>
+        </div>
+        <p class="uv-src">Source: <a href="{esc(lg['sourceUrl'])}" target="_blank" rel="noopener">{esc(region)} regional university football federation</a> (Japanese).{computed}</p>""")
+    if shown == 0:
+        print("[要確認] 大学ハブ（英語）: 1部の順位表が1つも出せないので書き換えません")
+        return
+
+    # ---- W杯の7人 ----
+    wc_rows = []
+    for pj, school, univ in fm.get("wc_players") or []:
+        nm, _ = player_html(pj, players)
+        sc = club_html(school, names, extra) or f'<span lang="ja">{esc(school)}</span>'
+        un = _plain_en(univ, names, extra)
+        if un is None:
+            print(f"[要確認] 大学ハブ（英語）: W杯の表の大学名が未登録 → {univ}（表を出しません）")
+            wc_rows = []
+            break
+        wc_rows.append(f'<tr><td class="en-name">{nm}</td><td>{sc}</td><td>{esc(un)}</td></tr>')
+    wc_table = ("""
+        <div class="en-scroll">
+        <table class="en-table">
+          <thead><tr><th class="en-name">Player</th><th>High school</th><th>University</th></tr></thead>
+          <tbody>
+""" + "\n".join("            " + r for r in wc_rows) + """
+          </tbody>
+        </table>
+        </div>""") if wc_rows else ""
+
+    pw = _section(md, "pathway").strip().split("\n", 1)   # 1段落目（W杯の7人の話）の直後に表を置く
+    pw_first, pw_rest = pw[0], (pw[1] if len(pw) > 1 else "")
+    n_sign = len(sign["players"])
+    url = f"{DOMAIN}/en/university/"
+    title = f"Japanese University Football {season}: Leagues, Tables and the Road to the J.League"
+    desc = (f"Japanese university football in English: how the nine regional leagues and two national competitions work, "
+            f"the current Division 1 tables in all nine regions, and the {fm.get('signings_year')} J.League signings from university.")
+    intro = "        " + esc(_section(md, "intro").strip())
+    sections = f"""
+      <section class="lp-section" id="structure">
+        <h2>How university football is organised</h2>
+        {md_to_html(_section(md, "structure"))}
+      </section>
+
+      <section class="lp-section" id="pathway">
+        <h2>The road to the professional game</h2>
+        {md_to_html(pw_first)}{wc_table}
+        {md_to_html(pw_rest)}
+        <p>We list every university player who has agreed to join a J.League club for {esc(fm.get('signings_year'))}, with the academy or high school each one came from: <a href="/en/university/pro-signings-{esc(fm.get('signings_year'))}/">{esc(fm.get('signings_year'))} J.League signings from university ({n_sign} players)</a>.</p>
+      </section>
+
+      <section class="lp-section" id="competitions">
+        <h2>National competitions</h2>
+        <h3 style="margin:14px 0 6px;">Prime Minister Cup {esc(season)}</h3>
+        <p>{esc(fm.get('pmc_summary'))}</p>
+        <h3 style="margin:14px 0 6px;">All Japan University Football Championship ({esc(fm.get('incolle_edition'))})</h3>
+        <p>The winter championship runs from {esc(fm.get('incolle_dates'))}. {esc(fm.get('incolle_last'))}</p>
+        <p class="en-note">Full brackets, results and past winners are on our Japanese pages: <a href="/tournaments/prime-minister-cup-{esc(season)}/" lang="ja">総理大臣杯{esc(season)}</a> ・ <a href="/tournaments/incolle-{esc(season)}/" lang="ja">インカレ</a>.</p>
+      </section>
+
+      <section class="lp-section" id="standings">
+        <h2>Division 1 tables in all nine regions</h2>
+        <p>The top division of each regional league. Every table is checked before it is published (points = 3 &times; wins + draws, games = wins + draws + losses, goal difference = goals for &minus; goals against); a table that does not add up is left out rather than shown wrongly. Updated on Mondays and Thursdays. Lower divisions (Kanto and Kansai have three each) are on the <a href="/university/" lang="ja">Japanese page</a>.</p>{''.join(blocks)}
+      </section>"""
+    tail = ('''      <section class="lp-section">
+        <h2>Notes</h2>
+        <p>University names follow each university&rsquo;s own English usage (for example St. Andrew&rsquo;s University for 桃山学院大学, and the National Institute of Fitness and Sports in Kanoya for 鹿屋体育大学). Player names are shown in English only where the JFA, the J.League or the club has published an official spelling.</p>
+        <p>See also: <a href="/en/japan-youth-football-system/">how youth football works in Japan</a> ・ <a href="/en/pro-signings/">players turning professional from high schools and academies</a>.</p>
+      </section>''')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": "University football", "item": url}]}, ensure_ascii=False)
+    page = _page_uv().format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb, crumb="University football",
+                             h1=f"Japanese University Football {esc(season)}", intro=intro, legend="", tables=sections, tail=tail)
+    dest = out_root / "en" / "university" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    print(f"OK: {dest} を書きました（1部 {shown}/9地域" + (f"／スキップ {', '.join(skipped)}" if skipped else "") + "）")
+
+    render_university_signings(out_root, names, extra, players, fm, sign)
+
+
+def _u18_index(names, extra):
+    """出身チーム名（日本語）→ 英語名辞書のキー。teams.json の aliases も見る。2つの名前に当たる略称は使わない（同名校）。"""
+    teams = json.loads(TEAMS.read_text(encoding="utf-8"))
+    idx, clash = {}, set()
+
+    def en_of(k):
+        return (names.get(k) or extra.get(k) or {}).get("en")
+
+    def put(k, v):
+        if k in idx and en_of(idx[k]) != en_of(v):   # 同じ略称が「英語名の違う」2校に当たるときだけ使わない
+            clash.add(k)
+        idx.setdefault(k, v)
+    for pref in teams.values():
+        if not isinstance(pref, dict):
+            continue
+        for t in pref.get("teams", []):
+            if t["name"] not in names and t["name"] not in extra:
+                continue
+            for a in [t["name"]] + list(t.get("aliases") or []):
+                put(_nk(a), t["name"])
+    for jp in list(names) + list(extra):
+        put(_nk(jp), jp)
+    for k in clash:
+        idx.pop(k, None)
+    return idx
+
+
+def _join_en(note, year):
+    """note（日本語）から加入時期を英語に。書いていなければ '{year}'（＝一覧の前提の年）。"""
+    note = note or ""
+    m = re.search(r"(\d{4})年(\d{1,2})月(?:\d{1,2}日)?に前倒し加入", note)
+    if m:
+        return f"Joined early ({MONTHS[int(m.group(2)) - 1]} {m.group(1)})"
+    m = re.search(r"(\d{4})年(\d{1,2})月に完全移籍", note)
+    if m:
+        return f"Transferred ({MONTHS[int(m.group(2)) - 1]} {m.group(1)})"
+    m = re.search(r"(\d{4})/(\d{2})シーズン", note)
+    if m:
+        return f"{m.group(1)}/{m.group(2)} season"
+    m = re.search(r"(\d{4})年(\d{1,2})月加入", note)
+    if m:
+        return f"{MONTHS[int(m.group(2)) - 1]} {m.group(1)}"
+    m = re.search(r"(\d{4})年加入", note)
+    if m:
+        return m.group(1)
+    if "未発表" in note:
+        return "Not announced"
+    return str(year)
+
+
+def render_university_signings(out_root, names, extra, players, fm, sign):
+    import generate_university_signings as gus
+    year = fm.get("signings_year")
+    ps = sign["players"]
+    u18idx = _u18_index(names, extra)
+    missing, jp_only = [], 0
+    by_league = {}
+    for p in ps:
+        by_league.setdefault(p["league"], []).append(p)
+    order = [lg for lg in gus.LEAGUE_ORDER if lg in by_league] + [lg for lg in by_league if lg not in gus.LEAGUE_ORDER]
+    blocks = []
+    for lg in order:
+        lg_en = UNIV_LEAGUE_EN.get(lg)
+        if lg_en is None:
+            print(f"[要確認] 大学内定（英語）: リーグ名の英語が未登録 → {lg}（ページは書き換えません）")
+            return
+        rows = []
+        for p in by_league[lg]:
+            un = _plain_en(p["univ"], names, extra)
+            cl = club_html(p["club"], names, extra)
+            if un is None or cl is None:
+                print(f"[要確認] 大学内定（英語）: 英語名が未登録 → {p['univ'] if un is None else p['club']}（ページは書き換えません）")
+                return
+            nm = players.get(p["name"]) or players.get(p["name"].replace(" ", ""))
+            if nm:
+                name_html = esc(nm["en"])
+            else:
+                name_html, jp_only = f'<span lang="ja">{esc(p["name"])}</span>', jp_only + 1
+            key = p["u18"] if (p["u18"] in names or p["u18"] in extra) else u18idx.get(_nk(p["u18"]))
+            u18 = club_html(key, names, extra) if key else None
+            if u18 is None:
+                missing.append(p["u18"])
+                u18 = f'<span lang="ja">{esc(p["u18"])}</span>'
+            route = "Club academy" if gus.is_youth(p["u18"]) else "High school"
+            home = ' <span class="uv-home">&#127968; back to his academy club</span>' if p.get("homecoming") else ""
+            rows.append(f'<tr><td class="en-name">{name_html}</td><td class="en-c">{esc(p["pos"])}</td><td>{esc(un)}</td>'
+                        f'<td>{cl}{home}</td><td>{esc(_join_en(p.get("note"), year))}</td>'
+                        f'<td>{u18}<br><span class="uv-route">{route}</span></td></tr>')
+        blocks.append(f"""
+      <section class="lp-section" id="{esc(re.sub(r'[^a-z0-9]+', '-', lg_en.lower()).strip('-'))}">
+        <h2>{esc(lg_en)} <span class="en-note">({len(rows)})</span></h2>
+        <div class="en-scroll">
+        <table class="en-table">
+          <thead><tr><th class="en-name">Player</th><th class="en-c">Pos</th><th>University</th><th>Joining</th><th>When</th><th>U-18 team</th></tr></thead>
+          <tbody>
+{chr(10).join("            " + r for r in rows)}
+          </tbody>
+        </table>
+        </div>
+      </section>""")
+    youth = sum(1 for p in ps if gus.is_youth(p["u18"]))
+    home = sum(1 for p in ps if p.get("homecoming"))
+    upd = sign.get("updated", "")
+    m = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", upd)
+    upd_en = f"{int(m.group(3))} {MONTHS[int(m.group(2)) - 1]} {m.group(1)}" if m else upd
+    url = f"{DOMAIN}/en/university/pro-signings-{year}/"
+    title = f"{year} J.League Signings from Japanese Universities"
+    desc = (f"Every Japanese university player who has agreed to join a J.League club for {year}, in English, with university, "
+            "joining club and the high school or academy each player came from. Checked against the clubs' own announcements.")
+    intro = (f"        University players in Japan usually agree their first professional contract a year or more before they graduate. "
+             f"This list covers the players joining J.League clubs for {esc(year)}, grouped by the league their university plays in, "
+             "with the U-18 team each one came from. Every entry has been checked against the joining club&rsquo;s own announcement.")
+    legend = (f'      <div class="uv-stats"><span><strong>{len(ps)}</strong> players (as of {esc(upd_en)})</span>'
+              f'<span>From high school clubs: <strong>{len(ps) - youth}</strong></span>'
+              f'<span>From club academies: <strong>{youth}</strong></span>'
+              f'<span>Returning to their academy club: <strong>{home}</strong></span></div>\n')
+    tail = ('''      <section class="lp-section">
+        <h2>Notes</h2>
+        <p>&ldquo;When&rdquo; is January of the year shown unless stated. Most players join in January '''
+            f'{esc(year)}' ''' for the 2026/27 season, which runs on an autumn-to-spring calendar; some will join a year or two later, after graduating.</p>
+        <p>Where the JFA, the J.League or the club has not published an official English spelling, the player&rsquo;s name is shown in Japanese. U-18 teams without an established English name are also shown in Japanese.</p>
+        <p>See also: <a href="/en/university/">Japanese university football: leagues and tables</a> ・ <a href="/en/pro-signings/">players turning professional straight from high schools and academies</a> ・ <a href="/university/pro-signings-''' f'{esc(year)}' '''/" lang="ja">日本語版</a>.</p>
+      </section>''')
+    breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},
+        {"@type": "ListItem", "position": 2, "name": "University football", "item": f"{DOMAIN}/en/university/"},
+        {"@type": "ListItem", "position": 3, "name": f"{year} J.League signings", "item": url}]}, ensure_ascii=False)
+    page = _page_uv().format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
+                             crumb=f'<a href="/en/university/">University football</a> <span class="breadcrumb__sep">›</span> {esc(year)} J.League signings',
+                             h1=esc(title), intro=intro, legend=legend, tables="".join(blocks), tail=tail)
+    dest = out_root / "en" / "university" / f"pro-signings-{year}" / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(page, encoding="utf-8")
+    for jp in sorted(set(missing)):
+        print(f"[英語名待ち] 大学内定（英語）のU-18チーム → {jp}")
+    print(f"OK: {dest} を書きました（{len(ps)}人／選手名が日本語のまま {jp_only}人／U-18チームが漢字のまま {len(set(missing))}チーム）")
+
+
+
 def main():
     out_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT
     teams = json.loads(TEAMS.read_text(encoding="utf-8"))
@@ -1739,6 +2084,7 @@ def main():
     render_pro_signings(out_root, names, extra, players, season)
     render_interhigh(out_root, names, extra, season)
     render_senshuken(out_root, teams, names, extra, season)   # 2026-10-05 選手権（冬）の英語ページ
+    render_university(out_root, names, extra, players, season)   # 2026-10-09 大学サッカー（ハブ＋J内定）
     render_team_pages(out_root, teams, names, extra, season)
     render_short_team_pages(out_root, teams, names, season)
 

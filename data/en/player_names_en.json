@@ -26,7 +26,8 @@
     "added_2026-10-03_prince_top_hs_batch1": "プリンス上位の高校7校（岡山学芸館・立正大淞南・鹿児島城西・国見・履正社・京都橘・浜松開誠館）用。中島大嘉＝NAKASHIMA（J.LEAGUEふりがな なかしま）。山田剛綺＝Gouki（J.LEAGUE英語の表記どおり）。山村和也はウーロンゴン・ウルブズ公式（Kazuya Yamamura を姓名順に）。三浦淳宏は現在の表記は淳寛。",
     "added_2026-10-03_prince_top_jyouth_batch1": "プリンス上位のJユース7チーム（札幌U-18・愛媛FC U-18・V長崎U-18・松本山雅U-18・C大阪U-18・清水ユース・ジェフ千葉U-18）用。現役U-18の選手はJ.LEAGUE英語のトップ登録（2種登録）ページの表記。櫻川ソロモン＝SAKURAGAWA、出間思努＝IZUMA。丸山良明・市川大祐・柿本倫明・萩原正太郎はクラブ公式のローマ字。",
     "added_2026-10-03_prince_top_hs_batch2": "プリンス上位の高校第2弾（瀬戸内・日本文理・星稜・札幌大谷・高知・東北学院・徳島市立）用。鈴木大輔は星稜高OB（市立船橋OBではない）。木村太哉＝Takaya。佐藤未勇はFC琉球公式の表記。浜下瑛はJ.LEAGUE英語ページを確認できず未登録。",
-    "added_2026-10-03_prince_top_jyouth_batch2": "プリンス上位のJユース第2弾（徳島・京都・浦和・山形・RB大宮・横浜FM・町田）用。茂木力也＝MOTEGI、汰木康也＝YURUKI、平野遼＝Kanata、真也加チュイ大夢＝MAYAKA。伊藤尊寛（徳島）・樋口堅・真也加（町田）はクラブ公式のローマ字。"
+    "added_2026-10-03_prince_top_jyouth_batch2": "プリンス上位のJユース第2弾（徳島・京都・浦和・山形・RB大宮・横浜FM・町田）用。茂木力也＝MOTEGI、汰木康也＝YURUKI、平野遼＝Kanata、真也加チュイ大夢＝MAYAKA。伊藤尊寛（徳島）・樋口堅・真也加（町田）はクラブ公式のローマ字。",
+    "added_2026-10-09_university_signings": "大学からのJ内定選手（data/university/pro-signings-2027.json。キーは空白なし）66人＋長友佑都。J.LEAGUE英語の特別指定選手ページ55人・J.LEAGUE英語ニュース6人・クラブ公式4人・JFA英語1人。公式英語表記が見つからない9人（工藤珠凜・大久保帆人・丸山嵩大・根津元輝・鈴木善・松橋啓太・松田和輝・デューフエマニエル凛太朗・上林真斗）は入れていない＝日本語のまま。ダ・シルバ・イゴル・ヤンは FC大阪のリリースの表記 Da Silva Igor Yan をそのまま（どこが姓か書かれていないので大文字化しない）。山本颯太と山本楓大はどちらも YAMAMOTO Sota（別人）。J.LEAGUE は高橋輝・高橋哲也を「髙」で表記。"
   },
   "players": {
     "イサカ ゼイン": {
@@ -5511,6 +5512,408 @@
       "source": "jleague-en",
       "confidence": "high",
       "url": "https://www.jleague.jp/en/player/1656021/"
+    },
+    "本間凜": {
+      "en": "HOMMA Rin",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1642082/"
+    },
+    "林禮蒼": {
+      "en": "HAYASHI Raia",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://www.cerezo.jp/en/news/2026-0409-1500/"
+    },
+    "後藤響": {
+      "en": "GOTO Hibiki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1635202/"
+    },
+    "北浜琉星": {
+      "en": "KITAHAMA Ryusei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1641620/"
+    },
+    "常藤奏": {
+      "en": "TSUNETO Kanade",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1641612/"
+    },
+    "平尾勇人": {
+      "en": "HIRAO Hayato",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1642068/"
+    },
+    "五木田季晋": {
+      "en": "GOKITA Kishin",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1641668/"
+    },
+    "小川遼也": {
+      "en": "OGAWA Ryoya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1642985/"
+    },
+    "小林俊瑛": {
+      "en": "KOBAYASHI Shunei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1641586/"
+    },
+    "原田眞透": {
+      "en": "HARADA Manato",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1651522/"
+    },
+    "梅津龍之介": {
+      "en": "UMETSU Ryunosuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1644148/"
+    },
+    "小池直矢": {
+      "en": "KOIKE Naoya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1643239/"
+    },
+    "保田成琉": {
+      "en": "YASUDA Naru",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1652029/"
+    },
+    "小倉幸成": {
+      "en": "OGURA Kosei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1650860/"
+    },
+    "松村晃助": {
+      "en": "MATSUMURA Kosuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1639094/"
+    },
+    "小湊絆": {
+      "en": "KOMINATO Tsuna",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1642064/"
+    },
+    "田中恵大": {
+      "en": "TANAKA Keito",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1652032/"
+    },
+    "中村琉聖": {
+      "en": "NAKAMURA Ryusei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1638462/"
+    },
+    "高橋輝": {
+      "en": "TAKAHASHI Hikaru",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1639201/"
+    },
+    "ンワディケ・ウチェ・ブライアン世雄": {
+      "en": "NWADIKE Uche Brian Seo",
+      "source": "jfa-en",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/national_team/news/00036585/"
+    },
+    "多久島良紀": {
+      "en": "TAKUSHIMA Yoshiki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1644028/"
+    },
+    "小澤晴樹": {
+      "en": "OZAWA Haruki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1634099/"
+    },
+    "前澤拓城": {
+      "en": "MAEZAWA Hiroki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1644029/"
+    },
+    "渡邉幸汰": {
+      "en": "WATANABE Kota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1646511/"
+    },
+    "西川楓人": {
+      "en": "NISHIKAWA Futo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1641608/"
+    },
+    "古谷柊介": {
+      "en": "FURUYA Shusuke",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1641583/"
+    },
+    "豊田怜央": {
+      "en": "TOYODA Ryo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1658182/"
+    },
+    "山本颯太": {
+      "en": "YAMAMOTO Sota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656195/"
+    },
+    "前田快": {
+      "en": "MAEDA Kokoro",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1653372/"
+    },
+    "入江羚介": {
+      "en": "IRIE Ryosuke",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://www.vissel-kobe.co.jp/news/article/25251.html"
+    },
+    "松本琉雅": {
+      "en": "MATSUMOTO Ruka",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1651946/"
+    },
+    "木村匠汰": {
+      "en": "KIMURA Shota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657647/"
+    },
+    "辻友翔": {
+      "en": "TSUJI Yuto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657649/"
+    },
+    "立川遼翔": {
+      "en": "TATSUKAWA Haruto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656728/"
+    },
+    "向井俊貴": {
+      "en": "MUKAI Shunki",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://yokohamafc.com/2026/03/19/shunki_mukai/"
+    },
+    "梅木翔斗": {
+      "en": "UMEKI Kaito",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656196/"
+    },
+    "香川太朗": {
+      "en": "KAGAWA Taro",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656013/"
+    },
+    "大磯竜輝": {
+      "en": "OISO Ryuki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1648379/"
+    },
+    "笹崎翔矢": {
+      "en": "SASAZAKI Shoya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657588/"
+    },
+    "諏訪晃大": {
+      "en": "SUWA Kota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1647432/"
+    },
+    "ダ・シルバ・イゴル・ヤン": {
+      "en": "Da Silva Igor Yan",
+      "source": "club-official",
+      "confidence": "high",
+      "url": "https://www.fc-osaka.com/post/20260304"
+    },
+    "桑原航太": {
+      "en": "KUWABARA Kota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1647379/"
+    },
+    "高橋哲也": {
+      "en": "TAKAHASHI Tetsuya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1647389/"
+    },
+    "山本楓大": {
+      "en": "YAMAMOTO Sota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1655966/"
+    },
+    "山本青英": {
+      "en": "YAMAMOTO Shoei",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657472/"
+    },
+    "田村遊吏": {
+      "en": "TAMURA Yuri",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657455/"
+    },
+    "井上秀悟": {
+      "en": "INOUE Shugo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657587/"
+    },
+    "松岡響祈": {
+      "en": "MATSUOKA Hibiki",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656002/"
+    },
+    "イ・ジンヨン": {
+      "en": "LEE Jin Yeong",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657466/"
+    },
+    "田中純": {
+      "en": "TANAKA Makoto",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657450/"
+    },
+    "岩永創太": {
+      "en": "IWANAGA Sota",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1643559/"
+    },
+    "中山大耀": {
+      "en": "NAKAYAMA Taiyo",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657646/"
+    },
+    "芳野凱斗": {
+      "en": "YOSHINO Kaito",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656596/"
+    },
+    "合戸晴矢": {
+      "en": "GOTO Haruya",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656023/"
+    },
+    "坂井悠飛": {
+      "en": "SAKAI Yuhi",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1656014/"
+    },
+    "松下永遠": {
+      "en": "MATSUSHITA Towa",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1657469/"
+    },
+    "佐藤翼": {
+      "en": "SATO Tsubasa",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1658992/"
+    },
+    "渡辺健斗": {
+      "en": "WATANABE Kento",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1658964/"
+    },
+    "徳永涼": {
+      "en": "TOKUNAGA Ryo",
+      "source": "jleague-en-news",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/news/article/34974/"
+    },
+    "中川豪": {
+      "en": "NAKAGAWA Go",
+      "source": "jleague-en-news",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/news/article/34987/"
+    },
+    "小野成夢": {
+      "en": "ONO Narumu",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1647348/"
+    },
+    "伊藤翼": {
+      "en": "ITO Tsubasa",
+      "source": "jleague-en",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/player/1647353/"
+    },
+    "滝口晴斗": {
+      "en": "TAKIGUCHI Haruto",
+      "source": "jleague-en-news",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/news/article/34785/"
+    },
+    "末谷誓梧": {
+      "en": "SUETANI Seigo",
+      "source": "jleague-en-news",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/news/article/35052/"
+    },
+    "海本慶太朗": {
+      "en": "KAIMOTO Keitaro",
+      "source": "jleague-en-news",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/news/article/35058/"
+    },
+    "川合陽": {
+      "en": "KAWAI Hinata",
+      "source": "jleague-en-news",
+      "confidence": "high",
+      "url": "https://www.jleague.jp/en/news/article/35066/"
+    },
+    "長友 佑都": {
+      "en": "NAGATOMO Yuto",
+      "source": "jfa-en",
+      "confidence": "high",
+      "url": "http://www.jfa.jp/eng/news/00036338/"
     }
   }
 }
