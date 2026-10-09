@@ -291,7 +291,8 @@ def update_sitemap():
         print("[WARN] sitemap.xml が無いのでスキップ")
         return
     content = SITEMAP_FILE.read_text(encoding="utf-8")
-    content = re.sub(r'\s*<url>\s*<loc>[^<]*?/pro-signings/</loc>.*?</url>', '', content, flags=re.DOTALL)
+    # 消すのは https://u18-soccer.com/pro-signings/ ちょうどの行だけ（/en/pro-signings/ まで消していた・2026-10-09修正）
+    content = re.sub(r'\s*<url>\s*<loc>' + re.escape(f"{DOMAIN}/pro-signings/") + r'</loc>.*?</url>', '', content, flags=re.DOTALL)
     today = datetime.now(JST).strftime("%Y-%m-%d")
     entry = (f"  <url>\n    <loc>{DOMAIN}/pro-signings/</loc>\n    <lastmod>{today}</lastmod>\n"
              f"    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n")
