@@ -199,6 +199,10 @@ ADSENSE_CLIENT = "ca-pub-6953440022497606"
 # ============================================================
 # キー: data 内のリーグ名（完全一致）
 # 値: (URL slug, 表示名, カテゴリ, 説明)
+# title をプレミアと同じ型（「プリンスリーグ関東2部 順位表【2026最新】｜…」＝検索語を先頭・空白なし）にするプリンスの slug。
+# 2026-10-10 1リーグテスト・測定は公開4週間後（GSC「プリンスリーグ関東2部」の CTR・平均掲載順位）。効果が出たら slug を足して横展開。
+PRINCE_COMPACT_TITLE_SLUGS = {"prince-kanto-2"}
+
 LEAGUE_DEFS = {
     "プレミアリーグEAST": (
         "premier-east",
@@ -1542,6 +1546,19 @@ def generate_league_page(league_name, slug, label, category, description, season
     # ★ プレミアはGSC高頻度クエリ「プレミアリーグwest 順位」(スペースなし)と完全一致させる
     if category == "premier":
         # label「プレミアリーグ WEST/EAST」の空白を除去
+        label_compact = label.replace(" ", "")
+        if top_teams_str and team_count > 0:
+            title = (
+                f"{label_compact} 順位表【{year_label}最新】"
+                f"｜{top_teams_str}ほか全{team_count}チーム（高円宮杯JFA U-18）"
+            )
+        else:
+            title = (
+                f"{label_compact} 順位表【{year_label}最新】"
+                f"｜高円宮杯JFA U-18 高校サッカー"
+            )
+    elif slug in PRINCE_COMPACT_TITLE_SLUGS:
+        # プレミアと同じ型（label「プリンスリーグ 関東 2部」の空白を除去＝検索語「プリンスリーグ関東2部」と一致）
         label_compact = label.replace(" ", "")
         if top_teams_str and team_count > 0:
             title = (
