@@ -33,7 +33,7 @@ on:
       #   9分の実行のうち8分以上は「プレミア以外の取得」だった（run #1200 実測）。
       #   生成・コミット・通知はどの範囲でも必ず走る。取得だけを絞る。
       scope:
-        description: '更新する範囲（premier=プレミアだけ・約1分）'
+        description: '更新する範囲（premier=プレミアだけ・約1分／tournament=選手権など県予選だけ）'
         type: choice
         required: false
         default: 'all'
@@ -42,6 +42,9 @@ on:
           - premier
           - prince
           - pref
+          # ★2026-10-10 追加：選手権など県予選（koko-soccer）だけを取りに行く。
+          #   JFA・ゲキサカ・県1部などの取得は全部飛ばし、生成・コミット・通知だけ走る。
+          - tournament
 
   # データ・記事ファイルを編集して push したら即時反映（手動 Run workflow 不要）
   # ※push起動時はスクレイピング(順位取得等)をスキップし、ページ再生成＋コミットだけ走る
@@ -127,7 +130,7 @@ jobs:
       #   リーグごとに独立しているので、1リーグ失敗しても他はそのまま更新される。
       - name: プレミア・プリンスをJFA公式から更新
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE != 'pref' }}
+                && env.SCOPE != 'pref' && env.SCOPE != 'tournament' }}
         continue-on-error: true
         run: |
           # ★2026-09-13: scope=premier/prince のときだけ種類を渡す。
@@ -146,7 +149,7 @@ jobs:
       #   ⚠️ continue-on-error は外さない（コミットより前）。fetch_status.json の jobs に prince_scorers:{slug} が残る。赤にはしない（補助情報）。
       - name: プリンス得点者を取得（ゲキサカ）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE != 'pref' }}
+                && env.SCOPE != 'pref' && env.SCOPE != 'tournament' }}
         continue-on-error: true
         run: |
           if [ -f scraper/fetch_prince_scorers.py ]; then
@@ -164,7 +167,7 @@ jobs:
       #      握りつぶすかわりに fetch_status.json の jobs に必ず記録が残る。
       - name: チームのシーズンデータをJFA公式から更新
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE != 'pref' }}
+                && env.SCOPE != 'pref' && env.SCOPE != 'tournament' }}
         continue-on-error: true
         run: |
           if [ -f scraper/fetch_jfa_team_season.py ]; then
@@ -256,7 +259,7 @@ jobs:
       #   ページ生成より前に実行し、最新の戦績表がリーグ／県ページに反映されるようにする
       - name: 戦績表データを更新（プレミア・プリンス）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE != 'pref' }}
+                && env.SCOPE != 'pref' && env.SCOPE != 'tournament' }}
         continue-on-error: true
         run: |
           # ★2026-09-13: 絞らないと scope=premier の回でもプリンス13リーグを
@@ -278,7 +281,7 @@ jobs:
       #      食い違うことがあり（九州1部で2件）、どちらが正しいか判定する材料が無いため。
       - name: フォールバック中のリーグの会場をJFAから補完
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE != 'pref' }}
+                && env.SCOPE != 'pref' && env.SCOPE != 'tournament' }}
         continue-on-error: true
         run: |
           if [ -f scraper/backfill_venues.py ]; then
@@ -389,7 +392,7 @@ jobs:
       #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）
       - name: 県予選トーナメント結果を更新（koko-soccer出典）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE == 'all' }}
+                && (env.SCOPE == 'all' || env.SCOPE == 'tournament') }}
         continue-on-error: true
         run: |
           if [ -f scraper/update_tournament_results.py ]; then
@@ -405,7 +408,7 @@ jobs:
       #   ⚠️ 必ず上のボットの**後**に置く（ボットが書いたあとの状態を見る）。赤にしない（常に exit 0）。
       - name: 県予選mdと出典の突き合わせを点検
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
-                && env.SCOPE == 'all' }}
+                && (env.SCOPE == 'all' || env.SCOPE == 'tournament') }}
         continue-on-error: true
         run: |
           if [ -f scraper/audit_tournament_md.py ]; then

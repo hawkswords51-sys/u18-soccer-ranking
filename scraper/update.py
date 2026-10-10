@@ -1286,6 +1286,7 @@ def scrape_and_update(year: int, dry_run: bool = False, scope: str = "all") -> i
       premier … プレミアEAST/WESTだけ
       prince  … プリンス全9地域だけ
       pref    … 県リーグ（1部・2部）だけ
+      tournament … 県予選（koko）だけ。ここでは何も取りに行かない（取得はワークフローの別ステップ）
     ⚠️ 順位の再計算と _meta の更新は **どの scope でも必ず走らせる**。
        ここを飛ばすとトップページの「最終更新」が動かず、
        Keiから見て「反映されていない」ように見える。
@@ -1423,7 +1424,7 @@ def main():
                         help="実際には保存せずテスト実行")
     # ★2026-09-13: 手動Runの範囲指定（ワークフローの scope から渡す）
     parser.add_argument("--scope", default="all",
-                        choices=["all", "premier", "prince", "pref"],
+                        choices=["all", "premier", "prince", "pref", "tournament"],
                         help="取りに行く範囲（既定 all）")
     args = parser.parse_args()
 
