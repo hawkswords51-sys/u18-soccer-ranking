@@ -5,7 +5,7 @@
   "league_team": "柏レイソルU-18",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/team_detail/06.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/match_page/",
-  "asof": "2026-10-04",
+  "asof": "2026-10-10",
   "roster": [
     {
       "no": 1,
@@ -13,8 +13,8 @@
       "name": "西川 元基",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 6,
-      "minutes": 540,
+      "apps": 7,
+      "minutes": 630,
       "goals": 0
     },
     {
@@ -53,8 +53,8 @@
       "name": "宮野 健貴",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 16,
-      "minutes": 1185,
+      "apps": 17,
+      "minutes": 1275,
       "goals": 0
     },
     {
@@ -63,8 +63,8 @@
       "name": "丸山 寿貴斗",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 15,
-      "minutes": 1290,
+      "apps": 16,
+      "minutes": 1380,
       "goals": 1
     },
     {
@@ -83,9 +83,9 @@
       "name": "上野 暉晏",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 16,
-      "minutes": 1440,
-      "goals": 3
+      "apps": 17,
+      "minutes": 1530,
+      "goals": 4
     },
     {
       "no": 15,
@@ -93,8 +93,8 @@
       "name": "落合 哉太",
       "grade": "2年",
       "prev": "ＪＦＡアカデミー福島U-15",
-      "apps": 13,
-      "minutes": 739,
+      "apps": 14,
+      "minutes": 829,
       "goals": 0
     },
     {
@@ -123,8 +123,8 @@
       "name": "朴澤 友慶",
       "grade": "2年",
       "prev": "柏レイソルU-15",
-      "apps": 6,
-      "minutes": 380,
+      "apps": 7,
+      "minutes": 470,
       "goals": 0
     },
     {
@@ -143,8 +143,8 @@
       "name": "阿出川 琥吾",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 16,
-      "minutes": 1046,
+      "apps": 17,
+      "minutes": 1103,
       "goals": 1
     },
     {
@@ -163,8 +163,8 @@
       "name": "加茂 結斗",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 15,
-      "minutes": 1350,
+      "apps": 16,
+      "minutes": 1440,
       "goals": 2
     },
     {
@@ -183,8 +183,8 @@
       "name": "米田 光",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 11,
-      "minutes": 685,
+      "apps": 12,
+      "minutes": 718,
       "goals": 0
     },
     {
@@ -253,8 +253,8 @@
       "name": "巻渕 彪悟",
       "grade": "3年",
       "prev": "柏レイソルU-15",
-      "apps": 16,
-      "minutes": 1404,
+      "apps": 17,
+      "minutes": 1494,
       "goals": 5
     },
     {
@@ -273,8 +273,8 @@
       "name": "五十嵐 陵",
       "grade": "2年",
       "prev": "柏レイソルU-15",
-      "apps": 13,
-      "minutes": 596,
+      "apps": 14,
+      "minutes": 686,
       "goals": 2
     },
     {
@@ -303,9 +303,9 @@
       "name": "茂木 勇人 チュクソム",
       "grade": "2年",
       "prev": "柏レイソルU-15",
-      "apps": 16,
-      "minutes": 1106,
-      "goals": 3
+      "apps": 17,
+      "minutes": 1196,
+      "goals": 4
     }
   ],
   "matches": {
@@ -2457,6 +2457,128 @@
           "out": "36 茂木 勇人 チュクソム",
           "in": "11 杉山 駿之介",
           "minute": "85分"
+        }
+      ]
+    },
+    "1704": {
+      "md": 17,
+      "starters": [
+        {
+          "no": 1,
+          "pos": "GK",
+          "name": "西川 元基",
+          "captain": false
+        },
+        {
+          "no": 3,
+          "pos": "DF",
+          "name": "宮野 健貴",
+          "captain": false
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "丸山 寿貴斗",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "DF",
+          "name": "上野 暉晏",
+          "captain": true
+        },
+        {
+          "no": 15,
+          "pos": "DF",
+          "name": "落合 哉太",
+          "captain": false
+        },
+        {
+          "no": 33,
+          "pos": "DF",
+          "name": "朴澤 友慶",
+          "captain": false
+        },
+        {
+          "no": 2,
+          "pos": "MF",
+          "name": "阿出川 琥吾",
+          "captain": false
+        },
+        {
+          "no": 10,
+          "pos": "MF",
+          "name": "加茂 結斗",
+          "captain": false
+        },
+        {
+          "no": 9,
+          "pos": "FW",
+          "name": "巻渕 彪悟",
+          "captain": false
+        },
+        {
+          "no": 14,
+          "pos": "FW",
+          "name": "五十嵐 陵",
+          "captain": false
+        },
+        {
+          "no": 36,
+          "pos": "FW",
+          "name": "茂木 勇人 チュクソム",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 16,
+          "pos": "GK",
+          "name": "金子 遙真",
+          "captain": false
+        },
+        {
+          "no": 19,
+          "pos": "DF",
+          "name": "大塚 太朗",
+          "captain": false
+        },
+        {
+          "no": 32,
+          "pos": "DF",
+          "name": "奥村 翔",
+          "captain": false
+        },
+        {
+          "no": 38,
+          "pos": "DF",
+          "name": "進藤 新大",
+          "captain": false
+        },
+        {
+          "no": 12,
+          "pos": "MF",
+          "name": "黒沢 碧",
+          "captain": false
+        },
+        {
+          "no": 13,
+          "pos": "MF",
+          "name": "米田 光",
+          "captain": false
+        },
+        {
+          "no": 11,
+          "pos": "FW",
+          "name": "杉山 駿之介",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "2 阿出川 琥吾",
+          "in": "13 米田 光",
+          "minute": "57分"
         }
       ]
     }

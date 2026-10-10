@@ -69,6 +69,18 @@
     },
     {
       "rank": 2,
+      "team": "柏レイソルU-18",
+      "pts": 33,
+      "played": 17,
+      "won": 10,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 24,
+      "ga": 12,
+      "gd": 12
+    },
+    {
+      "rank": 3,
       "team": "FC東京U-18",
       "pts": 32,
       "played": 17,
@@ -80,7 +92,7 @@
       "gd": 15
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "鹿島アントラーズユース",
       "pts": 31,
       "played": 16,
@@ -90,18 +102,6 @@
       "gf": 45,
       "ga": 28,
       "gd": 17
-    },
-    {
-      "rank": 4,
-      "team": "柏レイソルU-18",
-      "pts": 30,
-      "played": 16,
-      "won": 9,
-      "drawn": 3,
-      "lost": 4,
-      "gf": 22,
-      "ga": 12,
-      "gd": 10
     },
     {
       "rank": 5,
@@ -143,13 +143,13 @@
       "rank": 8,
       "team": "東京ヴェルディユース",
       "pts": 22,
-      "played": 16,
+      "played": 17,
       "won": 6,
       "drawn": 4,
-      "lost": 6,
+      "lost": 7,
       "gf": 30,
-      "ga": 34,
-      "gd": -4
+      "ga": 36,
+      "gd": -6
     },
     {
       "rank": 9,
@@ -3141,12 +3141,23 @@
       "md": 17,
       "date": "2026-10-10",
       "home": "東京ヴェルディユース",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "柏レイソルU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ヴェルディグラウンド（人工芝）",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "46",
+          "name": "上野 暉晏"
+        },
+        {
+          "minute": "90+3",
+          "name": "茂木 勇人 チュクソム"
+        }
+      ]
     },
     {
       "md": 17,
