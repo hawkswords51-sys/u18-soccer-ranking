@@ -2872,15 +2872,15 @@
         "name": "三菱養和SCユース",
         "league": "東京T1リーグ",
         "rank": 5,
-        "points": 35,
-        "played": 14,
-        "won": 11,
+        "points": 38,
+        "played": 15,
+        "won": 12,
         "drawn": 2,
         "lost": 1,
-        "goalsFor": 25,
-        "goalsAgainst": 6,
+        "goalsFor": 28,
+        "goalsAgainst": 8,
         "prefectureRank": 5,
-        "goalDiff": 19,
+        "goalDiff": 20,
         "leagueRank": 1,
         "aliases": [
           "三菱養和"
@@ -2989,27 +2989,10 @@
         ]
       },
       {
-        "name": "帝京高校2nd",
-        "league": "東京T1リーグ",
-        "points": 12,
-        "played": 14,
-        "won": 3,
-        "drawn": 3,
-        "lost": 8,
-        "goalsFor": 22,
-        "goalsAgainst": 29,
-        "leagueRank": 8,
-        "rank": 12,
-        "prefectureRank": 12,
-        "aliases": [
-          "帝京B"
-        ]
-      },
-      {
         "id": "t011",
         "name": "国士舘高校",
         "league": "東京T1リーグ",
-        "rank": 13,
+        "rank": 12,
         "points": 12,
         "played": 13,
         "won": 3,
@@ -3018,8 +3001,25 @@
         "goalsFor": 12,
         "goalsAgainst": 19,
         "goalDiff": -7,
+        "prefectureRank": 12,
+        "leagueRank": 8
+      },
+      {
+        "name": "帝京高校2nd",
+        "league": "東京T1リーグ",
+        "points": 12,
+        "played": 15,
+        "won": 3,
+        "drawn": 3,
+        "lost": 9,
+        "goalsFor": 24,
+        "goalsAgainst": 32,
+        "leagueRank": 9,
+        "rank": 13,
         "prefectureRank": 13,
-        "leagueRank": 9
+        "aliases": [
+          "帝京B"
+        ]
       },
       {
         "id": "t014",
@@ -8374,15 +8374,15 @@
         "name": "西京高校",
         "league": "山口県1部",
         "rank": 4,
-        "points": 30,
-        "played": 13,
-        "won": 10,
+        "points": 33,
+        "played": 14,
+        "won": 11,
         "drawn": 0,
         "lost": 3,
-        "goalsFor": 82,
-        "goalsAgainst": 18,
+        "goalsFor": 89,
+        "goalsAgainst": 19,
         "prefectureRank": 4,
-        "goalDiff": 64,
+        "goalDiff": 70,
         "leagueRank": 2
       },
       {
@@ -8407,14 +8407,14 @@
         "league": "山口県1部",
         "rank": 6,
         "points": 28,
-        "played": 13,
+        "played": 14,
         "won": 9,
         "drawn": 1,
-        "lost": 3,
-        "goalsFor": 56,
-        "goalsAgainst": 19,
+        "lost": 4,
+        "goalsFor": 57,
+        "goalsAgainst": 26,
         "prefectureRank": 6,
-        "goalDiff": 37,
+        "goalDiff": 31,
         "leagueRank": 4
       },
       {
@@ -8667,6 +8667,22 @@
         "leagueRank": 6
       },
       {
+        "id": "tk008",
+        "name": "鳴門渦潮高校",
+        "league": "徳島県1部",
+        "rank": 10,
+        "points": 13,
+        "played": 16,
+        "won": 4,
+        "drawn": 1,
+        "lost": 11,
+        "goalsFor": 46,
+        "goalsAgainst": 67,
+        "prefectureRank": 10,
+        "goalDiff": -21,
+        "leagueRank": 7
+      },
+      {
         "name": "徳島商業高校2nd",
         "league": "徳島県1部",
         "points": 11,
@@ -8676,28 +8692,12 @@
         "lost": 10,
         "goalsFor": 25,
         "goalsAgainst": 44,
-        "leagueRank": 7,
-        "rank": 10,
-        "prefectureRank": 10,
+        "leagueRank": 8,
+        "rank": 11,
+        "prefectureRank": 11,
         "aliases": [
           "徳島商業S"
         ]
-      },
-      {
-        "id": "tk008",
-        "name": "鳴門渦潮高校",
-        "league": "徳島県1部",
-        "rank": 11,
-        "points": 10,
-        "played": 15,
-        "won": 3,
-        "drawn": 1,
-        "lost": 11,
-        "goalsFor": 41,
-        "goalsAgainst": 65,
-        "prefectureRank": 11,
-        "goalDiff": -24,
-        "leagueRank": 8
       },
       {
         "id": "tk013",
@@ -8706,13 +8706,13 @@
         "rank": 12,
         "prefectureRank": 12,
         "points": 10,
-        "played": 14,
+        "played": 15,
         "won": 3,
         "drawn": 1,
-        "lost": 10,
-        "goalsFor": 15,
-        "goalsAgainst": 86,
-        "goalDiff": -71,
+        "lost": 11,
+        "goalsFor": 17,
+        "goalsAgainst": 91,
+        "goalDiff": -74,
         "leagueRank": 9
       },
       {
@@ -11304,8 +11304,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-10-10 19:11",
+    "lastUpdated": "2026-10-11 00:07",
     "year": 2026,
-    "updatedCount": 0
+    "updatedCount": 397
   }
 }

@@ -65,6 +65,18 @@
     },
     {
       "rank": 3,
+      "team": "浪速",
+      "points": 17,
+      "played": 11,
+      "won": 5,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 22,
+      "ga": 19,
+      "gd": 3
+    },
+    {
+      "rank": 4,
       "team": "大阪学院B",
       "points": 15,
       "played": 10,
@@ -74,18 +86,6 @@
       "gf": 18,
       "ga": 12,
       "gd": 6
-    },
-    {
-      "rank": 4,
-      "team": "浪速",
-      "points": 14,
-      "played": 10,
-      "won": 4,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 19,
-      "ga": 19,
-      "gd": 0
     },
     {
       "rank": 5,
@@ -127,13 +127,13 @@
       "rank": 8,
       "team": "帝塚山泉ヶ丘",
       "points": 2,
-      "played": 10,
+      "played": 11,
       "won": 0,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 12,
-      "ga": 30,
-      "gd": -18
+      "ga": 33,
+      "gd": -21
     }
   ],
   "matches": [
@@ -321,10 +321,10 @@
       "md": 11,
       "date": "2026-10-10",
       "home": "浪速",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "帝塚山泉ヶ丘",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 13,
@@ -652,10 +652,10 @@
     },
     {
       "team": "浪速",
-      "pts": 14,
-      "gf": 19,
+      "pts": 17,
+      "gf": 22,
       "ga": 19,
-      "rank": 4
+      "rank": 3
     },
     {
       "team": "セレッソ大阪U-18 B",
@@ -669,13 +669,13 @@
       "pts": 15,
       "gf": 18,
       "ga": 12,
-      "rank": 3
+      "rank": 4
     },
     {
       "team": "帝塚山泉ヶ丘",
       "pts": 2,
       "gf": 12,
-      "ga": 30,
+      "ga": 33,
       "rank": 8
     },
     {
