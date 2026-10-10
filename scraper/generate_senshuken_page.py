@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """選手権2026特設ページ /tournaments/senshuken-2026/ の自動更新部分を生成する（2026-10-04 新設）。
 
-- データの正本: data/tournaments/{pref}-senshuken-2026.md（47ファイル。botが毎日koko-soccerから結果を書き込む）
+- データの正本: data/tournaments/senshuken-2026/{pref}-senshuken-2026.md（47ファイル。botが毎日koko-soccerから結果を書き込む）
 - tournaments/senshuken-2026/index.html の次の2区間だけを書き換える（それ以外は手書きのまま）:
     <!-- SENSHUKEN_SUMMARY_START --> 〜 <!-- SENSHUKEN_SUMMARY_END -->  H1直下のAI引用向け一文要約
     <!-- SENSHUKEN_PREFS_START -->   〜 <!-- SENSHUKEN_PREFS_END -->    47都道府県の予選状況・代表校の一覧
@@ -123,7 +123,7 @@ def fmt_dates(dates):
 
 
 def analyze(slug):
-    path = TDIR / f"{slug}-senshuken-2026.md"
+    path = TDIR / "senshuken-2026" / f"{slug}-senshuken-2026.md"  # [2026-10-10] 大会フォルダへ移動
     if not path.exists():
         return None
     meta, rounds = parse_md(path)

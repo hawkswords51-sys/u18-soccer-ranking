@@ -388,7 +388,7 @@ jobs:
           fi
 
       # ★ 県予選トーナメント（選手権・インターハイ等）の組み合わせ・結果を自動更新
-      #   対象: data/tournaments/*.md のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
+      #   対象: data/tournaments/ の大会md（直下＋senshuken-2026/ などの大会フォルダ）のうち frontmatter に source:(kokoのURL) があり status が「終了」でないもの
       #   ログに「⚠ 要確認」が出た試合は週末に手動確認する（誤記検出・出典異常など）
       - name: 県予選トーナメント結果を更新（koko-soccer出典）
         if: ${{ github.event.inputs.dry_run != 'true' && github.event_name != 'push'
@@ -543,7 +543,7 @@ jobs:
           fi
 
       # ★ 選手権2026特設ページ（/tournaments/senshuken-2026/）の「要約」と「47県の進行状況・代表校」を再生成
-      #   正本は data/tournaments/*-senshuken-2026.md（botが毎日更新）。マーカー区間以外は手書きのまま。
+      #   正本は data/tournaments/senshuken-2026/*-senshuken-2026.md（botが毎日更新）。マーカー区間以外は手書きのまま。
       - name: 選手権2026特設ページを再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
         continue-on-error: true

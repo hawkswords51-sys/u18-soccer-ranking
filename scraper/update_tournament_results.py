@@ -25,7 +25,7 @@ data/tournaments/*.md に組み合わせとスコアを自動で追記する。
   python scraper/update_tournament_results.py                  # 本番（対象全ファイル）
   python scraper/update_tournament_results.py --dry-run        # 変更内容の表示のみ
   python scraper/update_tournament_results.py --dry-run \
-      --file data/tournaments/shizuoka-interhigh-2026.md \
+      --file data/tournaments/interhigh-2026/shizuoka-interhigh-2026.md \
       --url https://koko-soccer.com/score/4393                 # 単体テスト（status無視）
 
 終了コード: 常に 0（失敗はログで通知。既存データは安全に据え置き）。
@@ -43,6 +43,10 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parent.parent
 TOURNAMENT_DIR = ROOT / "data" / "tournaments"
+# [2026-10-10] 県予選mdは大会ごとのフォルダ（senshuken-2026/ など）に分けた。
+#   直下だけを glob すると0件になるので、一覧は tournament_files に任せる。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from tournament_files import iter_tournament_mds  # noqa: E402
 TEAMS_JSON = ROOT / "data" / "teams.json"
 
 UA = {"User-Agent": "Mozilla/5.0 (u18-soccer tournament updater)"}
@@ -954,7 +958,7 @@ def main():
         return 0
 
     targets = []
-    for md_path in sorted(TOURNAMENT_DIR.glob("*.md")):
+    for md_path in iter_tournament_mds(TOURNAMENT_DIR):
         content = md_path.read_text(encoding="utf-8")
         fm, _ = split_frontmatter(content)
         if fm is None:

@@ -635,7 +635,9 @@ def render_tournament_html(pref_id, teams, division2=None):
             finished = 1
         return (finished, fp.name)
 
-    for filepath in sorted(tournament_dir.glob("*.md"), key=_tournament_sort_key):
+    # [2026-10-10] 県予選mdは大会ごとのフォルダ（senshuken-2026/ など）にある。直下だけ見ると0件になる。
+    from tournament_files import iter_tournament_mds
+    for filepath in sorted(iter_tournament_mds(tournament_dir), key=_tournament_sort_key):
         content = filepath.read_text(encoding='utf-8')
         if not content.startswith('---'):
             continue

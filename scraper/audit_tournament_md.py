@@ -58,7 +58,8 @@ from jst import now as _jst_now          # noqa: E402
 def targets(include_finished=False):
     """update_tournament_results.main() と同じ選び方"""
     out = []
-    for md_path in sorted(utr.TOURNAMENT_DIR.glob("*.md")):
+    # [2026-10-10] 大会フォルダの中も見る（直下だけだと0件になる）
+    for md_path in utr.iter_tournament_mds(utr.TOURNAMENT_DIR):
         fm, _ = utr.split_frontmatter(md_path.read_text(encoding="utf-8"))
         if fm is None:
             continue

@@ -1506,7 +1506,7 @@ def render_short_team_pages(out_root, teams, names, season):
 
 
 # ===================== 選手権（冬）の英語ページ（2026-10-05 Cowork・参考実装v11） =====================
-# - データ: 日本語の 47県 data/tournaments/{pref}-senshuken-{SENSHUKEN_YEAR}.md（botが毎朝更新）を
+# - データ: 日本語の 47県 data/tournaments/senshuken-{SENSHUKEN_YEAR}/{pref}-senshuken-{SENSHUKEN_YEAR}.md（botが毎朝更新）を
 #   scraper/generate_senshuken_page.py の analyze() でそのまま読む＝日本語の特設ページと判定が食い違わない。
 #   英語の文章は data/en/senshuken-notes.md、歴代優勝は data/tournaments_data.yml の all_japan_highschool。
 # - Kei決定（2026-10-05）: 代表校に公式の英語名が無い学校は、ページを止めずに漢字のまま出す（得点ランキングの選手名と同じ）。
@@ -1581,7 +1581,8 @@ def render_senshuken(out_root, teams, names, extra, season):
     infos = {}
     for _, prefs in gs.REGIONS:
         for slug, _jp in prefs:
-            path = ROOT / "data" / "tournaments" / f"{slug}-senshuken-{SENSHUKEN_YEAR}.md"
+            path = (ROOT / "data" / "tournaments" / f"senshuken-{SENSHUKEN_YEAR}"  # [2026-10-10] 大会フォルダへ移動
+                    / f"{slug}-senshuken-{SENSHUKEN_YEAR}.md")
             if not path.exists():
                 print(f"[要確認] 選手権英語ページ: {path.name} が無い（ページは書き換えません）")
                 return
