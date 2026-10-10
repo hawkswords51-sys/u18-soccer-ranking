@@ -85,6 +85,30 @@
     },
     {
       "rank": 4,
+      "team": "矢板中央",
+      "pts": 23,
+      "played": 14,
+      "won": 7,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 27,
+      "ga": 21,
+      "gd": 6
+    },
+    {
+      "rank": 5,
+      "team": "日体大柏",
+      "pts": 22,
+      "played": 15,
+      "won": 7,
+      "drawn": 1,
+      "lost": 7,
+      "gf": 18,
+      "ga": 20,
+      "gd": -2
+    },
+    {
+      "rank": 6,
       "team": "桐光学園",
       "pts": 20,
       "played": 13,
@@ -96,19 +120,7 @@
       "gd": 3
     },
     {
-      "rank": 5,
-      "team": "矢板中央",
-      "pts": 20,
-      "played": 13,
-      "won": 6,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 23,
-      "ga": 21,
-      "gd": 2
-    },
-    {
-      "rank": 6,
+      "rank": 7,
       "team": "西武台",
       "pts": 20,
       "played": 14,
@@ -118,18 +130,6 @@
       "gf": 21,
       "ga": 24,
       "gd": -3
-    },
-    {
-      "rank": 7,
-      "team": "日体大柏",
-      "pts": 19,
-      "played": 14,
-      "won": 6,
-      "drawn": 1,
-      "lost": 7,
-      "gf": 16,
-      "ga": 20,
-      "gd": -4
     },
     {
       "rank": 8,
@@ -147,25 +147,25 @@
       "rank": 9,
       "team": "鹿島学園",
       "pts": 10,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 4,
-      "lost": 7,
+      "lost": 8,
       "gf": 17,
-      "ga": 30,
-      "gd": -13
+      "ga": 32,
+      "gd": -15
     },
     {
       "rank": 10,
       "team": "栃木SC U-18",
       "pts": 10,
-      "played": 14,
+      "played": 15,
       "won": 3,
       "drawn": 1,
-      "lost": 10,
+      "lost": 11,
       "gf": 9,
-      "ga": 23,
-      "gd": -14
+      "ga": 27,
+      "gd": -18
     }
   ],
   "matches": [
@@ -943,10 +943,10 @@
       "md": 15,
       "date": "2026-10-10",
       "home": "日体大柏",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "鹿島学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "日本体育大学柏高校",
       "kickoff": "11:00"
     },
@@ -954,10 +954,10 @@
       "md": 15,
       "date": "2026-10-10",
       "home": "矢板中央",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "栃木SC U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "矢板中央高校東泉グランド",
       "kickoff": "11:00"
     },
