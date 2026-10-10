@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-10T11:00:51+09:00",
+  "updatedAt": "2026-10-10T11:00:54+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 57,
+      "result_streak": 58,
       "status": "alert",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -643,7 +643,7 @@
       "sourceName": "京都府サッカー協会 公式",
       "last_change": "2026-10-01",
       "result_since": "2026-10-08",
-      "result_streak": 4,
+      "result_streak": 5,
       "status": "warn",
       "last_updated": "2026-10-08",
       "result": "fetch_error",
@@ -808,7 +808,7 @@
       "sourceName": "大分県サッカー協会 公式",
       "last_change": "2026-10-06",
       "result_since": "2026-10-09",
-      "result_streak": 3,
+      "result_streak": 4,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (版日付(2026-10-04)より後の日付を持つ消化済み試合が1件ある（例: 2026-10-06 大分鶴崎 vs ヴェルスパ大分）)",
@@ -853,7 +853,7 @@
       "sourceName": "沖縄県サッカー協会 公式（波布リーグ）",
       "last_change": "2026-09-29",
       "result_since": "2026-10-08",
-      "result_streak": 5,
+      "result_streak": 6,
       "status": "warn",
       "last_updated": "2026-10-07",
       "verify_items": [
