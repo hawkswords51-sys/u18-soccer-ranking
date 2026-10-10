@@ -154,13 +154,13 @@
     {
       "rank": 9,
       "team": "ガンバ大阪ユース",
-      "pts": 19,
-      "played": 15,
+      "pts": 20,
+      "played": 16,
       "won": 5,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 6,
-      "gf": 21,
-      "ga": 24,
+      "gf": 24,
+      "ga": 27,
       "gd": -3
     },
     {
@@ -178,13 +178,13 @@
     {
       "rank": 11,
       "team": "ジュビロ磐田U-18",
-      "pts": 8,
-      "played": 16,
+      "pts": 9,
+      "played": 17,
       "won": 2,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 12,
-      "gf": 31,
-      "ga": 45,
+      "gf": 34,
+      "ga": 48,
       "gd": -14
     },
     {
@@ -2943,12 +2943,40 @@
       "md": 17,
       "date": "2026-10-10",
       "home": "ジュビロ磐田U-18",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 3,
       "away": "ガンバ大阪ユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ヤマハ大久保グラウンド",
-      "kickoff": "10:00"
+      "kickoff": "10:00",
+      "homeScorers": [
+        {
+          "minute": "25",
+          "name": "中谷 桜太朗"
+        },
+        {
+          "minute": "46",
+          "name": "片岡 蓮心"
+        },
+        {
+          "minute": "56",
+          "name": "片岡 蓮心"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "52",
+          "name": "村田 康輔"
+        },
+        {
+          "minute": "69",
+          "name": "三村 走太"
+        },
+        {
+          "minute": "90+3",
+          "name": "三村 走太"
+        }
+      ]
     },
     {
       "md": 17,
