@@ -111,8 +111,6 @@ TEMP_EXCEPTIONS: dict[str, str] = {
              "コピーになっている（日程表と奈良新聞 https://www.nara-np.co.jp/sports/soccer/summary1550.html は 生駒 4-0 畝傍）。"
              "NARA_HOSHITORI_FIXES で勝点・得点・失点・順位の差を名指しで打ち消す → 外す条件＝星取表のこの試合が 生駒4-0 に"
              "直ったら（直ると read_nara が止まって知らせる）"),
-    "okinawa": ("2026-10-11 追加：協会が第12節 9/26 FC琉球鹿島朝日×名護 を 0-14 → 0-15 に訂正（前半0-6・後半0-9・得点者15人）。"
-                "既存JSONの 0-14 を known_bad_existing で1試合だけ除外 → 外す条件＝一度取り込んで既存JSONが 0-15 になったら（同じ日のうちに）"),
     "aomori": ("2026-09-28 追加：星取表0924の合計欄で ヴァンラーレ八戸U-18 の失点が15（マスの合計と日程PDFは16）。"
                "KNOWN_SOURCE_ERRORS で差を明示 → 外す条件＝協会が星取表の合計欄を直したら（直ると read_aomori が止まって知らせる）"),
 }
@@ -190,14 +188,9 @@ PREF_OFFICIAL = {
     "okinawa":   {"platform": "okinawa", "tid": "161",
                   "source": "http://www.okinawa-soccer-habu.com/scores/table/161",
                   "label": "沖縄県サッカー協会 公式（波布リーグ）",
-                  "standings_gate": "okinawa",
-                  # 2026-10-11：協会が第12節 9/26 を 0-14 → 0-15 に訂正（前半0-6・後半0-9、得点者15人）。
-                  #   既存JSONの 0-14 を「既存側の誤り」として1試合だけ除外する。
-                  #   ⚠️ 取り込みが通って既存JSONが 0-15 になったら、同じ日のうちにこの行と TEMP_EXCEPTIONS の沖縄を消す
-                  #      （残すと「known_bad に書いた試合が見つからない」で verify_failed に戻る）。
-                  "known_bad_existing": [
-                      {"date": "2026-09-26", "home": "FC琉球鹿島朝日", "away": "名護", "hs": 0, "as": 14},
-                  ]},
+                  "standings_gate": "okinawa"},
+                  # ✅ 2026-10-11 の known_bad_existing（9/26 FC琉球鹿島朝日×名護 0-14→0-15 の協会訂正）は
+                  #    同日の取り込みで既存JSONが 0-15 になったので削除済み。
                   # ✅ known_bad_existing は 2026-09-07 の移行完了後に削除済み。
                   #    junior-soccer が 2026-04-29「那覇西 vs 那覇」を 1-2（那覇の勝ち）と
                   #    していたが公式は 1-1（引分）で、これ1件で「那覇は試合が増えるのに
