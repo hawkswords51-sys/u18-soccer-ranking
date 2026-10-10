@@ -2198,6 +2198,31 @@ def _oita_pdf(article_url: str, link_text: str, title_word: str) -> bytes:
     raise RuntimeError(f"記事に1部の{link_text}PDFが無い（{article_url}）")
 
 
+def _pdf_creation_date_jst(content: bytes) -> str | None:
+    """PDFのメタデータ CreationDate（例 D:20261008120800+09'00'）を日本時間の日付 YYYY-MM-DD で返す。取れなければ None。"""
+    import io
+    import pdfplumber
+    from datetime import datetime as _dt_, timedelta as _td_, timezone as _tz_
+    try:
+        with pdfplumber.open(io.BytesIO(content)) as pdf:
+            raw = (pdf.metadata or {}).get("CreationDate")
+    except Exception:
+        return None
+    if isinstance(raw, bytes):
+        raw = raw.decode("latin-1", "ignore")
+    m = re.match(r"D:(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([Zz+\-])?(\d{2})?'?(\d{2})?", str(raw or ""))
+    if not m:
+        return None
+    y, mo, d, hh, mi, ss, sign, oh, om = m.groups()
+    t = _dt_(int(y), int(mo), int(d), int(hh or 0), int(mi or 0), int(ss or 0))
+    if sign in ("+", "-"):
+        off = _td_(hours=int(oh or 0), minutes=int(om or 0))
+        t = t.replace(tzinfo=_tz_(off if sign == "+" else -off))
+    else:
+        t = t.replace(tzinfo=_tz_.utc) if sign in ("Z", "z") else t.replace(tzinfo=_tz_(_td_(hours=9)))
+    return t.astimezone(_tz_(_td_(hours=9))).date().isoformat()
+
+
 def _oita_schedule(content: bytes, asof: str | None = None) -> list[dict]:
     """対戦表PDF → 試合のリスト（未消化も含む）。asof＝記事タイトルの「(M/D現在)」の日付（版日付）"""
     import io
@@ -2280,7 +2305,15 @@ def read_oita(cfg: dict) -> tuple[dict, list[dict]]:
         title, url = arts[phase]
         am = _OITA_ASOF_RE.search(title)
         asof = f"{SEASON_YEAR}-{int(am.group(1)):02d}-{int(am.group(2)):02d}" if am else None
-        got = _oita_schedule(_oita_pdf(url, "対戦表", "OFA1部リーグ"), asof)
+        content = _oita_pdf(url, "対戦表", "OFA1部リーグ")
+        # [2026-10-11] 版日付＝max(題名の「◯/◯現在」, 対戦表PDFの作成日)。
+        #   協会が PDF だけ差し替えて題名の日付を更新しないことがある（10/8版のPDFが「10/4現在」の記事に載った）。
+        #   PDFのメタデータが取れないときは従来どおり題名だけ。ガード（版日付より後の結果＝割り当ての壊れ）は残す。
+        made = _pdf_creation_date_jst(content)
+        if made and (not asof or made > asof):
+            print(f"       （大分{phase}: 版日付＝PDF作成日 {made}（題名は{asof or '日付なし'}現在））")
+            asof = made
+        got = _oita_schedule(content, asof)
         if len(got) != cfg["teams"] * (cfg["teams"] - 1) // 2:
             raise RuntimeError(f"{phase}の対戦表が{len(got)}試合（1回戦総当たりの"
                                f"{cfg['teams'] * (cfg['teams'] - 1) // 2}試合と違う）")
@@ -2292,7 +2325,7 @@ def read_oita(cfg: dict) -> tuple[dict, list[dict]]:
     latest = arts.get("後期") or arts["前期"]
     standings = _oita_totals(_oita_pdf(latest[1], "星取表", "OFA1部リーグ"))
 
-    # ✅ 版日付ガード（「(9/13現在)」より後の日付を持つ消化済み試合＝日付の割り当てが壊れている）
+    # ✅ 版日付ガード（版日付＝題名の「(9/13現在)」と対戦表PDFの作成日の遅いほう。それより後の日付を持つ消化済み試合＝日付の割り当てが壊れている）
     version = max(versions) if versions else _jst_today().isoformat()
     future = [x for x in matches if x["hs"] is not None and x["date"] > version]
     if future:
