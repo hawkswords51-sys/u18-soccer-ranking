@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-10-06",
+ "lastUpdated": "2026-10-10",
  "teams": [
   {
    "name": "FC Kanaloa A",
@@ -21,16 +21,16 @@
    "short": "FCヴィアージャ"
   },
   {
-   "name": "瀬谷インターナショナル フットボール",
-   "short": "瀬谷インターナショナル フットボール"
-  },
-  {
    "name": "シュートJrユースFC",
    "short": "シュートJrユースFC"
   },
   {
    "name": "横須賀シーガルズFC",
    "short": "横須賀シーガルズFC"
+  },
+  {
+   "name": "瀬谷インターナショナル フットボール",
+   "short": "瀬谷インターナショナル フットボール"
   },
   {
    "name": "足柄FC",
@@ -54,13 +54,13 @@
    "rank": 1,
    "team": "FC Kanaloa A",
    "points": 36,
-   "played": 13,
+   "played": 14,
    "won": 12,
    "drawn": 0,
-   "lost": 1,
+   "lost": 2,
    "gf": 34,
-   "ga": 10,
-   "gd": 24
+   "ga": 11,
+   "gd": 23
   },
   {
    "rank": 2,
@@ -88,6 +88,30 @@
   },
   {
    "rank": 4,
+   "team": "シュートJrユースFC",
+   "points": 24,
+   "played": 14,
+   "won": 8,
+   "drawn": 0,
+   "lost": 6,
+   "gf": 23,
+   "ga": 17,
+   "gd": 6
+  },
+  {
+   "rank": 5,
+   "team": "横須賀シーガルズFC",
+   "points": 22,
+   "played": 15,
+   "won": 7,
+   "drawn": 1,
+   "lost": 7,
+   "gf": 24,
+   "ga": 29,
+   "gd": -5
+  },
+  {
+   "rank": 6,
    "team": "瀬谷インターナショナル フットボール",
    "points": 21,
    "played": 12,
@@ -97,30 +121,6 @@
    "gf": 19,
    "ga": 8,
    "gd": 11
-  },
-  {
-   "rank": 5,
-   "team": "シュートJrユースFC",
-   "points": 21,
-   "played": 13,
-   "won": 7,
-   "drawn": 0,
-   "lost": 6,
-   "gf": 22,
-   "ga": 17,
-   "gd": 5
-  },
-  {
-   "rank": 6,
-   "team": "横須賀シーガルズFC",
-   "points": 19,
-   "played": 14,
-   "won": 6,
-   "drawn": 1,
-   "lost": 7,
-   "gf": 23,
-   "ga": 29,
-   "gd": -6
   },
   {
    "rank": 7,
@@ -138,13 +138,13 @@
    "rank": 8,
    "team": "FC川崎CHAMP JY",
    "points": 11,
-   "played": 13,
+   "played": 14,
    "won": 3,
    "drawn": 2,
-   "lost": 8,
+   "lost": 9,
    "gf": 13,
-   "ga": 27,
-   "gd": -14
+   "ga": 28,
+   "gd": -15
   },
   {
    "rank": 9,
@@ -761,19 +761,19 @@
    "md": 0,
    "date": "2026-10-10",
    "home": "FC川崎CHAMP JY",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 1,
    "away": "シュートJrユースFC",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
    "date": "2026-10-10",
    "home": "横須賀シーガルズFC",
-   "hs": null,
-   "as": null,
+   "hs": 1,
+   "as": 0,
    "away": "FC Kanaloa A",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
