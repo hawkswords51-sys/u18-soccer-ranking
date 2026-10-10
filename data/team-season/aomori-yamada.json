@@ -5,7 +5,7 @@
   "league_team": "青森山田",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/team_detail/01.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/match_page/",
-  "asof": "2026-10-03",
+  "asof": "2026-10-10",
   "roster": [
     {
       "no": 12,
@@ -23,8 +23,8 @@
       "name": "赤荻 龍翔",
       "grade": "2年",
       "prev": "青森山田中学校",
-      "apps": 1,
-      "minutes": 90,
+      "apps": 2,
+      "minutes": 180,
       "goals": 0
     },
     {
@@ -43,8 +43,8 @@
       "name": "福地 将太",
       "grade": "2年",
       "prev": "クマガヤサッカースポーツクラブ",
-      "apps": 11,
-      "minutes": 945,
+      "apps": 12,
+      "minutes": 1035,
       "goals": 0
     },
     {
@@ -53,8 +53,8 @@
       "name": "森明 陽磨",
       "grade": "2年",
       "prev": "青森山田中学校",
-      "apps": 16,
-      "minutes": 1440,
+      "apps": 17,
+      "minutes": 1530,
       "goals": 2
     },
     {
@@ -63,8 +63,8 @@
       "name": "木村 魁心",
       "grade": "2年",
       "prev": "五戸すずかけSC U-15",
-      "apps": 16,
-      "minutes": 1438,
+      "apps": 17,
+      "minutes": 1528,
       "goals": 1
     },
     {
@@ -73,8 +73,8 @@
       "name": "水谷 鉄生",
       "grade": "3年",
       "prev": "青森山田中学校",
-      "apps": 14,
-      "minutes": 1229,
+      "apps": 15,
+      "minutes": 1319,
       "goals": 1
     },
     {
@@ -83,8 +83,8 @@
       "name": "杉本 倫澄",
       "grade": "3年",
       "prev": "Wings(ウイングス) U-15",
-      "apps": 5,
-      "minutes": 198,
+      "apps": 6,
+      "minutes": 200,
       "goals": 0
     },
     {
@@ -93,8 +93,8 @@
       "name": "池田 修真",
       "grade": "3年",
       "prev": "S.C.INTERNACIONAL JAPAN(インテルナシオナル･ジャパン)",
-      "apps": 6,
-      "minutes": 90,
+      "apps": 7,
+      "minutes": 91,
       "goals": 0
     },
     {
@@ -143,9 +143,9 @@
       "name": "石井 珂那汰",
       "grade": "2年",
       "prev": "青森山田中学校",
-      "apps": 16,
-      "minutes": 1220,
-      "goals": 5
+      "apps": 17,
+      "minutes": 1308,
+      "goals": 6
     },
     {
       "no": 8,
@@ -153,9 +153,9 @@
       "name": "高江洲 真吾",
       "grade": "3年",
       "prev": "青森山田中学校",
-      "apps": 5,
-      "minutes": 204,
-      "goals": 1
+      "apps": 6,
+      "minutes": 268,
+      "goals": 2
     },
     {
       "no": 10,
@@ -183,8 +183,8 @@
       "name": "照後 大翔",
       "grade": "3年",
       "prev": "クラブ与野",
-      "apps": 13,
-      "minutes": 577,
+      "apps": 14,
+      "minutes": 666,
       "goals": 1
     },
     {
@@ -193,8 +193,8 @@
       "name": "加藤 遙真",
       "grade": "3年",
       "prev": "Desenvolver(ディセンボルヴェール) F.U.T",
-      "apps": 9,
-      "minutes": 314,
+      "apps": 10,
+      "minutes": 388,
       "goals": 0
     },
     {
@@ -203,8 +203,8 @@
       "name": "坂本 悠人",
       "grade": "2年",
       "prev": "青森山田中学校",
-      "apps": 13,
-      "minutes": 712,
+      "apps": 14,
+      "minutes": 802,
       "goals": 0
     },
     {
@@ -213,9 +213,9 @@
       "name": "藤原 優人",
       "grade": "3年",
       "prev": "青森山田中学校",
-      "apps": 16,
-      "minutes": 1002,
-      "goals": 5
+      "apps": 17,
+      "minutes": 1092,
+      "goals": 6
     },
     {
       "no": 28,
@@ -253,8 +253,8 @@
       "name": "中村 蓮",
       "grade": "3年",
       "prev": "クマガヤサッカースポーツクラブ",
-      "apps": 5,
-      "minutes": 164,
+      "apps": 6,
+      "minutes": 190,
       "goals": 0
     },
     {
@@ -283,8 +283,8 @@
       "name": "北島 京悟",
       "grade": "2年",
       "prev": "青森山田中学校",
-      "apps": 9,
-      "minutes": 196,
+      "apps": 10,
+      "minutes": 212,
       "goals": 1
     },
     {
@@ -2517,6 +2517,143 @@
         {
           "out": "8 高江洲 真吾",
           "in": "32 齊藤 蓮介",
+          "minute": "90+1分"
+        }
+      ]
+    },
+    "1701": {
+      "md": 17,
+      "starters": [
+        {
+          "no": 30,
+          "pos": "GK",
+          "name": "赤荻 龍翔",
+          "captain": false
+        },
+        {
+          "no": 2,
+          "pos": "DF",
+          "name": "福地 将太",
+          "captain": false
+        },
+        {
+          "no": 3,
+          "pos": "DF",
+          "name": "森明 陽磨",
+          "captain": false
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "木村 魁心",
+          "captain": false
+        },
+        {
+          "no": 6,
+          "pos": "DF",
+          "name": "水谷 鉄生",
+          "captain": true
+        },
+        {
+          "no": 7,
+          "pos": "MF",
+          "name": "石井 珂那汰",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "MF",
+          "name": "高江洲 真吾",
+          "captain": false
+        },
+        {
+          "no": 15,
+          "pos": "MF",
+          "name": "照後 大翔",
+          "captain": false
+        },
+        {
+          "no": 16,
+          "pos": "MF",
+          "name": "加藤 遙真",
+          "captain": false
+        },
+        {
+          "no": 22,
+          "pos": "MF",
+          "name": "坂本 悠人",
+          "captain": false
+        },
+        {
+          "no": 24,
+          "pos": "MF",
+          "name": "藤原 優人",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 31,
+          "pos": "GK",
+          "name": "伊野 新",
+          "captain": false
+        },
+        {
+          "no": 19,
+          "pos": "DF",
+          "name": "杉本 倫澄",
+          "captain": false
+        },
+        {
+          "no": 23,
+          "pos": "DF",
+          "name": "池田 修真",
+          "captain": false
+        },
+        {
+          "no": 27,
+          "pos": "DF",
+          "name": "鎌田 真輝",
+          "captain": false
+        },
+        {
+          "no": 33,
+          "pos": "MF",
+          "name": "中村 蓮",
+          "captain": false
+        },
+        {
+          "no": 17,
+          "pos": "FW",
+          "name": "小池 晴斗",
+          "captain": false
+        },
+        {
+          "no": 21,
+          "pos": "FW",
+          "name": "北島 京悟",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "8 高江洲 真吾",
+          "in": "33 中村 蓮",
+          "minute": "64分"
+        },
+        {
+          "out": "16 加藤 遙真",
+          "in": "21 北島 京悟",
+          "minute": "74分"
+        },
+        {
+          "out": "7 石井 珂那汰",
+          "in": "19 杉本 倫澄",
+          "minute": "88分"
+        },
+        {
+          "out": "15 照後 大翔",
+          "in": "23 池田 修真",
           "minute": "90+1分"
         }
       ]

@@ -59,16 +59,28 @@
       "rank": 1,
       "team": "流通経済大柏",
       "pts": 37,
-      "played": 16,
+      "played": 17,
       "won": 12,
       "drawn": 1,
-      "lost": 3,
+      "lost": 4,
       "gf": 38,
-      "ga": 17,
-      "gd": 21
+      "ga": 20,
+      "gd": 18
     },
     {
       "rank": 2,
+      "team": "FC東京U-18",
+      "pts": 32,
+      "played": 17,
+      "won": 10,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 37,
+      "ga": 22,
+      "gd": 15
+    },
+    {
+      "rank": 3,
       "team": "鹿島アントラーズユース",
       "pts": 31,
       "played": 16,
@@ -80,7 +92,7 @@
       "gd": 17
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "柏レイソルU-18",
       "pts": 30,
       "played": 16,
@@ -92,19 +104,19 @@
       "gd": 10
     },
     {
-      "rank": 4,
-      "team": "FC東京U-18",
-      "pts": 29,
-      "played": 16,
+      "rank": 5,
+      "team": "青森山田",
+      "pts": 28,
+      "played": 17,
       "won": 9,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 33,
-      "ga": 19,
-      "gd": 14
+      "drawn": 1,
+      "lost": 7,
+      "gf": 29,
+      "ga": 27,
+      "gd": 2
     },
     {
-      "rank": 5,
+      "rank": 6,
       "team": "前橋育英",
       "pts": 25,
       "played": 16,
@@ -116,19 +128,19 @@
       "gd": 6
     },
     {
-      "rank": 6,
-      "team": "青森山田",
-      "pts": 25,
-      "played": 16,
-      "won": 8,
+      "rank": 7,
+      "team": "帝京長岡",
+      "pts": 22,
+      "played": 17,
+      "won": 7,
       "drawn": 1,
-      "lost": 7,
-      "gf": 26,
-      "ga": 27,
-      "gd": -1
+      "lost": 9,
+      "gf": 37,
+      "ga": 35,
+      "gd": 2
     },
     {
-      "rank": 7,
+      "rank": 8,
       "team": "東京ヴェルディユース",
       "pts": 22,
       "played": 16,
@@ -140,39 +152,27 @@
       "gd": -4
     },
     {
-      "rank": 8,
-      "team": "帝京長岡",
-      "pts": 21,
-      "played": 16,
-      "won": 7,
-      "drawn": 0,
-      "lost": 9,
-      "gf": 35,
-      "ga": 33,
-      "gd": 2
-    },
-    {
       "rank": 9,
       "team": "昌平",
       "pts": 18,
-      "played": 16,
+      "played": 17,
       "won": 5,
       "drawn": 3,
-      "lost": 8,
-      "gf": 26,
-      "ga": 36,
-      "gd": -10
+      "lost": 9,
+      "gf": 29,
+      "ga": 40,
+      "gd": -11
     },
     {
       "rank": 10,
       "team": "ベガルタ仙台ユース",
-      "pts": 13,
-      "played": 16,
+      "pts": 14,
+      "played": 17,
       "won": 3,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 9,
-      "gf": 14,
-      "ga": 40,
+      "gf": 16,
+      "ga": 42,
       "gd": -26
     },
     {
@@ -3065,23 +3065,76 @@
       "md": 17,
       "date": "2026-10-10",
       "home": "ベガルタ仙台ユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "帝京長岡",
-      "status": "scheduled",
+      "status": "played",
       "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "36",
+          "name": "山下 湊司"
+        },
+        {
+          "minute": "39",
+          "name": "鑓水 桜雅"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "70",
+          "name": "村上 諄"
+        },
+        {
+          "minute": "85",
+          "name": "児山 雅稀"
+        }
+      ]
     },
     {
       "md": 17,
       "date": "2026-10-10",
       "home": "昌平",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 4,
       "away": "FC東京U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "昌平高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1703.pdf",
+      "homeScorers": [
+        {
+          "minute": "6",
+          "name": "大橋 晴一郎"
+        },
+        {
+          "minute": "55",
+          "name": "大橋 晴一郎"
+        },
+        {
+          "minute": "63",
+          "name": "飯島 碧大"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "40",
+          "name": "井部 結斗"
+        },
+        {
+          "minute": "42",
+          "name": "橋本 凜来"
+        },
+        {
+          "minute": "56",
+          "name": "梶山 蓮翔"
+        },
+        {
+          "minute": "85",
+          "name": "梶山 蓮翔"
+        }
+      ]
     },
     {
       "md": 17,
@@ -3098,12 +3151,27 @@
       "md": 17,
       "date": "2026-10-10",
       "home": "青森山田",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "流通経済大柏",
-      "status": "scheduled",
+      "status": "played",
       "venue": "青森山田高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "15",
+          "name": "高江洲 真吾"
+        },
+        {
+          "minute": "24",
+          "name": "藤原 優人"
+        },
+        {
+          "minute": "36",
+          "name": "石井 珂那汰"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 17,

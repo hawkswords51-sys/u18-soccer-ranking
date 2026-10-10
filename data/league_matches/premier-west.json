@@ -117,6 +117,18 @@
     },
     {
       "rank": 6,
+      "team": "米子北",
+      "pts": 24,
+      "played": 16,
+      "won": 7,
+      "drawn": 3,
+      "lost": 6,
+      "gf": 31,
+      "ga": 25,
+      "gd": 6
+    },
+    {
+      "rank": 7,
       "team": "神村学園",
       "pts": 23,
       "played": 16,
@@ -126,18 +138,6 @@
       "gf": 30,
       "ga": 32,
       "gd": -2
-    },
-    {
-      "rank": 7,
-      "team": "米子北",
-      "pts": 21,
-      "played": 15,
-      "won": 6,
-      "drawn": 3,
-      "lost": 6,
-      "gf": 29,
-      "ga": 24,
-      "gd": 5
     },
     {
       "rank": 8,
@@ -167,13 +167,13 @@
       "rank": 10,
       "team": "東山",
       "pts": 17,
-      "played": 16,
+      "played": 17,
       "won": 5,
       "drawn": 2,
-      "lost": 9,
-      "gf": 12,
-      "ga": 21,
-      "gd": -9
+      "lost": 10,
+      "gf": 13,
+      "ga": 23,
+      "gd": -10
     },
     {
       "rank": 11,
@@ -2949,6 +2949,7 @@
       "status": "played",
       "venue": "ヤマハ大久保グラウンド",
       "kickoff": "10:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1707.pdf",
       "homeScorers": [
         {
           "minute": "25",
@@ -2993,12 +2994,28 @@
       "md": 17,
       "date": "2026-10-10",
       "home": "米子北",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "東山",
-      "status": "scheduled",
+      "status": "played",
       "venue": "どらドラパーク米子球技場",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "2",
+          "name": "塚田 愛心"
+        },
+        {
+          "minute": "55",
+          "name": "洞 琉斗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "42",
+          "name": "宮崎 結士"
+        }
+      ]
     },
     {
       "md": 17,
