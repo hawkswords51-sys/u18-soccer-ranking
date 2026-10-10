@@ -111,6 +111,9 @@ TEMP_EXCEPTIONS: dict[str, str] = {
              "コピーになっている（日程表と奈良新聞 https://www.nara-np.co.jp/sports/soccer/summary1550.html は 生駒 4-0 畝傍）。"
              "NARA_HOSHITORI_FIXES で勝点・得点・失点・順位の差を名指しで打ち消す → 外す条件＝星取表のこの試合が 生駒4-0 に"
              "直ったら（直ると read_nara が止まって知らせる）"),
+    "yamaguchi": ("2026-10-11 追加：第1節 4/4 小野田工業×山口県鴻城 が、協会「1部日程・結果」PDFの日程欄は 0-3、"
+                  "SportsOnline と同じPDFの星取表欄は 0-4。スコアは SportsOnline（0-4）のまま、この1試合だけ照合の不一致を許す"
+                  "（YAMAGUCHI_PDF_SCORE_EXCEPTIONS）→ 外す条件＝どちらかの出典が直って一致したら（直ると止まって知らせる）"),
     "aomori": ("2026-09-28 追加：星取表0924の合計欄で ヴァンラーレ八戸U-18 の失点が15（マスの合計と日程PDFは16）。"
                "KNOWN_SOURCE_ERRORS で差を明示 → 外す条件＝協会が星取表の合計欄を直したら（直ると read_aomori が止まって知らせる）"),
 }
@@ -473,8 +476,11 @@ PREF_OFFICIAL = {
                           "viewdata.aspx?parentid=RX%5eS%5d&rallyid=U%5eZ%5b%5b"),
                   "source": "https://yamaguchi-fa.com/archives/16620",
                   "label": "山口県サッカー協会 公式（SportsOnline）",
-                  # 出典に実日付が無い。既存JSONの同じ対戦から date を引き継ぐ。
-                  "inherit_dates": True},
+                  # 出典（SportsOnline）に実日付・節が無い（全試合 2026/04/04 のダミー）。
+                  # [2026-10-11] 日付・節・会場は協会の「1部日程・結果」PDF（source の記事からリンク）から取る。
+                  #   以前は既存JSONの同じ対戦から date を引き継いでいたが、同じ対戦が2回ある組で
+                  #   「既存JSONの並び順」と「出典の並び順」が逆だと、更新のたびに日付が入れ替わっていた。
+                  "pdf_dates": "yamaguchi"},
 }
 
 # ⭐️ 読み手が自分の県キーを参照できるようにする（増分での巡目割り当てが既存JSONを読むため・2026-09-17）。
@@ -1428,7 +1434,7 @@ def read_yamaguchi(cfg: dict) -> tuple[dict, list[dict]]:
             continue
         for r in rows[1:]:
             if len(r) < 4:
-                continue          # 「Away」の区切り行など
+                continue          # 「Away」の区切り行など（⚠️ 区切りの前後は巡目と一致しない組がある＝巡目には使わない）
             if "試合終了" not in r[3]:
                 continue
             m = _YAMAGUCHI_SCORE_RE.match(unicodedata.normalize("NFKC", r[0]).strip())
@@ -1441,6 +1447,156 @@ def read_yamaguchi(cfg: dict) -> tuple[dict, list[dict]]:
         if matches:
             break
     return standings, matches
+
+
+# 山口：協会PDFの日程欄と SportsOnline のスコアが違う試合を名指しで許す（2026-10-11）。スコアは SportsOnline のまま。
+YAMAGUCHI_PDF_SCORE_EXCEPTIONS = [
+    {"leg": 1, "home": "小野田工業", "away": "山口県鴻城", "pdf": (0, 3), "so": (0, 4),
+     "reason": ("第1節 4/4。協会PDFの日程欄は 0-3、SportsOnline と同じPDFの星取表欄（小野田工 ●0-4／県鴻城 ○4-0）は 0-4")},
+]
+
+
+def _yamaguchi_pdf_schedule(cfg: dict) -> list[dict]:
+    """協会の記事（cfg["source"]）から「1部」「日程・結果」PDFを1本だけ見つけ、全56試合の日付・節・会場・スコアを返す。
+    PDFは左の列＝第1〜7節（1巡目）・右の列＝第8〜14節（2巡目）。各列28行を上から4試合ずつ1節に割り当てる。"""
+    import io
+    import pdfplumber
+    from urllib.parse import urljoin
+    nf = lambda x: unicodedata.normalize("NFKC", x or "")
+    soup = BeautifulSoup(fetch_html(cfg["source"]), "html.parser")
+    time.sleep(SLEEP)
+    links = list(dict.fromkeys(urljoin(cfg["source"], a["href"]) for a in soup.find_all("a", href=True)
+                               if a["href"].lower().endswith(".pdf")
+                               and re.sub(r"\s+", "", nf(a.get_text())).startswith("1部")
+                               and "日程" in nf(a.get_text()) and "結果" in nf(a.get_text())))
+    if len(links) != 1:
+        raise RuntimeError(f"協会の記事に「1部 日程・結果」PDFが{len(links)}本（1本のはず）: {cfg['source']}")
+    content = pdf_source.fetch_pdf(links[0], dict(HEADERS, Referer=cfg["source"]), TIMEOUT, wait=SLEEP)
+    time.sleep(SLEEP)
+    out = []
+    with pdfplumber.open(io.BytesIO(content)) as pdf:
+        pg = pdf.pages[0]
+        if f"リーグ{SEASON_YEAR}山口県ユースリーグ1部" not in re.sub(r"\s+", "", nf(pg.extract_text()))[:80]:
+            raise RuntimeError(f"日程・結果PDFの表題が{SEASON_YEAR}年の山口県ユースリーグ1部でない: {links[0]}")
+        hdr = [w for w in pg.extract_words() if nf(w["text"]) == "勝点"]
+        if not hdr:
+            raise RuntimeError("日程・結果PDFに星取表の見出し（勝点）が無い（ページの作りが変わった疑い）")
+        bottom = min(w["top"] for w in hdr) - 2
+        mid = pg.width / 2
+        for leg, box in ((1, (0, 0, mid, bottom)), (2, (mid, 0, pg.width, bottom))):
+            lines = [nf(x).strip() for x in (pg.crop(box).extract_text() or "").split("\n")]
+            col = []
+            for i, ln in enumerate(lines):
+                dm = re.match(r"^(\d{1,2})/(\d{1,2})\s+(.*)$", ln)
+                if not dm:
+                    continue
+                body = f" {dm.group(3)} "
+                sm = re.search(r"\s(\d+)\s*-\s*(\d+)\s|\s(延期|中止)\s", body)
+                if not sm:
+                    raise RuntimeError(f"日程・結果PDFの行が読めない: {ln!r}")
+                venue = ""
+                for nx in lines[i + 1:i + 3]:
+                    v = re.sub(r"(^|\s)[第節\d]+(?=\s|$)", " ", nx).strip()
+                    if v and not v.startswith("(") and not re.match(r"^\d{1,2}/\d{1,2}", v):
+                        venue = v
+                        break
+                col.append(dict(date=f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}",
+                                home=body[:sm.start()].replace(" ", ""), away=body[sm.end():].replace(" ", ""),
+                                hs=int(sm.group(1)) if sm.group(1) else None,
+                                **{"as": int(sm.group(2)) if sm.group(2) else None},
+                                venue=venue, leg=leg, note=sm.group(3) or ""))
+            if len(col) != 28:
+                raise RuntimeError(f"日程・結果PDFの{leg}巡目の列が{len(col)}試合（28のはず）")
+            for k, x in enumerate(col):
+                x["md"] = k // 4 + 1 + (7 if leg == 2 else 0)
+            for k in range(0, 28, 4):   # 1節＝4試合で8チームが1回ずつ
+                if len({t for x in col[k:k + 4] for t in (x["home"], x["away"])}) != 8:
+                    raise RuntimeError(f"日程・結果PDFの第{col[k]['md']}節で同じチームが2回出る（節の割り当てが壊れた疑い）")
+            out += col
+    return out
+
+
+def _yamaguchi_apply_pdf_dates(cfg: dict, matches: list[dict], existing: dict) -> None:
+    """SportsOnline の各試合に、協会PDFの同じ試合の日付・節・会場を入れる。スコアは触らない。
+    対応づけ＝**同じ対戦カードの中で、スコア（向きをそろえたもの）が同じ試合どうし**。並び順・区切り行には頼らない。
+    ⚠️ SportsOnline の「Away」区切りの前後は巡目と一致しない組がある（2026-10-11 実測：小野田工×宇部・山口県鴻城×宇部工業は逆）。
+    スコアで結べずに残った試合は、①PDFに結果が無い（延期のまま等）→ 既存JSONで同じ対戦・同じスコアの試合が1件だけあれば
+    その日付を残す（無ければ日付なし・推測しない）②YAMAGUCHI_PDF_SCORE_EXCEPTIONS の名指し → SportsOnline のスコアのまま
+    ③それ以外 → 止める。"""
+    pdf = _yamaguchi_pdf_schedule(cfg)
+
+    def norm_score(home, away, hs, as_):
+        return (hs, as_) if home <= away else (as_, hs)
+
+    by_pair = {}
+    for p in pdf:
+        by_pair.setdefault(frozenset((p["home"], p["away"])), []).append(p)
+    prev = {}
+    for m in existing.get("matches", []):
+        if m.get("status") == "played" and m.get("date") and m.get("hs") is not None:
+            prev.setdefault((frozenset((m["home"], m["away"])), norm_score(m["home"], m["away"], m["hs"], m["as"])),
+                            []).append(m["date"])
+    so_by_pair = {}
+    for m in matches:
+        so_by_pair.setdefault(frozenset((m["home"], m["away"])), []).append(m)
+    hit_exc = set()
+    for pr, sos in so_by_pair.items():
+        cands = list(by_pair.get(pr, []))
+        if not cands:
+            raise RuntimeError(f"日程・結果PDFに {'×'.join(sorted(pr))} の試合が無い（チーム名の読み取りが壊れた疑い）")
+        rest = []
+        # 同じ対戦・同じスコアが SportsOnline に2試合あり、PDFにも2試合あるときは中身が同じなので、
+        # PDFは節の順・SportsOnline は (home, away) の順で並べて「1つ目に早い節・2つ目に遅い節」と固定して当てる
+        # （元の並び順に頼らない＝毎回同じ結果）。SportsOnline 側が1試合だけなら、下で従来どおり止める。
+        by_score = {}
+        for m in sos:
+            by_score.setdefault(norm_score(m["home"], m["away"], m["hs"], m["as"]), []).append(m)
+        for sc, ms in by_score.items():
+            same = [p for p in cands if p["hs"] is not None and norm_score(p["home"], p["away"], p["hs"], p["as"]) == sc]
+            if len(ms) == 2 and len(same) == 2:
+                for m, p in zip(sorted(ms, key=lambda x: (x["home"], x["away"])), sorted(same, key=lambda x: x["md"])):
+                    cands.remove(p)
+                    m["md"], m["date"], m["venue"] = p["md"], p["date"], p["venue"]
+                    m["_pdf_done"] = True
+        for m in sos:
+            if m.pop("_pdf_done", False):
+                continue
+            sc = norm_score(m["home"], m["away"], m["hs"], m["as"])
+            same = [p for p in cands if p["hs"] is not None and norm_score(p["home"], p["away"], p["hs"], p["as"]) == sc]
+            if len(same) > 1:
+                raise RuntimeError(f"日程・結果PDFに {'×'.join(sorted(pr))} の同じスコアの試合が2つある（どちらの日付か決められない）")
+            if same:
+                cands.remove(same[0])
+                m["md"], m["date"], m["venue"] = same[0]["md"], same[0]["date"], same[0]["venue"]
+            else:
+                rest.append(m)
+        for m in rest:
+            if len(cands) != 1:
+                raise RuntimeError(f"{m['home']} {m['hs']}-{m['as']} {m['away']} に当たるPDFの試合が決められない"
+                                   f"（残り{len(cands)}試合）")
+            p = cands.pop()
+            m["md"] = p["md"]
+            if p["hs"] is None:
+                got = prev.get((pr, norm_score(m["home"], m["away"], m["hs"], m["as"])), [])
+                m["date"] = got[0] if len(got) == 1 else ""
+                print(f"       （山口: {m['home']}×{m['away']}（第{p['md']}節）はPDFが「{p['note'] or '結果なし'}」のため"
+                      f"日付は既存のまま（{m['date'] or '日付なし'}））")
+                continue
+            so, pd_ = norm_score(m["home"], m["away"], m["hs"], m["as"]), norm_score(p["home"], p["away"], p["hs"], p["as"])
+            exc = [i for i, e in enumerate(YAMAGUCHI_PDF_SCORE_EXCEPTIONS)
+                   if {e["home"], e["away"]} == set(pr) and (p["md"] <= 7) == (e["leg"] == 1)
+                   and norm_score(e["home"], e["away"], *e["pdf"]) == pd_ and norm_score(e["home"], e["away"], *e["so"]) == so]
+            if not exc:
+                raise RuntimeError(f"日程・結果PDF（第{p['md']}節 {p['date']} {p['home']} {p['hs']}-{p['as']} {p['away']}）と"
+                                   f"SportsOnline（{m['home']} {m['hs']}-{m['as']} {m['away']}）のスコアが違う")
+            hit_exc.add(exc[0])
+            print(f"       （山口: 第{p['md']}節 {m['home']}×{m['away']} はPDFの日程欄 {p['hs']}-{p['as']}・SportsOnline "
+                  f"{m['hs']}-{m['as']}。SportsOnline のまま（YAMAGUCHI_PDF_SCORE_EXCEPTIONS））")
+            m["date"], m["venue"] = p["date"], p["venue"]
+    for i, e in enumerate(YAMAGUCHI_PDF_SCORE_EXCEPTIONS):
+        if i not in hit_exc:
+            raise RuntimeError(f"YAMAGUCHI_PDF_SCORE_EXCEPTIONS の {e['home']}×{e['away']}（{e['leg']}巡目）が不一致でなくなった"
+                               f"（出典が直った？）。この行と TEMP_EXCEPTIONS の山口を消すこと")
 
 
 # ============================================================
@@ -6292,20 +6448,12 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
     else:
         source_table = list(standings.items()) or None
 
-    # --- 出典に日付が無い県は、既存JSONの同じ対戦から date を引き継ぐ（山口） ---
+    # --- 出典に日付が無い県（山口）は、協会の日程・結果PDFから日付・節・会場を入れる（2026-10-11） ---
     # 出典のダミー日付（山口は全試合 2026/04/04）は絶対に採用しない。
-    # 新しく増える試合は日付なしのままになる＝県ページの「直近の試合結果」には出ない。
-    if cfg.get("inherit_dates"):
-        prev = {}
-        for m in data.get("matches", []):
-            if m.get("date"):
-                prev.setdefault((m.get("home"), m.get("away")), []).append(m["date"])
-                # 出典の左右はホーム/アウェイと限らないので逆向きも見る
-                prev.setdefault((m.get("away"), m.get("home")), []).append(m["date"])
-        for m in matches:
-            got = prev.get((m["home"], m["away"]))
-            if got:
-                m["date"] = got.pop(0)
+    # ⚠️ 以前の「既存JSONの同じ対戦から date を順番に引き継ぐ」方式は、同じ対戦が2回ある組で日付が毎回入れ替わった。
+    #    並び順に頼らず、(対戦カード, 巡目) で結ぶ。
+    if cfg.get("pdf_dates") == "yamaguchi":
+        _yamaguchi_apply_pdf_dates(cfg, matches, data)
 
     # --- 出典の会場を試合に割り当てられない県は、既存JSONの同じ試合（home/away/日付）の会場を引き継ぐ（山形） ---
     if cfg.get("inherit_venues"):
