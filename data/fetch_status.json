@@ -16,7 +16,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 96,
+      "matchesPlayed": 97,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-10T14:42:10+09:00",
+  "updatedAt": "2026-10-10T15:34:30+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1273,13 +1273,13 @@
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
-      "note": "試合16・選手31（新規取得0）",
+      "note": "試合17・選手31（新規取得1）",
       "date": "2026-10-10",
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
-      "note": "試合16・選手34（新規取得0）",
+      "note": "試合17・選手34（新規取得1）",
       "date": "2026-10-10",
       "since": ""
     },
@@ -1452,10 +1452,10 @@
       "since": ""
     },
     "prince_scorers:prince-kansai-1": {
-      "result": "error",
-      "note": "RuntimeError: 取得失敗: ReadTimeout: HTTPSConnectionPool(host='web.gekisaka.jp', port=443): Read timed out. (read timeout=30)",
+      "result": "ok",
+      "note": "試合75・partial0・none0・スコア不一致0",
       "date": "2026-10-10",
-      "since": "2026-10-10"
+      "since": ""
     },
     "prince_scorers:prince-kansai-2": {
       "result": "ok",

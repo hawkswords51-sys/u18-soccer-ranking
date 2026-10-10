@@ -93,6 +93,18 @@
     },
     {
       "rank": 4,
+      "team": "アビスパ福岡 U-18",
+      "pts": 29,
+      "played": 17,
+      "won": 9,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 22,
+      "ga": 21,
+      "gd": 1
+    },
+    {
+      "rank": 5,
       "team": "サガン鳥栖U-18",
       "pts": 27,
       "played": 16,
@@ -102,18 +114,6 @@
       "gf": 26,
       "ga": 17,
       "gd": 9
-    },
-    {
-      "rank": 5,
-      "team": "アビスパ福岡 U-18",
-      "pts": 26,
-      "played": 16,
-      "won": 8,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 20,
-      "ga": 20,
-      "gd": 0
     },
     {
       "rank": 6,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 5,
-      "played": 16,
+      "played": 17,
       "won": 1,
       "drawn": 2,
-      "lost": 13,
-      "gf": 15,
-      "ga": 44,
-      "gd": -29
+      "lost": 14,
+      "gf": 16,
+      "ga": 46,
+      "gd": -30
     }
   ],
   "matches": [
@@ -2983,12 +2983,29 @@
       "md": 17,
       "date": "2026-10-10",
       "home": "ファジアーノ岡山U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "アビスパ福岡 U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "スチールハブフィールド寄島",
-      "kickoff": "13:00"
+      "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1709.pdf",
+      "homeScorers": [
+        {
+          "minute": "23",
+          "name": "岡崎 葵"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "6",
+          "name": "前田 陽輝"
+        },
+        {
+          "minute": "76",
+          "name": "前田 陽輝"
+        }
+      ]
     },
     {
       "md": 17,
