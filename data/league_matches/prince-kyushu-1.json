@@ -63,13 +63,13 @@
       "rank": 2,
       "team": "鹿児島城西",
       "pts": 30,
-      "played": 14,
+      "played": 15,
       "won": 9,
       "drawn": 3,
-      "lost": 2,
-      "gf": 25,
-      "ga": 12,
-      "gd": 13
+      "lost": 3,
+      "gf": 27,
+      "ga": 15,
+      "gd": 12
     },
     {
       "rank": 3,
@@ -85,6 +85,18 @@
     },
     {
       "rank": 4,
+      "team": "日章学園",
+      "pts": 23,
+      "played": 15,
+      "won": 7,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 33,
+      "ga": 27,
+      "gd": 6
+    },
+    {
+      "rank": 5,
       "team": "ロアッソ熊本U-18",
       "pts": 23,
       "played": 15,
@@ -94,18 +106,6 @@
       "gf": 23,
       "ga": 20,
       "gd": 3
-    },
-    {
-      "rank": 5,
-      "team": "日章学園",
-      "pts": 20,
-      "played": 14,
-      "won": 6,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 30,
-      "ga": 25,
-      "gd": 5
     },
     {
       "rank": 6,
@@ -135,25 +135,25 @@
       "rank": 8,
       "team": "大津2nd",
       "pts": 13,
-      "played": 14,
+      "played": 15,
       "won": 4,
       "drawn": 1,
-      "lost": 9,
+      "lost": 10,
       "gf": 14,
-      "ga": 31,
-      "gd": -17
+      "ga": 32,
+      "gd": -18
     },
     {
       "rank": 9,
       "team": "FC琉球U-18",
-      "pts": 9,
-      "played": 14,
-      "won": 3,
+      "pts": 12,
+      "played": 15,
+      "won": 4,
       "drawn": 0,
       "lost": 11,
-      "gf": 11,
+      "gf": 12,
       "ga": 25,
-      "gd": -14
+      "gd": -13
     },
     {
       "rank": 10,
@@ -943,10 +943,10 @@
       "md": 15,
       "date": "2026-10-10",
       "home": "FC琉球U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "大津2nd",
-      "status": "scheduled",
+      "status": "played",
       "venue": "具志頭サッカー場（八重瀬町スポーツ観光交流施設）",
       "kickoff": "11:00"
     },
@@ -987,10 +987,10 @@
       "md": 15,
       "date": "2026-10-10",
       "home": "鹿児島城西",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "日章学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "半端ない人工芝サッカー場",
       "kickoff": "13:00"
     },
