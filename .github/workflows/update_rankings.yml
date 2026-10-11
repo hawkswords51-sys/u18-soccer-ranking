@@ -71,6 +71,8 @@ on:
       - 'data/national-team-players.yml'
       - 'data/pro-signings.yml'
       - 'data/premier_final_history.yml'
+      # [2026-10-12] 参入戦ページのプリンス参入戦 暫定表の手持ち情報（公式発表後の「確定」の上書きを push だけで反映する）
+      - 'data/prince_playoff_outlook.yml'
       - 'blog-source/**'
       # ⚠️ 2026-09-16追加。**表示を作るコードを直しても、push ではページが再生成されなかった。**
       #    同じ日に2回踏んだ（山梨のH/A表示・戦績表から308試合が消えていた修正。どちらも手動Runが必要だった）。
@@ -455,6 +457,18 @@ jobs:
             python scraper/generate_prefecture_pages.py
           else
             echo "scraper/generate_prefecture_pages.py がまだありません。スキップ。"
+          fi
+
+      # ★ 2026-10-12：参入戦ページの「各地域のプリンスリーグ参入戦 暫定出場チーム」の表を作り直す。
+      #   県1部・プリンス・プレミアの順位から作る（push 起動の run でも走る＝県1部を手で入れた直後に反映）。
+      #   対応表に無い下のチームなどは [要確認] をログに出して、表は前の版のまま（このステップは落とさない）。
+      - name: 参入戦ページのプリンス参入戦 暫定出場チーム表を再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_prince_playoff_outlook.py ]; then
+            python scraper/generate_prince_playoff_outlook.py
+          else
+            echo "scraper/generate_prince_playoff_outlook.py がまだありません。スキップ。"
           fi
 
       # ★ Phase 9-B: リーグ専用ページと sitemap 完全版を再生成

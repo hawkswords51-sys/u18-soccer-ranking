@@ -1,0 +1,161 @@
+# ============================================================
+# 参入戦ページ「各地域のプリンスリーグ参入戦 暫定出場チーム」の手で持つ情報（2026-10-12 新設）
+#   生成: scraper/generate_prince_playoff_outlook.py（毎日の自動更新・push 起動の run でも作り直す）
+#   書き換える場所: tournaments/promotion-playoff-2026/index.html の
+#                   <!-- PRINCE-PLAYOFF-OUTLOOK:START --> 〜 <!-- PRINCE-PLAYOFF-OUTLOOK:END --> の間だけ
+#
+# ■ 各県の枠
+#   東北〜九州の県は league_zones.yml の pref-*-1 の slots をそのまま読む（同じ事実を2か所に持たない）。
+#   league_zones.yml に無い北海道（自動昇格）と四国だけ、ここに書く。
+#   ⚠️ 四国を league_zones.yml に足して県ページを色付けするのは、まだやらない（2026-10-12 Kei 決定＝この表に載せるまで）。
+#
+# ■ 下のチーム（2nd・B・Ⅱ・S など）の対応表 second_teams
+#   県1部の表記 → 同じ学校・クラブの上のチーム（プレミア／プリンスの official_standings の表記と完全一致）。
+#   あいまい一致はしない。対応表に無い下のチームが枠の中・枠のすぐ下に来たら [要確認] で止まり、表は書き換えない。
+#   上のチームが2つある学校（青森山田3rd など）はリストで書く。
+#   「A」が付くチーム（明秀日立A・湘南ベルマーレA など）はいちばん上のチームなので、ここには書かない。
+#
+# ■ 公式発表で確定した県 confirmed
+#   書いた県は順位からの計算をやめ、書いたチームを「確定」バッジ付きで出す。
+#   例:  confirmed:
+#          niigata: {teams: ["上越2nd", "新潟明訓2nd"], note: "新潟県サッカー協会 発表（11/◯）"}
+# ============================================================
+season: 2026
+
+# 地域の並び・行き先のリーグ・県の並び（県名は表示用）
+regions:
+  - key: hokkaido
+    name: 北海道
+    dest: prince-hokkaido
+    dest_label: プリンス北海道
+    auto_promotion: true          # 参入戦ではなく自動昇格
+    prefs: {hokkaido: 北海道}
+  - key: tohoku
+    name: 東北
+    dest: prince-tohoku
+    dest_label: プリンス東北
+    prefs: {aomori: 青森, iwate: 岩手, miyagi: 宮城, akita: 秋田, yamagata: 山形, fukushima: 福島}
+  - key: kanto
+    name: 関東
+    dest: prince-kanto-2
+    dest_label: プリンス関東2部
+    prefs: {ibaraki: 茨城, tochigi: 栃木, gunma: 群馬, saitama: 埼玉, chiba: 千葉, tokyo: 東京, kanagawa: 神奈川, yamanashi: 山梨}
+  - key: hokushinetsu
+    name: 北信越
+    dest: prince-hokushinetsu-2
+    dest_label: プリンス北信越2部
+    prefs: {niigata: 新潟, nagano: 長野, toyama: 富山, ishikawa: 石川, fukui: 福井}
+  - key: tokai
+    name: 東海
+    dest: prince-tokai
+    dest_label: プリンス東海
+    prefs: {shizuoka: 静岡, aichi: 愛知, gifu: 岐阜, mie: 三重}
+  - key: kansai
+    name: 関西
+    dest: prince-kansai-2
+    dest_label: プリンス関西2部
+    prefs: {shiga: 滋賀, kyoto: 京都, osaka: 大阪, hyogo: 兵庫, nara: 奈良, wakayama: 和歌山}
+  - key: chugoku
+    name: 中国
+    dest: prince-chugoku
+    dest_label: プリンス中国
+    prefs: {hiroshima: 広島, shimane: 島根, okayama: 岡山, tottori: 鳥取, yamaguchi: 山口}
+  - key: shikoku
+    name: 四国
+    dest: prince-shikoku
+    dest_label: プリンス四国
+    note: "※昨年と同じ方式であれば（四国は要項に各県の枠が書かれていないため、各県1チームとしています）"
+    prefs: {tokushima: 徳島, kagawa: 香川, ehime: 愛媛, kochi: 高知}
+  - key: kyushu
+    name: 九州
+    dest: prince-kyushu-2
+    dest_label: プリンス九州2部
+    prefs: {fukuoka: 福岡, saga: 佐賀, nagasaki: 長崎, kumamoto: 熊本, oita: 大分, miyazaki: 宮崎, kagoshima: 鹿児島, okinawa: 沖縄}
+
+# 来季のリーグを見積もるときの、地域ごとのリーグの段（上から）。最後の pref は「県リーグ」。
+ladders:
+  hokkaido:     [premier, prince-hokkaido, pref]
+  tohoku:       [premier, prince-tohoku, pref]
+  kanto:        [premier, prince-kanto-1, prince-kanto-2, pref]
+  hokushinetsu: [premier, prince-hokushinetsu-1, prince-hokushinetsu-2, pref]
+  tokai:        [premier, prince-tokai, pref]
+  kansai:       [premier, prince-kansai-1, prince-kansai-2, pref]
+  chugoku:      [premier, prince-chugoku, pref]
+  shikoku:      [premier, prince-shikoku, pref]
+  kyushu:       [premier, prince-kyushu-1, prince-kyushu-2, pref]
+
+# league_zones.yml に無い県の枠
+extra_slots:
+  hokkaido: 2      # 北海道FAリーグ上位2が自動昇格
+  tokushima: 1
+  kagawa: 1
+  ehime: 1
+  kochi: 1
+
+# ⚠️ キー名を no にしない（YAML は裸の no を false と読む）。試合番号は game。
+# 北信越の公式組み合わせ（2026-10-12 Kei 提供・Cowork 確認。手で持つ確定情報。チーム名だけ順位から差し込む）
+#   出典: プリンスリーグ北信越 公式「プレーオフ」 https://www.h-prince.com/複製-プレーオフ （組み合わせは画像）
+#         要項 https://www.h-prince.com/_files/ugd/7ff9b4_b3652bac96e2498483bac15e57fb5f54.pdf
+hokushinetsu_bracket:
+  source_url: "https://www.h-prince.com/"
+  source_label: "プリンスリーグ北信越 公式"
+  venue_note: "11月22日（日）〜23日（月・祝）・能登島グラウンド"
+  games:
+    - {game: "3011", when: "11/22(日) 10:30", venue: "能登島A", home: [ishikawa, 1], away: [niigata, 2]}
+    - {game: "3012", when: "11/22(日) 10:30", venue: "能登島B", home: [toyama, 2], away: [nagano, 1]}
+    - {game: "3013", when: "11/22(日) 13:30", venue: "能登島A", home: [toyama, 1], away: [nagano, 2]}
+    - {game: "3014", when: "11/22(日) 13:30", venue: "能登島B", home: [fukui, 1], away: [niigata, 1]}
+    - {game: "3021", when: "11/23(月) 10:30", venue: "能登島A", text: "3011の勝者 vs 3012の勝者（勝者が2部に昇格）"}
+    - {game: "3022", when: "11/23(月) 13:30", venue: "能登島A", text: "3013の勝者 vs 3014の勝者（勝者が2部に昇格）"}
+
+# 下のチームの対応表（県1部の表記 → 上のチーム。プレミア／プリンスの表記と完全一致）
+second_teams:
+  aichi:     {グランパスB: [名古屋グランパスU-18]}
+  akita:     {BB2nd: [ブラウブリッツ秋田U-18]}
+  aomori:    {青森山田3rd: [青森山田, 青森山田セカンド]}
+  chiba:     {市立船橋B: [市立船橋], 流経大柏C: [流通経済大柏, "流通経済大柏(B)"], ジェフU-18B: [ジェフユナイテッド千葉U-18], レイソルU-18B: [柏レイソルU-18]}
+  ehime:     {愛媛FCU-18S: [愛媛FC U-18], 今治東S: [今治東中等教育学校], FC今治U-18S: [FC今治U-18]}
+  fukui:     {丸岡2nd: [丸岡]}
+  fukuoka:   {アビスパ福岡B: [アビスパ福岡 U-18], 飯塚B: [飯塚], 東福岡B: [東福岡], 東海大福岡B: [東海大福岡]}
+  fukushima: {尚志セカンド: [尚志], 帝京安積セカンド: [帝京安積], 学法石川セカンド: [学法石川]}
+  gifu:      {帝京可児B: [帝京大学可児]}
+  gunma:     {前橋育英B: [前橋育英], 桐生第一B: [桐生第一]}
+  hiroshima: {瀬戸内セカンド: [瀬戸内], サンフレセカンド: [サンフレッチェ広島F.Cユース]}
+  hokkaido:  {旭川実業高校2nd: [旭川実], 札幌大谷高校2nd: [札幌大谷], 北海道大谷室蘭高校2nd: [北海道大谷室蘭]}
+  hyogo:     {滝川第二B: [滝川第二], 神戸弘陵B: [神戸弘陵], 三田学園B: [三田学園]}
+  ibaraki:   {鹿島学園B: [鹿島学園]}
+  ishikawa:  {星稜2nd: [星稜], 金沢学院2nd: [金沢学院大附], ツエーゲン金沢2nd: [ツエーゲン金沢U-18]}
+  iwate:     {専北2nd: [専大北上]}
+  kagawa:    {大手前高松S: [大手前高松], カマタマーレ讃岐S: [カマタマーレ讃岐U-18]}
+  kagoshima: {神村学園2nd: [神村学園], 鹿児島2nd: [鹿児島]}
+  kanagawa:  {桐光学園B: [桐光学園], 桐蔭学園B: [桐蔭学園], 日大藤沢B: [日大藤沢]}
+  kochi:     {高知S: [高知]}
+  kumamoto:  {東海星翔2nd: [東海大熊本星翔], ロアッソ2nd: [ロアッソ熊本U-18]}
+  kyoto:     {東山B: [東山], 京都サンガU-18B: [京都サンガF.C.], 京都共栄B: [京都共栄], 京都橘C: [京都橘, "京都橘(B)"]}
+  miyagi:    {聖和学園Ⅱ: [聖和学園], ベガルタⅡ: [ベガルタ仙台ユース], 東北学院Ⅱ: [東北学院]}
+  miyazaki:  {日章学園3rd: [日章学園, 日章学園2nd], 鵬翔 2nd: [鵬翔]}
+  nagano:    {松本山雅2nd: [松本山雅FC U-18]}
+  nagasaki:  {国見2nd: [国見], Vファーレン長崎2nd: [V・ファーレン長崎U-18], 長崎総附2nd: [長崎総科大附]}
+  niigata:   {上越2nd: [上越], 新潟明訓2nd: [新潟明訓], 帝京長岡3rd: [帝京長岡, 帝京長岡2nd], 開志学園JSC 2nd: [開志学園JSC], 日本文理3rd: [日本文理, 日本文理2nd], 北越2nd: [北越]}
+  oita:      {トリニータ2nd: [大分トリニータU-18]}
+  okayama:   {作陽B: [作陽学園], 岡山学芸館B: [岡山学芸館], ファジ岡山U-18B: [ファジアーノ岡山U-18], 玉野光南B: [玉野光南], 就実B: [就実]}
+  okinawa:   {FC琉球OKINAWA 2nd: [FC琉球U-18]}
+  osaka:     {履正社B: [履正社], 興國B: [興國]}
+  saga:      {佐賀東2nd: [佐賀東]}
+  saitama:   {昌平II: [昌平], 西武台II: [西武台]}
+  shiga:     {近江C: [近江, "近江(B)"]}
+  shimane:   {立正大淞南B: [立正大淞南], 大社B: [大社]}
+  tochigi:   {矢板中央B: [矢板中央], 栃木SC B: [栃木SC U-18]}
+  tokushima: {徳島市立S: [徳島市立], 徳島ヴォルティスS: [徳島ヴォルティスユース], 徳島商業S: [徳島商]}
+  tokyo:     {FC東京B: [FC東京U-18], 帝京B: [帝京]}
+  tottori:   {米子北B: [米子北]}
+  toyama:    {富山第一2nd: [富山第一]}
+  yamaguchi: {高川B: [高川学園]}
+  yamanashi: {山梨学院B: [山梨学院高等学校], VF甲府B: [ヴァンフォーレ甲府U-18]}
+
+# 表示名（県1部の表記が誤解されやすいものだけ。判定には使わない）
+display_names:
+  aichi: {名古屋: 名古屋高校}     # 名古屋グランパスU-18 と見間違えないように
+
+# 公式発表で確定した県（書いた県は計算せず、確定バッジで出す）
+confirmed: {}
