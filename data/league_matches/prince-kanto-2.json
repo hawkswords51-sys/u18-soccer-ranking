@@ -63,13 +63,13 @@
       "rank": 2,
       "team": "FC町田ゼルビアユース",
       "pts": 24,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "gf": 20,
-      "ga": 19,
-      "gd": 1
+      "ga": 21,
+      "gd": -1
     },
     {
       "rank": 3,
@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "桐光学園",
+      "pts": 23,
+      "played": 14,
+      "won": 6,
+      "drawn": 5,
+      "lost": 3,
+      "gf": 19,
+      "ga": 14,
+      "gd": 5
+    },
+    {
+      "rank": 6,
       "team": "日体大柏",
       "pts": 22,
       "played": 15,
@@ -106,18 +118,6 @@
       "gf": 18,
       "ga": 20,
       "gd": -2
-    },
-    {
-      "rank": 6,
-      "team": "桐光学園",
-      "pts": 20,
-      "played": 13,
-      "won": 5,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 17,
-      "ga": 14,
-      "gd": 3
     },
     {
       "rank": 7,
@@ -965,10 +965,10 @@
       "md": 15,
       "date": "2026-10-11",
       "home": "桐光学園",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "FC町田ゼルビアユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "桐光学園サッカー場",
       "kickoff": "11:00"
     },
