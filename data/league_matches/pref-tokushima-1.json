@@ -50,77 +50,89 @@
     {
       "rank": 1,
       "team": "徳島市立S",
-      "points": 39,
-      "played": 15,
-      "won": 12,
+      "points": 42,
+      "played": 16,
+      "won": 13,
       "drawn": 3,
       "lost": 0,
-      "gf": 84,
+      "gf": 85,
       "ga": 20,
-      "gd": 64
+      "gd": 65
     },
     {
       "rank": 2,
       "team": "徳島ヴォルティスS",
-      "points": 35,
-      "played": 14,
-      "won": 11,
+      "points": 38,
+      "played": 15,
+      "won": 12,
       "drawn": 2,
       "lost": 1,
-      "gf": 78,
+      "gf": 80,
       "ga": 13,
-      "gd": 65
+      "gd": 67
     },
     {
       "rank": 3,
-      "team": "鳴門",
+      "team": "徳島北",
       "points": 30,
       "played": 15,
-      "won": 10,
-      "drawn": 0,
-      "lost": 5,
-      "gf": 44,
-      "ga": 32,
-      "gd": 12
+      "won": 9,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 48,
+      "ga": 19,
+      "gd": 29
     },
     {
       "rank": 4,
-      "team": "徳島北",
-      "points": 27,
-      "played": 14,
-      "won": 8,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 46,
-      "ga": 18,
-      "gd": 28
+      "team": "鳴門",
+      "points": 30,
+      "played": 16,
+      "won": 10,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 44,
+      "ga": 33,
+      "gd": 11
     },
     {
       "rank": 5,
       "team": "川島",
       "points": 25,
-      "played": 14,
+      "played": 15,
       "won": 8,
       "drawn": 1,
-      "lost": 5,
-      "gf": 41,
-      "ga": 23,
-      "gd": 18
+      "lost": 6,
+      "gf": 42,
+      "ga": 25,
+      "gd": 17
     },
     {
       "rank": 6,
       "team": "徳島科学技術",
       "points": 23,
-      "played": 15,
+      "played": 16,
       "won": 7,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 37,
-      "ga": 36,
-      "gd": 1
+      "ga": 38,
+      "gd": -1
     },
     {
       "rank": 7,
+      "team": "徳島商業S",
+      "points": 14,
+      "played": 16,
+      "won": 4,
+      "drawn": 2,
+      "lost": 10,
+      "gf": 30,
+      "ga": 44,
+      "gd": -14
+    },
+    {
+      "rank": 8,
       "team": "鳴門渦潮",
       "points": 13,
       "played": 16,
@@ -130,18 +142,6 @@
       "gf": 46,
       "ga": 67,
       "gd": -21
-    },
-    {
-      "rank": 8,
-      "team": "徳島商業S",
-      "points": 11,
-      "played": 15,
-      "won": 3,
-      "drawn": 2,
-      "lost": 10,
-      "gf": 25,
-      "ga": 44,
-      "gd": -19
     },
     {
       "rank": 9,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "城南",
       "points": 1,
-      "played": 15,
+      "played": 16,
       "won": 0,
       "drawn": 1,
-      "lost": 14,
+      "lost": 15,
       "gf": 10,
-      "ga": 84,
-      "gd": -74
+      "ga": 89,
+      "gd": -79
     }
   ],
   "matches": [
@@ -254,10 +254,10 @@
       "md": 0,
       "date": "2026-10-11",
       "home": "鳴門",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "徳島市立S",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -371,10 +371,10 @@
       "md": 0,
       "date": "2026-10-11",
       "home": "徳島ヴォルティスS",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "徳島科学技術",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -524,10 +524,10 @@
       "md": 0,
       "date": "2026-10-11",
       "home": "徳島北",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "川島",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -956,10 +956,10 @@
       "md": 0,
       "date": "2026-10-11",
       "home": "城南",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 5,
       "away": "徳島商業S",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,

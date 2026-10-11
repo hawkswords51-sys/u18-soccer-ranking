@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-11T19:44:47+09:00",
+  "updatedAt": "2026-10-11T21:17:46+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -396,7 +396,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化72試合に更新（検算一致）",
+      "result_note": "消化73試合に更新（検算一致）",
       "result_date": "2026-10-11",
       "season": "2026",
       "complete": false,
@@ -876,7 +876,7 @@
       "status": "warn",
       "last_updated": "2026-10-11",
       "result": "ok",
-      "result_note": "消化66試合に更新（検算一致）",
+      "result_note": "消化69試合に更新（検算一致）",
       "result_date": "2026-10-11"
     },
     "osaka-2a": {
@@ -917,8 +917,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化43試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (賢明学院×関大一: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
       "result_date": "2026-10-11"
     },
     "osaka-2c": {
@@ -1108,13 +1108,13 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化74試合に更新（検算一致）",
+      "result_note": "消化78試合に更新（検算一致）",
       "result_date": "2026-10-11",
       "last_updated": "2026-10-11"
     },
     "tokyo": {
       "result": "ok",
-      "result_note": "消化72試合に更新（検算一致）",
+      "result_note": "消化73試合に更新（検算一致）",
       "result_date": "2026-10-11",
       "season": "2026",
       "complete": false,
@@ -1336,7 +1336,7 @@
     },
     "team_season:kashima-youth": {
       "result": "ok",
-      "note": "試合17・選手32（新規取得1）",
+      "note": "試合17・選手32（新規取得0）",
       "date": "2026-10-11",
       "since": ""
     },
@@ -1348,7 +1348,7 @@
     },
     "team_season:kawasaki-frontale-u18": {
       "result": "ok",
-      "note": "試合17・選手31（新規取得1）",
+      "note": "試合17・選手31（新規取得0）",
       "date": "2026-10-11",
       "since": ""
     },
@@ -1366,7 +1366,7 @@
     },
     "team_season:ohtsu": {
       "result": "ok",
-      "note": "試合15・選手31（新規取得1）",
+      "note": "試合15・選手31（新規取得0）",
       "date": "2026-10-11",
       "since": ""
     },
@@ -1378,7 +1378,7 @@
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
-      "note": "試合17・選手30（新規取得1）",
+      "note": "試合17・選手30（新規取得0）",
       "date": "2026-10-11",
       "since": ""
     },
