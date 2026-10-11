@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://junior-soccer.jp/kyushu/kagoshima/league/table/163821",
   "sourceName": "鹿児島少年サッカー応援団（junior-soccer.jp）",
-  "lastUpdated": "2026-10-04T11:37:39+00:00",
+  "lastUpdated": "2026-10-11T12:45:00+00:00",
   "teams": [
     {
       "name": "鹿児島ユナイテッド",
@@ -50,38 +50,38 @@
     {
       "rank": 1,
       "team": "鹿児島ユナイテッド",
-      "points": 42,
-      "played": 16,
-      "won": 14,
+      "points": 45,
+      "played": 17,
+      "won": 15,
       "drawn": 0,
       "lost": 2,
-      "gf": 64,
-      "ga": 6,
-      "gd": 58
+      "gf": 69,
+      "ga": 7,
+      "gd": 62
     },
     {
       "rank": 2,
       "team": "城西EAGLE",
-      "points": 40,
-      "played": 16,
+      "points": 41,
+      "played": 17,
       "won": 13,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 2,
-      "gf": 47,
-      "ga": 14,
+      "gf": 48,
+      "ga": 15,
       "gd": 33
     },
     {
       "rank": 3,
       "team": "神村学園2nd",
       "points": 31,
-      "played": 16,
+      "played": 17,
       "won": 9,
       "drawn": 4,
-      "lost": 3,
-      "gf": 52,
-      "ga": 19,
-      "gd": 33
+      "lost": 4,
+      "gf": 53,
+      "ga": 24,
+      "gd": 29
     },
     {
       "rank": 4,
@@ -110,10 +110,10 @@
     {
       "rank": 6,
       "team": "鹿屋中央",
-      "points": 19,
-      "played": 15,
+      "points": 20,
+      "played": 16,
       "won": 6,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 8,
       "gf": 21,
       "ga": 44,
@@ -122,22 +122,22 @@
     {
       "rank": 7,
       "team": "樟南",
-      "points": 16,
-      "played": 15,
+      "points": 17,
+      "played": 16,
       "won": 5,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 9,
-      "gf": 22,
-      "ga": 23,
+      "gf": 23,
+      "ga": 24,
       "gd": -1
     },
     {
       "rank": 8,
       "team": "出水中央",
-      "points": 15,
-      "played": 15,
+      "points": 16,
+      "played": 16,
       "won": 5,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 10,
       "gf": 20,
       "ga": 26,
@@ -147,25 +147,25 @@
       "rank": 9,
       "team": "鹿児島2nd",
       "points": 11,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 2,
-      "lost": 11,
-      "gf": 13,
-      "ga": 27,
-      "gd": -14
+      "lost": 12,
+      "gf": 14,
+      "ga": 29,
+      "gd": -15
     },
     {
       "rank": 10,
       "team": "松陽",
-      "points": 0,
-      "played": 16,
-      "won": 0,
+      "points": 3,
+      "played": 17,
+      "won": 1,
       "drawn": 0,
       "lost": 16,
-      "gf": 5,
-      "ga": 80,
-      "gd": -75
+      "gf": 7,
+      "ga": 81,
+      "gd": -74
     }
   ],
   "matches": [
@@ -414,12 +414,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "神村学園2nd",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島ユナイテッド",
-      "status": "scheduled"
+      "date": "2026-10-10",
+      "home": "鹿児島ユナイテッド",
+      "hs": 5,
+      "as": 1,
+      "away": "神村学園2nd",
+      "status": "played"
     },
     {
       "md": 0,
@@ -666,12 +666,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "樟南",
-      "hs": null,
-      "as": null,
-      "away": "城西EAGLE",
-      "status": "scheduled"
+      "date": "2026-10-10",
+      "home": "城西EAGLE",
+      "hs": 1,
+      "as": 1,
+      "away": "樟南",
+      "status": "played"
     },
     {
       "md": 0,
@@ -783,12 +783,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-10-10",
       "home": "出水中央",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "鹿屋中央",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -972,12 +972,12 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "松陽",
-      "hs": null,
-      "as": null,
-      "away": "鹿児島2nd",
-      "status": "scheduled"
+      "date": "2026-10-10",
+      "home": "鹿児島2nd",
+      "hs": 1,
+      "as": 2,
+      "away": "松陽",
+      "status": "played"
     }
   ]
 }
