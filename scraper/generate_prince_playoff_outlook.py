@@ -356,8 +356,10 @@ def premier_slot_rows(src: str) -> tuple[str, int]:
                 break
         parts = []
         for r in picks:
-            parts.append(f'<span class="ppo-sub">暫定：{escape(r["team"])}（{r["rank"]}位・勝点{pts_of(r)}・'
-                         f'{"全日程終了" if rem.get(r["team"], 0) == 0 else f"残り{rem.get(r['team'], 0)}試合"}）</span>')
+            # ⚠️ Actions は Python 3.11。f文字列の中に同じ引用符を入れ子にできない（3.12 から可）ので、先に組み立てる
+            n_rem = rem.get(r["team"], 0)
+            rest = "全日程終了" if n_rem == 0 else f"残り{n_rem}試合"
+            parts.append(f'<span class="ppo-sub">暫定：{escape(r["team"])}（{r["rank"]}位・勝点{pts_of(r)}・{rest}）</span>')
         if picks and nxt is not None:
             diff = pts_of(picks[-1]) - pts_of(nxt)
             gap = "同勝点" if diff == 0 else f"{diff}差"
