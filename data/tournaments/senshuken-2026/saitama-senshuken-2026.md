@@ -145,7 +145,7 @@ scraper/update_tournament_results.py が上の source から
 - 盈進東野 vs 不動岡
 - 埼玉平成 2-0 栗橋北彩
 - 小川 vs 開智未来
-- 伊奈学園 vs 所沢中央
+- 伊奈学園 4-0 所沢中央
 - 熊谷 vs 大宮東
 - 春日部東 vs 県立川越
 - 立教新座 0-2 本庄第一
@@ -163,5 +163,5 @@ scraper/update_tournament_results.py が上の source から
 - 西武文理 vs 盈進東野/不動岡
 - 埼玉平成 vs 東京成徳大深谷
 - 浦和東 vs 小川/開智未来
-- 伊奈学園/所沢中央 vs 熊谷/大宮東
+- 伊奈学園 vs 熊谷/大宮東
 - 春日部東/県立川越 vs 本庄第一
