@@ -247,7 +247,7 @@ def region_html(w: World, region: dict, outs: dict) -> str:
         return (head + f'<p class="ih-note">組み合わせ（試合番号・日時・会場・「◯県◯位」）は '
                 f'<a href="{escape(br["source_url"])}" target="_blank" rel="noopener">{escape(br["source_label"])}</a> の発表（'
                 f'{escape(br["venue_note"])}）。チーム名だけを県1部の今の順位から入れています。</p>'
-                '<div class="ppo-scroll"><table class="ih-history-table ppo-table"><thead><tr><th>試合</th><th>日時・会場</th>'
+                '<div class="ppo-scroll"><table class="ih-history-table ppo-table ppo-bracket"><thead><tr><th>試合</th><th>日時・会場</th>'
                 '<th>組み合わせ（暫定のチーム名）</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>"
                 + (f'<p class="ih-note">{blocked[4:]}</p>' if blocked else ""))
     rows = "".join(pref_row(outs[p], nm) for p, nm in region["prefs"].items())
@@ -258,8 +258,12 @@ def region_html(w: World, region: dict, outs: dict) -> str:
 STYLE = (
     "<style>"
     ".ppo-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px 0 14px;}"
-    ".ppo-table{width:100%;}.ppo-table th,.ppo-table td{padding:6px 12px 6px 0;vertical-align:top;}"
-    ".ppo-table td:first-child{white-space:nowrap;}"
+    # 見出しは左寄せ（ブラウザ初期値の th＝中央 だと中身とずれる）。1列目の幅を固定して9地域の表で列の位置をそろえる
+    ".ppo-table{width:100%;table-layout:fixed;}"
+    ".ppo-table th,.ppo-table td{padding:6px 12px 6px 0;vertical-align:top;text-align:left;}"
+    ".ppo-table th:first-child,.ppo-table td:first-child{width:5.5em;white-space:nowrap;}"
+    ".ppo-table.ppo-bracket th:nth-child(2),.ppo-table.ppo-bracket td:nth-child(2){width:8.5em;}"
+    ".ppo-table td{overflow-wrap:anywhere;}"
     ".ppo-h3{margin:22px 0 6px;font-size:1.05em;}"
     ".ppo-sub{font-size:0.82em;color:var(--text-light,#6b7280);}"
     ".ppo-note{font-size:0.82em;color:var(--text-light,#6b7280);}"
