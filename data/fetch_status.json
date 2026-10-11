@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-11T10:16:32+09:00",
+  "updatedAt": "2026-10-11T10:16:37+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 61,
+      "result_streak": 62,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -801,20 +801,20 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 63,
+      "played": 64,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-10-03",
+      "latest_match": "2026-10-06",
       "source": "official",
       "sourceName": "大分県サッカー協会 公式",
-      "last_change": "2026-10-06",
-      "result_since": "2026-10-09",
-      "result_streak": 7,
-      "status": "warn",
+      "last_change": "2026-10-11",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
       "result": "ok",
       "result_note": "消化64試合に更新（検算一致）",
       "result_date": "2026-10-11",
-      "last_updated": "2026-10-08"
+      "last_updated": "2026-10-11"
     },
     "okayama": {
       "result": "ok",
@@ -853,9 +853,9 @@
       "source": "official",
       "sourceName": "沖縄県サッカー協会 公式（波布リーグ）",
       "last_change": "2026-09-29",
-      "result_since": "2026-10-08",
-      "result_streak": 9,
-      "status": "alert",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "ok",
       "last_updated": "2026-10-11"
     },
     "osaka": {
@@ -1060,9 +1060,9 @@
       "source": "official",
       "sourceName": "栃木県サッカー協会 公式（LSIN cloud）",
       "last_change": "2026-10-04",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-10-11",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-10-11",
       "verify_items": [
         {
@@ -1225,11 +1225,11 @@
       "complete": true,
       "single_round": false,
       "dup_pairs": 28,
-      "played_without_date": 22,
+      "played_without_date": 1,
       "played": 56,
       "total": 56,
       "teams": 8,
-      "latest_match": "2026-07-18",
+      "latest_match": "2026-09-26",
       "source": "official",
       "sourceName": "山口県サッカー協会 公式（SportsOnline）",
       "last_change": "2026-10-11",
