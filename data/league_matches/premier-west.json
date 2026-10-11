@@ -93,6 +93,18 @@
     },
     {
       "rank": 4,
+      "team": "サガン鳥栖U-18",
+      "pts": 30,
+      "played": 17,
+      "won": 9,
+      "drawn": 3,
+      "lost": 5,
+      "gf": 29,
+      "ga": 17,
+      "gd": 12
+    },
+    {
+      "rank": 5,
       "team": "アビスパ福岡 U-18",
       "pts": 29,
       "played": 17,
@@ -102,18 +114,6 @@
       "gf": 22,
       "ga": 21,
       "gd": 1
-    },
-    {
-      "rank": 5,
-      "team": "サガン鳥栖U-18",
-      "pts": 27,
-      "played": 16,
-      "won": 8,
-      "drawn": 3,
-      "lost": 5,
-      "gf": 26,
-      "ga": 17,
-      "gd": 9
     },
     {
       "rank": 6,
@@ -143,13 +143,13 @@
       "rank": 8,
       "team": "大津",
       "pts": 21,
-      "played": 14,
+      "played": 15,
       "won": 7,
       "drawn": 0,
-      "lost": 7,
+      "lost": 8,
       "gf": 22,
-      "ga": 19,
-      "gd": 3
+      "ga": 22,
+      "gd": 0
     },
     {
       "rank": 9,
@@ -3039,12 +3039,28 @@
       "md": 17,
       "date": "2026-10-11",
       "home": "大津",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "サガン鳥栖U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "COSMOS(熊本県フットボールセンター) （人工芝）",
-      "kickoff": "15:00"
+      "kickoff": "15:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1710.pdf",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "3",
+          "name": "大野 廉門"
+        },
+        {
+          "minute": "54",
+          "name": "大野 廉門"
+        },
+        {
+          "minute": "90+3",
+          "name": "米湊 勇弥"
+        }
+      ]
     },
     {
       "md": 17,
@@ -3056,6 +3072,7 @@
       "status": "played",
       "venue": "いぶすきフットボールパーク（天然芝）",
       "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1711.pdf",
       "homeScorers": [
         {
           "minute": "9",

@@ -69,6 +69,18 @@
     },
     {
       "rank": 2,
+      "team": "鹿島アントラーズユース",
+      "pts": 34,
+      "played": 17,
+      "won": 11,
+      "drawn": 1,
+      "lost": 5,
+      "gf": 49,
+      "ga": 28,
+      "gd": 21
+    },
+    {
+      "rank": 3,
       "team": "柏レイソルU-18",
       "pts": 33,
       "played": 17,
@@ -80,7 +92,7 @@
       "gd": 12
     },
     {
-      "rank": 3,
+      "rank": 4,
       "team": "FC東京U-18",
       "pts": 32,
       "played": 17,
@@ -90,18 +102,6 @@
       "gf": 37,
       "ga": 22,
       "gd": 15
-    },
-    {
-      "rank": 4,
-      "team": "鹿島アントラーズユース",
-      "pts": 31,
-      "played": 16,
-      "won": 10,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 45,
-      "ga": 28,
-      "gd": 17
     },
     {
       "rank": 5,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "川崎フロンターレU-18",
       "pts": 12,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 3,
-      "lost": 10,
+      "lost": 11,
       "gf": 26,
-      "ga": 41,
-      "gd": -15
+      "ga": 45,
+      "gd": -19
     },
     {
       "rank": 12,
@@ -3197,6 +3197,7 @@
       "status": "played",
       "venue": "前橋育英高校高崎グラウンド(人工芝)",
       "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1705.pdf",
       "homeScorers": [
         {
           "minute": "9",
@@ -3226,12 +3227,31 @@
       "md": 17,
       "date": "2026-10-11",
       "home": "川崎フロンターレU-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "鹿島アントラーズユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "Ankerフロンタウン生田（人工芝）",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "9",
+          "name": "林 勘太"
+        },
+        {
+          "minute": "14",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "68",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "77",
+          "name": "滝澤 周生"
+        }
+      ]
     },
     {
       "md": 18,
