@@ -105,6 +105,18 @@
     },
     {
       "rank": 5,
+      "team": "前橋育英",
+      "pts": 28,
+      "played": 17,
+      "won": 8,
+      "drawn": 4,
+      "lost": 5,
+      "gf": 29,
+      "ga": 20,
+      "gd": 9
+    },
+    {
+      "rank": 6,
       "team": "青森山田",
       "pts": 28,
       "played": 17,
@@ -114,18 +126,6 @@
       "gf": 29,
       "ga": 27,
       "gd": 2
-    },
-    {
-      "rank": 6,
-      "team": "前橋育英",
-      "pts": 25,
-      "played": 16,
-      "won": 7,
-      "drawn": 4,
-      "lost": 5,
-      "gf": 25,
-      "ga": 19,
-      "gd": 6
     },
     {
       "rank": 7,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "横浜FCユース",
       "pts": 10,
-      "played": 16,
+      "played": 17,
       "won": 2,
       "drawn": 4,
-      "lost": 10,
-      "gf": 20,
-      "ga": 34,
-      "gd": -14
+      "lost": 11,
+      "gf": 21,
+      "ga": 38,
+      "gd": -17
     }
   ],
   "matches": [
@@ -3191,12 +3191,36 @@
       "md": 17,
       "date": "2026-10-11",
       "home": "前橋育英",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "横浜FCユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "前橋育英高校高崎グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "9",
+          "name": "柴田 凌輔"
+        },
+        {
+          "minute": "13",
+          "name": "笹 蒼尉"
+        },
+        {
+          "minute": "19",
+          "name": "山本 翼"
+        },
+        {
+          "minute": "48",
+          "name": "関 蒼葉"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "54",
+          "name": "齋藤 翔"
+        }
+      ]
     },
     {
       "md": 17,

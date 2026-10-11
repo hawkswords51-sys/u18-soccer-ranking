@@ -70,13 +70,13 @@
     {
       "rank": 2,
       "team": "名古屋グランパスU-18",
-      "pts": 31,
-      "played": 16,
+      "pts": 32,
+      "played": 17,
       "won": 9,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 3,
-      "gf": 38,
-      "ga": 24,
+      "gf": 41,
+      "ga": 27,
       "gd": 14
     },
     {
@@ -130,13 +130,13 @@
     {
       "rank": 7,
       "team": "神村学園",
-      "pts": 23,
-      "played": 16,
+      "pts": 24,
+      "played": 17,
       "won": 6,
-      "drawn": 5,
+      "drawn": 6,
       "lost": 5,
-      "gf": 30,
-      "ga": 32,
+      "gf": 33,
+      "ga": 35,
       "gd": -2
     },
     {
@@ -3050,12 +3050,40 @@
       "md": 17,
       "date": "2026-10-11",
       "home": "神村学園",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 3,
       "away": "名古屋グランパスU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "いぶすきフットボールパーク（天然芝）",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "9",
+          "name": "岡野 綱人"
+        },
+        {
+          "minute": "69",
+          "name": "増田 宗一郎"
+        },
+        {
+          "minute": "75",
+          "name": "岡野 綱人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "24",
+          "name": "小島 蒼斗"
+        },
+        {
+          "minute": "45",
+          "name": "竹内 悠三"
+        },
+        {
+          "minute": "63",
+          "name": "佐藤 煌太"
+        }
+      ]
     },
     {
       "md": 17,
