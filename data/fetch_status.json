@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-11T07:16:58+09:00",
+  "updatedAt": "2026-10-11T10:16:32+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1045,8 +1045,8 @@
       "last_updated": "2026-09-27"
     },
     "tochigi": {
-      "result": "ok",
-      "result_note": "消化68試合に更新（検算一致）",
+      "result": "verify_failed",
+      "result_note": "検算不一致 佐野日大.played 試合15≠表14; 佐野日大.drawn 試合3≠表2 …（順位表と個別試合が未整合。待機）",
       "result_date": "2026-10-11",
       "season": "2026",
       "complete": false,
@@ -1063,7 +1063,33 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-11"
+      "last_updated": "2026-10-11",
+      "verify_items": [
+        {
+          "team": "佐野日大",
+          "item": "佐野日大.played 試合15≠表14"
+        },
+        {
+          "team": "佐野日大",
+          "item": "佐野日大.drawn 試合3≠表2"
+        },
+        {
+          "team": "佐野日大",
+          "item": "佐野日大.pts 試合33≠表32"
+        },
+        {
+          "team": "足利大附",
+          "item": "足利大附.played 試合14≠表13"
+        },
+        {
+          "team": "足利大附",
+          "item": "足利大附.drawn 試合1≠表0"
+        },
+        {
+          "team": "足利大附",
+          "item": "足利大附.pts 試合13≠表12"
+        }
+      ]
     },
     "tokushima": {
       "season": "2026",
