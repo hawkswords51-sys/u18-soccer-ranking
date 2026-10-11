@@ -451,7 +451,12 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
                 skipped.append(pref)       # 手動取り込みの対象外（埼玉）。要約に必ず1行出す
                 continue
             n_imp = days_between(r.get("last_updated", ""), today)
-            if n_imp is None or n_imp >= MANUAL_IMPORT_STALE_DAYS:
+            # [2026-10-11] 2回戦制の枠が全部埋まった（＝完走した）リーグは、取り込む試合がもう無いので🟡Aに出さない
+            #   （石川・岩手が⚪️「全試合消化済み」と🟡A「◯日止まっています」に同時に出て、日数だけ増え続けていた）。
+            #   下の complete の分岐（⚪️の情報行）へ回す。⚠️ 枠が1回戦制のまま埋まっているリーグは
+            #   「2回戦制／後期のデータが来ていない」疑いがあるので、今までどおり🟡Aに出す（2026-09-14 の大分）。
+            finished = r.get("complete") and not r.get("single_round")
+            if not finished and (n_imp is None or n_imp >= MANUAL_IMPORT_STALE_DAYS):
                 # 🟡A（打つ手があるほう）を見出しにする。🟡Bにも当たる県は末尾に添えるだけ（1リーグ1行）。
                 yellow.append(f"🟡A {pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
                               f"（lastUpdated {r.get('last_updated') or '—'}・{r['played']}/{r['total']}"
