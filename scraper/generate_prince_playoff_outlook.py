@@ -6,6 +6,8 @@
   「このまま終わったら各地域のプリンスリーグ参入戦に出るチーム」を9地域ぶん作る。
 - 書き換えるのは tournaments/promotion-playoff-2026/index.html の
   <!-- PRINCE-PLAYOFF-OUTLOOK:START --> 〜 <!-- PRINCE-PLAYOFF-OUTLOOK:END --> の間だけ。
+- [2026-10-12] 同じページの「プレミア参入プレーオフ 出場決定チーム（16枠）」の表にも、各行の
+  <!-- PPO-PREMIER:prince-xxx --> 〜 <!-- /PPO-PREMIER --> の中に今の順位の暫定チームを入れる（確定チームは手書きのまま）。
 - 手で持つ情報（地域・行き先・北海道/四国の枠・北信越の組み合わせ・下のチームの対応表・確定の上書き）は
   data/prince_playoff_outlook.yml。東北〜九州の県の枠は league_zones.yml の pref-*-1 をそのまま読む。
 
@@ -293,23 +295,110 @@ def build(w: World) -> str:
     )
 
 
+# ---------------------------------------------------------------- プレミア参入 16枠の表の暫定（2026-10-12）
+# 「プレミア参入プレーオフ2026 出場決定チーム（16枠）」の各行の3列目にある
+#   <!-- PPO-PREMIER:prince-xxx --> 〜 <!-- /PPO-PREMIER -->
+# の中だけを書き換え、未定の枠に今の順位の暫定チームを出す。
+# ⚠️ 確定チームはマーカーの外に手で書く（今までどおり）。合計行の「N ／ 16 決定」は確定の数のまま・暫定は数えない。
+#    audit_premier_playoff.py がこの文字を読むので、暫定の部分には「◯ ／ 16」の形の文字を入れない。
+_PREM_RE = re.compile(r"(<tr><td><a href=\"/leagues/(prince-[a-z0-9-]+)/\">.*?</td><td>(\d+)</td><td[^>]*>)(.*?)"
+                      r"<!-- PPO-PREMIER:\2 -->.*?<!-- /PPO-PREMIER -->", re.S)
+
+
+def _canon_team(n: str) -> str:
+    n = unicodedata.normalize("NFKC", n or "").replace(" ", "").replace("　", "")
+    for suf in ("高等学校", "高校"):
+        if n.endswith(suf) and len(n) > len(suf):
+            n = n[:-len(suf)]
+    return n
+
+
+def premier_slot_rows(src: str) -> tuple[str, int]:
+    """16枠の表の各行を書き換えた src と、暫定を出したチーム数を返す。読めない／合わないときは NeedsCheck。"""
+    import audit_premier_playoff as ap
+    from league_zones import _base_team_name, is_second_team, premier_teams_from_league_matches
+    premier = {t["name"] for t in premier_teams_from_league_matches(ROOT)}
+    zones = dict(ap.playoff_zones())
+    total = 0
+
+    def one(m):
+        nonlocal total
+        head, slug, slots, outside = m.group(1), m.group(2), int(m.group(3)), m.group(4)
+        if zones.get(slug) != slots:
+            raise NeedsCheck(f"16枠の表の {slug} の枠 {slots} が league_zones.yml の {zones.get(slug)} と違う")
+        d = ap.load_league(slug, MATCHES) or {}
+        st = sorted(d.get("official_standings") or [], key=lambda r: int(r["rank"]))
+        rem = ap.remaining_counts(d.get("matches"))
+        written = re.findall(r"<strong>(?:<a [^>]*>)?([^<]+)(?:</a>)?</strong>", outside)
+        canon = {_canon_team(r["team"]): r["team"] for r in st}
+        confirmed = set()
+        for w_ in written:
+            hit = canon.get(_canon_team(w_))
+            if not hit:
+                raise NeedsCheck(f"16枠の表の {slug} の確定チーム「{w_}」が順位表のどのチームとも合わない")
+            confirmed.add(hit)
+        need = slots - len(confirmed)
+        if need < 0:
+            raise NeedsCheck(f"16枠の表の {slug} に確定チームが枠より多い（{len(confirmed)}／{slots}）")
+        picks, skipped, nxt = [], [], None
+        for r in st:
+            t = r["team"]
+            if t in confirmed:
+                continue
+            if is_second_team(t) and _base_team_name(t) in premier:
+                if len(picks) < need:
+                    skipped.append(t)
+                continue
+            if len(picks) < need:
+                picks.append(r)
+            else:
+                nxt = r
+                break
+        parts = []
+        for r in picks:
+            parts.append(f'<span class="ppo-sub">暫定：{escape(r["team"])}（{r["rank"]}位・勝点{pts_of(r)}・'
+                         f'{"全日程終了" if rem.get(r["team"], 0) == 0 else f"残り{rem.get(r['team'], 0)}試合"}）</span>')
+        if picks and nxt is not None:
+            diff = pts_of(picks[-1]) - pts_of(nxt)
+            gap = "同勝点" if diff == 0 else f"{diff}差"
+            parts.append(f'<span class="ppo-note">（{nxt["rank"]}位 {escape(nxt["team"])}と{gap}）</span>')
+        for t in skipped:
+            parts.append(f'<span class="ppo-note">※{escape(t)}はプレミア所属チームのセカンドのため対象外</span>')
+        total += len(picks)
+        body = ("<br>" if parts and written else "") + "<br>".join(parts) if parts else ""
+        if not parts and not written:
+            body = '<span class="ppo-sub">未定</span>'
+        return head + outside + f"<!-- PPO-PREMIER:{slug} -->{body}<!-- /PPO-PREMIER -->"
+
+    new, n = _PREM_RE.subn(one, src)
+    if n != len(zones):
+        raise NeedsCheck(f"16枠の表で書き換えの印を読めた行が{n}行（league_zones.yml の参入戦リーグは{len(zones)}）")
+    return new, total
+
+
 def main() -> int:
+    src = PAGE.read_text(encoding="utf-8")
+    new = src
+    # --- 各地域のプリンスリーグ参入戦 暫定出場チーム ---
     try:
         w = World()
         html = build(w)
+        if START not in new or END not in new:
+            raise NeedsCheck(f"{PAGE} にマーカーが無い")
+        pre, rest = new.split(START, 1)
+        _, post = rest.split(END, 1)
+        new = pre + START + html + "      " + END + post
+        print(f"OK: 参入戦ページの暫定出場チーム表を書きました（{len(w.conf['regions'])}地域）")
     except NeedsCheck as e:
         print(f"[要確認] プリンス参入戦の暫定表: {e}（表は書き換えません）")
-        return 0
-    src = PAGE.read_text(encoding="utf-8")
-    if START not in src or END not in src:
-        print(f"[要確認] プリンス参入戦の暫定表: {PAGE} にマーカーが無い（表は書き換えません）")
-        return 0
-    pre, rest = src.split(START, 1)
-    _, post = rest.split(END, 1)
-    new = pre + START + html + "      " + END + post
+    # --- プレミア参入 16枠の表の暫定 ---
+    try:
+        new, n = premier_slot_rows(new)
+        print(f"OK: 16枠の表に暫定チームを{n}チーム書きました（確定チームと「N ／ 16 決定」は手書きのまま）")
+    except NeedsCheck as e:
+        print(f"[要確認] 16枠の表の暫定: {e}（この表は書き換えません）")
     if new != src:
         PAGE.write_text(new, encoding="utf-8")
-    print(f"OK: 参入戦ページの暫定出場チーム表を書きました（{len(w.conf['regions'])}地域）")
     return 0
 
 
