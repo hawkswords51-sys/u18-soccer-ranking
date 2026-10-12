@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://gc-model.com/front/tochigi/convention/order/212",
  "sourceName": "栃木U-15リーグ（gc-model）",
- "lastUpdated": "2026-10-09",
+ "lastUpdated": "2026-10-13",
  "teams": [
   {
    "name": "那須野ヶ原FCボンジボーラ",
@@ -33,12 +33,12 @@
    "short": "栃木シティFC U15"
   },
   {
-   "name": "プログレッソ佐野FC",
-   "short": "プログレッソ佐野FC"
-  },
-  {
    "name": "FC VALON",
    "short": "FC VALON"
+  },
+  {
+   "name": "プログレッソ佐野FC",
+   "short": "プログレッソ佐野FC"
   },
   {
    "name": "FC SHUJAKU",
@@ -102,13 +102,13 @@
    "rank": 5,
    "team": "矢板SC",
    "points": 23,
-   "played": 13,
+   "played": 14,
    "won": 7,
    "drawn": 2,
-   "lost": 4,
-   "gf": 23,
-   "ga": 20,
-   "gd": 3
+   "lost": 5,
+   "gf": 24,
+   "ga": 22,
+   "gd": 2
   },
   {
    "rank": 6,
@@ -124,6 +124,18 @@
   },
   {
    "rank": 7,
+   "team": "FC VALON",
+   "points": 12,
+   "played": 14,
+   "won": 4,
+   "drawn": 0,
+   "lost": 10,
+   "gf": 13,
+   "ga": 46,
+   "gd": -33
+  },
+  {
+   "rank": 8,
    "team": "プログレッソ佐野FC",
    "points": 10,
    "played": 14,
@@ -133,18 +145,6 @@
    "gf": 17,
    "ga": 32,
    "gd": -15
-  },
-  {
-   "rank": 8,
-   "team": "FC VALON",
-   "points": 9,
-   "played": 13,
-   "won": 3,
-   "drawn": 0,
-   "lost": 10,
-   "gf": 11,
-   "ga": 45,
-   "gd": -34
   },
   {
    "rank": 9,
@@ -866,10 +866,10 @@
    "md": 0,
    "date": "2026-10-12",
    "home": "FC VALON",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 1,
    "away": "矢板SC",
-   "status": "scheduled",
+   "status": "played",
    "venue": "真岡鬼怒自然公園 サッカー場"
   },
   {
