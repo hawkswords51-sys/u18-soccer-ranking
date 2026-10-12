@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
-      "pts": 37,
-      "played": 16,
-      "won": 12,
+      "pts": 40,
+      "played": 17,
+      "won": 13,
       "drawn": 1,
       "lost": 3,
-      "gf": 39,
-      "ga": 21,
-      "gd": 18
+      "gf": 42,
+      "ga": 23,
+      "gd": 19
     },
     {
       "rank": 2,
@@ -83,13 +83,13 @@
       "rank": 3,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 31,
-      "played": 16,
+      "played": 17,
       "won": 9,
       "drawn": 4,
-      "lost": 3,
-      "gf": 29,
-      "ga": 21,
-      "gd": 8
+      "lost": 4,
+      "gf": 31,
+      "ga": 24,
+      "gd": 7
     },
     {
       "rank": 4,
@@ -3106,12 +3106,37 @@
       "md": 17,
       "date": "2026-10-12",
       "home": "サンフレッチェ広島F.Cユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 3,
       "away": "ヴィッセル神戸U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "安芸高田市サッカー公園",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1712.pdf",
+      "homeScorers": [
+        {
+          "minute": "20",
+          "name": "原 湊士"
+        },
+        {
+          "minute": "51",
+          "name": "信重 亮二朗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "9",
+          "name": "井内 亮太朗"
+        },
+        {
+          "minute": "25",
+          "name": "リー ジャミソン大和"
+        },
+        {
+          "minute": "87",
+          "name": "川端 彪英"
+        }
+      ]
     },
     {
       "md": 18,
