@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 72,
+      "matchesPlayed": 73,
       "venueCount": 89,
       "venueCountPrev": 89,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-12T15:00:04+09:00",
+  "updatedAt": "2026-10-12T15:18:29+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -897,7 +897,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化41試合に更新（検算一致）",
+      "result_note": "消化42試合に更新（検算一致）",
       "result_date": "2026-10-12"
     },
     "osaka-2b": {
@@ -917,8 +917,8 @@
       "result_since": "2026-10-11",
       "result_streak": 2,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (賢明学院×関大一: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
+      "result": "ok",
+      "result_note": "消化44試合に更新（検算一致）",
       "result_date": "2026-10-12"
     },
     "osaka-2c": {
@@ -938,8 +938,8 @@
       "result_since": "2026-10-11",
       "result_streak": 3,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (セレッソ大阪U-18 B×大阪学院B: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
+      "result": "ok",
+      "result_note": "消化41試合に更新（検算一致）",
       "result_date": "2026-10-12"
     },
     "saga": {
@@ -1007,7 +1007,7 @@
     },
     "shimane": {
       "result": "ok",
-      "result_note": "消化46試合に更新（検算一致）",
+      "result_note": "消化49試合に更新（検算一致）",
       "result_date": "2026-10-12",
       "season": "2026",
       "complete": false,
@@ -1045,8 +1045,8 @@
       "last_updated": "2026-10-11"
     },
     "tochigi": {
-      "result": "verify_failed",
-      "result_note": "検算不一致 栃木シティFC.played 試合15≠表14; 栃木シティFC.drawn 試合1≠表0 …（順位表と個別試合が未整合。待機）",
+      "result": "ok",
+      "result_note": "消化73試合に更新（検算一致）",
       "result_date": "2026-10-12",
       "season": "2026",
       "complete": false,
@@ -1063,33 +1063,7 @@
       "result_since": "2026-10-11",
       "result_streak": 4,
       "status": "warn",
-      "last_updated": "2026-10-11",
-      "verify_items": [
-        {
-          "team": "栃木シティFC",
-          "item": "栃木シティFC.played 試合15≠表14"
-        },
-        {
-          "team": "栃木シティFC",
-          "item": "栃木シティFC.drawn 試合1≠表0"
-        },
-        {
-          "team": "栃木シティFC",
-          "item": "栃木シティFC.pts 試合13≠表12"
-        },
-        {
-          "team": "文星芸大附",
-          "item": "文星芸大附.played 試合14≠表13"
-        },
-        {
-          "team": "文星芸大附",
-          "item": "文星芸大附.drawn 試合5≠表4"
-        },
-        {
-          "team": "文星芸大附",
-          "item": "文星芸大附.pts 試合11≠表10"
-        }
-      ]
+      "last_updated": "2026-10-11"
     },
     "tokushima": {
       "season": "2026",
@@ -1384,7 +1358,7 @@
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
-      "note": "試合17・選手31（新規取得1）",
+      "note": "試合17・選手31（新規取得0）",
       "date": "2026-10-12",
       "since": ""
     },
@@ -1414,7 +1388,7 @@
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
-      "note": "試合17・選手33（新規取得1）",
+      "note": "試合17・選手33（新規取得0）",
       "date": "2026-10-12",
       "since": ""
     },

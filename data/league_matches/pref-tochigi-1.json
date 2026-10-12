@@ -3,19 +3,19 @@
   "season": "2026",
   "source": "https://api.lsin.jp/?m=r&e=1059&c=3",
   "sourceName": "栃木県サッカー協会 公式（LSIN cloud）",
-  "lastUpdated": "2026-10-11",
+  "lastUpdated": "2026-10-12",
   "teams": [
     {
       "name": "矢板中央B",
       "short": "矢板中央B"
     },
     {
-      "name": "國學院栃木",
-      "short": "國學院栃木"
-    },
-    {
       "name": "佐野日大",
       "short": "佐野日大"
+    },
+    {
+      "name": "國學院栃木",
+      "short": "國學院栃木"
     },
     {
       "name": "宇短大附",
@@ -50,134 +50,125 @@
     {
       "rank": 1,
       "team": "矢板中央B",
-      "points": 37,
-      "played": 14,
-      "won": 12,
+      "points": 40,
+      "played": 15,
+      "won": 13,
       "drawn": 1,
       "lost": 1,
-      "gf": 49,
+      "gf": 54,
       "ga": 15,
-      "gd": 34
+      "gd": 39
     },
     {
       "rank": 2,
-      "team": "國學院栃木",
-      "points": 34,
-      "played": 13,
+      "team": "佐野日大",
+      "points": 35,
+      "played": 15,
       "won": 11,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 41,
-      "ga": 8,
-      "gd": 33
+      "drawn": 2,
+      "lost": 2,
+      "gf": 35,
+      "ga": 10,
+      "gd": 25
     },
     {
       "rank": 3,
-      "team": "佐野日大",
-      "points": 32,
+      "team": "國學院栃木",
+      "points": 34,
       "played": 14,
-      "won": 10,
-      "drawn": 2,
+      "won": 11,
+      "drawn": 1,
       "lost": 2,
-      "gf": 32,
-      "ga": 9,
-      "gd": 23
+      "gf": 42,
+      "ga": 10,
+      "gd": 32
     },
     {
       "rank": 4,
       "team": "宇短大附",
-      "points": 27,
-      "played": 14,
-      "won": 8,
+      "points": 30,
+      "played": 15,
+      "won": 9,
       "drawn": 3,
       "lost": 3,
-      "gf": 22,
-      "ga": 12,
-      "gd": 10
+      "gf": 24,
+      "ga": 13,
+      "gd": 11
     },
     {
       "rank": 5,
       "team": "真岡",
-      "points": 17,
-      "played": 14,
+      "points": 18,
+      "played": 15,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 7,
-      "gf": 20,
-      "ga": 19,
+      "gf": 21,
+      "ga": 20,
       "gd": 1
     },
     {
       "rank": 6,
       "team": "栃木シティFC",
-      "points": 12,
-      "played": 14,
-      "won": 4,
+      "points": 15,
+      "played": 15,
+      "won": 5,
       "drawn": 0,
       "lost": 10,
-      "gf": 25,
-      "ga": 36,
-      "gd": -11
+      "gf": 27,
+      "ga": 37,
+      "gd": -10
     },
     {
       "rank": 7,
       "team": "足利大附",
       "points": 12,
-      "played": 13,
+      "played": 14,
       "won": 4,
       "drawn": 0,
-      "lost": 9,
-      "gf": 13,
-      "ga": 28,
-      "gd": -15
+      "lost": 10,
+      "gf": 14,
+      "ga": 31,
+      "gd": -17
     },
     {
       "rank": 8,
       "team": "栃木SC B",
       "points": 11,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 18,
-      "ga": 31,
-      "gd": -13
+      "ga": 36,
+      "gd": -18
     },
     {
       "rank": 9,
       "team": "文星芸大附",
       "points": 10,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 4,
-      "lost": 7,
-      "gf": 13,
-      "ga": 41,
-      "gd": -28
+      "lost": 8,
+      "gf": 14,
+      "ga": 43,
+      "gd": -29
     },
     {
       "rank": 10,
       "team": "青藍泰斗",
-      "points": 4,
-      "played": 14,
+      "points": 5,
+      "played": 15,
       "won": 1,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 12,
-      "gf": 10,
-      "ga": 44,
+      "gf": 11,
+      "ga": 45,
       "gd": -34
     }
   ],
   "matches": [
-    {
-      "md": 0,
-      "date": "",
-      "home": "矢板中央B",
-      "hs": 2,
-      "as": 3,
-      "away": "國學院栃木",
-      "status": "played"
-    },
     {
       "md": 0,
       "date": "2026-06-28",
@@ -187,6 +178,15 @@
       "away": "佐野日大",
       "status": "played",
       "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "矢板中央B",
+      "hs": 2,
+      "as": 3,
+      "away": "國學院栃木",
+      "status": "played"
     },
     {
       "md": 0,
@@ -261,7 +261,7 @@
     {
       "md": 0,
       "date": "",
-      "home": "國學院栃木",
+      "home": "佐野日大",
       "hs": null,
       "as": null,
       "away": "矢板中央B",
@@ -270,100 +270,12 @@
     {
       "md": 0,
       "date": "2026-06-21",
-      "home": "國學院栃木",
-      "hs": 0,
-      "as": 1,
-      "away": "佐野日大",
-      "status": "played",
-      "venue": "佐野日本大学高等学校"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "國學院栃木",
+      "home": "佐野日大",
       "hs": 1,
-      "as": 1,
-      "away": "宇短大附",
-      "status": "played",
-      "venue": "真岡高等学校"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-20",
-      "home": "國學院栃木",
-      "hs": 2,
       "as": 0,
-      "away": "真岡",
-      "status": "played",
-      "venue": "真岡高等学校"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-14",
-      "home": "國學院栃木",
-      "hs": 3,
-      "as": 1,
-      "away": "栃木シティFC",
-      "status": "played",
-      "venue": "LUXPERIOR"
-    },
-    {
-      "md": 0,
-      "date": "2026-03-22",
-      "home": "國學院栃木",
-      "hs": 3,
-      "as": 0,
-      "away": "足利大附",
-      "status": "played",
-      "venue": "LUXPERIOR"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-17",
-      "home": "國學院栃木",
-      "hs": 5,
-      "as": 1,
-      "away": "栃木SC B",
-      "status": "played",
-      "venue": "LUXPERIOR"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-11",
-      "home": "國學院栃木",
-      "hs": 5,
-      "as": 0,
-      "away": "文星芸大附",
-      "status": "played",
-      "venue": "佐野日本大学高等学校"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-28",
-      "home": "國學院栃木",
-      "hs": 5,
-      "as": 0,
-      "away": "青藍泰斗",
-      "status": "played",
-      "venue": "佐野日本大学高等学校"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "佐野日大",
-      "hs": null,
-      "as": null,
       "away": "國學院栃木",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
     },
     {
       "md": 0,
@@ -437,6 +349,94 @@
     },
     {
       "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "矢板中央B",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "國學院栃木",
+      "hs": null,
+      "as": null,
+      "away": "佐野日大",
+      "status": "scheduled"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "國學院栃木",
+      "hs": 1,
+      "as": 1,
+      "away": "宇短大附",
+      "status": "played",
+      "venue": "真岡高等学校"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-20",
+      "home": "國學院栃木",
+      "hs": 2,
+      "as": 0,
+      "away": "真岡",
+      "status": "played",
+      "venue": "真岡高等学校"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-14",
+      "home": "國學院栃木",
+      "hs": 3,
+      "as": 1,
+      "away": "栃木シティFC",
+      "status": "played",
+      "venue": "LUXPERIOR"
+    },
+    {
+      "md": 0,
+      "date": "2026-03-22",
+      "home": "國學院栃木",
+      "hs": 3,
+      "as": 0,
+      "away": "足利大附",
+      "status": "played",
+      "venue": "LUXPERIOR"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-17",
+      "home": "國學院栃木",
+      "hs": 5,
+      "as": 1,
+      "away": "栃木SC B",
+      "status": "played",
+      "venue": "LUXPERIOR"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-11",
+      "home": "國學院栃木",
+      "hs": 5,
+      "as": 0,
+      "away": "文星芸大附",
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-28",
+      "home": "國學院栃木",
+      "hs": 5,
+      "as": 0,
+      "away": "青藍泰斗",
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
       "date": "2026-09-13",
       "home": "矢板中央B",
       "hs": 1,
@@ -451,17 +451,18 @@
       "home": "宇短大附",
       "hs": null,
       "as": null,
-      "away": "國學院栃木",
+      "away": "佐野日大",
       "status": "scheduled"
     },
     {
       "md": 0,
-      "date": "",
-      "home": "宇短大附",
-      "hs": null,
-      "as": null,
-      "away": "佐野日大",
-      "status": "scheduled"
+      "date": "2026-10-11",
+      "home": "國學院栃木",
+      "hs": 1,
+      "as": 2,
+      "away": "宇短大附",
+      "status": "played",
+      "venue": "矢板中央高等学校東泉グラウンド"
     },
     {
       "md": 0,
@@ -535,15 +536,6 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "真岡",
-      "hs": null,
-      "as": null,
-      "away": "國學院栃木",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
       "date": "2026-10-04",
       "home": "佐野日大",
       "hs": 1,
@@ -551,6 +543,15 @@
       "away": "真岡",
       "status": "played",
       "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "真岡",
+      "hs": null,
+      "as": null,
+      "away": "國學院栃木",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -624,16 +625,6 @@
     },
     {
       "md": 0,
-      "date": "2026-09-23",
-      "home": "國學院栃木",
-      "hs": 5,
-      "as": 1,
-      "away": "栃木シティFC",
-      "status": "played",
-      "venue": "宇都宮短期大学附属高校"
-    },
-    {
-      "md": 0,
       "date": "2026-09-19",
       "home": "佐野日大",
       "hs": 1,
@@ -641,6 +632,16 @@
       "away": "栃木シティFC",
       "status": "played",
       "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-23",
+      "home": "國學院栃木",
+      "hs": 5,
+      "as": 1,
+      "away": "栃木シティFC",
+      "status": "played",
+      "venue": "宇都宮短期大学附属高校"
     },
     {
       "md": 0,
@@ -713,6 +714,16 @@
     },
     {
       "md": 0,
+      "date": "2026-10-11",
+      "home": "佐野日大",
+      "hs": 3,
+      "as": 1,
+      "away": "足利大附",
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
       "date": "2026-09-27",
       "home": "國學院栃木",
       "hs": 2,
@@ -720,15 +731,6 @@
       "away": "足利大附",
       "status": "played",
       "venue": "佐野日本大学高等学校"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "足利大附",
-      "hs": null,
-      "as": null,
-      "away": "佐野日大",
-      "status": "scheduled"
     },
     {
       "md": 0,
@@ -789,21 +791,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "矢板中央B",
-      "status": "scheduled"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "栃木SC B",
-      "hs": null,
-      "as": null,
-      "away": "國學院栃木",
-      "status": "scheduled"
+      "date": "2026-10-11",
+      "home": "矢板中央B",
+      "hs": 5,
+      "as": 0,
+      "away": "栃木SC B",
+      "status": "played",
+      "venue": "矢板中央高等学校東泉グラウンド"
     },
     {
       "md": 0,
@@ -814,6 +808,15 @@
       "away": "栃木SC B",
       "status": "played",
       "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "栃木SC B",
+      "hs": null,
+      "as": null,
+      "away": "國學院栃木",
+      "status": "scheduled"
     },
     {
       "md": 0,
@@ -886,20 +889,20 @@
     },
     {
       "md": 0,
-      "date": "2026-10-04",
-      "home": "國學院栃木",
+      "date": "2026-09-06",
+      "home": "佐野日大",
       "hs": 6,
-      "as": 1,
+      "as": 0,
       "away": "文星芸大附",
       "status": "played",
       "venue": "佐野日本大学高等学校"
     },
     {
       "md": 0,
-      "date": "2026-09-06",
-      "home": "佐野日大",
+      "date": "2026-10-04",
+      "home": "國學院栃木",
       "hs": 6,
-      "as": 0,
+      "as": 1,
       "away": "文星芸大附",
       "status": "played",
       "venue": "佐野日本大学高等学校"
@@ -925,12 +928,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "文星芸大附",
-      "hs": null,
-      "as": null,
-      "away": "栃木シティFC",
-      "status": "scheduled"
+      "date": "2026-10-11",
+      "home": "栃木シティFC",
+      "hs": 2,
+      "as": 1,
+      "away": "文星芸大附",
+      "status": "played",
+      "venue": "佐野日本大学高等学校"
     },
     {
       "md": 0,
@@ -971,16 +975,6 @@
     },
     {
       "md": 0,
-      "date": "2026-09-06",
-      "home": "國學院栃木",
-      "hs": 1,
-      "as": 0,
-      "away": "青藍泰斗",
-      "status": "played",
-      "venue": "あしスタ（足利市西部多目的運動場）"
-    },
-    {
-      "md": 0,
       "date": "2026-09-27",
       "home": "佐野日大",
       "hs": 5,
@@ -988,6 +982,16 @@
       "away": "青藍泰斗",
       "status": "played",
       "venue": "佐野日本大学高等学校"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-06",
+      "home": "國學院栃木",
+      "hs": 1,
+      "as": 0,
+      "away": "青藍泰斗",
+      "status": "played",
+      "venue": "あしスタ（足利市西部多目的運動場）"
     },
     {
       "md": 0,
@@ -1001,12 +1005,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "青藍泰斗",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
+      "date": "2026-10-11",
+      "home": "真岡",
+      "hs": 1,
+      "as": 1,
+      "away": "青藍泰斗",
+      "status": "played",
+      "venue": "真岡高等学校"
     },
     {
       "md": 0,
@@ -1050,103 +1055,103 @@
   "source_standings": [
     {
       "team": "矢板中央B",
-      "pts": 37,
-      "won": 12,
+      "pts": 40,
+      "won": 13,
       "drawn": 1,
       "lost": 1,
-      "gf": 49,
+      "gf": 54,
       "ga": 15,
-      "played": 14
+      "played": 15
+    },
+    {
+      "team": "佐野日大",
+      "pts": 35,
+      "won": 11,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 35,
+      "ga": 10,
+      "played": 15
     },
     {
       "team": "國學院栃木",
       "pts": 34,
       "won": 11,
       "drawn": 1,
-      "lost": 1,
-      "gf": 41,
-      "ga": 8,
-      "played": 13
-    },
-    {
-      "team": "佐野日大",
-      "pts": 32,
-      "won": 10,
-      "drawn": 2,
       "lost": 2,
-      "gf": 32,
-      "ga": 9,
+      "gf": 42,
+      "ga": 10,
       "played": 14
     },
     {
       "team": "宇短大附",
-      "pts": 27,
-      "won": 8,
+      "pts": 30,
+      "won": 9,
       "drawn": 3,
       "lost": 3,
-      "gf": 22,
-      "ga": 12,
-      "played": 14
+      "gf": 24,
+      "ga": 13,
+      "played": 15
     },
     {
       "team": "真岡",
-      "pts": 17,
+      "pts": 18,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 7,
-      "gf": 20,
-      "ga": 19,
-      "played": 14
+      "gf": 21,
+      "ga": 20,
+      "played": 15
     },
     {
       "team": "栃木シティFC",
-      "pts": 12,
-      "won": 4,
+      "pts": 15,
+      "won": 5,
       "drawn": 0,
       "lost": 10,
-      "gf": 25,
-      "ga": 36,
-      "played": 14
+      "gf": 27,
+      "ga": 37,
+      "played": 15
     },
     {
       "team": "足利大附",
       "pts": 12,
       "won": 4,
       "drawn": 0,
-      "lost": 9,
-      "gf": 13,
-      "ga": 28,
-      "played": 13
+      "lost": 10,
+      "gf": 14,
+      "ga": 31,
+      "played": 14
     },
     {
       "team": "栃木SC B",
       "pts": 11,
       "won": 3,
       "drawn": 2,
-      "lost": 8,
+      "lost": 9,
       "gf": 18,
-      "ga": 31,
-      "played": 13
+      "ga": 36,
+      "played": 14
     },
     {
       "team": "文星芸大附",
       "pts": 10,
       "won": 2,
       "drawn": 4,
-      "lost": 7,
-      "gf": 13,
-      "ga": 41,
-      "played": 13
+      "lost": 8,
+      "gf": 14,
+      "ga": 43,
+      "played": 14
     },
     {
       "team": "青藍泰斗",
-      "pts": 4,
+      "pts": 5,
       "won": 1,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 12,
-      "gf": 10,
-      "ga": 44,
-      "played": 14
+      "gf": 11,
+      "ga": 45,
+      "played": 15
     }
   ]
 }

@@ -89,6 +89,18 @@
     },
     {
       "rank": 5,
+      "team": "大阪偕星",
+      "points": 13,
+      "played": 11,
+      "won": 4,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 17,
+      "ga": 32,
+      "gd": -15
+    },
+    {
+      "rank": 6,
       "team": "大阪立命館",
       "points": 12,
       "played": 11,
@@ -100,7 +112,7 @@
       "gd": 0
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "関大北陽B",
       "points": 11,
       "played": 10,
@@ -112,28 +124,16 @@
       "gd": -3
     },
     {
-      "rank": 7,
-      "team": "大阪偕星",
-      "points": 10,
-      "played": 10,
-      "won": 3,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 15,
-      "ga": 32,
-      "gd": -17
-    },
-    {
       "rank": 8,
       "team": "摂津B",
       "points": 8,
-      "played": 10,
+      "played": 11,
       "won": 2,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 9,
-      "ga": 17,
-      "gd": -8
+      "ga": 19,
+      "gd": -10
     }
   ],
   "matches": [
@@ -447,10 +447,10 @@
       "md": 11,
       "date": "2026-10-12",
       "home": "大阪偕星",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "摂津B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
@@ -652,10 +652,10 @@
     },
     {
       "team": "大阪偕星",
-      "pts": 10,
-      "gf": 15,
+      "pts": 13,
+      "gf": 17,
       "ga": 32,
-      "rank": 7
+      "rank": 5
     },
     {
       "team": "ガンバ大阪B",
@@ -683,20 +683,20 @@
       "pts": 12,
       "gf": 19,
       "ga": 19,
-      "rank": 5
+      "rank": 6
     },
     {
       "team": "関大北陽B",
       "pts": 11,
       "gf": 14,
       "ga": 17,
-      "rank": 6
+      "rank": 7
     },
     {
       "team": "摂津B",
       "pts": 8,
       "gf": 9,
-      "ga": 17,
+      "ga": 19,
       "rank": 8
     }
   ]
