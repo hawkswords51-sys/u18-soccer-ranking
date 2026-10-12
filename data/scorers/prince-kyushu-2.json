@@ -2,26 +2,26 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448183-448183-fl",
-  "lastUpdated": "2026-10-06",
+  "lastUpdated": "2026-10-12",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
       "rank": 1,
+      "name": "金屋拓海",
+      "team": "鵬翔",
+      "goals": 13
+    },
+    {
+      "rank": 2,
       "name": "稗田幹太",
       "team": "佐賀東",
       "goals": 12
     },
     {
-      "rank": 2,
-      "name": "金屋拓海",
-      "team": "鵬翔",
-      "goals": 11
-    },
-    {
       "rank": 3,
       "name": "竹嶋優",
       "team": "長崎総附",
-      "goals": 9
+      "goals": 10
     },
     {
       "rank": 4,
@@ -54,89 +54,89 @@
       "goals": 5
     },
     {
-      "rank": 9,
+      "rank": 6,
+      "name": "一宮優聖",
+      "team": "長崎総附",
+      "goals": 5
+    },
+    {
+      "rank": 10,
       "name": "大隈士桜",
       "team": "大津3rd",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "澤山恵弥",
       "team": "大津3rd",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "中井薫",
       "team": "日章2nd",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "高橋怜央",
       "team": "東海大福岡",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "小野祥吾",
       "team": "東海大福岡",
       "goals": 4
     },
     {
-      "rank": 9,
-      "name": "一宮優聖",
+      "rank": 10,
+      "name": "山本優空",
       "team": "長崎総附",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "小野禅竜",
       "team": "鳥栖2nd",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "森山大斗",
       "team": "鹿児島",
       "goals": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "name": "川口大和",
       "team": "鹿児島",
       "goals": 4
     },
     {
-      "rank": 18,
+      "rank": 19,
       "name": "梶原宏聖",
       "team": "佐賀東",
       "goals": 3
     },
     {
-      "rank": 18,
+      "rank": 19,
       "name": "岩下蒼甫",
       "team": "佐賀東",
-      "goals": 3
-    },
-    {
-      "rank": 18,
-      "name": "渡辺遼",
-      "team": "大津3rd",
       "goals": 3
     }
   ],
   "coverage": [
     {
       "team": "大津3rd",
-      "attributed": 19,
-      "gf": 26,
+      "attributed": 20,
+      "gf": 27,
       "missing": 7
     },
     {
       "team": "東海大福岡",
-      "attributed": 24,
-      "gf": 26,
+      "attributed": 25,
+      "gf": 27,
       "missing": 2
     },
     {
@@ -146,16 +146,16 @@
       "missing": 1
     },
     {
+      "team": "鵬翔",
+      "attributed": 23,
+      "gf": 25,
+      "missing": 2
+    },
+    {
       "team": "鹿児島",
       "attributed": 19,
       "gf": 22,
       "missing": 3
-    },
-    {
-      "team": "鵬翔",
-      "attributed": 19,
-      "gf": 21,
-      "missing": 2
     },
     {
       "team": "九国大付",
