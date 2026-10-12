@@ -462,11 +462,18 @@ jobs:
       # ★ 2026-10-12：参入戦ページの「各地域のプリンスリーグ参入戦 暫定出場チーム」の表を作り直す。
       #   県1部・プリンス・プレミアの順位から作る（push 起動の run でも走る＝県1部を手で入れた直後に反映）。
       #   対応表に無い下のチームなどは [要確認] をログに出して、表は前の版のまま（このステップは落とさない）。
+      #   ⚠️ continue-on-error は外さない（2026-10-12）。スクリプト自体が落ちたとき（構文エラー・想定外の例外）に、
+      #      後ろのページ作り直し・コミットが全部スキップされた（ce9c88c4e の run）。この表は補助情報なので巻き添えにしない。
+      #      スクリプトは全部組み立ててから最後に1回だけ書き込むので、落ちても参入戦ページは前の版のまま。
       - name: 参入戦ページのプリンス参入戦 暫定出場チーム表を再生成
         if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
         run: |
           if [ -f scraper/generate_prince_playoff_outlook.py ]; then
-            python scraper/generate_prince_playoff_outlook.py
+            python scraper/generate_prince_playoff_outlook.py || {
+              echo "::warning::参入戦ページの暫定表の作り直しが失敗しました（ページは前の版のまま・後続の手順は続行）"
+              exit 1
+            }
           else
             echo "scraper/generate_prince_playoff_outlook.py がまだありません。スキップ。"
           fi
