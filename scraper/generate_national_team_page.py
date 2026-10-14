@@ -137,13 +137,21 @@ def _category_section(cat: dict) -> str:
     wide = cat.get("table") == "career"
     # 大学列は、カテゴリ内に univ を持つ選手が1人でもいるときだけ出す
     has_univ = any(p.get("univ") for p in players)
+    # [2026-10-14] 背番号がJFA未発表の招集（例: U-17代表候補の国内キャンプ）は、
+    #   全員に "no" が無いときだけ「背番号」列を見出しごと出さない。1人でも番号があれば従来どおり。
+    show_no = any(p.get("no") not in (None, "") for p in players)
+    no_th = "<th>背番号</th>" if show_no else ""
+
+    def _no_td(p):
+        return f'<td class="nt-no">{html_escape(str(p.get("no","")))}</td>' if show_no else ""
+
     rows = []
     for p in players:
         if wide:
             rows.append(
                 "<tr>"
-                f'<td class="nt-no">{html_escape(str(p.get("no","")))}</td>'
-                f'<td class="nt-pos {_pos_class(p.get("pos",""))}">{POS_LABEL.get(p.get("pos"),"")}</td>'
+                + _no_td(p)
+                + f'<td class="nt-pos {_pos_class(p.get("pos",""))}">{POS_LABEL.get(p.get("pos"),"")}</td>'
                 f'<td class="nt-name">{html_escape(p.get("name",""))}</td>'
                 # 所属は JFA 原文のまま（U-18 名へ寄せない。熊坂光希は「柏レイソル」が正しい）
                 f'<td class="nt-club">{html_escape(p.get("club",""))}</td>'
@@ -155,8 +163,8 @@ def _category_section(cat: dict) -> str:
             continue
         rows.append(
             "<tr>"
-            f'<td class="nt-no">{html_escape(str(p.get("no","")))}</td>'
-            f'<td class="nt-pos nt-pos-{html_escape(p.get("pos",""))}">{POS_LABEL.get(p.get("pos"),"")}</td>'
+            + _no_td(p)
+            + f'<td class="nt-pos nt-pos-{html_escape(p.get("pos",""))}">{POS_LABEL.get(p.get("pos"),"")}</td>'
             f'<td class="nt-name">{html_escape(p.get("name",""))}</td>'
             f'<td class="nt-club">{_club_cell(p)}</td>'
             f'<td class="nt-u15">{_u15_cell(p)}</td>'
@@ -165,7 +173,7 @@ def _category_section(cat: dict) -> str:
     linked = sum(1 for p in players if (p.get("_resolved") or {}).get("tier"))
     note = f'<p class="nt-note">{html_escape(cat["note"])}</p>' if cat.get("note") else ""
     if wide:
-        head = ("<thead><tr><th>背番号</th><th>Pos</th><th>氏名</th><th>所属</th>"
+        head = (f"<thead><tr>{no_th}<th>Pos</th><th>氏名</th><th>所属</th>"
                 + ("<th>大学</th>" if has_univ else "")
                 + "<th>U-18（高校・ユース）</th><th>U-15（中学年代）</th></tr></thead>")
         table = f"""<div class="nt-scroll"><table class="nt-table nt-table--wide">
@@ -196,7 +204,7 @@ def _category_section(cat: dict) -> str:
         <span class="nt-age">{html_escape(cat.get('age_note',''))}</span>
       </p>
       <div class="nt-scroll"><table class="nt-table">
-        <thead><tr><th>背番号</th><th>Pos</th><th>氏名</th><th>所属チーム</th><th>U-15（中学年代）</th></tr></thead>
+        <thead><tr>{no_th}<th>Pos</th><th>氏名</th><th>所属チーム</th><th>U-15（中学年代）</th></tr></thead>
         <tbody>
           {''.join(rows)}
         </tbody>

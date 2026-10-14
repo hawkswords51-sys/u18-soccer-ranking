@@ -726,6 +726,9 @@ def render_national_team(out_root, names, extra, players, season):
         #   公式の英語表記がほぼ無い）。ユース型（U-18・U-17・U-16）の表は従来のまま。
         career = cat.get("table") == "career"
         has_univ = career and any(pl.get("univ") for pl in cat["players"])
+        # [2026-10-14] 全員に "no" が無いカテゴリ（背番号がJFA未発表）は No. 列を見出しごと出さない。日本語版と同じ。
+        show_no = any(pl.get("no") not in (None, "") for pl in cat["players"])
+        no_th = "<th>No.</th>" if show_no else ""
         rows = []
         for pl in cat["players"]:
             club = club_html(pl["club"], names, extra)
@@ -760,7 +763,8 @@ def render_national_team(out_root, names, extra, players, season):
                 name, is_jp = player_html(pl["name"], players)
                 jp_only += 1 if is_jp else 0
                 no = pl.get("no", "")
-                rows.append(f'<tr><td class="en-c">{esc(no) if no != "" else "&ndash;"}</td>'
+                no_td = f'<td class="en-c">{esc(no) if no != "" else "&ndash;"}</td>' if show_no else ""
+                rows.append(f'<tr>{no_td}'
                             f'<td class="en-c">{esc(pl["pos"])}</td><td class="en-name">{name}</td>'
                             + "".join(f"<td>{c}</td>" for c in cells) + "</tr>")
                 continue
@@ -775,7 +779,8 @@ def render_national_team(out_root, names, extra, players, season):
             name, is_jp = player_html(pl["name"], players)
             jp_only += 1 if is_jp else 0
             no = pl.get("no", "")
-            rows.append(f'<tr><td class="en-c">{esc(no) if no != "" else "&ndash;"}</td>'
+            no_td = f'<td class="en-c">{esc(no) if no != "" else "&ndash;"}</td>' if show_no else ""
+            rows.append(f'<tr>{no_td}'
                         f'<td class="en-c">{esc(pl["pos"])}</td><td class="en-name">{name}</td><td>{club}</td></tr>')
         anchor = cat["code"]
         jump.append(f'        <a href="#{anchor}" style="display:inline-block;padding:7px 14px;border-radius:999px;'
@@ -792,7 +797,7 @@ def render_national_team(out_root, names, extra, players, season):
         {note}
         <div class="en-scroll">
         <table class="en-table">
-          <thead><tr><th>No.</th><th>Pos</th><th class="en-name">Player</th>{head}</tr></thead>
+          <thead><tr>{no_th}<th>Pos</th><th class="en-name">Player</th>{head}</tr></thead>
           <tbody>
 {chr(10).join("            " + r for r in rows)}
           </tbody>
