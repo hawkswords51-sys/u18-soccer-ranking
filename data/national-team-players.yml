@@ -28,7 +28,7 @@
 #       出典の優先順位：J.LEAGUE 選手名鑑の経歴 → クラブ・大学公式 → JFA 選手ページ → 報道 → Wikipedia（最後の手段）。
 #       確認できないものは書かない（空欄）。u15 が2チームのときは「→」でつなぐ。
 # =====================================================================
-updated: 2026-09-25
+updated: 2026-10-14
 
 categories:
   # -------------------------------------------------------------------
@@ -187,74 +187,42 @@ categories:
 
   # -------------------------------------------------------------------
   - code: u17
-    label_en: U-17 Japan National Team (International Youth Soccer in Niigata)
-    event_en: The 28th International Youth Soccer in Niigata
-    period_en: 14-21 September 2026, Niigata
+    label_en: U-17 Japan National Team Candidates (Domestic Training Camp)
+    event_en: Domestic Training Camp
+    period_en: 20-22 October 2026, J-Village, Fukushima
     age_note_en: Mostly 2nd-year high-school age (born 2009)
-    label: U-17日本代表（国際ユースサッカーin新潟）
+    label: U-17日本代表候補（国内トレーニングキャンプ）
     age_note: 主に高校2年生相当（2009年生まれ世代）
-    event: 第28回 国際ユースサッカーin新潟
-    period: 2026年9月14〜21日／新潟
-    source: https://www.jfa.jp/news/00036741/
-    note: 2026/9/9発表の19名から、9/14に舘美駿・迫田凌和・鮫島充輝の3名がリモージュ国際大会参加のため離脱し、4名が追加招集された20名。9/19にJFAが選手変更を発表し、児山雅稀がリモージュ国際大会のメンバーへ移動したため19名。JFAは「新潟に参加しているU-17日本代表への追加招集は有りません」と明記している。背番号はJFA未発表のため空欄。9/17 vs U-17ミャンマー代表、9/19 vs U-17新潟選抜、9/21 vs U-17ニュージーランド代表（新潟市陸上競技場／デンカビッグスワンスタジアム）。
+    event: 国内トレーニングキャンプ
+    period: 2026年10月20〜22日／福島・Jヴィレッジ
+    source: http://www.jfa.jp/national_team/u17_2026/news/00036917/
+    note: 2026/10/14発表の25名（GK3・DF10・MF10・FW2）。10/22にトレーニングマッチ。監督は小野信義。背番号はJFA未発表のため空欄。9月の国際ユースサッカーin新潟（19名）・リモージュ国際大会（22名）の2チームから差し替え。高橋恒輝のU-15は「三鷹CF Jrユース」（旧 三鷹FA Jrユース。クラブ公式で同じクラブの改称と確認）。
     players:
-      - {pos: GK, name: 高岸 縁,     club: 日章学園高, u15: 福岡BUDDY FC U-15}
+      - {pos: GK, name: 高橋 恒輝,   club: 大成高, u15: 三鷹CF Jrユース}
+      - {pos: GK, name: 川中 碧音,   club: セレッソ大阪U-18, u15: セレッソ大阪西U-15}
       - {pos: GK, name: 木田 蓮人,   club: 帝京長岡高, u15: 鹿島アントラーズノルテジュニアユース}
-      - {pos: DF, name: 西本 瑛司,   club: 大津高, u15: ブレイズ熊本}
       - {pos: DF, name: 林 奏汰,     club: 静岡学園高, u15: グランパスみよしFC}
-      - {pos: DF, name: 大野 隆斗,   club: 昌平高, u15: FC LAVIDA}
-      - {pos: DF, name: 相馬 陸人,   club: FC東京U-18, u15: FC東京U-15むさし}
-      - {pos: DF, name: 落合 哉太,   club: 柏レイソルU-18, u15: JFAアカデミー福島U-15}
-      - {pos: DF, name: 瀬賀 結臣,   club: FC東京U-18, u15: JFAアカデミー福島U-15}
-      - {pos: DF, name: 伊藤 航,     club: FC東京U-18, u15: FC東京U-15むさし}
-      - {pos: MF, name: 内田 煌生,   club: 流通経済大学付属柏高, u15: クラブ・ドラゴンズ柏U-15}
-      - {pos: MF, name: 齋藤 太陽,   club: 名古屋グランパスU-18, u15: 名古屋グランパスU-15}
-      - {pos: MF, name: 深江 龍明,   club: ガンバ大阪ユース, u15: FCアロンザジュニアユース}
-      - {pos: MF, name: 岡本 新大,   club: ガンバ大阪ユース, u15: ガンバ大阪ジュニアユース}
-      - {pos: MF, name: 秋元 大樹,   club: 市立船橋高, u15: JFAアカデミー福島U-15}
-      - {pos: MF, name: 永添 功樹,   club: セレッソ大阪U-18, u15: セレッソ大阪U-15}
-      - {pos: MF, name: 今村 涼弥,   club: 横浜F・マリノスユース, u15: 横浜F・マリノスジュニアユース}
-      - {pos: MF, name: 浅田 連,     club: ヴィッセル神戸U-18, u15: ヴィッセル神戸U-15}
-      - {pos: FW, name: 平井 一輝,   club: ロアッソ熊本ユース, u15: ロアッソ熊本ジュニアユース}
-      - {pos: FW, name: 高田 憲慎,   club: 帝京大学可児高, u15: FC岐阜U-15}
-
-  # -------------------------------------------------------------------
-  # ⚠️ 2026-09-19〜21 は新潟とリモージュの会期が重なり、U-17は2チーム同時編成。
-  #    code は id に使われるので絶対に重複させないこと（重複するとジャンプナビが片方に飛ばない）。
-  - code: u17-limoges
-    label_en: U-17 Japan National Team (Limoges International Tournament)
-    event_en: Limoges International Tournament
-    period_en: 19-29 September 2026, Limoges, France
-    age_note_en: Mostly 2nd-year high-school age (born 2009)
-    label: U-17日本代表（リモージュ国際大会）
-    age_note: 主に高校2年生相当（2009年生まれ世代）
-    event: リモージュ国際大会
-    period: 2026年9月19〜29日／フランス・リモージュ
-    source: http://www.jfa.jp/national_team/u17_2026/news/00036785/
-    note: 2026/9/14発表の22名から、9/19にJFAが選手変更を発表。齋藤翔（コンディション不良）と舘美駿（怪我）が不参加となり、児山雅稀が国際ユースサッカーin新潟のメンバーから移動して追加招集された21名。9/22にJFAがMF秋元大樹（市立船橋高）の追加招集を発表し22名（JFAは代替対象を明記していない）。秋元は9/21に終了した国際ユースサッカーin新潟に最後まで帯同したため、新潟のメンバー表にもそのまま残している。背番号はJFA未発表のため空欄。9/23 vs U-17ウクライナ代表、9/25 vs U-17オーストリア代表、9/27 vs U-17フランス代表（いずれも Stade de Beaublanc／現地時間）。国際ユースサッカーin新潟と会期が一部重なるため、U-17日本代表は2チーム同時編成。
-    players:
-      - {pos: GK, name: 高木 ザカリア, club: Cambridge United U18}
-      - {pos: GK, name: 大下 幸誠,   club: 鹿島アントラーズユース, u15: 鹿島アントラーズつくばジュニアユース}
       - {pos: DF, name: エゼモクェ チメヅェ海, club: セレッソ大阪, u15: セレッソ大阪西U-15}
-      - {pos: DF, name: 河原 研,     club: San Jose Earthquakes U18}
+      - {pos: DF, name: 井芹 響輔,   club: RB大宮アルディージャ, u15: 大宮アルディージャU15}
       - {pos: DF, name: 倉橋 幸暉,   club: 鹿島アントラーズユース, u15: 鹿島アントラーズジュニアユース}
       - {pos: DF, name: 西野 陽向,   club: ジュビロ磐田U-18, u15: ジュビロ磐田U-15}
+      - {pos: DF, name: 茂木 勇人チュクソム, club: 柏レイソルU-18, u15: 柏レイソルU-15}
+      - {pos: DF, name: 熊田 佳斗,   club: RB大宮アルディージャ, u15: 大宮アルディージャU15}
+      - {pos: DF, name: 落合 哉太,   club: 柏レイソルU-18, u15: JFAアカデミー福島U-15}
       - {pos: DF, name: 橋本 凜来,   club: FC東京U-18, u15: FC東京U-15むさし}
-      - {pos: DF, name: 竹内 悠三,   club: 名古屋グランパスU-18, u15: 名古屋グランパスU-15}
       - {pos: DF, name: 鮫島 充輝,   club: 名古屋グランパスU-18, u15: FCグランリオ鈴鹿}
-      - {pos: MF, name: 白男川 羚斗, club: 名古屋グランパスU-18, u15: 名古屋グランパスU-15}
-      - {pos: MF, name: 木下 晴天,   club: 東京ヴェルディユース, u15: 東京ヴェルディジュニアユース}
       - {pos: MF, name: 星 宗介,     club: 尚志高, u15: 矢板SC}
       - {pos: MF, name: 藤本 祥輝,   club: ガンバ大阪ユース, u15: ガンバ大阪ジュニアユース}
+      - {pos: MF, name: 滝澤 周生,   club: 鹿島アントラーズユース, u15: 鹿島アントラーズジュニアユース}
+      - {pos: MF, name: 里見 汰福,   club: ヴィッセル神戸U-18, u15: ヴィッセル神戸U-15}
       - {pos: MF, name: 井内 亮太朗, club: ヴィッセル神戸U-18, u15: ヴィッセル神戸U-15}
-      - {pos: MF, name: 和田 武士,   club: 浦和レッズ, u15: 浦和レッズジュニアユース}
-      - {pos: MF, name: 木村 風斗,   club: 川崎フロンターレU-18, u15: 川崎フロンターレU-15生田}
+      - {pos: MF, name: 中島 璃久,   club: FC東京U-18, u15: FC東京U-15むさし}
       - {pos: MF, name: 五十嵐 陵,   club: 柏レイソルU-18, u15: 柏レイソルU-15}
-      - {pos: MF, name: 梶山 蓮翔,   club: FC東京U-18, u15: FC東京U-15むさし}
-      - {pos: MF, name: 迫田 凌和,   club: RB大宮アルディージャU18, u15: RB大宮アルディージャU15}
       - {pos: MF, name: 秋元 大樹,   club: 市立船橋高, u15: JFAアカデミー福島U-15}
-      - {pos: FW, name: 児山 雅稀,   club: 帝京長岡高, u15: FCフレスカ神戸}
+      - {pos: MF, name: 梶山 蓮翔,   club: FC東京U-18, u15: FC東京U-15むさし}
+      - {pos: MF, name: 深谷 朔共,   club: 名古屋グランパスU-18, u15: 名古屋グランパスU-15}
       - {pos: FW, name: 立野 京弥,   club: 昌平高, u15: FC LAVIDA}
+      - {pos: FW, name: 髙木 瑛人,   club: 鹿島アントラーズユース, u15: 鹿島アントラーズジュニアユース}
 
   # -------------------------------------------------------------------
   - code: u16
