@@ -572,7 +572,104 @@ def _render_inprogress_bracket_svg(rounds):
     return ""
 
 
-def render_tournament_html(pref_id, teams, division2=None):
+def _render_ordered_base_bracket(rounds):
+    """[2026-10-14] md に公式の山順コメント（`<!-- 山順`）が付いた回戦を土台に、その並びのまま表を組む。
+    土台＝bracket_order の付いた最後の回戦（8試合 or 4試合・全行の両校が確定）。
+    結果＝その回戦以降の確定試合すべて。警告が出たら ''（＝呼び出し側で従来の描画へ）。
+    校名から山を逆算する既存の描画より公式の並びを優先するため（左右の入れ替わり防止）。"""
+    idx = [i for i, r in enumerate(rounds) if r.get("bracket_order")]
+    if not idx:
+        return ""
+    i = idx[-1]
+    base = [_bracket_parse_line(x) for x in rounds[i].get("matches", [])]
+    if len(base) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
+        return ""
+    pair_lines = [f"- {m['a']} vs {m['b']}" for m in base]
+    res_lines = []
+    for r in rounds[i:]:
+        if _is_placement_round(r.get("name", "")):
+            continue
+        for x in r.get("matches", []):
+            m = _bracket_parse_match(x)
+            if m:
+                res_lines.append(f"- {m['a']} {m['sc']} {m['b']}")
+    sections = {"トーナメント表（組み合わせ）": pair_lines, "_結果": res_lines}
+    buf = _io.StringIO()
+    with _contextlib.redirect_stdout(buf):
+        pairs = _bracket.parse_bracket_pairs(pair_lines)
+        svg = _bracket.render_bracket_svg(sections)
+    if buf.getvalue().strip() or len(pairs) != len(base):
+        return ""
+    return svg if svg and "<svg" in svg else ""
+
+
+def _raw_winner(line):
+    """「A 2-1 B」の勝者を、md に書かれた表記のまま返す（スコアなしは None）。"""
+    m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', (line or "").strip())
+    if not m:
+        return None
+    ga, gb = int(m.group(2)), int(m.group(3))
+    if ga == gb:
+        if not m.group(4):
+            return None
+        return m.group(1).strip() if int(m.group(4)) > int(m.group(5)) else m.group(6).strip()
+    return m.group(1).strip() if ga > gb else m.group(6).strip()
+
+
+def _render_block_brackets_body(blocks, rounds, rounds_html, pref_name=""):
+    """[2026-10-14] 代表が複数枠でブロックごとに優勝校が出る大会（東京の選手権）の本文。
+    ①案内文 ②ブロックごとの箱（表が組めれば表＋全試合の折りたたみ） ③1次予選の折りたたみ。"""
+    def _key(name):
+        return re.split(r"[（(]", name or "")[0].strip()
+
+    in_block = {b: [r for r in rounds if r["name"].startswith(b)] for b in blocks}
+    prelim = [r for r in rounds if not any(r["name"].startswith(b) for b in blocks)]
+    where = f"{pref_name}の" if pref_name else ""
+    parts = [
+        f'        <p class="tournament-block-lead">{where}代表は<strong>{len(blocks)}校</strong>。'
+        f'2次予選は{"・".join(blocks)}に分かれ、それぞれの優勝校が全国大会に出場します。</p>'
+    ]
+    for b in blocks:
+        brs = in_block[b]
+        if not brs:
+            continue
+        rep = ""
+        for r in brs:
+            if _key(r["name"][len(b):]) == "決勝":
+                for m in r["matches"]:
+                    w = _raw_winner(m)
+                    if w:
+                        rep = f' <span class="tournament-block__rep">🏆 代表：{w}</span>'
+        svg = _render_ordered_base_bracket(brs) or render_tournament_bracket_svg(brs)
+        list_html = rounds_html(brs, strip=b)
+        if svg:
+            inner = (
+                f'          <div class="tournament-bracket-wrap">\n{svg}\n          </div>\n'
+                f'          <details class="tournament-fulllist">\n'
+                f'            <summary>{b}の全試合結果</summary>\n'
+                f'            <div class="tournament-rounds">\n{list_html}\n            </div>\n'
+                f'          </details>'
+            )
+        else:
+            inner = f'          <div class="tournament-rounds">\n{list_html}\n          </div>'
+        parts.append(
+            f'        <div class="tournament-block">\n'
+            f'          <h3 class="tournament-block__title">2次予選 {b}（代表1枠）{rep}</h3>\n'
+            f'{inner}\n'
+            f'        </div>'
+        )
+    if prelim:
+        span = _key(prelim[0]["name"]) + ("〜" + _key(prelim[-1]["name"]) if len(prelim) > 1 else "")
+        parts.append(
+            f'        <details class="tournament-fulllist tournament-prelim">\n'
+            f'          <summary>1次予選の全試合結果（{span}）</summary>\n'
+            f'          <div class="tournament-rounds">\n{rounds_html(prelim)}\n          </div>\n'
+            f'        </details>'
+        )
+    return "\n".join(parts)
+
+
+def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
     """都道府県のトーナメント情報を data/tournaments/*.md から読み取り、
     試合文字列のチーム名に県内順位バッジを自動付与してHTMLで返す。
     記事がなければ空文字を返す。
@@ -782,6 +879,10 @@ def render_tournament_html(pref_id, teams, division2=None):
                 rounds.append(current_round)
             elif line.startswith('- ') and current_round is not None:
                 current_round["matches"].append(line[2:].strip())
+            elif (line.startswith('<!-- 山順') and current_round is not None
+                  and not current_round["matches"]):
+                # [2026-10-14] 見出し直下の山順コメント＝この回戦の行は公式組合せ表の上から順
+                current_round["bracket_order"] = True
 
         # ★まだ1試合も入っていない大会は、セクションごと出さない（2026-09-10）
         #   koko が組み合わせを載せる前に md を先行作成しておく運用のため、
@@ -790,9 +891,12 @@ def render_tournament_html(pref_id, teams, division2=None):
         if not any(r["matches"] for r in rounds):
             continue
 
-        # HTML生成
-        rounds_html_list = []
-        for r in rounds:
+        # HTML生成（[2026-10-14] ブロック別表示でも使うため関数化。strip は回戦名の先頭から外す文字列）
+        def _rounds_html(rs, strip=""):
+            return "\n".join(_round_html(r, strip) for r in rs)
+
+        def _round_html(r, strip=""):
+            name = r["name"][len(strip):] if strip and r["name"].startswith(strip) else r["name"]
             n_matches = len(r["matches"])
             if not r["matches"]:
                 matches_html = '            <li style="color:#888;">（試合確定後に追記）</li>'
@@ -808,20 +912,19 @@ def render_tournament_html(pref_id, teams, division2=None):
             )
             if n_matches >= ROUND_COLLAPSE_MIN_MATCHES:
                 # 試合数が多い回戦は既定で折りたたむ（1回戦68試合などでページが極端に長くなるため）
-                rounds_html_list.append(
+                return (
                     f'        <details class="tournament-round tournament-round--fold">\n'
-                    f'          <summary><h3>{r["name"]}'
+                    f'          <summary><h3>{name}'
                     f'<span class="tournament-round__count">全{n_matches}試合</span></h3></summary>\n'
                     f'{matches_ul}'
                     f'        </details>'
                 )
-            else:
-                rounds_html_list.append(
-                    f'        <div class="tournament-round">\n'
-                    f'          <h3>{r["name"]}</h3>\n'
-                    f'{matches_ul}'
-                    f'        </div>'
-                )
+            return (
+                f'        <div class="tournament-round">\n'
+                f'          <h3>{name}</h3>\n'
+                f'{matches_ul}'
+                f'        </div>'
+            )
 
         # [2026-10-14] 大会の種類（フォルダ名）で見出しの色とラベルを分ける。
         #   選手権予選＝冬の深紅／インターハイ予選＝夏の青緑。同じページに並んでも一目で区別できるように。
@@ -844,11 +947,16 @@ def render_tournament_html(pref_id, teams, division2=None):
         if t_label and subtitle.strip() == t_label:
             subtitle = ""
         subtitle_html = f'\n        <p class="tournament-subtitle" style="color:#666;font-size:0.9em;margin-top:-8px;">{subtitle}</p>' if subtitle else ''
-        rounds_html_str = "\n".join(rounds_html_list)
+        rounds_html_str = _rounds_html(rounds)
 
+        # [2026-10-14] frontmatter `block_brackets: Aブロック, Bブロック` の大会（東京の選手権＝代表2枠）は、
+        #   ブロックごとに表＋結果を分けて出す。ブロックに属さない回戦（1次予選）は最後に折りたたむ。
+        #   block_brackets が無い大会は下の従来処理のまま（1バイトも変えない）。
+        blocks = [b.strip() for b in metadata.get("block_brackets", "").split(",") if b.strip()]
+        if blocks:
+            body_html = _render_block_brackets_body(blocks, rounds, _rounds_html, pref_name)
         # 終盤(ベスト16/8)をトーナメント表で表示できるなら、表＋全試合は折りたたみに
-        bracket_svg = render_tournament_bracket_svg(rounds)
-        if bracket_svg:
+        elif (bracket_svg := render_tournament_bracket_svg(rounds)):
             body_html = (
                 f'        <div class="tournament-bracket-wrap">\n{bracket_svg}\n        </div>\n'
                 f'        <details class="tournament-fulllist">\n'
@@ -2541,7 +2649,7 @@ def generate_page(pref, all_prefs):
         .replace("__MEDICAL_COLUMNS__", render_medical_columns(pref_id, pref_name))
         .replace("__STRONG_SCHOOLS__\n", (lambda h: h + "\n" if h else "")(render_strong_schools(pref_id, pref_name, teams)))
         .replace("__TOURNAMENT_RESULTS__", render_tournament_results(pref_id))
-        .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams, pref.get("division2")))
+        .replace("__TOURNAMENT_HTML__", render_tournament_html(pref_id, teams, pref.get("division2"), pref_name))
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__HS_COUNT__", str(hs_count))
         .replace("__CY_COUNT__", str(cy_count))

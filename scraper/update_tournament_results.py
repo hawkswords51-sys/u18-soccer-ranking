@@ -20,6 +20,8 @@ data/tournaments/*.md に組み合わせとスコアを自動で追記する。
      名寄せできない名前は koko の表記のままで追記し、ログに記録する
      （下位校は順位表に載らないため正常。強豪校で出たら要エイリアス追加）。
   5. 「決勝」に結果が入ったら status を自動で「終了」に更新（前進のみ）。
+     frontmatter に `block_brackets: Aブロック, Bブロック` がある大会は、全ブロックの
+     「◯ブロック決勝」に結果が入ったときだけ「終了」にする（東京の選手権＝代表2枠）。
 
 使い方:
   python scraper/update_tournament_results.py                  # 本番（対象全ファイル）
@@ -802,11 +804,21 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
     meta = parse_meta(fm)
     new_fm = fm
     if meta.get("status") != "終了":
-        final_done = any(
-            round_key(kr["name"]) == "決勝"
-            and any(m["finished"] and m["score"] for m in kr["matches"])
-            for kr in koko_rounds
-        )
+        def _final_done(key):
+            return any(
+                round_key(kr["name"]) == key
+                and any(m["finished"] and m["score"] for m in kr["matches"])
+                for kr in koko_rounds
+            )
+        # [2026-10-14] `block_brackets: Aブロック, Bブロック`（東京の選手権＝代表2枠）は
+        #   「Aブロック決勝」「Bブロック決勝」の**全部**に結果が入ったら終了。片方だけでは終了にしない
+        #   （A 11:00・B 12:30 開始なので、間の自動更新でBの結果を取り損ねるため）。
+        _blocks = meta.get("block_brackets")
+        _blocks = [b.strip() for b in _blocks.split(",") if b.strip()] if isinstance(_blocks, str) else []
+        if _blocks:
+            final_done = all(_final_done(f"{b}決勝") for b in _blocks)
+        else:
+            final_done = _final_done("決勝")
         if final_done:
             new_fm = re.sub(r"(?m)^(status:).*$", r"\1 終了", fm)
             if new_fm != fm:
