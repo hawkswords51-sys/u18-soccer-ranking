@@ -457,6 +457,118 @@ def render_tournament_bracket_svg(rounds):
             svg = _bracket.render_bracket_svg(sections)
         if svg and "<svg" in svg:
             return svg
+    return _render_inprogress_bracket_svg(rounds)
+
+
+def _bracket_parse_line(s):
+    """1行を {a,b,sc,winner,sides} に。スコア付き＝確定試合。
+    「A vs B」「A/B vs C/D」＝未消化（sides＝左右それぞれの候補校の集合）。どちらでもなければ None。"""
+    m = _bracket_parse_match(s)
+    if m:
+        m["sides"] = ({m["a"]}, {m["b"]})
+        m["done"] = True
+        return m
+    parts = re.split(r'\s+vs\s+', (s or "").strip())
+    if len(parts) != 2 or not parts[0].strip() or not parts[1].strip():
+        return None
+    sa = {_bracket_canon(x) for x in parts[0].split("/") if x.strip()}
+    sb = {_bracket_canon(x) for x in parts[1].split("/") if x.strip()}
+    a = next(iter(sa)) if len(sa) == 1 else None
+    b = next(iter(sb)) if len(sb) == 1 else None
+    return {"a": a, "b": b, "sc": None, "winner": None, "sides": (sa, sb), "done": False}
+
+
+def _render_inprogress_bracket_svg(rounds):
+    """大会途中（決勝前）でも、終盤の山が組めればトーナメント表(SVG)を返す。
+    条件：
+      ・土台の回戦（8試合＝ベスト16 か 4試合＝ベスト8）が全行「A ◯-◯ B」か「A vs B」（校名確定）
+      ・その後ろに 4→2（ベスト16時）／2（ベスト8時）の回戦が続き、各行の左右が
+        前の回戦のどの試合から来るかを校名（A/B の勝者待ち表記も可）で一意に決められる
+      ・決勝の行はまだ無くてもよい（準決勝2試合の勝者同士と決まっている）
+    1つでも一意に決まらなければ ''（＝従来の全試合一覧）。"""
+    parsed = []
+    for r in rounds:
+        if _is_placement_round(r.get("name", "")):
+            continue
+        ms = [_bracket_parse_line(x) for x in r.get("matches", [])]
+        ms = [m for m in ms if m]
+        if ms:
+            parsed.append(ms)
+    counts = [len(x) for x in parsed]
+
+    for base_n, chain in ((8, [8, 4, 2]), (4, [4, 2])):
+        for i in range(len(parsed) - len(chain) + 1):
+            if counts[i:i + len(chain)] != chain:
+                continue
+            rest = counts[i + len(chain):]
+            if rest not in ([], [1]):
+                continue
+            levels = parsed[i:]
+            if any(m["a"] is None or m["b"] is None for m in levels[0]):
+                continue  # 土台の回戦は両校とも確定していること
+            if levels[-1] and len(levels[-1]) == 1 and len(levels) == len(chain) + 1:
+                top = levels[-1][0]
+                top_level = len(levels) - 1
+            else:
+                top = None
+                top_level = len(levels)  # 決勝はまだ書かれていない
+
+            def _members(m):
+                return {x for x in (m["a"], m["b"]) if x}
+
+            ok = [True]
+
+            def _child_for(side, lvl, used):
+                cands = [j for j, c in enumerate(levels[lvl]) if j not in used
+                         and (side & _members(c) or (c["winner"] and c["winner"] in side))]
+                if len(cands) != 1:
+                    ok[0] = False
+                    return None
+                # 確定している側の名前は、前の試合の勝者と一致していなければならない（結果の矛盾検出）
+                c = levels[lvl][cands[0]]
+                if c["done"] and len(side) == 1 and next(iter(side)) != c["winner"]:
+                    ok[0] = False
+                    return None
+                used.add(cands[0])
+                return cands[0]
+
+            def _order(lvl, idx_list):
+                """lvl の試合を、山の上から見た並び順で返す"""
+                if lvl == 0:
+                    return idx_list
+                used = set()
+                out = []
+                for j in idx_list:
+                    m = levels[lvl][j]
+                    for side in m["sides"]:
+                        k = _child_for(side, lvl - 1, used)
+                        if k is None:
+                            return []
+                        out.append(k)
+                if len(used) != len(levels[lvl - 1]):
+                    ok[0] = False
+                return _order(lvl - 1, out)
+
+            if top is not None:
+                order = _order(top_level, [0])
+            else:
+                order = _order(top_level - 1, list(range(len(levels[top_level - 1]))))
+            if not ok[0] or len(order) != base_n:
+                continue
+
+            base = [levels[0][j] for j in order]
+            pair_lines = [f"- {m['a']} vs {m['b']}" for m in base]
+            res_lines = [f"- {m['a']} {m['sc']} {m['b']}" for lv in levels for m in lv if m["done"]]
+            sections = {"トーナメント表（組み合わせ）": pair_lines, "_結果": res_lines}
+
+            buf = _io.StringIO()
+            with _contextlib.redirect_stdout(buf):
+                pairs = _bracket.parse_bracket_pairs(pair_lines)
+                svg = _bracket.render_bracket_svg(sections)
+            if buf.getvalue().strip() or len(pairs) != base_n:
+                continue
+            if svg and "<svg" in svg:
+                return svg
     return ""
 
 
