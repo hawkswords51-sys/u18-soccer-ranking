@@ -823,7 +823,26 @@ def render_tournament_html(pref_id, teams, division2=None):
                     f'        </div>'
                 )
 
-        status_html = f' <span class="tournament-status">[{status}]</span>' if status else ''
+        # [2026-10-14] 大会の種類（フォルダ名）で見出しの色とラベルを分ける。
+        #   選手権予選＝冬の深紅／インターハイ予選＝夏の青緑。同じページに並んでも一目で区別できるように。
+        _folder = filepath.parent.name
+        if _folder.startswith("senshuken"):
+            t_kind, t_label = "senshuken", "選手権予選"
+        elif _folder.startswith("interhigh"):
+            t_kind, t_label = "interhigh", "インターハイ予選"
+        else:
+            t_kind, t_label = "", ""
+        # [2026-10-14] md の status は「決勝後に終了」へしか自動で進まない。
+        #   開催前のままでも結果が1試合でも入っていれば「開催中」と表示する（md は書き換えない）。
+        if status == "開催前" and any(_bracket_parse_match(m) for r in rounds for m in r["matches"]):
+            status = "開催中"
+        _st_cls = {"開催前": "before", "開催中": "live", "終了": "done"}.get(status, "other")
+        status_html = (f' <span class="tournament-status tournament-status--{_st_cls}">{status}</span>'
+                       if status else '')
+        kind_html = f'        <span class="tournament-kind">{t_label}</span>\n' if t_label else ''
+        # サブタイトルがラベルと同じ文言だけなら重複するので出さない
+        if t_label and subtitle.strip() == t_label:
+            subtitle = ""
         subtitle_html = f'\n        <p class="tournament-subtitle" style="color:#666;font-size:0.9em;margin-top:-8px;">{subtitle}</p>' if subtitle else ''
         rounds_html_str = "\n".join(rounds_html_list)
 
@@ -845,7 +864,9 @@ def render_tournament_html(pref_id, teams, division2=None):
             )
 
         html_parts.append(
-            f'      <section class="lp-section tournament-section">\n'
+            f'      <section class="lp-section tournament-section'
+            f'{" tournament-section--" + t_kind if t_kind else ""}">\n'
+            f'{kind_html}'
             f'        <h2>📋 {title}{status_html}</h2>{subtitle_html}\n'
             f'{body_html}\n'
             f'      </section>'
