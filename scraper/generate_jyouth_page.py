@@ -80,11 +80,47 @@ def load_team_profile_map() -> dict:
                 sn = meta.get("short_name")
                 if sn and sn != tname:
                     team_map[sn] = tid
+                # [2026-10-15] frontmatter の aliases（別表記）も登録する。県ページの
+                #   _load_team_profile_map()・インハイ本選と同じ読み方（リストと「A／B／C」の文字列の両方・
+                #   1文字の別名は採らない）。既存キーは上書きしない（先勝ち）。
+                raw_aliases = meta.get("aliases") or []
+                if isinstance(raw_aliases, str):
+                    raw_aliases = re.split(r"[／/、,]", raw_aliases)
+                for al in raw_aliases:
+                    al = str(al).strip()
+                    if len(al) >= 2:
+                        team_map.setdefault(al, tid)
         except Exception:
             pass
     return team_map
 
 TEAM_MAP = load_team_profile_map()
+
+
+def _strip_school_suffix(n):
+    n = (n or "").strip()
+    for suf in ("高等学校", "高校", "高"):
+        if n.endswith(suf) and len(n) > len(suf):
+            return n[:-len(suf)]
+    return n
+
+
+# 末尾の「高等学校／高校／高」を外した名前 → チームページidの集合（予備の照合用）
+_TEAM_MAP_LOOSE = {}
+for _k, _v in TEAM_MAP.items():
+    _TEAM_MAP_LOOSE.setdefault(_strip_school_suffix(_k), set()).add(_v)
+
+
+def team_id_for(name):
+    """表の校名 → チームページid。完全一致が無いときだけ、両側の末尾「高校」等を外して比べ、
+    当たるチームページが1つだけのときに限って返す（2つ以上当たったら None＝誤リンクを出さない）。
+    例: トーナメント表は「國學院大學久我山高校」を「國學院大學久我山」と描く（2026-10-15）。"""
+    name = (name or "").strip()
+    tid = TEAM_MAP.get(name)
+    if tid:
+        return tid
+    hits = _TEAM_MAP_LOOSE.get(_strip_school_suffix(name)) or set()
+    return next(iter(hits)) if len(hits) == 1 else None
 
 def html_escape(s):
     if s is None:
@@ -105,7 +141,7 @@ def team_link(name):
     """チーム詳細ページがあればリンク。無ければ整形のみ。
        チーム名は途中で改行されないよう white-space:nowrap を付与（改行は vs やチーム間でのみ）。"""
     name = name.strip()
-    tid = TEAM_MAP.get(name)
+    tid = team_id_for(name)
     formatted = format_team_name(name)
     if tid:
         return (f'<a href="/teams/{tid}/" class="team-profile-link" '
@@ -513,7 +549,7 @@ def render_bracket_svg(sections):
         if not name:
             return
         label = _short_label(name)
-        tid = TEAM_MAP.get(name)
+        tid = team_id_for(name)
         # 色はclassで指定（SVGのfill属性ではCSS変数が効かないため、data-themeで切替）
         cls = "bk-won" if won else ("bk-acc" if tid else "bk-team")
         weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
