@@ -6,7 +6,7 @@
  "region": "北信越",
  "source": "https://www.ishikawa-fa.or.jp/category-3-2026",
  "sourceName": "石川県サッカー協会 3種（PDF）",
- "lastUpdated": "2026-10-05",
+ "lastUpdated": "2026-10-15",
  "teams": [
   {
    "name": "セブン能登1st",
@@ -69,6 +69,18 @@
   {
    "rank": 3,
    "team": "ツエーゲン金沢2nd",
+   "points": 21,
+   "played": 12,
+   "won": 7,
+   "drawn": 0,
+   "lost": 5,
+   "gf": 32,
+   "ga": 13,
+   "gd": 19
+  },
+  {
+   "rank": 4,
+   "team": "PateoFC金沢2nd",
    "points": 19,
    "played": 12,
    "won": 6,
@@ -79,8 +91,8 @@
    "gd": -1
   },
   {
-   "rank": 4,
-   "team": "PateoFC金沢2nd",
+   "rank": 5,
+   "team": "SOLTILO SEIRYO 1st",
    "points": 18,
    "played": 12,
    "won": 5,
@@ -91,28 +103,16 @@
    "gd": -1
   },
   {
-   "rank": 5,
-   "team": "SOLTILO SEIRYO 1st",
-   "points": 18,
-   "played": 11,
-   "won": 6,
-   "drawn": 0,
-   "lost": 5,
-   "gf": 28,
-   "ga": 13,
-   "gd": 15
-  },
-  {
    "rank": 6,
    "team": "エスポワール白山2nd",
    "points": 12,
-   "played": 11,
+   "played": 12,
    "won": 4,
    "drawn": 0,
-   "lost": 7,
+   "lost": 8,
    "gf": 11,
-   "ga": 18,
-   "gd": -7
+   "ga": 22,
+   "gd": -11
   },
   {
    "rank": 7,
@@ -146,19 +146,19 @@
    "home": "FC北陸U15 1st",
    "hs": 3,
    "as": 1,
-   "away": "PateoFC金沢2nd",
+   "away": "SOLTILO SEIRYO 1st",
    "status": "played",
    "venue": "S交流広場"
   },
   {
    "md": 0,
    "date": "2026-04-04",
-   "home": "SOLTILO SEIRYO 1st",
-   "hs": 6,
-   "as": 0,
-   "away": "金沢学院大附属中学校",
+   "home": "PateoFC金沢2nd",
+   "hs": 2,
+   "as": 3,
+   "away": "エスポワール白山2nd",
    "status": "played",
-   "venue": "S交流広場"
+   "venue": "市営球技場"
   },
   {
    "md": 0,
@@ -174,11 +174,11 @@
    "md": 0,
    "date": "2026-04-04",
    "home": "ツエーゲン金沢2nd",
-   "hs": 2,
-   "as": 3,
-   "away": "エスポワール白山2nd",
+   "hs": 6,
+   "as": 0,
+   "away": "金沢学院大附属中学校",
    "status": "played",
-   "venue": "市営球技場"
+   "venue": "S交流広場"
   },
   {
    "md": 0,
@@ -196,7 +196,7 @@
    "home": "セブン能登1st",
    "hs": 1,
    "as": 1,
-   "away": "PateoFC金沢2nd",
+   "away": "SOLTILO SEIRYO 1st",
    "status": "played",
    "venue": "S交流広場"
   },
@@ -204,9 +204,9 @@
    "md": 0,
    "date": "2026-04-11",
    "home": "ツエーゲン金沢2nd",
-   "hs": 3,
-   "as": 2,
-   "away": "SOLTILO SEIRYO 1st",
+   "hs": 2,
+   "as": 3,
+   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "S交流広場"
   },
@@ -223,7 +223,7 @@
   {
    "md": 0,
    "date": "2026-04-18",
-   "home": "PateoFC金沢2nd",
+   "home": "SOLTILO SEIRYO 1st",
    "hs": 2,
    "as": 1,
    "away": "エスポワール白山2nd",
@@ -236,7 +236,7 @@
    "home": "セブン能登1st",
    "hs": 8,
    "as": 1,
-   "away": "ツエーゲン金沢2nd",
+   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "松任総合Ｇ"
   },
@@ -253,7 +253,7 @@
   {
    "md": 0,
    "date": "2026-04-19",
-   "home": "SOLTILO SEIRYO 1st",
+   "home": "ツエーゲン金沢2nd",
    "hs": 3,
    "as": 1,
    "away": "星稜中学校1st",
@@ -284,19 +284,19 @@
    "md": 0,
    "date": "2026-04-29",
    "home": "PateoFC金沢2nd",
-   "hs": 2,
+   "hs": 1,
    "as": 2,
-   "away": "星稜中学校1st",
+   "away": "金沢学院大附属中学校",
    "status": "played",
    "venue": "市営球技場"
   },
   {
    "md": 0,
    "date": "2026-04-29",
-   "home": "ツエーゲン金沢2nd",
-   "hs": 1,
+   "home": "SOLTILO SEIRYO 1st",
+   "hs": 2,
    "as": 2,
-   "away": "金沢学院大附属中学校",
+   "away": "星稜中学校1st",
    "status": "played",
    "venue": "市営球技場"
   },
@@ -306,7 +306,7 @@
    "home": "FC北陸U15 1st",
    "hs": 0,
    "as": 2,
-   "away": "SOLTILO SEIRYO 1st",
+   "away": "ツエーゲン金沢2nd",
    "status": "played",
    "venue": "市営球技場"
   },
@@ -326,14 +326,14 @@
    "home": "FC北陸U15 1st",
    "hs": 1,
    "as": 1,
-   "away": "ツエーゲン金沢2nd",
+   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "内灘町Ｓ"
   },
   {
    "md": 0,
    "date": "2026-05-09",
-   "home": "PateoFC金沢2nd",
+   "home": "SOLTILO SEIRYO 1st",
    "hs": 1,
    "as": 2,
    "away": "金沢学院大附属中学校",
@@ -356,19 +356,29 @@
    "home": "セブン能登1st",
    "hs": 2,
    "as": 0,
-   "away": "SOLTILO SEIRYO 1st",
+   "away": "ツエーゲン金沢2nd",
    "status": "played",
    "venue": "星稜G"
   },
   {
    "md": 0,
    "date": "2026-05-16",
-   "home": "PateoFC金沢2nd",
-   "hs": 1,
-   "as": 0,
+   "home": "ツエーゲン金沢2nd",
+   "hs": 0,
+   "as": 1,
    "away": "SOLTILO SEIRYO 1st",
    "status": "played",
    "venue": "市営球技場"
+  },
+  {
+   "md": 0,
+   "date": "2026-06-07",
+   "home": "PateoFC金沢2nd",
+   "hs": 4,
+   "as": 0,
+   "away": "星稜中学校1st",
+   "status": "played",
+   "venue": "S交流広場"
   },
   {
    "md": 0,
@@ -382,21 +392,11 @@
   },
   {
    "md": 0,
-   "date": "2026-06-07",
-   "home": "ツエーゲン金沢2nd",
-   "hs": 4,
-   "as": 0,
-   "away": "星稜中学校1st",
-   "status": "played",
-   "venue": "S交流広場"
-  },
-  {
-   "md": 0,
    "date": "2026-06-14",
-   "home": "SOLTILO SEIRYO 1st",
-   "hs": 3,
-   "as": 1,
-   "away": "エスポワール白山2nd",
+   "home": "PateoFC金沢2nd",
+   "hs": 2,
+   "as": 3,
+   "away": "SOLTILO SEIRYO 1st",
    "status": "played",
    "venue": "S交流広場"
   },
@@ -414,9 +414,9 @@
    "md": 0,
    "date": "2026-06-14",
    "home": "ツエーゲン金沢2nd",
-   "hs": 2,
-   "as": 3,
-   "away": "PateoFC金沢2nd",
+   "hs": 3,
+   "as": 1,
+   "away": "エスポワール白山2nd",
    "status": "played",
    "venue": "S交流広場"
   },
@@ -436,7 +436,7 @@
    "home": "セブン能登1st",
    "hs": 2,
    "as": 0,
-   "away": "PateoFC金沢2nd",
+   "away": "SOLTILO SEIRYO 1st",
    "status": "played",
    "venue": "市営球技場"
   },
@@ -444,9 +444,9 @@
    "md": 0,
    "date": "2026-07-12",
    "home": "ツエーゲン金沢2nd",
-   "hs": 3,
-   "as": 2,
-   "away": "SOLTILO SEIRYO 1st",
+   "hs": 2,
+   "as": 3,
+   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "松任総合Ｇ"
   },
@@ -456,7 +456,17 @@
    "home": "FC北陸U15 1st",
    "hs": 1,
    "as": 1,
-   "away": "PateoFC金沢2nd",
+   "away": "SOLTILO SEIRYO 1st",
+   "status": "played",
+   "venue": "S交流広場"
+  },
+  {
+   "md": 0,
+   "date": "2026-07-20",
+   "home": "PateoFC金沢2nd",
+   "hs": 3,
+   "as": 1,
+   "away": "金沢学院大附属中学校",
    "status": "played",
    "venue": "S交流広場"
   },
@@ -472,18 +482,8 @@
   },
   {
    "md": 0,
-   "date": "2026-07-20",
-   "home": "ツエーゲン金沢2nd",
-   "hs": 3,
-   "as": 1,
-   "away": "金沢学院大附属中学校",
-   "status": "played",
-   "venue": "S交流広場"
-  },
-  {
-   "md": 0,
    "date": "2026-08-29",
-   "home": "PateoFC金沢2nd",
+   "home": "SOLTILO SEIRYO 1st",
    "hs": 1,
    "as": 0,
    "away": "星稜中学校1st",
@@ -496,14 +496,14 @@
    "home": "セブン能登1st",
    "hs": 1,
    "as": 0,
-   "away": "ツエーゲン金沢2nd",
+   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "金沢大SF-A"
   },
   {
    "md": 0,
    "date": "2026-09-05",
-   "home": "SOLTILO SEIRYO 1st",
+   "home": "ツエーゲン金沢2nd",
    "hs": 5,
    "as": 0,
    "away": "金沢学院大附属中学校",
@@ -546,9 +546,19 @@
    "home": "FC北陸U15 1st",
    "hs": 2,
    "as": 0,
-   "away": "SOLTILO SEIRYO 1st",
+   "away": "ツエーゲン金沢2nd",
    "status": "played",
    "venue": "市営球技場"
+  },
+  {
+   "md": 0,
+   "date": "2026-09-27",
+   "home": "PateoFC金沢2nd",
+   "hs": 1,
+   "as": 0,
+   "away": "SOLTILO SEIRYO 1st",
+   "status": "played",
+   "venue": "内灘町Ｓ"
   },
   {
    "md": 0,
@@ -557,16 +567,6 @@
    "hs": 1,
    "as": 0,
    "away": "金沢学院大附属中学校",
-   "status": "played",
-   "venue": "内灘町Ｓ"
-  },
-  {
-   "md": 0,
-   "date": "2026-09-27",
-   "home": "ツエーゲン金沢2nd",
-   "hs": 1,
-   "as": 0,
-   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "内灘町Ｓ"
   },
@@ -586,14 +586,14 @@
    "home": "FC北陸U15 1st",
    "hs": 2,
    "as": 3,
-   "away": "ツエーゲン金沢2nd",
+   "away": "PateoFC金沢2nd",
    "status": "played",
    "venue": "金沢大SF-A"
   },
   {
    "md": 0,
    "date": "2026-10-04",
-   "home": "PateoFC金沢2nd",
+   "home": "SOLTILO SEIRYO 1st",
    "hs": 1,
    "as": 0,
    "away": "金沢学院大附属中学校",
@@ -603,7 +603,7 @@
   {
    "md": 0,
    "date": "2026-10-04",
-   "home": "SOLTILO SEIRYO 1st",
+   "home": "ツエーゲン金沢2nd",
    "hs": 5,
    "as": 0,
    "away": "星稜中学校1st",
@@ -613,11 +613,11 @@
   {
    "md": 0,
    "date": "2026-10-14",
-   "home": "SOLTILO SEIRYO 1st",
-   "hs": null,
-   "as": null,
+   "home": "ツエーゲン金沢2nd",
+   "hs": 4,
+   "as": 0,
    "away": "エスポワール白山2nd",
-   "status": "scheduled",
+   "status": "played",
    "venue": "松任総合Ｇ"
   },
   {
@@ -626,17 +626,17 @@
    "home": "PateoFC金沢2nd",
    "hs": null,
    "as": null,
-   "away": "エスポワール白山2nd",
+   "away": "星稜中学校1st",
    "status": "scheduled",
    "venue": "能登島Ａ"
   },
   {
    "md": 0,
    "date": "2026-10-17",
-   "home": "ツエーゲン金沢2nd",
+   "home": "SOLTILO SEIRYO 1st",
    "hs": null,
    "as": null,
-   "away": "星稜中学校1st",
+   "away": "エスポワール白山2nd",
    "status": "scheduled",
    "venue": "能登島Ａ"
   },
@@ -656,7 +656,7 @@
    "home": "セブン能登1st",
    "hs": null,
    "as": null,
-   "away": "SOLTILO SEIRYO 1st",
+   "away": "ツエーゲン金沢2nd",
    "status": "scheduled",
    "venue": "能登島Ｂ"
   },
@@ -666,7 +666,7 @@
    "home": "PateoFC金沢2nd",
    "hs": null,
    "as": null,
-   "away": "SOLTILO SEIRYO 1st",
+   "away": "エスポワール白山2nd",
    "status": "scheduled",
    "venue": "金沢大SF-B"
   },
@@ -686,7 +686,7 @@
    "home": "ツエーゲン金沢2nd",
    "hs": null,
    "as": null,
-   "away": "エスポワール白山2nd",
+   "away": "SOLTILO SEIRYO 1st",
    "status": "scheduled",
    "venue": "金沢大SF-B"
   },
