@@ -951,12 +951,13 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
 
         # [2026-10-14] frontmatter `block_brackets: Aブロック, Bブロック` の大会（東京の選手権＝代表2枠）は、
         #   ブロックごとに表＋結果を分けて出す。ブロックに属さない回戦（1次予選）は最後に折りたたむ。
-        #   block_brackets が無い大会は下の従来処理のまま（1バイトも変えない）。
+        #   block_brackets が無い大会は下の従来処理。ただし山順コメント（`<!-- 山順`）が付いた回戦があれば、
+        #   公式の並びで表を作る（2026-10-15 Kei決定・神奈川の選手権が最初。無ければ従来の自動再構成）。
         blocks = [b.strip() for b in metadata.get("block_brackets", "").split(",") if b.strip()]
         if blocks:
             body_html = _render_block_brackets_body(blocks, rounds, _rounds_html, pref_name)
         # 終盤(ベスト16/8)をトーナメント表で表示できるなら、表＋全試合は折りたたみに
-        elif (bracket_svg := render_tournament_bracket_svg(rounds)):
+        elif (bracket_svg := (_render_ordered_base_bracket(rounds) or render_tournament_bracket_svg(rounds))):
             body_html = (
                 f'        <div class="tournament-bracket-wrap">\n{bracket_svg}\n        </div>\n'
                 f'        <details class="tournament-fulllist">\n'
