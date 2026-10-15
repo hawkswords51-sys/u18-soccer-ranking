@@ -583,12 +583,14 @@ def _render_ordered_base_bracket(rounds):
     i = idx[-1]
     base = [_bracket_parse_line(x) for x in rounds[i].get("matches", [])]
     seeds = rounds[i].get("seeds", [])
+    if any(d >= 2 for _, _, d in seeds):
+        return _render_staircase_from_rounds(rounds, i, base, seeds)
     if len(base) + len(seeds) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
         return ""
     # [2026-10-15] シード校（次の回戦から登場）は「- 校名」の1行として、md に書かれた位置に差し込む（香川が最初）
     pair_lines = []
     for k, m in enumerate(base + [None]):
-        pair_lines += [f"- {_bracket_canon(nm)}" for pos, nm in seeds if pos == k]
+        pair_lines += [f"- {_bracket_canon(nm)}" for pos, nm, _d in seeds if pos == k]
         if m is not None:
             pair_lines.append(f"- {m['a']} vs {m['b']}")
     res_lines = []
@@ -607,6 +609,33 @@ def _render_ordered_base_bracket(rounds):
     if buf.getvalue().strip() or len(pairs) != len(base) + len(seeds):
         return ""
     return svg if svg and "<svg" in svg else ""
+
+
+def _render_staircase_from_rounds(rounds, i, base, seeds):
+    """[2026-10-15] シードが2回戦以上遅れて登場する大会（群馬の選手権など）。
+    md の書き方：山順の回戦の中に、公式表の上から順に試合行と
+    `<!-- シード: 校名 -->`（次の回戦から）／`<!-- シード2: 校名 -->`（2回戦あと）／`<!-- シード3: … -->` を並べる。
+    既存の表の部品は使わず staircase_bracket で描く（ほかの県の表は変わらない）。"""
+    from staircase_bracket import render_staircase_bracket_svg
+    if any(m is None or m["a"] is None or m["b"] is None for m in base):
+        return ""
+    items = []
+    for k, m in enumerate(base + [None]):
+        items += [("seed", _bracket_canon(nm), d) for pos, nm, d in seeds if pos == k]
+        if m is not None:
+            items.append(("match", m["a"], m["b"]))
+    names, res_lines = [], []
+    for r in rounds[i:]:
+        if _is_placement_round(r.get("name", "")):
+            continue
+        nm = re.split(r"[（(]", r.get("name", ""))[0].strip()
+        nm = re.sub(r"^(決勝トーナメント|決勝ラウンド|中央トーナメント|2次予選|二次予選)\s*", "", nm)
+        names.append(nm)
+        for x in r.get("matches", []):
+            mm = _bracket_parse_match(x)
+            if mm:
+                res_lines.append(f"- {mm['a']} {mm['sc']} {mm['b']}")
+    return render_staircase_bracket_svg(items, res_lines, names)
 
 
 def _raw_winner(line):
@@ -892,9 +921,9 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
             elif (line.startswith('<!-- シード') and current_round is not None
                   and current_round.get("bracket_order")):
                 # [2026-10-15] 山順の回戦で、この位置にシード校（次の回戦から登場）を置く
-                _sm = re.match(r'<!--\s*シード\s*[:：]\s*(.+?)\s*-->', line)
+                _sm = re.match(r'<!--\s*シード(\d*)\s*[:：]\s*(.+?)\s*-->', line)
                 if _sm:
-                    current_round.setdefault("seeds", []).append((len(current_round["matches"]), _sm.group(1)))
+                    current_round.setdefault("seeds", []).append((len(current_round["matches"]), _sm.group(2), int(_sm.group(1) or 1)))
 
         # ★まだ1試合も入っていない大会は、セクションごと出さない（2026-09-10）
         #   koko が組み合わせを載せる前に md を先行作成しておく運用のため、

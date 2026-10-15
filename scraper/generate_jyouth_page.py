@@ -663,6 +663,12 @@ def render_bracket_svg(sections):
            f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
 
+    return wrap_bracket_svg(svg)
+
+
+def wrap_bracket_svg(svg):
+    """表(SVG)に、文字色の切替<style>・注記・横スクロールの外枠を付ける。
+    [2026-10-15] 階段シードの表（staircase_bracket.py）と見た目をそろえるため、render_bracket_svg から切り出した。"""
     # SVGのfill属性ではCSS変数が効かないため、チーム名の色はclass＋data-themeで切替。
     # ライト/ダークどちらでも読める色を明示指定する。
     bracket_style = (
