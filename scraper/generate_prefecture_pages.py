@@ -582,9 +582,15 @@ def _render_ordered_base_bracket(rounds):
         return ""
     i = idx[-1]
     base = [_bracket_parse_line(x) for x in rounds[i].get("matches", [])]
-    if len(base) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
+    seeds = rounds[i].get("seeds", [])
+    if len(base) + len(seeds) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
         return ""
-    pair_lines = [f"- {m['a']} vs {m['b']}" for m in base]
+    # [2026-10-15] シード校（次の回戦から登場）は「- 校名」の1行として、md に書かれた位置に差し込む（香川が最初）
+    pair_lines = []
+    for k, m in enumerate(base + [None]):
+        pair_lines += [f"- {_bracket_canon(nm)}" for pos, nm in seeds if pos == k]
+        if m is not None:
+            pair_lines.append(f"- {m['a']} vs {m['b']}")
     res_lines = []
     for r in rounds[i:]:
         if _is_placement_round(r.get("name", "")):
@@ -598,7 +604,7 @@ def _render_ordered_base_bracket(rounds):
     with _contextlib.redirect_stdout(buf):
         pairs = _bracket.parse_bracket_pairs(pair_lines)
         svg = _bracket.render_bracket_svg(sections)
-    if buf.getvalue().strip() or len(pairs) != len(base):
+    if buf.getvalue().strip() or len(pairs) != len(base) + len(seeds):
         return ""
     return svg if svg and "<svg" in svg else ""
 
@@ -883,6 +889,12 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
                   and not current_round["matches"]):
                 # [2026-10-14] 見出し直下の山順コメント＝この回戦の行は公式組合せ表の上から順
                 current_round["bracket_order"] = True
+            elif (line.startswith('<!-- シード') and current_round is not None
+                  and current_round.get("bracket_order")):
+                # [2026-10-15] 山順の回戦で、この位置にシード校（次の回戦から登場）を置く
+                _sm = re.match(r'<!--\s*シード\s*[:：]\s*(.+?)\s*-->', line)
+                if _sm:
+                    current_round.setdefault("seeds", []).append((len(current_round["matches"]), _sm.group(1)))
 
         # ★まだ1試合も入っていない大会は、セクションごと出さない（2026-09-10）
         #   koko が組み合わせを載せる前に md を先行作成しておく運用のため、
