@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-16T09:43:43+09:00",
+  "updatedAt": "2026-10-16T09:43:48+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 74,
+      "result_streak": 75,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -602,7 +602,7 @@
       "sourceName": "高知県サッカー協会 公式",
       "last_change": "2026-10-04",
       "result_since": "2026-10-15",
-      "result_streak": 4,
+      "result_streak": 5,
       "status": "warn",
       "last_updated": "2026-10-14",
       "result": "fetch_error",
@@ -618,16 +618,16 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 68,
+      "played": 69,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-09-22",
+      "latest_match": "2026-10-10",
       "source": "official",
       "sourceName": "熊本県サッカー協会 公式",
-      "last_change": "2026-09-25",
+      "last_change": "2026-10-16",
       "result_since": "",
       "result_streak": 0,
-      "status": "warn",
+      "status": "ok",
       "last_updated": "2026-10-16"
     },
     "kyoto": {
