@@ -585,6 +585,10 @@ def _render_ordered_base_bracket(rounds):
     seeds = rounds[i].get("seeds", [])
     if any(d >= 2 for _, _, d in seeds):
         return _render_staircase_from_rounds(rounds, i, base, seeds)
+    # [2026-10-16] シードが1回戦遅れて入り、枠が16（試合8＋シード8 など）になる大会（長野が最初）。
+    #   従来の部品は8枠・4枠しか組まないので、階段状シード用の部品で描く（ほかの県は従来どおり）。
+    if seeds and len(base) + len(seeds) == 16:
+        return _render_staircase_from_rounds(rounds, i, base, seeds)
     if len(base) + len(seeds) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
         return ""
     # [2026-10-15] シード校（次の回戦から登場）は「- 校名」の1行として、md に書かれた位置に差し込む（香川が最初）
@@ -635,6 +639,16 @@ def _render_staircase_from_rounds(rounds, i, base, seeds):
             mm = _bracket_parse_match(x)
             if mm:
                 res_lines.append(f"- {mm['a']} {mm['sc']} {mm['b']}")
+    # [2026-10-16] md にまだ後ろの回戦の見出しが無い（長野＝4回戦まで）ときは、
+    #   足りない分を後ろから「準々決勝・準決勝・決勝」で補う（部品は回戦数と名前の数の一致を求めるため）。
+    from staircase_bracket import _build as _st_build
+    _root = _st_build(items)
+    if _root is not None:
+        _need = _root["round"] + 1
+        _tail = ["準々決勝", "準決勝", "決勝"]
+        while len(names) < _need:
+            k = _need - len(names)            # 残り何回戦分足りないか（決勝から数えて）
+            names.append(_tail[-k] if k <= 3 else f"{len(names) + 1}回戦")
     return render_staircase_bracket_svg(items, res_lines, names)
 
 
