@@ -35,4 +35,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 - 大社 vs 出雲商・出雲農林・情報科学/松江東
 - 浜田・浜田商/吉賀 vs 益田東
 - 益田 vs 松江商/松江工
-- 松江南/大田 vs 開星
+- 松江南 vs 開星
