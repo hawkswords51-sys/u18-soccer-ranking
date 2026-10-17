@@ -1002,6 +1002,15 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
         if t_label and subtitle.strip() == t_label:
             subtitle = ""
         subtitle_html = f'\n        <p class="tournament-subtitle" style="color:#666;font-size:0.9em;margin-top:-8px;">{subtitle}</p>' if subtitle else ''
+        # [2026-10-17] 選手権予選の枠から、選手権特設ページ（47都道府県の予選状況・代表校の一覧）へ1行リンク。
+        #   URL はフォルダ名から作り（年をコードに書かない）、特設ページが実在する時だけ出す（404を張らない）。
+        national_html = ''
+        if t_kind == "senshuken" and (BASE_DIR / "tournaments" / _folder / "index.html").exists():
+            national_html = (
+                f'\n        <p class="tournament-national-link" style="font-size:0.9em;margin:4px 0 12px;">'
+                f'<a href="/tournaments/{_folder}/#prefectures" style="color:var(--accent-color,#2563eb);">'
+                f'全国大会（選手権）の47都道府県 予選状況・代表校の一覧 →</a></p>'
+            )
         rounds_html_str = _rounds_html(rounds)
 
         # [2026-10-14] frontmatter `block_brackets: Aブロック, Bブロック` の大会（東京の選手権＝代表2枠）は、
@@ -1031,7 +1040,7 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
             f'      <section class="lp-section tournament-section'
             f'{" tournament-section--" + t_kind if t_kind else ""}">\n'
             f'{kind_html}'
-            f'        <h2>📋 {title}{status_html}</h2>{subtitle_html}\n'
+            f'        <h2>📋 {title}{status_html}</h2>{subtitle_html}{national_html}\n'
             f'{body_html}\n'
             f'      </section>'
         )
