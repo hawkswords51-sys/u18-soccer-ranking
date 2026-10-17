@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 九州2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448183-448183-fl",
-  "lastUpdated": "2026-10-12",
+  "lastUpdated": "2026-10-18",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
@@ -25,36 +25,36 @@
     },
     {
       "rank": 4,
+      "name": "増永大生獅",
+      "team": "大分U18",
+      "goals": 7
+    },
+    {
+      "rank": 5,
       "name": "熊本陸斗",
       "team": "大分U18",
       "goals": 6
     },
     {
-      "rank": 4,
+      "rank": 5,
       "name": "小幡春道",
       "team": "鳥栖2nd",
       "goals": 6
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "池田千桜",
       "team": "九国大付",
       "goals": 5
     },
     {
-      "rank": 6,
-      "name": "増永大生獅",
-      "team": "大分U18",
-      "goals": 5
-    },
-    {
-      "rank": 6,
+      "rank": 7,
       "name": "大平陽稀",
       "team": "日章2nd",
       "goals": 5
     },
     {
-      "rank": 6,
+      "rank": 7,
       "name": "一宮優聖",
       "team": "長崎総附",
       "goals": 5
@@ -128,6 +128,12 @@
   ],
   "coverage": [
     {
+      "team": "大分U18",
+      "attributed": 27,
+      "gf": 28,
+      "missing": 1
+    },
+    {
       "team": "大津3rd",
       "attributed": 20,
       "gf": 27,
@@ -138,12 +144,6 @@
       "attributed": 25,
       "gf": 27,
       "missing": 2
-    },
-    {
-      "team": "大分U18",
-      "attributed": 24,
-      "gf": 25,
-      "missing": 1
     },
     {
       "team": "鵬翔",
