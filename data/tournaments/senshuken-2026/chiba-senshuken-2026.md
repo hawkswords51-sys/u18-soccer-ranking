@@ -158,7 +158,7 @@ scraper/update_tournament_results.py が上の source から
 - 中央学院 vs 渋谷幕張
 - 市立松戸 vs 東京学館
 - 市立柏 vs 東京学館浦安
-- 市川昴 vs 八千代
+- 市川昴 0-4 八千代
 - 専修大松戸 vs 千葉敬愛
 - 拓殖大学紅陵 vs 翔凜
 
@@ -168,5 +168,5 @@ scraper/update_tournament_results.py が上の source から
 - 暁星国際/木更津総合 vs 東海大望洋/千葉経大附
 - 敬愛学園/柏南 vs 日本体育大学柏
 - 中央学院/渋谷幕張 vs 市立松戸/東京学館
-- 市立柏/東京学館浦安 vs 市川昴/八千代
+- 市立柏/東京学館浦安 vs 八千代
 - 専大松戸/千葉敬愛 vs 拓大紅陵/翔凜

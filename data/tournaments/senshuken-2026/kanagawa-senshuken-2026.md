@@ -200,7 +200,7 @@ scraper/update_tournament_results.py が上の source から
 - 桐光学園 vs 平塚学園
 - 三浦学苑 vs 横浜創英
 - 日大高 vs 湘南学院
-- 市ヶ尾 vs 川崎市立橘
+- 市ヶ尾 0-5 川崎市立橘
 - 日本大学藤沢 vs 法政二
 - 麻布大附 vs 相洋
 - 慶應義塾 vs 座間
@@ -211,4 +211,4 @@ scraper/update_tournament_results.py が上の source から
 - 日大藤沢/法政二 vs 麻布大附/相洋
 - 桐光学園/平塚学園 vs 三浦学苑/横浜創英
 - 慶應義塾/座間 vs 東海大相模/桐蔭学園
-- 日大高/湘南学院 vs 市ヶ尾/市立橘
+- 日大高/湘南学院 vs 川崎市立橘
