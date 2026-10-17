@@ -4,7 +4,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 103,
+      "matchesPlayed": 104,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -16,7 +16,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 100,
+      "matchesPlayed": 103,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-17T15:50:58+09:00",
+  "updatedAt": "2026-10-17T16:26:08+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1268,13 +1268,13 @@
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
-      "note": "試合17・選手31（新規取得0）",
+      "note": "試合18・選手31（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
-      "note": "試合17・選手36（新規取得0）／選手一覧を据え置き（出場試合数が合わない 16件：1 来海 良宣: 一覧18 ≠ 出場記録17）",
+      "note": "試合18・選手36（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },
@@ -1286,7 +1286,7 @@
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
-      "note": "試合16・選手36（新規取得0）",
+      "note": "試合17・選手36（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },
@@ -1334,19 +1334,19 @@
     },
     "team_season:nagoya-grampus-u18": {
       "result": "ok",
-      "note": "試合17・選手34（新規取得0）",
+      "note": "試合18・選手34（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },
     "team_season:ohtsu": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧24＋一覧外0＋OG0＝24 ≠ 順位表22）",
+      "result": "ok",
+      "note": "試合16・選手31（新規取得1）",
       "date": "2026-10-17",
-      "since": "2026-10-17"
+      "since": ""
     },
     "team_season:ryukei-kashiwa": {
       "result": "ok",
-      "note": "試合17・選手30（新規取得0）",
+      "note": "試合18・選手30（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },
@@ -1382,7 +1382,7 @@
     },
     "team_season:vegalta-sendai-youth": {
       "result": "ok",
-      "note": "試合17・選手35（新規取得0）",
+      "note": "試合18・選手35（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },
@@ -1400,7 +1400,7 @@
     },
     "team_season:yonago-kita": {
       "result": "ok",
-      "note": "試合16・選手30（新規取得0）",
+      "note": "試合17・選手30（新規取得1）",
       "date": "2026-10-17",
       "since": ""
     },

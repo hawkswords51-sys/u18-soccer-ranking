@@ -57,6 +57,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "流通経済大柏",
+      "pts": 40,
+      "played": 18,
+      "won": 13,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 42,
+      "ga": 21,
+      "gd": 21
+    },
+    {
+      "rank": 2,
       "team": "鹿島アントラーズユース",
       "pts": 37,
       "played": 18,
@@ -66,18 +78,6 @@
       "gf": 53,
       "ga": 29,
       "gd": 24
-    },
-    {
-      "rank": 2,
-      "team": "流通経済大柏",
-      "pts": 37,
-      "played": 17,
-      "won": 12,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 38,
-      "ga": 20,
-      "gd": 18
     },
     {
       "rank": 3,
@@ -167,13 +167,13 @@
       "rank": 10,
       "team": "ベガルタ仙台ユース",
       "pts": 14,
-      "played": 17,
+      "played": 18,
       "won": 3,
       "drawn": 5,
-      "lost": 9,
-      "gf": 16,
-      "ga": 42,
-      "gd": -26
+      "lost": 10,
+      "gf": 17,
+      "ga": 46,
+      "gd": -29
     },
     {
       "rank": 11,
@@ -3258,12 +3258,37 @@
       "md": 18,
       "date": "2026-10-17",
       "home": "流通経済大柏",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
-      "kickoff": "14:00"
+      "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1803.pdf",
+      "homeScorers": [
+        {
+          "minute": "35",
+          "name": "櫻井 亮太"
+        },
+        {
+          "minute": "40",
+          "name": "大徳 剛矢"
+        },
+        {
+          "minute": "53",
+          "name": "古川 蒼真"
+        },
+        {
+          "minute": "90+2",
+          "name": "渡辺 瞳也"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "3",
+          "name": "小澤 春太"
+        }
+      ]
     },
     {
       "md": 18,
