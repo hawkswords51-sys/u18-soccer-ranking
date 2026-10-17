@@ -63,6 +63,11 @@ DOMAIN = "https://u18-soccer.com"
 
 JST = timezone(timedelta(hours=9))
 
+# [2026-10-17] 4チームテスト：検索語「◯◯高校サッカー部」を title の先頭にひと続きで置く。
+#   測定＝公開4週間後、Bing の検索語完全一致とページ別の前後28日の CTR・平均順位。効果が出たら他校へ横展開。
+TEAM_COMPACT_TITLE_IDS = {"aomori-yamada", "shizuoka-gakuen", "joetsu", "asahikawa-jitsugyo"}
+TEAM_TITLE_SEASON = "2026"  # ← 年度切り替えで直す（fetch_jfa.py の SEASON と揃える）
+
 
 # =========================================================================
 # HTML テンプレート（既存サイトの style.css を活用）
@@ -709,7 +714,10 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
         else:
             body_html += season_html
 
-    title = f"{meta.get('name', '')} | 高校サッカー部 順位・OB・育成"
+    if meta.get("id") in TEAM_COMPACT_TITLE_IDS:
+        title = f"{meta.get('name', '')}サッカー部｜{TEAM_TITLE_SEASON} 順位・登録メンバー・OB"
+    else:
+        title = f"{meta.get('name', '')} | 高校サッカー部 順位・OB・育成"
     description = meta.get("description") or build_lead(meta)
     canonical = f"{DOMAIN}/teams/{meta.get('id')}/"
     keywords = build_keywords(meta)
