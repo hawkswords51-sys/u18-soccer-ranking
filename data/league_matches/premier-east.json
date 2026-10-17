@@ -57,6 +57,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "鹿島アントラーズユース",
+      "pts": 37,
+      "played": 18,
+      "won": 12,
+      "drawn": 1,
+      "lost": 5,
+      "gf": 53,
+      "ga": 29,
+      "gd": 24
+    },
+    {
+      "rank": 2,
       "team": "流通経済大柏",
       "pts": 37,
       "played": 17,
@@ -66,18 +78,6 @@
       "gf": 38,
       "ga": 20,
       "gd": 18
-    },
-    {
-      "rank": 2,
-      "team": "鹿島アントラーズユース",
-      "pts": 34,
-      "played": 17,
-      "won": 11,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 49,
-      "ga": 28,
-      "gd": 21
     },
     {
       "rank": 3,
@@ -107,13 +107,13 @@
       "rank": 5,
       "team": "前橋育英",
       "pts": 28,
-      "played": 17,
+      "played": 18,
       "won": 8,
       "drawn": 4,
-      "lost": 5,
-      "gf": 29,
-      "ga": 20,
-      "gd": 9
+      "lost": 6,
+      "gf": 30,
+      "ga": 24,
+      "gd": 6
     },
     {
       "rank": 6,
@@ -3269,12 +3269,36 @@
       "md": 18,
       "date": "2026-10-17",
       "home": "鹿島アントラーズユース",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "前橋育英",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿島アントラーズ クラブハウスグラウンド(天然芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "13",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "56",
+          "name": "大貫 琉偉"
+        },
+        {
+          "minute": "80",
+          "name": "髙木 瑛人"
+        },
+        {
+          "minute": "89",
+          "name": "曽ヶ端 輝"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "28",
+          "name": "関 蒼葉"
+        }
+      ]
     },
     {
       "md": 18,
