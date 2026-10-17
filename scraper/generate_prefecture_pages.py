@@ -180,8 +180,8 @@ MEDICAL_COLUMN_LINKS = [
      "url": "/blog/posts/2026-05-22-pre-match-sleep-strategy/"},
 ]
 # ⚠️ 一時的に出さない県（効果測定中の県ページを動かさないため）。
-#    香川（title変更）・神奈川（強豪校節）の測定が10/12ごろに終わったら、この集合を空にする。
-MEDICAL_COLUMN_SKIP_PREFS = {"kagawa", "kanagawa"}
+#    2026-10-17 解除（香川 title・神奈川 強豪校節の両テストの公開後28日は記録済み）。次のテストでまた使う。
+MEDICAL_COLUMN_SKIP_PREFS = set()
 
 
 def render_medical_columns(pref_id, pref_name):
