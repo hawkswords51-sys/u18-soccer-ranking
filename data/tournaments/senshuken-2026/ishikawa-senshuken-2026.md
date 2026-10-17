@@ -55,7 +55,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準々決勝（10/17・10/18）
 
-- 星稜 vs 日本航空石川
+- 星稜 3-0 日本航空石川
 - 金沢学院大学附属 vs 金沢桜丘
 - 金沢市立工業 vs 遊学館
-- 金沢 vs 鵬学園
+- 金沢 0-2 鵬学園
