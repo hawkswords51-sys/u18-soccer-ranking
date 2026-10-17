@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 77,
+      "matchesPlayed": 78,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-17T15:44:46+09:00",
+  "updatedAt": "2026-10-17T15:50:58+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1274,7 +1274,7 @@
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
-      "note": "試合17・選手36（新規取得0）",
+      "note": "試合17・選手36（新規取得0）／選手一覧を据え置き（出場試合数が合わない 16件：1 来海 良宣: 一覧18 ≠ 出場記録17）",
       "date": "2026-10-17",
       "since": ""
     },
@@ -1339,10 +1339,10 @@
       "since": ""
     },
     "team_season:ohtsu": {
-      "result": "ok",
-      "note": "試合15・選手31（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧24＋一覧外0＋OG0＝24 ≠ 順位表22）",
       "date": "2026-10-17",
-      "since": ""
+      "since": "2026-10-17"
     },
     "team_season:ryukei-kashiwa": {
       "result": "ok",
