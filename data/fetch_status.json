@@ -98,9 +98,9 @@
     },
     "prince-tokai": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['清水エスパルスユース.試合 日程から計算15≠順位表12', '清水エスパルスユース.敗 日程から計算4≠順位表1', '藤枝明誠.試合 日程から計算15≠順位表7'] …（据え置き）",
-      "matchesPlayed": 71,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 75,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 77,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-17T14:42:00+09:00",
+  "updatedAt": "2026-10-17T14:44:21+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
