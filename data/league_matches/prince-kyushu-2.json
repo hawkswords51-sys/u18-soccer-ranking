@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "大分トリニータU-18",
+      "pts": 23,
+      "played": 14,
+      "won": 7,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 28,
+      "ga": 21,
+      "gd": 7
+    },
+    {
+      "rank": 4,
       "team": "日章学園2nd",
       "pts": 23,
       "played": 14,
@@ -81,18 +93,6 @@
       "lost": 3,
       "gf": 30,
       "ga": 25,
-      "gd": 5
-    },
-    {
-      "rank": 4,
-      "team": "大分トリニータU-18",
-      "pts": 20,
-      "played": 13,
-      "won": 6,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 25,
-      "ga": 20,
       "gd": 5
     },
     {
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "サガン鳥栖U-18 2nd",
       "pts": 13,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 4,
-      "lost": 6,
-      "gf": 25,
-      "ga": 24,
-      "gd": 1
+      "lost": 7,
+      "gf": 26,
+      "ga": 27,
+      "gd": -1
     }
   ],
   "matches": [
@@ -987,10 +987,10 @@
       "md": 15,
       "date": "2026-10-17",
       "home": "サガン鳥栖U-18 2nd",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "大分トリニータU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "SAGAサンライズパーク北",
       "kickoff": "10:00"
     },
