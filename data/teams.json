@@ -8550,14 +8550,14 @@
         "league": "プリンスリーグ四国",
         "rank": 3,
         "points": 11,
-        "played": 15,
+        "played": 16,
         "won": 2,
         "drawn": 5,
-        "lost": 8,
+        "lost": 9,
         "goalsFor": 19,
-        "goalsAgainst": 41,
+        "goalsAgainst": 46,
         "prefectureRank": 3,
-        "goalDiff": -22,
+        "goalDiff": -27,
         "leagueRank": 8,
         "aliases": [
           "徳島商",
@@ -8990,10 +8990,29 @@
         "leagueRank": 1
       },
       {
+        "id": "eh003",
+        "name": "県立今治東中等教育学校",
+        "league": "プリンスリーグ四国",
+        "rank": 2,
+        "points": 20,
+        "played": 16,
+        "won": 5,
+        "drawn": 5,
+        "lost": 6,
+        "goalsFor": 26,
+        "goalsAgainst": 29,
+        "prefectureRank": 2,
+        "goalDiff": -3,
+        "leagueRank": 6,
+        "aliases": [
+          "今治東中等教育学校"
+        ]
+      },
+      {
         "id": "eh002",
         "name": "FC今治 U-18",
         "league": "プリンスリーグ四国",
-        "rank": 2,
+        "rank": 3,
         "points": 20,
         "played": 16,
         "won": 6,
@@ -9001,28 +9020,9 @@
         "lost": 8,
         "goalsFor": 27,
         "goalsAgainst": 31,
-        "prefectureRank": 2,
-        "goalDiff": -4,
-        "leagueRank": 6
-      },
-      {
-        "id": "eh003",
-        "name": "県立今治東中等教育学校",
-        "league": "プリンスリーグ四国",
-        "rank": 3,
-        "points": 17,
-        "played": 15,
-        "won": 4,
-        "drawn": 5,
-        "lost": 6,
-        "goalsFor": 21,
-        "goalsAgainst": 29,
         "prefectureRank": 3,
-        "goalDiff": -8,
-        "leagueRank": 7,
-        "aliases": [
-          "今治東中等教育学校"
-        ]
+        "goalDiff": -4,
+        "leagueRank": 7
       },
       {
         "id": "eh005",
@@ -11304,7 +11304,7 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-10-17 18:42",
+    "lastUpdated": "2026-10-17 18:45",
     "year": 2026,
     "updatedCount": 0
   }
