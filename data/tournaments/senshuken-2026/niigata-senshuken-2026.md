@@ -61,7 +61,7 @@ scraper/update_tournament_results.py が上の source から
 - 三条 0-5 開志国際
 - 加茂暁星 2-1 敬和学園
 - 上越総合技術 0-7 日本文理
-- 新潟南 vs 上越
+- 新潟南 0-2 上越
 - 新潟江南 4-1 新潟向陽
 - 開志学園JSC 4-1 巻
 - 新潟工業 7-0 新発田南
@@ -73,7 +73,7 @@ scraper/update_tournament_results.py が上の source から
 - 新潟明訓 vs 東京学館新潟
 - 新潟工業 vs 開志国際
 - 加茂暁星 vs 新潟商/中越
-- 新潟西/五泉 vs 新潟南/上越
+- 新潟西/五泉 vs 上越
 - 新潟江南 vs 日本文理
 
 ## 準々決勝（10/31）
