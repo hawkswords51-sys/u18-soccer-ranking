@@ -28,7 +28,7 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 - 鳥取東 3-2 鳥取西
 - 米子高専 0-7 米子松陰
 - 境 10-2 鳥取敬愛
-- 境総合 vs 米子東
+- 境総合 0-14 米子東
 - 八頭 vs 鳥取工
 - 米子工 0-7 鳥取城北
 
@@ -36,5 +36,5 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 - 鳥取東 vs 米子松陰
 - 米子北 vs 倉吉北
-- 境 vs 境総合/米子東
+- 境 vs 米子東
 - 八頭/鳥取工 vs 鳥取城北
