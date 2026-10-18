@@ -153,7 +153,7 @@ scraper/update_tournament_results.py が上の source から
 ## 決勝トーナメント2回戦（10/18）
 
 - 所沢北 1-4 武南
-- 浦和南 vs 東農大三
+- 浦和南 2-1 東農大三
 - 細田学園 vs 狭山ヶ丘
 - 浦和西 vs 川口市立
 - 武蔵越生 4-0 国際学院
@@ -163,5 +163,5 @@ scraper/update_tournament_results.py が上の source から
 - 西武文理 vs 盈進東野
 - 埼玉平成 1-0 東京成徳大深谷
 - 浦和東 vs 小川
-- 伊奈学園 vs 大宮東
+- 伊奈学園 1-2 大宮東
 - 県立川越 vs 本庄第一
