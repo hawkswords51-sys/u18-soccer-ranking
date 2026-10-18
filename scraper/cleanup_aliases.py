@@ -112,7 +112,7 @@ MANUAL_ALIAS_ADDITIONS: dict[tuple[str, str], list[str]] = {
     ("chiba", "柏レイソルU-18 2nd"):          ["レイソルU-18B"],
     ("kyoto", "京都橘高校3rd"):               ["京都橘C"],
     ("kyoto", "東山高校2nd"):                 ["東山B"],
-    ("hiroshima", "広島瀬戸内高校2nd"):       ["瀬戸内セカンド"],
+    ("hiroshima", "瀬戸内高校2nd"):           ["瀬戸内セカンド", "広島瀬戸内高校2nd"],
     ("tokushima", "徳島商業高校2nd"):         ["徳島商業S"],
     ("tokushima", "徳島ヴォルティスユース2nd"): ["徳島ヴォルティスS"],
     ("tokushima", "徳島市立高校2nd"):         ["徳島市立S"],
