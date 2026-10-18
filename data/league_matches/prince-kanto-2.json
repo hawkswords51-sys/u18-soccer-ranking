@@ -51,16 +51,28 @@
       "rank": 1,
       "team": "横浜F・マリノスユース",
       "pts": 28,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 4,
-      "lost": 1,
+      "lost": 2,
       "gf": 27,
-      "ga": 10,
-      "gd": 17
+      "ga": 12,
+      "gd": 15
     },
     {
       "rank": 2,
+      "team": "FC町田ゼルビアユース",
+      "pts": 27,
+      "played": 15,
+      "won": 9,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 22,
+      "ga": 21,
+      "gd": 1
+    },
+    {
+      "rank": 3,
       "team": "鹿島アントラーズユースB",
       "pts": 26,
       "played": 15,
@@ -70,18 +82,6 @@
       "gf": 30,
       "ga": 17,
       "gd": 13
-    },
-    {
-      "rank": 3,
-      "team": "FC町田ゼルビアユース",
-      "pts": 24,
-      "played": 14,
-      "won": 8,
-      "drawn": 0,
-      "lost": 6,
-      "gf": 20,
-      "ga": 21,
-      "gd": -1
     },
     {
       "rank": 4,
@@ -701,10 +701,10 @@
       "md": 10,
       "date": "2026-10-18",
       "home": "FC町田ゼルビアユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "横浜F・マリノスユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "拓殖大学八王子キャンパスサッカー場",
       "kickoff": "15:00"
     },

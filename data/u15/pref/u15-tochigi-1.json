@@ -33,12 +33,12 @@
    "short": "栃木シティFC U15"
   },
   {
-   "name": "FC VALON",
-   "short": "FC VALON"
-  },
-  {
    "name": "プログレッソ佐野FC",
    "short": "プログレッソ佐野FC"
+  },
+  {
+   "name": "FC VALON",
+   "short": "FC VALON"
   },
   {
    "name": "FC SHUJAKU",
@@ -124,6 +124,18 @@
   },
   {
    "rank": 7,
+   "team": "プログレッソ佐野FC",
+   "points": 13,
+   "played": 15,
+   "won": 4,
+   "drawn": 1,
+   "lost": 10,
+   "gf": 18,
+   "ga": 32,
+   "gd": -14
+  },
+  {
+   "rank": 8,
    "team": "FC VALON",
    "points": 12,
    "played": 14,
@@ -135,28 +147,16 @@
    "gd": -33
   },
   {
-   "rank": 8,
-   "team": "プログレッソ佐野FC",
-   "points": 10,
-   "played": 14,
-   "won": 3,
-   "drawn": 1,
-   "lost": 10,
-   "gf": 17,
-   "ga": 32,
-   "gd": -15
-  },
-  {
    "rank": 9,
    "team": "FC SHUJAKU",
    "points": 7,
-   "played": 14,
+   "played": 15,
    "won": 2,
    "drawn": 1,
-   "lost": 11,
+   "lost": 12,
    "gf": 10,
-   "ga": 27,
-   "gd": -17
+   "ga": 28,
+   "gd": -18
   },
   {
    "rank": 10,
@@ -906,10 +906,10 @@
    "md": 0,
    "date": "2026-10-18",
    "home": "FC SHUJAKU",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 1,
    "away": "プログレッソ佐野FC",
-   "status": "scheduled",
+   "status": "played",
    "venue": "西川運動場"
   },
   {

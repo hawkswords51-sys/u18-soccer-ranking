@@ -64,7 +64,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 71,
+      "matchesPlayed": 72,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-18T16:55:39+09:00",
+  "updatedAt": "2026-10-18T17:55:50+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -605,8 +605,8 @@
       "result_streak": 10,
       "status": "alert",
       "last_updated": "2026-10-14",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (星取表 高知小津 の合計欄がマスから数えた値と合わない（公式−計算＝{}・見込みは{'gf': 3}）。協会が直したなら KNOWN_SOURCE_ERRORS から高知の項目を消すこと)",
+      "result": "ok",
+      "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-10-18"
     },
     "kumamoto": {
@@ -1292,7 +1292,7 @@
     },
     "team_season:higashiyama": {
       "result": "ok",
-      "note": "試合18・選手31（新規取得1）",
+      "note": "試合18・選手31（新規取得0）",
       "date": "2026-10-18",
       "since": ""
     },
@@ -1358,7 +1358,7 @@
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
-      "note": "試合18・選手31（新規取得1）",
+      "note": "試合18・選手31（新規取得0）",
       "date": "2026-10-18",
       "since": ""
     },
