@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-18T17:55:50+09:00",
+  "updatedAt": "2026-10-18T17:55:55+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 80,
+      "result_streak": 81,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -601,10 +601,10 @@
       "source": "official",
       "sourceName": "高知県サッカー協会 公式",
       "last_change": "2026-10-04",
-      "result_since": "2026-10-15",
-      "result_streak": 10,
-      "status": "alert",
-      "last_updated": "2026-10-14",
+      "result_since": "",
+      "result_streak": 0,
+      "status": "warn",
+      "last_updated": "2026-10-18",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-10-18"
