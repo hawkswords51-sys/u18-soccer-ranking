@@ -347,7 +347,8 @@ def _bracket_canon(n):
     """回戦間の校名表記ゆれを吸収するための正規化（末尾の高校/高等学校等を除去）"""
     n = _ud.normalize("NFKC", n or "").strip().replace("　", "").replace(" ", "")
     for suf in ("高等学校", "高校", "中等教育学校", "高"):
-        if n.endswith(suf) and len(n) > len(suf):
+        # [2026-10-19] 「日高」は校名そのものが「高」で終わるので、1文字しか残らない外し方はしない
+        if n.endswith(suf) and len(n) > len(suf) + (1 if suf == "高" else 0):
             return n[:-len(suf)]
     return n
 
