@@ -5,7 +5,7 @@
   "league_team": "東京ヴェルディユース",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/team_detail/08.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/match_page/",
-  "asof": "2026-10-10",
+  "asof": "2026-10-18",
   "roster": [
     {
       "no": 1,
@@ -2580,6 +2580,143 @@
           "out": "10 広瀬 怜音",
           "in": "34 七久保 優",
           "minute": "83分"
+        }
+      ]
+    },
+    "1805": {
+      "md": 18,
+      "starters": [
+        {
+          "no": 1,
+          "pos": "GK",
+          "name": "林 亮太",
+          "captain": false
+        },
+        {
+          "no": 3,
+          "pos": "DF",
+          "name": "カマラ シェック セザール",
+          "captain": false
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "川本 悠祐",
+          "captain": false
+        },
+        {
+          "no": 15,
+          "pos": "DF",
+          "name": "草間 信",
+          "captain": false
+        },
+        {
+          "no": 17,
+          "pos": "DF",
+          "name": "松宮 聖",
+          "captain": false
+        },
+        {
+          "no": 6,
+          "pos": "MF",
+          "name": "下吉 洸平",
+          "captain": true
+        },
+        {
+          "no": 7,
+          "pos": "MF",
+          "name": "木下 晴天",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "MF",
+          "name": "千葉 大輔",
+          "captain": false
+        },
+        {
+          "no": 10,
+          "pos": "MF",
+          "name": "広瀬 怜音",
+          "captain": false
+        },
+        {
+          "no": 16,
+          "pos": "MF",
+          "name": "ゼイナー 大耀",
+          "captain": false
+        },
+        {
+          "no": 9,
+          "pos": "FW",
+          "name": "古賀 大雅",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 26,
+          "pos": "GK",
+          "name": "高居 丈流",
+          "captain": false
+        },
+        {
+          "no": 13,
+          "pos": "DF",
+          "name": "中山 太輝",
+          "captain": false
+        },
+        {
+          "no": 23,
+          "pos": "DF",
+          "name": "渡部 直宏",
+          "captain": false
+        },
+        {
+          "no": 33,
+          "pos": "DF",
+          "name": "庄司 瑛人",
+          "captain": false
+        },
+        {
+          "no": 28,
+          "pos": "MF",
+          "name": "小泉 英寿",
+          "captain": false
+        },
+        {
+          "no": 11,
+          "pos": "FW",
+          "name": "鈴木 暖人",
+          "captain": false
+        },
+        {
+          "no": 22,
+          "pos": "FW",
+          "name": "沼田 晃人",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "16 ゼイナー 大耀",
+          "in": "23 渡部 直宏",
+          "minute": "51分"
+        },
+        {
+          "out": "8 千葉 大輔",
+          "in": "13 中山 太輝",
+          "minute": "61分"
+        },
+        {
+          "out": "9 古賀 大雅",
+          "in": "11 鈴木 暖人",
+          "minute": "61分"
+        },
+        {
+          "out": "7 木下 晴天",
+          "in": "22 沼田 晃人",
+          "minute": "78分"
         }
       ]
     }

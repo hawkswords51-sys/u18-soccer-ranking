@@ -130,26 +130,26 @@
     {
       "rank": 7,
       "team": "帝京長岡",
-      "pts": 22,
-      "played": 17,
-      "won": 7,
+      "pts": 25,
+      "played": 18,
+      "won": 8,
       "drawn": 1,
       "lost": 9,
-      "gf": 37,
+      "gf": 40,
       "ga": 35,
-      "gd": 2
+      "gd": 5
     },
     {
       "rank": 8,
       "team": "東京ヴェルディユース",
       "pts": 22,
-      "played": 17,
+      "played": 18,
       "won": 6,
       "drawn": 4,
-      "lost": 7,
+      "lost": 8,
       "gf": 30,
-      "ga": 36,
-      "gd": -6
+      "ga": 39,
+      "gd": -9
     },
     {
       "rank": 9,
@@ -3341,12 +3341,27 @@
       "md": 18,
       "date": "2026-10-18",
       "home": "帝京長岡",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "東京ヴェルディユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "十日町市当間多目的グラウンド(クロアチアピッチ)",
-      "kickoff": "13:00"
+      "kickoff": "13:00",
+      "homeScorers": [
+        {
+          "minute": "1",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "65",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "79",
+          "name": "児山 雅稀"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 18,
@@ -3358,6 +3373,7 @@
       "status": "played",
       "venue": "ゼロワットパワーフィールド柏",
       "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1801.pdf",
       "homeScorers": [
         {
           "minute": "32",
@@ -3388,6 +3404,7 @@
       "status": "played",
       "venue": "横浜ＦＣ・LEOCトレーニングセンター(人工芝)",
       "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1804.pdf",
       "homeScorers": [
         {
           "minute": "20",
@@ -3413,7 +3430,7 @@
         },
         {
           "minute": "85",
-          "name": "福地 将太"
+          "name": "鎌田 真輝"
         }
       ]
     },
