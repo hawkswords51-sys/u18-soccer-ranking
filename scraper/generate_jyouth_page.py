@@ -433,8 +433,21 @@ def _round_names(num_levels):
     return head + tail
 
 
-def render_bracket_svg(sections):
-    """「## トーナメント表（組み合わせ）」があればSVGトーナメント表のHTMLを返す。無ければ空文字。"""
+def rank_tspan(name, rank_of, used):
+    """[2026-10-18] 校名の直後に付ける「県内◯位」等の小さな灰色文字（<tspan>）。
+    rank_of＝校名→「県内2位」「2部5位」or None（県ページだけが渡す）。出した文言は used に入れる（注記用）。"""
+    if not rank_of:
+        return ""
+    r = rank_of(name)
+    if not r:
+        return ""
+    used.add(r)
+    return f'<tspan class="bk-rank" dx="4" font-size="9.5" font-weight="400">{html_escape(r)}</tspan>'
+
+
+def render_bracket_svg(sections, rank_of=None):
+    """「## トーナメント表（組み合わせ）」があればSVGトーナメント表のHTMLを返す。無ければ空文字。
+    [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。"""
     lines = None
     for name, ls in sections.items():
         if name.startswith("トーナメント表"):
@@ -535,6 +548,7 @@ def render_bracket_svg(sections):
     ACC = "var(--accent-color,#2563eb)"
 
     S = []
+    rank_used = set()
 
     def line(x1, y1, x2, y2, color, w=1.6):
         S.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
@@ -554,7 +568,7 @@ def render_bracket_svg(sections):
         cls = "bk-won" if won else ("bk-acc" if tid else "bk-team")
         weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
         body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="12.5" '
-                f'class="{cls}"{weight}>{html_escape(label)}</text>')
+                f'class="{cls}"{weight}>{html_escape(label)}{rank_tspan(name, rank_of, rank_used)}</text>')
         if tid:
             body = f'<a href="/teams/{tid}/">{body}</a>'
         S.append(body)
@@ -663,10 +677,10 @@ def render_bracket_svg(sections):
            f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
 
-    return wrap_bracket_svg(svg)
+    return wrap_bracket_svg(svg, rank_used)
 
 
-def wrap_bracket_svg(svg):
+def wrap_bracket_svg(svg, rank_used=None):
     """表(SVG)に、文字色の切替<style>・注記・横スクロールの外枠を付ける。
     [2026-10-15] 階段シードの表（staircase_bracket.py）と見た目をそろえるため、render_bracket_svg から切り出した。"""
     # SVGのfill属性ではCSS変数が効かないため、チーム名の色はclass＋data-themeで切替。
@@ -686,11 +700,30 @@ def wrap_bracket_svg(svg):
         '}'
         '</style>'
     )
+    # [2026-10-18] 校名横に順位を1つでも出した表（県ページ）だけ、順位の色と注記を足す。出さない表は従来と同一。
+    rank_style, rank_note = "", ""
+    if rank_used:
+        rank_style = (
+            '<style>'
+            '.jy-bracket tspan.bk-rank{fill:#6b7280}'
+            '[data-theme="dark"] .jy-bracket tspan.bk-rank{fill:#9ca3af}'
+            '@media (prefers-color-scheme:dark){'
+            ':root:not([data-theme="light"]) .jy-bracket tspan.bk-rank{fill:#9ca3af}'
+            '}'
+            '</style>'
+        )
+        from datetime import date as _date
+        d = _date.today()   # 県ページ冒頭の要約（build_ai_summary）と同じ作り
+        rank_note = (f' ／ 校名横の「県内◯位」＝今季の県内総合順位'
+                     f'（{d.year}年{d.month}月{d.day}日時点・上の順位表と同じ）')
+        if any(r.startswith("2部") for r in rank_used):
+            rank_note += ' ／「2部◯位」＝東京都リーグ2部（T2）の順位'
     return (
-        bracket_style +
+        bracket_style + rank_style +
         '<p style="margin:0 0 8px;color:var(--text-light,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
-        '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）</p>'
+        '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）'
+        + rank_note + '</p>'
         '<div class="jy-bracket" style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
         'background:var(--bg-white,#fff);padding:8px 4px;">'

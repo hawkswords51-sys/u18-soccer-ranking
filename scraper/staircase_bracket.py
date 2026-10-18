@@ -35,7 +35,8 @@ def _build(items):
     return stack[0]
 
 
-def render_staircase_bracket_svg(items, result_lines, round_names):
+def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None):
+    # [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。
     root = _build(items)
     if root is None:
         return ""
@@ -75,6 +76,7 @@ def render_staircase_bracket_svg(items, result_lines, round_names):
     GRAY, RED = "#94a3b8", "var(--danger-color,#dc2626)"
     SUB, ACC = "var(--text-light,#6b7280)", "var(--accent-color,#2563eb)"
     S = []
+    rank_used = set()
 
     def line(x1, y1, x2, y2, c, w=1.6):
         S.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="{c}" '
@@ -90,7 +92,8 @@ def render_staircase_bracket_svg(items, result_lines, round_names):
         cls = "bk-won" if won else ("bk-acc" if tid else "bk-team")
         weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
         body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="12.5" '
-                f'class="{cls}"{weight}>{_J.html_escape(_J._short_label(name))}</text>')
+                f'class="{cls}"{weight}>{_J.html_escape(_J._short_label(name))}'
+                f'{_J.rank_tspan(name, rank_of, rank_used)}</text>')
         if tid:
             body = f'<a href="/teams/{tid}/">{body}</a>'
         S.append(body)
@@ -172,4 +175,4 @@ def render_staircase_bracket_svg(items, result_lines, round_names):
            f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
     # 外枠・注記・文字色の切替は既存の表と同じものを使う（見た目をそろえる）
-    return _J.wrap_bracket_svg(svg)
+    return _J.wrap_bracket_svg(svg, rank_used)
