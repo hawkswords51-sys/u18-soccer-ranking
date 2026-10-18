@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E",
   "sourceName": "広島県サッカー協会 公式（SportsOnline）",
-  "lastUpdated": "2026-10-18",
+  "lastUpdated": "2026-10-19",
   "teams": [
     {
       "name": "瀬戸内セカンド",
@@ -74,14 +74,14 @@
     {
       "rank": 3,
       "team": "如水館",
-      "points": 31,
-      "played": 14,
-      "won": 10,
+      "points": 34,
+      "played": 15,
+      "won": 11,
       "drawn": 1,
       "lost": 3,
-      "gf": 44,
+      "gf": 49,
       "ga": 21,
-      "gd": 23
+      "gd": 28
     },
     {
       "rank": 4,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "銀河学院",
       "points": 7,
-      "played": 13,
+      "played": 14,
       "won": 2,
       "drawn": 1,
-      "lost": 10,
+      "lost": 11,
       "gf": 13,
-      "ga": 29,
-      "gd": -16
+      "ga": 34,
+      "gd": -21
     }
   ],
   "matches": [
@@ -986,12 +986,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "銀河学院",
-      "hs": null,
-      "as": null,
-      "away": "如水館",
-      "status": "scheduled"
+      "date": "2026-10-11",
+      "home": "如水館",
+      "hs": 5,
+      "as": 0,
+      "away": "銀河学院",
+      "status": "played",
+      "venue": "エヴォルヴィン"
     },
     {
       "md": 0,
@@ -1076,13 +1077,13 @@
     },
     {
       "team": "如水館",
-      "won": 10,
+      "won": 11,
       "lost": 3,
       "drawn": 1,
-      "pts": 31,
-      "gf": 44,
+      "pts": 34,
+      "gf": 49,
       "ga": 21,
-      "played": 14
+      "played": 15
     },
     {
       "team": "沼田",
@@ -1147,12 +1148,12 @@
     {
       "team": "銀河学院",
       "won": 2,
-      "lost": 10,
+      "lost": 11,
       "drawn": 1,
       "pts": 7,
       "gf": 13,
-      "ga": 29,
-      "played": 13
+      "ga": 34,
+      "played": 14
     }
   ]
 }
