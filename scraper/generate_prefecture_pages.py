@@ -587,7 +587,8 @@ def _render_ordered_base_bracket(rounds, rank_of=None):
         return _render_staircase_from_rounds(rounds, i, base, seeds, rank_of)
     # [2026-10-16] シードが1回戦遅れて入り、枠が16（試合8＋シード8 など）になる大会（長野が最初）。
     #   従来の部品は8枠・4枠しか組まないので、階段状シード用の部品で描く（ほかの県は従来どおり）。
-    if seeds and len(base) + len(seeds) == 16:
+    #   [2026-10-19] 枠32（試合16＋シード16＝兵庫の決勝ラウンド）も同じ部品で描く。
+    if seeds and len(base) + len(seeds) in (16, 32):
         return _render_staircase_from_rounds(rounds, i, base, seeds, rank_of)
     if len(base) + len(seeds) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
         return ""
@@ -633,7 +634,8 @@ def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None):
         if _is_placement_round(r.get("name", "")):
             continue
         nm = re.split(r"[（(]", r.get("name", ""))[0].strip()
-        nm = re.sub(r"^(決勝トーナメント|決勝ラウンド|中央トーナメント|2次予選|二次予選)\s*", "", nm)
+        # [2026-10-19] 兵庫は出典の回戦名が「決勝ラウンドラウンド1回戦」（ラウンドが重なる）なので、重なりも外す
+        nm = re.sub(r"^(決勝トーナメント|決勝ラウンド(?:ラウンド)?|中央トーナメント|2次予選|二次予選)\s*", "", nm)
         names.append(nm)
         for x in r.get("matches", []):
             mm = _bracket_parse_match(x)
