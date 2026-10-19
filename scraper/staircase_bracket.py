@@ -35,8 +35,9 @@ def _build(items):
     return stack[0]
 
 
-def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None):
+def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None, round_dates=None):
     # [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。
+    # [2026-10-19] round_dates＝列名のリスト→列ごとの日付のリストを返す関数（県ページ用）。列見出しの下に日付を出す。
     root = _build(items)
     if root is None:
         return ""
@@ -69,6 +70,10 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None)
     solve(root)
 
     LABEL_W, LVL_W, ROW_H, TOP, CENTER_GAP = 190, 72, 28, 60, 168
+    dates = list(round_dates(round_names)) if round_dates else []
+    has_dates = any(dates)
+    if has_dates:
+        TOP += _J.DATE_ROW_H                 # 日付行を出すときだけ表を下げる
     wing_levels = R - 1
     width = 2 * (LABEL_W + wing_levels * LVL_W) + CENTER_GAP
     cx = width / 2
@@ -156,6 +161,14 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None)
         text((x0 + xsL[k]) / 2 + LVL_W / 2 - 8, 36, round_names[k], "middle", 12, SUB, "600")
         text(width - ((x0 + xsL[k]) / 2 + LVL_W / 2 - 8), 36, round_names[k], "middle", 12, SUB, "600")
     text(cx, 36, round_names[-1], "middle", 13, SUB, "700")
+    if has_dates:
+        for k in range(wing_levels):
+            if dates[k]:
+                x0 = LABEL_W if k == 0 else xsL[k - 1]
+                text((x0 + xsL[k]) / 2 + LVL_W / 2 - 8, 51, dates[k], "middle", 10, SUB, "400")
+                text(width - ((x0 + xsL[k]) / 2 + LVL_W / 2 - 8), 51, dates[k], "middle", 10, SUB, "400")
+        if dates[-1]:
+            text(cx, 51, dates[-1], "middle", 10, SUB, "400")
 
     ymid = (semiL["yj"] + semiR["yj"]) / 2
     lr = bool(champ) and champ == winner_of(semiL)

@@ -6,6 +6,7 @@ year: 2026
 category: 選手権予選
 status: 開催前
 source: https://koko-soccer.com/score/4449
+round_dates: 準々決勝=10/31, 準決勝=11/7, 決勝=11/14
 ---
 
 <!--

@@ -380,7 +380,49 @@ def _is_placement_round(name: str) -> bool:
     return ("位決定" in n) or ("順位決定" in n)
 
 
-def render_tournament_bracket_svg(rounds, rank_of=None):
+def _heading_date(name):
+    """[2026-10-19] 回戦見出しの括弧の中の日付（「3回戦（10/24・10/25）」→「10/24・10/25」）。
+    「・シード登場」のような日付以外の語は外す（表の列の幅に収めるため）。無ければ ''。"""
+    m = re.search(r"[（(]([^）)]*)[）)]", name or "")
+    if not m:
+        return ""
+    ds = [x.strip() for x in m.group(1).split("・") if re.fullmatch(r"\d{1,2}/\d{1,2}", x.strip())]
+    return "・".join(ds)
+
+
+def _parse_round_dates(s):
+    """[2026-10-19] frontmatter `round_dates: 準々決勝=10/31・11/1, 準決勝=11/8, 決勝=11/14` → {列名: 日付}"""
+    out = {}
+    for part in (s or "").split(","):
+        if "=" in part:
+            k, v = part.split("=", 1)
+            if k.strip() and v.strip():
+                out[k.strip()] = v.strip()
+    return out
+
+
+def _col_dates(rounds, i, rd):
+    """[2026-10-19] 表の列（外側→決勝）ごとの日付を返す関数を作る（描画部品の round_dates に渡す）。
+    列0＝土台の回戦 rounds[i]、そこから内側へ md の後ろの回戦見出しを順に対応させる（順位決定戦は除く・
+    試合行0件の見出しも使う）。見出しが足りない／日付が無い列は frontmatter の round_dates を列名で引く。
+    rd が None（県ページ以外）なら None＝日付行を出さない。"""
+    if rd is None:
+        return None
+    after = [r for r in rounds[i:] if not _is_placement_round(r.get("name", ""))]
+
+    def f(names):
+        out = []
+        for k, cn in enumerate(names):
+            d = _heading_date(after[k]["name"]) if k < len(after) else ""
+            d = d or rd.get(cn, "")
+            ds = d.split("・")
+            # 3日以上にまたがる回戦（和歌山の2回戦＝10/23・10/24・10/25）は列の幅を超えて隣の日付と重なるので「最初〜最後」に縮める
+            out.append(f"{ds[0]}〜{ds[-1]}" if len(ds) >= 3 else d)
+        return out
+    return f
+
+
+def render_tournament_bracket_svg(rounds, rank_of=None, rd=None):
     """各回戦の結果(rounds=[{'name','matches':[raw,...]}])から、終盤の山順を自動再構成して
     トーナメント表(SVG)を返す。ベスト16(末尾[8,4,2,1])優先、無理ならベスト8([4,2,1])。
     きれいに組めた時(警告なし・優勝確定・行数=2のべき乗)だけ返し、それ以外は '' （＝一覧表示へ）。
@@ -388,14 +430,15 @@ def render_tournament_bracket_svg(rounds, rank_of=None):
     ※3位決定戦・順位決定戦は勝ち上がりの山に属さない（準決勝の敗者同士の1試合）ため、
       山の再構成からは除外する。含めると末尾の試合数が [4,2,1,1] のようになり
       [8,4,2,1]/[4,2,1] のどちらにも一致せず、トーナメント表が出なくなる。"""
-    parsed = []
-    for r in rounds:
+    parsed, pidx = [], []
+    for ri, r in enumerate(rounds):
         if _is_placement_round(r.get("name", "")):
             continue
         ms = [_bracket_parse_match(x) for x in r.get("matches", [])]
         ms = [m for m in ms if m]
         if ms:
             parsed.append(ms)
+            pidx.append(ri)
 
     for need, base_n, shape in ((4, 8, [8, 4, 2, 1]), (3, 4, [4, 2, 1])):
         if len(parsed) < need:
@@ -455,10 +498,10 @@ def render_tournament_bracket_svg(rounds, rank_of=None):
 
         buf2 = _io.StringIO()
         with _contextlib.redirect_stdout(buf2):
-            svg = _bracket.render_bracket_svg(sections, rank_of)
+            svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, pidx[-need], rd))
         if svg and "<svg" in svg:
             return svg
-    return _render_inprogress_bracket_svg(rounds, rank_of)
+    return _render_inprogress_bracket_svg(rounds, rank_of, rd)
 
 
 def _bracket_parse_line(s):
@@ -479,7 +522,7 @@ def _bracket_parse_line(s):
     return {"a": a, "b": b, "sc": None, "winner": None, "sides": (sa, sb), "done": False}
 
 
-def _render_inprogress_bracket_svg(rounds, rank_of=None):
+def _render_inprogress_bracket_svg(rounds, rank_of=None, rd=None):
     """大会途中（決勝前）でも、終盤の山が組めればトーナメント表(SVG)を返す。
     条件：
       ・土台の回戦（8試合＝ベスト16 か 4試合＝ベスト8）が全行「A ◯-◯ B」か「A vs B」（校名確定）
@@ -487,14 +530,15 @@ def _render_inprogress_bracket_svg(rounds, rank_of=None):
         前の回戦のどの試合から来るかを校名（A/B の勝者待ち表記も可）で一意に決められる
       ・決勝の行はまだ無くてもよい（準決勝2試合の勝者同士と決まっている）
     1つでも一意に決まらなければ ''（＝従来の全試合一覧）。"""
-    parsed = []
-    for r in rounds:
+    parsed, pidx = [], []
+    for ri, r in enumerate(rounds):
         if _is_placement_round(r.get("name", "")):
             continue
         ms = [_bracket_parse_line(x) for x in r.get("matches", [])]
         ms = [m for m in ms if m]
         if ms:
             parsed.append(ms)
+            pidx.append(ri)
     counts = [len(x) for x in parsed]
 
     for base_n, chain in ((8, [8, 4, 2]), (4, [4, 2])):
@@ -565,7 +609,7 @@ def _render_inprogress_bracket_svg(rounds, rank_of=None):
             buf = _io.StringIO()
             with _contextlib.redirect_stdout(buf):
                 pairs = _bracket.parse_bracket_pairs(pair_lines)
-                svg = _bracket.render_bracket_svg(sections, rank_of)
+                svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, pidx[i], rd))
             if buf.getvalue().strip() or len(pairs) != base_n:
                 continue
             if svg and "<svg" in svg:
@@ -573,7 +617,7 @@ def _render_inprogress_bracket_svg(rounds, rank_of=None):
     return ""
 
 
-def _render_ordered_base_bracket(rounds, rank_of=None):
+def _render_ordered_base_bracket(rounds, rank_of=None, rd=None):
     """[2026-10-14] md に公式の山順コメント（`<!-- 山順`）が付いた回戦を土台に、その並びのまま表を組む。
     土台＝bracket_order の付いた最後の回戦（8試合 or 4試合・全行の両校が確定）。
     結果＝その回戦以降の確定試合すべて。警告が出たら ''（＝呼び出し側で従来の描画へ）。
@@ -585,12 +629,12 @@ def _render_ordered_base_bracket(rounds, rank_of=None):
     base = [_bracket_parse_line(x) for x in rounds[i].get("matches", [])]
     seeds = rounds[i].get("seeds", [])
     if any(d >= 2 for _, _, d in seeds):
-        return _render_staircase_from_rounds(rounds, i, base, seeds, rank_of)
+        return _render_staircase_from_rounds(rounds, i, base, seeds, rank_of, rd)
     # [2026-10-16] シードが1回戦遅れて入り、枠が16（試合8＋シード8 など）になる大会（長野が最初）。
     #   従来の部品は8枠・4枠しか組まないので、階段状シード用の部品で描く（ほかの県は従来どおり）。
     #   [2026-10-19] 枠32（試合16＋シード16＝兵庫の決勝ラウンド）も同じ部品で描く。
     if seeds and len(base) + len(seeds) in (16, 32):
-        return _render_staircase_from_rounds(rounds, i, base, seeds, rank_of)
+        return _render_staircase_from_rounds(rounds, i, base, seeds, rank_of, rd)
     if len(base) + len(seeds) not in (8, 4) or any(m is None or m["a"] is None or m["b"] is None for m in base):
         return ""
     # [2026-10-15] シード校（次の回戦から登場）は「- 校名」の1行として、md に書かれた位置に差し込む（香川が最初）
@@ -611,13 +655,13 @@ def _render_ordered_base_bracket(rounds, rank_of=None):
     buf = _io.StringIO()
     with _contextlib.redirect_stdout(buf):
         pairs = _bracket.parse_bracket_pairs(pair_lines)
-        svg = _bracket.render_bracket_svg(sections, rank_of)
+        svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, i, rd))
     if buf.getvalue().strip() or len(pairs) != len(base) + len(seeds):
         return ""
     return svg if svg and "<svg" in svg else ""
 
 
-def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None):
+def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None, rd=None):
     """[2026-10-15] シードが2回戦以上遅れて登場する大会（群馬の選手権など）。
     md の書き方：山順の回戦の中に、公式表の上から順に試合行と
     `<!-- シード: 校名 -->`（次の回戦から）／`<!-- シード2: 校名 -->`（2回戦あと）／`<!-- シード3: … -->` を並べる。
@@ -652,7 +696,7 @@ def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None):
         while len(names) < _need:
             k = _need - len(names)            # 残り何回戦分足りないか（決勝から数えて）
             names.append(_tail[-k] if k <= 3 else f"{len(names) + 1}回戦")
-    return render_staircase_bracket_svg(items, res_lines, names, rank_of)
+    return render_staircase_bracket_svg(items, res_lines, names, rank_of, _col_dates(rounds, i, rd))
 
 
 def _raw_winner(line):
@@ -668,7 +712,7 @@ def _raw_winner(line):
     return m.group(1).strip() if ga > gb else m.group(6).strip()
 
 
-def _render_block_brackets_body(blocks, rounds, rounds_html, pref_name="", rank_of=None):
+def _render_block_brackets_body(blocks, rounds, rounds_html, pref_name="", rank_of=None, rd=None):
     """[2026-10-14] 代表が複数枠でブロックごとに優勝校が出る大会（東京の選手権）の本文。
     ①案内文 ②ブロックごとの箱（表が組めれば表＋全試合の折りたたみ） ③1次予選の折りたたみ。"""
     def _key(name):
@@ -692,7 +736,7 @@ def _render_block_brackets_body(blocks, rounds, rounds_html, pref_name="", rank_
                     w = _raw_winner(m)
                     if w:
                         rep = f' <span class="tournament-block__rep">🏆 代表：{w}</span>'
-        svg = _render_ordered_base_bracket(brs, rank_of) or render_tournament_bracket_svg(brs, rank_of)
+        svg = _render_ordered_base_bracket(brs, rank_of, rd) or render_tournament_bracket_svg(brs, rank_of, rd)
         list_html = rounds_html(brs, strip=b)
         if svg:
             inner = (
@@ -1043,10 +1087,12 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
         #   block_brackets が無い大会は下の従来処理。ただし山順コメント（`<!-- 山順`）が付いた回戦があれば、
         #   公式の並びで表を作る（2026-10-15 Kei決定・神奈川の選手権が最初。無ければ従来の自動再構成）。
         blocks = [b.strip() for b in metadata.get("block_brackets", "").split(",") if b.strip()]
+        # [2026-10-19] 表の列見出しの下に出す日付（md の見出しの日付が優先・無い列は frontmatter の round_dates）
+        _rd = _parse_round_dates(metadata.get("round_dates", ""))
         if blocks:
-            body_html = _render_block_brackets_body(blocks, rounds, _rounds_html, pref_name, rank_of)
+            body_html = _render_block_brackets_body(blocks, rounds, _rounds_html, pref_name, rank_of, _rd)
         # 終盤(ベスト16/8)をトーナメント表で表示できるなら、表＋全試合は折りたたみに
-        elif (bracket_svg := (_render_ordered_base_bracket(rounds, rank_of) or render_tournament_bracket_svg(rounds, rank_of))):
+        elif (bracket_svg := (_render_ordered_base_bracket(rounds, rank_of, _rd) or render_tournament_bracket_svg(rounds, rank_of, _rd))):
             body_html = (
                 f'        <div class="tournament-bracket-wrap">\n{bracket_svg}\n        </div>\n'
                 f'        <details class="tournament-fulllist">\n'

@@ -445,9 +445,15 @@ def rank_tspan(name, rank_of, used):
     return f'<tspan class="bk-rank" dx="4" font-size="9.5" font-weight="400">{html_escape(r)}</tspan>'
 
 
-def render_bracket_svg(sections, rank_of=None):
+# [2026-10-19] 列見出しの下に日付を出すとき、表全体を下げる量（県ページのみ）
+DATE_ROW_H = 14
+
+
+def render_bracket_svg(sections, rank_of=None, round_dates=None):
     """「## トーナメント表（組み合わせ）」があればSVGトーナメント表のHTMLを返す。無ければ空文字。
-    [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。"""
+    [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。
+    [2026-10-19] round_dates＝列名のリスト（外側→決勝）を受け取り、列ごとの日付文字列のリストを返す関数（県ページ用）。
+      渡すと列見出しの下に日付を出す。渡さない・全部空なら従来と同一の出力。"""
     lines = None
     for name, ls in sections.items():
         if name.startswith("トーナメント表"):
@@ -464,12 +470,14 @@ def render_bracket_svg(sections, rank_of=None):
     num_levels = len(levels)
     wing_levels = num_levels - 1
     names = _round_names(num_levels)
+    dates = list(round_dates(names)) if round_dates else []
+    has_dates = any(dates)
 
     # ---- レイアウト定数（大きめ・読みやすさ優先） ----
     LABEL_W = 190
     LVL_W = 72
     ROW_H = 28
-    TOP = 60
+    TOP = 60 + (DATE_ROW_H if has_dates else 0)   # 日付行を出すときだけ表を下げる
     CENTER_GAP = 168
     width = 2 * (LABEL_W + wing_levels * LVL_W) + CENTER_GAP
     cx = width / 2
@@ -580,6 +588,15 @@ def render_bracket_svg(sections, rank_of=None):
         x_prevR = width - LABEL_W if k == 0 else xsR[k - 1]
         text((x_prevR + xsR[k]) / 2 - LVL_W / 2 + 8, 36, names[k], "middle", 12, SUB, "600")
     text(cx, 36, names[-1], "middle", 13, SUB, "700")
+    if has_dates:
+        for k in range(wing_levels):
+            if dates[k]:
+                x_prev = LABEL_W if k == 0 else xsL[k - 1]
+                text((x_prev + xsL[k]) / 2 + LVL_W / 2 - 8, 51, dates[k], "middle", 10, SUB, "400")
+                x_prevR = width - LABEL_W if k == 0 else xsR[k - 1]
+                text((x_prevR + xsR[k]) / 2 - LVL_W / 2 + 8, 51, dates[k], "middle", 10, SUB, "400")
+        if dates[-1]:
+            text(cx, 51, dates[-1], "middle", 10, SUB, "400")
 
     # ---- 翼の描画 ----
     def draw_wing(side):
