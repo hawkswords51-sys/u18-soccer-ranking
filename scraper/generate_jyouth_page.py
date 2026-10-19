@@ -714,7 +714,7 @@ def wrap_bracket_svg(svg, rank_used=None):
         )
         from datetime import date as _date
         d = _date.today()   # 県ページ冒頭の要約（build_ai_summary）と同じ作り
-        rank_note = (f' ／ 校名横の「県内◯位」＝今季の県内総合順位'
+        rank_note = (f'<br>校名横の「県内◯位」＝今季の県内総合順位'
                      f'（{d.year}年{d.month}月{d.day}日時点・下の順位表と同じ）')
         if any(r.startswith("2部") for r in rank_used):
             rank_note += ' ／「2部◯位」＝東京都リーグ2部（T2）の順位'
