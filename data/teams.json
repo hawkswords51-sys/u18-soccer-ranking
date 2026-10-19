@@ -7295,11 +7295,27 @@
         "leagueRank": 3
       },
       {
+        "id": "wa005",
+        "name": "近大新宮高校",
+        "league": "和歌山県JFA U-18サッカーリーグ",
+        "rank": 4,
+        "points": 31,
+        "played": 17,
+        "won": 10,
+        "drawn": 1,
+        "lost": 6,
+        "goalsFor": 43,
+        "goalsAgainst": 33,
+        "prefectureRank": 4,
+        "goalDiff": 10,
+        "leagueRank": 4
+      },
+      {
         "id": "wa011",
         "name": "桐蔭高校",
         "league": "和歌山県JFA U-18サッカーリーグ",
-        "rank": 4,
-        "prefectureRank": 4,
+        "rank": 5,
+        "prefectureRank": 5,
         "points": 30,
         "played": 17,
         "won": 10,
@@ -7308,22 +7324,6 @@
         "goalsFor": 65,
         "goalsAgainst": 25,
         "goalDiff": 40,
-        "leagueRank": 4
-      },
-      {
-        "id": "wa005",
-        "name": "近大新宮高校",
-        "league": "和歌山県JFA U-18サッカーリーグ",
-        "rank": 5,
-        "points": 28,
-        "played": 16,
-        "won": 9,
-        "drawn": 1,
-        "lost": 6,
-        "goalsFor": 38,
-        "goalsAgainst": 33,
-        "prefectureRank": 5,
-        "goalDiff": 5,
         "leagueRank": 5
       },
       {
@@ -7332,14 +7332,14 @@
         "league": "和歌山県JFA U-18サッカーリーグ",
         "rank": 6,
         "points": 22,
-        "played": 16,
+        "played": 17,
         "won": 7,
         "drawn": 1,
-        "lost": 8,
+        "lost": 9,
         "goalsFor": 33,
-        "goalsAgainst": 54,
+        "goalsAgainst": 59,
         "prefectureRank": 6,
-        "goalDiff": -21,
+        "goalDiff": -26,
         "leagueRank": 6
       },
       {
@@ -11304,8 +11304,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-10-19 20:32",
+    "lastUpdated": "2026-10-20 05:09",
     "year": 2026,
-    "updatedCount": 0
+    "updatedCount": 389
   }
 }

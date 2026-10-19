@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.wfa.or.jp/pages/350/",
   "sourceName": "和歌山県サッカー協会 公式",
-  "lastUpdated": "2026-10-19",
+  "lastUpdated": "2026-10-20",
   "teams": [
     {
       "name": "近大和歌山",
@@ -85,6 +85,18 @@
     },
     {
       "rank": 4,
+      "team": "近大新宮",
+      "points": 31,
+      "played": 17,
+      "won": 10,
+      "drawn": 1,
+      "lost": 6,
+      "gf": 43,
+      "ga": 33,
+      "gd": 10
+    },
+    {
+      "rank": 5,
       "team": "桐蔭",
       "points": 30,
       "played": 17,
@@ -96,28 +108,16 @@
       "gd": 40
     },
     {
-      "rank": 5,
-      "team": "近大新宮",
-      "points": 28,
-      "played": 16,
-      "won": 9,
-      "drawn": 1,
-      "lost": 6,
-      "gf": 38,
-      "ga": 33,
-      "gd": 5
-    },
-    {
       "rank": 6,
       "team": "田辺",
       "points": 22,
-      "played": 16,
+      "played": 17,
       "won": 7,
       "drawn": 1,
-      "lost": 8,
+      "lost": 9,
       "gf": 33,
-      "ga": 54,
-      "gd": -21
+      "ga": 59,
+      "gd": -26
     },
     {
       "rank": 7,
@@ -614,10 +614,10 @@
       "md": 15,
       "date": "2026-10-17",
       "home": "田辺",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 5,
       "away": "近大新宮",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 10,
@@ -1006,7 +1006,7 @@
       "team": "田辺",
       "pts": 22,
       "gf": 33,
-      "ga": 54,
+      "ga": 59,
       "rank": 6
     },
     {
@@ -1014,14 +1014,14 @@
       "pts": 30,
       "gf": 65,
       "ga": 25,
-      "rank": 4
+      "rank": 5
     },
     {
       "team": "近大新宮",
-      "pts": 28,
-      "gf": 38,
+      "pts": 31,
+      "gf": 43,
       "ga": 33,
-      "rank": 5
+      "rank": 4
     },
     {
       "team": "海南",
