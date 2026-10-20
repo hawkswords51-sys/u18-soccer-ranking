@@ -6,7 +6,7 @@
  "region": "東北",
  "source": "https://fa-akita.net/17086/",
  "sourceName": "秋田県サッカー協会 3種（PDF）",
- "lastUpdated": "2026-10-06",
+ "lastUpdated": "2026-10-20",
  "teams": [
   {
    "name": "FC Estrella A",
@@ -17,12 +17,12 @@
    "short": "FCあきた"
   },
   {
-   "name": "YFCセレジェスタA",
-   "short": "YFCセレジェスタA"
-  },
-  {
    "name": "スポルティフ秋田B",
    "short": "スポルティフ秋田B"
+  },
+  {
+   "name": "YFCセレジェスタA",
+   "short": "YFCセレジェスタA"
   },
   {
    "name": "神岡FC",
@@ -68,6 +68,18 @@
   },
   {
    "rank": 3,
+   "team": "スポルティフ秋田B",
+   "points": 27,
+   "played": 14,
+   "won": 9,
+   "drawn": 0,
+   "lost": 5,
+   "gf": 54,
+   "ga": 15,
+   "gd": 39
+  },
+  {
+   "rank": 4,
    "team": "YFCセレジェスタA",
    "points": 25,
    "played": 14,
@@ -79,28 +91,16 @@
    "gd": 19
   },
   {
-   "rank": 4,
-   "team": "スポルティフ秋田B",
-   "points": 24,
-   "played": 13,
-   "won": 8,
-   "drawn": 0,
-   "lost": 5,
-   "gf": 50,
-   "ga": 14,
-   "gd": 36
-  },
-  {
    "rank": 5,
    "team": "神岡FC",
-   "points": 17,
-   "played": 12,
+   "points": 18,
+   "played": 14,
    "won": 5,
-   "drawn": 2,
-   "lost": 5,
-   "gf": 34,
-   "ga": 24,
-   "gd": 10
+   "drawn": 3,
+   "lost": 6,
+   "gf": 37,
+   "ga": 30,
+   "gd": 7
   },
   {
    "rank": 6,
@@ -117,13 +117,13 @@
   {
    "rank": 7,
    "team": "十文字ＦＣ",
-   "points": 7,
-   "played": 13,
+   "points": 8,
+   "played": 14,
    "won": 2,
-   "drawn": 1,
+   "drawn": 2,
    "lost": 10,
-   "gf": 15,
-   "ga": 51,
+   "gf": 17,
+   "ga": 53,
    "gd": -36
   },
   {
@@ -684,19 +684,20 @@
    "md": 9,
    "date": "2026-10-12",
    "home": "神岡FC",
-   "hs": null,
-   "as": null,
+   "hs": 1,
+   "as": 4,
    "away": "スポルティフ秋田B",
-   "status": "scheduled"
+   "status": "played",
+   "venue": "中川原グラウンド"
   },
   {
    "md": 14,
    "date": "2026-10-17",
    "home": "神岡FC",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 2,
    "away": "十文字ＦＣ",
-   "status": "scheduled",
+   "status": "played",
    "venue": "中川原グラウンド"
   }
  ]
