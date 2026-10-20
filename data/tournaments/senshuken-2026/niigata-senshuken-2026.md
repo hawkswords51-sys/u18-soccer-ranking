@@ -44,7 +44,7 @@ scraper/update_tournament_results.py が上の source から
 - 新井 0-6 新潟南
 - 敬和学園 4-0 十日町
 - 合同B 0-7 上越総合技術
-- 新潟一 1-6 五泉
+- 新潟一 6-1 五泉
 - 新潟商 13-0 合同A
 - 新潟向陽 5-3 関根学園
 - 巻 2-1 万代
@@ -52,7 +52,6 @@ scraper/update_tournament_results.py が上の source から
 
 ## 3回戦（10/17・10/18）
 
-- 新潟西 vs 五泉
 - 新潟商 0-3 中越
 - 新潟明訓 13-0 新発田
 - 長岡向陵 0-7 北越
