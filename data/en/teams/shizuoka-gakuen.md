@@ -69,5 +69,6 @@ Three things explain the record.
 Players worth knowing in the 2026 season:
 
 - **HAYASHI Kanata** (defender, third year, no. 4 at the Inter-High) — played every minute of the Inter-High title run and was called up to the U-17 Japan national team for the first time in September 2026.
+- **MATSUNAGA Yuki** (midfielder, third year, no. 10) — a dribbler from Kanagawa who came through Shonan Bellmare's under-15 team. On 21 October 2026 Yokohama FC announced that he will join them from 2027.
 
 The Inter-High's leading scorer and the forward who scored the winner in the final have no English spelling published by the JFA or the J.League, so they are not named here.
