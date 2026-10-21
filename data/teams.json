@@ -9041,10 +9041,28 @@
         "leagueRank": 9
       },
       {
+        "name": "愛媛FC U-18 2nd",
+        "league": "愛媛県E1リーグ",
+        "points": 37,
+        "played": 15,
+        "won": 12,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 56,
+        "goalsAgainst": 9,
+        "leagueRank": 1,
+        "rank": 5,
+        "prefectureRank": 5,
+        "aliases": [
+          "愛媛FCU-18S",
+          "愛媛FCU-18 S"
+        ]
+      },
+      {
         "id": "eh006",
         "name": "帝京第五高校",
         "league": "愛媛県E1リーグ",
-        "rank": 5,
+        "rank": 6,
         "points": 37,
         "played": 15,
         "won": 12,
@@ -9052,27 +9070,9 @@
         "lost": 2,
         "goalsFor": 48,
         "goalsAgainst": 6,
-        "prefectureRank": 5,
-        "goalDiff": 42,
-        "leagueRank": 1
-      },
-      {
-        "name": "愛媛FC U-18 2nd",
-        "league": "愛媛県E1リーグ",
-        "points": 34,
-        "played": 14,
-        "won": 11,
-        "drawn": 1,
-        "lost": 2,
-        "goalsFor": 49,
-        "goalsAgainst": 9,
-        "leagueRank": 2,
-        "rank": 6,
         "prefectureRank": 6,
-        "aliases": [
-          "愛媛FCU-18S",
-          "愛媛FCU-18 S"
-        ]
+        "goalDiff": 42,
+        "leagueRank": 2
       },
       {
         "id": "eh011",
@@ -9111,12 +9111,12 @@
         "name": "FC今治U-18 2nd",
         "league": "愛媛県E1リーグ",
         "points": 18,
-        "played": 14,
+        "played": 15,
         "won": 6,
         "drawn": 0,
-        "lost": 8,
+        "lost": 9,
         "goalsFor": 29,
-        "goalsAgainst": 28,
+        "goalsAgainst": 35,
         "leagueRank": 5,
         "rank": 9,
         "prefectureRank": 9,
@@ -11304,8 +11304,8 @@
     ]
   },
   "_meta": {
-    "lastUpdated": "2026-10-22 00:44",
+    "lastUpdated": "2026-10-22 03:40",
     "year": 2026,
-    "updatedCount": 397
+    "updatedCount": 20
   }
 }

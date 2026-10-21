@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://efa.jp/meeting/second/?y=2026",
   "sourceName": "愛媛県サッカー協会 公式",
-  "lastUpdated": "2026-10-21",
+  "lastUpdated": "2026-10-22",
   "teams": [
     {
       "name": "愛媛FCU-18S",
@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "愛媛FCU-18S",
+      "points": 37,
+      "played": 15,
+      "won": 12,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 56,
+      "ga": 9,
+      "gd": 47
+    },
+    {
+      "rank": 2,
       "team": "帝京第五",
       "points": 37,
       "played": 15,
@@ -58,18 +70,6 @@
       "gf": 48,
       "ga": 6,
       "gd": 42
-    },
-    {
-      "rank": 2,
-      "team": "愛媛FCU-18S",
-      "points": 34,
-      "played": 14,
-      "won": 11,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 49,
-      "ga": 9,
-      "gd": 40
     },
     {
       "rank": 3,
@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "FC今治U-18S",
       "points": 18,
-      "played": 14,
+      "played": 15,
       "won": 6,
       "drawn": 0,
-      "lost": 8,
+      "lost": 9,
       "gf": 29,
-      "ga": 28,
-      "gd": 1
+      "ga": 35,
+      "gd": -6
     },
     {
       "rank": 6,
@@ -234,10 +234,10 @@
     },
     {
       "md": 0,
-      "date": "2026-09-27",
+      "date": "2026-10-18",
       "home": "愛媛FCU-18S",
-      "hs": 4,
-      "as": 2,
+      "hs": 7,
+      "as": 0,
       "away": "FC今治U-18S",
       "status": "played"
     },
@@ -819,12 +819,12 @@
     },
     {
       "md": 0,
-      "date": "2026-10-18",
-      "home": "FC今治U-18S",
-      "hs": null,
-      "as": null,
-      "away": "愛媛FCU-18S",
-      "status": "scheduled"
+      "date": "2026-09-27",
+      "home": "愛媛FCU-18S",
+      "hs": 4,
+      "as": 2,
+      "away": "FC今治U-18S",
+      "status": "played"
     },
     {
       "md": 0,
@@ -983,14 +983,14 @@
   "source_standings": [
     {
       "team": "愛媛FCU-18S",
-      "pts": 34,
-      "played": 14,
-      "won": 11,
+      "pts": 37,
+      "played": 15,
+      "won": 12,
       "drawn": 1,
       "lost": 2,
-      "gf": 49,
+      "gf": 56,
       "ga": 9,
-      "rank": 2
+      "rank": 1
     },
     {
       "team": "帝京第五",
@@ -1001,7 +1001,7 @@
       "lost": 2,
       "gf": 48,
       "ga": 6,
-      "rank": 1
+      "rank": 2
     },
     {
       "team": "済美",
@@ -1072,12 +1072,12 @@
     {
       "team": "FC今治U-18S",
       "pts": 18,
-      "played": 14,
+      "played": 15,
       "won": 6,
       "drawn": 0,
-      "lost": 8,
+      "lost": 9,
       "gf": 29,
-      "ga": 28,
+      "ga": 35,
       "rank": 5
     },
     {
