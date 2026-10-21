@@ -28,7 +28,7 @@
 #       出典の優先順位：J.LEAGUE 選手名鑑の経歴 → クラブ・大学公式 → JFA 選手ページ → 報道 → Wikipedia（最後の手段）。
 #       確認できないものは書かない（空欄）。u15 が2チームのときは「→」でつなぐ。
 # =====================================================================
-updated: 2026-10-14
+updated: 2026-10-21
 
 categories:
   # -------------------------------------------------------------------
@@ -227,33 +227,33 @@ categories:
   # -------------------------------------------------------------------
   - code: u16
     label_en: U-16 Japan National Team
-    event_en: U-16 International Dream Cup 2026 JAPAN
-    period_en: 31 May - 7 June 2026, J-Village, Fukushima
+    event_en: UEFA Friendly matches
+    period_en: 23 October - 4 November 2026, Ayia Napa, Cyprus
     age_note_en: Mostly 1st-year high-school age (born 2010)
     label: U-16日本代表
     age_note: 主に高校1年生相当（2010年生まれ世代）
-    event: U-16インターナショナルドリームカップ2026 JAPAN
-    period: 2026年5月31日〜6月7日／福島・Jヴィレッジ
-    source: https://www.jfa.jp/national_team/u16_2026/news/00036373/
-    note: 招集発表時のメンバー。5/28にGK #12 新村和史（負傷辞退）→小畑颯亮（ガンバ大阪ユース）へ変更。
+    event: UEFA Friendly matches
+    period: 2026年10月23日〜11月4日／キプロス・アヤナパ
+    source: https://www.jfa.jp/national_team/u16_2026/news/00036937/
+    note: 2026/10/20発表の20名。10/27 U-17キプロス、10/30 U-17ルーマニア、11/2 U-17フェロー諸島（現地時間）。監督は廣山望。
     players:
+      - {"no": 12, pos: GK, name: レオン・ユウキ・イトウ・ヴォルピニ, club: RSCアンデルレヒト／ベルギー}
       - {"no": 1,  pos: GK, name: シュルツ 建斗, club: 鹿島アントラーズユース, u15: 鹿島アントラーズつくばジュニアユース}
-      - {"no": 12, pos: GK, name: 新村 和史,   club: RB大宮アルディージャU18, u15: RB大宮アルディージャU15}
-      - {"no": 2,  pos: DF, name: 對馬 羽琉,   club: 川崎フロンターレU-18, u15: 川崎フロンターレU-15生田}
-      - {"no": 3,  pos: DF, name: 大垣 徹平,   club: 清水エスパルスユース, u15: 横浜FC鶴見ジュニアユース}
-      - {"no": 4,  pos: DF, name: 藤田 勇雅,   club: ジェフユナイテッド市原・千葉U-18, u15: GRANDE FC}
+      - {"no": 3,  pos: DF, name: 庄司 瑛人,   club: 東京ヴェルディユース, u15: 東急Sレイエス}
+      - {"no": 4,  pos: DF, name: 中山 柊斗,   club: 横浜F・マリノスユース, u15: 横浜F・マリノスジュニアユース}
+      - {"no": 16, pos: DF, name: ウェバー カイレン, club: 神村学園高, u15: 神村学園中等部}
+      - {"no": 15, pos: DF, name: 貞清 亜門,   club: 柏レイソルU-18, u15: 柏レイソルU-15}
       - {"no": 5,  pos: DF, name: 上野 煌士郎, club: 川崎フロンターレU-15生田, u15: 川崎フロンターレU-15生田}
-      - {"no": 15, pos: DF, name: 中山 柊斗,   club: 横浜F・マリノスユース, u15: 横浜F・マリノスジュニアユース}
-      - {"no": 18, pos: DF, name: 渡部 直宏,   club: 東京ヴェルディユース, u15: 東京ヴェルディジュニアユース}
-      - {"no": 6,  pos: MF, name: 花元 誉絆,   club: ヴィッセル神戸U-18, u15: ヴィッセル神戸U-15}
-      - {"no": 7,  pos: MF, name: 深谷 朔共,   club: 名古屋グランパスU-18, u15: 名古屋グランパスU-15}
-      - {"no": 10, pos: MF, name: 梶山 蓮翔,   club: FC東京U-18, u15: FC東京U-15むさし}
+      - {"no": 18, pos: DF, name: 村上 瑛二郎, club: 清水エスパルスユース, u15: 横浜FC鶴見ジュニアユース}
+      - {"no": 2,  pos: DF, name: 渡部 直宏,   club: 東京ヴェルディユース, u15: 東京ヴェルディジュニアユース}
+      - {"no": 7,  pos: MF, name: 柳田 來空,   club: 山梨学院高, u15: FC古河}
       - {"no": 13, pos: MF, name: 進藤 新大,   club: 柏レイソルU-18, u15: 柏レイソルU-15}
       - {"no": 14, pos: MF, name: 瀬賀 結臣,   club: FC東京U-18, u15: JFAアカデミー福島U-15}
-      - {"no": 16, pos: MF, name: 鮫島 充輝,   club: 名古屋グランパスU-18, u15: FCグランリオ鈴鹿}
       - {"no": 17, pos: MF, name: 伊藤 航,     club: FC東京U-18, u15: FC東京U-15むさし}
-      - {"no": 8,  pos: FW, name: 三井寺 眞,   club: 横浜F・マリノス, u15: FCフォーリクラッセ仙台}
-      - {"no": 9,  pos: FW, name: 高田 憲慎,   club: 帝京大学可児高, u15: FC岐阜U-15}
+      - {"no": 6,  pos: MF, name: 花元 誉絆,   club: ヴィッセル神戸U-18, u15: ヴィッセル神戸U-15}
+      - {"no": 20, pos: MF, name: 礒部 怜夢,   club: 鹿島アントラーズジュニアユース, u15: 鹿島アントラーズジュニアユース}
       - {"no": 11, pos: FW, name: 八色 隼人,   club: 名古屋グランパスU-18, u15: 名古屋グランパスU-15}
-      - {"no": 19, pos: FW, name: 迫田 凌和,   club: RB大宮アルディージャU18, u15: RB大宮アルディージャU15}
-      - {"no": 20, pos: FW, name: オツコロ 海桜, club: 昌平高, u15: FC LAVIDA}
+      - {"no": 10, pos: FW, name: 土井 空芽,   club: 鹿島アントラーズユース, u15: 鹿島アントラーズつくばジュニアユース}
+      - {"no": 8,  pos: FW, name: 三原 大虎,   club: ギラヴァンツ北九州U-18, u15: ギラヴァンツ北九州U-15}
+      - {"no": 19, pos: FW, name: 稲田 凌久,   club: 柏レイソルU-18, u15: 柏レイソルU-15}
+      - {"no": 9,  pos: FW, name: オツコロ 海桜, club: 昌平高, u15: FC LAVIDA}
