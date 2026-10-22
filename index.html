@@ -182,44 +182,29 @@
                 <span id="updateBannerText">最終自動更新: 2026-10-22 12:37（10チーム更新）</span>
             </div>
             <!-- UPDATE_BANNER_END -->
-            <!-- ★ 季節限定：インターハイ本選バナー -->
-            <a href="/tournaments/interhigh-2026/" style="display:flex;align-items:center;gap:14px;margin:16px 0;padding:16px 20px;border-radius:12px;background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
-              <span style="font-size:1.8em;">🏆</span>
-              <span>
-                <span style="display:block;font-weight:700;font-size:1.1em;">インターハイ2026 全国大会 速報・結果</span>
-                <span style="display:block;font-size:0.9em;opacity:0.9;">静岡学園が初優勝！全試合結果・トーナメント表はこちら →</span>
-              </span>
-            </a>
             <!-- ★ PICK UP GAME（毎日自動更新。マーカー間はスクリプトが書き換えるので手で編集しない） -->
             <!-- HOME_PICKUP_START -->
 <section class="hp-sec" aria-label="注目試合の結果">
 <style>
-.hp-sec{--hp-card-bg:rgba(255,255,255,.97);--hp-card-fg:#1e293b;--hp-lg:#1e3a8a;--hp-sc:#1e3a8a;
-  margin:16px 0 26px;border-radius:14px;overflow:hidden;
-  background:linear-gradient(135deg,#1e3a8a,#16295f);box-shadow:0 6px 20px rgba(0,0,0,.18);}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
-    --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
-}
-:root[data-theme="dark"] .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
-  --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
+.hp-sec{margin:10px 0 26px;background:#1e3a8a;color:#f1f5f9;}
 .hp-inner{padding:18px 20px 16px;}
 .hp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 14px;}
-.hp-fire{font-size:1.3rem;line-height:1;}
-.hp-sec h2{margin:0;font-size:1.35rem;color:#fff;letter-spacing:.04em;border:none;padding:0;}
+.hp-sec h2{margin:0;font-size:1.35rem;color:#fff;letter-spacing:.06em;border:none;padding:0;}
 .hp-date{font-size:.82rem;color:rgba(255,255,255,.75);}
-.hp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
-.hp-card{display:block;padding:14px 14px 15px;border-radius:11px;background:var(--hp-card-bg);
-  color:var(--hp-card-fg);text-decoration:none;transition:transform .15s;}
-.hp-card:hover{transform:translateY(-2px);}
+.hp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.18);}
+.hp-card{display:block;padding:14px 4px;color:#f1f5f9;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.18);}
+.hp-card:nth-child(odd){border-right:1px solid rgba(255,255,255,.18);padding-right:18px;}
+.hp-card:nth-child(even){padding-left:18px;}
+.hp-card:hover{background:rgba(255,255,255,.06);}
 .hp-badge{display:block;font-size:.72rem;font-weight:700;letter-spacing:.03em;
-  color:var(--hp-lg);margin-bottom:10px;}
+  color:#93c5fd;margin-bottom:10px;}
 .hp-day{font-size:.7rem;opacity:.6;margin-left:7px;font-weight:400;}
 .hp-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;}
 .hp-tm{font-size:1rem;line-height:1.3;}
 .hp-tm.hp-h{text-align:right;} .hp-tm.hp-a{text-align:left;}
 .hp-rk{display:block;font-size:.66rem;font-weight:600;opacity:.55;}
-.hp-sc{font-weight:800;font-size:1.5rem;color:var(--hp-sc);white-space:nowrap;}
+.hp-sc{font-weight:800;font-size:1.5rem;color:#fbbf24;white-space:nowrap;}
 .hp-sc i{margin:0 3px;opacity:.45;font-weight:400;font-style:normal;}
 .hp-win{font-weight:800;}
 .hp-more{margin:14px 0 0;font-size:.86rem;}
@@ -228,18 +213,20 @@
   .hp-inner{padding:16px 14px 14px;}
   .hp-sec h2{font-size:1.15rem;}
   .hp-grid{grid-template-columns:1fr;}
+  .hp-card:nth-child(odd){border-right:0;padding-right:4px;}
+  .hp-card:nth-child(even){padding-left:4px;}
   .hp-tm{font-size:.95rem;} .hp-sc{font-size:1.35rem;}
 }
 </style>
   <div class="hp-inner">
-  <div class="hp-head"><span class="hp-fire">🔥</span><h2>PICK UP GAME</h2><span class="hp-date">注目カードの結果 ／ 2026年10月17日(土)〜10月18日(日)の試合から</span></div>
+  <div class="hp-head"><h2>注目カードの結果</h2><span class="hp-date">2026年10月17日(土)〜10月18日(日)の試合から</span></div>
   <div class="hp-grid">
     <a class="hp-card" href="/leagues/prince-kanto-2/"><span class="hp-badge">プリンス関東2部<span class="hp-day">10/18(日)</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">2位</span>FC町田ゼルビアユース</span><span class="hp-sc">2<i>-</i>0</span><span class="hp-tm hp-a"><span class="hp-rk">1位</span>横浜F・マリノスユース</span></span></a>
     <a class="hp-card" href="/leagues/premier-east/"><span class="hp-badge">プレミアEAST<span class="hp-day">10/17(土)</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">2位</span>鹿島アントラーズユース</span><span class="hp-sc">4<i>-</i>1</span><span class="hp-tm hp-a"><span class="hp-rk">5位</span>前橋育英</span></span></a>
     <a class="hp-card" href="/leagues/prince-shikoku/"><span class="hp-badge">プリンス四国<span class="hp-day">10/17(土)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">3位</span>高知</span><span class="hp-sc">1<i>-</i>2</span><span class="hp-tm hp-a hp-win"><span class="hp-rk">1位</span>愛媛FC U-18</span></span></a>
     <a class="hp-card" href="/leagues/premier-west/"><span class="hp-badge">プレミアWEST<span class="hp-day">10/17(土)</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">2位</span>名古屋グランパスU-18</span><span class="hp-sc">3<i>-</i>1</span><span class="hp-tm hp-a"><span class="hp-rk">6位</span>米子北</span></span></a>
   </div>
-  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果を見る →</a></p>
+  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果</a></p>
   </div>
 </section>
 <!-- HOME_PICKUP_END -->
@@ -337,46 +324,46 @@
               <input class="hp-nav__r" type="radio" name="hpnav" id="hpnav-u15" aria-label="U-15（中学年代）の大会・順位表を表示">
               <input class="hp-nav__r" type="radio" name="hpnav" id="hpnav-univ" aria-label="大学の大会・順位表を表示">
               <div class="hp-nav__bar">
-                <label for="hpnav-u18">⚽ U-18<span class="hp-nav__sub">（高校年代）</span><span class="hp-nav__n">11</span></label>
-                <label for="hpnav-u16">🔰 U-16<span class="hp-nav__sub">（高校1年）</span><span class="hp-nav__new">NEW</span><span class="hp-nav__n">2</span></label>
-                <label for="hpnav-u15">🧒 U-15<span class="hp-nav__sub">（中学年代）</span><span class="hp-nav__n">3</span></label>
-                <label for="hpnav-univ">🎓 大学<span class="hp-nav__n">4</span></label>
+                <label for="hpnav-u18">U-18<span class="hp-nav__sub">（高校年代）</span><span class="hp-nav__n">11</span></label>
+                <label for="hpnav-u16">U-16<span class="hp-nav__sub">（高校1年）</span><span class="hp-nav__new">NEW</span><span class="hp-nav__n">2</span></label>
+                <label for="hpnav-u15">U-15<span class="hp-nav__sub">（中学年代）</span><span class="hp-nav__n">3</span></label>
+                <label for="hpnav-univ">大学<span class="hp-nav__n">4</span></label>
               </div>
               <div class="hp-nav__panels">
                 <div class="hp-nav__p hp-nav__p--u18">
                   <div class="hp-nav__grid">
-                  <a class="hp-nav__card" href="/tournaments/senshuken-2026/"><span class="hp-nav__ico" aria-hidden="true">❄️</span><span class="hp-nav__tx"><span class="hp-nav__t">全国高校サッカー選手権2026</span><span class="hp-nav__d">第105回。県予選の日程・結果と出場48代表を随時更新</span></span></a>
-                  <a class="hp-nav__card" href="/leagues/"><span class="hp-nav__ico" aria-hidden="true">📊</span><span class="hp-nav__tx"><span class="hp-nav__t">プレミア・プリンスリーグ 順位表</span><span class="hp-nav__d">高円宮杯U-18の全15リーグを毎日自動更新</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/j-youth-cup-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">Jユースカップ2026</span><span class="hp-nav__d">第32回Jリーグユース選手権。組み合わせと結果</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/premier-final-2026/"><span class="hp-nav__ico" aria-hidden="true">🥇</span><span class="hp-nav__tx"><span class="hp-nav__t">プレミアリーグ ファイナル2026</span><span class="hp-nav__d">EAST王者×WEST王者。歴代優勝一覧つき</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/promotion-playoff-2026/"><span class="hp-nav__ico" aria-hidden="true">🔁</span><span class="hp-nav__tx"><span class="hp-nav__t">プレミア参入戦・プリンス参入戦</span><span class="hp-nav__d">12月の昇降格決戦まとめ</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/club-youth-2026/"><span class="hp-nav__ico" aria-hidden="true">🔰</span><span class="hp-nav__tx"><span class="hp-nav__t">クラブユース選手権U-18 2026</span><span class="hp-nav__d">12/23〜29に広島・山口で冬季開催</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/regional-2026/"><span class="hp-nav__ico" aria-hidden="true">⚽</span><span class="hp-nav__tx"><span class="hp-nav__t">地域大会2026</span><span class="hp-nav__d">東北・北信越・東海・中国・四国・九州のまとめ</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/shinjinsen-2026-27/"><span class="hp-nav__ico" aria-hidden="true">🌱</span><span class="hp-nav__tx"><span class="hp-nav__t">新人戦2026-27</span><span class="hp-nav__d">都道府県大会と9地域大会のまとめ</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/interhigh-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">インターハイ2026</span><span class="hp-nav__d">優勝は静岡学園。全試合結果とトーナメント表</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/wakura-youth-2026/"><span class="hp-nav__ico" aria-hidden="true">🌊</span><span class="hp-nav__tx"><span class="hp-nav__t">和倉ユース2026</span><span class="hp-nav__d">優勝は前橋育英。第14回の全順位と全結果</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/u18-calendar-2026/"><span class="hp-nav__ico" aria-hidden="true">📅</span><span class="hp-nav__tx"><span class="hp-nav__t">U-18 年間スケジュール2026</span><span class="hp-nav__d">主要大会をひと続きで見る年間カレンダー</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/senshuken-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">全国高校サッカー選手権2026</span><span class="hp-nav__d">第105回。県予選の日程・結果と出場48代表を随時更新</span></span></a>
+                  <a class="hp-nav__card" href="/leagues/"><span class="hp-nav__tx"><span class="hp-nav__t">プレミア・プリンスリーグ 順位表</span><span class="hp-nav__d">高円宮杯U-18の全15リーグを毎日自動更新</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/j-youth-cup-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">Jユースカップ2026</span><span class="hp-nav__d">第32回Jリーグユース選手権。組み合わせと結果</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/premier-final-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">プレミアリーグ ファイナル2026</span><span class="hp-nav__d">EAST王者×WEST王者。歴代優勝一覧つき</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/promotion-playoff-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">プレミア参入戦・プリンス参入戦</span><span class="hp-nav__d">12月の昇降格決戦まとめ</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/club-youth-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">クラブユース選手権U-18 2026</span><span class="hp-nav__d">12/23〜29に広島・山口で冬季開催</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/regional-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">地域大会2026</span><span class="hp-nav__d">東北・北信越・東海・中国・四国・九州のまとめ</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/shinjinsen-2026-27/"><span class="hp-nav__tx"><span class="hp-nav__t">新人戦2026-27</span><span class="hp-nav__d">都道府県大会と9地域大会のまとめ</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/interhigh-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">インターハイ2026</span><span class="hp-nav__d">優勝は静岡学園。全試合結果とトーナメント表</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/wakura-youth-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">和倉ユース2026</span><span class="hp-nav__d">優勝は前橋育英。第14回の全順位と全結果</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/u18-calendar-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">U-18 年間スケジュール2026</span><span class="hp-nav__d">主要大会をひと続きで見る年間カレンダー</span></span></a>
                   </div>
                 </div>
                 <div class="hp-nav__p hp-nav__p--u16">
                   <div class="hp-nav__grid">
-                  <a class="hp-nav__card" href="/u16/"><span class="hp-nav__ico" aria-hidden="true">📊</span><span class="hp-nav__tx"><span class="hp-nav__t">U-16 ルーキーリーグ 順位表</span><span class="hp-nav__d">9地域20リーグ190チームを毎日自動更新</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/rookie-league-championship-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">MIZUNO CHAMPIONSHIP U-16</span><span class="hp-nav__d">12月・静岡。16チームが高校1年生の日本一を争う</span></span></a>
+                  <a class="hp-nav__card" href="/u16/"><span class="hp-nav__tx"><span class="hp-nav__t">U-16 ルーキーリーグ 順位表</span><span class="hp-nav__d">9地域20リーグ190チームを毎日自動更新</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/rookie-league-championship-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">MIZUNO CHAMPIONSHIP U-16</span><span class="hp-nav__d">12月・静岡。16チームが高校1年生の日本一を争う</span></span></a>
                   </div>
                 </div>
                 <div class="hp-nav__p hp-nav__p--u15">
                   <div class="hp-nav__grid">
-                  <a class="hp-nav__card" href="/u15/"><span class="hp-nav__ico" aria-hidden="true">📊</span><span class="hp-nav__tx"><span class="hp-nav__t">U-15 地域リーグ順位表</span><span class="hp-nav__d">高円宮杯U-15の9地域21リーグを毎日自動更新</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/club-youth-u15-2026/"><span class="hp-nav__ico" aria-hidden="true">🔰</span><span class="hp-nav__tx"><span class="hp-nav__t">クラブユース選手権U-15 2026</span><span class="hp-nav__d">優勝は横浜F・マリノス。第41回の全結果</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/zenchu-2026/"><span class="hp-nav__ico" aria-hidden="true">🏫</span><span class="hp-nav__tx"><span class="hp-nav__t">全国中学校サッカー大会2026</span><span class="hp-nav__d">優勝は神村学園中等部。第57回の全結果</span></span></a>
+                  <a class="hp-nav__card" href="/u15/"><span class="hp-nav__tx"><span class="hp-nav__t">U-15 地域リーグ順位表</span><span class="hp-nav__d">高円宮杯U-15の9地域21リーグを毎日自動更新</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/club-youth-u15-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">クラブユース選手権U-15 2026</span><span class="hp-nav__d">優勝は横浜F・マリノス。第41回の全結果</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/zenchu-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">全国中学校サッカー大会2026</span><span class="hp-nav__d">優勝は神村学園中等部。第57回の全結果</span></span></a>
                   </div>
                 </div>
                 <div class="hp-nav__p hp-nav__p--univ">
                   <div class="hp-nav__grid">
-                  <a class="hp-nav__card" href="/university/"><span class="hp-nav__ico" aria-hidden="true">📊</span><span class="hp-nav__tx"><span class="hp-nav__t">大学サッカー 全国20リーグ順位表</span><span class="hp-nav__d">9地域200チーム。高校→大学→プロの進路解説つき</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/prime-minister-cup-2026/"><span class="hp-nav__ico" aria-hidden="true">🏆</span><span class="hp-nav__tx"><span class="hp-nav__t">総理大臣杯2026</span><span class="hp-nav__d">優勝は流通経済大学（決勝2-1国士舘大／12年ぶり4回目）</span></span></a>
-                  <a class="hp-nav__card" href="/tournaments/incolle-2026/"><span class="hp-nav__ico" aria-hidden="true">❄️</span><span class="hp-nav__tx"><span class="hp-nav__t">インカレ2026（第75回）</span><span class="hp-nav__d">歴代優勝校と大会方式・総理大臣杯との関係</span></span></a>
-                  <a class="hp-nav__card" href="/university/pro-signings-2027/"><span class="hp-nav__ico" aria-hidden="true">⭐</span><span class="hp-nav__tx"><span class="hp-nav__t">大学からのJ内定選手</span><span class="hp-nav__d">2027年加入内定者のU-15・U-18経歴つき一覧</span></span></a>
+                  <a class="hp-nav__card" href="/university/"><span class="hp-nav__tx"><span class="hp-nav__t">大学サッカー 全国20リーグ順位表</span><span class="hp-nav__d">9地域200チーム。高校→大学→プロの進路解説つき</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/prime-minister-cup-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">総理大臣杯2026</span><span class="hp-nav__d">優勝は流通経済大学（決勝2-1国士舘大／12年ぶり4回目）</span></span></a>
+                  <a class="hp-nav__card" href="/tournaments/incolle-2026/"><span class="hp-nav__tx"><span class="hp-nav__t">インカレ2026（第75回）</span><span class="hp-nav__d">歴代優勝校と大会方式・総理大臣杯との関係</span></span></a>
+                  <a class="hp-nav__card" href="/university/pro-signings-2027/"><span class="hp-nav__tx"><span class="hp-nav__t">大学からのJ内定選手</span><span class="hp-nav__d">2027年加入内定者のU-15・U-18経歴つき一覧</span></span></a>
                   </div>
                 </div>
               </div>
@@ -391,7 +378,7 @@
             <!-- ★ Phase 9-C: 47都道府県・リーグ ナビゲーションハブ -->
   <section class="home-nav-hub">
     <h2 class="home-nav-hub__title">
-      <i class="fas fa-trophy"></i> リーグから探す
+      リーグから探す
     </h2>
     <div class="home-nav-hub__cards">
       <a href="/leagues/premier-east/" class="home-nav-card home-nav-card--premier">
@@ -407,11 +394,11 @@
         <div class="home-nav-card__desc">全国の地域リーグ一覧へ</div>
       </a>
       <a href="/national-team/" class="home-nav-card">
-        <div class="home-nav-card__title"><i class="fas fa-flag"></i> 日本代表 選出選手</div>
+        <div class="home-nav-card__title">日本代表 選出選手</div>
         <div class="home-nav-card__desc">U-16・U-17・U-18代表を所属チーム付きで一覧</div>
       </a>
       <a href="/pro-signings/" class="home-nav-card">
-        <div class="home-nav-card__title"><i class="fas fa-star"></i> プロ内定・2種登録選手</div>
+        <div class="home-nav-card__title">プロ内定・2種登録選手</div>
         <div class="home-nav-card__desc">Jリーグ内定・2種登録の高校/ユース選手を所属チーム別に一覧</div>
       </a>
     </div>
@@ -452,7 +439,7 @@
     }
             </style>
             <section class="map-section map-section--hero" id="mapSection">
-                <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> 47都道府県から探す</h2>
+                <h2 class="section-title">47都道府県から探す</h2>
                 <p class="map-section__lead">
                   都道府県を選ぶと、その県のページへ移動します。<strong>県1部リーグの順位表</strong>に加えて、
                   <strong>インターハイ予選・選手権予選のトーナメント表</strong>、県内の強豪校の紹介までまとめて見られます。<br>
@@ -769,5 +756,57 @@
       );
     })();
     </script>
+<style id="home-calm">
+/* トップページの「箱」を減らす（2026-10-22 Kei承認）。
+   方針：強い色の帯は「注目カードの結果」1つだけ（その見た目は scraper/home_pickup.py が持つ）。
+   ほかは線で区切った一覧にする。ページの最後に置いて、css/style.css の指定に勝たせている。
+   影・色の変わる塗り・浮き上がる動きは使わない。県ボタンの色分け（リーグの段階）は情報なので残す。 */
+
+/* 最終更新：箱をやめて小さな文字1行に */
+#updateBanner.update-banner{background:none;border:0;border-radius:0;padding:0;margin:14px 0 6px;
+  color:var(--text-light);font-size:.8rem;}
+#updateBanner.update-banner i{display:none;}
+
+/* 大会・順位表をさがす：外枠と1件ずつの箱をやめ、線で区切った2列の一覧に */
+.hp-nav{border:0;border-radius:0;background:none;overflow:visible;margin-top:30px;}
+.hp-nav__h{padding:0 0 8px;font-size:1.3rem;color:var(--primary-color);
+  border-bottom:3px solid var(--pitch-green,#2e8b57);}
+.hp-nav__bar{padding:0;}
+.hp-nav__bar label{padding-left:2px;padding-right:16px;}
+.hp-nav__panels{padding:0;}
+.hp-nav__grid{gap:0 32px;grid-template-columns:repeat(2,minmax(0,1fr));}
+.hp-nav__card{border:0;border-bottom:1px solid var(--n-bd);border-radius:0;background:none;
+  padding:12px 2px;transition:none;}
+.hp-nav__card:hover{background:none;border-color:var(--n-bd);transform:none;}
+.hp-nav__card:hover .hp-nav__t{color:var(--n-acc);text-decoration:underline;}
+
+/* リーグから探す：色付きの箱をやめ、同じ一覧の形に。プレミアだけ金の細い印で区別。
+   ★既存CSSにダーク用の強い指定があるので、この節だけ !important で上書きしている */
+.home-nav-hub__cards{display:grid;gap:0 32px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0;}
+.home-nav-hub__cards .home-nav-card{background:none!important;color:var(--text-dark)!important;
+  border:0!important;border-bottom:1px solid var(--border-color)!important;border-radius:0;box-shadow:none;padding:12px 2px;}
+.home-nav-hub__cards .home-nav-card:hover{transform:none;box-shadow:none;}
+.home-nav-hub__cards .home-nav-card .home-nav-card__title{font-size:.94rem;margin-bottom:3px;color:var(--text-dark)!important;}
+.home-nav-hub__cards .home-nav-card:hover .home-nav-card__title{color:var(--accent-color)!important;text-decoration:underline;}
+.home-nav-hub__cards .home-nav-card .home-nav-card__desc{font-size:.8rem;color:var(--text-light)!important;opacity:1;}
+.home-nav-card--premier .home-nav-card__title::before{content:"";display:inline-block;width:4px;height:.95em;
+  background:#b8912f;margin-right:8px;vertical-align:-1px;}
+
+/* 47都道府県：外の大きな枠をやめ、見出しをほかの節とそろえる。県ボタンの色分けは残す */
+#mapSection.map-section--hero{border:0;box-shadow:none;background:none;padding:0;border-radius:0;margin-top:34px;}
+#mapSection .section-title{text-align:left;font-size:1.3rem;padding-bottom:8px;margin-bottom:12px;
+  border-bottom:3px solid var(--pitch-green,#2e8b57);}
+#mapSection .map-section__lead{text-align:left;margin:0 0 14px;max-width:none;}
+#mapSection .map-legend{background:none;padding:0 0 18px;justify-content:flex-start;}
+#mapSection .region-title{font-size:1rem;border-bottom:1px solid var(--border-color);padding-bottom:6px;margin-bottom:10px;}
+#mapSection .region-group{margin-bottom:20px;}
+#mapSection .pref-button{padding:11px 12px;border-radius:6px;}
+#mapSection .pref-button:hover{transform:none;box-shadow:none;}
+
+@media (max-width:768px){
+  .hp-nav__grid,.home-nav-hub__cards{grid-template-columns:1fr;}
+}
+</style>
+
 </body>
 </html>

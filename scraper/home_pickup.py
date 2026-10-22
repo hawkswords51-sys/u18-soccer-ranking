@@ -162,36 +162,30 @@ def collect_pickups(limit: int = 4):
     return latest, picked
 
 
-# バンド型（2026-08-30 Keiが3案から選択）。紺のグラデ帯で囲って周囲から切り離す。
-# 帯そのものはライト/ダーク共通の濃紺（白抜き文字が常に読める）。
-# 帯の中のカードだけテーマで切り替えるため、セクション内ローカル変数 --hp-* を使う。
+# バンド型（2026-08-30 Keiが3案から選択）。紺の帯で囲って周囲から切り離す。
+# 帯そのものはライト/ダーク共通の濃紺（白抜き文字が常に読める）ので、帯の中の色もテーマで変えない。
+# 2026-10-22「箱を減らす」改修：トップで強い色の帯はここ1つだけにし、中の白いカードをやめて
+# 線で区切った2列×2段の表にした（影・グラデ・浮き上がる動き・🔥・→ も外した）。
 _STYLE = """<style>
-.hp-sec{--hp-card-bg:rgba(255,255,255,.97);--hp-card-fg:#1e293b;--hp-lg:#1e3a8a;--hp-sc:#1e3a8a;
-  margin:16px 0 26px;border-radius:14px;overflow:hidden;
-  background:linear-gradient(135deg,#1e3a8a,#16295f);box-shadow:0 6px 20px rgba(0,0,0,.18);}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
-    --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
-}
-:root[data-theme="dark"] .hp-sec{--hp-card-bg:rgba(255,255,255,.10);--hp-card-fg:#f1f5f9;
-  --hp-lg:#93c5fd;--hp-sc:#fbbf24;}
+.hp-sec{margin:10px 0 26px;background:#1e3a8a;color:#f1f5f9;}
 .hp-inner{padding:18px 20px 16px;}
 .hp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 14px;}
-.hp-fire{font-size:1.3rem;line-height:1;}
-.hp-sec h2{margin:0;font-size:1.35rem;color:#fff;letter-spacing:.04em;border:none;padding:0;}
+.hp-sec h2{margin:0;font-size:1.35rem;color:#fff;letter-spacing:.06em;border:none;padding:0;}
 .hp-date{font-size:.82rem;color:rgba(255,255,255,.75);}
-.hp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
-.hp-card{display:block;padding:14px 14px 15px;border-radius:11px;background:var(--hp-card-bg);
-  color:var(--hp-card-fg);text-decoration:none;transition:transform .15s;}
-.hp-card:hover{transform:translateY(-2px);}
+.hp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.18);}
+.hp-card{display:block;padding:14px 4px;color:#f1f5f9;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.18);}
+.hp-card:nth-child(odd){border-right:1px solid rgba(255,255,255,.18);padding-right:18px;}
+.hp-card:nth-child(even){padding-left:18px;}
+.hp-card:hover{background:rgba(255,255,255,.06);}
 .hp-badge{display:block;font-size:.72rem;font-weight:700;letter-spacing:.03em;
-  color:var(--hp-lg);margin-bottom:10px;}
+  color:#93c5fd;margin-bottom:10px;}
 .hp-day{font-size:.7rem;opacity:.6;margin-left:7px;font-weight:400;}
 .hp-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;}
 .hp-tm{font-size:1rem;line-height:1.3;}
 .hp-tm.hp-h{text-align:right;} .hp-tm.hp-a{text-align:left;}
 .hp-rk{display:block;font-size:.66rem;font-weight:600;opacity:.55;}
-.hp-sc{font-weight:800;font-size:1.5rem;color:var(--hp-sc);white-space:nowrap;}
+.hp-sc{font-weight:800;font-size:1.5rem;color:#fbbf24;white-space:nowrap;}
 .hp-sc i{margin:0 3px;opacity:.45;font-weight:400;font-style:normal;}
 .hp-win{font-weight:800;}
 .hp-more{margin:14px 0 0;font-size:.86rem;}
@@ -200,6 +194,8 @@ _STYLE = """<style>
   .hp-inner{padding:16px 14px 14px;}
   .hp-sec h2{font-size:1.15rem;}
   .hp-grid{grid-template-columns:1fr;}
+  .hp-card:nth-child(odd){border-right:0;padding-right:4px;}
+  .hp-card:nth-child(even){padding-left:4px;}
   .hp-tm{font-size:.95rem;} .hp-sc{font-size:1.35rem;}
 }
 </style>"""
@@ -238,12 +234,12 @@ def render_home_pickup_html(limit: int = 4) -> str:
         '<section class="hp-sec" aria-label="注目試合の結果">\n'
         + _STYLE + "\n"
         + '  <div class="hp-inner">\n'
-        + '  <div class="hp-head"><span class="hp-fire">🔥</span><h2>PICK UP GAME</h2>'
-        + f'<span class="hp-date">注目カードの結果 ／ {date_label}</span></div>\n'
+        + '  <div class="hp-head"><h2>注目カードの結果</h2>'
+        + f'<span class="hp-date">{date_label}</span></div>\n'
         + '  <div class="hp-grid">\n'
         + nl.join(cards) + "\n"
         + "  </div>\n"
-        + '  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果を見る →</a></p>\n'
+        + '  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果</a></p>\n'
         + "  </div>\n"
         + "</section>"
     )
