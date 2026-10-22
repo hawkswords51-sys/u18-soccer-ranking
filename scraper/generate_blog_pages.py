@@ -814,7 +814,7 @@ __SCHEMA_BLOG__
         <span style="font-size:1.8em;" aria-hidden="true">🩺</span>
         <span>
           <span style="display:block;font-weight:700;font-size:1.05em;">救急医の医学コラム 特設ページ</span>
-          <span style="display:block;font-size:0.88em;opacity:0.92;">熱中症・脳震盪・栄養・睡眠——テーマ別の一覧と「読む順ガイド」はこちら →</span>
+          <span style="display:block;font-size:0.88em;opacity:0.92;">熱中症・脳震盪・栄養・睡眠——テーマ別の一覧と「読む順ガイド」</span>
         </span>
       </a>
 
@@ -1142,8 +1142,8 @@ def update_home_latest_blog(articles):
         HOME_LATEST_START + "\n"
         '<section class="home-latest-blog" aria-label="新着ブログ記事" style="margin:24px 0;">\n'
         '  <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;">\n'
-        '    <h2 style="font-size:1.15rem;margin:0;">📝 新着コラム — 医学・戦術・特集</h2>\n'
-        '    <a href="/blog/" style="margin-left:auto;font-size:0.88em;color:#2563eb;text-decoration:none;font-weight:600;">記事一覧へ →</a>\n'
+        '    <h2 style="font-size:1.15rem;margin:0;">新着コラム（医学・戦術・特集）</h2>\n'
+        '    <a href="/blog/" style="margin-left:auto;font-size:0.88em;color:#2563eb;text-decoration:none;font-weight:600;">記事一覧へ</a>\n'
         '  </div>\n'
         '  <ul class="home-news-list" style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">\n'
         + "\n".join(items) + "\n"
@@ -1177,7 +1177,7 @@ def update_home_latest_blog(articles):
 # ============================================================
 MEDICAL_HUB_THEMES = [
     (
-        "☀️ 暑さ対策・熱中症",
+        "暑さ対策・熱中症",
         "夏の練習・大会で命に関わるリスクを予防する",
         [
             "2026-05-08-may-heatstroke-prevention",
@@ -1186,7 +1186,7 @@ MEDICAL_HUB_THEMES = [
         ],
     ),
     (
-        "🚑 その場の判断が命を分ける",
+        "その場の判断が命を分ける",
         "頭を打った・胸に当たって倒れた・足をひねった・足がつった——現場での見極めと応急処置",
         [
             "concussion-return-to-play-2026",
@@ -1197,7 +1197,7 @@ MEDICAL_HUB_THEMES = [
         ],
     ),
     (
-        "🦴 成長期のケガ（腰・太もも・膝・すね）",
+        "成長期のケガ（腰・太もも・膝・すね）",
         "「成長痛だから我慢」で済ませない。使いすぎで壊れる場所と、戻り方",
         [
             "lumbar-spondylolysis-2026",
@@ -1208,7 +1208,7 @@ MEDICAL_HUB_THEMES = [
         ],
     ),
     (
-        "🔋 コンディショニング・栄養・睡眠",
+        "コンディショニング・栄養・睡眠",
         "「走れない」「疲れが抜けない」の医学的な背景と対策",
         [
             "recovery-between-matches-2026",
@@ -1272,7 +1272,7 @@ def generate_medical_hub(articles):
         cards = "\n".join(_medical_card(a) for a in rest)
         theme_sections.append(
             '      <section class="lp-section">\n'
-            '        <h2>🆕 新着コラム</h2>\n'
+            '        <h2>新着コラム</h2>\n'
             '        <ul style="margin:0;padding:0;">\n' + cards + '\n        </ul>\n'
             '      </section>'
         )
@@ -1442,7 +1442,7 @@ __SCHEMA_COLLECTION__
       </aside>
 
       <section class="lp-section" style="background:var(--bg-light,#eff6ff);border-left:4px solid var(--primary-color,#1e40af);border-radius:0 10px 10px 0;padding:16px 20px;">
-        <h2 style="margin-top:0;">📖 読む順ガイド</h2>
+        <h2 style="margin-top:0;">読む順ガイド</h2>
         <ul style="margin:0;padding-left:1.5em;line-height:2.0;">
           <li><strong>いま（夏の大会期）なら</strong>：熱中症対策 → 水分補給 → 大会当日の暑さ対策 の順で。チーム全員に関わる内容です。</li>
           <li><strong>試合・練習の「もしも」に備えるなら</strong>：脳震盪と心臓振盪は<strong>起きる前に</strong>読んでおくことに意味があります。ベンチに入る大人は必読です。</li>

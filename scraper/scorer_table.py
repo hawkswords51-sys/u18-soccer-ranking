@@ -82,7 +82,7 @@ def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None
         .xs-rk.xs-silver{{color:#fff;background:#b0bec5;border-radius:50%;}}
         .xs-rk.xs-bronze{{color:#fff;background:#cd7f32;border-radius:50%;}}
         </style>
-        <h2>⚽ 得点ランキング</h2>
+        <h2>得点ランキング</h2>
         <p class="xs-meta">最終更新 {_esc(d.get('lastUpdated',''))}{src_html}</p>
         <p class="xs-note">{_esc(rule_note + d.get('note',''))}</p>
         {cov}
@@ -215,7 +215,7 @@ def render_scorer_compact_html(slug: str, top_n: int = 10) -> str:
 
     return f"""
             <div class="xsc-box">
-              <h4 class="xsc-h">⚽ 得点ランキング</h4>
+              <h4 class="xsc-h">得点ランキング</h4>
               <p class="xsc-meta">最終更新 {_esc(d.get('lastUpdated', ''))}{src_html}</p>
               <div class="xsc-scroll">
               <table class="xsc-table">

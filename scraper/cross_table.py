@@ -209,7 +209,7 @@ def display_pref_team_name(s):
     return PREF_NAME_OVERRIDE.get(n, n)
 
 
-def render_cross_table_html(slug: str, heading: str = "⚽ 戦績表（星取り表）",
+def render_cross_table_html(slug: str, heading: str = "戦績表（星取り表）",
                             form_heading: str = "各チームの戦績", match_dir: Path | None = None) -> str:
     """リーグ slug の戦績表セクションHTMLを返す。データが無ければ ''（空）。
     heading/form_heading で見出しを差し替え可能（大阪2部A〜C等、同一ページに複数表を置く場合用）。

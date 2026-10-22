@@ -275,7 +275,7 @@ def render_featured_articles(pref_id):
     ])
     
     return f"""      <section class="lp-section">
-        <h2>📖 観戦コラム</h2>
+        <h2>観戦コラム</h2>
         <ul class="lp-related-links">
 {items}
         </ul>
@@ -1078,7 +1078,7 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
             national_html = (
                 f'\n        <p class="tournament-national-link" style="font-size:0.9em;margin:4px 0 12px;">'
                 f'<a href="/tournaments/{_folder}/#prefectures" style="color:var(--accent-color,#2563eb);">'
-                f'全国大会（選手権）の47都道府県 予選状況・代表校の一覧 →</a></p>'
+                f'全国大会（選手権）の47都道府県 予選状況・代表校の一覧</a></p>'
             )
         rounds_html_str = _rounds_html(rounds)
 
@@ -1111,7 +1111,7 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
             f'      <section class="lp-section tournament-section'
             f'{" tournament-section--" + t_kind if t_kind else ""}">\n'
             f'{kind_html}'
-            f'        <h2>📋 {title}{status_html}</h2>{subtitle_html}{national_html}\n'
+            f'        <h2>{title}{status_html}</h2>{subtitle_html}{national_html}\n'
             f'{body_html}\n'
             f'      </section>'
         )
@@ -1122,7 +1122,7 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
             '        <p style="margin:0;"><a href="/tournaments/interhigh-2026/" '
             'style="display:inline-block;padding:10px 18px;background:var(--accent-color,#2563eb);'
             'color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">'
-            '🏆 インターハイ全国大会（本選）の組み合わせ・結果はこちら →</a></p>\n'
+            'インターハイ全国大会（本選）の組み合わせ・結果</a></p>\n'
             '      </section>'
         )
     return "\n".join(html_parts)
@@ -1280,7 +1280,7 @@ def render_strong_schools(pref_id, pref_name, teams):
         )
     return (
         '      <section class="lp-section strong-schools">\n'
-        f'        <h2>🏫 {pn}の高校サッカー強豪校（高校サッカー部）</h2>\n'
+        f'        <h2>{pn}の高校サッカー強豪校（高校サッカー部）</h2>\n'
         f'        <p class="lp-section-desc">{pn}で「サッカーが強い高校」を探している方向けに、'
         'Jクラブのユースを除いた<strong>高校サッカー部だけ</strong>を並べました。'
         '並び順は今季の県内総合順位（所属リーグの格＋リーグ内順位）で、'
@@ -1369,7 +1369,7 @@ def render_tournament_results(pref_id):
 
     html_parts = [
         '      <section class="lp-section tournament-results">',
-        '        <h2>📜 過去の全国大会成績</h2>',
+        '        <h2>過去の全国大会成績</h2>',
         '        <p class="tournament-results-intro" style="color:var(--text-light);font-size:0.9em;margin-bottom:12px;">直近5年の全国大会出場・成績</p>',
     ]
 
@@ -2542,7 +2542,7 @@ def render_osaka_division2_cross_tables(pref_id):
     for key, label in (("2a", "2部A"), ("2b", "2部B"), ("2c", "2部C")):
         h = render_cross_table_html(
             f"pref-osaka-{key}",
-            heading=f"⚽ 大阪 {label} 順位・戦績表（星取り表）",
+            heading=f"大阪 {label} 順位・戦績表（星取り表）",
             form_heading=f"{label} 各チームの戦績",
         )
         if h:
@@ -2890,7 +2890,7 @@ def build_home_summary_html(all_prefs):
         '<section class="home-summary" style="margin:16px 0;padding:16px 20px;'
         "background:var(--bg-light,#f1f5fb);border-left:4px solid var(--primary-color,#1e40af);"
         'border-radius:0 8px 8px 0;">\n'
-        f'  <h2 style="font-size:1.05rem;margin:0 0 8px;">⚽ 今日のハイライト（{date_str}時点）</h2>\n'
+        f'  <h2 style="font-size:1.05rem;margin:0 0 8px;">今日のハイライト（{date_str}時点）</h2>\n'
         f'  <ul style="margin:0 0 10px;padding-left:1.2em;line-height:1.9;">{items}</ul>\n'
         '  <p style="margin:0;font-size:0.92rem;line-height:1.8;">本サイトは、高円宮杯 JFA U-18サッカーリーグ'
         "（プレミアリーグ・プリンスリーグ・47都道府県リーグ）の順位表を毎日自動更新でお届けする無料の総合情報サイトです。"

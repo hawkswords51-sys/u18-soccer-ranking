@@ -1026,7 +1026,7 @@ def main():
     format_li = f'<li><strong>大会方式</strong>：{html_escape(fmt)}</li>' if fmt else ""
     if schedule:
         _items = "\n".join(f'<li style="padding:6px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);">{html_escape(x)}</li>' for x in schedule)
-        schedule_html = f'<h3 style="margin-top:16px;">📅 日程</h3><ul style="list-style:none;padding:0;">{_items}</ul>'
+        schedule_html = f'<h3 style="margin-top:16px;">日程</h3><ul style="list-style:none;padding:0;">{_items}</ul>'
     else:
         schedule_html = ""
 
