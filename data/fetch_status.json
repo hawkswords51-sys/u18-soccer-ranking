@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-22T10:21:47+09:00",
+  "updatedAt": "2026-10-22T10:21:52+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -217,9 +217,9 @@
       "source": "official",
       "sourceName": "秋田県サッカー協会 公式",
       "last_change": "2026-09-26",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-10-22",
+      "result_streak": 1,
+      "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://fa-akita.net/16943/ の取得に失敗 (502 Server Error: Bad Gateway for url: https://fa-akita.net/16943/))",
       "result_date": "2026-10-22",
@@ -302,7 +302,7 @@
       "sourceName": "福井県サッカー協会 公式",
       "last_change": "2026-10-07",
       "result_since": "2026-10-22",
-      "result_streak": 1,
+      "result_streak": 2,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://www.fukui-fa.com/author/high-school/ の取得に失敗 (502 Server Error: Bad Gateway for url: https://www.fukui-fa.com/author/high-school/))",
@@ -325,9 +325,9 @@
       "source": "official",
       "sourceName": "福岡県サッカー協会 公式",
       "last_change": "2026-10-19",
-      "result_since": "",
-      "result_streak": 0,
-      "status": "ok",
+      "result_since": "2026-10-22",
+      "result_streak": 1,
+      "status": "warn",
       "last_updated": "2026-10-22"
     },
     "fukushima": {
@@ -365,13 +365,13 @@
       "sourceName": "岐阜県サッカー協会 公式",
       "last_change": "2026-08-29",
       "last_change_note": "初回のため最終試合日で代用",
-      "result_since": "2026-10-22",
-      "result_streak": 1,
+      "result_since": "",
+      "result_streak": 0,
       "status": "warn",
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-10-22",
-      "last_updated": "2026-10-21"
+      "last_updated": "2026-10-22"
     },
     "gunma": {
       "result": "fetch_error",
@@ -389,8 +389,8 @@
       "source": "official",
       "sourceName": "群馬県サッカー協会 公式",
       "last_change": "2026-10-04",
-      "result_since": "",
-      "result_streak": 0,
+      "result_since": "2026-10-22",
+      "result_streak": 1,
       "status": "warn",
       "last_updated": "2026-10-22"
     },
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 88,
+      "result_streak": 89,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -626,7 +626,7 @@
       "sourceName": "熊本県サッカー協会 公式",
       "last_change": "2026-10-16",
       "result_since": "2026-10-22",
-      "result_streak": 1,
+      "result_streak": 2,
       "status": "warn",
       "last_updated": "2026-10-21"
     },
@@ -832,10 +832,10 @@
       "source": "official",
       "sourceName": "岡山県サッカー協会 公式",
       "last_change": "2026-10-06",
-      "result_since": "2026-10-22",
-      "result_streak": 1,
+      "result_since": "",
+      "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-21"
+      "last_updated": "2026-10-22"
     },
     "okinawa": {
       "result": "ok",
@@ -959,7 +959,7 @@
       "sourceName": "佐賀県サッカー協会 公式",
       "last_change": "2026-09-27",
       "result_since": "2026-10-22",
-      "result_streak": 1,
+      "result_streak": 2,
       "status": "warn",
       "last_updated": "2026-10-21"
     },
@@ -1001,7 +1001,7 @@
       "sourceName": "滋賀県サッカー協会 公式",
       "last_change": "2026-10-04",
       "result_since": "2026-10-22",
-      "result_streak": 1,
+      "result_streak": 2,
       "status": "warn",
       "last_updated": "2026-10-21"
     },
