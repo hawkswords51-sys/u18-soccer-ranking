@@ -644,7 +644,8 @@ class SoccerApp {
             <div id="favoritesList" class="favorites-list"></div>
         `;
         // ★ トップ上部（情報セクションの直前）に配置し、訪問直後に目に入るようにする
-        const anchor = main.querySelector('.info-section');
+        // 2026-10-22 トップの .info-section（3枚の箱）を外したので、無いときは新着コラムの直前に置く
+        const anchor = main.querySelector('.info-section') || main.querySelector('.home-latest-blog');
         if (anchor) {
             main.insertBefore(section, anchor);
         } else {

@@ -2887,10 +2887,10 @@ def build_home_summary_html(all_prefs):
 
     items = "".join(f"<li>{s}</li>" for s in lines)
     return (
-        '<section class="home-summary" style="margin:16px 0;padding:16px 20px;'
-        "background:var(--bg-light,#f1f5fb);border-left:4px solid var(--primary-color,#1e40af);"
-        'border-radius:0 8px 8px 0;">\n'
-        f'  <h2 style="font-size:1.05rem;margin:0 0 8px;">今日のハイライト（{date_str}時点）</h2>\n'
+        # 2026-10-22「箱を減らす」：色付きの箱をやめ、見出しの下線だけでほかの節とそろえる
+        '<section class="home-summary" style="margin:34px 0 16px;">\n'
+        f'  <h2 style="font-size:1.3rem;margin:0 0 12px;padding-bottom:8px;color:var(--primary-color,#1e3a8a);'
+        f'border-bottom:3px solid var(--pitch-green,#2e8b57);">今日のハイライト（{date_str}時点）</h2>\n'
         f'  <ul style="margin:0 0 10px;padding-left:1.2em;line-height:1.9;">{items}</ul>\n'
         '  <p style="margin:0;font-size:0.92rem;line-height:1.8;">本サイトは、高円宮杯 JFA U-18サッカーリーグ'
         "（プレミアリーグ・プリンスリーグ・47都道府県リーグ）の順位表を毎日自動更新でお届けする無料の総合情報サイトです。"

@@ -1130,7 +1130,7 @@ def update_home_latest_blog(articles):
             new_badge = ""
         items.append(
             f'    <li style="margin:0;">\n'
-            f'      <a href="/blog/posts/{a["slug"]}/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);">\n'
+            f'      <a href="/blog/posts/{a["slug"]}/" style="display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid var(--border-color,#e0e0e0);text-decoration:none;color:var(--text-dark,#1a1a1a);">\n'
             f'        <span style="flex-shrink:0;font-size:0.72em;font-weight:700;color:#fff;background:{color};padding:3px 9px;border-radius:999px;white-space:nowrap;">{html_escape(cat)}</span>\n'
             f'        {new_badge}<span style="font-size:0.92em;line-height:1.5;">{html_escape(a["title"])}</span>\n'
             f'        <time style="margin-left:auto;flex-shrink:0;font-size:0.78em;color:var(--text-light,#666);" datetime="{a["date"]}">{format_date(a["date"])}</time>\n'
@@ -1140,12 +1140,13 @@ def update_home_latest_blog(articles):
 
     section = (
         HOME_LATEST_START + "\n"
-        '<section class="home-latest-blog" aria-label="新着ブログ記事" style="margin:24px 0;">\n'
-        '  <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;">\n'
-        '    <h2 style="font-size:1.15rem;margin:0;">新着コラム（医学・戦術・特集）</h2>\n'
+        # 2026-10-22「箱を減らす」：1件ずつの箱をやめて線で区切る。見出しはほかの節と同じ下線つき
+        '<section class="home-latest-blog" aria-label="新着ブログ記事" style="margin:34px 0 24px;">\n'
+        '  <div style="display:flex;align-items:baseline;gap:10px;padding-bottom:8px;border-bottom:3px solid var(--pitch-green,#2e8b57);">\n'
+        '    <h2 style="font-size:1.3rem;margin:0;color:var(--primary-color,#1e3a8a);">新着コラム（医学・戦術・特集）</h2>\n'
         '    <a href="/blog/" style="margin-left:auto;font-size:0.88em;color:#2563eb;text-decoration:none;font-weight:600;">記事一覧へ</a>\n'
         '  </div>\n'
-        '  <ul class="home-news-list" style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">\n'
+        '  <ul class="home-news-list" style="list-style:none;margin:0;padding:0;">\n'
         + "\n".join(items) + "\n"
         '  </ul>\n'
         '</section>\n'
