@@ -155,7 +155,7 @@ def render_assist_ranking_html(slug: str, limit: int = 300, min_assists: int = N
         .xa-rk.xa-silver{{color:#fff;background:#b0bec5;border-radius:50%;}}
         .xa-rk.xa-bronze{{color:#fff;background:#cd7f32;border-radius:50%;}}
         </style>
-        <h2>🅰 アシストランキング</h2>
+        <h2>アシストランキング</h2>
         <p class="xa-meta">最終更新 {_esc(d.get('lastUpdated',''))}{src_html}</p>
         <p class="xa-note">{_esc(d.get('assistNote',''))}</p>
         <div class="xa-wrap">
