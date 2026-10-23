@@ -97,5 +97,4 @@ description: 國學院大學久我山高校サッカー部の最新順位・歴�
 
 - [東京都のU-18高校サッカー順位](/prefectures/tokyo/)
 - [プレミアリーグEAST 最新順位](/leagues/premier-east/)
-- [プリンスリーグ関東 最新順位](/leagues/prince-kanto/)
 - [高校サッカー順位確認システム トップ](/)

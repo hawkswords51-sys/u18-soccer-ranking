@@ -100,5 +100,4 @@ Jアカデミーが「トップチームへの供給」を至上命題とする�
 
 - [東京都のU-18高校サッカー順位](/prefectures/tokyo/)
 - [プレミアリーグEAST 最新順位](/leagues/premier-east/)
-- [プリンスリーグ関東 最新順位](/leagues/prince-kanto/)
 - [高校サッカー順位確認システム トップ](/)
