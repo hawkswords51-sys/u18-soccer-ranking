@@ -808,28 +808,28 @@
           border-left:4px solid #1565c0;background:rgba(21,101,192,.10);border-radius:0 7px 7px 0;}
         .xt-scope strong{color:inherit;}
         .xt-note{font-size:.95rem;color:inherit;opacity:.75;margin:4px 2px 12px;line-height:1.6;}
-        .xt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;}
+        .xt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:2px solid #1e3a8a;}
         .xt-cross{border-collapse:separate;border-spacing:0;white-space:nowrap;background:#fff;width:100%;}
-        .xt-cross th,.xt-cross td{border-right:1px solid #dfe3e8;border-bottom:1px solid #dfe3e8;text-align:center;}
-        .xt-cross thead th{background:#1565c0;color:#fff;font-weight:600;position:sticky;top:0;z-index:3;}
-        .xt-cross td.xt-diag{background:#cfd8dc;}
+        .xt-cross th,.xt-cross td{border-right:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;text-align:center;color:#1f2937;}
+        .xt-cross thead th{background:#f8fafc;color:#1f2937;font-weight:600;position:sticky;top:0;z-index:3;border-bottom:1px solid #94a3b8;}
+        .xt-cross td.xt-diag{background:#f1f5f9;}
         .xt-cross td.xt-cell{padding:0;height:100%;}
         .xt-cw{display:flex;flex-direction:column;height:100%;min-height:100%;}
         .xt-leg{flex:1 0 auto;display:flex;align-items:center;justify-content:center;}
-        .xt-win{background:#e8f5e9;color:#2e7d32;}
-        .xt-draw{background:#fff8e1;color:#f9a825;}
-        .xt-lose{background:#ffebee;color:#c62828;}
+        .xt-win{background:#f0f7f1;color:#1b5e20;}
+        .xt-draw{background:#fff;color:#4b5563;}
+        .xt-lose{background:#fdf3f3;color:#a32020;}
         .xt-cross td.xt-one.xt-win,.xt-leg.xt-win{font-weight:600;}
-        .xt-leg + .xt-leg{border-top:1px solid #fff;}
+        .xt-leg + .xt-leg{border-top:1px dotted #e5e7eb;}
         .xt-cross td.xt-np{color:#bbb;}
         .xt-cross .xt-ha{color:#888;margin-right:3px;font-weight:400;}
-        .xt-legend .xt-win{background:#e8f5e9;} .xt-legend .xt-draw{background:#fff8e1;} .xt-legend .xt-lose{background:#ffebee;}
+        .xt-legend .xt-win{background:#f0f7f1;} .xt-legend .xt-draw{background:#fff;border:1px solid #e5e7eb;} .xt-legend .xt-lose{background:#fdf3f3;}
         /* 左2列(順位・チーム)を横スクロール時に固定 */
-        .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{position:sticky;left:0;z-index:4;background:#eef2f7;color:#333;}
-        .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{position:sticky;z-index:4;background:#eef2f7;color:#333;text-align:left;}
-        .xt-cross th.xt-corner-rk,.xt-cross th.xt-corner-tn{background:#0d47a1;color:#fff;z-index:5;}
+        .xt-cross th.xt-rk,.xt-cross th.xt-corner-rk{position:sticky;left:0;z-index:4;background:#fff;color:#1f2937;}
+        .xt-cross th.xt-tn,.xt-cross th.xt-corner-tn{position:sticky;z-index:4;background:#fff;color:#1f2937;text-align:left;}
+        .xt-cross th.xt-corner-rk,.xt-cross th.xt-corner-tn{background:#f8fafc;color:#1f2937;z-index:5;}
         .xt-legend{font-size:16px;color:inherit;opacity:.8;margin:12px 2px 0;}
-        .xt-legend span{display:inline-block;padding:2px 14px;border-radius:10px;margin-right:8px;}
+        .xt-legend span{display:inline-block;padding:2px 14px;margin-right:8px;}
         .xt-formwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
         .xt-formtable{border-collapse:collapse;margin-top:10px;}
         .xt-formtable th,.xt-formtable td{border-bottom:1px solid rgba(128,128,128,.25);text-align:left;}
@@ -867,14 +867,14 @@
           .xt-formtable .xt-rec{min-width:78px;}
           .xt-chip{width:22px;height:22px;font-size:13px;margin:1px;}
         }
-        .xt-chip.xt-win{background:#e8f5e9;color:#2e7d32;}
-        .xt-chip.xt-lose{background:#ffebee;color:#c62828;}
-        .xt-chip.xt-draw{background:#fff8e1;color:#f9a825;}
+        .xt-chip.xt-win{background:#f0f7f1;color:#1b5e20;}
+        .xt-chip.xt-lose{background:#fdf3f3;color:#a32020;}
+        .xt-chip.xt-draw{background:#f3f4f6;color:#4b5563;}
         </style>
         <h2>戦績表（星取り表）</h2>
         <p class="xt-meta">消化 48 / 全 56 試合　最終更新 2026-10-23　出典: <a href="https://www.fa-mie.jp/category2/" rel="nofollow" target="_blank">三重県サッカー協会 公式</a></p>
         <p class="xt-scope">この戦績表は <strong>高円宮杯 JFA U-18 サッカーリーグ 2026 三重県1部</strong> の対戦結果です。ページ上部の順位表は、プレミア・プリンスなど上位カテゴリ所属チームも含めた県内全体の順位を表示しているため、この表（県1部リーグ）とは対象チームが異なります。</p>
-        <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(黄)／敗(赤)。
+        <p class="xt-note">縦のチームから見た対戦結果です。色は 勝(緑)／分(白)／敗(赤)。
         往復2試合とも終わったマスは通算成績で色分けしています。「―」はまだ対戦していないカードです。</p>
         <div class="xt-scroll">
           <table class="xt-cross">
@@ -892,9 +892,9 @@
           </table>
         </div>
         <div class="xt-legend">
-          <span class="xt-win" style="color:#2e7d32">勝</span>
-          <span class="xt-draw" style="color:#f9a825">分</span>
-          <span class="xt-lose" style="color:#c62828">敗</span>
+          <span class="xt-win" style="color:#1b5e20">勝</span>
+          <span class="xt-draw" style="color:#4b5563">分</span>
+          <span class="xt-lose" style="color:#a32020">敗</span>
         </div>
       <div class="zone-legend">
         <ul class="zone-legend__list"><li class="zone-legend__item"><span class="zone-legend__swatch zone-playoff"></span><span class="zone-legend__rank">1-2位</span><span class="zone-legend__label">プリンスリーグ東海参入戦 出場圏<span class="zone-legend__star">※</span></span></li></ul>
@@ -959,17 +959,14 @@
         .xs-meta{font-size:.95rem;color:inherit;opacity:.75;margin:0 0 4px;}
         .xs-note{font-size:.85rem;color:inherit;opacity:.7;margin:2px 2px 10px;line-height:1.5;}
         .xs-cov{font-size:.8rem;color:#c0392b;margin:0 2px 10px;line-height:1.5;}
-        .xs-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;max-width:560px;}
+        .xs-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:2px solid #1e3a8a;max-width:560px;}
         .xs-table{width:100%;border-collapse:collapse;font-size:15px;background:#fff;color:#222;}
-        .xs-table th,.xs-table td{border-bottom:1px solid #eee;padding:9px 12px;text-align:left;color:#222;}
-        .xs-table thead th{background:#e67e22;color:#fff;font-weight:600;}
+        .xs-table th,.xs-table td{border-bottom:1px solid #e5e7eb;padding:9px 12px;text-align:left;color:#222;}
+        .xs-table thead th{background:#f8fafc;color:#1f2937;font-weight:600;border-bottom:1px solid #94a3b8;}
         .xs-table .xs-rk{width:48px;text-align:center;font-weight:700;color:#555;}
-        .xs-table .xs-go{width:64px;text-align:center;font-weight:700;color:#e67e22;}
+        .xs-table .xs-go{width:64px;text-align:center;font-weight:700;color:#1f2937;}
         .xs-table .xs-tm{color:#555;font-size:14px;}
-        .xs-rk.xs-gold,.xs-rk.xs-silver,.xs-rk.xs-bronze{color:#fff;}
-        .xs-rk.xs-gold{color:#fff;background:#f1c40f;border-radius:50%;}
-        .xs-rk.xs-silver{color:#fff;background:#b0bec5;border-radius:50%;}
-        .xs-rk.xs-bronze{color:#fff;background:#cd7f32;border-radius:50%;}
+        .xs-rk.xs-gold,.xs-rk.xs-silver,.xs-rk.xs-bronze{color:#1f2937;}
         </style>
         <h2>得点ランキング</h2>
         <p class="xs-meta">最終更新 第12節終了時点　出典: <a href="https://www.fa-mie.jp/category2/" rel="nofollow" target="_blank">三重県サッカー協会 公式（PDF）</a></p>
