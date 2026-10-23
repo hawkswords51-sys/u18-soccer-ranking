@@ -70,17 +70,14 @@ def render_scorer_ranking_html(slug: str, limit: int = 20, min_goals: int = None
         .xs-meta{{font-size:.95rem;color:inherit;opacity:.75;margin:0 0 4px;}}
         .xs-note{{font-size:.85rem;color:inherit;opacity:.7;margin:2px 2px 10px;line-height:1.5;}}
         .xs-cov{{font-size:.8rem;color:#c0392b;margin:0 2px 10px;line-height:1.5;}}
-        .xs-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;max-width:560px;}}
+        .xs-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:2px solid #1e3a8a;max-width:560px;}}
         .xs-table{{width:100%;border-collapse:collapse;font-size:15px;background:#fff;color:#222;}}
-        .xs-table th,.xs-table td{{border-bottom:1px solid #eee;padding:9px 12px;text-align:left;color:#222;}}
-        .xs-table thead th{{background:#e67e22;color:#fff;font-weight:600;}}
+        .xs-table th,.xs-table td{{border-bottom:1px solid #e5e7eb;padding:9px 12px;text-align:left;color:#222;}}
+        .xs-table thead th{{background:#f8fafc;color:#1f2937;font-weight:600;border-bottom:1px solid #94a3b8;}}
         .xs-table .xs-rk{{width:48px;text-align:center;font-weight:700;color:#555;}}
-        .xs-table .xs-go{{width:64px;text-align:center;font-weight:700;color:#e67e22;}}
+        .xs-table .xs-go{{width:64px;text-align:center;font-weight:700;color:#1f2937;}}
         .xs-table .xs-tm{{color:#555;font-size:14px;}}
-        .xs-rk.xs-gold,.xs-rk.xs-silver,.xs-rk.xs-bronze{{color:#fff;}}
-        .xs-rk.xs-gold{{color:#fff;background:#f1c40f;border-radius:50%;}}
-        .xs-rk.xs-silver{{color:#fff;background:#b0bec5;border-radius:50%;}}
-        .xs-rk.xs-bronze{{color:#fff;background:#cd7f32;border-radius:50%;}}
+        .xs-rk.xs-gold,.xs-rk.xs-silver,.xs-rk.xs-bronze{{color:#1f2937;}}
         </style>
         <h2>得点ランキング</h2>
         <p class="xs-meta">最終更新 {_esc(d.get('lastUpdated',''))}{src_html}</p>
@@ -143,17 +140,14 @@ def render_assist_ranking_html(slug: str, limit: int = 300, min_assists: int = N
         .xa-section h2{{font-size:1.5rem;margin:0 0 6px;border-left:6px solid #2980b9;padding-left:12px;}}
         .xa-meta{{font-size:.95rem;color:inherit;opacity:.75;margin:0 0 4px;}}
         .xa-note{{font-size:.85rem;color:inherit;opacity:.7;margin:2px 2px 10px;line-height:1.5;}}
-        .xa-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #dfe3e8;border-radius:8px;max-width:560px;}}
+        .xa-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:2px solid #1e3a8a;max-width:560px;}}
         .xa-table{{width:100%;border-collapse:collapse;font-size:15px;background:#fff;color:#222;}}
-        .xa-table th,.xa-table td{{border-bottom:1px solid #eee;padding:9px 12px;text-align:left;color:#222;}}
-        .xa-table thead th{{background:#2980b9;color:#fff;font-weight:600;}}
+        .xa-table th,.xa-table td{{border-bottom:1px solid #e5e7eb;padding:9px 12px;text-align:left;color:#222;}}
+        .xa-table thead th{{background:#f8fafc;color:#1f2937;font-weight:600;border-bottom:1px solid #94a3b8;}}
         .xa-table .xa-rk{{width:48px;text-align:center;font-weight:700;color:#555;}}
-        .xa-table .xa-as{{width:64px;text-align:center;font-weight:700;color:#2980b9;}}
+        .xa-table .xa-as{{width:64px;text-align:center;font-weight:700;color:#1f2937;}}
         .xa-table .xa-tm{{color:#555;font-size:14px;}}
-        .xa-rk.xa-gold,.xa-rk.xa-silver,.xa-rk.xa-bronze{{color:#fff;}}
-        .xa-rk.xa-gold{{color:#fff;background:#f1c40f;border-radius:50%;}}
-        .xa-rk.xa-silver{{color:#fff;background:#b0bec5;border-radius:50%;}}
-        .xa-rk.xa-bronze{{color:#fff;background:#cd7f32;border-radius:50%;}}
+        .xa-rk.xa-gold,.xa-rk.xa-silver,.xa-rk.xa-bronze{{color:#1f2937;}}
         </style>
         <h2>アシストランキング</h2>
         <p class="xa-meta">最終更新 {_esc(d.get('lastUpdated',''))}{src_html}</p>
