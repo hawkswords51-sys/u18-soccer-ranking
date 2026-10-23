@@ -114,6 +114,6 @@ description: 浦和レッドダイヤモンズユースの最新順位・歴代�
 ## 関連リンク
 
 - [埼玉県のU-18高校サッカー順位](/prefectures/saitama/)
-- [プリンスリーグ関東 最新順位](/leagues/prince-kanto/)
+- [プリンスリーグ関東 最新順位](/leagues/prince-kanto-1/)
 - [プレミアリーグEAST 最新順位](/leagues/premier-east/)
 - [高校サッカー順位確認システム トップ](/)

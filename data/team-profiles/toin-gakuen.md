@@ -115,6 +115,6 @@ description: 桐蔭学園高校サッカー部の最新順位・歴代タイト�
 ## 関連リンク
 
 - [神奈川県のU-18高校サッカー順位](/prefectures/kanagawa/)
-- [プリンスリーグ関東 最新順位](/leagues/prince-kanto/)
+- [プリンスリーグ関東 最新順位](/leagues/prince-kanto-1/)
 - [桐光学園（神奈川のライバル校）](/teams/toko-gakuen/)
 - [高校サッカー順位確認システム トップ](/)

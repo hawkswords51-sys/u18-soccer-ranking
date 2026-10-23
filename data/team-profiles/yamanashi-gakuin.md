@@ -132,7 +132,7 @@ description: 山梨学院高校サッカー部の最新順位・歴代タイト�
 ## 関連リンク
 
 - [山梨県のU-18高校サッカー順位](/prefectures/yamanashi/)
-- [プリンスリーグ関東 最新順位](/leagues/prince-kanto/)
+- [プリンスリーグ関東 最新順位](/leagues/prince-kanto-1/)
 - [プレミアリーグEAST 最新順位](/leagues/premier-east/)
 - [豊川高校コラム：長谷川大監督が挑む無名校のリスタート](/blog/posts/toyokawa-rise-2026/)
 - [高校サッカー順位確認システム トップ](/)

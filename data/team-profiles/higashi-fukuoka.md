@@ -104,6 +104,6 @@ description: 東福岡高校サッカー部の最新順位・歴代タイトル�
 ## 関連リンク
 
 - [福岡県のU-18高校サッカー順位](/prefectures/fukuoka/)
-- [プリンスリーグ九州 最新順位](/leagues/prince-kyushu/)
+- [プリンスリーグ九州 最新順位](/leagues/prince-kyushu-1/)
 - [プレミアリーグWEST 最新順位](/leagues/premier-west/)
 - [高校サッカー順位確認システム トップ](/)
