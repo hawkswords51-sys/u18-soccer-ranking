@@ -56,7 +56,7 @@ INTERHIGH_FEATURED_ARTICLES = [
         "date": "2026-06-19",
     },
     {
-        "title": '【2026W杯開幕】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース完全ガイド',
+        "title": '【2026W杯開幕】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース一覧',
         "url": "/blog/posts/worldcup-2026-japan-roots/",
         "date": "2026-06-10",
     },

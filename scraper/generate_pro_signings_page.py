@@ -259,7 +259,7 @@ __SCHEMA__
     <section class="ps-cat-sec">
       <h2><i class="fas fa-book-open"></i> あわせて読みたい特集</h2>
       <ul style="list-style:none;margin:0;padding:0;display:grid;gap:8px;">
-        <li><a href="/blog/posts/worldcup-2026-japan-roots/" style="display:block;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);line-height:1.6;"><strong>【2026W杯】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース完全ガイド</strong><br><span style="font-size:.85em;color:var(--text-light,#666);">プロ内定のその先──W杯代表26人の出身高校・ユースを全員分たどると、高体連とクラブユース双方からの道筋が見えてきます。</span></a></li>
+        <li><a href="/blog/posts/worldcup-2026-japan-roots/" style="display:block;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);line-height:1.6;"><strong>【2026W杯】日本代表26人は"どこから"来たのか｜全員の出身高校・ユース一覧</strong><br><span style="font-size:.85em;color:var(--text-light,#666);">プロ内定のその先──W杯代表26人の出身高校・ユースを全員分たどると、高体連とクラブユース双方からの道筋が見えてきます。</span></a></li>
         <li><a href="/blog/posts/2026-07-11-japan-world-youth-development/" style="display:block;padding:10px 14px;background:var(--bg-light,#f8f9fa);border:1px solid var(--border-color,#e0e0e0);border-radius:10px;text-decoration:none;color:var(--text-dark,#1a1a1a);line-height:1.6;"><strong>W杯開催中に考える、日本と世界の育成の違い</strong><br><span style="font-size:.85em;color:var(--text-light,#666);">強豪国の育成システムと比較しながら、日本の「分厚さ」がプロへの道にどう効いているかを解説します。</span></a></li>
       </ul>
     </section>

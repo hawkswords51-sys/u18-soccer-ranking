@@ -140,5 +140,5 @@ description: 成立学園高校サッカー部の情報ページ。東京都T2�
 
 - [東京都のU-18高校サッカー順位](/prefectures/tokyo/)
 - [インターハイ2026 全国大会 速報・結果（成立学園は東京代表）](/tournaments/interhigh-2026/)
-- [【特集】2026W杯 日本代表26人の出身高校・ユース完全ガイド](/blog/posts/worldcup-2026-japan-roots/)
+- [【特集】2026W杯 日本代表26人の出身高校・ユース一覧](/blog/posts/worldcup-2026-japan-roots/)
 - [高校サッカー順位確認システム トップ](/)

@@ -115,5 +115,5 @@ U-12「プライマリー」→U-15「ジュニアユース」（横浜・追浜
 - [プリンスリーグ関東2部 最新順位](/leagues/prince-kanto-2/)
 - [プリンスリーグ関東1部 最新順位](/leagues/prince-kanto-1/)
 - [桐蔭学園（W杯代表GK早川友基の母校）](/teams/toin-gakuen/)
-- [【特集】2026W杯 日本代表26人の出身高校・ユース完全ガイド](/blog/posts/worldcup-2026-japan-roots/)
+- [【特集】2026W杯 日本代表26人の出身高校・ユース一覧](/blog/posts/worldcup-2026-japan-roots/)
 - [高校サッカー順位確認システム トップ](/)
