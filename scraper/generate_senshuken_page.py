@@ -170,7 +170,7 @@ def state_label(info):
                 return f"結果反映待ち（{m}/{d}開幕）", "pre"
             return f"開幕前（{m}/{d}〜）", "pre"
         return "開幕前", "pre"
-    return f"進行中（最新：{info['latest']}）", "live"
+    return f"{info['latest']}まで終了", "live"
 
 
 def render_prefs(all_info):
@@ -182,13 +182,14 @@ def render_prefs(all_info):
         for slug, name in prefs:
             info = all_info[slug]
             label, kind = state_label(info)
-            color = {"done": "#16a34a", "live": "#f59e0b", "pre": "#64748b"}[kind]
+            # 2026-10-24 色つきの丸いバッジをやめ、文字だけにした（KeiがAIっぽいと判断）。代表決定だけ文字を濃くする
+            color = {"done": "var(--text-color,#1f2937)", "live": "var(--text-light,#64748b)", "pre": "var(--text-light,#64748b)"}[kind]
             if info["reps"] and any(w for _, w in info["reps"]):
                 rep_txt = " ／ ".join(
                     (f"{lb}：" if lb else "") + esc(w) for lb, w in info["reps"] if w)
                 rep_html = f'<span style="font-weight:700;">代表：{rep_txt}</span>'
             elif info["final_dates"]:
-                rep_html = f'<span style="color:var(--text-light,#64748b);">決勝 {fmt_dates(info["final_dates"])}</span>'
+                rep_html = f'<span style="font-size:0.85em;color:var(--text-light,#64748b);">決勝 {fmt_dates(info["final_dates"])}</span>'
             else:
                 rep_html = ""
             out.append(
@@ -196,7 +197,7 @@ def render_prefs(all_info):
                 'padding:7px 2px;border-bottom:1px solid var(--border-color,#e2e8f0);">'
                 # 1行に収める（スマホで47行×2段になると4,000px超になったため、右端の文字リンクは「›」だけにした）
                 f'<a href="/prefectures/{slug}/" style="font-weight:600;min-width:5.5em;">{name}予選</a>'
-                f'<span style="font-size:0.8em;background:{color};color:#fff;padding:2px 9px;border-radius:999px;">{esc(label)}</span>'
+                f'<span style="font-size:0.85em;color:{color};">{esc(label)}</span>'
                 f'{rep_html}'
                 f'<a href="/prefectures/{slug}/" aria-label="{name}のトーナメント表・県内順位" style="margin-left:auto;text-decoration:none;">›</a>'
                 '</li>')
@@ -207,7 +208,7 @@ def render_prefs(all_info):
 
 def render_summary(all_info, n_reps, n_started, rep_list):
     t = today()
-    stamp = f"【{t.year}年{t.month}月{t.day}日時点】"
+    stamp = f"{t.month}月{t.day}日現在、"
     if n_reps == 0:
         # ⚠️「最初の県決勝は◯日」とは書かない：決勝の見出しがmdに入っているのは一部の県だけで、
         #    それより早い決勝の県があっても分からないため（誤った断定をAIに引用させない）。
@@ -215,12 +216,11 @@ def render_summary(all_info, n_reps, n_started, rep_list):
     else:
         shown = "、".join(rep_list[:6]) + ("など" if len(rep_list) > 6 else "")
         status = f"出場48代表のうち{n_reps}校が決まりました（{shown}）。"
-    text = (f"{stamp}第105回全国高校サッカー選手権大会（2026年度）は2026年12月28日開幕・2027年1月11日決勝。"
-            f"{status}各都道府県の予選の進み具合と代表校を下の一覧で毎日自動更新しています。"
+    text = ("第105回全国高校サッカー選手権大会（2026年度）は2026年12月28日開幕・2027年1月11日決勝。"
+            f"{stamp}{status}各都道府県の予選の進み具合と代表校は、下の一覧で毎日更新しています。"
             "前回第104回は神村学園（鹿児島）が初優勝し、インターハイとの夏冬2冠を達成しました。")
-    return ('      <p class="blog-article__summary" style="margin:0 0 24px;padding:14px 18px;'
-            'background:var(--bg-light,#f1f5fb);border-left:4px solid var(--primary-color,#1e40af);'
-            'border-radius:0 8px 8px 0;font-size:0.97rem;line-height:1.85;">\n'
+    return ('      <p class="blog-article__summary" style="margin:0 0 24px;padding:2px 0 2px 14px;'
+            'border-left:2px solid var(--border-color,#cbd5e1);font-size:0.97rem;line-height:1.85;">\n'
             f'        {esc(text)}\n      </p>')
 
 
