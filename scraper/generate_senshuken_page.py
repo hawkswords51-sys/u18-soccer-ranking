@@ -122,6 +122,14 @@ def fmt_dates(dates):
     return "・".join(f"{m}/{d}" for m, d in dates)
 
 
+def rep_link(name):
+    """代表校名。チーム詳細ページがあれば /teams/{id}/ へリンク（県ページ・インハイと同じ名寄せ＝team-profiles の name/short_name/aliases）。"""
+    from generate_interhigh_page import team_link  # noqa: E402  import時は読むだけで書き込まない
+    if name == "確認中":
+        return esc(name)
+    return team_link(name)
+
+
 def analyze(slug):
     path = TDIR / "senshuken-2026" / f"{slug}-senshuken-2026.md"  # [2026-10-10] 大会フォルダへ移動
     if not path.exists():
@@ -186,7 +194,7 @@ def render_prefs(all_info):
             color = {"done": "var(--text-color,#1f2937)", "live": "var(--text-light,#64748b)", "pre": "var(--text-light,#64748b)"}[kind]
             if info["reps"] and any(w for _, w in info["reps"]):
                 rep_txt = " ／ ".join(
-                    (f"{lb}：" if lb else "") + esc(w) for lb, w in info["reps"] if w)
+                    (f"{lb}：" if lb else "") + rep_link(w) for lb, w in info["reps"] if w)
                 rep_html = f'<span style="font-weight:700;">代表：{rep_txt}</span>'
             elif info["final_dates"]:
                 rep_html = f'<span style="font-size:0.85em;color:var(--text-light,#64748b);">決勝 {fmt_dates(info["final_dates"])}</span>'
