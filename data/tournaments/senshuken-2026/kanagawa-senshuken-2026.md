@@ -208,7 +208,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 2次予選準々決勝（10/24）
 
-- 日本大学藤沢 vs 相洋
+- 日本大学藤沢 3-2 相洋
 - 桐光学園 2-0 三浦学苑
 - 慶應義塾 3-3(PK2-4) 桐蔭学園
 - 湘南学院 vs 川崎市立橘
@@ -217,3 +217,4 @@ scraper/update_tournament_results.py が上の source から
 
 - 桐光学園 vs 湘南学院/市立橘
 - 日大藤沢/相洋 vs 桐蔭学園
+- 日本大学藤沢 vs 慶應義塾
