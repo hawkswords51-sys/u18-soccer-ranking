@@ -46,3 +46,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 - 富岡西 vs 徳島北
 - 徳島市立 vs 阿南高専/生光学園
 - 小松島 vs 県立徳島商業
+- 富岡西/城西・城ノ内 vs 池田/徳島北

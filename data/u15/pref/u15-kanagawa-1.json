@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-10-19",
+ "lastUpdated": "2026-10-25",
  "teams": [
   {
    "name": "FC Kanaloa A",
@@ -21,12 +21,12 @@
    "short": "FCヴィアージャ"
   },
   {
-   "name": "シュートJrユースFC",
-   "short": "シュートJrユースFC"
-  },
-  {
    "name": "瀬谷インターナショナル フットボール",
    "short": "瀬谷インターナショナル フットボール"
+  },
+  {
+   "name": "シュートJrユースFC",
+   "short": "シュートJrユースFC"
   },
   {
    "name": "横須賀シーガルズFC",
@@ -54,25 +54,25 @@
    "rank": 1,
    "team": "FC Kanaloa A",
    "points": 42,
-   "played": 16,
+   "played": 17,
    "won": 14,
    "drawn": 0,
-   "lost": 2,
-   "gf": 40,
-   "ga": 12,
-   "gd": 28
+   "lost": 3,
+   "gf": 41,
+   "ga": 14,
+   "gd": 27
   },
   {
    "rank": 2,
    "team": "川崎フロンターレU-15等々力",
-   "points": 36,
-   "played": 15,
-   "won": 11,
+   "points": 39,
+   "played": 16,
+   "won": 12,
    "drawn": 3,
    "lost": 1,
-   "gf": 41,
-   "ga": 14,
-   "gd": 27
+   "gf": 43,
+   "ga": 15,
+   "gd": 28
   },
   {
    "rank": 3,
@@ -88,6 +88,18 @@
   },
   {
    "rank": 4,
+   "team": "瀬谷インターナショナル フットボール",
+   "points": 27,
+   "played": 15,
+   "won": 8,
+   "drawn": 3,
+   "lost": 4,
+   "gf": 26,
+   "ga": 13,
+   "gd": 13
+  },
+  {
+   "rank": 5,
    "team": "シュートJrユースFC",
    "points": 27,
    "played": 16,
@@ -99,40 +111,28 @@
    "gd": 8
   },
   {
-   "rank": 5,
-   "team": "瀬谷インターナショナル フットボール",
-   "points": 24,
-   "played": 14,
-   "won": 7,
-   "drawn": 3,
-   "lost": 4,
-   "gf": 22,
-   "ga": 12,
-   "gd": 10
-  },
-  {
    "rank": 6,
    "team": "横須賀シーガルズFC",
    "points": 22,
-   "played": 15,
+   "played": 16,
    "won": 7,
    "drawn": 1,
-   "lost": 7,
-   "gf": 24,
-   "ga": 29,
-   "gd": -5
+   "lost": 8,
+   "gf": 25,
+   "ga": 31,
+   "gd": -6
   },
   {
    "rank": 7,
    "team": "足柄FC",
-   "points": 15,
-   "played": 15,
-   "won": 4,
+   "points": 18,
+   "played": 16,
+   "won": 5,
    "drawn": 3,
    "lost": 8,
-   "gf": 21,
-   "ga": 30,
-   "gd": -9
+   "gf": 23,
+   "ga": 31,
+   "gd": -8
   },
   {
    "rank": 8,
@@ -162,13 +162,13 @@
    "rank": 10,
    "team": "カルペソール湘南",
    "points": 3,
-   "played": 15,
+   "played": 16,
    "won": 1,
    "drawn": 0,
-   "lost": 14,
-   "gf": 10,
-   "ga": 42,
-   "gd": -32
+   "lost": 15,
+   "gf": 11,
+   "ga": 46,
+   "gd": -35
   }
  ],
  "matches": [
@@ -842,28 +842,28 @@
    "md": 0,
    "date": "2026-10-24",
    "home": "川崎フロンターレU-15等々力",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 1,
    "away": "FC Kanaloa A",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
    "date": "2026-10-24",
    "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
+   "hs": 4,
+   "as": 1,
    "away": "カルペソール湘南",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
    "date": "2026-10-24",
    "home": "足柄FC",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 1,
    "away": "横須賀シーガルズFC",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
