@@ -947,8 +947,8 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
     html_parts = []
 
     def _tournament_sort_key(fp):
-        """開催中（status≠終了）の大会を上に、終了済みを下に。同グループ内はファイル名順。
-        選手権シーズン中は選手権が最上部に来て、終わればインターハイと同様に下へ回る。"""
+        """開催中（status≠終了）の大会を上に、終了済みを下に。
+        同じグループの中は新しい大会が上（年度の新しい順、同じ年度は選手権→インターハイ）。"""
         try:
             c = fp.read_text(encoding='utf-8')
             finished = 1
@@ -961,7 +961,13 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
                             break
         except Exception:
             finished = 1
-        return (finished, fp.name)
+        # [2026-10-24] 同じグループ（開催中／終了）の中は「新しい大会が上」。年度の新しい順、
+        #   同じ年度なら選手権（秋〜冬）をインターハイ（春〜夏）より上に。Kei指摘＝選手権の県予選が
+        #   「終了」になった途端、夏のインターハイの表が上に来ていた（山形・秋田）。
+        m = re.search(r"-(\d{4})\.md$", fp.name)
+        year = int(m.group(1)) if m else 0
+        kind = 0 if "-senshuken-" in fp.name else 1 if "-interhigh-" in fp.name else 2
+        return (finished, -year, kind, fp.name)
 
     # [2026-10-10] 県予選mdは大会ごとのフォルダ（senshuken-2026/ など）にある。直下だけ見ると0件になる。
     from tournament_files import iter_tournament_mds
