@@ -387,8 +387,8 @@ def render_highlights(sections):
     if not body:
         return ""
     return f"""
-      <section class="lp-section" id="highlights" style="border-left:5px solid var(--accent-color,#2563eb);">
-        <h2><i class="fas fa-fire" style="color:var(--accent-color,#2563eb);"></i> いまの見どころ</h2>
+      <section class="lp-section" id="highlights">
+        <h2><i class="fas fa-circle-info"></i> いまの見どころ</h2>
         {body}
       </section>
 """
@@ -1023,7 +1023,7 @@ def render_bracket_svg(sections, reps_lines):
     if champ:
         stem_top = ymid - 28
         line(cx, ymid, cx, stem_top, RED, 2.4)
-        text(cx, stem_top - 7, f"🏆 {_short_label(champ)}", "middle", 13, RED, "700")
+        text(cx, stem_top - 7, f"優勝 {_short_label(champ)}", "middle", 13, RED, "700")
 
     # 表示倍率：viewBox(内部座標)はそのままに、表示サイズだけ拡大する。
     # ベクターなので文字・線も含めて一律にきれいに大きくなる（中央線などのレイアウトは不変）。
@@ -1036,7 +1036,7 @@ def render_bracket_svg(sections, reps_lines):
 
     return (
         '<p style="margin:0 0 8px;color:var(--text-light,#666);font-size:0.88em;">'
-        '📱 スマホでは表を左右にスクロールできます ／ '
+        'スマホでは表を左右にスクロールできます ／ '
         '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり ／ '
         '<span style="border:1.5px solid var(--danger-color,#dc2626);border-radius:3px;padding:0 5px;">赤枠</span>＝勝ち残り(結果の入力に合わせて自動で更新されます)</p>'
         '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
@@ -1053,8 +1053,8 @@ def render_bracket_svg(sections, reps_lines):
 # =========================================================================
 def _summary_p(body):
     style = (
-        "margin:0 0 18px;padding:12px 16px;background:var(--bg-light,#f1f5fb);"
-        "border-left:4px solid var(--primary-color,#1e40af);border-radius:0 8px 8px 0;"
+        "margin:0 0 18px;padding:2px 0 2px 14px;"
+        "border-left:2px solid var(--border-color,#cbd5e1);"
         "font-size:0.95rem;line-height:1.8;"
     )
     return f'      <p class="lp-lead-summary" style="{style}">{body}</p>\n'
@@ -1167,7 +1167,7 @@ def build_ai_summary(meta, sections):
     # ① 優勝が確定していれば優勝校を主役に
     champ_name = champion_name(meta)
     if champ_name:
-        body = (f"【{date_str}時点】{html_escape(title_main)}は{html_escape(champ_name)}が優勝。"
+        body = (f"{html_escape(title_main)}は{html_escape(champ_name)}が優勝。"
                 f"組み合わせ・トーナメント表・全試合結果をまとめています。")
         return _summary_p(body)
 
@@ -1193,7 +1193,7 @@ def build_ai_summary(meta, sections):
             mid = f"勝ち上がった{n}校は{teams_str}。"
         else:
             mid = f"{n}校が勝ち上がっています。"
-        body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}({stage})の組み合わせが決定。{mid}"
+        body = (f"{date_str}現在、{html_escape(title_main)}は{round_word}({stage})の組み合わせが決定。{mid}"
                 f"各都道府県の予選を勝ち抜いた代表校が日本一を争うノックアウト方式の"
                 f"組み合わせ・トーナメント表・結果を毎日更新。")
         return _summary_p(body)
@@ -1212,10 +1212,10 @@ def build_ai_summary(meta, sections):
         stage = {8: "ベスト8", 4: "ベスト4", 2: "決勝進出の2校", 1: "優勝"}.get(n, f"{n}校")
         if winners and n <= 8:
             teams_str = "・".join(html_escape(t) for t in winners)
-            body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}が終了し、{stage}が決定。"
+            body = (f"{date_str}現在、{html_escape(title_main)}は{round_word}が終了し、{stage}が決定。"
                     f"勝ち残りは{teams_str}。組み合わせ・トーナメント表・結果を毎日更新。")
         else:
-            body = (f"【{date_str}時点】{html_escape(title_main)}は{round_word}まで終了。"
+            body = (f"{date_str}現在、{html_escape(title_main)}は{round_word}まで終了。"
                     f"組み合わせ・トーナメント表・結果を毎日更新。")
         return _summary_p(body)
 
@@ -1246,7 +1246,7 @@ def build_ai_summary(meta, sections):
         nums = re.findall(r'(\d+)\s*チーム', slots)
         teams_count = max(nums, key=int) if nums else ""
 
-    parts = [f"【{date_str}時点】{html_escape(title_main)}は"]
+    parts = [f"{date_str}現在、{html_escape(title_main)}は"]
     if period:
         parts.append(f"{html_escape(period)}に")
     if loc:
@@ -1337,16 +1337,16 @@ def main():
 
     champion_html = ""
     if champion and isinstance(champion, dict) and champion.get("team"):
-        champion_html = (f'<div style="text-align:center;padding:16px;margin:16px 0;'
-                         f'background:linear-gradient(135deg,#fde68a,#fbbf24);border-radius:10px;'
-                         f'font-weight:700;color:#7c2d12;font-size:1.2em;">🏆 全国優勝:{team_link(champion["team"])}</div>')
+        champion_html = (f'<p style="margin:16px 0;padding:10px 0;border-top:2px solid #1e3a8a;'
+                         f'border-bottom:1px solid var(--border-color,#cbd5e1);'
+                         f'font-weight:700;font-size:1.1em;">全国優勝：{team_link(champion["team"])}</p>')
     elif isinstance(champion, str) and champion.strip():
-        champion_html = (f'<div style="text-align:center;padding:16px;margin:16px 0;'
-                         f'background:linear-gradient(135deg,#fde68a,#fbbf24);border-radius:10px;'
-                         f'font-weight:700;color:#7c2d12;font-size:1.2em;">🏆 全国優勝:{team_link(champion.strip())}</div>')
+        champion_html = (f'<p style="margin:16px 0;padding:10px 0;border-top:2px solid #1e3a8a;'
+                         f'border-bottom:1px solid var(--border-color,#cbd5e1);'
+                         f'font-weight:700;font-size:1.1em;">全国優勝：{team_link(champion.strip())}</p>')
 
-    status_badge = (f'<span style="display:inline-block;padding:4px 14px;border-radius:999px;'
-                    f'background:#dbeafe;color:#1e40af;font-weight:600;font-size:0.9em;">{html_escape(status)}</span>'
+    # 2026-10-24 丸いバッジをやめ、見出しの下のふつうの1行にした（KeiがAIっぽいと判断）
+    status_badge = (f'\n        <p style="margin:0 0 6px;">{html_escape(status)}</p>'
                     if status else "")
 
     breadcrumb_schema = (
@@ -1434,16 +1434,16 @@ def main():
     if (BASE_DIR / "blog" / "posts" / _concussion_slug).exists():
         _safety_concussion = (
             f'<a href="/blog/posts/{_concussion_slug}/" '
-            f'style="font-weight:600;">🧠 頭を打った時の対応（脳震盪）›</a>'
+            f'style="font-weight:600;">頭を打った時の対応（脳震盪）›</a>'
         )
     else:
         _safety_concussion = (
             '<span style="color:var(--text-light,#666);">'
-            '🧠 脳震盪コラム（7/25公開予定）</span>'
+            '脳震盪コラム（7/25公開予定）</span>'
         )
     safety_box = f"""
-      <section class="lp-section" id="heat-safety" style="border-left:5px solid #dc2626;">
-        <h2><i class="fas fa-triangle-exclamation" style="color:#dc2626;"></i> 真夏の連戦——観戦・出場前に3つだけ</h2>
+      <section class="lp-section" id="heat-safety">
+        <h2><i class="fas fa-triangle-exclamation"></i> 真夏の連戦で気をつけること</h2>
         <p style="margin:0 0 10px;line-height:1.9;">
           本大会は救急搬送が1年で最も多い時期の8日間連戦です。救急科専門医として、最低限これだけお願いします。
         </p>
@@ -1453,7 +1453,7 @@ def main():
           <li><strong>全員</strong>：「意識がおかしい」選手を見たら迷わず119番＋その場で全身冷却（Cool First）</li>
         </ul>
         <p style="margin:0;display:flex;flex-wrap:wrap;gap:8px 18px;">
-          <a href="/blog/posts/interhigh-2026-heat-safety/" style="font-weight:600;">🌡️ 本大会仕様の暑熱対策ガイド（救急医が解説）›</a>
+          <a href="/blog/posts/interhigh-2026-heat-safety/" style="font-weight:600;">本大会仕様の暑熱対策ガイド（救急医が解説）›</a>
           {_safety_concussion}
         </p>
       </section>
@@ -1537,22 +1537,19 @@ def main():
         <span aria-current="page">インターハイ{year}</span>
       </nav>
       <h1 class="lp-title">{html_escape(title_main)}</h1>
-{ai_summary_html}      <p lang="en" style="font-size:0.9rem;margin:12px 0;">🌐 English: <a href="/en/inter-high/">Inter-High 2026 in English</a></p>
+{ai_summary_html}      <p lang="en" style="font-size:0.9rem;margin:12px 0;">English: <a href="/en/inter-high/">Inter-High 2026 in English</a></p>
       <p class="lp-intro">
-        高校総体(<strong>インターハイ</strong>)サッカー競技 男子 {year} の<strong>全国大会(本選)</strong>の
+        高校総体(インターハイ)サッカー競技 男子 {year} の全国大会(本選)の
         組み合わせ・試合結果・各県代表校をまとめています。各県予選の結果は
         <a href="/">都道府県別ページ</a>からご確認いただけます。
       </p>
 
-      <p style="margin:4px 0 16px;display:flex;flex-wrap:wrap;gap:10px;">
-        <a href="/tournaments/interhigh-history/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:var(--primary-color,#1e40af);color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🏆 歴代優勝校一覧(2008-2025)</a>
-        <a href="/blog/posts/interhigh-2026-heat-safety/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#dc2626;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🌡️ 救急医の暑熱対策ガイド</a>
-        <a href="/tournaments/senshuken-2026/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#0e7490;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">❄️ 冬の選手権2026 特設ページ</a>
-        <a href="/tournaments/wakura-youth-2026/" style="display:inline-block;padding:9px 18px;border-radius:999px;background:#b45309;color:#fff;text-decoration:none;font-weight:600;font-size:0.92em;">🌊 和倉ユース2026（8/6〜10・出場15校が参戦）</a>
+      <p style="margin:4px 0 16px;line-height:1.9;">
+        <a href="/tournaments/interhigh-history/">歴代優勝校一覧（2008〜2025）</a> ／ <a href="/blog/posts/interhigh-2026-heat-safety/">救急医の暑熱対策ガイド</a> ／ <a href="/tournaments/senshuken-2026/">選手権2026 特設ページ</a> ／ <a href="/tournaments/wakura-youth-2026/">和倉ユース2026</a>
       </p>
 
       <section class="lp-section">
-        <h2><i class="fas fa-circle-info"></i> 大会概要 {status_badge}</h2>
+        <h2><i class="fas fa-circle-info"></i> 大会概要</h2>{status_badge}
         <ul style="list-style:none;padding:0;line-height:2;">
           <li><strong>大会名</strong>:{html_escape(title_main)}</li>
           <li><strong>会期</strong>:{html_escape(period) or '日程確定後に掲載'}</li>
