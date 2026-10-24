@@ -174,7 +174,7 @@ scraper/update_tournament_results.py が上の source から
 - 細田学園 0-1 武南
 - 浦和南 1-0 浦和西
 - 武蔵越生 vs 浦和学院
-- 正智深谷 vs 本庄東
+- 正智深谷 5-0 本庄東
 - 西武文理 vs 埼玉平成
 - 浦和東 4-0 大宮東
 - 本庄第一 1-3 西武台
@@ -184,4 +184,4 @@ scraper/update_tournament_results.py が上の source から
 - 昌平 vs 武南
 - 浦和南 vs 武蔵越生/浦和学院
 - 浦和東 vs 西武台
-- 正智深谷/本庄東 vs 西武文理/埼玉平成
+- 正智深谷 vs 西武文理/埼玉平成

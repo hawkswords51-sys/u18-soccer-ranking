@@ -121,7 +121,7 @@ scraper/update_tournament_results.py が上の source から
 ## 準々決勝（10/31）
 
 - 藤枝東/浜松工 vs 清水東/飛龍
-- 藤枝明誠/常葉橘 vs 科学技術/東海大翔洋
+- 藤枝明誠/常葉橘 vs 東海大翔洋
 - 静岡学園 vs 磐田東/清水桜が丘
 - 富士市立 vs 浜名/浜松開誠館
 
@@ -135,4 +135,4 @@ scraper/update_tournament_results.py が上の source から
 - 藤枝東 vs 浜松工
 - 清水東 vs 飛龍
 - 藤枝明誠 vs 常葉大学附属橘
-- 科学技術 vs 東海大翔洋
+- 科学技術 0-8 東海大翔洋
