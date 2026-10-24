@@ -133,7 +133,7 @@ FC東京U-15むさしから帝京へ進み、日本体育大学を経てヴァ�
 - [四日市中央工業高校 チーム詳細](/teams/yokkaichi-chuo-kogyo/)（1991年度選手権の両校優勝の相手）
 - [桐生第一高校 チーム詳細](/teams/kiryu-daiichi/)
 - [成立学園高校 チーム詳細](/teams/seiritsu-gakuen/)
-- [【東京インハイ2026】帝京敗退の衝撃と"戦国東京"の深層](/blog/posts/tokyo-warring-states-2026/)
+- [【東京インハイ2026】帝京の敗退と"戦国東京"](/blog/posts/tokyo-warring-states-2026/)
 - [全国高校サッカー選手権 歴代優勝校一覧](/tournaments/senshuken-history/)
 - [プロ内定・2種登録選手一覧](/pro-signings/)
 - [高校サッカー順位確認システム トップ](/)
