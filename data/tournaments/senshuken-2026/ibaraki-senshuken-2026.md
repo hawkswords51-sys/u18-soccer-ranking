@@ -108,7 +108,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準々決勝（10/24）
 
-- 鹿島学園 vs 境
+- 鹿島学園 6-0 境
 - 明秀学園日立 vs 東洋大牛久
 - 鹿島 vs 常総学院
 - 水戸啓明 vs 第一学院
@@ -116,4 +116,4 @@ scraper/update_tournament_results.py が上の source から
 ## 準決勝（10/31）
 
 - 明秀日立/東洋大牛久 vs 水戸啓明/第一学院
-- 鹿島学園/境 vs 鹿島/常総学院
+- 鹿島学園 vs 鹿島/常総学院
