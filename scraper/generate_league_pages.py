@@ -728,7 +728,7 @@ def build_faqs(label, teams, slug, category):
 
     a2 = (
         f"{html_escape(label)}には現在<strong>{team_count}チーム</strong>が所属しています。"
-        f"全国47都道府県から実力上位のチームが集結し、年間を通じて順位を競います。"
+        f"各チームとホーム・アウェーで1試合ずつ対戦し、年間を通じて順位を競います。"
     )
 
     if category == "premier":
@@ -1596,7 +1596,7 @@ def generate_league_page(league_name, slug, label, category, description, season
             f"{league_role}の昇格・降格争いの最新動向まで、ワンクリックでチェックできます。"
         )
 
-    description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属し、年間を通じて熾烈な順位争いが繰り広げられます。"
+    description_long = description + f"現在 <strong>{team_count}チーム</strong> が所属しています。"
     # プレミアEAST/WESTの場合はファイナルページへの導線を追加
     if slug in ("premier-east", "premier-west"):
         description_long += (
@@ -2010,7 +2010,7 @@ def generate_premier_final_page():
       <p class="lp-intro">
         高円宮杯JFA U-18 サッカープレミアリーグの<strong>ファイナル（決勝戦）</strong>の歴代結果をまとめています。
         EAST/WEST 各リーグ1位の対戦記録、全国優勝校、試合スコア、PK決着まで過去5年分を網羅。
-        日本の高校サッカー最高峰の頂上決戦の歴史をご覧ください。
+        EASTとWESTの優勝チームが全国一を決める試合の記録です。
       </p>
       <div class="premier-finals-list" style="margin:32px 0;">
         {cards_html}
@@ -2189,7 +2189,7 @@ __PREMIER_CARDS__
       <section class="lp-section">
         <h2><i class="fas fa-medal"></i> プリンスリーグ（9地域）</h2>
         <p class="lp-section-desc">
-          全国9地域それぞれで開催される2部相当のリーグ。プレミアリーグへの昇格を目指して激戦が繰り広げられます。
+          全国9地域それぞれで開催される、プレミアリーグの次のカテゴリーのリーグ。上位のチームは、プレミアリーグ参入プレーオフへの出場をかけて戦います。
         </p>
         <div class="lp-league-cards">
 __PRINCE_CARDS__
