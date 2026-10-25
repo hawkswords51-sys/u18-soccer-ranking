@@ -48,4 +48,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 ## 準決勝（10/25）
 
 - 丸岡 vs 福井工大福井
-- 北陸 vs 福井商業
+- 北陸 1-5 福井商業
