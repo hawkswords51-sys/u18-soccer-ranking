@@ -608,12 +608,18 @@ def render_bracket_svg(sections, rank_of=None, round_dates=None):
         score_anchor = "start" if side == "L" else "end"
 
         nodes = wings[side]
-        for nd in nodes:
+        off = 0 if side == "L" else half
+        for i, nd in enumerate(nodes):
             won_a = bool(nd["score"]) and nd.get("winner") == nd["a"]
             won_b = bool(nd["score"]) and nd.get("winner") == nd["b"]
             if nd["bye"]:
-                team_text(tx, nd["ya"] + 3.5, nd["a"], anchor)
-                line(x_edge, nd["ya"], xs[0], nd["ya"], GRAY)
+                # [2026-10-25] シードは最初の試合（次の回戦）に勝ったら校名から赤にする。Kei指摘＝熊本の大津が
+                #   準々決勝 6-0 で勝ったのに線が灰のままで、負けた熊本農の側から赤が伸びて見えた。
+                par = levels[1][(off + i) // 2] if num_levels > 1 else {}
+                nd["bye_won"] = bool(par.get("score")) and bool(nd["a"]) and par.get("winner") == nd["a"]
+                team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=nd["bye_won"])
+                line(x_edge, nd["ya"], xs[0], nd["ya"], RED if nd["bye_won"] else GRAY,
+                     2.4 if nd["bye_won"] else 1.6)
             else:
                 team_text(tx, nd["ya"] + 3.5, nd["a"], anchor, won=won_a)
                 team_text(tx, nd["yb"] + 3.5, nd["b"], anchor, won=won_b)
@@ -636,7 +642,7 @@ def render_bracket_svg(sections, rank_of=None, round_dates=None):
                 x_from = xs[li]
                 if li + 1 < wing_levels:
                     x_to = xs[li + 1]
-                    seg_red = bool(nd["score"]) and nd.get("winner")
+                    seg_red = (bool(nd["score"]) and nd.get("winner")) or nd.get("bye_won", False)
                 else:
                     # 準決勝→決勝：両者とも中央まで引く。赤は優勝校だけ（敗者は灰で連結）
                     x_to = cx - sign * 10
