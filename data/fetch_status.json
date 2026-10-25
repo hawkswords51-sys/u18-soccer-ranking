@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-26T02:20:24+09:00",
+  "updatedAt": "2026-10-26T02:20:29+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -223,7 +223,7 @@
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "aomori": {
       "season": "2026",
@@ -244,7 +244,7 @@
       "result": "ok",
       "result_note": "消化72試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "chiba": {
       "result": "ok",
@@ -283,7 +283,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化72試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -307,7 +307,7 @@
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "fukuoka": {
       "result": "ok",
@@ -328,7 +328,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "fukushima": {
       "season": "2026",
@@ -346,7 +346,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化90試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -371,7 +371,7 @@
       "result": "ok",
       "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "gunma": {
       "result": "ok",
@@ -392,7 +392,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "hiroshima": {
       "result": "ok",
@@ -413,7 +413,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "hokkaido": {
       "result": "ok",
@@ -430,7 +430,7 @@
       "latest_match": "2026-10-03",
       "source": "official",
       "sourceName": "北海道FAリーグ 試合結果（kawakitanet・有志運営）",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "last_change": "2026-10-04",
       "result_since": "",
       "result_streak": 0,
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 95,
+      "result_streak": 96,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -487,7 +487,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "ishikawa": {
       "season": "2026",
@@ -586,7 +586,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "kochi": {
       "season": "2026",
@@ -604,7 +604,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -626,9 +626,10 @@
       "sourceName": "熊本県サッカー協会 公式",
       "last_change": "2026-10-16",
       "result_since": "2026-10-22",
-      "result_streak": 8,
-      "status": "alert",
-      "last_updated": "2026-10-21"
+      "result_streak": 9,
+      "status": "warn",
+      "last_updated": "2026-10-21",
+      "status_note": "出典サイトの停止（data/fetch_watch_exceptions.json の台帳による🟡）"
     },
     "kyoto": {
       "season": "2026",
@@ -646,7 +647,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -670,7 +671,7 @@
       "result": "ok",
       "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "miyagi": {
       "season": "2026",
@@ -709,7 +710,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "nagano": {
       "season": "2026",
@@ -730,7 +731,7 @@
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "nagasaki": {
       "result": "ok",
@@ -769,7 +770,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化75試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -793,7 +794,7 @@
       "result": "ok",
       "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "oita": {
       "season": "2026",
@@ -814,7 +815,7 @@
       "result": "ok",
       "result_note": "消化70試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "okayama": {
       "result": "fetch_error",
@@ -832,8 +833,8 @@
       "source": "official",
       "sourceName": "岡山県サッカー協会 公式",
       "last_change": "2026-10-06",
-      "result_since": "",
-      "result_streak": 0,
+      "result_since": "2026-10-26",
+      "result_streak": 1,
       "status": "warn",
       "last_updated": "2026-10-25"
     },
@@ -856,7 +857,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "osaka": {
       "season": "2026",
@@ -872,7 +873,7 @@
       "sourceName": "大阪府サッカー協会 公式",
       "last_change": "2026-10-11",
       "result_since": "2026-10-24",
-      "result_streak": 4,
+      "result_streak": 5,
       "status": "warn",
       "last_updated": "2026-10-23",
       "result": "fetch_error",
@@ -894,7 +895,7 @@
       "last_updated": "2026-10-23",
       "last_change": "2026-10-17",
       "result_since": "2026-10-24",
-      "result_streak": 4,
+      "result_streak": 5,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://osaka-fa.or.jp/2shu/game_information/ の取得に失敗 (503 Server Error: Service Unavailable for url: https://osaka-fa.or.jp/2shu/game_information/))",
@@ -915,7 +916,7 @@
       "last_updated": "2026-10-23",
       "last_change": "2026-10-12",
       "result_since": "2026-10-24",
-      "result_streak": 4,
+      "result_streak": 5,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://osaka-fa.or.jp/2shu/game_information/ の取得に失敗 (503 Server Error: Service Unavailable for url: https://osaka-fa.or.jp/2shu/game_information/))",
@@ -936,7 +937,7 @@
       "last_updated": "2026-10-23",
       "last_change": "2026-10-13",
       "result_since": "2026-10-24",
-      "result_streak": 4,
+      "result_streak": 5,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://osaka-fa.or.jp/2shu/game_information/ の取得に失敗 (503 Server Error: Service Unavailable for url: https://osaka-fa.or.jp/2shu/game_information/))",
@@ -961,7 +962,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "saitama": {
       "season": "2026",
@@ -979,7 +980,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化73試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -1003,7 +1004,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "shimane": {
       "result": "ok",
@@ -1024,7 +1025,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "shizuoka": {
       "season": "2026",
@@ -1062,8 +1063,8 @@
       "last_change": "2026-10-12",
       "result_since": "",
       "result_streak": 0,
-      "status": "ok",
-      "last_updated": "2026-10-25"
+      "status": "warn",
+      "last_updated": "2026-10-26"
     },
     "tokushima": {
       "season": "2026",
@@ -1084,7 +1085,7 @@
       "result": "ok",
       "result_note": "消化79試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "tokyo": {
       "result": "ok",
@@ -1105,7 +1106,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "tottori": {
       "result": "ok",
@@ -1147,7 +1148,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "wakayama": {
       "season": "2026",
@@ -1165,7 +1166,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-26",
       "result": "ok",
       "result_note": "消化85試合に更新（検算一致）",
       "result_date": "2026-10-26"
@@ -1189,7 +1190,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "yamaguchi": {
       "result": "ok",
@@ -1210,7 +1211,7 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "yamanashi": {
       "season": "2026",
@@ -1231,10 +1232,10 @@
       "result": "ok",
       "result_note": "消化44試合に更新（検算一致）",
       "result_date": "2026-10-26",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "_meta": {
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "national_latest": "2026-10-18",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
