@@ -176,6 +176,44 @@ def load_known_source_errors() -> dict:
     return out
 
 
+def load_known_source_outages() -> dict:
+    """台帳 data/fetch_watch_exceptions.json の known_source_outages を返す（無ければ {}）。
+
+    [2026-10-25 新設] 「出典サイトそのものが落ちている／ページが消えている」ことを
+    人が確かめた県を書く台帳。書いた県の fetch_error は、**期限内なら**🔴ではなく🟡にする。
+    きっかけ＝熊本：協会サイトのトップは開くのに /league/ 以下が丸ごと404（10/22〜）。
+    こちらで直せるものが無いのに毎日🔴が出続けると、本当の🔴が埋もれる。
+    ⚠️ 見張りの色を変えるだけ。データは前回取得分のまま据え置き（取得の試みも毎回続ける）。
+    ⚠️ fetch_error だけを下げる。verify_failed など別の失敗は下げない。
+    ⚠️ 期限・理由・外す条件は必須。どれかが無い行は使わない。"""
+    try:
+        d = json.loads(WATCH_EXCEPTIONS.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {}
+    except Exception as e:
+        print(f"  ※ {WATCH_EXCEPTIONS.name} を読めませんでした（{e}）。台帳は無しとして続けます。")
+        return {}
+    out = {}
+    for pref, v in (d.get("known_source_outages") or {}).items():
+        if (isinstance(v, dict) and v.get("expires") and v.get("reason")
+                and v.get("remove_when")):
+            out[pref] = v
+        else:
+            print(f"  ※ 台帳(outages)の {pref} は expires・reason・remove_when のどれかが無いので使いません")
+    return out
+
+
+def outage_verdict(entry: dict, today: date) -> tuple[bool, str]:
+    """fetch_error の県を出典停止の台帳で🟡に下げてよいか → (下げてよいか, 理由の文)。"""
+    exp = entry.get("expires", "")
+    try:
+        if date.fromisoformat(exp) < today:
+            return False, f"出典停止の台帳の期限（{exp}）切れ：出典の様子を見直す"
+    except ValueError:
+        return False, f"出典停止の台帳の期限（{exp}）が日付として読めない"
+    return True, ""
+
+
 def known_error_verdict(r: dict, entry: dict, today: date) -> tuple[bool, str]:
     """verify_failed のリーグを台帳で🟡に下げてよいか → (下げてよいか, 理由の文)。
     下げないとき（🔴のまま）の理由も返す。"""
@@ -322,10 +360,12 @@ def update_record(rec: dict, cur: dict, today: date, is_official: bool,
 # ---------------------------------------------------------------------------
 def judge(records: dict, today: date, official: dict, jobs: dict,
           temp_exceptions: dict, excluded: dict | None = None,
-          known_errors: dict | None = None, saved: set | None = None) -> dict:
+          known_errors: dict | None = None, saved: set | None = None,
+          outages: dict | None = None) -> dict:
     """赤・黄・情報・正常などをまとめて返す。"""
     offseason = today.month in OFFSEASON_MONTHS
     known_errors = known_errors or {}
+    outages = outages or {}
     red, yellow, info, ok = [], [], [], []
     unrecorded, done = [], []
     excluded = excluded or {}
@@ -358,6 +398,17 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
                         + " ／ ".join(x.get("item", "") for x in r.get("verify_items") or []))
                     continue
                 line += f"  ※{why}"
+            # [2026-10-25] 出典サイトの停止（台帳）。fetch_error のときだけ見る
+            oentry = outages.get(pref) if result == "fetch_error" else None
+            if oentry:
+                lowered, why = outage_verdict(oentry, today)
+                if lowered:
+                    yellow.append(
+                        f"{pref:12s} 出典サイトの停止（台帳・期限 {oentry['expires']}）: {result}"
+                        f"（{r.get('result_since', '?')} から{n if n is not None else '?'}日）"
+                        f" 理由: {oentry['reason']}")
+                    continue
+                line += f"  ※{why}"
             if n is not None and n >= FETCH_FAIL_DAYS and not offseason:
                 red.append(line)
             else:
@@ -377,6 +428,11 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
         if r.get("result") == "ok":
             info.append(f"{pref:12s} 検算が通りました。data/fetch_watch_exceptions.json の"
                         f" known_source_errors の {pref} の行はもう不要です。消してください")
+    for pref, entry in sorted(outages.items()):
+        r = records.get(pref) or {}
+        if r.get("result") == "ok":
+            info.append(f"{pref:12s} 取得が戻りました。data/fetch_watch_exceptions.json の"
+                        f" known_source_outages の {pref} の行はもう不要です。消してください")
 
     # --- 赤③ teams.json を書く導出ジョブが失敗している（2026-09-07追加） ---
     # sync_teams_from_leagues / sync_teams_from_pref には continue-on-error: true が
@@ -563,14 +619,18 @@ def main() -> int:
 
     excluded = manual_excluded()
     known_errors = load_known_source_errors()
+    outages = load_known_source_outages()
     temp_ex = collect_temp_exceptions()
     # 台帳の行も「一時的な例外が有効」に並べる（例外が見えない状態を作らない・4-2c）
     for pref, e in known_errors.items():
         temp_ex[pref] = temp_ex.get(pref, "") + (
             f"[既知の出典の誤り {'・'.join(e.get('teams') or [])} 期限{e.get('expires')}"
             f"・外す条件: {e.get('remove_when')}]")
+    for pref, e in outages.items():
+        temp_ex[pref] = temp_ex.get(pref, "") + (
+            f"[出典サイトの停止 期限{e.get('expires')}・外す条件: {e.get('remove_when')}]")
     j = judge(records, today, official, status.get("jobs", {}),
-              temp_ex, excluded, known_errors, saved)
+              temp_ex, excluded, known_errors, saved, outages)
     red, yellow, info, ok = j["red"], j["yellow"], j["info"], j["ok"]
 
     national = max((r.get("latest_match", "") for r in records.values()), default="")
@@ -609,6 +669,9 @@ def main() -> int:
             if r["status"] == "warn" and any(line.startswith(f"{pref:12s} 既知の出典の誤り")
                                             for line in yellow):
                 r["status_note"] = "既知の出典の誤り（data/fetch_watch_exceptions.json の台帳による🟡）"
+            elif r["status"] == "warn" and any(line.startswith(f"{pref:12s} 出典サイトの停止")
+                                              for line in yellow):
+                r["status_note"] = "出典サイトの停止（data/fetch_watch_exceptions.json の台帳による🟡）"
             else:
                 r.pop("status_note", None)
         status["pref_leagues"] = dict(sorted(records.items()))
