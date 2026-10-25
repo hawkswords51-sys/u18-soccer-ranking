@@ -42,4 +42,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 ## 準決勝（10/25）
 
 - 米子北 10-0 米子松陰
-- 境 vs 鳥取城北
+- 境 1-1(PK4-3) 鳥取城北
