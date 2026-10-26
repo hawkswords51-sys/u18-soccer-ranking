@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-26T02:20:29+09:00",
+  "updatedAt": "2026-10-26T09:39:17+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -818,8 +818,8 @@
       "last_updated": "2026-10-26"
     },
     "okayama": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (http://okayama-fa.or.jp/2022/2-2 の取得に失敗 (HTTPConnectionPool(host='okayama-fa.or.jp', port=80): Read timed out. (read timeout=25)))",
+      "result": "ok",
+      "result_note": "消化65試合に更新（検算一致）",
       "result_date": "2026-10-26",
       "season": "2026",
       "complete": false,
