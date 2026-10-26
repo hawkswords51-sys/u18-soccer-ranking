@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-26T09:39:17+09:00",
+  "updatedAt": "2026-10-26T09:39:22+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 96,
+      "result_streak": 97,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -626,7 +626,7 @@
       "sourceName": "熊本県サッカー協会 公式",
       "last_change": "2026-10-16",
       "result_since": "2026-10-22",
-      "result_streak": 9,
+      "result_streak": 10,
       "status": "warn",
       "last_updated": "2026-10-21",
       "status_note": "出典サイトの停止（data/fetch_watch_exceptions.json の台帳による🟡）"
@@ -833,10 +833,10 @@
       "source": "official",
       "sourceName": "岡山県サッカー協会 公式",
       "last_change": "2026-10-06",
-      "result_since": "2026-10-26",
-      "result_streak": 1,
+      "result_since": "",
+      "result_streak": 0,
       "status": "warn",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-26"
     },
     "okinawa": {
       "result": "ok",
@@ -873,7 +873,7 @@
       "sourceName": "大阪府サッカー協会 公式",
       "last_change": "2026-10-11",
       "result_since": "2026-10-24",
-      "result_streak": 5,
+      "result_streak": 6,
       "status": "warn",
       "last_updated": "2026-10-23",
       "result": "fetch_error",
@@ -895,7 +895,7 @@
       "last_updated": "2026-10-23",
       "last_change": "2026-10-17",
       "result_since": "2026-10-24",
-      "result_streak": 5,
+      "result_streak": 6,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://osaka-fa.or.jp/2shu/game_information/ の取得に失敗 (503 Server Error: Service Unavailable for url: https://osaka-fa.or.jp/2shu/game_information/))",
@@ -916,7 +916,7 @@
       "last_updated": "2026-10-23",
       "last_change": "2026-10-12",
       "result_since": "2026-10-24",
-      "result_streak": 5,
+      "result_streak": 6,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://osaka-fa.or.jp/2shu/game_information/ の取得に失敗 (503 Server Error: Service Unavailable for url: https://osaka-fa.or.jp/2shu/game_information/))",
@@ -937,7 +937,7 @@
       "last_updated": "2026-10-23",
       "last_change": "2026-10-13",
       "result_since": "2026-10-24",
-      "result_streak": 5,
+      "result_streak": 6,
       "status": "warn",
       "result": "fetch_error",
       "result_note": "取得失敗 (https://osaka-fa.or.jp/2shu/game_information/ の取得に失敗 (503 Server Error: Service Unavailable for url: https://osaka-fa.or.jp/2shu/game_information/))",
