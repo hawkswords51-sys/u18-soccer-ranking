@@ -73,5 +73,5 @@ Players worth knowing in the 2026 season:
 
 - **KASHIMA Hiroki** (midfielder, third year) — from the Yokohama F. Marinos junior youth team, and the player scouts have watched most closely this season.
 - **HIRANO Banri** (midfielder, third year) — also from Yokohama F. Marinos, the side's playmaker.
-- **WATANABE Toya** (forward, third year) — a JFA Academy Fukushima graduate.
+- **WATANABE Toya** (forward, third year) — a 183cm striker from Fukushima and a JFA Academy Fukushima graduate. On 26 October 2026 Urawa Red Diamonds announced that he will join them from 2027.
 - **FURUKAWA Soma** (midfielder, third year) — named in the best XI of the 2025-26 All Japan High School Soccer Tournament.

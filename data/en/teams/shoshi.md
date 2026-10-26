@@ -63,6 +63,7 @@ For readers new to Japanese youth football: high-school teams and J.League acade
 
 ## squad
 
-- **HOSHI Sosuke** (midfielder, third year) — a Japan U-17 international. He was one of four high-school players in the squad that won the 2026 AFC U17 Asian Cup in Saudi Arabia, beating China 3-2 in the final in May, and was called up again for Japan's U-17 tour of France in September 2026. As a second-year he played in defence and midfield in the 2025 promotion play-off and the winter championship.
+- **HOSHI Sosuke** (midfielder, third year) — a Japan U-17 international. He was one of four high-school players in the squad that won the 2026 AFC U17 Asian Cup in Saudi Arabia, beating China 3-2 in the final in May, and was called up again for Japan's U-17 tour of France in September 2026. On 26 October 2026 Iwaki FC announced that he will join them in January 2027. As a second-year he played in defence and midfield in the 2025 promotion play-off and the winter championship.
+- **TERADA Yuma** (defender, third year) — from Kanagawa, previously with Yokohama F. Marinos' junior youth team. On 26 October 2026 Urawa Red Diamonds announced that he will join them from 2027.
 
 The rest of the 2026 squad is not listed here. None of the other players has an English spelling published by the JFA, the J.League or a club, so their names are not romanised on this page.
