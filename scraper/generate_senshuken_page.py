@@ -18,6 +18,15 @@
 - 代表の判定: 見出しが「決勝」ちょうどのラウンド（括弧の日付は除く）。東京だけは「Aブロック決勝」「Bブロック決勝」の2つ
   （東京の1次予選の「ブロック決勝」や、群馬の「A〜Hブロック決勝」は代表決定戦ではないので数えない）。
 - sitemap には触らない（このURLは generate_interhigh_page.py の static_pages で登録済み）。
+- [2026-10-28] 決勝日は md の見出し「## 決勝（11/8）」が無い県でも frontmatter の
+  `round_dates: 準々決勝=10/31, 準決勝=11/7, 決勝=11/14`（県ページのトーナメント表と同じ書き方）から補う。
+  見出しの日付が優先。どちらも無い県は従来どおり何も出さない。
+- [2026-10-28] 47県一覧の先頭に「今週の準決勝・決勝」（今日から7日以内に日付がある準決勝・決勝で、まだ全試合
+  終わっていないもの）を日付順に自動で出す。該当が無い日は見出しごと出さない。
+- [2026-10-28] 代表校の行に「所属リーグ（teams.json・インハイページと同じ短縮）」「県内総合順位（県ページと同じ
+  pref_order の並び）」「直近10大会の出場歴（tournaments_data.yml の都道府県代表 2016〜2025 から
+  ◯年連続／◯大会ぶり／直近10大会は出場なし）」を自動で付ける。通算の「◯回目」は10大会分しか無いので書かない
+  （JFA公式の「◯年ぶり◯回目」は抽選後に senshuken-final-2026.md の各県代表欄で入れる）。名寄せできない校は校名だけ。
 """
 import re
 import sys
@@ -106,6 +115,27 @@ def parse_md(path):
     return meta, rounds
 
 
+def parse_round_dates(meta):
+    """frontmatter `round_dates: 準々決勝=10/31・11/1, 準決勝=11/8, 決勝=11/14` → {回戦名: [(m,d),...]}
+    （generate_prefecture_pages._parse_round_dates と同じ区切り方。日付の読み方だけ MD_RE に合わせる）"""
+    out = {}
+    for part in (meta.get("round_dates") or "").split(","):
+        if "=" not in part:
+            continue
+        k, v = part.split("=", 1)
+        dates = [(int(a), int(b)) for a, b in MD_RE.findall(v)]
+        if k.strip() and dates:
+            out[k.strip()] = dates
+    return out
+
+
+UPCOMING_DAYS = 7  # 「今週の準決勝・決勝」に出す範囲（今日から何日先まで）
+
+
+def is_semi(key):
+    return key.startswith("準決勝")
+
+
 def season_key(md):
     """予選は6月〜翌1月にまたがらないが、念のため 1〜5月は翌年扱いにして並べる"""
     m, d = md
@@ -130,6 +160,113 @@ def rep_link(name):
     return team_link(name)
 
 
+# ---- [2026-10-28] 代表校の付記（所属リーグ・県内総合順位・直近10大会の出場歴） ----
+_REP_INFO_CACHE = {}
+
+
+def _norm(n):
+    import unicodedata
+    n = unicodedata.normalize("NFKC", n or "")
+    return n.replace(" ", "").replace("\u3000", "")
+
+
+def _name_keys(name):
+    """照合用：そのまま＋「高校」等を外した形。"""
+    n = _norm(name)
+    base = re.sub(r"(高等学校|高等部|高校|高)$", "", n)
+    return {n, base} if base else {n}
+
+
+def _load_rep_info():
+    """{ 'rank': {slug: {照合名: 県内順位}}, 'history': {照合名: set(年)} , 'years': [年...] }"""
+    if _REP_INFO_CACHE:
+        return _REP_INFO_CACHE
+    import json
+    rank = {}
+    try:
+        from pref_order import pref_sort_key  # 県内総合順位の並べ替え（正本）
+        teams_data = json.loads((ROOT / "data" / "teams.json").read_text(encoding="utf-8"))
+        for slug, pref in teams_data.items():
+            if not isinstance(pref, dict) or "teams" not in pref:
+                continue
+            m = {}
+            for i, t in enumerate(sorted(pref["teams"], key=pref_sort_key), 1):
+                for nm in [t.get("name")] + list(t.get("aliases") or []):
+                    for k in _name_keys(nm or ""):
+                        m.setdefault(k, i)
+            rank[slug] = m
+    except Exception as e:  # 付記が作れなくても特設ページ本体は止めない
+        warnings.append(f"県内順位の読み込みに失敗（付記なしで続行）: {type(e).__name__}: {e}")
+    history, years = {}, []
+    try:
+        import yaml
+        d = yaml.safe_load((ROOT / "data" / "tournaments_data.yml").read_text(encoding="utf-8"))
+        for y, info in (d.get("all_japan_highschool") or {}).items():
+            reps = (info or {}).get("都道府県代表") or []
+            if not reps:
+                continue
+            years.append(int(y))
+            for r in reps:
+                nm = r.get("name") if isinstance(r, dict) else r
+                for k in _name_keys(nm or ""):
+                    history.setdefault(k, set()).add(int(y))
+    except Exception as e:
+        warnings.append(f"歴代代表（tournaments_data.yml）の読み込みに失敗（出場歴なしで続行）: {type(e).__name__}: {e}")
+    _REP_INFO_CACHE.update({"rank": rank, "history": history, "years": sorted(years)})
+    return _REP_INFO_CACHE
+
+
+def rep_note(slug, name):
+    """代表校の後ろに付ける小さな付記のHTML。何も分からなければ空文字。"""
+    if not name or name == "確認中":
+        return ""
+    info = _load_rep_info()
+    parts = []
+    # 所属リーグ（インハイページと同じ表・同じ短縮名。県名は行頭にあるので省く）
+    try:
+        from generate_interhigh_page import SCHOOL_LEAGUE_MAP, _norm_team
+        meta = SCHOOL_LEAGUE_MAP.get(_norm_team(name))
+        if meta:
+            lg, url = meta[1], (meta[2] if len(meta) > 2 else "")
+            parts.append(f'<a href="{esc(url)}" style="text-decoration:none;">{esc(lg)}</a>' if url else esc(lg))
+    except Exception:
+        pass
+    # 県内総合順位
+    r = None
+    for k in _name_keys(name):
+        r = info["rank"].get(slug, {}).get(k)
+        if r:
+            break
+    if r and r < 99:
+        parts.append(f"県内{r}位")
+    # 直近10大会の出場歴（tournaments_data.yml にある年だけで判定）
+    years = info["years"]
+    if years:
+        app = set()
+        for k in _name_keys(name):
+            app |= info["history"].get(k, set())
+        last = years[-1]
+        n = len(years)
+        if last in app:
+            streak = 1
+            y = last
+            while y - 1 in years and y - 1 in app:
+                streak += 1
+                y -= 1
+            parts.append(f"{streak + 1}年連続")
+        elif app:
+            parts.append(f"{SEASON_YEAR - max(app)}大会ぶり")
+        else:
+            parts.append(f"直近{n}大会は出場なし")
+    if not parts:
+        return ""
+    return ('<span style="font-size:0.82em;font-weight:400;color:var(--text-light,#64748b);white-space:nowrap;">'
+            + "（" + "・".join(parts) + "）</span>")
+
+
+SEASON_YEAR = 2026  # 第105回＝2026年度
+
+
 def analyze(slug):
     path = TDIR / "senshuken-2026" / f"{slug}-senshuken-2026.md"  # [2026-10-10] 大会フォルダへ移動
     if not path.exists():
@@ -152,8 +289,31 @@ def analyze(slug):
         latest = max(enumerate(played_rounds),
                      key=lambda t: (max((season_key(x) for x in t[1]["dates"]), default=(0, 0)), t[0]))[1]["key"]
     final_dates = sorted({d for r in finals for d in r["dates"]}, key=season_key)
+    rd = parse_round_dates(meta)
+    if not final_dates and rd.get("決勝"):
+        final_dates = sorted(set(rd["決勝"]), key=season_key)  # [2026-10-28] 見出しが無ければ round_dates で補う
     first_dates = sorted({d for r in rounds for d in r["dates"]}, key=season_key)
+    # [2026-10-28] 「今週の準決勝・決勝」用：まだ全試合終わっていない準決勝・決勝とその日付
+    upcoming = []  # [(dates, label, pending_or_None)]
+    seen = set()
+    for r in rounds:
+        if not (is_final(slug, r["key"]) or is_semi(r["key"])):
+            continue
+        label = "準決勝" if is_semi(r["key"]) else r["key"]
+        dates = r["dates"] or rd.get("準決勝" if is_semi(r["key"]) else "決勝") or []
+        done = bool(r["played"]) and r["pending"] == 0
+        if dates and not done:
+            upcoming.append((dates, label))
+            seen.add(label)
+    # 見出し自体がまだ無い県は round_dates だけで出す（決勝の見出しは直前にしか作られない県が多い）
+    for name in ("準決勝", "決勝"):
+        if name in seen or not rd.get(name):
+            continue
+        if name == "決勝" and slug == "tokyo":
+            continue  # 東京は A/Bブロック決勝の見出しで数える
+        upcoming.append((rd[name], name))
     return {
+        "upcoming": upcoming,
         "status": meta.get("status", ""),
         "n_played": n_played,
         "latest": latest,
@@ -181,8 +341,46 @@ def state_label(info):
     return f"{info['latest']}まで終了", "live"
 
 
+def render_upcoming(all_info):
+    """今日から UPCOMING_DAYS 日以内に日付がある準決勝・決勝を日付順に。該当なしなら空文字。"""
+    td = today()
+    lo = season_key((td.month, td.day))
+    import datetime as _dt
+    end = _dt.date(td.year, td.month, td.day) + _dt.timedelta(days=UPCOMING_DAYS)
+    hi = season_key((end.month, end.day))
+    by_date = {}  # (m,d) -> [(name, label)]
+    for _, prefs in REGIONS:
+        for slug, name in prefs:
+            for dates, label in all_info[slug].get("upcoming", []):
+                for d in dates:
+                    if lo <= season_key(d) <= hi:
+                        by_date.setdefault(d, []).append((slug, name, label))
+    if not by_date:
+        return ""
+    out = ['      <div class="senshuken-upcoming" style="margin:0 0 18px;padding:10px 14px;'
+           'border:1px solid var(--border-color,#e2e8f0);border-radius:6px;">',
+           f'        <p style="margin:0 0 6px;font-weight:700;">今週の準決勝・決勝（{td.month}/{td.day}から{UPCOMING_DAYS}日以内）</p>',
+           '        <ul style="list-style:none;padding:0;margin:0;font-size:0.92em;line-height:1.9;">']
+    for d in sorted(by_date, key=season_key):
+        finals = [(s_, n) for s_, n, lb in by_date[d] if lb != "準決勝"]
+        semis = [(s_, n) for s_, n, lb in by_date[d] if lb == "準決勝"]
+        parts = []
+        if finals:
+            parts.append("決勝：" + "・".join(f'<a href="/prefectures/{s_}/">{n}</a>' for s_, n in finals))
+        if semis:
+            parts.append("準決勝：" + "・".join(f'<a href="/prefectures/{s_}/">{n}</a>' for s_, n in semis))
+        out.append(f'          <li><span style="font-weight:600;min-width:3.2em;display:inline-block;">{d[0]}/{d[1]}</span>'
+                   + "　".join(parts) + '</li>')
+    out.append('        </ul>')
+    out.append('      </div>')
+    return "\n".join(out)
+
+
 def render_prefs(all_info):
     out = []
+    up = render_upcoming(all_info)
+    if up:
+        out.append(up)
     out.append('      <div class="senshuken-prefs">')
     for region, prefs in REGIONS:
         out.append(f'        <h3 style="margin:22px 0 8px;font-size:1.02rem;">{region}</h3>')
@@ -194,7 +392,7 @@ def render_prefs(all_info):
             color = {"done": "var(--text-color,#1f2937)", "live": "var(--text-light,#64748b)", "pre": "var(--text-light,#64748b)"}[kind]
             if info["reps"] and any(w for _, w in info["reps"]):
                 rep_txt = " ／ ".join(
-                    (f"{lb}：" if lb else "") + rep_link(w) for lb, w in info["reps"] if w)
+                    (f"{lb}：" if lb else "") + rep_link(w) + rep_note(slug, w) for lb, w in info["reps"] if w)
                 rep_html = f'<span style="font-weight:700;">代表：{rep_txt}</span>'
             elif info["final_dates"]:
                 rep_html = f'<span style="font-size:0.85em;color:var(--text-light,#64748b);">決勝 {fmt_dates(info["final_dates"])}</span>'
