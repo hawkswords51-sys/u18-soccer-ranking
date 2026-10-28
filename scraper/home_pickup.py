@@ -190,6 +190,11 @@ _STYLE = """<style>
 .hp-win{font-weight:800;}
 .hp-more{margin:14px 0 0;font-size:.86rem;}
 .hp-more a{color:rgba(255,255,255,.92);}
+/* 2026-10-28 上段に選手権予選（home_senshuken.py）を足したときの区切りとPK・vs表示 */
+.hp-split{margin:20px 0 0;padding-top:16px;border-top:2px solid rgba(255,255,255,.32);}
+.hp-sc.hp-vs{font-size:1rem;font-weight:600;color:rgba(255,255,255,.7);}
+.hp-rep{opacity:1;color:#fbbf24;font-weight:700;}
+.hp-pk{display:block;font-size:.62rem;font-weight:600;color:#fde68a;text-align:center;letter-spacing:0;}
 @media (max-width:600px){
   .hp-inner{padding:16px 14px 14px;}
   .hp-sec h2{font-size:1.15rem;}
@@ -201,10 +206,30 @@ _STYLE = """<style>
 </style>"""
 
 
+def _senshuken_block() -> str:
+    """帯の上段（選手権予選）。失敗しても帯の下段（リーグ）は従来どおり出す。"""
+    try:
+        from home_senshuken import render_block
+        return render_block()
+    except Exception as e:
+        print(f"[PICK UP] 選手権予選の欄を作れませんでした（リーグだけ出します）: {e}")
+        return ""
+
+
 def render_home_pickup_html(limit: int = 4) -> str:
     played_dates, picks = collect_pickups(limit)
-    if not picks:
+    top = _senshuken_block()
+    if not picks and not top:
         return ""
+    if not picks:
+        return (
+            '<section class="hp-sec" aria-label="注目試合">\n'
+            + _STYLE + "\n"
+            + '  <div class="hp-inner">\n'
+            + top
+            + "  </div>\n"
+            + "</section>"
+        )
     used = sorted({c["date"] for c in picks})
     if len(used) == 1:
         date_label = f"{_fmt_date(used[0])}の試合から"
@@ -230,16 +255,22 @@ def render_home_pickup_html(limit: int = 4) -> str:
             f"</span></a>"
         )
     nl = "\n"
-    return (
-        '<section class="hp-sec" aria-label="注目試合の結果">\n'
-        + _STYLE + "\n"
-        + '  <div class="hp-inner">\n'
-        + '  <div class="hp-head"><h2>注目カードの結果</h2>'
+    league = (
+        '  <div class="hp-head"><h2>注目カードの結果</h2>'
         + f'<span class="hp-date">{date_label}</span></div>\n'
         + '  <div class="hp-grid">\n'
         + nl.join(cards) + "\n"
         + "  </div>\n"
         + '  <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果</a></p>\n'
+    )
+    if top:
+        # 選手権予選がある時期だけ：上段＝選手権予選、下段＝リーグ（区切り線で分ける）
+        league = top + '  <div class="hp-split">\n' + league + "  </div>\n"
+    return (
+        f'<section class="hp-sec" aria-label="{"注目試合" if top else "注目試合の結果"}">\n'
+        + _STYLE + "\n"
+        + '  <div class="hp-inner">\n'
+        + league
         + "  </div>\n"
         + "</section>"
     )
