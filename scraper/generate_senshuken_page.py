@@ -109,7 +109,8 @@ def parse_md(path):
                 pa, pb = int(sm.group("pa")), int(sm.group("pb"))
                 if pa != pb:
                     winner = sm.group("a") if pa > pb else sm.group("b")
-            cur["played"].append((sm.group("a"), sm.group("b"), winner))
+            score = f"{sa}-{sb}" + (f"(PK{sm.group('pa')}-{sm.group('pb')})" if sm.group("pa") is not None else "")
+            cur["played"].append((sm.group("a"), sm.group("b"), winner, score))  # [2026-10-28] 4つ目＝スコア文字列
         elif VS_RE.match(s):
             cur["pending"] += 1
     return meta, rounds
@@ -274,6 +275,7 @@ def analyze(slug):
     meta, rounds = parse_md(path)
     finals = [r for r in rounds if is_final(slug, r["key"])]
     reps = []  # [(label, winner or None)]
+    final_matches = []  # [2026-10-28] [(label, a, b, winner, score, dates)] チームページの代表バッジ用
     for r in finals:
         label = r["key"].replace("決勝", "") if slug == "tokyo" else ""
         if r["played"]:
@@ -281,6 +283,8 @@ def analyze(slug):
             if w is None:
                 warnings.append(f"{slug}: 「{r['key']}」に結果があるが勝者を判定できない → 代表欄は「確認中」")
             reps.append((label, w if w else "確認中"))
+            a, b, _, score = r["played"][0]
+            final_matches.append((label, a, b, w, score, r["dates"]))
     played_rounds = [r for r in rounds if r["played"]]
     n_played = sum(len(r["played"]) for r in rounds)
     latest = None
@@ -314,6 +318,7 @@ def analyze(slug):
         upcoming.append((rd[name], name))
     return {
         "upcoming": upcoming,
+        "final_matches": final_matches,
         "status": meta.get("status", ""),
         "n_played": n_played,
         "latest": latest,
