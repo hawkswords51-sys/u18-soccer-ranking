@@ -92,3 +92,8 @@ scraper/update_tournament_results.py が上の source から
 - 洛南 vs 立命館宇治
 - 京都精華 vs 福知山成美
 - 京都産大附 vs 京都共栄学園
+
+## 準決勝（11/3）
+
+- 東山/京都橘 vs 洛南/立命館宇治
+- 京都精華/福知山成美 vs 京都産大附/京都共栄
