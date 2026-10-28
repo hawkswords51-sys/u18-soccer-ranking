@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-10-28T07:57:34+09:00",
+  "updatedAt": "2026-10-28T10:40:57+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -611,7 +611,7 @@
     },
     "kumamoto": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7f01339063d0>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7efe51bfa4d0>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-10-28",
       "season": "2026",
       "complete": false,
