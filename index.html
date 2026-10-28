@@ -179,12 +179,12 @@
             <!-- UPDATE_BANNER_START -->
             <div id="updateBanner" class="update-banner">
                 <i class="fas fa-sync-alt"></i>
-                <span id="updateBannerText">最終自動更新: 2026-10-28 15:25</span>
+                <span id="updateBannerText">最終自動更新: 2026-10-28 19:33</span>
             </div>
             <!-- UPDATE_BANNER_END -->
             <!-- ★ PICK UP GAME（毎日自動更新。マーカー間はスクリプトが書き換えるので手で編集しない） -->
             <!-- HOME_PICKUP_START -->
-<section class="hp-sec" aria-label="注目試合の結果">
+<section class="hp-sec" aria-label="注目試合">
 <style>
 .hp-sec{margin:10px 0 26px;background:#1e3a8a;color:#f1f5f9;}
 .hp-inner{padding:18px 20px 16px;}
@@ -209,6 +209,11 @@
 .hp-win{font-weight:800;}
 .hp-more{margin:14px 0 0;font-size:.86rem;}
 .hp-more a{color:rgba(255,255,255,.92);}
+/* 2026-10-28 上段に選手権予選（home_senshuken.py）を足したときの区切りとPK・vs表示 */
+.hp-split{margin:20px 0 0;padding-top:16px;border-top:2px solid rgba(255,255,255,.32);}
+.hp-sc.hp-vs{font-size:1rem;font-weight:600;color:rgba(255,255,255,.7);}
+.hp-rep{opacity:1;color:#fbbf24;font-weight:700;}
+.hp-pk{display:block;font-size:.62rem;font-weight:600;color:#fde68a;text-align:center;letter-spacing:0;}
 @media (max-width:600px){
   .hp-inner{padding:16px 14px 14px;}
   .hp-sec h2{font-size:1.15rem;}
@@ -219,6 +224,19 @@
 }
 </style>
   <div class="hp-inner">
+  <div class="hp-head"><h2>選手権予選</h2><span class="hp-date">10/24〜11/1の準決勝・決勝から</span></div>
+  <div class="hp-grid">
+    <a class="hp-card" href="/prefectures/akita/"><span class="hp-badge">秋田 決勝<span class="hp-day">10/24(土)</span><span class="hp-day hp-rep">代表決定</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">県1部</span>明桜</span><span class="hp-sc">4<i>-</i>3</span><span class="hp-tm hp-a"><span class="hp-rk">県1部</span>秋田商業</span></span></a>
+    <a class="hp-card" href="/prefectures/yamagata/"><span class="hp-badge">山形 決勝<span class="hp-day">10/24(土)</span><span class="hp-day hp-rep">代表決定</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">県1部</span>羽黒</span><span class="hp-sc">4<i>-</i>2</span><span class="hp-tm hp-a"><span class="hp-rk">県1部</span>米沢中央</span></span></a>
+    <a class="hp-card" href="/prefectures/aomori/"><span class="hp-badge">青森 準決勝<span class="hp-day">10/29(木)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">プレミアEAST</span>青森山田</span><span class="hp-sc hp-vs">vs</span><span class="hp-tm hp-a"><span class="hp-rk">県1部</span>八戸学院光星</span></span></a>
+    <a class="hp-card" href="/prefectures/tottori/"><span class="hp-badge">鳥取 決勝<span class="hp-day">10/31(土)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">プレミアWEST</span>米子北</span><span class="hp-sc hp-vs">vs</span><span class="hp-tm hp-a"><span class="hp-rk">県1部</span>境</span></span></a>
+    <a class="hp-card" href="/prefectures/fukushima/"><span class="hp-badge">福島 決勝<span class="hp-day">11/1(日)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">プリンス東北</span>尚志</span><span class="hp-sc hp-vs">vs</span><span class="hp-tm hp-a"><span class="hp-rk">プリンス東北</span>帝京安積</span></span></a>
+    <a class="hp-card" href="/prefectures/okayama/"><span class="hp-badge">岡山 決勝<span class="hp-day">11/1(日)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">プリンス中国</span>岡山学芸館</span><span class="hp-sc hp-vs">vs</span><span class="hp-tm hp-a"><span class="hp-rk">プリンス中国</span>作陽学園</span></span></a>
+    <a class="hp-card" href="/prefectures/fukui/"><span class="hp-badge">福井 決勝<span class="hp-day">11/1(日)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">プリンス北信越2部</span>丸岡</span><span class="hp-sc hp-vs">vs</span><span class="hp-tm hp-a"><span class="hp-rk">県1部</span>福井商業</span></span></a>
+    <a class="hp-card" href="/prefectures/miyagi/"><span class="hp-badge">宮城 決勝<span class="hp-day">11/1(日)</span></span><span class="hp-row"><span class="hp-tm hp-h"><span class="hp-rk">プリンス東北</span>聖和学園</span><span class="hp-sc hp-vs">vs</span><span class="hp-tm hp-a"><span class="hp-rk">県1部</span>東北生活文化大学</span></span></a>
+  </div>
+  <p class="hp-more"><a href="/tournaments/senshuken-2026/">47都道府県の予選の状況と代表校一覧</a></p>
+  <div class="hp-split">
   <div class="hp-head"><h2>注目カードの結果</h2><span class="hp-date">2026年10月18日(日)〜10月25日(日)の試合から</span></div>
   <div class="hp-grid">
     <a class="hp-card" href="/leagues/prince-kanto-2/"><span class="hp-badge">プリンス関東2部<span class="hp-day">10/18(日)</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">2位</span>FC町田ゼルビアユース</span><span class="hp-sc">2<i>-</i>0</span><span class="hp-tm hp-a"><span class="hp-rk">1位</span>横浜F・マリノスユース</span></span></a>
@@ -227,6 +245,7 @@
     <a class="hp-card" href="/leagues/premier-east/"><span class="hp-badge">プレミアEAST<span class="hp-day">10/18(日)</span></span><span class="hp-row"><span class="hp-tm hp-h hp-win"><span class="hp-rk">3位</span>柏レイソルU-18</span><span class="hp-sc">4<i>-</i>0</span><span class="hp-tm hp-a"><span class="hp-rk">9位</span>昌平</span></span></a>
   </div>
   <p class="hp-more"><a href="/leagues/">プレミア・プリンス全15リーグの順位表と全試合結果</a></p>
+  </div>
   </div>
 </section>
 <!-- HOME_PICKUP_END -->
