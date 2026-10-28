@@ -34,6 +34,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from jst import today  # noqa: E402
+from home_senshuken import round_kind  # noqa: E402  回戦名→決勝/準決勝の判定（トップの帯と共通）
 
 ROOT = Path(__file__).resolve().parent.parent
 TDIR = ROOT / "data" / "tournaments"
@@ -134,7 +135,8 @@ UPCOMING_DAYS = 7  # 「今週の準決勝・決勝」に出す範囲（今日�
 
 
 def is_semi(key):
-    return key.startswith("準決勝")
+    # [2026-10-28] 回戦名のゆれ（「決勝トーナメント準決勝」「2次予選準決勝」）も準決勝。判定はトップの帯と共通
+    return round_kind(None, key) == "semi"
 
 
 def season_key(md):
@@ -144,9 +146,9 @@ def season_key(md):
 
 
 def is_final(slug, key):
-    if key == "決勝":
-        return True
-    return slug == "tokyo" and re.fullmatch(r"[AB]ブロック決勝", key) is not None
+    # [2026-10-28] 「決勝トーナメント決勝」「2次予選決勝」「決勝戦」も決勝（福岡・群馬・神奈川・岐阜で代表が出なかった）。
+    #   「ブロック決勝」（広島・兵庫などの1次ラウンド）は決勝ではない。東京の A/Bブロック決勝は従来どおり決勝
+    return round_kind(slug, key) == "final"
 
 
 def fmt_dates(dates):
@@ -303,7 +305,8 @@ def analyze(slug):
     for r in rounds:
         if not (is_final(slug, r["key"]) or is_semi(r["key"])):
             continue
-        label = "準決勝" if is_semi(r["key"]) else r["key"]
+        # 東京以外の決勝は「決勝」に揃える（下の round_dates 補完の seen と突き合わせるため）
+        label = "準決勝" if is_semi(r["key"]) else (r["key"] if slug == "tokyo" else "決勝")
         dates = r["dates"] or rd.get("準決勝" if is_semi(r["key"]) else "決勝") or []
         done = bool(r["played"]) and r["pending"] == 0
         if dates and not done:
