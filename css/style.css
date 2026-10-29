@@ -5539,6 +5539,17 @@ details[open] > summary > .league-accordion__chevron {
   color: #fdba74;
 }
 
+/* [2026-10-29] 勝者指定の注記（主催者判断で進出校が決まった試合など） */
+.match-note {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.8em;
+  color: #6b7280;
+}
+[data-theme="dark"] .match-note {
+  color: #9ca3af;
+}
+
 /* 勝者ハイライト内のチームリンクも橙色を継承（下線でリンクと分かる） */
 .match-winner a,
 .match-winner .team-profile-link {

@@ -289,9 +289,24 @@ def _detect_winner_and_wrap(s):
       - "team1 2-2(PK4-2) team2" → PK勝者を強調
       - "team1 vs team2"      → 試合前なのでハイライトなし
     """
+    # [2026-10-29] 勝者指定（<!-- 勝者: 校名 -->）があればスコアより優先し、注記を添える
+    s, _ovr = _bracket.split_winner_override(s)
+    note = ""
+    if _ovr:
+        note = f' <span class="match-note">※主催者判断により{_ovr}が次回戦進出</span>'
     # PK付きスコア（より具体的なパターン）を先に検出
     pk_match = re.search(r'(\d+)\s*-\s*(\d+)\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\)', s)
-    if pk_match:
+    if _ovr:
+        score_match = pk_match or re.search(r'(\d+)\s*-\s*(\d+)', s)
+        if not score_match:
+            return s + note
+        score_start, score_end = score_match.start(), score_match.end()
+        # 左側には順位バッジ（<span …>）が挟まることがあるので、タグを外してから校名を比べる
+        _left_txt = re.sub(r"<[^>]+>", "", s[:score_start])
+        _ok = _bracket._norm_team(_ovr)
+        winner_side = "left" if (_ovr in _left_txt or _bracket._norm_team(
+            re.sub(r"[（(].*?[)）]", "", _left_txt).strip()) == _ok) else "right"
+    elif pk_match:
         score_start = pk_match.start()
         score_end = pk_match.end()
         pkl = int(pk_match.group(3))
@@ -323,11 +338,11 @@ def _detect_winner_and_wrap(s):
     if winner_side == "left":
         stripped = left.rstrip()
         trailing_ws = left[len(stripped):]
-        return f'<span class="match-winner">{stripped}</span>{trailing_ws}{center}{right}'
+        return f'<span class="match-winner">{stripped}</span>{trailing_ws}{center}{right}{note}'
     else:
         stripped = right.lstrip()
         leading_ws = right[:len(right) - len(stripped)]
-        return f'{left}{center}{leading_ws}<span class="match-winner">{stripped}</span>'
+        return f'{left}{center}{leading_ws}<span class="match-winner">{stripped}</span>{note}'
 
 # トーナメント表（手入力）でのT2チーム表記ゆれ → 正式名 の補助マッピング（県ごと）
 # 自動で拾えない略称だけをここに足す。例: 「関東一」→「関東第一高校」
@@ -355,20 +370,27 @@ def _bracket_canon(n):
 
 def _bracket_parse_match(s):
     """「A 2-1 B」「A 0-0(PK4-2) B」形式を {a,b,sc,winner} に。スコアなしは None。"""
+    s, ovr = _bracket.split_winner_override(s)   # [2026-10-29] 勝者指定
     m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s.strip())
     if not m:
         return None
     a, b = _bracket_canon(m.group(1)), _bracket_canon(m.group(6))
     ga, gb = int(m.group(2)), int(m.group(3))
     pk = (int(m.group(4)), int(m.group(5))) if m.group(4) else None
-    if ga > gb:
+    if ovr:
+        w = a if _bracket_canon(ovr) == a else b
+    elif ga > gb:
         w = a
     elif gb > ga:
         w = b
     else:
         w = a if (pk and pk[0] > pk[1]) else b
     sc = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
-    return {"a": a, "b": b, "sc": sc, "winner": w}
+    out = {"a": a, "b": b, "sc": sc, "winner": w}
+    if ovr:
+        out["ovr"] = ovr
+        out["sc_line"] = f"{sc} {b} <!-- 勝者: {ovr} -->"   # SVG部品へ渡す結果行の末尾（b を含む）
+    return out
 
 
 def _is_placement_round(name: str) -> bool:
@@ -650,7 +672,7 @@ def _render_ordered_base_bracket(rounds, rank_of=None, rd=None):
         for x in r.get("matches", []):
             m = _bracket_parse_match(x)
             if m:
-                res_lines.append(f"- {m['a']} {m['sc']} {m['b']}")
+                res_lines.append(f"- {m['a']} " + m.get("sc_line", f"{m['sc']} {m['b']}"))
     sections = {"トーナメント表（組み合わせ）": pair_lines, "_結果": res_lines}
     buf = _io.StringIO()
     with _contextlib.redirect_stdout(buf):
@@ -685,7 +707,7 @@ def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None, rd=None)
         for x in r.get("matches", []):
             mm = _bracket_parse_match(x)
             if mm:
-                res_lines.append(f"- {mm['a']} {mm['sc']} {mm['b']}")
+                res_lines.append(f"- {mm['a']} " + mm.get("sc_line", f"{mm['sc']} {mm['b']}"))
     # [2026-10-16] md にまだ後ろの回戦の見出しが無い（長野＝4回戦まで）ときは、
     #   足りない分を後ろから「準々決勝・準決勝・決勝」で補う（部品は回戦数と名前の数の一致を求めるため）。
     from staircase_bracket import _build as _st_build
@@ -701,9 +723,12 @@ def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None, rd=None)
 
 def _raw_winner(line):
     """「A 2-1 B」の勝者を、md に書かれた表記のまま返す（スコアなしは None）。"""
+    line, ovr = _bracket.split_winner_override(line)   # [2026-10-29] 勝者指定
     m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', (line or "").strip())
     if not m:
         return None
+    if ovr:
+        return ovr
     ga, gb = int(m.group(2)), int(m.group(3))
     if ga == gb:
         if not m.group(4):
@@ -853,6 +878,8 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
         """試合文字列にチームの県内順位バッジを付加
         （最長一致・1チーム1回・単語境界判定で誤マッチ防止）"""
         known_names = sorted(expanded_lookup.keys(), key=len, reverse=True)
+        # [2026-10-29] 勝者指定の印（<!-- 勝者: 校名 -->）はバッジ付けの対象から外し、最後に戻す
+        match_str, _ovr_name = _bracket.split_winner_override(match_str)
 
         def _is_jp_continuation(c):
             """日本語単語の続き文字か（区切り文字でない）"""
@@ -940,6 +967,8 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
         result = match_str
         for pos, badge in matches:
             result = result[:pos] + badge + result[pos:]
+        if _ovr_name:
+            result += f" <!-- 勝者: {_ovr_name} -->"
         # 勝者ハイライト追加
         result = _detect_winner_and_wrap(result)
         return result
@@ -1003,6 +1032,12 @@ def render_tournament_html(pref_id, teams, division2=None, pref_name=""):
                 rounds.append(current_round)
             elif line.startswith('- ') and current_round is not None:
                 current_round["matches"].append(line[2:].strip())
+            elif (line.startswith('<!-- 勝者') and current_round is not None
+                  and current_round["matches"]):
+                # [2026-10-29] 試合行の直下の「<!-- 勝者: 校名 -->」＝その試合の進出校を手で指定
+                #   （主催者判断で進出校が決まった等、スコアでは勝者が決まらない試合用）。
+                #   行末に付けて持ち回り、表示・トーナメント表・集計のすべてで勝者として扱う。
+                current_round["matches"][-1] += " " + line
             elif (line.startswith('<!-- 山順') and current_round is not None
                   and not current_round["matches"]):
                 # [2026-10-14] 見出し直下の山順コメント＝この回戦の行は公式組合せ表の上から順

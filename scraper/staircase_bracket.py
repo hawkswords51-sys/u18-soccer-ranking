@@ -63,7 +63,10 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None,
                 if _J._norm_team(ra) != _J._norm_team(a):
                     ga, gb, pk = gb, ga, ((pk[1], pk[0]) if pk else None)
                 n["score"] = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
-                if ga != gb:
+                ovr = _J.winner_override(results, a, b)
+                if ovr:   # [2026-10-29] 勝者指定（主催者判断など）はスコアより優先
+                    n["winner"] = a if _J._norm_team(a) == ovr else b
+                elif ga != gb:
                     n["winner"] = a if ga > gb else b
                 elif pk:
                     n["winner"] = a if pk[0] > pk[1] else b

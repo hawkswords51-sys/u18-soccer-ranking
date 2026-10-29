@@ -150,8 +150,11 @@ def collect(today=None):
         rd = _round_dates(meta.get("round_dates"))
         kind = key = None
         mds = []
+        last_card = None   # 直前の「- 」行から作ったカード（勝者指定の印を結びつける先）
         for raw in body.splitlines():
             s = raw.strip()
+            if s.startswith("- "):
+                last_card = None
             h = _HEAD_RE.match(s)
             if h:
                 key = h.group("key").strip()
@@ -159,6 +162,14 @@ def collect(today=None):
                 mds = [(int(a), int(b)) for a, b in _MD_RE.findall(h.group("dates") or "")]
                 if not mds and kind:
                     mds = rd.get("決勝" if kind == "final" else "準決勝", [])
+                continue
+            if s.startswith("<!-- 勝者"):
+                # [2026-10-29] 試合行の直下の「<!-- 勝者: 校名 -->」＝進出校の手動指定（主催者判断など）
+                om = re.match(r"<!--\s*勝者\s*[:：]\s*(.+?)\s*-->", s)
+                if om and last_card is not None:
+                    w = om.group(1).strip()
+                    c = last_card
+                    c["win"] = "a" if c["a"] == w else ("b" if c["b"] == w else c["win"])
                 continue
             if not kind or not s.startswith("- "):
                 continue
@@ -197,6 +208,7 @@ def collect(today=None):
                 "a": a, "b": b, "la": la, "lb": lb, "sa": sa, "sb": sb, "pk": pk, "win": win,
                 "tier": min(_tier(la), _tier(lb)) * 3 + max(_tier(la), _tier(lb)),
             })
+            last_card = cands[-1]
     if not cands:
         return []
     # 選ぶ順：決勝 → 所属リーグが上の組 → 今日に近い日

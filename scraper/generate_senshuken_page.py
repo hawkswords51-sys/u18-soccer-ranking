@@ -98,6 +98,13 @@ def parse_md(path):
             cur = {"key": m.group("key").strip(), "dates": dates, "played": [], "pending": 0}
             rounds.append(cur)
             continue
+        if cur is not None and s.startswith("<!-- 勝者") and cur["played"]:
+            # [2026-10-29] 試合行の直下の「<!-- 勝者: 校名 -->」＝その試合の進出校を手で指定（主催者判断など）
+            om = re.match(r"<!--\s*勝者\s*[:：]\s*(.+?)\s*-->", s)
+            if om:
+                a, b, _w, score = cur["played"][-1]
+                cur["played"][-1] = (a, b, om.group(1).strip(), score)
+            continue
         if cur is None or not s.startswith("- "):
             continue
         sm = SCORE_RE.match(s)

@@ -327,6 +327,27 @@ def parse_bracket_pairs(lines):
     return pairs
 
 
+WINNER_OVERRIDE_RE = re.compile(r'<!--\s*勝者\s*[:：]\s*(.+?)\s*-->')
+
+
+def split_winner_override(s):
+    """[2026-10-29] 行末の「<!-- 勝者: 校名 -->」を切り離す。
+    スコアでは勝者が決まらない試合（主催者判断で進出校が決まった等）に使う印。
+    戻り値: (印を除いた文字列, 勝者名 or None)"""
+    s = s or ""
+    m = WINNER_OVERRIDE_RE.search(s)
+    if not m:
+        return s, None
+    return (s[:m.start()] + s[m.end():]).strip(), m.group(1).strip()
+
+
+def winner_override(results, a, b):
+    """collect_results の結果から、A-B の試合に勝者指定があればその正規化名を返す（無ければ None）。"""
+    if not a or not b:
+        return None
+    return results.get(("勝者", frozenset((_norm_team(a), _norm_team(b)))))
+
+
 def collect_results(sections):
     """各ラウンドのセクションからスコア行を集める。
        戻り値: {frozenset(正規化名2つ): (名A, 点A, 点B, (PK_A,PK_B) or None, 名B)}"""
@@ -339,6 +360,7 @@ def collect_results(sections):
             if not m:
                 continue
             s = m.group(1).strip()
+            s, ovr = split_winner_override(s)   # [2026-10-29] 勝者指定の印は先に外す
             mm = re.match(
                 r'^(.*?)\s+(\d+)\s*-\s*(\d+)'
                 r'(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s)
@@ -351,6 +373,9 @@ def collect_results(sections):
             key = frozenset((_norm_team(a), _norm_team(b)))
             if len(key) == 2:
                 res[key] = (a, ga, gb, pk, b)
+                if ovr:
+                    # 勝者指定は別キーで持つ（5つ組の形を変えず、既存の読み手を壊さない）
+                    res[("勝者", key)] = _norm_team(ovr)
     return res
 
 
@@ -404,7 +429,10 @@ def build_bracket_tree(pairs, results):
             if sc:
                 ga, gb, pk = sc
                 node["score"] = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
-                if ga > gb:
+                ovr = winner_override(results, node["a"], node["b"])
+                if ovr:   # [2026-10-29] 勝者指定（主催者判断など）はスコアより優先
+                    node["winner"] = node["a"] if _norm_team(node["a"]) == ovr else node["b"]
+                elif ga > gb:
                     node["winner"] = node["a"]
                 elif gb > ga:
                     node["winner"] = node["b"]
