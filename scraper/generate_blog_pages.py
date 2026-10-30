@@ -1198,7 +1198,7 @@ MEDICAL_HUB_THEMES = [
         ],
     ),
     (
-        "成長期のケガ（腰・太もも・膝・すね）",
+        "成長期のケガ（腰・股関節・太もも・膝・すね）",
         "「成長痛だから我慢」で済ませない。使いすぎで壊れる場所と、戻り方",
         [
             "lumbar-spondylolysis-2026",
@@ -1206,6 +1206,7 @@ MEDICAL_HUB_THEMES = [
             "osgood-schlatter-2026",
             "shin-splints-2026",
             "acl-injury-2026",
+            "groin-pain-2026",
         ],
     ),
     (
