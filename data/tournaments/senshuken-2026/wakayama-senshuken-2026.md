@@ -70,3 +70,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 - 日高 vs 和歌山北
 - 星林 vs 桐蔭
 - 近大新宮 vs 近大和歌山
+- 星林/神島・田辺工 vs 海南/桐蔭
