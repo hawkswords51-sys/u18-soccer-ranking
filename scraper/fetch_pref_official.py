@@ -834,19 +834,42 @@ def read_yamagata(cfg: dict) -> tuple[dict, list[dict]]:
     cen = lambda w: (w["top"] + w["bottom"]) / 2          # noqa: E731
     dates = sorted((w for w in ws if w["x0"] < 80 and re.match(r"^\d{1,2}/\d{1,2}[(（]", w["text"])),
                    key=lambda w: w["top"])
-    anchors = []
+    # [2026-10-30] 1つの節が2日に分かれることがある（10/25版の第18節＝11/21（土）と11/22（日）。
+    #   節番号「18」は2つの日付の間に1つだけ）。日付ごとに一番近い節番号（±8pt）を探し、
+    #   同じ節番号の日付はまとめて1つの節にする。2日に分かれた節は、列の上の
+    #   「11/21第２運動広場」「11/22鶴岡東」のような日付つきの会場名で列ごとの日付を決める。
+    nums = [w for w in ws if w["x0"] < 50 and re.fullmatch(r"\d{1,2}", w["text"])]
+    by_md = {}
     for d in dates:
-        num = [w for w in ws if w["x0"] < 50 and re.fullmatch(r"\d{1,2}", w["text"]) and abs(cen(w) - cen(d)) <= 3]
-        if len(num) != 1:
+        near = [w for w in nums if abs(cen(w) - cen(d)) <= 8]
+        if not near:
             raise RuntimeError(f"日付 {d['text']} の節番号が読めない")
+        num = min(near, key=lambda w: abs(cen(w) - cen(d)))
         mo, da = re.match(r"(\d{1,2})/(\d{1,2})", d["text"]).groups()
-        anchors.append((d["top"] - 2, int(num[0]["text"]), f"{SEASON_YEAR}-{int(mo):02d}-{int(da):02d}"))
+        by_md.setdefault(int(num["text"]), []).append((d["top"], f"{SEASON_YEAR}-{int(mo):02d}-{int(da):02d}"))
+    anchors = sorted((min(t for t, _ in v) - 2, md, sorted({x for _, x in v})) for md, v in by_md.items())
     note = min((w["top"] for w in ws if w["text"].startswith("㊟") or w["text"].startswith("予備")), default=10 ** 6)
     matches = []
-    for i, (top, md, date) in enumerate(anchors):
+    for i, (top, md, md_dates) in enumerate(anchors):
         bottom = anchors[i + 1][0] if i + 1 < len(anchors) else note
         block = [w for w in ws if top <= w["top"] < bottom]
-        times = [w for w in block if re.fullmatch(r"\d{1,2}:\d{2}", w["text"]) and w["x0"] > 80]
+        # [2026-10-30] 延期になった試合は、実施後に時刻の欄が実施日（「10/25」）に書き換わる
+        #   （10/25版の第14節 城北 2-0 山南＝9/12の延期分）。日付の形の語も時刻の欄として拾い、
+        #   その試合の日付にする（時刻は空）。
+        times = [w for w in block if re.fullmatch(r"\d{1,2}(:\d{2}|/\d{1,2})", w["text"]) and w["x0"] > 80]
+        col_date = {}
+        if len(md_dates) > 1:
+            heads = [w for w in ws if w["x0"] > 80 and top - 15 <= w["top"] < top
+                     and re.match(r"^\d{1,2}/\d{1,2}\D", w["text"])]
+            for t in times:
+                hit = [w for w in heads if t["x0"] <= w["x0"] < t["x0"] + 150]
+                if len(hit) != 1:
+                    raise RuntimeError(f"第{md}節は{md_dates}に分かれているが、{t['x0']:.0f}の列の日付つき会場名が{len(hit)}個")
+                mo, da = re.match(r"(\d{1,2})/(\d{1,2})", hit[0]["text"]).groups()
+                col_date[round(t["x0"])] = f"{SEASON_YEAR}-{int(mo):02d}-{int(da):02d}"
+            if not set(col_date.values()) <= set(md_dates):
+                raise RuntimeError(f"第{md}節の会場名の日付{sorted(set(col_date.values()))}が節の日付{md_dates}と合わない")
+        date = md_dates[0]
         got = []
         for t in times:
             row = sorted((w for w in block if abs(cen(w) - cen(t)) <= 2.2 and t["x0"] <= w["x0"] < t["x0"] + 150),
@@ -856,9 +879,18 @@ def read_yamagata(cfg: dict) -> tuple[dict, list[dict]]:
                 h, aw, hs, as_ = tok[1], tok[3], None, None
             elif len(tok) >= 6 and tok[3] == "-" and tok[2].isdigit() and tok[4].isdigit():
                 h, aw, hs, as_ = tok[1], tok[5], int(tok[2]), int(tok[4])
+            elif len(tok) >= 4 and tok[2] == "-":
+                # [2026-10-30] 時刻と会場が決まった未消化の試合（「時刻 略称 - 略称」）
+                h, aw, hs, as_ = tok[1], tok[3], None, None
             else:
                 raise RuntimeError(f"第{md}節の試合が読めない: {tok}")
-            got.append(dict(md=md, date=date, home=h, away=aw, hs=hs, **{"as": as_}, kickoff=t["text"]))
+            dm = re.fullmatch(r"(\d{1,2})/(\d{1,2})", t["text"])
+            if dm:
+                got.append(dict(md=md, date=f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}",
+                                home=h, away=aw, hs=hs, **{"as": as_}, kickoff=""))
+                continue
+            got.append(dict(md=md, date=col_date.get(round(t["x0"]), date), home=h, away=aw, hs=hs,
+                            **{"as": as_}, kickoff=t["text"]))
         if not times:
             # 第17・18節：「略称 - 略称」だけ
             rows = {}
@@ -1700,53 +1732,15 @@ def read_tokyo(cfg: dict) -> tuple[dict, list[dict]]:
 
 # ============================================================
 # 富山（taikai-go.com「大会GO」）— 順位表と試合がJSONで取れる
-#   /api/tournaments/{id}/standings … data[0].teams[] に順位表
-#   /api/tournaments/{id}/results   … data[0].teams[]（id→名前）と matches[]
-#   /tournaments/{id}/schedule      … 日付・時刻・会場はこのHTMLにしかない
-# ⚠️ /api/tournaments/{id}/matches は 401（要認証）。使うのは results のほう。
-# ⚠️ results の試合に日付が無いので、match_code（M1, M3…）をキーに schedule と join する。
-# ⚠️ schedule のHTMLはレスポンシブ対応でテキストが二重に出る。textContent を
-#    そのまま使わず要素単位で取ること。
+#   /api/tournaments/{id}/standings      … data[0].teams[] に順位表
+#   /api/tournaments/{id}/public-matches … data[] に全試合（日付・時刻・会場・スコア入り）
+# ⚠️ [2026-10-30] 以前使っていた /api/tournaments/{id}/results が 404 になった（10/29から）。
+#    サイト自身の日程ページが読んでいる public-matches に切り替えた。こちらは試合に
+#    tournament_date と start_time があるので、/schedule のHTMLと join する必要もなくなった。
+#    切り替え時に旧データ（results由来）と照合：完了52試合の日付・カード・スコアがすべて一致。
+# ⚠️ /api/tournaments/{id}/matches は 401（要認証）。
 # 年度切り替え: /api/tournaments/public-groups/7 で新年度のT1のIDを取る
 # ============================================================
-_TOYAMA_CODE_RE = re.compile(r"\bM\d+\b")
-_TOYAMA_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
-
-
-def _toyama_schedule(tid: str) -> dict:
-    """/schedule のHTMLから {match_code: (日付, 時刻)} を作る。
-    ⚠️ 会場は取っていない（説明文が「会場」まで含んでいたが、実装は日付と時刻の2つだけ。
-       2026-09-17に説明文のほうを実物に合わせた）。
-
-    行の中に M番号 と 日付が両方あるものだけを拾う。二重テキスト対策として、
-    同じ match_code が複数回出てきたら最初の1件だけを採用する。
-    """
-    soup = BeautifulSoup(fetch_html(f"https://www.taikai-go.com/tournaments/{tid}/schedule"),
-                         "html.parser")
-    time.sleep(SLEEP)
-    out = {}
-    cur_date = ""
-    for el in soup.find_all(["tr", "li", "div", "section", "article"]):
-        # 子要素を持たない末端に近いものだけ見る（親を見ると全文が入る）
-        txt = el.get_text(" ", strip=True)
-        if len(txt) > 200:
-            continue
-        dm = _TOYAMA_DATE_RE.search(txt)
-        if dm and not _TOYAMA_CODE_RE.search(txt):
-            cur_date = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
-            continue
-        cm = _TOYAMA_CODE_RE.search(txt)
-        if not cm:
-            continue
-        code = cm.group(0)
-        if code in out:
-            continue
-        date = cur_date
-        if dm:
-            date = f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"
-        tm = re.search(r"(\d{1,2}):(\d{2})", txt)
-        out[code] = (date, f"{int(tm.group(1)):02d}:{tm.group(2)}" if tm else "")
-    return out
 
 
 def read_toyama(cfg: dict) -> tuple[dict, list[dict]]:
@@ -1766,25 +1760,24 @@ def read_toyama(cfg: dict) -> tuple[dict, list[dict]]:
                 won=t.get("wins"), drawn=t.get("draws"), lost=t.get("losses"),
                 gf=t.get("goals_for"), ga=t.get("goals_against"))
 
-    res = fetch_json(f"{api}/{tid}/results")
+    res = fetch_json(f"{api}/{tid}/public-matches")
     time.sleep(SLEEP)
-    sched = _toyama_schedule(tid)
+    if not res.get("success"):
+        raise RuntimeError(f"public-matches が success でない: {str(res)[:200]}")
     matches = []
-    for blk in (res.get("data") or []):
-        id2name = {t.get("team_id"): (t.get("team_name") or "").strip()
-                   for t in (blk.get("teams") or [])}
-        for m in (blk.get("matches") or []):
-            # completed だけを消化として扱う。scheduled の枠は generate_fixtures が作る。
-            if m.get("match_status") != "completed":
-                continue
-            home = id2name.get(m.get("team1_id"), "")
-            away = id2name.get(m.get("team2_id"), "")
-            hs, as_ = m.get("team1_goals"), m.get("team2_goals")
-            if not home or not away or hs is None or as_ is None:
-                continue
-            date, kick = sched.get(m.get("match_code") or "", ("", ""))
-            matches.append(dict(date=date, home=home, hs=int(hs),
-                                **{"as": int(as_)}, away=away, kickoff=kick))
+    for m in (res.get("data") or []):
+        # completed だけを消化として扱う。scheduled の枠は generate_fixtures が作る。
+        if m.get("match_status") != "completed":
+            continue
+        home = (m.get("team1_display_name") or "").strip()
+        away = (m.get("team2_display_name") or "").strip()
+        hs, as_ = m.get("team1_goals"), m.get("team2_goals")
+        if not home or not away or hs is None or as_ is None:
+            continue
+        if home not in standings or away not in standings:
+            raise RuntimeError(f"試合のチーム名が順位表に無い: {home} vs {away}")
+        matches.append(dict(date=m.get("tournament_date") or "", home=home, hs=int(hs),
+                            **{"as": int(as_)}, away=away, kickoff=m.get("start_time") or ""))
     return standings, matches
 
 
