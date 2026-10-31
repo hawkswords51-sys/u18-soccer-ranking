@@ -59,5 +59,5 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 ## 準決勝（10/31）
 
-- 大手前高松 vs 蓬莱
+- 大手前高松 1-0 蓬莱
 - 藤井学園寒川 vs 高松商業
