@@ -1,7 +1,7 @@
 #!/bin/bash
 # SNS画像の自動作成を Mac（launchd）に登録する。1回打てばよい（打ち直しても大丈夫）。
 #   朝 8:00          … 今日の決勝（today-finals）
-#   夜 19:30・20:45  … 今日決まった県代表カード（today-daihyo）。2回目は結果が増えたときだけ通知
+#   昼 14:30・16:30／夜 19:30・20:45 … 今日決まった県代表カード（today-daihyo）。2回目以降は増えたときだけ通知
 #   登録:   bash sns-images/install_today_finals.sh
 #   やめる: bash sns-images/install_today_finals.sh --remove
 # 決まった時刻に Mac が眠っていたら、起きたときに1回動く。記録は ~/Library/Logs/u18-today-finals.log
@@ -33,6 +33,6 @@ at() { echo "<dict><key>Hour</key><integer>$1</integer><key>Minute</key><integer
 
 REMOVE=0; [ "${1:-}" = "--remove" ] && REMOVE=1
 register com.u18soccer.today-finals today-finals "$(at 8 0)"
-register com.u18soccer.today-daihyo today-daihyo "$(at 19 30)$(at 20 45)"
+register com.u18soccer.today-daihyo today-daihyo "$(at 14 30)$(at 16 30)$(at 19 30)$(at 20 45)"
 if [ $REMOVE = 1 ]; then echo "自動作成をやめました（朝・夜とも）"; else
-  echo "登録しました：朝8:00 今日の決勝／夜19:30・20:45 今日決まった県代表カード"; fi
+  echo "登録しました：朝8:00 今日の決勝／昼14:30・16:30／夜19:30・20:45 今日決まった県代表カード"; fi
