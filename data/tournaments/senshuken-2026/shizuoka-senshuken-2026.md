@@ -132,8 +132,8 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準々決勝（10/31）
 
-- 藤枝東 vs 清水東
-- 常葉大学附属橘 vs 東海大翔洋
+- 藤枝東 1-0 清水東
+- 常葉大学附属橘 1-2 東海大翔洋
 - 静岡学園 vs 磐田東
 - 富士市立 vs 浜松開誠館
 

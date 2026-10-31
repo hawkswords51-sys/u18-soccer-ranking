@@ -181,7 +181,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝トーナメント準々決勝（10/31・11/1）
 
-- 昌平 vs 武南
+- 昌平 2-3 武南
 - 浦和南 vs 武蔵越生
 - 浦和東 vs 西武台
 - 正智深谷 vs 埼玉平成
