@@ -25,6 +25,24 @@ git -C "$REPO" log -1 --format='データ: %h %ad %s' --date=format-local:'%m/%d
 OUT="$(SNS_DATA_ROOT="$TMP" "$PY" "$REPO/sns-images/make_sns_images.py" --only "$KIND" "${@:2}" 2>&1)"
 status=$?
 echo "$OUT"
+# 夜：今日カードができたら、代表校一覧6枚も作り直す（数が変わるので）
+ICHIRAN=""
+if [ "$KIND" = today-daihyo ] && [ $status -eq 0 ] && echo "$OUT" | grep -q "senshuken-daihyo-.*\.png"; then
+  OUT2="$(SNS_DATA_ROOT="$TMP" "$PY" "$REPO/sns-images/make_sns_images.py" --only senshuken-ichiran 2>&1)" || status=$?
+  echo "$OUT2"
+  PAT="$PAT senshuken-ichiran*"
+  n=$(echo "$OUT2" | sed -n 's/.*代表校一覧：\([0-9]*\)\/47.*/\1/p')
+  if [ -n "$n" ]; then
+    STATE="${SNS_STATE_FILE:-$HOME/Library/Logs/u18-ichiran-count.txt}"   # 前の回の決定数（「出しどき」の知らせを1回にするため）
+    prev=$(cat "$STATE" 2>/dev/null || echo 0)
+    echo "$n" > "$STATE"
+    ICHIRAN="代表決定 $n/47"
+    # 半分（24）を超えた日と、47そろった日に「出しどき」を知らせる
+    if { [ "$prev" -lt 24 ] && [ "$n" -ge 24 ]; } || { [ "$prev" -lt 47 ] && [ "$n" -ge 47 ]; }; then
+      ICHIRAN="$ICHIRAN。代表校一覧6枚の出しどきです"
+    fi
+  fi
+fi
 # スマホから開けるように Dropbox にも同じものを置く（Dropbox が無い Mac では飛ばす）
 DBX="${SNS_DROPBOX_DIR:-$HOME/Dropbox/u18-soccer SNS画像}"
 SRC="$(echo "$OUT" | sed -n 's/^出力先: //p')"
@@ -39,7 +57,7 @@ summary="$(echo "$OUT" | grep -E "・ ${TITLE}：.*(試合|校)（" | head -1 | 
 if [ $status -ne 0 ]; then
   msg="作れませんでした。ログを Claude Code に見せてください"
 elif [ "$made" -gt 0 ] && [ "$after" != "$before" ]; then
-  msg="${summary}。Dropbox の「u18-soccer SNS画像」に置きました"   # 前の回より増えたときだけ知らせる
+  msg="${summary}${ICHIRAN:+（${ICHIRAN}）}。Dropbox の「u18-soccer SNS画像」に置きました"   # 前の回より増えたときだけ知らせる
 else
   msg=""   # 何も無い日・前の回と同じときは知らせない
 fi

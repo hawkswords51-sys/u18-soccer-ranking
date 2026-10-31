@@ -253,6 +253,14 @@ def make_ichiran(out, made, notes):
                 y += row_h
         footer(d)
         save(img, out, f"senshuken-ichiran-{key}.png", made)
+    (out / "senshuken-ichiran.txt").write_text(
+        "■ Instagram フィード（6枚を、めくって見る1つの投稿にまとめる）\n\n"
+        f"第105回全国高校サッカー選手権の都道府県代表、{t.month}/{t.day}時点で{decided}/47 都道府県が決まりました。\n"
+        "地域別に6枚にまとめています。\n\n"
+        "各都道府県の予選結果は、プロフィールのリンクから見られます。\n\n"
+        "#高校サッカー #高校サッカー選手権 #選手権予選\n",
+        encoding="utf-8")
+    made.append(out / "senshuken-ichiran.txt")
     notes.append(f"代表校一覧：{decided}/47 都道府県で代表決定")
 
 
