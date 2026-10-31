@@ -389,6 +389,8 @@ def render_related_html(current_slug, current_category, all_articles):
 # ============================================================
 MEDICAL_CATEGORY = "医学コラム"
 AUTHOR_X_URL = "https://x.com/DrKazuSoccer"
+AUTHOR_INSTAGRAM_URL = "https://www.instagram.com/drkazusoccer/"
+AUTHOR_THREADS_URL = "https://www.threads.com/@drkazusoccer"
 AUTHOR_NOTE_URL = "https://note.com/drkazusoccer"
 AUTHOR_BIO = (
     "救命救急センターに勤務する救急科専門医（日本救急医学会認定）。"
@@ -439,7 +441,7 @@ def build_author_person(article):
             },
         ],
         "url": f"{DOMAIN}/about.html",
-        "sameAs": [AUTHOR_X_URL, AUTHOR_NOTE_URL],
+        "sameAs": [AUTHOR_X_URL, AUTHOR_INSTAGRAM_URL, AUTHOR_THREADS_URL, AUTHOR_NOTE_URL],
         "knowsAbout": [
             "救急医学", "スポーツ医学", "熱中症", "脳振盪", "脳震盪",
             "コンディショニング", "高校サッカー",
@@ -554,6 +556,8 @@ def build_author_box(article):
         f'            <a href="/blog/medical/">医学コラム一覧 ›</a>　\n'
         f'            <a href="/about.html">運営者情報を見る ›</a>　\n'
         f'            <a href="{AUTHOR_X_URL}" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>　\n'
+        f'            <a href="{AUTHOR_INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram ›</a>　\n'
+        f'            <a href="{AUTHOR_THREADS_URL}" target="_blank" rel="noopener">Threads ›</a>　\n'
         f'            <a href="{AUTHOR_NOTE_URL}" target="_blank" rel="noopener">note ›</a>\n'
         f'          </p>\n'
         f'        </aside>\n'
@@ -1322,6 +1326,8 @@ def generate_medical_hub(articles):
         .replace("__SCHEMA_COLLECTION__", collection)
         .replace("__AUTHOR_BIO__", html_escape(AUTHOR_BIO))
         .replace("__AUTHOR_X_URL__", AUTHOR_X_URL)
+        .replace("__AUTHOR_INSTAGRAM_URL__", AUTHOR_INSTAGRAM_URL)
+        .replace("__AUTHOR_THREADS_URL__", AUTHOR_THREADS_URL)
         .replace("__AUTHOR_NOTE_URL__", AUTHOR_NOTE_URL)
         .replace("__THEME_SECTIONS__", "\n\n".join(theme_sections))
         .replace("__ARTICLE_COUNT__", str(len(medical)))
@@ -1439,6 +1445,8 @@ __SCHEMA_COLLECTION__
         <p style="margin:0;">
           <a href="/about.html">運営者情報を見る ›</a>
           <a href="__AUTHOR_X_URL__" target="_blank" rel="noopener">X（@DrKazuSoccer）›</a>
+          <a href="__AUTHOR_INSTAGRAM_URL__" target="_blank" rel="noopener">Instagram ›</a>
+          <a href="__AUTHOR_THREADS_URL__" target="_blank" rel="noopener">Threads ›</a>
           <a href="__AUTHOR_NOTE_URL__" target="_blank" rel="noopener">note ›</a>
         </p>
       </aside>
