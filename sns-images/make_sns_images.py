@@ -143,6 +143,13 @@ def save(img, out, name, made):
 
 
 # ----------------------------------------------------------------- A. 県代表決定カード
+def official_name(short):
+    """REGIONS の短い名前（秋田・東京など）を正式な都道府県名にする。北海道はそのまま。"""
+    if short == "北海道":
+        return short
+    return short + {"東京": "都", "大阪": "府", "京都": "府"}.get(short, "県")
+
+
 def make_daihyo(out, made, notes):
     skipped = 0
     for _region, prefs in sp.REGIONS:
@@ -157,7 +164,7 @@ def make_daihyo(out, made, notes):
                 sc = score if w == a else flip_score(score)
                 img, d = canvas()
                 d.text((W // 2, SAFE_Y + 80), "第105回全国高校サッカー選手権", font=fit(d, "第105回全国高校サッカー選手権", TEXT_W, 44, 28, False), fill=GRAY, anchor="mm")
-                heading(d, SAFE_Y + 170, f"{name}代表" + (f"（{label}）" if label else ""), 64)
+                heading(d, SAFE_Y + 170, f"{official_name(name)}代表" + (f"（{label}）" if label else ""), 64)
                 f = fit(d, w, TEXT_W, 190, 40)
                 d.text((W // 2, 610), w, font=f, fill=WHITE, anchor="mm")
                 line = f"決勝 {w} {sc} {opp}"
@@ -208,10 +215,10 @@ def make_ichiran(out, made, notes):
     for i, (key, regs) in enumerate(SHEETS):
         img, d = canvas()
         heading(d, SAFE_Y + 70, "・".join(regs), 64)
-        d.text((W // 2, SAFE_Y + 150), "第105回全国高校サッカー選手権　県代表", font=font(36, False), fill=GRAY, anchor="mm")
+        d.text((W // 2, SAFE_Y + 150), "第105回全国高校サッカー選手権　都道府県代表", font=font(36, False), fill=GRAY, anchor="mm")
         top = SAFE_Y + 200
         if i == 0:
-            s = f"{decided}/47 県で代表決定（{t.month}/{t.day}時点）"
+            s = f"{decided}/47 都道府県で代表決定（{t.month}/{t.day}時点）"
             d.text((W // 2, top + 20), s, font=fit(d, s, TEXT_W, 40, 26), fill=WHITE, anchor="mm")
             top += 70
         bottom = H - SAFE_Y - 100
@@ -235,7 +242,7 @@ def make_ichiran(out, made, notes):
                 y += row_h
         footer(d)
         save(img, out, f"senshuken-ichiran-{key}.png", made)
-    notes.append(f"代表校一覧：{decided}/47 県で代表決定")
+    notes.append(f"代表校一覧：{decided}/47 都道府県で代表決定")
 
 
 # ----------------------------------------------------------------- C. プレミア順位表
