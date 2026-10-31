@@ -395,7 +395,7 @@ AUTHOR_BIO = (
     "脳神経外科専門医・脳卒中専門医でもあり、医師17年目・救急医療12年。"
     "熱中症・頭部外傷・外傷全般・心肺停止などの救急診療と病院前救急に従事。"
     "日本の育成年代サッカーへの関心から当サイトを運営し、"
-    "熱中症・脳震盪・栄養・睡眠・怪我予防など選手の安全に関する"
+    "熱中症・脳振盪・栄養・睡眠・怪我予防など選手の安全に関する"
     "医学コラムを、公的ガイドライン・医学的根拠に基づいて執筆しています。"
 )
 
@@ -441,7 +441,7 @@ def build_author_person(article):
         "url": f"{DOMAIN}/about.html",
         "sameAs": [AUTHOR_X_URL, AUTHOR_NOTE_URL],
         "knowsAbout": [
-            "救急医学", "スポーツ医学", "熱中症", "脳震盪",
+            "救急医学", "スポーツ医学", "熱中症", "脳振盪", "脳震盪",
             "コンディショニング", "高校サッカー",
         ],
     }
@@ -726,7 +726,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ブログ | 高校サッカー U-18 戦術・選手・コラム情報</title>
-  <meta name="description" content="高校サッカーU-18のシーズン展望・注目チーム解説・戦術分析・選手紹介に加え、救急科専門医による熱中症・貧血・睡眠・脳震盪などの医学コラムを毎週お届けします。選手・保護者・指導者に役立つ、医学的根拠にもとづくコンディショニング情報を発信中です。">
+  <meta name="description" content="高校サッカーU-18のシーズン展望・注目チーム解説・戦術分析・選手紹介に加え、救急科専門医による熱中症・貧血・睡眠・脳振盪などの医学コラムを毎週お届けします。選手・保護者・指導者に役立つ、医学的根拠にもとづくコンディショニング情報を発信中です。">
   <meta name="keywords" content="高校サッカー,U-18,ブログ,シーズン展望,戦術分析,医学コラム,選手紹介">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://u18-soccer.com/blog/">
@@ -814,7 +814,7 @@ __SCHEMA_BLOG__
         <span style="font-size:1.8em;" aria-hidden="true">🩺</span>
         <span>
           <span style="display:block;font-weight:700;font-size:1.05em;">救急医の医学コラム 特設ページ</span>
-          <span style="display:block;font-size:0.88em;opacity:0.92;">熱中症・脳震盪・栄養・睡眠——テーマ別の一覧と「読む順ガイド」</span>
+          <span style="display:block;font-size:0.88em;opacity:0.92;">熱中症・脳振盪・栄養・睡眠——テーマ別の一覧と「読む順ガイド」</span>
         </span>
       </a>
 
@@ -1280,10 +1280,10 @@ def generate_medical_hub(articles):
         )
 
     canonical = f"{DOMAIN}/blog/{MEDICAL_HUB_DIR_NAME}/"
-    title = "救急医の医学コラム｜熱中症・脳震盪・栄養・睡眠 — 高校サッカー選手を守る医学の話"
+    title = "救急医の医学コラム｜熱中症・脳振盪・栄養・睡眠 — 高校サッカー選手を守る医学の話"
     description = (
         "救急科専門医（脳神経外科専門医・医学博士）が、高校サッカー選手・保護者・指導者向けに"
-        "熱中症・脳震盪・心臓振盪・捻挫・貧血・睡眠・オーバートレーニングを医学的根拠と共に解説。"
+        "熱中症・脳振盪・心臓振盪・捻挫・貧血・睡眠・オーバートレーニングを医学的根拠と共に解説。"
         "テーマ別一覧と読む順ガイド。"
     )
     breadcrumb = json.dumps({
@@ -1351,7 +1351,7 @@ MEDICAL_HUB_TEMPLATE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>__TITLE__</title>
   <meta name="description" content="__DESCRIPTION__">
-  <meta name="keywords" content="高校サッカー,医学コラム,熱中症,脳震盪,救急医,スポーツ医学,コンディショニング">
+  <meta name="keywords" content="高校サッカー,医学コラム,熱中症,脳振盪,脳震盪,救急医,スポーツ医学,コンディショニング">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="__CANONICAL__">
 
@@ -1447,7 +1447,7 @@ __SCHEMA_COLLECTION__
         <h2 style="margin-top:0;">読む順ガイド</h2>
         <ul style="margin:0;padding-left:1.5em;line-height:2.0;">
           <li><strong>いま（夏の大会期）なら</strong>：熱中症対策 → 水分補給 → 大会当日の暑さ対策 の順で。チーム全員に関わる内容です。</li>
-          <li><strong>試合・練習の「もしも」に備えるなら</strong>：脳震盪と心臓振盪は<strong>起きる前に</strong>読んでおくことに意味があります。ベンチに入る大人は必読です。</li>
+          <li><strong>試合・練習の「もしも」に備えるなら</strong>：脳振盪と心臓振盪は<strong>起きる前に</strong>読んでおくことに意味があります。ベンチに入る大人は必読です。</li>
           <li><strong>「最近走れない・疲れが抜けない」なら</strong>：オーバートレーニング → 貧血 → 睡眠。原因は1つとは限りません。</li>
         </ul>
       </section>

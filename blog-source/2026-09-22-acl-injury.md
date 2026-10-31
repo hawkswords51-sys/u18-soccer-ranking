@@ -129,7 +129,7 @@ faq:
 
 > **膝を捻って、一度でもプレーを止めた選手は、その日はもう戻さない。** これを原則にしてください。「歩けるか」で判断しないでください。
 
-同じことは[脳震盪の記事](/blog/posts/concussion-return-to-play-2026/)にも書きました。**本人の「大丈夫」を判断材料にしないケガが、いくつか存在する**ということです。
+同じことは[脳振盪の記事](/blog/posts/concussion-return-to-play-2026/)にも書きました。**本人の「大丈夫」を判断材料にしないケガが、いくつか存在する**ということです。
 
 なお、現場で確定診断はできません。整形外科（できればスポーツ整形）で、診察とMRIによる確認が必要です。受診までは**体重をかけない・冷やす・固定して安静**にしてください。
 
@@ -414,6 +414,6 @@ FIFAの医学研究機関が開発したウォームアッププログラムで�
 
 <p style="font-size:0.85rem;color:var(--text-light,#666);margin-top:20px;">※本記事の図解4点は、当サイトが収集・整理した医学資料をもとに Google Gemini で作成したものです。</p>
 
-「成長期のケガ」シリーズの他の記事もあわせてどうぞ。腰は[腰椎分離症](/blog/posts/lumbar-spondylolysis-2026/)、太もも裏は[ハムストリング肉離れ](/blog/posts/hamstring-strain-2026/)、膝の前は[オスグッド病](/blog/posts/osgood-schlatter-2026/)、すねと足は[シンスプリントと疲労骨折](/blog/posts/shin-splints-2026/)、足首は[捻挫の応急処置](/blog/posts/2026-06-25-ankle-sprain-treatment/)で扱っています。頭を打ったときの「本人の大丈夫を信じない」という原則は[脳震盪の記事](/blog/posts/concussion-return-to-play-2026/)、連戦での疲労管理は[中2日のリカバリー](/blog/posts/recovery-between-matches-2026/)に書いています。
+「成長期のケガ」シリーズの他の記事もあわせてどうぞ。腰は[腰椎分離症](/blog/posts/lumbar-spondylolysis-2026/)、太もも裏は[ハムストリング肉離れ](/blog/posts/hamstring-strain-2026/)、膝の前は[オスグッド病](/blog/posts/osgood-schlatter-2026/)、すねと足は[シンスプリントと疲労骨折](/blog/posts/shin-splints-2026/)、足首は[捻挫の応急処置](/blog/posts/2026-06-25-ankle-sprain-treatment/)で扱っています。頭を打ったときの「本人の大丈夫を信じない」という原則は[脳振盪の記事](/blog/posts/concussion-return-to-play-2026/)、連戦での疲労管理は[中2日のリカバリー](/blog/posts/recovery-between-matches-2026/)に書いています。
 
 > ※本記事は一般的な医学情報の提供を目的としたもので、個別の診断・治療に代わるものではありません。膝のケガが疑われる場合は必ず整形外科（できればスポーツ整形）を受診してください。手術の術式や移植腱の選択、リハビリの進め方は主治医の判断によるものであり、本記事はその判断に代わるものではありません。内容は執筆時点で参照可能な原著論文・システマティックレビュー・公的機関の情報に基づいています。

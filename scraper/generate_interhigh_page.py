@@ -1407,11 +1407,11 @@ def main():
         for q, a in faq_items
     )
 
-    # 脳震盪コラムはコンテンツカレンダー上「2026-07-25 公開予定」。
+    # 脳振盪コラムはコンテンツカレンダー上「2026-07-25 公開予定」。
     # 記事フォルダ(blog/posts/concussion-return-to-play-2026)ができたら
     # 自動で通常リンクに戻る（手動で戻す必要なし）。未公開の間は404を避け「公開予定」表示にする。
     _concussion_slug = "concussion-return-to-play-2026"
-    _concussion_title = "【医学コラム】脳震盪の見極め方と競技復帰プロトコル（頭を打ったら）"
+    _concussion_title = "【医学コラム】脳振盪の見極め方と競技復帰プロトコル（頭を打ったら）"
     if (BASE_DIR / "blog" / "posts" / _concussion_slug).exists():
         concussion_li = f'<li><a href="/blog/posts/{_concussion_slug}/">{_concussion_title}</a></li>'
     else:
@@ -1420,7 +1420,7 @@ def main():
             f'<span style="margin-left:6px;font-size:0.85em;">（2026-07-25 公開予定）</span></li>'
         )
 
-    # 心臓振盪コラム（2026-07-12 追加）：脳震盪と同じ自動切替方式。
+    # 心臓振盪コラム（2026-07-12 追加）：脳振盪と同じ自動切替方式。
     # 記事フォルダ(blog/posts/commotio-cordis-aed-2026)ができたら自動でリンク表示。
     _commotio_slug = "commotio-cordis-aed-2026"
     _commotio_title = "【医学コラム】胸にボールが当たって倒れたら｜心臓振盪とAED（救急医が解説）"
@@ -1430,16 +1430,16 @@ def main():
         commotio_li = ""
 
     # 大会安全ボックス（2026-07-02 追加）：試合結果セクション直前に表示する
-    # 暑熱・脳震盪の要点＋医学コラム導線。脳震盪リンクは上と同じ自動切替。
+    # 暑熱・脳振盪の要点＋医学コラム導線。脳振盪リンクは上と同じ自動切替。
     if (BASE_DIR / "blog" / "posts" / _concussion_slug).exists():
         _safety_concussion = (
             f'<a href="/blog/posts/{_concussion_slug}/" '
-            f'style="font-weight:600;">頭を打った時の対応（脳震盪）›</a>'
+            f'style="font-weight:600;">頭を打った時の対応（脳振盪）›</a>'
         )
     else:
         _safety_concussion = (
             '<span style="color:var(--text-light,#666);">'
-            '脳震盪コラム（7/25公開予定）</span>'
+            '脳振盪コラム（7/25公開予定）</span>'
         )
     safety_box = f"""
       <section class="lp-section" id="heat-safety">

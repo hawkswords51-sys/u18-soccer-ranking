@@ -274,7 +274,7 @@ JFA（日本サッカー協会）もスポーツ現場での突然死対策・AE
 
 ### 関連記事・参考リンク
 
-- [脳震盪と競技復帰（RTP）を救急医が解説](/blog/posts/concussion-return-to-play-2026/) — 同じ「現場の救急対応」シリーズ
+- [脳振盪と競技復帰（RTP）を救急医が解説](/blog/posts/concussion-return-to-play-2026/) — 同じ「現場の救急対応」シリーズ
 - [サッカーの熱中症対策｜危険なサインと応急処置](/blog/posts/2026-05-08-may-heatstroke-prevention/) — 倒れた選手への現場対応つながり
 - [真夏の水分補給戦略](/blog/posts/2026-07-10-summer-hydration-strategy/) — 夏の大会を戦い抜く準備
 - [インターハイ2026 特設ページ](/tournaments/interhigh-2026/) — 7/25開幕・全国大会の最新結果
