@@ -33,3 +33,4 @@
 - 手で作るとき：`bash sns-images/today_finals_auto.sh today-daihyo`（日付を指定するなら後ろに `--date 10/31`）
 - その夜に新しいカードができたら、代表校一覧6枚（`senshuken-ichiran-*.png`）と投稿文（`senshuken-ichiran.txt`）も作り直して Dropbox に置きます。通知に「代表決定 n/47」が出ます。
 - 決定数が24（半分）を超えた日と、47そろった日だけ、通知に「代表校一覧6枚の出しどきです」と出ます（前の回の数は `~/Library/Logs/u18-ichiran-count.txt` に覚えておく）。
+- Threads 用の結果の一言（`today-daihyo-threads-MMDD.txt`。決勝ごとに1行＝1投稿）も同じときに作ります。例：「福島は、尚志が帝京安積を3-1で破り、代表に決まりました。」

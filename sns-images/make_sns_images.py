@@ -460,6 +460,24 @@ def make_today_daihyo(out, made, notes):
         + "※ 「〇年連続〇回目」などの出場記録は入れていません（データに無いため）。\n",
         encoding="utf-8")
     made.append(txt)
+
+    # Threads 用の結果の一言（決勝ごとに1つの投稿）
+    posts = []
+    for name, label, w, sc, opp in done:
+        where = name + (label if label else "")
+        main, _, pk = sc.partition("(")
+        if pk:
+            body = f"{w}が{opp}と{main}、{pk.rstrip(')')}で勝ち"
+        else:
+            body = f"{w}が{opp}を{main}で破り"
+        posts.append(f"{where}は、{body}、代表に決まりました。")
+    th = out / f"today-daihyo-threads-{m:02d}{dd:02d}.txt"
+    th.write_text(
+        "■ Threads（結果の一言。1行を1つの投稿に。トピックは「高校サッカー」）\n\n"
+        + "\n\n".join(posts) + "\n\n"
+        "※ 「〇年連続〇回目」などの出場記録は入れていません（データに無いため）。足すときは確かめてから。\n",
+        encoding="utf-8")
+    made.append(th)
     notes.append(f"今日の県代表：{m}/{dd} {len(done)}校（{'・'.join(prefs)}）"
                  + (f"／結果待ち {len(finals)}試合" if finals else ""))
 
