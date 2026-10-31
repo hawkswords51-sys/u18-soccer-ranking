@@ -211,7 +211,7 @@ scraper/update_tournament_results.py が上の source から
 
 - 摂津 2-1 桃山学院
 - 大阪桐蔭 vs 履正社
-- 大阪学院大学 vs 金光大阪
+- 大阪学院大学 1-1(PK4-5) 金光大阪
 - 東海大仰星 vs 関西大学北陽
 
 ## 準決勝（11/8）
