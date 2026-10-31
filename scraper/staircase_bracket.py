@@ -35,7 +35,8 @@ def _build(items):
     return stack[0]
 
 
-def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None, round_dates=None):
+def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None, round_dates=None, alive=False):
+    # [2026-10-31] alive=True で、まだ負けていない学校の校名を赤枠で囲む（県ページ用）。
     # [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。
     # [2026-10-19] round_dates＝列名のリスト→列ごとの日付のリストを返す関数（県ページ用）。列見出しの下に日付を出す。
     root = _build(items)
@@ -72,6 +73,24 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None,
                     n["winner"] = a if pk[0] > pk[1] else b
     solve(root)
 
+    # [2026-10-31] 勝ち残り＝結果の入った試合で一度も負けていない学校（1試合も結果が無いうちは囲まない）
+    alive_set = set()
+    if alive:
+        out, leaves, decided = set(), [], [0]
+
+        def walk(n):
+            if "leaf" in n:
+                leaves.append(n["leaf"])
+                return
+            for k in n["kids"]:
+                walk(k)
+            if n.get("score") and n.get("winner"):
+                decided[0] += 1
+                out.add(_J._norm_team(n["b"] if n["winner"] == n["a"] else n["a"]))
+        walk(root)
+        if decided[0]:
+            alive_set = {_J._norm_team(t) for t in leaves if t and _J._norm_team(t) not in out}
+
     LABEL_W, LVL_W, ROW_H, TOP, CENTER_GAP = 190, 72, 28, 60, 168
     dates = list(round_dates(round_names)) if round_dates else []
     has_dates = any(dates)
@@ -96,6 +115,8 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None,
                  f'fill="{color}"{w}>{_J.html_escape(s)}</text>')
 
     def team_text(x, y, name, anchor, won=False):
+        if name and _J._norm_team(name) in alive_set:
+            S.append(_J.alive_rect("L" if anchor == "end" else "R", x, y - 3.5, name, rank_of, ROW_H, LABEL_W - 6))
         tid = _J.team_id_for(name)
         cls = "bk-won" if won else ("bk-acc" if tid else "bk-team")
         weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
@@ -191,4 +212,4 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None,
            f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
     # 外枠・注記・文字色の切替は既存の表と同じものを使う（見た目をそろえる）
-    return _J.wrap_bracket_svg(svg, rank_used)
+    return _J.wrap_bracket_svg(svg, rank_used, bool(alive_set))

@@ -520,7 +520,7 @@ def render_tournament_bracket_svg(rounds, rank_of=None, rd=None):
 
         buf2 = _io.StringIO()
         with _contextlib.redirect_stdout(buf2):
-            svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, pidx[-need], rd))
+            svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, pidx[-need], rd), alive=True)
         if svg and "<svg" in svg:
             return svg
     return _render_inprogress_bracket_svg(rounds, rank_of, rd)
@@ -631,7 +631,7 @@ def _render_inprogress_bracket_svg(rounds, rank_of=None, rd=None):
             buf = _io.StringIO()
             with _contextlib.redirect_stdout(buf):
                 pairs = _bracket.parse_bracket_pairs(pair_lines)
-                svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, pidx[i], rd))
+                svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, pidx[i], rd), alive=True)
             if buf.getvalue().strip() or len(pairs) != base_n:
                 continue
             if svg and "<svg" in svg:
@@ -677,7 +677,7 @@ def _render_ordered_base_bracket(rounds, rank_of=None, rd=None):
     buf = _io.StringIO()
     with _contextlib.redirect_stdout(buf):
         pairs = _bracket.parse_bracket_pairs(pair_lines)
-        svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, i, rd))
+        svg = _bracket.render_bracket_svg(sections, rank_of, _col_dates(rounds, i, rd), alive=True)
     if buf.getvalue().strip() or len(pairs) != len(base) + len(seeds):
         return ""
     return svg if svg and "<svg" in svg else ""
@@ -718,7 +718,7 @@ def _render_staircase_from_rounds(rounds, i, base, seeds, rank_of=None, rd=None)
         while len(names) < _need:
             k = _need - len(names)            # 残り何回戦分足りないか（決勝から数えて）
             names.append(_tail[-k] if k <= 3 else f"{len(names) + 1}回戦")
-    return render_staircase_bracket_svg(items, res_lines, names, rank_of, _col_dates(rounds, i, rd))
+    return render_staircase_bracket_svg(items, res_lines, names, rank_of, _col_dates(rounds, i, rd), alive=True)
 
 
 def _raw_winner(line):

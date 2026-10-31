@@ -477,11 +477,33 @@ def rank_tspan(name, rank_of, used):
 DATE_ROW_H = 14
 
 
-def render_bracket_svg(sections, rank_of=None, round_dates=None):
+# [2026-10-31] 勝ち残り校を赤枠で囲む（県ページのみ・インハイ本選と同じ考え方）。Kei依頼＝鹿児島など
+#   大きいトーナメントだと、どこが勝ち残っているか分かりにくい。
+def _text_w(s_, size):
+    """文字列のおよその表示幅（全角＝フォントサイズ、半角＝その55%）"""
+    return sum(size if ord(c) >= 0x1100 else size * 0.55 for c in s_)
+
+
+def alive_rect(side, tx, yc, name, rank_of, row_h, max_w):
+    """校名（＋県内順位）を囲む赤い角丸枠の<rect>。校名テキストより先に描く。
+    side＝"L"（校名が右寄せ・終わりが tx）／"R"（校名が左寄せ・始まりが tx）。yc＝その行の中心の高さ。"""
+    tw = _text_w(_short_label(name), 12.5)
+    r = rank_of(name) if rank_of else None
+    if r:
+        tw += 4 + _text_w(r, 9.5)
+    PAD = 4.0
+    bw = min(tw + PAD * 2, max_w)
+    bx = tx + PAD - bw if side == "L" else tx - PAD
+    return (f'<rect x="{bx:.1f}" y="{yc - row_h / 2 + 4:.1f}" width="{bw:.1f}" height="{row_h - 8:.1f}" '
+            f'rx="4" fill="none" stroke="var(--danger-color,#dc2626)" stroke-width="1.5"/>')
+
+
+def render_bracket_svg(sections, rank_of=None, round_dates=None, alive=False):
     """「## トーナメント表（組み合わせ）」があればSVGトーナメント表のHTMLを返す。無ければ空文字。
     [2026-10-18] rank_of を渡すと校名の横に県内順位を出す（県ページ用）。渡さなければ従来と同一の出力。
     [2026-10-19] round_dates＝列名のリスト（外側→決勝）を受け取り、列ごとの日付文字列のリストを返す関数（県ページ用）。
-      渡すと列見出しの下に日付を出す。渡さない・全部空なら従来と同一の出力。"""
+      渡すと列見出しの下に日付を出す。渡さない・全部空なら従来と同一の出力。
+    [2026-10-31] alive=True で、まだ負けていない学校の校名を赤枠で囲む（県ページ用）。既定は従来と同一の出力。"""
     lines = None
     for name, ls in sections.items():
         if name.startswith("トーナメント表"):
@@ -499,6 +521,21 @@ def render_bracket_svg(sections, rank_of=None, round_dates=None):
     wing_levels = num_levels - 1
     names = _round_names(num_levels)
     dates = list(round_dates(names)) if round_dates else []
+
+    # [2026-10-31] 勝ち残り＝結果の入った試合で一度も負けていない学校。1試合も結果が無いうちは囲まない（全校が枠になるため）
+    alive_set = set()
+    if alive:
+        _out, _decided = set(), 0
+        for _lvl in levels:
+            for _nd in _lvl:
+                if _nd.get("score") and _nd.get("winner") and _nd.get("a") and _nd.get("b"):
+                    _decided += 1
+                    _out.add(_norm_team(_nd["b"] if _nd["winner"] == _nd["a"] else _nd["a"]))
+        if _decided:
+            for _nd in levels[0]:
+                for _t in (_nd.get("a"), _nd.get("b")):
+                    if _t and _norm_team(_t) not in _out:
+                        alive_set.add(_norm_team(_t))
     has_dates = any(dates)
 
     # ---- レイアウト定数（大きめ・読みやすさ優先） ----
@@ -598,6 +635,8 @@ def render_bracket_svg(sections, rank_of=None, round_dates=None):
     def team_text(x, y, name, anchor, won=False):
         if not name:
             return
+        if _norm_team(name) in alive_set:
+            S.append(alive_rect("L" if anchor == "end" else "R", x, y - 3.5, name, rank_of, ROW_H, LABEL_W - 6))
         label = _short_label(name)
         tid = team_id_for(name)
         # 色はclassで指定（SVGのfill属性ではCSS変数が効かないため、data-themeで切替）
@@ -728,10 +767,10 @@ def render_bracket_svg(sections, rank_of=None, round_dates=None):
            f'style="display:block;width:100%;min-width:{width:.0f}px;height:auto;font-family:inherit;">'
            + "".join(S) + '</svg>')
 
-    return wrap_bracket_svg(svg, rank_used)
+    return wrap_bracket_svg(svg, rank_used, bool(alive_set))
 
 
-def wrap_bracket_svg(svg, rank_used=None):
+def wrap_bracket_svg(svg, rank_used=None, alive_used=False):
     """表(SVG)に、文字色の切替<style>・注記・横スクロールの外枠を付ける。
     [2026-10-15] 階段シードの表（staircase_bracket.py）と見た目をそろえるため、render_bracket_svg から切り出した。"""
     # SVGのfill属性ではCSS変数が効かないため、チーム名の色はclass＋data-themeで切替。
@@ -774,6 +813,8 @@ def wrap_bracket_svg(svg, rank_used=None):
         '<p style="margin:0 0 8px;color:var(--text-light,#6b7280);font-size:0.88em;">'
         '📱 スマホでは表を左右にスクロールできます ／ '
         '<span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり（結果の入力に合わせて自動で伸びます）'
+        + (' ／ <span style="border:1.5px solid var(--danger-color,#dc2626);border-radius:4px;padding:0 5px;">赤枠</span>＝勝ち残っている学校'
+           if alive_used else '')
         + rank_note + '</p>'
         '<div class="jy-bracket" style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
         'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
