@@ -63,7 +63,7 @@ def main():
     lines = []
     for raw in gh("run", "view", rid, "--log").splitlines():
         parts = raw.split("\t", 2)
-        text = parts[2] if len(parts) == 3 else raw
+        text = (parts[2] if len(parts) == 3 else raw).lstrip("\ufeff")  # 工程の先頭行に BOM が付く（2026-10-31〜）
         text = re.sub(r"^\d{4}-\d\d-\d\dT[\d:.]+Z ", "", text)
         text = re.sub(r"\x1b\[[0-9;]*m", "", text)
         lines.append(text)
