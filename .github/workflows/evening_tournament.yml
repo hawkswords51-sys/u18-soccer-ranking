@@ -1,0 +1,24 @@
+name: 夕方の選手権取り込み
+
+# [2026-11-01] SNSの夜の県代表カード（sns-images/today_finals_auto.sh today-daihyo）用。
+#   定期更新は朝7時台と夜22時台なので、夜19〜21時の投稿に決勝の結果が間に合わない。
+#   毎日18:47 JST（= UTC 9:47）に「高円宮杯 順位自動更新」を範囲 tournament（選手権など県予選だけ・約2分）で起動する。
+#   手動Runの「tournament」ボタンを押すのと同じ。見張り（/mihari）は定期実行（schedule）だけを見るので混ざらない。
+#   試合の無い日は「変更なし」で終わるだけ。
+#   ⚠️ 00分は避ける（GitHub のスケジュールが混んで遅れやすい。update_rankings.yml の注記と同じ理由）。
+on:
+  schedule:
+    - cron: '47 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write   # 別のワークフローを起動するため（GITHUB_TOKEN でも workflow_dispatch は起動できる）
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 選手権など県予選だけの更新を起動
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update_rankings.yml -R "${{ github.repository }}" --ref main -f scope=tournament

@@ -10,6 +10,7 @@ SNS用画像（Instagram・Threads 向け 1080x1350 縦長）を、リポジト�
   python3 sns-images/make_sns_images.py --only premier        # 種類を選ぶ（カンマ区切り）
      種類: senshuken-daihyo（県代表決定カード）／senshuken-ichiran（代表校一覧6枚）／premier（プレミア順位表2枚）
            today-finals（今日の決勝の画像＋投稿文。--date 11/8 で日付指定）
+           today-daihyo（今日決まった県代表カード＋投稿文。--date で日付指定）
   OUT_DIR=/どこか python3 sns-images/make_sns_images.py       # 出力先を変える
 
 出力先の既定: ~/Documents/Claude/Projects/u18-soccer.com運営/SNS画像/YYYY-MM-DD/（JSTの実行日）
@@ -154,12 +155,15 @@ def official_name(short):
     return short + {"東京": "都", "大阪": "府", "京都": "府"}.get(short, "県")
 
 
-def make_daihyo(out, made, notes):
+def make_daihyo(out, made, notes, day=None, done=None):
+    """day=(月,日) を渡すと、その日に決勝があった県だけ作る（夜の自動用）。done には (県名, ブロック, 代表, スコア, 相手) を足す。"""
     skipped = 0
     for _region, prefs in sp.REGIONS:
         for slug, name in prefs:
             info = sp.analyze(slug)
             fms = [fm for fm in (info or {}).get("final_matches", []) if fm[3] and fm[3] != "確認中"]
+            if day is not None:
+                fms = [fm for fm in fms if day in fm[5]]
             if not fms:
                 skipped += 1
                 continue
@@ -180,7 +184,10 @@ def make_daihyo(out, made, notes):
                 if label:
                     suffix = "-" + ("a" if label.startswith("A") else "b" if label.startswith("B") else label)
                 save(img, out, f"senshuken-daihyo-{slug}{suffix}.png", made)
-    notes.append(f"県代表カード：代表未定で作らなかった県 {skipped}")
+                if done is not None:
+                    done.append((name, label, w, sc, opp))
+    if day is None:
+        notes.append(f"県代表カード：代表未定で作らなかった県 {skipped}")
 
 
 # ----------------------------------------------------------------- B. 代表校一覧（6枚）
@@ -411,11 +418,50 @@ def make_today(out, made, notes):
     notes.append(f"今日の決勝：{m}/{dd} 決勝 {n_reps}試合（{'・'.join(prefs)}）／ほかに試合のある{area_word(others) if others else '県'} {len(others)}")
 
 
+# ----------------------------------------------------------------- E. 今日決まった県代表（夜の Instagram フィード用）
+def hashtag(name):
+    return "#" + "".join(c for c in name if c.isalnum())
+
+
+def make_today_daihyo(out, made, notes):
+    day = target_day()
+    m, dd = day
+    done = []
+    make_daihyo(out, made, notes, day=day, done=done)
+    finals, _others, _missing = day_matches(day)   # まだ結果の入っていない今日の決勝
+    if not done:
+        notes.append(f"今日の県代表：{m}/{dd} に決まった代表はまだデータにありません"
+                     + (f"（結果待ち {len(finals)}試合）" if finals else ""))
+        return
+    prefs = list(dict.fromkeys(x[0] for x in done))
+    word = area_word(prefs)
+    lines = [f"{m}/{dd}、選手権予選の決勝で{len(prefs)}{word}の代表が決まりました。", ""]
+    for name, label, w, sc, opp in done:
+        lines.append(f"{official_name(name)}{'（' + label + '）' if label else ''}：{w}（決勝 {sc} {opp}）")
+    lines += ["", "各都道府県の予選結果は、プロフィールのリンクから見られます。", ""]
+    schools = [x[2] for x in done]
+    lines.append(" ".join(["#高校サッカー", "#高校サッカー選手権"] + [hashtag(w) for w in schools[:3]]))
+    caption = "\n".join(lines)
+    txt = out / f"today-daihyo-{m:02d}{dd:02d}.txt"
+    txt.write_text(
+        "■ Instagram フィード（夜19〜21時ごろ）\n"
+        f"県代表カード {len(done)}枚（senshuken-daihyo-〇〇.png）を、めくって見る1つの投稿にまとめる\n\n"
+        + caption + "\n\n"
+        + (f"※ ハッシュタグは5個まで。校名は最初の3校を入れています（{len(schools)}校のうち）。入れ替えてもかまいません。\n" if len(schools) > 3 else "")
+        + (f"※ まだ結果がデータに入っていない今日の決勝が {len(finals)}試合あります（{'・'.join(dict.fromkeys(f[0] for f in finals))}）。\n" if finals else "")
+        + "※ 「〇年連続〇回目」などの出場記録は入れていません（データに無いため）。\n",
+        encoding="utf-8")
+    made.append(txt)
+    notes.append(f"今日の県代表：{m}/{dd} {len(done)}校（{'・'.join(prefs)}）"
+                 + (f"／結果待ち {len(finals)}試合" if finals else ""))
+
+
 KINDS = {
     "senshuken-daihyo": make_daihyo,
     "senshuken-ichiran": make_ichiran,
     "premier": make_premier,
     "today-finals": make_today,
+    "today-daihyo": make_today_daihyo,
 }
 
 

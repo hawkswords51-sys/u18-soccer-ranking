@@ -1,29 +1,38 @@
 #!/bin/bash
-# 毎朝8時に today_finals_auto.sh を動かす登録（Mac の launchd）。1回打てばよい。
+# SNS画像の自動作成を Mac（launchd）に登録する。1回打てばよい（打ち直しても大丈夫）。
+#   朝 8:00          … 今日の決勝（today-finals）
+#   夜 19:30・20:45  … 今日決まった県代表カード（today-daihyo）。2回目は結果が増えたときだけ通知
 #   登録:   bash sns-images/install_today_finals.sh
 #   やめる: bash sns-images/install_today_finals.sh --remove
-# 8時に Mac が眠っていたら、起きたときに1回動く。記録は ~/Library/Logs/u18-today-finals.log
-LABEL=com.u18soccer.today-finals
-P="$HOME/Library/LaunchAgents/$LABEL.plist"
+# 決まった時刻に Mac が眠っていたら、起きたときに1回動く。記録は ~/Library/Logs/u18-today-finals.log
 SCRIPT="$(cd "$(dirname "$0")" && pwd)/today_finals_auto.sh"
-launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null
-if [ "${1:-}" = "--remove" ]; then
-  rm -f "$P" && echo "毎朝の自動作成をやめました"
-  exit 0
-fi
+LOG="$HOME/Library/Logs/u18-today-finals.log"
 mkdir -p "$HOME/Library/LaunchAgents"
-cat > "$P" <<PL
+
+register() {  # $1=ラベル $2=種類 $3=時刻の並び（<dict>…</dict> を並べたもの）
+  local P="$HOME/Library/LaunchAgents/$1.plist"
+  launchctl bootout "gui/$(id -u)/$1" 2>/dev/null
+  if [ "$REMOVE" = 1 ]; then rm -f "$P"; return; fi
+  cat > "$P" <<PL
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>Label</key><string>$LABEL</string>
+  <key>Label</key><string>$1</string>
   <key>ProgramArguments</key>
-  <array><string>/bin/bash</string><string>$SCRIPT</string></array>
-  <key>StartCalendarInterval</key><dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>0</integer></dict>
-  <key>StandardOutPath</key><string>$HOME/Library/Logs/u18-today-finals.log</string>
-  <key>StandardErrorPath</key><string>$HOME/Library/Logs/u18-today-finals.log</string>
+  <array><string>/bin/bash</string><string>$SCRIPT</string><string>$2</string></array>
+  <key>StartCalendarInterval</key><array>$3</array>
+  <key>StandardOutPath</key><string>$LOG</string>
+  <key>StandardErrorPath</key><string>$LOG</string>
 </dict>
 </plist>
 PL
-plutil -lint "$P" >/dev/null && launchctl bootstrap "gui/$(id -u)" "$P" && echo "登録しました：毎朝8:00に「今日の決勝」を作ります（$P）"
+  plutil -lint "$P" >/dev/null && launchctl bootstrap "gui/$(id -u)" "$P"
+}
+at() { echo "<dict><key>Hour</key><integer>$1</integer><key>Minute</key><integer>$2</integer></dict>"; }
+
+REMOVE=0; [ "${1:-}" = "--remove" ] && REMOVE=1
+register com.u18soccer.today-finals today-finals "$(at 8 0)"
+register com.u18soccer.today-daihyo today-daihyo "$(at 19 30)$(at 20 45)"
+if [ $REMOVE = 1 ]; then echo "自動作成をやめました（朝・夜とも）"; else
+  echo "登録しました：朝8:00 今日の決勝／夜19:30・20:45 今日決まった県代表カード"; fi
