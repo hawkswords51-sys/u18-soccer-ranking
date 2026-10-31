@@ -575,11 +575,31 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
         date_str = f"（{'・'.join(dates)}）" if dates else ""
         heading = f"## {kkey}{date_str}"
         pos = None
-        for r in rounds_now():
-            if round_sort_pos(r["key"]) > round_sort_pos(kkey):
-                pos = r["heading_idx"]
-                break
+        # まず koko の並び順で決める：koko で手前にある回戦のうち md にある最後のものの直後。
+        # 「1次予選1回戦」「中央トーナメント2回戦」のような接頭語付きの見出しは
+        # ROUND_ORDER に無い（round_sort_pos=50）ので、ROUND_ORDER だけで決めると
+        # 「準々決勝」がそれより前＝md の先頭に入ってしまう（2026-10-31 大阪で発生）。
+        korder = [round_key(r["name"]) for r in koko_rounds]
+        if kkey in korder:
+            earlier = set(korder[:korder.index(kkey)])
+            later = set(korder[korder.index(kkey) + 1:])
+            now = rounds_now()
+            last = max((i for i, r in enumerate(now) if r["key"] in earlier), default=None)
+            if last is not None:
+                after = now[last + 1:]
+                if after:
+                    pos = after[0]["heading_idx"]
+                else:
+                    pos = "end"
+            else:
+                # koko で手前の回戦が md に無い（＝いちばん最初の回戦）→ koko で後ろの回戦の手前
+                pos = next((r["heading_idx"] for r in now if r["key"] in later), None)
         if pos is None:
+            for r in rounds_now():
+                if round_sort_pos(r["key"]) > round_sort_pos(kkey):
+                    pos = r["heading_idx"]
+                    break
+        if pos is None or pos == "end":
             while body_lines and body_lines[-1].strip() == "":
                 body_lines.pop()
             body_lines.extend(["", heading, ""])
