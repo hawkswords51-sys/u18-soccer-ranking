@@ -9,6 +9,7 @@ SNS用画像（Instagram・Threads 向け 1080x1350 縦長）を、リポジト�
   python3 sns-images/make_sns_images.py                       # 全種類
   python3 sns-images/make_sns_images.py --only premier        # 種類を選ぶ（カンマ区切り）
      種類: senshuken-daihyo（県代表決定カード）／senshuken-ichiran（代表校一覧6枚）／premier（プレミア順位表2枚）
+           today-finals（今日の決勝の画像＋投稿文。--date 11/8 で日付指定）
   OUT_DIR=/どこか python3 sns-images/make_sns_images.py       # 出力先を変える
 
 出力先の既定: ~/Documents/Claude/Projects/u18-soccer.com運営/SNS画像/YYYY-MM-DD/（JSTの実行日）
@@ -31,6 +32,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scraper"))
 import generate_senshuken_page as sp  # noqa: E402  代表の判定は特設ページと同じ analyze() を使う（二重実装にしない）
 from jst import today  # noqa: E402
+
+if os.environ.get("SNS_DATA_ROOT"):  # 自動実行用：GitHub の最新データを取り出した場所を読む（手元のリポジトリは触らない）
+    sp.TDIR = Path(os.environ["SNS_DATA_ROOT"]) / "data" / "tournaments"
 
 W, H = 1080, 1350
 SAFE_Y = 90            # Instagram の一覧で上下が切られる分。大事な文字はこの内側
@@ -282,10 +286,136 @@ def make_premier(out, made, notes):
         notes.append(f"プレミア{label}：{len(rows)}チーム（{m}/{dd}時点）")
 
 
+# ----------------------------------------------------------------- D. 今日の決勝（朝のストーリーズ・Threads 用）
+SITE_URL = "https://u18-soccer.com/tournaments/senshuken-2026/"
+FINALS_PER_SHEET = 8   # 1枚に並べる決勝の数（これを超えたら2枚目に分ける）
+
+
+def area_word(names):
+    """短い名前の並び → 「県」「府県」「都道府県」など、含まれる分だけの呼び方。"""
+    got = {official_name(n)[-1] for n in names}
+    return "".join(c for c in "都道府県" if c in got) or "県"
+
+
+def target_day():
+    """--date 11/8 で日付を指定（試し用）。無ければ今日（JST）。"""
+    args = sys.argv[1:]
+    if "--date" in args:
+        m, dd = map(int, args[args.index("--date") + 1].split("/"))
+        return (m, dd)
+    t = today()
+    return (t.month, t.day)
+
+
+def day_matches(day):
+    """その日の決勝（まだ結果の無い組み合わせ）と、決勝以外で試合のある県。
+    回戦の日付は見出しの（10/22）、無ければ frontmatter の round_dates を使う（特設ページと同じ）。"""
+    finals, others, missing = [], [], []
+    for _r, prefs in sp.REGIONS:
+        for slug, name in prefs:
+            path = sp.TDIR / "senshuken-2026" / f"{slug}-senshuken-2026.md"
+            if not path.exists():
+                continue
+            meta, rounds = sp.parse_md(path)
+            rd = sp.parse_round_dates(meta)
+            pairs, cur = {}, None   # 回戦名 → [(a, b)]（まだ結果の無い行）
+            for raw in path.read_text(encoding="utf-8").split("---", 2)[-1].splitlines():
+                s = raw.strip()
+                m = sp.HEAD_RE.match(s)
+                if m:
+                    cur = m.group("key").strip()
+                    continue
+                if cur and sp.VS_RE.match(s):
+                    a, b = s[2:].split(" vs ", 1)
+                    pairs.setdefault(cur, []).append((a.strip(), b.strip()))
+            other_here = False
+            for r in rounds:
+                fin = sp.is_final(slug, r["key"])
+                dates = r["dates"] or rd.get("決勝" if fin else r["key"], [])
+                if day not in dates or not r["pending"]:
+                    continue
+                if fin:
+                    label = r["key"].replace("決勝", "") if slug == "tokyo" else ""
+                    for a, b in pairs.get(r["key"], []):
+                        if "/" in a or "/" in b:   # 「旭川実/クラーク記念国際」＝準決勝がまだで相手が決まっていない
+                            missing.append(name + label)
+                        else:
+                            finals.append((name, label, a, b))
+                else:
+                    other_here = True
+            if (not any(sp.is_final(slug, r["key"]) for r in rounds) and slug != "tokyo"
+                    and day in rd.get("決勝", [])):
+                missing.append(name)   # 決勝の日なのに、組み合わせの見出しがまだ無い
+            if other_here and name not in [f[0] for f in finals] and not any(x.startswith(name) for x in missing):
+                others.append(name)
+    return finals, others, missing
+
+
+def make_today(out, made, notes):
+    day = target_day()
+    m, dd = day
+    finals, others, missing = day_matches(day)
+    if missing:
+        notes.append(f"今日の決勝：{'・'.join(missing)} は決勝の日ですが、組み合わせがまだ決まっていない（データに無い）ので入れていません")
+    if not finals:
+        notes.append(f"今日の決勝：{m}/{dd} に決勝はありません（画像は作りません）")
+        return
+    prefs = list(dict.fromkeys(f[0] for f in finals))
+    n_reps = len(finals)
+    word = area_word(prefs)
+    sheets = [finals[i:i + FINALS_PER_SHEET] for i in range(0, len(finals), FINALS_PER_SHEET)]
+    for si, rows in enumerate(sheets):
+        img, d = canvas()
+        d.text((W // 2, SAFE_Y + 80), "第105回全国高校サッカー選手権",
+               font=fit(d, "第105回全国高校サッカー選手権", TEXT_W, 40, 28, False), fill=GRAY, anchor="mm")
+        heading(d, SAFE_Y + 165, f"{m}/{dd} 都道府県予選 決勝", 64)
+        sub = f"今日、{len(prefs)}{word}の代表が決まります" if n_reps == len(prefs) else \
+            f"今日、{len(prefs)}{word}で{n_reps}校の代表が決まります"
+        if len(sheets) > 1:
+            sub += f"（{si + 1}/{len(sheets)}）"
+        d.text((W // 2, SAFE_Y + 270), sub, font=fit(d, sub, TEXT_W, 38, 26, False), fill=GRAY, anchor="mm")
+        top, bottom = SAFE_Y + 320, H - SAFE_Y - 200
+        row_h = min(118, (bottom - top) / len(rows))
+        size = 46 if row_h >= 100 else 40
+        line_c = (0x33, 0x4f, 0x9a)
+        d.line([(SIDE, top), (W - SIDE, top)], fill=line_c, width=1)
+        for i, (name, label, a, b) in enumerate(rows):
+            y = top + i * row_h
+            cy = y + row_h / 2
+            d.text((SIDE + 10, cy), name + label.replace("ブロック", ""), font=font(size - 6), fill=GRAY, anchor="lm")
+            fx = SIDE + 140
+            s = f"{a}  vs  {b}"
+            d.text((fx, cy), s, font=fit(d, s, W - SIDE - fx, size, 24), fill=WHITE, anchor="lm")
+            d.line([(SIDE, y + row_h), (W - SIDE, y + row_h)], fill=line_c, width=1)
+        if others and si == len(sheets) - 1:
+            s = f"このほか{len(others)}{area_word(others)}で準決勝などの試合があります"
+            d.text((W // 2, bottom + 45), s, font=fit(d, s, TEXT_W, 34, 24, False), fill=DIM, anchor="mm")
+        footer(d)
+        save(img, out, f"today-finals-{m:02d}{dd:02d}" + (f"-{si + 1}" if len(sheets) > 1 else "") + ".png", made)
+
+    # 投稿文（Threads）とストーリーズのリンク
+    lines = [f"今日{m}/{dd}は、選手権予選の決勝が{len(prefs)}{word}であります。"]
+    for name, label, a, b in finals:
+        lines.append(f"{name}{'（' + label + '）' if label else ''}：{a} vs {b}")
+    lines += ["各県の予選結果はこちら", SITE_URL + "?utm_source=threads&utm_medium=social&utm_campaign=today"]
+    threads = "\n".join(lines)
+    story = SITE_URL + "?utm_source=instagram&utm_medium=social&utm_campaign=story"
+    txt = out / f"today-finals-{m:02d}{dd:02d}.txt"
+    txt.write_text(
+        "■ ストーリーズ（朝8〜9時ごろ）\n画像を選び、スタンプの「リンク」に次のURLを入れる\n" + story + "\n\n"
+        "■ Threads（同じ画像を付ける。トピックは「高校サッカー」）\n" + threads + "\n\n"
+        f"（Threadsの文は{len(threads)}字。500字まで1つの投稿に入ります）\n"
+        "※ 組み合わせはサイトのデータ（直近の自動更新の分）から写しています。キックオフ時刻はデータに無いので入れていません。\n",
+        encoding="utf-8")
+    made.append(txt)
+    notes.append(f"今日の決勝：{m}/{dd} 決勝 {n_reps}試合（{'・'.join(prefs)}）／ほかに試合のある{area_word(others) if others else '県'} {len(others)}")
+
+
 KINDS = {
     "senshuken-daihyo": make_daihyo,
     "senshuken-ichiran": make_ichiran,
     "premier": make_premier,
+    "today-finals": make_today,
 }
 
 
