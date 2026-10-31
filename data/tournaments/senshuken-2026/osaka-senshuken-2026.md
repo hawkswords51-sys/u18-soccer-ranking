@@ -28,7 +28,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準決勝（11/8）
 
-- 摂津 vs 大阪学院大高/金光大阪
+- 摂津 vs 金光大阪
 - 東海大仰星/関大北陽 vs 大阪桐蔭/履正社
 
 ## 1次予選1回戦（9/6）
