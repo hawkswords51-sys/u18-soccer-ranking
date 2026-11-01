@@ -1,10 +1,13 @@
 #!/bin/bash
-# 「今日の決勝」（朝）と「今日決まった県代表カード」（夜）を自動で作る（Mac の launchd から呼ぶ。手で打っても同じ）。
+# 「今日の決勝」（朝）と「今日決まった県代表カード」（昼・夜）を自動で作る（Mac の launchd から呼ぶ。手で打っても同じ）。
 #   bash sns-images/today_finals_auto.sh              # 朝：今日の決勝
-#   bash sns-images/today_finals_auto.sh today-daihyo # 夜：今日決まった県代表カード
+#   bash sns-images/today_finals_auto.sh today-daihyo # 昼・夜：今日決まった県代表カード
 #   （後ろに --date 10/31 を足すと日付を指定して試せる）
-# 手元のリポジトリの作業中のファイルは触らない：git fetch で GitHub の最新を取り寄せ、
-# そのデータだけを一時フォルダに取り出して読む。画像は運営フォルダの SNS画像/今日の日付/ にできる。
+# [2026-11-01] 自動で動かす分は「書類」フォルダの外（~/u18-sns-auto/）で動く。
+#   Mac の安全機能が、launchd から書類フォルダ（リポジトリ・運営フォルダ）を読むのを止めるため
+#   （朝8:00・昼14:30が Operation not permitted で何も作れなかった）。
+#   ~/u18-sns-auto/repo … 自動作成専用のリポジトリの写し（毎回 GitHub の最新に合わせる。手で編集しない）
+#   ~/u18-sns-auto/out  … できた画像。ここから Dropbox に写す。運営フォルダには書かない（Cowork の画像を上書きしないため）
 set -u
 KIND="${1:-today-finals}"
 case "$KIND" in
@@ -16,9 +19,16 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PY="${PYTHON:-/opt/anaconda3/bin/python3}"   # Pillow が入っている python
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
+AUTO="${SNS_AUTO_DIR:-$HOME/u18-sns-auto}"
+export OUT_DIR="${OUT_DIR:-$AUTO/out/$(date +%F)}"
 
 echo "=== $(date '+%Y-%m-%d %H:%M') $TITLE ==="
 git -C "$REPO" fetch -q origin main || { echo "GitHub から取れませんでした（ネットにつながっていない？）"; exit 1; }
+if [ "$REPO" = "$AUTO/repo" ] && [ -z "${SNS_UPDATED:-}" ]; then
+  # 自動作成専用の写しだけ、スクリプトごと最新にしてから動かし直す（Kei の作業中のリポジトリは触らない）
+  git -C "$REPO" reset -q --hard origin/main || exit 1
+  SNS_UPDATED=1 exec /bin/bash "$REPO/sns-images/today_finals_auto.sh" "$@"
+fi
 git -C "$REPO" archive origin/main data/tournaments | tar -x -C "$TMP" || exit 1
 git -C "$REPO" log -1 --format='データ: %h %ad %s' --date=format-local:'%m/%d %H:%M' origin/main
 
