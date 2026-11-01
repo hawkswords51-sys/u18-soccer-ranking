@@ -220,3 +220,5 @@ scraper/update_tournament_results.py が上の source から
 - 東海大仰星 vs 履正社
 
 ## 決勝（11/14）
+
+- 摂津/金光大阪 vs 東海大仰星/履正社
