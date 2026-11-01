@@ -183,5 +183,5 @@ scraper/update_tournament_results.py が上の source から
 
 - 昌平 2-3 武南
 - 浦和南 0-1 武蔵越生
-- 浦和東 vs 西武台
+- 浦和東 0-1 西武台
 - 正智深谷 vs 埼玉平成
