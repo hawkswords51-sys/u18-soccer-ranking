@@ -85,9 +85,9 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準決勝（11/1）
 
-- 熊本商業 vs ルーテル学院
+- 熊本商業 2-1 ルーテル学院
 - 大津 4-2 慶誠
 
 ## 決勝（11/7）
 
-- 大津 vs 熊本商/ルーテル学院
+- 大津 vs 熊本商業
