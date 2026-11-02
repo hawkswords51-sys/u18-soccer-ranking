@@ -325,6 +325,8 @@ MATCH_LINE_RE = re.compile(
     r"^- (.+?)\s+(\d+\s*-\s*\d+(?:\s*\(\s*(?:PK)?\s*\d+\s*-\s*\d+\s*\))?)\s+(.+)$"
 )
 VS_LINE_RE = re.compile(r"^- (.+?)\s+vs\s+(.+)$", re.IGNORECASE)
+# [2026-11-02] 「- A 不戦勝 B」（左が勝ち上がり・スコアなし）は結果の入った行として扱い、書き換えない
+FORFEIT_LINE_RE = re.compile(r"^- (.+?)\s+不戦勝\s+(.+)$")
 IGNORE_RE = re.compile(r"<!--\s*無視\s*[:：]\s*(.+?)\s+(?:vs|VS)\s+(.+?)\s*-->")
 
 
@@ -338,6 +340,9 @@ def parse_md_line(line: str):
     m = VS_LINE_RE.match(s)
     if m:
         return m.group(1).strip(), m.group(2).strip(), False
+    m = FORFEIT_LINE_RE.match(s)
+    if m:
+        return m.group(1).strip(), m.group(2).strip(), True
     return None
 
 

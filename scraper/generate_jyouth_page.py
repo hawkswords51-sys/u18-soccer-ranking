@@ -341,6 +341,25 @@ def split_winner_override(s):
     return (s[:m.start()] + s[m.end():]).strip(), m.group(1).strip()
 
 
+# [2026-11-02] 不戦勝：md に「- A 不戦勝 B」（左＝勝ち上がった側）と書く。スコアは無い（鹿児島の選手権が最初）。
+FORFEIT_RE = re.compile(r'^(.*?)\s+不戦勝\s+(.*)$')
+
+
+def parse_forfeit(s):
+    """「A 不戦勝 B」→ (A, B)。該当しなければ None。"""
+    m = FORFEIT_RE.match((s or "").strip())
+    if not m or not m.group(1).strip() or not m.group(2).strip():
+        return None
+    return m.group(1).strip(), m.group(2).strip()
+
+
+def is_forfeit(results, a, b):
+    """collect_results の結果で、A-B の試合が不戦勝か。"""
+    if not a or not b:
+        return False
+    return bool(results.get(("不戦", frozenset((_norm_team(a), _norm_team(b))))))
+
+
 def winner_override(results, a, b):
     """collect_results の結果から、A-B の試合に勝者指定があればその正規化名を返す（無ければ None）。"""
     if not a or not b:
@@ -365,6 +384,14 @@ def collect_results(sections):
                 r'^(.*?)\s+(\d+)\s*-\s*(\d+)'
                 r'(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s)
             if not mm:
+                fw = parse_forfeit(s)
+                if fw:
+                    # [2026-11-02] 不戦勝は 0-0＋勝者指定の形で持ち、表示用に「不戦」キーを足す
+                    key = frozenset((_norm_team(fw[0]), _norm_team(fw[1])))
+                    if len(key) == 2:
+                        res[key] = (fw[0], 0, 0, None, fw[1])
+                        res[("勝者", key)] = _norm_team(fw[0])
+                        res[("不戦", key)] = True
                 continue
             a = mm.group(1).strip()
             b = mm.group(6).strip()
@@ -429,6 +456,8 @@ def build_bracket_tree(pairs, results):
             if sc:
                 ga, gb, pk = sc
                 node["score"] = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
+                if is_forfeit(results, node["a"], node["b"]):
+                    node["score"] = "不戦勝"   # [2026-11-02]
                 ovr = winner_override(results, node["a"], node["b"])
                 if ovr:   # [2026-10-29] 勝者指定（主催者判断など）はスコアより優先
                     node["winner"] = node["a"] if _norm_team(node["a"]) == ovr else node["b"]

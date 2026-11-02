@@ -294,6 +294,12 @@ def _detect_winner_and_wrap(s):
     note = ""
     if _ovr:
         note = f' <span class="match-note">※主催者判断により{_ovr}が次回戦進出</span>'
+    # [2026-11-02] 不戦勝（「A 不戦勝 B」＝左が勝ち上がり）。バッジの span が挟まっても位置で判定する
+    fw_match = re.search(r'(?<=\s)不戦勝(?=\s)', s)
+    if fw_match and not re.search(r'\d+\s*-\s*\d+', re.sub(r"<[^>]+>", "", s)):
+        left, center, right = s[:fw_match.start()], s[fw_match.start():fw_match.end()], s[fw_match.end():]
+        stripped = left.rstrip()
+        return f'<span class="match-winner">{stripped}</span>{left[len(stripped):]}{center}{right}{note}'
     # PK付きスコア（より具体的なパターン）を先に検出
     pk_match = re.search(r'(\d+)\s*-\s*(\d+)\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\)', s)
     if _ovr:
@@ -373,6 +379,10 @@ def _bracket_parse_match(s):
     s, ovr = _bracket.split_winner_override(s)   # [2026-10-29] 勝者指定
     m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s.strip())
     if not m:
+        fw = _bracket.parse_forfeit(s)   # [2026-11-02] 「A 不戦勝 B」＝左が勝ち上がり
+        if fw:
+            a, b = _bracket_canon(fw[0]), _bracket_canon(fw[1])
+            return {"a": a, "b": b, "sc": "不戦勝", "winner": a}
         return None
     a, b = _bracket_canon(m.group(1)), _bracket_canon(m.group(6))
     ga, gb = int(m.group(2)), int(m.group(3))
@@ -726,7 +736,8 @@ def _raw_winner(line):
     line, ovr = _bracket.split_winner_override(line)   # [2026-10-29] 勝者指定
     m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', (line or "").strip())
     if not m:
-        return None
+        fw = _bracket.parse_forfeit(line)   # [2026-11-02] 不戦勝
+        return fw[0] if fw else None
     if ovr:
         return ovr
     ga, gb = int(m.group(2)), int(m.group(3))
