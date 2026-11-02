@@ -6,7 +6,7 @@ year: 2026
 category: 選手権予選
 status: 開催前
 source: https://koko-soccer.com/score/4457
-round_dates: 準々決勝=10/31, 準決勝=11/3, 決勝=11/8
+round_dates: 準々決勝=10/31・11/2, 準決勝=11/4, 決勝=11/8
 ---
 
 <!--
@@ -86,7 +86,7 @@ scraper/update_tournament_results.py が上の source から
 - 帝京長岡 vs 上越
 - 加茂暁星 vs 日本文理
 
-## 準決勝（11/3・11/4）
+## 準決勝（11/4）
 
 - 帝京長岡/上越 vs 加茂暁星/日本文理
 - 新潟明訓 vs 北越
