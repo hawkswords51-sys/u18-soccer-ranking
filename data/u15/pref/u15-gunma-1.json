@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://gc-model.com/01/gunma-fa/convention/order/224",
  "sourceName": "群馬県サッカー協会（gc-model）",
- "lastUpdated": "2026-11-01",
+ "lastUpdated": "2026-11-03",
  "teams": [
   {
    "name": "ザスパ群馬",
@@ -21,16 +21,16 @@
    "short": "PALAISTRA"
   },
   {
+   "name": "藤岡キッカーズ",
+   "short": "藤岡キッカーズ"
+  },
+  {
    "name": "FC KRILO",
    "short": "FC KRILO"
   },
   {
    "name": "アスブロンサ高崎FC",
    "short": "アスブロンサ高崎FC"
-  },
-  {
-   "name": "藤岡キッカーズ",
-   "short": "藤岡キッカーズ"
   },
   {
    "name": "tonan群馬",
@@ -65,29 +65,41 @@
   {
    "rank": 2,
    "team": "前橋Jr",
-   "points": 36,
-   "played": 15,
-   "won": 11,
+   "points": 39,
+   "played": 16,
+   "won": 12,
    "drawn": 3,
    "lost": 1,
-   "gf": 43,
+   "gf": 45,
    "ga": 9,
-   "gd": 34
+   "gd": 36
   },
   {
    "rank": 3,
    "team": "PALAISTRA",
    "points": 25,
-   "played": 16,
+   "played": 17,
    "won": 7,
    "drawn": 4,
-   "lost": 5,
+   "lost": 6,
    "gf": 29,
-   "ga": 17,
-   "gd": 12
+   "ga": 19,
+   "gd": 10
   },
   {
    "rank": 4,
+   "team": "藤岡キッカーズ",
+   "points": 24,
+   "played": 16,
+   "won": 6,
+   "drawn": 6,
+   "lost": 4,
+   "gf": 26,
+   "ga": 20,
+   "gd": 6
+  },
+  {
+   "rank": 5,
    "team": "FC KRILO",
    "points": 24,
    "played": 17,
@@ -99,7 +111,7 @@
    "gd": -12
   },
   {
-   "rank": 5,
+   "rank": 6,
    "team": "アスブロンサ高崎FC",
    "points": 22,
    "played": 17,
@@ -109,18 +121,6 @@
    "gf": 28,
    "ga": 32,
    "gd": -4
-  },
-  {
-   "rank": 6,
-   "team": "藤岡キッカーズ",
-   "points": 21,
-   "played": 15,
-   "won": 5,
-   "drawn": 6,
-   "lost": 4,
-   "gf": 25,
-   "ga": 20,
-   "gd": 5
   },
   {
    "rank": 7,
@@ -138,13 +138,13 @@
    "rank": 8,
    "team": "ルーヴェン高崎",
    "points": 14,
-   "played": 16,
+   "played": 17,
    "won": 3,
    "drawn": 5,
-   "lost": 8,
+   "lost": 9,
    "gf": 13,
-   "ga": 24,
-   "gd": -11
+   "ga": 25,
+   "gd": -12
   },
   {
    "rank": 9,
@@ -967,10 +967,10 @@
    "md": 0,
    "date": "2026-10-31",
    "home": "PALAISTRA",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 2,
    "away": "前橋Jr",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
@@ -985,10 +985,10 @@
    "md": 0,
    "date": "2026-10-31",
    "home": "ルーヴェン高崎",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 1,
    "away": "藤岡キッカーズ",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
