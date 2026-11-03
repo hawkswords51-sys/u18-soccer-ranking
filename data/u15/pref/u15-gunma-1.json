@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://gc-model.com/01/gunma-fa/convention/order/224",
  "sourceName": "群馬県サッカー協会（gc-model）",
- "lastUpdated": "2026-11-03",
+ "lastUpdated": "2026-11-04",
  "teams": [
   {
    "name": "ザスパ群馬",
@@ -21,16 +21,16 @@
    "short": "PALAISTRA"
   },
   {
-   "name": "藤岡キッカーズ",
-   "short": "藤岡キッカーズ"
+   "name": "アスブロンサ高崎FC",
+   "short": "アスブロンサ高崎FC"
   },
   {
    "name": "FC KRILO",
    "short": "FC KRILO"
   },
   {
-   "name": "アスブロンサ高崎FC",
-   "short": "アスブロンサ高崎FC"
+   "name": "藤岡キッカーズ",
+   "short": "藤岡キッカーズ"
   },
   {
    "name": "tonan群馬",
@@ -65,29 +65,53 @@
   {
    "rank": 2,
    "team": "前橋Jr",
-   "points": 39,
-   "played": 16,
-   "won": 12,
+   "points": 42,
+   "played": 17,
+   "won": 13,
    "drawn": 3,
    "lost": 1,
-   "gf": 45,
+   "gf": 49,
    "ga": 9,
-   "gd": 36
+   "gd": 40
   },
   {
    "rank": 3,
    "team": "PALAISTRA",
    "points": 25,
-   "played": 17,
+   "played": 18,
    "won": 7,
    "drawn": 4,
-   "lost": 6,
+   "lost": 7,
    "gf": 29,
-   "ga": 19,
-   "gd": 10
+   "ga": 20,
+   "gd": 9
   },
   {
    "rank": 4,
+   "team": "アスブロンサ高崎FC",
+   "points": 25,
+   "played": 18,
+   "won": 7,
+   "drawn": 4,
+   "lost": 7,
+   "gf": 29,
+   "ga": 32,
+   "gd": -3
+  },
+  {
+   "rank": 5,
+   "team": "FC KRILO",
+   "points": 25,
+   "played": 18,
+   "won": 7,
+   "drawn": 4,
+   "lost": 7,
+   "gf": 17,
+   "ga": 29,
+   "gd": -12
+  },
+  {
+   "rank": 6,
    "team": "藤岡キッカーズ",
    "points": 24,
    "played": 16,
@@ -99,39 +123,15 @@
    "gd": 6
   },
   {
-   "rank": 5,
-   "team": "FC KRILO",
-   "points": 24,
-   "played": 17,
-   "won": 7,
-   "drawn": 3,
-   "lost": 7,
-   "gf": 14,
-   "ga": 26,
-   "gd": -12
-  },
-  {
-   "rank": 6,
-   "team": "アスブロンサ高崎FC",
+   "rank": 7,
+   "team": "tonan群馬",
    "points": 22,
    "played": 17,
    "won": 6,
    "drawn": 4,
    "lost": 7,
-   "gf": 28,
-   "ga": 32,
-   "gd": -4
-  },
-  {
-   "rank": 7,
-   "team": "tonan群馬",
-   "points": 21,
-   "played": 16,
-   "won": 6,
-   "drawn": 3,
-   "lost": 7,
-   "gf": 21,
-   "ga": 27,
+   "gf": 24,
+   "ga": 30,
    "gd": -6
   },
   {
@@ -150,13 +150,13 @@
    "rank": 9,
    "team": "フェルボーレ富岡",
    "points": 11,
-   "played": 17,
+   "played": 18,
    "won": 2,
    "drawn": 5,
-   "lost": 10,
+   "lost": 11,
    "gf": 9,
-   "ga": 50,
-   "gd": -41
+   "ga": 54,
+   "gd": -45
   },
   {
    "rank": 10,
@@ -1003,19 +1003,19 @@
    "md": 0,
    "date": "2026-11-03",
    "home": "FC KRILO",
-   "hs": null,
-   "as": null,
+   "hs": 3,
+   "as": 3,
    "away": "tonan群馬",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
    "date": "2026-11-03",
    "home": "PALAISTRA",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 1,
    "away": "アスブロンサ高崎FC",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
@@ -1030,10 +1030,10 @@
    "md": 0,
    "date": "2026-11-03",
    "home": "前橋Jr",
-   "hs": null,
-   "as": null,
+   "hs": 4,
+   "as": 0,
    "away": "フェルボーレ富岡",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
