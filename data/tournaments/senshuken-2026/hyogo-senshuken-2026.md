@@ -190,7 +190,6 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 ## 決勝ラウンドラウンド準決勝（11/8）
 
-- 芦屋学園 vs 六甲アイランド/三田学園
 - 神戸弘陵学園 vs AIE国際
 - 市立尼崎 vs 三田学園
 
