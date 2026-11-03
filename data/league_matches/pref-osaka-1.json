@@ -99,16 +99,28 @@
       "rank": 5,
       "team": "桃山学院",
       "points": 22,
-      "played": 13,
+      "played": 14,
       "won": 7,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 29,
-      "ga": 20,
-      "gd": 9
+      "ga": 21,
+      "gd": 8
     },
     {
       "rank": 6,
+      "team": "興國B",
+      "points": 18,
+      "played": 14,
+      "won": 5,
+      "drawn": 3,
+      "lost": 6,
+      "gf": 28,
+      "ga": 22,
+      "gd": 6
+    },
+    {
+      "rank": 7,
       "team": "摂津",
       "points": 17,
       "played": 14,
@@ -118,18 +130,6 @@
       "gf": 21,
       "ga": 30,
       "gd": -9
-    },
-    {
-      "rank": 7,
-      "team": "興國B",
-      "points": 15,
-      "played": 13,
-      "won": 4,
-      "drawn": 3,
-      "lost": 6,
-      "gf": 27,
-      "ga": 22,
-      "gd": 5
     },
     {
       "rank": 8,
@@ -695,10 +695,10 @@
       "md": 14,
       "date": "2026-10-11",
       "home": "興國B",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "桃山学院",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,
@@ -990,10 +990,10 @@
     },
     {
       "team": "興國B",
-      "pts": 15,
-      "gf": 27,
+      "pts": 18,
+      "gf": 28,
       "ga": 22,
-      "rank": 7
+      "rank": 6
     },
     {
       "team": "大阪学院",
@@ -1027,7 +1027,7 @@
       "team": "桃山学院",
       "pts": 22,
       "gf": 29,
-      "ga": 20,
+      "ga": 21,
       "rank": 5
     },
     {
@@ -1035,7 +1035,7 @@
       "pts": 17,
       "gf": 21,
       "ga": 30,
-      "rank": 6
+      "rank": 7
     },
     {
       "team": "アサンプション",

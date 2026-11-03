@@ -59,5 +59,5 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準決勝（11/3）
 
-- 専修大学北上 vs 花巻東
+- 専修大学北上 2-1 花巻東
 - 盛岡誠桜 vs 盛岡大学附属

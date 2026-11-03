@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-03T11:37:41+09:00",
+  "updatedAt": "2026-11-03T12:55:07+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -374,8 +374,8 @@
       "last_updated": "2026-11-03"
     },
     "gunma": {
-      "result": "ok",
-      "result_note": "消化75試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://management.gunma-fa.com/api/table/173 の取得に失敗 (HTTPSConnectionPool(host='management.gunma-fa.com', port=443): Read timed out. (read timeout=25)))",
       "result_date": "2026-11-03",
       "season": "2026",
       "complete": false,
@@ -611,7 +611,7 @@
     },
     "kumamoto": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7fd58c166290>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7faec43ca610>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-11-03",
       "season": "2026",
       "complete": false,
@@ -878,7 +878,7 @@
       "status": "warn",
       "last_updated": "2026-11-03",
       "result": "ok",
-      "result_note": "消化69試合に更新（検算一致）",
+      "result_note": "消化70試合に更新（検算一致）",
       "result_date": "2026-11-03"
     },
     "osaka-2a": {
