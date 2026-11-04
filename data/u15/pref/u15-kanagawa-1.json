@@ -6,15 +6,15 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-11-04",
+ "lastUpdated": "2026-11-05",
  "teams": [
-  {
-   "name": "FC Kanaloa A",
-   "short": "FC Kanaloa A"
-  },
   {
    "name": "川崎フロンターレU-15等々力",
    "short": "川崎フロンターレU-15等々力"
+  },
+  {
+   "name": "FC Kanaloa A",
+   "short": "FC Kanaloa A"
   },
   {
    "name": "瀬谷インターナショナル フットボール",
@@ -52,6 +52,18 @@
  "official_standings": [
   {
    "rank": 1,
+   "team": "川崎フロンターレU-15等々力",
+   "points": 45,
+   "played": 18,
+   "won": 14,
+   "drawn": 3,
+   "lost": 1,
+   "gf": 56,
+   "ga": 15,
+   "gd": 41
+  },
+  {
+   "rank": 2,
    "team": "FC Kanaloa A",
    "points": 45,
    "played": 18,
@@ -61,18 +73,6 @@
    "gf": 42,
    "ga": 14,
    "gd": 28
-  },
-  {
-   "rank": 2,
-   "team": "川崎フロンターレU-15等々力",
-   "points": 42,
-   "played": 17,
-   "won": 13,
-   "drawn": 3,
-   "lost": 1,
-   "gf": 50,
-   "ga": 15,
-   "gd": 35
   },
   {
    "rank": 3,
@@ -138,13 +138,13 @@
    "rank": 8,
    "team": "FC川崎CHAMP JY",
    "points": 11,
-   "played": 16,
+   "played": 17,
    "won": 3,
    "drawn": 2,
-   "lost": 11,
+   "lost": 12,
    "gf": 13,
-   "ga": 32,
-   "gd": -19
+   "ga": 38,
+   "gd": -25
   },
   {
    "rank": 9,
@@ -932,10 +932,10 @@
    "md": 0,
    "date": "2026-11-04",
    "home": "川崎フロンターレU-15等々力",
-   "hs": null,
-   "as": null,
+   "hs": 6,
+   "as": 0,
    "away": "FC川崎CHAMP JY",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
