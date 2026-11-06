@@ -28,7 +28,7 @@
 #       出典の優先順位：J.LEAGUE 選手名鑑の経歴 → クラブ・大学公式 → JFA 選手ページ → 報道 → Wikipedia（最後の手段）。
 #       確認できないものは書かない（空欄）。u15 が2チームのときは「→」でつなぐ。
 # =====================================================================
-updated: 2026-11-03
+updated: 2026-11-06
 
 categories:
   # -------------------------------------------------------------------
@@ -83,40 +83,42 @@ categories:
   # -------------------------------------------------------------------
   - code: u21
     table: career
-    label_en: U-21 Japan National Team (Asian Games)
-    event_en: The 20th Asian Games (2026 Aichi-Nagoya)
-    period_en: 15 September - 3 October 2026, Aichi-Nagoya
+    label_en: U-21 Japan National Team
+    event_en: International friendlies (vs Spain U-21 and Egypt U-21)
+    period_en: 13 November (Almendralejo, Spain) and 17 November 2026 (Cairo, Egypt)
     age_note_en: The generation aiming for the 2028 Los Angeles Olympics
-    label: U-21日本代表（アジア競技大会）
+    label: U-21日本代表
     age_note: 2028年ロサンゼルス五輪を目指す世代
-    event: 第20回アジア競技大会（2026／愛知・名古屋）
-    period: 2026年9月15日〜10月3日／愛知・名古屋
-    source: https://www.jfa.jp/national_team/u21_2026/asiangames_2026_men/member.html
-    note: 2026/7/31発表の23名（http://www.jfa.jp/news/00036585/）。9/25時点で選手変更の発表なし。監督は大岩剛。
+    event: 国際親善試合（U-21スペイン代表戦・U-21エジプト代表戦）
+    period: 2026年11月13日（スペイン・アルメンドラレホ）・11月17日（エジプト・カイロ）
+    source: http://www.jfa.jp/national_team/u21_2026/20261113/member.html
+    note: 2026/11/6発表の25名。監督は大岩剛。
     players:
       - {"no": 1,  pos: GK, name: ピサノ アレクサンドレ幸冬堀尾, club: 名古屋グランパス, u18: 名古屋グランパスU-18, u15: FCフェルボール愛知}
       - {"no": 12, pos: GK, name: 小林 将天, club: 松本山雅FC, u18: FC東京U-18, u15: FC東京U-15むさし}
-      - {"no": 23, pos: GK, name: 荒木 琉偉, club: ガンバ大阪, u18: ガンバ大阪ユース, u15: ガンバ大阪ジュニアユース}
+      - {"no": 23, pos: GK, name: 濱﨑 知康, club: 明治大, univ: 明治大, u18: 川崎フロンターレU-18, u15: 川崎フロンターレU-15}
       - {"no": 2,  pos: DF, name: 梅木 怜, club: FC今治, u18: 帝京高校, u15: ミラグロッソ海南U-15}
       - {"no": 3,  pos: DF, name: 小杉 啓太, club: アイントラハト・フランクフルト／ドイツ, u18: 湘南ベルマーレU-18, u15: 湘南ベルマーレU-15}
-      - {"no": 4,  pos: DF, name: 土屋 櫂大, club: 福島ユナイテッドFC, u18: 川崎フロンターレU-18, u15: 川崎フロンターレU-15}
+      - {"no": 4,  pos: DF, name: 喜多 壱也, club: レアル・ソシエダ／スペイン, u18: 京都サンガF.C. U-18, u15: 京都サンガF.C. U-15}
       - {"no": 5,  pos: DF, name: 市原 吏音, club: AZアルクマール／オランダ, u18: 大宮アルディージャU18, u15: 大宮アルディージャU15}
       - {"no": 6,  pos: DF, name: 永野 修都, club: FC東京, u18: FC東京U-18, u15: FC東京U-15深川}
       - {"no": 15, pos: DF, name: 森 壮一朗, club: ファジアーノ岡山, u18: 名古屋グランパスU-18, u15: JFAアカデミー福島U-15}
       - {"no": 21, pos: DF, name: 佐藤 海宏, club: アルビレックス新潟, u18: 鹿島アントラーズユース, u15: 鹿島アントラーズジュニアユース}
       - {"no": 22, pos: DF, name: 岡部 タリクカナイ颯斗, club: 東洋大, univ: 東洋大, u18: 市立船橋高校, u15: 柏レイソルU-15}
+      - {"no": 25, pos: DF, name: 小泉 佳絃, club: 明治大, univ: 明治大, u18: 青森山田高校, u15: ウインズFC U-15}
       - {"no": 7,  pos: MF, name: 石渡 ネルソン, club: シントトロイデンVV／ベルギー, u18: セレッソ大阪U-18, u15: セレッソ大阪西U-15}
-      - {"no": 8,  pos: MF, name: 保田 堅心, club: V・ファーレン長崎, u18: 大分トリニータU-18, u15: サガン鳥栖U-15}
-      - {"no": 10, pos: MF, name: 石井 久継, club: 湘南ベルマーレ, u18: 湘南ベルマーレU-18, u15: 湘南ベルマーレU-15}
+      - {"no": 8,  pos: MF, name: 中島 洋太朗, club: サンフレッチェ広島, u18: サンフレッチェ広島F.Cユース, u15: サンフレッチェ広島ジュニアユース}
+      - {"no": 10, pos: MF, name: 佐藤 龍之介, club: バレンシアCF／スペイン, u18: FC東京U-18, u15: FC東京U-15むさし}
       - {"no": 14, pos: MF, name: 大関 友翔, club: 川崎フロンターレ, u18: 川崎フロンターレU-18, u15: FC多摩ジュニアユース}
-      - {"no": 17, pos: MF, name: 中島 洋太朗, club: サンフレッチェ広島, u18: サンフレッチェ広島F.Cユース, u15: サンフレッチェ広島ジュニアユース}
+      - {"no": 16, pos: MF, name: 笹 修大, club: 浦和レッズ, u18: 札幌大谷高校, u15: 札幌大谷中学校}
+      - {"no": 17, pos: MF, name: 岩本 悠庵, club: 中京大, univ: 中京大, u18: ヴィッセル神戸U-18, u15: ヴィッセル神戸U-15}
       - {"no": 18, pos: MF, name: 嶋本 悠大, club: 清水エスパルス, u18: 大津高校, u15: ブレイズ熊本U-15}
-      - {"no": 9,  pos: FW, name: 道脇 豊, club: いわきFC, u18: ロアッソ熊本ユース, u15: ロアッソ熊本ジュニアユース}
+      - {"no": 9,  pos: FW, name: 塩貝 健人, club: VfLヴォルフスブルク／ドイツ, univ: 慶應義塾大, u18: 國學院大學久我山高校, u15: 横浜FCジュニアユース}
       - {"no": 11, pos: FW, name: 横山 夢樹, club: セレッソ大阪, u18: 帝京高校, u15: FCトッカーノU-15}
-      - {"no": 13, pos: FW, name: 古谷 柊介, club: 東京国際大, univ: 東京国際大, u18: 日体大柏高校, u15: 柏レイソルA.A.TOR'82}
-      - {"no": 16, pos: FW, name: 福永 裕也, club: 京都産業大, univ: 京都産業大, u18: 京都橘高校, u15: ガンバ大阪門真ジュニアユース}
-      - {"no": 19, pos: FW, name: ンワディケ ウチェブライアン世雄, club: オールボーBK／デンマーク, univ: 桐蔭横浜大, u18: 修徳高校, u15: FC東京U-15深川}
-      - {"no": 20, pos: FW, name: 石橋 瀬凪, club: 湘南ベルマーレ, u18: 神戸弘陵学園高校, u15: ヴィッセル神戸U-15}
+      - {"no": 13, pos: FW, name: 齋藤 俊輔, club: KVCウェステルロー／ベルギー, u18: 桐光学園高校, u15: 横浜F・マリノスジュニアユース}
+      - {"no": 19, pos: FW, name: 高岡 伶颯, club: パトロ・アイスデン・マースメヘレン／ベルギー, u18: 日章学園高校, u15: 三股町立三股中学校}
+      - {"no": 20, pos: FW, name: 石井 久継, club: 湘南ベルマーレ, u18: 湘南ベルマーレU-18, u15: 湘南ベルマーレU-15}
+      - {"no": 24, pos: FW, name: 三井寺 眞, club: 横浜F・マリノス, u18: 横浜F・マリノスユース, u15: FCフォーリクラッセ仙台}
 
   # -------------------------------------------------------------------
   - code: u19
