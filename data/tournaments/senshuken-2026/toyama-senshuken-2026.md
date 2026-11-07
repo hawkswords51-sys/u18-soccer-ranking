@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 富山県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4455
 ---
 
@@ -63,4 +63,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 ## 決勝（11/7）
 
-- 富山第一 vs 高岡第一
+- 富山第一 2-1 高岡第一
