@@ -15,6 +15,10 @@ data/tournaments/*.md に組み合わせとスコアを自動で追記する。
 安全設計（誤データ混入を防ぐ最重要ポイント）:
   1. 既にスコアが書かれた行は絶対に上書きしない（手動修正を保護）。
   2. スコアを書くのは koko 側に「試合終了」ラベルが付いた試合だけ。
+     さらに、キックオフから130分たっていない試合は「試合終了」でも書かない
+     （2026-11-07 京都の決勝：koko が試合中に「0-0 試合終了」と出し、13:47の更新が
+     0-0で書き込んで大会を「終了」にしてしまい、以後の更新対象から外れた）。
+     キックオフ時刻が読めない試合は、当日の引き分け（PKなし。0-0など）だけ書かずに翌回へ回す。
   3. 取得失敗・解析0件のときは何も書き換えない（据え置き）。
   4. チーム名は teams.json の表記（県内ランキング表記）へ名寄せする。
      名寄せできない名前は koko の表記のままで追記し、ログに記録する
@@ -38,6 +42,7 @@ import json
 import re
 import sys
 import unicodedata
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -225,6 +230,41 @@ def parse_score_cell(text: str):
     return sc, finished
 
 
+JST = timezone(timedelta(hours=9))
+# キックオフからこの分数がたつまでは「試合終了」表示でも結果を書かない。
+# 前後半80分＋ハーフタイム10分＋延長20分＋PK戦 ≒ 125分 に余裕を足した値。
+KICKOFF_GUARD_MIN = 130
+
+
+def _now_jst():
+    """現在の日本時間（テストで差し替えられるよう関数にしてある）"""
+    return datetime.now(JST)
+
+
+def too_early_to_trust(score, date_text, now=None):
+    """koko の「試合終了」をまだ信じない試合なら、その理由（文字列）を返す。信じてよければ None。
+
+    date_text は日程セルの文字列（例 '2026.11.07 13:00'）。
+    - キックオフ時刻が読める → キックオフから KICKOFF_GUARD_MIN 分たつまでは信じない。
+    - 日付だけ読める → その日が今日で、スコアが引き分け（PKなし。0-0など）なら信じない（翌回で書く）。
+    """
+    now = now or _now_jst()
+    t = unicodedata.normalize("NFKC", date_text or "")
+    dm = re.search(r"(\d{4})\.(\d{1,2})\.(\d{1,2})", t)
+    if not dm:
+        return None
+    y, mo, d = (int(x) for x in dm.groups())
+    tm = re.search(r"(\d{1,2}):(\d{2})", t[dm.end():])
+    if tm:
+        kickoff = datetime(y, mo, d, int(tm.group(1)), int(tm.group(2)), tzinfo=JST)
+        if now < kickoff + timedelta(minutes=KICKOFF_GUARD_MIN):
+            return f"キックオフ{kickoff:%m/%d %H:%M}から{KICKOFF_GUARD_MIN}分たっていない"
+        return None
+    if (y, mo, d) == (now.year, now.month, now.day) and score and re.fullmatch(r"(\d+)-\1", score):
+        return "当日の引き分け（PKなし）でキックオフ時刻が不明"
+    return None
+
+
 def fetch_koko_rounds(url: str):
     """kokoページを取得し [{'name','matches':[{'home','away','score','finished','date'}]}] を返す。
     失敗時は例外を送出。"""
@@ -259,6 +299,12 @@ def fetch_koko_rounds(url: str):
             )
             date_td = tr.select_one("td.date")
             date = ""
+            if finished and date_td:
+                why = too_early_to_trust(score, date_td.get_text(" ", strip=True))
+                if why:
+                    log(f"  ⏸ 結果の書き込みを見送り（次回の更新で再確認）: {home} {score} {away}"
+                        f" ／{why}")
+                    finished = False
             if date_td:
                 dm = re.search(r"(\d{4})\.(\d{1,2})\.(\d{1,2})",
                                date_td.get_text(" ", strip=True))
