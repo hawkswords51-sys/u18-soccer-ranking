@@ -100,4 +100,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/7）
 
-- 東山 0-0 京都精華
+- 東山 3-1 京都精華
