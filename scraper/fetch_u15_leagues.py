@@ -353,7 +353,7 @@ def fetch_kanto(debug=False):
     header_re = re.compile(r"#\s*Club\s*勝点\s*試合\s*勝\s*分\s*敗\s*得\s*失\s*差")
     row_re = re.compile(
         r"(\d{1,2})\s+(?:[▲▼△▽]\s*)?(.+?)\s+"          # 順位・(昇降格マーク)・チーム名
-        r"(?:(?:勝|分|敗)\s+)*>\s+"                        # 直近成績「勝 勝 分 勝 敗 >」
+        r"(?:(?:勝|分|敗)\s+)*(?:>\s+)?"                   # 直近成績「勝 勝 分 勝 敗 >」（全日程終了後は「>」が消える）
         r"(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+([-−]?\d+)")
     labels = {unicodedata.normalize("NFKC", k): v for k, v in KANTO_HEADINGS.items()}
 
