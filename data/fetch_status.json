@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-08T00:53:50+09:00",
+  "updatedAt": "2026-11-08T03:27:50+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -611,7 +611,7 @@
     },
     "kumamoto": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7f5b2282c790>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7fab7bf77fd0>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-11-08",
       "season": "2026",
       "complete": false,
@@ -772,9 +772,15 @@
       "result_streak": 10,
       "status": "alert",
       "last_updated": "2026-11-02",
-      "result": "ok",
-      "result_note": "消化75試合に更新（検算一致）",
-      "result_date": "2026-11-08"
+      "result": "verify_failed",
+      "result_note": "検算不一致 [\"known_bad に書いた試合 ('生駒', '畝傍', 4, 0) が既存JSONに見つからない（すでに直っている？ 設定を見直すこと）\"] …",
+      "result_date": "2026-11-08",
+      "verify_items": [
+        {
+          "team": null,
+          "item": "known_bad に書いた試合 ('生駒', '畝傍', 4, 0) が既存JSONに見つからない（すでに直っている？ 設定を見直すこと）"
+        }
+      ]
     },
     "niigata": {
       "season": "2026",
@@ -1265,223 +1271,223 @@
     "team_season:aomori-yamada": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
       "note": "試合18・選手31（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
       "note": "試合18・選手36（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
       "note": "試合18・選手35（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
       "note": "試合17・選手36（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:higashiyama": {
       "result": "ok",
       "note": "試合18・選手31（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:jubilo-iwata-u18": {
       "result": "ok",
       "note": "試合18・選手33（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:kamimura-gakuen": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:kashima-youth": {
       "result": "ok",
       "note": "試合18・選手32（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:kashiwa-reysol-u18": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:kawasaki-frontale-u18": {
       "result": "ok",
       "note": "試合18・選手31（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:maebashi-ikuei": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）／選手一覧を据え置き（出場試合数が合わない 1件：6 山本 颯吾: 一覧13 ≠ 出場記録12）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:nagoya-grampus-u18": {
       "result": "ok",
       "note": "試合18・選手34（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:ohtsu": {
       "result": "ok",
       "note": "試合16・選手31（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:ryukei-kashiwa": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
       "note": "試合18・選手31（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:shohei": {
       "result": "ok",
       "note": "試合18・選手32（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
       "note": "試合18・選手32（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:tokyo-verdy-youth": {
       "result": "ok",
       "note": "試合18・選手29（新規取得0）／選手一覧を据え置き（出場試合数が合わない 2件：23 渡部 直宏: 一覧5 ≠ 出場記録4）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:vegalta-sendai-youth": {
       "result": "ok",
       "note": "試合18・選手35（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
       "note": "試合18・選手33（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:yokohama-fc-youth": {
       "result": "ok",
       "note": "試合18・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "team_season:yonago-kita": {
       "result": "ok",
       "note": "試合17・選手30（新規取得0）",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-hokkaido": {
       "result": "ok",
       "note": "試合56・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-tohoku": {
       "result": "ok",
       "note": "試合80・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-kanto-1": {
       "result": "ok",
       "note": "試合74・partial0・none5・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-kanto-2": {
       "result": "ok",
       "note": "試合72・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-hokushinetsu-1": {
       "result": "ok",
       "note": "試合80・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-hokushinetsu-2": {
       "result": "ok",
       "note": "試合56・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-tokai": {
       "result": "ok",
       "note": "試合75・partial1・none1・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-kansai-1": {
       "result": "ok",
       "note": "試合75・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-kansai-2": {
       "result": "ok",
       "note": "試合75・partial1・none3・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-chugoku": {
       "result": "ok",
       "note": "試合77・partial1・none4・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-shikoku": {
       "result": "ok",
       "note": "試合80・partial0・none0・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-kyushu-1": {
       "result": "ok",
-      "note": "試合75・partial1・none3・スコア不一致0",
-      "date": "2026-11-07",
+      "note": "試合75・partial0・none2・スコア不一致0",
+      "date": "2026-11-08",
       "since": ""
     },
     "prince_scorers:prince-kyushu-2": {
       "result": "ok",
       "note": "試合72・partial0・none8・スコア不一致0",
-      "date": "2026-11-07",
+      "date": "2026-11-08",
       "since": ""
     },
     "u15_hub_page": {
