@@ -1595,6 +1595,7 @@ def main():
           <li><a href="/tournaments/senshuken-history/">選手権 歴代優勝校一覧（第87回〜第104回）</a></li>
           <li><a href="/tournaments/club-youth-u15-2026/">日本クラブユースサッカー選手権（U-15）2026 結果速報</a></li>
           <li><a href="/tournaments/zenchu-2026/">全国中学校サッカー大会2026（全中）結果速報</a></li>
+          <li><a href="/tournaments/takamado-u15-2026/">高円宮杯U-15選手権2026（第38回）地域予選・出場枠</a></li>
         </ul>
       </section>
     </div>
@@ -1650,6 +1651,9 @@ def main():
             (f"{DOMAIN}/tournaments/club-youth-u15-2026/", "daily", "0.7"),
             # 全国中学校サッカー大会2026（2026-08-21 追加。U-15コンテンツ第2号）
             (f"{DOMAIN}/tournaments/zenchu-2026/", "daily", "0.7"),
+            # 高円宮杯U-15選手権2026（2026-11-07 追加。U-15コンテンツ第3号）＋歴代優勝
+            (f"{DOMAIN}/tournaments/takamado-u15-2026/", "daily", "0.7"),
+            (f"{DOMAIN}/tournaments/takamado-u15-history/", "monthly", "0.6"),
             # 大学サッカー（2026-08-28 追加。ハブ＋総理大臣杯＋インカレ）
             (f"{DOMAIN}/university/", "weekly", "0.7"),
             (f"{DOMAIN}/tournaments/prime-minister-cup-2026/", "daily", "0.7"),

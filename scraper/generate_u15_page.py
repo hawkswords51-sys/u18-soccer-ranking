@@ -362,6 +362,7 @@ def build_html(data):
       <div class="u15-pills">
         <a href="/tournaments/club-youth-u15-2026/" style="background:#7c3aed;">🔰 クラブユース選手権U-15 2026 結果速報</a>
         <a href="/tournaments/zenchu-2026/" style="background:#be185d;">🏫 全国中学校サッカー大会2026 結果速報</a>
+        <a href="/tournaments/takamado-u15-2026/" style="background:#b45309;">🏆 高円宮杯U-15選手権2026 地域予選・出場枠</a>
         <a href="/u16/" style="background:#0891b2;">🔰 U-16 ルーキーリーグ順位表（高校1年生年代）</a>
         <a href="/leagues/" style="background:var(--primary-color,#1e40af);">⚽ U-18リーグ順位（毎日更新）</a>
       </div>
@@ -378,7 +379,8 @@ def build_html(data):
             → <a href="/tournaments/club-youth-u15-2026/">2026年大会の結果はこちら</a></li>
           <li><strong>全国中学校サッカー大会（全中）</strong>（8月）…… <strong>中学校の部活動</strong>を中心とした全国大会。近年は地域クラブの参加も。
             → <a href="/tournaments/zenchu-2026/">2026年大会の結果はこちら</a></li>
-          <li><strong>高円宮杯 JFA 全日本U-15サッカー選手権大会</strong>（12月）…… クラブ・部活動の<strong>垣根なく</strong>中学生年代の日本一を争う大会。</li>
+          <li><strong>高円宮杯 JFA 全日本U-15サッカー選手権大会</strong>（12月）…… クラブ・部活動の<strong>垣根なく</strong>中学生年代の日本一を争う大会。
+            → <a href="/tournaments/takamado-u15-2026/">2026年大会（地域予選・出場枠）はこちら</a>／<a href="/tournaments/takamado-u15-history/">歴代優勝チーム</a></li>
         </ul>
       </section>
 
