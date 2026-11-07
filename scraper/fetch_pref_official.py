@@ -107,10 +107,11 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "kyoto": ("2026-09-28 追加：9/24版の協会PDFの食い違い2か所を名指しで補正。①日程PDFの 9/20 大谷A 2-0 京都橘C を 0-2 に"
               "（KYOTO_SCHEDULE_FIXES。星取表と京都橘の公式サイトが 京都橘 2-0）②星取表の京都橘Cの行に 9/23 東山B 1-0 京都橘C の"
               "負けを足す（KYOTO_HOSHITORI_FIXES。記入漏れ）→ 外す条件＝協会がそれぞれのPDFを直したら（直ると read_kyoto が止まって知らせる）"),
-    "nara": ("2026-10-03 追加：9/28版の1部リーグ星取表で、第15節 9/26 生駒×畝傍 の合計欄が第6節（生駒 0-4 畝傍）の"
-             "コピーになっている（日程表と奈良新聞 https://www.nara-np.co.jp/sports/soccer/summary1550.html は 生駒 4-0 畝傍）。"
-             "NARA_HOSHITORI_FIXES で勝点・得点・失点・順位の差を名指しで打ち消す → 外す条件＝星取表のこの試合が 生駒4-0 に"
-             "直ったら（直ると read_nara が止まって知らせる）"),
+    "nara": ("2026-11-08 追加（10/03の補正の向きを逆に直した）：①日程表の第15節 9/26 生駒 4-0 畝傍 を 0-4 に置き換え"
+             "（NARA_SCHEDULE_FIXES。1部星取表と畝傍高校サッカー部の公式が 畝傍 4-0。奈良新聞は左右を逆に載せていた）"
+             "→ 外す条件＝協会が日程表のこの試合を 生駒0-4畝傍 に直したら（直ると read_nara が止まって知らせる）。"
+             "②日程表11/2版・星取表10/4版で版の日付がそろわないのを、全チームの勝点・得点・失点・順位と総得点が一致するときだけ"
+             "通す（NARA_VERSION_LAG_EXCEPTION・期限 2026-12-31・Kei判断）→ 外す条件＝協会の星取表が新しい版になったら"),
     "yamaguchi": ("2026-10-11 追加：第1節 4/4 小野田工業×山口県鴻城 が、協会「1部日程・結果」PDFの日程欄は 0-3、"
                   "SportsOnline と同じPDFの星取表欄は 0-4。スコアは SportsOnline（0-4）のまま、この1試合だけ照合の不一致を許す"
                   "（YAMAGUCHI_PDF_SCORE_EXCEPTIONS）→ 外す条件＝どちらかの出典が直って一致したら（直ると止まって知らせる）"),
@@ -434,7 +435,13 @@ PREF_OFFICIAL = {
     "nara":      {"platform": "nara", "teams": 10,
                   "source": "https://www.narafa.or.jp/pages/26/",
                   "label": "奈良県サッカー協会 公式",
-                  "standings_gate": "okinawa"},
+                  "standings_gate": "okinawa",
+                  # ⚠️ 2026-11-08 一時追加：既存JSONの第15節 9/26 生駒 4-0 畝傍 は誤り（正しくは 0-4。NARA_SCHEDULE_FIXES）。
+                  #    これを書かないと「既存にあって公式に無い試合」で据え置かれる。
+                  #    ★既存JSONが 0-4 に置き換わったら、この行は消すこと（残すと「known_bad に書いた試合が見つからない」で止まる）。
+                  "known_bad_existing": [
+                      {"date": "2026-09-26", "home": "生駒", "away": "畝傍", "hs": 4, "as": 0},
+                  ]},
 
     # 福島（2026-09-16追加）。日程表PDF3本（節・日付・HOME/AWAY・会場）＋F1星取表PDF（スコア）＋F1順位表PDF。
     # 順位表に勝分敗がそろうので通常の検算ゲート。ALIASは不要（NFKCで半角カナが既存JSONの表記にそろう）。
@@ -4429,66 +4436,71 @@ _NARA_SCORE_RE = re.compile(r"(\d+)\s*[-−ー―–]\s*(\d+)")
 _NARA_VER_RE = re.compile(r"\((\d{4}-\d{2}-\d{2})・")
 
 
-# 奈良：星取表（合計列）の既知の誤りを、試合を名指しして打ち消す（2026-10-03）
-#   9/28版で第15節 9/26 生駒×畝傍 の結果が、第6節 5/3 の 生駒 0-4 畝傍 のコピーになっていた（日程表と奈良新聞は 生駒 4-0）。
-#   ⚠️ 直すのは星取表の合計列（と順位）だけ。日程表（主資料）のスコアは一切変えない。
-#   ⚠️ 当てるのは「公式−日程表から数えた値」が下の差ちょうどのときだけ。差が0＝協会が直した → 止めて知らせる。
-NARA_HOSHITORI_FIXES = [
-    {"md": 15, "home": "生駒", "away": "畝傍", "correct": (4, 0), "wrong": (0, 4),
-     # 星取表の順位（誤り）→ 正しい順位
-     "ranks": {"生駒": (4, 3), "畝傍": (3, 4)},
-     "source": "https://www.nara-np.co.jp/sports/soccer/summary1550.html"},
+# 奈良：日程表の結果が誤っている試合を名指しで直す（2026-11-08。KYOTO_SCHEDULE_FIXES と同じ当て方）
+#   2026-10-03 に入れた NARA_HOSHITORI_FIXES（星取表の第15節を「第6節のコピーミス」とみなして打ち消す補正）は向きが逆だった。
+#   誤っていたのは星取表ではなく日程表（と奈良新聞の表の左右）。星取表は補正なしで日程表（直したあと）と一致する。
+NARA_SCHEDULE_FIXES = [
+    {"md": 15, "date": "2026-09-26", "home": "生駒", "away": "畝傍", "pdf": (4, 0), "fixed": (0, 4),
+     "reason": ("11/2版の日程表は 生駒 4-0 畝傍。1部星取表は 畝傍の4-0勝ち、畝傍高校サッカー部の公式"
+                "（https://www.footballnavi.net/unebi_shs_football/news_view.php?kn=2473・9/26更新）も 畝傍 4-0 生駒"
+                "（前半2-0・後半2-0）。奈良新聞 https://www.nara-np.co.jp/sports/soccer/summary1550.html は表が"
+                "生駒 4-0 だが、得点者（宮川・乙丸・表・右田）は畝傍の選手で、左右を逆に載せていた")},
 ]
 
 
-def _nara_apply_hoshitori_fixes(standings: dict, matches: list[dict]) -> None:
-    def tally(team):
-        s = dict(pts=0, gf=0, ga=0)
-        for m in matches:
-            if m["hs"] is None or team not in (m["home"], m["away"]):
-                continue
-            gf, ga = (m["hs"], m["as"]) if m["home"] == team else (m["as"], m["hs"])
-            s["gf"] += gf
-            s["ga"] += ga
-            s["pts"] += 3 if gf > ga else 1 if gf == ga else 0
-        return s
+def _nara_fix_schedule(matches: list[dict]) -> None:
+    """NARA_SCHEDULE_FIXES を日程表の行に当てる。左右は日程表のまま、スコアだけ置き換える。
+    協会が直したら止めて「台帳から消せ」と知らせる。"""
+    for fx in NARA_SCHEDULE_FIXES:
+        hit = [m for m in matches if m["md"] == fx["md"] and m["date"] == fx["date"]
+               and m["home"] == fx["home"] and m["away"] == fx["away"]]
+        if len(hit) != 1:
+            raise RuntimeError(f"NARA_SCHEDULE_FIXES の {fx['date']} {fx['home']}×{fx['away']} が日程表に{len(hit)}件")
+        got = (hit[0]["hs"], hit[0]["as"])
+        if got == tuple(fx["fixed"]):
+            raise RuntimeError(f"協会が日程表を直した（{fx['date']} {fx['home']}×{fx['away']} が {got}）。"
+                               f"NARA_SCHEDULE_FIXES のこの行と TEMP_EXCEPTIONS の奈良を消すこと")
+        if got != tuple(fx["pdf"]):
+            raise RuntimeError(f"日程表の {fx['date']} {fx['home']}×{fx['away']} が {got}"
+                               f"（誤りとして登録した {fx['pdf']} でも正しい値 {fx['fixed']} でもない）")
+        hit[0]["hs"], hit[0]["as"] = fx["fixed"]
+        print(f"       （奈良: 日程表の {fx['date']} {fx['home']}×{fx['away']} を {fx['pdf']} → {fx['fixed']} に補正"
+              f"（NARA_SCHEDULE_FIXES））")
 
-    def pts(gf, ga):
-        return 3 if gf > ga else 1 if gf == ga else 0
 
-    for fx in NARA_HOSHITORI_FIXES:
-        h, a = fx["home"], fx["away"]
-        got = [m for m in matches if m["md"] == fx["md"] and m["home"] == h and m["away"] == a]
-        if len(got) != 1 or (got[0]["hs"], got[0]["as"]) != fx["correct"]:
-            raise RuntimeError(f"NARA_HOSHITORI_FIXES の第{fx['md']}節 {h}×{a} が日程表に"
-                               f" {fx['correct'][0]}-{fx['correct'][1]} で無い: {got}。補正せずに止める")
-        (cw_h, cw_a), (ww_h, ww_a) = fx["correct"], fx["wrong"]
-        # 公式（誤り）−正しい値 の差（チームの視点）
-        expect = {h: dict(pts=pts(ww_h, ww_a) - pts(cw_h, cw_a), gf=ww_h - cw_h, ga=ww_a - cw_a),
-                  a: dict(pts=pts(ww_a, ww_h) - pts(cw_a, cw_h), gf=ww_a - cw_a, ga=ww_h - cw_h)}
-        diff = {}
-        for team in (h, a):
-            if team not in standings:
-                raise RuntimeError(f"NARA_HOSHITORI_FIXES の {team} が星取表に無い: {sorted(standings)}")
-            mine = tally(team)
-            diff[team] = {k: standings[team][k] - mine[k] for k in ("pts", "gf", "ga")}
-        if all(v == 0 for d in diff.values() for v in d.values()):
-            raise RuntimeError(f"協会が星取表の第{fx['md']}節 {h}×{a} を直した（合計列が日程表と一致）。"
-                               f"NARA_HOSHITORI_FIXES のこの行と TEMP_EXCEPTIONS の奈良を消すこと")
-        if diff != expect:
-            raise RuntimeError(f"星取表と日程表の差が既知の誤り（第{fx['md']}節 {h}×{a} の逆転）と違う: 実際 {diff}／"
-                               f"既知 {expect}。補正せずに止める")
-        for team, (r_wrong, r_ok) in fx["ranks"].items():
-            if standings[team]["rank"] != r_wrong:
-                raise RuntimeError(f"NARA_HOSHITORI_FIXES の {team} の順位が星取表で {standings[team]['rank']}"
-                                   f"（{r_wrong} のはず）。補正せずに止める")
-        for team in (h, a):
-            for k, v in expect[team].items():
-                standings[team][k] -= v
-        for team, (_r_wrong, r_ok) in fx["ranks"].items():
-            standings[team]["rank"] = r_ok
-        print(f"       （奈良: 星取表の第{fx['md']}節 {h}×{a} の合計列の誤り（{ww_h}-{ww_a}のコピー）を、日程表の"
-              f" {cw_h}-{cw_a} に合わせて打ち消した（NARA_HOSHITORI_FIXES））")
+# 奈良：日程表だけ新しい版になり、星取表が古い版のまま、のときに読む期限つき例外（2026-11-08 Kei判断）
+#   11/2版の日程表に対し星取表は10/4版のまま（10/4以降に1部の試合は無い）。版の日付がそろわないと止まる設計のため
+#   11/3から fetch_error が続いていた。
+#   ⚠️ 緩めるのは「版の日付が同じ」のチェック1つだけ。古いのが星取表の側で、日程表（補正後）から数えた
+#      全チームの勝点・得点・失点・順位が星取表と一致し、総得点も一致したときだけ読む。1つでも合わなければ今までどおり止まる。
+#   ⚠️ 期限を過ぎたら例外は効かない（版の日付ずれで止まる）。
+NARA_VERSION_LAG_EXCEPTION = {"expires": "2026-12-31", "stale": "1部リーグ星取表", "fresh": "日程表"}
+
+
+def _nara_lag_exception_active() -> bool:
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    today = _dt.now(_tz(_td(hours=9))).date().isoformat()
+    return today <= NARA_VERSION_LAG_EXCEPTION["expires"]
+
+
+def _nara_check_standings_match(standings: dict, played: list[dict]) -> None:
+    """日程表（補正後）から数えた勝点・得点・失点・順位が、星取表と全チーム一致するかを確かめる。
+    順位は 勝点→得失点差→総得点 で並べる。並びが決まらない同点があれば一致とみなさず止める。"""
+    mine = {t: dict(pts=0, gf=0, ga=0) for t in standings}
+    for m in played:
+        for team, gf, ga in ((m["home"], m["hs"], m["as"]), (m["away"], m["as"], m["hs"])):
+            mine[team]["gf"] += gf
+            mine[team]["ga"] += ga
+            mine[team]["pts"] += 3 if gf > ga else 1 if gf == ga else 0
+    key = lambda t: (mine[t]["pts"], mine[t]["gf"] - mine[t]["ga"], mine[t]["gf"])
+    if len({key(t) for t in mine}) != len(mine):
+        raise RuntimeError("版の日付ずれの例外：日程表から数えた順位に並びの決まらない同点がある。例外を使わずに止める")
+    for i, t in enumerate(sorted(mine, key=key, reverse=True), 1):
+        mine[t]["rank"] = i
+    bad = [f"{t}（星取表 {standings[t]} ≠ 日程表から {mine[t]}）" for t in standings
+           if any(standings[t][k] != mine[t][k] for k in ("pts", "gf", "ga", "rank"))]
+    if bad:
+        raise RuntimeError("版の日付ずれの例外：星取表と日程表が一致しないので読まない: " + " ／ ".join(bad[:3]))
 
 
 def read_nara(cfg: dict) -> tuple[dict, list[dict]]:
@@ -4510,9 +4522,12 @@ def read_nara(cfg: dict) -> tuple[dict, list[dict]]:
     versions = {k: v[0][1] for k, v in found.items()}
     if not all(v.startswith(f"{year}-") for v in versions.values()):
         raise RuntimeError(f"更新日が{year}年として読めない: {versions}")
+    lagged = False
     if versions["日程表"] != versions["1部リーグ星取表"]:
-        raise RuntimeError(f"日程表({versions['日程表']})と星取表({versions['1部リーグ星取表']})の更新日が違う"
-                           f"（片方だけ更新されている）")
+        if not (_nara_lag_exception_active() and versions["1部リーグ星取表"] < versions["日程表"]):
+            raise RuntimeError(f"日程表({versions['日程表']})と星取表({versions['1部リーグ星取表']})の更新日が違う"
+                               f"（片方だけ更新されている）")
+        lagged = True             # 星取表だけ古い → 下で全チーム一致を確かめてから読む（NARA_VERSION_LAG_EXCEPTION）
     version = versions["日程表"]
 
     # --- 1部リーグ星取表（合計列だけを使う） ---
@@ -4582,12 +4597,17 @@ def read_nara(cfg: dict) -> tuple[dict, list[dict]]:
             raise RuntimeError(f"日程表の{rnd}巡目に同じ組が2回以上ある（延期行の捨て漏れの疑い）")
     if any(sum(1 for m in matches if m["md"] == k) != n // 2 for k in sorted({m["md"] for m in matches})):
         raise RuntimeError("日程表の節ごとの試合数が5でない節がある")
-    _nara_apply_hoshitori_fixes(standings, matches)
+    _nara_fix_schedule(matches)
     # ✅ 2本のPDFをまたぐ裏づけ：日程表の総得点＝星取表の総得点の合計
     goals = sum(m["hs"] + m["as"] for m in played)
     if goals != sum(v["gf"] for v in standings.values()):
         raise RuntimeError(f"日程表から数えた総得点{goals}が、星取表の総得点の合計"
                            f"{sum(v['gf'] for v in standings.values())}と合わない（読み取りの誤りの疑い）")
+    if lagged:
+        _nara_check_standings_match(standings, played)
+        print(f"       （奈良: 版の日付ずれを例外で通した（日程表 {versions['日程表']}・星取表 {versions['1部リーグ星取表']}。"
+              f"全チームの勝点・得点・失点・順位と総得点が一致。NARA_VERSION_LAG_EXCEPTION・期限"
+              f" {NARA_VERSION_LAG_EXCEPTION['expires']}））")
     future = [m for m in played if m["date"] > version]
     if future:
         raise RuntimeError(f"版日付({version})より後の予定日に結果がある試合が{len(future)}件"
