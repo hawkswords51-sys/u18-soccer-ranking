@@ -435,13 +435,9 @@ PREF_OFFICIAL = {
     "nara":      {"platform": "nara", "teams": 10,
                   "source": "https://www.narafa.or.jp/pages/26/",
                   "label": "奈良県サッカー協会 公式",
-                  "standings_gate": "okinawa",
-                  # ⚠️ 2026-11-08 一時追加：既存JSONの第15節 9/26 生駒 4-0 畝傍 は誤り（正しくは 0-4。NARA_SCHEDULE_FIXES）。
-                  #    これを書かないと「既存にあって公式に無い試合」で据え置かれる。
-                  #    ★既存JSONが 0-4 に置き換わったら、この行は消すこと（残すと「known_bad に書いた試合が見つからない」で止まる）。
-                  "known_bad_existing": [
-                      {"date": "2026-09-26", "home": "生駒", "away": "畝傍", "hs": 4, "as": 0},
-                  ]},
+                  "standings_gate": "okinawa"},
+                  # ✅ 2026-11-08 の known_bad_existing（9/26 生駒 4-0 畝傍 → 0-4）は、同日の取り込みで
+                  #    既存JSONが 0-4 になったので削除済み。
 
     # 福島（2026-09-16追加）。日程表PDF3本（節・日付・HOME/AWAY・会場）＋F1星取表PDF（スコア）＋F1順位表PDF。
     # 順位表に勝分敗がそろうので通常の検算ゲート。ALIASは不要（NFKCで半角カナが既存JSONの表記にそろう）。
