@@ -86,9 +86,9 @@ scraper/update_tournament_results.py が上の source から
 
 ## 準決勝（11/7）
 
-- 矢板中央 vs 宇都宮工
+- 矢板中央 1-2 宇都宮工
 - 佐野日大 vs 真岡
 
 ## 決勝（11/14）
 
-- 矢板中央/宇都宮工 vs 佐野日大/真岡
+- 宇都宮工 vs 佐野日大/真岡
