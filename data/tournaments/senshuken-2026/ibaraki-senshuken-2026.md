@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 茨城県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4465
 ---
 
@@ -120,4 +120,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/7）
 
-- 鹿島学園 vs 第一学院
+- 鹿島学園 1-0 第一学院
