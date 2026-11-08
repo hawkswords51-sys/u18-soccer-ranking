@@ -2,6 +2,9 @@
 id: senshu-kitakami
 name: 専修大学北上高校
 short_name: 専大北上高校
+aliases:
+  - 専修大学北上
+  - 専大北上
 league: プリンスリーグ東北
 jfa_team: prince-tohoku
 league_team: 専大北上

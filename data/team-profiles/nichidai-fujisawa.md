@@ -3,6 +3,7 @@ id: nichidai-fujisawa
 name: 日本大学藤沢高校
 short_name: 日大藤沢
 aliases:
+  - 日本大学藤沢
   - 日大藤沢
   - 日大藤沢高
   - 日大藤沢高校
