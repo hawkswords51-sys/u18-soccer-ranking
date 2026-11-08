@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 鹿児島県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4426
 ---
 
@@ -94,4 +94,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 ## 決勝（11/8）
 
-- 神村学園 vs 鹿児島城西
+- 神村学園 3-3(PK5-4) 鹿児島城西
