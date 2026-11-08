@@ -189,4 +189,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝トーナメント決勝（11/14）
 
-- 市立船橋 vs 八千代/流通経済大柏
+- 市立船橋 vs 流通経済大学付属柏

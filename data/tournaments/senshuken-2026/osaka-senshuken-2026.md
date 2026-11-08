@@ -230,4 +230,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/14）
 
-- 金光大阪 vs 東海大仰星/履正社
+- 金光大阪 vs 履正社
