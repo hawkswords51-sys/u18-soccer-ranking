@@ -188,7 +188,7 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝トーナメント準決勝（11/8）
 
-- 武南 vs 武蔵越生
+- 武南 0-1 武蔵越生
 - 正智深谷 vs 西武台
 
 ## 決勝トーナメント決勝（11/15）
