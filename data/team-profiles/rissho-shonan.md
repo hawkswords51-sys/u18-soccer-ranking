@@ -2,6 +2,8 @@
 id: rissho-shonan
 name: 立正大学淞南高校
 short_name: 立正大淞南
+aliases:
+  - 立正大学淞南
 league: プリンスリーグ中国
 jfa_team: prince-chugoku
 prefecture: shimane

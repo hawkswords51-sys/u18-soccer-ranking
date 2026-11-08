@@ -3,6 +3,7 @@ id: nagasaki-sokadai
 name: 長崎総合科学大学附属高校
 short_name: 長崎総科大附
 aliases:
+  - 長崎総合科学大学附属
 league: プリンスリーグ九州2部
 jfa_team: prince-kyushu-2
 prefecture: nagasaki
