@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-11-05",
+ "lastUpdated": "2026-11-08",
  "teams": [
   {
    "name": "川崎フロンターレU-15等々力",
@@ -21,16 +21,16 @@
    "short": "瀬谷インターナショナル フットボール"
   },
   {
+   "name": "横須賀シーガルズFC",
+   "short": "横須賀シーガルズFC"
+  },
+  {
    "name": "FCヴィアージャ",
    "short": "FCヴィアージャ"
   },
   {
    "name": "シュートJrユースFC",
    "short": "シュートJrユースFC"
-  },
-  {
-   "name": "横須賀シーガルズFC",
-   "short": "横須賀シーガルズFC"
   },
   {
    "name": "足柄FC",
@@ -78,16 +78,28 @@
    "rank": 3,
    "team": "瀬谷インターナショナル フットボール",
    "points": 33,
-   "played": 17,
+   "played": 18,
    "won": 10,
    "drawn": 3,
-   "lost": 4,
+   "lost": 5,
    "gf": 32,
-   "ga": 14,
-   "gd": 18
+   "ga": 15,
+   "gd": 17
   },
   {
    "rank": 4,
+   "team": "横須賀シーガルズFC",
+   "points": 28,
+   "played": 18,
+   "won": 9,
+   "drawn": 1,
+   "lost": 8,
+   "gf": 28,
+   "ga": 32,
+   "gd": -4
+  },
+  {
+   "rank": 5,
    "team": "FCヴィアージャ",
    "points": 28,
    "played": 16,
@@ -99,7 +111,7 @@
    "gd": 5
   },
   {
-   "rank": 5,
+   "rank": 6,
    "team": "シュートJrユースFC",
    "points": 27,
    "played": 17,
@@ -109,18 +121,6 @@
    "gf": 28,
    "ga": 21,
    "gd": 7
-  },
-  {
-   "rank": 6,
-   "team": "横須賀シーガルズFC",
-   "points": 25,
-   "played": 17,
-   "won": 8,
-   "drawn": 1,
-   "lost": 8,
-   "gf": 27,
-   "ga": 32,
-   "gd": -5
   },
   {
    "rank": 7,
@@ -941,10 +941,10 @@
    "md": 0,
    "date": "2026-11-07",
    "home": "瀬谷インターナショナル フットボール",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 1,
    "away": "横須賀シーガルズFC",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
