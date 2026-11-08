@@ -5,12 +5,12 @@ slug: maruoka
 short_en: Maruoka
 prefecture_en: Fukui
 title: "Maruoka High School"
-description: "Maruoka High School in English: Fukui's traditional public-school power, winter championship semi-finalists in 1997–98, Prince League Hokushinetsu champions in 2020, and Fukui's Inter-High representatives for a seventh tournament in a row in 2026."
+description: "Maruoka High School in English: Fukui's traditional public-school power, winter championship semi-finalists in 1997–98, Prince League Hokushinetsu champions in 2020, Fukui's Inter-High representatives for a seventh tournament in a row in 2026, and back in the 2026–27 winter championship for the first time in three years."
 ---
 
 ## intro
 
-Maruoka High School (丸岡高校, officially Fukui Prefectural Maruoka High School) is a public school in the Maruoka district of Sakai, a city in the north of Fukui Prefecture on the Sea of Japan coast. For decades its football club has been the standard-bearer for Fukui, one of the smaller football prefectures in the Hokushinetsu region. The club has played 34 times at the winter All Japan High School Soccer Tournament and 37 times at the summer Inter-High. Its best results are a place in the winter semi-finals in 1997–98 and the Inter-High quarter-finals in 1996. In 2020 it won the Prince League Hokushinetsu, the regional league for Niigata, Toyama, Ishikawa, Fukui and Nagano. In 2026 the team plays in Prince League Hokushinetsu Division 2. It won the Fukui Inter-High qualifying tournament for the seventh tournament running, then went out in the second round of the national finals.
+Maruoka High School (丸岡高校, officially Fukui Prefectural Maruoka High School) is a public school in the Maruoka district of Sakai, a city in the north of Fukui Prefecture on the Sea of Japan coast. For decades its football club has been the standard-bearer for Fukui, one of the smaller football prefectures in the Hokushinetsu region. The club has qualified 35 times for the winter All Japan High School Soccer Tournament, counting the 2026–27 edition, and has played 37 times at the summer Inter-High. Its best results are a place in the winter semi-finals in 1997–98 and the Inter-High quarter-finals in 1996. In 2020 it won the Prince League Hokushinetsu, the regional league for Niigata, Toyama, Ishikawa, Fukui and Nagano. In 2026 the team plays in Prince League Hokushinetsu Division 2. It won the Fukui Inter-High qualifying tournament for the seventh tournament running, then went out in the second round of the national finals. In November 2026 it won the Fukui winter qualifying tournament, beating Fukui Shogyo 5-0 in the final, to return to the winter championship for the first time in three years.
 
 ## style
 
@@ -20,9 +20,10 @@ The club's motto, published on the school's website, is "humble, wholehearted an
 
 | Competition | Year | Notes |
 |---|---|---|
-| All Japan High School Soccer Tournament (winter) | 1997–98 | Semi-finalists (third place) in the 76th edition, beaten 1-3 by the eventual champions Higashi Fukuoka; 34 appearances in all, the most recent in 2023–24 |
+| All Japan High School Soccer Tournament (winter) | 1997–98 | Semi-finalists (third place) in the 76th edition, beaten 1-3 by the eventual champions Higashi Fukuoka; 35 appearances in all, counting 2026–27 (qualified in November 2026; the previous appearance was 2023–24) |
 | Inter-High (All Japan High School Championships) | 1996 | Quarter-finalists; 37 appearances in all, the 37th in 2026 |
 | Prince League Hokushinetsu | 2020 | Champions. The season was shortened by the pandemic and played as two groups followed by placement matches; Maruoka beat Zweigen Kanazawa U-18 4-2 in the deciding match |
+| Fukui qualifying, winter championship | 2026 | Won 5-0 against Fukui Shogyo in the final on 1 November 2026, after losing the 2024 and 2025 finals to the same opponent on penalties |
 | Fukui qualifying, Inter-High | 2019–2026 | Seven tournaments in a row (the 2020 Inter-High was cancelled), the latest won 2-0 against Fukui Shogyo in June 2026 |
 
 ## history
@@ -35,7 +36,7 @@ The club's motto, published on the school's website, is "humble, wholehearted an
 - **2022** — At the Inter-High, Maruoka reaches the last 16 and loses 2-3 to Teikyo, conceding the winner deep into stoppage time.
 - **2023** — The Prince League Hokushinetsu expands to two divisions, and Maruoka finishes third in Division 2. It wins the Fukui winter qualifying tournament for the sixth year running, but loses 0-3 to Saga Higashi in the first round of the national finals.
 - **2024 and 2025** — Maruoka reaches the Fukui winter final in both years and loses both on penalties to Fukui Shogyo, ending its run of winter titles in the prefecture. It keeps winning the summer qualifying tournament.
-- **2026** — A seventh tournament in a row as Fukui's Inter-High representative, sealed with a 2-0 win over Fukui Shogyo in the final. At the national finals Maruoka draws 1-1 with Setouchi and wins the shoot-out 7-6, then loses 1-4 to Yamagata Meisei High School in the second round (the last 32).
+- **2026** — A seventh tournament in a row as Fukui's Inter-High representative, sealed with a 2-0 win over Fukui Shogyo in the final. At the national finals Maruoka draws 1-1 with Setouchi and wins the shoot-out 7-6, then loses 1-4 to Yamagata Meisei High School in the second round (the last 32). In the autumn Maruoka wins the Fukui winter qualifying tournament: it comes from behind to win the semi-final 2-1 and beats Fukui Shogyo 5-0 in the final on 1 November, qualifying for the national finals (from 28 December 2026) for the 35th time and the first time in three years.
 
 ## model
 
