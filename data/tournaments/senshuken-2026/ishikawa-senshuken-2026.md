@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 石川県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4456
 ---
 
@@ -67,4 +67,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/8）
 
-- 星稜 vs 鵬学園
+- 星稜 2-1 鵬学園
