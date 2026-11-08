@@ -27,6 +27,10 @@
   pref_order の並び）」「直近10大会の出場歴（tournaments_data.yml の都道府県代表 2016〜2025 から
   ◯年連続／◯大会ぶり／直近10大会は出場なし）」を自動で付ける。通算の「◯回目」は10大会分しか無いので書かない
   （JFA公式の「◯年ぶり◯回目」は抽選後に senshuken-final-2026.md の各県代表欄で入れる）。名寄せできない校は校名だけ。
+- [2026-11-08] 出場歴は senshuken-final-2026.md の「## 各県代表」（`- 県名: 校名(2大会ぶり5回目)`）に行があれば
+  その括弧内をそのまま出し、自動計算は使わない（10大会分の自動計算は「11年連続」＝実際は30年連続、
+  「直近10大会は出場なし」＝実際は15大会ぶり／初出場、のように誤る。Keiの指摘）。校名が代表と合わない行は使わず
+  [要確認]を出して自動計算に戻す（別の学校の回数を載せない）。自動計算も、10大会すべて出場なら「11年以上連続」と書く。
 """
 import re
 import sys
@@ -187,6 +191,52 @@ def _name_keys(name):
     return {n, base} if base else {n}
 
 
+PREF_NAME = {slug: name for _, prefs in REGIONS for slug, name in prefs}  # slug → 「青森」等（各県代表の県名と照合）
+
+
+def _load_official_notes():
+    """[2026-11-08] 本大会md の「## 各県代表」から {県名: [(校名, 括弧内の付記)]}。
+    行の書き方はインハイと同じ `- 県名: 校名(◯大会ぶり◯回目)`（東京は「、」区切りで2校）。括弧が無い校は付記なし扱い。"""
+    out = {}
+    if not FINAL_MD.exists():
+        return out
+    try:
+        lines = parse_sections(FINAL_MD).get("各県代表", [])
+    except Exception as e:  # 付記が読めなくても特設ページ本体は止めない
+        warnings.append(f"各県代表（senshuken-final-2026.md）の読み込みに失敗（出場歴は自動計算で続行）: {type(e).__name__}: {e}")
+        return out
+    for ln in lines:
+        m = re.match(r"^\s*-\s*([^:：]+)[:：]\s*(.+)$", ln)
+        if not m:
+            continue
+        pref = m.group(1).strip()
+        pref = "東京" if pref == "東京都" else re.sub(r"[県府]$", "", pref)  # 「京都」の「都」は外さない
+        for token in re.split(r"[、,]", m.group(2).strip()):
+            token = token.strip()
+            rm = re.search(r"[（(]([^（）()]*)[）)]\s*$", token)
+            if not token or not rm or not rm.group(1).strip():
+                continue
+            out.setdefault(pref, []).append((token[:rm.start()].strip(), rm.group(1).strip()))
+    return out
+
+
+def _official_note(info, slug, name):
+    """代表校 name の公式の付記。各県代表に同じ校（表記ゆれは teams.json の name/aliases で同一判定）が無ければ None。"""
+    entries = info["official"].get(PREF_NAME.get(slug, ""), [])
+    if not entries:
+        return None
+    ident = info["rank"].get(slug, {})  # 照合名 → 県内の何番目のチームか（同じ番号＝同じチーム）
+    keys = _name_keys(name)
+    ids = {ident.get(k) for k in keys} - {None}
+    for nm, note in entries:
+        ks = _name_keys(nm)
+        if ks & keys or ids & ({ident.get(k) for k in ks} - {None}):
+            return note
+    warnings.append(f"{slug}: 各県代表（senshuken-final-2026.md）に代表「{name}」の行が無い（校名の書き方違いを含む）"
+                    " → 出場歴は自動計算で表示")
+    return None
+
+
 def _load_rep_info():
     """{ 'rank': {slug: {照合名: 県内順位}}, 'history': {照合名: set(年)} , 'years': [年...] }"""
     if _REP_INFO_CACHE:
@@ -222,7 +272,8 @@ def _load_rep_info():
                     history.setdefault(k, set()).add(int(y))
     except Exception as e:
         warnings.append(f"歴代代表（tournaments_data.yml）の読み込みに失敗（出場歴なしで続行）: {type(e).__name__}: {e}")
-    _REP_INFO_CACHE.update({"rank": rank, "history": history, "years": sorted(years)})
+    _REP_INFO_CACHE.update({"rank": rank, "history": history, "years": sorted(years),
+                            "official": _load_official_notes()})
     return _REP_INFO_CACHE
 
 
@@ -249,9 +300,12 @@ def rep_note(slug, name):
             break
     if r and r < 99:
         parts.append(f"県内{r}位")
-    # 直近10大会の出場歴（tournaments_data.yml にある年だけで判定）
+    # 出場歴：公式の回数（各県代表）があればそれ。無ければ直近10大会（tournaments_data.yml にある年だけ）から判定
+    official = _official_note(info, slug, name)
     years = info["years"]
-    if years:
+    if official:
+        parts.append(esc(official))
+    elif years:
         app = set()
         for k in _name_keys(name):
             app |= info["history"].get(k, set())
@@ -263,7 +317,8 @@ def rep_note(slug, name):
             while y - 1 in years and y - 1 in app:
                 streak += 1
                 y -= 1
-            parts.append(f"{streak + 1}年連続")
+            # 10大会すべて出場なら、それより前も続いている可能性がある（青森山田は実際30年連続）
+            parts.append(f"{streak + 1}年以上連続" if streak == n else f"{streak + 1}年連続")
         elif app:
             parts.append(f"{SEASON_YEAR - max(app)}大会ぶり")
         else:
