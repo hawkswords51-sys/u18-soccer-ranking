@@ -195,4 +195,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 ## 決勝ラウンドラウンド決勝（11/14）
 
-- 市立尼崎/三田学園 vs 神戸弘陵/AIE国際
+- 三田学園 vs 神戸弘陵/AIE国際
