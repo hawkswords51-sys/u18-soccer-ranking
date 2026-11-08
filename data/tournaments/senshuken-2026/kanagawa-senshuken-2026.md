@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 神奈川県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4459
 ---
 
@@ -220,4 +220,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 2次予選決勝（11/8）
 
-- 桐光学園 vs 日本大学藤沢
+- 桐光学園 0-1 日本大学藤沢

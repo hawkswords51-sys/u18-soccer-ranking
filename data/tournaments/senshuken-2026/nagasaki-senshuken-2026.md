@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 長崎県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4391
 round_dates: 準々決勝=10/25, 準決勝=11/1, 決勝=11/8
 ---
@@ -63,4 +63,4 @@ scraper/update_tournament_results.py が見出しも対戦カードも自動で�
 
 ## 決勝（11/8）
 
-- 国見 vs 長崎総合科学大学附属
+- 国見 0-3 長崎総合科学大学附属

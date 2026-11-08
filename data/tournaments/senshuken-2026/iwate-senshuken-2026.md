@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 岩手県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4470
 round_dates: 準々決勝=10/29, 準決勝=11/3, 決勝=11/8
 ---
@@ -64,4 +64,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/8）
 
-- 専修大学北上 vs 盛岡誠桜
+- 専修大学北上 1-0 盛岡誠桜
