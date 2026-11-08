@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 新潟県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4457
 round_dates: 準々決勝=10/31・11/2, 準決勝=11/4, 決勝=11/8
 ---
@@ -93,4 +93,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/8）
 
-- 北越 vs 帝京長岡
+- 北越 0-6 帝京長岡
