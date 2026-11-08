@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-11-08",
+ "lastUpdated": "2026-11-09",
  "teams": [
   {
    "name": "川崎フロンターレU-15等々力",
@@ -21,12 +21,12 @@
    "short": "瀬谷インターナショナル フットボール"
   },
   {
-   "name": "横須賀シーガルズFC",
-   "short": "横須賀シーガルズFC"
-  },
-  {
    "name": "FCヴィアージャ",
    "short": "FCヴィアージャ"
+  },
+  {
+   "name": "横須賀シーガルズFC",
+   "short": "横須賀シーガルズFC"
   },
   {
    "name": "シュートJrユースFC",
@@ -88,6 +88,18 @@
   },
   {
    "rank": 4,
+   "team": "FCヴィアージャ",
+   "points": 31,
+   "played": 17,
+   "won": 10,
+   "drawn": 1,
+   "lost": 6,
+   "gf": 22,
+   "ga": 15,
+   "gd": 7
+  },
+  {
+   "rank": 5,
    "team": "横須賀シーガルズFC",
    "points": 28,
    "played": 18,
@@ -97,18 +109,6 @@
    "gf": 28,
    "ga": 32,
    "gd": -4
-  },
-  {
-   "rank": 5,
-   "team": "FCヴィアージャ",
-   "points": 28,
-   "played": 16,
-   "won": 9,
-   "drawn": 1,
-   "lost": 6,
-   "gf": 20,
-   "ga": 15,
-   "gd": 5
   },
   {
    "rank": 6,
@@ -162,13 +162,13 @@
    "rank": 10,
    "team": "カルペソール湘南",
    "points": 3,
-   "played": 17,
+   "played": 18,
    "won": 1,
    "drawn": 0,
-   "lost": 16,
+   "lost": 17,
    "gf": 11,
-   "ga": 53,
-   "gd": -42
+   "ga": 55,
+   "gd": -44
   }
  ],
  "matches": [
@@ -950,10 +950,10 @@
    "md": 0,
    "date": "2026-11-08",
    "home": "FCヴィアージャ",
-   "hs": null,
-   "as": null,
+   "hs": 2,
+   "as": 0,
    "away": "カルペソール湘南",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
