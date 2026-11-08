@@ -226,7 +226,7 @@ scraper/update_tournament_results.py が上の source から
 ## 準決勝（11/8）
 
 - 摂津 0-3 金光大阪
-- 東海大仰星 vs 履正社
+- 東海大仰星 0-1 履正社
 
 ## 決勝（11/14）
 
