@@ -1782,6 +1782,8 @@ def _asof_en(s):
     m = re.search(r"(\d{1,2})月(\d{1,2})日", s or "")
     if m:
         return f"as of {int(m.group(2))} {MONTHS[int(m.group(1)) - 1]}"
+    if "最終結果" in (s or ""):
+        return "final standings"
     if "前期終了" in (s or ""):
         return "end of the first half of the season"
     return ""
