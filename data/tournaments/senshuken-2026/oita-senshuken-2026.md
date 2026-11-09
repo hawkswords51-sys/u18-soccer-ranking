@@ -69,8 +69,8 @@ scraper/update_tournament_results.py が上の source から
 ## 準決勝（11/7）
 
 - 大分 0-1 柳ヶ浦
-- 中津東 vs 大分鶴崎
+- 中津東 0-2 大分鶴崎
 
 ## 決勝（11/15）
 
-- 柳ヶ浦 vs 中津東/大分鶴崎
+- 柳ヶ浦 vs 大分鶴崎
