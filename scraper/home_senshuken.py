@@ -19,6 +19,15 @@ home_pickup.py（紺の帯）から呼ばれ、帯の中の上段に差し込む
 
 ⚠️ 回戦名は県ごとに違う（「決勝」「決勝戦」「決勝トーナメント決勝」「2次予選決勝」、
    東京は「A/Bブロック決勝」）。「ブロック決勝」（広島・兵庫などの1次ラウンド）は決勝ではない。
+
+[2026-11-10] インターハイ予選にも広げた（Kei依頼「来年度のインハイ県予選も同様にトップの見出しに」）。
+  - 大会は TOURNAMENTS で切り替える。同じ md の形（data/tournaments/interhigh-<年>/<県>-interhigh-<年>.md）。
+  - 年は「今日の年」を使う（インハイ予選は4〜6月、選手権予選は8〜11月で、どちらも年をまたがない）。
+    → 毎年 YEAR を書き換える作業は不要になった。
+  - インハイは代表2校の県（東京・神奈川・大阪・開催県）がある。その県は準決勝の勝者で代表が決まるので、
+    準決勝を所属リーグに関係なく全部出し、勝者に「代表決定」を付ける（決勝には付けない）。
+    どの県が2校かは interhigh-final-<年>.md の slots: 行（「〇〇は2チーム」）から読む。
+  - 「47都道府県の〜」リンクは特設ページ（/tournaments/<大会>-<年>/）が実在するときだけ出す。
 """
 import re
 from datetime import date, timedelta
@@ -27,7 +36,14 @@ from pathlib import Path
 _ROOT = Path(__file__).resolve().parent.parent
 _TDIR = _ROOT / "data" / "tournaments"
 
-YEAR = 2026            # 対象の大会（第105回）。来年は 2027 に変えるだけ
+# 大会ごとの設定。並び順＝帯に出す順（同時期に重なることは通常ない）
+TOURNAMENTS = [
+    {"key": "interhigh", "title": "インターハイ予選",
+     "more": "47都道府県の予選結果と代表校一覧"},
+    {"key": "senshuken", "title": "選手権予選",
+     "more": "47都道府県の予選の状況と代表校一覧"},
+]
+DEFAULT_TWO_SLOT = {"tokyo", "kanagawa", "osaka"}   # インハイで代表2校の常連（開催県は年ごとに追加）
 BACK_DAYS = 4          # 結果を残す日数（日曜の結果を木曜まで）
 AHEAD_DAYS = 7         # 予告する日数
 MAX_CARDS = 8
@@ -38,8 +54,8 @@ _SCORE_RE = re.compile(r"^-\s+(?P<a>.+?)\s+(?P<sa>\d+)-(?P<sb>\d+)(?:\(PK(?P<pa>
 _VS_RE = re.compile(r"^-\s+(?P<a>.+?)\s+vs\s+(?P<b>.+?)\s*$")
 _MD_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
 _PREFIX = r"(?:決勝トーナメント|決勝ラウンド|2次予選|2次トーナメント)?"
-_FINAL_RE = re.compile(_PREFIX + r"決勝戦?")
-_SEMI_RE = re.compile(_PREFIX + r"準決勝")
+_FINAL_RE = re.compile(_PREFIX + r"\s*決勝戦?")     # 「2次予選 決勝」のように空白が入る県がある（インハイ神奈川・東京）
+_SEMI_RE = re.compile(_PREFIX + r"\s*準決勝")
 
 # slug -> 県名（表示用）。特設ページと同じ並び・表記
 PREFS = [
@@ -120,16 +136,33 @@ def _tier(lg):
     return 0 if "プレミア" in lg else 1 if "プリンス" in lg else 2
 
 
-def collect(today=None):
-    """注目試合のカード用 dict のリスト（表示順）。無ければ []。"""
+def _two_slot_prefs(year):
+    """インハイで代表2校の県の slug 集合。interhigh-final-<年>.md の slots: 行から読む。"""
+    p = _TDIR / f"interhigh-final-{year}.md"
+    try:
+        line = next((ln for ln in p.read_text(encoding="utf-8").splitlines() if ln.startswith("slots:")), "")
+    except OSError:
+        line = ""
+    out = set()
+    for seg in re.findall(r"[^。、，,]*?は\s*2\s*チーム", line):
+        for slug, pref in PREFS:
+            if pref in seg:
+                out.add(slug)
+    return out or set(DEFAULT_TWO_SLOT)
+
+
+def collect(today=None, tkey="senshuken"):
+    """注目試合のカード用 dict のリスト（表示順）。無ければ []。tkey＝'senshuken' / 'interhigh'"""
     if today is None:
         from jst import today as _t
         today = _t()
+    YEAR = today.year
     lo, hi = today - timedelta(days=BACK_DAYS), today + timedelta(days=AHEAD_DAYS)
-    folder = _TDIR / f"senshuken-{YEAR}"
+    folder = _TDIR / f"{tkey}-{YEAR}"
+    two_slot = _two_slot_prefs(YEAR) if tkey == "interhigh" else set()
     cands = []
     for slug, pref in PREFS:
-        p = folder / f"{slug}-senshuken-{YEAR}.md"
+        p = folder / f"{slug}-{tkey}-{YEAR}.md"
         if not p.exists():
             continue
         text = p.read_text(encoding="utf-8")
@@ -199,20 +232,22 @@ def collect(today=None):
                 sa = sb = pk = win = None
                 played = False
             la, lb = _league(a), _league(b)
-            if kind == "semi" and _tier(la) > 1 and _tier(lb) > 1:
-                continue   # 準決勝はプレミア/プリンス校が出る試合だけ
+            decider = (kind == "semi") if slug in two_slot else (kind == "final")   # 代表が決まる試合
+            if kind == "semi" and not decider and _tier(la) > 1 and _tier(lb) > 1:
+                continue   # 準決勝はプレミア/プリンス校が出る試合だけ（代表2校の県の準決勝は全部出す）
             label = key if slug == "tokyo" and kind == "final" else ("決勝" if kind == "final" else "準決勝")
             cands.append({
                 "slug": slug, "pref": pref, "kind": kind, "label": label,
                 "days": days, "first": min(days), "played": played,
                 "a": a, "b": b, "la": la, "lb": lb, "sa": sa, "sb": sb, "pk": pk, "win": win,
                 "tier": min(_tier(la), _tier(lb)) * 3 + max(_tier(la), _tier(lb)),
+                "decider": decider,
             })
             last_card = cands[-1]
     if not cands:
         return []
-    # 選ぶ順：決勝 → 所属リーグが上の組 → 今日に近い日
-    pri = sorted(cands, key=lambda c: (c["kind"] != "final", c["tier"],
+    # 選ぶ順：代表が決まる試合（ふつうは決勝。インハイ代表2校の県は準決勝）→ 所属リーグが上の組 → 今日に近い日
+    pri = sorted(cands, key=lambda c: (not c["decider"], c["tier"],
                                        abs((c["first"] - today).days), c["slug"]))
     picked = pri[:MAX_CARDS]
     # 並べる順：日付 → 決勝が先 → 所属リーグが上の組
@@ -227,10 +262,19 @@ def _fmt_days(days):
 
 
 def render_block(today=None):
-    """帯の上段に入れる HTML。出す試合が無ければ ''（＝帯は従来どおりリーグだけ）。"""
-    cards = collect(today)
+    """帯の上段に入れる HTML（インハイ予選・選手権予選のうち、出す試合がある大会だけ）。
+    どちらも無ければ ''（＝帯は従来どおりリーグだけ）。"""
+    if today is None:
+        from jst import today as _t
+        today = _t()
+    return "".join(_render_one(t, today) for t in TOURNAMENTS)
+
+
+def _render_one(t, today):
+    cards = collect(today, t["key"])
     if not cards:
         return ""
+    YEAR = today.year
     all_days = sorted({c["first"] for c in cards})
     span = f"{all_days[0].month}/{all_days[0].day}"
     if len(all_days) > 1:
@@ -240,7 +284,7 @@ def render_block(today=None):
         aw = " hp-win" if c["win"] == "a" else ""
         bw = " hp-win" if c["win"] == "b" else ""
         tag = ""
-        if c["played"] and c["kind"] == "final" and c["win"]:
+        if c["played"] and c["decider"] and c["win"]:
             tag = '<span class="hp-day hp-rep">代表決定</span>'
         if c["played"]:
             pk = f'<small class="hp-pk">PK{c["pk"][0]}-{c["pk"][1]}</small>' if c["pk"] else ""
@@ -260,22 +304,26 @@ def render_block(today=None):
             f"</span></a>"
         )
     nl = "\n"
+    url = f"/tournaments/{t['key']}-{YEAR}/"
+    more = ""
+    if (_ROOT / url.strip("/") / "index.html").exists():   # 特設ページがまだ無い年はリンクを出さない
+        more = f'  <p class="hp-more"><a href="{url}">{t["more"]}</a></p>\n'
     return (
-        '  <div class="hp-head"><h2>選手権予選</h2>'
+        f'  <div class="hp-head"><h2>{t["title"]}</h2>'
         f'<span class="hp-date">{span}の準決勝・決勝から</span></div>\n'
         '  <div class="hp-grid">\n'
         + nl.join(out) + "\n"
         "  </div>\n"
-        f'  <p class="hp-more"><a href="/tournaments/senshuken-{YEAR}/">47都道府県の予選の状況と代表校一覧</a></p>\n'
+        + more
     )
 
 
 if __name__ == "__main__":
     import sys
     t = None
-    if len(sys.argv) > 1:   # 例: python scraper/home_senshuken.py 2026-11-02
+    if len(sys.argv) > 1:   # 例: python scraper/home_senshuken.py 2026-11-02 [interhigh]
         y, m, d = (int(x) for x in sys.argv[1].split("-"))
         t = date(y, m, d)
-    for c in collect(t):
+    for c in collect(t, sys.argv[2] if len(sys.argv) > 2 else "senshuken"):
         sc = f'{c["sa"]}-{c["sb"]}' + (f'(PK{c["pk"][0]}-{c["pk"][1]})' if c["pk"] else "") if c["played"] else "vs"
         print(c["first"], c["pref"], c["label"], f'{c["a"]}[{c["la"]}] {sc} {c["b"]}[{c["lb"]}]')
