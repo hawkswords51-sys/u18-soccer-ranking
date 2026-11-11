@@ -692,6 +692,9 @@ def timing_en(s):
     if m:
         base = f"{m.group(1)}/{m.group(2)} season"
         return base + (" (promoted from the academy)" if m.group(3) == "昇格" else "")
+    m = re.fullmatch(r"(\d{4})/(\d{2})シーズン中", s)   # ガンバ大阪の「2026/27シーズン中のトップチーム昇格」
+    if m:
+        return f"During the {m.group(1)}/{m.group(2)} season"
     m = re.fullmatch(r"(\d{4})シーズン加入", s)
     if m:
         return f"{m.group(1)} season"
