@@ -31,6 +31,10 @@
   その括弧内をそのまま出し、自動計算は使わない（10大会分の自動計算は「11年連続」＝実際は30年連続、
   「直近10大会は出場なし」＝実際は15大会ぶり／初出場、のように誤る。Keiの指摘）。校名が代表と合わない行は使わず
   [要確認]を出して自動計算に戻す（別の学校の回数を載せない）。自動計算も、10大会すべて出場なら「11年以上連続」と書く。
+- [2026-11-11] 抽選後（トーナメント表が描けたとき＝render_bracket() が空でないとき）だけ、要約を「組み合わせ決定後」の
+  文に切り替える。開幕戦のカードは組み合わせの並びから分からないので、senshuken-final-2026.md の frontmatter
+  `opening_match: A高校 vs B高校` から読み、県名は「## 各県代表」から引く。無い・読めない・名寄せできないときは
+  開幕戦の一文だけ省く（名寄せできないときは [要確認]）。抽選前は今までの文のまま。
 """
 import re
 import sys
@@ -482,7 +486,63 @@ def render_prefs(all_info):
     return "\n".join(out)
 
 
-def render_summary(all_info, n_reps, n_started, rep_list):
+def _opening_sentence():
+    """抽選後の要約に入れる開幕戦の一文。frontmatter の opening_match が無い・読めないときは ''。"""
+    if not FINAL_MD.exists():
+        return ""
+    text = FINAL_MD.read_text(encoding="utf-8")
+    parts = text.split("---", 2)
+    fm = parts[1] if len(parts) == 3 and text.startswith("---") else ""
+    m = re.search(r"^opening_match:\s*(.+?)\s*$", fm, re.M)
+    if not m:
+        return ""
+    teams = [x.strip().strip("\"'") for x in re.split(r"\s+vs\s+", m.group(1).strip().strip("\"'"))]
+    if len(teams) != 2 or not all(teams):
+        warnings.append(f"opening_match（senshuken-final-2026.md）が「A vs B」の形で読めない → 開幕戦の一文は省く: {m.group(1)}")
+        return ""
+    # 各県代表の全校（付記の括弧は外す）→ 県名。表記ゆれは teams.json の name/aliases（県内の同じ番号＝同じチーム）で照合
+    entries = []
+    for ln in parse_sections(FINAL_MD).get("各県代表", []):
+        lm = re.match(r"^\s*-\s*([^:：]+)[:：]\s*(.+)$", ln)
+        if not lm:
+            continue
+        pref = lm.group(1).strip()
+        pref = "東京" if pref == "東京都" else re.sub(r"[県府]$", "", pref)
+        for token in re.split(r"[、,]", lm.group(2).strip()):
+            nm = re.sub(r"[（(][^（）()]*[）)]\s*$", "", token.strip()).strip()
+            if nm:
+                entries.append((pref, nm))
+    slug_of = {name: slug for slug, name in PREF_NAME.items()}
+    rank = _load_rep_info()["rank"]
+    out = []
+    for team in teams:
+        keys = _name_keys(team)
+        hit = None
+        for pref, nm in entries:
+            ident = rank.get(slug_of.get(pref, ""), {})
+            ks = _name_keys(nm)
+            if ks & keys or ({ident.get(k) for k in keys} - {None}) & ({ident.get(k) for k in ks} - {None}):
+                hit = pref
+                break
+        if hit is None:
+            warnings.append(f"opening_match の「{team}」が各県代表（senshuken-final-2026.md）に見つからない → 開幕戦の一文は省く")
+            return ""
+        out.append(f"{re.sub(r'(高等学校|高校)$', '', _norm(team))}（{hit}）")
+    return f"開幕戦（12月28日・国立競技場）は{out[0]}対{out[1]}。"
+
+
+def render_summary(all_info, n_reps, n_started, rep_list, drawn=False):
+    if drawn:
+        # [2026-11-11] 抽選後（トーナメント表が描けたとき）の文。抽選日「11月16日」は今年だけの文なので固定で書く
+        text = ("第105回全国高校サッカー選手権大会（2026年度）は2026年12月28日開幕・2027年1月11日決勝。"
+                "11月16日の抽選で出場48校の組み合わせが決まりました。"
+                f"{_opening_sentence()}"
+                "1回戦は12月29日、決勝は2027年1月11日に国立競技場で行われます。"
+                "トーナメント表と各校の所属リーグ・出場回数は下に掲載しています。"
+                "前回第104回は神村学園（鹿児島）が初優勝し、インターハイとの夏冬2冠を達成しました。")
+        return ('      <p class="blog-article__summary" style="margin:0 0 24px;padding:2px 0 2px 14px;'
+                'border-left:2px solid var(--border-color,#cbd5e1);font-size:0.97rem;line-height:1.85;">\n'
+                f'        {esc(text)}\n      </p>')
     t = today()
     stamp = f"{t.month}月{t.day}日現在、"
     if n_reps == 0:
@@ -551,8 +611,9 @@ def render_bracket():
             '      </section>')
 
 
-def update_prefs(html):
-    """要約・47県一覧の2区間を書き換えた html を返す。安全装置で止めるときは None。"""
+def update_prefs(html, drawn=False):
+    """要約・47県一覧の2区間を書き換えた html を返す。安全装置で止めるときは None。
+    drawn＝トーナメント表が描けた（抽選後）。要約を組み合わせ決定後の文にする。"""
     all_info = {}
     missing = []
     for _, prefs in REGIONS:
@@ -579,7 +640,7 @@ def update_prefs(html):
         print(f"[要確認] 選手権2026: 代表が{n_reps}校と48を超えた。要約・47県一覧は書き換えない。")
         return None
 
-    new = replace_between(html, S_START, S_END, render_summary(all_info, n_reps, n_started, rep_list))
+    new = replace_between(html, S_START, S_END, render_summary(all_info, n_reps, n_started, rep_list, drawn))
     new = replace_between(new, P_START, P_END, render_prefs(all_info)) if new else None
     if new is None:
         print("[要確認] 選手権2026: 要約・47県一覧のマーカーが1組ずつ見つからない。この2区間は書き換えない。")
@@ -595,15 +656,16 @@ def main():
     new = html
     # 本大会トーナメント表（独立。失敗しても下の2区間は止めない）
     try:
-        b = replace_between(new, B_START, B_END, render_bracket())
+        bracket = render_bracket()
     except Exception as e:  # 表の不具合で毎日の更新全体を止めない
         print(f"[要確認] 選手権2026本大会: トーナメント表の生成で例外 {type(e).__name__}: {e}。表は出さない。")
-        b = replace_between(new, B_START, B_END, "")
+        bracket = ""
+    b = replace_between(new, B_START, B_END, bracket)
     if b is None:
         print("[要確認] 選手権2026: トーナメント表のマーカーが1組ずつ見つからない。表の区間は書き換えない。")
     else:
         new = b
-    p = update_prefs(new)
+    p = update_prefs(new, drawn=bool(bracket))
     if p is not None:
         new = p
     if new != html:
