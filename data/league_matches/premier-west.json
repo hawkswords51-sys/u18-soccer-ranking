@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/",
   "sourceName": "JFA公式",
-  "lastUpdated": "2026-11-11",
+  "lastUpdated": "2026-11-12",
   "teams": [
     {
       "name": "ヴィッセル神戸U-18",
@@ -117,6 +117,18 @@
     },
     {
       "rank": 6,
+      "team": "大津",
+      "pts": 25,
+      "played": 17,
+      "won": 8,
+      "drawn": 1,
+      "lost": 8,
+      "gf": 27,
+      "ga": 24,
+      "gd": 3
+    },
+    {
+      "rank": 7,
       "team": "米子北",
       "pts": 24,
       "played": 17,
@@ -128,19 +140,19 @@
       "gd": 4
     },
     {
-      "rank": 7,
-      "team": "大津",
+      "rank": 8,
+      "team": "ガンバ大阪ユース",
       "pts": 24,
-      "played": 16,
-      "won": 8,
-      "drawn": 0,
-      "lost": 8,
-      "gf": 25,
-      "ga": 22,
-      "gd": 3
+      "played": 18,
+      "won": 6,
+      "drawn": 6,
+      "lost": 6,
+      "gf": 28,
+      "ga": 30,
+      "gd": -2
     },
     {
-      "rank": 8,
+      "rank": 9,
       "team": "神村学園",
       "pts": 24,
       "played": 18,
@@ -150,18 +162,6 @@
       "gf": 35,
       "ga": 40,
       "gd": -5
-    },
-    {
-      "rank": 9,
-      "team": "ガンバ大阪ユース",
-      "pts": 23,
-      "played": 17,
-      "won": 6,
-      "drawn": 5,
-      "lost": 6,
-      "gf": 26,
-      "ga": 28,
-      "gd": -2
     },
     {
       "rank": 10,
@@ -2418,12 +2418,33 @@
       "md": 13,
       "date": "2026-11-11",
       "home": "大津",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "ガンバ大阪ユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ユナイテッドトヨタキズナスタジアム益城（益城町陸上競技場）（人工芝）",
-      "kickoff": "16:00"
+      "kickoff": "16:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/schedule_result/pdf/m1309.pdf",
+      "homeScorers": [
+        {
+          "minute": "14",
+          "name": "薮田 尚大"
+        },
+        {
+          "minute": "15",
+          "name": "松岡 凛"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "90+3",
+          "name": "三村 走太"
+        },
+        {
+          "minute": "90+4",
+          "name": "深江 龍明"
+        }
+      ]
     },
     {
       "md": 14,
