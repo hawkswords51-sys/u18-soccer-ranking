@@ -160,6 +160,9 @@ def round_key(heading: str) -> str:
     """ラウンド見出しの照合キー（「2回戦（5/17・シード登場）」→「2回戦」）"""
     h = unicodedata.normalize("NFKC", heading or "").strip()
     h = re.split(r"[（(]", h)[0]
+    # [2026-11-12] 兵庫の koko は「決勝ラウンドラウンド1回戦」と重ねて書く。照合キーと新しく作る見出しを
+    #   「決勝ラウンド1回戦」にそろえる（md 側の見出しが重なったままでも同じキーになる）
+    h = h.replace("ラウンドラウンド", "ラウンド")
     return h.strip()
 
 
