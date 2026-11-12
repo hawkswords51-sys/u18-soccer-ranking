@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-12T05:37:03+09:00",
+  "updatedAt": "2026-11-12T12:24:52+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -611,7 +611,7 @@
     },
     "kumamoto": {
       "result": "fetch_error",
-      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7f1a8790a310>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
+      "result_note": "取得失敗 (https://kumamoto-fa.net/league/competition/gamelist/?id=1006 の取得に失敗 (HTTPSConnectionPool(host='kumamoto-fa.net', port=443): Max retries exceeded with url: /league/competition/gamelist/?id=1006 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kumamoto-fa.net', port=443) at 0x7f629f681ed0>, 'Connection to kumamoto-fa.net timed out. (connect timeout=25)'))))",
       "result_date": "2026-11-12",
       "season": "2026",
       "complete": false,
@@ -1288,7 +1288,7 @@
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
-      "note": "試合18・選手36（新規取得1）",
+      "note": "試合18・選手36（新規取得0）",
       "date": "2026-11-12",
       "since": ""
     },
@@ -1342,7 +1342,7 @@
     },
     "team_season:ohtsu": {
       "result": "ok",
-      "note": "試合17・選手31（新規取得1）",
+      "note": "試合17・選手31（新規取得0）",
       "date": "2026-11-12",
       "since": ""
     },
