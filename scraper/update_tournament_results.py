@@ -878,9 +878,17 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
     meta = parse_meta(fm)
     new_fm = fm
     if meta.get("status") != "終了":
+        # [2026-11-12] 決勝の名前に接頭語が付く県（「決勝トーナメント決勝」「決勝戦」など）が
+        #   いつまでも「終了」にならず、県ページに「開催中」と出ていた（福岡・広島・岐阜）。
+        #   接頭語は決まったものだけ外す（「ブロック決勝」「1次トーナメントブロック決勝」は決勝ではない）。
+        def _final_key(name):
+            k = re.sub(r"^(決勝トーナメント|決勝ラウンド|中央トーナメント|2次予選|二次予選|2次トーナメント)\s*", "",
+                       round_key(name))
+            return "決勝" if k == "決勝戦" else k
+
         def _final_done(key):
             return any(
-                round_key(kr["name"]) == key
+                _final_key(kr["name"]) == key
                 and any(m["finished"] and m["score"] for m in kr["matches"])
                 for kr in koko_rounds
             )
