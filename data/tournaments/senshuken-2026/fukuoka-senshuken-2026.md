@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 福岡県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4432
 ---
 

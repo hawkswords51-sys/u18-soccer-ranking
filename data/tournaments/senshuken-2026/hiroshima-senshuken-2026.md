@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 広島県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 sources:
   - https://koko-soccer.com/score/4555
   - https://koko-soccer.com/score/4553
