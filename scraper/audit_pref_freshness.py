@@ -131,23 +131,26 @@ def official_prefs() -> dict:
     担当外（junior-soccer・Mac実行）の県は赤①の対象にしない。Actionsでは走らないので
     書き込む人がおらず、対象にすると全県が「記録なし＝赤」になってしまう。
     ⚠️ 2026-09-30：platform が "goalnote_saved"（GoalNote 8県・週1の手動取り込み）の県は**ここに入れない**。
+       2026-11-13：熊本（"kumamoto_saved"）も同じ（SAVED_PLATFORMS）。
        Actionsでは取りに行かない（robots.txt で拒否）ので、入れると「取得記録なし」になる。
        手動取り込みの県として lastUpdated の古さで🟡Aにする（saved_html_prefs 参照）。
     """
     try:
         import fetch_pref_official as F
+        saved = getattr(F, "SAVED_PLATFORMS", ("goalnote_saved",))
         return {p: c.get("label", "") for p, c in F.PREF_OFFICIAL.items()
-                if c.get("platform") != "goalnote_saved"}
+                if c.get("platform") not in saved}
     except Exception as e:
         print(f"  ※ fetch_pref_official を読めませんでした（{e}）。赤①は判定しません。")
         return {}
 
 
 def saved_html_prefs() -> set:
-    """GoalNote の週1手動取り込み（Kei が保存したHTMLを読む）の県（2026-09-30）。"""
+    """週1の手動取り込み（Kei が保存したHTMLを読む）の県。GoalNote（2026-09-30）＋熊本（2026-11-13）。"""
     try:
         import fetch_pref_official as F
-        return {p for p, c in F.PREF_OFFICIAL.items() if c.get("platform") == "goalnote_saved"}
+        saved = getattr(F, "SAVED_PLATFORMS", ("goalnote_saved",))
+        return {p for p, c in F.PREF_OFFICIAL.items() if c.get("platform") in saved}
     except Exception:
         return set()
 
@@ -517,7 +520,7 @@ def judge(records: dict, today: date, official: dict, jobs: dict,
                 yellow.append(f"🟡A {pref:12s} 手動取り込みが{n_imp if n_imp is not None else '?'}日止まっています"
                               f"（lastUpdated {r.get('last_updated') or '—'}・{r['played']}/{r['total']}"
                               f"・最終試合 {r.get('latest_match') or '—'}"
-                              + ("）→ GoalNote の週1取り込み（ブラウザで保存したHTMLを読む）"
+                              + ("）→ 週1取り込み（GoalNote・熊本。ブラウザで保存したHTMLを読む）"
                                  if pref in (saved or set()) else
                                  "）→ Macで update_pref_cross_tables.py を実行"))
                 continue

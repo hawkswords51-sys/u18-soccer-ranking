@@ -125,6 +125,9 @@ TEMP_EXCEPTIONS: dict[str, str] = {
 #    既存の pref-*-1.json は消さない・上書きしない（最終取得時点のまま表示）。
 #    設定（tid など）は消さない：週1の半手動（保存HTMLを read_goalnote に通す）と、許可が出たときの自動復帰に使う。
 #    茨城・山形は県協会PDFへ移す予定（そのとき platform を差し替える）。
+#    2026-11-13：熊本（"kumamoto_saved"）も同じ週1の保存HTML取り込みに加えた。
+# 週1で Kei が保存したHTMLを読む県の platform（毎朝の自動取得・fetch_status の取得記録の対象外）
+SAVED_PLATFORMS = ("goalnote_saved", "kumamoto_saved")
 PREF_OFFICIAL = {
     "chiba":    {"platform": "goalnote_saved", "tid": "18441", "label": "千葉県サッカー協会 公式（GoalNote）"},
     "aichi":    {"platform": "goalnote_saved", "tid": "18269", "label": "愛知県サッカー協会 公式（GoalNote）"},
@@ -185,7 +188,11 @@ PREF_OFFICIAL = {
     "toyama":    {"platform": "toyama", "tid": "82",
                   "source": "https://www.taikai-go.com/tournaments/82/schedule",
                   "label": "富山県サッカー協会 公式（大会GO）"},
-    "kumamoto":  {"platform": "kumamoto", "id": "1006",
+    # ⛔ 2026-11-13（Kei決定）：GitHub Actions からは10/22から毎朝つながらない（ConnectTimeout。
+    #    robots.txt は /league/staff/ だけ拒否＝相手が断っているのではない）。GoalNote と同じ
+    #    "kumamoto_saved"＝週1で Kei が保存したHTMLを読む形にし、毎朝の自動取得から外した。
+    #    GitHub から再びつながるようになったら platform を "kumamoto" に戻すかを Kei が決める。
+    "kumamoto":  {"platform": "kumamoto_saved", "id": "1006",
                   "source": "https://kumamoto-fa.net/league/competition/gamelist/?id=1006",
                   "label": "熊本県サッカー協会 公式"},
     # 星取表が勝点・得点・失点・順位しか持たない（勝分敗が無い）ため専用ゲート。
@@ -967,6 +974,17 @@ class SavedGoalNote:
             if text is None:
                 self._note(f.name, False, "文字コードが読めない")
                 continue
+            km = self._kumamoto_of(text)
+            if km:
+                kid, kind, how = km
+                key = (f"kumamoto-{kid}", kind)
+                if key in self.files:
+                    dup.add(key)
+                    self._note(f.name, False, f"熊本 id={kid}・{kind} が2ファイルある（{self.files[key].name} と重複）")
+                    continue
+                self.files[key] = f
+                self._note(f.name, True, f"熊本 id={kid}・{kind}（{how}）")
+                continue
             tid, how = self._tid_of(text, known_tids)
             kind = self._kind_of(text)
             if not tid:
@@ -987,6 +1005,23 @@ class SavedGoalNote:
     def _note(self, name: str, ok: bool, text: str) -> None:
         self.status.append((name, ok, text))
         self.notes.append(f"{'・' if ok else '✗'} {name}: {text}")
+
+    # 熊本（kumamoto-fa.net）の保存HTML（2026-11-13）。**保存元の記録・canonical・og:url だけ**で見分ける
+    # （本文には gamelist と ranking の両方へのリンクがあるので、本文のリンクでは決めない）。
+    _KUMAMOTO_URL = r"kumamoto-fa\.net/league/competition/(gamelist|ranking)/\?id=(\d+)"
+
+    @classmethod
+    def _kumamoto_of(cls, text: str):
+        for label, pat in (("保存元URL", r"saved from url=\(\d+\)\S*?" + cls._KUMAMOTO_URL),
+                           ("og:url", r'og:url["\'][^>]*content=["\'][^"\']*?' + cls._KUMAMOTO_URL),
+                           ("canonical", r'rel=["\']canonical["\'][^>]*href=["\'][^"\']*?' + cls._KUMAMOTO_URL)):
+            m = re.search(pat, text, re.I)
+            if m:
+                return m.group(2), m.group(1), label
+        return None
+
+    def has_kumamoto(self, kid: str) -> list[str]:
+        return [k for k in ("gamelist", "ranking") if (f"kumamoto-{kid}", k) not in self.files]
 
     @staticmethod
     def _tid_of(text: str, known: set) -> tuple[str, str]:
@@ -1019,10 +1054,13 @@ class SavedGoalNote:
         return [k for k in ("standings", "schedule") if (tid, k) not in self.files]
 
     def __call__(self, url: str) -> str:
+        km = re.search(self._KUMAMOTO_URL, url)
         m = re.search(r"detail-(standings|schedule)\.php\?tid=(\d+)", url)
-        if not m or (m.group(2), m.group(1)) not in self.files:
+        key = ((f"kumamoto-{km.group(2)}", km.group(1)) if km
+               else (m.group(2), m.group(1)) if m else None)
+        if key is None or key not in self.files:
             raise RuntimeError(f"保存HTMLが無い: {url}")
-        f = self.files[(m.group(2), m.group(1))]
+        f = self.files[key]
         self.used.add(f.name)
         raw = f.read_bytes()
         for enc in ("utf-8", "cp932", "euc-jp"):
@@ -1050,15 +1088,24 @@ def write_goalnote_links(path: Path) -> None:
                         f'<a href="https://www.goalnote.net/detail-standings.php?tid={tid}" target="_blank">順位表</a>'
                         f' ／ <a href="https://www.goalnote.net/detail-schedule.php?tid={tid}" target="_blank">日程・結果</a></li>')
         items.append(f"<h2>{name}（{pref}）</h2><ul>{''.join(rows)}</ul>")
+    # 熊本（県協会のリーグシステム・2026-11-13〜）。id は設定から
+    for pref, cfg in PREF_OFFICIAL.items():
+        if cfg.get("platform") != "kumamoto_saved":
+            continue
+        kid = cfg["id"]
+        base = "https://kumamoto-fa.net/league/competition"
+        items.append(f'<h2>熊本（{pref}・県協会のリーグシステム）</h2><ul><li>id {kid}：'
+                     f'<a href="{base}/gamelist/?id={kid}" target="_blank">試合日程・結果</a>'
+                     f' ／ <a href="{base}/ranking/?id={kid}" target="_blank">ランキング表</a></li></ul>')
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(f"""<!DOCTYPE html>
-<html lang="ja"><head><meta charset="UTF-8"><title>GoalNote 週1取り込み用リンク集</title>
+<html lang="ja"><head><meta charset="UTF-8"><title>週1取り込み用リンク集（GoalNote・熊本）</title>
 <style>body{{font-family:sans-serif;max-width:720px;margin:24px auto;line-height:1.8;padding:0 16px}}li{{margin:4px 0}}</style></head>
-<body><h1>GoalNote 週1取り込み用リンク集</h1>
+<body><h1>週1取り込み用リンク集（GoalNote・熊本）</h1>
 <p>各リンクを自分のブラウザで開き、⌘S →「ウェブページ、HTMLのみ」で
-<code>manual_inputs/goalnote/</code> に保存してください（ファイル名は何でもよい）。
-保存が終わったら Claude Code に「GoalNoteの週1取り込みをして」と頼んでください。</p>
-<p>※ このページは <code>python scraper/fetch_pref_official.py --goalnote-links</code> で作り直せます（tid は設定から自動）。</p>
+<code>manual_inputs/goalnote/</code> に保存してください（ファイル名は何でもよい。熊本の2ページも同じフォルダ）。
+保存が終わったら Claude Code に「GoalNoteと熊本の週1取り込みをして」と頼んでください。</p>
+<p>※ このページは <code>python scraper/fetch_pref_official.py --goalnote-links</code> で作り直せます（tid・id は設定から自動）。</p>
 {"".join(items)}
 </body></html>
 """, encoding="utf-8")
@@ -1800,13 +1847,16 @@ _KUMAMOTO_DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
 _KUMAMOTO_MD_RE = re.compile(r"第\s*(\d+)\s*節")
 
 
-def read_kumamoto(cfg: dict) -> tuple[dict, list[dict]]:
+def read_kumamoto(cfg: dict, get=None) -> tuple[dict, list[dict]]:
+    """get … 保存HTMLを返す関数（2026-11-13〜 kumamoto_saved は _SAVED）。None なら通信して取る。"""
     tid = cfg["id"]
     base = "https://kumamoto-fa.net/league/competition"
+    _get = get or fetch_html
+    pause = 0 if get else SLEEP
 
     # --- 試合（こちらが名前の正本） ---
-    soup = BeautifulSoup(fetch_html(f"{base}/gamelist/?id={tid}"), "html.parser")
-    time.sleep(SLEEP)
+    soup = BeautifulSoup(_get(f"{base}/gamelist/?id={tid}"), "html.parser")
+    time.sleep(pause)
     table = max(soup.find_all("table"), key=lambda t: len(t.find_all("tr")), default=None)
     matches, order = [], []
     if table is not None:
@@ -1837,8 +1887,8 @@ def read_kumamoto(cfg: dict) -> tuple[dict, list[dict]]:
             i += 2
 
     # --- 順位表（正式名称。順位の並びで試合表の名前に対応づける） ---
-    soup2 = BeautifulSoup(fetch_html(f"{base}/ranking/?id={tid}"), "html.parser")
-    time.sleep(SLEEP)
+    soup2 = BeautifulSoup(_get(f"{base}/ranking/?id={tid}"), "html.parser")
+    time.sleep(pause)
     ranked = []
     for table in soup2.find_all("table"):
         rows = _rows(table)
@@ -6375,6 +6425,13 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
         if lack:
             return (f"[手動] {slug}: 保存HTMLが足りないのでスキップ（無い: "
                     + "・".join(f"tid {t} の{'／'.join(v)}" for t, v in lack.items()) + "）")
+    if cfg["platform"] == "kumamoto_saved":
+        if _SAVED is None:
+            return (f"[手動] {slug}: 熊本は自動取得しない（GitHub から接続できない・2026-11-13）。"
+                    f"週1の手動取り込みで更新する。既存JSONはそのまま")
+        lack = _SAVED.has_kumamoto(cfg["id"])
+        if lack:
+            return f"[要確認] 熊本：保存HTMLが足りない（{'／'.join(lack)}）。既存JSONはそのまま"
     global LAST_VERIFY_ITEMS
     LAST_VERIFY_ITEMS = None
     path = DIR / f"{slug}.json"
@@ -6391,6 +6448,10 @@ def process(pref: str, cfg: dict, dry_run: bool) -> str:
             standings, matches = read_goalnote_all(cfg, get=_SAVED if cfg["platform"] == "goalnote_saved" else None)
             src = ("https://www.goalnote.net/detail-standings.php?tid="
                    f"{cfg.get('standings_from', cfg['tid'])}")
+        elif cfg["platform"] == "kumamoto_saved":
+            # 保存HTML（_SAVED）から読む。ここで通信はしない
+            standings, matches = read_kumamoto(cfg, get=_SAVED)
+            src = cfg["source"]
         elif cfg["platform"] == "tecra":
             standings, matches = read_tecra(cfg)
             src = f"https://{cfg['host']}/order/1/{SEASON_YEAR}/all"
@@ -6736,7 +6797,7 @@ def main() -> int:
                         help="書き込まず、既存との差分だけ出す")
     parser.add_argument("--only", default="", help="県idをカンマ区切りで指定")
     parser.add_argument("--goalnote-saved", default="",
-                        help="GoalNote の保存HTMLのフォルダ（例 manual_inputs/goalnote）。GoalNote 8県だけを取り込む")
+                        help="保存HTMLのフォルダ（例 manual_inputs/goalnote）。GoalNote の県と熊本だけを取り込む")
     parser.add_argument("--goalnote-links", action="store_true",
                         help="保存用リンク集 manual_inputs/goalnote_links.html を作って終わる")
     args = parser.parse_args()
@@ -6763,14 +6824,14 @@ def main() -> int:
     for pref, cfg in PREF_OFFICIAL.items():
         if only and pref not in only:
             continue
-        if _SAVED is not None and cfg.get("platform") != "goalnote_saved":
-            continue            # 保存HTMLの取り込みでは GoalNote 8県だけを扱う
+        if _SAVED is not None and cfg.get("platform") not in SAVED_PLATFORMS:
+            continue            # 保存HTMLの取り込みでは GoalNote 6県＋熊本だけを扱う
         try:
             msg = process(pref, cfg, args.dry_run)
         except Exception as e:      # 想定外でも他県は止めない
             msg = f"[要確認] pref-{pref}-1: 例外 {e}"
         print(" ", msg)
-        if msg.startswith("[手動]") or cfg.get("platform") == "goalnote_saved":
+        if msg.startswith("[手動]") or cfg.get("platform") in SAVED_PLATFORMS:
             # 取得していない／保存HTMLの手動取り込み。fetch_status の取得記録には残さない
             # （見張りは手動取り込みの県として lastUpdated で見る）
             if msg.startswith("[更新]"):
