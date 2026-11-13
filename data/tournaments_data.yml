@@ -590,6 +590,64 @@ all_japan_highschool:
 # ────────────────────────────────────────────────────────────
 interhigh:
 
+  2026:                          # 令和8年度（福島開催）静岡学園が初優勝 (2-1 vs 近畿大学附属)。2026-11-13 JFA公式 koukou_soutai_2026 の全50試合と照合済み
+    優勝:    { name: "静岡学園高校", pref: shizuoka }
+    準優勝:   { name: "近畿大学附属高校", pref: osaka }
+    ベスト4: [{ name: "滝川第二高校", pref: hyogo }, { name: "大津高校", pref: kumamoto }]
+    ベスト8: [{ name: "桐光学園高校", pref: kanagawa }, { name: "日章学園高校", pref: miyazaki }, { name: "旭川実業高校", pref: hokkaido }, { name: "桐蔭学園高校", pref: kanagawa }]
+    都道府県代表:
+      - { name: "旭川実業高校", pref: hokkaido }   # 北海道
+      - { name: "青森山田高校", pref: aomori }   # 青森
+      - { name: "専大北上高校", pref: iwate }   # 岩手
+      - { name: "聖和学園高校", pref: miyagi }   # 宮城
+      - { name: "明桜高校", pref: akita }   # 秋田
+      - { name: "山形明正高校", pref: yamagata }   # 山形
+      - { name: "尚志高校", pref: fukushima }   # 福島①
+      - { name: "帝京安積高校", pref: fukushima }   # 福島②
+      - { name: "鹿島学園高校", pref: ibaraki }   # 茨城
+      - { name: "矢板中央高校", pref: tochigi }   # 栃木
+      - { name: "前橋育英高校", pref: gunma }   # 群馬
+      - { name: "昌平高校", pref: saitama }   # 埼玉
+      - { name: "市立船橋高校", pref: chiba }   # 千葉
+      - { name: "成立学園高校", pref: tokyo }   # 東京①
+      - { name: "国士舘高校", pref: tokyo }   # 東京②
+      - { name: "桐蔭学園高校", pref: kanagawa }   # 神奈川②
+      - { name: "桐光学園高校", pref: kanagawa }   # 神奈川①
+      - { name: "山梨学院高校", pref: yamanashi }   # 山梨
+      - { name: "新潟明訓高校", pref: niigata }   # 新潟
+      - { name: "富山第一高校", pref: toyama }   # 富山
+      - { name: "鵬学園高校", pref: ishikawa }   # 石川
+      - { name: "丸岡高校", pref: fukui }   # 福井
+      - { name: "松本国際高校", pref: nagano }   # 長野
+      - { name: "静岡学園高校", pref: shizuoka }   # 静岡
+      - { name: "豊川高校", pref: aichi }   # 愛知
+      - { name: "帝京大学可児高校", pref: gifu }   # 岐阜
+      - { name: "四日市中央工業高校", pref: mie }   # 三重
+      - { name: "近江高校", pref: shiga }   # 滋賀
+      - { name: "東山高校", pref: kyoto }   # 京都
+      - { name: "畝傍高校", pref: nara }   # 奈良
+      - { name: "初芝橋本高校", pref: wakayama }   # 和歌山
+      - { name: "近畿大学附属高校", pref: osaka }   # 大阪①
+      - { name: "大阪桐蔭高校", pref: osaka }   # 大阪②
+      - { name: "滝川第二高校", pref: hyogo }   # 兵庫
+      - { name: "米子北高校", pref: tottori }   # 鳥取
+      - { name: "立正大学淞南高校", pref: shimane }   # 島根
+      - { name: "瀬戸内高校", pref: hiroshima }   # 広島
+      - { name: "岡山学芸館高校", pref: okayama }   # 岡山
+      - { name: "西京高校", pref: yamaguchi }   # 山口
+      - { name: "四国学院大学香川西高校", pref: kagawa }   # 香川
+      - { name: "鳴門高校", pref: tokushima }   # 徳島
+      - { name: "今治東中等教育学校", pref: ehime }   # 愛媛
+      - { name: "高知中央高校", pref: kochi }   # 高知
+      - { name: "九州国際大学付属高等学校", pref: fukuoka }   # 福岡
+      - { name: "佐賀東高校", pref: saga }   # 佐賀
+      - { name: "国見高校", pref: nagasaki }   # 長崎
+      - { name: "大分高校", pref: oita }   # 大分
+      - { name: "大津高校", pref: kumamoto }   # 熊本
+      - { name: "日章学園高校", pref: miyazaki }   # 宮崎
+      - { name: "神村学園高等部", pref: kagoshima }   # 鹿児島
+      - { name: "KBC高等学院", pref: okinawa }   # 沖縄
+
   2025:                          # 神村学園が延長PK戦制して初優勝 (vs 大津)
     優勝:    "神村学園高等部"
     準優勝:   "大津高校"
@@ -1211,6 +1269,12 @@ club_youth_u18:
 # ※ 2021-2023年は決勝トーナメント実施なし(リーグ戦のみ)のため空欄
 # ────────────────────────────────────────────────────────────
 j_youth_cup:
+
+  2026:                          # 第32回 川崎フロンターレU-18が優勝 (2-1 vs 湘南)。2026-11-13 Jリーグ公式 jyouth/2026 の準々決勝〜決勝と照合済み
+    優勝:    { name: "川崎フロンターレU-18", pref: kanagawa }
+    準優勝:   { name: "湘南ベルマーレU-18", pref: kanagawa }
+    ベスト4: [{ name: "ヴィッセル神戸U-18", pref: hyogo }, { name: "ガンバ大阪ユース", pref: osaka }]
+    ベスト8: [{ name: "V・ファーレン長崎U-18", pref: nagasaki }, { name: "鹿島アントラーズユース", pref: ibaraki }, { name: "栃木SC U-18", pref: tochigi }, { name: "鹿児島ユナイテッドFC U-18", pref: kagoshima }]
 
   2025:                          # 鹿島アントラーズユースが11年ぶり4度目 (PK17-18 vs 広島)
     優勝:    "鹿島アントラーズユース"

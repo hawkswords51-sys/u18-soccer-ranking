@@ -1545,7 +1545,7 @@ def main():
       </p>
 
       <p style="margin:4px 0 16px;line-height:1.9;">
-        <a href="/tournaments/interhigh-history/">歴代優勝校一覧（2008〜2025）</a> ／ <a href="/blog/posts/interhigh-2026-heat-safety/">救急医の暑熱対策ガイド</a> ／ <a href="/tournaments/senshuken-2026/">選手権2026 特設ページ</a> ／ <a href="/tournaments/wakura-youth-2026/">和倉ユース2026</a>
+        <a href="/tournaments/interhigh-history/">歴代優勝校一覧（2008〜2026）</a> ／ <a href="/blog/posts/interhigh-2026-heat-safety/">救急医の暑熱対策ガイド</a> ／ <a href="/tournaments/senshuken-2026/">選手権2026 特設ページ</a> ／ <a href="/tournaments/wakura-youth-2026/">和倉ユース2026</a>
       </p>
 
       <section class="lp-section">
