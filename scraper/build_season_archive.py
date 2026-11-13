@@ -142,7 +142,9 @@ def build_page(tg, ex, year, saved_on, n_un):
     head, rest = t[:head_end], t[head_end:]
     head = re.sub(r"<title>.*?</title>", f"<title>{esc(title)}</title>", head, count=1, flags=re.S)
     for attr, key, val in (("name", "description", desc), ("property", "og:title", title),
-                           ("property", "og:description", desc), ("property", "og:url", url)):
+                           ("property", "og:description", desc), ("property", "og:url", url),
+                           # [2026-11-13] X用も合わせる（現行ページの「【2026最新】…毎日自動更新中」を残さない・Kei決定）
+                           ("name", "twitter:title", title), ("name", "twitter:description", desc)):
         head = re.sub(r'(<meta\s+%s="%s"\s+content=")[^"]*(")' % (attr, re.escape(key)),
                       lambda m, v=val: m.group(1) + esc(v, quote=True) + m.group(2), head, count=1)
     head = re.sub(r'(<link\s+rel="canonical"\s+href=")[^"]*(")', lambda m: m.group(1) + url + m.group(2), head, count=1)
