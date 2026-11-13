@@ -142,3 +142,5 @@ scraper/update_tournament_results.py が上の source から
 - 藤枝東 0-1 東海大翔洋
 - 静岡学園 1-1(PK3-1) 浜松開誠館
 ## 決勝（11/14）
+
+- 藤枝東 vs 静岡学園
