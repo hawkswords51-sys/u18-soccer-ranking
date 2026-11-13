@@ -1704,6 +1704,13 @@ def main():
             u = f"{DOMAIN}/en/teams/{p.parent.name}/"
             if all(u != x[0] for x in static_pages):
                 static_pages.append((u, "weekly", "0.5"))
+        # [2026-11-13] 年別アーカイブ（build_season_archive.py が作る prefectures/*/2026/ ・ leagues/*/2026/）。
+        #   sitemap は毎朝作り直されるので、ここに入れないと消える。保存ページが無いうちは何も増えない。
+        for top in ("prefectures", "leagues"):
+            for p in sorted((BASE_DIR / top).glob("*/[0-9][0-9][0-9][0-9]/index.html")):
+                u = f"{DOMAIN}/{top}/{p.parent.parent.name}/{p.parent.name}/"
+                if all(u != x[0] for x in static_pages):
+                    static_pages.append((u, "yearly", "0.5"))
         s = sm.read_text(encoding="utf-8")
         changed = False
         for url, freq, prio in static_pages:

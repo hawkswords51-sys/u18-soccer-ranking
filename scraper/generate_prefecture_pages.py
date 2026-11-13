@@ -2442,6 +2442,17 @@ __ALL_PREFS_HTML__
 </html>
 """
 
+def render_past_seasons(rel_dir: str) -> str:
+    """[2026-11-13] 年別アーカイブ：{rel_dir}/{4桁の年}/index.html がある年だけ「過去のシーズン」を出す。
+    保存ページが1つも無いうちは空文字＝ページは1バイトも変わらない（build_season_archive.py が作る）。"""
+    years = sorted((p.parent.name for p in (BASE_DIR / rel_dir).glob("[0-9][0-9][0-9][0-9]/index.html")),
+                   reverse=True)
+    if not years:
+        return ""
+    links = "・".join(f'<a href="/{rel_dir}/{y}/">{y}年</a>' for y in years)
+    return f'      <p class="past-seasons">過去のシーズン：{links}</p>\n'
+
+
 def build_ai_summary(pref_name, teams):
     """H1直下のAI引用向け一文要約。毎日の順位データから自動生成。"""
     sorted_t = sort_teams(teams)
@@ -2843,7 +2854,7 @@ def generate_page(pref, all_prefs):
         .replace("__CY_COUNT__", str(cy_count))
         .replace("__TOP_LEAGUE__", html_escape(top_league))
         .replace("__NOTABLE_SENTENCE__", notable_sentence)
-        .replace("__AI_SUMMARY__", build_ai_summary(pref_name, teams))
+        .replace("__AI_SUMMARY__", build_ai_summary(pref_name, teams) + render_past_seasons(f"prefectures/{pref_id}"))
         .replace("__TEAM_ROWS__", team_rows)
         .replace("__RANKING_METHOD__", render_ranking_method_html(pref_name))
         .replace("__PREF_RECENT_RESULTS__", render_pref_recent_results(pref_id, pref_name))

@@ -1470,6 +1470,17 @@ __RELATED_LEAGUES__
 </html>
 """
 
+def render_past_seasons(rel_dir: str) -> str:
+    """[2026-11-13] 年別アーカイブ：{rel_dir}/{4桁の年}/index.html がある年だけ「過去のシーズン」を出す。
+    保存ページが1つも無いうちは空文字＝ページは1バイトも変わらない（build_season_archive.py が作る）。"""
+    years = sorted((p.parent.name for p in (BASE_DIR / rel_dir).glob("[0-9][0-9][0-9][0-9]/index.html")),
+                   reverse=True)
+    if not years:
+        return ""
+    links = "・".join(f'<a href="/{rel_dir}/{y}/">{y}年</a>' for y in years)
+    return f'      <p class="past-seasons">過去のシーズン：{links}</p>\n'
+
+
 def build_league_ai_summary(label, sorted_teams):
     """リーグページH1直下のAI引用向け一文要約。毎日の順位データから自動生成。"""
     played_teams = [t for t in sorted_teams if (t.get("played", 0) or 0) > 0]
@@ -1758,7 +1769,7 @@ def generate_league_page(league_name, slug, label, category, description, season
         .replace("__SCHEMA_ITEMLIST__", itemlist_json)
         .replace("__SCHEMA_FAQ__", faq_schema)
         .replace("__LEAGUE_LABEL__", html_escape(label))
-        .replace("__AI_SUMMARY__", build_league_ai_summary(label, sorted_teams))
+        .replace("__AI_SUMMARY__", build_league_ai_summary(label, sorted_teams) + render_past_seasons(f"leagues/{slug}"))
         .replace("__DESCRIPTION_LONG__", description_long)
         .replace("__TEAM_COUNT__", str(team_count))
         .replace("__CATEGORY_LABEL__", html_escape(category_label))
