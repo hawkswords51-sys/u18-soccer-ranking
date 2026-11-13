@@ -154,12 +154,12 @@ hokushinetsu:
             - div: 1部
               teams:
                 - { name: カターレ富山U-18, link: kataller-toyama-u18, mark: playoff }
-                - { name: 星稜高, link: seiryo, mark: playoff }
                 - { name: 新潟明訓高, link: niigata-meikun }
-                - { name: 鵬学園高, link: ohtori-gakuen }
                 - { name: 日本文理高, link: nihon-bunri }
-                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
                 - { name: ツエーゲン金沢U-18, link: zweigen-kanazawa-u18 }
+                - { name: 星稜高, link: seiryo }
+                - { name: アルビレックス新潟U-18, link: albirex-niigata-u18 }
+                - { name: 鵬学園高, link: ohtori-gakuen }
                 - { name: 帝京長岡高2nd }
                 - { name: 富山第一高, link: toyama-daiichi, mark: down }
                 - { name: 北越高, link: hokuetsu, mark: down }
@@ -3339,7 +3339,7 @@ kyushu:
                 - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18 }
                 - { name: 大津2nd }
                 - { name: 九州国際大学付属, link: kyukoku-fu, mark: down }
-                - { name: サガン鳥栖U-18, mark: down }
+                - { name: サガン鳥栖U-18 2nd, mark: down }
             - div: 2部
               teams:
                 - { name: 国見, link: kunimi, mark: up }
@@ -3409,8 +3409,8 @@ kyushu:
             - teams:
                 - { name: V・ファーレン長崎U-18, link: v-varen-nagasaki-u18, mark: playoff }
                 - { name: 神村学園高等部, link: kamimura-gakuen, mark: playoff }
-                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
                 - { name: 九州国際大学付属, link: kyukoku-fu }
+                - { name: 大分トリニータU-18, link: oita-trinita-u18 }
                 - { name: サガン鳥栖U-18 2nd }
                 - { name: 日章学園, link: nissho-gakuen }
                 - { name: 筑陽学園 }
