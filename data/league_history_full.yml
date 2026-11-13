@@ -768,7 +768,7 @@ kanto:
                 - { name: 山梨学院, link: yamanashi-gakuin }
                 - { name: 桐蔭学園, link: toin-gakuen }
                 - { name: 矢板中央B }
-                - { name: 関東第一, mark: pref_down }
+                - { name: 関東第一, link: kanto-daiichi, mark: pref_down }
 
     - title: 2014年〜2021年（1部制）
       note: 2部が廃止され、1部10チームだけで行われた時代。2021年の10位は、翌2022年の2部復活にともなって2部へ回った。
@@ -927,7 +927,7 @@ kanto:
                 - { name: 武南, mark: pref_down }
                 - { name: 桐蔭学園, link: toin-gakuen, mark: pref_down }
                 - { name: 佐野日大, mark: pref_down }
-                - { name: 関東第一, mark: pref_down }
+                - { name: 関東第一, link: kanto-daiichi, mark: pref_down }
                 - { name: 幕張総合, mark: pref_down }
                 - { name: 鹿島学園, link: kashima-gakuen, mark: pref_down }
                 - { name: 水戸ユース, mark: pref_down }
@@ -951,7 +951,7 @@ kanto:
                 - { name: 横浜Cユース, link: yokohama-fc-youth, mark: up }
                 - { name: 八千代, mark: up }
                 - { name: 大宮ユース, link: rb-omiya-ardija-u18, mark: up }
-                - { name: 関東第一 }
+                - { name: 関東第一, link: kanto-daiichi }
                 - { name: 鹿島学園, link: kashima-gakuen }
                 - { name: 佐野日大 }
                 - { name: 柏日体, link: nittaidai-kashiwa, mark: pref_down }
@@ -2239,17 +2239,17 @@ hokkaido:
               teams:
                 - { name: 札幌大谷, link: sapporo-otani, mark: playoff }
                 - { name: コンサドーレ, link: consadole-sapporo-u18 }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
-                - { name: 大谷室蘭 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 札幌光星, link: sapporo-kosei }
                 - { name: 札幌創成, mark: down }
                 - { name: 札幌第一, mark: down }
             - div: FAリーグ
               teams:
-                - { name: 帯広北, mark: up }
+                - { name: 帯広北, link: obihiro-kita, mark: up }
                 - { name: 札幌大谷高2nd, sub: 昇格不可 }
-                - { name: 北照, sub: 繰り上げ, mark: up }
+                - { name: 北照, link: hokusho, sub: 繰り上げ, mark: up }
                 - { name: 旭川実2nd }
                 - { name: 大谷室蘭2nd }
                 - { name: VITA FC }
@@ -2263,16 +2263,16 @@ hokkaido:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
                 - { name: 札幌大谷, link: sapporo-otani }
                 - { name: 札幌創成 }
-                - { name: 北海 }
-                - { name: 大谷室蘭 }
+                - { name: 北海, link: hokkai }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 駒大苫小牧, mark: down }
-                - { name: 北照, mark: down }
+                - { name: 北照, link: hokusho, mark: down }
             - div: FAリーグ
               teams:
                 - { name: 札幌光星, link: sapporo-kosei, mark: up }
                 - { name: 札幌第一, mark: up }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 旭川実2nd }
                 - { name: VITA FC }
                 - { name: 旭川志峯 }
@@ -2297,14 +2297,14 @@ hokkaido:
             プレーオフの結果にかかわらず翌年新設の北海道FAリーグへ降格となった。
           rows:
             - teams:
-                - { name: 北海, mark: playoff }
+                - { name: 北海, link: hokkai, mark: playoff }
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
                 - { name: 札幌大谷, link: sapporo-otani }
                 - { name: 駒大苫小牧 }
-                - { name: 大谷室蘭 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 札幌創成 }
                 - { name: 旭川実2nd, mark: down }
-                - { name: 帯広北, mark: down }
+                - { name: 帯広北, link: obihiro-kita, mark: down }
         - kai: 20
           year: 2022
           rows:
@@ -2313,8 +2313,8 @@ hokkaido:
                 - { name: 札幌大谷, link: sapporo-otani, mark: playoff }
                 - { name: コンサドーレ, link: consadole-sapporo-u18 }
                 - { name: 札幌創成 }
-                - { name: 大谷室蘭 }
-                - { name: 北海 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
+                - { name: 北海, link: hokkai }
                 - { name: 札幌光星, link: sapporo-kosei, mark: down }
                 - { name: 札幌第一, mark: down }
         - kai: 19
@@ -2323,7 +2323,7 @@ hokkaido:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
                 - { name: 旭川実, link: asahikawa-jitsugyo, mark: playoff }
-                - { name: 大谷室蘭 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 札幌大谷, link: sapporo-otani }
                 - { name: 札幌創成 }
                 - { name: 札幌第一 }
@@ -2338,7 +2338,7 @@ hokkaido:
             - teams:
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: コンサドーレ, link: consadole-sapporo-u18 }
-                - { name: 大谷室蘭 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 札幌第一 }
                 - { name: 東海大札幌 }
                 - { name: 札幌大谷, link: sapporo-otani }
@@ -2354,7 +2354,7 @@ hokkaido:
                 - { name: 駒大苫小牧 }
                 - { name: 札幌大谷, link: sapporo-otani }
                 - { name: 札幌創成 }
-                - { name: 帯広北, mark: down }
+                - { name: 帯広北, link: obihiro-kita, mark: down }
                 - { name: 白樺学園, mark: down }
         - kai: 16
           year: 2018
@@ -2365,9 +2365,9 @@ hokkaido:
                 - { name: 札幌大谷, link: sapporo-otani }
                 - { name: 駒大苫小牧 }
                 - { name: 札幌創成 }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 東海大札幌, mark: down }
-                - { name: 大谷室蘭, mark: down }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran, mark: down }
         - kai: 15
           year: 2017
           rows:
@@ -2375,21 +2375,21 @@ hokkaido:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 札幌大谷, link: sapporo-otani }
-                - { name: 大谷室蘭 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 東海大札幌 }
-                - { name: 帯広北 }
-                - { name: 北海, mark: down }
+                - { name: 帯広北, link: obihiro-kita }
+                - { name: 北海, link: hokkai, mark: down }
                 - { name: 札幌日大高, mark: down }
         - kai: 14
           year: 2016
           rows:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: playoff }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 札幌大谷, link: sapporo-otani }
-                - { name: 帯広北 }
-                - { name: 大谷室蘭 }
+                - { name: 帯広北, link: obihiro-kita }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 札幌第一, mark: down }
                 - { name: 駒大苫小牧, mark: down }
         - kai: 13
@@ -2399,33 +2399,33 @@ hokkaido:
                 - { name: 旭川実, link: asahikawa-jitsugyo, mark: playoff }
                 - { name: 札幌第一 }
                 - { name: 札幌大谷, link: sapporo-otani }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 駒大苫小牧 }
-                - { name: 大谷室蘭 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 旭川凌雲, mark: down }
                 - { name: 北星大附, mark: down }
         - kai: 12
           year: 2014
           rows:
             - teams:
-                - { name: 大谷室蘭, mark: playoff }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran, mark: playoff }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 札幌第一 }
                 - { name: 札幌大谷, link: sapporo-otani }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 駒大苫小牧 }
-                - { name: 北海, mark: down }
+                - { name: 北海, link: hokkai, mark: down }
                 - { name: 東海大四, mark: down }
         - kai: 11
           year: 2013
           rows:
             - teams:
-                - { name: 帯広北, mark: playoff }
-                - { name: 大谷室蘭 }
+                - { name: 帯広北, link: obihiro-kita, mark: playoff }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 札幌第一 }
                 - { name: 札幌大谷, link: sapporo-otani }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 札幌創成, mark: down }
                 - { name: 札幌日大高, mark: down }
         - kai: 10
@@ -2433,11 +2433,11 @@ hokkaido:
           note: 6位の登別大谷高は2012年度をもって閉校となり、リーグを脱退した。
           rows:
             - teams:
-                - { name: 大谷室蘭, mark: playoff }
-                - { name: 帯広北 }
+                - { name: 大谷室蘭, link: hokkaido-otani-muroran, mark: playoff }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 札幌第一 }
                 - { name: 札幌創成 }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 登別大谷, sub: 脱退 }
                 - { name: 札幌新陽, mark: down }
                 - { name: 札幌光星, link: sapporo-kosei, mark: down }
@@ -2447,8 +2447,8 @@ hokkaido:
           rows:
             - teams:
                 - { name: 旭川実, link: asahikawa-jitsugyo, mark: premier }
-                - { name: 帯広北 }
-                - { name: 北海 }
+                - { name: 帯広北, link: obihiro-kita }
+                - { name: 北海, link: hokkai }
                 - { name: 札幌第一 }
                 - { name: 札幌創成 }
                 - { name: 室蘭大谷 }
@@ -2474,9 +2474,9 @@ hokkaido:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: premier }
                 - { name: 室蘭大谷 }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 札幌第一 }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 札幌創成, mark: stay }
                 - { name: 札幌新陽, mark: down }
         - kai: 7
@@ -2485,11 +2485,11 @@ hokkaido:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
                 - { name: 札幌第一 }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 室蘭大谷 }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 札幌新陽 }
-                - { name: 帯広北, mark: stay }
+                - { name: 帯広北, link: obihiro-kita, mark: stay }
                 - { name: 札幌光星, link: sapporo-kosei, mark: down }
                 - { name: 登別大谷, mark: down }
                 - { name: 札幌白石, mark: down }
@@ -2498,9 +2498,9 @@ hokkaido:
           rows:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 室蘭大谷 }
                 - { name: 札幌第一 }
                 - { name: 札幌新陽 }
@@ -2513,8 +2513,8 @@ hokkaido:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
                 - { name: 室蘭大谷 }
-                - { name: 帯広北 }
-                - { name: 北海 }
+                - { name: 帯広北, link: obihiro-kita }
+                - { name: 北海, link: hokkai }
                 - { name: 札幌第一 }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 北星大附 }
@@ -2531,8 +2531,8 @@ hokkaido:
                 - { name: 室蘭大谷 }
                 - { name: 札幌山の手 }
                 - { name: コンサドーレ, link: consadole-sapporo-u18 }
-                - { name: 北海 }
-                - { name: 帯広北 }
+                - { name: 北海, link: hokkai }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 登別大谷, mark: down }
                 - { name: 札幌光星, link: sapporo-kosei, mark: down }
                 - { name: 駒大苫小牧, mark: down }
@@ -2541,10 +2541,10 @@ hokkaido:
           rows:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 室蘭大谷 }
                 - { name: 登別大谷 }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 札幌山の手 }
                 - { name: 札幌第一, mark: stay }
@@ -2555,9 +2555,9 @@ hokkaido:
           rows:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
-                - { name: 北海 }
+                - { name: 北海, link: hokkai }
                 - { name: 札幌第一 }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 旭川実, link: asahikawa-jitsugyo }
                 - { name: 室蘭大谷 }
                 - { name: 札幌白石 }
@@ -2568,7 +2568,7 @@ hokkaido:
           rows:
             - teams:
                 - { name: コンサドーレ, link: consadole-sapporo-u18, mark: zenkoku }
-                - { name: 帯広北 }
+                - { name: 帯広北, link: obihiro-kita }
                 - { name: 室蘭大谷 }
                 - { name: 札幌白石 }
                 - { name: 札幌第一 }
@@ -4154,14 +4154,14 @@ shikoku:
                 - { name: 四国学院大学香川西高校, link: kagawa-nishi }
                 - { name: 松山工業高校 }
                 - { name: 高知西高校 }
-                - { name: 済美高校, mark: pref_down }
+                - { name: 済美高校, link: saibi, mark: pref_down }
         - kai: 13
           year: 2015
           rows:
             - teams:
                 - { name: 徳島市立高校, link: tokushima-shiritsu, mark: playoff }
                 - { name: 愛媛FC U-18, link: ehime-fc-u18 }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 明徳義塾高校 }
                 - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
                 - { name: 香川西高校, link: kagawa-nishi }
@@ -4223,13 +4223,13 @@ shikoku:
                 - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
                 - { name: 尽誠学園高校 }
                 - { name: 高知商業高校 }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 松山商業高校 }
         - kai: 9
           year: 2011
           rows:
             - teams:
-                - { name: 済美高校, mark: playoff }
+                - { name: 済美高校, link: saibi, mark: playoff }
                 - { name: 松山工業高校 }
                 - { name: 高知商業高校 }
                 - { name: 香川西高校, link: kagawa-nishi }
@@ -4248,7 +4248,7 @@ shikoku:
                 - { name: 香川西高校, link: kagawa-nishi }
                 - { name: 松山工業高校 }
                 - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 徳島市立高校, link: tokushima-shiritsu }
                 - { name: 明徳義塾高校 }
                 - { name: 南宇和高校 }
@@ -4278,7 +4278,7 @@ shikoku:
                 - { name: 香川西高校, link: kagawa-nishi }
                 - { name: 今治東中等教育学校, link: imabari-higashi }
                 - { name: 明徳義塾高校 }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 徳島ヴォルティスユース, link: tokushima-vortis-youth }
                 - { name: 高松商業高校 }
 
@@ -4300,7 +4300,7 @@ shikoku:
                 - { name: 愛媛FCユース, link: ehime-fc-u18 }
                 - { name: 鳴門高校, link: naruto }
                 - { name: 松山工業高校 }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 明徳義塾高校 }
                 - { name: 高知中央高校, link: kochi-chuo }
                 - { name: 高知高校, link: kochi }
@@ -4357,7 +4357,7 @@ shikoku:
                 - { name: 尽誠学園高校 }
                 - { name: 南宇和高校 }
                 - { name: 徳島市立高校, link: tokushima-shiritsu }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 城ノ内高校 }
 
     - title: 2003年〜2004年（黎明期）
@@ -4375,7 +4375,7 @@ shikoku:
           rows:
             - div: Aブロック
               teams:
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
                 - { name: 城ノ内高校 }
                 - { name: 高松商業高校 }
                 - { name: 高知高校, link: kochi }
@@ -4394,7 +4394,7 @@ shikoku:
                 - { name: 愛媛FCユース, link: ehime-fc-u18 }
                 - { name: 松山工業高校 }
                 - { name: 城ノ内高校 }
-                - { name: 済美高校 }
+                - { name: 済美高校, link: saibi }
         - kai: 1
           year: 2003
           note: 第1回大会。8チームによる2回戦総当たりで行われた。
@@ -5221,7 +5221,7 @@ chugoku:
                 - { name: 立正大学淞南高校, link: rissho-shonan }
                 - { name: 玉野光南高校, link: tamano-konan }
                 - { name: 広島県瀬戸内高校, link: setouchi }
-                - { name: 如水館高校, mark: pref_down }
+                - { name: 如水館高校, link: josuikan, mark: pref_down }
                 - { name: 大社高校, link: taisha, mark: pref_down }
         - kai: 13
           year: 2015

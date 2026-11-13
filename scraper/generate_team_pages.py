@@ -18,6 +18,7 @@ sitemap.xml にも /teams/{id}/ の URL を追加する。
 """
 
 import json
+import os
 import re
 from datetime import datetime, timezone, timedelta
 from html import escape as html_escape
@@ -29,6 +30,7 @@ import national_team as nt  # 日本代表選出バッジ用（同 scraper/ に 
 import pro_signings as ps  # プロ内定・2種登録バッジ用（同 scraper/ に pro_signings.py）
 import team_season as ts  # シーズンデータ3欄（jfa_team を書いたチームだけ）
 import senshuken_badge as sb  # 選手権 都道府県代表バッジ（2026-10-28・代表に決まったチームだけ）
+import team_history as th  # 年度別の成績（A-1・2026-11-13。TEAM_HISTORY_ENABLED で表示）
 
 
 # =========================================================================
@@ -68,6 +70,9 @@ JST = timezone(timedelta(hours=9))
 #   測定＝公開4週間後、Bing の検索語完全一致とページ別の前後28日の CTR・平均順位。効果が出たら他校へ横展開。
 TEAM_COMPACT_TITLE_IDS = {"aomori-yamada", "shizuoka-gakuen", "joetsu", "asahikawa-jitsugyo"}
 TEAM_TITLE_SEASON = "2026"  # ← 年度切り替えで直す（fetch_jfa.py の SEASON と揃える）
+# [2026-11-13] A-1「年度別の成績」。公開は12月のシーズン凍結のとき（Kei決定）なので、それまで False。
+#   False のあいだは全ページが1バイトも変わらない。/tmp での確認は環境変数 TEAM_HISTORY_PREVIEW=1 で表示できる。
+TEAM_HISTORY_ENABLED = False
 
 
 # =========================================================================
@@ -711,6 +716,9 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
     #   ⚠️ jfa_team が無いチームでは render_sections_html が空文字を返すので、
     #      他の159ページは1バイトも変わらない。
     season_html = ts.render_sections_html(meta, BASE_DIR)
+    # [2026-11-13] A-1：年度別の成績は「今季の成績のすぐ下・関連リンクの直前」（Kei決定）
+    if TEAM_HISTORY_ENABLED or os.environ.get("TEAM_HISTORY_PREVIEW") == "1":
+        season_html += th.render_history_html(meta, BASE_DIR)
     if season_html:
         anchor = "<h2>関連リンク</h2>"
         if anchor in body_html:
