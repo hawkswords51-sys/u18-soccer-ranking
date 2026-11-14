@@ -224,6 +224,11 @@ PREFECTURE_FEATURED_ARTICLES = {
     ],
     "aichi": [
         {
+            "title": "【愛知選手権2026決勝】豊川が初優勝、インハイに続く県2冠｜長谷川大監督4年目で冬の全国へ",
+            "url": "/blog/posts/toyokawa-senshuken-2026/",
+            "date": "2026-11-14",
+        },
+        {
             "title": "【愛知インハイ2026 ベスト4】豊川高校はなぜ強くなったのか｜長谷川大監督と大下蒼生の出会い",
             "url": "/blog/posts/toyokawa-rise-2026/",
             "date": "2026-05-27",
