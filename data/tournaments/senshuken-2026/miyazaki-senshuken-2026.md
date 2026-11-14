@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 宮崎県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4427
 round_dates: 準々決勝=11/3, 準決勝=11/7, 決勝=11/14
 ---
@@ -68,4 +68,4 @@ koko側のラウンド構成＝1回戦・2回戦・3回戦・準々決勝・準�
 
 ## 決勝（11/14）
 
-- 日章学園 vs 鵬翔
+- 日章学園 4-0 鵬翔
