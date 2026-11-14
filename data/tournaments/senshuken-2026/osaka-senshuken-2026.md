@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 大阪府大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4445
 round_dates: 準々決勝=10/31・11/1, 準決勝=11/8, 決勝=11/14
 ---
@@ -230,4 +230,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/14）
 
-- 金光大阪 vs 履正社
+- 金光大阪 2-2(PK4-3) 履正社
