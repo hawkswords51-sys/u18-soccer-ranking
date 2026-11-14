@@ -222,6 +222,13 @@ PREFECTURE_FEATURED_ARTICLES = {
             "date": "2026-05-11",
         },
     ],
+    "chiba": [
+        {
+            "title": "【千葉選手権2026決勝】流経大柏と市立船橋、5年ぶりの決勝対決｜2010年度以降の決勝は6勝6敗",
+            "url": "/blog/posts/chiba-ryukei-ichifuna-rivalry-2026/",
+            "date": "2026-11-14",
+        },
+    ],
     "aichi": [
         {
             "title": "【愛知選手権2026決勝】豊川が初優勝、インハイに続く県2冠｜長谷川大監督4年目で冬の全国へ",
