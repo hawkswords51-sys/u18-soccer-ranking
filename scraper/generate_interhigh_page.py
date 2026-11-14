@@ -467,6 +467,20 @@ def _short_label(name):
 SLUG_TO_PREF = {v: k for k, v in PREF_SLUG.items()}
 
 
+# 県の下の地区リーグ（県1部とは別のリーグ）。名前にこれが入っていたら「県N部」と書かない。
+# 2026-11-14 時点で teams.json・team-profiles にある地区リーグはこの1つだけ（AIE国際）。
+DISTRICT_LEAGUES = ("東播・淡路",)
+
+
+def _district_league(s):
+    """地区リーグなら「東播・淡路1部」のような短縮名、そうでなければ空文字。"""
+    for name in DISTRICT_LEAGUES:
+        if name in s:
+            m = re.search(r'(\d+)\s*部', s)
+            return f"{name}{m.group(1)}部" if m else name
+    return ""
+
+
 def _short_league(league):
     """正式リーグ名を表示用の短い名前に変換する。"""
     if not league:
@@ -477,6 +491,10 @@ def _short_league(league):
         return s[s.index("プレミア"):].replace("リーグ", "")
     if "プリンス" in s:
         return s[s.index("プリンス"):].replace("リーグ", "")
+    # [2026-11-14] 県リーグではない地区リーグは「県N部」にしない（例：東播・淡路リーグ1部（兵庫）→ 東播・淡路1部）
+    d = _district_league(s)
+    if d:
+        return d
     # 県リーグ系：末尾付近の「N部」の数字を拾って「県N部」に
     m = re.search(r'(\d+)\s*部', s)
     if m:
@@ -522,6 +540,9 @@ def league_url(raw_league, pref_jp=None):
                     return f"/leagues/prince-{slug}-{div}/"
                 return f"/leagues/prince-{slug}/"
         return "/leagues/"
+    # 地区リーグは県ページに順位表が無いので、リンクを付けない
+    if _district_league(s):
+        return ""
     # 県リーグ → その県の順位ページ
     slug = pref_slug(pref_jp) if pref_jp else None
     return f"/prefectures/{slug}/" if slug else ""
