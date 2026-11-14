@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "http://www.okinawa-soccer-habu.com/scores/table/161",
   "sourceName": "沖縄県サッカー協会 公式（波布リーグ）",
-  "lastUpdated": "2026-11-14",
+  "lastUpdated": "2026-11-15",
   "teams": [
     {
       "name": "那覇",
@@ -41,6 +41,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "名護",
+      "points": 26,
+      "played": 12,
+      "won": 8,
+      "drawn": 2,
+      "lost": 2,
+      "gf": 43,
+      "ga": 14,
+      "gd": 29
+    },
+    {
+      "rank": 2,
       "team": "沖縄SV",
       "points": 25,
       "played": 12,
@@ -50,18 +62,6 @@
       "gf": 33,
       "ga": 15,
       "gd": 18
-    },
-    {
-      "rank": 2,
-      "team": "名護",
-      "points": 23,
-      "played": 11,
-      "won": 7,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 38,
-      "ga": 14,
-      "gd": 24
     },
     {
       "rank": 3,
@@ -103,37 +103,37 @@
       "rank": 6,
       "team": "西原",
       "points": 15,
-      "played": 12,
+      "played": 13,
       "won": 5,
       "drawn": 0,
-      "lost": 7,
+      "lost": 8,
       "gf": 20,
-      "ga": 38,
-      "gd": -18
+      "ga": 43,
+      "gd": -23
     },
     {
       "rank": 7,
       "team": "FC琉球OKINAWA 2nd",
-      "points": 9,
-      "played": 12,
-      "won": 3,
+      "points": 12,
+      "played": 13,
+      "won": 4,
       "drawn": 0,
       "lost": 9,
-      "gf": 28,
+      "gf": 35,
       "ga": 39,
-      "gd": -11
+      "gd": -4
     },
     {
       "rank": 8,
       "team": "FC琉球鹿島朝日",
       "points": 2,
-      "played": 12,
+      "played": 13,
       "won": 0,
       "drawn": 2,
-      "lost": 10,
+      "lost": 11,
       "gf": 5,
-      "ga": 60,
-      "gd": -55
+      "ga": 67,
+      "gd": -62
     }
   ],
   "matches": [
@@ -481,12 +481,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-14",
       "home": "西原",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 5,
       "away": "名護",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -571,12 +571,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-14",
       "home": "FC琉球OKINAWA 2nd",
-      "hs": null,
-      "as": null,
+      "hs": 7,
+      "as": 0,
       "away": "FC琉球鹿島朝日",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -644,17 +644,17 @@
   ],
   "source_standings": [
     {
+      "team": "名護",
+      "pts": 26,
+      "gf": 43,
+      "ga": 14,
+      "rank": 1
+    },
+    {
       "team": "沖縄SV",
       "pts": 25,
       "gf": 33,
       "ga": 15,
-      "rank": 1
-    },
-    {
-      "team": "名護",
-      "pts": 23,
-      "gf": 38,
-      "ga": 14,
       "rank": 2
     },
     {
@@ -682,13 +682,13 @@
       "team": "西原",
       "pts": 15,
       "gf": 20,
-      "ga": 38,
+      "ga": 43,
       "rank": 6
     },
     {
       "team": "FC琉球OKINAWA 2nd",
-      "pts": 9,
-      "gf": 28,
+      "pts": 12,
+      "gf": 35,
       "ga": 39,
       "rank": 7
     },
@@ -696,7 +696,7 @@
       "team": "FC琉球鹿島朝日",
       "pts": 2,
       "gf": 5,
-      "ga": 60,
+      "ga": 67,
       "rank": 8
     }
   ]

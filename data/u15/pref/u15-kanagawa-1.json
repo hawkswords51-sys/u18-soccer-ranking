@@ -6,7 +6,7 @@
  "region": "関東",
  "source": "https://www.kanagawa-fa.gr.jp/cms/u15/competition/u15-1b-2026/",
  "sourceName": "神奈川県サッカー協会 3種大会部会",
- "lastUpdated": "2026-11-09",
+ "lastUpdated": "2026-11-15",
  "teams": [
   {
    "name": "川崎フロンターレU-15等々力",
@@ -17,20 +17,20 @@
    "short": "FC Kanaloa A"
   },
   {
-   "name": "瀬谷インターナショナル フットボール",
-   "short": "瀬谷インターナショナル フットボール"
-  },
-  {
    "name": "FCヴィアージャ",
    "short": "FCヴィアージャ"
   },
   {
-   "name": "横須賀シーガルズFC",
-   "short": "横須賀シーガルズFC"
+   "name": "瀬谷インターナショナル フットボール",
+   "short": "瀬谷インターナショナル フットボール"
   },
   {
    "name": "シュートJrユースFC",
    "short": "シュートJrユースFC"
+  },
+  {
+   "name": "横須賀シーガルズFC",
+   "short": "横須賀シーガルズFC"
   },
   {
    "name": "足柄FC",
@@ -76,6 +76,18 @@
   },
   {
    "rank": 3,
+   "team": "FCヴィアージャ",
+   "points": 34,
+   "played": 18,
+   "won": 11,
+   "drawn": 1,
+   "lost": 6,
+   "gf": 24,
+   "ga": 15,
+   "gd": 9
+  },
+  {
+   "rank": 4,
    "team": "瀬谷インターナショナル フットボール",
    "points": 33,
    "played": 18,
@@ -87,19 +99,19 @@
    "gd": 17
   },
   {
-   "rank": 4,
-   "team": "FCヴィアージャ",
-   "points": 31,
-   "played": 17,
+   "rank": 5,
+   "team": "シュートJrユースFC",
+   "points": 30,
+   "played": 18,
    "won": 10,
-   "drawn": 1,
-   "lost": 6,
-   "gf": 22,
-   "ga": 15,
-   "gd": 7
+   "drawn": 0,
+   "lost": 8,
+   "gf": 33,
+   "ga": 21,
+   "gd": 12
   },
   {
-   "rank": 5,
+   "rank": 6,
    "team": "横須賀シーガルズFC",
    "points": 28,
    "played": 18,
@@ -109,18 +121,6 @@
    "gf": 28,
    "ga": 32,
    "gd": -4
-  },
-  {
-   "rank": 6,
-   "team": "シュートJrユースFC",
-   "points": 27,
-   "played": 17,
-   "won": 9,
-   "drawn": 0,
-   "lost": 8,
-   "gf": 28,
-   "ga": 21,
-   "gd": 7
   },
   {
    "rank": 7,
@@ -138,25 +138,25 @@
    "rank": 8,
    "team": "FC川崎CHAMP JY",
    "points": 11,
-   "played": 17,
+   "played": 18,
    "won": 3,
    "drawn": 2,
-   "lost": 12,
+   "lost": 13,
    "gf": 13,
-   "ga": 38,
-   "gd": -25
+   "ga": 40,
+   "gd": -27
   },
   {
    "rank": 9,
    "team": "JFC FUTURO",
    "points": 10,
-   "played": 17,
+   "played": 18,
    "won": 3,
    "drawn": 1,
-   "lost": 13,
+   "lost": 14,
    "gf": 19,
-   "ga": 42,
-   "gd": -23
+   "ga": 47,
+   "gd": -28
   },
   {
    "rank": 10,
@@ -959,19 +959,19 @@
    "md": 0,
    "date": "2026-11-14",
    "home": "FC川崎CHAMP JY",
-   "hs": null,
-   "as": null,
+   "hs": 0,
+   "as": 2,
    "away": "FCヴィアージャ",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
    "date": "2026-11-14",
    "home": "シュートJrユースFC",
-   "hs": null,
-   "as": null,
+   "hs": 5,
+   "as": 0,
    "away": "JFC FUTURO",
-   "status": "scheduled"
+   "status": "played"
   },
   {
    "md": 0,
