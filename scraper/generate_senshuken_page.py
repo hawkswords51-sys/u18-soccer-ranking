@@ -175,7 +175,13 @@ def rep_link(name):
     from generate_interhigh_page import team_link  # noqa: E402  import時は読むだけで書き込まない
     if name == "確認中":
         return esc(name)
-    return team_link(name)
+    html = team_link(name)
+    if "team-profile-link" not in html:
+        # [2026-11-14] 県予選mdは「流通経済大学付属柏」のように「高校」なしで書くことがある → 「高校」付きでも探す（表示名は元のまま）
+        alt = team_link(name + "高校")
+        if "team-profile-link" in alt:
+            return alt.replace(">" + esc(name + "高校") + "<", ">" + esc(name) + "<", 1)
+    return html
 
 
 # ---- [2026-10-28] 代表校の付記（所属リーグ・県内総合順位・直近10大会の出場歴） ----
@@ -293,7 +299,7 @@ def rep_note(slug, name):
     # 所属リーグ（インハイページと同じ表・同じ短縮名。県名は行頭にあるので省く）
     try:
         from generate_interhigh_page import SCHOOL_LEAGUE_MAP, _norm_team
-        meta = SCHOOL_LEAGUE_MAP.get(_norm_team(name))
+        meta = SCHOOL_LEAGUE_MAP.get(_norm_team(name)) or SCHOOL_LEAGUE_MAP.get(_norm_team(name + "高校"))
         if meta:
             lg, url = meta[1], (meta[2] if len(meta) > 2 else "")
             parts.append(f'<a href="{esc(url)}" style="text-decoration:none;">{esc(lg)}</a>' if url else esc(lg))
