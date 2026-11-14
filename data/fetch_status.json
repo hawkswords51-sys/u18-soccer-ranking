@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-14T11:50:43+09:00",
+  "updatedAt": "2026-11-14T11:50:47+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -403,13 +403,13 @@
       "single_round": false,
       "dup_pairs": 45,
       "played_without_date": 0,
-      "played": 75,
+      "played": 76,
       "total": 90,
       "teams": 10,
-      "latest_match": "2026-11-03",
+      "latest_match": "2026-11-14",
       "source": "official",
       "sourceName": "広島県サッカー協会 公式（SportsOnline）",
-      "last_change": "2026-11-04",
+      "last_change": "2026-11-14",
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
@@ -450,7 +450,7 @@
       "sourceName": "兵庫県サッカー協会 公式",
       "last_change": "2026-09-15",
       "result_since": "2026-09-20",
-      "result_streak": 134,
+      "result_streak": 135,
       "status": "warn",
       "result": "verify_failed",
       "result_note": "検算不一致 ['芦屋学園A: 得失点差 公式12 ≠ 試合から13', '三田学園B: 得失点差 公式-14 ≠ 試合から-15'] …",
@@ -644,7 +644,7 @@
       "sourceName": "京都府サッカー協会 公式",
       "last_change": "2026-10-01",
       "result_since": "2026-10-27",
-      "result_streak": 37,
+      "result_streak": 38,
       "status": "warn",
       "last_updated": "2026-10-26",
       "result": "fetch_error",
@@ -952,16 +952,16 @@
       "single_round": false,
       "dup_pairs": 28,
       "played_without_date": 0,
-      "played": 44,
+      "played": 45,
       "total": 56,
       "teams": 8,
-      "latest_match": "2026-09-27",
+      "latest_match": "2026-11-14",
       "source": "official",
       "sourceName": "佐賀県サッカー協会 公式",
-      "last_change": "2026-09-27",
+      "last_change": "2026-11-14",
       "result_since": "",
       "result_streak": 0,
-      "status": "warn",
+      "status": "ok",
       "last_updated": "2026-11-14"
     },
     "saitama": {
@@ -1236,7 +1236,7 @@
     },
     "_meta": {
       "checked": "2026-11-14",
-      "national_latest": "2026-11-12",
+      "national_latest": "2026-11-14",
       "nationalStaleDays": 32,
       "prefStaleDays": 14,
       "fetchFailDays": 3
