@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 静岡県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4450
 round_dates: 準々決勝=10/31, 準決勝=11/7, 決勝=11/14
 ---
@@ -143,5 +143,5 @@ scraper/update_tournament_results.py が上の source から
 - 静岡学園 1-1(PK3-1) 浜松開誠館
 ## 決勝（11/14）
 
-- 東海大翔洋 vs 静岡学園
+- 東海大翔洋 0-1 静岡学園
 <!-- 無視: 藤枝東 vs 静岡学園 -->
