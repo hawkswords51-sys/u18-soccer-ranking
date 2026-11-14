@@ -1891,6 +1891,11 @@ def render_university(out_root, names, extra, players, season):
     pw = _section(md, "pathway").strip().split("\n", 1)   # 1段落目（W杯の7人の話）の直後に表を置く
     pw_first, pw_rest = pw[0], (pw[1] if len(pw) > 1 else "")
     n_sign = len(sign["players"])
+    # [2026-11-14] 加入年ごとのページ（日本語版と同じ。data/university/pro-signings-{年}.json があれば全部作る）
+    later = _univ_sign_years(exclude=fm.get("signings_year"))
+    later_txt = "".join(
+        f' Players who have already agreed to join in {y}: <a href="/en/university/pro-signings-{y}/">{y} J.League signings from university '
+        f'({len(json.loads(_univ_sign_path(y).read_text(encoding="utf-8"))["players"])} players)</a>.' for y in later)
     url = f"{DOMAIN}/en/university/"
     title = f"Japanese University Football {season}: Leagues, Tables and the Road to the J.League"
     desc = (f"Japanese university football in English: how the nine regional leagues and two national competitions work, "
@@ -1906,7 +1911,7 @@ def render_university(out_root, names, extra, players, season):
         <h2>The road to the professional game</h2>
         {md_to_html(pw_first)}{wc_table}
         {md_to_html(pw_rest)}
-        <p>We list every university player who has agreed to join a J.League club for {esc(fm.get('signings_year'))}, with the academy or high school each one came from: <a href="/en/university/pro-signings-{esc(fm.get('signings_year'))}/">{esc(fm.get('signings_year'))} J.League signings from university ({n_sign} players)</a>.</p>
+        <p>We list every university player who has agreed to join a J.League club for {esc(fm.get('signings_year'))}, with the academy or high school each one came from: <a href="/en/university/pro-signings-{esc(fm.get('signings_year'))}/">{esc(fm.get('signings_year'))} J.League signings from university ({n_sign} players)</a>.{later_txt}</p>
       </section>
 
       <section class="lp-section" id="competitions">
@@ -1938,6 +1943,20 @@ def render_university(out_root, names, extra, players, season):
     print(f"OK: {dest} を書きました（1部 {shown}/9地域" + (f"／スキップ {', '.join(skipped)}" if skipped else "") + "）")
 
     render_university_signings(out_root, names, extra, players, fm, sign)
+    for y in later:
+        render_university_signings(out_root, names, extra, players, fm,
+                                   json.loads(_univ_sign_path(y).read_text(encoding="utf-8")), year=y)
+
+
+def _univ_sign_path(year):
+    return ROOT / "data" / "university" / f"pro-signings-{year}.json"
+
+
+def _univ_sign_years(exclude=None):
+    """data/university/pro-signings-{年}.json がある加入年（exclude の年を除く・昇順）"""
+    ys = sorted(int(m.group(1)) for f in (ROOT / "data" / "university").glob("pro-signings-*.json")
+                if (m := re.fullmatch(r"pro-signings-(\d{4})\.json", f.name)))
+    return [y for y in ys if str(y) != str(exclude)]
 
 
 def _u18_index(names, extra):
@@ -1990,9 +2009,11 @@ def _join_en(note, year):
     return str(year)
 
 
-def render_university_signings(out_root, names, extra, players, fm, sign):
+def render_university_signings(out_root, names, extra, players, fm, sign, year=None):
     import generate_university_signings as gus
-    year = fm.get("signings_year")
+    year = year or fm.get("signings_year")
+    others = _univ_sign_years(exclude=year)
+    others_html = "".join(f' ・ <a href="/en/university/pro-signings-{y}/">{y} signings</a>' for y in others)
     ps = sign["players"]
     u18idx = _u18_index(names, extra)
     missing, jp_only = [], 0
@@ -2059,9 +2080,9 @@ def render_university_signings(out_root, names, extra, players, fm, sign):
     tail = ('''      <section class="lp-section">
         <h2>Notes</h2>
         <p>&ldquo;When&rdquo; is January of the year shown unless stated. Most players join in January '''
-            f'{esc(year)}' ''' for the 2026/27 season, which runs on an autumn-to-spring calendar; some will join a year or two later, after graduating.</p>
+            f'{esc(year)} for the {int(year) - 1}/{str(year)[2:]} season' ''', which runs on an autumn-to-spring calendar.</p>
         <p>Where the JFA, the J.League or the club has not published an official English spelling, the player&rsquo;s name is shown in Japanese. U-18 teams without an established English name are also shown in Japanese.</p>
-        <p>See also: <a href="/en/university/">Japanese university football: leagues and tables</a> ・ <a href="/en/pro-signings/">players turning professional straight from high schools and academies</a> ・ <a href="/university/pro-signings-''' f'{esc(year)}' '''/" lang="ja">日本語版</a>.</p>
+        <p>See also: <a href="/en/university/">Japanese university football: leagues and tables</a> ・ <a href="/en/pro-signings/">players turning professional straight from high schools and academies</a>''' f'{others_html}' ''' ・ <a href="/university/pro-signings-''' f'{esc(year)}' '''/" lang="ja">日本語版</a>.</p>
       </section>''')
     breadcrumb = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "English Guide", "item": f"{DOMAIN}/en/"},

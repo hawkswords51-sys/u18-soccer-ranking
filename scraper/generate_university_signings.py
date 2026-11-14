@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""大学経由のJクラブ内定選手ページ（/university/pro-signings-2027/）を生成する。
+"""大学経由のJクラブ内定選手ページ（/university/pro-signings-{加入年}/）を生成する。
 
-- データの正本: data/university/pro-signings-2027.json（1件追加→本スクリプト再実行→Pushで反映）
+- データの正本: data/university/pro-signings-{加入年}.json（1件追加→本スクリプト再実行→Pushで反映）
+- [2026-11-14] 加入年ごとに1ページ（Kei決定）。data/university/ にある pro-signings-*.json を全部回す。
+  新しい加入年を足すときは、JSON と university/pro-signings-{加入年}/index.html（マーカー入りのひな形）の両方を置く。
 - ページの <!-- UNIV_SIGNINGS_START --> 〜 <!-- UNIV_SIGNINGS_END --> の間だけを書き換える。
 - U-18の出身チームに当サイトのチーム詳細ページ（data/team-profiles）があれば自動で内部リンクを張る。
 - 検証: 必須項目の欠落・発表日形式・重複選手名をチェックし、問題があれば生成を中止する。
@@ -14,8 +16,21 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data" / "university" / "pro-signings-2027.json"
-PAGE = ROOT / "university" / "pro-signings-2027" / "index.html"
+UNIV_DIR = ROOT / "data" / "university"
+
+
+def signing_years():
+    """data/university/pro-signings-{加入年}.json がある加入年（昇順）"""
+    return sorted(int(m.group(1)) for f in UNIV_DIR.glob("pro-signings-*.json")
+                  if (m := re.fullmatch(r"pro-signings-(\d{4})\.json", f.name)))
+
+
+def data_path(year):
+    return UNIV_DIR / f"pro-signings-{year}.json"
+
+
+def page_path(year):
+    return ROOT / "university" / f"pro-signings-{year}" / "index.html"
 PROFILES = ROOT / "data" / "team-profiles"
 START = "<!-- UNIV_SIGNINGS_START -->"
 END = "<!-- UNIV_SIGNINGS_END -->"
@@ -120,35 +135,40 @@ def replace_between(src, start, end, body):
 
 
 def hs_signing_counts():
-    """/pro-signings/ と同じ数え方（status: pro 以外＝内定者、pro＝プロ契約済み）で人数を返す。
+    """/pro-signings/ と同じ数え方（status: pro 以外＝内定者、pro＝プロ契約済み）で人数と加入年（season）を返す。
     2種登録だけの選手は pro-signings.yml に載せない運用なので、数にも入らない。"""
     import yaml
     data = yaml.safe_load(HS_SIGNINGS.read_text(encoding="utf-8")) or {}
     sign = data.get("signings") or []
     pro = sum(1 for p in sign if p.get("status") == "pro")
-    return len(sign) - pro, pro
+    return len(sign) - pro, pro, data.get("season")
 
 
-def build_faq(data, total, koutairen, youth, home):
+def build_faq(data, total, koutairen, youth, home, year):
     """[(質問, 答えのHTML), ...]。画面とFAQPageの両方にこのまま使う。"""
     y, m = data["updated"].split("-")[:2]
     asof = f"{int(y)}年{int(m)}月時点"
-    hs_naitei, hs_pro = hs_signing_counts()
-    scale = "それを上回る規模で" if total > hs_naitei + hs_pro else "それに並ぶ規模で"
+    hs_naitei, hs_pro, hs_season = hs_signing_counts()
+    # [2026-11-14] 早い加入年のページ（2028など）は人数が少ないので、規模の比較は出さない
+    scale = ("それを上回る規模で、" if total > hs_naitei + hs_pro else
+             "それに並ぶ規模で、" if total * 10 >= (hs_naitei + hs_pro) * 8 else "")
+    home_txt = (f"なれます。今回の一覧にはユースからトップ昇格できずに大学へ進み、育ったクラブへ「復帰内定」を勝ち取った選手が{home}人います。"
+                if home else
+                "なれます。ユースからトップ昇格できずに大学へ進み、育ったクラブへ「復帰内定」を勝ち取る道もあります（この一覧にはまだいません）。")
     return [
         ("大学からJリーグに内定した選手はどのくらいいますか？",
-         f"2027年シーズン加入の内定発表は年間を通じて続きます。当ページでは{asof}で{total}人を掲載しており、"
+         f"{year}年加入の内定発表は年間を通じて続きます。当ページでは{asof}で{total}人を掲載しており、"
          f"うち高体連（高校サッカー部）出身が{koutairen}人、Jクラブなどのクラブユース出身が{youth}人です。"),
         ("ユースから昇格できなかった選手も大学からプロになれますか？",
-         f"なれます。今回の一覧にはユースからトップ昇格できずに大学へ進み、育ったクラブへ「復帰内定」を勝ち取った選手が{home}人います。"
+         home_txt +
          "大学サッカーは高校年代で夢が途切れた選手にとっての敗者復活の舞台になっています。"),
         ("高卒でプロになる選手との違いは？",
-         f"高校・ユースから直接プロ入りする選手は、2027年加入の内定者{hs_naitei}人・すでにプロ契約済み{hs_pro}人"
+         f"高校・ユースから直接プロ入りする選手は、{hs_season}年加入の内定者{hs_naitei}人・すでにプロ契約済み{hs_pro}人"
          f'（<a href="/pro-signings/">高校・ユース年代の内定ページ</a>）。'
-         f"大学経由は{scale}、22歳前後で心身が完成してから加入するため即戦力として期待されます。"),
+         f"大学経由は{scale}22歳前後で心身が完成してから加入するため即戦力として期待されます。"),
         ("内定＝すぐプロ入りですか？",
-         "多くは卒業後の2027年シーズンからの加入ですが、在学中に「特別指定選手」としてJリーグの試合に出場する選手もいます。"
-         "また「28年加入」注記の選手は大学3年以下での早期内定です。"),
+         f"多くは卒業後の{year}年からの加入ですが、在学中に「特別指定選手」としてJリーグの試合に出場する選手もいます。"
+         "加入の時期はクラブの発表に合わせて各選手の欄に書いています。"),
         ("経歴の情報は何で確認していますか？",
          "各Jクラブ公式サイトの加入内定リリース（経歴欄）を第一の出典とし、確認できない場合は大学サッカー部・高校の公式発表で補っています。"
          "公式に確認できない項目は「—」として推測では掲載していません。"),
@@ -158,6 +178,19 @@ def build_faq(data, total, koutairen, youth, home):
 
 
 def main():
+    years = signing_years()
+    if not years:
+        print("[エラー] data/university/pro-signings-*.json がありません")
+        sys.exit(1)
+    for year in years:
+        build_year(year)
+
+
+def build_year(year):
+    DATA, PAGE = data_path(year), page_path(year)
+    if not PAGE.exists():
+        print(f"[エラー] {year}年加入のページのひな形がありません: {PAGE}")
+        sys.exit(1)
     data = json.loads(DATA.read_text(encoding="utf-8"))
     players = data["players"]
     errs = validate(players)
@@ -226,7 +259,7 @@ def main():
     _, post = rest.split(END, 1)
     src = pre + START + "\n" + html + END + post
     # よくある質問：画面の表示と構造化データ（FAQPage）を同じ質問・答えから作る
-    faq = build_faq(data, total, koutairen, youth, home)
+    faq = build_faq(data, total, koutairen, youth, home, year)
     faq_html = "".join(
         f'        <h3 style="margin:14px 0 6px;">Q. {esc(q)}</h3>\n'
         f'        <p style="line-height:1.9;">{a}</p>\n'
@@ -245,7 +278,7 @@ def main():
     src = re.sub(r"<!--KTR-->\d+<!--/KTR-->", f"<!--KTR-->{koutairen}<!--/KTR-->", src)
     src = re.sub(r"<!--YTH-->\d+<!--/YTH-->", f"<!--YTH-->{youth}<!--/YTH-->", src)
     PAGE.write_text(src, encoding="utf-8")
-    print(f"OK: {total}人（高体連{koutairen}/ユース{youth}/復帰{home}）・チームページ内部リンク{linked}件")
+    print(f"OK: {year}年加入 {total}人（高体連{koutairen}/ユース{youth}/復帰{home}）・チームページ内部リンク{linked}件")
 
 
 if __name__ == "__main__":
