@@ -231,6 +231,11 @@ PREFECTURE_FEATURED_ARTICLES = {
     ],
     "hyogo": [
         {
+            "title": "【兵庫選手権2026決勝】AIE国際が初優勝、初の全国へ｜4度目の県決勝で三田学園に3-2",
+            "url": "/blog/posts/aie-kokusai-senshuken-2026/",
+            "date": "2026-11-14",
+        },
+        {
             "title": "【兵庫インハイ2026決勝】AIE国際はなぜ滝川第二と3度戦うのか｜上船利徳と「日本で最もブンデスリーガに近い組織」の挑戦",
             "url": "/blog/posts/aie-kokusai-rise-2026/",
             "date": "2026-06-05",
