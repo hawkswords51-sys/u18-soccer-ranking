@@ -192,7 +192,10 @@ def _name_keys(name):
     """照合用：そのまま＋「高校」等を外した形。"""
     n = _norm(name)
     base = re.sub(r"(高等学校|高等部|高校|高)$", "", n)
-    return {n, base} if base else {n}
+    keys = {n, base} if base else {n}
+    # [2026-11-14] 「佐野日本大学高校」（各県代表の正式名）と「佐野日大高校」（teams.json）を同じ校として扱う
+    keys |= {k.replace("日本大学", "日大") for k in keys if "日本大学" in k}
+    return keys
 
 
 PREF_NAME = {slug: name for _, prefs in REGIONS for slug, name in prefs}  # slug → 「青森」等（各県代表の県名と照合）
