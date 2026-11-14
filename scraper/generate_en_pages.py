@@ -848,7 +848,10 @@ def render_pro_signings(out_root, names, extra, players, season):
     blocks, jp_only = [], 0
     for status, heading, lead in groups:
         rows = []
-        for pl in [p for p in data["signings"] if p["status"] == status]:
+        # [2026-11-14] 特例「中学」（中学生年代のチームからの内定）は英語ページに出さない。
+        #   所属の町クラブに公式の英語表記が無く、英語名の辞書はローマ字を推測しない決まりのため
+        #   （入れると「英語名が未登録」でページ全体が更新されなくなる）。日本語版には出る。
+        for pl in [p for p in data["signings"] if p["status"] == status and p.get("cat") != "中学"]:
             team = club_html(pl["team"], names, extra)
             dest_club = club_html(pl["dest"], names, extra)
             if team is None or dest_club is None:

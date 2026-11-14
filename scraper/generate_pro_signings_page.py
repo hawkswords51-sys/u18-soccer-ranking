@@ -88,7 +88,11 @@ def _section(title: str, subtitle: str, players: list, show_dest: bool, empty_ms
             # [2026-10-04] 特例「海外」＝海外の高校からの高卒内定。対象外の世代ではないが日本のU-18ではないので説明書きを付ける
             special = ('<p class="ps-special">特例として掲載：このページは日本のU-18年代（高体連・Jクラブユース）が対象ですが、'
                        '海外の高校からJリーグクラブへ高卒で加入が内定した選手も、同じ世代のプロ入りとして参考に載せています。</p>'
-                       if cat == "海外" else "")
+                       if cat == "海外" else
+                       # [2026-11-14] 特例「中学」＝中学生年代（U-15）のチームからの加入内定（Kei決定）
+                       '<p class="ps-special">特例として掲載：このページは日本のU-18年代（高体連・Jクラブユース）が対象ですが、'
+                       '中学生年代（U-15）のチームからJリーグクラブへの加入が内定した選手も、U-18年代でプロ入りする選手として参考に載せています。</p>'
+                       if cat == "中学" else "")
             blocks.append(
                 '<div class="ps-team">'
                 f'<h3 class="ps-team-name">{_team_link(g)} {cat_badge}</h3>'
@@ -112,8 +116,9 @@ def build_ai_summary(data: dict) -> str:
     pro = [p for p in sign if p.get("status") == "pro"]
     hs = sum(1 for p in naitei if p.get("cat") == "高体連")
     ov = sum(1 for p in naitei if p.get("cat") == "海外")
-    yth = len(naitei) - hs - ov
-    ov_txt = f"・海外の高校{ov}名（特例）" if ov else ""
+    jh = sum(1 for p in naitei if p.get("cat") == "中学")
+    yth = len(naitei) - hs - ov - jh
+    ov_txt = (f"・海外の高校{ov}名（特例）" if ov else "") + (f"・中学生{jh}名（特例）" if jh else "")
     season = html_escape(str(data.get("season", "")))
     body = (
         f"このページは、U-18年代（高校・Jクラブユース）からJリーグへ進む選手を、"
