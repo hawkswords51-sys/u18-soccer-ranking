@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.sportsonline.jp/reportv2/PublisherFull/viewdata.aspx?parentid=RX_ZZ&rallyid=U%5E%5BU%5E",
   "sourceName": "広島県サッカー協会 公式（SportsOnline）",
-  "lastUpdated": "2026-11-15",
+  "lastUpdated": "2026-11-16",
   "teams": [
     {
       "name": "瀬戸内セカンド",
@@ -62,26 +62,26 @@
     {
       "rank": 2,
       "team": "サンフレセカンド",
-      "points": 38,
-      "played": 15,
-      "won": 12,
+      "points": 41,
+      "played": 16,
+      "won": 13,
       "drawn": 2,
       "lost": 1,
-      "gf": 47,
-      "ga": 20,
-      "gd": 27
+      "gf": 52,
+      "ga": 21,
+      "gd": 31
     },
     {
       "rank": 3,
       "team": "如水館",
       "points": 34,
-      "played": 15,
+      "played": 16,
       "won": 11,
       "drawn": 1,
-      "lost": 3,
-      "gf": 49,
-      "ga": 21,
-      "gd": 28
+      "lost": 4,
+      "gf": 50,
+      "ga": 26,
+      "gd": 24
     },
     {
       "rank": 4,
@@ -98,10 +98,10 @@
     {
       "rank": 5,
       "team": "広工大高",
-      "points": 21,
-      "played": 15,
+      "points": 22,
+      "played": 16,
       "won": 6,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 6,
       "gf": 23,
       "ga": 20,
@@ -134,10 +134,10 @@
     {
       "rank": 8,
       "team": "広島翔洋",
-      "points": 10,
-      "played": 15,
+      "points": 11,
+      "played": 16,
       "won": 3,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 11,
       "gf": 8,
       "ga": 24,
@@ -359,12 +359,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "如水館",
-      "hs": null,
-      "as": null,
-      "away": "サンフレセカンド",
-      "status": "scheduled"
+      "date": "2026-11-15",
+      "home": "サンフレセカンド",
+      "hs": 5,
+      "as": 1,
+      "away": "如水館",
+      "status": "played",
+      "venue": "エヴォルヴィン"
     },
     {
       "md": 0,
@@ -834,12 +835,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "広島翔洋",
-      "hs": null,
-      "as": null,
-      "away": "広工大高",
-      "status": "scheduled"
+      "date": "2026-11-15",
+      "home": "広工大高",
+      "hs": 0,
+      "as": 0,
+      "away": "広島翔洋",
+      "status": "played",
+      "venue": "山陽"
     },
     {
       "md": 0,
@@ -1071,23 +1073,23 @@
     },
     {
       "team": "サンフレセカンド",
-      "won": 12,
+      "won": 13,
       "lost": 1,
       "drawn": 2,
-      "pts": 38,
-      "gf": 47,
-      "ga": 20,
-      "played": 15
+      "pts": 41,
+      "gf": 52,
+      "ga": 21,
+      "played": 16
     },
     {
       "team": "如水館",
       "won": 11,
-      "lost": 3,
+      "lost": 4,
       "drawn": 1,
       "pts": 34,
-      "gf": 49,
-      "ga": 21,
-      "played": 15
+      "gf": 50,
+      "ga": 26,
+      "played": 16
     },
     {
       "team": "沼田",
@@ -1103,11 +1105,11 @@
       "team": "広工大高",
       "won": 6,
       "lost": 6,
-      "drawn": 3,
-      "pts": 21,
+      "drawn": 4,
+      "pts": 22,
       "gf": 23,
       "ga": 20,
-      "played": 15
+      "played": 16
     },
     {
       "team": "広島新庄",
@@ -1133,11 +1135,11 @@
       "team": "広島翔洋",
       "won": 3,
       "lost": 11,
-      "drawn": 1,
-      "pts": 10,
+      "drawn": 2,
+      "pts": 11,
       "gf": 8,
       "ga": 24,
-      "played": 15
+      "played": 16
     },
     {
       "team": "銀河学院",

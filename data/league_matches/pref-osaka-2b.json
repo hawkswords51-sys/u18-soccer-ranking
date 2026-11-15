@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://osaka-fa.or.jp/2shu/game_information/",
   "sourceName": "大阪府サッカー協会 公式",
-  "lastUpdated": "2026-11-15",
+  "lastUpdated": "2026-11-16",
   "teams": [
     {
       "name": "大阪桐蔭B",
@@ -42,41 +42,53 @@
     {
       "rank": 1,
       "team": "大阪桐蔭B",
-      "points": 22,
-      "played": 11,
-      "won": 6,
+      "points": 25,
+      "played": 12,
+      "won": 7,
       "drawn": 4,
       "lost": 1,
-      "gf": 20,
-      "ga": 9,
-      "gd": 11
-    },
-    {
-      "rank": 2,
-      "team": "近大附属B",
-      "points": 20,
-      "played": 11,
-      "won": 6,
-      "drawn": 2,
-      "lost": 3,
       "gf": 23,
       "ga": 11,
       "gd": 12
     },
     {
+      "rank": 2,
+      "team": "近大附属B",
+      "points": 23,
+      "played": 12,
+      "won": 7,
+      "drawn": 2,
+      "lost": 3,
+      "gf": 28,
+      "ga": 14,
+      "gd": 14
+    },
+    {
       "rank": 3,
-      "team": "関大一",
-      "points": 20,
-      "played": 11,
-      "won": 5,
-      "drawn": 5,
-      "lost": 1,
-      "gf": 20,
-      "ga": 9,
-      "gd": 11
+      "team": "阪南大高B",
+      "points": 22,
+      "played": 12,
+      "won": 6,
+      "drawn": 4,
+      "lost": 2,
+      "gf": 30,
+      "ga": 10,
+      "gd": 20
     },
     {
       "rank": 4,
+      "team": "関大一",
+      "points": 20,
+      "played": 12,
+      "won": 5,
+      "drawn": 5,
+      "lost": 2,
+      "gf": 21,
+      "ga": 11,
+      "gd": 10
+    },
+    {
+      "rank": 5,
       "team": "大体大浪商",
       "points": 20,
       "played": 12,
@@ -88,40 +100,28 @@
       "gd": 4
     },
     {
-      "rank": 5,
-      "team": "阪南大高B",
-      "points": 19,
-      "played": 11,
-      "won": 5,
-      "drawn": 4,
-      "lost": 2,
-      "gf": 28,
-      "ga": 9,
-      "gd": 19
-    },
-    {
       "rank": 6,
       "team": "履正社C",
       "points": 10,
-      "played": 11,
+      "played": 12,
       "won": 3,
       "drawn": 1,
-      "lost": 7,
-      "gf": 21,
-      "ga": 29,
-      "gd": -8
+      "lost": 8,
+      "gf": 23,
+      "ga": 32,
+      "gd": -9
     },
     {
       "rank": 7,
       "team": "賢明学院",
       "points": 10,
-      "played": 11,
+      "played": 12,
       "won": 3,
       "drawn": 1,
-      "lost": 7,
-      "gf": 10,
-      "ga": 22,
-      "gd": -12
+      "lost": 8,
+      "gf": 13,
+      "ga": 27,
+      "gd": -14
     },
     {
       "rank": 8,
@@ -177,10 +177,10 @@
       "md": 12,
       "date": "2026-11-15",
       "home": "大阪桐蔭B",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 2,
       "away": "履正社C",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 8,
@@ -276,10 +276,10 @@
       "md": 12,
       "date": "2026-11-15",
       "home": "関大一",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "阪南大高B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 7,
@@ -546,10 +546,10 @@
       "md": 12,
       "date": "2026-11-15",
       "home": "賢明学院",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 5,
       "away": "近大附属B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 7,
@@ -645,44 +645,44 @@
   "source_standings": [
     {
       "team": "阪南大高B",
-      "pts": 19,
-      "gf": 28,
-      "ga": 9,
-      "rank": 5
+      "pts": 22,
+      "gf": 30,
+      "ga": 10,
+      "rank": 3
     },
     {
       "team": "近大附属B",
-      "pts": 20,
-      "gf": 23,
-      "ga": 11,
+      "pts": 23,
+      "gf": 28,
+      "ga": 14,
       "rank": 2
     },
     {
       "team": "大阪桐蔭B",
-      "pts": 22,
-      "gf": 20,
-      "ga": 9,
+      "pts": 25,
+      "gf": 23,
+      "ga": 11,
       "rank": 1
     },
     {
       "team": "関大一",
       "pts": 20,
-      "gf": 20,
-      "ga": 9,
-      "rank": 3
+      "gf": 21,
+      "ga": 11,
+      "rank": 4
     },
     {
       "team": "履正社C",
       "pts": 10,
-      "gf": 21,
-      "ga": 29,
+      "gf": 23,
+      "ga": 32,
       "rank": 6
     },
     {
       "team": "賢明学院",
       "pts": 10,
-      "gf": 10,
-      "ga": 22,
+      "gf": 13,
+      "ga": 27,
       "rank": 7
     },
     {
@@ -690,7 +690,7 @@
       "pts": 20,
       "gf": 23,
       "ga": 19,
-      "rank": 4
+      "rank": 5
     },
     {
       "team": "大塚",
