@@ -5,7 +5,7 @@
   "league_team": "大津",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/team_detail/11.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/match_page/",
-  "asof": "2026-11-11",
+  "asof": "2026-11-15",
   "roster": [
     {
       "no": 1,
@@ -33,8 +33,8 @@
       "name": "岩永 蒼大",
       "grade": "2年",
       "prev": "マリーゴールド熊本",
-      "apps": 17,
-      "minutes": 1530,
+      "apps": 18,
+      "minutes": 1620,
       "goals": 0
     },
     {
@@ -43,8 +43,8 @@
       "name": "西川 和樹",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 15,
-      "minutes": 875,
+      "apps": 16,
+      "minutes": 951,
       "goals": 0
     },
     {
@@ -63,8 +63,8 @@
       "name": "小森 太斗",
       "grade": "3年",
       "prev": "サガン鳥栖U-15唐津",
-      "apps": 17,
-      "minutes": 1518,
+      "apps": 18,
+      "minutes": 1608,
       "goals": 0
     },
     {
@@ -73,8 +73,8 @@
       "name": "木下 斗稀",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 15,
-      "minutes": 1298,
+      "apps": 16,
+      "minutes": 1388,
       "goals": 0
     },
     {
@@ -83,9 +83,9 @@
       "name": "渡部 友翔",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 17,
-      "minutes": 1530,
-      "goals": 0
+      "apps": 18,
+      "minutes": 1620,
+      "goals": 1
     },
     {
       "no": 26,
@@ -93,8 +93,8 @@
       "name": "吉村 楓真",
       "grade": "2年",
       "prev": "太陽スポーツクラブ熊本",
-      "apps": 4,
-      "minutes": 260,
+      "apps": 5,
+      "minutes": 350,
       "goals": 1
     },
     {
@@ -113,8 +113,8 @@
       "name": "福島 凰央",
       "grade": "3年",
       "prev": "F／ASFIDA(エフ／アスフィーダ)",
-      "apps": 5,
-      "minutes": 157,
+      "apps": 6,
+      "minutes": 171,
       "goals": 0
     },
     {
@@ -153,8 +153,8 @@
       "name": "坂口 凌空",
       "grade": "3年",
       "prev": "サイレコ･エスペランサ熊本",
-      "apps": 17,
-      "minutes": 776,
+      "apps": 18,
+      "minutes": 803,
       "goals": 0
     },
     {
@@ -163,8 +163,8 @@
       "name": "山本 翼",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 17,
-      "minutes": 1530,
+      "apps": 18,
+      "minutes": 1620,
       "goals": 7
     },
     {
@@ -173,8 +173,8 @@
       "name": "松岡 凛",
       "grade": "3年",
       "prev": "マリーゴールド天草",
-      "apps": 16,
-      "minutes": 1048,
+      "apps": 17,
+      "minutes": 1124,
       "goals": 2
     },
     {
@@ -193,9 +193,9 @@
       "name": "薮田 尚大",
       "grade": "3年",
       "prev": "ブレイズ熊本",
-      "apps": 17,
-      "minutes": 1292,
-      "goals": 4
+      "apps": 18,
+      "minutes": 1381,
+      "goals": 5
     },
     {
       "no": 15,
@@ -203,8 +203,8 @@
       "name": "筒井 悠太",
       "grade": "2年",
       "prev": "FC NEO(ネオ) JUNIOR YOUTH",
-      "apps": 15,
-      "minutes": 378,
+      "apps": 16,
+      "minutes": 468,
       "goals": 1
     },
     {
@@ -213,8 +213,8 @@
       "name": "井上 玲葵",
       "grade": "3年",
       "prev": "愛媛ＦＣ U-15",
-      "apps": 4,
-      "minutes": 30,
+      "apps": 5,
+      "minutes": 93,
       "goals": 0
     },
     {
@@ -223,8 +223,8 @@
       "name": "牧 礼桜",
       "grade": "3年",
       "prev": "大分トリニータU-15",
-      "apps": 6,
-      "minutes": 100,
+      "apps": 7,
+      "minutes": 101,
       "goals": 0
     },
     {
@@ -253,8 +253,8 @@
       "name": "本田 麗月",
       "grade": "2年",
       "prev": "Ｖ･ファーレン長崎U-15",
-      "apps": 1,
-      "minutes": 11,
+      "apps": 2,
+      "minutes": 25,
       "goals": 0
     },
     {
@@ -1553,6 +1553,143 @@
           "out": "11 松岡 凛",
           "in": "25 井上 玲葵",
           "minute": "90+2分"
+        }
+      ]
+    },
+    "1011": {
+      "md": 10,
+      "starters": [
+        {
+          "no": 21,
+          "pos": "GK",
+          "name": "岩永 蒼大",
+          "captain": false
+        },
+        {
+          "no": 2,
+          "pos": "DF",
+          "name": "西川 和樹",
+          "captain": false
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "小森 太斗",
+          "captain": false
+        },
+        {
+          "no": 5,
+          "pos": "DF",
+          "name": "木下 斗稀",
+          "captain": false
+        },
+        {
+          "no": 7,
+          "pos": "DF",
+          "name": "渡部 友翔",
+          "captain": true
+        },
+        {
+          "no": 26,
+          "pos": "DF",
+          "name": "吉村 楓真",
+          "captain": false
+        },
+        {
+          "no": 10,
+          "pos": "MF",
+          "name": "山本 翼",
+          "captain": false
+        },
+        {
+          "no": 11,
+          "pos": "MF",
+          "name": "松岡 凛",
+          "captain": false
+        },
+        {
+          "no": 14,
+          "pos": "MF",
+          "name": "薮田 尚大",
+          "captain": false
+        },
+        {
+          "no": 15,
+          "pos": "MF",
+          "name": "筒井 悠太",
+          "captain": false
+        },
+        {
+          "no": 25,
+          "pos": "MF",
+          "name": "井上 玲葵",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 1,
+          "pos": "GK",
+          "name": "西村 天琉",
+          "captain": false
+        },
+        {
+          "no": 32,
+          "pos": "DF",
+          "name": "福島 凰央",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "MF",
+          "name": "坂口 凌空",
+          "captain": false
+        },
+        {
+          "no": 30,
+          "pos": "MF",
+          "name": "牧 礼桜",
+          "captain": false
+        },
+        {
+          "no": 31,
+          "pos": "MF",
+          "name": "原武 大和",
+          "captain": false
+        },
+        {
+          "no": 38,
+          "pos": "MF",
+          "name": "本田 麗月",
+          "captain": false
+        },
+        {
+          "no": 17,
+          "pos": "FW",
+          "name": "江上 虎伯",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "25 井上 玲葵",
+          "in": "8 坂口 凌空",
+          "minute": "63分"
+        },
+        {
+          "out": "2 西川 和樹",
+          "in": "32 福島 凰央",
+          "minute": "76分"
+        },
+        {
+          "out": "11 松岡 凛",
+          "in": "38 本田 麗月",
+          "minute": "76分"
+        },
+        {
+          "out": "14 薮田 尚大",
+          "in": "30 牧 礼桜",
+          "minute": "90+1分"
         }
       ]
     },
