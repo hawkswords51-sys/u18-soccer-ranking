@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 埼玉県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4462
 round_dates: 準々決勝=10/31・11/1, 準決勝=11/8, 決勝=11/15
 ---
@@ -193,4 +193,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝トーナメント決勝（11/15）
 
-- 武蔵越生 vs 西武台
+- 武蔵越生 0-3 西武台
