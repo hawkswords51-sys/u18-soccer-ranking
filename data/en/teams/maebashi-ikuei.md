@@ -54,6 +54,7 @@ Four things hold the programme together.
 - **MATSUDA Naoki** (defender) — a Japan international at the 2002 World Cup and for years the leader of Yokohama F. Marinos' defence. He died in 2011, while still playing, and remains the figure the school's players are pointed towards.
 - **YAMAGUCHI Motohiro** (midfielder) — a Japan international at the 1998 World Cup.
 - **HOSOGAI Hajime** (midfielder) — Urawa Reds, then Hertha Berlin in Germany and Bursaspor in Turkey. He retired in 2024 and is now the president of Thespa Gunma.
+- **SAKAMOTO Tatsuhiro** (winger, Coventry City) — came to the school from FC Tokyo's junior-youth team, then went on to Toyo University, Montedio Yamagata, Cerezo Osaka and KV Oostende in Belgium before joining Coventry City in England in 2023. On 14 November 2026, in a friendly in Singapore, he scored his first goal for Japan: the stoppage-time winner in a 3-2 victory over Brazil.
 - **AOYAMA Naoaki** (defender) — a long J.League career including Shimizu S-Pulse.
 - **SUZUKI Tokuma** (Gamba Osaka) and **WATANABE Ryoma** (Urawa Reds) — both from the beaten finalist sides of the 2010s.
 - **TAKENOYA Yugasubedi** (midfielder) — joined Montedio Yamagata straight from school in 2026.
