@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 東京都大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 block_brackets: Aブロック, Bブロック
 sources:
   - https://koko-soccer.com/score/4529
@@ -413,4 +413,4 @@ Green Card の速報一覧も 9/5【41】都・白鷗 1-1(PK5-3) 都・つばさ
 
 ## Bブロック決勝（11/15）
 
-- 帝京 vs 東海大学付属高輪台
+- 帝京 4-0 東海大学付属高輪台
