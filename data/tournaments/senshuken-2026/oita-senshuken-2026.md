@@ -4,7 +4,7 @@ title: 第105回全国高校サッカー選手権大会 大分県大会
 subtitle: 選手権予選
 year: 2026
 category: 選手権予選
-status: 開催前
+status: 終了
 source: https://koko-soccer.com/score/4428
 round_dates: 準々決勝=10/31・11/1, 準決勝=11/7, 決勝=11/15
 ---
@@ -73,4 +73,4 @@ scraper/update_tournament_results.py が上の source から
 
 ## 決勝（11/15）
 
-- 柳ヶ浦 vs 大分鶴崎
+- 柳ヶ浦 1-1(PK4-1) 大分鶴崎
