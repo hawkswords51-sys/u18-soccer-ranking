@@ -48,9 +48,9 @@ For readers new to Japanese youth football: high-school teams and J.League acade
 
 ## alumni
 
-The best-known former player is a futsal international: he played for the school at the 2005–06 winter championship, joined Vasagey Oita of the F.League in 2006, and won the AFC Futsal Championship with Japan in 2012 and 2014. Two former players have played in the J.League: a midfielder who joined Tokushima Vortis from the school, and **ONODA Masahito** (defender), who moved to Yanagigaura from another high school, then played for FC Imabari, Shonan Bellmare, Montedio Yamagata and Iwate Grulla Morioka.
+The best-known former player is a futsal international: he played for the school at the 2005–06 winter championship, joined Vasagey Oita of the F.League in 2006, and won the AFC Futsal Championship with Japan in 2012 and 2014. Two former players have played in the J.League: a midfielder who joined Tokushima Vortis from the school, and a defender who moved to Yanagigaura from another high school, then played for FC Imabari, Shonan Bellmare, Montedio Yamagata and Iwate Grulla Morioka.
 
-No Yanagigaura graduate was in Japan's squad for the 2026 World Cup. Names other than ONODA Masahito are not romanised here because no English spelling has been published by the JFA, the J.League or a club.
+No Yanagigaura graduate was in Japan's squad for the 2026 World Cup. Their names are not romanised here because no English spelling has been published by the JFA, the J.League or a club.
 
 ## squad
 
