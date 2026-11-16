@@ -945,7 +945,8 @@ def update_md(md_path: Path, koko_rounds, name_map, dry_run=False, report=None):
 # [2026-10-28] 試合の行として扱わない見出し（先頭一致）。本大会md（senshuken-final-2026.md）の
 #   「## トーナメント表（組み合わせ）」の32行（- A vs B）を試合の行と取り違え、1回戦のスコアを
 #   組み合わせの行に書き込んで表が崩れた（第104回のkokoで再現）。「各県代表」の行も試合ではない。
-BRACKET_SECTION_HEADS = ("トーナメント表", "各県代表")
+# [2026-11-17] 「日程と会場（マッチナンバー）」47行も試合の行ではない（マッチナンバー・時刻・会場の表）。
+BRACKET_SECTION_HEADS = ("トーナメント表", "各県代表", "日程と会場")
 
 
 def _rescan_rounds(body_lines):

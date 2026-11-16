@@ -305,7 +305,7 @@ def render_reps(lines):
 # 「## ○回戦」として扱わないセクション名（散文セクションはここに足す）
 # ★ここに足し忘れると、その見出しが「○回戦」扱いされて試合結果として描画されます。
 #   参照箇所: render_rounds() / collect_results() / _is_result_round()（いずれも startswith 判定）
-NON_ROUND_SECTIONS = ("各県代表", "トーナメント", "いまの見どころ", "出場選手の出身チーム")
+NON_ROUND_SECTIONS = ("各県代表", "トーナメント", "いまの見どころ", "出場選手の出身チーム", "日程と会場")
 
 
 def linkify_prose(text):

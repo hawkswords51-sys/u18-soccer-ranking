@@ -11,6 +11,8 @@
   データの正本は data/tournaments/senshuken-final-2026.md の「## トーナメント表（組み合わせ）」32行。
   判定は特設ページと同じ drawn_bracket()（32行そろい・抽選待ち0のときだけ）。抽選前・途中は2行目を出さない。
   32行の並び＝上から2行ずつが2回戦の1試合（1行目と2行目、3行目と4行目…）。「A vs B」の行＝1回戦、1校だけの行＝シード。
+- [2026-11-17] 「## 日程と会場（マッチナンバー）」が表と食い違わず読めるときだけ、日付の括弧を
+  「12/29（火）12:05・とどろき」のように時刻・会場入りにする（senshuken_schedule.py）。読めなければ従来の日付だけ。
 """
 import re
 from html import escape as _esc
@@ -88,6 +90,14 @@ def _attach_draw(out, sp, TEAM_MAP, _short_label):
     def side(names):
         return [(n, prefs.get(n, ""), _tid_of(n, TEAM_MAP, _short_label)) for n in names]
 
+    first_by_row, second_by_row = {}, {}
+    try:
+        import senshuken_schedule as ss
+        matches, probs = ss.load(sections, rows)
+        if matches:
+            first_by_row, second_by_row = ss.by_row(matches, rows)
+    except Exception as e:
+        print(f"[要確認] 選手権2026 日程と会場（チームページのバッジ）で例外 {type(e).__name__}: {e}。日付だけで出す。")
     no_page, n_set = [], 0
     for i, cell in enumerate(cells):
         partner = side(cells[i ^ 1])
@@ -104,6 +114,10 @@ def _attach_draw(out, sp, TEAM_MAP, _short_label):
                      "next": partner}
             else:
                 d = {"kind": "seed", "opp": partner}
+            if i in first_by_row:
+                d["when1"] = ss.when(first_by_row[i])
+            if i in second_by_row:
+                d["when2"] = ss.when(second_by_row[i])
             if tid not in out:  # 県予選の判定で代表バッジが作れなかった学校（念のため）
                 out[tid] = {"pref": prefs.get(n, ""), "label": "", "a": "", "b": "", "winner": n, "score": "", "date": ""}
             out[tid]["draw"] = d
@@ -127,11 +141,15 @@ def _sides_html(sides):
 def _draw_html(d):
     link = ('<a href="/tournaments/senshuken-2026/#bracket" style="color:#7f1d1d;font-weight:700;'
             'text-decoration:underline">本大会の組み合わせ</a>')
+    w2 = _esc(d.get("when2") or SECOND_ROUND_DAY)
     if d["kind"] == "seed":
-        return f"{link}：2回戦から登場（{SECOND_ROUND_DAY}） vs {_sides_html(d['opp'])}"
-    first = f"開幕戦（{OPENING_DAY}）" if d.get("opening") else f"1回戦（{FIRST_ROUND_DAY}）"
+        return f"{link}：2回戦から登場（{w2}） vs {_sides_html(d['opp'])}"
+    if d.get("opening"):
+        first = f"開幕戦（{_esc(d['when1'])}）" if d.get("when1") else f"開幕戦（{OPENING_DAY}）"
+    else:
+        first = f"1回戦（{_esc(d.get('when1') or FIRST_ROUND_DAY)}）"
     return (f"{link}：{first} vs {_sides_html(d['opp'])}"
-            f" → 勝てば2回戦（{SECOND_ROUND_DAY}）で {_sides_html(d['next'])}と対戦")
+            f" → 勝てば2回戦（{w2}）で {_sides_html(d['next'])}と対戦")
 
 
 def render_team_badge_html(team_id: str, badge_map: dict) -> str:

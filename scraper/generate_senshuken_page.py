@@ -35,6 +35,14 @@
   文に切り替える。開幕戦のカードは組み合わせの並びから分からないので、senshuken-final-2026.md の frontmatter
   `opening_match: A高校 vs B高校` から読み、県名は「## 各県代表」から引く。無い・読めない・名寄せできないときは
   開幕戦の一文だけ省く（名寄せできないときは [要確認]）。抽選前は今までの文のまま。
+- [2026-11-17] 1回戦の組み合わせ一覧の各カードに「両校のデータを比べる」（開くと表）を付ける。中身は
+  senshuken_matchup.py（出場歴・所属リーグと成績・県予選・インハイ2026・プロ内定。すべて既存データから自動）。
+  比較表の生成で例外が出ても、カードの行（校名・県・リーグ）はそのまま出す。
+- [2026-11-17] 公式トーナメント表の日程・会場（マッチナンバー入り）を senshuken-final-2026.md の
+  「## 日程と会場（マッチナンバー）」47行に入れ、senshuken_schedule.py で読む。トーナメント表の32行と山が
+  食い違わないときだけ、①1回戦カード・シード校に「日時・会場」の印、②表の区間の最後に「試合日程と会場（全47試合）」
+  を出す。勝者は各回戦の結果行（インハイと同じ collect_results）から自動で埋まる。食い違い・読めない行があれば
+  日程だけ出さずに [要確認]（表と1回戦一覧はそのまま）。
 """
 import re
 import sys
@@ -628,11 +636,17 @@ def render_bracket():
         print(f"選手権2026本大会: 抽選待ち {n_pending}/{TOTAL_REPS} 枠（全部うまるまで要約は抽選前の文のまま）")
     cards = ""
     if n_pending == 0:
+        sched = _load_schedule(sections, rows)
         try:
-            cards = render_first_round(rows, sections.get("各県代表", []))
+            cards = render_first_round(rows, sections.get("各県代表", []), sched)
         except Exception as e:  # 一覧の不具合で表まで止めない
             print(f"[要確認] 選手権2026本大会: 1回戦の組み合わせ一覧の生成で例外 {type(e).__name__}: {e}。一覧は出さない。")
             cards = ""
+        if sched:
+            try:
+                cards += render_schedule(sched, sections, rows)
+            except Exception as e:
+                print(f"[要確認] 選手権2026本大会: 試合日程と会場の生成で例外 {type(e).__name__}: {e}。日程は出さない。")
     return ('      <section class="lp-section" id="bracket">\n'
             '        <h2><i class="fas fa-network-wired"></i> 本大会トーナメント表（組み合わせ）</h2>\n'
             f'        {svg}\n'
@@ -712,7 +726,50 @@ def _school_html(name, prefs, no_league):
     return f"{team_link(name)}{suffix}"
 
 
-def render_first_round(rows, reps_lines):
+PREF_SLUG_BY_NAME = {name: slug for _, prefs in REGIONS for slug, name in prefs}
+
+
+def _matchup_html(a, b, prefs):
+    """[2026-11-17] 1回戦カードの下の「両校のデータを比べる」。失敗したら空文字（カードの行は残す）。"""
+    try:
+        import senshuken_matchup as mu  # noqa: E402
+        from generate_interhigh_page import team_link  # noqa: E402
+        info = _load_rep_info()
+        datas = []
+        for nm in (a, b):
+            slug = PREF_SLUG_BY_NAME.get(prefs.get(nm, ""))
+            if not slug:
+                warnings.append(f"両校のデータ比較: 「{nm}」の県が分からない → このカードの比較表は出さない")
+                return ""
+            datas.append(mu.school_data(nm, slug, _official_note(info, slug, nm)))
+        html = mu.render_matchup(team_link(a), team_link(b), datas[0], datas[1], prefs.get(a), prefs.get(b))
+        for w in mu.warnings:
+            if w not in warnings:
+                warnings.append(w)
+        return html
+    except Exception as e:  # 比較表の不具合で一覧まで止めない
+        warnings.append(f"両校のデータ比較: {a} vs {b} で例外 {type(e).__name__}: {e} → このカードの比較表は出さない")
+        return ""
+
+
+CHIP = ('<span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:0.78em;'
+        'color:var(--accent-color,#2563eb);border:1px solid var(--accent-color,#2563eb);white-space:nowrap;">{}</span>')
+
+
+def _load_schedule(sections, rows):
+    """[2026-11-17] 日程と会場（47試合）。書いていない・食い違いがあれば None（食い違いは [要確認]）。"""
+    try:
+        import senshuken_schedule as ss  # noqa: E402
+        matches, probs = ss.load(sections, rows)
+    except Exception as e:
+        print(f"[要確認] 選手権2026本大会: 日程と会場の読み込みで例外 {type(e).__name__}: {e}。日程は出さない。")
+        return None
+    for pr in probs:
+        print(f"[要確認] 選手権2026本大会 日程と会場: {pr}（日程は出さない）")
+    return matches
+
+
+def render_first_round(rows, reps_lines, sched=None):
     prefs = _rep_prefs(reps_lines)
     opening = _opening_pair()
     no_league = []
@@ -721,33 +778,118 @@ def render_first_round(rows, reps_lines):
            'font-weight:600;color:#fff;background:var(--accent-color,#2563eb);white-space:nowrap;">'
            f'{esc(OPENING_LABEL)}</span>')
     out = [f'        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">1回戦の組み合わせ（{FIRST_ROUND_DATE}）</h3>\n']
+    try:
+        from senshuken_matchup import MU_STYLE  # noqa: E402
+        out.append("        " + MU_STYLE)
+    except Exception as e:
+        warnings.append(f"両校のデータ比較: 読み込みに失敗（比較表なしで続行）: {type(e).__name__}: {e}")
+    first_by_row, second_by_row = {}, {}
+    if sched:
+        import senshuken_schedule as ss  # noqa: E402
+        first_by_row, second_by_row = ss.by_row(sched, rows)
     seeds = []
     n_cards = 0
     for bi, blk in enumerate(BLOCKS):
         items = []
-        for ln in rows[bi * 8:(bi + 1) * 8]:
+        for ri, ln in enumerate(rows[bi * 8:(bi + 1) * 8], start=bi * 8):
             sides = [s.strip() for s in re.split(r"\s+vs\s+", ln.strip()[2:].strip())]
             if len(sides) == 2:
                 a, b = sides
                 mark = tag if {a, b} == opening else ""
+                mt = first_by_row.get(ri)
+                if mt:
+                    if mark:  # 開幕戦は日時・会場を印に出すので、開幕戦の札は「開幕戦」だけにする
+                        mark = tag.replace(esc(OPENING_LABEL), "開幕戦")
+                    mark += CHIP.format(esc(f"【{mt['no']}】{ss.when(mt)}"))
                 items.append(f'<li style="{li_style}">{_school_html(a, prefs, no_league)} '
-                             f'<span style="color:#888;">vs</span> {_school_html(b, prefs, no_league)}{mark}</li>')
+                             f'<span style="color:#888;">vs</span> {_school_html(b, prefs, no_league)}{mark}'
+                             f'{_matchup_html(a, b, prefs)}</li>')
                 n_cards += 1
             else:
-                seeds.append((blk, sides[0]))
+                mt = second_by_row.get(ri)
+                seeds.append((blk, sides[0], CHIP.format(esc(f"【{mt['no']}】{ss.when(mt)}")) if mt else ""))
         out.append(f'        <h4 style="margin:18px 0 4px;">{blk}ブロック</h4>'
                    f'<ul style="list-style:none;padding:0;margin:0;">{"".join(items)}</ul>\n')
     # 2回戦から登場（シード16校）
     seed_items = "".join(f'<li style="{li_style}"><span style="color:#888;font-size:0.85em;">{blk}</span> '
-                         f'{_school_html(nm, prefs, no_league)}</li>' for blk, nm in seeds)
+                         f'{_school_html(nm, prefs, no_league)}{chip}</li>' for blk, nm, chip in seeds)
     out.append('        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">2回戦から登場（シード16校）</h3>'
                f'<ul style="list-style:none;padding:0;margin:0;">{seed_items}</ul>\n')
     if n_cards != 16 or len(seeds) != 16:
         warnings.append(f"1回戦の組み合わせ一覧: カード{n_cards}・シード{len(seeds)}（16・16のはず）")
-    if opening and not any(tag in o for o in out):
+    if opening and not any(tag in o or tag.replace(esc(OPENING_LABEL), "開幕戦") in o for o in out):
         warnings.append(f"1回戦の組み合わせ一覧: opening_match {sorted(opening)} が1回戦のカードに無い → 開幕戦の印なし")
     if no_league:
         print(f"選手権2026本大会: 所属リーグが分からず（県）だけの学校 {len(no_league)}校: {'、'.join(no_league)}")
+    return "".join(out)
+
+
+def render_schedule(sched, sections, rows):
+    """[2026-11-17] 表の区間の最後に「試合日程と会場（全47試合）」。日ごとに見出し、1行＝1試合。
+    勝者は各回戦の結果行から自動で埋まる（未決は「【n】の勝者」、1回戦の勝者待ちは「A／Bの勝者」）。"""
+    import senshuken_schedule as ss  # noqa: E402
+    from generate_interhigh_page import team_link, collect_results, _norm_team  # noqa: E402
+    prefs = _rep_prefs(sections.get("各県代表", []))
+    results = collect_results(sections)
+    names = {}
+    for n, r in ss.draw_rows().items():
+        cell = [x.strip() for x in re.split(r"\s+vs\s+", rows[r].strip()[2:].strip()) if x.strip()]
+        # 同じ行に2校＝抽選番号の小さい方が左
+        same = sorted(k for k, v in ss.draw_rows().items() if v == r)
+        names[n] = cell[same.index(n)] if len(cell) == len(same) else None
+    if any(v is None for v in names.values()):
+        print("[要確認] 選手権2026本大会: 抽選番号と校名の対応が取れない。日程は出さない。")
+        return ""
+    winners = {}
+
+    def who(side):
+        kind, n = side
+        return names[n] if kind == "draw" else winners.get(n)
+
+    def score(mt):
+        a, b = who(mt["sides"][0]), who(mt["sides"][1])
+        if not a or not b:
+            return a, b, None
+        r = results.get(frozenset((_norm_team(a), _norm_team(b))))
+        if not r:
+            return a, b, None
+        ra, ga, gb, pk, rb = r
+        if _norm_team(ra) != _norm_team(a):
+            ga, gb, pk = gb, ga, (pk[1], pk[0]) if pk else None
+        win = a if (ga, pk[0] if pk else 0) > (gb, pk[1] if pk else 0) else b
+        winners[mt["no"]] = win
+        txt = f"{ga}-{gb}" + (f"(PK{pk[0]}-{pk[1]})" if pk else "")
+        return a, b, txt
+
+    def label(side, nm):
+        if nm:
+            pref = prefs.get(nm, "")
+            return team_link(nm) + (f'<span style="font-size:0.82em;color:var(--text-light,#666);">（{esc(pref)}）</span>' if pref else "")
+        n = side[1]
+        prev = sched[n]
+        if all(s[0] == "draw" for s in prev["sides"]):
+            return (f'<span style="color:var(--text-light,#666);">{esc(names[prev["sides"][0][1]])}／'
+                    f'{esc(names[prev["sides"][1][1]])}の勝者</span>')
+        return f'<span style="color:var(--text-light,#666);">【{n}】の勝者</span>'
+
+    li_style = "padding:8px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);line-height:1.7;"
+    out = ['        <h3 id="schedule" style="margin-top:28px;color:var(--accent-color,#2563eb);">試合日程と会場（全47試合）</h3>\n',
+           '        <p style="font-size:0.9em;color:var(--text-light,#666);margin:4px 0 8px;">【 】はマッチナンバー。'
+           '会場：' + "／".join(f"{esc(k)}＝{esc(v)}" for k, v in ss.VENUES.items() if k != v) +
+           '。結果が入ると勝ち上がった学校が自動で入ります。</p>\n']
+    for day, wday, rnd in ss.DAYS:
+        ms = sorted((m for m in sched.values() if m["day"] == day), key=lambda m: (m["time"], m["no"]))
+        if not ms:
+            continue
+        items = []
+        for mt in sorted(ms, key=lambda m: m["no"]):
+            a, b, sc = score(mt)
+            mid = f'<strong>{esc(sc)}</strong>' if sc else '<span style="color:#888;">vs</span>'
+            items.append(f'<li style="{li_style}"><span style="display:inline-block;min-width:11em;color:var(--accent-color,#2563eb);'
+                         f'font-weight:600;">【{mt["no"]}】{esc(mt["time"])} {esc(mt["venue"])}</span> '
+                         f'{label(mt["sides"][0], a)} {mid} {label(mt["sides"][1], b)}</li>')
+        out.append(f'        <h4 style="margin:18px 0 4px;">{esc(day)}（{esc(wday)}）{esc(rnd)}</h4>'
+                   f'<ul style="list-style:none;padding:0;margin:0;">{"".join(items)}</ul>\n')
     return "".join(out)
 
 
