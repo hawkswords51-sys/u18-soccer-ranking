@@ -52,6 +52,7 @@ P_START, P_END = "<!-- SENSHUKEN_PREFS_START -->", "<!-- SENSHUKEN_PREFS_END -->
 B_START, B_END = "<!-- SENSHUKEN_BRACKET_START -->", "<!-- SENSHUKEN_BRACKET_END -->"
 FINAL_MD = TDIR / "senshuken-final-2026.md"
 BRACKET_ROWS = 32  # 48代表＝1回戦16試合（開幕戦を含む）＋シード16校
+PENDING = "抽選待ち"  # 抽選会の途中でまだ決まっていない枠（リンク・県名なしの文字で描く）
 
 # 地域順（9地域）。(地域, [(slug, 表示名), ...])
 REGIONS = [
@@ -597,27 +598,33 @@ def parse_sections(path):
 
 
 def render_bracket():
-    """本大会トーナメント表の区間の中身。描かない（抽選前・書きかけ）ときは空文字。"""
+    """本大会トーナメント表の区間の中身と、全枠がうまったか、を返す。
+    描かない（抽選前・書きかけ）ときは ("", False)。
+    [2026-11-16] 抽選会の途中は未決の枠を「抽選待ち」にした32行で表を描く。「抽選待ち」が1つでも残るあいだは
+    complete=False（要約・title は抽選前の文のまま）。「抽選待ち」は名寄せされずリンク・県名なしの文字で出る。"""
     if not FINAL_MD.exists():
-        return ""
+        return "", False
     sections = parse_sections(FINAL_MD)
     key = next((k for k in sections if k.startswith("トーナメント表")), None)
     rows = [l for l in sections.get(key, []) if l.strip().startswith("- ")] if key else []
     if not rows:
-        return ""
+        return "", False
     if len(rows) != BRACKET_ROWS:
         print(f"[要確認] 選手権2026本大会: トーナメント表が{len(rows)}行（{BRACKET_ROWS}行のときだけ描く）。表は出さない。")
-        return ""
+        return "", False
+    n_pending = sum(len(re.findall(PENDING, l)) for l in rows)
     # 描くときだけ読み込む（import 時に team-profiles 等を読むが、書き込みはしない）
     from generate_interhigh_page import render_bracket_svg  # noqa: E402
     svg = render_bracket_svg(sections, sections.get("各県代表", []))
     if not svg:
         print("[要確認] 選手権2026本大会: トーナメント表を描けなかった。表は出さない。")
-        return ""
+        return "", False
+    if n_pending:
+        print(f"選手権2026本大会: 抽選待ち {n_pending}/{TOTAL_REPS} 枠（全部うまるまで要約は抽選前の文のまま）")
     return ('      <section class="lp-section" id="bracket">\n'
             '        <h2><i class="fas fa-network-wired"></i> 本大会トーナメント表（組み合わせ）</h2>\n'
             f'        {svg}\n'
-            '      </section>')
+            '      </section>'), n_pending == 0
 
 
 def update_prefs(html, drawn=False):
@@ -665,16 +672,16 @@ def main():
     new = html
     # 本大会トーナメント表（独立。失敗しても下の2区間は止めない）
     try:
-        bracket = render_bracket()
+        bracket, complete = render_bracket()
     except Exception as e:  # 表の不具合で毎日の更新全体を止めない
         print(f"[要確認] 選手権2026本大会: トーナメント表の生成で例外 {type(e).__name__}: {e}。表は出さない。")
-        bracket = ""
+        bracket, complete = "", False
     b = replace_between(new, B_START, B_END, bracket)
     if b is None:
         print("[要確認] 選手権2026: トーナメント表のマーカーが1組ずつ見つからない。表の区間は書き換えない。")
     else:
         new = b
-    p = update_prefs(new, drawn=bool(bracket))
+    p = update_prefs(new, drawn=bool(bracket) and complete)
     if p is not None:
         new = p
     if new != html:
