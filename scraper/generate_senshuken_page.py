@@ -621,10 +621,117 @@ def render_bracket():
         return "", False
     if n_pending:
         print(f"選手権2026本大会: 抽選待ち {n_pending}/{TOTAL_REPS} 枠（全部うまるまで要約は抽選前の文のまま）")
+    cards = ""
+    if n_pending == 0:
+        try:
+            cards = render_first_round(rows, sections.get("各県代表", []))
+        except Exception as e:  # 一覧の不具合で表まで止めない
+            print(f"[要確認] 選手権2026本大会: 1回戦の組み合わせ一覧の生成で例外 {type(e).__name__}: {e}。一覧は出さない。")
+            cards = ""
     return ('      <section class="lp-section" id="bracket">\n'
             '        <h2><i class="fas fa-network-wired"></i> 本大会トーナメント表（組み合わせ）</h2>\n'
             f'        {svg}\n'
+            f'{cards}'
             '      </section>'), n_pending == 0
+
+
+# ---- [2026-11-16] トーナメント表の下の「1回戦の組み合わせ」一覧（校名＋（県・リーグ））----
+# インハイ特設ページの「1回戦（7/25）」と同じ見た目（generate_interhigh_page の team_link・league_suffix）。
+# 抽選待ちが0のときだけ出す（表の区間の中に入れるので、新しいマーカーは使わない）。
+# 32行の並びは第104回の抽選会の表と同じ型＝8行ずつ A〜D ブロック。
+BLOCKS = "ABCD"
+FIRST_ROUND_DATE = "12月29日"
+OPENING_LABEL = "開幕戦・12/28 国立"
+
+
+def _rep_prefs(reps_lines):
+    """「## 各県代表」から {校名: 県名}。付記の括弧は外す。"""
+    out = {}
+    for ln in reps_lines:
+        lm = re.match(r"^\s*-\s*([^:：]+)[:：]\s*(.+)$", ln)
+        if not lm:
+            continue
+        pref = lm.group(1).strip()
+        for token in re.split(r"[、,]", lm.group(2).strip()):
+            nm = re.sub(r"[（(][^（）()]*[）)]\s*$", "", token.strip()).strip()
+            if nm:
+                out[nm] = pref
+    return out
+
+
+def _opening_pair():
+    """frontmatter の opening_match を {校名A, 校名B} で返す。無い・読めないときは空集合。"""
+    text = FINAL_MD.read_text(encoding="utf-8")
+    parts = text.split("---", 2)
+    fm = parts[1] if len(parts) == 3 and text.startswith("---") else ""
+    m = re.search(r"^opening_match:\s*(.+?)\s*$", fm, re.M)
+    if not m:
+        return set()
+    teams = [x.strip().strip("\"'") for x in re.split(r"\s+vs\s+", m.group(1).strip().strip("\"'"))]
+    return set(teams) if len(teams) == 2 and all(teams) else set()
+
+
+def _school_html(name, prefs, no_league):
+    """校名リンク＋（県・リーグ）。リーグが分からない学校は（県）だけ。"""
+    from generate_interhigh_page import team_link, league_suffix  # noqa: E402
+    pref = prefs.get(name, "")
+    if not pref:
+        warnings.append(f"1回戦の組み合わせ一覧: 「{name}」が各県代表に無い（表記ゆれ？）")
+    suffix = league_suffix(name, pref) or league_suffix(name + "高校", pref)
+    if not suffix:
+        # 正式名（例：佐野日本大学高校）がリーグ表に無くても、同じチームページの別名（佐野日大高校）で引ける
+        from generate_interhigh_page import TEAM_MAP  # noqa: E402
+        tid = TEAM_MAP.get(name)
+        if tid:
+            for alias in (k for k, v in TEAM_MAP.items() if v == tid and k != name):
+                suffix = league_suffix(alias, pref)
+                if suffix:
+                    break
+    if not suffix:
+        no_league.append(name)
+        if pref:
+            suffix = ('<wbr><span style="font-size:0.82em;color:var(--text-light,#666);white-space:nowrap;">'
+                      f'（{esc(pref)}）</span>')
+    return f"{team_link(name)}{suffix}"
+
+
+def render_first_round(rows, reps_lines):
+    prefs = _rep_prefs(reps_lines)
+    opening = _opening_pair()
+    no_league = []
+    li_style = "padding:10px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);font-size:1.05em;"
+    tag = ('<span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:0.78em;'
+           'font-weight:600;color:#fff;background:var(--accent-color,#2563eb);white-space:nowrap;">'
+           f'{esc(OPENING_LABEL)}</span>')
+    out = [f'        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">1回戦の組み合わせ（{FIRST_ROUND_DATE}）</h3>\n']
+    seeds = []
+    n_cards = 0
+    for bi, blk in enumerate(BLOCKS):
+        items = []
+        for ln in rows[bi * 8:(bi + 1) * 8]:
+            sides = [s.strip() for s in re.split(r"\s+vs\s+", ln.strip()[2:].strip())]
+            if len(sides) == 2:
+                a, b = sides
+                mark = tag if {a, b} == opening else ""
+                items.append(f'<li style="{li_style}">{_school_html(a, prefs, no_league)} '
+                             f'<span style="color:#888;">vs</span> {_school_html(b, prefs, no_league)}{mark}</li>')
+                n_cards += 1
+            else:
+                seeds.append((blk, sides[0]))
+        out.append(f'        <h4 style="margin:18px 0 4px;">{blk}ブロック</h4>'
+                   f'<ul style="list-style:none;padding:0;margin:0;">{"".join(items)}</ul>\n')
+    # 2回戦から登場（シード16校）
+    seed_items = "".join(f'<li style="{li_style}"><span style="color:#888;font-size:0.85em;">{blk}</span> '
+                         f'{_school_html(nm, prefs, no_league)}</li>' for blk, nm in seeds)
+    out.append('        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">2回戦から登場（シード16校）</h3>'
+               f'<ul style="list-style:none;padding:0;margin:0;">{seed_items}</ul>\n')
+    if n_cards != 16 or len(seeds) != 16:
+        warnings.append(f"1回戦の組み合わせ一覧: カード{n_cards}・シード{len(seeds)}（16・16のはず）")
+    if opening and not any(tag in o for o in out):
+        warnings.append(f"1回戦の組み合わせ一覧: opening_match {sorted(opening)} が1回戦のカードに無い → 開幕戦の印なし")
+    if no_league:
+        print(f"選手権2026本大会: 所属リーグが分からず（県）だけの学校 {len(no_league)}校: {'、'.join(no_league)}")
+    return "".join(out)
 
 
 def update_prefs(html, drawn=False):
