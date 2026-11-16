@@ -339,8 +339,13 @@ def rep_note(slug, name):
             parts.append(f"直近{n}大会は出場なし")
     if not parts:
         return ""
-    return ('<span style="font-size:0.82em;font-weight:400;color:var(--text-light,#64748b);white-space:nowrap;">'
-            + "（" + "・".join(parts) + "）</span>")
+    # [2026-11-16] 括弧全体を折り返し禁止にすると、320px幅で「（プリンス北信越1部・県内1位・3大会ぶり33回目）」が
+    #   画面の外へ11pxはみ出した（星稜・丸岡）。項目ごとに折り返し禁止にし、「・」の後ろでは改行できるようにする。
+    items = [f'<span style="white-space:nowrap;">{p}</span>' for p in parts]
+    items[0] = items[0].replace(">", ">（", 1)
+    items[-1] = items[-1][:-len("</span>")] + "）</span>"
+    return ('<wbr><span style="font-size:0.82em;font-weight:400;color:var(--text-light,#64748b);">'
+            + "・<wbr>".join(items) + "</span>")
 
 
 SEASON_YEAR = 2026  # 第105回＝2026年度
