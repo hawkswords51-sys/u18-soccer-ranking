@@ -1609,6 +1609,16 @@ BRACKET_CAPTION_EN = (
     'QF = quarter-finals, SF = semi-finals.</p>')
 
 
+# 名前に「N部」が無いが県リーグの1部と確認できたもの（英語の組み合わせ一覧で使う）
+BRACKET_LEAGUE_DIV1 = {
+    "和歌山県JFA U-18サッカーリーグ",   # 初芝橋本。県リーグ1部（Kei確認 2026-11-16）
+}
+# 県リーグではない地区リーグの英語名（公式の英語表記なし。ヘボン式で Kei決定 2026-11-16）
+BRACKET_LEAGUE_OTHER = {
+    "東播・淡路リーグ1部（兵庫）": "Toban-Awaji League Division 1",   # AIE国際
+}
+
+
 def _short_en(en):
     """表の中だけの短い英語名（「High School」→「HS」）。"""
     return re.sub(r"\bHigh School\b", "HS", en).strip()
@@ -1698,7 +1708,9 @@ def _league_en(jp, names, extra, by_pref, flat, pref_jp):
             raw = str((yaml.safe_load(prof.read_text(encoding="utf-8").split("---")[1]) or {}).get("league") or "")
         except Exception:  # noqa: BLE001
             raw = ""
-    if raw in PREF_LEAGUE_EN:
+    if raw in BRACKET_LEAGUE_OTHER:
+        return BRACKET_LEAGUE_OTHER[raw], ""
+    if raw in PREF_LEAGUE_EN or raw in BRACKET_LEAGUE_DIV1:
         return "Prefectural League Division 1", ""
     m = re.search(r"[都道府県](\d)部", raw)
     if m:
