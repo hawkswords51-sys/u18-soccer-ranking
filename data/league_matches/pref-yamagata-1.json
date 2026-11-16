@@ -50,122 +50,122 @@
     {
       "rank": 1,
       "team": "山形明正",
-      "points": 46,
-      "played": 16,
-      "won": 15,
+      "points": 49,
+      "played": 17,
+      "won": 16,
       "drawn": 1,
       "lost": 0,
-      "gf": 115,
-      "ga": 10,
-      "gd": 105
+      "gf": 117,
+      "ga": 11,
+      "gd": 106
     },
     {
       "rank": 2,
       "team": "日大山形",
-      "points": 34,
-      "played": 16,
-      "won": 11,
+      "points": 37,
+      "played": 17,
+      "won": 12,
       "drawn": 1,
       "lost": 4,
-      "gf": 35,
+      "gf": 42,
       "ga": 20,
-      "gd": 15
+      "gd": 22
     },
     {
       "rank": 3,
       "team": "鶴岡東",
-      "points": 33,
-      "played": 16,
-      "won": 11,
+      "points": 36,
+      "played": 17,
+      "won": 12,
       "drawn": 0,
       "lost": 5,
-      "gf": 43,
-      "ga": 18,
-      "gd": 25
+      "gf": 46,
+      "ga": 19,
+      "gd": 27
     },
     {
       "rank": 4,
       "team": "山形中央",
-      "points": 31,
-      "played": 16,
+      "points": 32,
+      "played": 17,
       "won": 10,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 5,
-      "gf": 63,
-      "ga": 22,
+      "gf": 66,
+      "ga": 25,
       "gd": 41
     },
     {
       "rank": 5,
       "team": "羽黒",
       "points": 29,
-      "played": 16,
+      "played": 17,
       "won": 9,
       "drawn": 2,
-      "lost": 5,
-      "gf": 34,
-      "ga": 18,
-      "gd": 16
+      "lost": 6,
+      "gf": 35,
+      "ga": 20,
+      "gd": 15
     },
     {
       "rank": 6,
       "team": "東海大山形",
-      "points": 20,
-      "played": 16,
-      "won": 6,
+      "points": 23,
+      "played": 17,
+      "won": 7,
       "drawn": 2,
       "lost": 8,
-      "gf": 32,
-      "ga": 28,
-      "gd": 4
+      "gf": 37,
+      "ga": 30,
+      "gd": 7
     },
     {
       "rank": 7,
       "team": "米沢中央",
-      "points": 17,
-      "played": 16,
+      "points": 18,
+      "played": 17,
       "won": 5,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 9,
-      "gf": 37,
-      "ga": 35,
+      "gf": 40,
+      "ga": 38,
       "gd": 2
     },
     {
       "rank": 8,
       "team": "山形城北",
       "points": 12,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 3,
-      "lost": 10,
-      "gf": 18,
-      "ga": 68,
-      "gd": -50
+      "lost": 11,
+      "gf": 19,
+      "ga": 71,
+      "gd": -52
     },
     {
       "rank": 9,
       "team": "山形南",
       "points": 11,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 2,
-      "lost": 11,
-      "gf": 13,
-      "ga": 50,
-      "gd": -37
+      "lost": 12,
+      "gf": 15,
+      "ga": 55,
+      "gd": -40
     },
     {
       "rank": 10,
       "team": "長井",
       "points": 0,
-      "played": 16,
+      "played": 17,
       "won": 0,
       "drawn": 0,
-      "lost": 16,
+      "lost": 17,
       "gf": 2,
-      "ga": 123,
-      "gd": -121
+      "ga": 130,
+      "gd": -128
     }
   ],
   "matches": [
@@ -360,7 +360,7 @@
     },
     {
       "md": 18,
-      "date": "2026-11-22",
+      "date": "2026-11-21",
       "home": "鶴岡東",
       "hs": null,
       "as": null,
@@ -530,11 +530,11 @@
     {
       "md": 17,
       "date": "2026-11-14",
-      "home": "羽黒",
-      "hs": null,
-      "as": null,
-      "away": "山形明正",
-      "status": "scheduled"
+      "home": "山形明正",
+      "hs": 2,
+      "as": 1,
+      "away": "羽黒",
+      "status": "played"
     },
     {
       "md": 4,
@@ -737,11 +737,11 @@
     {
       "md": 17,
       "date": "2026-11-14",
-      "home": "米沢中央",
-      "hs": null,
-      "as": null,
-      "away": "山形中央",
-      "status": "scheduled"
+      "home": "山形中央",
+      "hs": 3,
+      "as": 3,
+      "away": "米沢中央",
+      "status": "played"
     },
     {
       "md": 9,
@@ -846,11 +846,11 @@
     {
       "md": 17,
       "date": "2026-11-14",
-      "home": "山形南",
-      "hs": null,
-      "as": null,
-      "away": "東海大山形",
-      "status": "scheduled"
+      "home": "東海大山形",
+      "hs": 5,
+      "as": 2,
+      "away": "山形南",
+      "status": "played"
     },
     {
       "md": 13,
@@ -903,11 +903,11 @@
     {
       "md": 17,
       "date": "2026-11-14",
-      "home": "山形城北",
-      "hs": null,
-      "as": null,
-      "away": "鶴岡東",
-      "status": "scheduled"
+      "home": "鶴岡東",
+      "hs": 3,
+      "as": 1,
+      "away": "山形城北",
+      "status": "played"
     },
     {
       "md": 13,
@@ -982,11 +982,11 @@
     {
       "md": 17,
       "date": "2026-11-14",
-      "home": "長井",
-      "hs": null,
-      "as": null,
-      "away": "日大山形",
-      "status": "scheduled"
+      "home": "日大山形",
+      "hs": 7,
+      "as": 0,
+      "away": "長井",
+      "status": "played"
     },
     {
       "md": 13,
@@ -1062,72 +1062,72 @@
   "source_standings": [
     {
       "team": "日大山形",
-      "pts": 34,
-      "gf": 35,
+      "pts": 37,
+      "gf": 42,
       "ga": 20,
       "rank": 2
     },
     {
       "team": "山形城北",
       "pts": 12,
-      "gf": 18,
-      "ga": 68,
+      "gf": 19,
+      "ga": 71,
       "rank": 8
     },
     {
       "team": "山形中央",
-      "pts": 31,
-      "gf": 63,
-      "ga": 22,
+      "pts": 32,
+      "gf": 66,
+      "ga": 25,
       "rank": 4
     },
     {
       "team": "山形南",
       "pts": 11,
-      "gf": 13,
-      "ga": 50,
+      "gf": 15,
+      "ga": 55,
       "rank": 9
     },
     {
       "team": "米沢中央",
-      "pts": 17,
-      "gf": 37,
-      "ga": 35,
+      "pts": 18,
+      "gf": 40,
+      "ga": 38,
       "rank": 7
     },
     {
       "team": "東海大山形",
-      "pts": 20,
-      "gf": 32,
-      "ga": 28,
+      "pts": 23,
+      "gf": 37,
+      "ga": 30,
       "rank": 6
     },
     {
       "team": "山形明正",
-      "pts": 46,
-      "gf": 115,
-      "ga": 10,
+      "pts": 49,
+      "gf": 117,
+      "ga": 11,
       "rank": 1
     },
     {
       "team": "鶴岡東",
-      "pts": 33,
-      "gf": 43,
-      "ga": 18,
+      "pts": 36,
+      "gf": 46,
+      "ga": 19,
       "rank": 3
     },
     {
       "team": "羽黒",
       "pts": 29,
-      "gf": 34,
-      "ga": 18,
+      "gf": 35,
+      "ga": 20,
       "rank": 5
     },
     {
       "team": "長井",
       "pts": 0,
       "gf": 2,
-      "ga": 123,
+      "ga": 130,
       "rank": 10
     }
   ]
