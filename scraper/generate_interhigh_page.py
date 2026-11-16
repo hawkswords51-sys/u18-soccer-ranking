@@ -778,8 +778,11 @@ def _round_names(num_levels):
     return head + tail
 
 
-def render_bracket_svg(sections, reps_lines):
-    """「## トーナメント表(組み合わせ)」があればSVGトーナメント表のHTMLを返す。無ければ空文字。"""
+def render_bracket_svg(sections, reps_lines, loc=None):
+    """「## トーナメント表(組み合わせ)」があればSVGトーナメント表のHTMLを返す。無ければ空文字。
+    [2026-11-16] loc＝英語版などで「表示だけ」差し替える口（勝敗・名寄せは日本語の校名のまま）。None なら従来どおり。
+      label(校名)->表示名 / pref(県名)->表示県名 / link(校名)->URLか'' / round_names(段数)->見出しのリスト /
+      champion(表示名)->優勝の文字 / aria / caption(HTML) / pref_wrap=("［","］")"""
     lines = None
     for name, ls in sections.items():
         if name.startswith("トーナメント表"):
@@ -829,7 +832,16 @@ def render_bracket_svg(sections, reps_lines):
                     alive_teams.add(_norm_team(_t))
 
     wing_levels = num_levels - 1
-    names = _round_names(num_levels)
+    names = loc["round_names"](num_levels) if loc else _round_names(num_levels)
+    _label = loc["label"] if loc else _short_label
+    _pref_disp = loc["pref"] if loc else (lambda p_: p_)
+    _po, _pc = loc.get("pref_wrap", ("［", "］")) if loc else ("［", "］")
+
+    def _link(name):
+        if loc:
+            return loc["link"](name)
+        tid = TEAM_MAP.get(name)
+        return f"/teams/{tid}/" if tid else ""
 
     # ---- レイアウト定数 ----
     LABEL_W = 168
@@ -905,31 +917,47 @@ def render_bracket_svg(sections, reps_lines):
     def team_text(x, y, name, anchor, won=False):
         if not name:
             return
-        label = _short_label(name)
-        pref = pref_map.get(_norm_team(name), "")
-        tid = TEAM_MAP.get(name)
-        color = RED if won else (ACC if tid else TXT)
-        weight = ' font-weight="700"' if won else (' font-weight="600"' if tid else "")
+        label = _label(name)
+        pref = _pref_disp(pref_map.get(_norm_team(name), ""))
+        href = _link(name)
+        color = RED if won else (ACC if href else TXT)
+        weight = ' font-weight="700"' if won else (' font-weight="600"' if href else "")
         body = (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="10.5" '
                 f'fill="{color}"{weight}>{html_escape(label)}'
-                + (f'<tspan font-size="8.5" fill="{SUB}" font-weight="400">［{html_escape(pref)}］</tspan>' if pref else "")
+                + (f'<tspan font-size="8.5" fill="{SUB}" font-weight="400">{_po}{html_escape(pref)}{_pc}</tspan>' if pref else "")
                 + '</text>')
-        if tid:
-            body = f'<a href="/teams/{tid}/">{body}</a>'
+        if href:
+            body = f'<a href="{html_escape(href)}">{body}</a>'
         S.append(body)
+
+    _lat = 0.62 if loc else 0.55   # 英語の校名（太字・大文字まじり）は55%だと短く見積もり、枠が校名の途中で切れた
 
     def _text_w(s_, size):
         """文字列のおよその表示幅(全角=フォントサイズ、半角=その55%)"""
-        return sum(size if ord(c) >= 0x1100 else size * 0.55 for c in s_)
+        return sum(size if ord(c) >= 0x1100 else size * _lat for c in s_)
+
+    if loc:
+        # 英語の校名は日本語より長い。いちばん長い「校名［県］」に合わせて枠の幅を広げる（日本語は168のまま）
+        _ws = [_text_w(_label(t), 10.5) + _text_w(f"{_po}{_pref_disp(pref_map.get(_norm_team(t), ''))}{_pc}", 8.5)
+               for nd in levels[0] for t in (nd.get("a"), nd.get("b")) if t]
+        LABEL_W = max(LABEL_W, int(max(_ws or [0]) + 16))
+        # 中央の「Winners: …」が決勝の線に重ならないよう、中央の幅も優勝校の文字に合わせて広げる
+        _champ = levels[-1][0].get("winner")
+        if _champ:
+            CENTER_GAP = max(CENTER_GAP, int(_text_w(loc["champion"](_label(_champ)), 13) + 40))
+        width = 2 * (LABEL_W + wing_levels * LVL_W) + CENTER_GAP
+        cx = width / 2
+        xsL = [LABEL_W + (k + 1) * LVL_W for k in range(wing_levels)]
+        xsR = [width - x for x in xsL]
 
     def alive_box(side, y, name):
         """勝ち残っているチームの校名を赤い枠で囲む(校名テキストより先に描く)。
         枠幅は校名＋［県名］の実際の長さに合わせ、余白が空きすぎないようにする。"""
         if not name or _norm_team(name) not in alive_teams:
             return
-        label = _short_label(name)
-        pref = pref_map.get(_norm_team(name), "")
-        tw = _text_w(label, 10.5) + (_text_w(f"［{pref}］", 8.5) if pref else 0.0)
+        label = _label(name)
+        pref = _pref_disp(pref_map.get(_norm_team(name), ""))
+        tw = _text_w(label, 10.5) + (_text_w(f"{_po}{pref}{_pc}", 8.5) if pref else 0.0)
         PAD = 4.0
         bw = min(tw + PAD * 2, LABEL_W - 6.0)
         if side == "L":
@@ -1044,7 +1072,7 @@ def render_bracket_svg(sections, reps_lines):
     if champ:
         stem_top = ymid - 28
         line(cx, ymid, cx, stem_top, RED, 2.4)
-        text(cx, stem_top - 7, f"優勝 {_short_label(champ)}", "middle", 13, RED, "700")
+        text(cx, stem_top - 7, loc["champion"](_label(champ)) if loc else f"優勝 {_short_label(champ)}", "middle", 13, RED, "700")
 
     # 表示倍率：viewBox(内部座標)はそのままに、表示サイズだけ拡大する。
     # ベクターなので文字・線も含めて一律にきれいに大きくなる（中央線などのレイアウトは不変）。
@@ -1052,9 +1080,13 @@ def render_bracket_svg(sections, reps_lines):
     bscale = 1.15
     svg = (f'<svg viewBox="0 0 {width:.0f} {height:.0f}" width="{width*bscale:.0f}" height="{height*bscale:.0f}" '
            f'xmlns="http://www.w3.org/2000/svg" role="img" '
-           f'aria-label="トーナメント表" style="display:block;font-family:inherit;max-width:none;">'
+           f'aria-label="{html_escape(loc["aria"]) if loc else "トーナメント表"}" style="display:block;font-family:inherit;max-width:none;">'
            + "".join(S) + '</svg>')
 
+    if loc:
+        return (loc["caption"] + '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;'
+                'border:1px solid var(--border-color,#e5e7eb);border-radius:10px;'
+                'background:var(--bg-white,#fff);padding:8px 4px;">' + svg + '</div>')
     return (
         '<p style="margin:0 0 8px;color:var(--text-light,#666);font-size:0.88em;">'
         'スマホでは表を左右にスクロールできます ／ '

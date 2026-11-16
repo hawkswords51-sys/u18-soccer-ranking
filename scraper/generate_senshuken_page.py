@@ -640,6 +640,18 @@ def render_bracket():
             '      </section>'), n_pending == 0
 
 
+def drawn_bracket():
+    """[2026-11-16] 英語版と共通の「組み合わせ決定」の判定。32行そろい・抽選待ち0なら (sections, rows)、それ以外は None。"""
+    if not FINAL_MD.exists():
+        return None
+    sections = parse_sections(FINAL_MD)
+    key = next((k for k in sections if k.startswith("トーナメント表")), None)
+    rows = [l for l in sections.get(key, []) if l.strip().startswith("- ")] if key else []
+    if len(rows) != BRACKET_ROWS or any(PENDING in l for l in rows):
+        return None
+    return sections, rows
+
+
 # ---- [2026-11-16] トーナメント表の下の「1回戦の組み合わせ」一覧（校名＋（県・リーグ））----
 # インハイ特設ページの「1回戦（7/25）」と同じ見た目（generate_interhigh_page の team_link・league_suffix）。
 # 抽選待ちが0のときだけ出す（表の区間の中に入れるので、新しいマーカーは使わない）。

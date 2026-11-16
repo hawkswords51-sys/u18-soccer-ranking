@@ -1062,6 +1062,28 @@ def render_interhigh(out_root, names, extra, season):
         </div>
       </section>"""
 
+    # [2026-11-16] 日本語版インハイと同じトーナメント表（表示だけ英語）。失敗してもページは止めない。
+    bracket_html = ""
+    try:
+        import generate_interhigh_page as gi
+        _meta, b_sections = gi.parse_source()
+        b_reps = b_sections.get("各県代表", [])
+        by_pref, flat = _school_index(json.loads(TEAMS.read_text(encoding="utf-8")), names, extra)
+        b_missing = []
+        svg = gi.render_bracket_svg(b_sections, b_reps,
+                                    loc=_bracket_loc(b_reps, names, extra, by_pref, flat, b_missing))
+        if svg:
+            bracket_html = f"""
+      <section class="lp-section" id="bracket">
+        <h2>Bracket</h2>
+        {svg}
+      </section>"""
+        for m in sorted(set(b_missing)):
+            print(f"[英語名待ち] インターハイ英語ページのトーナメント表: 英語名が辞書に無いので漢字のまま → {m}")
+    except Exception as e:  # noqa: BLE001
+        print(f"[要確認] インターハイ英語ページ: トーナメント表の生成で例外 {type(e).__name__}: {e}（表だけ出さない）")
+        bracket_html = ""
+
     origins_html = f"""
       <section class="lp-section" id="where-players-come-from">
         <h2>Where the players come from</h2>
@@ -1095,7 +1117,7 @@ def render_interhigh(out_root, names, extra, season):
         {"@type": "ListItem", "position": 2, "name": f"Inter-High {year}", "item": url}]}, ensure_ascii=False)
     page = PAGE.format(title=esc(title), desc=esc(desc), url=url, breadcrumb=breadcrumb,
                        crumb=f"Inter-High {year}", h1=f"Inter-High {year}: Japan's Summer High School Championship",
-                       intro=intro, legend=facts, tables=result_html + results_html + origins_html + reps_html, tail=tail)
+                       intro=intro, legend=facts, tables=result_html + bracket_html + results_html + origins_html + reps_html, tail=tail)
     dest = out_root / "en" / "inter-high" / "index.html"
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(page, encoding="utf-8")
@@ -1577,6 +1599,156 @@ def _md_en(md, year):
     return f"{_WD_EN[dt.weekday()]} {dt.day} {MONTHS[m - 1][:3]}"
 
 
+# ---- [2026-11-16] 英語版のトーナメント表（日本語版と同じ描画関数に「表示だけ英語」の口 loc を渡す）----
+#   勝敗・名寄せは日本語の校名のまま（スコアの照合を壊さない）。英語名が無い学校は漢字のまま＋[英語名待ち]。
+#   リンクは英語チームページ（EN_TEAM_PAGES）がある学校だけ。日本語ページへは飛ばさない（Kei 2026-11-16）。
+BRACKET_CAPTION_EN = (
+    '<p class="en-note" style="margin:0 0 8px;">On a phone, scroll the bracket sideways. '
+    '<span style="color:var(--danger-color,#dc2626);font-weight:700;">Red line</span> = winners&rsquo; path; '
+    '<span style="border:1.5px solid var(--danger-color,#dc2626);border-radius:3px;padding:0 5px;">red box</span> = still in. '
+    'QF = quarter-finals, SF = semi-finals.</p>')
+
+
+def _short_en(en):
+    """表の中だけの短い英語名（「High School」→「HS」）。"""
+    return re.sub(r"\bHigh School\b", "HS", en).strip()
+
+
+def _en_key(jp, pref_jp, names, extra, by_pref, flat):
+    """日本語の校名（県名つき）→ 英語名辞書のキー。同じ県の中だけで引く（_school_html と同じ考え方）。"""
+    import generate_interhigh_page as gi
+    slug = gi.PREF_SLUG.get(pref_jp, "")
+    k = _nk(jp)
+    hit = by_pref.get(slug, {}).get(k) or by_pref.get(slug, {}).get(_strip_owner(k))
+    if hit:
+        return hit
+    # 県リーグの表に無い学校（例：AIE国際＝地区リーグ）は辞書のキーそのもので引く。「高校」の有無だけ吸収（完全一致のみ）
+    base = re.sub(r"(高等学校|高校)$", "", jp)
+    for c in (jp, base + "高校", base + "高", base):
+        if c in names or c in extra:
+            return c
+    return None
+
+
+def _en_page_of(key, names, extra):
+    """英語チームページのURL（別名 alias-of の先でも引く）。無ければ ''。jp_page は使わない。"""
+    if not key:
+        return ""
+    page = EN_TEAM_PAGES.get(key)
+    rec = names.get(key) or extra.get(key) or {}
+    src = rec.get("source") or ""
+    if not page and isinstance(src, str) and src.startswith("alias-of:"):
+        page = EN_TEAM_PAGES.get(src[len("alias-of:"):])
+    return page or ""
+
+
+def _bracket_loc(reps_lines, names, extra, by_pref, flat, missing):
+    import generate_interhigh_page as gi
+    pref_map = gi.parse_pref_map(reps_lines)
+
+    def key_of(jp):
+        return _en_key(jp, pref_map.get(gi._norm_team(jp), ""), names, extra, by_pref, flat)
+
+    def label(jp):
+        key = key_of(jp)
+        rec = (names.get(key) or extra.get(key)) if key else None
+        if not rec:
+            missing.append(jp)
+            return gi._short_label(jp)
+        return _short_en(rec["en"])
+
+    def round_names(n):
+        tail = ["QF", "SF", "Final"]
+        if n <= 3:
+            return tail[-n:]
+        return [f"Round {i + 1}" for i in range(n - 3)] + tail
+
+    return {"label": label, "pref": lambda p: PREFS_EN.get(p, p) if p else "",
+            "link": lambda jp: _en_page_of(key_of(jp), names, extra),
+            "round_names": round_names, "champion": lambda l: f"Winners: {l}",
+            "aria": "Tournament bracket", "caption": BRACKET_CAPTION_EN, "pref_wrap": (" [", "]")}
+
+
+def _league_en(jp, names, extra, by_pref, flat, pref_jp):
+    """（県・リーグ）の英語のリーグ名と英語順位表へのリンク。分からなければ ('', '')。
+    日本語版の一覧と同じ表（SCHOOL_LEAGUE_MAP）・同じ別名の引き方（佐野日本大学高校→佐野日大高校）。"""
+    import generate_interhigh_page as gi
+    cands = [jp, jp + "高校"] + [k for k, v in gi.TEAM_MAP.items() if v == gi.TEAM_MAP.get(jp) and k != jp]
+    short = ""
+    for c in cands:
+        meta = gi.SCHOOL_LEAGUE_MAP.get(gi._norm_team(c))
+        if meta:
+            short = meta[1]
+            break
+    if not short:
+        return "", ""
+    m = re.fullmatch(r"プレミア(EAST|WEST)", short)
+    if m:
+        return f"Premier League {m.group(1)}", f"/en/premier-league/#{m.group(1).lower()}"
+    if short.startswith("プリンス"):
+        info = _league_info().get("プリンスリーグ" + short[len("プリンス"):])
+        return (info[0], info[2]) if info else ("", "")
+    # 県リーグは日本語の短縮（読めないと「県1部」にする）ではなく、元のリーグ名から英語にする。
+    #   元の名前に「◯◯県N部」が無いもの（和歌山県JFA U-18サッカーリーグ、東播・淡路リーグ1部 など）は空ける（推測しない）
+    raw = ""
+    tid = gi.TEAM_MAP.get(jp)
+    prof = PROFILES_DIR / f"{tid}.md" if tid else None
+    if prof and prof.exists():
+        try:
+            raw = str((yaml.safe_load(prof.read_text(encoding="utf-8").split("---")[1]) or {}).get("league") or "")
+        except Exception:  # noqa: BLE001
+            raw = ""
+    if raw in PREF_LEAGUE_EN:
+        return "Prefectural League Division 1", ""
+    m = re.search(r"[都道府県](\d)部", raw)
+    if m:
+        return f"Prefectural League Division {m.group(1)}", ""
+    return "", ""
+
+
+def _first_round_en(rows, reps_lines, opening, names, extra, by_pref, flat, missing):
+    """選手権の「1回戦の組み合わせ」英語版（日本語版と同じ16カード・同じ順）＋シード16校。"""
+    import generate_interhigh_page as gi
+    pref_map = gi.parse_pref_map(reps_lines)
+    li = 'style="padding:9px 4px;border-bottom:1px solid var(--border-color,#e5e7eb);"'
+
+    def school(jp):
+        pref_jp = pref_map.get(gi._norm_team(jp), "")
+        key = _en_key(jp, pref_jp, names, extra, by_pref, flat)
+        rec = (names.get(key) or extra.get(key)) if key else None
+        if rec:
+            nm = esc(rec["en"])
+        else:
+            missing.append(jp)
+            nm = f'<span lang="ja">{esc(jp)}</span>'
+        page = _en_page_of(key, names, extra)
+        h = f'<a href="{esc(page)}">{nm}</a>' if page else nm
+        lg, lg_url = _league_en(jp, names, extra, by_pref, flat, pref_jp)
+        bits = [esc(PREFS_EN.get(pref_jp, pref_jp))] if pref_jp else []
+        if lg:
+            bits.append(f'<a href="{esc(lg_url)}">{esc(lg)}</a>' if lg_url else esc(lg))
+        note = (' <span class="en-note" style="font-size:0.85em;">(' + " &middot; ".join(bits) + ")</span>") if bits else ""
+        return h + note
+
+    tag = ('<span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:0.78em;'
+           'font-weight:600;color:#fff;background:var(--accent-color,#2563eb);">Opening match (28 Dec, National Stadium)</span>')
+    out, seeds = ['        <h3>Round 1 (29 December)</h3>'], []
+    for bi, blk in enumerate("ABCD"):
+        items = []
+        for ln in rows[bi * 8:(bi + 1) * 8]:
+            sides = [s.strip() for s in re.split(r"\s+vs\s+", ln.strip()[2:].strip())]
+            if len(sides) == 2:
+                mark = tag if set(sides) == opening else ""
+                items.append(f'<li {li}>{school(sides[0])} <span style="color:#888;">vs</span> {school(sides[1])}{mark}</li>')
+            else:
+                seeds.append((blk, sides[0]))
+        out.append(f'        <h4 style="margin:16px 0 2px;">Block {blk}</h4><ul style="list-style:none;padding:0;margin:0;">{"".join(items)}</ul>')
+    out.append('        <h3>Seeded into round 2 (16 schools)</h3><ul style="list-style:none;padding:0;margin:0;">'
+               + "".join(f'<li {li}><span style="color:#888;font-size:0.85em;">{b}</span> {school(n)}</li>' for b, n in seeds)
+               + "</ul>")
+    return "\n".join(out)
+
+
 def render_senshuken(out_root, teams, names, extra, season):
     import generate_senshuken_page as gs
     from jst import today
@@ -1703,9 +1875,32 @@ def render_senshuken(out_root, teams, names, extra, season):
         .ss-badge { display:inline-block; font-size:0.8em; padding:2px 9px; border-radius:8px; line-height:1.45; color:#fff; }
         .ss-done { background:#16a34a; } .ss-live { background:#b45309; } .ss-pre { background:#64748b; }
       </style>"""
+    # [2026-11-16] 組み合わせ決定後（日本語版と同じ判定 gs.drawn_bracket()）だけ、トーナメント表と1回戦の一覧を出す。
+    #   失敗してもページ全体は止めない（表だけ出さない）。
+    bracket_sec = ""
+    try:
+        drawn = gs.drawn_bracket()
+        if drawn:
+            import generate_interhigh_page as gi
+            b_sections, b_rows = drawn
+            b_reps = b_sections.get("各県代表", [])
+            b_missing = []
+            svg = gi.render_bracket_svg(b_sections, b_reps,
+                                        loc=_bracket_loc(b_reps, names, extra, by_pref, flat, b_missing))
+            lst = _first_round_en(b_rows, b_reps, gs._opening_pair(), names, extra, by_pref, flat, b_missing)
+            if svg:
+                bracket_sec = sec("bracket", "The draw: bracket and round 1",
+                                  '<p>The draw was made on 16 November 2026. 16 matches in round 1, '
+                                  'with 16 schools seeded into round 2.</p>\n        ' + svg + "\n" + lst)
+            for m in sorted(set(b_missing)):
+                print(f"[英語名待ち] 選手権英語ページのトーナメント表: 英語名が辞書に無いので漢字のまま → {m}")
+    except Exception as e:  # noqa: BLE001
+        print(f"[要確認] 選手権英語ページ: トーナメント表の生成で例外 {type(e).__name__}: {e}（表だけ出さない）")
+        bracket_sec = ""
     tables = (style
               + sec("about", "What the tournament is", md_to_html(_section(en_src, "about")))
               + sec("format", f"The {season_en} tournament", md_to_html(_section(en_src, "format")))
+              + bracket_sec
               + sec("storylines", "Storylines", md_to_html(_section(en_src, "storylines")))
               + sec("qualifying", "Qualifying in all 47 prefectures", md_to_html(_section(en_src, "qualifying")) + "\n" + table_html)
               + sec("winners", "Recent winners", hist_html))
