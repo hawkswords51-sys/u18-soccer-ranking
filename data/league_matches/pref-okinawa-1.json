@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "http://www.okinawa-soccer-habu.com/scores/table/161",
   "sourceName": "沖縄県サッカー協会 公式（波布リーグ）",
-  "lastUpdated": "2026-11-17",
+  "lastUpdated": "2026-11-18",
   "teams": [
     {
       "name": "那覇",
@@ -41,6 +41,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "沖縄SV",
+      "points": 28,
+      "played": 13,
+      "won": 9,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 36,
+      "ga": 15,
+      "gd": 21
+    },
+    {
+      "rank": 2,
       "team": "名護",
       "points": 26,
       "played": 12,
@@ -50,18 +62,6 @@
       "gf": 43,
       "ga": 14,
       "gd": 29
-    },
-    {
-      "rank": 2,
-      "team": "沖縄SV",
-      "points": 25,
-      "played": 12,
-      "won": 8,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 33,
-      "ga": 15,
-      "gd": 18
     },
     {
       "rank": 3,
@@ -91,13 +91,13 @@
       "rank": 5,
       "team": "那覇",
       "points": 19,
-      "played": 12,
+      "played": 13,
       "won": 6,
       "drawn": 1,
-      "lost": 5,
+      "lost": 6,
       "gf": 16,
-      "ga": 17,
-      "gd": -1
+      "ga": 20,
+      "gd": -4
     },
     {
       "rank": 6,
@@ -391,12 +391,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-14",
       "home": "沖縄SV",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "那覇",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -644,17 +644,17 @@
   ],
   "source_standings": [
     {
+      "team": "沖縄SV",
+      "pts": 28,
+      "gf": 36,
+      "ga": 15,
+      "rank": 1
+    },
+    {
       "team": "名護",
       "pts": 26,
       "gf": 43,
       "ga": 14,
-      "rank": 1
-    },
-    {
-      "team": "沖縄SV",
-      "pts": 25,
-      "gf": 33,
-      "ga": 15,
       "rank": 2
     },
     {
@@ -675,7 +675,7 @@
       "team": "那覇",
       "pts": 19,
       "gf": 16,
-      "ga": 17,
+      "ga": 20,
       "rank": 5
     },
     {
