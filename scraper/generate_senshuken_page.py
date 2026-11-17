@@ -753,7 +753,8 @@ def _matchup_html(a, b, prefs):
 
 
 CHIP = ('<span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:0.78em;'
-        'color:var(--accent-color,#2563eb);border:1px solid var(--accent-color,#2563eb);white-space:nowrap;">{}</span>')
+        'color:var(--accent-color,#2563eb);border:1px solid var(--accent-color,#2563eb);max-width:100%;box-sizing:border-box;">{}</span>')
+# 2026-11-17：nowrap をやめた。inline-block なので、収まる幅では1行のまま・収まらないとき（320pxの長い会場名）だけ印の中で折り返す
 
 
 def _load_schedule(sections, rows):
