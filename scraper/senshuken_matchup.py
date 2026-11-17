@@ -108,6 +108,28 @@ def same(name, keys):
 
 
 # ---------------------------------------------------------------- 各データ
+def league_finished(league):
+    """[2026-11-17 Keiの決定] リーグの全日程が終わったか。終わっていれば「最終順位」と出す。
+    次の3つが全部そろったときだけ「終わった」とする（どれか欠けたら「◯試合時点」のまま＝安全側）:
+      1) teams.json 全県から同じリーグ名のチームを集め、全チームの試合数が 2×(チーム数−1)（ホーム&アウェイの総当たり）
+      2) 全チームの勝ち数の合計＝負け数の合計（チームの取りこぼしが無い＝リーグ全体がそろっている）
+      3) 全チームの得点の合計＝失点の合計（同上）
+    3回戦制・1回戦制のリーグは 1) を満たさないので、最後まで「◯試合時点」のまま出る。"""
+    if not league:
+        return False
+    tj = json.loads((DATA / "teams.json").read_text(encoding="utf-8"))
+    ts = [t for p in tj.values() if isinstance(p, dict) for t in (p.get("teams") or []) if t.get("league") == league]
+    n = len(ts)
+    if n < 2:
+        return False
+    try:
+        return (all(t.get("played") == 2 * (n - 1) for t in ts)
+                and sum(t["won"] for t in ts) == sum(t["lost"] for t in ts)
+                and sum(t["goalsFor"] for t in ts) == sum(t["goalsAgainst"] for t in ts))
+    except (KeyError, TypeError):
+        return False
+
+
 def league_record(name, pref_slug):
     """teams.json の所属リーグと成績。{"league","rank","w","d","l","gf","ga","played"} or None"""
     tj = json.loads((DATA / "teams.json").read_text(encoding="utf-8"))
@@ -115,7 +137,7 @@ def league_record(name, pref_slug):
     ks = keys_of(name, pref_slug)
     for t in pref.get("teams") or []:
         if any(same(nm, ks) for nm in [t.get("name")] + list(t.get("aliases") or []) if nm):
-            return {"league": t.get("league"), "rank": t.get("leagueRank"),
+            return {"league": t.get("league"), "rank": t.get("leagueRank"), "final": league_finished(t.get("league")),
                     "w": t.get("won"), "d": t.get("drawn"), "l": t.get("lost"),
                     "gf": t.get("goalsFor"), "ga": t.get("goalsAgainst"), "played": t.get("played")}
     # teams.json に無いリーグ（例：AIE国際＝東播・淡路リーグ）はチームページの league だけ出す（成績なし）
@@ -231,8 +253,12 @@ def _league_cell(r):
         return "—"
     s = esc(r["league"])
     if r.get("rank") and r.get("played"):
-        s += (f'<br><span class="mu-sub">{r["rank"]}位・{r["w"]}勝{r["d"]}分{r["l"]}敗'
-              f'（{r["played"]}試合・得点{r["gf"]} 失点{r["ga"]}）</span>')
+        if r.get("final"):  # 全日程終了＝最終順位
+            s += (f'<br><span class="mu-sub">最終順位 {r["rank"]}位・{r["w"]}勝{r["d"]}分{r["l"]}敗'
+                  f'（得点{r["gf"]} 失点{r["ga"]}）</span>')
+        else:
+            s += (f'<br><span class="mu-sub">{r["rank"]}位・{r["w"]}勝{r["d"]}分{r["l"]}敗'
+                  f'（{r["played"]}試合時点・得点{r["gf"]} 失点{r["ga"]}）</span>')
     return s
 
 
