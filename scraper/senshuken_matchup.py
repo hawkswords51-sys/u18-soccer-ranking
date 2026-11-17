@@ -238,6 +238,47 @@ def interhigh(name, pref_slug):
     return f"{IH_LABEL[last[0]]}（{last[0]}で{last[1]}に{_score(last)}）"
 
 
+_EXTRA = None
+
+
+def _extra():
+    """[2026-11-17 第2段階] data/tournaments/senshuken-2026-matchup.yml（手で確認した最高成績・直接対決）。無ければ空。"""
+    global _EXTRA
+    if _EXTRA is None:
+        import yaml
+        p = DATA / "tournaments" / "senshuken-2026-matchup.yml"
+        try:
+            _EXTRA = yaml.safe_load(p.read_text(encoding="utf-8")) or {} if p.exists() else {}
+        except Exception as e:
+            warnings.append(f"senshuken-2026-matchup.yml が読めない（最高成績・直接対決なしで続行）: {type(e).__name__}: {e}")
+            _EXTRA = {}
+    return _EXTRA
+
+
+def best_result(name):
+    """選手権の最高成績の文字。データに無ければ None（行は「—」）。校名は代表の正式名で引く（表記ゆれは base で吸収）。"""
+    for k, v in ((_extra().get("best") or {}).items()):
+        if base(k) == base(name) and isinstance(v, dict):
+            return v.get("text")
+    return None
+
+
+def head_to_head(a, b):
+    """全国大会での直接対決。(期間の文字, [試合の文字...]) を返す。調べていない組み合わせは None。
+    調べて対戦が無ければ (期間, [])。"""
+    ex = _extra()
+    key = {base(a), base(b)}
+    checked = any({base(x) for x in pair} == key for pair in (ex.get("checked") or []) if len(pair) == 2)
+    games = []
+    for h in ex.get("head_to_head") or []:
+        if {base(x) for x in h.get("teams") or []} == key:
+            games = list(h.get("games") or [])
+            checked = True
+    if not checked:
+        return None
+    return ex.get("period") or "全国大会", games
+
+
 def naitei(name, pref_slug):
     """プロ内定（status: naitei）。[(選手名, 加入先)]"""
     import yaml
@@ -275,9 +316,14 @@ def _naitei_cell(lst):
     return "<br>".join(f'{esc(n)}<span class="mu-sub">（{esc(d)}）</span>' for n, d in lst)
 
 
+def nm_for_best(name):
+    return name
+
+
 def school_data(name, pref_slug, note):
     return {
         "note": note or "—",
+        "best": best_result(nm_for_best(name)),
         "league": league_record(name, pref_slug),
         "qual": pref_qualifying(name, pref_slug),
         "ih": interhigh(name, pref_slug),
@@ -285,16 +331,24 @@ def school_data(name, pref_slug, note):
     }
 
 
-def render_matchup(a_html, b_html, da, db, pref_a, pref_b):
+def render_matchup(a_html, b_html, da, db, pref_a, pref_b, names=None):
     rows = [
         ("都道府県", esc(pref_a or "—"), esc(pref_b or "—")),
         ("選手権の出場", esc(da["note"]), esc(db["note"])),
+        ("選手権の最高成績", esc(da.get("best") or "—"), esc(db.get("best") or "—")),
         ("2026年の所属リーグ", _league_cell(da["league"]), _league_cell(db["league"])),
         ("今大会の県予選", _q_cell(da["qual"]), _q_cell(db["qual"])),
         ("インターハイ2026", esc(da["ih"] or "—"), esc(db["ih"] or "—")),
         ("プロ内定", _naitei_cell(da["naitei"]), _naitei_cell(db["naitei"])),
     ]
     trs = "".join(f'<tr><th scope="row">{h}</th><td>{x}</td><td>{y}</td></tr>' for h, x, y in rows)
+    # [2026-11-17 第2段階] 直接対決（調べた組み合わせだけ。2列ぶち抜きの1行）
+    hh = head_to_head(*names) if names else None
+    if hh:
+        period, games = hh
+        body = "<br>".join(esc(g) for g in games) if games else "対戦なし"
+        trs += (f'<tr><th scope="row">直接対決</th><td colspan="2">{body}'
+                f'<br><span class="mu-sub">（{esc(period)}）</span></td></tr>')
     return ('<details class="mu-details"><summary>両校のデータを比べる</summary>'
             '<div class="mu-wrap"><table class="mu-table">'
             f'<thead><tr><th></th><th scope="col">{a_html}</th><th scope="col">{b_html}</th></tr></thead>'

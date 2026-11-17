@@ -745,7 +745,8 @@ def _matchup_html(a, b, prefs):
                 warnings.append(f"両校のデータ比較: 「{nm}」の県が分からない → このカードの比較表は出さない")
                 return ""
             datas.append(mu.school_data(nm, slug, _official_note(info, slug, nm)))
-        html = mu.render_matchup(team_link(a), team_link(b), datas[0], datas[1], prefs.get(a), prefs.get(b))
+        html = mu.render_matchup(team_link(a), team_link(b), datas[0], datas[1], prefs.get(a), prefs.get(b),
+                                 names=(a, b))
         for w in mu.warnings:
             if w not in warnings:
                 warnings.append(w)

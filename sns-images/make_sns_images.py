@@ -516,7 +516,8 @@ def _taiketsu_values(nm, pref, note):
     else:
         ih_lines = [ih]
     nai = [f"{n}（{dst}）" for n, dst in d["naitei"]] or ["—"]
-    return [("選手権の出場", [d["note"]]), ("2026年の所属リーグ", league), ("今大会の県予選", qual),
+    return [("選手権の出場", [d["note"]]), ("選手権の最高成績", [d.get("best") or "—"]),
+            ("2026年の所属リーグ", league), ("今大会の県予選", qual),
             ("インターハイ2026", ih_lines), ("プロ内定", nai[:2] + ([f"ほか{len(nai) - 2}人"] if len(nai) > 2 else []))]
 
 
@@ -524,6 +525,7 @@ def make_taiketsu(out, made, notes):
     """1回戦16試合＋2回戦（両校が決まった試合）の対戦カード。1枚＝1試合。投稿文 taiketsu.txt も作る。"""
     import re as _re
     import senshuken_schedule as ss
+    import senshuken_matchup as mu
     from generate_interhigh_page import collect_results
     sections = sp.parse_sections(sp.FINAL_MD)
     key = next((k for k in sections if k.startswith("トーナメント表")), None)
@@ -588,22 +590,31 @@ def make_taiketsu(out, made, notes):
         y += 14
         # 項目ごと：見出し（中央・薄い色）→ 左右の値
         for (label, la), (_, lb) in zip(va, vb):
-            d.text((W // 2, y + 16), label, font=font(28, False), fill=DIM, anchor="mm")
-            y += 38
+            d.text((W // 2, y + 14), label, font=font(25, False), fill=DIM, anchor="mm")
+            y += 32
             n = max(len(la), len(lb))
             for i in range(n):
-                size = 38 if i == 0 else 30
+                size = 34 if i == 0 else 27
                 color = WHITE if i == 0 else GRAY
                 if label == "プロ内定":  # 名前の並びは全部同じ扱い
-                    size, color = 32, WHITE
+                    size, color = 28, WHITE  # 偶数から始める（2pxずつ下げて最小18pxまで試すため）
                 for x, vals in ((lx, la), (rx, lb)):
                     if i < len(vals):
                         s = vals[i]
                         d.text((x, y + size // 2), s, font=fit(d, s, colw, size, 18, i == 0), fill=color, anchor="mm")
-                y += size + 8
-            y += 10
+                y += size + 6
+            y += 7
             d.line([(SIDE + 40, y), (W - SIDE - 40, y)], fill=(0x33, 0x4a, 0x85), width=1)
-            y += 10
+            y += 8
+        # [2026-11-17 第2段階] 直接対決（調べた組み合わせだけ）
+        hh = mu.head_to_head(a, b)
+        if hh:
+            period, games = hh
+            d.text((W // 2, y + 14), f"直接対決（{period}）", font=font(25, False), fill=DIM, anchor="mm")
+            y += 32
+            for g in (games or ["対戦なし"]):
+                d.text((W // 2, y + 17), g, font=fit(d, g, TEXT_W, 30, 20), fill=WHITE, anchor="mm")
+                y += 38
         if y > H - SAFE_Y - 120:
             raise SystemExit(f"対戦カード【{mt['no']}】が下にはみ出す（y={y}）")
         note = "所属リーグの順位は作成日時点。出典：u18-soccer.com の各データ"
