@@ -11,6 +11,7 @@ SNS用画像（Instagram・Threads 向け 1080x1350 縦長）を、リポジト�
      種類: senshuken-daihyo（県代表決定カード）／senshuken-ichiran（代表校一覧6枚）／premier（プレミア順位表2枚）
            today-finals（今日の決勝の画像＋投稿文。--date 11/8 で日付指定）
            today-daihyo（今日決まった県代表カード＋投稿文。--date で日付指定）
+           senshuken-taiketsu（選手権本大会の対戦カード：1回戦16枚＋相手が決まった2回戦。投稿文 senshuken-taiketsu.txt）
   OUT_DIR=/どこか python3 sns-images/make_sns_images.py       # 出力先を変える
 
 出力先の既定: ~/Documents/Claude/Projects/u18-soccer.com運営/SNS画像/YYYY-MM-DD/（JSTの実行日）
@@ -482,12 +483,150 @@ def make_today_daihyo(out, made, notes):
                  + (f"／結果待ち {len(finals)}試合" if finals else ""))
 
 
+
+# ----------------------------------------------------------------- F. 選手権本大会 対戦カードの「両校のデータ」（2026-11-17 新設）
+def _school_short(nm):
+    import re as _re
+    return _re.sub(r"(高等学校|高等部|高校)$", "", nm or "")
+
+
+def _taiketsu_values(nm, pref, note):
+    """1校分の表示用テキスト（各項目 1〜2行のリスト）。中身は特設ページの比較表と同じ senshuken_matchup。"""
+    import senshuken_matchup as mu
+    from generate_interhigh_page import _short_league
+    slug = sp.PREF_SLUG_BY_NAME.get(pref)
+    d = mu.school_data(nm, slug, note)
+    lg = d["league"]
+    if lg and lg.get("league"):
+        l1 = _short_league(lg["league"]) or lg["league"]
+        if lg.get("rank") and lg.get("played"):
+            rec = f"{lg['w']}勝{lg['d']}分{lg['l']}敗"
+            l2 = f"最終{lg['rank']}位 {rec}" if lg.get("final") else f"{lg['rank']}位 {rec}（{lg['played']}試合時点）"
+            league = [l1, l2]
+        else:
+            league = [l1]
+    else:
+        league = ["—"]
+    q = d["qual"]
+    qual = [f"{q['n']}試合 {q['gf']}得点{q['ga']}失点", q["final"]] if q else ["—"]
+    ih = d["ih"] or "—"
+    if "（" in ih:
+        head, _, rest = ih.partition("（")
+        ih_lines = [head, rest.rstrip("）")]
+    else:
+        ih_lines = [ih]
+    nai = [f"{n}（{dst}）" for n, dst in d["naitei"]] or ["—"]
+    return [("選手権の出場", [d["note"]]), ("2026年の所属リーグ", league), ("今大会の県予選", qual),
+            ("インターハイ2026", ih_lines), ("プロ内定", nai[:2] + ([f"ほか{len(nai) - 2}人"] if len(nai) > 2 else []))]
+
+
+def make_taiketsu(out, made, notes):
+    """1回戦16試合＋2回戦（両校が決まった試合）の対戦カード。1枚＝1試合。投稿文 taiketsu.txt も作る。"""
+    import re as _re
+    import senshuken_schedule as ss
+    from generate_interhigh_page import collect_results
+    sections = sp.parse_sections(sp.FINAL_MD)
+    key = next((k for k in sections if k.startswith("トーナメント表")), None)
+    rows = [l for l in sections.get(key, []) if l.strip().startswith("- ")] if key else []
+    sched = sp._load_schedule(sections, rows) if len(rows) == sp.BRACKET_ROWS else None
+    if not sched:
+        notes.append("対戦カード：トーナメント表か日程と会場が読めないので作らなかった")
+        return
+    prefs = sp._rep_prefs(sections.get("各県代表", []))
+    info = sp._load_rep_info()
+    results = collect_results(sections)
+    cells = [[x.strip() for x in _re.split(r"\s+vs\s+", ln.strip()[2:].strip()) if x.strip()] for ln in rows]
+    drows = ss.draw_rows()
+    same_row = {}
+    for n, r in drows.items():
+        same_row.setdefault(r, []).append(n)
+
+    def name_of(side):
+        kind, n = side
+        if kind == "draw":
+            r = drows[n]
+            ns = sorted(same_row[r])
+            return r, (cells[r][ns.index(n)] if len(cells[r]) == len(ns) else None)
+        prev = sched[n]
+        r = min(prev["rows"])
+        if prev["round"] != "1回戦" and not prev["round"].startswith("開幕"):
+            return r, None
+        if len(cells[r]) != 2:
+            return r, None
+        return r, sp.first_round_winner(cells[r][0], cells[r][1], prefs, results) if hasattr(sp, "first_round_winner") else None
+
+    caps, skipped = [], 0
+    for mt in sorted(sched.values(), key=lambda m: m["no"]):
+        if mt["round"] not in ("1回戦", "開幕戦（1回戦）", "2回戦"):
+            continue
+        sides = sorted((name_of(s) for s in mt["sides"]), key=lambda t: t[0])
+        a, b = sides[0][1], sides[1][1]
+        if not a or not b:
+            skipped += 1
+            continue
+        pa, pb = prefs.get(a, ""), prefs.get(b, "")
+        va = _taiketsu_values(a, pa, sp._official_note(info, sp.PREF_SLUG_BY_NAME.get(pa), a))
+        vb = _taiketsu_values(b, pb, sp._official_note(info, sp.PREF_SLUG_BY_NAME.get(pb), b))
+        rnd = "2回戦" if mt["round"] == "2回戦" else ("開幕戦" if mt["round"].startswith("開幕") else "1回戦")
+
+        img, d = canvas()
+        top = "第105回全国高校サッカー選手権"
+        d.text((W // 2, SAFE_Y + 40), top, font=fit(d, top, TEXT_W, 38, 26, False), fill=GRAY, anchor="mm")
+        sub = f"{rnd}【{mt['no']}】 {ss.when(mt)}"
+        d.text((W // 2, SAFE_Y + 95), sub, font=fit(d, sub, TEXT_W, 40, 24), fill=WHITE, anchor="mm")
+        # 校名（左右）と vs
+        colw = (TEXT_W - 90) // 2
+        lx, rx = SIDE + colw // 2, W - SIDE - colw // 2
+        y_name = SAFE_Y + 190
+        for x, nm, pf in ((lx, a, pa), (rx, b, pb)):
+            s = _school_short(nm)
+            d.text((x, y_name), s, font=fit(d, s, colw, 64, 30), fill=WHITE, anchor="mm")
+            d.text((x, y_name + 62), f"（{pf}）", font=font(34, False), fill=GRAY, anchor="mm")
+        d.text((W // 2, y_name + 10), "vs", font=font(40), fill=DIM, anchor="mm")
+        y = y_name + 108
+        d.line([(SIDE, y), (W - SIDE, y)], fill=GREEN, width=3)
+        y += 14
+        # 項目ごと：見出し（中央・薄い色）→ 左右の値
+        for (label, la), (_, lb) in zip(va, vb):
+            d.text((W // 2, y + 16), label, font=font(28, False), fill=DIM, anchor="mm")
+            y += 38
+            n = max(len(la), len(lb))
+            for i in range(n):
+                size = 38 if i == 0 else 30
+                color = WHITE if i == 0 else GRAY
+                if label == "プロ内定":  # 名前の並びは全部同じ扱い
+                    size, color = 32, WHITE
+                for x, vals in ((lx, la), (rx, lb)):
+                    if i < len(vals):
+                        s = vals[i]
+                        d.text((x, y + size // 2), s, font=fit(d, s, colw, size, 18, i == 0), fill=color, anchor="mm")
+                y += size + 8
+            y += 10
+            d.line([(SIDE + 40, y), (W - SIDE - 40, y)], fill=(0x33, 0x4a, 0x85), width=1)
+            y += 10
+        if y > H - SAFE_Y - 120:
+            raise SystemExit(f"対戦カード【{mt['no']}】が下にはみ出す（y={y}）")
+        note = "所属リーグの順位は作成日時点。出典：u18-soccer.com の各データ"
+        d.text((W // 2, H - SAFE_Y - 100), note, font=fit(d, note, TEXT_W, 24, 18, False), fill=DIM, anchor="mm")
+        footer(d)
+        save(img, out, f"senshuken-taiketsu-{mt['no']:02d}.png", made)
+        sa, sb = _school_short(a), _school_short(b)
+        caps.append(f"【{mt['no']}】{rnd} {ss.when(mt)}\n{sa}（{pa}）vs {sb}（{pb}）\n"
+                    f"両校のデータを並べました。所属リーグ・県予選の勝ち上がり・インターハイの成績など。\n"
+                    f"組み合わせと日程は u18-soccer.com の選手権特設ページで。\n"
+                    f"#高校サッカー #選手権 #{sa} #{sb}\n")
+    (out / "senshuken-taiketsu.txt").write_text("\n".join(caps), encoding="utf-8")
+    made.append(out / "senshuken-taiketsu.txt")
+    notes.append(f"対戦カード：{len(caps)}試合（相手が決まっていないので作らなかった2回戦 {skipped}）")
+
+
 KINDS = {
     "senshuken-daihyo": make_daihyo,
     "senshuken-ichiran": make_ichiran,
     "premier": make_premier,
     "today-finals": make_today,
     "today-daihyo": make_today_daihyo,
+    "senshuken-taiketsu": make_taiketsu,
 }
 
 
