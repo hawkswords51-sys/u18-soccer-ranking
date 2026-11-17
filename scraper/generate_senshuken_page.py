@@ -43,6 +43,9 @@
   食い違わないときだけ、①1回戦カード・シード校に「日時・会場」の印、②表の区間の最後に「試合日程と会場（全47試合）」
   を出す。勝者は各回戦の結果行（インハイと同じ collect_results）から自動で埋まる。食い違い・読めない行があれば
   日程だけ出さずに [要確認]（表と1回戦一覧はそのまま）。
+- [2026-11-17] 「2回戦から登場（シード16校）」の一覧を「2回戦の組み合わせ（12月31日）」16カードに置き換え（日程が読めるとき）。
+  シード同士は今すぐ比較表つき。1回戦の勝者待ちは「A／Bの勝者」で、「## 1回戦」に結果行が入ると自動で差し替わる。
+  日程が読めないときは従来どおりシード16校の一覧。
 """
 import re
 import sys
@@ -811,17 +814,111 @@ def render_first_round(rows, reps_lines, sched=None):
                 seeds.append((blk, sides[0], CHIP.format(esc(f"【{mt['no']}】{ss.when(mt)}")) if mt else ""))
         out.append(f'        <h4 style="margin:18px 0 4px;">{blk}ブロック</h4>'
                    f'<ul style="list-style:none;padding:0;margin:0;">{"".join(items)}</ul>\n')
+    # [2026-11-17] 日程（マッチナンバー）が読めるときは「2回戦の組み合わせ」16カード（シード同士は今すぐ比較表、
+    #   1回戦の勝者待ちの枠は結果が入ると自動で校名＋比較表に差し替え）。読めないときは従来のシード16校一覧。
+    seeds_done = False
+    if sched:
+        try:
+            out.append(render_second_round(rows, sched, prefs, no_league))
+            seeds_done = True
+        except Exception as e:
+            warnings.append(f"2回戦の組み合わせ: 例外 {type(e).__name__}: {e} → 従来のシード16校一覧を出す")
     # 2回戦から登場（シード16校）
-    seed_items = "".join(f'<li style="{li_style}"><span style="color:#888;font-size:0.85em;">{blk}</span> '
+    seed_items = "" if seeds_done else "".join(f'<li style="{li_style}"><span style="color:#888;font-size:0.85em;">{blk}</span> '
                          f'{_school_html(nm, prefs, no_league)}{chip}</li>' for blk, nm, chip in seeds)
-    out.append('        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">2回戦から登場（シード16校）</h3>'
-               f'<ul style="list-style:none;padding:0;margin:0;">{seed_items}</ul>\n')
+    if not seeds_done:
+        out.append('        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">2回戦から登場（シード16校）</h3>'
+                   f'<ul style="list-style:none;padding:0;margin:0;">{seed_items}</ul>\n')
     if n_cards != 16 or len(seeds) != 16:
         warnings.append(f"1回戦の組み合わせ一覧: カード{n_cards}・シード{len(seeds)}（16・16のはず）")
     if opening and not any(tag in o or tag.replace(esc(OPENING_LABEL), "開幕戦") in o for o in out):
         warnings.append(f"1回戦の組み合わせ一覧: opening_match {sorted(opening)} が1回戦のカードに無い → 開幕戦の印なし")
     if no_league:
         print(f"選手権2026本大会: 所属リーグが分からず（県）だけの学校 {len(no_league)}校: {'、'.join(no_league)}")
+    return "".join(out)
+
+
+def first_round_winner(a, b, prefs, results):
+    """[2026-11-17] 1回戦 a vs b の勝者（結果行が無ければ None）。結果行の校名は短縮名でもよい
+    （「日大藤沢 2-1 生駒高校」）。名寄せは senshuken_matchup の keys_of（チームページ・teams.json の別名）。"""
+    import senshuken_matchup as mu  # noqa: E402
+    ka = mu.keys_of(a, PREF_SLUG_BY_NAME.get(prefs.get(a, "")))
+    kb = mu.keys_of(b, PREF_SLUG_BY_NAME.get(prefs.get(b, "")))
+    hits = []
+    for ra, ga, gb, pk, rb in results.values():
+        if mu.same(ra, ka) and mu.same(rb, kb):
+            hits.append((ga, gb, pk))
+        elif mu.same(ra, kb) and mu.same(rb, ka):
+            hits.append((gb, ga, (pk[1], pk[0]) if pk else None))
+    if len(hits) != 1:
+        if len(hits) > 1:
+            warnings.append(f"2回戦の組み合わせ: 1回戦 {a} vs {b} の結果行が{len(hits)}本ある → 勝者は出さない")
+        return None
+    ga, gb, pk = hits[0]
+    if ga != gb:
+        return a if ga > gb else b
+    if pk and pk[0] != pk[1]:
+        return a if pk[0] > pk[1] else b
+    warnings.append(f"2回戦の組み合わせ: 1回戦 {a} vs {b} が引き分けでPKも無い → 勝者は出さない")
+    return None
+
+
+def render_second_round(rows, sched, prefs, no_league):
+    """[2026-11-17 Kei依頼] 「2回戦の組み合わせ（12月31日）」16カード。
+    - シード同士（抽選番号どうし）のカードは、今すぐ校名＋「両校のデータを比べる」。
+    - 1回戦の勝者どうしのカードは「A／Bの勝者」と出し、md の「## 1回戦」に結果行（- A 2-1 B）が入ったら
+      自動で勝ち上がった学校に差し替える。両方そろったら比較表も出る（片方だけなら比較表は出さない）。
+    - 並びは各ブロックの上から（トーナメント表と同じ順）。左右もトーナメント表の上側を左に。"""
+    import senshuken_schedule as ss  # noqa: E402
+    from generate_interhigh_page import collect_results  # noqa: E402
+    results = collect_results(parse_sections(FINAL_MD))
+    cells = [[x.strip() for x in re.split(r"\s+vs\s+", ln.strip()[2:].strip()) if x.strip()] for ln in rows]
+    drows = ss.draw_rows()
+    same_row = {}
+    for n, r in drows.items():
+        same_row.setdefault(r, []).append(n)
+
+    def draw_name(n):
+        r = drows[n]
+        ns = sorted(same_row[r])
+        return cells[r][ns.index(n)] if len(cells[r]) == len(ns) else None
+
+    def side_info(side):
+        """(行番号, 校名 or None, 待ちの表示)"""
+        kind, n = side
+        if kind == "draw":
+            return drows[n], draw_name(n), ""
+        prev = sched[n]
+        r = min(prev["rows"])
+        if not all(x[0] == "draw" for x in prev["sides"]) or len(cells[r]) != 2:
+            return r, None, f"【{n}】の勝者"
+        a, b = cells[r]  # 左右はトーナメント表の並び
+        return r, first_round_winner(a, b, prefs, results), f"{a}／{b}の勝者"
+
+    li_style = "padding:10px 12px;border-bottom:1px solid var(--border-color,#e5e7eb);font-size:1.05em;"
+    wait_style = "color:var(--text-light,#64748b);font-size:0.92em;"
+    r2 = sorted((m for m in sched.values() if m["round"] == "2回戦"), key=lambda m: min(m["rows"]))
+    if len(r2) != 16:
+        raise ValueError(f"2回戦が{len(r2)}試合（16のはず）")
+    out = ['        <h3 style="margin-top:28px;color:var(--accent-color,#2563eb);">2回戦の組み合わせ（12月31日）</h3>\n'
+           '        <p style="font-size:0.9em;color:var(--text-light,#666);margin:4px 0 8px;">シード校（16校）は2回戦から登場します。'
+           '「〇〇／〇〇の勝者」の枠は、1回戦の結果が入ると勝ち上がった学校に自動で入れ替わり、両校のデータも比べられるようになります。</p>\n']
+    n_full = 0
+    for bi, blk in enumerate(BLOCKS):
+        items = []
+        for mt in (m for m in r2 if min(m["rows"]) // 8 == bi):
+            sides = sorted((side_info(sd) for sd in mt["sides"]), key=lambda t: t[0])
+            html_sides = [(_school_html(nm, prefs, no_league) if nm else f'<span style="{wait_style}">{esc(wait)}</span>')
+                          for _, nm, wait in sides]
+            chip = CHIP.format(esc(f"【{mt['no']}】{ss.when(mt)}"))
+            a, b = sides[0][1], sides[1][1]
+            table = _matchup_html(a, b, prefs) if a and b else ""
+            n_full += bool(table)
+            items.append(f'<li style="{li_style}">{html_sides[0]} <span style="color:#888;">vs</span> '
+                         f'{html_sides[1]}{chip}{table}</li>')
+        out.append(f'        <h4 style="margin:18px 0 4px;">{blk}ブロック</h4>'
+                   f'<ul style="list-style:none;padding:0;margin:0;">{"".join(items)}</ul>\n')
+    print(f"選手権2026本大会: 2回戦の組み合わせ 16試合（両校そろって比較表あり {n_full}）")
     return "".join(out)
 
 
