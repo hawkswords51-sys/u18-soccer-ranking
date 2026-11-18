@@ -72,7 +72,7 @@ def _groups():
         keys.discard("")
         if keys:
             groups.append({"keys": keys, "id": meta.get("id"), "pref": meta.get("prefecture"),
-                           "league": meta.get("league")})
+                           "league": meta.get("league"), "coach": meta.get("head_coach")})
     # teams.json（同じ県で名前が重なれば同じグループに足す）
     tj = json.loads((DATA / "teams.json").read_text(encoding="utf-8"))
     for slug, pref in tj.items():
@@ -279,6 +279,107 @@ def head_to_head(a, b):
     return ex.get("period") or "全国大会", games
 
 
+def _from_yml(section, name):
+    for k, v in ((_extra().get(section) or {}).items()):
+        if base(k) == base(name):
+            return v
+    return None
+
+
+def head_coach(name, pref_slug):
+    """[2026-11-18] 監督（チームページ frontmatter の head_coach）。"""
+    k = {norm(name), base(name)}
+    g = next((g for g in _groups() if g.get("coach") and g["pref"] == pref_slug and g["keys"] & k), None)
+    return str(g["coach"]) if g else None
+
+
+_REGION = {"北海道": "hokkaido", "東北": "tohoku", "関東": "kanto", "北信越": "hokushinetsu", "東海": "tokai",
+           "関西": "kansai", "中国": "chugoku", "四国": "shikoku", "九州": "kyushu"}
+
+
+def _league_file(league, pref_slug):
+    """teams.json の league → data/scorers/ のファイル。プレミア・プリンスは地域と部から、県リーグは pref-{県}-1.json。"""
+    import re as _re
+    lg = league or ""
+    if "プレミア" in lg:
+        return "premier-east.json" if "EAST" in lg.upper() else "premier-west.json" if "WEST" in lg.upper() else None
+    if "プリンス" in lg:
+        reg = next((v for k, v in _REGION.items() if k in lg), None)
+        if not reg:
+            return None
+        m = _re.search(r"(\d)部", lg)
+        return f"prince-{reg}-{m.group(1)}.json" if m else f"prince-{reg}.json"
+    return f"pref-{pref_slug}-1.json" if pref_slug else None
+
+
+def _abbr_match(abbr, name_keys):
+    """得点ランキングの略称（静学・日大藤・富山一・長崎総附 など）が校名の「文字の並び」に含まれるか。
+    2文字以上・セカンドチーム（2nd/3rd/B/U18 など英数字を含む略称）は対象外。同じリーグの中だけで使う。"""
+    import re as _re
+    a = norm(abbr)
+    if len(a) < 2 or _re.search(r"[0-9A-Za-zＡ-Ｚａ-ｚ]", a):
+        return False
+    for k in name_keys:
+        if a in k:  # 学芸館＝岡山学芸館、淞南＝立正大学淞南
+            return True
+        it = iter(k)
+        if a[0] == k[:1] and all(ch in it for ch in a):  # 静学＝静岡学園、富山一＝富山第一
+            return True
+    return False
+
+
+def top_scorer(name, pref_slug):
+    """[2026-11-18] 今季のリーグ戦の得点源。その校のリーグの得点ランキング（data/scorers/、上位20人ほど）に
+    載っている選手のうち最多得点の人。載っていなければ None。(選手名, 得点, 順位)"""
+    rec = league_record(name, pref_slug)
+    fn = _league_file((rec or {}).get("league"), pref_slug)
+    if not fn or not (DATA / "scorers" / fn).exists():
+        return None
+    try:
+        d = json.loads((DATA / "scorers" / fn).read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    ks = keys_of(name, pref_slug)
+    best = None
+    for sc in d.get("scorers") or []:
+        t = sc.get("team") or ""
+        if not isinstance(sc.get("goals"), int) or not (same(t, ks) or _abbr_match(t, ks)):
+            continue
+        if best is None or sc["goals"] > best[1]:
+            best = (sc.get("name"), sc["goals"], sc.get("rank"))
+    return best
+
+
+_NAT = None
+
+
+def national_players(name, pref_slug):
+    """[2026-11-18] data/national-team-players.yml から（現役の年代別代表, 日本代表OB）。
+    現役＝U-16〜U-21の各カテゴリで club がこの校の選手。OB＝SAMURAI BLUE で u18 がこの校の選手。"""
+    global _NAT
+    if _NAT is None:
+        import yaml
+        try:
+            _NAT = yaml.safe_load((DATA / "national-team-players.yml").read_text(encoding="utf-8")) or {}
+        except Exception:
+            _NAT = {}
+    ks = keys_of(name, pref_slug)
+    now, ob = [], []
+    for c in _NAT.get("categories") or []:
+        lab = str(c.get("label") or "")
+        short = lab.split("（")[0]
+        for p in c.get("players") or []:
+            nm = p.get("name")
+            if not nm:
+                continue
+            if lab.startswith("SAMURAI BLUE"):
+                if p.get("u18") and same(str(p["u18"]), ks):
+                    ob.append(nm)
+            elif p.get("club") and same(str(p["club"]), ks):
+                now.append(f"{nm}（{short}）")
+    return now, ob
+
+
 def naitei(name, pref_slug):
     """プロ内定（status: naitei）。[(選手名, 加入先)]"""
     import yaml
@@ -328,18 +429,45 @@ def school_data(name, pref_slug, note):
         "qual": pref_qualifying(name, pref_slug),
         "ih": interhigh(name, pref_slug),
         "naitei": naitei(name, pref_slug),
+        "coach": head_coach(name, pref_slug),
+        "prev": _from_yml("prev", name),
+        "scorer": top_scorer(name, pref_slug),
+        "national": national_players(name, pref_slug),
+        "players": _from_yml("players", name) or [],
     }
+
+
+def _scorer_cell(sc):
+    if not sc:
+        return "—"
+    nm, g, rk = sc
+    return f'{esc(nm)} {g}点' + (f'<br><span class="mu-sub">リーグ得点ランキング{rk}位</span>' if rk else "")
+
+
+def _national_cell(nat):
+    now, ob = nat or ([], [])
+    parts = [esc(x) for x in now] + [f'<span class="mu-sub">日本代表OB：</span>{esc("、".join(ob))}'] * bool(ob)
+    return "<br>".join(parts) or "—"
+
+
+def _players_cell(lst):
+    return "<br>".join(esc(x) for x in lst) or "—"
 
 
 def render_matchup(a_html, b_html, da, db, pref_a, pref_b, names=None):
     rows = [
         ("都道府県", esc(pref_a or "—"), esc(pref_b or "—")),
+        ("監督", esc(da.get("coach") or "—"), esc(db.get("coach") or "—")),
         ("選手権の出場", esc(da["note"]), esc(db["note"])),
         ("選手権の最高成績", esc(da.get("best") or "—"), esc(db.get("best") or "—")),
+        ("前回大会（2025年度）", esc(da.get("prev") or "—"), esc(db.get("prev") or "—")),
         ("2026年の所属リーグ", _league_cell(da["league"]), _league_cell(db["league"])),
         ("今大会の県予選", _q_cell(da["qual"]), _q_cell(db["qual"])),
         ("インターハイ2026", esc(da["ih"] or "—"), esc(db["ih"] or "—")),
+        ("今季の得点源（リーグ戦）", _scorer_cell(da.get("scorer")), _scorer_cell(db.get("scorer"))),
         ("プロ内定", _naitei_cell(da["naitei"]), _naitei_cell(db["naitei"])),
+        ("代表選手", _national_cell(da.get("national")), _national_cell(db.get("national"))),
+        ("注目選手", _players_cell(da.get("players") or []), _players_cell(db.get("players") or [])),
     ]
     trs = "".join(f'<tr><th scope="row">{h}</th><td>{x}</td><td>{y}</td></tr>' for h, x, y in rows)
     # [2026-11-17 第2段階] 直接対決（調べた組み合わせだけ。2列ぶち抜きの1行）

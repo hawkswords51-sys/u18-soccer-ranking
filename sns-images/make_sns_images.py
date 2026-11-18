@@ -521,6 +521,33 @@ def _taiketsu_values(nm, pref, note):
             ("インターハイ2026", ih_lines), ("プロ内定", nai[:2] + ([f"ほか{len(nai) - 2}人"] if len(nai) > 2 else []))]
 
 
+def _taiketsu_page2(nm, pref):
+    """[2026-11-18] 2枚目（人と履歴）：監督・前回大会・今季の得点源・代表選手・注目選手。
+    各項目は [(文字, 種類)]。種類 b=太字（白）, s=小さい灰色。"""
+    import senshuken_matchup as mu
+    slug = sp.PREF_SLUG_BY_NAME.get(pref)
+    d = mu.school_data(nm, slug, None)
+    coach = d.get("coach") or "—"
+    coach_lines = [(coach.split("（")[0].split("／")[0].strip(), "b")]  # 画像は名前だけ（経歴は特設ページの表に）
+    prev = d.get("prev") or "—"
+    prev_lines = [(prev.split("（")[0], "b")] + ([("（" + prev.split("（", 1)[1], "s")] if "（" in prev else [])
+    sc = d.get("scorer")
+    sc_lines = [(f"{sc[0]} {sc[1]}点", "b")] + ([(f"リーグ得点ランキング{sc[2]}位", "s")] if sc[2] else []) if sc else [("—", "b")]
+    now, ob = d.get("national") or ([], [])
+    nat_lines = []
+    for x in now[:2]:
+        n_, _, c_ = x.partition("（")
+        nat_lines += [(n_, "b"), ("（" + c_, "s")]
+    if ob:
+        nat_lines += [("日本代表OB：" + "、".join(ob), "s")]
+    pl_lines = []
+    for x in (d.get("players") or [])[:3]:
+        n_, _, c_ = x.partition("（")
+        pl_lines += [(n_, "b")] + ([("（" + c_, "s")] if c_ else [])
+    return [("監督", coach_lines), ("前回大会（2025年度）", prev_lines), ("今季の得点源（リーグ戦）", sc_lines),
+            ("代表選手（現役の年代別代表・日本代表OB）", nat_lines or [("—", "b")]), ("注目選手", pl_lines or [("—", "b")])]
+
+
 def make_taiketsu(out, made, notes):
     """1回戦16試合＋2回戦（両校が決まった試合）の対戦カード。1枚＝1試合。投稿文 taiketsu.txt も作る。"""
     import re as _re
@@ -621,6 +648,41 @@ def make_taiketsu(out, made, notes):
         d.text((W // 2, H - SAFE_Y - 100), note, font=fit(d, note, TEXT_W, 24, 18, False), fill=DIM, anchor="mm")
         footer(d)
         save(img, out, f"senshuken-taiketsu-{mt['no']:02d}.png", made)
+
+        # ---- 2枚目（人と履歴）[2026-11-18] ----
+        pa2, pb2 = _taiketsu_page2(a, pa), _taiketsu_page2(b, pb)
+        img, d = canvas()
+        d.text((W // 2, SAFE_Y + 40), top, font=fit(d, top, TEXT_W, 38, 26, False), fill=GRAY, anchor="mm")
+        d.text((W // 2, SAFE_Y + 95), sub, font=fit(d, sub, TEXT_W, 40, 24), fill=WHITE, anchor="mm")
+        y_n = SAFE_Y + 175
+        for x, nm in ((lx, a), (rx, b)):
+            s_ = _school_short(nm)
+            d.text((x, y_n), s_, font=fit(d, s_, colw, 50, 26), fill=WHITE, anchor="mm")
+        d.text((W // 2, y_n), "vs", font=font(34), fill=DIM, anchor="mm")
+        y = y_n + 50
+        d.line([(SIDE, y), (W - SIDE, y)], fill=GREEN, width=3)
+        y += 12
+        for (label, la), (_, lb) in zip(pa2, pb2):
+            d.text((W // 2, y + 14), label, font=font(24, False), fill=DIM, anchor="mm")
+            y += 32
+            for i in range(max(len(la), len(lb))):
+                hstep = 0
+                for x, vals in ((lx, la), (rx, lb)):
+                    if i < len(vals):
+                        t_, kind = vals[i]
+                        size, color, bold = (30, WHITE, True) if kind == "b" else (22, GRAY, False)
+                        d.text((x, y + size // 2), t_, font=fit(d, t_, colw, size, 14, bold), fill=color, anchor="mm")
+                        hstep = max(hstep, size + 6)
+                y += hstep
+            y += 6
+            d.line([(SIDE + 40, y), (W - SIDE - 40, y)], fill=(0x33, 0x4a, 0x85), width=1)
+            y += 8
+        if y > H - SAFE_Y - 120:
+            raise SystemExit(f"対戦カード【{mt['no']}】の2枚目が下にはみ出す（y={y}）")
+        note2 = "注目選手は各校のチームページから。前回大会はJFA公式。出典：u18-soccer.com"
+        d.text((W // 2, H - SAFE_Y - 100), note2, font=fit(d, note2, TEXT_W, 24, 16, False), fill=DIM, anchor="mm")
+        footer(d)
+        save(img, out, f"senshuken-taiketsu-{mt['no']:02d}-2.png", made)
         sa, sb = _school_short(a), _school_short(b)
         caps.append(f"【{mt['no']}】{rnd} {ss.when(mt)}\n{sa}（{pa}）vs {sb}（{pb}）\n"
                     f"両校のデータを並べました。所属リーグ・県予選の勝ち上がり・インターハイの成績など。\n"

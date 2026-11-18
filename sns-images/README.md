@@ -7,6 +7,7 @@
 3. 作るもの：選手権の県代表決定カード（決勝が終わった県だけ）／代表校一覧6枚（地域別）／プレミア順位表2枚（EAST・WEST）。
 4. 一部だけ作るとき：`--only premier` のように種類を選ぶ（`senshuken-daihyo`・`senshuken-ichiran`・`premier`・`today-finals`・`today-daihyo`、カンマで複数）。
    - 選手権本大会の対戦カード：`--only senshuken-taiketsu`。1回戦16枚＋相手が決まった2回戦。1回戦の結果を入れたあとに作り直すと、2回戦の残りも出る。投稿文は senshuken-taiketsu.txt。
+     1試合2枚（-2.png が2枚目：監督・前回大会・得点源・代表・注目選手）
 5. 出力先を変えるとき：`OUT_DIR=/保存したい場所 python3 sns-images/make_sns_images.py`
 6. 数字はその日のサイトのデータのまま。朝の自動更新のあとに作ると最新になる。
 7. 「フォントが見つかりません」「Pillow が入っていません」と出たら、その表示をそのまま Claude Code に貼る。
