@@ -1714,6 +1714,7 @@ def main():
             # 大学からのJ内定選手（2026-08-28 追加。経歴つき一覧）
             (f"{DOMAIN}/university/pro-signings-2027/", "weekly", "0.7"),
             (f"{DOMAIN}/university/pro-signings-2028/", "weekly", "0.6"),   # 2028年加入（2026-11-14 追加）
+            (f"{DOMAIN}/university/pro-signings-2029/", "weekly", "0.6"),   # 2029年加入（2026-11-19 追加）
             # U-16ルーキーリーグの全国大会（2026-09-21 追加。12月開催）
             (f"{DOMAIN}/tournaments/rookie-league-championship-2026/", "weekly", "0.7"),
             # 英語ページ（2026-09-20 追加。海外向けの実験。測定は12月20日前後）
@@ -1729,6 +1730,7 @@ def main():
             (f"{DOMAIN}/en/university/", "weekly", "0.6"),
             (f"{DOMAIN}/en/university/pro-signings-2027/", "weekly", "0.5"),
             (f"{DOMAIN}/en/university/pro-signings-2028/", "weekly", "0.5"),
+            (f"{DOMAIN}/en/university/pro-signings-2029/", "weekly", "0.5"),
             (f"{DOMAIN}/en/teams/ryukei-kashiwa/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/kashima-youth/", "monthly", "0.6"),
             (f"{DOMAIN}/en/teams/aomori-yamada/", "monthly", "0.6"),
