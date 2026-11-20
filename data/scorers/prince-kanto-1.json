@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関東1部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448172-448172-fl",
-  "lastUpdated": "2026-10-19",
+  "lastUpdated": "2026-11-21",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
@@ -128,16 +128,16 @@
   ],
   "coverage": [
     {
+      "team": "市船",
+      "attributed": 21,
+      "gf": 24,
+      "missing": 3
+    },
+    {
       "team": "帝京",
       "attributed": 21,
       "gf": 23,
       "missing": 2
-    },
-    {
-      "team": "市船",
-      "attributed": 21,
-      "gf": 22,
-      "missing": 1
     },
     {
       "team": "甲府",
@@ -148,8 +148,8 @@
     {
       "team": "流経柏B",
       "attributed": 10,
-      "gf": 13,
-      "missing": 3
+      "gf": 14,
+      "missing": 4
     }
   ]
 }
