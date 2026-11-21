@@ -130,13 +130,13 @@
     {
       "rank": 7,
       "team": "帝京長岡",
-      "pts": 25,
-      "played": 18,
+      "pts": 26,
+      "played": 19,
       "won": 8,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 9,
-      "gf": 40,
-      "ga": 35,
+      "gf": 42,
+      "ga": 37,
       "gd": 5
     },
     {
@@ -154,13 +154,13 @@
     {
       "rank": 9,
       "team": "昌平",
-      "pts": 18,
-      "played": 18,
+      "pts": 19,
+      "played": 19,
       "won": 5,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 10,
-      "gf": 29,
-      "ga": 44,
+      "gf": 31,
+      "ga": 46,
       "gd": -15
     },
     {
@@ -3466,12 +3466,32 @@
       "md": 19,
       "date": "2026-11-21",
       "home": "昌平",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "帝京長岡",
-      "status": "scheduled",
+      "status": "played",
       "venue": "昌平高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "26",
+          "name": "オツコロ 海桜"
+        },
+        {
+          "minute": "89",
+          "name": "立野 京弥"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "38",
+          "name": "児山 雅稀"
+        },
+        {
+          "minute": "74",
+          "name": "曾我 悠雅"
+        }
+      ]
     },
     {
       "md": 19,

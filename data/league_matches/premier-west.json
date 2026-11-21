@@ -59,13 +59,13 @@
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
       "pts": 41,
-      "played": 18,
+      "played": 19,
       "won": 13,
       "drawn": 2,
-      "lost": 3,
+      "lost": 4,
       "gf": 44,
-      "ga": 25,
-      "gd": 19
+      "ga": 28,
+      "gd": 16
     },
     {
       "rank": 2,
@@ -129,6 +129,18 @@
     },
     {
       "rank": 7,
+      "team": "ガンバ大阪ユース",
+      "pts": 27,
+      "played": 19,
+      "won": 7,
+      "drawn": 6,
+      "lost": 6,
+      "gf": 31,
+      "ga": 30,
+      "gd": 1
+    },
+    {
+      "rank": 8,
       "team": "米子北",
       "pts": 24,
       "played": 18,
@@ -138,18 +150,6 @@
       "gf": 33,
       "ga": 30,
       "gd": 3
-    },
-    {
-      "rank": 8,
-      "team": "ガンバ大阪ユース",
-      "pts": 24,
-      "played": 18,
-      "won": 6,
-      "drawn": 6,
-      "lost": 6,
-      "gf": 28,
-      "ga": 30,
-      "gd": -2
     },
     {
       "rank": 9,
@@ -3385,12 +3385,27 @@
       "md": 19,
       "date": "2026-11-21",
       "home": "ガンバ大阪ユース",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "ヴィッセル神戸U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "OFA万博フットボールセンター グラウンドB",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "35",
+          "name": "城阪 光喜"
+        },
+        {
+          "minute": "36",
+          "name": "城阪 光喜"
+        },
+        {
+          "minute": "85",
+          "name": "笠井 直樹"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 19,

@@ -4,7 +4,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 108,
+      "matchesPlayed": 109,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -16,7 +16,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 108,
+      "matchesPlayed": 109,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-21T12:38:53+09:00",
+  "updatedAt": "2026-11-21T13:02:19+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1286,21 +1286,21 @@
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
-      "note": "試合18・選手36（新規取得0）",
+      "note": "試合19・選手36（新規取得1）",
       "date": "2026-11-21",
       "since": ""
     },
     "team_season:higashiyama": {
-      "result": "ok",
-      "note": "試合18・選手31（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧18＋一覧外0＋OG1＝19 ≠ 順位表16）",
       "date": "2026-11-21",
-      "since": ""
+      "since": "2026-11-21"
     },
     "team_season:jubilo-iwata-u18": {
-      "result": "ok",
-      "note": "試合18・選手33（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧41＋一覧外0＋OG1＝42 ≠ 順位表36）",
       "date": "2026-11-21",
-      "since": ""
+      "since": "2026-11-21"
     },
     "team_season:kamimura-gakuen": {
       "result": "ok",
@@ -1364,13 +1364,13 @@
     },
     "team_season:shohei": {
       "result": "ok",
-      "note": "試合18・選手32（新規取得0）",
+      "note": "試合19・選手32（新規取得1）",
       "date": "2026-11-21",
       "since": ""
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
-      "note": "試合18・選手33（新規取得0）",
+      "note": "試合19・選手33（新規取得1）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1388,7 +1388,7 @@
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
-      "note": "試合18・選手33（新規取得0）",
+      "note": "試合19・選手33（新規取得1）",
       "date": "2026-11-21",
       "since": ""
     },
