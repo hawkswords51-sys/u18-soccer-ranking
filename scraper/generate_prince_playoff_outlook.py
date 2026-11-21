@@ -313,12 +313,42 @@ def _canon_team(n: str) -> str:
     return n
 
 
+def _alias_groups() -> list[set[str]]:
+    """data/teams.json の「正式名＋aliases」を1チーム1組にして返す（_canon_team 済み）。
+    [2026-11-21 Kei判断(a)] ページの確定チームは正式名（例「立正大学淞南高校」）、JFA順位表は略称（「立正大淞南」）で
+    「高校」を外すだけでは揃わない。teams.json の aliases に略称が入っているので、それを照合に使う。"""
+    try:
+        data = json.loads((ROOT / "data" / "teams.json").read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    # teams.json は {県キー: {"name": 県名, "teams": [...]}} の形
+    prefs = list(data.values()) if isinstance(data, dict) else list(data)
+    groups = []
+    for p in prefs:
+        if not isinstance(p, dict):
+            continue
+        for t in (p or {}).get("teams") or []:
+            names = [t.get("name")] + list(t.get("aliases") or [])
+            g = {_canon_team(n) for n in names if n}
+            if g:
+                groups.append(g)
+    return groups
+
+
+def _hit_by_alias(written: str, canon: dict, groups: list[set[str]]) -> str | None:
+    """written と同じチームの別名のうち、順位表に**ちょうど1つ**だけ当たるものがあればその順位表の名前。"""
+    w = _canon_team(written)
+    hits = {canon[n] for g in groups if w in g for n in g if n in canon}
+    return hits.pop() if len(hits) == 1 else None
+
+
 def premier_slot_rows(src: str) -> tuple[str, int]:
     """16枠の表の各行を書き換えた src と、暫定を出したチーム数を返す。読めない／合わないときは NeedsCheck。"""
     import audit_premier_playoff as ap
     from league_zones import _base_team_name, is_second_team, premier_teams_from_league_matches
     premier = {t["name"] for t in premier_teams_from_league_matches(ROOT)}
     zones = dict(ap.playoff_zones())
+    groups = _alias_groups()
     total = 0
 
     def one(m):
@@ -333,7 +363,7 @@ def premier_slot_rows(src: str) -> tuple[str, int]:
         canon = {_canon_team(r["team"]): r["team"] for r in st}
         confirmed = set()
         for w_ in written:
-            hit = canon.get(_canon_team(w_))
+            hit = canon.get(_canon_team(w_)) or _hit_by_alias(w_, canon, groups)
             if not hit:
                 raise NeedsCheck(f"16枠の表の {slug} の確定チーム「{w_}」が順位表のどのチームとも合わない")
             confirmed.add(hit)
