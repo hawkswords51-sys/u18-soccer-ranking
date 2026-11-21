@@ -38,9 +38,9 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['尚志.試合 日程から計算17≠順位表16', '尚志.勝 日程から計算15≠順位表14', '尚志.得点 日程から計算50≠順位表48'] …（据え置き）",
-      "matchesPlayed": 80,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 83,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 76,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 76,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -136,7 +136,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 81,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -160,7 +160,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 77,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-21T13:02:19+09:00",
+  "updatedAt": "2026-11-21T13:20:43+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1286,7 +1286,7 @@
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
-      "note": "試合19・選手36（新規取得1）",
+      "note": "試合19・選手36（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1364,13 +1364,13 @@
     },
     "team_season:shohei": {
       "result": "ok",
-      "note": "試合19・選手32（新規取得1）",
+      "note": "試合19・選手32（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
-      "note": "試合19・選手33（新規取得1）",
+      "note": "試合19・選手33（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1388,7 +1388,7 @@
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",
-      "note": "試合19・選手33（新規取得1）",
+      "note": "試合19・選手33（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
