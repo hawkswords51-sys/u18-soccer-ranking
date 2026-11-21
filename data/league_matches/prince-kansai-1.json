@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "履正社",
+      "pts": 29,
+      "played": 16,
+      "won": 9,
+      "drawn": 2,
+      "lost": 5,
+      "gf": 36,
+      "ga": 23,
+      "gd": 13
+    },
+    {
+      "rank": 4,
       "team": "京都橘",
       "pts": 29,
       "played": 15,
@@ -82,18 +94,6 @@
       "gf": 24,
       "ga": 14,
       "gd": 10
-    },
-    {
-      "rank": 4,
-      "team": "履正社",
-      "pts": 26,
-      "played": 15,
-      "won": 8,
-      "drawn": 2,
-      "lost": 5,
-      "gf": 34,
-      "ga": 22,
-      "gd": 12
     },
     {
       "rank": 5,
@@ -111,13 +111,13 @@
       "rank": 6,
       "team": "神戸弘陵",
       "pts": 17,
-      "played": 15,
+      "played": 16,
       "won": 4,
       "drawn": 5,
-      "lost": 6,
-      "gf": 22,
-      "ga": 23,
-      "gd": -1
+      "lost": 7,
+      "gf": 23,
+      "ga": 25,
+      "gd": -2
     },
     {
       "rank": 7,
@@ -1009,10 +1009,10 @@
       "md": 16,
       "date": "2026-11-21",
       "home": "履正社",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "神戸弘陵",
-      "status": "scheduled",
+      "status": "played",
       "venue": "履正社茨木グラウンド",
       "kickoff": "13:30"
     },
