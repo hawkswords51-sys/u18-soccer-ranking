@@ -38,8 +38,8 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
+      "actual": "koko",
+      "reason": "検算不一致 ['尚志.試合 日程から計算17≠順位表16', '尚志.勝 日程から計算15≠順位表14', '尚志.得点 日程から計算50≠順位表48'] …（据え置き）",
       "matchesPlayed": 80,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -64,7 +64,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 76,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 75,
+      "matchesPlayed": 76,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-21T06:26:58+09:00",
+  "updatedAt": "2026-11-21T12:35:40+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -375,7 +375,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化75試合に更新（検算一致）",
+      "result_note": "消化76試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -396,7 +396,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
+      "result_note": "消化81試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -839,7 +839,7 @@
     },
     "okinawa": {
       "result": "ok",
-      "result_note": "消化51試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -944,7 +944,7 @@
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result_note": "消化49試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -1370,7 +1370,7 @@
     },
     "team_season:teikyo-nagaoka": {
       "result": "ok",
-      "note": "試合18・選手32（新規取得0）",
+      "note": "試合18・選手33（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },

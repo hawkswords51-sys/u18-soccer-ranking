@@ -53,6 +53,18 @@
     },
     {
       "rank": 2,
+      "team": "那覇西",
+      "points": 27,
+      "played": 14,
+      "won": 8,
+      "drawn": 3,
+      "lost": 3,
+      "gf": 40,
+      "ga": 13,
+      "gd": 27
+    },
+    {
+      "rank": 3,
       "team": "名護",
       "points": 26,
       "played": 12,
@@ -62,18 +74,6 @@
       "gf": 43,
       "ga": 14,
       "gd": 29
-    },
-    {
-      "rank": 3,
-      "team": "那覇西",
-      "points": 24,
-      "played": 13,
-      "won": 7,
-      "drawn": 3,
-      "lost": 3,
-      "gf": 35,
-      "ga": 13,
-      "gd": 22
     },
     {
       "rank": 4,
@@ -127,13 +127,13 @@
       "rank": 8,
       "team": "FC琉球鹿島朝日",
       "points": 2,
-      "played": 13,
+      "played": 14,
       "won": 0,
       "drawn": 2,
-      "lost": 11,
+      "lost": 12,
       "gf": 5,
-      "ga": 67,
-      "gd": -62
+      "ga": 72,
+      "gd": -67
     }
   ],
   "matches": [
@@ -319,12 +319,12 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-21",
       "home": "那覇西",
-      "hs": null,
-      "as": null,
+      "hs": 5,
+      "as": 0,
       "away": "FC琉球鹿島朝日",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 0,
@@ -651,17 +651,17 @@
       "rank": 1
     },
     {
+      "team": "那覇西",
+      "pts": 27,
+      "gf": 40,
+      "ga": 13,
+      "rank": 2
+    },
+    {
       "team": "名護",
       "pts": 26,
       "gf": 43,
       "ga": 14,
-      "rank": 2
-    },
-    {
-      "team": "那覇西",
-      "pts": 24,
-      "gf": 35,
-      "ga": 13,
       "rank": 3
     },
     {
@@ -696,7 +696,7 @@
       "team": "FC琉球鹿島朝日",
       "pts": 2,
       "gf": 5,
-      "ga": 67,
+      "ga": 72,
       "rank": 8
     }
   ]
