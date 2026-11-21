@@ -5207,6 +5207,16 @@ def assign_legs_incrementally(slug: str, a: str, b: str, legs: list, sched: list
     #    日付が空だと文字列比較で常に cutoff 以下になり、消化済み扱いされてしまう。
     free = [i for i, s in enumerate(sched)
             if out[i] is None and s["date"] and s["date"] <= cutoff]
+    # 2-b. [2026-11-21 Kei判断(a)] 日付の入った空き枠が無く、残りが「日付未定」の1枠だけで、増えた結果も1件だけ
+    #      ＝取り違えようが無いので、日付なしのまま結果を当てる（石川・栃木・山口と同じ「日付なしの消化済み」）。
+    #      実例：大阪2部C 第8節 セレッソ大阪U-18 B×東大阪大柏原。日程PDF（9/5版が最新）は「未定」のまま、
+    #      結果表（11/15版）に 3-2 が出た。⚠️ 2件以上・未定枠が2つ以上のときは今までどおり止める。
+    #      ⚠️ 日付が空なので _existing_played に入らず、毎回ここで当て直される（結果は同じなので保存内容は変わらない）。
+    undated = [i for i, s in enumerate(sched) if out[i] is None and not s["date"]]
+    if not free and len(rest) == 1 and len(undated) == 1:
+        out[undated[0]] = rest[0]
+        print(f"       （{slug}: {a}×{b} の結果1件を、日付未定の枠（第{sched[undated[0]]['md']}節）に当てました）")
+        return out
     if len(rest) > len(free):
         raise RuntimeError(f"{a}×{b}: 結果が{len(legs)}件あるのに、版日付までに予定されていた空き枠は{len(free)}件"
                            f"（結果があるのに予定日が来ていない）")
