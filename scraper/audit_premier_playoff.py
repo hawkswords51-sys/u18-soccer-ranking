@@ -138,11 +138,24 @@ def analyze(slug, slots, matches_dir, premier_names, skip_second=True):
             "rem": rem.get(name, 0),
         })
 
+    def can_reach(o, x):
+        """o が x より上（または同順位）に来られるか。
+        [2026-11-21 Kei判断] 勝点で並んでも、**両チームとも残り試合0**なら得失点差・総得点はもう動かない。
+        そのときは公式順位表の順位で決着済みとみなす（実例：北信越1部 星稜31点+8 と 松本U18 31点+6）。
+        ⚠️ 順位が同じ・順位が無い・どちらかに残り試合があるときは、今までどおり「来られる」と数える。"""
+        best = o["pts"] + 3 * o["rem"]
+        if best > x["pts"]:
+            return True
+        if best < x["pts"]:
+            return False
+        if o["rem"] == 0 and x["rem"] == 0 and o["rank"] and x["rank"] and o["rank"] > x["rank"]:
+            return False
+        return True
+
     fixed = []
     for x in rows:
         # x より上（または同点）に来られる相手の数
-        threats = sum(1 for o in rows
-                      if o["name"] != x["name"] and o["pts"] + 3 * o["rem"] >= x["pts"])
+        threats = sum(1 for o in rows if o["name"] != x["name"] and can_reach(o, x))
         if threats < slots:
             fixed.append(x)
     fixed.sort(key=lambda x: (x["rank"] or 99))
