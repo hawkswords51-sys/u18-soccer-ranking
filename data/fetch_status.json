@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 76,
+      "matchesPlayed": 77,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 79,
+      "matchesPlayed": 80,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -136,7 +136,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 81,
+      "matchesPlayed": 83,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-21T16:57:57+09:00",
+  "updatedAt": "2026-11-21T17:02:13+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1315,14 +1315,14 @@
       "since": ""
     },
     "team_season:kashiwa-reysol-u18": {
-      "result": "ok",
-      "note": "試合18・選手30（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧29＋一覧外2＋OG0＝31 ≠ 順位表28）",
       "date": "2026-11-21",
-      "since": ""
+      "since": "2026-11-21"
     },
     "team_season:kawasaki-frontale-u18": {
       "result": "ok",
-      "note": "試合18・選手32（新規取得0）",
+      "note": "試合18・選手32（新規取得0）／選手一覧を据え置き（出場試合数が合わない 16件：21 小村 風人: 一覧1 ≠ 出場記録0）",
       "date": "2026-11-21",
       "since": ""
     },

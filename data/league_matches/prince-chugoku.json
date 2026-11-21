@@ -62,14 +62,14 @@
     {
       "rank": 2,
       "team": "立正大淞南",
-      "pts": 35,
-      "played": 16,
-      "won": 11,
+      "pts": 38,
+      "played": 17,
+      "won": 12,
       "drawn": 2,
       "lost": 3,
-      "gf": 40,
-      "ga": 17,
-      "gd": 23
+      "gf": 44,
+      "ga": 18,
+      "gd": 26
     },
     {
       "rank": 3,
@@ -99,25 +99,25 @@
       "rank": 5,
       "team": "就実",
       "pts": 20,
-      "played": 16,
+      "played": 17,
       "won": 6,
       "drawn": 2,
-      "lost": 8,
-      "gf": 25,
-      "ga": 28,
-      "gd": -3
+      "lost": 9,
+      "gf": 26,
+      "ga": 32,
+      "gd": -6
     },
     {
       "rank": 6,
       "team": "レノファ山口FC U-18",
       "pts": 18,
-      "played": 16,
+      "played": 17,
       "won": 4,
       "drawn": 6,
-      "lost": 6,
+      "lost": 7,
       "gf": 16,
-      "ga": 27,
-      "gd": -11
+      "ga": 28,
+      "gd": -12
     },
     {
       "rank": 7,
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "大社",
+      "pts": 13,
+      "played": 17,
+      "won": 3,
+      "drawn": 4,
+      "lost": 10,
+      "gf": 12,
+      "ga": 42,
+      "gd": -30
+    },
+    {
+      "rank": 10,
       "team": "玉野光南",
       "pts": 11,
       "played": 16,
@@ -154,18 +166,6 @@
       "gf": 18,
       "ga": 41,
       "gd": -23
-    },
-    {
-      "rank": 10,
-      "team": "大社",
-      "pts": 10,
-      "played": 16,
-      "won": 2,
-      "drawn": 4,
-      "lost": 10,
-      "gf": 11,
-      "ga": 42,
-      "gd": -31
     }
   ],
   "matches": [
@@ -1053,10 +1053,10 @@
       "md": 17,
       "date": "2026-11-21",
       "home": "レノファ山口FC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "大社",
-      "status": "scheduled",
+      "status": "played",
       "venue": "レイズネクスト周南総合競技場",
       "kickoff": "13:30"
     },
@@ -1097,10 +1097,10 @@
       "md": 17,
       "date": "2026-11-21",
       "home": "立正大淞南",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 1,
       "away": "就実",
-      "status": "scheduled",
+      "status": "played",
       "venue": "中海スポーツパーク多目的グランド",
       "kickoff": "13:30"
     },
