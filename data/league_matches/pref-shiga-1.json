@@ -62,14 +62,14 @@
     {
       "rank": 2,
       "team": "水口",
-      "points": 33,
-      "played": 16,
-      "won": 11,
+      "points": 36,
+      "played": 17,
+      "won": 12,
       "drawn": 0,
       "lost": 5,
-      "gf": 35,
+      "gf": 36,
       "ga": 22,
-      "gd": 13
+      "gd": 14
     },
     {
       "rank": 3,
@@ -87,13 +87,13 @@
       "rank": 4,
       "team": "比叡山",
       "points": 27,
-      "played": 16,
+      "played": 17,
       "won": 8,
       "drawn": 3,
-      "lost": 5,
+      "lost": 6,
       "gf": 14,
-      "ga": 14,
-      "gd": 0
+      "ga": 15,
+      "gd": -1
     },
     {
       "rank": 5,
@@ -122,50 +122,50 @@
     {
       "rank": 7,
       "team": "近江C",
-      "points": 21,
-      "played": 16,
-      "won": 6,
+      "points": 24,
+      "played": 17,
+      "won": 7,
       "drawn": 3,
       "lost": 7,
-      "gf": 22,
+      "gf": 27,
       "ga": 21,
-      "gd": 1
+      "gd": 6
     },
     {
       "rank": 8,
       "team": "彦根総合",
-      "points": 13,
-      "played": 16,
-      "won": 4,
+      "points": 16,
+      "played": 17,
+      "won": 5,
       "drawn": 1,
       "lost": 11,
-      "gf": 21,
-      "ga": 29,
-      "gd": -8
+      "gf": 24,
+      "ga": 30,
+      "gd": -6
     },
     {
       "rank": 9,
       "team": "野洲",
       "points": 13,
-      "played": 16,
+      "played": 17,
       "won": 4,
       "drawn": 1,
-      "lost": 11,
-      "gf": 15,
-      "ga": 51,
-      "gd": -36
+      "lost": 12,
+      "gf": 16,
+      "ga": 54,
+      "gd": -38
     },
     {
       "rank": 10,
       "team": "伊吹",
       "points": 2,
-      "played": 16,
+      "played": 17,
       "won": 0,
       "drawn": 2,
-      "lost": 14,
+      "lost": 15,
       "gf": 12,
-      "ga": 53,
-      "gd": -41
+      "ga": 58,
+      "gd": -46
     }
   ],
   "matches": [
@@ -448,12 +448,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-21",
       "home": "比叡山",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "水口",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "ＢＬB"
     },
     {
       "md": 0,
@@ -785,12 +786,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-21",
       "home": "近江C",
-      "hs": null,
-      "as": null,
+      "hs": 5,
+      "as": 0,
       "away": "伊吹",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "ＢＬB"
     },
     {
       "md": 0,
@@ -952,12 +954,13 @@
     },
     {
       "md": 0,
-      "date": "",
+      "date": "2026-11-21",
       "home": "野洲",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 3,
       "away": "彦根総合",
-      "status": "scheduled"
+      "status": "played",
+      "venue": "彦根総合"
     },
     {
       "md": 0,
@@ -1073,12 +1076,12 @@
     },
     {
       "team": "水口",
-      "pts": 33,
-      "played": 16,
-      "won": 11,
+      "pts": 36,
+      "played": 17,
+      "won": 12,
       "drawn": 0,
       "lost": 5,
-      "gf": 35,
+      "gf": 36,
       "ga": 22
     },
     {
@@ -1094,12 +1097,12 @@
     {
       "team": "比叡山",
       "pts": 27,
-      "played": 16,
+      "played": 17,
       "won": 8,
       "drawn": 3,
-      "lost": 5,
+      "lost": 6,
       "gf": 14,
-      "ga": 14
+      "ga": 15
     },
     {
       "team": "八幡商業",
@@ -1123,43 +1126,43 @@
     },
     {
       "team": "近江C",
-      "pts": 21,
-      "played": 16,
-      "won": 6,
+      "pts": 24,
+      "played": 17,
+      "won": 7,
       "drawn": 3,
       "lost": 7,
-      "gf": 22,
+      "gf": 27,
       "ga": 21
     },
     {
       "team": "彦根総合",
-      "pts": 13,
-      "played": 16,
-      "won": 4,
+      "pts": 16,
+      "played": 17,
+      "won": 5,
       "drawn": 1,
       "lost": 11,
-      "gf": 21,
-      "ga": 29
+      "gf": 24,
+      "ga": 30
     },
     {
       "team": "野洲",
       "pts": 13,
-      "played": 16,
+      "played": 17,
       "won": 4,
       "drawn": 1,
-      "lost": 11,
-      "gf": 15,
-      "ga": 51
+      "lost": 12,
+      "gf": 16,
+      "ga": 54
     },
     {
       "team": "伊吹",
       "pts": 2,
-      "played": 16,
+      "played": 17,
       "won": 0,
       "drawn": 2,
-      "lost": 14,
+      "lost": 15,
       "gf": 12,
-      "ga": 53
+      "ga": 58
     }
   ]
 }

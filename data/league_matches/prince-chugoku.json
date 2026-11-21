@@ -50,14 +50,14 @@
     {
       "rank": 1,
       "team": "岡山学芸館",
-      "pts": 38,
-      "played": 16,
-      "won": 12,
+      "pts": 41,
+      "played": 17,
+      "won": 13,
       "drawn": 2,
       "lost": 2,
-      "gf": 42,
+      "gf": 46,
       "ga": 12,
-      "gd": 30
+      "gd": 34
     },
     {
       "rank": 2,
@@ -123,28 +123,40 @@
       "rank": 7,
       "team": "高川学園",
       "pts": 16,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 7,
-      "lost": 6,
+      "lost": 7,
       "gf": 19,
-      "ga": 22,
-      "gd": -3
+      "ga": 26,
+      "gd": -7
     },
     {
       "rank": 8,
       "team": "広島皆実",
       "pts": 15,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 6,
-      "lost": 7,
+      "lost": 8,
       "gf": 9,
-      "ga": 17,
-      "gd": -8
+      "ga": 18,
+      "gd": -9
     },
     {
       "rank": 9,
+      "team": "玉野光南",
+      "pts": 14,
+      "played": 17,
+      "won": 4,
+      "drawn": 2,
+      "lost": 11,
+      "gf": 19,
+      "ga": 41,
+      "gd": -22
+    },
+    {
+      "rank": 10,
       "team": "大社",
       "pts": 13,
       "played": 17,
@@ -154,18 +166,6 @@
       "gf": 12,
       "ga": 42,
       "gd": -30
-    },
-    {
-      "rank": 10,
-      "team": "玉野光南",
-      "pts": 11,
-      "played": 16,
-      "won": 3,
-      "drawn": 2,
-      "lost": 11,
-      "gf": 18,
-      "ga": 41,
-      "gd": -23
     }
   ],
   "matches": [
@@ -1075,10 +1075,10 @@
       "md": 17,
       "date": "2026-11-21",
       "home": "岡山学芸館",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "高川学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "岡山学芸館サッカー場",
       "kickoff": "13:30"
     },
@@ -1086,10 +1086,10 @@
       "md": 17,
       "date": "2026-11-21",
       "home": "玉野光南",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "広島皆実",
-      "status": "scheduled",
+      "status": "played",
       "venue": "作陽学園グリーンスクウェアフィールド",
       "kickoff": "13:30"
     },

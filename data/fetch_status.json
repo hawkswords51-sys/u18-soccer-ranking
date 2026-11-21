@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 77,
+      "matchesPlayed": 78,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -136,7 +136,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 83,
+      "matchesPlayed": 85,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-21T18:25:31+09:00",
+  "updatedAt": "2026-11-21T19:04:23+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -311,7 +311,7 @@
     },
     "fukuoka": {
       "result": "ok",
-      "result_note": "消化78試合に更新（検算一致）",
+      "result_note": "消化80試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -375,7 +375,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化76試合に更新（検算一致）",
+      "result_note": "消化80試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -396,7 +396,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化81試合に更新（検算一致）",
+      "result_note": "消化82試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -692,7 +692,7 @@
     },
     "miyazaki": {
       "result": "ok",
-      "result_note": "消化77試合に更新（検算一致）",
+      "result_note": "消化81試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -838,8 +838,8 @@
       "last_updated": "2026-11-21"
     },
     "okinawa": {
-      "result": "ok",
-      "result_note": "消化52試合に更新（検算一致）",
+      "result": "verify_failed",
+      "result_note": "検算不一致 ['既存にあって公式に無い試合が1件（例: 那覇西 5-0 FC琉球鹿島朝日）'] …",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -856,7 +856,13 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "last_updated": "2026-11-21"
+      "last_updated": "2026-11-21",
+      "verify_items": [
+        {
+          "team": null,
+          "item": "既存にあって公式に無い試合が1件（例: 那覇西 5-0 FC琉球鹿島朝日）"
+        }
+      ]
     },
     "osaka": {
       "season": "2026",
@@ -917,8 +923,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (大体大浪商×賢明学院: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
       "result_date": "2026-11-21"
     },
     "osaka-2c": {
@@ -939,12 +945,12 @@
       "result_streak": 14,
       "status": "alert",
       "result": "fetch_error",
-      "result_note": "取得失敗 (セレッソ大阪U-18 B×東大阪大柏原: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
+      "result_note": "取得失敗 (大阪学院B×東海大仰星B: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
       "result_date": "2026-11-21"
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化49試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -986,7 +992,7 @@
     },
     "shiga": {
       "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
+      "result_note": "消化83試合に更新（検算一致）",
       "result_date": "2026-11-21",
       "season": "2026",
       "complete": false,
@@ -1268,7 +1274,7 @@
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
-      "note": "試合19・選手31（新規取得1）",
+      "note": "試合19・選手31（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1292,13 +1298,13 @@
     },
     "team_season:higashiyama": {
       "result": "ok",
-      "note": "試合19・選手31（新規取得1）",
+      "note": "試合19・選手31（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
     "team_season:jubilo-iwata-u18": {
       "result": "ok",
-      "note": "試合19・選手33（新規取得1）",
+      "note": "試合19・選手33（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1316,13 +1322,13 @@
     },
     "team_season:kashiwa-reysol-u18": {
       "result": "ok",
-      "note": "試合19・選手30（新規取得1）",
+      "note": "試合19・選手30（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
     "team_season:kawasaki-frontale-u18": {
       "result": "ok",
-      "note": "試合19・選手32（新規取得1）",
+      "note": "試合19・選手32（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1340,7 +1346,7 @@
     },
     "team_season:ohtsu": {
       "result": "ok",
-      "note": "試合19・選手31（新規取得1）",
+      "note": "試合19・選手31（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1352,7 +1358,7 @@
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
-      "note": "試合19・選手30（新規取得1）",
+      "note": "試合19・選手30（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
@@ -1400,7 +1406,7 @@
     },
     "team_season:yonago-kita": {
       "result": "ok",
-      "note": "試合19・選手30（新規取得1）",
+      "note": "試合19・選手30（新規取得0）",
       "date": "2026-11-21",
       "since": ""
     },
