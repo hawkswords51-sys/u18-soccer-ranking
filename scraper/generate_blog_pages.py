@@ -1223,6 +1223,7 @@ MEDICAL_HUB_THEMES = [
             "2026-06-08-iron-deficiency-anemia",
             "exercise-induced-bronchoconstriction-2026",
             "2026-05-22-pre-match-sleep-strategy",
+            "after-retirement-2026",
         ],
     ),
 ]
