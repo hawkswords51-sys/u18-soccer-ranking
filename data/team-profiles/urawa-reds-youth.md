@@ -1,7 +1,9 @@
 ---
 id: urawa-reds-youth
-name: 浦和レッドダイヤモンズユース
+name: 浦和レッズユース
 short_name: 浦和レッズユース
+aliases:
+  - 浦和レッドダイヤモンズユース
 league: プリンスリーグ関東1部
 jfa_team: prince-kanto-1
 prefecture: saitama

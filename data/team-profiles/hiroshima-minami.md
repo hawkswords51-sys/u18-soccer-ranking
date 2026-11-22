@@ -10,6 +10,7 @@ league: プリンスリーグ中国
 jfa_team: prince-chugoku
 prefecture: hiroshima
 prefecture_name: 広島県
+founded: 1949
 location: 広島県広島市
 website: https://www.minami-h.hiroshima-c.ed.jp/
 official_x:

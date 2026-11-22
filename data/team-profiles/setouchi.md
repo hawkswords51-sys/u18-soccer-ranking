@@ -8,6 +8,7 @@ league: プリンスリーグ中国
 jfa_team: prince-chugoku
 prefecture: hiroshima
 prefecture_name: 広島県
+founded: 2000
 location: 広島県広島市（松本学園スポーツセンター＝安芸郡府中町・人工芝・専用寮）
 website: https://fre-spo.com/box_setouchi/
 nickname: 瀬戸内

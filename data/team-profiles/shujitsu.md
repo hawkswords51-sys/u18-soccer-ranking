@@ -9,6 +9,7 @@ league: プリンスリーグ中国
 jfa_team: prince-chugoku
 prefecture: okayama
 prefecture_name: 岡山県
+founded: 2012
 location: 岡山県岡山市
 website: https://www.shujitsu-h.ed.jp/
 official_x:

@@ -6,6 +6,7 @@ league: プリンスリーグ関東2部
 jfa_team: prince-kanto-2
 prefecture: ibaraki
 prefecture_name: 茨城県
+founded: 1989
 location: 茨城県鹿嶋市
 website: https://kashimagakuen-fc.jp/
 official_x:

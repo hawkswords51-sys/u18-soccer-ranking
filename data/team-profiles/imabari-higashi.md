@@ -1,9 +1,9 @@
 ---
 id: imabari-higashi
-name: 今治東中等教育学校
+name: 県立今治東中等教育学校
 short_name: 今治東
 aliases:
-  - 県立今治東中等教育学校
+  - 今治東中等教育学校
   - 愛媛県立今治東中等教育学校
 league: プリンスリーグ四国
 jfa_team: prince-shikoku
