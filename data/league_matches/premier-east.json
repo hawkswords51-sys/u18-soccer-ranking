@@ -57,6 +57,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "鹿島アントラーズユース",
+      "pts": 40,
+      "played": 19,
+      "won": 13,
+      "drawn": 1,
+      "lost": 5,
+      "gf": 58,
+      "ga": 30,
+      "gd": 28
+    },
+    {
+      "rank": 2,
       "team": "流通経済大柏",
       "pts": 40,
       "played": 18,
@@ -68,7 +80,7 @@
       "gd": 21
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "柏レイソルU-18",
       "pts": 39,
       "played": 19,
@@ -78,18 +90,6 @@
       "gf": 31,
       "ga": 12,
       "gd": 19
-    },
-    {
-      "rank": 3,
-      "team": "鹿島アントラーズユース",
-      "pts": 37,
-      "played": 18,
-      "won": 12,
-      "drawn": 1,
-      "lost": 5,
-      "gf": 53,
-      "ga": 29,
-      "gd": 24
     },
     {
       "rank": 4,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "横浜FCユース",
       "pts": 13,
-      "played": 18,
+      "played": 19,
       "won": 3,
       "drawn": 4,
-      "lost": 11,
-      "gf": 25,
-      "ga": 40,
-      "gd": -15
+      "lost": 12,
+      "gf": 26,
+      "ga": 45,
+      "gd": -19
     },
     {
       "rank": 12,
@@ -3520,6 +3520,7 @@
       "status": "played",
       "venue": "前橋育英高校高崎グラウンド(人工芝)",
       "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1903.pdf",
       "homeScorers": [
         {
           "minute": "45",
@@ -3552,12 +3553,40 @@
       "md": 19,
       "date": "2026-11-22",
       "home": "横浜FCユース",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 5,
       "away": "鹿島アントラーズユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "神奈川県立保土ヶ谷公園サッカー場",
-      "kickoff": "12:00"
+      "kickoff": "12:00",
+      "homeScorers": [
+        {
+          "minute": "27",
+          "name": "鈴木 晴弥"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "45+2",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "53",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "69",
+          "name": "平島 大悟"
+        },
+        {
+          "minute": "85",
+          "name": "大島 琉空"
+        },
+        {
+          "minute": "90+3",
+          "name": "石渡 智也"
+        }
+      ]
     },
     {
       "md": 19,
