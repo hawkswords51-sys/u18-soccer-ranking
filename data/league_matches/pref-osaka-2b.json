@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://osaka-fa.or.jp/2shu/game_information/",
   "sourceName": "大阪府サッカー協会 公式",
-  "lastUpdated": "2026-11-21",
+  "lastUpdated": "2026-11-22",
   "teams": [
     {
       "name": "大阪桐蔭B",
@@ -91,16 +91,28 @@
       "rank": 5,
       "team": "大体大浪商",
       "points": 20,
-      "played": 12,
+      "played": 13,
       "won": 6,
       "drawn": 2,
-      "lost": 4,
+      "lost": 5,
       "gf": 23,
-      "ga": 19,
-      "gd": 4
+      "ga": 20,
+      "gd": 3
     },
     {
       "rank": 6,
+      "team": "賢明学院",
+      "points": 13,
+      "played": 13,
+      "won": 4,
+      "drawn": 1,
+      "lost": 8,
+      "gf": 14,
+      "ga": 27,
+      "gd": -13
+    },
+    {
+      "rank": 7,
       "team": "履正社C",
       "points": 10,
       "played": 12,
@@ -110,18 +122,6 @@
       "gf": 23,
       "ga": 32,
       "gd": -9
-    },
-    {
-      "rank": 7,
-      "team": "賢明学院",
-      "points": 10,
-      "played": 12,
-      "won": 3,
-      "drawn": 1,
-      "lost": 8,
-      "gf": 13,
-      "ga": 27,
-      "gd": -14
     },
     {
       "rank": 8,
@@ -438,10 +438,10 @@
       "md": 13,
       "date": "2026-11-21",
       "home": "大体大浪商",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "賢明学院",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 2,
@@ -676,20 +676,20 @@
       "pts": 10,
       "gf": 23,
       "ga": 32,
-      "rank": 6
+      "rank": 7
     },
     {
       "team": "賢明学院",
-      "pts": 10,
-      "gf": 13,
+      "pts": 13,
+      "gf": 14,
       "ga": 27,
-      "rank": 7
+      "rank": 6
     },
     {
       "team": "大体大浪商",
       "pts": 20,
       "gf": 23,
-      "ga": 19,
+      "ga": 20,
       "rank": 5
     },
     {

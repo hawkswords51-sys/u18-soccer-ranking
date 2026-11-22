@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-22T05:29:38+09:00",
+  "updatedAt": "2026-11-22T11:37:40+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -903,7 +903,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化47試合に更新（検算一致）",
+      "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-11-22"
     },
     "osaka-2b": {
@@ -923,8 +923,8 @@
       "result_since": "2026-11-21",
       "result_streak": 3,
       "status": "warn",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (大体大浪商×賢明学院: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
+      "result": "ok",
+      "result_note": "消化49試合に更新（検算一致）",
       "result_date": "2026-11-22"
     },
     "osaka-2c": {
@@ -944,8 +944,8 @@
       "result_since": "2026-11-15",
       "result_streak": 17,
       "status": "alert",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (大阪学院B×東海大仰星B: 結果が2件あるのに、版日付までに予定されていた空き枠は0件（結果があるのに予定日が来ていない）)",
+      "result": "ok",
+      "result_note": "消化49試合に更新（検算一致）",
       "result_date": "2026-11-22"
     },
     "saga": {
