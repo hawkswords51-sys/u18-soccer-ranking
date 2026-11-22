@@ -4,7 +4,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 111,
+      "matchesPlayed": 112,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-22T12:59:40+09:00",
+  "updatedAt": "2026-11-22T13:19:16+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1268,7 +1268,7 @@
     },
     "team_season:aomori-yamada": {
       "result": "ok",
-      "note": "試合18・選手30（新規取得0）",
+      "note": "試合19・選手30（新規取得1）",
       "date": "2026-11-22",
       "since": ""
     },
@@ -1280,13 +1280,13 @@
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
-      "note": "試合19・選手37（新規取得1）",
+      "note": "試合19・選手37（新規取得0）",
       "date": "2026-11-22",
       "since": ""
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
-      "note": "試合19・選手40（新規取得1）",
+      "note": "試合19・選手40（新規取得0）",
       "date": "2026-11-22",
       "since": ""
     },
@@ -1310,7 +1310,7 @@
     },
     "team_season:kamimura-gakuen": {
       "result": "ok",
-      "note": "試合19・選手30（新規取得1）",
+      "note": "試合19・選手30（新規取得0）",
       "date": "2026-11-22",
       "since": ""
     },
@@ -1334,13 +1334,13 @@
     },
     "team_season:maebashi-ikuei": {
       "result": "ok",
-      "note": "試合19・選手30（新規取得1）／選手一覧を据え置き（出場試合数が合わない 2件：6 山本 颯吾: 一覧13 ≠ 出場記録12）",
+      "note": "試合19・選手30（新規取得0）／選手一覧を据え置き（出場試合数が合わない 2件：6 山本 颯吾: 一覧13 ≠ 出場記録12）",
       "date": "2026-11-22",
       "since": ""
     },
     "team_season:nagoya-grampus-u18": {
       "result": "ok",
-      "note": "試合19・選手43（新規取得1）",
+      "note": "試合19・選手43（新規取得0）／選手一覧を据え置き（出場試合数が合わない 1件：32 中根 佳祐: 一覧6 ≠ 出場記録5）",
       "date": "2026-11-22",
       "since": ""
     },
@@ -1364,7 +1364,7 @@
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
-      "note": "試合19・選手32（新規取得1）",
+      "note": "試合19・選手32（新規取得0）",
       "date": "2026-11-22",
       "since": ""
     },
@@ -1387,10 +1387,10 @@
       "since": ""
     },
     "team_season:vegalta-sendai-youth": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧18＋一覧外0＋OG0＝18 ≠ 順位表17）",
+      "result": "ok",
+      "note": "試合19・選手37（新規取得1）",
       "date": "2026-11-22",
-      "since": "2026-11-22"
+      "since": ""
     },
     "team_season:vissel-kobe-u18": {
       "result": "ok",

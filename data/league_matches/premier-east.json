@@ -118,13 +118,13 @@
     {
       "rank": 6,
       "team": "青森山田",
-      "pts": 28,
-      "played": 18,
+      "pts": 29,
+      "played": 19,
       "won": 9,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 8,
-      "gf": 31,
-      "ga": 31,
+      "gf": 32,
+      "ga": 32,
       "gd": 0
     },
     {
@@ -166,13 +166,13 @@
     {
       "rank": 10,
       "team": "ベガルタ仙台ユース",
-      "pts": 14,
-      "played": 18,
+      "pts": 15,
+      "played": 19,
       "won": 3,
-      "drawn": 5,
+      "drawn": 6,
       "lost": 10,
-      "gf": 17,
-      "ga": 46,
+      "gf": 18,
+      "ga": 47,
       "gd": -29
     },
     {
@@ -3563,12 +3563,25 @@
       "md": 19,
       "date": "2026-11-22",
       "home": "青森山田",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "ベガルタ仙台ユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "青森山田高校グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1902.pdf",
+      "homeScorers": [
+        {
+          "minute": "44",
+          "name": "藤原 優人"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "76",
+          "name": "上野 玲音"
+        }
+      ]
     },
     {
       "md": 20,
