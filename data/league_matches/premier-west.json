@@ -69,6 +69,18 @@
     },
     {
       "rank": 2,
+      "team": "名古屋グランパスU-18",
+      "pts": 38,
+      "played": 19,
+      "won": 11,
+      "drawn": 5,
+      "lost": 3,
+      "gf": 46,
+      "ga": 29,
+      "gd": 17
+    },
+    {
+      "rank": 3,
       "team": "サガン鳥栖U-18",
       "pts": 36,
       "played": 19,
@@ -80,28 +92,16 @@
       "gd": 16
     },
     {
-      "rank": 3,
-      "team": "名古屋グランパスU-18",
-      "pts": 35,
-      "played": 18,
-      "won": 10,
-      "drawn": 5,
-      "lost": 3,
-      "gf": 44,
-      "ga": 28,
-      "gd": 16
-    },
-    {
       "rank": 4,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 32,
-      "played": 18,
+      "played": 19,
       "won": 9,
       "drawn": 5,
-      "lost": 4,
-      "gf": 34,
-      "ga": 27,
-      "gd": 7
+      "lost": 5,
+      "gf": 35,
+      "ga": 29,
+      "gd": 6
     },
     {
       "rank": 5,
@@ -141,6 +141,18 @@
     },
     {
       "rank": 8,
+      "team": "神村学園",
+      "pts": 27,
+      "played": 19,
+      "won": 7,
+      "drawn": 6,
+      "lost": 6,
+      "gf": 38,
+      "ga": 41,
+      "gd": -3
+    },
+    {
+      "rank": 9,
       "team": "米子北",
       "pts": 24,
       "played": 19,
@@ -150,18 +162,6 @@
       "gf": 34,
       "ga": 32,
       "gd": 2
-    },
-    {
-      "rank": 9,
-      "team": "神村学園",
-      "pts": 24,
-      "played": 18,
-      "won": 6,
-      "drawn": 6,
-      "lost": 6,
-      "gf": 35,
-      "ga": 40,
-      "gd": -5
     },
     {
       "rank": 10,
@@ -191,13 +191,13 @@
       "rank": 12,
       "team": "ファジアーノ岡山U-18",
       "pts": 5,
-      "played": 18,
+      "played": 19,
       "won": 1,
       "drawn": 2,
-      "lost": 15,
-      "gf": 16,
-      "ga": 49,
-      "gd": -33
+      "lost": 16,
+      "gf": 17,
+      "ga": 52,
+      "gd": -35
     }
   ],
   "matches": [
@@ -3511,23 +3511,59 @@
       "md": 19,
       "date": "2026-11-22",
       "home": "サンフレッチェ広島F.Cユース",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 2,
       "away": "名古屋グランパスU-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "安芸高田市サッカー公園",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "7",
+          "name": "信重 亮二朗"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "25",
+          "name": "成瀬 楓悟"
+        },
+        {
+          "minute": "33",
+          "name": "池田 歩弘"
+        }
+      ]
     },
     {
       "md": 19,
       "date": "2026-11-22",
       "home": "神村学園",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "ファジアーノ岡山U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿児島県立サッカー・ラグビー場",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "42",
+          "name": "長友 奏大"
+        },
+        {
+          "minute": "48",
+          "name": "橋野 崇汰"
+        },
+        {
+          "minute": "90+3",
+          "name": "増田 宗一郎"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "56",
+          "name": "伍賀 悠真"
+        }
+      ]
     },
     {
       "md": 20,

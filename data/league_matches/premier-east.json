@@ -95,25 +95,25 @@
       "rank": 4,
       "team": "FC東京U-18",
       "pts": 35,
-      "played": 18,
+      "played": 19,
       "won": 11,
       "drawn": 2,
-      "lost": 5,
-      "gf": 40,
-      "ga": 22,
-      "gd": 18
+      "lost": 6,
+      "gf": 41,
+      "ga": 24,
+      "gd": 17
     },
     {
       "rank": 5,
       "team": "前橋育英",
-      "pts": 28,
-      "played": 18,
-      "won": 8,
+      "pts": 31,
+      "played": 19,
+      "won": 9,
       "drawn": 4,
       "lost": 6,
-      "gf": 30,
-      "ga": 24,
-      "gd": 6
+      "gf": 32,
+      "ga": 25,
+      "gd": 7
     },
     {
       "rank": 6,
@@ -3514,12 +3514,28 @@
       "md": 19,
       "date": "2026-11-22",
       "home": "前橋育英",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "FC東京U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "前橋育英高校高崎グラウンド(人工芝)",
-      "kickoff": "11:00"
+      "kickoff": "11:00",
+      "homeScorers": [
+        {
+          "minute": "45",
+          "name": "安藤 大地"
+        },
+        {
+          "minute": "90",
+          "name": "立石 陽向"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "67",
+          "name": "早川 瑛斗"
+        }
+      ]
     },
     {
       "md": 19,
