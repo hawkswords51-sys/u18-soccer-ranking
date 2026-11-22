@@ -57,6 +57,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "流通経済大柏",
+      "pts": 43,
+      "played": 19,
+      "won": 14,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 45,
+      "ga": 21,
+      "gd": 24
+    },
+    {
+      "rank": 2,
       "team": "鹿島アントラーズユース",
       "pts": 40,
       "played": 19,
@@ -66,18 +78,6 @@
       "gf": 58,
       "ga": 30,
       "gd": 28
-    },
-    {
-      "rank": 2,
-      "team": "流通経済大柏",
-      "pts": 40,
-      "played": 18,
-      "won": 13,
-      "drawn": 1,
-      "lost": 4,
-      "gf": 42,
-      "ga": 21,
-      "gd": 21
     },
     {
       "rank": 3,
@@ -143,13 +143,13 @@
       "rank": 8,
       "team": "東京ヴェルディユース",
       "pts": 22,
-      "played": 18,
+      "played": 19,
       "won": 6,
       "drawn": 4,
-      "lost": 8,
+      "lost": 9,
       "gf": 30,
-      "ga": 39,
-      "gd": -9
+      "ga": 42,
+      "gd": -12
     },
     {
       "rank": 9,
@@ -3542,12 +3542,28 @@
       "md": 19,
       "date": "2026-11-22",
       "home": "東京ヴェルディユース",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "流通経済大柏",
-      "status": "scheduled",
+      "status": "played",
       "venue": "ヴェルディグラウンド（人工芝）",
-      "kickoff": "14:00"
+      "kickoff": "14:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "17",
+          "name": "オウンゴール",
+          "ownGoal": true
+        },
+        {
+          "minute": "40",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "90+4",
+          "name": "渡辺 瞳也"
+        }
+      ]
     },
     {
       "md": 19,
@@ -3559,6 +3575,7 @@
       "status": "played",
       "venue": "神奈川県立保土ヶ谷公園サッカー場",
       "kickoff": "12:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m1904.pdf",
       "homeScorers": [
         {
           "minute": "27",
