@@ -51,13 +51,13 @@
       "rank": 1,
       "team": "横浜F・マリノスユース",
       "pts": 29,
-      "played": 15,
+      "played": 16,
       "won": 8,
       "drawn": 5,
-      "lost": 2,
-      "gf": 29,
-      "ga": 14,
-      "gd": 15
+      "lost": 3,
+      "gf": 30,
+      "ga": 16,
+      "gd": 14
     },
     {
       "rank": 2,
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "栃木SC U-18",
+      "pts": 13,
+      "played": 16,
+      "won": 4,
+      "drawn": 1,
+      "lost": 11,
+      "gf": 11,
+      "ga": 28,
+      "gd": -17
+    },
+    {
+      "rank": 10,
       "team": "鹿島学園",
       "pts": 10,
       "played": 15,
@@ -154,18 +166,6 @@
       "gf": 18,
       "ga": 34,
       "gd": -16
-    },
-    {
-      "rank": 10,
-      "team": "栃木SC U-18",
-      "pts": 10,
-      "played": 15,
-      "won": 3,
-      "drawn": 1,
-      "lost": 11,
-      "gf": 9,
-      "ga": 27,
-      "gd": -18
     }
   ],
   "matches": [
@@ -1031,10 +1031,10 @@
       "md": 16,
       "date": "2026-11-22",
       "home": "栃木SC U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "横浜F・マリノスユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "さくらスタジアム",
       "kickoff": "13:00"
     },
