@@ -49,6 +49,18 @@
   "official_standings": [
     {
       "rank": 1,
+      "team": "FC町田ゼルビアユース",
+      "pts": 30,
+      "played": 16,
+      "won": 10,
+      "drawn": 0,
+      "lost": 6,
+      "gf": 24,
+      "ga": 22,
+      "gd": 2
+    },
+    {
+      "rank": 2,
       "team": "横浜F・マリノスユース",
       "pts": 29,
       "played": 16,
@@ -60,7 +72,7 @@
       "gd": 14
     },
     {
-      "rank": 2,
+      "rank": 3,
       "team": "桐光学園",
       "pts": 27,
       "played": 16,
@@ -70,18 +82,6 @@
       "gf": 23,
       "ga": 17,
       "gd": 6
-    },
-    {
-      "rank": 3,
-      "team": "FC町田ゼルビアユース",
-      "pts": 27,
-      "played": 15,
-      "won": 9,
-      "drawn": 0,
-      "lost": 6,
-      "gf": 22,
-      "ga": 21,
-      "gd": 1
     },
     {
       "rank": 4,
@@ -123,13 +123,13 @@
       "rank": 7,
       "team": "西武台",
       "pts": 20,
-      "played": 15,
+      "played": 16,
       "won": 6,
       "drawn": 2,
-      "lost": 7,
-      "gf": 21,
-      "ga": 25,
-      "gd": -4
+      "lost": 8,
+      "gf": 22,
+      "ga": 27,
+      "gd": -5
     },
     {
       "rank": 8,
@@ -1009,10 +1009,10 @@
       "md": 16,
       "date": "2026-11-22",
       "home": "FC町田ゼルビアユース",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "西武台",
-      "status": "scheduled",
+      "status": "played",
       "venue": "NICHIBUN SAKURA FIELD",
       "kickoff": "18:00"
     },

@@ -73,6 +73,18 @@
     },
     {
       "rank": 3,
+      "team": "滝川第二",
+      "pts": 32,
+      "played": 16,
+      "won": 10,
+      "drawn": 2,
+      "lost": 4,
+      "gf": 37,
+      "ga": 26,
+      "gd": 11
+    },
+    {
+      "rank": 4,
       "team": "金光大阪",
       "pts": 30,
       "played": 16,
@@ -84,28 +96,16 @@
       "gd": 9
     },
     {
-      "rank": 4,
-      "team": "滝川第二",
-      "pts": 29,
-      "played": 15,
-      "won": 9,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 36,
-      "ga": 26,
-      "gd": 10
-    },
-    {
       "rank": 5,
       "team": "大阪桐蔭",
       "pts": 28,
-      "played": 15,
+      "played": 16,
       "won": 8,
       "drawn": 4,
-      "lost": 3,
+      "lost": 4,
       "gf": 27,
-      "ga": 13,
-      "gd": 14
+      "ga": 14,
+      "gd": 13
     },
     {
       "rank": 6,
@@ -1031,10 +1031,10 @@
       "md": 16,
       "date": "2026-11-22",
       "home": "滝川第二",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "大阪桐蔭",
-      "status": "scheduled",
+      "status": "played",
       "venue": "滝川第二高校",
       "kickoff": "14:00"
     },
