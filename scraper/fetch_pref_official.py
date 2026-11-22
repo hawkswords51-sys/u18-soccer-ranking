@@ -115,6 +115,10 @@ TEMP_EXCEPTIONS: dict[str, str] = {
     "yamaguchi": ("2026-10-11 追加：第1節 4/4 小野田工業×山口県鴻城 が、協会「1部日程・結果」PDFの日程欄は 0-3、"
                   "SportsOnline と同じPDFの星取表欄は 0-4。スコアは SportsOnline（0-4）のまま、この1試合だけ照合の不一致を許す"
                   "（YAMAGUCHI_PDF_SCORE_EXCEPTIONS）→ 外す条件＝どちらかの出典が直って一致したら（直ると止まって知らせる）"),
+    "hyogo": ("2026-11-23 追加（Kei決定）：協会の試合No.161 9/19 三田学園B×芦屋学園A が、日程･結果PDFは 1-3・"
+              "戦績表（順位表）は 1-2。公式の戦績表に合わせて 1-2 として扱う（HYOGO_SCHEDULE_FIXES）"
+              "→ 外す条件＝協会が日程PDFを 1-2 に直したら（直ると read_hyogo が止まって知らせる）。"
+              "戦績表の側が 1-3 に直った場合は検算不一致で据え置きになって知らせる"),
     "aomori": ("2026-09-28 追加：星取表0924の合計欄で ヴァンラーレ八戸U-18 の失点が15（マスの合計と日程PDFは16）。"
                "KNOWN_SOURCE_ERRORS で差を明示 → 外す条件＝協会が星取表の合計欄を直したら（直ると read_aomori が止まって知らせる）"),
 }
@@ -2864,6 +2868,35 @@ def read_akita(cfg: dict) -> tuple[dict, list[dict]]:
 _HYOGO_CARD_RE = re.compile(r"^(.+?)\s+(?:(\d+)\s+VS\s+(\d+)|VS)\s+(.+)$")
 _HYOGO_DATE_RE = re.compile(r"^(\d{1,2})/(\d{1,2})$")
 
+# 兵庫：日程･結果PDFの結果を戦績表に合わせて名指しで直す（2026-11-23 Kei決定。KYOTO_SCHEDULE_FIXES と同じ当て方）
+#   チーム名は日程PDFの表記（略称のまま。PREF_ALIAS で読み替える前）。
+HYOGO_SCHEDULE_FIXES = [
+    {"date": "2026-09-19", "home": "三田B", "away": "芦屋学園A", "pdf": (1, 3), "fixed": (1, 2),
+     "reason": ("協会の試合No.161。日程･結果PDFは 三田学園B 1-3 芦屋学園A、戦績表（順位表）は 1-2 で、"
+                "芦屋学園Aの得失点差（公式12≠試合から13）と三田学園Bの得失点差（公式-11≠試合から-12）が合わず、"
+                "9/13以降の兵庫1部が据え置きになっていた。どちらが正しいかは協会に問い合わせず、"
+                "Keiの判断で公式の戦績表（順位表）に合わせて 1-2 として扱う")},
+]
+
+
+def _hyogo_fix_schedule(matches: list[dict]) -> None:
+    """HYOGO_SCHEDULE_FIXES を日程PDFの行に当てる。左右は日程PDFのまま、スコアだけ置き換える。
+    協会が日程PDFを直したら止めて「台帳から消せ」と知らせる。別の値になっていても止める。"""
+    for fx in HYOGO_SCHEDULE_FIXES:
+        hit = [m for m in matches if m["date"] == fx["date"] and m["home"] == fx["home"] and m["away"] == fx["away"]]
+        if len(hit) != 1:
+            raise RuntimeError(f"HYOGO_SCHEDULE_FIXES の {fx['date']} {fx['home']}×{fx['away']} が日程PDFに{len(hit)}件")
+        got = (hit[0]["hs"], hit[0]["as"])
+        if got == tuple(fx["fixed"]):
+            raise RuntimeError(f"協会が日程PDFを直した（{fx['date']} {fx['home']}×{fx['away']} が {got}）。"
+                               f"HYOGO_SCHEDULE_FIXES のこの行と TEMP_EXCEPTIONS の兵庫を消すこと")
+        if got != tuple(fx["pdf"]):
+            raise RuntimeError(f"日程PDFの {fx['date']} {fx['home']}×{fx['away']} が {got}"
+                               f"（誤りとして登録した {fx['pdf']} でも正しい値 {fx['fixed']} でもない）")
+        hit[0]["hs"], hit[0]["as"] = fx["fixed"]
+        print(f"       （兵庫: 日程PDFの {fx['date']} {fx['home']}×{fx['away']} を {fx['pdf']} → {fx['fixed']} に補正"
+              f"（HYOGO_SCHEDULE_FIXES・戦績表に合わせる））")
+
 
 def read_hyogo(cfg: dict) -> tuple[dict, list[dict]]:
     soup = BeautifulSoup(fetch_html(cfg["entry"], encoding="utf-8",
@@ -2899,6 +2932,7 @@ def read_hyogo(cfg: dict) -> tuple[dict, list[dict]]:
     want = list(range(cfg["first_no"], cfg["first_no"] + n * (n - 1)))
     if sorted(numbers) != want:
         raise RuntimeError(f"試合番号が {cfg['first_no']}〜{want[-1]} で揃っていない（{len(numbers)}件）")
+    _hyogo_fix_schedule(matches)      # No.161 を戦績表に合わせる（HYOGO_SCHEDULE_FIXES）
     teams = {m["home"] for m in matches} | {m["away"] for m in matches}
 
     # --- 戦績表（1･2部）→ 1部の勝点・得失点差・順位 ---
