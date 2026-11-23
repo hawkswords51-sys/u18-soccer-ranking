@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "矢板中央",
       "pts": 26,
-      "played": 15,
+      "played": 16,
       "won": 8,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 29,
-      "ga": 21,
-      "gd": 8
+      "ga": 23,
+      "gd": 6
     },
     {
       "rank": 6,
@@ -145,6 +145,18 @@
     },
     {
       "rank": 9,
+      "team": "鹿島学園",
+      "pts": 13,
+      "played": 16,
+      "won": 3,
+      "drawn": 4,
+      "lost": 9,
+      "gf": 20,
+      "ga": 34,
+      "gd": -14
+    },
+    {
+      "rank": 10,
       "team": "栃木SC U-18",
       "pts": 13,
       "played": 16,
@@ -154,18 +166,6 @@
       "gf": 11,
       "ga": 28,
       "gd": -17
-    },
-    {
-      "rank": 10,
-      "team": "鹿島学園",
-      "pts": 10,
-      "played": 15,
-      "won": 2,
-      "drawn": 4,
-      "lost": 9,
-      "gf": 18,
-      "ga": 34,
-      "gd": -16
     }
   ],
   "matches": [
@@ -1042,10 +1042,10 @@
       "md": 16,
       "date": "2026-11-23",
       "home": "鹿島学園",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "矢板中央",
-      "status": "scheduled",
+      "status": "played",
       "venue": "鹿島学園高校グラウンド",
       "kickoff": "16:00"
     },
