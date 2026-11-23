@@ -16,6 +16,12 @@
   上のチームの「来季のリーグ」を今の順位と league_zones.yml のゾーンから見積もり、それが行き先と同じなら繰り下げる。
   ゾーンの色が付いていない枠は「動かない」。12月のプレミア参入戦の結果は見込まない。
   対応表に無い下のチームが枠の中・枠のすぐ下に来たら [要確認] を出して止まる（表は書き換えない）。
+  [2026-11-24 条件つき] 上のチームのリーグがまだ動くときは、言い切らずに条件を書く（判定は変えない）。
+    ・繰り下げなのに、上のチームが行き先のリーグから出ていく可能性がある
+      （リーグ内で昇格圏に届く／降格圏から残留できる／プレミア参入戦に出場確定・暫定出場）→「ただし…出場の可能性」
+    ・出場なのに、上のチームが上のリーグから行き先のリーグへ落ちてくる可能性がある →「降格した場合は繰り下げ」
+    「届く可能性」は 勝点＋3×残り試合 ≧ 境目のチームの今の勝点 で見る（直接対決などの細かい計算はしない）。
+    プレミア参入戦の出場は、同じページの16枠の表（手書きの確定＋暫定）と同じ判定。結果は yml の premier_playoff_results。
 """
 import json
 import re
@@ -55,6 +61,7 @@ NOTE_BLOCK_HSE = "※Aチームが同じリーグにいるため出場資格な�
 NOTE_PROMO = "※Aチームが昇格圏のため出場可（このまま終わった場合）"
 NOTE_PREFDOWN = "※Aチームが県リーグ降格圏のため扱いは要確認"
 NOTE_HSE17 = "※Aチームが2部へ降格した場合は昇格できません（要項17条）"
+NOTE_PREMIER_UP = "※Aチームがプレミアに昇格したため出場可"
 
 
 class NeedsCheck(Exception):
@@ -79,15 +86,106 @@ class World:
         self.conf = yaml.safe_load(CONF.read_text(encoding="utf-8"))
         self.zones = (yaml.safe_load(ZONES.read_text(encoding="utf-8")) or {}).get("leagues") or {}
         self.upper = {}          # チーム名 → (slug, rank, チーム数)
+        self.tables = {}         # slug → (順位の並びの official_standings, チーム名 → 残り試合数)
+        self.ppo = None          # プレミア参入戦に出るチーム → "確定" | "暫定"（main で16枠の表から入れる）
+        self.ppo_results = {k: str(v) for k, v in (self.conf.get("premier_playoff_results") or {}).items()}
+        for k, v in self.ppo_results.items():
+            if v not in ("昇格", "残留"):
+                raise NeedsCheck(f"premier_playoff_results の {k} が「昇格」「残留」のどちらでもない: {v}")
         for p in sorted(MATCHES.glob("*.json")):
             slug = p.stem
             if not (slug.startswith("premier-") or slug.startswith("prince-")):
                 continue
-            st = (json.loads(p.read_text(encoding="utf-8")).get("official_standings") or [])
+            d = json.loads(p.read_text(encoding="utf-8"))
+            st = sorted(d.get("official_standings") or [], key=lambda r: int(r["rank"]))
+            rem = {}
+            for m in d.get("matches") or []:
+                if (m or {}).get("status") != "played":
+                    for t in ((m or {}).get("home"), (m or {}).get("away")):
+                        if t:
+                            rem[t.strip()] = rem.get(t.strip(), 0) + 1
+            self.tables[slug] = (st, rem)
             for r in st:
                 if r.get("team") in self.upper:
                     raise NeedsCheck(f"上のリーグに同じ名前のチームが2つある: {r['team']}")
                 self.upper[r["team"]] = (slug, int(r["rank"]), len(st))
+
+    def zone_ranks(self, slug: str, ztype: str) -> list[int]:
+        """そのリーグの promotion / relegation の順位（無ければ空）。"""
+        n = len(self.tables.get(slug, ([], {}))[0])
+        out = []
+        for z in (self.zones.get(slug) or {}).get("zones") or []:
+            if z.get("type") != ztype:
+                continue
+            if "ranks" in z:
+                out += [int(x) for x in z["ranks"]]
+            elif z.get("slots"):
+                s = int(z["slots"])
+                out += list(range(1, s + 1)) if z.get("from", "top") == "top" else list(range(n - s + 1, n + 1))
+        return sorted(out)
+
+    def _pts_rem(self, slug: str, rank: int):
+        st, rem = self.tables[slug]
+        r = st[rank - 1]
+        return pts_of(r), rem.get(r["team"], 0), r["team"]
+
+    def can_rise(self, team: str):
+        """昇格圏の外にいて、まだ届く可能性があれば (境目の順位, 勝点差, 残り試合)。無ければ None。"""
+        slug, rank, n = self.upper[team]
+        zr = self.zone_ranks(slug, "promotion")
+        if not zr or rank in zr:
+            return None
+        k = max(zr)
+        p, r, _ = self._pts_rem(slug, rank)
+        bp, _, _ = self._pts_rem(slug, k)
+        return (k, bp - p, r) if p + 3 * r >= bp else None
+
+    def can_escape(self, team: str):
+        """降格圏にいて、まだ残留できる可能性があれば (残留圏の最後の順位, 勝点差, 残り試合)。"""
+        slug, rank, n = self.upper[team]
+        zr = self.zone_ranks(slug, "relegation")
+        if not zr or rank not in zr or min(zr) < 2:
+            return None
+        k = min(zr) - 1
+        p, r, _ = self._pts_rem(slug, rank)
+        bp, _, _ = self._pts_rem(slug, k)
+        return (k, bp - p, r) if p + 3 * r >= bp else None
+
+    def can_fall(self, team: str):
+        """降格圏の外にいて、降格圏のどれかのチームに抜かれる可能性があれば (降格圏の最初の順位, 勝点差)。"""
+        slug, rank, n = self.upper[team]
+        zr = self.zone_ranks(slug, "relegation")
+        if not zr or rank in zr:
+            return None
+        p, _, _ = self._pts_rem(slug, rank)
+        hit = any(self._pts_rem(slug, z)[0] + 3 * self._pts_rem(slug, z)[1] >= p for z in zr if z <= n)
+        return (min(zr), p - self._pts_rem(slug, min(zr))[0]) if hit else None
+
+    def conditions(self, up: str, now: str, nxt: str, ladder: list[str]) -> list[str]:
+        """繰り下げ（nxt＝行き先）だが、上のチームが行き先から出ていく可能性があるときの「ただし…」の文。"""
+        out = []
+        slug = self.upper[up][0]
+        if now == nxt:
+            c = self.can_rise(up)
+            if c:
+                k, gap, r = c
+                gap_s = "同勝点" if gap == 0 else f"{gap}差"
+                out.append(f"ただし{up}が{LEAGUE_LABEL[ladder[ladder.index(now) - 1]]}に上がれば出場の可能性"
+                           f"（昇格圏の{k}位と{gap_s}・残り{r}試合）")
+            if self.ppo is None:
+                raise NeedsCheck("プレミア参入戦の出場チーム（16枠の表）を読む前に判定しようとした")
+            if up not in self.ppo_results and up in self.ppo:
+                if self.ppo[up] == "確定":
+                    out.append(f"ただし{up}がプレミア参入戦で昇格すれば出場の可能性")
+                else:
+                    out.append(f"ただし{up}がプレミア参入戦に出場し、昇格すれば出場の可能性（参入戦は今の順位での暫定出場）")
+        else:
+            c = self.can_escape(up)
+            if c:
+                k, gap, r = c
+                gap_s = "同勝点" if gap == 0 else f"{gap}差"
+                out.append(f"ただし{up}が{LEAGUE_LABEL.get(slug, slug)}に残留すれば出場の可能性（残留圏の{k}位と{gap_s}・残り{r}試合）")
+        return out
 
     def zone_type(self, slug: str, rank: int, n: int) -> str | None:
         for z in (self.zones.get(slug) or {}).get("zones") or []:
@@ -117,29 +215,46 @@ class World:
         return now, now, f"{LEAGUE_LABEL.get(slug, slug)}{rank}位"
 
     def judge(self, pref: str, team: str, region: dict) -> tuple[str, list[str]]:
-        """('ok' | 'blocked', 注記) を返す。下のチームでなければ ('ok', [])。"""
+        """('ok' | 'blocked' | 'blocked_cond', 注記) を返す。下のチームでなければ ('ok', [])。
+        blocked_cond ＝ 今は繰り下げだが、上のチームのリーグしだいで出場の可能性があるもの（2026-11-24）。"""
         if not is_second(team):
             return "ok", []
         uppers = ((self.conf.get("second_teams") or {}).get(pref) or {}).get(team)
         if not uppers:
             raise NeedsCheck(f"{pref}: 下のチーム「{team}」が対応表（second_teams）に無い")
         dest, key = region["dest"], region["key"]
-        notes, blocked = [], []
+        ladder = self.conf["ladders"][key]
+        notes, blocked, conds = [], [], []
         for up in uppers:
             if up not in self.upper:
                 raise NeedsCheck(f"{pref}: 「{team}」の上のチーム「{up}」がプレミア／プリンスの順位表に無い")
             now, nxt, why = self.next_league(up, key)
-            if key == "hokushinetsu" and now == "prince-hokushinetsu-1" and nxt == dest:
+            if self.ppo_results.get(up) == "昇格" and now != "premier":
+                notes.append(f"{NOTE_PREMIER_UP}（{up}はプレミア参入戦で昇格）")
+            elif key == "hokushinetsu" and now == "prince-hokushinetsu-1" and nxt == dest:
                 notes.append(f"{NOTE_HSE17}（{up}は{why}）")      # 出場は可・昇格だけ取り消し（要項17条2項）
             elif nxt == dest:
                 more = "" if now == nxt else f"＝来季{LEAGUE_LABEL[dest]}の見込み"
                 blocked.append(f"{up}は{why}{more}")
+                conds += self.conditions(up, now, nxt, ladder)
             elif nxt == "pref":
                 notes.append(f"{NOTE_PREFDOWN}（{up}は{why}）")
             elif now == dest and nxt != dest:      # ここに来るのは昇格だけ（降格の行き先 pref は上で処理済み）
                 notes.append(f"{NOTE_PROMO}（{up}は{why}）")
+            elif nxt == now and now in ladder and ladder.index(now) + 1 < len(ladder) \
+                    and ladder[ladder.index(now) + 1] == dest:
+                c = self.can_fall(up)              # 今は上のリーグに残る見込みだが、落ちると行き先と同じリーグ
+                if c:
+                    k, gap = c
+                    gap_s = "同勝点" if gap == 0 else f"{gap}差"
+                    notes.append(f"※Aチームが降格圏まで{gap_s}のため、降格した場合は繰り下げ（{up}は{why}）")
         if blocked:
-            return "blocked", [(NOTE_BLOCK_HSE if key == "hokushinetsu" else NOTE_BLOCK) + "（" + "・".join(blocked) + "）"]
+            if conds and len(blocked) > 1:
+                raise NeedsCheck(f"{pref}: 「{team}」は上のチーム2つが同じリーグにいて、条件つきの書き方を決められない")
+            note = (NOTE_BLOCK_HSE if key == "hokushinetsu" else NOTE_BLOCK) + "（" + "・".join(blocked) + "）"
+            if conds:
+                return "blocked_cond", [note + "。" + "。".join(conds)]
+            return "blocked", [note]
         return "ok", notes
 
     def slots(self, pref: str) -> int | None:
@@ -177,10 +292,14 @@ class World:
                     break
                 continue
             row = {"team": r["team"], "rank": int(r["rank"]), "pts": pts_of(r),
-                   "remaining": remaining.get(r["team"], 0), "notes": notes}
+                   "remaining": remaining.get(r["team"], 0), "notes": notes, "cond": status == "blocked_cond"}
             (picked if status == "ok" else blocked).append(row)
         if picked and tie_partner and pts_of(tie_partner) == picked[-1]["pts"]:
             picked[-1]["notes"].insert(0, f"（{tie_partner['team']}と同勝点・公式順位による）")
+        # 条件つきの繰り下げがあれば、押し出されうる側（枠の最後から）にも印を付ける（2026-11-24）
+        for j, b in enumerate(x for x in blocked if x["cond"]):
+            if j < len(picked):
+                picked[-(j + 1)]["notes"].append(f"※{DISPLAY.get(b['team'], b['team'])}が出場になった場合は入れ替わり")
         return {"pref": pref, "slots": n_slots, "picked": picked, "blocked": blocked}
 
 
@@ -351,8 +470,9 @@ def build(w: World) -> str:
         '        <h2><i class="fas fa-ranking-star"></i> 各地域のプリンスリーグ参入戦　暫定出場チーム（県1部の順位がこのまま終わった場合）</h2>\n'
         f'        <p class="ih-note"><strong>{today.month}月{today.day}日時点の県1部の順位による暫定です。</strong>'
         '各県の代表の決め方や枠の数は年度・県によって異なることがあり、公式発表を優先します。'
-        '同じ学校・クラブのチームは同じリーグに入れないため、上のチームの来季のリーグ（今の順位とリーグの昇格・降格圏から見積もり。'
-        '12月のプレミア参入戦の結果は見込まない）が行き先と同じセカンドチームは、次の順位に繰り下げています。</p>\n'
+        '同じ学校・クラブのチームは同じリーグに入れないため、上のチームの来季のリーグを今の順位で見積もり、'
+        '行き先と同じリーグになるセカンドチームは次の順位に繰り下げています（上のチームが行き先と違うリーグなら出場できます）。'
+        '上のチームの昇格・降格や12月のプレミア参入戦の結果しだいで繰り下げが変わる場合は、その条件を書いています。</p>\n'
         f"        {STYLE}\n        " + "\n        ".join(parts) + "\n      </section>\n"
     )
 
@@ -404,48 +524,74 @@ def _hit_by_alias(written: str, canon: dict, groups: list[set[str]]) -> str | No
     return hits.pop() if len(hits) == 1 else None
 
 
-def premier_slot_rows(src: str) -> tuple[str, int]:
-    """16枠の表の各行を書き換えた src と、暫定を出したチーム数を返す。読めない／合わないときは NeedsCheck。"""
+def _premier_ctx() -> dict:
     import audit_premier_playoff as ap
     from league_zones import _base_team_name, is_second_team, premier_teams_from_league_matches
-    premier = {t["name"] for t in premier_teams_from_league_matches(ROOT)}
-    zones = dict(ap.playoff_zones())
-    groups = _alias_groups()
+    return {"ap": ap, "base": _base_team_name, "is2": is_second_team,
+            "premier": {t["name"] for t in premier_teams_from_league_matches(ROOT)},
+            "zones": dict(ap.playoff_zones()), "groups": _alias_groups()}
+
+
+def _premier_row(c: dict, slug: str, slots: int, outside: str):
+    """16枠の表の1行ぶん：(手書きの確定チーム名, 順位表で当たった確定チーム, 暫定チーム, 対象外のセカンド, 枠のすぐ下, 残り試合)。
+    [2026-11-24] 参入戦ページの「条件つきの繰り下げ」でも同じ判定を使うため、premier_slot_rows から切り出した。"""
+    ap, premier, zones, groups = c["ap"], c["premier"], c["zones"], c["groups"]
+    if zones.get(slug) != slots:
+        raise NeedsCheck(f"16枠の表の {slug} の枠 {slots} が league_zones.yml の {zones.get(slug)} と違う")
+    d = ap.load_league(slug, MATCHES) or {}
+    st = sorted(d.get("official_standings") or [], key=lambda r: int(r["rank"]))
+    rem = ap.remaining_counts(d.get("matches"))
+    written = re.findall(r"<strong>(?:<a [^>]*>)?([^<]+)(?:</a>)?</strong>", outside)
+    canon = {_canon_team(r["team"]): r["team"] for r in st}
+    confirmed = set()
+    for w_ in written:
+        hit = canon.get(_canon_team(w_)) or _hit_by_alias(w_, canon, groups)
+        if not hit:
+            raise NeedsCheck(f"16枠の表の {slug} の確定チーム「{w_}」が順位表のどのチームとも合わない")
+        confirmed.add(hit)
+    need = slots - len(confirmed)
+    if need < 0:
+        raise NeedsCheck(f"16枠の表の {slug} に確定チームが枠より多い（{len(confirmed)}／{slots}）")
+    picks, skipped, nxt = [], [], None
+    for r in st:
+        t = r["team"]
+        if t in confirmed:
+            continue
+        if c["is2"](t) and c["base"](t) in premier:
+            if len(picks) < need:
+                skipped.append(t)
+            continue
+        if len(picks) < need:
+            picks.append(r)
+        else:
+            nxt = r
+            break
+    return written, confirmed, picks, skipped, nxt, rem
+
+
+def premier_playoff_teams(src: str) -> dict:
+    """16枠の表から、プレミア参入戦に出るチーム → "確定"（手書き）| "暫定"（今の順位）。"""
+    c = _premier_ctx()
+    out = {}
+    for m in _PREM_RE.finditer(src):
+        _, confirmed, picks, _, _, _ = _premier_row(c, m.group(2), int(m.group(3)), m.group(4))
+        out.update({t: "確定" for t in confirmed})
+        out.update({r["team"]: "暫定" for r in picks})
+    if not out:
+        raise NeedsCheck("16枠の表からプレミア参入戦の出場チームを読めない")
+    return out
+
+
+def premier_slot_rows(src: str) -> tuple[str, int]:
+    """16枠の表の各行を書き換えた src と、暫定を出したチーム数を返す。読めない／合わないときは NeedsCheck。"""
+    c = _premier_ctx()
+    zones = c["zones"]
     total = 0
 
     def one(m):
         nonlocal total
         head, slug, slots, outside = m.group(1), m.group(2), int(m.group(3)), m.group(4)
-        if zones.get(slug) != slots:
-            raise NeedsCheck(f"16枠の表の {slug} の枠 {slots} が league_zones.yml の {zones.get(slug)} と違う")
-        d = ap.load_league(slug, MATCHES) or {}
-        st = sorted(d.get("official_standings") or [], key=lambda r: int(r["rank"]))
-        rem = ap.remaining_counts(d.get("matches"))
-        written = re.findall(r"<strong>(?:<a [^>]*>)?([^<]+)(?:</a>)?</strong>", outside)
-        canon = {_canon_team(r["team"]): r["team"] for r in st}
-        confirmed = set()
-        for w_ in written:
-            hit = canon.get(_canon_team(w_)) or _hit_by_alias(w_, canon, groups)
-            if not hit:
-                raise NeedsCheck(f"16枠の表の {slug} の確定チーム「{w_}」が順位表のどのチームとも合わない")
-            confirmed.add(hit)
-        need = slots - len(confirmed)
-        if need < 0:
-            raise NeedsCheck(f"16枠の表の {slug} に確定チームが枠より多い（{len(confirmed)}／{slots}）")
-        picks, skipped, nxt = [], [], None
-        for r in st:
-            t = r["team"]
-            if t in confirmed:
-                continue
-            if is_second_team(t) and _base_team_name(t) in premier:
-                if len(picks) < need:
-                    skipped.append(t)
-                continue
-            if len(picks) < need:
-                picks.append(r)
-            else:
-                nxt = r
-                break
+        written, confirmed, picks, skipped, nxt, rem = _premier_row(c, slug, slots, outside)
         parts = []
         for r in picks:
             # ⚠️ Actions は Python 3.11。f文字列の中に同じ引用符を入れ子にできない（3.12 から可）ので、先に組み立てる
@@ -476,6 +622,7 @@ def main() -> int:
     # --- 各地域のプリンスリーグ参入戦 暫定出場チーム ---
     try:
         w = World()
+        w.ppo = premier_playoff_teams(new)
         html = build(w)
         if START not in new or END not in new:
             raise NeedsCheck(f"{PAGE} にマーカーが無い")
