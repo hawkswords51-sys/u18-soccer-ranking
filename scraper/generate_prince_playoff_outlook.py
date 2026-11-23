@@ -232,10 +232,13 @@ def region_html(w: World, region: dict, outs: dict) -> str:
     # 公式の組み合わせが出た地域は「組み合わせ表」で出す（yml に <地域key>_bracket があれば）。
     #   2026-10-12 北信越で新設 → 2026-11-23 関東を足すときに地域を決め打ちしない形にした。
     #   ref_style: "代表" … 枠が各県1つの地域（関東）。「茨城県代表」と書く（北信越は「石川1位」のまま）。
+    #   ref_style: "第◯代表" … 公式が「大阪府第1代表」と書く地域（関西・2026-11-23）。
+    #   note: … 説明文のあとに足す1文（試合方式・会場変更の注記など）。
     #   games の1行に result: を足す余地あり（まだ表示しない。参入戦の結果を書く依頼が来たら使う）。
     br = w.conf.get(f'{region["key"]}_bracket')
     if br:
-        rep = br.get("ref_style") == "代表"
+        style = br.get("ref_style")
+        rep = style in ("代表", "第◯代表")
         rows = []
         for g in br["games"]:
             if g.get("text"):
@@ -247,7 +250,8 @@ def region_html(w: World, region: dict, outs: dict) -> str:
                     nm = region["prefs"][pref]
                     p = o["picked"][k - 1] if len(o["picked"]) >= k else None
                     badge = '<span class="ppo-badge">確定</span> ' if o.get("confirmed") else ""
-                    label = f"{nm}{PREF_SUFFIX.get(pref, '県')}代表" if rep else nm
+                    label = (f"{nm}{PREF_SUFFIX.get(pref, '県')}{f'第{k}' if style == '第◯代表' else ''}代表"
+                             if rep else nm)
                     return (f'<a href="/prefectures/{pref}/">{escape(label)}</a>{"" if rep else f"{k}位"} '
                             + (badge + team_cell(p) if p else '<span class="ppo-sub">未定</span>'))
                 card = f'{side(g["home"])}<br><span class="ppo-sub">vs</span><br>{side(g["away"])}'
@@ -255,9 +259,10 @@ def region_html(w: World, region: dict, outs: dict) -> str:
                         f'<span class="ppo-sub">{escape(g["venue"])}</span></td><td>{card}</td></tr>')
         blocked = "".join(blocked_html(outs[p]).replace("<br>", f'<br><span class="ppo-sub">{escape(region["prefs"][p])}</span> ', 1)
                           for p in region["prefs"] if outs[p].get("blocked"))
-        return (head + f'<p class="ih-note">組み合わせ（試合番号・日時・会場・{"「◯県代表」" if rep else "「◯県◯位」"}）は '
+        return (head + f'<p class="ih-note">組み合わせ（試合番号・日時・会場・{"「◯府県第◯代表」" if style == "第◯代表" else "「◯県代表」" if rep else "「◯県◯位」"}）は '
                 f'<a href="{escape(br["source_url"])}" target="_blank" rel="noopener">{escape(br["source_label"])}</a> の発表（'
-                f'{escape(br["venue_note"])}）。チーム名だけを県1部の今の順位から入れています。</p>'
+                f'{escape(br["venue_note"])}）。チーム名だけを県1部の今の順位から入れています。'
+                + (escape(br["note"]) if br.get("note") else "") + '</p>'
                 '<div class="ppo-scroll"><table class="ih-history-table ppo-table ppo-bracket"><thead><tr><th>試合</th><th>日時・会場</th>'
                 '<th>組み合わせ（暫定のチーム名）</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>"
                 + (f'<p class="ih-note">{blocked[4:]}</p>' if blocked else ""))

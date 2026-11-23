@@ -127,6 +127,27 @@ kanto_bracket:
     - {game: "No.6", when: "12/21(月) 13:30", venue: "A面", text: "No.3の勝者 vs No.4の勝者（勝者が代表②＝来季2部 9位・10位の枠）"}
     - {game: "No.7", when: "12/23(水) 13:30", venue: "A面", text: "代表③：プレミアプレーオフの結果しだいで実施（来季2部 10位の枠）"}
 
+# 関西の公式組み合わせ（2026-11-23 Kei が実物を確認。関西サッカー協会 2種委員会ページの PDF 26_c2_princeleague_po_matching.pdf）
+#   出典: http://kansai-fa.gr.jp/c2.html （http のみ。自動取得は 403 で断られるので PDF 直リンクは置かない）
+#   45分ハーフ・同点はPK（延長なし）。PDF注記「グラウンド確保状況により会場及びキックオフ時間は変更する可能性あり」
+#   P7・P8・P9 の勝者3チームが 2027 関西2部に昇格。各府県 2枠（league_zones.yml）。
+kansai_bracket:
+  ref_style: "第◯代表"
+  source_url: "http://kansai-fa.gr.jp/c2.html"
+  source_label: "関西サッカー協会"
+  venue_note: "12月19日（土）・20日（日）・ビックレイクB／輝きの杜SANTOFIELD A（水口スポーツの森多目的グラウンドA）"
+  note: "45分ハーフで、同点はPK方式（延長なし）。会場・キックオフ時間は変更の可能性があります（公式PDFの注記）。"
+  games:
+    - {game: "P1", when: "12/19(土) 9:30", venue: "輝きの杜A", home: [osaka, 1], away: [kyoto, 2]}
+    - {game: "P2", when: "12/19(土) 9:30", venue: "ビックレイクB", home: [nara, 2], away: [shiga, 1]}
+    - {game: "P3", when: "12/19(土) 12:00", venue: "輝きの杜A", home: [kyoto, 1], away: [hyogo, 2]}
+    - {game: "P4", when: "12/19(土) 12:00", venue: "ビックレイクB", home: [shiga, 2], away: [wakayama, 1]}
+    - {game: "P5", when: "12/19(土) 14:30", venue: "輝きの杜A", home: [hyogo, 1], away: [osaka, 2]}
+    - {game: "P6", when: "12/19(土) 14:30", venue: "ビックレイクB", home: [wakayama, 2], away: [nara, 1]}
+    - {game: "P7", when: "12/20(日) 9:30", venue: "ビックレイクB", text: "P1の勝者 vs P2の勝者（勝者が2部に昇格）"}
+    - {game: "P8", when: "12/20(日) 12:00", venue: "ビックレイクB", text: "P3の勝者 vs P4の勝者（勝者が2部に昇格）"}
+    - {game: "P9", when: "12/20(日) 14:30", venue: "ビックレイクB", text: "P5の勝者 vs P6の勝者（勝者が2部に昇格）"}
+
 # 下のチームの対応表（県1部の表記 → 上のチーム。プレミア／プリンスの表記と完全一致）
 second_teams:
   aichi:     {グランパスB: [名古屋グランパスU-18]}
