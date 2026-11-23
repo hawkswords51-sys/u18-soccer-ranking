@@ -31,6 +31,7 @@ import pro_signings as ps  # プロ内定・2種登録バッジ用（同 scraper
 import team_season as ts  # シーズンデータ3欄（jfa_team を書いたチームだけ）
 import senshuken_badge as sb  # 選手権 都道府県代表バッジ（2026-10-28・代表に決まったチームだけ）
 import team_history as th  # 年度別の成績（A-1・2026-11-13。TEAM_HISTORY_ENABLED で表示）
+import reverse_links as rl  # 【試作 2026-11-23】卒業生のプロ内定・U-16への逆リンク
 
 
 # =========================================================================
@@ -719,6 +720,8 @@ def render_team_page(profile: dict, badge_map: dict | None = None,
     # [2026-11-13] A-1：年度別の成績は「今季の成績のすぐ下・関連リンクの直前」（Kei決定）
     if TEAM_HISTORY_ENABLED or os.environ.get("TEAM_HISTORY_PREVIEW") == "1":
         season_html += th.render_history_html(meta, BASE_DIR)
+    # 【試作 2026-11-23】逆リンク（卒業生のプロ内定・U-16）。該当が無いチームは空文字で無変更
+    season_html += rl.render_reverse_links_html(meta, BASE_DIR)
     if season_html:
         anchor = "<h2>関連リンク</h2>"
         if anchor in body_html:

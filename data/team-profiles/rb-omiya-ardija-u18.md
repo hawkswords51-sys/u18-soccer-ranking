@@ -2,7 +2,11 @@
 id: rb-omiya-ardija-u18
 name: RB大宮アルディージャU18
 short_name: RB大宮U18
-aliases: 大宮アルディージャU18／RB大宮アルディージャ／大宮U18／大宮アルディージャユース
+aliases:
+  - 大宮アルディージャU18
+  - RB大宮アルディージャ
+  - 大宮U18
+  - 大宮アルディージャユース
 league: プリンスリーグ関東1部
 jfa_team: prince-kanto-1
 prefecture: saitama
