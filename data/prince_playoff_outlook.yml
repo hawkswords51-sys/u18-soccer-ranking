@@ -101,12 +101,14 @@ hokushinetsu_bracket:
   source_label: "プリンスリーグ北信越 公式"
   venue_note: "11月22日（日）〜23日（月・祝）・能登島グラウンド"
   games:
-    - {game: "3011", when: "11/22(日) 10:30", venue: "能登島A", home: [ishikawa, 1], away: [niigata, 2]}
-    - {game: "3012", when: "11/22(日) 10:30", venue: "能登島B", home: [toyama, 2], away: [nagano, 1]}
-    - {game: "3013", when: "11/22(日) 13:30", venue: "能登島A", home: [toyama, 1], away: [nagano, 2]}
-    - {game: "3014", when: "11/22(日) 13:30", venue: "能登島B", home: [fukui, 1], away: [niigata, 1]}
-    - {game: "3021", when: "11/23(月) 10:30", venue: "能登島A", text: "3011の勝者 vs 3012の勝者（勝者が2部に昇格）"}
-    - {game: "3022", when: "11/23(月) 13:30", venue: "能登島A", text: "3013の勝者 vs 3014の勝者（勝者が2部に昇格）"}
+#   結果（2026-11-23 追加）: 公式「プレーオフ」ページの組み合わせ画像（赤線と数字で結果入り）で確認。
+#     result: {home, away, pk} … 3022 は結果が出たら result: {home: ◯, away: ◯} を足すだけで反映される
+    - {game: "3011", when: "11/22(日) 10:30", venue: "能登島A", home: [ishikawa, 1], away: [niigata, 2], result: {home: 1, away: 1, pk: [6, 7]}}
+    - {game: "3012", when: "11/22(日) 10:30", venue: "能登島B", home: [toyama, 2], away: [nagano, 1], result: {home: 0, away: 3}}
+    - {game: "3013", when: "11/22(日) 13:30", venue: "能登島A", home: [toyama, 1], away: [nagano, 2], result: {home: 0, away: 1}}
+    - {game: "3014", when: "11/22(日) 13:30", venue: "能登島B", home: [fukui, 1], away: [niigata, 1], result: {home: 1, away: 2}}
+    - {game: "3021", when: "11/23(月) 10:30", venue: "能登島A", text: "3011の勝者 vs 3012の勝者（勝者が2部に昇格）", from: ["3011", "3012"], promote: true, result: {home: 3, away: 2}}
+    - {game: "3022", when: "11/23(月) 13:30", venue: "能登島A", text: "3013の勝者 vs 3014の勝者（勝者が2部に昇格）", from: ["3013", "3014"], promote: true}
 
 # 関東の公式組み合わせ（2026-11-22 関東サッカー協会 掲載・2026-11-23 Cowork／Claude Code が試合組PDFと要項で確認）
 #   出典: 大会ページ https://kanto-fa.jp/info/?p=9125 （お知らせ https://kanto-fa.jp/info/?p=9131）
@@ -198,4 +200,10 @@ display_names:
   aichi: {名古屋: 名古屋高校}     # 名古屋グランパスU-18 と見間違えないように
 
 # 公式発表で確定した県（書いた県は計算せず、確定バッジで出す）
-confirmed: {}
+confirmed:
+  # 北信越（2026-11-23）: プリンスリーグ北信越 公式の組み合わせ画像のとおり。teams の並び＝「◯位」の順（1位が先）
+  ishikawa: {teams: ["星稜2nd"], note: "プリンスリーグ北信越 公式の組み合わせ（11/22 実施）"}
+  niigata:  {teams: ["上越2nd", "新潟明訓2nd"], note: "プリンスリーグ北信越 公式の組み合わせ（11/22 実施）"}
+  toyama:   {teams: ["富山第一2nd", "高岡第一"], note: "プリンスリーグ北信越 公式の組み合わせ（11/22 実施）"}
+  nagano:   {teams: ["松商学園", "市立長野"], note: "プリンスリーグ北信越 公式の組み合わせ（11/22 実施）"}
+  fukui:    {teams: ["福井商業"], note: "プリンスリーグ北信越 公式の組み合わせ（11/22 実施）"}

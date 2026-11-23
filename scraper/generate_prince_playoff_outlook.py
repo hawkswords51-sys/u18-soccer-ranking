@@ -234,14 +234,56 @@ def region_html(w: World, region: dict, outs: dict) -> str:
     #   ref_style: "代表" … 枠が各県1つの地域（関東）。「茨城県代表」と書く（北信越は「石川1位」のまま）。
     #   ref_style: "第◯代表" … 公式が「大阪府第1代表」と書く地域（関西・2026-11-23）。
     #   note: … 説明文のあとに足す1文（試合方式・会場変更の注記など）。
-    #   games の1行に result: を足す余地あり（まだ表示しない。参入戦の結果を書く依頼が来たら使う）。
+    #   結果（2026-11-23 北信越で新設。地域は決め打ちしない）:
+    #     result: {home: 1, away: 1, pk: [6, 7]} … その試合のスコア（pk は同点のときだけ）。「vs」の位置にスコアを出し、
+    #               勝者に「勝ち上がり」、promote: true の試合の勝者に「2部昇格決定」（promote_label で変更可）。
+    #     from: ["3011", "3012"] … 2試合の勝者どうし（先の試合の勝者がホーム側）。両方に result があれば
+    #               text: の代わりにチーム名のカードを出す。片方でも無ければ text: のまま。
+    #     同点で pk が無い・pk も同点 → NeedsCheck で止まる（勝者を勝手に決めない）。
+    #   その地域の県が全部 confirmed なら、見出しを「組み合わせ・結果」、説明文を「公式の発表によります」にする。
     br = w.conf.get(f'{region["key"]}_bracket')
     if br:
         style = br.get("ref_style")
         rep = style in ("代表", "第◯代表")
-        rows = []
+        rows, winners = [], {}
+
+        def decide(g, home_p, away_p):
+            """result から勝者（チームの dict）を返す。result が無ければ None。"""
+            r = g.get("result")
+            if not r:
+                return None
+            h, a = int(r["home"]), int(r["away"])
+            if h == a:
+                pk = r.get("pk")
+                if not pk or len(pk) != 2 or int(pk[0]) == int(pk[1]):
+                    raise NeedsCheck(f'{region["key"]}_bracket {g["game"]}: 同点 {h}-{a} なのに PK の勝者が書かれていない')
+                h, a = int(pk[0]), int(pk[1])
+            if home_p is None or away_p is None:
+                raise NeedsCheck(f'{region["key"]}_bracket {g["game"]}: 結果があるのにチームが決まっていない')
+            return home_p if h > a else away_p
+
+        def score_html(g):
+            r = g["result"]
+            pk = r.get("pk")
+            return (f'<br><strong>{int(r["home"])} - {int(r["away"])}</strong>'
+                    + (f'<span class="ppo-sub">（PK {int(pk[0])}-{int(pk[1])}）</span>' if pk else "") + "<br>")
+
+        def win_badge(g, p, win):
+            if p is None or p is not win:
+                return ""
+            label = br.get("promote_label", "2部昇格決定") if g.get("promote") else "勝ち上がり"
+            return f' <span class="ppo-badge">{escape(label)}</span>'
+
         for g in br["games"]:
-            if g.get("text"):
+            src = g.get("from")
+            if src and all(s_ in winners and winners[s_] for s_ in src):
+                hp, ap = winners[src[0]], winners[src[1]]
+                win = decide(g, hp, ap)
+                winners[g["game"]] = win
+                mid = score_html(g) if win else '<br><span class="ppo-sub">vs</span><br>'
+                card = (team_cell(hp) + win_badge(g, hp, win) + mid + team_cell(ap) + win_badge(g, ap, win))
+            elif g.get("text"):
+                winners[g["game"]] = None
                 card = escape(g["text"])
             else:
                 def side(ref):
@@ -253,18 +295,24 @@ def region_html(w: World, region: dict, outs: dict) -> str:
                     label = (f"{nm}{PREF_SUFFIX.get(pref, '県')}{f'第{k}' if style == '第◯代表' else ''}代表"
                              if rep else nm)
                     return (f'<a href="/prefectures/{pref}/">{escape(label)}</a>{"" if rep else f"{k}位"} '
-                            + (badge + team_cell(p) if p else '<span class="ppo-sub">未定</span>'))
-                card = f'{side(g["home"])}<br><span class="ppo-sub">vs</span><br>{side(g["away"])}'
+                            + (badge + team_cell(p) if p else '<span class="ppo-sub">未定</span>')), p
+                (hs, hp), (as_, ap) = side(g["home"]), side(g["away"])
+                win = decide(g, hp, ap)
+                winners[g["game"]] = win
+                mid = score_html(g) if win else '<br><span class="ppo-sub">vs</span><br>'
+                card = hs + win_badge(g, hp, win) + mid + as_ + win_badge(g, ap, win)
             rows.append(f'<tr><td>{escape(g["game"])}</td><td>{escape(g["when"])}<br>'
                         f'<span class="ppo-sub">{escape(g["venue"])}</span></td><td>{card}</td></tr>')
+        all_conf = all(outs[p].get("confirmed") for p in region["prefs"])
         blocked = "".join(blocked_html(outs[p]).replace("<br>", f'<br><span class="ppo-sub">{escape(region["prefs"][p])}</span> ', 1)
                           for p in region["prefs"] if outs[p].get("blocked"))
         return (head + f'<p class="ih-note">組み合わせ（試合番号・日時・会場・{"「◯府県第◯代表」" if style == "第◯代表" else "「◯県代表」" if rep else "「◯県◯位」"}）は '
                 f'<a href="{escape(br["source_url"])}" target="_blank" rel="noopener">{escape(br["source_label"])}</a> の発表（'
-                f'{escape(br["venue_note"])}）。チーム名だけを県1部の今の順位から入れています。'
+                f'{escape(br["venue_note"])}）。'
+                + ("出場チームと結果は公式の発表によります。" if all_conf else "チーム名だけを県1部の今の順位から入れています。")
                 + (escape(br["note"]) if br.get("note") else "") + '</p>'
                 '<div class="ppo-scroll"><table class="ih-history-table ppo-table ppo-bracket"><thead><tr><th>試合</th><th>日時・会場</th>'
-                '<th>組み合わせ（暫定のチーム名）</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>"
+                '<th>' + ("組み合わせ・結果" if all_conf else "組み合わせ（暫定のチーム名）") + '</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>"
                 + (f'<p class="ih-note">{blocked[4:]}</p>' if blocked else ""))
     rows = "".join(pref_row(outs[p], nm) for p, nm in region["prefs"].items())
     return (head + note + '<div class="ppo-scroll"><table class="ih-history-table ppo-table"><thead><tr><th>県</th>'
