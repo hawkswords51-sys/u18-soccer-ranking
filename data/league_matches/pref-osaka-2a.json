@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://osaka-fa.or.jp/2shu/game_information/",
   "sourceName": "大阪府サッカー協会 公式",
-  "lastUpdated": "2026-11-23",
+  "lastUpdated": "2026-11-24",
   "teams": [
     {
       "name": "金光大阪B",
@@ -42,14 +42,14 @@
     {
       "rank": 1,
       "team": "清明学院",
-      "points": 28,
-      "played": 12,
-      "won": 9,
+      "points": 31,
+      "played": 13,
+      "won": 10,
       "drawn": 1,
       "lost": 2,
-      "gf": 21,
+      "gf": 22,
       "ga": 11,
-      "gd": 10
+      "gd": 11
     },
     {
       "rank": 2,
@@ -127,13 +127,13 @@
       "rank": 8,
       "team": "摂津B",
       "points": 8,
-      "played": 11,
+      "played": 12,
       "won": 2,
       "drawn": 2,
-      "lost": 7,
+      "lost": 8,
       "gf": 9,
-      "ga": 19,
-      "gd": -10
+      "ga": 20,
+      "gd": -11
     }
   ],
   "matches": [
@@ -258,10 +258,10 @@
       "md": 13,
       "date": "2026-11-23",
       "home": "清明学院",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "摂津B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 6,
@@ -673,8 +673,8 @@
     },
     {
       "team": "清明学院",
-      "pts": 28,
-      "gf": 21,
+      "pts": 31,
+      "gf": 22,
       "ga": 11,
       "rank": 1
     },
@@ -696,7 +696,7 @@
       "team": "摂津B",
       "pts": 8,
       "gf": 9,
-      "ga": 19,
+      "ga": 20,
       "rank": 8
     }
   ]

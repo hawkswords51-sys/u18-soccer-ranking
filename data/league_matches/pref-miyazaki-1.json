@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://miyazaki-fa-u18.net/schedule/2026/U-18-1.htm",
   "sourceName": "宮崎県サッカー協会 公式（U-18リーグ）",
-  "lastUpdated": "2026-11-23",
+  "lastUpdated": "2026-11-24",
   "teams": [
     {
       "name": "宮崎日大",
@@ -62,17 +62,29 @@
     {
       "rank": 2,
       "team": "日章学園3rd",
-      "points": 42,
-      "played": 16,
-      "won": 14,
+      "points": 45,
+      "played": 17,
+      "won": 15,
       "drawn": 0,
       "lost": 2,
-      "gf": 61,
+      "gf": 67,
       "ga": 24,
-      "gd": 37
+      "gd": 43
     },
     {
       "rank": 3,
+      "team": "宮崎第一",
+      "points": 29,
+      "played": 17,
+      "won": 9,
+      "drawn": 2,
+      "lost": 6,
+      "gf": 47,
+      "ga": 45,
+      "gd": 2
+    },
+    {
+      "rank": 4,
       "team": "延岡学園",
       "points": 28,
       "played": 16,
@@ -82,18 +94,6 @@
       "gf": 41,
       "ga": 42,
       "gd": -1
-    },
-    {
-      "rank": 4,
-      "team": "宮崎第一",
-      "points": 26,
-      "played": 16,
-      "won": 8,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 41,
-      "ga": 45,
-      "gd": -4
     },
     {
       "rank": 5,
@@ -123,25 +123,25 @@
       "rank": 7,
       "team": "宮崎西",
       "points": 19,
-      "played": 16,
+      "played": 17,
       "won": 6,
       "drawn": 1,
-      "lost": 9,
+      "lost": 10,
       "gf": 21,
-      "ga": 54,
-      "gd": -33
+      "ga": 60,
+      "gd": -39
     },
     {
       "rank": 8,
       "team": "テゲバジャーロ",
       "points": 11,
-      "played": 15,
+      "played": 16,
       "won": 3,
       "drawn": 2,
-      "lost": 10,
+      "lost": 11,
       "gf": 26,
-      "ga": 49,
-      "gd": -23
+      "ga": 55,
+      "gd": -29
     },
     {
       "rank": 9,
@@ -572,10 +572,10 @@
       "md": 12,
       "date": "2026-11-23",
       "home": "宮崎第一",
-      "hs": null,
-      "as": null,
+      "hs": 6,
+      "as": 0,
       "away": "宮崎西",
-      "status": "scheduled",
+      "status": "played",
       "venue": "県総合運動公園補助球技場"
     },
     {
@@ -812,10 +812,10 @@
       "md": 17,
       "date": "2026-11-23",
       "home": "テゲバジャーロ",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 6,
       "away": "日章学園3rd",
-      "status": "scheduled",
+      "status": "played",
       "venue": "生目の杜運動公園多目的グラウンド"
     },
     {

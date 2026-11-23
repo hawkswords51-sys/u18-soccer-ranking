@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 サッカーリーグ 東京 T1（東京都1部）",
   "season": "2026",
   "source": "https://www.tleague-u18.com/schedule.php?dy=2026&dt=1&ltno=16",
-  "lastUpdated": "2026-11-23",
+  "lastUpdated": "2026-11-24",
   "teams": [
     {
       "name": "三菱養和",
@@ -25,12 +25,12 @@
       "short": "久我山"
     },
     {
-      "name": "国士舘",
-      "short": "国士舘"
-    },
-    {
       "name": "FC東京B",
       "short": "FC東京B"
+    },
+    {
+      "name": "国士舘",
+      "short": "国士舘"
     },
     {
       "name": "帝京B",
@@ -61,25 +61,25 @@
     {
       "rank": 2,
       "team": "堀越",
-      "points": 30,
-      "played": 15,
-      "won": 8,
+      "points": 33,
+      "played": 16,
+      "won": 9,
       "drawn": 6,
       "lost": 1,
-      "gf": 28,
+      "gf": 30,
       "ga": 14,
-      "gd": 14
+      "gd": 16
     },
     {
       "rank": 3,
       "team": "実践学園",
-      "points": 29,
-      "played": 15,
+      "points": 30,
+      "played": 16,
       "won": 9,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 4,
-      "gf": 24,
-      "ga": 9,
+      "gf": 26,
+      "ga": 11,
       "gd": 15
     },
     {
@@ -108,27 +108,27 @@
     },
     {
       "rank": 6,
-      "team": "国士舘",
-      "points": 16,
-      "played": 15,
+      "team": "FC東京B",
+      "points": 17,
+      "played": 17,
       "won": 4,
-      "drawn": 4,
-      "lost": 7,
-      "gf": 15,
-      "ga": 21,
-      "gd": -6
+      "drawn": 5,
+      "lost": 8,
+      "gf": 22,
+      "ga": 34,
+      "gd": -12
     },
     {
       "rank": 7,
-      "team": "FC東京B",
+      "team": "国士舘",
       "points": 16,
       "played": 16,
       "won": 4,
       "drawn": 4,
       "lost": 8,
-      "gf": 20,
-      "ga": 32,
-      "gd": -12
+      "gf": 15,
+      "ga": 23,
+      "gd": -8
     },
     {
       "rank": 8,
@@ -209,22 +209,22 @@
       "venue": "(公財）三菱養和会巣鴨スポーツセンターグラウンド"
     },
     {
-      "md": 3,
-      "date": "2026-04-11",
-      "home": "三菱養和",
-      "hs": 2,
-      "as": 0,
-      "away": "国士舘",
-      "status": "played",
-      "venue": "(公財)三菱養和会 巣鴨スポーツセンターG"
-    },
-    {
       "md": 5,
       "date": "2026-04-26",
       "home": "三菱養和",
       "hs": 6,
       "as": 0,
       "away": "FC東京B",
+      "status": "played",
+      "venue": "(公財)三菱養和会 巣鴨スポーツセンターG"
+    },
+    {
+      "md": 3,
+      "date": "2026-04-11",
+      "home": "三菱養和",
+      "hs": 2,
+      "as": 0,
+      "away": "国士舘",
       "status": "played",
       "venue": "(公財)三菱養和会 巣鴨スポーツセンターG"
     },
@@ -299,21 +299,22 @@
       "venue": "堀越学園総合G"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "堀越",
-      "hs": null,
-      "as": null,
-      "away": "国士舘",
-      "status": "scheduled"
-    },
-    {
       "md": 1,
       "date": "2026-04-01",
       "home": "堀越",
       "hs": 2,
       "as": 2,
       "away": "FC東京B",
+      "status": "played",
+      "venue": "堀越学園総合G"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "堀越",
+      "hs": 2,
+      "as": 0,
+      "away": "国士舘",
       "status": "played",
       "venue": "堀越学園総合G"
     },
@@ -387,16 +388,6 @@
       "venue": "実践学園高尾Ｇ"
     },
     {
-      "md": 15,
-      "date": "2026-10-04",
-      "home": "実践学園",
-      "hs": 4,
-      "as": 3,
-      "away": "国士舘",
-      "status": "played",
-      "venue": "実践学園高尾Ｇ"
-    },
-    {
       "md": 8,
       "date": "2026-09-23",
       "home": "実践学園",
@@ -405,6 +396,16 @@
       "away": "FC東京B",
       "status": "played",
       "venue": "実践学園高尾G"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-04",
+      "home": "実践学園",
+      "hs": 4,
+      "as": 3,
+      "away": "国士舘",
+      "status": "played",
+      "venue": "実践学園高尾Ｇ"
     },
     {
       "md": 0,
@@ -476,16 +477,6 @@
       "venue": "國學院大學たまプラーザキャンパスG"
     },
     {
-      "md": 9,
-      "date": "2026-06-20",
-      "home": "大成",
-      "hs": 0,
-      "as": 0,
-      "away": "国士舘",
-      "status": "played",
-      "venue": "東京朝鮮大学Ｇ"
-    },
-    {
       "md": 11,
       "date": "2026-09-05",
       "home": "大成",
@@ -494,6 +485,16 @@
       "away": "FC東京B",
       "status": "played",
       "venue": "朝鮮大学G"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-20",
+      "home": "大成",
+      "hs": 0,
+      "as": 0,
+      "away": "国士舘",
+      "status": "played",
+      "venue": "東京朝鮮大学Ｇ"
     },
     {
       "md": 13,
@@ -565,15 +566,6 @@
       "venue": "NICHIBUN SAKURA FIELD"
     },
     {
-      "md": 0,
-      "date": "",
-      "home": "久我山",
-      "hs": null,
-      "as": null,
-      "away": "国士舘",
-      "status": "scheduled"
-    },
-    {
       "md": 13,
       "date": "2026-10-11",
       "home": "久我山",
@@ -582,6 +574,15 @@
       "away": "FC東京B",
       "status": "played",
       "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 0,
+      "date": "",
+      "home": "久我山",
+      "hs": null,
+      "as": null,
+      "away": "国士舘",
+      "status": "scheduled"
     },
     {
       "md": 17,
@@ -612,6 +613,96 @@
       "away": "早稲田実業",
       "status": "played",
       "venue": "國學院大學相模原キャンパスＧ"
+    },
+    {
+      "md": 14,
+      "date": "2026-09-27",
+      "home": "FC東京B",
+      "hs": 1,
+      "as": 1,
+      "away": "三菱養和",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 10,
+      "date": "2026-06-24",
+      "home": "FC東京B",
+      "hs": 1,
+      "as": 4,
+      "away": "堀越",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 17,
+      "date": "2026-11-23",
+      "home": "FC東京B",
+      "hs": 2,
+      "as": 2,
+      "away": "実践学園",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 2,
+      "date": "2026-04-29",
+      "home": "FC東京B",
+      "hs": 1,
+      "as": 1,
+      "away": "大成",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-18",
+      "home": "FC東京B",
+      "hs": 1,
+      "as": 2,
+      "away": "久我山",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 7,
+      "date": "2026-05-09",
+      "home": "FC東京B",
+      "hs": 0,
+      "as": 2,
+      "away": "国士舘",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 9,
+      "date": "2026-06-21",
+      "home": "FC東京B",
+      "hs": 5,
+      "as": 1,
+      "away": "帝京B",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 12,
+      "date": "2026-09-12",
+      "home": "FC東京B",
+      "hs": 2,
+      "as": 0,
+      "away": "多摩大目黒",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
+    },
+    {
+      "md": 15,
+      "date": "2026-10-03",
+      "home": "FC東京B",
+      "hs": 2,
+      "as": 1,
+      "away": "早稲田実業",
+      "status": "played",
+      "venue": "東京ガス武蔵野苑多目的G"
     },
     {
       "md": 12,
@@ -702,95 +793,6 @@
       "venue": "国士舘楓の杜キャンパス"
     },
     {
-      "md": 14,
-      "date": "2026-09-27",
-      "home": "FC東京B",
-      "hs": 1,
-      "as": 1,
-      "away": "三菱養和",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 10,
-      "date": "2026-06-24",
-      "home": "FC東京B",
-      "hs": 1,
-      "as": 4,
-      "away": "堀越",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "FC東京B",
-      "hs": null,
-      "as": null,
-      "away": "実践学園",
-      "status": "scheduled"
-    },
-    {
-      "md": 2,
-      "date": "2026-04-29",
-      "home": "FC東京B",
-      "hs": 1,
-      "as": 1,
-      "away": "大成",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 4,
-      "date": "2026-04-18",
-      "home": "FC東京B",
-      "hs": 1,
-      "as": 2,
-      "away": "久我山",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 7,
-      "date": "2026-05-09",
-      "home": "FC東京B",
-      "hs": 0,
-      "as": 2,
-      "away": "国士舘",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 9,
-      "date": "2026-06-21",
-      "home": "FC東京B",
-      "hs": 5,
-      "as": 1,
-      "away": "帝京B",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 12,
-      "date": "2026-09-12",
-      "home": "FC東京B",
-      "hs": 2,
-      "as": 0,
-      "away": "多摩大目黒",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
-      "md": 15,
-      "date": "2026-10-03",
-      "home": "FC東京B",
-      "hs": 2,
-      "as": 1,
-      "away": "早稲田実業",
-      "status": "played",
-      "venue": "東京ガス武蔵野苑多目的G"
-    },
-    {
       "md": 10,
       "date": "2026-10-10",
       "home": "帝京B",
@@ -841,6 +843,15 @@
       "venue": "帝京科学大学千住総合G"
     },
     {
+      "md": 0,
+      "date": "",
+      "home": "帝京B",
+      "hs": null,
+      "as": null,
+      "away": "FC東京B",
+      "status": "scheduled"
+    },
+    {
       "md": 14,
       "date": "2026-09-26",
       "home": "帝京B",
@@ -849,15 +860,6 @@
       "away": "国士舘",
       "status": "played",
       "venue": "国士舘大学町田キャンパス"
-    },
-    {
-      "md": 0,
-      "date": "",
-      "home": "帝京B",
-      "hs": null,
-      "as": null,
-      "away": "FC東京B",
-      "status": "scheduled"
     },
     {
       "md": 6,
@@ -929,22 +931,22 @@
       "status": "scheduled"
     },
     {
-      "md": 1,
-      "date": "2026-04-01",
-      "home": "多摩大目黒",
-      "hs": 0,
-      "as": 0,
-      "away": "国士舘",
-      "status": "played",
-      "venue": "東戸塚FP"
-    },
-    {
       "md": 3,
       "date": "2026-04-12",
       "home": "多摩大目黒",
       "hs": 1,
       "as": 0,
       "away": "FC東京B",
+      "status": "played",
+      "venue": "東戸塚FP"
+    },
+    {
+      "md": 1,
+      "date": "2026-04-01",
+      "home": "多摩大目黒",
+      "hs": 0,
+      "as": 0,
+      "away": "国士舘",
       "status": "played",
       "venue": "東戸塚FP"
     },
@@ -1018,22 +1020,22 @@
       "venue": "早稲田大学東伏見G"
     },
     {
-      "md": 4,
-      "date": "2026-04-18",
-      "home": "早稲田実業",
-      "hs": 1,
-      "as": 0,
-      "away": "国士舘",
-      "status": "played",
-      "venue": "早稲田大学東伏見G"
-    },
-    {
       "md": 6,
       "date": "2026-05-03",
       "home": "早稲田実業",
       "hs": 0,
       "as": 3,
       "away": "FC東京B",
+      "status": "played",
+      "venue": "早稲田大学東伏見G"
+    },
+    {
+      "md": 4,
+      "date": "2026-04-18",
+      "home": "早稲田実業",
+      "hs": 1,
+      "as": 0,
+      "away": "国士舘",
       "status": "played",
       "venue": "早稲田大学東伏見G"
     },
@@ -1071,23 +1073,23 @@
     },
     {
       "team": "堀越",
-      "pts": 30,
-      "played": 15,
-      "won": 8,
+      "pts": 33,
+      "played": 16,
+      "won": 9,
       "lost": 1,
       "drawn": 6,
-      "gf": 28,
+      "gf": 30,
       "ga": 14
     },
     {
       "team": "実践学園",
-      "pts": 29,
-      "played": 15,
+      "pts": 30,
+      "played": 16,
       "won": 9,
       "lost": 4,
-      "drawn": 2,
-      "gf": 24,
-      "ga": 9
+      "drawn": 3,
+      "gf": 26,
+      "ga": 11
     },
     {
       "team": "大成",
@@ -1110,24 +1112,24 @@
       "ga": 27
     },
     {
-      "team": "国士舘",
-      "pts": 16,
-      "played": 15,
+      "team": "FC東京B",
+      "pts": 17,
+      "played": 17,
       "won": 4,
-      "lost": 7,
-      "drawn": 4,
-      "gf": 15,
-      "ga": 21
+      "lost": 8,
+      "drawn": 5,
+      "gf": 22,
+      "ga": 34
     },
     {
-      "team": "FC東京B",
+      "team": "国士舘",
       "pts": 16,
       "played": 16,
       "won": 4,
       "lost": 8,
       "drawn": 4,
-      "gf": 20,
-      "ga": 32
+      "gf": 15,
+      "ga": 23
     },
     {
       "team": "帝京B",

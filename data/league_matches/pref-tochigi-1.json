@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://api.lsin.jp/?m=r&e=1059&c=3",
   "sourceName": "栃木県サッカー協会 公式（LSIN cloud）",
-  "lastUpdated": "2026-11-23",
+  "lastUpdated": "2026-11-24",
   "teams": [
     {
       "name": "矢板中央B",
@@ -98,26 +98,26 @@
     {
       "rank": 5,
       "team": "真岡",
-      "points": 18,
-      "played": 15,
-      "won": 5,
+      "points": 21,
+      "played": 16,
+      "won": 6,
       "drawn": 3,
       "lost": 7,
-      "gf": 21,
-      "ga": 20,
-      "gd": 1
+      "gf": 23,
+      "ga": 21,
+      "gd": 2
     },
     {
       "rank": 6,
       "team": "栃木シティFC",
       "points": 15,
-      "played": 15,
+      "played": 16,
       "won": 5,
       "drawn": 0,
-      "lost": 10,
-      "gf": 27,
-      "ga": 37,
-      "gd": -10
+      "lost": 11,
+      "gf": 28,
+      "ga": 39,
+      "gd": -11
     },
     {
       "rank": 7,
@@ -134,14 +134,14 @@
     {
       "rank": 8,
       "team": "栃木SC B",
-      "points": 11,
-      "played": 15,
-      "won": 3,
+      "points": 14,
+      "played": 16,
+      "won": 4,
       "drawn": 2,
       "lost": 10,
-      "gf": 20,
-      "ga": 40,
-      "gd": -20
+      "gf": 24,
+      "ga": 41,
+      "gd": -17
     },
     {
       "rank": 9,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "青藍泰斗",
       "points": 5,
-      "played": 15,
+      "played": 16,
       "won": 1,
       "drawn": 2,
-      "lost": 12,
-      "gf": 11,
-      "ga": 45,
-      "gd": -34
+      "lost": 13,
+      "gf": 12,
+      "ga": 49,
+      "gd": -37
     }
   ],
   "matches": [
@@ -657,12 +657,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "栃木シティFC",
-      "hs": null,
-      "as": null,
-      "away": "真岡",
-      "status": "scheduled"
+      "date": "2026-11-23",
+      "home": "真岡",
+      "hs": 2,
+      "as": 1,
+      "away": "栃木シティFC",
+      "status": "played",
+      "venue": "真岡高等学校"
     },
     {
       "md": 0,
@@ -1039,12 +1040,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "青藍泰斗",
-      "hs": null,
-      "as": null,
-      "away": "栃木SC B",
-      "status": "scheduled"
+      "date": "2026-11-23",
+      "home": "栃木SC B",
+      "hs": 4,
+      "as": 1,
+      "away": "青藍泰斗",
+      "status": "played",
+      "venue": "真岡高等学校"
     },
     {
       "md": 0,
@@ -1099,23 +1101,23 @@
     },
     {
       "team": "真岡",
-      "pts": 18,
-      "won": 5,
+      "pts": 21,
+      "won": 6,
       "drawn": 3,
       "lost": 7,
-      "gf": 21,
-      "ga": 20,
-      "played": 15
+      "gf": 23,
+      "ga": 21,
+      "played": 16
     },
     {
       "team": "栃木シティFC",
       "pts": 15,
       "won": 5,
       "drawn": 0,
-      "lost": 10,
-      "gf": 27,
-      "ga": 37,
-      "played": 15
+      "lost": 11,
+      "gf": 28,
+      "ga": 39,
+      "played": 16
     },
     {
       "team": "足利大附",
@@ -1129,13 +1131,13 @@
     },
     {
       "team": "栃木SC B",
-      "pts": 11,
-      "won": 3,
+      "pts": 14,
+      "won": 4,
       "drawn": 2,
       "lost": 10,
-      "gf": 20,
-      "ga": 40,
-      "played": 15
+      "gf": 24,
+      "ga": 41,
+      "played": 16
     },
     {
       "team": "文星芸大附",
@@ -1152,10 +1154,10 @@
       "pts": 5,
       "won": 1,
       "drawn": 2,
-      "lost": 12,
-      "gf": 11,
-      "ga": 45,
-      "played": 15
+      "lost": 13,
+      "gf": 12,
+      "ga": 49,
+      "played": 16
     }
   ]
 }
