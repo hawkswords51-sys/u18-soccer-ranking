@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448178-448178-fl",
-  "lastUpdated": "2026-11-22",
+  "lastUpdated": "2026-11-23",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
@@ -103,6 +103,12 @@
     },
     {
       "rank": 17,
+      "name": "岡田暉生",
+      "team": "橘B",
+      "goals": 4
+    },
+    {
+      "rank": 17,
       "name": "尾崎世空",
       "team": "神戸B",
       "goals": 4
@@ -118,12 +124,6 @@
       "name": "村山稔貴",
       "team": "金光",
       "goals": 4
-    },
-    {
-      "rank": 20,
-      "name": "岡田孝泰",
-      "team": "共栄",
-      "goals": 3
     }
   ],
   "coverage": [
@@ -135,14 +135,14 @@
     },
     {
       "team": "神戸B",
-      "attributed": 15,
-      "gf": 18,
+      "attributed": 16,
+      "gf": 19,
       "missing": 3
     },
     {
       "team": "関学",
-      "attributed": 13,
-      "gf": 15,
+      "attributed": 14,
+      "gf": 16,
       "missing": 2
     }
   ]
