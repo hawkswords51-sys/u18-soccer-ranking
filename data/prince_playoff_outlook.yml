@@ -108,6 +108,25 @@ hokushinetsu_bracket:
     - {game: "3021", when: "11/23(月) 10:30", venue: "能登島A", text: "3011の勝者 vs 3012の勝者（勝者が2部に昇格）"}
     - {game: "3022", when: "11/23(月) 13:30", venue: "能登島A", text: "3013の勝者 vs 3014の勝者（勝者が2部に昇格）"}
 
+# 関東の公式組み合わせ（2026-11-22 関東サッカー協会 掲載・2026-11-23 Cowork／Claude Code が試合組PDFと要項で確認）
+#   出典: 大会ページ https://kanto-fa.jp/info/?p=9125 （お知らせ https://kanto-fa.jp/info/?p=9131）
+#         試合組（チーム名未記入）PDF・大会要項 PDF は大会ページにリンク
+#   会場: 鹿嶋市卜伝の郷運動公園　A面＝管理事務所側／B面＝スタジアム側。90分・同点なら延長20分・PK
+#   ⚠️ No.7（代表③）の対戦は PDF でも点線で、チームは書かれていない。「No.5・No.6の敗者同士」と推測で書かない。
+kanto_bracket:
+  ref_style: "代表"
+  source_url: "https://kanto-fa.jp/info/?p=9125"
+  source_label: "関東サッカー協会"
+  venue_note: "12月19日（土）・21日（月）・23日（水）・鹿嶋市卜伝の郷運動公園"
+  games:
+    - {game: "No.1", when: "12/19(土) 10:30", venue: "A面", home: [chiba, 1], away: [kanagawa, 1]}
+    - {game: "No.2", when: "12/19(土) 10:30", venue: "B面", home: [tochigi, 1], away: [gunma, 1]}
+    - {game: "No.3", when: "12/19(土) 13:30", venue: "A面", home: [ibaraki, 1], away: [yamanashi, 1]}
+    - {game: "No.4", when: "12/19(土) 13:30", venue: "B面", home: [saitama, 1], away: [tokyo, 1]}
+    - {game: "No.5", when: "12/21(月) 10:30", venue: "A面", text: "No.1の勝者 vs No.2の勝者（勝者が代表①＝来季2部 8位・9位の枠）"}
+    - {game: "No.6", when: "12/21(月) 13:30", venue: "A面", text: "No.3の勝者 vs No.4の勝者（勝者が代表②＝来季2部 9位・10位の枠）"}
+    - {game: "No.7", when: "12/23(水) 13:30", venue: "A面", text: "代表③：プレミアプレーオフの結果しだいで実施（来季2部 10位の枠）"}
+
 # 下のチームの対応表（県1部の表記 → 上のチーム。プレミア／プリンスの表記と完全一致）
 second_teams:
   aichi:     {グランパスB: [名古屋グランパスU-18]}
