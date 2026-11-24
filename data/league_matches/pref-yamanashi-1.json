@@ -42,46 +42,46 @@
     {
       "rank": 1,
       "team": "山梨学院B",
-      "points": 25,
-      "played": 11,
-      "won": 8,
+      "points": 28,
+      "played": 12,
+      "won": 9,
       "drawn": 1,
       "lost": 2,
-      "gf": 26,
-      "ga": 10,
-      "gd": 16
+      "gf": 28,
+      "ga": 11,
+      "gd": 17
     },
     {
       "rank": 2,
-      "team": "日大明誠",
-      "points": 19,
-      "played": 11,
-      "won": 5,
-      "drawn": 4,
-      "lost": 2,
-      "gf": 23,
-      "ga": 10,
-      "gd": 13
-    },
-    {
-      "rank": 3,
       "team": "韮崎",
-      "points": 19,
-      "played": 11,
+      "points": 20,
+      "played": 12,
       "won": 6,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 4,
       "gf": 16,
       "ga": 11,
       "gd": 5
     },
     {
+      "rank": 3,
+      "team": "日大明誠",
+      "points": 19,
+      "played": 12,
+      "won": 5,
+      "drawn": 4,
+      "lost": 3,
+      "gf": 24,
+      "ga": 12,
+      "gd": 12
+    },
+    {
       "rank": 4,
       "team": "帝京第三",
-      "points": 14,
-      "played": 11,
+      "points": 15,
+      "played": 12,
       "won": 3,
-      "drawn": 5,
+      "drawn": 6,
       "lost": 3,
       "gf": 18,
       "ga": 15,
@@ -90,50 +90,50 @@
     {
       "rank": 5,
       "team": "東海大甲府",
-      "points": 14,
-      "played": 11,
+      "points": 15,
+      "played": 12,
       "won": 4,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 5,
-      "gf": 8,
-      "ga": 19,
+      "gf": 10,
+      "ga": 21,
       "gd": -11
     },
     {
       "rank": 6,
-      "team": "日本航空",
-      "points": 11,
-      "played": 11,
-      "won": 3,
-      "drawn": 2,
-      "lost": 6,
-      "gf": 13,
-      "ga": 15,
-      "gd": -2
+      "team": "VF甲府B",
+      "points": 13,
+      "played": 12,
+      "won": 4,
+      "drawn": 1,
+      "lost": 7,
+      "gf": 15,
+      "ga": 23,
+      "gd": -8
     },
     {
       "rank": 7,
       "team": "駿台甲府",
-      "points": 11,
-      "played": 11,
+      "points": 12,
+      "played": 12,
       "won": 3,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 6,
-      "gf": 10,
-      "ga": 25,
+      "gf": 12,
+      "ga": 27,
       "gd": -15
     },
     {
       "rank": 8,
-      "team": "VF甲府B",
-      "points": 10,
-      "played": 11,
+      "team": "日本航空",
+      "points": 11,
+      "played": 12,
       "won": 3,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 7,
-      "gf": 14,
-      "ga": 23,
-      "gd": -9
+      "gf": 13,
+      "ga": 16,
+      "gd": -3
     }
   ],
   "matches": [
@@ -168,10 +168,10 @@
       "md": 12,
       "date": "2026-11-21",
       "home": "韮崎",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "帝京第三",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 1,
@@ -213,10 +213,10 @@
       "md": 12,
       "date": "2026-11-22",
       "home": "山梨学院B",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 1,
       "away": "日大明誠",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 1,
@@ -564,10 +564,10 @@
       "md": 12,
       "date": "2026-11-21",
       "home": "VF甲府B",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "日本航空",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 14,
@@ -609,10 +609,10 @@
       "md": 12,
       "date": "2026-11-21",
       "home": "東海大甲府",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 2,
       "away": "駿台甲府",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 9,
@@ -645,25 +645,25 @@
   "source_standings": [
     {
       "team": "帝京第三",
-      "pts": 14,
+      "pts": 15,
       "gf": 18,
       "ga": 15
     },
     {
       "team": "日大明誠",
       "pts": 19,
-      "gf": 23,
-      "ga": 10
+      "gf": 24,
+      "ga": 12
     },
     {
       "team": "山梨学院B",
-      "pts": 25,
-      "gf": 26,
-      "ga": 10
+      "pts": 28,
+      "gf": 28,
+      "ga": 11
     },
     {
       "team": "韮崎",
-      "pts": 19,
+      "pts": 20,
       "gf": 16,
       "ga": 11
     },
@@ -671,24 +671,24 @@
       "team": "日本航空",
       "pts": 11,
       "gf": 13,
-      "ga": 15
+      "ga": 16
     },
     {
       "team": "駿台甲府",
-      "pts": 11,
-      "gf": 10,
-      "ga": 25
+      "pts": 12,
+      "gf": 12,
+      "ga": 27
     },
     {
       "team": "東海大甲府",
-      "pts": 14,
-      "gf": 8,
-      "ga": 19
+      "pts": 15,
+      "gf": 10,
+      "ga": 21
     },
     {
       "team": "VF甲府B",
-      "pts": 10,
-      "gf": 14,
+      "pts": 13,
+      "gf": 15,
       "ga": 23
     }
   ]

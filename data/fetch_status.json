@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-24T13:52:47+09:00",
+  "updatedAt": "2026-11-24T15:26:01+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -594,7 +594,7 @@
       "status": "warn",
       "last_updated": "2026-11-24",
       "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-11-24"
     },
     "kumamoto": {
@@ -636,7 +636,7 @@
       "status": "ok",
       "last_updated": "2026-11-24",
       "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
+      "result_note": "消化85試合に更新（検算一致）",
       "result_date": "2026-11-24"
     },
     "mie": {
@@ -758,9 +758,39 @@
       "result_streak": 0,
       "status": "ok",
       "last_updated": "2026-11-24",
-      "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
-      "result_date": "2026-11-24"
+      "result": "verify_failed",
+      "result_note": "検算不一致 ['山辺: 勝点 公式14 ≠ 試合から11', '山辺: 得点 公式17 ≠ 試合から16'] …",
+      "result_date": "2026-11-24",
+      "verify_items": [
+        {
+          "team": "山辺",
+          "item": "山辺: 勝点 公式14 ≠ 試合から11"
+        },
+        {
+          "team": "山辺",
+          "item": "山辺: 得点 公式17 ≠ 試合から16"
+        },
+        {
+          "team": "山辺",
+          "item": "山辺: 失点 公式38 ≠ 試合から39"
+        },
+        {
+          "team": "山辺",
+          "item": "山辺: 順位 公式8 ≠ 試合から9"
+        },
+        {
+          "team": "生駒",
+          "item": "生駒: 勝点 公式28 ≠ 試合から31"
+        },
+        {
+          "team": "生駒",
+          "item": "生駒: 得点 公式38 ≠ 試合から39"
+        },
+        {
+          "team": "生駒",
+          "item": "生駒: 失点 公式29 ≠ 試合から28"
+        }
+      ]
     },
     "niigata": {
       "season": "2026",
@@ -1217,7 +1247,7 @@
       "result_streak": 0,
       "status": "warn",
       "result": "ok",
-      "result_note": "消化44試合に更新（検算一致）",
+      "result_note": "消化48試合に更新（検算一致）",
       "result_date": "2026-11-24",
       "last_updated": "2026-11-24"
     },
