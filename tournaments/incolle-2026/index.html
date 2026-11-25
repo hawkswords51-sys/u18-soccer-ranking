@@ -51,6 +51,34 @@
     .univ-src { margin:8px 0 0; font-size:0.76rem; opacity:0.72; }
     .inc-result { border:1px solid var(--border-color,#d8dde8); border-radius:10px; padding:14px 16px;
       background:var(--bg-card,transparent); line-height:1.9; }
+    /* [2026-11-25] 組み合わせ・結果・順位表（scraper/generate_incolle_page.py が書く部分） */
+    .inc-table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+    .inc-table th, .inc-table td { border-bottom:1px solid var(--border-color,#e2e8f0); padding:6px 5px; text-align:center; }
+    .inc-table th { font-weight:600; opacity:0.85; white-space:nowrap; }
+    .inc-table .inc-no, .inc-table .inc-date { opacity:0.65; font-size:0.85em; white-space:nowrap; }
+    .inc-table .inc-home { text-align:right; }
+    .inc-table .inc-away { text-align:left; }
+    .inc-table .inc-score { white-space:nowrap; padding:6px 8px; }
+    .inc-table .inc-venue { font-size:0.82em; opacity:0.75; }
+    .inc-standings td { white-space:nowrap; }
+    .inc-standings .inc-team { text-align:left; white-space:normal; }
+    .inc-standings tr.inc-adv td:first-child { color:var(--danger-color,#dc2626); font-weight:700; }
+    .inc-rep { display:inline-block; margin:0 4px; padding:0 6px; border-radius:999px; font-size:0.74em;
+      border:1px solid var(--border-color,#d8dde8); opacity:0.8; white-space:nowrap; }
+    .inc-tbd { opacity:0.65; font-size:0.92em; }
+    .inc-time { opacity:0.75; font-size:0.92em; }
+    .inc-pk { display:inline-block; margin-left:5px; font-size:0.78em; opacity:0.8; }
+    .inc-st-note { margin:4px 0 8px; font-size:0.8rem; opacity:0.75; }
+    .inc-group { margin:18px 0 6px; font-size:1rem; }
+    .inc-group span { margin-left:10px; font-size:0.8em; font-weight:400; opacity:0.75; }
+    .inc-flow { margin:4px 0 12px; font-size:0.88rem; line-height:1.7; }
+    .inc-step { border:1px solid var(--border-color,#d8dde8); border-radius:10px; padding:10px 12px;
+      background:var(--bg-card,transparent); }
+    .inc-step strong { display:block; font-size:1.02em; }
+    .inc-main { border-color:var(--primary-color,#2563eb); border-width:2px; }
+    .inc-split { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .inc-arrow { text-align:center; padding:6px 0; font-weight:600; opacity:0.85; }
+    @media (max-width:560px) { .inc-split { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -153,115 +181,255 @@
         </table>
         </div>
         <p class="univ-note">前回王者の筑波大学（関東第10代表）と、前回準優勝で今夏の総理大臣杯準優勝の国士舘大学（関東第1代表）、総理大臣杯優勝の流通経済大学（関東第3代表）も出場します。筑波大学は予選ラウンドの福岡大学戦からのスタートです。</p>
-        <h3 style="margin:18px 0 6px;">予選ラウンド（プレーオフ）　11月28日（土）</h3>
-        <p class="univ-note">20チームが1試合だけの勝ち抜き戦を行い、勝った10チームが決勝ラウンド、負けた10チームが強化ラウンドへ進みます。全国9会場（栃木の会場で2試合）。90分で決着しなければ延長30分とPK戦。</p>
+<!-- INCOLLE_ROUNDS_START -->
+        <h3 style="margin:18px 0 6px;">大会の流れ</h3>
+        <div class="inc-flow" aria-label="大会の流れ">
+          <div class="inc-step"><strong>予選ラウンド</strong>11月28日（土）／20チーム・10試合（1試合の勝ち抜き）</div>
+          <div class="inc-split">
+            <div class="inc-branch">
+              <div class="inc-arrow">↓ 勝った10チーム</div>
+              <div class="inc-step inc-main"><strong>決勝ラウンド</strong>＋シードの6チーム＝16チーム<br>グループステージ（4組の総当たり・12月2日〜6日）<br>↓ 各組の上位2チーム<br>準々決勝・準決勝・決勝（12月13日〜19日）</div>
+            </div>
+            <div class="inc-branch">
+              <div class="inc-arrow">↓ 負けた10チーム</div>
+              <div class="inc-step"><strong>強化ラウンド</strong>＋推薦の2チーム＝12チーム<br>グループステージ（3組の総当たり・12月1日〜3日）<br>↓ 各組1位とワイルドカード1チーム<br>準決勝・決勝（12月4日・5日）</div>
+            </div>
+          </div>
+        </div>
+        <h3 style="margin:22px 0 6px;">予選ラウンド（プレーオフ）　11月28日（土）</h3>
+        <p class="univ-note">20チームが1試合だけの勝ち抜き戦を行い、勝った10チームが決勝ラウンド、負けた10チームが強化ラウンドへ進みます。全国9会場（栃木の会場で2試合）。90分で決着しなければ延長30分とPK戦。勝ったチームは色つきで表示し、次のラウンドの表に自動で入ります。</p>
         <div class="univ-scroll">
-        <table class="univ-table">
-          <thead><tr><th>No.</th><th>時刻</th><th>対戦</th><th>会場</th></tr></thead>
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
           <tbody>
-            <tr><td>[1]</td><td>13:00</td><td><strong>仙台大学</strong>（東北第1） vs <strong>早稲田大学</strong>（関東第9）</td><td>Jヴィレッジスタジアム（福島）</td></tr>
-            <tr><td>[2]</td><td>13:00</td><td><strong>新潟医療福祉大学</strong>（北信越第1） vs <strong>関西大学</strong>（関西第4）</td><td>新発田市五十公野公園陸上競技場（新潟）</td></tr>
-            <tr><td>[3]</td><td>13:00</td><td><strong>東洋大学</strong>（関東第4） vs <strong>札幌大学</strong>（北海道）</td><td>多摩市立陸上競技場（東京）</td></tr>
-            <tr><td>[4]</td><td>11:00</td><td><strong>中央大学</strong>（関東第5） vs <strong>鹿屋体育大学</strong>（九州第3）</td><td>ホンダヒート・グリーンスタジアム（栃木）</td></tr>
-            <tr><td>[5]</td><td>14:00</td><td><strong>法政大学</strong>（関東第6） vs <strong>松本大学</strong>（北信越第2）</td><td>ホンダヒート・グリーンスタジアム（栃木）</td></tr>
-            <tr><td>[6]</td><td>13:00</td><td><strong>常葉大学</strong>（東海第2） vs <strong>大阪体育大学</strong>（関西第3）</td><td>光明寺公園球技場（愛知）</td></tr>
-            <tr><td>[7]</td><td>13:00</td><td><strong>関西学院大学</strong>（関西第2） vs <strong>中京大学</strong>（東海第3）</td><td>三木総合防災公園第2陸上競技場（兵庫）</td></tr>
-            <tr><td>[8]</td><td>13:00</td><td><strong>IPU・環太平洋大学</strong>（中国） vs <strong>日本体育大学</strong>（関東第7）</td><td>福山通運ローズスタジアム（広島）</td></tr>
-            <tr><td>[9]</td><td>13:00</td><td><strong>高松大学</strong>（四国第1） vs <strong>明治大学</strong>（関東第8）</td><td>四国化成MEGLIOスタジアム（香川）</td></tr>
-            <tr><td>[10]</td><td>13:00</td><td><strong>福岡大学</strong>（九州第2） vs <strong>筑波大学</strong>（関東第10）</td><td>ブラックモンブランフットボールセンター 南ピッチ（佐賀）</td></tr>
+            <tr><td class="inc-no">[1]</td><td class="inc-home">仙台大学<span class="inc-rep">東北第1</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">早稲田大学<span class="inc-rep">関東第9</span></td><td class="inc-venue">Jヴィレッジスタジアム（福島）</td></tr>
+            <tr><td class="inc-no">[2]</td><td class="inc-home">新潟医療福祉大学<span class="inc-rep">北信越第1</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">関西大学<span class="inc-rep">関西第4</span></td><td class="inc-venue">新発田市五十公野公園陸上競技場（新潟）</td></tr>
+            <tr><td class="inc-no">[3]</td><td class="inc-home">東洋大学<span class="inc-rep">関東第4</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">札幌大学<span class="inc-rep">北海道</span></td><td class="inc-venue">多摩市立陸上競技場（東京）</td></tr>
+            <tr><td class="inc-no">[4]</td><td class="inc-home">中央大学<span class="inc-rep">関東第5</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">鹿屋体育大学<span class="inc-rep">九州第3</span></td><td class="inc-venue">ホンダヒート・グリーンスタジアム（栃木）</td></tr>
+            <tr><td class="inc-no">[5]</td><td class="inc-home">法政大学<span class="inc-rep">関東第6</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away">松本大学<span class="inc-rep">北信越第2</span></td><td class="inc-venue">ホンダヒート・グリーンスタジアム（栃木）</td></tr>
+            <tr><td class="inc-no">[6]</td><td class="inc-home">常葉大学<span class="inc-rep">東海第2</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">大阪体育大学<span class="inc-rep">関西第3</span></td><td class="inc-venue">光明寺公園球技場（愛知）</td></tr>
+            <tr><td class="inc-no">[7]</td><td class="inc-home">関西学院大学<span class="inc-rep">関西第2</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">中京大学<span class="inc-rep">東海第3</span></td><td class="inc-venue">三木総合防災公園第2陸上競技場（兵庫）</td></tr>
+            <tr><td class="inc-no">[8]</td><td class="inc-home">IPU・環太平洋大学<span class="inc-rep">中国</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">日本体育大学<span class="inc-rep">関東第7</span></td><td class="inc-venue">福山通運ローズスタジアム（広島）</td></tr>
+            <tr><td class="inc-no">[9]</td><td class="inc-home">高松大学<span class="inc-rep">四国第1</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">明治大学<span class="inc-rep">関東第8</span></td><td class="inc-venue">四国化成MEGLIOスタジアム（香川）</td></tr>
+            <tr><td class="inc-no">[10]</td><td class="inc-home">福岡大学<span class="inc-rep">九州第2</span></td><td class="inc-score"><span class="inc-time">13:00</span></td><td class="inc-away">筑波大学<span class="inc-rep">関東第10</span></td><td class="inc-venue">ブラックモンブランフットボールセンター 南ピッチ（佐賀）</td></tr>
           </tbody>
         </table>
         </div>
-        <h3 style="margin:18px 0 6px;">決勝ラウンド グループステージ　12月2日・4日・6日</h3>
-        <p class="univ-note">16チームを4グループに分けた総当たり（90分で決着しなければ引き分け）。各グループ上位2チームが準々決勝へ進みます。表の「予選[1]勝者（仙台大／早稲田大）」は、上の予選ラウンド[1]の勝者です。</p>
-        <ul style="line-height:1.9;margin:0 0 10px;padding-left:1.4em;">
-          <li>Aグループ：<strong>国士舘大学</strong>（関東第1）・予選[2]勝者（新潟医療福祉大／関西大）・予選[7]勝者（関西学院大／中京大）・予選[9]勝者（高松大／明治大）　会場：東京・神奈川</li>
-          <li>Bグループ：<strong>日本大学</strong>（関東第2）・<strong>日本文理大学</strong>（九州第1）・予選[5]勝者（法政大／松本大）・予選[6]勝者（常葉大／大阪体育大）　会場：福岡・大分</li>
-          <li>Cグループ：<strong>流通経済大学</strong>（関東第3）・<strong>東海学園大学</strong>（東海第1）・予選[4]勝者（中央大／鹿屋体育大）・予選[8]勝者（IPU・環太平洋大／日本体育大）　会場：愛知</li>
-          <li>Dグループ：<strong>京都産業大学</strong>（関西第1）・予選[1]勝者（仙台大／早稲田大）・予選[3]勝者（東洋大／札幌大）・予選[10]勝者（福岡大／筑波大）　会場：大阪</li>
-        </ul>
+        <h3 style="margin:26px 0 6px;">決勝ラウンド グループステージ　12月2日・4日・6日</h3>
+        <p class="univ-note">16チームを4グループに分けた総当たり（90分で決着しなければ引き分け）。各グループ上位2チームが準々決勝へ進みます。順位は勝点（勝ち3・引き分け1）→得失点差→総得点→当該チーム間の対戦成績の順で決まります（それでも並ぶときは反則ポイント・抽選。開催要項 第13条）。「予選[1]勝者（仙台大／早稲田大）」は上の予選ラウンド[1]の勝者で、結果が入ると大学名に変わります。</p>
+        <h4 class="inc-group">Aグループ<span>会場：東京・神奈川</span></h4>
         <div class="univ-scroll">
-        <table class="univ-table">
-          <thead><tr><th>日付</th><th>組</th><th>時刻</th><th>対戦</th><th>会場</th></tr></thead>
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
           <tbody>
-            <tr><td>12月2日（水）</td><td>A</td><td>11:00</td><td>予選[7]勝者（関西学院大／中京大） vs 予選[2]勝者（新潟医療福祉大／関西大）</td><td>味の素フィールド西が丘（東京）</td></tr>
-            <tr><td>12月2日（水）</td><td>A</td><td>14:00</td><td><strong>国士舘大学</strong>（関東第1） vs 予選[9]勝者（高松大／明治大）</td><td>味の素フィールド西が丘（東京）</td></tr>
-            <tr><td>12月2日（水）</td><td>B</td><td>11:00</td><td>予選[5]勝者（法政大／松本大） vs 予選[6]勝者（常葉大／大阪体育大）</td><td>本城陸上競技場（福岡）</td></tr>
-            <tr><td>12月2日（水）</td><td>B</td><td>14:00</td><td><strong>日本大学</strong>（関東第2） vs <strong>日本文理大学</strong>（九州第1）</td><td>本城陸上競技場（福岡）</td></tr>
-            <tr><td>12月2日（水）</td><td>C</td><td>11:00</td><td>予選[4]勝者（中央大／鹿屋体育大） vs 予選[8]勝者（IPU・環太平洋大／日本体育大）</td><td>光明寺公園球技場（愛知）</td></tr>
-            <tr><td>12月2日（水）</td><td>C</td><td>14:00</td><td><strong>流通経済大学</strong>（関東第3） vs <strong>東海学園大学</strong>（東海第1）</td><td>光明寺公園球技場（愛知）</td></tr>
-            <tr><td>12月2日（水）</td><td>D</td><td>11:00</td><td>予選[3]勝者（東洋大／札幌大） vs 予選[1]勝者（仙台大／早稲田大）</td><td>J-GREEN堺メインフィールド（大阪）</td></tr>
-            <tr><td>12月2日（水）</td><td>D</td><td>14:00</td><td><strong>京都産業大学</strong>（関西第1） vs 予選[10]勝者（福岡大／筑波大）</td><td>J-GREEN堺メインフィールド（大阪）</td></tr>
-            <tr><td>12月4日（金）</td><td>A</td><td>11:00</td><td>予選[7]勝者（関西学院大／中京大） vs 予選[9]勝者（高松大／明治大）</td><td>AGFフィールド（東京）</td></tr>
-            <tr><td>12月4日（金）</td><td>A</td><td>14:00</td><td><strong>国士舘大学</strong>（関東第1） vs 予選[2]勝者（新潟医療福祉大／関西大）</td><td>AGFフィールド（東京）</td></tr>
-            <tr><td>12月4日（金）</td><td>B</td><td>11:00</td><td>予選[5]勝者（法政大／松本大） vs <strong>日本文理大学</strong>（九州第1）</td><td>本城陸上競技場（福岡）</td></tr>
-            <tr><td>12月4日（金）</td><td>B</td><td>14:00</td><td><strong>日本大学</strong>（関東第2） vs 予選[6]勝者（常葉大／大阪体育大）</td><td>本城陸上競技場（福岡）</td></tr>
-            <tr><td>12月4日（金）</td><td>C</td><td>11:00</td><td>予選[4]勝者（中央大／鹿屋体育大） vs <strong>東海学園大学</strong>（東海第1）</td><td>光明寺公園球技場（愛知）</td></tr>
-            <tr><td>12月4日（金）</td><td>C</td><td>14:00</td><td><strong>流通経済大学</strong>（関東第3） vs 予選[8]勝者（IPU・環太平洋大／日本体育大）</td><td>光明寺公園球技場（愛知）</td></tr>
-            <tr><td>12月4日（金）</td><td>D</td><td>11:00</td><td>予選[3]勝者（東洋大／札幌大） vs 予選[10]勝者（福岡大／筑波大）</td><td>J-GREEN堺メインフィールド（大阪）</td></tr>
-            <tr><td>12月4日（金）</td><td>D</td><td>14:00</td><td><strong>京都産業大学</strong>（関西第1） vs 予選[1]勝者（仙台大／早稲田大）</td><td>J-GREEN堺メインフィールド（大阪）</td></tr>
-            <tr><td>12月6日（日）</td><td>A</td><td>11:00</td><td>予選[2]勝者（新潟医療福祉大／関西大） vs 予選[9]勝者（高松大／明治大）</td><td>ニッパツ三ツ沢球技場（神奈川）</td></tr>
-            <tr><td>12月6日（日）</td><td>A</td><td>14:00</td><td><strong>国士舘大学</strong>（関東第1） vs 予選[7]勝者（関西学院大／中京大）</td><td>ニッパツ三ツ沢球技場（神奈川）</td></tr>
-            <tr><td>12月6日（日）</td><td>B</td><td>11:00</td><td>予選[6]勝者（常葉大／大阪体育大） vs <strong>日本文理大学</strong>（九州第1）</td><td>ジェイリーススタジアム（大分）</td></tr>
-            <tr><td>12月6日（日）</td><td>B</td><td>14:00</td><td><strong>日本大学</strong>（関東第2） vs 予選[5]勝者（法政大／松本大）</td><td>ジェイリーススタジアム（大分）</td></tr>
-            <tr><td>12月6日（日）</td><td>C</td><td>11:00</td><td>予選[8]勝者（IPU・環太平洋大／日本体育大） vs <strong>東海学園大学</strong>（東海第1）</td><td>名古屋学院大学 瀬戸キャンパス 第2グラウンド（愛知）</td></tr>
-            <tr><td>12月6日（日）</td><td>C</td><td>14:00</td><td><strong>流通経済大学</strong>（関東第3） vs 予選[4]勝者（中央大／鹿屋体育大）</td><td>名古屋学院大学 瀬戸キャンパス 第2グラウンド（愛知）</td></tr>
-            <tr><td>12月6日（日）</td><td>D</td><td>11:00</td><td>予選[1]勝者（仙台大／早稲田大） vs 予選[10]勝者（福岡大／筑波大）</td><td>四條畷市総合公園・人工芝運動場（大阪）</td></tr>
-            <tr><td>12月6日（日）</td><td>D</td><td>14:00</td><td><strong>京都産業大学</strong>（関西第1） vs 予選[3]勝者（東洋大／札幌大）</td><td>四條畷市総合公園・人工芝運動場（大阪）</td></tr>
+            <tr><td>–</td><td class="inc-team">国士舘大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[2]勝者（新潟医療福祉大／関西大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[7]勝者（関西学院大／中京大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[9]勝者（高松大／明治大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
           </tbody>
         </table>
         </div>
-        <h3 style="margin:18px 0 6px;">決勝ラウンド ノックアウトステージ（準々決勝〜決勝）</h3>
-        <p class="univ-note">準々決勝からは神奈川と東京で開催。90分で決着しなければ延長30分とPK戦。3位決定戦は行わず、準決勝で敗れた2チームが3位です。</p>
+        <p class="inc-st-note">まだ試合がありません。</p>
         <div class="univ-scroll">
-        <table class="univ-table">
-          <thead><tr><th>回戦・日付</th><th>時刻</th><th>対戦</th><th>会場</th></tr></thead>
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
           <tbody>
-            <tr><td>準々決勝　12月13日（日）</td><td>11:00</td><td>Aグループ1位 vs Bグループ2位</td><td>AGFフィールド（東京）</td></tr>
-            <tr><td>準々決勝　12月13日（日）</td><td>14:00</td><td>Cグループ1位 vs Aグループ2位</td><td>AGFフィールド（東京）</td></tr>
-            <tr><td>準々決勝　12月13日（日）</td><td>11:00</td><td>Dグループ1位 vs Cグループ2位</td><td>IIMURO GLASS 綾瀬市民スポーツセンター 陸上競技場（神奈川）</td></tr>
-            <tr><td>準々決勝　12月13日（日）</td><td>14:00</td><td>Bグループ1位 vs Dグループ2位</td><td>IIMURO GLASS 綾瀬市民スポーツセンター 陸上競技場（神奈川）</td></tr>
-            <tr><td>準決勝　12月16日（水）</td><td>11:00</td><td>A1位-B2位の勝者 vs D1位-C2位の勝者</td><td>三ツ沢公園陸上競技場（神奈川）</td></tr>
-            <tr><td>準決勝　12月16日（水）</td><td>14:00</td><td>C1位-A2位の勝者 vs B1位-D2位の勝者</td><td>三ツ沢公園陸上競技場（神奈川）</td></tr>
-            <tr><td>決勝　12月19日（土）</td><td>12:00</td><td>準決勝の勝者 vs 準決勝の勝者</td><td>駒沢オリンピック公園総合運動場陸上競技場（東京）</td></tr>
+            <tr><td class="inc-no">[17]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[7]勝者（関西学院大／中京大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[2]勝者（新潟医療福祉大／関西大）</span></td><td class="inc-venue">味の素フィールド西が丘（東京）</td></tr>
+            <tr><td class="inc-no">[21]</td><td class="inc-date">12月2日（水）</td><td class="inc-home">国士舘大学<span class="inc-rep">関東第1</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[9]勝者（高松大／明治大）</span></td><td class="inc-venue">味の素フィールド西が丘（東京）</td></tr>
+            <tr><td class="inc-no">[37]</td><td class="inc-date">12月4日（金）</td><td class="inc-home"><span class="inc-tbd">予選[7]勝者（関西学院大／中京大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[9]勝者（高松大／明治大）</span></td><td class="inc-venue">AGFフィールド（東京）</td></tr>
+            <tr><td class="inc-no">[41]</td><td class="inc-date">12月4日（金）</td><td class="inc-home">国士舘大学<span class="inc-rep">関東第1</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[2]勝者（新潟医療福祉大／関西大）</span></td><td class="inc-venue">AGFフィールド（東京）</td></tr>
+            <tr><td class="inc-no">[48]</td><td class="inc-date">12月6日（日）</td><td class="inc-home"><span class="inc-tbd">予選[2]勝者（新潟医療福祉大／関西大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[9]勝者（高松大／明治大）</span></td><td class="inc-venue">ニッパツ三ツ沢球技場（神奈川）</td></tr>
+            <tr><td class="inc-no">[52]</td><td class="inc-date">12月6日（日）</td><td class="inc-home">国士舘大学<span class="inc-rep">関東第1</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[7]勝者（関西学院大／中京大）</span></td><td class="inc-venue">ニッパツ三ツ沢球技場（神奈川）</td></tr>
           </tbody>
         </table>
         </div>
-        <h3 style="margin:18px 0 6px;">強化ラウンド　12月1日〜5日（千葉）</h3>
-        <p class="univ-note">予選ラウンドで敗れた10チームに、<strong>八戸学院大学</strong>（東北第2）と<strong>高知大学</strong>（四国第2）を加えた12チームが、3グループの総当たりを行います。各グループ1位と、2位のうち最も成績のよい1チーム（ワイルドカード）が準決勝（12月4日・フクダ電子フィールドA面/B面）へ進み、決勝は12月5日（土）12:00、稲毛海浜公園球技場です。強化ラウンドの優勝チームが出た地域には、翌年の予選ラウンドの出場枠が1つ増えます。</p>
-        <ul style="line-height:1.9;margin:0 0 10px;padding-left:1.4em;">
-          <li>グループ1（フクダ電子フィールドA面）：予選[2]敗者（新潟医療福祉大／関西大）・予選[3]敗者（東洋大／札幌大）・予選[8]敗者（IPU・環太平洋大／日本体育大）・<strong>八戸学院大学</strong>（東北第2）</li>
-          <li>グループ2（フクダ電子フィールドB面）：予選[1]敗者（仙台大／早稲田大）・予選[4]敗者（中央大／鹿屋体育大）・予選[6]敗者（常葉大／大阪体育大）・<strong>高知大学</strong>（四国第2）</li>
-          <li>グループ3（フクダ電子スクエア）：予選[5]敗者（法政大／松本大）・予選[7]敗者（関西学院大／中京大）・予選[9]敗者（高松大／明治大）・予選[10]敗者（福岡大／筑波大）</li>
-        </ul>
-        <details style="margin:0 0 10px;">
-          <summary style="cursor:pointer;">強化ラウンド グループステージの全18試合を見る</summary>
+        <h4 class="inc-group">Bグループ<span>会場：福岡・大分</span></h4>
         <div class="univ-scroll">
-        <table class="univ-table">
-          <thead><tr><th>日付</th><th>グループ</th><th>時刻</th><th>対戦</th></tr></thead>
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
           <tbody>
-            <tr><td>12月1日（火）</td><td>1</td><td>11:00</td><td>予選[2]敗者（新潟医療福祉大／関西大） vs 予選[8]敗者（IPU・環太平洋大／日本体育大）</td></tr>
-            <tr><td>12月1日（火）</td><td>1</td><td>14:00</td><td>予選[3]敗者（東洋大／札幌大） vs <strong>八戸学院大学</strong>（東北第2）</td></tr>
-            <tr><td>12月1日（火）</td><td>2</td><td>11:00</td><td>予選[6]敗者（常葉大／大阪体育大） vs 予選[1]敗者（仙台大／早稲田大）</td></tr>
-            <tr><td>12月1日（火）</td><td>2</td><td>14:00</td><td>予選[4]敗者（中央大／鹿屋体育大） vs <strong>高知大学</strong>（四国第2）</td></tr>
-            <tr><td>12月1日（火）</td><td>3</td><td>11:00</td><td>予選[7]敗者（関西学院大／中京大） vs 予選[10]敗者（福岡大／筑波大）</td></tr>
-            <tr><td>12月1日（火）</td><td>3</td><td>14:00</td><td>予選[5]敗者（法政大／松本大） vs 予選[9]敗者（高松大／明治大）</td></tr>
-            <tr><td>12月2日（水）</td><td>1</td><td>11:00</td><td>予選[2]敗者（新潟医療福祉大／関西大） vs <strong>八戸学院大学</strong>（東北第2）</td></tr>
-            <tr><td>12月2日（水）</td><td>1</td><td>14:00</td><td>予選[3]敗者（東洋大／札幌大） vs 予選[8]敗者（IPU・環太平洋大／日本体育大）</td></tr>
-            <tr><td>12月2日（水）</td><td>2</td><td>11:00</td><td>予選[6]敗者（常葉大／大阪体育大） vs <strong>高知大学</strong>（四国第2）</td></tr>
-            <tr><td>12月2日（水）</td><td>2</td><td>14:00</td><td>予選[4]敗者（中央大／鹿屋体育大） vs 予選[1]敗者（仙台大／早稲田大）</td></tr>
-            <tr><td>12月2日（水）</td><td>3</td><td>11:00</td><td>予選[7]敗者（関西学院大／中京大） vs 予選[9]敗者（高松大／明治大）</td></tr>
-            <tr><td>12月2日（水）</td><td>3</td><td>14:00</td><td>予選[5]敗者（法政大／松本大） vs 予選[10]敗者（福岡大／筑波大）</td></tr>
-            <tr><td>12月3日（木）</td><td>1</td><td>11:00</td><td>予選[8]敗者（IPU・環太平洋大／日本体育大） vs <strong>八戸学院大学</strong>（東北第2）</td></tr>
-            <tr><td>12月3日（木）</td><td>1</td><td>14:00</td><td>予選[3]敗者（東洋大／札幌大） vs 予選[2]敗者（新潟医療福祉大／関西大）</td></tr>
-            <tr><td>12月3日（木）</td><td>2</td><td>11:00</td><td>予選[1]敗者（仙台大／早稲田大） vs <strong>高知大学</strong>（四国第2）</td></tr>
-            <tr><td>12月3日（木）</td><td>2</td><td>14:00</td><td>予選[4]敗者（中央大／鹿屋体育大） vs 予選[6]敗者（常葉大／大阪体育大）</td></tr>
-            <tr><td>12月3日（木）</td><td>3</td><td>11:00</td><td>予選[10]敗者（福岡大／筑波大） vs 予選[9]敗者（高松大／明治大）</td></tr>
-            <tr><td>12月3日（木）</td><td>3</td><td>14:00</td><td>予選[5]敗者（法政大／松本大） vs 予選[7]敗者（関西学院大／中京大）</td></tr>
+            <tr><td>–</td><td class="inc-team">日本大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team">日本文理大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[5]勝者（法政大／松本大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[6]勝者（常葉大／大阪体育大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
           </tbody>
         </table>
         </div>
-        </details>
+        <p class="inc-st-note">まだ試合がありません。</p>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[18]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[5]勝者（法政大／松本大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[6]勝者（常葉大／大阪体育大）</span></td><td class="inc-venue">本城陸上競技場（福岡）</td></tr>
+            <tr><td class="inc-no">[22]</td><td class="inc-date">12月2日（水）</td><td class="inc-home">日本大学<span class="inc-rep">関東第2</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away">日本文理大学<span class="inc-rep">九州第1</span></td><td class="inc-venue">本城陸上競技場（福岡）</td></tr>
+            <tr><td class="inc-no">[38]</td><td class="inc-date">12月4日（金）</td><td class="inc-home"><span class="inc-tbd">予選[5]勝者（法政大／松本大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">日本文理大学<span class="inc-rep">九州第1</span></td><td class="inc-venue">本城陸上競技場（福岡）</td></tr>
+            <tr><td class="inc-no">[42]</td><td class="inc-date">12月4日（金）</td><td class="inc-home">日本大学<span class="inc-rep">関東第2</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[6]勝者（常葉大／大阪体育大）</span></td><td class="inc-venue">本城陸上競技場（福岡）</td></tr>
+            <tr><td class="inc-no">[49]</td><td class="inc-date">12月6日（日）</td><td class="inc-home"><span class="inc-tbd">予選[6]勝者（常葉大／大阪体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">日本文理大学<span class="inc-rep">九州第1</span></td><td class="inc-venue">ジェイリーススタジアム（大分）</td></tr>
+            <tr><td class="inc-no">[53]</td><td class="inc-date">12月6日（日）</td><td class="inc-home">日本大学<span class="inc-rep">関東第2</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[5]勝者（法政大／松本大）</span></td><td class="inc-venue">ジェイリーススタジアム（大分）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h4 class="inc-group">Cグループ<span>会場：愛知</span></h4>
+        <div class="univ-scroll">
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
+          <tbody>
+            <tr><td>–</td><td class="inc-team">流通経済大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team">東海学園大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[4]勝者（中央大／鹿屋体育大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[8]勝者（IPU・環太平洋大／日本体育大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="inc-st-note">まだ試合がありません。</p>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[19]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[4]勝者（中央大／鹿屋体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[8]勝者（IPU・環太平洋大／日本体育大）</span></td><td class="inc-venue">光明寺公園球技場（愛知）</td></tr>
+            <tr><td class="inc-no">[23]</td><td class="inc-date">12月2日（水）</td><td class="inc-home">流通経済大学<span class="inc-rep">関東第3</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away">東海学園大学<span class="inc-rep">東海第1</span></td><td class="inc-venue">光明寺公園球技場（愛知）</td></tr>
+            <tr><td class="inc-no">[39]</td><td class="inc-date">12月4日（金）</td><td class="inc-home"><span class="inc-tbd">予選[4]勝者（中央大／鹿屋体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">東海学園大学<span class="inc-rep">東海第1</span></td><td class="inc-venue">光明寺公園球技場（愛知）</td></tr>
+            <tr><td class="inc-no">[43]</td><td class="inc-date">12月4日（金）</td><td class="inc-home">流通経済大学<span class="inc-rep">関東第3</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[8]勝者（IPU・環太平洋大／日本体育大）</span></td><td class="inc-venue">光明寺公園球技場（愛知）</td></tr>
+            <tr><td class="inc-no">[50]</td><td class="inc-date">12月6日（日）</td><td class="inc-home"><span class="inc-tbd">予選[8]勝者（IPU・環太平洋大／日本体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">東海学園大学<span class="inc-rep">東海第1</span></td><td class="inc-venue">名古屋学院大学 瀬戸キャンパス 第2グラウンド（愛知）</td></tr>
+            <tr><td class="inc-no">[54]</td><td class="inc-date">12月6日（日）</td><td class="inc-home">流通経済大学<span class="inc-rep">関東第3</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[4]勝者（中央大／鹿屋体育大）</span></td><td class="inc-venue">名古屋学院大学 瀬戸キャンパス 第2グラウンド（愛知）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h4 class="inc-group">Dグループ<span>会場：大阪</span></h4>
+        <div class="univ-scroll">
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
+          <tbody>
+            <tr><td>–</td><td class="inc-team">京都産業大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[1]勝者（仙台大／早稲田大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[3]勝者（東洋大／札幌大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[10]勝者（福岡大／筑波大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="inc-st-note">まだ試合がありません。</p>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[20]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[3]勝者（東洋大／札幌大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[1]勝者（仙台大／早稲田大）</span></td><td class="inc-venue">J-GREEN堺メインフィールド（大阪）</td></tr>
+            <tr><td class="inc-no">[24]</td><td class="inc-date">12月2日（水）</td><td class="inc-home">京都産業大学<span class="inc-rep">関西第1</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[10]勝者（福岡大／筑波大）</span></td><td class="inc-venue">J-GREEN堺メインフィールド（大阪）</td></tr>
+            <tr><td class="inc-no">[40]</td><td class="inc-date">12月4日（金）</td><td class="inc-home"><span class="inc-tbd">予選[3]勝者（東洋大／札幌大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[10]勝者（福岡大／筑波大）</span></td><td class="inc-venue">J-GREEN堺メインフィールド（大阪）</td></tr>
+            <tr><td class="inc-no">[44]</td><td class="inc-date">12月4日（金）</td><td class="inc-home">京都産業大学<span class="inc-rep">関西第1</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[1]勝者（仙台大／早稲田大）</span></td><td class="inc-venue">J-GREEN堺メインフィールド（大阪）</td></tr>
+            <tr><td class="inc-no">[51]</td><td class="inc-date">12月6日（日）</td><td class="inc-home"><span class="inc-tbd">予選[1]勝者（仙台大／早稲田大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[10]勝者（福岡大／筑波大）</span></td><td class="inc-venue">四條畷市総合公園・人工芝運動場（大阪）</td></tr>
+            <tr><td class="inc-no">[55]</td><td class="inc-date">12月6日（日）</td><td class="inc-home">京都産業大学<span class="inc-rep">関西第1</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[3]勝者（東洋大／札幌大）</span></td><td class="inc-venue">四條畷市総合公園・人工芝運動場（大阪）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 style="margin:26px 0 6px;">決勝ラウンド ノックアウトステージ（準々決勝〜決勝）</h3>
+        <p class="univ-note">準々決勝からは神奈川と東京で開催。90分で決着しなければ延長30分とPK戦。3位決定戦は行わず、準決勝で敗れた2チームが3位です。グループの順位が決まるまでは「A組1位」のような枠の名前で表示し、決まると大学名に変わります。勝ち上がったチームは赤枠・赤線で表示されます。</p>
+<p style="margin:0 0 8px;color:var(--text-light,#666);font-size:0.88em;">スマホでは表を左右にスクロールできます ／ <span style="color:var(--danger-color,#dc2626);font-weight:700;">赤線</span>＝勝ち上がり ／ <span style="border:1.5px solid var(--danger-color,#dc2626);border-radius:3px;padding:0 5px;">赤枠</span>＝勝ち残り(結果の入力に合わせて自動で更新されます)</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border-color,#e5e7eb);border-radius:10px;background:var(--bg-white,#fff);padding:8px 4px;"><svg viewBox="0 0 718 168" width="826" height="193" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="インカレ2026 決勝ラウンド トーナメント表" style="display:block;font-family:inherit;max-width:none;"><text x="218.0" y="34.0" text-anchor="middle" font-size="10" fill="var(--text-light,#666)" font-weight="600">準々決勝</text><text x="500.0" y="34.0" text-anchor="middle" font-size="10" fill="var(--text-light,#666)" font-weight="600">準々決勝</text><text x="276.0" y="34.0" text-anchor="middle" font-size="10" fill="var(--text-light,#666)" font-weight="600">準決勝</text><text x="442.0" y="34.0" text-anchor="middle" font-size="10" fill="var(--text-light,#666)" font-weight="600">準決勝</text><text x="359.0" y="34.0" text-anchor="middle" font-size="11" fill="var(--text-light,#666)" font-weight="700">決勝</text><text x="163.0" y="70.0" text-anchor="end" font-size="10.5" fill="var(--text-dark,#1a1a1a)">A組1位</text><text x="163.0" y="91.0" text-anchor="end" font-size="10.5" fill="var(--text-dark,#1a1a1a)">B組2位</text><line x1="168.0" y1="66.5" x2="226.0" y2="66.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="168.0" y1="87.5" x2="226.0" y2="87.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.0" y1="66.5" x2="226.0" y2="87.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><text x="163.0" y="112.0" text-anchor="end" font-size="10.5" fill="var(--text-dark,#1a1a1a)">D組1位</text><text x="163.0" y="133.0" text-anchor="end" font-size="10.5" fill="var(--text-dark,#1a1a1a)">C組2位</text><line x1="168.0" y1="108.5" x2="226.0" y2="108.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="168.0" y1="129.5" x2="226.0" y2="129.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.0" y1="108.5" x2="226.0" y2="129.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.0" y1="77.0" x2="284.0" y2="77.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="226.0" y1="119.0" x2="284.0" y2="119.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="284.0" y1="98.0" x2="349.0" y2="98.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="284.0" y1="77.0" x2="284.0" y2="119.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><text x="555.0" y="70.0" text-anchor="start" font-size="10.5" fill="var(--text-dark,#1a1a1a)">C組1位</text><text x="555.0" y="91.0" text-anchor="start" font-size="10.5" fill="var(--text-dark,#1a1a1a)">A組2位</text><line x1="550.0" y1="66.5" x2="492.0" y2="66.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="550.0" y1="87.5" x2="492.0" y2="87.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="492.0" y1="66.5" x2="492.0" y2="87.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><text x="555.0" y="112.0" text-anchor="start" font-size="10.5" fill="var(--text-dark,#1a1a1a)">B組1位</text><text x="555.0" y="133.0" text-anchor="start" font-size="10.5" fill="var(--text-dark,#1a1a1a)">D組2位</text><line x1="550.0" y1="108.5" x2="492.0" y2="108.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="550.0" y1="129.5" x2="492.0" y2="129.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="492.0" y1="108.5" x2="492.0" y2="129.5" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="492.0" y1="77.0" x2="434.0" y2="77.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="492.0" y1="119.0" x2="434.0" y2="119.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="434.0" y1="98.0" x2="369.0" y2="98.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="434.0" y1="77.0" x2="434.0" y2="119.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="349.0" y1="98.0" x2="349.0" y2="98.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="349.0" y1="98.0" x2="359.0" y2="98.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="369.0" y1="98.0" x2="369.0" y2="98.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/><line x1="359.0" y1="98.0" x2="369.0" y2="98.0" stroke="var(--border-color,#9ca3af)" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[56]</td><td class="inc-date">12月13日（日）</td><td class="inc-home"><span class="inc-tbd">Aグループ1位</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">Bグループ2位</span></td><td class="inc-venue">AGFフィールド（東京）</td></tr>
+            <tr><td class="inc-no">[57]</td><td class="inc-date">12月13日（日）</td><td class="inc-home"><span class="inc-tbd">Dグループ1位</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">Cグループ2位</span></td><td class="inc-venue">IIMURO GLASS 綾瀬市民スポーツセンター 陸上競技場（神奈川）</td></tr>
+            <tr><td class="inc-no">[58]</td><td class="inc-date">12月13日（日）</td><td class="inc-home"><span class="inc-tbd">Cグループ1位</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">Aグループ2位</span></td><td class="inc-venue">AGFフィールド（東京）</td></tr>
+            <tr><td class="inc-no">[59]</td><td class="inc-date">12月13日（日）</td><td class="inc-home"><span class="inc-tbd">Bグループ1位</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">Dグループ2位</span></td><td class="inc-venue">IIMURO GLASS 綾瀬市民スポーツセンター 陸上競技場（神奈川）</td></tr>
+            <tr><td class="inc-no">[60]</td><td class="inc-date">12月16日（水）</td><td class="inc-home"><span class="inc-tbd">[56]の勝者</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">[57]の勝者</span></td><td class="inc-venue">三ツ沢公園陸上競技場（神奈川）</td></tr>
+            <tr><td class="inc-no">[61]</td><td class="inc-date">12月16日（水）</td><td class="inc-home"><span class="inc-tbd">[58]の勝者</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">[59]の勝者</span></td><td class="inc-venue">三ツ沢公園陸上競技場（神奈川）</td></tr>
+            <tr><td class="inc-no">[62]</td><td class="inc-date">12月19日（土）</td><td class="inc-home"><span class="inc-tbd">[60]の勝者</span></td><td class="inc-score"><span class="inc-time">12:00</span></td><td class="inc-away"><span class="inc-tbd">[61]の勝者</span></td><td class="inc-venue">駒沢オリンピック公園総合運動場陸上競技場（東京）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 style="margin:26px 0 6px;">強化ラウンド　12月1日〜5日（千葉）</h3>
+        <p class="univ-note">予選ラウンドで敗れた10チームに、<strong>八戸学院大学</strong>（東北第2）と<strong>高知大学</strong>（四国第2）を加えた12チームが、3グループの総当たりを行います。各グループ1位と、2位のうち最も成績のよい1チーム（ワイルドカード）が準決勝（12月4日・フクダ電子フィールドA面/B面）へ進み、決勝は12月5日（土）12:00、稲毛海浜公園球技場です。準決勝の組み合わせは「1位相当 vs ワイルドカード」「3位相当 vs 2位相当」で、反則ポイントも使って決まるため、JUFAの発表後に載せます。強化ラウンドの優勝チームが出た地域には、翌年の予選ラウンドの出場枠が1つ増えます。</p>
+        <h4 class="inc-group">グループ1<span>会場：フクダ電子フィールドA面</span></h4>
+        <div class="univ-scroll">
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
+          <tbody>
+            <tr><td>–</td><td class="inc-team">八戸学院大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[2]敗者（新潟医療福祉大／関西大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[3]敗者（東洋大／札幌大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[8]敗者（IPU・環太平洋大／日本体育大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="inc-st-note">まだ試合がありません。</p>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[11]</td><td class="inc-date">12月1日（火）</td><td class="inc-home"><span class="inc-tbd">予選[2]敗者（新潟医療福祉大／関西大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[8]敗者（IPU・環太平洋大／日本体育大）</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+            <tr><td class="inc-no">[14]</td><td class="inc-date">12月1日（火）</td><td class="inc-home"><span class="inc-tbd">予選[3]敗者（東洋大／札幌大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away">八戸学院大学<span class="inc-rep">東北第2</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+            <tr><td class="inc-no">[25]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[2]敗者（新潟医療福祉大／関西大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">八戸学院大学<span class="inc-rep">東北第2</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+            <tr><td class="inc-no">[28]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[3]敗者（東洋大／札幌大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[8]敗者（IPU・環太平洋大／日本体育大）</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+            <tr><td class="inc-no">[31]</td><td class="inc-date">12月3日（木）</td><td class="inc-home"><span class="inc-tbd">予選[8]敗者（IPU・環太平洋大／日本体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">八戸学院大学<span class="inc-rep">東北第2</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+            <tr><td class="inc-no">[34]</td><td class="inc-date">12月3日（木）</td><td class="inc-home"><span class="inc-tbd">予選[3]敗者（東洋大／札幌大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[2]敗者（新潟医療福祉大／関西大）</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h4 class="inc-group">グループ2<span>会場：フクダ電子フィールドB面</span></h4>
+        <div class="univ-scroll">
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
+          <tbody>
+            <tr><td>–</td><td class="inc-team">高知大学</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[1]敗者（仙台大／早稲田大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[4]敗者（中央大／鹿屋体育大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[6]敗者（常葉大／大阪体育大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="inc-st-note">まだ試合がありません。</p>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[12]</td><td class="inc-date">12月1日（火）</td><td class="inc-home"><span class="inc-tbd">予選[6]敗者（常葉大／大阪体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[1]敗者（仙台大／早稲田大）</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+            <tr><td class="inc-no">[15]</td><td class="inc-date">12月1日（火）</td><td class="inc-home"><span class="inc-tbd">予選[4]敗者（中央大／鹿屋体育大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away">高知大学<span class="inc-rep">四国第2</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+            <tr><td class="inc-no">[26]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[6]敗者（常葉大／大阪体育大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">高知大学<span class="inc-rep">四国第2</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+            <tr><td class="inc-no">[29]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[4]敗者（中央大／鹿屋体育大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[1]敗者（仙台大／早稲田大）</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+            <tr><td class="inc-no">[32]</td><td class="inc-date">12月3日（木）</td><td class="inc-home"><span class="inc-tbd">予選[1]敗者（仙台大／早稲田大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away">高知大学<span class="inc-rep">四国第2</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+            <tr><td class="inc-no">[35]</td><td class="inc-date">12月3日（木）</td><td class="inc-home"><span class="inc-tbd">予選[4]敗者（中央大／鹿屋体育大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[6]敗者（常葉大／大阪体育大）</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h4 class="inc-group">グループ3<span>会場：フクダ電子スクエア</span></h4>
+        <div class="univ-scroll">
+        <table class="inc-table inc-standings">
+          <thead><tr><th>順位</th><th style="text-align:left;">大学</th><th>試合</th><th>勝</th><th>分</th><th>負</th><th>得点</th><th>失点</th><th>得失点差</th><th>勝点</th></tr></thead>
+          <tbody>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[5]敗者（法政大／松本大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[7]敗者（関西学院大／中京大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[9]敗者（高松大／明治大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>–</td><td class="inc-team"><span class="inc-tbd">予選[10]敗者（福岡大／筑波大）</span></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="inc-st-note">まだ試合がありません。</p>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[13]</td><td class="inc-date">12月1日（火）</td><td class="inc-home"><span class="inc-tbd">予選[7]敗者（関西学院大／中京大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[10]敗者（福岡大／筑波大）</span></td><td class="inc-venue">フクダ電子スクエア（千葉）</td></tr>
+            <tr><td class="inc-no">[16]</td><td class="inc-date">12月1日（火）</td><td class="inc-home"><span class="inc-tbd">予選[5]敗者（法政大／松本大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[9]敗者（高松大／明治大）</span></td><td class="inc-venue">フクダ電子スクエア（千葉）</td></tr>
+            <tr><td class="inc-no">[27]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[7]敗者（関西学院大／中京大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[9]敗者（高松大／明治大）</span></td><td class="inc-venue">フクダ電子スクエア（千葉）</td></tr>
+            <tr><td class="inc-no">[30]</td><td class="inc-date">12月2日（水）</td><td class="inc-home"><span class="inc-tbd">予選[5]敗者（法政大／松本大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[10]敗者（福岡大／筑波大）</span></td><td class="inc-venue">フクダ電子スクエア（千葉）</td></tr>
+            <tr><td class="inc-no">[33]</td><td class="inc-date">12月3日（木）</td><td class="inc-home"><span class="inc-tbd">予選[10]敗者（福岡大／筑波大）</span></td><td class="inc-score"><span class="inc-time">11:00</span></td><td class="inc-away"><span class="inc-tbd">予選[9]敗者（高松大／明治大）</span></td><td class="inc-venue">フクダ電子スクエア（千葉）</td></tr>
+            <tr><td class="inc-no">[36]</td><td class="inc-date">12月3日（木）</td><td class="inc-home"><span class="inc-tbd">予選[5]敗者（法政大／松本大）</span></td><td class="inc-score"><span class="inc-time">14:00</span></td><td class="inc-away"><span class="inc-tbd">予選[7]敗者（関西学院大／中京大）</span></td><td class="inc-venue">フクダ電子スクエア（千葉）</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h4 class="inc-group">準決勝・決勝</h4>
+        <div class="univ-scroll">
+        <table class="inc-table">
+          <thead><tr><th>No.</th><th>日付</th><th style="text-align:right;">チーム</th><th>スコア</th><th style="text-align:left;">チーム</th><th>会場</th></tr></thead>
+          <tbody>
+            <tr><td class="inc-no">[45]</td><td class="inc-date">12月4日（金）</td><td class="inc-home"><span class="inc-tbd">グループステージ1位相当</span></td><td class="inc-score"><span class="inc-time">12:00</span></td><td class="inc-away"><span class="inc-tbd">ワイルドカード</span></td><td class="inc-venue">フクダ電子フィールドA面（千葉）</td></tr>
+            <tr><td class="inc-no">[46]</td><td class="inc-date">12月4日（金）</td><td class="inc-home"><span class="inc-tbd">グループステージ3位相当</span></td><td class="inc-score"><span class="inc-time">12:00</span></td><td class="inc-away"><span class="inc-tbd">グループステージ2位相当</span></td><td class="inc-venue">フクダ電子フィールドB面（千葉）</td></tr>
+            <tr><td class="inc-no">[47]</td><td class="inc-date">12月5日（土）</td><td class="inc-home"><span class="inc-tbd">[45]の勝者</span></td><td class="inc-score"><span class="inc-time">12:00</span></td><td class="inc-away"><span class="inc-tbd">[46]の勝者</span></td><td class="inc-venue">稲毛海浜公園球技場（千葉）</td></tr>
+          </tbody>
+        </table>
+        </div>
+<!-- INCOLLE_ROUNDS_END -->
         <p class="univ-src">出典：<a href="https://www.jufa.jp/news/news.php?kn=1923" target="_blank" rel="noopener">JUFA公式「第75回 全日本大学サッカー選手権大会 大会概要および組み合わせ（10月28日時点）」</a>（添付の<a href="https://www.jufa.jp/_data/pdf/p_1792989321.pdf" target="_blank" rel="noopener">日程表</a>・<a href="https://www.jufa.jp/_data/pdf/p_1792383933.pdf" target="_blank" rel="noopener">開催要項（抜粋）</a>）<br>出場チーム：<a href="https://www.jufa.jp/news/news.php?kn=1931" target="_blank" rel="noopener">JUFA公式「出場チーム・組合せ決定のお知らせ」（2026年11月16日）</a>（添付の<a href="https://www.jufa.jp/_data/pdf/p_1794797987.pdf" target="_blank" rel="noopener">日程表</a>）／<a href="https://www.jfa.jp/match/alljapan_university_2026/" target="_blank" rel="noopener">JFA公式 大会ページ</a></p>
       </section>
 

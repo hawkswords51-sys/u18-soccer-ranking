@@ -550,6 +550,18 @@ jobs:
             echo "scraper/generate_pmc_page.py がまだありません。スキップ。"
           fi
 
+      # ★ インカレ（大学）ページを再生成（2026-11-25）
+      #   data/tournaments/incolle-2026.json にスコアを書いて push すれば、この工程で
+      #   順位表・トーナメント表(SVG)・対戦表が自動で作り直される（総理大臣杯と同じ導線）
+      - name: インカレページを再生成
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -f scraper/generate_incolle_page.py ]; then
+            python scraper/generate_incolle_page.py
+          else
+            echo "scraper/generate_incolle_page.py がまだありません。スキップ。"
+          fi
+
       # ★ 大学リーグ順位表ページ（/university/）を再生成
       #   data/university/leagues-2026.json を手で直して push した時に反映させる
       - name: 大学サッカーハブページを再生成
