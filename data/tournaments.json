@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-11-25T11:40:15",
+    "lastUpdated": "2026-11-25T11:51:17",
     "schemaVersion": 1,
     "source": "manual_yaml"
   },
@@ -2994,7 +2994,7 @@
               "rank": null
             },
             {
-              "team": "専大北上高校",
+              "team": "専修大学北上高校",
               "pref": "iwate",
               "result": "代表",
               "rank": null
@@ -3198,7 +3198,7 @@
               "rank": null
             },
             {
-              "team": "今治東中等教育学校",
+              "team": "県立今治東中等教育学校",
               "pref": "ehime",
               "result": "代表",
               "rank": null
@@ -3210,7 +3210,7 @@
               "rank": null
             },
             {
-              "team": "九州国際大学付属高等学校",
+              "team": "九州国際大付属高校",
               "pref": "fukuoka",
               "result": "代表",
               "rank": null
@@ -4351,7 +4351,8 @@
               "team": "磐田東高校",
               "pref": "shizuoka",
               "result": "代表",
-              "rank": null
+              "rank": null,
+              "withdrew": true
             },
             {
               "team": "中京大中京高校",
@@ -4697,7 +4698,8 @@
               "team": "中京高校",
               "pref": "gifu",
               "result": "代表",
-              "rank": null
+              "rank": null,
+              "withdrew": true
             },
             {
               "team": "三重高校",
