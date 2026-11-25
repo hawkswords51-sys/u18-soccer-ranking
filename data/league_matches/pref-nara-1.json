@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.narafa.or.jp/pages/26/",
   "sourceName": "奈良県サッカー協会 公式",
-  "lastUpdated": "2026-11-24",
+  "lastUpdated": "2026-11-25",
   "teams": [
     {
       "name": "奈良クラブユース",
@@ -51,121 +51,121 @@
       "rank": 1,
       "team": "奈良クラブユース",
       "points": 48,
-      "played": 16,
+      "played": 17,
       "won": 16,
       "drawn": 0,
-      "lost": 0,
+      "lost": 1,
       "gf": 73,
-      "ga": 4,
-      "gd": 69
+      "ga": 5,
+      "gd": 68
     },
     {
       "rank": 2,
       "team": "奈良育英",
-      "points": 42,
-      "played": 16,
-      "won": 14,
+      "points": 45,
+      "played": 17,
+      "won": 15,
       "drawn": 0,
       "lost": 2,
-      "gf": 54,
+      "gf": 55,
       "ga": 11,
-      "gd": 43
+      "gd": 44
     },
     {
       "rank": 3,
       "team": "畝傍",
-      "points": 34,
-      "played": 16,
-      "won": 11,
+      "points": 37,
+      "played": 17,
+      "won": 12,
       "drawn": 1,
       "lost": 4,
-      "gf": 35,
-      "ga": 18,
-      "gd": 17
+      "gf": 37,
+      "ga": 19,
+      "gd": 18
     },
     {
       "rank": 4,
       "team": "生駒",
       "points": 28,
-      "played": 16,
+      "played": 17,
       "won": 9,
       "drawn": 1,
-      "lost": 6,
-      "gf": 36,
-      "ga": 26,
-      "gd": 10
+      "lost": 7,
+      "gf": 38,
+      "ga": 29,
+      "gd": 9
     },
     {
       "rank": 5,
+      "team": "五條",
+      "points": 18,
+      "played": 17,
+      "won": 5,
+      "drawn": 3,
+      "lost": 9,
+      "gf": 26,
+      "ga": 46,
+      "gd": -20
+    },
+    {
+      "rank": 6,
+      "team": "香芝",
+      "points": 17,
+      "played": 17,
+      "won": 5,
+      "drawn": 2,
+      "lost": 10,
+      "gf": 15,
+      "ga": 35,
+      "gd": -20
+    },
+    {
+      "rank": 7,
       "team": "法隆寺国際",
       "points": 16,
-      "played": 16,
+      "played": 17,
       "won": 4,
       "drawn": 4,
-      "lost": 8,
+      "lost": 9,
+      "gf": 18,
+      "ga": 40,
+      "gd": -22
+    },
+    {
+      "rank": 8,
+      "team": "山辺",
+      "points": 14,
+      "played": 17,
+      "won": 4,
+      "drawn": 2,
+      "lost": 11,
       "gf": 17,
       "ga": 38,
       "gd": -21
     },
     {
-      "rank": 6,
-      "team": "五條",
-      "points": 15,
-      "played": 16,
-      "won": 4,
-      "drawn": 3,
-      "lost": 9,
-      "gf": 22,
-      "ga": 45,
-      "gd": -23
-    },
-    {
-      "rank": 7,
-      "team": "香芝",
-      "points": 14,
-      "played": 16,
-      "won": 4,
-      "drawn": 2,
-      "lost": 10,
-      "gf": 13,
-      "ga": 34,
-      "gd": -21
-    },
-    {
-      "rank": 7,
+      "rank": 8,
       "team": "橿原",
       "points": 14,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 5,
-      "lost": 8,
-      "gf": 16,
-      "ga": 40,
-      "gd": -24
-    },
-    {
-      "rank": 9,
-      "team": "山辺",
-      "points": 11,
-      "played": 16,
-      "won": 3,
-      "drawn": 2,
-      "lost": 11,
-      "gf": 14,
-      "ga": 36,
-      "gd": -22
+      "lost": 9,
+      "gf": 17,
+      "ga": 42,
+      "gd": -25
     },
     {
       "rank": 10,
       "team": "一条",
       "points": 7,
-      "played": 16,
+      "played": 17,
       "won": 1,
       "drawn": 4,
-      "lost": 11,
-      "gf": 17,
-      "ga": 45,
-      "gd": -28
+      "lost": 12,
+      "gf": 18,
+      "ga": 49,
+      "gd": -31
     }
   ],
   "matches": [
@@ -253,11 +253,11 @@
     {
       "md": 17,
       "date": "2026-11-21",
-      "home": "奈良育英",
-      "hs": null,
-      "as": null,
-      "away": "奈良クラブユース",
-      "status": "scheduled"
+      "home": "奈良クラブユース",
+      "hs": 0,
+      "as": 1,
+      "away": "奈良育英",
+      "status": "played"
     },
     {
       "md": 2,
@@ -478,11 +478,11 @@
     {
       "md": 17,
       "date": "2026-11-21",
-      "home": "生駒",
-      "hs": null,
-      "as": null,
-      "away": "山辺",
-      "status": "scheduled"
+      "home": "山辺",
+      "hs": 3,
+      "as": 2,
+      "away": "生駒",
+      "status": "played"
     },
     {
       "md": 2,
@@ -613,11 +613,11 @@
     {
       "md": 17,
       "date": "2026-11-21",
-      "home": "香芝",
-      "hs": null,
-      "as": null,
-      "away": "法隆寺国際",
-      "status": "scheduled"
+      "home": "法隆寺国際",
+      "hs": 1,
+      "as": 2,
+      "away": "香芝",
+      "status": "played"
     },
     {
       "md": 7,
@@ -676,11 +676,11 @@
     {
       "md": 17,
       "date": "2026-11-21",
-      "home": "橿原",
-      "hs": null,
-      "as": null,
-      "away": "畝傍",
-      "status": "scheduled"
+      "home": "畝傍",
+      "hs": 2,
+      "as": 1,
+      "away": "橿原",
+      "status": "played"
     },
     {
       "md": 18,
@@ -811,11 +811,11 @@
     {
       "md": 17,
       "date": "2026-11-21",
-      "home": "五條",
-      "hs": null,
-      "as": null,
-      "away": "一条",
-      "status": "scheduled"
+      "home": "一条",
+      "hs": 1,
+      "as": 4,
+      "away": "五條",
+      "status": "played"
     },
     {
       "md": 18,
@@ -985,71 +985,71 @@
       "team": "奈良クラブユース",
       "pts": 48,
       "gf": 73,
-      "ga": 4,
+      "ga": 5,
       "rank": 1
     },
     {
       "team": "山辺",
-      "pts": 11,
-      "gf": 14,
-      "ga": 36,
-      "rank": 9
+      "pts": 14,
+      "gf": 17,
+      "ga": 38,
+      "rank": 8
     },
     {
       "team": "奈良育英",
-      "pts": 42,
-      "gf": 54,
+      "pts": 45,
+      "gf": 55,
       "ga": 11,
       "rank": 2
     },
     {
       "team": "生駒",
       "pts": 28,
-      "gf": 36,
-      "ga": 26,
+      "gf": 38,
+      "ga": 29,
       "rank": 4
     },
     {
       "team": "一条",
       "pts": 7,
-      "gf": 17,
-      "ga": 45,
+      "gf": 18,
+      "ga": 49,
       "rank": 10
     },
     {
       "team": "畝傍",
-      "pts": 34,
-      "gf": 35,
-      "ga": 18,
+      "pts": 37,
+      "gf": 37,
+      "ga": 19,
       "rank": 3
     },
     {
       "team": "法隆寺国際",
       "pts": 16,
-      "gf": 17,
-      "ga": 38,
-      "rank": 5
-    },
-    {
-      "team": "香芝",
-      "pts": 14,
-      "gf": 13,
-      "ga": 34,
-      "rank": 7
-    },
-    {
-      "team": "橿原",
-      "pts": 14,
-      "gf": 16,
+      "gf": 18,
       "ga": 40,
       "rank": 7
     },
     {
-      "team": "五條",
-      "pts": 15,
-      "gf": 22,
-      "ga": 45,
+      "team": "香芝",
+      "pts": 17,
+      "gf": 15,
+      "ga": 35,
       "rank": 6
+    },
+    {
+      "team": "橿原",
+      "pts": 14,
+      "gf": 17,
+      "ga": 42,
+      "rank": 8
+    },
+    {
+      "team": "五條",
+      "pts": 18,
+      "gf": 26,
+      "ga": 46,
+      "rank": 5
     }
   ]
 }

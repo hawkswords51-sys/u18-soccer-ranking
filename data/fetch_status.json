@@ -160,7 +160,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 79,
+      "matchesPlayed": 80,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-25T13:47:57+09:00",
+  "updatedAt": "2026-11-25T14:17:00+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -458,7 +458,7 @@
     },
     "ibaraki": {
       "result": "ok",
-      "result_note": "消化76試合に更新（検算一致）",
+      "result_note": "消化81試合に更新（検算一致）",
       "result_date": "2026-11-25",
       "season": "2026",
       "complete": false,
@@ -758,39 +758,9 @@
       "result_streak": 2,
       "status": "warn",
       "last_updated": "2026-11-24",
-      "result": "verify_failed",
-      "result_note": "検算不一致 ['山辺: 勝点 公式14 ≠ 試合から11', '山辺: 得点 公式17 ≠ 試合から16'] …",
-      "result_date": "2026-11-25",
-      "verify_items": [
-        {
-          "team": "山辺",
-          "item": "山辺: 勝点 公式14 ≠ 試合から11"
-        },
-        {
-          "team": "山辺",
-          "item": "山辺: 得点 公式17 ≠ 試合から16"
-        },
-        {
-          "team": "山辺",
-          "item": "山辺: 失点 公式38 ≠ 試合から39"
-        },
-        {
-          "team": "山辺",
-          "item": "山辺: 順位 公式8 ≠ 試合から9"
-        },
-        {
-          "team": "生駒",
-          "item": "生駒: 勝点 公式28 ≠ 試合から31"
-        },
-        {
-          "team": "生駒",
-          "item": "生駒: 得点 公式38 ≠ 試合から39"
-        },
-        {
-          "team": "生駒",
-          "item": "生駒: 失点 公式29 ≠ 試合から28"
-        }
-      ]
+      "result": "ok",
+      "result_note": "消化85試合に更新（検算一致）",
+      "result_date": "2026-11-25"
     },
     "niigata": {
       "season": "2026",
@@ -915,7 +885,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化50試合に更新（検算一致）",
+      "result_note": "消化51試合に更新（検算一致）",
       "result_date": "2026-11-25"
     },
     "osaka-2b": {
@@ -1483,14 +1453,14 @@
       "since": ""
     },
     "prince_scorers:prince-shikoku": {
-      "result": "ok",
-      "note": "試合85・partial0・none0・スコア不一致0",
+      "result": "regressed",
+      "note": "試合84・partial0・none0・スコア不一致1・退行2",
       "date": "2026-11-25",
-      "since": ""
+      "since": "2026-11-25"
     },
     "prince_scorers:prince-kyushu-1": {
       "result": "ok",
-      "note": "試合79・partial0・none2・スコア不一致0",
+      "note": "試合80・partial0・none4・スコア不一致0",
       "date": "2026-11-25",
       "since": ""
     },
