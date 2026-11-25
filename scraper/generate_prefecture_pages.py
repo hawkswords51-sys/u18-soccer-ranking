@@ -1241,8 +1241,10 @@ def _load_national_results_by_pref(pref_id, years=5):
         for y in ys:
             for x in results[y].get("teams", []):
                 if x.get("pref") == pref_id:
+                    # [2026-11-25 Kei決定] 大会直前に辞退した学校は「代表（辞退）」
+                    res = "代表（辞退）" if x.get("withdrew") else x.get("result", "")
                     out.append((t_id, t_short, int(y), x.get("team", ""),
-                                x.get("result", ""), x.get("rank")))
+                                res, x.get("rank")))
     return out
 
 
@@ -1466,7 +1468,7 @@ def render_tournament_results(pref_id):
             for team in teams:
                 team_name = html_escape(team.get("team", ""))
                 result = team.get("result", "")
-                result_disp = _result_display(result)
+                result_disp = _result_display(result) + ("（辞退）" if team.get("withdrew") else "")
                 result_cls = _result_class(result)
                 html_parts.append(
                     f'            <li>'

@@ -223,6 +223,8 @@ def team_rows(meta: dict, base_dir) -> list:
             return "中止" if (tkey == "interhigh" and year == 2020) else ""
         for e in res[str(year)].get("teams") or []:
             if e.get("pref") == meta.get("prefecture") and norm(e.get("team", "")) in keys:
+                if e.get("withdrew"):          # [2026-11-25 Kei決定] 大会直前の辞退
+                    return "代表（辞退）"
                 return "出場" if e.get("result") == "代表" else e.get("result", "")
         return "—"
 

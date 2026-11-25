@@ -171,13 +171,17 @@ def normalize_team_entry(entry, teams_data: dict) -> dict | None:
         if not name:
             return None
         explicit_pref = entry.get("pref")
+        # [2026-11-25] withdrew: true … 大会直前に辞退（JFAの出場校一覧に【辞退】で載る・試合なし）。
+        #   result は「代表」のまま（出場校として数える）で、tournaments.json に withdrew: true を引き継ぐ。
+        extra = {"withdrew": True} if entry.get("withdrew") is True else {}
         # 明示的に pref が指定されている場合はそれを尊重し、teams.json の lookup を skip
         if explicit_pref:
-            return {"name": name, "pref": explicit_pref}
+            return {"name": name, "pref": explicit_pref, **extra}
         canonical, pref = find_team(name, teams_data)
         return {
             "name": canonical or name,
             "pref": pref,
+            **extra,
         }
     return None
 
@@ -296,12 +300,15 @@ def build() -> int:
                                 f"⚠ [{tid} {year_str}] 代表校 {norm['name']} の "
                                 f"都道府県不明"
                             )
-                        teams_list.append({
+                        row = {
                             "team":   norm["name"],
                             "pref":   norm["pref"],
                             "result": "代表",
                             "rank":   None,
-                        })
+                        }
+                        if norm.get("withdrew"):
+                            row["withdrew"] = True
+                        teams_list.append(row)
 
             if teams_list:
                 out["results"][year_str] = {"teams": teams_list}

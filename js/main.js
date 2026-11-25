@@ -272,6 +272,7 @@ class SoccerApp {
                         year:       year,
                         tournament: tournamentLabel,
                         result:     t.result,
+                        label:      t.withdrew ? '代表（辞退）' : t.result,   // 2026-11-25 大会直前の辞退
                         rank:       t.rank
                     });
                 }
@@ -305,7 +306,7 @@ class SoccerApp {
         // ツールチップ: 年度 (新→旧) でソート
         const sorted = [...results].sort((a, b) => Number(b.year) - Number(a.year));
         const tooltipText = sorted
-            .map(r => `${r.year} ${r.tournament} ${r.result}`)
+            .map(r => `${r.year} ${r.tournament} ${r.label || r.result}`)
             .join('\n');
 
         // 文字なしの小さな丸ドット (色だけで区別)
@@ -1088,7 +1089,7 @@ class SoccerApp {
                 return `
                     <span class="tournament-result-team">
                         <span class="tournament-result-team-name">${this.escapeHtml(t.team)}</span>
-                        <span class="tournament-result-badge ${badgeClass}">${this.escapeHtml(t.result)}</span>
+                        <span class="tournament-result-badge ${badgeClass}">${this.escapeHtml(t.withdrew ? '代表（辞退）' : t.result)}</span>
                     </span>
                 `;
             }).join('');

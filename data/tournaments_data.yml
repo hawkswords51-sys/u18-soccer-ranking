@@ -598,7 +598,7 @@ interhigh:
     都道府県代表:
       - { name: "旭川実業高校", pref: hokkaido }   # 北海道
       - { name: "青森山田高校", pref: aomori }   # 青森
-      - { name: "専大北上高校", pref: iwate }   # 岩手
+      - { name: "専修大学北上高校", pref: iwate }   # 岩手（2026-11-25 表記を teams.json に合わせる：旧 専大北上高校）
       - { name: "聖和学園高校", pref: miyagi }   # 宮城
       - { name: "明桜高校", pref: akita }   # 秋田
       - { name: "山形明正高校", pref: yamagata }   # 山形
@@ -637,9 +637,9 @@ interhigh:
       - { name: "西京高校", pref: yamaguchi }   # 山口
       - { name: "四国学院大学香川西高校", pref: kagawa }   # 香川
       - { name: "鳴門高校", pref: tokushima }   # 徳島
-      - { name: "今治東中等教育学校", pref: ehime }   # 愛媛
+      - { name: "県立今治東中等教育学校", pref: ehime }   # 愛媛（2026-11-25 表記を teams.json に合わせる）
       - { name: "高知中央高校", pref: kochi }   # 高知
-      - { name: "九州国際大学付属高等学校", pref: fukuoka }   # 福岡
+      - { name: "九州国際大付属高校", pref: fukuoka }   # 福岡（2026-11-25 表記を teams.json に合わせる）
       - { name: "佐賀東高校", pref: saga }   # 佐賀
       - { name: "国見高校", pref: nagasaki }   # 長崎
       - { name: "大分高校", pref: oita }   # 大分
@@ -857,7 +857,7 @@ interhigh:
       - "富山第一高校"               # 富山
       - "星稜高校"        # 石川
       - "丸岡高校"                 # 福井
-      - "磐田東高校"                # 静岡
+      - { name: "磐田東高校", pref: shizuoka, withdrew: true }   # 静岡（JFAの出場校一覧で【辞退】・試合なし。2026-11-25 Kei決定で「代表（辞退）」と出す）
       - { name: "中京大中京高校", pref: aichi }     # 愛知
       - "帝京大学可児高校"         # 岐阜
       - "四日市中央工業高校"     # 三重
@@ -920,7 +920,7 @@ interhigh:
       - "福井商業高校"                # 福井②
       - "静岡学園高校"             # 静岡
       - { name: "中京大中京高校", pref: aichi }     # 愛知
-      - "中京高校"              # 岐阜
+      - { name: "中京高校", pref: gifu, withdrew: true }   # 岐阜（JFAの出場校一覧で【辞退】・試合なし。2026-11-25 Kei決定で「代表（辞退）」と出す）
       - "三重高校"              # 三重
       - "比叡山高校"                # 滋賀
       - "東山高校"                  # 京都
