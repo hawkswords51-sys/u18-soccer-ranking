@@ -310,6 +310,22 @@ def build() -> int:
                             row["withdrew"] = True
                         teams_list.append(row)
 
+            # [2026-11-25] 出場（結果待ち）… 結果がまだ出ていない大会の出場チーム（クラブユース2026など）。
+            #   results には入れない（県ページ・JS は今までどおり結果だけを見る）。
+            #   大会ごとの "pending" に分けて置き、年度別成績の表（team_history.py）だけが読む。
+            pend = year_data.get("出場（結果待ち）") or []
+            if isinstance(pend, list) and pend:
+                plist = []
+                for entry in pend:
+                    norm = normalize_team_entry(entry, teams_data)
+                    if norm is None:
+                        continue
+                    if norm["pref"] is None:
+                        unknown_pref.append((tid, year_str, norm["name"]))
+                        warnings.append(f"⚠ [{tid} {year_str}] 出場（結果待ち） {norm['name']} の都道府県不明")
+                    plist.append({"team": norm["name"], "pref": norm["pref"]})
+                out.setdefault("pending", {})[year_str] = plist
+
             if teams_list:
                 out["results"][year_str] = {"teams": teams_list}
 

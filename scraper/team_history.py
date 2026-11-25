@@ -30,6 +30,15 @@ FIRST_YEAR = 2016
 
 _SECOND_RE = re.compile(r"\s*(2nd|２nd|セカンド|B|Ｂ)$")
 _HS_SUFFIXES = ("高等学校", "高等部", "高校", "高")
+
+# [2026-11-25 Kei決定] 結果がまだ出ていない年の全国大会（選手権2026・クラブユース2026）
+#   出場が決まっているチームは「出場（12月）」。結果を tournaments_data.yml に入れれば自動で結果に変わる。
+PENDING_LABEL = "出場（12月）"
+#   表の下に足す1行（その大会に結果待ちの年が表に出ているときだけ）
+PENDING_NOTE = {
+    "all_japan_highschool": "{y}年の選手権（12月28日〜1月11日）は、大会の後に結果を入れます。",
+    "club_youth_u18": "{y}年のクラブユース選手権（12月23日〜29日）は、大会の後に結果を入れます。",
+}
 _GROUP_DIVS = None  # 2020年のグループ分け（A・B／Ａパート・Ｂパート）＝「1部・2部」以外の div
 
 
@@ -129,6 +138,16 @@ def _second_parents(base_dir: str) -> dict:
     return out
 
 
+def _pending_years(base_dir: str, tkey: str) -> set:
+    """結果待ちの年（pending がある年・優勝〜ベスト8が1校も入っていない年）"""
+    t = (_load(base_dir)[1].get(tkey) or {})
+    ys = {int(y) for y in (t.get("pending") or {})}
+    for y, yd in (t.get("results") or {}).items():
+        if not any(e.get("rank") for e in yd.get("teams") or []):
+            ys.add(int(y))
+    return ys
+
+
 # ---------------------------------------------------------------------------
 # 1チーム分の行を作る
 # ---------------------------------------------------------------------------
@@ -217,14 +236,27 @@ def team_rows(meta: dict, base_dir) -> list:
     club = is_club(meta.get("name", ""))
     cols = ("club_youth_u18", "j_youth_cup") if club else ("interhigh", "all_japan_highschool")
 
+    def mine(e):
+        return e.get("pref") == meta.get("prefecture") and norm(e.get("team", "")) in keys
+
     def nat(tkey, year):
-        res = (tourn.get(tkey) or {}).get("results") or {}
+        t = tourn.get(tkey) or {}
+        res = t.get("results") or {}
         if str(year) not in res:
+            # [2026-11-25 Kei決定] 結果がまだ出ていない大会（クラブユース2026）は出場チームだけ「出場（12月）」
+            pend = (t.get("pending") or {}).get(str(year))
+            if pend is not None:
+                return PENDING_LABEL if any(mine(e) for e in pend) else "—"
             return "中止" if (tkey == "interhigh" and year == 2020) else ""
-        for e in res[str(year)].get("teams") or []:
-            if e.get("pref") == meta.get("prefecture") and norm(e.get("team", "")) in keys:
+        teams_y = res[str(year)].get("teams") or []
+        # [2026-11-25 Kei決定] 優勝〜ベスト8がまだ1校も入っていない年（選手権2026）は、代表校を「出場（12月）」
+        waiting = not any(e.get("rank") for e in teams_y)
+        for e in teams_y:
+            if mine(e):
                 if e.get("withdrew"):          # [2026-11-25 Kei決定] 大会直前の辞退
                     return "代表（辞退）"
+                if waiting and e.get("result") == "代表":
+                    return PENDING_LABEL
                 return "出場" if e.get("result") == "代表" else e.get("result", "")
         return "—"
 
@@ -261,6 +293,10 @@ def render_history_html(meta: dict, base_dir) -> str:
                      "空欄は当サイトに記録の無い年です（Jユースカップは2024年から）。")
     else:
         notes.append("インターハイ・選手権の「—」は出場していない年です。")
+    tkey = "club_youth_u18" if club else "all_japan_highschool"
+    waiting = _pending_years(str(base_dir), tkey)
+    for y in sorted({r[0] for r in rows if r[0] in waiting}, reverse=True):
+        notes.append(PENDING_NOTE[tkey].format(y=y))
     notes.append("2020年はコロナ禍のため各リーグが特別方式で、インターハイは中止でした。")
     notes.append("出典：JFA公式の最終順位表・大会記録。リーグの順位は2016〜2025年（2020年を除く）をJFA公式と照合済み。")
     return (
