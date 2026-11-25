@@ -14,6 +14,13 @@
   python scraper/build_season_archive.py --year 2026                 # 62枚を書く
   python scraper/build_season_archive.py --year 2026 --freeze-data   # 上に加えて data/archive/2026/ を作る
   --force を付けたときだけ、既にある保存ページを上書きする（保存ページは一度作ったら変えない）。
+
+  [2026-11-25] 12月の凍結を2段で行う（Kei 決定）ための絞り込み --only
+  python scraper/build_season_archive.py --year 2026 --only leagues --report   # リーグ15枚だけを一覧
+  python scraper/build_season_archive.py --year 2026 --only leagues            # 第1段：リーグ15枚だけを書く
+  python scraper/build_season_archive.py --year 2026 --only prefs --freeze-data  # 第2段：県47枚＋データの凍結
+  「既にあるか」の確認も、絞り込んだ分だけで行う（第2段で県を作るとき、第1段のリーグの保存ページには触れない）。
+  --only を付けないときは今までどおり62枚。
 """
 import argparse
 import html
@@ -191,12 +198,17 @@ def main() -> int:
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--freeze-data", action="store_true")
+    ap.add_argument("--only", choices=("leagues", "prefs"),
+                    help="leagues＝リーグ15枚だけ／prefs＝県47枚だけ（付けなければ全部）")
     a = ap.parse_args()
+    kind = {"leagues": "league", "prefs": "pref"}.get(a.only)
     now = datetime.now(JST)
     saved_on = f"{now.year}年{now.month}月{now.day}日"
 
     plan, errors = [], []
     for tg in targets():
+        if kind and tg["kind"] != kind:
+            continue
         try:
             ex = extract(ROOT / tg["dir"] / "index.html")
         except (ExtractError, OSError) as e:
