@@ -43,6 +43,8 @@ regions:
     name: 東北
     dest: prince-tohoku
     dest_label: プリンス東北
+    # 2026-11-24 参考の注記（出典: JFA「プリンスリーグ2025東北 プレーオフ」 https://www.jfa.jp/match_47fa/102_tohoku/2025_u18prince_playoff/thfa/schedule.html ）。2026年の要項が出たら差し替える
+    note: "※参考（昨年＝2025年の方式。2026年の要項・組み合わせは未発表）：12月19〜23日に宮城県松島で、各県2チーム・計12チームのトーナメント。各県1位のうち4チームは2回戦から出場。参入決定戦の勝者2チームが昇格し、昨年は3枠だったため決定戦の敗者どうしの勝者も昇格（東北学院・帝京安積・盛岡商業）。今年の枠の数はプレミア参入戦の結果で変わります。"
     prefs: {aomori: 青森, iwate: 岩手, miyagi: 宮城, akita: 秋田, yamagata: 山形, fukushima: 福島}
   - key: kanto
     name: 関東
@@ -68,6 +70,8 @@ regions:
     name: 中国
     dest: prince-chugoku
     dest_label: プリンス中国
+    # 2026-11-24 参考の注記（出典: Kei 提供の「プリンスリーグ2024中国プレーオフ」組み合わせ表の画像）。2026年の要項が出たら差し替える
+    note: "※参考（2024年の方式。2026年の要項・組み合わせは未発表）：12月14・15日に広島で、8チーム（広島・島根・岡山から2チーム、鳥取・山口から1チーム）のトーナメント。勝ち上がった2チームが昇格。"
     prefs: {hiroshima: 広島, shimane: 島根, okayama: 岡山, tottori: 鳥取, yamaguchi: 山口}
   - key: shikoku
     name: 四国
