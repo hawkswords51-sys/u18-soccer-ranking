@@ -881,14 +881,23 @@ def read_yamagata(cfg: dict) -> tuple[dict, list[dict]]:
         times = [w for w in block if re.fullmatch(r"\d{1,2}(:\d{2}|/\d{1,2})", w["text"]) and w["x0"] > 80]
         col_date = {}
         if len(md_dates) > 1:
-            heads = [w for w in ws if w["x0"] > 80 and top - 15 <= w["top"] < top
-                     and re.match(r"^\d{1,2}/\d{1,2}\D", w["text"])]
-            for t in times:
-                hit = [w for w in heads if t["x0"] <= w["x0"] < t["x0"] + 150]
+            # 列の上の「日付つき会場名」で列ごとの日付を決める。表記は版によって2通りある：
+            #   先頭に日付「11/21第２運動広場」（2026-10-30版）／末尾の括弧に日付「第２運動広場（11/28）」（2026-11-26版）。
+            # 会場名は複数列にまたがる結合セルに中央寄せで書かれることがある（2026-11-26版の第18節は
+            #   第2・3列が同じ「第２運動広場（11/21）」）ので、語の範囲（x0〜x1）と重なる列すべてに割り当てる。
+            heads = []
+            for w in ws:
+                if w["x0"] > 80 and top - 15 <= w["top"] < top:
+                    dm = re.search(r"(\d{1,2})/(\d{1,2})", w["text"])
+                    if dm:
+                        heads.append((w, f"{SEASON_YEAR}-{int(dm.group(1)):02d}-{int(dm.group(2)):02d}"))
+            col_x = sorted({round(t["x0"]) for t in times})
+            for i, cx in enumerate(col_x):
+                cend = col_x[i + 1] if i + 1 < len(col_x) else cx + 150
+                hit = {d for w, d in heads if w["x0"] < cend and cx < w["x1"]}
                 if len(hit) != 1:
-                    raise RuntimeError(f"第{md}節は{md_dates}に分かれているが、{t['x0']:.0f}の列の日付つき会場名が{len(hit)}個")
-                mo, da = re.match(r"(\d{1,2})/(\d{1,2})", hit[0]["text"]).groups()
-                col_date[round(t["x0"])] = f"{SEASON_YEAR}-{int(mo):02d}-{int(da):02d}"
+                    raise RuntimeError(f"第{md}節は{md_dates}に分かれているが、{cx}の列の日付つき会場名が{len(hit)}個")
+                col_date[cx] = hit.pop()
             if not set(col_date.values()) <= set(md_dates):
                 raise RuntimeError(f"第{md}節の会場名の日付{sorted(set(col_date.values()))}が節の日付{md_dates}と合わない")
         date = md_dates[0]
