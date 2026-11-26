@@ -124,6 +124,11 @@ TEMP_EXCEPTIONS: dict[str, str] = {
               "戦績表の側が 1-3 に直った場合は検算不一致で据え置きになって知らせる"),
     "aomori": ("2026-09-28 追加：星取表0924の合計欄で ヴァンラーレ八戸U-18 の失点が15（マスの合計と日程PDFは16）。"
                "KNOWN_SOURCE_ERRORS で差を明示 → 外す条件＝協会が星取表の合計欄を直したら（直ると read_aomori が止まって知らせる）"),
+    "wakayama": ("2026-11-26 追加：2026-11-24版PDFの順位表で 新宮 の失点欄だけが「##」（Excelの桁あふれ表示が"
+                 "そのままPDF化されたもの）。得点11・得失差−119から失点は130と一意に決まり、日程表・星取表の"
+                 "全試合集計（第18節 桐蔭 9-0 新宮 まで）でも130。新宮は全日程終了で今後も不変。"
+                 "「##」のときだけ WAKAYAMA_HOSHITORI_FIXES で名指し補正する → 外す条件＝協会がPDFの失点を130に"
+                 "直したら（直ると read_wakayama が止まって知らせる）"),
 }
 
 
@@ -4143,6 +4148,19 @@ def read_osaka(cfg: dict) -> tuple[dict, list[dict]]:
 _WAKAYAMA_LIST = "https://www.wfa.or.jp/pages/350/"
 _WAKAYAMA_CELL_RE = re.compile(r"(\d+)([○●△])(\d+)")
 
+# ⚠️ 一時的な名指し補正（台帳は TEMP_EXCEPTIONS["wakayama"]）。
+#    2026-11-24版PDFの順位表で、新宮の「失点」欄だけが Excel の桁あふれ表示「##」のまま
+#    PDF化されている（協会側の表計算ファイルの列幅不足が焼き込まれたもの）。
+#    失点は 得点11 − 得失差(−119) = 130 で一意に決まり、日程表・星取表の全試合集計
+#    （第18節 桐蔭 9-0 新宮 を含む）でも 130。新宮は全日程終了のため今後も変わらない。
+#    → 失点欄が「##」のときだけ、壊れていない4項目（勝点・得点・得失差・順位）が
+#      想定どおりで、得点−補正失点＝得失差 のときだけ置き換える。他の壊れ方は従来どおり止まる。
+WAKAYAMA_HOSHITORI_FIXES = {
+    "新宮": {"ga": 130,
+             "expect": [5, 11, -119, 10],   # 勝点・得点・得失差・順位（壊れていない側の照合用）
+             "reason": "2026-11-24版PDFの順位表で失点だけが「##」。得点11・得失差−119から失点130"},
+}
+
 
 def read_wakayama(cfg: dict) -> tuple[dict, list[dict]]:
     from urllib.parse import urljoin
@@ -4198,6 +4216,18 @@ def read_wakayama(cfg: dict) -> tuple[dict, list[dict]]:
         if me != teams[k] or nfkc(first[1]) != "前期" or nfkc(second[1]) != "後期" or nfkc(second[0]):
             raise RuntimeError(f"星取表の{k + 1}行目が想定と違う（{me}／{nfkc(first[1])}・{nfkc(second[1])}）")
         v = [nfkc(x) for x in first[-5:]]
+        fix = WAKAYAMA_HOSHITORI_FIXES.get(me)
+        if fix and v[2] == "##":
+            # ⚠️ 名指し補正（TEMP_EXCEPTIONS["wakayama"]）。前提が1つでも崩れたら従来どおり止まる。
+            if [v[0], v[1], v[3], v[4]] != [str(x) for x in fix["expect"]] \
+                    or int(v[1]) - fix["ga"] != int(v[3]):
+                raise RuntimeError(f"順位表 {me} の「##」補正の前提が崩れている: {v}")
+            v[2] = str(fix["ga"])
+            print(f"       ⚠️ 和歌山 {me}: 順位表の失点「##」を {fix['ga']} に補正（{fix['reason']}）")
+        elif fix and re.fullmatch(r"[+-]?\d+", v[2]) and int(v[2]) == fix["ga"]:
+            # 協会がPDFを直した合図。補正が不要になったら台帳ごと外すこと（兵庫・奈良と同じ作法）。
+            raise RuntimeError(f"順位表 {me} の失点が数値（{v[2]}）に戻っている。"
+                               f"WAKAYAMA_HOSHITORI_FIXES と TEMP_EXCEPTIONS['wakayama'] を外すこと")
         if not all(re.fullmatch(r"[+-]?\d+", x) for x in v):
             raise RuntimeError(f"順位表 {me} の数値が読めない: {v}")
         pts, gf, ga, gd, rank = (int(x) for x in v)
