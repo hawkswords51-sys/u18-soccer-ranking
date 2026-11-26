@@ -78,6 +78,8 @@ regions:
     name: 九州
     dest: prince-kyushu-2
     dest_label: プリンス九州2部
+    # 2026-11-24 出典: プリンスリーグ九州 公式「大会概要」 https://www.pl-kyushu.com/abstract （9条③・⑫）
+    note: "参入決定戦の上位2チームが来季のプリンス九州2部へ（プリンスリーグ九州 実施要項9条）。セカンドチームは、ファーストチームがプリンス九州2部に残る・上のリーグから降格する・FA1部へ降格する場合は出場できない（同9条⑫）。日程・組み合わせは未発表。"
     prefs: {fukuoka: 福岡, saga: 佐賀, nagasaki: 長崎, kumamoto: 熊本, oita: 大分, miyazaki: 宮崎, kagoshima: 鹿児島, okinawa: 沖縄}
 
 # 来季のリーグを見積もるときの、地域ごとのリーグの段（上から）。最後の pref は「県リーグ」。

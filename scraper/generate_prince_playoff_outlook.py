@@ -161,6 +161,17 @@ class World:
         hit = any(self._pts_rem(slug, z)[0] + 3 * self._pts_rem(slug, z)[1] >= p for z in zr if z <= n)
         return (min(zr), p - self._pts_rem(slug, min(zr))[0]) if hit else None
 
+    def promo_clinched(self, team: str) -> bool:
+        """昇格圏にいて、圏外のどのチームも今の勝点に届かない＝昇格確定（2026-11-26 九州・佐賀東で新設）。
+        can_rise と同じ「勝点＋3×残り試合」で見る。同勝点に届くだけでも「まだ」とする（順位の決め方は見ない）。"""
+        slug, rank, n = self.upper[team]
+        zr = self.zone_ranks(slug, "promotion")
+        if not zr or rank not in zr:
+            return False
+        p, _, _ = self._pts_rem(slug, rank)
+        return not any(self._pts_rem(slug, k)[0] + 3 * self._pts_rem(slug, k)[1] >= p
+                       for k in range(1, n + 1) if k not in zr)
+
     def conditions(self, up: str, now: str, nxt: str, ladder: list[str]) -> list[str]:
         """繰り下げ（nxt＝行き先）だが、上のチームが行き先から出ていく可能性があるときの「ただし…」の文。"""
         out = []
@@ -240,7 +251,12 @@ class World:
             elif nxt == "pref":
                 notes.append(f"{NOTE_PREFDOWN}（{up}は{why}）")
             elif now == dest and nxt != dest:      # ここに来るのは昇格だけ（降格の行き先 pref は上で処理済み）
-                notes.append(f"{NOTE_PROMO}（{up}は{why}）")
+                if self.promo_clinched(up):        # 昇格が決まったら「このまま終わった場合」を付けない
+                    _s, _r, _n = self.upper[up]
+                    notes.append(f"※Aチームが{LEAGUE_LABEL[nxt]}への昇格を決めたため出場可"
+                                 f"（{up}は{LEAGUE_LABEL.get(_s, _s)}{_r}位＝昇格決定）")
+                else:
+                    notes.append(f"{NOTE_PROMO}（{up}は{why}）")
             elif nxt == now and now in ladder and ladder.index(now) + 1 < len(ladder) \
                     and ladder[ladder.index(now) + 1] == dest:
                 c = self.can_fall(up)              # 今は上のリーグに残る見込みだが、落ちると行き先と同じリーグ
