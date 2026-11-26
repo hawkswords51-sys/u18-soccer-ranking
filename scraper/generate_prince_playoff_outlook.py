@@ -377,6 +377,20 @@ def region_html(w: World, region: dict, outs: dict) -> str:
     #     同点で pk が無い・pk も同点 → NeedsCheck で止まる（勝者を勝手に決めない）。
     #   その地域の県が全部 confirmed なら、見出しを「組み合わせ・結果」、説明文を「公式の発表によります」にする。
     br = w.conf.get(f'{region["key"]}_bracket')
+    #   [2026-11-27 東北] games が全部 text（チームを差し込まない＝組合せの抽選前の日程だけ）なら、
+    #   県の暫定表を残したまま、その下に日程・会場の表を足す（schedule_only）。
+    if br and all(g.get("text") and not g.get("from") and not g.get("result") for g in br["games"]):
+        rows = "".join(pref_row(outs[p], nm) for p, nm in region["prefs"].items())
+        srows = "".join(f'<tr><td>{escape(g["game"])}</td><td>{escape(g["when"])}<br>'
+                        f'<span class="ppo-sub">{escape(g["venue"])}</span></td><td>{escape(g["text"])}</td></tr>'
+                        for g in br["games"])
+        return (head + note + '<div class="ppo-scroll"><table class="ih-history-table ppo-table"><thead><tr><th>県</th>'
+                '<th>暫定出場チーム</th></tr></thead><tbody>' + rows + "</tbody></table></div>"
+                + f'<p class="ih-note">日程・会場は <a href="{escape(br["source_url"])}" target="_blank" rel="noopener">'
+                f'{escape(br["source_label"])}</a> の発表（{escape(br["venue_note"])}）。'
+                + (escape(br["note"]) if br.get("note") else "") + '</p>'
+                '<div class="ppo-scroll"><table class="ih-history-table ppo-table ppo-bracket"><thead><tr><th>試合</th><th>日時・会場</th>'
+                '<th>組み合わせ（数字は抽選の枠）</th></tr></thead><tbody>' + srows + "</tbody></table></div>")
     if br:
         style = br.get("ref_style")
         rep = style in ("代表", "第◯代表")
