@@ -73,7 +73,6 @@ regions:
     name: 四国
     dest: prince-shikoku
     dest_label: プリンス四国
-    note: "※昨年と同じ方式であれば（四国は要項に各県の枠が書かれていないため、各県1チームとしています）"
     prefs: {tokushima: 徳島, kagawa: 香川, ehime: 愛媛, kochi: 高知}
   - key: kyushu
     name: 九州
@@ -180,6 +179,23 @@ tokai_bracket:
     - {game: "⑤", when: "12/13(日) 10:30", venue: "CSアセット港サッカー場", text: "①の勝者 vs ②の勝者（勝者が昇格）", from: ["①", "②"], promote: true}
     - {game: "⑥", when: "12/13(日) 13:30", venue: "CSアセット港サッカー場", text: "③の勝者 vs ④の勝者（勝者が昇格）", from: ["③", "④"], promote: true}
     - {game: "⑦", when: "12/20(日) 10:30", venue: "CSアセット港サッカー場", text: "3位決定戦：⑤の敗者 vs ⑥の敗者（昇格が3チームになる場合あり・同じ県どうしなら行わない）"}
+
+# 四国の公式組み合わせ（2026-11-27 Kei 確認・Cowork／Claude Code が要項と試合ページで確認）
+#   出典: プリンスリーグ四国 公式「大会要項」 https://pl-shikoku.com/?page_id=11 （19項 参入戦・15項(5) 次年度参加資格）
+#         試合ページ 参入戦① https://pl-shikoku.com/?p=8282 ／参入戦② https://pl-shikoku.com/?p=8286
+#   会場は要項19項(5)の1回戦の会場（試合ページには会場の記載なし）。90分・同点なら延長20分・PK
+#   ⚠️ 予備日の試合の対戦は要項に無い。「1回戦の敗者どうし」と推測で書かない。
+shikoku_bracket:
+  ref_style: "代表"
+  source_url: "https://pl-shikoku.com/?page_id=11"
+  source_label: "プリンスリーグ四国 公式"
+  promote_label: "昇格決定"     # 四国は1部制
+  venue_note: "12月19日（土）・愛媛県総合運動公園球技場（予備日 12月20日（日）・伊予市しおさい公園）"
+  note: "90分で、同点なら延長20分、なお決まらなければPK方式。1回戦に勝った2チームがプリンス四国へ自動昇格（要項19項）。"
+  games:
+    - {game: "参入戦①", when: "12/19(土) 10:30", venue: "愛媛県総合運動公園球技場", home: [ehime, 1], away: [kagawa, 1], promote: true}
+    - {game: "参入戦②", when: "12/19(土) 13:30", venue: "愛媛県総合運動公園球技場", home: [tokushima, 1], away: [kochi, 1], promote: true}
+    - {game: "予備日", when: "12/20(日)", venue: "伊予市しおさい公園", text: "四国代表（愛媛FC U-18）がプレミアプレーオフで昇格した場合のみ、昇格チームを決める試合を実施（昇格は3チームに）"}
 
 # 下のチームの対応表（県1部の表記 → 上のチーム。プレミア／プリンスの表記と完全一致）
 second_teams:
