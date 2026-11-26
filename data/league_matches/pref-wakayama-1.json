@@ -3,7 +3,7 @@
   "season": "2026",
   "source": "https://www.wfa.or.jp/pages/350/",
   "sourceName": "和歌山県サッカー協会 公式",
-  "lastUpdated": "2026-11-24",
+  "lastUpdated": "2026-11-26",
   "teams": [
     {
       "name": "近大和歌山",
@@ -61,30 +61,42 @@
     },
     {
       "rank": 2,
-      "team": "和歌山北",
-      "points": 41,
-      "played": 17,
-      "won": 13,
-      "drawn": 2,
-      "lost": 2,
-      "gf": 59,
-      "ga": 9,
-      "gd": 50
+      "team": "初芝橋本",
+      "points": 43,
+      "played": 18,
+      "won": 14,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 80,
+      "ga": 7,
+      "gd": 73
     },
     {
       "rank": 3,
-      "team": "初芝橋本",
-      "points": 40,
-      "played": 17,
+      "team": "和歌山北",
+      "points": 41,
+      "played": 18,
       "won": 13,
-      "drawn": 1,
+      "drawn": 2,
       "lost": 3,
-      "gf": 78,
-      "ga": 7,
-      "gd": 71
+      "gf": 59,
+      "ga": 11,
+      "gd": 48
     },
     {
       "rank": 4,
+      "team": "桐蔭",
+      "points": 33,
+      "played": 18,
+      "won": 11,
+      "drawn": 0,
+      "lost": 7,
+      "gf": 74,
+      "ga": 25,
+      "gd": 49
+    },
+    {
+      "rank": 5,
       "team": "近大新宮",
       "points": 31,
       "played": 17,
@@ -94,18 +106,6 @@
       "gf": 43,
       "ga": 33,
       "gd": 10
-    },
-    {
-      "rank": 5,
-      "team": "桐蔭",
-      "points": 30,
-      "played": 17,
-      "won": 10,
-      "drawn": 0,
-      "lost": 7,
-      "gf": 65,
-      "ga": 25,
-      "gd": 40
     },
     {
       "rank": 6,
@@ -122,26 +122,26 @@
     {
       "rank": 7,
       "team": "海南",
-      "points": 17,
-      "played": 17,
-      "won": 5,
+      "points": 20,
+      "played": 18,
+      "won": 6,
       "drawn": 2,
       "lost": 10,
-      "gf": 22,
+      "gf": 31,
       "ga": 36,
-      "gd": -14
+      "gd": -5
     },
     {
       "rank": 8,
       "team": "星林",
       "points": 11,
-      "played": 17,
+      "played": 18,
       "won": 3,
       "drawn": 2,
-      "lost": 12,
+      "lost": 13,
       "gf": 11,
-      "ga": 62,
-      "gd": -51
+      "ga": 71,
+      "gd": -60
     },
     {
       "rank": 9,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "新宮",
       "points": 5,
-      "played": 17,
+      "played": 18,
       "won": 1,
       "drawn": 2,
-      "lost": 14,
+      "lost": 15,
       "gf": 11,
-      "ga": 121,
-      "gd": -110
+      "ga": 130,
+      "gd": -119
     }
   ],
   "matches": [
@@ -344,10 +344,10 @@
       "md": 18,
       "date": "2026-11-23",
       "home": "初芝橋本",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "和歌山北",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 16,
@@ -488,10 +488,10 @@
       "md": 18,
       "date": "2026-11-21",
       "home": "桐蔭",
-      "hs": null,
-      "as": null,
+      "hs": 9,
+      "as": 0,
       "away": "新宮",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 16,
@@ -794,10 +794,10 @@
       "md": 18,
       "date": "2026-11-21",
       "home": "星林",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 9,
       "away": "海南",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 6,
@@ -985,8 +985,8 @@
       "team": "和歌山北",
       "pts": 41,
       "gf": 59,
-      "ga": 9,
-      "rank": 2
+      "ga": 11,
+      "rank": 3
     },
     {
       "team": "近大和歌山",
@@ -997,10 +997,10 @@
     },
     {
       "team": "初芝橋本",
-      "pts": 40,
-      "gf": 78,
+      "pts": 43,
+      "gf": 80,
       "ga": 7,
-      "rank": 3
+      "rank": 2
     },
     {
       "team": "田辺",
@@ -1011,22 +1011,22 @@
     },
     {
       "team": "桐蔭",
-      "pts": 30,
-      "gf": 65,
+      "pts": 33,
+      "gf": 74,
       "ga": 25,
-      "rank": 5
+      "rank": 4
     },
     {
       "team": "近大新宮",
       "pts": 31,
       "gf": 43,
       "ga": 33,
-      "rank": 4
+      "rank": 5
     },
     {
       "team": "海南",
-      "pts": 17,
-      "gf": 22,
+      "pts": 20,
+      "gf": 31,
       "ga": 36,
       "rank": 7
     },
@@ -1034,7 +1034,7 @@
       "team": "星林",
       "pts": 11,
       "gf": 11,
-      "ga": 62,
+      "ga": 71,
       "rank": 8
     },
     {
@@ -1048,7 +1048,7 @@
       "team": "新宮",
       "pts": 5,
       "gf": 11,
-      "ga": 121,
+      "ga": 130,
       "rank": 10
     }
   ]

@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-26T09:23:26+09:00",
+  "updatedAt": "2026-11-26T13:32:35+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1154,13 +1154,13 @@
       "result_streak": 3,
       "status": "warn",
       "last_updated": "2026-11-24",
-      "result": "fetch_error",
-      "result_note": "取得失敗 (順位表 新宮 の数値が読めない: ['5', '11', '##', '-119', '10'])",
+      "result": "ok",
+      "result_note": "消化88試合に更新（検算一致）",
       "result_date": "2026-11-26"
     },
     "yamagata": {
-      "result": "ok",
-      "result_note": "消化85試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (第18節は['2026-11-21', '2026-11-28']に分かれているが、87の列の日付つき会場名が0個)",
       "result_date": "2026-11-26",
       "season": "2026",
       "complete": false,
@@ -1453,10 +1453,10 @@
       "since": ""
     },
     "prince_scorers:prince-shikoku": {
-      "result": "regressed",
-      "note": "試合84・partial0・none0・スコア不一致1・退行2",
+      "result": "ok",
+      "note": "試合84・partial0・none0・スコア不一致1",
       "date": "2026-11-26",
-      "since": "2026-11-25"
+      "since": ""
     },
     "prince_scorers:prince-kyushu-1": {
       "result": "ok",
