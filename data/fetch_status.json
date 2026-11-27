@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-27T08:45:55+09:00",
+  "updatedAt": "2026-11-27T13:37:55+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1159,8 +1159,8 @@
       "result_date": "2026-11-27"
     },
     "yamagata": {
-      "result": "fetch_error",
-      "result_note": "取得失敗 (第18節は['2026-11-21', '2026-11-28']に分かれているが、87の列の日付つき会場名が0個)",
+      "result": "ok",
+      "result_note": "消化88試合に更新（検算一致）",
       "result_date": "2026-11-27",
       "season": "2026",
       "complete": false,
