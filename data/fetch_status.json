@@ -38,8 +38,8 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "jfa",
-      "reason": "",
+      "actual": "koko",
+      "reason": "検算不一致 ['尚志.試合 日程から計算18≠順位表17', '尚志.勝 日程から計算16≠順位表15', '尚志.得点 日程から計算51≠順位表50'] …（据え置き）",
       "matchesPlayed": 84,
       "venueCount": 90,
       "venueCountPrev": 90,
@@ -52,7 +52,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 81,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 81,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -112,7 +112,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 82,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -124,7 +124,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 81,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-28T07:22:45+09:00",
+  "updatedAt": "2026-11-28T13:16:45+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -374,7 +374,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
+      "result_note": "消化84試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -927,12 +927,12 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化51試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-11-28"
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化52試合に更新（検算一致）",
+      "result_note": "消化55試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -974,7 +974,7 @@
     },
     "shiga": {
       "result": "ok",
-      "result_note": "消化85試合に更新（検算一致）",
+      "result_note": "消化86試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,

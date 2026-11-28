@@ -97,6 +97,18 @@
     },
     {
       "rank": 5,
+      "team": "ヴァンフォーレ甲府U-18",
+      "pts": 23,
+      "played": 17,
+      "won": 6,
+      "drawn": 5,
+      "lost": 6,
+      "gf": 19,
+      "ga": 28,
+      "gd": -9
+    },
+    {
+      "rank": 6,
       "team": "流通経済大柏(B)",
       "pts": 21,
       "played": 16,
@@ -108,7 +120,7 @@
       "gd": -5
     },
     {
-      "rank": 6,
+      "rank": 7,
       "team": "桐蔭学園",
       "pts": 20,
       "played": 16,
@@ -118,18 +130,6 @@
       "gf": 21,
       "ga": 20,
       "gd": 1
-    },
-    {
-      "rank": 7,
-      "team": "ヴァンフォーレ甲府U-18",
-      "pts": 20,
-      "played": 16,
-      "won": 5,
-      "drawn": 5,
-      "lost": 6,
-      "gf": 17,
-      "ga": 28,
-      "gd": -11
     },
     {
       "rank": 8,
@@ -159,13 +159,13 @@
       "rank": 10,
       "team": "桐生第一",
       "pts": 11,
-      "played": 16,
+      "played": 17,
       "won": 3,
       "drawn": 2,
-      "lost": 11,
+      "lost": 12,
       "gf": 16,
-      "ga": 32,
-      "gd": -16
+      "ga": 34,
+      "gd": -18
     }
   ],
   "matches": [
@@ -1053,10 +1053,10 @@
       "md": 17,
       "date": "2026-11-28",
       "home": "ヴァンフォーレ甲府U-18",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "桐生第一",
-      "status": "scheduled",
+      "status": "played",
       "venue": "明野いこいの杜グラウンド",
       "kickoff": "11:00"
     },

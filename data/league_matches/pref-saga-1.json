@@ -26,12 +26,12 @@
       "short": "佐賀北"
     },
     {
-      "name": "佐賀農業",
-      "short": "佐賀農業"
-    },
-    {
       "name": "佐賀学園",
       "short": "佐賀学園"
+    },
+    {
+      "name": "佐賀農業",
+      "short": "佐賀農業"
     },
     {
       "name": "佐賀西",
@@ -42,26 +42,26 @@
     {
       "rank": 1,
       "team": "佐賀東2nd",
-      "points": 36,
-      "played": 13,
-      "won": 12,
+      "points": 39,
+      "played": 14,
+      "won": 13,
       "drawn": 0,
       "lost": 1,
-      "gf": 92,
-      "ga": 10,
-      "gd": 82
+      "gf": 97,
+      "ga": 12,
+      "gd": 85
     },
     {
       "rank": 2,
       "team": "佐賀商業",
       "points": 27,
-      "played": 13,
+      "played": 14,
       "won": 9,
       "drawn": 0,
-      "lost": 4,
-      "gf": 43,
-      "ga": 21,
-      "gd": 22
+      "lost": 5,
+      "gf": 44,
+      "ga": 23,
+      "gd": 21
     },
     {
       "rank": 3,
@@ -79,49 +79,49 @@
       "rank": 4,
       "team": "龍谷",
       "points": 25,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 1,
-      "lost": 4,
-      "gf": 37,
-      "ga": 11,
-      "gd": 26
+      "lost": 5,
+      "gf": 39,
+      "ga": 16,
+      "gd": 23
     },
     {
       "rank": 5,
       "team": "佐賀北",
-      "points": 20,
-      "played": 13,
-      "won": 6,
+      "points": 23,
+      "played": 14,
+      "won": 7,
       "drawn": 2,
       "lost": 5,
-      "gf": 31,
-      "ga": 22,
-      "gd": 9
+      "gf": 33,
+      "ga": 23,
+      "gd": 10
     },
     {
       "rank": 6,
-      "team": "佐賀農業",
-      "points": 9,
-      "played": 13,
+      "team": "佐賀学園",
+      "points": 10,
+      "played": 14,
       "won": 3,
-      "drawn": 0,
+      "drawn": 1,
       "lost": 10,
       "gf": 16,
-      "ga": 52,
-      "gd": -36
+      "ga": 66,
+      "gd": -50
     },
     {
       "rank": 7,
-      "team": "佐賀学園",
-      "points": 7,
-      "played": 13,
-      "won": 2,
-      "drawn": 1,
-      "lost": 10,
-      "gf": 15,
-      "ga": 66,
-      "gd": -51
+      "team": "佐賀農業",
+      "points": 9,
+      "played": 14,
+      "won": 3,
+      "drawn": 0,
+      "lost": 11,
+      "gf": 16,
+      "ga": 53,
+      "gd": -37
     },
     {
       "rank": 8,
@@ -159,12 +159,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "佐賀東2nd",
-      "hs": null,
-      "as": null,
-      "away": "龍谷",
-      "status": "scheduled"
+      "date": "2026-11-28",
+      "home": "龍谷",
+      "hs": 2,
+      "as": 5,
+      "away": "佐賀東2nd",
+      "status": "played",
+      "venue": "佐賀東グラウンド"
     },
     {
       "md": 0,
@@ -178,21 +179,21 @@
     },
     {
       "md": 0,
-      "date": "2026-06-13",
-      "home": "佐賀東2nd",
-      "hs": 12,
-      "as": 0,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "佐賀東グラウンド"
-    },
-    {
-      "md": 0,
       "date": "2026-09-19",
       "home": "佐賀東2nd",
       "hs": 11,
       "as": 2,
       "away": "佐賀学園",
+      "status": "played",
+      "venue": "佐賀東グラウンド"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-13",
+      "home": "佐賀東2nd",
+      "hs": 12,
+      "as": 0,
+      "away": "佐賀農業",
       "status": "played",
       "venue": "佐賀東グラウンド"
     },
@@ -248,16 +249,6 @@
     },
     {
       "md": 0,
-      "date": "2026-09-12",
-      "home": "佐賀農業",
-      "hs": 0,
-      "as": 6,
-      "away": "佐賀商業",
-      "status": "played",
-      "venue": "佐賀東グラウンド"
-    },
-    {
-      "md": 0,
       "date": "2026-04-11",
       "home": "佐賀商業",
       "hs": 2,
@@ -265,6 +256,16 @@
       "away": "佐賀学園",
       "status": "played",
       "venue": "龍谷人工芝"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-12",
+      "home": "佐賀農業",
+      "hs": 0,
+      "as": 6,
+      "away": "佐賀商業",
+      "status": "played",
+      "venue": "佐賀東グラウンド"
     },
     {
       "md": 0,
@@ -318,16 +319,6 @@
     },
     {
       "md": 0,
-      "date": "2026-05-16",
-      "home": "佐賀清和",
-      "hs": 5,
-      "as": 1,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "龍谷人工芝"
-    },
-    {
-      "md": 0,
       "date": "2026-11-14",
       "home": "佐賀学園",
       "hs": 2,
@@ -335,6 +326,16 @@
       "away": "佐賀清和",
       "status": "played",
       "venue": "佐賀東グラウンド"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-16",
+      "home": "佐賀清和",
+      "hs": 5,
+      "as": 1,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "龍谷人工芝"
     },
     {
       "md": 0,
@@ -388,16 +389,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-29",
-      "home": "龍谷",
-      "hs": 4,
-      "as": 0,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "小城市フットボールセンター(ブラックモンブランフットボールセンター)北"
-    },
-    {
-      "md": 0,
       "date": "2026-04-18",
       "home": "龍谷",
       "hs": 5,
@@ -405,6 +396,16 @@
       "away": "佐賀学園",
       "status": "played",
       "venue": "小城市フットボールセンター(ブラックモンブランフットボールセンター)南"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-29",
+      "home": "龍谷",
+      "hs": 4,
+      "as": 0,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "小城市フットボールセンター(ブラックモンブランフットボールセンター)北"
     },
     {
       "md": 0,
@@ -428,12 +429,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "佐賀北",
-      "hs": null,
-      "as": null,
-      "away": "佐賀商業",
-      "status": "scheduled"
+      "date": "2026-11-28",
+      "home": "佐賀商業",
+      "hs": 1,
+      "as": 2,
+      "away": "佐賀北",
+      "status": "played",
+      "venue": "佐賀東グラウンド"
     },
     {
       "md": 0,
@@ -457,16 +459,6 @@
     },
     {
       "md": 0,
-      "date": "2026-04-11",
-      "home": "佐賀北",
-      "hs": 3,
-      "as": 2,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "佐賀東グラウンド"
-    },
-    {
-      "md": 0,
       "date": "2026-09-27",
       "home": "佐賀学園",
       "hs": 1,
@@ -477,81 +469,21 @@
     },
     {
       "md": 0,
+      "date": "2026-04-11",
+      "home": "佐賀北",
+      "hs": 3,
+      "as": 2,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "佐賀東グラウンド"
+    },
+    {
+      "md": 0,
       "date": "2026-09-12",
       "home": "佐賀西",
       "hs": 0,
       "as": 10,
       "away": "佐賀北",
-      "status": "played",
-      "venue": "龍谷人工芝"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-27",
-      "home": "佐賀東2nd",
-      "hs": 6,
-      "as": 0,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "SAGAサンライズ球南"
-    },
-    {
-      "md": 0,
-      "date": "2026-04-18",
-      "home": "佐賀農業",
-      "hs": 1,
-      "as": 3,
-      "away": "佐賀商業",
-      "status": "played",
-      "venue": "小城市フットボールセンター(ブラックモンブランフットボールセンター)南"
-    },
-    {
-      "md": 0,
-      "date": "2026-11-21",
-      "home": "佐賀清和",
-      "hs": 4,
-      "as": 0,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "龍谷人工芝"
-    },
-    {
-      "md": 0,
-      "date": "2026-09-19",
-      "home": "龍谷",
-      "hs": 4,
-      "as": 1,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "龍谷人工芝"
-    },
-    {
-      "md": 0,
-      "date": "2026-06-20",
-      "home": "佐賀北",
-      "hs": 4,
-      "as": 0,
-      "away": "佐賀農業",
-      "status": "played",
-      "venue": "佐賀市健康運動センター人工芝"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-02",
-      "home": "佐賀農業",
-      "hs": 4,
-      "as": 0,
-      "away": "佐賀学園",
-      "status": "played",
-      "venue": "SAGAサンライズ球南"
-    },
-    {
-      "md": 0,
-      "date": "2026-05-10",
-      "home": "佐賀農業",
-      "hs": 2,
-      "as": 1,
-      "away": "佐賀西",
       "status": "played",
       "venue": "龍谷人工芝"
     },
@@ -607,12 +539,13 @@
     },
     {
       "md": 0,
-      "date": "",
-      "home": "佐賀学園",
-      "hs": null,
-      "as": null,
-      "away": "佐賀農業",
-      "status": "scheduled"
+      "date": "2026-11-28",
+      "home": "佐賀農業",
+      "hs": 0,
+      "as": 1,
+      "away": "佐賀学園",
+      "status": "played",
+      "venue": "みゆき人工芝"
     },
     {
       "md": 0,
@@ -623,6 +556,76 @@
       "away": "佐賀学園",
       "status": "played",
       "venue": "佐賀東グラウンド"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-27",
+      "home": "佐賀東2nd",
+      "hs": 6,
+      "as": 0,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "SAGAサンライズ球南"
+    },
+    {
+      "md": 0,
+      "date": "2026-04-18",
+      "home": "佐賀農業",
+      "hs": 1,
+      "as": 3,
+      "away": "佐賀商業",
+      "status": "played",
+      "venue": "小城市フットボールセンター(ブラックモンブランフットボールセンター)南"
+    },
+    {
+      "md": 0,
+      "date": "2026-11-21",
+      "home": "佐賀清和",
+      "hs": 4,
+      "as": 0,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "龍谷人工芝"
+    },
+    {
+      "md": 0,
+      "date": "2026-09-19",
+      "home": "龍谷",
+      "hs": 4,
+      "as": 1,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "龍谷人工芝"
+    },
+    {
+      "md": 0,
+      "date": "2026-06-20",
+      "home": "佐賀北",
+      "hs": 4,
+      "as": 0,
+      "away": "佐賀農業",
+      "status": "played",
+      "venue": "佐賀市健康運動センター人工芝"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-02",
+      "home": "佐賀農業",
+      "hs": 4,
+      "as": 0,
+      "away": "佐賀学園",
+      "status": "played",
+      "venue": "SAGAサンライズ球南"
+    },
+    {
+      "md": 0,
+      "date": "2026-05-10",
+      "home": "佐賀農業",
+      "hs": 2,
+      "as": 1,
+      "away": "佐賀西",
+      "status": "played",
+      "venue": "龍谷人工芝"
     },
     {
       "md": 0,
@@ -675,16 +678,6 @@
     },
     {
       "md": 0,
-      "date": "2026-11-15",
-      "home": "佐賀農業",
-      "hs": 5,
-      "as": 0,
-      "away": "佐賀西",
-      "status": "played",
-      "venue": "龍谷人工芝"
-    },
-    {
-      "md": 0,
       "date": "2026-05-16",
       "home": "佐賀西",
       "hs": 1,
@@ -692,28 +685,38 @@
       "away": "佐賀学園",
       "status": "played",
       "venue": "佐賀東グラウンド"
+    },
+    {
+      "md": 0,
+      "date": "2026-11-15",
+      "home": "佐賀農業",
+      "hs": 5,
+      "as": 0,
+      "away": "佐賀西",
+      "status": "played",
+      "venue": "龍谷人工芝"
     }
   ],
   "source_standings": [
     {
       "team": "佐賀東2nd",
-      "pts": 36,
-      "played": 13,
-      "won": 12,
+      "pts": 39,
+      "played": 14,
+      "won": 13,
       "drawn": 0,
       "lost": 1,
-      "gf": 92,
-      "ga": 10
+      "gf": 97,
+      "ga": 12
     },
     {
       "team": "佐賀商業",
       "pts": 27,
-      "played": 13,
+      "played": 14,
       "won": 9,
       "drawn": 0,
-      "lost": 4,
-      "gf": 43,
-      "ga": 21
+      "lost": 5,
+      "gf": 44,
+      "ga": 23
     },
     {
       "team": "佐賀清和",
@@ -728,42 +731,42 @@
     {
       "team": "龍谷",
       "pts": 25,
-      "played": 13,
+      "played": 14,
       "won": 8,
       "drawn": 1,
-      "lost": 4,
-      "gf": 37,
-      "ga": 11
+      "lost": 5,
+      "gf": 39,
+      "ga": 16
     },
     {
       "team": "佐賀北",
-      "pts": 20,
-      "played": 13,
-      "won": 6,
+      "pts": 23,
+      "played": 14,
+      "won": 7,
       "drawn": 2,
       "lost": 5,
-      "gf": 31,
-      "ga": 22
+      "gf": 33,
+      "ga": 23
+    },
+    {
+      "team": "佐賀学園",
+      "pts": 10,
+      "played": 14,
+      "won": 3,
+      "drawn": 1,
+      "lost": 10,
+      "gf": 16,
+      "ga": 66
     },
     {
       "team": "佐賀農業",
       "pts": 9,
-      "played": 13,
+      "played": 14,
       "won": 3,
       "drawn": 0,
-      "lost": 10,
+      "lost": 11,
       "gf": 16,
-      "ga": 52
-    },
-    {
-      "team": "佐賀学園",
-      "pts": 7,
-      "played": 13,
-      "won": 2,
-      "drawn": 1,
-      "lost": 10,
-      "gf": 15,
-      "ga": 66
+      "ga": 53
     },
     {
       "team": "佐賀西",
