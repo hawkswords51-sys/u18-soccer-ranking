@@ -42,25 +42,25 @@
     {
       "rank": 1,
       "team": "阪南大高B",
-      "points": 25,
-      "played": 13,
-      "won": 7,
+      "points": 28,
+      "played": 14,
+      "won": 8,
       "drawn": 4,
       "lost": 2,
-      "gf": 37,
+      "gf": 39,
       "ga": 10,
-      "gd": 27
+      "gd": 29
     },
     {
       "rank": 2,
       "team": "大阪桐蔭B",
-      "points": 25,
-      "played": 13,
+      "points": 26,
+      "played": 14,
       "won": 7,
-      "drawn": 4,
+      "drawn": 5,
       "lost": 2,
-      "gf": 23,
-      "ga": 18,
+      "gf": 26,
+      "ga": 21,
       "gd": 5
     },
     {
@@ -78,26 +78,26 @@
     {
       "rank": 4,
       "team": "関大一",
-      "points": 21,
-      "played": 13,
+      "points": 22,
+      "played": 14,
       "won": 5,
-      "drawn": 6,
+      "drawn": 7,
       "lost": 2,
-      "gf": 23,
-      "ga": 13,
+      "gf": 26,
+      "ga": 16,
       "gd": 10
     },
     {
       "rank": 5,
       "team": "大体大浪商",
       "points": 20,
-      "played": 13,
+      "played": 14,
       "won": 6,
       "drawn": 2,
-      "lost": 5,
+      "lost": 6,
       "gf": 23,
-      "ga": 20,
-      "gd": 3
+      "ga": 22,
+      "gd": 1
     },
     {
       "rank": 6,
@@ -231,10 +231,10 @@
       "md": 14,
       "date": "2026-11-28",
       "home": "阪南大高B",
-      "hs": null,
-      "as": null,
+      "hs": 2,
+      "as": 0,
       "away": "大体大浪商",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 11,
@@ -267,10 +267,10 @@
       "md": 14,
       "date": "2026-11-28",
       "home": "関大一",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 3,
       "away": "大阪桐蔭B",
-      "status": "scheduled"
+      "status": "played"
     },
     {
       "md": 12,
@@ -645,8 +645,8 @@
   "source_standings": [
     {
       "team": "阪南大高B",
-      "pts": 25,
-      "gf": 37,
+      "pts": 28,
+      "gf": 39,
       "ga": 10,
       "rank": 1
     },
@@ -659,16 +659,16 @@
     },
     {
       "team": "大阪桐蔭B",
-      "pts": 25,
-      "gf": 23,
-      "ga": 18,
+      "pts": 26,
+      "gf": 26,
+      "ga": 21,
       "rank": 2
     },
     {
       "team": "関大一",
-      "pts": 21,
-      "gf": 23,
-      "ga": 13,
+      "pts": 22,
+      "gf": 26,
+      "ga": 16,
       "rank": 4
     },
     {
@@ -689,7 +689,7 @@
       "team": "大体大浪商",
       "pts": 20,
       "gf": 23,
-      "ga": 20,
+      "ga": 22,
       "rank": 5
     },
     {

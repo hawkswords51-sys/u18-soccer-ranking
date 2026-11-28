@@ -2,7 +2,7 @@
   "league": "高円宮杯 JFA U-18 プリンスリーグ 2026 関西2部 得点ランキング",
   "season": "2026",
   "source": "https://web.gekisaka.jp/pickup/detail/?448178-448178-fl",
-  "lastUpdated": "2026-11-23",
+  "lastUpdated": "2026-11-28",
   "note": "3得点以上の選手のうち上位20名を掲載（20位と同点の選手は一部省略する場合があります）。得点者は出典掲載分の集計で、一部試合は得点者未掲載のため選手合計がチーム総得点と一致しない場合があります。表記はJFA公式の試合記録に合わせて補正。",
   "scorers": [
     {
@@ -37,6 +37,12 @@
     },
     {
       "rank": 6,
+      "name": "杉田琉晟",
+      "team": "橘B",
+      "goals": 8
+    },
+    {
+      "rank": 6,
       "name": "柿ヶ原淳太",
       "team": "桐蔭",
       "goals": 8
@@ -46,12 +52,6 @@
       "name": "姉川琥珀",
       "team": "金光",
       "goals": 8
-    },
-    {
-      "rank": 8,
-      "name": "杉田琉晟",
-      "team": "橘B",
-      "goals": 7
     },
     {
       "rank": 9,
@@ -103,40 +103,40 @@
     },
     {
       "rank": 17,
+      "name": "森岡伶斗",
+      "team": "近江B",
+      "goals": 5
+    },
+    {
+      "rank": 18,
       "name": "岡田暉生",
       "team": "橘B",
       "goals": 4
     },
     {
-      "rank": 17,
-      "name": "尾崎世空",
+      "rank": 18,
+      "name": "村吉正宗",
       "team": "神戸B",
       "goals": 4
     },
     {
-      "rank": 17,
-      "name": "森岡伶斗",
-      "team": "近江B",
-      "goals": 4
-    },
-    {
-      "rank": 17,
-      "name": "村山稔貴",
-      "team": "金光",
+      "rank": 18,
+      "name": "尾崎世空",
+      "team": "神戸B",
       "goals": 4
     }
   ],
   "coverage": [
     {
       "team": "金光",
-      "attributed": 31,
-      "gf": 36,
+      "attributed": 32,
+      "gf": 37,
       "missing": 5
     },
     {
       "team": "神戸B",
-      "attributed": 16,
-      "gf": 19,
+      "attributed": 20,
+      "gf": 23,
       "missing": 3
     },
     {

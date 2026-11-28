@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 83,
+      "matchesPlayed": 84,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-28T22:40:54+09:00",
+  "updatedAt": "2026-11-28T23:30:54+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -311,7 +311,7 @@
     },
     "fukuoka": {
       "result": "ok",
-      "result_note": "消化83試合に更新（検算一致）",
+      "result_note": "消化84試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -374,7 +374,7 @@
     },
     "gunma": {
       "result": "ok",
-      "result_note": "消化84試合に更新（検算一致）",
+      "result_note": "消化85試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -395,7 +395,7 @@
     },
     "hiroshima": {
       "result": "ok",
-      "result_note": "消化85試合に更新（検算一致）",
+      "result_note": "消化86試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -451,8 +451,8 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化80試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://hyogo-fa.gr.jp/competition_info/13224/ の取得に失敗 (HTTPSConnectionPool(host='hyogo-fa.gr.jp', port=443): Read timed out. (read timeout=25)))",
       "result_date": "2026-11-28",
       "last_updated": "2026-11-28"
     },
@@ -656,7 +656,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化52試合に更新（検算一致）",
+      "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "last_updated": "2026-11-28"
     },
@@ -680,7 +680,7 @@
     },
     "miyazaki": {
       "result": "ok",
-      "result_note": "消化84試合に更新（検算一致）",
+      "result_note": "消化85試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -799,10 +799,32 @@
       "result_since": "",
       "result_streak": 0,
       "status": "ok",
-      "result": "ok",
-      "result_note": "消化75試合に更新（検算一致）",
+      "result": "verify_failed",
+      "result_note": "検算不一致 ['柳ヶ浦: 勝点 公式23 ≠ 試合から26', '柳ヶ浦: 得点 公式28 ≠ 試合から31'] …",
       "result_date": "2026-11-28",
-      "last_updated": "2026-11-28"
+      "last_updated": "2026-11-28",
+      "verify_items": [
+        {
+          "team": "柳ヶ浦",
+          "item": "柳ヶ浦: 勝点 公式23 ≠ 試合から26"
+        },
+        {
+          "team": "柳ヶ浦",
+          "item": "柳ヶ浦: 得点 公式28 ≠ 試合から31"
+        },
+        {
+          "team": "柳ヶ浦",
+          "item": "柳ヶ浦: 失点 公式18 ≠ 試合から19"
+        },
+        {
+          "team": "大分",
+          "item": "大分: 得点 公式41 ≠ 試合から42"
+        },
+        {
+          "team": "大分",
+          "item": "大分: 失点 公式16 ≠ 試合から19"
+        }
+      ]
     },
     "okayama": {
       "result": "ok",
@@ -885,7 +907,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化51試合に更新（検算一致）",
+      "result_note": "消化53試合に更新（検算一致）",
       "result_date": "2026-11-28"
     },
     "osaka-2b": {
@@ -906,7 +928,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化52試合に更新（検算一致）",
+      "result_note": "消化54試合に更新（検算一致）",
       "result_date": "2026-11-28"
     },
     "osaka-2c": {
@@ -932,7 +954,7 @@
     },
     "saga": {
       "result": "ok",
-      "result_note": "消化55試合に更新（検算一致）",
+      "result_note": "消化56試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -974,7 +996,7 @@
     },
     "shiga": {
       "result": "ok",
-      "result_note": "消化86試合に更新（検算一致）",
+      "result_note": "消化90試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -1033,8 +1055,8 @@
       "last_updated": "2026-11-22"
     },
     "tochigi": {
-      "result": "ok",
-      "result_note": "消化79試合に更新（検算一致）",
+      "result": "fetch_error",
+      "result_note": "取得失敗 (https://api.lsin.jp/?m=r&e=1059&c=3&m=r の取得に失敗 (HTTPSConnectionPool(host='api.lsin.jp', port=443): Max retries exceeded with url: /?m=r&e=1059&c=3&m=r (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.lsin.jp', port=443) at 0x7ea9eae3ae10>, 'Connection to api.lsin.jp timed out. (connect timeout=25)'))))",
       "result_date": "2026-11-28",
       "season": "2026",
       "complete": false,
@@ -1070,7 +1092,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化84試合に更新（検算一致）",
+      "result_note": "消化87試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "last_updated": "2026-11-28"
     },
@@ -1217,7 +1239,7 @@
       "result_streak": 0,
       "status": "ok",
       "result": "ok",
-      "result_note": "消化48試合に更新（検算一致）",
+      "result_note": "消化52試合に更新（検算一致）",
       "result_date": "2026-11-28",
       "last_updated": "2026-11-28"
     },
@@ -1268,7 +1290,7 @@
     },
     "team_season:fc-tokyo-u18": {
       "result": "ok",
-      "note": "試合20・選手41（新規取得1）",
+      "note": "試合20・選手41（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1382,7 +1404,7 @@
     },
     "team_season:yokohama-fc-youth": {
       "result": "ok",
-      "note": "試合20・選手30（新規取得1）",
+      "note": "試合20・選手30（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1400,19 +1422,19 @@
     },
     "prince_scorers:prince-tohoku": {
       "result": "ok",
-      "note": "試合84・partial0・none0・スコア不一致0",
+      "note": "試合89・partial0・none2・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-kanto-1": {
       "result": "ok",
-      "note": "試合80・partial0・none7・スコア不一致0",
+      "note": "試合82・partial0・none7・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-kanto-2": {
       "result": "ok",
-      "note": "試合80・partial0・none0・スコア不一致0",
+      "note": "試合81・partial0・none0・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1430,37 +1452,37 @@
     },
     "prince_scorers:prince-tokai": {
       "result": "ok",
-      "note": "試合80・partial1・none1・スコア不一致0",
+      "note": "試合83・partial1・none1・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-kansai-1": {
       "result": "ok",
-      "note": "試合80・partial0・none0・スコア不一致0",
+      "note": "試合82・partial0・none0・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-kansai-2": {
       "result": "ok",
-      "note": "試合80・partial1・none3・スコア不一致0",
+      "note": "試合84・partial1・none3・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-chugoku": {
       "result": "ok",
-      "note": "試合85・partial1・none4・スコア不一致0",
+      "note": "試合89・partial1・none4・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-shikoku": {
       "result": "ok",
-      "note": "試合84・partial0・none0・スコア不一致1",
+      "note": "試合89・partial0・none0・スコア不一致1",
       "date": "2026-11-28",
       "since": ""
     },
     "prince_scorers:prince-kyushu-1": {
       "result": "ok",
-      "note": "試合80・partial0・none4・スコア不一致0",
+      "note": "試合85・partial0・none4・スコア不一致0",
       "date": "2026-11-28",
       "since": ""
     },
