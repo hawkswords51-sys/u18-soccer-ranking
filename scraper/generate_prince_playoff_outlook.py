@@ -476,6 +476,8 @@ STYLE = (
     ".ppo-table th,.ppo-table td{padding:6px 12px 6px 0;vertical-align:top;text-align:left;}"
     ".ppo-table th:first-child,.ppo-table td:first-child{width:5.5em;white-space:nowrap;}"
     ".ppo-table.ppo-bracket th:nth-child(2),.ppo-table.ppo-bracket td:nth-child(2){width:8.5em;}"
+    # [2026-11-29] 試合名が長い（「3回戦（ブロック決勝）」「第3参入決定戦」）と1列目からはみ出して日時に重なったので、日程表だけ1列目を広げて折り返す
+    ".ppo-table.ppo-bracket th:first-child,.ppo-table.ppo-bracket td:first-child{width:7em;white-space:normal;}"
     ".ppo-table td{overflow-wrap:anywhere;}"
     ".ppo-h3{margin:22px 0 6px;font-size:1.05em;}"
     ".ppo-sub{font-size:0.82em;color:var(--text-light,#6b7280);}"
