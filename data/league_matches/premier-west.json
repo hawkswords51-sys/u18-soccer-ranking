@@ -58,13 +58,13 @@
     {
       "rank": 1,
       "team": "ヴィッセル神戸U-18",
-      "pts": 41,
-      "played": 19,
+      "pts": 42,
+      "played": 20,
       "won": 13,
-      "drawn": 2,
+      "drawn": 3,
       "lost": 4,
-      "gf": 44,
-      "ga": 28,
+      "gf": 45,
+      "ga": 29,
       "gd": 16
     },
     {
@@ -93,6 +93,18 @@
     },
     {
       "rank": 4,
+      "team": "アビスパ福岡 U-18",
+      "pts": 33,
+      "played": 20,
+      "won": 10,
+      "drawn": 3,
+      "lost": 7,
+      "gf": 25,
+      "ga": 24,
+      "gd": 1
+    },
+    {
+      "rank": 5,
       "team": "サンフレッチェ広島F.Cユース",
       "pts": 32,
       "played": 20,
@@ -102,18 +114,6 @@
       "gf": 36,
       "ga": 31,
       "gd": 5
-    },
-    {
-      "rank": 5,
-      "team": "アビスパ福岡 U-18",
-      "pts": 32,
-      "played": 19,
-      "won": 10,
-      "drawn": 2,
-      "lost": 7,
-      "gf": 24,
-      "ga": 23,
-      "gd": 1
     },
     {
       "rank": 6,
@@ -3571,12 +3571,24 @@
       "md": 20,
       "date": "2026-11-28",
       "home": "アビスパ福岡 U-18",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 1,
       "away": "ヴィッセル神戸U-18",
-      "status": "scheduled",
+      "status": "played",
       "venue": "福岡フットボールセンターAピッチ（人工芝）",
-      "kickoff": "14:00"
+      "kickoff": "14:00",
+      "homeScorers": [
+        {
+          "minute": "78",
+          "name": "和田 駿佑"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "87",
+          "name": "小野 哲司"
+        }
+      ]
     },
     {
       "md": 20,

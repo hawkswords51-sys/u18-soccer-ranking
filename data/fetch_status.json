@@ -16,7 +16,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 116,
+      "matchesPlayed": 117,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-28T16:08:28+09:00",
+  "updatedAt": "2026-11-28T16:18:42+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1256,7 +1256,7 @@
     },
     "team_season:avispa-fukuoka-u18": {
       "result": "ok",
-      "note": "試合19・選手31（新規取得0）",
+      "note": "試合20・選手31（新規取得1）",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1375,10 +1375,10 @@
       "since": ""
     },
     "team_season:vissel-kobe-u18": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧45＋一覧外0＋OG0＝45 ≠ 順位表44）",
+      "result": "ok",
+      "note": "試合20・選手33（新規取得1）",
       "date": "2026-11-28",
-      "since": "2026-11-28"
+      "since": ""
     },
     "team_season:yokohama-fc-youth": {
       "result": "ok",
