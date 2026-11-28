@@ -58,14 +58,14 @@
     {
       "rank": 1,
       "team": "流通経済大柏",
-      "pts": 43,
-      "played": 19,
-      "won": 14,
+      "pts": 46,
+      "played": 20,
+      "won": 15,
       "drawn": 1,
       "lost": 4,
-      "gf": 45,
+      "gf": 48,
       "ga": 21,
-      "gd": 24
+      "gd": 27
     },
     {
       "rank": 2,
@@ -155,13 +155,13 @@
       "rank": 9,
       "team": "昌平",
       "pts": 19,
-      "played": 19,
+      "played": 20,
       "won": 5,
       "drawn": 4,
-      "lost": 10,
+      "lost": 11,
       "gf": 31,
-      "ga": 46,
-      "gd": -15
+      "ga": 49,
+      "gd": -18
     },
     {
       "rank": 10,
@@ -3651,6 +3651,7 @@
       "status": "played",
       "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
       "kickoff": "13:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m2001.pdf",
       "homeScorers": [],
       "awayScorers": [
         {
@@ -3675,12 +3676,27 @@
       "md": 20,
       "date": "2026-11-28",
       "home": "流通経済大柏",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 0,
       "away": "昌平",
-      "status": "scheduled",
+      "status": "played",
       "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
-      "kickoff": "14:00"
+      "kickoff": "14:00",
+      "homeScorers": [
+        {
+          "minute": "37",
+          "name": "古川 蒼真"
+        },
+        {
+          "minute": "71",
+          "name": "渡辺 瞳也"
+        },
+        {
+          "minute": "80",
+          "name": "千葉 友翔"
+        }
+      ],
+      "awayScorers": []
     },
     {
       "md": 20,
