@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "京都橘(B)",
+      "pts": 35,
+      "played": 17,
+      "won": 10,
+      "drawn": 5,
+      "lost": 2,
+      "gf": 38,
+      "ga": 21,
+      "gd": 17
+    },
+    {
+      "rank": 3,
       "team": "滝川第二",
       "pts": 33,
       "played": 17,
@@ -70,18 +82,6 @@
       "gf": 37,
       "ga": 26,
       "gd": 11
-    },
-    {
-      "rank": 3,
-      "team": "京都橘(B)",
-      "pts": 32,
-      "played": 16,
-      "won": 9,
-      "drawn": 5,
-      "lost": 2,
-      "gf": 37,
-      "ga": 21,
-      "gd": 16
     },
     {
       "rank": 4,
@@ -135,37 +135,37 @@
       "rank": 8,
       "team": "京都共栄",
       "pts": 15,
-      "played": 16,
+      "played": 17,
       "won": 4,
       "drawn": 3,
-      "lost": 9,
+      "lost": 10,
       "gf": 29,
-      "ga": 37,
-      "gd": -8
+      "ga": 41,
+      "gd": -12
     },
     {
       "rank": 9,
       "team": "ヴィッセル神戸U-18(B)",
-      "pts": 11,
-      "played": 16,
-      "won": 3,
+      "pts": 14,
+      "played": 17,
+      "won": 4,
       "drawn": 2,
       "lost": 11,
-      "gf": 19,
+      "gf": 23,
       "ga": 46,
-      "gd": -27
+      "gd": -23
     },
     {
       "rank": 10,
       "team": "関西学院",
       "pts": 6,
-      "played": 16,
+      "played": 17,
       "won": 2,
       "drawn": 0,
-      "lost": 14,
+      "lost": 15,
       "gf": 16,
-      "ga": 39,
-      "gd": -23
+      "ga": 40,
+      "gd": -24
     }
   ],
   "matches": [
@@ -1053,10 +1053,10 @@
       "md": 17,
       "date": "2026-11-28",
       "home": "ヴィッセル神戸U-18(B)",
-      "hs": null,
-      "as": null,
+      "hs": 4,
+      "as": 0,
       "away": "京都共栄",
-      "status": "scheduled",
+      "status": "played",
       "venue": "滝川第二高校",
       "kickoff": "15:30"
     },
@@ -1064,10 +1064,10 @@
       "md": 17,
       "date": "2026-11-28",
       "home": "京都橘(B)",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "関西学院",
-      "status": "scheduled",
+      "status": "played",
       "venue": "KYOTO  TACHIBANA STADIUM",
       "kickoff": "14:30"
     },

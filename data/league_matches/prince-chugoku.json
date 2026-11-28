@@ -99,13 +99,13 @@
       "rank": 5,
       "team": "就実",
       "pts": 20,
-      "played": 17,
+      "played": 18,
       "won": 6,
       "drawn": 2,
-      "lost": 9,
+      "lost": 10,
       "gf": 26,
-      "ga": 32,
-      "gd": -6
+      "ga": 33,
+      "gd": -7
     },
     {
       "rank": 6,
@@ -133,6 +133,18 @@
     },
     {
       "rank": 8,
+      "team": "大社",
+      "pts": 16,
+      "played": 18,
+      "won": 4,
+      "drawn": 4,
+      "lost": 10,
+      "gf": 13,
+      "ga": 42,
+      "gd": -29
+    },
+    {
+      "rank": 9,
       "team": "広島皆実",
       "pts": 15,
       "played": 18,
@@ -144,7 +156,7 @@
       "gd": -12
     },
     {
-      "rank": 9,
+      "rank": 10,
       "team": "玉野光南",
       "pts": 14,
       "played": 17,
@@ -154,18 +166,6 @@
       "gf": 19,
       "ga": 41,
       "gd": -22
-    },
-    {
-      "rank": 10,
-      "team": "大社",
-      "pts": 13,
-      "played": 17,
-      "won": 3,
-      "drawn": 4,
-      "lost": 10,
-      "gf": 12,
-      "ga": 42,
-      "gd": -30
     }
   ],
   "matches": [
@@ -1119,10 +1119,10 @@
       "md": 18,
       "date": "2026-11-28",
       "home": "大社",
-      "hs": null,
-      "as": null,
+      "hs": 1,
+      "as": 0,
       "away": "就実",
-      "status": "scheduled",
+      "status": "played",
       "venue": "浜山公園球技場",
       "kickoff": "13:30"
     },
