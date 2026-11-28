@@ -142,14 +142,14 @@
     {
       "rank": 8,
       "team": "東京ヴェルディユース",
-      "pts": 22,
-      "played": 19,
-      "won": 6,
+      "pts": 25,
+      "played": 20,
+      "won": 7,
       "drawn": 4,
       "lost": 9,
-      "gf": 30,
+      "gf": 34,
       "ga": 42,
-      "gd": -12
+      "gd": -8
     },
     {
       "rank": 9,
@@ -167,13 +167,13 @@
       "rank": 10,
       "team": "ベガルタ仙台ユース",
       "pts": 15,
-      "played": 19,
+      "played": 20,
       "won": 3,
       "drawn": 6,
-      "lost": 10,
+      "lost": 11,
       "gf": 18,
-      "ga": 47,
-      "gd": -29
+      "ga": 51,
+      "gd": -33
     },
     {
       "rank": 11,
@@ -3645,12 +3645,31 @@
       "md": 20,
       "date": "2026-11-28",
       "home": "ベガルタ仙台ユース",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 4,
       "away": "東京ヴェルディユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "マイナビベガルタ仙台泉パークタウンサッカー場(人工芝)",
-      "kickoff": "13:00"
+      "kickoff": "13:00",
+      "homeScorers": [],
+      "awayScorers": [
+        {
+          "minute": "22",
+          "name": "千葉 大輔"
+        },
+        {
+          "minute": "49",
+          "name": "鈴木 暖人"
+        },
+        {
+          "minute": "73",
+          "name": "渡邉 春来"
+        },
+        {
+          "minute": "78",
+          "name": "草間 信"
+        }
+      ]
     },
     {
       "md": 20,

@@ -5,7 +5,7 @@
   "league_team": "サンフレッチェ広島F.Cユース",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/team_detail/08.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/west/match_page/",
-  "asof": "2026-11-22",
+  "asof": "2026-11-28",
   "roster": [
     {
       "no": 16,
@@ -13,8 +13,8 @@
       "name": "林 和広",
       "grade": "1年",
       "prev": "VONDS(ボンズ)市原FC ジュニアユース",
-      "apps": 19,
-      "minutes": 1710,
+      "apps": 20,
+      "minutes": 1800,
       "goals": 0
     },
     {
@@ -83,8 +83,8 @@
       "name": "小柳 柊",
       "grade": "3年",
       "prev": "東急ＳレイエスFC U-15",
-      "apps": 17,
-      "minutes": 1303,
+      "apps": 18,
+      "minutes": 1393,
       "goals": 1
     },
     {
@@ -93,8 +93,8 @@
       "name": "富田 雅翔",
       "grade": "2年",
       "prev": "太陽スポーツクラブU-15",
-      "apps": 17,
-      "minutes": 1302,
+      "apps": 18,
+      "minutes": 1347,
       "goals": 0
     },
     {
@@ -103,8 +103,8 @@
       "name": "加藤 凛太朗",
       "grade": "2年",
       "prev": "高知ユナイテッドSCジュニアユース",
-      "apps": 0,
-      "minutes": 0,
+      "apps": 1,
+      "minutes": 25,
       "goals": 0
     },
     {
@@ -133,8 +133,8 @@
       "name": "太田 大翔",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 18,
-      "minutes": 1559,
+      "apps": 19,
+      "minutes": 1649,
       "goals": 4
     },
     {
@@ -153,8 +153,8 @@
       "name": "河上 颯希",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 19,
-      "minutes": 1684,
+      "apps": 20,
+      "minutes": 1774,
       "goals": 0
     },
     {
@@ -173,8 +173,8 @@
       "name": "高橋 成海",
       "grade": "2年",
       "prev": "徳島ヴォルティスジュニアユース",
-      "apps": 2,
-      "minutes": 27,
+      "apps": 3,
+      "minutes": 117,
       "goals": 0
     },
     {
@@ -183,8 +183,8 @@
       "name": "野口 魁斗",
       "grade": "2年",
       "prev": "ソレッソ熊本",
-      "apps": 12,
-      "minutes": 667,
+      "apps": 13,
+      "minutes": 732,
       "goals": 0
     },
     {
@@ -193,8 +193,8 @@
       "name": "正法地 有",
       "grade": "2年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 15,
-      "minutes": 659,
+      "apps": 16,
+      "minutes": 748,
       "goals": 3
     },
     {
@@ -203,8 +203,8 @@
       "name": "岡 颯介",
       "grade": "2年",
       "prev": "ＦＣ岐阜U-15",
-      "apps": 7,
-      "minutes": 212,
+      "apps": 8,
+      "minutes": 213,
       "goals": 0
     },
     {
@@ -213,8 +213,8 @@
       "name": "田中 優翔",
       "grade": "2年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 8,
-      "minutes": 271,
+      "apps": 9,
+      "minutes": 361,
       "goals": 0
     },
     {
@@ -283,9 +283,9 @@
       "name": "信重 亮二朗",
       "grade": "3年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 18,
-      "minutes": 1557,
-      "goals": 9
+      "apps": 19,
+      "minutes": 1602,
+      "goals": 10
     },
     {
       "no": 11,
@@ -293,8 +293,8 @@
       "name": "菊山 璃皇",
       "grade": "3年",
       "prev": "ソレッソ熊本",
-      "apps": 17,
-      "minutes": 917,
+      "apps": 18,
+      "minutes": 1005,
       "goals": 9
     },
     {
@@ -303,8 +303,8 @@
       "name": "牧野 太河",
       "grade": "3年",
       "prev": "京都サンガF.C. U-15",
-      "apps": 9,
-      "minutes": 31,
+      "apps": 10,
+      "minutes": 33,
       "goals": 0
     },
     {
@@ -313,8 +313,8 @@
       "name": "佐藤 壯知",
       "grade": "2年",
       "prev": "サンフレッチェ広島F.Cジュニアユース",
-      "apps": 12,
-      "minutes": 987,
+      "apps": 13,
+      "minutes": 1077,
       "goals": 2
     },
     {
@@ -2848,6 +2848,143 @@
         {
           "out": "9 信重 亮二朗",
           "in": "13 牧野 太河",
+          "minute": "90+1分"
+        }
+      ]
+    },
+    "2007": {
+      "md": 20,
+      "starters": [
+        {
+          "no": 16,
+          "pos": "GK",
+          "name": "林 和広",
+          "captain": false
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "太田 大翔",
+          "captain": true
+        },
+        {
+          "no": 6,
+          "pos": "DF",
+          "name": "小柳 柊",
+          "captain": false
+        },
+        {
+          "no": 24,
+          "pos": "DF",
+          "name": "富田 雅翔",
+          "captain": false
+        },
+        {
+          "no": 8,
+          "pos": "MF",
+          "name": "河上 颯希",
+          "captain": false
+        },
+        {
+          "no": 14,
+          "pos": "MF",
+          "name": "高橋 成海",
+          "captain": false
+        },
+        {
+          "no": 15,
+          "pos": "MF",
+          "name": "野口 魁斗",
+          "captain": false
+        },
+        {
+          "no": 18,
+          "pos": "MF",
+          "name": "佐藤 壯知",
+          "captain": false
+        },
+        {
+          "no": 20,
+          "pos": "MF",
+          "name": "田中 優翔",
+          "captain": false
+        },
+        {
+          "no": 11,
+          "pos": "FW",
+          "name": "菊山 璃皇",
+          "captain": false
+        },
+        {
+          "no": 17,
+          "pos": "FW",
+          "name": "正法地 有",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 21,
+          "pos": "GK",
+          "name": "関山 一颯",
+          "captain": false
+        },
+        {
+          "no": 2,
+          "pos": "DF",
+          "name": "西 翔生",
+          "captain": false
+        },
+        {
+          "no": 25,
+          "pos": "DF",
+          "name": "加藤 凛太朗",
+          "captain": false
+        },
+        {
+          "no": 19,
+          "pos": "MF",
+          "name": "岡 颯介",
+          "captain": false
+        },
+        {
+          "no": 27,
+          "pos": "MF",
+          "name": "稲本 理仁",
+          "captain": false
+        },
+        {
+          "no": 9,
+          "pos": "FW",
+          "name": "信重 亮二朗",
+          "captain": false
+        },
+        {
+          "no": 13,
+          "pos": "FW",
+          "name": "牧野 太河",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "24 富田 雅翔",
+          "in": "9 信重 亮二朗",
+          "minute": "ＨＴ"
+        },
+        {
+          "out": "15 野口 魁斗",
+          "in": "25 加藤 凛太朗",
+          "minute": "65分"
+        },
+        {
+          "out": "11 菊山 璃皇",
+          "in": "13 牧野 太河",
+          "minute": "88分"
+        },
+        {
+          "out": "17 正法地 有",
+          "in": "19 岡 颯介",
           "minute": "90+1分"
         }
       ]
