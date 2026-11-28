@@ -94,14 +94,14 @@
     {
       "rank": 4,
       "team": "FC東京U-18",
-      "pts": 35,
-      "played": 19,
-      "won": 11,
+      "pts": 38,
+      "played": 20,
+      "won": 12,
       "drawn": 2,
       "lost": 6,
-      "gf": 41,
-      "ga": 24,
-      "gd": 17
+      "gf": 44,
+      "ga": 25,
+      "gd": 19
     },
     {
       "rank": 5,
@@ -179,13 +179,13 @@
       "rank": 11,
       "team": "横浜FCユース",
       "pts": 13,
-      "played": 19,
+      "played": 20,
       "won": 3,
       "drawn": 4,
-      "lost": 12,
-      "gf": 26,
-      "ga": 45,
-      "gd": -19
+      "lost": 13,
+      "gf": 27,
+      "ga": 48,
+      "gd": -21
     },
     {
       "rank": 12,
@@ -3634,12 +3634,33 @@
       "md": 20,
       "date": "2026-11-28",
       "home": "FC東京U-18",
-      "hs": null,
-      "as": null,
+      "hs": 3,
+      "as": 1,
       "away": "横浜FCユース",
-      "status": "scheduled",
+      "status": "played",
       "venue": "東京ガス武蔵野苑多目的グランド(人工芝)",
-      "kickoff": "17:00"
+      "kickoff": "17:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m2003.pdf",
+      "homeScorers": [
+        {
+          "minute": "47",
+          "name": "井部 結斗"
+        },
+        {
+          "minute": "52",
+          "name": "オノノジュ 類主"
+        },
+        {
+          "minute": "61",
+          "name": "青木 智史"
+        }
+      ],
+      "awayScorers": [
+        {
+          "minute": "62",
+          "name": "鈴木 晴弥"
+        }
+      ]
     },
     {
       "md": 20,
@@ -3682,6 +3703,7 @@
       "status": "played",
       "venue": "流通経済大学付属柏高校グラウンド(人工芝)",
       "kickoff": "14:00",
+      "reportUrl": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/schedule_result/pdf/m2002.pdf",
       "homeScorers": [
         {
           "minute": "37",
@@ -3693,7 +3715,7 @@
         },
         {
           "minute": "80",
-          "name": "千葉 友翔"
+          "name": "古川 蒼真"
         }
       ],
       "awayScorers": []

@@ -5,7 +5,7 @@
   "league_team": "FC東京U-18",
   "source_roster": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/team_detail/09.html",
   "source_match": "https://www.jfa.jp/match/takamado_jfa_u18_premier2026/east/match_page/",
-  "asof": "2026-11-22",
+  "asof": "2026-11-28",
   "roster": [
     {
       "no": 1,
@@ -13,8 +13,8 @@
       "name": "渡邊 麻舟",
       "grade": "3年",
       "prev": "ＦＣ東京U-15深川",
-      "apps": 13,
-      "minutes": 1170,
+      "apps": 14,
+      "minutes": 1260,
       "goals": 0
     },
     {
@@ -83,8 +83,8 @@
       "name": "田中 理久",
       "grade": "3年",
       "prev": "ＦＣ東京U-15深川",
-      "apps": 10,
-      "minutes": 580,
+      "apps": 11,
+      "minutes": 670,
       "goals": 0
     },
     {
@@ -93,8 +93,8 @@
       "name": "新田 遥人",
       "grade": "3年",
       "prev": "ＦＣ東京U-15深川",
-      "apps": 2,
-      "minutes": 91,
+      "apps": 3,
+      "minutes": 92,
       "goals": 0
     },
     {
@@ -133,8 +133,8 @@
       "name": "塩﨑 春斗",
       "grade": "2年",
       "prev": "ＦＣ東京U-15むさし",
-      "apps": 3,
-      "minutes": 270,
+      "apps": 4,
+      "minutes": 360,
       "goals": 0
     },
     {
@@ -153,8 +153,8 @@
       "name": "児玉 遼平",
       "grade": "2年",
       "prev": "ＦＣ東京U-15深川",
-      "apps": 1,
-      "minutes": 83,
+      "apps": 2,
+      "minutes": 172,
       "goals": 0
     },
     {
@@ -183,8 +183,8 @@
       "name": "中野 寛基",
       "grade": "3年",
       "prev": "ＦＣ東京U-15深川",
-      "apps": 17,
-      "minutes": 1380,
+      "apps": 18,
+      "minutes": 1470,
       "goals": 3
     },
     {
@@ -243,9 +243,9 @@
       "name": "青木 智史",
       "grade": "2年",
       "prev": "ＦＣ東京U-15むさし",
-      "apps": 1,
-      "minutes": 90,
-      "goals": 0
+      "apps": 2,
+      "minutes": 180,
+      "goals": 1
     },
     {
       "no": 29,
@@ -263,8 +263,8 @@
       "name": "伊藤 航",
       "grade": "1年",
       "prev": "ＦＣ東京U-15むさし",
-      "apps": 1,
-      "minutes": 90,
+      "apps": 2,
+      "minutes": 92,
       "goals": 0
     },
     {
@@ -273,9 +273,9 @@
       "name": "オノノジュ 類主",
       "grade": "2年",
       "prev": "ＦＣ東京U-15むさし",
-      "apps": 10,
-      "minutes": 248,
-      "goals": 1
+      "apps": 11,
+      "minutes": 338,
+      "goals": 2
     },
     {
       "no": 43,
@@ -303,9 +303,9 @@
       "name": "井部 結斗",
       "grade": "3年",
       "prev": "ＦＣ東京U-15むさし",
-      "apps": 19,
-      "minutes": 1211,
-      "goals": 5
+      "apps": 20,
+      "minutes": 1299,
+      "goals": 6
     },
     {
       "no": 13,
@@ -313,8 +313,8 @@
       "name": "樋口 佳",
       "grade": "2年",
       "prev": "FC多摩ジュニアユース",
-      "apps": 16,
-      "minutes": 1189,
+      "apps": 17,
+      "minutes": 1278,
       "goals": 11
     },
     {
@@ -323,8 +323,8 @@
       "name": "赤松 受陀",
       "grade": "3年",
       "prev": "ＦＣ東京U-15深川",
-      "apps": 5,
-      "minutes": 153,
+      "apps": 6,
+      "minutes": 154,
       "goals": 0
     },
     {
@@ -353,8 +353,8 @@
       "name": "川田 朔太郎",
       "grade": "",
       "prev": "",
-      "apps": 1,
-      "minutes": 24,
+      "apps": 2,
+      "minutes": 31,
       "goals": 0
     },
     {
@@ -373,8 +373,8 @@
       "name": "鳥海 瑛史朗",
       "grade": "",
       "prev": "",
-      "apps": 1,
-      "minutes": 90,
+      "apps": 2,
+      "minutes": 173,
       "goals": 0
     },
     {
@@ -413,8 +413,8 @@
       "name": "高野 壮輔",
       "grade": "",
       "prev": "",
-      "apps": 0,
-      "minutes": 0,
+      "apps": 1,
+      "minutes": 90,
       "goals": 0
     }
   ],
@@ -2917,6 +2917,143 @@
           "out": "34 児玉 遼平",
           "in": "3 吉田 遥翔",
           "minute": "83分"
+        }
+      ]
+    },
+    "2003": {
+      "md": 20,
+      "starters": [
+        {
+          "no": 1,
+          "pos": "GK",
+          "name": "渡邊 麻舟",
+          "captain": true
+        },
+        {
+          "no": 4,
+          "pos": "DF",
+          "name": "田中 理久",
+          "captain": false
+        },
+        {
+          "no": 20,
+          "pos": "DF",
+          "name": "塩﨑 春斗",
+          "captain": false
+        },
+        {
+          "no": 23,
+          "pos": "DF",
+          "name": "高野 壮輔",
+          "captain": false
+        },
+        {
+          "no": 34,
+          "pos": "DF",
+          "name": "児玉 遼平",
+          "captain": false
+        },
+        {
+          "no": 42,
+          "pos": "DF",
+          "name": "鳥海 瑛史朗",
+          "captain": false
+        },
+        {
+          "no": 7,
+          "pos": "MF",
+          "name": "中野 寛基",
+          "captain": false
+        },
+        {
+          "no": 27,
+          "pos": "MF",
+          "name": "青木 智史",
+          "captain": false
+        },
+        {
+          "no": 33,
+          "pos": "MF",
+          "name": "オノノジュ 類主",
+          "captain": false
+        },
+        {
+          "no": 9,
+          "pos": "FW",
+          "name": "井部 結斗",
+          "captain": false
+        },
+        {
+          "no": 13,
+          "pos": "FW",
+          "name": "樋口 佳",
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "no": 21,
+          "pos": "GK",
+          "name": "佐藤 蒼起",
+          "captain": false
+        },
+        {
+          "no": 3,
+          "pos": "DF",
+          "name": "吉田 遥翔",
+          "captain": false
+        },
+        {
+          "no": 5,
+          "pos": "DF",
+          "name": "新田 遥人",
+          "captain": false
+        },
+        {
+          "no": 24,
+          "pos": "DF",
+          "name": "早川 瑛斗",
+          "captain": false
+        },
+        {
+          "no": 31,
+          "pos": "MF",
+          "name": "川田 朔太郎",
+          "captain": false
+        },
+        {
+          "no": 32,
+          "pos": "MF",
+          "name": "伊藤 航",
+          "captain": false
+        },
+        {
+          "no": 18,
+          "pos": "FW",
+          "name": "赤松 受陀",
+          "captain": false
+        }
+      ],
+      "subs": [
+        {
+          "out": "42 鳥海 瑛史朗",
+          "in": "31 川田 朔太郎",
+          "minute": "83分"
+        },
+        {
+          "out": "9 井部 結斗",
+          "in": "32 伊藤 航",
+          "minute": "88分"
+        },
+        {
+          "out": "34 児玉 遼平",
+          "in": "5 新田 遥人",
+          "minute": "90+5分"
+        },
+        {
+          "out": "13 樋口 佳",
+          "in": "18 赤松 受陀",
+          "minute": "90+5分"
         }
       ]
     }

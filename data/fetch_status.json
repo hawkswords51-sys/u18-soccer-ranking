@@ -4,7 +4,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 116,
+      "matchesPlayed": 117,
       "venueCount": 132,
       "venueCountPrev": 132,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-28T20:38:37+09:00",
+  "updatedAt": "2026-11-28T20:58:48+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1267,10 +1267,10 @@
       "since": ""
     },
     "team_season:fc-tokyo-u18": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧43＋一覧外0＋OG1＝44 ≠ 順位表41）",
+      "result": "ok",
+      "note": "試合20・選手41（新規取得1）",
       "date": "2026-11-28",
-      "since": "2026-11-28"
+      "since": ""
     },
     "team_season:gamba-osaka-youth": {
       "result": "ok",
@@ -1381,10 +1381,10 @@
       "since": ""
     },
     "team_season:yokohama-fc-youth": {
-      "result": "gate_failed",
-      "note": "得点の合計が合わない（一覧25＋一覧外2＋OG0＝27 ≠ 順位表26）",
+      "result": "ok",
+      "note": "試合20・選手30（新規取得1）",
       "date": "2026-11-28",
-      "since": "2026-11-28"
+      "since": ""
     },
     "team_season:yonago-kita": {
       "result": "ok",
