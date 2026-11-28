@@ -50,50 +50,50 @@
     {
       "rank": 1,
       "team": "岡山学芸館",
-      "pts": 41,
-      "played": 17,
-      "won": 13,
+      "pts": 44,
+      "played": 18,
+      "won": 14,
       "drawn": 2,
       "lost": 2,
-      "gf": 46,
+      "gf": 47,
       "ga": 12,
-      "gd": 34
+      "gd": 35
     },
     {
       "rank": 2,
       "team": "立正大淞南",
-      "pts": 38,
-      "played": 17,
-      "won": 12,
+      "pts": 41,
+      "played": 18,
+      "won": 13,
       "drawn": 2,
       "lost": 3,
-      "gf": 44,
+      "gf": 47,
       "ga": 18,
-      "gd": 26
+      "gd": 29
     },
     {
       "rank": 3,
       "team": "作陽学園",
       "pts": 32,
-      "played": 17,
+      "played": 18,
       "won": 9,
       "drawn": 5,
-      "lost": 3,
+      "lost": 4,
       "gf": 32,
-      "ga": 16,
-      "gd": 16
+      "ga": 17,
+      "gd": 15
     },
     {
       "rank": 4,
       "team": "瀬戸内",
       "pts": 29,
-      "played": 17,
+      "played": 18,
       "won": 9,
       "drawn": 2,
-      "lost": 6,
+      "lost": 7,
       "gf": 34,
-      "ga": 24,
-      "gd": 10
+      "ga": 26,
+      "gd": 8
     },
     {
       "rank": 5,
@@ -109,6 +109,18 @@
     },
     {
       "rank": 6,
+      "team": "高川学園",
+      "pts": 19,
+      "played": 18,
+      "won": 4,
+      "drawn": 7,
+      "lost": 7,
+      "gf": 21,
+      "ga": 26,
+      "gd": -5
+    },
+    {
+      "rank": 7,
       "team": "レノファ山口FC U-18",
       "pts": 18,
       "played": 17,
@@ -120,28 +132,16 @@
       "gd": -12
     },
     {
-      "rank": 7,
-      "team": "高川学園",
-      "pts": 16,
-      "played": 17,
-      "won": 3,
-      "drawn": 7,
-      "lost": 7,
-      "gf": 19,
-      "ga": 26,
-      "gd": -7
-    },
-    {
       "rank": 8,
       "team": "広島皆実",
       "pts": 15,
-      "played": 17,
+      "played": 18,
       "won": 3,
       "drawn": 6,
-      "lost": 8,
+      "lost": 9,
       "gf": 9,
-      "ga": 18,
-      "gd": -9
+      "ga": 21,
+      "gd": -12
     },
     {
       "rank": 9,
@@ -1108,10 +1108,10 @@
       "md": 18,
       "date": "2026-11-28",
       "home": "作陽学園",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 1,
       "away": "岡山学芸館",
-      "status": "scheduled",
+      "status": "played",
       "venue": "作陽学園グリーンスクウェアフィールド",
       "kickoff": "13:30"
     },
@@ -1130,10 +1130,10 @@
       "md": 18,
       "date": "2026-11-28",
       "home": "広島皆実",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 3,
       "away": "立正大淞南",
-      "status": "scheduled",
+      "status": "played",
       "venue": "広島皆実サッカー場",
       "kickoff": "13:30"
     },
@@ -1141,10 +1141,10 @@
       "md": 18,
       "date": "2026-11-28",
       "home": "瀬戸内",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 2,
       "away": "高川学園",
-      "status": "scheduled",
+      "status": "played",
       "venue": "北広島町大朝グラウンド",
       "kickoff": "13:30"
     },
