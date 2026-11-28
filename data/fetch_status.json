@@ -38,13 +38,13 @@
     },
     "prince-tohoku": {
       "expected": "jfa",
-      "actual": "koko",
-      "reason": "検算不一致 ['尚志.試合 日程から計算18≠順位表17', '尚志.勝 日程から計算16≠順位表15', '尚志.得点 日程から計算51≠順位表50'] …（据え置き）",
-      "matchesPlayed": 84,
+      "actual": "jfa",
+      "reason": "",
+      "matchesPlayed": 89,
       "venueCount": 90,
       "venueCountPrev": 90,
-      "consecutiveFallback": 1,
-      "consecutiveFallbackPrev": 0,
+      "consecutiveFallback": 0,
+      "consecutiveFallbackPrev": 1,
       "fallbackSince": "2026-11-28",
       "fallbackDays": 1
     },
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 81,
+      "matchesPlayed": 82,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -160,7 +160,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 82,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-28T13:16:51+09:00",
+  "updatedAt": "2026-11-28T13:19:59+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1339,16 +1339,16 @@
       "since": ""
     },
     "team_season:sagan-tosu-u18": {
-      "result": "ok",
-      "note": "試合19・選手30（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧38＋一覧外0＋OG0＝38 ≠ 順位表36）",
       "date": "2026-11-28",
-      "since": ""
+      "since": "2026-11-28"
     },
     "team_season:sanfrecce-hiroshima-youth": {
-      "result": "ok",
-      "note": "試合19・選手32（新規取得0）",
+      "result": "gate_failed",
+      "note": "得点の合計が合わない（一覧35＋一覧外0＋OG1＝36 ≠ 順位表35）",
       "date": "2026-11-28",
-      "since": ""
+      "since": "2026-11-28"
     },
     "team_season:shohei": {
       "result": "ok",
