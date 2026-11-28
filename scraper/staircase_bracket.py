@@ -94,6 +94,13 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None,
             alive_set = {_J._norm_team(t) for t in leaves if t and _J._norm_team(t) not in out}
 
     LABEL_W, LVL_W, ROW_H, TOP, CENTER_GAP = 190, 72, 28, 60, 168
+    # [2026-11-29] 合同チームの長い校名（宮城の新人戦「迫桜・登米総合・気仙沼・南三陸」）が右端で切れたので、
+    #   校名の欄に収まらないときだけ欄を広げる（収まる大会は従来と同じ幅＝ほかの県の表は変わらない）。
+    def _label_px(t):   # 表示される校名（短縮後）＋県内順位の小さな文字の、おおよその幅
+        r = rank_of(t) if (rank_of and t) else None
+        return len(_J._short_label(t)) * 12.5 + ((4 + len(r) * 9.5) if r else 0)
+    _need = max((_label_px(t) for t in _leaf_names(root) if t), default=0) + 12
+    LABEL_W = max(LABEL_W, int(_need + 0.999))
     dates = list(round_dates(round_names)) if round_dates else []
     has_dates = any(dates)
     if has_dates:
@@ -215,3 +222,10 @@ def render_staircase_bracket_svg(items, result_lines, round_names, rank_of=None,
            + "".join(S) + '</svg>')
     # 外枠・注記・文字色の切替は既存の表と同じものを使う（見た目をそろえる）
     return _J.wrap_bracket_svg(svg, rank_used, bool(alive_set))
+
+
+def _leaf_names(n):
+    """[2026-11-29] 表の端に並ぶ校名（シード校を含む）をすべて返す。"""
+    if "leaf" in n:
+        return [n["leaf"] or ""]
+    return [x for k in n["kids"] for x in _leaf_names(k)]

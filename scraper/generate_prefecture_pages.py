@@ -401,6 +401,8 @@ def _bracket_canon(n):
 def _bracket_parse_match(s):
     """「A 2-1 B」「A 0-0(PK4-2) B」形式を {a,b,sc,winner} に。スコアなしは None。"""
     s, ovr = _bracket.split_winner_override(s)   # [2026-10-29] 勝者指定
+    # [2026-11-29] 行末の「（延長）」は校名ではない（宮城の新人戦「A 1-0 B（延長）」で B が「B(延長)」になり、勝ち上がりが途切れた）
+    s = re.sub(r'\s*[（(]\s*延長\s*[）)]\s*$', '', (s or '').strip())
     m = re.match(r'^(.*?)\s+(\d+)\s*-\s*(\d+)(?:\s*\(\s*PK\s*(\d+)\s*-\s*(\d+)\s*\))?\s+(.*)$', s.strip())
     if not m:
         fw = _bracket.parse_forfeit(s)   # [2026-11-02] 「A 不戦勝 B」＝左が勝ち上がり
@@ -433,7 +435,8 @@ def _is_placement_round(name: str) -> bool:
     n = (name or "").replace(" ", "").replace("　", "")
     if "代表決定" in n:
         return False
-    return ("位決定" in n) or ("順位決定" in n)
+    # [2026-11-29] 「第三シード決定戦」（宮城の新人戦＝東北大会のシード順を決める準決勝敗者同士の1試合）も山の外
+    return ("位決定" in n) or ("順位決定" in n) or ("シード決定" in n)
 
 
 def _heading_date(name):
