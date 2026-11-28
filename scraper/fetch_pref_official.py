@@ -115,6 +115,10 @@ TEMP_EXCEPTIONS: dict[str, str] = {
              "③2026-11-25 追加：日程表の第17節 11/21 山辺 2-3 生駒 を 3-2 に置き換え（NARA_SCHEDULE_FIXES。星取表と"
              "奈良新聞（得点者一致）、生駒高校サッカー部の公式Instagramが 山辺 3-2）→ 外す条件＝協会が日程表のこの試合を"
              " 山辺3-2生駒 に直したら（直ると read_nara が止まって知らせる）"),
+    "ehime": ("2026-11-29 追加（Kei決定）：E1日程PDFは11/27版・E1星取表PDFは11/18版で版の日付がそろわないのを、"
+              "星取表の側が古いときだけ、全チームの勝点・勝分敗・得点・失点と消化数が日程PDFの結果と一致するときに限って通す"
+              "（EHIME_VERSION_LAG_EXCEPTION・期限 2026-12-31）。11/27版の日程に増えた結果は無く、80試合で星取表と同じ"
+              "→ 外す条件＝協会の星取表が新しい版になったら（版がそろえば例外は使われない）"),
     "yamaguchi": ("2026-10-11 追加：第1節 4/4 小野田工業×山口県鴻城 が、協会「1部日程・結果」PDFの日程欄は 0-3、"
                   "SportsOnline と同じPDFの星取表欄は 0-4。スコアは SportsOnline（0-4）のまま、この1試合だけ照合の不一致を許す"
                   "（YAMAGUCHI_PDF_SCORE_EXCEPTIONS）→ 外す条件＝どちらかの出典が直って一致したら（直ると止まって知らせる）"),
@@ -5386,6 +5390,23 @@ def _ehime_fill_missing(matches: list[dict], slug: str) -> None:
               f"日付なしの未消化として補った（EHIME_MISSING_FIXTURES））")
 
 
+# 愛媛：日程PDFだけ新しい版になり、星取表PDFが古い版のまま、のときに読む期限つき例外（2026-11-29 Kei判断）
+#   11/27版のE1日程に対し、E1星取表は11/18版のまま。11/27版で増えた結果は無い（どちらも80試合）が、
+#   版の日付がそろわないと止まる設計のため 11/28 から fetch_error になっていた。奈良の NARA_VERSION_LAG_EXCEPTION と同じ形。
+#   ⚠️ 緩めるのは「版の日付が同じ」のチェック1つだけ。古いのが星取表の側のときに限る。
+#      そのあとの突き合わせ（全チームの勝点・勝分敗・得点・失点が日程PDFの結果と一致／消化数の一致／得失点の合計0／
+#      順位が勝点の降順）は今までどおり全部通す。1つでも合わなければ止まる
+#      （＝日程PDFにだけ新しい結果が載ったら、星取表の消化数と合わずに止まる）。
+#   ⚠️ 期限を過ぎたら例外は効かない（版の日付ずれで止まる）。外す条件＝協会の星取表が新しい版になったら。
+EHIME_VERSION_LAG_EXCEPTION = {"expires": "2026-12-31", "stale": "E1星取表", "fresh": "E1日程"}
+
+
+def _ehime_lag_exception_active() -> bool:
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    today = _dt.now(_tz(_td(hours=9))).date().isoformat()
+    return today <= EHIME_VERSION_LAG_EXCEPTION["expires"]
+
+
 def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
     from urllib.parse import urljoin
     year = str(SEASON_YEAR)
@@ -5413,9 +5434,12 @@ def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
         versions[want] = pdf_source.version_from_label(links[want][0], SEASON_YEAR)
         if not versions[want] or not versions[want].startswith(f"{year}-"):
             raise RuntimeError(f"「{want}」PDFの版日付（ファイル名）が{year}年として読めない: {links[want][0]}")
+    lagged = False
     if versions["E1日程"] != versions["E1星取表"]:
-        raise RuntimeError(f"日程PDF({versions['E1日程']})と星取表PDF({versions['E1星取表']})の版日付が違う"
-                           f"（片方だけ更新されている。突き合わせが誤って落ちるので止める）")
+        if not (_ehime_lag_exception_active() and versions["E1星取表"] < versions["E1日程"]):
+            raise RuntimeError(f"日程PDF({versions['E1日程']})と星取表PDF({versions['E1星取表']})の版日付が違う"
+                               f"（片方だけ更新されている。突き合わせが誤って落ちるので止める）")
+        lagged = True             # 星取表だけ古い → 下の全項目の突き合わせが全部通ったときだけ読む（EHIME_VERSION_LAG_EXCEPTION）
     version = versions["E1日程"]
 
     # --- 日程PDF（結果入り・主資料） ---
@@ -5536,6 +5560,10 @@ def read_ehime(cfg: dict) -> tuple[dict, list[dict]]:
     if sum(v["played"] for v in standings.values()) != 2 * len(played):
         raise RuntimeError(f"星取表の勝分敗の合計{sum(v['played'] for v in standings.values())}が"
                            f"日程PDFの結果{len(played)}試合×2と合わない")
+    if lagged:
+        print(f"       （愛媛: 版の日付ずれを例外で通した（日程 {versions['E1日程']}・星取表 {versions['E1星取表']}。"
+              f"全チームの勝点・勝分敗・得点・失点と消化数{len(played)}試合が一致。EHIME_VERSION_LAG_EXCEPTION・期限"
+              f" {EHIME_VERSION_LAG_EXCEPTION['expires']}））")
     return standings, [dict(date=m["date"], home=m["home"], away=m["away"],
                             hs=m["hs"], **{"as": m["as"]}) for m in matches]
 
