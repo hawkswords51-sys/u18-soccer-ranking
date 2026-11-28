@@ -44,7 +44,7 @@
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
-      "consecutiveFallbackPrev": 1,
+      "consecutiveFallbackPrev": 0,
       "fallbackSince": "2026-11-28",
       "fallbackDays": 1
     },
@@ -64,7 +64,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 80,
+      "matchesPlayed": 81,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -100,7 +100,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 82,
+      "matchesPlayed": 83,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -124,7 +124,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 81,
+      "matchesPlayed": 82,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -148,7 +148,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 85,
+      "matchesPlayed": 88,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -160,7 +160,7 @@
       "expected": "jfa",
       "actual": "jfa",
       "reason": "",
-      "matchesPlayed": 82,
+      "matchesPlayed": 84,
       "venueCount": 90,
       "venueCountPrev": 90,
       "consecutiveFallback": 0,
@@ -181,7 +181,7 @@
       "fallbackDays": 0
     }
   },
-  "updatedAt": "2026-11-28T15:07:31+09:00",
+  "updatedAt": "2026-11-28T15:10:35+09:00",
   "pref_leagues": {
     "aichi": {
       "result": "ok",
@@ -1262,7 +1262,7 @@
     },
     "team_season:fagiano-okayama-u18": {
       "result": "ok",
-      "note": "試合20・選手38（新規取得1）",
+      "note": "試合20・選手38（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1340,13 +1340,13 @@
     },
     "team_season:sagan-tosu-u18": {
       "result": "ok",
-      "note": "試合20・選手30（新規取得1）",
+      "note": "試合20・選手30（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },
     "team_season:sanfrecce-hiroshima-youth": {
       "result": "ok",
-      "note": "試合20・選手32（新規取得1）",
+      "note": "試合20・選手32（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1364,13 +1364,13 @@
     },
     "team_season:tokyo-verdy-youth": {
       "result": "ok",
-      "note": "試合20・選手29（新規取得1）／選手一覧を据え置き（出場試合数が合わない 2件：23 渡部 直宏: 一覧6 ≠ 出場記録5）",
+      "note": "試合20・選手29（新規取得0）／選手一覧を据え置き（出場試合数が合わない 2件：23 渡部 直宏: 一覧6 ≠ 出場記録5）",
       "date": "2026-11-28",
       "since": ""
     },
     "team_season:vegalta-sendai-youth": {
       "result": "ok",
-      "note": "試合20・選手37（新規取得1）",
+      "note": "試合20・選手37（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },
@@ -1388,7 +1388,7 @@
     },
     "team_season:yonago-kita": {
       "result": "ok",
-      "note": "試合20・選手30（新規取得1）",
+      "note": "試合20・選手30（新規取得0）",
       "date": "2026-11-28",
       "since": ""
     },

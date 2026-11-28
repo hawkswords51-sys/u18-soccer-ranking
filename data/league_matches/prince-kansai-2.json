@@ -61,6 +61,18 @@
     },
     {
       "rank": 2,
+      "team": "滝川第二",
+      "pts": 33,
+      "played": 17,
+      "won": 10,
+      "drawn": 3,
+      "lost": 4,
+      "gf": 37,
+      "ga": 26,
+      "gd": 11
+    },
+    {
+      "rank": 3,
       "team": "京都橘(B)",
       "pts": 32,
       "played": 16,
@@ -70,18 +82,6 @@
       "gf": 37,
       "ga": 21,
       "gd": 16
-    },
-    {
-      "rank": 3,
-      "team": "滝川第二",
-      "pts": 32,
-      "played": 16,
-      "won": 10,
-      "drawn": 2,
-      "lost": 4,
-      "gf": 37,
-      "ga": 26,
-      "gd": 11
     },
     {
       "rank": 4,
@@ -110,10 +110,10 @@
     {
       "rank": 6,
       "team": "関大北陽",
-      "pts": 21,
-      "played": 16,
+      "pts": 22,
+      "played": 17,
       "won": 6,
-      "drawn": 3,
+      "drawn": 4,
       "lost": 7,
       "gf": 21,
       "ga": 35,
@@ -1075,10 +1075,10 @@
       "md": 17,
       "date": "2026-11-28",
       "home": "滝川第二",
-      "hs": null,
-      "as": null,
+      "hs": 0,
+      "as": 0,
       "away": "関大北陽",
-      "status": "scheduled",
+      "status": "played",
       "venue": "滝川第二高校",
       "kickoff": "13:00"
     },
